@@ -1,0 +1,11 @@
+// BEGIN_INTERNALS
+/*
+MAP_ICON_TYPE: 0
+WINDOW: code\hub.dm;code\modules\mob\mob_helpers.dm;code\modules\cm_aliens\Castes\Runner.dm;code\_onclick\hud\alien_larva.dm;code\_onclick\hud\hud.dm;code\modules\cm_aliens\XenoLife.dm;code\modules\mob\living\carbon\alien\update_icons.dm;code\modules\mob\living\carbon\alien\alien.dm
+LAST_COMPILE_VERSION: 506.1249
+DIR: code code\_onclick code\_onclick\hud code\datums code\datums\diseases code\defines code\defines\procs code\game code\game\gamemodes code\game\gamemodes\mutiny code\game\gamemodes\mutiny\directives code\game\objects code\game\objects\effects code\game\objects\effects\decals code\game\objects\effects\decals\Cleanable code\game\objects\structures code\game\objects\structures\stool_bed_chair_nest code\modules code\modules\clothing code\modules\clothing\glasses code\modules\clothing\spacesuits code\modules\clothing\suits code\modules\cm_aliens code\modules\cm_aliens\Castes code\modules\events code\modules\mob code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\alien code\modules\mob\living\carbon\metroid code\unused code\unused\hivebot icons icons\mob 
+FILE: code\_onclick\hud\hud.dm
+LAST_COMPILE_TIME: 1423964385
+AUTO_FILE_DIR: ON
+*/
+// END_INTERNALS
