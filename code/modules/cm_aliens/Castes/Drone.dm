@@ -32,7 +32,7 @@ mob/living/carbon/Xenomorph/Drone/New()
 	spawn (25)
 		src.frozen = 0
 //	verbs.Add(/mob/living/carbon/Xenomorph/proc/resin,/mob/living/carbon/Xenomorph/proc/weak_acid) //This will be enabled later
-	growJelly()
+//	growJelly()  TEMP DISABLED (was infinite Looping?)
 
 
 

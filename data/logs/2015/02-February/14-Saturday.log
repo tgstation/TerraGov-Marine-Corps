@@ -71,3 +71,53 @@ Starting up. 20:48.17
 [20:48:19]MISC: Failed to connect to database in load_admins(). Reverting to legacy system.
 [20:48:19]MISC: Database connection failed. Reverting to the legacy ban system.
 [20:48:19]DEBUG: Rebuilding Master Controller
+
+
+Starting up. 22:03.01
+---------------------
+[22:03:01]MISC: Adding game mode AutoTraitor (extend-a-traitormongous) to configuration.
+[22:03:01]MISC: Adding game mode traitor+changeling (traitorchan) to configuration.
+[22:03:01]MISC: Adding game mode traitor (traitor) to configuration.
+[22:03:01]MISC: Adding game mode calamity (calamity) to configuration.
+[22:03:01]MISC: Adding game mode changeling (changeling) to configuration.
+[22:03:01]MISC: Adding game mode cult (cult) to configuration.
+[22:03:01]MISC: Adding game mode extended (extended) to configuration.
+[22:03:01]MISC: Adding game mode heist (heist) to configuration.
+[22:03:01]MISC: Adding game mode AI malfunction (malfunction) to configuration.
+[22:03:01]MISC: Adding game mode meteor (meteor) to configuration.
+[22:03:01]MISC: Adding game mode mutiny (mutiny) to configuration.
+[22:03:01]MISC: Adding game mode ninja (ninja) to configuration.
+[22:03:01]MISC: Adding game mode nuclear emergency (nuclear) to configuration.
+[22:03:01]MISC: Adding game mode rp-revolution (rp-revolution) to configuration.
+[22:03:01]MISC: Adding game mode revolution (revolution) to configuration.
+[22:03:01]MISC: Adding game mode wizard (wizard) to configuration.
+[22:03:01]MISC: Adding game mode colonial marines (colonialmarines) to configuration.
+[22:03:03]MISC: Failed to connect to database in load_admins(). Reverting to legacy system.
+[22:03:03]MISC: Database connection failed. Reverting to the legacy ban system.
+[22:03:03]DEBUG: Rebuilding Master Controller
+[22:04:40]DEBUG: Next event in 29.852 minutes.
+
+
+Starting up. 22:09.05
+---------------------
+[22:09:05]MISC: Adding game mode AutoTraitor (extend-a-traitormongous) to configuration.
+[22:09:05]MISC: Adding game mode traitor+changeling (traitorchan) to configuration.
+[22:09:05]MISC: Adding game mode traitor (traitor) to configuration.
+[22:09:05]MISC: Adding game mode calamity (calamity) to configuration.
+[22:09:05]MISC: Adding game mode changeling (changeling) to configuration.
+[22:09:05]MISC: Adding game mode cult (cult) to configuration.
+[22:09:05]MISC: Adding game mode extended (extended) to configuration.
+[22:09:05]MISC: Adding game mode heist (heist) to configuration.
+[22:09:05]MISC: Adding game mode AI malfunction (malfunction) to configuration.
+[22:09:05]MISC: Adding game mode meteor (meteor) to configuration.
+[22:09:05]MISC: Adding game mode mutiny (mutiny) to configuration.
+[22:09:05]MISC: Adding game mode ninja (ninja) to configuration.
+[22:09:05]MISC: Adding game mode nuclear emergency (nuclear) to configuration.
+[22:09:05]MISC: Adding game mode rp-revolution (rp-revolution) to configuration.
+[22:09:05]MISC: Adding game mode revolution (revolution) to configuration.
+[22:09:05]MISC: Adding game mode wizard (wizard) to configuration.
+[22:09:05]MISC: Adding game mode colonial marines (colonialmarines) to configuration.
+[22:09:08]MISC: Failed to connect to database in load_admins(). Reverting to legacy system.
+[22:09:08]MISC: Database connection failed. Reverting to the legacy ban system.
+[22:09:08]DEBUG: Rebuilding Master Controller
+[22:10:04]DEBUG: Next event in 31.75 minutes.

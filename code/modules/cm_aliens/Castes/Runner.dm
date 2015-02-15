@@ -35,7 +35,7 @@ mob/living/carbon/Xenomorph/Runner/New()
 	spawn (25)
 		src.frozen = 0*/
 //	verbs.Add() //This will be enabled later
-	growJelly()
+//	growJelly()   TEMP DISABLED (was infinite Looping?)
 
 
 

@@ -117,7 +117,7 @@ proc/isnewplayer(A)
 	return 0
 
 proc/isXeno(A) //Xenomorph Hud Test APOPHIS 14FEB2015
-	if(istype(A, /mob/living/carbon/Xenomorph))
+	if(istype(A, /mob/living/carbon/Xenomorph) && !istype(A, /mob/living/carbon/Xenomorph/Larva))
 		return 1
 	return 0
 
