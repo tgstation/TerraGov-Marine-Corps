@@ -11,7 +11,12 @@ var/const/ENGINEER			=(1<<6)
 var/const/ATMOSTECH			=(1<<7)
 var/const/AI				=(1<<8)
 var/const/CYBORG			=(1<<9)
-
+var/const/COMMANDER			=(1<<10)
+var/const/MPOLICE			=(1<<11)
+var/const/MARINE			=(1<<12)
+var/const/BIOHAZ			=(1<<13)
+var/const/LOGISTICS			=(1<<14)
+var/const/SULMED			=(1<<15)
 
 var/const/MEDSCI			=(1<<1)
 
@@ -50,6 +55,8 @@ var/list/assistant_occupations = list(
 
 
 var/list/command_positions = list(
+	"Commander",
+	"Logistics Officer",
 	"Captain",
 	"Head of Personnel",
 	"Head of Security",
@@ -68,6 +75,7 @@ var/list/engineering_positions = list(
 
 var/list/medical_positions = list(
 	"Chief Medical Officer",
+	"Sulaco Medic",
 	"Medical Doctor",
 	"Geneticist",
 	"Psychiatrist",
@@ -77,6 +85,7 @@ var/list/medical_positions = list(
 
 var/list/science_positions = list(
 	"Research Director",
+	"Researcher",
 	"Scientist",
 	"Geneticist",	//Part of both medical and science
 	"Roboticist",
@@ -87,7 +96,7 @@ var/list/science_positions = list(
 var/list/civilian_positions = list(
 	"Head of Personnel",
 	"Bartender",
-	"Gardener",
+	"Botanist",
 	"Chef",
 	"Janitor",
 	"Librarian",
@@ -102,9 +111,47 @@ var/list/civilian_positions = list(
 
 var/list/security_positions = list(
 	"Head of Security",
+	"Military Police",
 	"Warden",
 	"Detective",
 	"Security Officer"
+)
+
+
+var/list/marine_alpha_positions = list(
+	"Alpha Squad Leader",
+	"Alpha Squad Standard",
+	"Alpha Squad Engineer",
+	"Alpha Squad Medic"
+)
+
+
+var/list/marine_bravo_positions = list(
+	"Bravo Squad Leader",
+	"Bravo Squad Standard",
+	"Bravo Squad Engineer",
+	"Bravo Squad Medic"
+)
+
+
+var/list/marine_charlie_positions = list(
+	"Charlie Squad Leader",
+	"Charlie Squad Standard",
+	"Charlie Squad Engineer",
+	"Charlie Squad Medic"
+)
+
+
+var/list/marine_delta_positions = list(
+	"Delta Squad Leader",
+	"Delta Squad Standard",
+	"Delta Squad Engineer",
+	"Delta Squad Medic"
+)
+
+
+var/list/mar_unassigned = list(
+	"Marine"
 )
 
 

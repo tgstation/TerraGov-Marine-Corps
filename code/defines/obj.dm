@@ -62,6 +62,11 @@
 	var/list/civ = new()
 	var/list/bot = new()
 	var/list/misc = new()
+	var/list/mar_unassigned = new()
+	var/list/mar_alpha = new()
+	var/list/mar_bravo = new()
+	var/list/mar_charlie = new()
+	var/list/mar_delta = new()
 	var/list/isactive = new()
 	var/dat = {"
 	<head><style>
@@ -99,6 +104,21 @@
 		if(real_rank in security_positions)
 			sec[name] = rank
 			department = 1
+		if(real_rank in mar_unassigned)
+			mar_unassigned[name] = rank
+			department = 1
+		if(real_rank in marine_alpha_positions)
+			mar_alpha[name] = rank
+			department = 1			
+		if(real_rank in marine_bravo_positions)
+			mar_bravo[name] = rank
+			department = 1			
+		if(real_rank in marine_charlie_positions)
+			mar_charlie[name] = rank
+			department = 1			
+		if(real_rank in marine_delta_positions)
+			mar_delta[name] = rank
+			department = 1			
 		if(real_rank in engineering_positions)
 			eng[name] = rank
 			department = 1
@@ -117,7 +137,7 @@
 		if(!department && !(name in heads))
 			misc[name] = rank
 	if(heads.len > 0)
-		dat += "<tr><th colspan=3>Heads</th></tr>"
+		dat += "<tr><th colspan=3>Command Staff</th></tr>"
 		for(name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
@@ -125,6 +145,31 @@
 		dat += "<tr><th colspan=3>Security</th></tr>"
 		for(name in sec)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sec[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(mar_unassigned.len > 0)
+		dat += "<tr><th colspan=3>Unassigned</th></tr>"
+		for(name in mar_unassigned)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar_unassigned[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(mar_alpha.len > 0)
+		dat += "<tr><th colspan=3>Alpha</th></tr>"
+		for(name in mar_alpha)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar_alpha[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(mar_bravo.len > 0)
+		dat += "<tr><th colspan=3>Bravo</th></tr>"
+		for(name in mar_bravo)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar_bravo[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(mar_charlie.len > 0)
+		dat += "<tr><th colspan=3>Charlie</th></tr>"
+		for(name in mar_charlie)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar_charlie[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(mar_delta.len > 0)
+		dat += "<tr><th colspan=3>Delta</th></tr>"
+		for(name in mar_delta)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar_delta[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(eng.len > 0)
 		dat += "<tr><th colspan=3>Engineering</th></tr>"
@@ -185,6 +230,12 @@ var/global/list/PDA_Manifest = list()
 	var/civ[0]
 	var/bot[0]
 	var/misc[0]
+	var/mar_unassigned[0]
+	var/mar_alpha[0]
+	var/mar_bravo[0]
+	var/mar_charlie[0]
+	var/mar_delta[0]
+
 	for(var/datum/data/record/t in data_core.general)
 		var/name = sanitize(t.fields["name"])
 		var/rank = sanitize(t.fields["rank"])
@@ -196,7 +247,7 @@ var/global/list/PDA_Manifest = list()
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Captain" && heads.len != 1)
+			if(rank=="Commander" && heads.len != 1)
 				heads.Swap(1,heads.len)
 
 		if(real_rank in security_positions)
@@ -229,6 +280,36 @@ var/global/list/PDA_Manifest = list()
 			if(depthead && civ.len != 1)
 				civ.Swap(1,civ.len)
 
+		if(real_rank in mar_unassigned)
+			mar_unassigned[++mar_unassigned.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && mar_unassigned.len != 1)
+				mar_unassigned.Swap(1,mar_unassigned.len)
+
+		if(real_rank in marine_alpha_positions)
+			mar_alpha[++mar_alpha.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && mar_alpha.len != 1)
+				mar_alpha.Swap(1,mar_alpha.len)
+
+		if(real_rank in marine_bravo_positions)
+			mar_bravo[++mar_bravo.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && mar_bravo.len != 1)
+				mar_bravo.Swap(1,mar_bravo.len)
+
+		if(real_rank in marine_charlie_positions)
+			mar_charlie[++mar_charlie.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && mar_charlie.len != 1)
+				mar_charlie.Swap(1,mar_charlie.len)
+
+		if(real_rank in marine_delta_positions)
+			mar_delta[++mar_delta.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && mar_delta.len != 1)
+				mar_delta.Swap(1,mar_delta.len)
+
 		if(real_rank in nonhuman_positions)
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
@@ -244,6 +325,11 @@ var/global/list/PDA_Manifest = list()
 		"med" = med,\
 		"sci" = sci,\
 		"civ" = civ,\
+		"mar_unassigned" = mar_unassigned,\
+		"mar_alpha" = mar_alpha,\
+		"mar_bravo" = mar_bravo,\
+		"mar_charlie" = mar_charlie,\
+		"mar_delta" = mar_delta,\
 		"bot" = bot,\
 		"misc" = misc\
 		)

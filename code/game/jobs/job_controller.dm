@@ -1,4 +1,6 @@
 var/global/datum/controller/occupations/job_master
+var/list/survivorjobs = list("Scientist", "Station Engineer", "Medical Doctor", "Cargo Technician", "Botanist", "Chef", "Assistant", "Clown")
+var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Research Director")
 
 #define GET_RANDOM_JOB 0
 #define BE_ASSISTANT 1
@@ -23,6 +25,7 @@ var/global/datum/controller/occupations/job_master
 			var/datum/job/job = new J()
 			if(!job)	continue
 			if(job.faction != faction)	continue
+			// if(job.title in get_marine_jobs())
 			occupations += job
 
 
@@ -141,7 +144,7 @@ var/global/datum/controller/occupations/job_master
 				// Different head positions have different good ages.
 				var/good_age_minimal = 25
 				var/good_age_maximal = 60
-				if(command_position == "Captain")
+				if(command_position == "Commander")
 					good_age_minimal = 30
 					good_age_maximal = 70 // Old geezer captains ftw
 
@@ -225,10 +228,10 @@ var/global/datum/controller/occupations/job_master
 		SetupOccupations()
 
 		//Holder for Triumvirate is stored in the ticker, this just processes it
-		if(ticker)
-			for(var/datum/job/ai/A in occupations)
-				if(ticker.triai)
-					A.spawn_positions = 3
+	//	if(ticker)
+			//for(var/datum/job/ai/A in occupations)
+			//	if(ticker.triai)
+				//	A.spawn_positions = 3
 
 		//Get the players who are ready
 		for(var/mob/new_player/player in player_list)

@@ -85,6 +85,47 @@
 	//MONEY
 /var/const/access_crate_cash = 200
 
+/var/const/access_logistics = 300
+
+//Alpha prep stuff
+/var/const/access_alpha_prep = 301
+/var/const/access_alpha_mprep = 302
+/var/const/access_alpha_eprep = 303
+/var/const/access_alpha_sprep = 304
+/var/const/access_alpha_leader = 305
+
+//Bravo prep stuff
+/var/const/access_bravo_prep = 306
+/var/const/access_bravo_mprep = 307
+/var/const/access_bravo_eprep = 308
+/var/const/access_bravo_sprep = 309
+/var/const/access_bravo_leader = 310
+
+//Charlie prep stuff
+/var/const/access_charlie_prep = 311
+/var/const/access_charlie_mprep = 312
+/var/const/access_charlie_eprep = 313
+/var/const/access_charlie_sprep = 314
+/var/const/access_charlie_leader = 315
+
+//Delta prep stuff
+/var/const/access_delta_prep = 316
+/var/const/access_delta_mprep = 317
+/var/const/access_delta_eprep = 318
+/var/const/access_delta_sprep = 319
+/var/const/access_delta_leader = 320
+
+/var/const/access_xeno_containment = 400
+
+/var/const/access_medical_bay = 500
+/var/const/access_medical_chem = 501
+/var/const/access_medical_surgery = 502
+/var/const/access_medical_genetics = 503
+/var/const/access_medical_storage = 504
+
+/var/const/access_sulaco_brig = 600
+/var/const/access_sulaco_cells = 601
+
 /obj/var/list/req_access = null
 /obj/var/req_access_txt = "0"
 /obj/var/list/req_one_access = null
@@ -103,7 +144,7 @@
 		//if they are holding or wearing a card that has access, that works
 		if(src.check_access(H.get_active_hand()) || src.check_access(H.wear_id))
 			return 1
-	else if(istype(M, /mob/living/carbon/monkey))
+	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/alien))
 		var/mob/living/carbon/george = M
 		//they can only hold things :(
 		if(src.check_access(george.get_active_hand()))
@@ -404,13 +445,186 @@
 		if(access_cent_captain)
 			return "Code Gold"
 
+/proc/get_marine_jobs()
+		return list(
+		"Commander",
+		"Logistics Officer",
+		"Military Police",
+		"Alpha Squad Leader",
+		"Alpha Squad Medic",
+		"Alpha Squad Engineer",
+		"Alpha Squad Standard",
+		"Bravo Squad Leader",
+		"Bravo Squad Medic",
+		"Bravo Squad Engineer",
+		"Bravo Squad Standard",
+		"Delta Squad Leader",
+		"Delta Squad Medic",
+		"Delta Squad Engineer",
+		"Delta Squad Standard",
+		"Charlie Squad Leader",
+		"Charlie Squad Medic",
+		"Charlie Squad Engineer",
+		"Charlie Squad Standard",
+		"Researcher",
+		"Marine",
+		"Sulaco Medic"
+		)
+
+
+/proc/get_marine_access(job)
+	switch(job)
+		if("Alpha Squad Leader")
+			return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader)
+		if("Alpha Squad Medic")
+			return list(access_alpha_prep, access_alpha_mprep)
+		if("Alpha Squad Engineer")
+			return list(access_alpha_prep, access_alpha_eprep)
+		if("Alpha Squad Standard")
+			return list(access_alpha_prep, access_alpha_sprep)
+		if("Bravo Squad Leader")
+			return list(access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader)
+		if("Bravo Squad Medic")
+			return list(access_bravo_prep, access_bravo_mprep)
+		if("Bravo Squad Engineer")
+			return list(access_bravo_prep, access_bravo_eprep)
+		if("Bravo Squad Standard")
+			return list(access_bravo_prep, access_bravo_sprep)
+		if("Charlie Squad Leader")
+			return list(access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader)
+		if("Charlie Squad Medic")
+			return list(access_charlie_prep, access_charlie_mprep)
+		if("Charlie Squad Engineer")
+			return list(access_charlie_prep, access_charlie_eprep)
+		if("Charlie Squad Standard")
+			return list(access_charlie_prep, access_charlie_sprep)
+		if("Delta Squad Leader")
+			return list(access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader)
+		if("Delta Squad Medic")
+			return list(access_delta_prep, access_delta_mprep)
+		if("Delta Squad Engineer")
+			return list(access_delta_prep, access_delta_eprep)
+		if("Delta Squad Standard")
+			return list(access_delta_prep, access_delta_sprep)
+		if("Logistics Officer")
+			return list(access_logistics)
+		if("Commander")
+			return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader, access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader, access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader, access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader, access_logistics, access_xeno_containment, access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_robotics, access_sulaco_brig, access_sulaco_cells)
+		if("Researcher")
+			return list(access_xeno_containment, access_robotics)
+		if("Sulaco Medic")
+			return list(access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_genetics, access_medical_storage)
+		if("Military Police")
+			return list(access_sulaco_brig, access_sulaco_cells, access_logistics, access_xeno_containment, access_robotics, access_medical_bay, access_medical_surgery)
+
+
+/proc/get_marine_access_desc(A)
+	switch(A)
+		if(access_alpha_prep)
+			return "Alpha Preparation"
+		if(access_alpha_mprep)
+			return "Alpha Medical Preparation"
+		if(access_alpha_eprep)
+			return "Alpha Engineering Preparation"
+		if(access_alpha_sprep)
+			return "Alpha Standard Preparation"
+		if(access_alpha_leader)
+			return "Alpha Leader Preparation"
+		if(access_bravo_prep)
+			return "Bravo Preparation"
+		if(access_bravo_mprep)
+			return "Bravo Medical Preparation"
+		if(access_bravo_eprep)
+			return "Bravo Engineering Preparation"
+		if(access_bravo_sprep)
+			return "Bravo Standard Preparation"
+		if(access_bravo_leader)
+			return "Bravo Leader Preparation"
+		if(access_charlie_prep)
+			return "Charlie Preparation"
+		if(access_charlie_mprep)
+			return "Charlie Medical Preparation"
+		if(access_charlie_eprep)
+			return "Charlie Engineering Preparation"
+		if(access_charlie_sprep)
+			return "Charlie Standard Preparation"
+		if(access_charlie_leader)
+			return "Charlie Leader Preparation"
+		if(access_delta_prep)
+			return "Delta Preparation"
+		if(access_delta_mprep)
+			return "Delta Medical Preparation"
+		if(access_delta_eprep)
+			return "Delta Engineering Preparation"
+		if(access_delta_sprep)
+			return "Delta Standard Preparation"
+		if(access_delta_leader)
+			return "Delta Leader Preparation"
+		if(access_logistics)
+			return "Logistics"
+		if(access_xeno_containment)
+			return "Xenomorphic Containment"
+		if(access_medical_bay)
+			return "Sulaco Med Bay"
+		if(access_medical_chem)
+			return "Sulaco Med Chemistry"
+		if(access_medical_genetics)
+			return "Sulaco Med Genetics"
+		if(access_medical_surgery)
+			return "Sulaco Med Surgery"
+		if(access_medical_storage)
+			return "Sulaco Med Storage"
+		if(access_sulaco_brig)
+			return "Sulaco Brig"
+		if(access_sulaco_cells)
+			return "Sulaco Brig Cells"
+
+/proc/get_all_marine_accesses()
+	return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader, access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader, access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader, access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader, access_logistics, access_xeno_containment, access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_robotics, access_sulaco_brig, access_sulaco_cells)
+
+/proc/get_marine_region_accesses_name(var/code)
+	switch(code)
+		if(1)
+			return "Alpha"
+		if(2)
+			return "Bravo"
+		if(3)
+			return "Charlie"
+		if(4)
+			return "Delta"
+		if(5)
+			return "Command"
+		if(6)
+			return "Research"
+		if(7)
+			return "Misc"
+
+/proc/get_marine_region_accesses(var/code)
+	switch(code)
+		if(1)
+			return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader)
+		if(2)
+			return list(access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader)
+		if(3)
+			return list(access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader)
+		if(4)
+			return list(access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader)
+		if(5)
+			return list(access_logistics)
+		if(6)
+			return list(access_xeno_containment)
+		if(7)
+			return list(access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_sulaco_brig, access_sulaco_cells)
+
+
 /proc/get_all_jobs()
 	var/list/all_jobs = list()
 	var/list/all_datums = typesof(/datum/job)
-	all_datums.Remove(list(/datum/job,/datum/job/ai,/datum/job/cyborg))
+//	all_datums.Remove(list(/datum/job,/datum/job/ai,/datum/job/cyborg))
 	var/datum/job/jobdatum
 	for(var/jobtype in all_datums)
 		jobdatum = new jobtype
+		// if(jobdatum.title in get_marine_jobs())
 		all_jobs.Add(jobdatum.title)
 	return all_jobs
 
