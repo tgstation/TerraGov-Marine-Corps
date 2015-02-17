@@ -1,11 +1,9 @@
 // BEGIN_INTERNALS
 /*
 MAP_ICON_TYPE: 0
-WINDOW: code\hub.dm;code\modules\mob\mob_helpers.dm;code\modules\cm_aliens\Castes\Runner.dm;code\_onclick\hud\alien_larva.dm;code\_onclick\hud\hud.dm;code\modules\cm_aliens\XenoLife.dm;code\modules\mob\living\carbon\alien\update_icons.dm;code\modules\cm_aliens\Xenomorph.dm;code\modules\cm_aliens\XenoProcs.dm;code\modules\cm_aliens\Castes\Drone.dm
 LAST_COMPILE_VERSION: 506.1249
-DIR: code code\_onclick code\_onclick\hud code\datums code\datums\diseases code\defines code\defines\procs code\game code\game\gamemodes code\game\gamemodes\mutiny code\game\gamemodes\mutiny\directives code\game\objects code\game\objects\effects code\modules code\modules\cm_aliens code\modules\cm_aliens\Castes code\modules\mob code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\alien 
-FILE: code\modules\cm_aliens\Castes\Runner.dm
-LAST_COMPILE_TIME: 1423973250
+DIR: code\_onclick\hud code\datums\diseases code\defines\procs code\game\gamemodes\mutiny code\game\gamemodes\mutiny\directives code\game\objects\effects 
+LAST_COMPILE_TIME: 1424068669
 AUTO_FILE_DIR: ON
 */
 // END_INTERNALS
