@@ -34,6 +34,8 @@
 	icon_opened = "capsecureopen"
 	icon_broken = "capsecurebroken"
 	icon_off = "capsecureoff"
+	icon = 'icons/obj/closet.dmi'
+
 
 	New()
 		sleep(2)
@@ -58,6 +60,7 @@
 	icon_opened = "hopsecureopen"
 	icon_broken = "hopsecurebroken"
 	icon_off = "hopsecureoff"
+	icon = 'icons/obj/closet.dmi'
 
 	New()
 		sleep(2)
@@ -89,7 +92,8 @@
 	icon_opened = "secopen"
 	icon_broken = "secbroken"
 	icon_off = "secoff"
-
+	icon = 'icons/obj/closet.dmi'
+	
 	New()
 		sleep(2)
 		new /obj/item/clothing/shoes/marine(src)
@@ -116,7 +120,8 @@
 	icon_opened = "secopen"
 	icon_broken = "secbroken"
 	icon_off = "secoff"
-
+	icon = 'icons/obj/closet.dmi'
+	
 	New()
 		sleep(2)
 		new /obj/item/clothing/shoes/marine(src)
@@ -248,6 +253,8 @@
 	icon_opened = "securemedopen"
 	icon_broken = "securemedbroken"
 	icon_off = "securemedoff"
+	icon = 'icons/obj/closet.dmi'
+
 
 	New()
 		sleep(2)
