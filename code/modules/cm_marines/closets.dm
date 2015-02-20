@@ -105,7 +105,7 @@
 		new /obj/item/device/flashlight(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/mmpo(src)
-		new /obj/item/weapon/gun/twohanded/projectile/shotgun/pump/riot(src)
+		// new /obj/item/weapon/gun/twohanded/projectile/shotgun/pump/riot(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/melee/baton(src)
 		return
