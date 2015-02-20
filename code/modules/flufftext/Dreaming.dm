@@ -1,18 +1,18 @@
 
 var/list/dreams = list(
-	"an ID card","a bottle","a familiar face","a crewmember","a toolbox","a security officer","the captain",
-	"voices from all around","deep space","a doctor","the engine","a traitor","an ally","darkness",
-	"light","a scientist","a monkey","a catastrophe","a loved one","a gun","warmth","freezing","the sun",
-	"a hat","the Luna","a ruined station","a planet","phoron","air","the medical bay","the bridge","blinking lights",
-	"a blue light","an abandoned laboratory","Nanotrasen","The Syndicate","blood","healing","power","respect",
-	"riches","space","a crash","happiness","pride","a fall","water","flames","ice","melons","flying","the eggs","money",
-	"the head of personnel","the head of security","a chief engineer","a research director","a chief medical officer",
-	"the detective","the warden","a member of the internal affairs","a station engineer","the janitor","atmospheric technician",
-	"the quartermaster","a cargo technician","the botanist","a shaft miner","the psychologist","the chemist","the geneticist",
-	"the virologist","the roboticist","the chef","the bartender","the chaplain","the librarian","a mouse","an ert member",
-	"a beach","the holodeck","a smokey room","a voice","the cold","a mouse","an operating table","the bar","the rain","a skrell",
-	"a unathi","a tajaran","the ai core","the mining station","the research station","a beaker of strange liquid",
-	)
+"the Sulaco","a wound","a familiar face","a squadmate","a flare","an officer","the commander",
+"whispering","deep space","a medic","the engine","alarm","an ally","darkness",
+"dim light","a scientist","the squad leader","a catastrophe","desertion","a mistake","ice","freezing","warning lights",
+"a helmet","mandibles","a ruined station","a colony","bunny slippers","air","the morgue","the Sulaco bridge","blinking lights",
+"a blue light","an abandoned colony","Colonial Marines","Weyland Yutani","blood","a bandage","fear","a stiff corpse",
+"loyalty","space","a crash","loner","suffocation","a fall","heat","flames","ice","cigarettes","falling","warning light","a PDA",
+"Alpha Squad","Bravo Squad","Charlie Squad","Delta Squad","a Pulse Rifle",
+"a combat knife","a distress beacon","a Pulse Rifle","a spider","empty space","claws",
+"acid","pajamas","briefing","welding helmets","the vents","trapped","a lone survivor",
+"a power loader","cyrostasis","the logistics officers","the engineer","a severed head","a motion scanner","the dropship","a uniform",
+"a ruined station","fire","a smokey room","a voice","the cold","darkness","an operating table","teeth","Joushuu","caught",
+"a synthetic man","reinforcements","game over","the U.P.P","Weyland Yutani","alone",
+)
 
 mob/living/carbon/proc/dream()
 	dreaming = 1
