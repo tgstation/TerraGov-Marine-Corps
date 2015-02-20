@@ -176,3 +176,107 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "phoron0"
 	var/mineral = "phoron"
+	
+
+// Joshuu's Additions
+/turf/unsimulated/jungle/dirt
+	name = "dirt"
+	desc = ""
+	icon_state = "dirt"
+
+/turf/unsimulated/jungle/dirtGrass1
+	name = "dirtgrass1"
+	desc = ""
+	icon_state = "grass_half1"
+
+/turf/unsimulated/jungle/dirtGrass2
+	name = "dirtgrass2"
+	desc = ""
+	icon_state = "grass_half2"
+
+/turf/unsimulated/jungle/dirtGrass3
+	name = "dirtgrass3"
+	desc = ""
+	icon_state = "grass_half3"
+
+/turf/unsimulated/jungle/dirtGrass4
+	name = "dirtgrass4"
+	desc = ""
+	icon_state = "grass_half4"
+
+/turf/unsimulated/jungle/dirtGrassCorner1
+	name = "dirtGrassCorner1"
+	desc = ""
+	icon_state = "grass_corner1"
+
+/turf/unsimulated/jungle/dirtGrassCorner2
+	name = "dirtGrassCorner2"
+	desc = ""
+	icon_state = "grass_corner2"
+
+/turf/unsimulated/jungle/dirtGrassCorner3
+	name = "dirtGrassCorner3"
+	desc = ""
+	icon_state = "grass_corner3"
+
+/turf/unsimulated/jungle/dirtGrassCorner4
+	name = "dirtGrassCorner4"
+	desc = ""
+	icon_state = "grass_corner4"
+
+
+/turf/simulated/jungle
+	var/bushes_spawn = 1
+	var/plants_spawn = 1
+	name = "wet grass"
+	desc = "Thick, long wet grass"
+	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
+	icon_state = "grass1"
+	var/icon_spawn_state = "grass1"
+	luminosity = 3
+
+/turf/simulated/jungle/dirt
+	name = "dirt"
+	desc = ""
+	icon_state = "dirt"
+
+/turf/simulated/jungle/dirtGrass1
+	name = "dirtgrass1"
+	desc = ""
+	icon_state = "grass_half1"
+
+/turf/simulated/jungle/dirtGrass2
+	name = "dirtgrass2"
+	desc = ""
+	icon_state = "grass_half2"
+
+/turf/simulated/jungle/dirtGrass3
+	name = "dirtgrass3"
+	desc = ""
+	icon_state = "grass_half3"
+
+/turf/simulated/jungle/dirtGrass4
+	name = "dirtgrass4"
+	desc = ""
+	icon_state = "grass_half4"
+
+/turf/simulated/jungle/dirtGrassCorner1
+	name = "dirtGrassCorner1"
+	desc = ""
+	icon_state = "grass_corner1"
+
+/turf/simulated/jungle/dirtGrassCorner2
+	name = "dirtGrassCorner2"
+	desc = ""
+	icon_state = "grass_corner2"
+
+/turf/simulated/jungle/dirtGrassCorner3
+	name = "dirtGrassCorner3"
+	desc = ""
+	icon_state = "grass_corner3"
+
+/turf/simulated/jungle/dirtGrassCorner4
+	name = "dirtGrassCorner4"
+	desc = ""
+	icon_state = "grass_corner4"
+
