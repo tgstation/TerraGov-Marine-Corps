@@ -1,9 +1,11 @@
 // BEGIN_INTERNALS
 /*
+LAST_COMPILE_TIME: 1424068669
+DIR: code code\_onclick\hud code\datums\diseases code\defines\procs code\game code\game\gamemodes\mutiny code\game\gamemodes\mutiny\directives code\game\objects code\game\objects\effects code\game\objects\effects\decals maps 
+AUTO_FILE_DIR: ON
 MAP_ICON_TYPE: 0
 LAST_COMPILE_VERSION: 506.1249
-DIR: code\_onclick\hud code\datums\diseases code\defines\procs code\game\gamemodes\mutiny code\game\gamemodes\mutiny\directives code\game\objects\effects 
-LAST_COMPILE_TIME: 1424068669
-AUTO_FILE_DIR: ON
+WINDOW: maps\COLONIAL MARINES.dmm;maps\ USS Sulaco.dmm
+FILE: maps\ USS Sulaco.dmm
 */
 // END_INTERNALS
