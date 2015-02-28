@@ -21,7 +21,7 @@ proc/create_new_xenomorph(var/alien_caste,var/target)
 
 
 
-/*  //Hold this for reference, dump this shit as soon as we can.
+ //Hold this for reference, dump this shit as soon as we can.
 /mob/living/carbon/human/xdrone/New(var/new_loc)
 	h_style = "Bald"
 	..(new_loc, "Xenomorph Drone")
@@ -36,7 +36,7 @@ proc/create_new_xenomorph(var/alien_caste,var/target)
 
 /mob/living/carbon/human/xqueen/New(var/new_loc)
 	h_style = "Bald"
-	..(new_loc, "Xenomorph Queen")*/
+	..(new_loc, "Xenomorph Queen")
 
 // I feel like we should generalize/condense down all the various icon-rendering antag procs.
 /*----------------------------------------

@@ -45,11 +45,11 @@
 	poison_type = null
 
 	has_organ = list(
-		"heart" =           /datum/organ/internal/heart,
-		"brain" =           /datum/organ/internal/brain/xeno,
-		"plasma vessel" =   /datum/organ/internal/xenos/plasmavessel,
-		"hive node" =       /datum/organ/internal/xenos/hivenode,
-		"nutrient vessel" = /datum/organ/internal/diona/nutrients
+		"heart" =           /datum/organ/internal/heart, //Heart
+		"brain" =           /datum/organ/internal/brain/xeno, //Brain
+		"plasma vessel" =   /datum/organ/internal/xenos/plasmavessel, //Necessary for Plasma storage/generation
+		"hive node" =       /datum/organ/internal/xenos/hivenode, //Necessary for Hive Communication
+		"nutrient vessel" = /datum/organ/internal/diona/nutrients //Necessary for stomach
 		)
 
 	var/alien_number = 0
@@ -202,6 +202,7 @@
 		/mob/living/carbon/human/proc/regurgitate,
 		/mob/living/carbon/human/proc/transfer_plasma,
 		/mob/living/carbon/human/proc/corrosive_acid,
+		/mob/living/carbon/human/proc/psychic_whisper,
 		/mob/living/carbon/human/proc/neurotoxin
 		)
 
