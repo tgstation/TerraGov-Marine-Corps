@@ -26,7 +26,7 @@
 
 	var/mob/living/carbon/human/adult = new adult_form(get_turf(src))
 	adult.set_species(new_species)
-	show_evolution_blurb()
+
 
 	if(mind)
 		mind.transfer_to(adult)
@@ -46,5 +46,3 @@
 /mob/living/carbon/alien/proc/confirm_evolution()
 	return
 
-/mob/living/carbon/alien/proc/show_evolution_blurb()
-	return

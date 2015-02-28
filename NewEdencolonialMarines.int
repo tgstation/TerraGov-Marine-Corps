@@ -1,11 +1,11 @@
 // BEGIN_INTERNALS
 /*
-LAST_COMPILE_TIME: 1424068669
-DIR: code code\_onclick\hud code\datums\diseases code\defines\procs code\game code\game\gamemodes\mutiny code\game\gamemodes\mutiny\directives code\game\objects code\game\objects\effects code\game\objects\effects\decals maps 
-AUTO_FILE_DIR: ON
 MAP_ICON_TYPE: 0
+WINDOW: code\modules\mob\living\carbon\human\Xenomorphs\CMalien.dm;code\modules\mob\living\carbon\human\Xenomorphs\Larva\larva.dm;code\modules\mob\living\carbon\human\Xenomorphs\Larva\progression.dm;code\modules\cm_aliens\XenoLife.dm;code\modules\mob\living\carbon\human\Xenomorphs\CMalien_species.dm;icons\mob\human_races\xenos\r_xenos_drone.dmi;icons\mob\human_races\xenos\r_xenos_queen.dmi;code\modules\cm_aliens\Castes\Larva.dm
 LAST_COMPILE_VERSION: 506.1249
-WINDOW: maps\COLONIAL MARINES.dmm;maps\ USS Sulaco.dmm
-FILE: maps\ USS Sulaco.dmm
+DIR: code code\_onclick code\_onclick\hud code\ATMOSPHERICS code\ATMOSPHERICS\components code\ATMOSPHERICS\components\unary code\controllers code\datums code\datums\diseases code\defines\procs code\game code\game\gamemodes code\game\gamemodes\mutiny code\modules code\modules\cm_aliens code\modules\cm_aliens\Castes code\modules\mob code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\human code\modules\mob\living\carbon\human\alien code\modules\mob\living\carbon\human\Xenomorphs code\modules\mob\living\carbon\human\Xenomorphs\Larva icons icons\mob icons\mob\human_races icons\mob\human_races\xenos icons\Xeno 
+FILE: code\modules\cm_aliens\Castes\Larva.dm
+LAST_COMPILE_TIME: 1425100091
+AUTO_FILE_DIR: ON
 */
 // END_INTERNALS

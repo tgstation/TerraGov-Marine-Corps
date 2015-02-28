@@ -12,6 +12,3 @@
 	src << "<B>Drones</B> \blue are the working class, offering the largest plasma storage and generation. They are the only caste which may evolve again, turning into the dreaded alien queen."
 	var/alien_caste = alert(src, "Please choose which alien caste you shall belong to.",,"Hunter","Sentinel","Drone")
 	return alien_caste ? "Xenomorph [alien_caste]" : null
-
-/mob/living/carbon/alien/larva/show_evolution_blurb()
-	return

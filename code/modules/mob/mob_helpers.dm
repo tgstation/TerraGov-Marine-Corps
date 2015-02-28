@@ -115,14 +115,14 @@ proc/isnewplayer(A)
 	if(istype(A, /mob/new_player))
 		return 1
 	return 0
-
-proc/isXeno(A) //Xenomorph Hud Test APOPHIS 14FEB2015
-	if(istype(A, /mob/living/carbon/Xenomorph) && !istype(A, /mob/living/carbon/Xenomorph/Larva))
+/*
+proc/isXeno(A) //Xenomorph Hud Test APOPHIS 17FEB2015
+	if(istype(A, /mob/living/carbon/human/alien))
 		return 1
-	return 0
+	return 0*/
 
 proc/isXenoLarva(A) //Xenomorph Larva Hud Test APOPHIS 14FEB2015
-	if(istype(A, /mob/living/carbon/Xenomorph/Larva))
+	if(istype(A, /mob/living/carbon/alien/larva))
 		return 1
 	return 0
 
