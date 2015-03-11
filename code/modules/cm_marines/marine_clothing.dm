@@ -363,6 +363,7 @@ v
 		"/obj/item/ammo_magazine/mc9mm",
 		"/obj/item/ammo_magazine/a50",
 		"/obj/item/ammo_magazine/c9mm",
+		"/obj/item/weapon/gun/energy/taser",
 		"/obj/item/ammo_magazine/a357",
 		"/obj/item/ammo_magazine/c38",
 		"/obj/item/weapon/melee/baton",
