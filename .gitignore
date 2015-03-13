@@ -6,7 +6,3 @@
 *.lk
 data/
 scripts/voicequeue.txt
-*.rsc
-*.int
-*.int
-*.rsc
