@@ -12,70 +12,60 @@
 	var/finished = 0
 	var/humansurvivors = 0
 	var/aliensurvivors = 0
-	
+	var/numaliens = 0
+	var/numsurvivors = 0
+
 
 /* Pre-pre-startup */
 /datum/game_mode/colonialmarines/can_start()
 
-	if(!..())
-		return 0
-	
-	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
-	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
-	var/numaliens = 0
-	var/numsurvivors = 0
-	var/n_players = num_players()
-	
+	//if(!..())
+	//	return 0
+
+	var/players = num_players()
+	for(var/C = 0, C<players, C+=5)
+		numaliens++
+	for(var/C = 0, C<players, C+=10)
+		numsurvivors++
+
 /* Un-comment this to debug stuff
 	if(possible_survivors.len < 1)
 		world << "<B>\red No survivors available</B>"
 		return 0
 	if(surv_spawn.len == 0)
 		world << "<B>\red A starting location for survivors could not be found.</B>"
-		return 0 
+		return 0
 	if(xeno_spawn.len == 0)
 		world << "<B>\red A starting location for aliens could not be found.</B>"
 		return 0
 */
+	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
+	if(possible_survivors.len >= 1)
+		for(var/i = 0, i < numsurvivors, i++)
+			var/datum/mind/surv = pick(possible_survivors)
+			survivors += surv
+			modePlayer += surv
+			surv.assigned_role = "Survivor" //So they aren't chosen for other jobs.
+			surv.special_role = "Survivor"
+			surv.original = surv.current
+	if(surv_spawn.len == 0)
+		//surv.current << "<B>\red A starting location for you could not be found, please report this bug!</B>"
+		return 0
 
-	//Check if anyone wants to be an alien. If not, restart the lobby countdown
-	if(possible_aliens.len < 1)
+	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
+	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
- 
- 	//Alien number scales to player number
-	numaliens = Clamp((n_players/5), 2, 6) //(n, minimum, maximum)
-	
-	if(possible_aliens.len < numaliens)
-		numaliens = possible_aliens.len
-
-	while(numaliens > 0)
-		var/datum/mind/new_alien = pick(possible_aliens)
-		aliens += new_alien
-		possible_aliens -= new_alien //So it doesn't pick the same guy each time
-		numaliens--
-
-	//Survivor number scales to player number
-	numsurvivors = Clamp((n_players/5), 0, 3) //(n, minimum, maximum)
-	
-	if(possible_survivors.len < numsurvivors)
-		numsurvivors = possible_survivors.len
-
-	while(numsurvivors > 0)
-		var/datum/mind/new_surv = pick(possible_survivors)
-		survivors += new_surv
-		possible_survivors -= new_surv //So it doesn't pick the same guy each time
-		numsurvivors--
-
-	//Assign alien and survivor roles
-	for(var/datum/mind/aliens in aliens)
-		aliens.assigned_role = "MODE" 	//So they aren't chosen for other jobs
-		aliens.special_role = "Drone" 	//So they actually have a special role
-
-	for(var/datum/mind/survivors in survivors)
-		survivors.assigned_role = "Survivor"
-		survivors.special_role = "Survivor"
-
+	for(var/i = 0, i < numaliens, i++)
+		var/datum/mind/alien = pick(possible_aliens)
+		aliens += alien
+		modePlayer += alien
+		alien.assigned_role = "MODE" //So they aren't chosen for other jobs.
+		alien.special_role = "Drone"
+		alien.original = alien.current
+	if(xeno_spawn.len == 0)
+		//alien.current << "<B>\red A starting location for you could not be found, please report this bug!</B>"
+		return 0
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -84,13 +74,13 @@
 /* Pre-setup */
 /datum/game_mode/colonialmarines/pre_setup()
 	//Spawn aliens
-	for(var/datum/mind/aliens in aliens)
-		aliens.current.loc = pick(xeno_spawn)
+	for(var/datum/mind/alien in aliens)
+		alien.current.loc = pick(xeno_spawn)
 	//Spawn survivors
-	for(var/datum/mind/survivors in survivors)
-		survivors.current.loc = pick(surv_spawn)
+	for(var/datum/mind/survivor in survivors)
+		survivor.current.loc = pick(surv_spawn)
 	spawn (50)
-	command_announcement.Announce("Distress signal received from the NSS Nostromo. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")	
+	command_announcement.Announce("Distress signal received from the NSS Nostromo. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -99,10 +89,10 @@
 /* Post-setup */
 /datum/game_mode/colonialmarines/post_setup()
 	defer_powernet_rebuild = 2
-	for(var/datum/mind/aliens in aliens)
-		transform_player(aliens.current)
-	for(var/datum/mind/survivors in survivors)
-		transform_player2(survivors.current)
+	for(var/datum/mind/alien in aliens)
+		transform_player(alien.current)
+	for(var/datum/mind/survivor in survivors)
+		transform_player2(survivor.current)
 	for(var/mob/living/carbon/human/marine in mob_list)
 		if(marine.stat != 2 && marine.mind)
 			marines += marine.mind
@@ -113,7 +103,7 @@
 
 	//Transform alien players into only Drones by calling the "Alienize2" proc in modules/mob/transform_procs.dm
 	H.Alienize2()
-	
+
 	//Give them some information
 	H.client << "<h2>You are an alien!</h2>"
 	H.client << "<h2>Use Say \":a <message>\" to communicate with other aliens.</h2>"
@@ -124,7 +114,7 @@
 
 	//Damage them for realism purposes
 	H.take_organ_damage(rand(1,25), rand(1,25))
-	
+
 	//Equip them
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
@@ -177,16 +167,22 @@ var/list/toldstory = list()
 	//For each survivor, add one to the count. Should work accurately enough.
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H) //Prevent any runtime errors
-			if(H.client && H.status_flags & XENO_HOST && H.stat != DEAD) // If they're connected/unghosted and alive and not debrained
+			if(H.client && !findtext(H.get_species(), "Xenomorph") && H.stat != DEAD) // If they're connected/unghosted and alive and not debrained
 				humansurvivors += 1 //Add them to the amount of people who're alive.
+			else if(H.client && findtext(H.get_species(), "Xenomorph") && H.stat != DEAD)
+				aliensurvivors += 1
+
+/*
 	for(var/mob/living/carbon/alien/A in living_mob_list)
 		if(A) //Prevent any runtime errors
 			if(A.client && A.stat != DEAD) // If they're connected/unghosted and alive and not debrained
 				aliensurvivors += 1
-
+*/
 	//Debug messages, remove when not needed.
 	//log_debug("there are [aliensurvivors] aliens left.")
 	//log_debug("there are [humansurvivors] humans left.")
+	//world << "there are [aliensurvivors] aliens left."
+	//world << "there are [humansurvivors] humans left."
 
 	checkwin_counter++
 	if(checkwin_counter >= 5)
