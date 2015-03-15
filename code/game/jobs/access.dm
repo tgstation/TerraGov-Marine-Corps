@@ -448,9 +448,14 @@
 /proc/get_marine_jobs()
 		return list(
 		"Commander",
-		"Logistics Officer",
+		"Executive Officer",
+		"Bridge Officer",
 		"Military Police",
-		"Alpha Squad Leader",
+		"Sulaco Chief Medical Officer",
+		"Sulaco Doctor",
+		"Sulaco Chemist",
+		"Sulaco Chief Engineer",
+		"Sulaco Maintenance Tech",
 		"Alpha Squad Medic",
 		"Alpha Squad Engineer",
 		"Alpha Squad Standard",
@@ -467,8 +472,7 @@
 		"Charlie Squad Engineer",
 		"Charlie Squad Standard",
 		"Researcher",
-		"Marine",
-		"Sulaco Medic"
+		"Marine"
 		)
 
 

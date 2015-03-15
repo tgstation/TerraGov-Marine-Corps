@@ -11,12 +11,6 @@ var/const/ENGINEER			=(1<<6)
 var/const/ATMOSTECH			=(1<<7)
 var/const/AI				=(1<<8)
 var/const/CYBORG			=(1<<9)
-var/const/COMMANDER			=(1<<10)
-var/const/MPOLICE			=(1<<11)
-var/const/MARINE			=(1<<12)
-var/const/BIOHAZ			=(1<<13)
-var/const/LOGISTICS			=(1<<14)
-var/const/SULMED			=(1<<15)
 
 var/const/MEDSCI			=(1<<1)
 
@@ -30,7 +24,6 @@ var/const/VIROLOGIST		=(1<<6)
 var/const/PSYCHIATRIST		=(1<<7)
 var/const/ROBOTICIST		=(1<<8)
 var/const/XENOBIOLOGIST		=(1<<9)
-
 
 var/const/CIVILIAN			=(1<<2)
 
@@ -49,6 +42,24 @@ var/const/CLOWN				=(1<<11)
 var/const/MIME				=(1<<12)
 var/const/ASSISTANT			=(1<<13)
 
+//Marines
+var/const/COMMANDER			=(1<<10)
+var/const/EXECUTIVE			=(1<<11)
+var/const/BRIDGE			=(1<<12)
+var/const/MPOLICE			=(1<<13)
+var/const/SULCMO			=(1<<14)
+var/const/SULDOC			=(1<<15)
+var/const/SULCHEM			=(1<<16)
+var/const/SULCE				=(1<<17)
+var/const/SULENG			=(1<<18)
+
+var/const/MARINE			=(1<<19)
+
+var/const/SQUADLEAD			=(1<<20)
+var/const/SQUADMED			=(1<<21)
+var/const/SQUADENG			=(1<<22)
+var/const/SQUADSTAN			=(1<<23)
+
 
 var/list/assistant_occupations = list(
 )
@@ -56,30 +67,22 @@ var/list/assistant_occupations = list(
 
 var/list/command_positions = list(
 	"Commander",
-	"Logistics Officer",
-	"Captain",
-	"Head of Personnel",
-	"Head of Security",
-	"Chief Engineer",
-	"Research Director",
-	"Chief Medical Officer"
+	"Executive Officer",
+	"Sulaco Chief Medical Officer",
+	"Sulaco Chief Engineer"
 )
 
 
 var/list/engineering_positions = list(
-	"Chief Engineer",
-	"Station Engineer",
-	"Atmospheric Technician",
+	"Sulaco Chief Engineer",
+	"Maintenance Tech"
 )
 
 
 var/list/medical_positions = list(
-	"Chief Medical Officer",
-	"Sulaco Medic",
-	"Medical Doctor",
-	"Geneticist",
-	"Psychiatrist",
-	"Chemist"
+	"Sulaco Chief Medical Officer",
+	"Sulaco Doctor",
+	"Sulaco Chemist"
 )
 
 
@@ -94,17 +97,7 @@ var/list/science_positions = list(
 
 //BS12 EDIT
 var/list/civilian_positions = list(
-	"Head of Personnel",
-	"Bartender",
-	"Botanist",
-	"Chef",
-	"Janitor",
-	"Librarian",
-	"Quartermaster",
-	"Cargo Technician",
-	"Shaft Miner",
-	"Lawyer",
-	"Chaplain",
+	"Bridge Officer",
 	"Assistant"
 )
 

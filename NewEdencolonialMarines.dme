@@ -1556,6 +1556,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\ USS Sulaco.dmm"
 #include "maps\COLONIAL MARINES.dmm"
 // END_INCLUDE
