@@ -221,7 +221,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		while(1)
 			sleep(INACTIVITY_KICK)
 			for(var/client/C in clients)
-				if(C.is_afk(INACTIVITY_KICK))
+				if(C.is_afk(INACTIVITY_KICK) && !(C.holder.rights & R_ADMIN))
 					if(!istype(C.mob, /mob/dead))
 						log_access("AFK: [key_name(C)]")
 						C << "\red You have been inactive for more than 10 minutes and have been disconnected."
@@ -294,15 +294,10 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<b>[config.server_name]</b> &#8212; "
-
-	s += "<b>[station_name()]</b>";
-	s += " ("
-	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
-//	s += "[game_version]"
-	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
-	s += "</a>"
-	s += ")"
+		s += "<a href=\"http://newedenstation.com/forumdisplay.php?fid=56\"><b>[config.server_name]</b> &#8212; "
+		s += "<b>NMV Sulaco</b> | Hosted by New Eden";
+		s += "<br><img src=\"http://i.imgur.com/OQ5OIMJ.png\"><br>"
+		s += "</a>"
 
 	var/list/features = list()
 
