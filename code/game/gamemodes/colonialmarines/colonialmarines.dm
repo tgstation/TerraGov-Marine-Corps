@@ -1,7 +1,5 @@
-
 /datum/game_mode
 	var/list/datum/mind/aliens = list()
-	var/list/datum/mind/marines = list()
 	var/list/datum/mind/survivors = list()
 
 /datum/game_mode/colonialmarines
@@ -15,57 +13,48 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 
-
 /* Pre-pre-startup */
 /datum/game_mode/colonialmarines/can_start()
+	// if(!..())
+		// return 0
 
-	//if(!..())
-	//	return 0
-
+	// Handle Aliens
+	
+	/* // 1 Alien per 5 players, 1 Survivor per 10 players
 	var/players = num_players()
 	for(var/C = 0, C<players, C+=5)
 		numaliens++
 	for(var/C = 0, C<players, C+=10)
-		numsurvivors++
+		numsurvivors++ */
+	
+	// Alien number scales to player number (preferred). Swap these to test solo.
+	var/readyplayers = num_players()
+	// numaliens = Clamp((readyplayers/5), 2, 8) //(n, minimum, maximum)
+	numaliens = Clamp((readyplayers/5), 1, 8) //(n, minimum, maximum)
 
-/* Un-comment this to debug stuff
-	if(possible_survivors.len < 1)
-		world << "<B>\red No survivors available</B>"
-		return 0
-	if(surv_spawn.len == 0)
-		world << "<B>\red A starting location for survivors could not be found.</B>"
-		return 0
-	if(xeno_spawn.len == 0)
-		world << "<B>\red A starting location for aliens could not be found.</B>"
-		return 0
-*/
-	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
-	if(possible_survivors.len >= 1)
-		for(var/i = 0, i < numsurvivors, i++)
-			var/datum/mind/surv = pick(possible_survivors)
-			survivors += surv
-			modePlayer += surv
-			surv.assigned_role = "Survivor" //So they aren't chosen for other jobs.
-			surv.special_role = "Survivor"
-			surv.original = surv.current
-	if(surv_spawn.len == 0)
-		//surv.current << "<B>\red A starting location for you could not be found, please report this bug!</B>"
-		return 0
-
-	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
+	var/list/possible_aliens = get_players_for_role(BE_ALIEN)
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
 	for(var/i = 0, i < numaliens, i++)
-		var/datum/mind/alien = pick(possible_aliens)
-		aliens += alien
-		modePlayer += alien
-		alien.assigned_role = "MODE" //So they aren't chosen for other jobs.
-		alien.special_role = "Drone"
-		alien.original = alien.current
-	if(xeno_spawn.len == 0)
-		//alien.current << "<B>\red A starting location for you could not be found, please report this bug!</B>"
-		return 0
+		var/datum/mind/new_alien = pick(possible_aliens)
+		aliens += new_alien
+	for(var/datum/mind/A in aliens)
+		A.assigned_role = "Alien"
+		A.special_role = "Alien"
+
+	// Handle Survivors
+	
+	numsurvivors = Clamp((readyplayers/5), 0, 3) //(n, minimum, maximum)
+	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
+	if(possible_survivors.len >= 1)
+		for(var/i = 0, i < numsurvivors, i++)
+			var/datum/mind/new_survivor = pick(possible_survivors)
+			survivors += new_survivor
+		for(var/datum/mind/S in survivors)
+			S.assigned_role = "Survivor" //So they aren't chosen for other jobs.
+			S.special_role = "Survivor"
+
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -93,9 +82,6 @@
 		transform_player(alien.current)
 	for(var/datum/mind/survivor in survivors)
 		transform_player2(survivor.current)
-	for(var/mob/living/carbon/human/marine in mob_list)
-		if(marine.stat != 2 && marine.mind)
-			marines += marine.mind
 	tell_story()
 
 //Start the Alien players
