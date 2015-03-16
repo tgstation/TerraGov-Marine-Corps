@@ -1,3 +1,4 @@
+// Also see \code\modules\client\preferences.dm and change "limit" if any jobs become unselectable. Currently 16 max in each section (ENGSEC, MEDSCI, etc)
 
 var/const/ENGSEC			=(1<<0)
 
@@ -11,6 +12,13 @@ var/const/ENGINEER			=(1<<6)
 var/const/ATMOSTECH			=(1<<7)
 var/const/AI				=(1<<8)
 var/const/CYBORG			=(1<<9)
+//Marines
+var/const/COMMANDER			=(1<<10)
+var/const/EXECUTIVE			=(1<<11)
+var/const/BRIDGE			=(1<<12)
+var/const/MPOLICE			=(1<<13)
+var/const/SULCE				=(1<<14)
+var/const/SULENG			=(1<<15)
 
 var/const/MEDSCI			=(1<<1)
 
@@ -24,6 +32,10 @@ var/const/VIROLOGIST		=(1<<6)
 var/const/PSYCHIATRIST		=(1<<7)
 var/const/ROBOTICIST		=(1<<8)
 var/const/XENOBIOLOGIST		=(1<<9)
+//Marines
+var/const/SULCMO			=(1<<10)
+var/const/SULDOC			=(1<<11)
+var/const/SULCHEM			=(1<<12)
 
 var/const/CIVILIAN			=(1<<2)
 
@@ -43,24 +55,16 @@ var/const/MIME				=(1<<12)
 var/const/ASSISTANT			=(1<<13)
 
 //Marines
-var/const/COMMANDER			=(1<<10)
-var/const/EXECUTIVE			=(1<<11)
-var/const/BRIDGE			=(1<<12)
-var/const/MPOLICE			=(1<<13)
-var/const/SULCMO			=(1<<14)
-var/const/SULDOC			=(1<<15)
-var/const/SULCHEM			=(1<<16)
-var/const/SULCE				=(1<<17)
-var/const/SULENG			=(1<<18)
+var/const/MARINE			=(1<<14)
 
-var/const/MARINE			=(1<<19)
+/* // Marines
+var/const/SQUADS			=(1<<3)
 
-var/const/SQUADLEAD			=(1<<20)
-var/const/SQUADMED			=(1<<21)
-var/const/SQUADENG			=(1<<22)
-var/const/SQUADSTAN			=(1<<23)
-
-
+var/const/SQUADLEAD			=(1<<1)
+var/const/SQUADMED			=(1<<2)
+var/const/SQUADENG			=(1<<3)
+var/const/SQUADSTAN			=(1<<4)
+ */
 var/list/assistant_occupations = list(
 )
 
@@ -68,8 +72,14 @@ var/list/assistant_occupations = list(
 var/list/command_positions = list(
 	"Commander",
 	"Executive Officer",
+	"Bridge Officer",
 	"Sulaco Chief Medical Officer",
 	"Sulaco Chief Engineer"
+)
+
+
+var/list/security_positions = list(
+	"Military Police"
 )
 
 
@@ -87,27 +97,13 @@ var/list/medical_positions = list(
 
 
 var/list/science_positions = list(
-	"Research Director",
 	"Researcher",
-	"Scientist",
-	"Geneticist",	//Part of both medical and science
-	"Roboticist",
 	"Xenobiologist"
 )
 
-//BS12 EDIT
+
 var/list/civilian_positions = list(
-	"Bridge Officer",
 	"Assistant"
-)
-
-
-var/list/security_positions = list(
-	"Head of Security",
-	"Military Police",
-	"Warden",
-	"Detective",
-	"Security Officer"
 )
 
 
@@ -143,7 +139,7 @@ var/list/marine_delta_positions = list(
 )
 
 
-var/list/mar_unassigned = list(
+var/list/marine_unassigned_positions = list(
 	"Marine"
 )
 

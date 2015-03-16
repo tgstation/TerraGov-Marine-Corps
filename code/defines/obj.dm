@@ -62,7 +62,7 @@
 	var/list/civ = new()
 	var/list/bot = new()
 	var/list/misc = new()
-	var/list/mar_unassigned = new()
+	var/list/marine_unassigned_positions = new()
 	var/list/mar_alpha = new()
 	var/list/mar_bravo = new()
 	var/list/mar_charlie = new()
@@ -104,8 +104,8 @@
 		if(real_rank in security_positions)
 			sec[name] = rank
 			department = 1
-		if(real_rank in mar_unassigned)
-			mar_unassigned[name] = rank
+		if(real_rank in marine_unassigned_positions)
+			marine_unassigned_positions[name] = rank
 			department = 1
 		if(real_rank in marine_alpha_positions)
 			mar_alpha[name] = rank
@@ -146,10 +146,10 @@
 		for(name in sec)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sec[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(mar_unassigned.len > 0)
+	if(marine_unassigned_positions.len > 0)
 		dat += "<tr><th colspan=3>Unassigned</th></tr>"
-		for(name in mar_unassigned)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[mar_unassigned[name]]</td><td>[isactive[name]]</td></tr>"
+		for(name in marine_unassigned_positions)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[marine_unassigned_positions[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(mar_alpha.len > 0)
 		dat += "<tr><th colspan=3>Alpha</th></tr>"
@@ -230,7 +230,7 @@ var/global/list/PDA_Manifest = list()
 	var/civ[0]
 	var/bot[0]
 	var/misc[0]
-	var/mar_unassigned[0]
+	var/marine_unassigned_positions[0]
 	var/mar_alpha[0]
 	var/mar_bravo[0]
 	var/mar_charlie[0]
@@ -280,11 +280,11 @@ var/global/list/PDA_Manifest = list()
 			if(depthead && civ.len != 1)
 				civ.Swap(1,civ.len)
 
-		if(real_rank in mar_unassigned)
-			mar_unassigned[++mar_unassigned.len] = list("name" = name, "rank" = rank, "active" = isactive)
+		if(real_rank in marine_unassigned_positions)
+			marine_unassigned_positions[++marine_unassigned_positions.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
-			if(depthead && mar_unassigned.len != 1)
-				mar_unassigned.Swap(1,mar_unassigned.len)
+			if(depthead && marine_unassigned_positions.len != 1)
+				marine_unassigned_positions.Swap(1,marine_unassigned_positions.len)
 
 		if(real_rank in marine_alpha_positions)
 			mar_alpha[++mar_alpha.len] = list("name" = name, "rank" = rank, "active" = isactive)
@@ -325,7 +325,7 @@ var/global/list/PDA_Manifest = list()
 		"med" = med,\
 		"sci" = sci,\
 		"civ" = civ,\
-		"mar_unassigned" = mar_unassigned,\
+		"marine_unassigned_positions" = marine_unassigned_positions,\
 		"mar_alpha" = mar_alpha,\
 		"mar_bravo" = mar_bravo,\
 		"mar_charlie" = mar_charlie,\
