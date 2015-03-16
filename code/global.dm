@@ -78,19 +78,19 @@ var/blobevent = 0
 var/diary = null
 var/diaryofmeanpeople = null
 var/href_logfile = null
-var/station_name = "NSS Exodus"
+var/station_name = "NMV Sulaco"
 var/game_version = "Baystation12"
 var/changelog_hash = ""
 var/game_year = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
 var/going = 1.0
-var/master_mode = "extended"//"extended"
+var/master_mode = "colonialmarines"
 var/secret_force_mode = "secret" // if this is anything but "secret", the secret rotation will forceably choose this mode
 
 var/datum/engine_eject/engine_eject_control = null
 var/host = null
-var/aliens_allowed = 0
+var/aliens_allowed = 1
 var/ooc_allowed = 1
 var/dsay_allowed = 1
 var/dooc_allowed = 1
