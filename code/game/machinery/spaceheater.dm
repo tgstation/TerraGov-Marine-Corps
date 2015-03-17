@@ -25,6 +25,15 @@
 	if(open)
 		overlays  += "sheater-open"
 
+/obj/machinery/space_heater/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(air_group || (height==0)) return 1
+	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
+		return 1
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
+	else
+		return 0
+
 /obj/machinery/space_heater/examine()
 	set src in oview(12)
 	if (!( usr ))

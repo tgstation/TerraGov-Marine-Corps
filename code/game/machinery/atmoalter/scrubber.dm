@@ -9,7 +9,7 @@
 	var/volume_rate = 800
 
 	volume = 750
-	
+
 	power_rating = 7500 //7500 W ~ 10 HP
 	power_losses = 150
 
@@ -18,6 +18,16 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/New()
 	..()
 	cell = new/obj/item/weapon/cell(src)
+
+
+/obj/machinery/portable_atmospherics/powered/scrubber/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(air_group || (height==0)) return 1
+	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
+		return 1
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
+	else
+		return 0
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -48,7 +58,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/process()
 	..()
-	
+
 	var/power_draw = -1
 
 	if(on && cell && cell.charge)
@@ -57,11 +67,11 @@
 			environment = holding.air_contents
 		else
 			environment = loc.return_air()
-		
+
 		var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles
-		
+
 		power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, power_rating)
-	
+
 	if (power_draw < 0)
 		last_flow_rate = 0
 		last_power_draw = 0
@@ -69,13 +79,13 @@
 		power_draw = max(power_draw, power_losses)
 		cell.use(power_draw * CELLRATE)
 		last_power_draw = power_draw
-		
+
 		update_connected_network()
-		
+
 		//ran out of charge
 		if (!cell.charge)
 			update_icon()
-	
+
 	//src.update_icon()
 	src.updateDialog()
 
@@ -156,14 +166,14 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	use_power = 1
 	idle_power_usage = 500		//internal circuitry, friction losses and stuff
 	active_power_usage = 100000	//100 kW ~ 135 HP
-	
+
 	var/global/gid = 1
 	var/id = 0
-	
+
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/New()
 	..()
 	cell = null
-	
+
 	id = gid
 	gid++
 
@@ -192,15 +202,15 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 		last_flow_rate = 0
 		last_power_draw = 0
 		return 0
-	
+
 	var/power_draw = -1
 
 	var/datum/gas_mixture/environment = loc.return_air()
-	
+
 	var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles
-	
+
 	power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, active_power_usage)
-	
+
 	if (power_draw < 0)
 		last_flow_rate = 0
 		last_power_draw = 0
@@ -219,13 +229,13 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 		user << "\blue You [anchored ? "wrench" : "unwrench"] \the [src]."
 
 		return
-	
+
 	//doesn't use power cells
 	if(istype(I, /obj/item/weapon/cell))
 		return
 	if (istype(I, /obj/item/weapon/screwdriver))
 		return
-	
+
 	//doesn't hold tanks
 	if(istype(I, /obj/item/weapon/tank))
 		return
