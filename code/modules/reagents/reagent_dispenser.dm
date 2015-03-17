@@ -68,7 +68,14 @@
 
 
 
-
+/obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(air_group || (height==0)) return 1
+	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
+		return 1
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
+	else
+		return 0
 
 
 
