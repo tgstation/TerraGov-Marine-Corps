@@ -245,6 +245,11 @@
 		else if(!client)
 			msg += "[t_He] [t_has] suddenly fallen asleep.\n"
 
+	if(fire_stacks > 0)
+		msg += "[t_He] [t_is] covered in something flammable.\n"
+	if(fire_stacks < 0)
+		msg += "[t_He] looks a little soaked.\n"
+
 	var/list/wound_flavor_text = list()
 	var/list/is_destroyed = list()
 	var/list/is_bleeding = list()

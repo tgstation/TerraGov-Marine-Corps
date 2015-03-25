@@ -5,7 +5,8 @@
 #define M_L_HAND_LAYER			4
 #define M_R_HAND_LAYER			5
 #define TARGETED_LAYER			6
-#define M_TOTAL_LAYERS			6
+#define M_FIRE_LAYER			7
+#define M_TOTAL_LAYERS			7
 /////////////////////////////////
 
 /mob/living/carbon/monkey
@@ -99,6 +100,15 @@
 	if (client)
 		client.screen |= contents
 
+/mob/living/carbon/monkey/update_fire()
+	overlays -= overlays_standing[M_FIRE_LAYER]
+	if(on_fire)
+		overlays_standing[M_FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"= -M_FIRE_LAYER)
+		overlays += overlays_standing[M_FIRE_LAYER]
+		return
+	else
+		overlays_standing[M_FIRE_LAYER] = null
+
 //Call when target overlay should be added/removed
 /mob/living/carbon/monkey/update_targeted(var/update_icons=1)
 	if (targeted_by && target_locked)
@@ -116,5 +126,6 @@
 #undef M_L_HAND_LAYER
 #undef M_R_HAND_LAYER
 #undef TARGETED_LAYER
+#undef M_FIRE_LAYER
 #undef M_TOTAL_LAYERS
 
