@@ -68,3 +68,14 @@
 /obj/item/projectile/bullet/chameleon
 	damage = 1 // stop trying to murderbone with a fake gun dumbass!!!
 	embed = 0 // nope
+
+/obj/item/projectile/bullet/incendiary
+
+/obj/item/projectile/bullet/incendiary/on_hit(var/atom/target, var/blocked = 0)
+		if(istype(target, /mob/living/carbon))
+				var/mob/living/carbon/M = target
+				M.adjust_fire_stacks(rand(1,6))
+				M.IgniteMob()
+
+/obj/item/projectile/bullet/incendiary/shell
+	damage = 5

@@ -86,6 +86,13 @@
 	projectile_type = "/obj/item/projectile/bullet/stunshot"
 	matter = list("metal" = 2500)
 
+/obj/item/ammo_casing/shotgun/incendiary
+	name = "incendiary shell"
+	desc = "Ignites people."
+	icon_state = "incendiaryshell"
+	projectile_type = "/obj/item/projectile/bullet/incendiary/shell"
+	matter = list("metal" = 2500)
+
 
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun darts"
