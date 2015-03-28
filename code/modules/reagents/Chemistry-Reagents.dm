@@ -223,6 +223,9 @@ datum
 					lowertemp.react()
 					T.assume_air(lowertemp)
 					del(hotspot)
+				var/hotspot2 = (locate(/obj/effect/effect/fire) in T)//Delete fire effect
+				if(hotspot && !istype(T, /turf/space))
+					del(hotspot2)
 				return
 			reaction_obj(var/obj/O, var/volume)
 				src = null

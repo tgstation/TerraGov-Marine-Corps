@@ -70,18 +70,20 @@
 	embed = 0 // nope
 
 /obj/item/projectile/bullet/incendiary
+	damage = 5
+	damage_type = BURN
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/incendiary/on_hit(var/atom/target, var/blocked = 0)
 		if(istype(target, /mob/living/carbon))
 				var/mob/living/carbon/M = target
-				M.adjust_fire_stacks(rand(1,6))
+				M.adjust_fire_stacks(rand(5,10))
 				M.IgniteMob()
 
 /obj/item/projectile/bullet/incendiary/shell/Move()
 	..()
-	if(prob(50))
+	if(prob(80))
 		var/turf/location = get_turf(src)
  		new/obj/effect/effect/fire(location)
 

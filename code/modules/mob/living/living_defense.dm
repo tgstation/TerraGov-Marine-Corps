@@ -215,7 +215,7 @@
 	location.hotspot_expose(700, 50, 1)
 
 /mob/living/fire_act()
-	adjust_fire_stacks(rand(0.5,1.5)
+	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
 //Mobs on Fire end

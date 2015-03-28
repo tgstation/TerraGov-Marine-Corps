@@ -249,6 +249,8 @@
 		msg += "[t_He] [t_is] covered in something flammable.\n"
 	if(fire_stacks < 0)
 		msg += "[t_He] looks a little soaked.\n"
+	if(on_fire)
+		msg += "<span class='warning'>[t_He] [t_is] on fire!</span>\n"
 
 	var/list/wound_flavor_text = list()
 	var/list/is_destroyed = list()
