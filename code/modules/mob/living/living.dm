@@ -270,6 +270,8 @@
 	SetParalysis(0)
 	SetStunned(0)
 	SetWeakened(0)
+	ExtinguishMob()
+	fire_stacks = 0
 
 	// shut down ongoing problems
 	radiation = 0
@@ -609,7 +611,7 @@
 	else if(iscarbon(L))
 		var/mob/living/carbon/CM = L
 		if(CM.on_fire && CM.canmove)
-			CM.fire_stacks -= rand(3,8)
+			CM.fire_stacks -= rand(3,6)
 			CM.weakened = 4
 			CM.visible_message("<span class='danger'>[CM] rolls on the floor, trying to put themselves out!</span>", \
 				"<span class='notice'>You stop, drop, and roll!</span>")
