@@ -24,15 +24,21 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect/effect/fire/New()
 	if(!istype(loc, /turf))
 		del src
-	extuinguish()
+	extinguish()
 
 	dir = pick(cardinal)
 	SetLuminosity(3)
 
-	for(var/mob/living/L in loc)
+	for(var/mob/living/L in loc)//Mobs
 		L.fire_act()
+	for(var/obj/effect/alien/weeds/W in loc)//Weeds
+		W.fire_act()
+	for(var/obj/effect/alien/egg/E in loc)//Eggs
+		E.fire_act()
+	for(var/obj/structure/stool/bed/nest/N in loc)//Nests
+		N.fire_act()
 
-/obj/effect/effect/fire/proc/extuinguish()
+/obj/effect/effect/fire/proc/extinguish()
 	spawn(life * 10)
 		if (istype(loc, /turf/simulated))
 			SetLuminosity(0)

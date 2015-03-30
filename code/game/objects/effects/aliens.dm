@@ -161,6 +161,7 @@
 	layer = 2
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
+	var/on_fire = 0
 
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
@@ -234,7 +235,7 @@ Alien plants should do something if theres a lot of poison
 			if (prob(50))
 				del(src)
 		if(3.0)
-			if (prob(5))
+			if (prob(25))
 				del(src)
 	return
 
@@ -260,11 +261,17 @@ Alien plants should do something if theres a lot of poison
 	if(health <= 0)
 		del(src)
 
+/obj/effect/alien/weeds/update_icon()
+	overlays.Cut()
+	if(on_fire)
+		overlays += "alien_fire"
 
-/obj/effect/alien/weeds/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
-		health -= 5
-		healthcheck()
+/obj/effect/alien/weeds/fire_act()
+	on_fire = 1
+	if(on_fire)
+		update_icon()
+		spawn(rand(100,175))
+			del(src)
 
 #undef NODERANGE
 
@@ -346,6 +353,7 @@ Alien plants should do something if theres a lot of poison
 
 	var/health = 100
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
+	var/on_fire = 0
 
 /obj/effect/alien/egg/New()
 	if(aliens_allowed)
@@ -407,6 +415,17 @@ Alien plants should do something if theres a lot of poison
 	healthcheck()
 	return
 
+/obj/effect/alien/weeds/update_icon()
+	overlays.Cut()
+	if(on_fire)
+		overlays += "alien_fire"
+
+/obj/effect/alien/weeds/fire_act()
+	on_fire = 1
+	if(on_fire)
+		update_icon()
+		spawn(rand(125,200))
+			del(src)
 
 /obj/effect/alien/egg/attackby(var/obj/item/weapon/W, var/mob/user)
 	if(health <= 0)
@@ -427,15 +446,9 @@ Alien plants should do something if theres a lot of poison
 	src.health -= damage
 	src.healthcheck()
 
-
 /obj/effect/alien/egg/proc/healthcheck()
 	if(health <= 0)
 		Burst()
-
-/obj/effect/alien/egg/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > 500)
-		health -= 5
-		healthcheck()
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)

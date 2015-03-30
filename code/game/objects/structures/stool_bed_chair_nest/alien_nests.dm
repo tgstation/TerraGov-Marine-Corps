@@ -82,3 +82,15 @@
 		density = 0
 		del(src)
 	return
+
+/obj/effect/alien/weeds/update_icon()
+	overlays.Cut()
+	if(on_fire)
+		overlays += "alien_fire"
+
+/obj/effect/alien/weeds/fire_act()
+	on_fire = 1
+	if(on_fire)
+		update_icon()
+		spawn(rand(225,400))
+			del(src)

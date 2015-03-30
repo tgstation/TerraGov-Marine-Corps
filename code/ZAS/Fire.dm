@@ -103,7 +103,6 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	if(isliving(L))
 		L.fire_act()
 
-
 /obj/fire/process()
 	. = 1
 
@@ -175,6 +174,9 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 
 	for(var/mob/living/L in loc)
 		L.fire_act()
+
+	for(var/obj/effect/alien/weeds/A in loc)
+		A.fire_act()
 
 /obj/fire/Del()
 	if (istype(loc, /turf/simulated))
