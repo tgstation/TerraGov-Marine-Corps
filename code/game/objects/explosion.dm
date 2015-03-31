@@ -17,7 +17,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			return
 
 ///// Z-Level Stuff
-		if(z_transfer && (devastation_range > 0 || heavy_impact_range > 0))
+		if(z_transfer && (devastation_range > 0 || heavy_impact_range > 0 || flame_range > 0))
 			//transfer the explosion in both directions
 			explosion_z_transfer(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0)
 ///// Z-Level Stuff
@@ -112,7 +112,8 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			if(T)
 				if(flame_dist && prob(40) && !istype(T, /turf/space))
 					var/obj/effect/effect/fire/F = new /obj/effect/effect/fire(T)
-					F.life = rand(6,10)
+					if(istype(F))
+						F.life = rand(6,10)
 					hotspot_exists = 1
 				if(dist)
 					if(T)
@@ -128,7 +129,8 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 							if(isliving(AM) && !hotspot_exists && !istype(T, /turf/space))
 								if(AM && AM.loc!=null)
 									var/obj/effect/effect/fire/F = new /obj/effect/effect/fire(AM.loc)
-									F.life = rand(6,10)
+									if(istype(F))
+										F.life = rand(6,10)
 								//Just in case we missed a mob while they were in flame_range, but a hotspot didn't spawn on them, otherwise it looks weird when you just burst into flame out of nowhere
 						if(dist) //if no flame_dist, run this - RR
 							if(AM)

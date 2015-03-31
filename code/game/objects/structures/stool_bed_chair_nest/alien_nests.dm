@@ -7,6 +7,7 @@
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "nest"
 	var/health = 100
+	var/on_fire = 0
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
@@ -83,12 +84,12 @@
 		del(src)
 	return
 
-/obj/effect/alien/weeds/update_icon()
+/obj/structure/stool/bed/nest/update_icon()
 	overlays.Cut()
 	if(on_fire)
 		overlays += "alien_fire"
 
-/obj/effect/alien/weeds/fire_act()
+/obj/structure/stool/bed/nest/fire_act()
 	on_fire = 1
 	if(on_fire)
 		update_icon()

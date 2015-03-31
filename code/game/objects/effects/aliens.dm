@@ -415,12 +415,12 @@ Alien plants should do something if theres a lot of poison
 	healthcheck()
 	return
 
-/obj/effect/alien/weeds/update_icon()
+/obj/effect/alien/egg/update_icon()
 	overlays.Cut()
 	if(on_fire)
-		overlays += "alien_fire"
+		overlays += "alienegg_fire"
 
-/obj/effect/alien/weeds/fire_act()
+/obj/effect/alien/egg/fire_act()
 	on_fire = 1
 	if(on_fire)
 		update_icon()
