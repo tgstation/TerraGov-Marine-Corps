@@ -11,6 +11,7 @@
 	slot_flags = SLOT_BELT
 	var/active = 0
 	var/det_time = 50
+	var/dangerous = 0		//Make an danger overlay for humans?
 
 /obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
@@ -74,11 +75,17 @@
 	icon_state = initial(icon_state) + "_active"
 	active = 1
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-
+	if(dangerous)
+		updateicon()
 	spawn(det_time)
 		prime()
 		return
 
+/obj/item/weapon/grenade/proc/updateicon()
+	if(dangerous)
+		overlays+=new/obj/effect/overlay/danger
+		dangerous = 0
+	return
 
 /obj/item/weapon/grenade/proc/prime()
 //	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)

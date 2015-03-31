@@ -223,6 +223,9 @@ datum
 					lowertemp.react()
 					T.assume_air(lowertemp)
 					del(hotspot)
+				var/hotspot2 = (locate(/obj/effect/effect/fire) in T)//Delete fire effect
+				if(hotspot && !istype(T, /turf/space))
+					del(hotspot2)
 				return
 			reaction_obj(var/obj/O, var/volume)
 				src = null
@@ -238,7 +241,16 @@ datum
 					var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
 					if(!cube.wrapped)
 						cube.Expand()
+
+			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with water can help put them out!
+				if(!istype(M, /mob/living))
+					return
 				return
+				if(method == TOUCH)
+					M.adjust_fire_stacks(-(volume / 10))
+					if(M.fire_stacks <= 0)
+						M.ExtinguishMob()
+					return
 
 		water/holywater
 			name = "Holy Water"
@@ -900,6 +912,12 @@ datum
 				M.adjustToxLoss(1)
 				..()
 				return
+			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with welding fuel to make them easy to ignite!
+				if(!istype(M, /mob/living))
+					return
+				if(method == TOUCH)
+					M.adjust_fire_stacks(volume / 10)
+					return
 
 		space_cleaner
 			name = "Space cleaner"
@@ -3036,6 +3054,12 @@ datum
 						usr << "It wasn't enough..."
 				return
 
+			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with ethanol isn't quite as good as fuel.
+				if(!istype(M, /mob/living))
+					return
+				if(method == TOUCH)
+					M.adjust_fire_stacks(volume / 15)
+					return
 		ethanol/beer
 			name = "Beer"
 			id = "beer"

@@ -32,3 +32,9 @@
 	name = "Coconuts"
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "coconuts"
+
+/obj/effect/overlay/danger
+	name = "Danger"
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "danger"
+	layer = 6

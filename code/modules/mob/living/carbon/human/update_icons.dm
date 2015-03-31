@@ -127,13 +127,27 @@ Please contact me on #coderbus IRC. ~Carn x
 #define LEGCUFF_LAYER			20
 #define L_HAND_LAYER			21
 #define R_HAND_LAYER			22
-#define TARGETED_LAYER			23		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			23
+#define TARGETED_LAYER			23
+#define FIRE_LAYER				24		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
+#define TOTAL_LAYERS			24
 //////////////////////////////////
 
 /mob/living/carbon/human
 	var/list/overlays_standing[TOTAL_LAYERS]
 	var/previous_damage_appearance // store what the body last looked like, so we only have to update it if something changed
+
+
+
+/mob/living/carbon/human/proc/apply_overlay(cache_index)
+	var/image/I = overlays_standing[cache_index]
+	if(I)
+		overlays += I
+
+/mob/living/carbon/human/proc/remove_overlay(cache_index)
+	if(overlays_standing[cache_index])
+		overlays -= overlays_standing[cache_index]
+		overlays_standing[cache_index] = null
+
 
 //UPDATES OVERLAYS FROM OVERLAYS_LYING/OVERLAYS_STANDING
 //this proc is messy as I was forced to include some old laggy cloaking code to it so that I don't break cloakers
@@ -390,7 +404,13 @@ proc/get_damage_icon_part(damage_state, body_part)
 	//tail
 	update_tail_showing(0)
 
+/mob/living/carbon/human/update_fire()
 
+	remove_overlay(FIRE_LAYER)
+	if(on_fire)
+		overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=-FIRE_LAYER)
+
+	apply_overlay(FIRE_LAYER)
 
 
 //HAIR OVERLAY
@@ -982,4 +1002,5 @@ proc/get_damage_icon_part(damage_state, body_part)
 #undef L_HAND_LAYER
 #undef R_HAND_LAYER
 #undef TARGETED_LAYER
+#undef FIRE_LAYER
 #undef TOTAL_LAYERS

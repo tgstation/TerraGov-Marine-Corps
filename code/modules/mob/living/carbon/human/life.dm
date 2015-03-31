@@ -86,6 +86,9 @@
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
 
+		//Check if we're on fire
+		handle_fire()
+
 		//Mutations and radiation
 		handle_mutations_and_radiation()
 
@@ -758,6 +761,17 @@
 				pressure_alert = -1
 
 		return
+
+///FIRE CODE
+	handle_fire()
+		if(..())
+			return
+		var/thermal_protection = get_heat_protection(30000) //If you don't have fire suit level protection, you get a temperature increase
+		if((1 - thermal_protection) > 0.0001)
+			bodytemperature += BODYTEMP_HEATING_MAX
+		return
+//END FIRE CODE
+
 
 	/*
 	proc/adjust_body_temperature(current, loc_temp, boost)
