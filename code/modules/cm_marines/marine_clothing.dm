@@ -346,6 +346,12 @@ v
 	icon_state = "mcommpack"
 	item_state = "mcommpack"
 
+/obj/item/weapon/storage/backpack/marine
+	name = "marine backpack"
+	desc = "A large backpack used by military."
+	icon_state = "marinepack"
+	item_state = "marinepack"
+
 //BELT
 
 /obj/item/weapon/storage/belt/marine

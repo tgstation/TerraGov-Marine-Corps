@@ -193,7 +193,7 @@ obj/item/device/radio/headset/mdelta
 	frequency = 1461
 
 
-/*
+
 //MARINE RADIO
 
 /obj/item/device/radio/marine
@@ -203,10 +203,21 @@ obj/item/device/radio/headset/mdelta
 
 /obj/item/weapon/storage/box/beanbags
 	name = "box of beanbag shells"
-	desc = "It has a picture of a shotgun and several warning symbols on the front."
-
+	desc = "A box of 12 gauge beanbag rounds. Manufactured by Armat Systems for prison guard and police use in non-lethal pacification."
+	icon_state = "beanshells"
+	storage_slots = 14
+	can_hold = list(
+		"/obj/item/ammo_casing/shotgun",
+		)
 	New()
 		..()
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/shotgun/beanbag(src)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
@@ -218,7 +229,13 @@ obj/item/device/radio/headset/mdelta
 
 /obj/item/weapon/storage/box/shotguns
 	name = "box of shotgun shells"
-	desc = "It has a picture of a combat shotgun and several warning symbols on the front."
+	desc = "A box of standard issue high-powered 12 gauge buckshot rounds. Manufactured by Armat Systems for military and civilian use."
+	icon_state = "shells"
+	w_class = 2
+	storage_slots = 14
+	can_hold = list(
+		"/obj/item/ammo_casing/shotgun",
+		)
 
 	New()
 		..()
@@ -229,5 +246,57 @@ obj/item/device/radio/headset/mdelta
 		new /obj/item/ammo_casing/shotgun(src)
 		new /obj/item/ammo_casing/shotgun(src)
 		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun(src)
 
-		*/
+/obj/item/weapon/storage/box/incendiary
+	name = "box of shotgun shells"
+	desc = "A box of incednairy rounds. Manufactured by Armat Systems for military and civilian use."
+	icon_state = "incendiary"
+	w_class = 2
+	storage_slots = 14
+	can_hold = list(
+		"/obj/item/ammo_casing/shotgun",
+		)
+
+	New()
+		..()
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+		new /obj/item/ammo_casing/shotgun/incendiary(src)
+
+/obj/item/weapon/storage/box/explosive_mines
+	name = "mine box"
+	desc = "A secure box holding anti-personel proximity mines"
+	icon_state = "minebox"
+	w_class = 3
+	storage_slots = 4
+	can_hold = list(
+		"/obj/item/device/mine"
+		)
+
+	New()
+		..()
+		contents = list()
+		sleep(1)
+		new /obj/item/device/mine(src)
+		new /obj/item/device/mine(src)
+		new /obj/item/device/mine(src)
+		new /obj/item/device/mine(src)
+		return
