@@ -253,6 +253,13 @@ steam.start() -- spawns the effect
 		delete()
 	return
 
+/obj/effect/effect/smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(air_group || (height==0)) return 1
+	if(istype(mover, /obj/item/projectile/beam))
+		var/obj/item/projectile/beam/B = mover
+		B.damage = (B.damage/2)
+	return 1
+
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()
 	if(istype(M))
@@ -260,8 +267,6 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (istype(M))
-		return 0
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
 		return 0
 	return 1
 
@@ -278,22 +283,20 @@ steam.start() -- spawns the effect
 		affect(M)
 
 /obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
-	if (!..())
-		return 0
-	M.drop_item()
-	M.adjustOxyLoss(1)
-	if (M.coughedtime != 1)
-		M.coughedtime = 1
-		M.emote("cough")
-		spawn ( 20 )
-			M.coughedtime = 0
+	..()
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+		return
+	else
+		if (prob(20))
+			M.drop_item()
+		M.adjustOxyLoss(1)
+		if (M.coughedtime != 1)
+			M.coughedtime = 1
+			M.emote("cough")
+			spawn ( 20 )
+				M.coughedtime = 0
 
-/obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
-		B.damage = (B.damage/2)
-	return 1
+
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
@@ -331,11 +334,7 @@ steam.start() -- spawns the effect
 		affect(R)
 
 /obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
-	if (!..())
-		return 0
-	if (R.wear_suit != null)
-		return 0
-
+	..()
 	R.burn_skin(0.75)
 	if (R.coughedtime != 1)
 		R.coughedtime = 1
@@ -344,6 +343,38 @@ steam.start() -- spawns the effect
 			R.coughedtime = 0
 	R.updatehealth()
 	return
+
+/////////////////////////////////////////////
+// Phosporus Gas
+/////////////////////////////////////////////
+
+/obj/effect/effect/smoke/phosphorus
+	time_to_live = 200
+
+/obj/effect/effect/smoke/phosphorus/Move()
+	..()
+	for(var/mob/living/carbon/M in get_turf(src))
+		affect(M)
+
+/obj/effect/effect/smoke/phosphorus/affect(var/mob/living/carbon/M)
+	..()
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+		return
+	else
+		if (prob(20))
+			M.drop_item()
+		M.adjustOxyLoss(1)
+		M.updatehealth()
+		if (M.coughedtime != 1)
+			M.coughedtime = 1
+			M.emote("cough")
+			spawn (20)
+				M.coughedtime = 0
+	//if (M.wear_suit != null && !istype(M.wear_suit, /obj/item/clothing/suit/storage/labcoat) && !istype(M.wear_suit, /obj/item/clothing/suit/straight_jacket) && !istype(M.wear_suit, /obj/item/clothing/suit/straight_jacket && !istype(M.wear_suit, /obj/item/clothing/suit/armor)))
+		//return
+	M.burn_skin(0.75)
+	M.updatehealth()
+
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -399,6 +430,9 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/smoke_spread/mustard
 	smoke_type = /obj/effect/effect/smoke/mustard
+
+/datum/effect/effect/system/smoke_spread/phosphorus
+	smoke_type = /obj/effect/effect/smoke/phosphorus
 
 
 /////////////////////////////////////////////

@@ -92,12 +92,13 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			var/flame_dist = 0
 			var/hotspot_exists
 
-			if(dist < flame_range)
-				flame_dist = 1
+		//	if(dist < flame_range)
+		//		flame_dist = 1
 
 			if(dist < devastation_range)		dist = 1
 			else if(dist < heavy_impact_range)	dist = 2
 			else if(dist < light_impact_range)	dist = 3
+			else if(dist < flame_range)			dist = 4
 			else								continue
 
 			T.ex_act(dist)
