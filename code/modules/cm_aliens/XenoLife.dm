@@ -11,7 +11,6 @@
 	..()
 
 	if (stat != DEAD) //still breathing
-
 		// GROW!
 		update_progression()
 

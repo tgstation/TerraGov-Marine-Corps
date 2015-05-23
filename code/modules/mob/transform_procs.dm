@@ -197,8 +197,8 @@
 	for(var/t in organs)
 		del(t)
 
-	var/alien_caste = pick("Runner","Sentinel","Drone")
-	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste,loc)
+//	var/alien_caste = "larva"
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
 
 	new_xeno.a_intent = "hurt"
 	new_xeno.key = key
@@ -207,7 +207,7 @@
 	spawn(0)//To prevent the proc from returning null.
 		del(src)
 	return
-	
+
 //human -> alien drone
 /mob/living/carbon/human/proc/Alienize2()
 	if (monkeyizing)
@@ -222,8 +222,8 @@
 	for(var/t in organs)
 		del(t)
 
-	var/alien_caste = "Drone"
-	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste,loc)
+//	var/alien_caste = "Drone"
+	var/mob/living/carbon/Xenomorph/Drone/new_xeno = new /mob/living/carbon/Xenomorph/Drone(loc)
 
 	new_xeno.a_intent = "hurt"
 	new_xeno.key = key

@@ -199,11 +199,12 @@ datum/hud/New(mob/owner)
 		monkey_hud(ui_style)
 	else if(isbrain(mymob))
 		brain_hud(ui_style)
+	else if (isXeno(mymob))
+		alien_hud()
 	else if(isXenoLarva(mymob))
 		larva_hud() //TEMP APOPHIS 14FEB2015
 	else if(isalien(mymob))
 		larva_hud()
-
 	else if(isAI(mymob))
 		ai_hud()
 	else if(isrobot(mymob))

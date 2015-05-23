@@ -1,6 +1,6 @@
 //Xenomorph Runner - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
 
-/mob/living/carbon/human/Xenomorph/Runner
+/mob/living/carbon/Xenomorph/Runner
 	caste = "Runner"
 	name = "Alien Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
@@ -25,13 +25,13 @@ mob/living/carbon/Xenomorph/Runner/New()
 	..()
 	jelly = 0
 	jellyMax = 750
-	has_organ = list(
+/*	has_organ = list(
 		"heart" =           /datum/organ/internal/heart,
 		"brain" =           /datum/organ/internal/brain/xeno,
 		"plasma vessel" =   /datum/organ/internal/xenos/plasmavessel,
 		"hive node" =       /datum/organ/internal/xenos/hivenode,
 		"nutrient vessel" = /datum/organ/internal/diona/nutrients
-		)
+		)*/
 
 
 

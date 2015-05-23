@@ -217,12 +217,12 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 		var/datum/mind/ninja_mind = new_ninja.mind//For easier reference.
 		var/mission_set = 0//To determine if we need to do further processing.
 		//Xenos and deathsquads take precedence over everything else.
-
+/*
 		//Unless the xenos are hiding in a locker somewhere, this'll find em.
 		for(var/mob/living/carbon/human/xeno in player_list)
 			if(istype(xeno.species,/datum/species/xenos))
 				xeno_list += xeno
-
+*/
 		if(assign_mission)
 			new_ninja.mind.store_memory("<B>Mission:</B> \red [assign_mission].<br>")
 			new_ninja << "\blue \nYou are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training! \nYour current mission is: \red <B>[assign_mission]</B>"

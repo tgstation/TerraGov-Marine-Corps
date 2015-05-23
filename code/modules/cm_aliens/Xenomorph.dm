@@ -1,6 +1,6 @@
 //Xenomorph Super - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
 
-/mob/living/carbon/human/Xenomorph
+/mob/living/carbon/Xenomorph
 	var/caste = ""
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -26,7 +26,7 @@
 	var/jellyGrow = 0 //how much the jelly has grown
 	var/jellyMax = 0 //max amount jelly will grow till evolution
 
-/mob/living/carbon/human/Xenomorph/New()
+/mob/living/carbon/Xenomorph/New()
 	..()
 	time_of_birth = world.time
 	verbs += /mob/living/proc/ventcrawl
@@ -49,7 +49,7 @@
 	gender = NEUTER
 
 
-/*
+
 /mob/living/carbon/Xenomorph/u_equip(obj/item/W as obj)
 	return
 
@@ -94,7 +94,7 @@
 		adjustFireLoss(-1)
 		adjustToxLoss(-1)
 		adjustOxyLoss(-1)
-*/
+
 
 
 

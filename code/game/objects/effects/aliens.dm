@@ -401,13 +401,14 @@ Alien plants should do something if theres a lot of poison
 			status = BURST
 			child.loc = get_turf(src)
 
-			if(kill && istype(child))
+	//Burst Child Proc?
+		/*	if(kill && istype(child))
 				child.Die()
 			else
 				for(var/mob/M in range(1,src))
 					if(CanHug(M))
 						child.Attach(M)
-						break
+						break */
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage

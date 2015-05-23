@@ -719,7 +719,7 @@ datum/preferences
 							clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
  				if(SULDOC)
-					clothes_s = new /icon('icons/mob/uniform.dmi', "medical_s")
+ 					clothes_s = new /icon('icons/mob/uniform.dmi', "medical_s")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "white"), ICON_UNDERLAY)
 					clothes_s.Blend(new /icon('icons/mob/items_lefthand.dmi', "firstaid"), ICON_UNDERLAY)
 					clothes_s.Blend(new /icon('icons/mob/suit.dmi', "labcoat_open"), ICON_OVERLAY)

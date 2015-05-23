@@ -51,10 +51,11 @@
 			if("slime")
 				new_mob = new /mob/living/carbon/slime(M.loc)
 				new_mob.universal_speak = 1
-			if("xeno")
+				//NO WABBAJACK
+		/*	if("xeno")
 				var/alien_caste = pick("Hunter","Sentinel","Drone","Larva")
 				new_mob = create_new_xenomorph(alien_caste,M.loc)
-				new_mob.universal_speak = 1
+				new_mob.universal_speak = 1*/
 			if("human")
 				new_mob = new /mob/living/carbon/human(M.loc, pick(all_species))
 				if(M.gender == MALE)

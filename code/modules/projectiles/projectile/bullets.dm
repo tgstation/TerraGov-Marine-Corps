@@ -83,8 +83,8 @@
 
 /obj/item/projectile/bullet/incendiary/shell/Move()
 	..()
-	if(prob(80))
-		var/turf/location = get_turf(src)
- 		new/obj/effect/effect/fire(location)
+//	if(prob(80))
+		//var/turf/location = get_turf(src)
+ 		//new/obj/effect/effect/fire(location)
 
 /obj/item/projectile/bullet/incendiary/shell
