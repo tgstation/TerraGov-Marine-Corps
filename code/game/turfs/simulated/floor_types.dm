@@ -155,8 +155,6 @@
 /turf/simulated/floor/beach
 	name = "Beach"
 	icon = 'icons/misc/beach.dmi'
-
-/turf/simulated/floor/beach/sand
 	name = "Sand"
 	icon_state = "sand"
 
