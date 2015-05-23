@@ -1,0 +1,61 @@
+/turf/simulated/floor/gm //Basic groundmap turf parent
+	name = "ground dirt"
+	icon = 'icons/ground_map.dmi'
+	icon_state = "desert"
+	floor_tile = null
+	heat_capacity = 500000 //Shouldn't be possible, but you never know...
+
+	ex_act(severity) //Should make it indestructable
+		return
+
+	fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+		return
+
+	burn_tile() //All these should make the turf completely unmodifiable. Don't want people slapping plating and stuff down
+		return
+
+	break_tile()
+		return
+
+	make_plating()
+		return
+
+	attackby() //This should fix everything else. No cables, etc
+		return
+
+/turf/simulated/floor/gm/dirt
+	name = "dirt"
+	icon_state = "desert"
+
+/turf/simulated/floor/gm/dirt/New()
+	..()
+	if(rand(0,15) == 0)
+		icon_state = "desert[pick("0","1","2","3")]"
+
+/turf/simulated/floor/gm/grass
+	name = "grass"
+	icon_state = "grass1"
+
+/turf/simulated/floor/gm/dirtgrassborder
+	name = "grass"
+	icon_state = "grassdirt_edge"
+
+/turf/simulated/floor/gm/river
+	name = "river"
+	icon_state = "seashallow"
+
+/turf/simulated/floor/gm/river/New()
+	..()
+	overlays += image("icon"='icons/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
+
+/turf/simulated/floor/gm/coast
+	name = "coastline"
+	icon_state = "beach"
+
+/turf/simulated/floor/gm/riverdeep
+	name = "river"
+	icon_state = "seadeep"
+
+/turf/simulated/floor/gm/riverdeep/New()
+	..()
+	overlays += image("icon"='icons/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
