@@ -251,8 +251,8 @@
 
 	TryToSwitchState(atom/user)
 
-		var/mob/living/carbon/M = user
-		if(istype(M) && locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs)
+		var/mob/living/carbon/Xenomorph/M = user
+		if(istype(M))
 			return ..()
 
 	Open()

@@ -113,8 +113,10 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	var/mob/living/carbon/C = M
 	if(istype(C) && locate(/datum/organ/internal/xenos/hivenode) in C.internal_organs)
-		return
+		return 0
 
+	if(istype(C,/mob/living/carbon/Xenomorph))
+		return 0
 
 	attached++
 	spawn(MAX_IMPREGNATION_TIME)
@@ -166,6 +168,9 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target as mob)
 	if(!target || target.wear_mask != src || target.stat == DEAD) //was taken off or something
+		return
+
+	if(istype(target,/mob/living/carbon/Xenomorph))
 		return
 
 	if(!sterile)
@@ -227,6 +232,9 @@ var/const/MAX_ACTIVE_TIME = 400
 		return 1
 
 	if(!iscarbon(M))
+		return 0
+
+	if(istype(M,/mob/living/carbon/Xenomorph))
 		return 0
 
 	var/mob/living/carbon/C = M
