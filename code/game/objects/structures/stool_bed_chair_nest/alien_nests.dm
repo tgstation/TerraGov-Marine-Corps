@@ -50,7 +50,7 @@
 	if(istype(victim) && istype(victim,/mob/living/carbon/Xenomorph))
 		return
 
-	if(istype(xenos) && istype(victim,/mob/living/carbon/Xenomorph))
+	if(istype(xenos) && !istype(victim,/mob/living/carbon/Xenomorph))
 		return
 
 	if(M == usr)
