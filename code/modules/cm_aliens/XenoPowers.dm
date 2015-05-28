@@ -32,6 +32,22 @@
 
 //Queen Verbs
 
+/mob/living/carbon/Xenomorph/Queen/verb/lay_egg()
+
+	set name = "Lay Egg (100)"
+	set desc = "Lay an egg to produce huggers to impregnate prey with."
+	set category = "Alien"
+
+	if(locate(/obj/effect/alien/egg) in get_turf(src) /*|| locate(/obj/royaljelly) in get_turf(src)*/) //Turn em off for now
+		src << "There's already an egg or royal jelly here."
+		return
+
+	if(powerc(100,1))//Can't plant eggs on spess tiles. That's silly.
+		adjustToxLoss(-100)
+		for(var/mob/O in viewers(src, null))
+			O.show_message(text("\green <B>[src] has laid an egg!</B>"), 1)
+		new /obj/effect/alien/egg(loc)
+	return
 
 //Runner Verbs
 

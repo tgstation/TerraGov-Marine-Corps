@@ -16,11 +16,14 @@
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
 			destroy()
-		else if(istype(user,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = user
-			if(H.species.can_shred(user))
-				visible_message("<span class='danger'>[H] slices [src] apart!</span>")
-				destroy()
+		else if(istype(user,/mob/living/carbon/Xenomorph))
+			var/mob/living/carbon/Xenomorph/H = user
+			if(H.can_slash)
+				if(rand(0,3) == 0)
+					visible_message("<span class='danger'>[H] slices [src] apart!</span>")
+					destroy()
+				else
+					visible_message("<span class='danger'>[H] slashes wildly at [src]!</span>")
 
 /obj/structure/attack_animal(mob/living/user)
 	if(breakable)

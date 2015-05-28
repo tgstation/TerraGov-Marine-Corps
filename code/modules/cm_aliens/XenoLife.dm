@@ -165,3 +165,9 @@
 			src << "\red You feel a searing heat!"
 	else
 		if (fire) fire.icon_state = "fire0"
+
+/mob/living/carbon/Xenomorph/death(gibbed)
+	if(!gibbed)
+		icon_state = "[caste] Dead"
+	playsound(loc, 'sound/voice/hiss6.ogg', 50, 1, 1)
+	return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")

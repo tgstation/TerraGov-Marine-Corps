@@ -1,4 +1,5 @@
 //Xenomorph - Larva - Colonial Marines - Apophis775 - Last Edit: 24JAN2015
+//Nope, added stuff by Abby - including Update Icons
 
 /mob/living/carbon/Xenomorph/Larva
 	name = "Alien Larva"
@@ -12,13 +13,20 @@
 	max_grown = 200
 	maxHealth = 25
 	health = 25
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	evolves_to = list("Drone", "Runner") //Add sentinel etc here
+	can_slash = 0
+	see_in_dark = 20
+	caste_desc = "D'awwwww, so cute!"
+	pass_flags = PASSTABLE
 
 
 /mob/living/carbon/Xenomorph/Larva/New()
 	..()
-	add_language("Xenomorph") //Bonus language.
 	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
-
+	verbs += /mob/living/proc/ventcrawl
+	verbs += /mob/living/proc/hide
 
 //Larva Progression
 /mob/living/carbon/Xenomorph/Larva/update_progression()
@@ -27,12 +35,20 @@
 		amount_grown++
 	return
 
-/mob/living/carbon/Xenomorph/Larva/proc/larva_evolution()
+/mob/living/carbon/Xenomorph/Larva/update_icons()
+	var/state = "Bloody"
+	if(amount_grown > 150)
+		state = "Normal"
+	else if(amount_grown > 50)
+		state = "Normal"
 
-	src << "\blue <b>You are growing into a beautiful alien! It is time to choose a caste.</b>"
-	src << "\blue There are three to choose from:"
-	src << "<B>Hunters</B> \blue are strong and agile, able to hunt away from the hive and rapidly move through ventilation shafts. Hunters generate plasma slowly and have low reserves."
-	src << "<B>Sentinels</B> \blue are tasked with protecting the hive and are deadly up close and at a range. They are not as physically imposing nor fast as the hunters."
-	src << "<B>Drones</B> \blue are the working class, offering the largest plasma storage and generation. They are the only caste which may evolve again, turning into the dreaded alien queen."
-	caste = alert(src, "Please choose which alien caste you shall belong to.", ,"Hunter","Sentinel","Drone")
-	return caste ? "[caste]" : null
+	if(stat == DEAD)
+		icon_state = "[state] Larva Dead"
+	else if (handcuffed || legcuffed)
+		icon_state = "[state] Larva Cuff"
+	else if (stunned)
+		icon_state = "[state] Larva Stunned"
+	else if(lying || resting)
+		icon_state = "[state] Larva Sleeping"
+	else
+		icon_state = "[state] Larva"
