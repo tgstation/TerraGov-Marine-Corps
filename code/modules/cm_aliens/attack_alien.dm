@@ -47,7 +47,12 @@
 //			if(istype(M, /mob/living/carbon/alien/humanoid/ravager))
 //				affecting = get_organ(ran_zone("head", 95))
 //			else
-			affecting = get_organ(ran_zone(M.zone_sel.selecting))
+			affecting = get_organ(ran_zone(M.zone_sel.selecting,90))
+			if(!affecting) //No organ, just get a random one
+				affecting = get_organ(ran_zone(null,0))
+			if(!affecting) //Still nothing??
+				affecting = get_organ("chest") // Gotta have a torso?!
+
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
@@ -314,3 +319,26 @@
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)
+
+//Beds, nests and chairs - unbuckling
+/obj/structure/stool/bed/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	attack_hand(M)
+	return
+
+//clicking on resin doors attacks them, or opens them without harm intent
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	var/turf/cur_loc = M.loc
+	if(!istype(cur_loc)) return //Some basic logic here
+	if(M.a_intent != "hurt")
+		TryToSwitchState(M)
+		return
+
+	M.visible_message("<span class='warning'> \red [M] digs into [src.name] and begins ripping it down. </span>", \
+		 			"<span class='warning'> \red You begin to rip down [src.name]. Hold still.. </span>")
+	if(do_after(M,80))
+		if(M.loc != cur_loc) return //Make sure we're still there
+		if(!src) return //Someone already destroyed it, do_after should check this but best to be safe
+		M.visible_message("<span class='warning'> \red [M] rips down [src.name]! </span>", \
+		 			"<span class='warning'> \red You rip down [src.name]! </span>")
+		del(src)
+	return

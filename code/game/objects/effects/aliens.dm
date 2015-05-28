@@ -102,29 +102,16 @@
 	..()
 	return
 
-/obj/effect/alien/resin/attack_hand()
-	if (HULK in usr.mutations)
-		usr << "\blue You easily destroy the [name]."
-		for(var/mob/O in oviewers(src))
-			O.show_message("\red [usr] destroys the [name]!", 1)
-		health = 0
-	else
-
-		// Aliens can get straight through these. NAH - Abby
-//		if(istype(usr,/mob/living/carbon))
-//			var/mob/living/carbon/M = usr
-//			if(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs)
-//				for(var/mob/O in oviewers(src))
-//					O.show_message("\red [usr] strokes the [name] and it melts away!", 1)
-//				health = 0
-//				healthcheck()
-//				return
-
-		usr << "\blue You claw at the [name]."
-		for(var/mob/O in oviewers(src))
-			O.show_message("\red [usr] claws at the [name]!", 1)
-		health -= rand(5,10)
+/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	usr << "\blue You claw at the [name]."
+	for(var/mob/O in oviewers(src))
+		O.show_message("\red [usr] claws at the [name]!", 1)
+	health -= rand(5,10)
 	healthcheck()
+	return
+
+/obj/effect/alien/resin/attack_hand()
+	usr << "\blue You scrape ineffectually at the [name]."
 	return
 
 /obj/effect/alien/resin/attack_paw()
@@ -317,6 +304,10 @@ Alien plants should do something if theres a lot of poison
 			var/turf/simulated/wall/W = target
 			W.dismantle_wall(1)
 		else
+			if(target.contents) //Hopefully won't auto-delete things inside melted stuff..
+				for(var/mob/S in target)
+					if(S in target.contents && !isnull(target.loc))
+						S.loc = target.loc
 			del(target)
 		del(src)
 		return
@@ -356,14 +347,12 @@ Alien plants should do something if theres a lot of poison
 	var/on_fire = 0
 
 /obj/effect/alien/egg/New()
-	if(aliens_allowed)
-		..()
-		spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-			Grow()
-	else
-		del(src)
+	..()
+	spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
+		Grow()
 
-/obj/effect/alien/egg/attack_hand(user as mob)
+
+/obj/effect/alien/egg/attack_alien(user as mob)
 
 	var/mob/living/carbon/M = user
 	if(!istype(M) || !istype(M,/mob/living/carbon/Xenomorph) )
@@ -400,15 +389,8 @@ Alien plants should do something if theres a lot of poison
 		spawn(15)
 			status = BURST
 			child.loc = get_turf(src)
-
-	//Burst Child Proc?
-		/*	if(kill && istype(child))
+			if(kill && istype(child)) //Make sure it's still there
 				child.Die()
-			else
-				for(var/mob/M in range(1,src))
-					if(CanHug(M))
-						child.Attach(M)
-						break */
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
@@ -455,9 +437,4 @@ Alien plants should do something if theres a lot of poison
 	if(status == GROWN)
 		if(!CanHug(AM))
 			return
-
-		var/mob/living/carbon/C = AM
-		if(C.stat == CONSCIOUS && C.status_flags & XENO_HOST)
-			return
-
 		Burst(0)

@@ -41,19 +41,8 @@ var/const/MAX_ACTIVE_TIME = 400
 /obj/item/clothing/mask/facehugger/attack(mob/living/M as mob, mob/user as mob)
 	..()
 	if(istype(M))
-		user.drop_from_inventory(src)
 		user.update_icons() //Just to be safe here
 		Attach(M)
-		if(user.hand) //hacky-ass fix.. sigh
-			user.l_hand = null
-		else
-			user.r_hand = null
-
-/obj/item/clothing/mask/facehugger/New()
-	if(aliens_allowed)
-		..()
-	else
-		del(src)
 
 /obj/item/clothing/mask/facehugger/examine()
 	..()
@@ -111,15 +100,6 @@ var/const/MAX_ACTIVE_TIME = 400
 		Attach(hit_atom)
 		throwing = 0
 
-//hacky-ass fix..		hopefully
-/mob/living/carbon/Xenomorph/throw_item(atom/target)
-	..()
-	if(hand)
-		src.l_hand = null
-	else
-		src.r_hand = null
-
-
 /obj/item/clothing/mask/facehugger/proc/Attach(M as mob)
 
 	if((!iscorgi(M) && !iscarbon(M)))
@@ -149,16 +129,25 @@ var/const/MAX_ACTIVE_TIME = 400
 	if(!sterile) L.take_organ_damage(strength,0) //done here so that even borgs and humans in helmets take damage
 
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
+
 	if(isturf(L.loc))
 		src.loc = L.loc //Just checkin
 
+	if(istype(L.loc,/mob/living/carbon/Xenomorph)) //We did all our checks, let's take it out of hand
+		var/mob/living/carbon/Xenomorph/X = L.loc
+		X.drop_from_inventory(src)
+
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.head && H.head.flags & HEADCOVERSMOUTH && rand(0,2) != 0)
-			H.visible_message("\red \b [src] smashes against [H]'s [H.head]!")
-			Die()
-			return 0
-
+		if(H.head)
+			if((H.head.flags & HEADCOVERSMOUTH) || !H.head.canremove)
+				if(rand(0,2) != 0)
+					H.visible_message("\red \b [src] smashes against [H]'s [H.head] and bounces off!")
+					Die()
+					return 0
+				else
+					H.visible_message("\red \b [src] smashes against [H]'s [H.head] and rips it off!")
+					H.drop_from_inventory(H.head)
 	if(iscarbon(M))
 		var/mob/living/carbon/target = L
 
@@ -251,12 +240,13 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	return
 
-/proc/CanHug(var/mob/M)
+/proc/CanHug(var/mob/living/M)
 
-	if(iscorgi(M))
-		return 1
+	if(!istype(M)) return 0
 
-	if(!iscarbon(M))
+	if(!M.stat == DEAD) return 0
+
+	if(!iscarbon(M) && !iscorgi(M))
 		return 0
 
 	if(istype(M,/mob/living/carbon/Xenomorph))
@@ -264,12 +254,20 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	if(M.status_flags & XENO_HOST) return 0
 
-	var/mob/living/carbon/C = M
-	if(istype(C) && locate(/datum/organ/internal/xenos/hivenode) in C.internal_organs)
-		return 0
-
-	if(ishuman(C))
+//This is dealt with in the Attach() code
+/*	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if(H.head && H.head.flags & HEADCOVERSMOUTH)
-			return 0
+			return 0*/
+
+	//Already have a hugger? NOPE
+	//This is to prevent eggs from bursting all over if you walk around with one on your face,
+	//or an unremovable mask.
+	if(iscarbon(M))
+		if(M.wear_mask)
+			var/obj/item/clothing/W = M.wear_mask
+			if(!W.canremove)
+				return 0
+			if(istype(W,/obj/item/clothing/mask/facehugger))
+				return 0
 	return 1

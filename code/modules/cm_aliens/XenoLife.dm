@@ -14,6 +14,17 @@
 		// GROW!
 		update_progression()
 
+	if(usedPounce)
+		usedPounce--
+		if(!usedPounce)
+			src << "Your legs are readied for another pounce."
+
+	if(jelly && jellyGrow < jellyMax)
+		jellyGrow++
+		if(jellyGrow > jellyMax)
+			src << "\green You feel the royal jelly swirl in your veins.."
+			jellyGrow = jellyMax
+
 	blinded = null
 
 	if(loc)
@@ -29,6 +40,8 @@
 
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
+
+
 
 	if(status_flags & GODMODE)	return 0
 
@@ -102,12 +115,14 @@
 		sight &= ~SEE_TURFS
 		sight &= ~SEE_MOBS
 		sight &= ~SEE_OBJS
-		see_in_dark = 2
+		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LIVING
+		sight |= SEE_MOBS //Lets try this
 
 	if (healths)
 		if (stat != 2)
-			switch(health)
+			var/HP = (health/maxHealth)*100
+			switch(HP)
 				if(100 to INFINITY)
 					healths.icon_state = "health0"
 				if(80 to 100)
@@ -156,15 +171,34 @@
 /mob/living/carbon/Xenomorph/proc/handle_environment(var/datum/gas_mixture/environment)
 	// Both alien subtypes survive in vaccum and suffer in high temperatures,
 	// so I'll just define this once, for both (see radiation comment above)
-	if(!environment) return
 
-	if(environment.temperature > (T0C+66))
-		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-		if (fire) fire.icon_state = "fire2"
-		if(prob(20))
-			src << "\red You feel a searing heat!"
-	else
-		if (fire) fire.icon_state = "fire0"
+	var/turf/T = src.loc
+	if(environment)
+		if(environment.temperature > (T0C+66))
+			adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
+			if (fire) fire.icon_state = "fire2"
+			if(prob(20))
+				src << "\red You feel a searing heat!"
+		else
+			if (fire) fire.icon_state = "fire0"
+
+	if(!T || !istype(T)) return
+
+	if(locate(/obj/effect/alien/weeds) in T)
+		if(health >= maxHealth -getCloneLoss())
+			storedplasma += plasma_gain
+		else
+			adjustBruteLoss(-2)
+			adjustFireLoss(-1) //Heal from fire half as fast
+			adjustOxyLoss(-5) //Xenos don't actually take oxyloss, oh well
+			adjustToxLoss(plasma_gain) //hmmmm, this is probably unnecessary
+			storedplasma += plasma_gain
+		if(storedplasma > maxplasma) storedplasma = maxplasma
+	else //Xenos restore plasma VERY slowly off weeds, and only at full health
+		if(health >= maxHealth - getCloneLoss())
+			if(rand(0,2) == 0) storedplasma += 1
+			if(storedplasma > maxplasma) storedplasma = maxplasma
+	//..()
 
 /mob/living/carbon/Xenomorph/death(gibbed)
 	if(!gibbed)
