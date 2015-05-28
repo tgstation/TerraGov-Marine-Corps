@@ -1,9 +1,8 @@
 //Xenomorph General Procs And Functions - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
 
-
-
-//PROCS
-
+//Give it a caste name, return its full caste
+//MUST ADD THEM ALL HERE
+//Used in XenoEvolution.dm
 
 /mob/living/carbon/Xenomorph/proc/growJelly()//Grows the delicious Jelly 08FEB2015
 	spawn while (1)

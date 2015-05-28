@@ -33,14 +33,21 @@ var/const/MAX_ACTIVE_TIME = 400
 	if((stat == CONSCIOUS && !sterile))
 		if(Attach(user))
 			return
-
 	..()
+
+/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user as mob)
+	user.put_in_active_hand(src)
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M as mob, mob/user as mob)
 	..()
 	if(istype(M))
-		user.drop_from_inventory(src,M)
+		user.drop_from_inventory(src)
+		user.update_icons() //Just to be safe here
 		Attach(M)
+		if(user.hand) //hacky-ass fix.. sigh
+			user.l_hand = null
+		else
+			user.r_hand = null
 
 /obj/item/clothing/mask/facehugger/New()
 	if(aliens_allowed)
@@ -104,13 +111,25 @@ var/const/MAX_ACTIVE_TIME = 400
 		Attach(hit_atom)
 		throwing = 0
 
+//hacky-ass fix..		hopefully
+/mob/living/carbon/Xenomorph/throw_item(atom/target)
+	..()
+	if(hand)
+		src.l_hand = null
+	else
+		src.r_hand = null
+
+
 /obj/item/clothing/mask/facehugger/proc/Attach(M as mob)
 
 	if((!iscorgi(M) && !iscarbon(M)))
-		return
+		return 0
 
 	if(attached)
-		return
+		return 0
+
+	if(istype(M,/mob/living))
+		if(M:status_flags & XENO_HOST) return 0
 
 	var/mob/living/carbon/C = M
 	if(istype(C) && locate(/datum/organ/internal/xenos/hivenode) in C.internal_organs)
@@ -125,18 +144,20 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	var/mob/living/L = M //just so I don't need to use :
 
-//	if(loc == L) return
-	if(stat != CONSCIOUS)	return
+	if(loc == L) return 0
+	if(stat != CONSCIOUS)	return 0
 	if(!sterile) L.take_organ_damage(strength,0) //done here so that even borgs and humans in helmets take damage
 
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
+	if(isturf(L.loc))
+		src.loc = L.loc //Just checkin
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.head && H.head.flags & HEADCOVERSMOUTH)
+		if(H.head && H.head.flags & HEADCOVERSMOUTH && rand(0,2) != 0)
 			H.visible_message("\red \b [src] smashes against [H]'s [H.head]!")
 			Die()
-			return
+			return 0
 
 	if(iscarbon(M))
 		var/mob/living/carbon/target = L
@@ -144,9 +165,14 @@ var/const/MAX_ACTIVE_TIME = 400
 		if(target.wear_mask)
 //			if(prob(20))	return
 			var/obj/item/clothing/W = target.wear_mask
-			if(!W.canremove)	return
+			if(!W.canremove)
+				return 0
+			if(istype(W,/obj/item/clothing/mask/facehugger))
+				return 0
 			target.drop_from_inventory(W)
 			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
+
+		src.loc = target
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
 
@@ -163,7 +189,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	spawn(rand(MIN_IMPREGNATION_TIME,MAX_IMPREGNATION_TIME))
 		Impregnate(L)
 
-	return
+	return 1
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target as mob)
 	if(!target || target.wear_mask != src || target.stat == DEAD) //was taken off or something
@@ -235,6 +261,8 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	if(istype(M,/mob/living/carbon/Xenomorph))
 		return 0
+
+	if(M.status_flags & XENO_HOST) return 0
 
 	var/mob/living/carbon/C = M
 	if(istype(C) && locate(/datum/organ/internal/xenos/hivenode) in C.internal_organs)

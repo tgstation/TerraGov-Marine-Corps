@@ -6,12 +6,12 @@
 	desc = "A sexy Alien queen"
 	icon = 'icons/xeno/Colonial_Queen.dmi'
 	icon_state = "Queen Walking"
-	pass_flags = PASSTABLE
+//	pass_flags = PASSTABLE
 	melee_damage_lower = 30
 	melee_damage_upper = 35
-	attacktext = "Bites"
+	attacktext = "bites"
 	attack_sound = null
-	friendly = "Nuzzles"
+	friendly = "nuzzles"
 	wall_smash = 0
 	health = 700
 	maxHealth = 700
@@ -19,6 +19,8 @@
 	max_grown = 10
 	storedplasma = 300
 	maxplasma = 700
+	is_intelligent = 1
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 
 /mob/living/carbon/Xenomorph/Queen/New()
 	..()
@@ -130,22 +132,7 @@
 
 
 //Queen verbs
-/mob/living/carbon/alien/humanoid/queen/verb/lay_egg()
 
-	set name = "Lay Egg (100)"
-	set desc = "Lay an egg to produce huggers to impregnate prey with."
-	set category = "Alien"
-
-	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src))
-		src << "There's already an egg or royal jelly here."
-		return
-
-	if(powerc(100,1))//Can't plant eggs on spess tiles. That's silly.
-		adjustToxLoss(-100)
-		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>[src] has laid an egg!</B>"), 1)
-		new /obj/effect/alien/egg(loc)
-	return
 
 /mob/living/carbon/alien/humanoid/queen/verb/lay_jelly()
 

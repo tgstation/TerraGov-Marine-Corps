@@ -6,17 +6,19 @@
 	desc = "An Alien Drone"
 	icon = 'icons/xeno/Colonial_Aliens1x1.dmi'
 	icon_state = "Drone Walking"
-	pass_flags = PASSTABLE
+//	pass_flags = PASSTABLE
 	melee_damage_lower = 12
 	melee_damage_upper = 16
-	attacktext = "Bites"
+	attacktext = "bites"
 	attack_sound = null
-	friendly = "Nuzzles"
+	friendly = "nuzzles"
 	wall_smash = 0
 	health = 170
 	maxHealth = 170
 	storedplasma = 350
 	maxplasma = 750
+	evolves_to = list("Queen") //Add more here seperated by commas
+	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 
 //new drone Code 06FEB2015
 
@@ -24,7 +26,7 @@ mob/living/carbon/Xenomorph/Drone/New()
 	..()
 	jelly = 0
 	jellyMax = 1200
-
+	verbs += /mob/living/proc/ventcrawl
 
 // either freeze is currently broken and needs to be investigated...
 	/
