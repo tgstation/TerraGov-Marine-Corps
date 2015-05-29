@@ -20,6 +20,7 @@
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
+		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/proc/neurotoxin //Weakest version
 		)
 
@@ -30,35 +31,6 @@
 		neurotoxin(A)
 		return
 	..()
-
-
-
-
-//They can go here for all castes I guess
-
-/obj/item/projectile/energy/neuro_weak
-	name = "neurotoxin"
-	icon_state = "neurotoxin"
-	damage = 5
-	damage_type = TOX
-	weaken = 4
-
-/obj/item/projectile/energy/neurotoxin
-	name = "neuro"
-	icon_state = "neurotoxin"
-	damage = 15
-	damage_type = TOX
-	weaken = 8
-
-/obj/item/projectile/energy/neuro_uber
-	name = "neuro"
-	icon_state = "neurotoxin"
-	damage = 15
-	damage_type = TOX
-	agony = 80
-	irradiate = 20
-
-
 
 // OLD CODE FOR REFERENCE
 

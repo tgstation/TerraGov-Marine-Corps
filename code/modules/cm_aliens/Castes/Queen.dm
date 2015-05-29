@@ -32,8 +32,9 @@
 		/mob/living/carbon/Xenomorph/proc/gut,
 		/mob/living/carbon/Xenomorph/proc/build_resin,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/proc/neurotoxin, //Just for now
+		/mob/living/carbon/Xenomorph/proc/screech
 		)
+
 
 
 

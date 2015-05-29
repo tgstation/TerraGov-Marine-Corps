@@ -22,9 +22,7 @@
 	set desc = "Plants some alien weeds"
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state()) return
 
 	var/turf/T = src.loc
 
@@ -53,9 +51,7 @@
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state()) return
 
 	var/turf/T = src.loc
 
@@ -63,7 +59,7 @@
 		src << "You can't do that here."
 		return
 
-	if(locate(/obj/effect/alien/egg) in get_turf(src) /*|| locate(/obj/royaljelly) in get_turf(src)*/) //Turn em off for now
+	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src)) //Turn em off for now
 		src << "There's already an egg or royal jelly here."
 		return
 
@@ -77,13 +73,62 @@
 		new /obj/effect/alien/egg(T)
 	return
 
+/obj/royaljelly
+	name = "royal jelly"
+	desc = "A greenish-yellow blob of slime that encourages xenomorph evolution."
+	icon = 'icons/Xeno/Colonial_Aliens1x1.dmi'
+	icon_state = "jelly"
+	anchored = 1
+	opacity = 0
+	density = 0
+	layer = 3.4 //On top of most things
+
+/obj/royaljelly/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(!istype(M,/mob/living/carbon/Xenomorph) || istype(M,/mob/living/carbon/Xenomorph/Larva))
+		return
+
+	if(M.jelly)
+		M << "You're already filled with delicious jelly."
+		return
+
+	M.jelly = 1
+	visible_message("\green [M] greedily devours the [src].","You greedily gulp down the [src].")
+
+/mob/living/carbon/Xenomorph/proc/produce_jelly()
+
+	set name = "Produce Jelly (350)"
+	set desc = "Squirt out some royal jelly for hive advancement."
+	set category = "Alien"
+
+	if(!check_state())
+		return
+
+	var/turf/T = src.loc
+
+	if(!istype(T) || isnull(T))
+		src << "You can't do that here."
+		return
+
+	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src))
+		src << "There's already an egg or royal jelly here."
+		return
+
+	if(!locate(/obj/effect/alien/weeds) in T)
+		src << "Your jelly would rot here. Lay them on resin."
+		return
+
+	if(check_plasma(350)) //New plasma check proc, removes/updates plasma automagically
+		for(var/mob/O in viewers(src, null))
+			O.show_message(text("\green <B>\The [src] squirts out a greenish blob of jelly.</B>"), 1)
+		new /obj/royaljelly(T)
+	return
+
 /mob/living/carbon/Xenomorph/proc/Pounce()
 	set name = "Pounce (25)"
 	set desc = "Pounce onto your prey."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
+	if(!check_state())
 		return
 
 	if(usedPounce)
@@ -138,9 +183,7 @@
 	set name = "Crawl through Vent"
 	set desc = "Enter an air vent and crawl through the pipe system."
 	set category = "Alien"
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 	handle_ventcrawl()
 	return
 
@@ -163,9 +206,7 @@
 	set name = "Gut (200)"
 	set desc = "While pulling someone, rip their guts out or tear them apart."
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	if(last_special > world.time)
 		return
@@ -204,9 +245,7 @@
 	set desc = "Empties the contents of your stomach"
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	if(stomach_contents.len)
 		for(var/mob/M in src)
@@ -223,9 +262,7 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
@@ -239,9 +276,8 @@
 	set desc = "Transfer Plasma to another alien"
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
+
 	if (get_dist(src,M) <= 3)
 		src << "\green You need to be closer."
 		return
@@ -264,9 +300,7 @@
 	set desc = "Secrete tough malleable resin."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	if(!is_weedable(loc))
 		src << "Bad place for a garden!"
@@ -306,54 +340,13 @@
 			new /obj/structure/stool/bed/nest(T)
 	return
 
-/mob/living/carbon/Xenomorph/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
-	set name = "Corrosive Acid (200)"
-	set desc = "Drench an object in acid, destroying it over time."
-	set category = "Alien"
-
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
-
-	if(!O in oview(1))
-		src << "\green [O] is too far away."
-		return
-
-	// OBJ CHECK
-	if(isobj(O))
-		var/obj/I = O
-		if(I.unacidable)	//So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
-			src << "\green You cannot dissolve this object."
-			return
-
-	// TURF CHECK
-	else if(istype(O, /turf/simulated))
-		var/turf/T = O
-		// R WALL
-		if(istype(T, /turf/simulated/wall/r_wall))
-			src << "\green You cannot dissolve this object."
-			return
-		// NO FLOORS! NONE!
-		if(istype(T, /turf/simulated/floor) || istype(T,/turf/unsimulated/floor))
-			src << "\green You cannot dissolve this object."
-			return
-		else// Not a type we can acid.
-			return
-
-	if(check_plasma(200))
-		new /obj/effect/alien/acid(get_turf(O), O)
-		visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
-
-	return
-
+//Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/neurotoxin(mob/target as mob in oview())
 	set name = "Spit Neurotoxin (50)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
+	set desc = "Spits neurotoxin at someone, paralyzing them for a short time."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	if(has_spat)
 		usr << "You must wait for your neurotoxin glands to refill."
@@ -369,6 +362,7 @@
 	has_spat = 1
 	spawn(spit_delay)
 		has_spat = 0
+		usr << "You feel your neuro glands swell with ichor. You can spit again."
 
 	visible_message("<span class='warning'><b>\The [src]</b> spits at [target]!</span>","You spit at [target]!")
 
@@ -401,9 +395,7 @@
 	set desc = "Throw one of your facehuggers. MIDDLE MOUSE BUTTON quick-throws."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	if(!istype(src,/mob/living/carbon/Xenomorph/Carrier))
 		src << "How did you get this verb??" //Lel. Shouldn't be possible, butcha never know. Since this uses carrier vars, only carriers.
@@ -434,14 +426,12 @@
 			src << "\blue You cannot throw at nothing!"
 	return
 
-/mob/living/carbon/Xenomorph/proc/charge(var/mob/living/carbon/T)
+/mob/living/carbon/Xenomorph/proc/charge(var/atom/T)
 	set name = "Charge (10)"
 	set desc = "Charge towards something! Raaaugh!"
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	if(!check_plasma(10))
 		return
@@ -461,31 +451,30 @@
 			T = input(X, "Who should you charge towards?") as null|anything in victims
 
 		if(T)
-			src.throw_at(X, X.CHARGEDISTANCE, X.CHARGESPEED)
-			src << "\red You charge at [T]!"
+			visible_message("\red <B>[X] charges towards [T]!</B>","\red <b> You charge at [T]!</B>" )
 			emote("roar") //heheh
-			visible_message("\red <B>[X] charges towards [T]!</B>")
-			if(!isnull(T) && istype(T,/mob/living/carbon/human)) //Small addition -- auto-attacks whoever we charged at.
-				if(T in oview(1) && !T.stat)
-					T.attack_alien(X)
+			X.throw_at(T, X.CHARGEDISTANCE, X.CHARGESPEED)
+			if(istype(T,/mob/living/carbon/human)) //Small addition -- auto-attacks whoever we charged at.
+				if(T in oview(1) && T:stat) //Hate using : but here we know it's safe, since we checked if is human
+					T:attack_alien(X)
+					T:Weaken(1)
 
 			X.usedcharge = 1
 			spawn(X.CHARGECOOLDOWN)
 				X.usedcharge = 0
+				X << "Your exoskeleton quivers as you get ready to charge again."
 
 		else
 			src.storedplasma += 10 //Since we already stole 10
 			X << "\blue You cannot charge at nothing!"
 
-
+//Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/neurotoxin2(mob/target as mob in oview())
 	set name = "Spit Neurotoxin (75)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
+	set desc = "Spits neurotoxin at someone, paralyzing them for a while."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
+	if(!check_state())	return
 
 	if(!istype(target))
 		usr << "You must aim your spit at someone!"
@@ -501,6 +490,7 @@
 	has_spat = 1
 	spawn(spit_delay)
 		has_spat = 0
+		usr << "You feel your neuro glands swell with ichor. You can spit again."
 
 	visible_message("<span class='warning'><b>\The [src]</b> spits at [target]!</span>","You spit at [target]!")
 
@@ -530,16 +520,10 @@
 
 /mob/living/carbon/Xenomorph/proc/neurotoxin3(mob/target as mob in oview())
 	set name = "Spit Neurotoxin (100)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
+	set desc = "Spits neurotoxin at someone, paralyzing and damaging them."
 	set category = "Alien"
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
-
-	if(!istype(target))
-		usr << "You must aim your spit at someone!"
-		return
+	if(!check_state()) return
 
 	if(has_spat)
 		usr << "You must wait for your neurotoxin glands to refill."
@@ -551,6 +535,7 @@
 	has_spat = 1
 	spawn(spit_delay)
 		has_spat = 0
+		usr << "You feel your neuro glands swell with ichor. You can spit again."
 
 	visible_message("<span class='warning'><b>\The [src]</b> spits at [target]!</span>","You spit at [target]!")
 
@@ -576,4 +561,92 @@
 	A.yo = U.y - T.y
 	A.xo = U.x - T.x
 	A.process()
+	return
+
+/mob/living/carbon/Xenomorph/proc/screech()
+	set name = "Screech (250)"
+	set desc = "Emit a screech that stuns prey."
+	set category = "Alien"
+
+	if(!check_state()) return
+
+	if(has_screeched)
+		src << "\red Your vocal chords are not yet prepared."
+		return
+
+	if(!check_plasma(250))
+		return
+
+	has_screeched = 1
+	spawn(80)
+		has_screeched = 0
+		src << "You feel your throat muscles vibrate. You are ready to screech again."
+
+	//Ours uses screech2.....
+	playsound(loc, 'sound/effects/screech.ogg', 100, 1)
+	visible_message("\red <B> \The [src] emits a high pitched screech!</B>")
+	for (var/mob/living/carbon/human/M in oview())
+		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
+			continue
+		if (get_dist(src.loc, M.loc) <= 4)
+			M << "You spasm in agony as the noise fills your head!"
+			M.stunned += 3
+			M.Weaken(1)
+//			M.drop_l_hand() //Weaken will drop them on the floor anyway
+//			M.drop_r_hand()
+			M.ear_deaf += 60 //Deafens them temporarily (about 8 seconds)
+		else if(get_dist(src.loc, M.loc) >= 5)
+			M.stunned += 2
+			M << "The sound stuns you!"
+	return
+
+//Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
+//The acid items are stored in XenoProcs.
+/mob/living/carbon/Xenomorph/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
+	set name = "Corrosive Acid (variable)"
+	set desc = "Drench an object in acid, destroying it over time."
+	set category = "Alien"
+
+	if(!check_state())	return
+
+	if(!O in oview(1))
+		src << "\green [O] is too far away."
+		return
+
+	// OBJ CHECK
+	if(isobj(O))
+		var/obj/I = O
+		if(I.unacidable || istype(I,/obj/machinery/computer) || istype(I,/obj/effect))	//So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
+			src << "\green You cannot dissolve this object." // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
+			return
+
+	// TURF CHECK
+	else if(istype(O, /turf/simulated))
+		var/turf/T = O
+		// R WALL
+		if(istype(T, /turf/simulated/wall/r_wall))
+			src << "\green You cannot dissolve this object."
+			return
+		if(istype(T, /turf/simulated/shuttle))
+			src << "\green You cannot dissolve this object."
+			return
+		// NO FLOORS! NONE!
+		if(istype(T, /turf/simulated/floor) || istype(T,/turf/unsimulated/floor))
+			src << "\green You cannot dissolve this object."
+			return
+	else
+		src << "\green You cannot dissolve this object."
+		return
+
+	if(istype(src,/mob/living/carbon/Xenomorph/Sentinel)) //weak level
+		if(!check_plasma(75)) return
+		new /obj/effect/xenomorph/acid/weak(get_turf(O), O)
+	else if(istype(src,/mob/living/carbon/Xenomorph/Praetorian)) //strong level
+		if(!check_plasma(200)) return
+		new /obj/effect/xenomorph/acid/strong(get_turf(O), O)
+	else
+		if(!check_plasma(100)) return
+		new /obj/effect/xenomorph/acid(get_turf(O), O) //Everything else? Medium.
+
+	visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
 	return

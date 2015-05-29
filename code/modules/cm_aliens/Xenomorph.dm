@@ -54,7 +54,7 @@
 	var/usedPounce = 0
 	var/has_spat = 0
 	var/spit_delay = 50 //Delay timer for spitting
-
+	var/has_screeched = 0
 	var/middle_mouse_toggle = 0 //This toggles middle mouse clicking for certain abilities.
 
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
@@ -88,29 +88,7 @@
 	R.my_atom = src
 	gender = NEUTER
 
-/mob/living/carbon/Xenomorph/Stat()
-	..()
-	stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
-/mob/living/carbon/Xenomorph/restrained()
-	return 0
-
-/mob/living/carbon/Xenomorph/can_use_vents()
-	return
-
-/mob/living/carbon/Xenomorph/proc/update_progression()
-	return
-
-//Show_Inv might get removed later, depending on how I make the aliens.
-/mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
-	return
-
-
-//Mind Initializer
-/mob/living/carbon/Xenomorph/mind_initialize()
-	..()
-	if(caste != "" && caste != null && mind != null)
-		mind.special_role = caste
 
 //Xenomorph Hud Health Adjuster Apophis 08FEB2015
 
