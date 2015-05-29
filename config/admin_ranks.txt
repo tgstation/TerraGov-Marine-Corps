@@ -12,6 +12,7 @@
 #            I'll be doing more moving around as feedback comes in. So be sure to check the notes after updates.
 
 # KEYWORDS:
+# +MOD = general moderator verbs
 # +ADMIN = general admin tools, verbs etc
 # +FUN = events, other event-orientated actions. Access to the fun secrets in the secrets panel.
 # +BAN = the ability to ban, jobban and fullban
@@ -35,9 +36,7 @@ Game Admin 	+@ +POSSESS +BUILDMODE +FUN +SOUND
 Developer	+@ +DEBUG
 Head Moderator 	+@ +PERMISSIONS
 Head Admin 	+EVERYTHING
-Head Developer  +@
-Auditor 	+@
-Retired Admin 	+ADMIN +STEALTH
 Host 		+EVERYTHING 
+Vice Host       +EVERYTHING
 Coder		+SERVER + REJUV +VAREDIT +BUILDMODE +SPAWN +MOD +DEBUG
 Mapper 		+VAREDIT + BUILDMODE +MOD +REJUV
