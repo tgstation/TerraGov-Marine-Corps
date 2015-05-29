@@ -16,7 +16,7 @@
 	plasma_gain = 1
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	evolves_to = list("Drone", "Runner") //Add sentinel etc here
+	evolves_to = list("Drone", "Runner", "Sentinel") //Add sentinel etc here
 	can_slash = 0
 	see_in_dark = 20
 	caste_desc = "D'awwwww, so cute!"
@@ -31,6 +31,11 @@
 	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
 //	verbs += /mob/living/proc/ventcrawl
 //	verbs += /mob/living/proc/hide
+
+/mob/living/carbon/Xenomorph/Larva/Stat()
+	..()
+	if(istype(src,/mob/living/carbon/Xenomorph/Larva))
+		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 //Larva Progression
 /mob/living/carbon/Xenomorph/Larva/update_progression()

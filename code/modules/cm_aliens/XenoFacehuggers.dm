@@ -17,7 +17,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	w_class = 1 //note: can be picked up by aliens unlike most other items of w_class below 4
 	flags = FPRINT | TABLEPASS | MASKCOVERSMOUTH | MASKCOVERSEYES | MASKINTERNALS
 	body_parts_covered = FACE|EYES
-	throw_range = 5
+	throw_range = 1
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
 	var/sterile = 0
@@ -29,14 +29,20 @@ var/const/MAX_ACTIVE_TIME = 400
 	return
 
 /obj/item/clothing/mask/facehugger/attack_hand(user as mob)
-
 	if((stat == CONSCIOUS && !sterile))
 		if(Attach(user))
 			return
 	..()
 
+//Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user as mob)
-	user.put_in_active_hand(src)
+	if(istype(user,/mob/living/carbon/Xenomorph/Carrier)) //Deal with carriers grabbing huggies
+		var/mob/living/carbon/Xenomorph/Carrier/C = user
+		if(C.huggers_cur < C.huggers_max)
+			C.huggers_cur++
+			user << "You scoop up the facehugger and carry it for safekeeping. Now sheltering: [C.huggers_cur] / [C.huggers_max]."
+			return
+	user.put_in_active_hand(src) //Not a carrier, or already full? Just pick it up.
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M as mob, mob/user as mob)
 	..()

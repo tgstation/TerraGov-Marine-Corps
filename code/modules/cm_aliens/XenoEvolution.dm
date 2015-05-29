@@ -65,8 +65,21 @@
 			M = /mob/living/carbon/Xenomorph/Runner
 		if("Drone")
 			M = /mob/living/carbon/Xenomorph/Drone
-		if("Queen")
-			M = /mob/living/carbon/Xenomorph/Queen
+		if("Carrier")
+			M = /mob/living/carbon/Xenomorph/Carrier
+		if("Hivelord")
+			M = /mob/living/carbon/Xenomorph/Hivelord
+		if("Praetorian")
+			M = /mob/living/carbon/Xenomorph/Praetorian
+		if("Ravager")
+			M = /mob/living/carbon/Xenomorph/Ravager
+		if("Sentinel")
+			M = /mob/living/carbon/Xenomorph/Sentinel
+		if("Spitter")
+			M = /mob/living/carbon/Xenomorph/Spitter
+		if("Hunter")
+			M = /mob/living/carbon/Xenomorph/Hunter
+
 	if(isnull(M))
 		usr << "[M] is not a valid caste! If you're seeing this message tell a coder!"
 		return
@@ -89,6 +102,7 @@
 
 	new_xeno.add_inherent_verbs()
 	new_xeno.jellyGrow = 0
+	new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
 
 	for (var/obj/item/W in src.contents) //Drop stuff
 		src.drop_from_inventory(W)

@@ -4,22 +4,16 @@
 	caste = "Drone"
 	name = "Drone"
 	desc = "An Alien Drone"
-	icon = 'icons/xeno/Colonial_Aliens1x1.dmi'
 	icon_state = "Drone Walking"
-//	pass_flags = PASSTABLE
 	melee_damage_lower = 12
 	melee_damage_upper = 16
-	attacktext = "bites"
-	attack_sound = null
-	friendly = "nuzzles"
-	wall_smash = 0
 	health = 170
 	maxHealth = 170
 	storedplasma = 350
 	maxplasma = 750
 	jellyMax = 750
 	plasma_gain = 12
-	evolves_to = list("Queen") //Add more here seperated by commas
+	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,

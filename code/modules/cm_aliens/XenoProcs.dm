@@ -21,7 +21,7 @@
 			return 0
 
 		storedplasma -= value
-		adjustToxLoss(-value) //Is this even used at all anymore??
+//		adjustToxLoss(-value) //Is this even used at all anymore??
 		return 1
 	else
 		return 1 //If plasma cost is 0 just go ahead and do it
@@ -74,6 +74,6 @@
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.2
+		tally += 0.5
 
 	return (tally)

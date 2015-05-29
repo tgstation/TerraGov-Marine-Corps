@@ -85,6 +85,7 @@
 
 //equippable shit
 	//suit
+/*
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "o_clothing"
 	inv_box.dir = SOUTH
@@ -94,7 +95,7 @@
 	inv_box.slot_id = slot_wear_suit
 	inv_box.layer = 19
 	src.adding += inv_box
-
+*/
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "r_hand"
 	inv_box.dir = WEST
@@ -161,7 +162,7 @@
 	inv_box.slot_id = slot_r_store
 	inv_box.layer = 19
 	src.adding += inv_box
-*/
+
 
 
 
@@ -176,7 +177,7 @@
 	src.adding += inv_box
 //end of equippable shit
 
-/*
+
 	using = new /obj/screen()
 	using.name = "resist"
 	using.icon = 'icons/mob/screen1_alien.dmi'
@@ -253,6 +254,7 @@
 	mymob.zone_sel.icon = 'icons/mob/screen1_alien.dmi'
 	mymob.zone_sel.overlays.Cut()
 	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+
 
 	mymob.client.screen = null
 

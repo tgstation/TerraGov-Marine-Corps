@@ -4,15 +4,9 @@
 	caste = "Runner"
 	name = "Alien Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/xeno/Colonial_Aliens1x1.dmi'
 	icon_state = "Runner Walking"
-//	pass_flags = PASSTABLE
-	melee_damage_lower = 23
-	melee_damage_upper = 28
-	attacktext = "bites"
-	attack_sound = null
-	friendly = "nuzzles"
-	wall_smash = 0
+	melee_damage_lower = 13
+	melee_damage_upper = 18
 	health = 80
 	maxHealth = 80
 	storedplasma = 50
@@ -20,7 +14,9 @@
 	maxplasma = 100
 	jellyMax = 750
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-	speed = -1
+	speed = -2.2
+	evolves_to = list("Hunter")
+
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
