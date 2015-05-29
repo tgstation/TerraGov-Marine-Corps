@@ -15,7 +15,7 @@
 	jellyMax = 750
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -2.2
-	evolves_to = list("Warrior")
+	evolves_to = list("Hunter")
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
