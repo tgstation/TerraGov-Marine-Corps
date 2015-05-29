@@ -1,4 +1,10 @@
-//Xenomorph Super - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
+//Xenomorph "generic" parent, does not actually appear in game
+//Many of these defines aren't referenced in the castes and so are assumed to be defaulted
+//Castes are all merely subchildren of this parent
+//Just about ALL the procs are tied to the parent, not to the children
+//This is so they can be easily transferred between them without copypasta
+
+//All this stuff was written by Absynth.
 
 /mob/living/carbon/Xenomorph
 	var/caste = ""
@@ -8,8 +14,8 @@
 	icon_state = "Drone Walking"
 	voice_name = "xenomorph"
 	speak_emote = list("hisses")
-	melee_damage_lower = 12
-	melee_damage_upper = 16
+	melee_damage_lower = 5
+	melee_damage_upper = 10 //Arbitrary damage values
 	attacktext = "claws"
 	attack_sound = null
 	friendly = "nuzzles"
@@ -19,7 +25,7 @@
 	health = 5
 	maxHealth = 5
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
-	see_in_dark = 20 //This doesn't actually seem to do anything??
+	see_in_dark = 8
 	see_infrared = 1
 	see_invisible = SEE_INVISIBLE_LEVEL_ONE
 	var/dead_icon = "Drone Dead"
@@ -29,9 +35,9 @@
 	var/obj/item/weapon/r_store = null
 	var/obj/item/weapon/l_store = null
 	var/storedplasma = 0
-	var/maxplasma = 50
+	var/maxplasma = 10
 	var/amount_grown = 0
-	var/max_grown = 10
+	var/max_grown = 200
 	var/time_of_birth
 	var/plasma_gain = 5
 	var/mob/living/carbon/Xenomorph/new_xeno
@@ -46,6 +52,11 @@
 	var/can_slash = 1
 	var/caste_desc = "A generic xenomorph. You should never see this."
 	var/usedPounce = 0
+	var/has_spat = 0
+	var/spit_delay = 50 //Delay timer for spitting
+
+	var/middle_mouse_toggle = 0 //This toggles middle mouse clicking for certain abilities.
+
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
@@ -79,8 +90,6 @@
 
 /mob/living/carbon/Xenomorph/Stat()
 	..()
-	if(istype(src,/mob/living/carbon/Xenomorph/Larva))
-		stat(null, "Progress: [amount_grown]/[max_grown]")
 	stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
 /mob/living/carbon/Xenomorph/restrained()
