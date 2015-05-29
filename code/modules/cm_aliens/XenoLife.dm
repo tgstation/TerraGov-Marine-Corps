@@ -41,8 +41,6 @@
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
 
-
-
 	if(status_flags & GODMODE)	return 0
 
 	if(stat == DEAD)
@@ -188,9 +186,9 @@
 		if(health >= maxHealth -getCloneLoss())
 			storedplasma += plasma_gain
 		else
-			adjustBruteLoss(-2)
-			adjustFireLoss(-1) //Heal from fire half as fast
-			adjustOxyLoss(-5) //Xenos don't actually take oxyloss, oh well
+			adjustBruteLoss(-(maxHealth / 25)) //Heal 1/25th of your max health per tick-- 4/100hp, 20/500hp. So, scales with maxHealth
+			adjustFireLoss(-(maxHealth / 50)) //Heal from fire half as fast
+			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 			adjustToxLoss(plasma_gain) //hmmmm, this is probably unnecessary
 			storedplasma += plasma_gain
 		if(storedplasma > maxplasma) storedplasma = maxplasma

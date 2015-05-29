@@ -26,22 +26,19 @@
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
-/mob/living/carbon/Xenomorph/Larva/New()
-	..()
-	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
-//	verbs += /mob/living/proc/ventcrawl
-//	verbs += /mob/living/proc/hide
-
 /mob/living/carbon/Xenomorph/Larva/Stat()
 	..()
 	if(istype(src,/mob/living/carbon/Xenomorph/Larva))
 		stat(null, "Progress: [amount_grown]/[max_grown]")
 
-//Larva Progression
+//Larva Progression.. Most of this stuff is obsolete.
 /mob/living/carbon/Xenomorph/Larva/update_progression()
 	..()
 	if(amount_grown < max_grown)
 		amount_grown++
+	if(!isnull(src.loc))
+		if(locate(/obj/effect/alien/weeds) in loc)
+			amount_grown++ //Double growth on weeds.
 	return
 
 /mob/living/carbon/Xenomorph/Larva/update_icons()
