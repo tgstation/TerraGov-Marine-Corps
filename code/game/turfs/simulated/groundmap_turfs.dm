@@ -106,8 +106,7 @@
 
 /obj/structure/jungle/treeblocker
 	name = "huge tree"
-	icon_state = ""	//will this break it??
-	opacity = 1
+	icon_state = ""	//will this break it?? - Nope
 	density = 1
 
 /obj/structure/jungle/vines_lite

@@ -19,17 +19,26 @@
 	max_grown = 10
 	storedplasma = 300
 	maxplasma = 700
+	plasma_gain = 30
 	is_intelligent = 1
+	speed = 1.5
+	jellyMax = 0
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
+	inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/plant,
+		/mob/living/carbon/Xenomorph/proc/lay_egg,
+		/mob/living/carbon/Xenomorph/proc/regurgitate,
+		/mob/living/carbon/Xenomorph/proc/psychic_whisper,
+		/mob/living/carbon/Xenomorph/proc/gut,
+		/mob/living/carbon/Xenomorph/proc/build_resin,
+		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
+		/mob/living/carbon/Xenomorph/proc/neurotoxin, //Just for now
+		)
 
-/mob/living/carbon/Xenomorph/Queen/New()
-	..()
-	for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
-		if(Q == src)		continue
-		if(Q.stat == DEAD)	continue
-		if(Q.client)
-			name = "Alien Queen"
-			break
+
+
+
+
 
 /* Old queen code and Notes from CM - REFERENCE ONLY
 

@@ -16,34 +16,19 @@
 	health = 80
 	maxHealth = 80
 	storedplasma = 50
+	plasma_gain = 1
 	maxplasma = 100
-	var/usedPounce = 0
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-
-//New Runner Code 08FEB2015 Apophis775
-
-mob/living/carbon/Xenomorph/Runner/New()
-	..()
-	jelly = 0
 	jellyMax = 750
-/*	has_organ = list(
-		"heart" =           /datum/organ/internal/heart,
-		"brain" =           /datum/organ/internal/brain/xeno,
-		"plasma vessel" =   /datum/organ/internal/xenos/plasmavessel,
-		"hive node" =       /datum/organ/internal/xenos/hivenode,
-		"nutrient vessel" = /datum/organ/internal/diona/nutrients
-		)*/
+	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
+	speed = -1
+	inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/regurgitate,
+		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/Xenomorph/proc/Pounce,
+		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
+		)
 
 
-
-
-// either freeze is currently broken and needs to be investigated...
-	/*
-	src.frozen = 1
-	spawn (25)
-		src.frozen = 0*/
-//	verbs.Add() //This will be enabled later
-//	growJelly()   TEMP DISABLED (was infinite Looping?)
 
 
 

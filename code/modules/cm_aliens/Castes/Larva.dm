@@ -13,6 +13,7 @@
 	max_grown = 200
 	maxHealth = 25
 	health = 25
+	plasma_gain = 1
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	evolves_to = list("Drone", "Runner") //Add sentinel etc here
@@ -20,13 +21,16 @@
 	see_in_dark = 20
 	caste_desc = "D'awwwww, so cute!"
 	pass_flags = PASSTABLE
-
+	inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/xenohide,
+		/mob/living/carbon/Xenomorph/proc/vent_crawl
+		)
 
 /mob/living/carbon/Xenomorph/Larva/New()
 	..()
 	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+//	verbs += /mob/living/proc/ventcrawl
+//	verbs += /mob/living/proc/hide
 
 //Larva Progression
 /mob/living/carbon/Xenomorph/Larva/update_progression()

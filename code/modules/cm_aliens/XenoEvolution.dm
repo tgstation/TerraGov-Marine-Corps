@@ -43,11 +43,11 @@
 		if(!istype(src,/mob/living/carbon/Xenomorph/Drone)) //logic! - Remove this if you want any caste to be able to queen it up
 			return
 		if(storedplasma >= 500)
-			var/no_queen = 0 //Assume queen is not dead
+			var/no_queen = 1 //Assume queen is dead
 			for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
 				if(Q.stat != DEAD)
 					break
-				no_queen = 1
+				no_queen = 0
 			if(!no_queen)
 				src << "\red There is already a queen."
 				return
@@ -57,7 +57,8 @@
 
 	var/mob/living/carbon/Xenomorph/M = null
 
-	switch(caste) //Just slap em all here
+	//Better to use a get_caste_by_text proc but ehhhhhhhh. Lazy.
+	switch(caste) //ADD NEW CASTES HERE!
 		if("Larva" || "Bloody Larva" || "Normal Larva") //Not actually possible, but put here for insanity's sake
 			M = /mob/living/carbon/Xenomorph/Larva
 		if("Runner")
@@ -66,7 +67,6 @@
 			M = /mob/living/carbon/Xenomorph/Drone
 		if("Queen")
 			M = /mob/living/carbon/Xenomorph/Queen
-
 	if(isnull(M))
 		usr << "[M] is not a valid caste! If you're seeing this message tell a coder!"
 		return
@@ -79,12 +79,16 @@
 	for(var/mob/O in viewers(src, null))
 		O.show_message(text("\green <B>[src] begins to twist and contort!</B>"), 1)
 
+	remove_inherent_verbs()
 	new_xeno = new M(get_turf(src))
 
 	if(mind)
 		mind.transfer_to(new_xeno)
 	else
 		new_xeno.key = src.key
+
+	new_xeno.add_inherent_verbs()
+	new_xeno.jellyGrow = 0
 
 	for (var/obj/item/W in src.contents) //Drop stuff
 		src.drop_from_inventory(W)

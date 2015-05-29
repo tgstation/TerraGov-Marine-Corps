@@ -21,6 +21,7 @@
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 20 //This doesn't actually seem to do anything??
 	see_infrared = 1
+	see_invisible = SEE_INVISIBLE_LEVEL_ONE
 	var/dead_icon = "Drone Dead"
 	var/language = "Xenomorph"
 	var/obj/item/clothing/suit/wear_suit = null
@@ -32,23 +33,34 @@
 	var/amount_grown = 0
 	var/max_grown = 10
 	var/time_of_birth
+	var/plasma_gain = 5
 	var/mob/living/carbon/Xenomorph/new_xeno
 	var/jelly = 0 //variable to check if they ate delicious jelly or not
 	var/jellyGrow = 0 //how much the jelly has grown
 	var/jellyMax = 0 //max amount jelly will grow till evolution
-	var/list/evolves_to = list()
+	var/list/evolves_to = list() //This is where you add castes to evolve into. "Seperated", "by", "commas"
 	var/tacklemin = 2
 	var/tacklemax = 4
 	var/tackle_chance = 50
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
 	var/can_slash = 1
 	var/caste_desc = "A generic xenomorph. You should never see this."
+	var/usedPounce = 0
+	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
+	//This list of inherent verbs lets us take any proc basically anywhere and add them.
+	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
+	//It should add them properly on New() and should reset/readd them on evolves
+	var/list/inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/regurgitate
+		)
 
 /mob/living/carbon/Xenomorph/New()
 	..()
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
 	add_language("Hivemind") //hivemind
+	add_inherent_verbs()
+
 	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
 
 
@@ -65,14 +77,11 @@
 	R.my_atom = src
 	gender = NEUTER
 
-
-
-/mob/living/carbon/Xenomorph/u_equip(obj/item/W as obj)
-	return
-
 /mob/living/carbon/Xenomorph/Stat()
 	..()
-	stat(null, "Progress: [amount_grown]/[max_grown]")
+	if(istype(src,/mob/living/carbon/Xenomorph/Larva))
+		stat(null, "Progress: [amount_grown]/[max_grown]")
+	stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
 /mob/living/carbon/Xenomorph/restrained()
 	return 0
@@ -89,13 +98,10 @@
 
 
 //Mind Initializer
-/mob/living/carbon/Xenomorph/larva/mind_initialize()
+/mob/living/carbon/Xenomorph/mind_initialize()
 	..()
-	mind.special_role = "Larva"
-
-/mob/living/carbon/Xenomorph/Drone/mind_initialize()
-	..()
-	mind.special_role = "Drone"
+	if(caste != "" && caste != null && mind != null)
+		mind.special_role = caste
 
 //Xenomorph Hud Health Adjuster Apophis 08FEB2015
 
