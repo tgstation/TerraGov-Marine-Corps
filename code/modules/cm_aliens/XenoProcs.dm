@@ -10,9 +10,6 @@
 	if(maxplasma > 0)
 		stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
-	if(jelly)
-		stat(null,"Jelly: [jellyGrow/jellyMax]")
-
 //Mind Initializer
 /mob/living/carbon/Xenomorph/mind_initialize()
 	..()

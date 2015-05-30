@@ -79,7 +79,8 @@
 			M = /mob/living/carbon/Xenomorph/Spitter
 		if("Hunter")
 			M = /mob/living/carbon/Xenomorph/Hunter
-
+		if("Queen")
+			M = /mob/living/carbon/Xenomorph/Queen
 	if(isnull(M))
 		usr << "[M] is not a valid caste! If you're seeing this message tell a coder!"
 		return

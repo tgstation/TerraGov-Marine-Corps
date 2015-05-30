@@ -36,7 +36,7 @@
 	..()
 	if(amount_grown < max_grown)
 		amount_grown++
-	if(!isnull(src.loc))
+	if(!isnull(src.loc) && amount_grown < max_grown)
 		if(locate(/obj/effect/alien/weeds) in loc)
 			amount_grown++ //Double growth on weeds.
 	return
