@@ -15,6 +15,7 @@
 	caste_desc = "A fast, powerful front line combatant."
 	speed = -1.5 //Not as fast as runners, but faster than other xenos
 	evolves_to = list("Ravager")
+	charge_type = 1 //Pounce
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

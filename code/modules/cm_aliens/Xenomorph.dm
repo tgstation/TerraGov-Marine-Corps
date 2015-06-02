@@ -49,13 +49,14 @@
 	var/tacklemax = 4
 	var/tackle_chance = 50
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
-	var/can_slash = 1
 	var/caste_desc = "A generic xenomorph. You should never see this."
 	var/usedPounce = 0
 	var/has_spat = 0
 	var/spit_delay = 50 //Delay timer for spitting
 	var/has_screeched = 0
 	var/middle_mouse_toggle = 0 //This toggles middle mouse clicking for certain abilities.
+	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
+	var/armor_deflection = 0 //Chance of deflecting projectiles. No xenos have this yet........
 
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.

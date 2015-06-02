@@ -218,3 +218,76 @@
 			visible_message("\green <B>[src.target] begins to crumble under the acid!</B>")
 	spawn(tick_timer)
 		tick()
+
+//This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
+//Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
+/mob/living/carbon/Xenomorph/throw_impact(atom/hit_atom, var/speed)
+
+	if(!charge_type || stat || !usedPounce) //0: No special charge. 1: pounce, 2: claw. Can add new ones here. Check if alive.
+		..()
+		return
+
+	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
+		var/obj/O = hit_atom
+		if(!O.density) //Not a dense object? Doesn't matter then, pass over it.
+			..()
+			return
+
+		if(!O.anchored)
+			step(O,src.dir) //Not anchored? Knock the object back a bit. Ie. canisters.
+
+		if(!istype(O,/obj/structure/table)) // new - xeno charge ignore tables
+			O.hitby(src,speed)
+			if(O.density)
+				src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
+				src.Weaken(1)
+
+		if(istype(O,/obj/structure/table) && istype(src,/mob/living/carbon/Xenomorph/Ravager)) //Ravagers destroy tables.
+			visible_message("<span class='danger'>[src] plows straight through the [O.name].</span>")
+			O:destroy() //We know it's a good var, sucks to use thou
+
+		return
+
+	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
+		var/mob/living/carbon/V = hit_atom
+		if(istype(V) && !V.stat && !istype(V,/mob/living/carbon/Xenomorph)) //We totally ignore other xenos. LIKE GREASED WEASELS
+			if(istype(V,/mob/living/carbon/human))
+				var/mob/living/carbon/human/H = V //Human shield block.
+				if(H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot) || H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot))
+					if (prob(45))	// If the human has riot shield in his hand,  65% chance
+						src.Weaken(3) //Stun the fucker instead
+						visible_message("\red <B> \The [src] bounces off [H]'s shield!</B>")
+						return
+
+			if(charge_type == 2) //Ravagers get a free attack if they charge into someone.
+				V.attack_alien(src)
+				V.Weaken(1)
+				step_away(V,src,15)
+//				V.hitby(src,speed) hmmm
+
+			if(charge_type == 1) //Runner/hunter pounce.
+				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
+				V.Weaken(3)
+				src.canmove = 0
+				src.frozen = 1
+//				V.hitby(src,speed)	hmmmmm. Don't want to push them back.
+				spawn(18)
+					src.frozen = 0
+		return
+
+	if(isturf(hit_atom))
+		var/turf/T = hit_atom
+		if(T.density)
+			src << "Bonk!" //ouchie
+			src.Weaken(1)
+
+	..() //Do the rest normally - mostly turfs.
+	return
+
+//Deal with armor deflection.
+/mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
+	if(prob(armor_deflection))
+		visible_message("The [src]'s thick exoskeleton deflects the projectile!","Your thick exoskeleton deflected a projectile!")
+		return -1
+	..(Proj) //Do normal stuff
+	return

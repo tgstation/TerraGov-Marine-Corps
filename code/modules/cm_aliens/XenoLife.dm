@@ -14,11 +14,6 @@
 		// GROW!
 		update_progression()
 
-	if(usedPounce)
-		usedPounce--
-		if(!usedPounce)
-			src << "Your legs are readied for another pounce."
-
 	if(jelly && jellyGrow < jellyMax)
 		jellyGrow++
 		if(jellyGrow > jellyMax)
@@ -34,6 +29,7 @@
 	handle_regular_status_updates()
 	update_canmove()
 	update_icons()
+	handle_statuses() //Deals with stunned, etc
 
 	if(client)
 		handle_regular_hud_updates()
@@ -54,6 +50,9 @@
 			blinded = 1
 			silent = 0
 			return 1
+
+		if(weakened)
+			weakened--
 
 		if(paralysis)
 			AdjustParalysis(-1)

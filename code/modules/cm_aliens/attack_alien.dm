@@ -153,15 +153,20 @@
 	return src.attack_hand(user)
 
 //Breaking tables & racks. Other stuff do nothing - if you want to make it interact, make a new attack_alien sub-proc for it.
-/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if(breakable)
-		if(M.can_slash)
-			if(rand(0,3) == 0)
-				visible_message("<span class='danger'>[M] slices [src] apart!</span>")
-				destroy()
-			else
-				visible_message("<span class='danger'>[M] slashes wildly at [src]!</span>")
+		src.health -= M.melee_damage_lower
+		if(src.health <= 0)
+			visible_message("<span class='danger'>[M] slices [src] apart!</span>")
+			destroy()
+		else
+			visible_message("<span class='danger'>[M] slashes at [src]!</span>")
+
+//Default "structure" proc. This should be overwritten by sub procs.
+//If we sent it to monkey we'd get some weird shit happening.
+/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	return
 
 //Smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M as mob)
@@ -176,7 +181,7 @@
 /obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if (M.a_intent == "hurt")
-		attack_generic(M,M.melee_damage_lower)
+		attack_generic(M,M.melee_damage_lower / 3)
 		return
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
@@ -367,3 +372,11 @@
 		 			"<span class='warning'> \red You rip down [src.name]! </span>")
 		del(src)
 	return
+
+//Computers -- Queens can use any consoles!
+//Others do nothing.
+/obj/machinery/computer/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(!M.is_intelligent)
+		return
+	else
+		return attack_hand(M)
