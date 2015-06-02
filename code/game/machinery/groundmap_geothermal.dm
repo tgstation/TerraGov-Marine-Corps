@@ -239,7 +239,7 @@
 	var/power_tick = 1500 // power each floodlight takes up per process
 	use_power = 0 //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
-	var/lum_value = 6
+	var/lum_value = 7
 	var/start_loc = null
 
 /obj/machinery/colony_floodlight/update_icon()

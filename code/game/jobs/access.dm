@@ -456,6 +456,7 @@
 		"Sulaco Chemist",
 		"Sulaco Chief Engineer",
 		"Sulaco Maintenance Tech",
+		"Alpha Squad Leader",
 		"Alpha Squad Medic",
 		"Alpha Squad Engineer",
 		"Alpha Squad Standard",

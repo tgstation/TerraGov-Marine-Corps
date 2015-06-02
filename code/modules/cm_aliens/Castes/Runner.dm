@@ -16,6 +16,7 @@
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -2.2
 	evolves_to = list("Hunter")
+	charge_type = 1 //Pounce
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -25,7 +26,13 @@
 		)
 
 
+/mob/living/carbon/Xenomorph/Runner/ClickOn(var/atom/A, params)
 
+	var/list/modifiers = params2list(params)
+	if(modifiers["middle"] && middle_mouse_toggle)
+		Pounce(A)
+		return
+	..()
 
 
 

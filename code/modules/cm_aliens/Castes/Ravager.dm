@@ -18,9 +18,10 @@
 	evolves_to = list()
 	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
 	var/CHARGESPEED = 2
-	var/CHARGESTRENGTH = 4
-	var/CHARGEDISTANCE = 6
-	var/CHARGECOOLDOWN = 60
+	var/CHARGESTRENGTH = 2
+	var/CHARGEDISTANCE = 5
+	var/CHARGECOOLDOWN = 80
+	charge_type = 2 //Claw at end of charge
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

@@ -25,15 +25,15 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		return 1
-		
+
 //Maintenance Tech
 /datum/job/sul_eng
 	title = "Maintenance Tech"
 	flag = SULENG
 	department_flag = ENGSEC
 	faction = "Station"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Sulaco Chief Engineer, the Commander"
 	selection_color = "#fff5cc"
 	access = list(access_medical_bay, access_medical_chem, access_medical_surgery, access_medical_genetics, access_medical_storage)

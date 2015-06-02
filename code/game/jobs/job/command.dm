@@ -50,7 +50,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	idtype = /obj/item/weapon/card/id/silver
 	access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
 	minimal_access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
-	minimal_player_age = 7
+	minimal_player_age = 10
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), slot_head)
@@ -60,7 +60,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		return 1
-		
+
 //Bridge Officer
 /datum/job/bridge_officer
 	title = "Bridge Officer"
@@ -97,7 +97,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ffeeee"
 	access = list()
 	minimal_access = list()
-	minimal_player_age = 7
+	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		switch(H.backbag)

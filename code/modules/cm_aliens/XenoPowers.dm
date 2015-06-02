@@ -123,60 +123,37 @@
 		new /obj/royaljelly(T)
 	return
 
-/mob/living/carbon/Xenomorph/proc/Pounce()
-	set name = "Pounce (25)"
-	set desc = "Pounce onto your prey."
+/mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
+	set name = "Pounce (5)"
+	set desc = "Pounce on someone. Click a turf to just leap there."
 	set category = "Alien"
 
-	if(!check_state())
-		return
+	if(!check_state())	return
 
 	if(usedPounce)
-		src << "\red You must wait before pouncing again.. Timer is at: \b[usedPounce] ticks."
+		src << "\red You must wait before pouncing."
 		return
 
-	if(check_plasma(25))
-		var/targets[] = list()
-		for(var/mob/living/carbon/human/M in oview())
-			if(M.stat)	continue//Doesn't target corpses or paralyzed persons.
-			targets.Add(M)
+	if(!check_plasma(5))
+		return
 
-		if(targets.len)
-			var/mob/living/carbon/human/target=pick(targets)
-			var/atom/targloc = get_turf(target)
-			if (!targloc || !istype(targloc, /turf) || get_dist(src.loc,targloc)>=3)
-				src << "You cannot reach your prey!"
-				return
-			if(src.weakened >= 1 || src.paralysis >= 1 || src.stunned >= 1)
-				src << "You cannot pounce if you are stunned.."
-				return
+	if(!T)
+		var/list/victims = list()
+		for(var/mob/living/carbon/human/C in oview(7))
+			if(!C.stat)
+				victims += C
+		T = input(src, "Who should you pounce towards?") as null|anything in victims
 
-			visible_message("\red <B>[src] pounces on [target]!</B>")
-			if(src.m_intent == "walk")
-				src.m_intent = "run"
-				src.hud_used.move_intent.icon_state = "running"
-			src.loc = targloc
-			usedPounce = 5
-			if(target.r_hand && istype(target.r_hand, /obj/item/weapon/shield/riot) || target.l_hand && istype(target.l_hand, /obj/item/weapon/shield/riot))
-				if (prob(35))	// If the human has riot shield in his hand
-					src.weakened = 5//Stun the fucker instead
-					visible_message("\red <B>[src] bounces off [src]'s shield!</B>")
-				else
-					src.canmove = 0
-					src.frozen = 1
-					target.Weaken(3)
-					spawn(18)
-						src.frozen = 0
-			else
-				src.canmove = 0
-				src.frozen = 1
-				target.Weaken(3)
-
-			spawn(18)
-				src.frozen = 0
-		else
-			src << "\red You sense no prey.."
-
+	if(T)
+		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
+		usedPounce = 70 //about 10 seconds
+		src.throw_at(T, 4, 2, src) //victim, distance, speed
+		spawn(usedPounce)
+			usedPounce = 0
+			src << "You get ready to pounce again."
+	else
+		storedplasma += 5 //Since we already stole 5
+		src << "\blue You cannot pounce at nothing!"
 	return
 
 /mob/living/carbon/Xenomorph/proc/vent_crawl()
@@ -211,7 +188,7 @@
 	if(last_special > world.time)
 		return
 
-	var/mob/living/victim = src.pulling
+	var/mob/living/carbon/victim = src.pulling
 	if(!victim || isnull(victim) || !istype(victim))
 		src << "You're not pulling anyone that can be gutted."
 		return
@@ -397,15 +374,16 @@
 
 	if(!check_state())	return
 
-	if(!istype(src,/mob/living/carbon/Xenomorph/Carrier))
-		src << "How did you get this verb??" //Lel. Shouldn't be possible, butcha never know. Since this uses carrier vars, only carriers.
+	var/mob/living/carbon/Xenomorph/Carrier/X = src
+	if(!istype(X))
+		src << "How did you get this verb??" //Lel. Shouldn't be possible, butcha never know. Since this uses carrier-only vars
 		return
 
-	if(src:huggers_cur <= 0)
+	if(X.huggers_cur <= 0)
 		src << "\red You don't have any facehuggers to throw!"
 		return
 
-	if(!src:threw_a_hugger)
+	if(!X.threw_a_hugger)
 		if(!T)
 			var/list/victims = list()
 			for(var/mob/living/carbon/human/C in oview(7))
@@ -414,14 +392,14 @@
 
 		if(T)
 			var/obj/item/clothing/mask/facehugger/throw = new()
-			src:huggers_cur -= 1
+			X.huggers_cur -= 1
 			throw.loc = src.loc
-			throw.throw_at(T, 5, src:throwspeed)
+			throw.throw_at(T, 5, X.throwspeed)
 			src << "You throw a facehugger at [throw]."
 			visible_message("\red <B>[src] throws something towards [T]!</B>")
-			src:threw_a_hugger = 1
+			X.threw_a_hugger = 1
 			spawn(40)
-				src:threw_a_hugger = 0
+				X.threw_a_hugger = 0
 		else
 			src << "\blue You cannot throw at nothing!"
 	return
@@ -433,9 +411,6 @@
 
 	if(!check_state())	return
 
-	if(!check_plasma(10))
-		return
-
 	if(!istype(src,/mob/living/carbon/Xenomorph/Ravager))
 		src << "How did you get this verb??" //Shouldn't be possible. Ravagers have some vars here that aren't in other castes.
 		return
@@ -443,7 +418,9 @@
 	//Hate using :
 	var/mob/living/carbon/Xenomorph/Ravager/X = src
 
-	if(!X.usedcharge)
+	if(!usedPounce)
+		if(!check_plasma(10))
+			return
 		if(!T)
 			var/list/victims = list()
 			for(var/mob/living/carbon/human/C in oview(7))
@@ -453,15 +430,10 @@
 		if(T)
 			visible_message("\red <B>[X] charges towards [T]!</B>","\red <b> You charge at [T]!</B>" )
 			emote("roar") //heheh
-			X.throw_at(T, X.CHARGEDISTANCE, X.CHARGESPEED)
-			if(istype(T,/mob/living/carbon/human)) //Small addition -- auto-attacks whoever we charged at.
-				if(T in oview(1) && T:stat) //Hate using : but here we know it's safe, since we checked if is human
-					T:attack_alien(X)
-					T:Weaken(1)
-
-			X.usedcharge = 1
+			X.usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+			X.throw_at(T, X.CHARGEDISTANCE, X.CHARGESPEED, src)
 			spawn(X.CHARGECOOLDOWN)
-				X.usedcharge = 0
+				X.usedPounce = 0
 				X << "Your exoskeleton quivers as you get ready to charge again."
 
 		else

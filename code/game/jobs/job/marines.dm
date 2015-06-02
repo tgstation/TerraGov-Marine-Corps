@@ -1,4 +1,4 @@
-		
+
 /* //SQUADLEAD
 /datum/job/squadlead
 	title = "Squad Leader"
@@ -26,7 +26,7 @@
 		// else
 			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H.back), slot_in_backpack)
 		return 1 */
-		
+
 //Marine
 /datum/job/marine
 	title = "Marine"
@@ -39,7 +39,7 @@
 	selection_color = "#ffeeee"
 	access = list()
 	minimal_access = list()
-	minimal_player_age = 7
+	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		switch(H.backbag)

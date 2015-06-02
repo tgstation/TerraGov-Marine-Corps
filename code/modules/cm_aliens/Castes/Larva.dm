@@ -17,7 +17,6 @@
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	evolves_to = list("Drone", "Runner", "Sentinel") //Add sentinel etc here
-	can_slash = 0
 	see_in_dark = 20
 	caste_desc = "D'awwwww, so cute!"
 	pass_flags = PASSTABLE
