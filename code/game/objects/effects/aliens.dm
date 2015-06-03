@@ -13,7 +13,7 @@
 /obj/effect/alien
 	name = "alien thing"
 	desc = "theres something alien about this"
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 
 /*
  * Resin
@@ -21,7 +21,7 @@
 /obj/effect/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
-	icon_state = "resin"
+	icon_state = "Resin1"
 
 	density = 1
 	opacity = 1
@@ -32,12 +32,12 @@
 /obj/effect/alien/resin/wall
 	name = "resin wall"
 	desc = "Purple slime solidified into a wall."
-	icon_state = "resinwall" //same as resin, but consistency ho!
+	icon_state = "ResinWall1" //same as resin, but consistency ho!
 
 /obj/effect/alien/resin/membrane
 	name = "resin membrane"
 	desc = "Purple slime just thin enough to let light pass through."
-	icon_state = "resinmembrane"
+	icon_state = "Resin Membrane"
 	opacity = 0
 	health = 120
 
@@ -338,7 +338,7 @@ Alien plants should do something if theres a lot of poison
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
-	icon_state = "egg_growing"
+	icon_state = "Egg Growing"
 	density = 0
 	anchored = 1
 
@@ -375,7 +375,7 @@ Alien plants should do something if theres a lot of poison
 	return locate(/obj/item/clothing/mask/facehugger) in contents
 
 /obj/effect/alien/egg/proc/Grow()
-	icon_state = "egg"
+	icon_state = "Egg"
 	status = GROWN
 	new /obj/item/clothing/mask/facehugger(src)
 	return
@@ -383,8 +383,8 @@ Alien plants should do something if theres a lot of poison
 /obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
 	if(status == GROWN || status == GROWING)
 		var/obj/item/clothing/mask/facehugger/child = GetFacehugger()
-		icon_state = "egg_hatched"
-		flick("egg_opening", src)
+		icon_state = "Egg Opened"
+		flick("Egg Opening", src)
 		status = BURSTING
 		spawn(15)
 			status = BURST
