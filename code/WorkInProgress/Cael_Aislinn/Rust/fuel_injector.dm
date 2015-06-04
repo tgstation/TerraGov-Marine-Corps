@@ -8,7 +8,7 @@
 	anchored = 0
 	var/state = 0
 	var/locked = 0
-	req_access = list(access_engine)
+	req_access = list(access_sulaco_engineering)
 
 	var/obj/item/weapon/fuel_assembly/cur_assembly
 	var/fuel_usage = 0.0001			//percentage of available fuel to use per cycle

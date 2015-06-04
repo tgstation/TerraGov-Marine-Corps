@@ -68,7 +68,7 @@
 
 /obj/structure/closet/secure_closet/janitor_personal
 	name = "Janitor's Locker"
-	req_access = list(ACCESS_JANITOR)
+	req_access = list(access_sulaco_engineering)
 
 	New()
 		..()

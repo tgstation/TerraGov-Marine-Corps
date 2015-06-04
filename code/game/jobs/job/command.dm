@@ -4,7 +4,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/captain
 	title = "Commander"
 	flag = COMMANDER
-	department_flag = ENGSEC
+	department_flag = COMMAND
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -35,22 +35,22 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		return 1
 
 	get_access()
-		return get_all_marine_accesses()
+		return get_all_marine_access()
 
 //Executive Officer
 /datum/job/executive_officer
 	title = "Executive Officer"
 	flag = EXECUTIVE
-	department_flag = ENGSEC
+	department_flag = COMMAND
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
-	minimal_access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
-	minimal_player_age = 10
+	access = list(access_sulaco_logistics, access_sulaco_brig, access_sulaco_armory, access_sulaco_bridge)
+	minimal_access = list(access_sulaco_logistics, access_sulaco_brig, access_sulaco_armory, access_sulaco_bridge)
+	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), slot_head)
@@ -65,15 +65,15 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/bridge_officer
 	title = "Bridge Officer"
 	flag = BRIDGE
-	department_flag = ENGSEC
+	department_flag = COMMAND
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
-	minimal_access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
+	access = list(access_sulaco_logistics, access_sulaco_bridge)
+	minimal_access = list(access_sulaco_logistics, access_sulaco_bridge)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -86,6 +86,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		return 1
 
 //Marine
+/*
 /datum/job/marine
 	title = "Marine"
 	flag = MARINE
@@ -97,7 +98,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ffeeee"
 	access = list()
 	minimal_access = list()
-	minimal_player_age = 0
+	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		switch(H.backbag)
@@ -112,3 +113,4 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		// else
 			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H.back), slot_in_backpack)
 		return 1
+*/

@@ -2,14 +2,14 @@
 /datum/job/military_police
 	title = "Military Police"
 	flag = MPOLICE
-	department_flag = ENGSEC
+	department_flag = COMMAND
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "the commander"
 	selection_color = "#ffdddd"
-	access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
-	minimal_access = list(access_logistics, access_sulaco_brig, access_sulaco_cells)
+	access = list(access_sulaco_brig, access_sulaco_bridge, access_sulaco_logistics)
+	minimal_access = list(access_sulaco_brig, access_sulaco_bridge, access_sulaco_logistics)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

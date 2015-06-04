@@ -54,20 +54,6 @@
 
 
 /obj/effect/datacore/proc/get_manifest(monochrome, OOC)
-	var/list/heads = new()
-	var/list/sec = new()
-	var/list/eng = new()
-	var/list/med = new()
-	var/list/sci = new()
-	var/list/civ = new()
-	var/list/bot = new()
-	var/list/misc = new()
-	var/list/marine_unassigned_positions = new()
-	var/list/mar_alpha = new()
-	var/list/mar_bravo = new()
-	var/list/mar_charlie = new()
-	var/list/mar_delta = new()
-	var/list/isactive = new()
 	var/dat = {"
 	<head><style>
 		.manifest {border-collapse:collapse;}
@@ -80,8 +66,20 @@
 	<table class="manifest" width='350px'>
 	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
 	"}
+	return dat
+
+	//Fuck this for now
+
+/*
+	var/list/command = new()
+	var/list/eng = new()
+	var/list/med = new()
+	var/list/mar = new()
+	var/list/isactive = new()
+
 	var/even = 0
 	// sort mobs
+
 	for(var/datum/data/record/t in data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
@@ -107,18 +105,19 @@
 		if(real_rank in marine_unassigned_positions)
 			marine_unassigned_positions[name] = rank
 			department = 1
-		if(real_rank in marine_alpha_positions)
+/*		if(real_rank in marine_alpha_positions)
 			mar_alpha[name] = rank
-			department = 1			
+			department = 1
 		if(real_rank in marine_bravo_positions)
 			mar_bravo[name] = rank
-			department = 1			
+			department = 1
 		if(real_rank in marine_charlie_positions)
 			mar_charlie[name] = rank
-			department = 1			
+			department = 1
 		if(real_rank in marine_delta_positions)
 			mar_delta[name] = rank
-			department = 1			
+			department = 1
+	*/
 		if(real_rank in engineering_positions)
 			eng[name] = rank
 			department = 1
@@ -207,7 +206,8 @@
 	dat += "</table>"
 	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
 	dat = replacetext(dat, "\t", "")
-	return dat
+
+*/
 
 
 /*
@@ -222,6 +222,11 @@ var/global/list/PDA_Manifest = list()
 /obj/effect/datacore/proc/get_manifest_json()
 	if(PDA_Manifest.len)
 		return PDA_Manifest
+
+//God, fuck this shit for now
+	PDA_Manifest = list("marines")
+	return PDA_Manifest
+/*
 	var/heads[0]
 	var/sec[0]
 	var/eng[0]
@@ -285,7 +290,7 @@ var/global/list/PDA_Manifest = list()
 			department = 1
 			if(depthead && marine_unassigned_positions.len != 1)
 				marine_unassigned_positions.Swap(1,marine_unassigned_positions.len)
-
+/*
 		if(real_rank in marine_alpha_positions)
 			mar_alpha[++mar_alpha.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
@@ -309,7 +314,7 @@ var/global/list/PDA_Manifest = list()
 			department = 1
 			if(depthead && mar_delta.len != 1)
 				mar_delta.Swap(1,mar_delta.len)
-
+*/
 		if(real_rank in nonhuman_positions)
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
@@ -335,7 +340,7 @@ var/global/list/PDA_Manifest = list()
 		)
 	return PDA_Manifest
 
-
+*/
 
 /obj/effect/laser
 	name = "laser"

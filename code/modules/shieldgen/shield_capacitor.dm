@@ -31,7 +31,7 @@
 
 	if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = W
-		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
+		if(access_sulaco_engineering in C.access || access_marine_engprep in C.access)
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
@@ -107,14 +107,14 @@
 /obj/machinery/shield_capacitor/process()
 	if (!anchored)
 		active = 0
-	
+
 	//see if we can connect to a power net.
 	var/datum/powernet/PN
 	var/turf/T = src.loc
 	var/obj/structure/cable/C = T.get_cable_node()
 	if (C)
 		PN = C.powernet
-	
+
 	if (PN)
 		var/power_draw = between(0, max_charge - stored_charge, charge_rate) //what we are trying to draw
 		power_draw = PN.draw_power(power_draw) //what we actually get
@@ -138,7 +138,7 @@
 		active = !active
 	if( href_list["charge_rate"] )
 		charge_rate = between(10000, charge_rate + text2num(href_list["charge_rate"]), max_charge_rate)
-	
+
 	updateDialog()
 
 /obj/machinery/shield_capacitor/power_change()

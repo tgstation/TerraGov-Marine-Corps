@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/engineering_chief
 	name = "Chief Engineer's Locker"
-	req_access = list(access_ce)
+	req_access = list(access_sulaco_CE)
 	icon_state = "securece1"
 	icon_closed = "securece"
 	icon_locked = "securece1"
@@ -40,7 +40,7 @@
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "Electrical Supplies"
-	req_access = list(access_engine_equip)
+	req_access = list(access_sulaco_engineering)
 	icon_state = "secureengelec1"
 	icon_closed = "secureengelec"
 	icon_locked = "secureengelec1"
@@ -69,7 +69,7 @@
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "Welding Supplies"
-	req_access = list(access_construction)
+	req_access = list(access_sulaco_engineering)
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"
 	icon_locked = "secureengweld1"
@@ -96,7 +96,7 @@
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "Engineer's Locker"
-	req_access = list(access_engine_equip)
+	req_access = list(access_sulaco_engineering)
 	icon_state = "secureeng1"
 	icon_closed = "secureeng"
 	icon_locked = "secureeng1"
@@ -126,7 +126,7 @@
 		return
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "Technician's Locker"
-	req_access = list(access_atmospherics)
+	req_access = list(access_sulaco_engineering)
 	icon_state = "secureatm1"
 	icon_closed = "secureatm"
 	icon_locked = "secureatm1"

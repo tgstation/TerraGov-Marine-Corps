@@ -13,7 +13,7 @@
 	var/timeleft = 60
 	var/stop = 0.0
 	var/screen = 0 // 0 - Main Menu, 1 - Cyborg Status, 2 - Kill 'em All! -- In text
-	req_access = list(access_robotics)
+	req_access = list(access_sulaco_research)
 
 	proc/start_sequence()
 		do

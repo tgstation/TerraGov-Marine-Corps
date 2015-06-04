@@ -107,17 +107,21 @@ datum/preferences
 	var/icon/preview_icon_side = null
 
 		//Jobs, uses bitflags
-	var/job_civilian_high = 0
-	var/job_civilian_med = 0
-	var/job_civilian_low = 0
+	var/job_command_high = 0
+	var/job_command_med = 0
+	var/job_command_low = 0
 
 	var/job_medsci_high = 0
 	var/job_medsci_med = 0
 	var/job_medsci_low = 0
 
-	var/job_engsec_high = 0
-	var/job_engsec_med = 0
-	var/job_engsec_low = 0
+	var/job_engi_high = 0
+	var/job_engi_med = 0
+	var/job_engi_low = 0
+
+	var/job_marines_high = 0
+	var/job_marines_med = 0
+	var/job_marines_low = 0
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 0
@@ -399,7 +403,7 @@ datum/preferences
 
 	dat += "Backpack Type:<br><a href ='?_src_=prefs;preference=bag;task=input'><b>[backbaglist[backbag]]</b></a><br>"
 
-	dat += "Nanotrasen Relation:<br><a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
+	dat += "Corporate Relation:<br><a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
 
 	dat += "</td><td><b>Preview</b><br><img src=previewicon.png height=64 width=64><img src=previewicon2.png height=64 width=64></td></tr></table>"
 
@@ -510,9 +514,9 @@ datum/preferences
 			var/available_in_days = job.available_in_days(user.client)
 			HTML += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
-		if((job_civilian_low & ASSISTANT) && (rank != "Assistant"))
-			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
-			continue
+//		if((job_civilian_low & ASSISTANT) && (rank != "Assistant"))
+//			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
+//			continue
 		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
 			HTML += "<b>[rank]</b>"
 		else
@@ -522,13 +526,13 @@ datum/preferences
 
 		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
 
-		if(rank == "Assistant")//Assistant is special
-			if(job_civilian_low & ASSISTANT)
-				HTML += " <font color=green>\[Yes]</font>"
-			else
-				HTML += " <font color=red>\[No]</font>"
-			HTML += "</a></td></tr>"
-			continue
+//		if(rank == "Assistant")//Assistant is special
+//			if(job_civilian_low & ASSISTANT)
+//				HTML += " <font color=green>\[Yes]</font>"
+//			else
+//				HTML += " <font color=red>\[No]</font>"
+//			HTML += "</a></td></tr>"
+//			continue
 
 		if(GetJobDepartment(job, 1) & job.flag)
 			HTML += " <font color=blue>\[High]</font>"
@@ -690,13 +694,13 @@ datum/preferences
 		ShowChoices(user)
 		return
 
-	if(role == "Assistant")
-		if(job_civilian_low & job.flag)
-			job_civilian_low &= ~job.flag
-		else
-			job_civilian_low |= job.flag
-		SetChoices(user)
-		return 1
+//	if(role == "Assistant")
+//		if(job_civilian_low & job.flag)
+//			job_civilian_low &= ~job.flag
+//		else
+//			job_civilian_low |= job.flag
+//		SetChoices(user)
+//		return 1
 
 	if(GetJobDepartment(job, 1) & job.flag)
 		SetJobDepartment(job, 1)
@@ -711,30 +715,33 @@ datum/preferences
 	return 1
 
 /datum/preferences/proc/ResetJobs()
-	job_civilian_high = 0
-	job_civilian_med = 0
-	job_civilian_low = 0
+	job_command_high = 0
+	job_command_med = 0
+	job_command_low = 0
 
 	job_medsci_high = 0
 	job_medsci_med = 0
 	job_medsci_low = 0
 
-	job_engsec_high = 0
-	job_engsec_med = 0
-	job_engsec_low = 0
+	job_engi_high = 0
+	job_engi_med = 0
+	job_engi_low = 0
 
+	job_marines_high = 0
+	job_marines_med = 0
+	job_marines_low = 0
 
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
 	if(!job || !level)	return 0
 	switch(job.department_flag)
-		if(CIVILIAN)
+		if(COMMAND)
 			switch(level)
 				if(1)
-					return job_civilian_high
+					return job_command_high
 				if(2)
-					return job_civilian_med
+					return job_command_med
 				if(3)
-					return job_civilian_low
+					return job_command_low
 		if(MEDSCI)
 			switch(level)
 				if(1)
@@ -743,43 +750,54 @@ datum/preferences
 					return job_medsci_med
 				if(3)
 					return job_medsci_low
-		if(ENGSEC)
+		if(ENGI)
 			switch(level)
 				if(1)
-					return job_engsec_high
+					return job_engi_high
 				if(2)
-					return job_engsec_med
+					return job_engi_med
 				if(3)
-					return job_engsec_low
+					return job_engi_low
+		if(MARINES)
+			switch(level)
+				if(1)
+					return job_marines_high
+				if(2)
+					return job_marines_med
+				if(3)
+					return job_marines_low
 	return 0
 
 /datum/preferences/proc/SetJobDepartment(var/datum/job/job, var/level)
 	if(!job || !level)	return 0
 	switch(level)
 		if(1)//Only one of these should ever be active at once so clear them all here
-			job_civilian_high = 0
+			job_command_high = 0
 			job_medsci_high = 0
-			job_engsec_high = 0
+			job_engi_high = 0
+			job_marines_high = 0
 			return 1
 		if(2)//Set current highs to med, then reset them
-			job_civilian_med |= job_civilian_high
+			job_command_med |= job_command_high
 			job_medsci_med |= job_medsci_high
-			job_engsec_med |= job_engsec_high
-			job_civilian_high = 0
+			job_engi_med |= job_engi_high
+			job_marines_med |= job_marines_high
+			job_command_high = 0
 			job_medsci_high = 0
-			job_engsec_high = 0
+			job_engi_high = 0
+			job_marines_high = 0
 
 	switch(job.department_flag)
-		if(CIVILIAN)
+		if(COMMAND)
 			switch(level)
 				if(2)
-					job_civilian_high = job.flag
-					job_civilian_med &= ~job.flag
+					job_command_high = job.flag
+					job_command_med &= ~job.flag
 				if(3)
-					job_civilian_med |= job.flag
-					job_civilian_low &= ~job.flag
+					job_command_med |= job.flag
+					job_command_low &= ~job.flag
 				else
-					job_civilian_low |= job.flag
+					job_command_low |= job.flag
 		if(MEDSCI)
 			switch(level)
 				if(2)
@@ -790,16 +808,26 @@ datum/preferences
 					job_medsci_low &= ~job.flag
 				else
 					job_medsci_low |= job.flag
-		if(ENGSEC)
+		if(ENGI)
 			switch(level)
 				if(2)
-					job_engsec_high = job.flag
-					job_engsec_med &= ~job.flag
+					job_engi_high = job.flag
+					job_engi_med &= ~job.flag
 				if(3)
-					job_engsec_med |= job.flag
-					job_engsec_low &= ~job.flag
+					job_engi_med |= job.flag
+					job_engi_low &= ~job.flag
 				else
-					job_engsec_low |= job.flag
+					job_engi_low |= job.flag
+		if(MARINES)
+			switch(level)
+				if(2)
+					job_marines_high = job.flag
+					job_marines_med &= ~job.flag
+				if(3)
+					job_marines_med |= job.flag
+					job_marines_low &= ~job.flag
+				else
+					job_marines_low |= job.flag
 	return 1
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
@@ -1595,8 +1623,8 @@ datum/preferences
 
 	for(var/name in organ_data)
 
-		var/status = organ_data[name]		
-		var/datum/organ/external/O = character.organs_by_name[name]		
+		var/status = organ_data[name]
+		var/datum/organ/external/O = character.organs_by_name[name]
 		if(O)
 			if(status == "amputated")
 				O.amputated = 1
@@ -1604,7 +1632,7 @@ datum/preferences
 				O.destspawn = 1
 			else if(status == "cyborg")
 				O.status |= ORGAN_ROBOT
-		else			
+		else
 			var/datum/organ/internal/I = character.internal_organs_by_name[name]
 			if(I)
 				if(status == "assisted")

@@ -6,7 +6,7 @@
 	desc = "Used to remotely lockdown or detonate linked Cyborgs."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "robot"
-	req_access = list(access_robotics)
+	req_access = list(access_sulaco_research)
 	circuit = "/obj/item/weapon/circuitboard/robotics"
 
 	var/id = 0.0
@@ -197,10 +197,10 @@
 		else if (href_list["magbot"])
 			if(src.allowed(usr))
 				var/mob/living/silicon/robot/R = locate(href_list["magbot"])
-				
+
 				// whatever weirdness this is supposed to be, but that is how the href gets added, so here it is again
 				if(istype(R) && istype(usr, /mob/living/silicon) && usr.mind.special_role && (usr.mind.original == usr) && !R.emagged)
-				
+
 					var/choice = input("Are you certain you wish to hack [R.name]?") in list("Confirm", "Abort")
 					if(choice == "Confirm")
 						if(R && istype(R))

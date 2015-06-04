@@ -1,16 +1,17 @@
 //Sulaco Chief Engineer
 /datum/job/sul_ce
-	title = "Sulaco Chief Engineer"
+	title = "Chief Engineer"
 	flag = SULCE
-	department_flag = ENGSEC
+	department_flag = ENGI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Commander"
 	selection_color = "#ffeeaa"
-	access = list(access_medical_bay, access_medical_chem, access_medical_surgery, access_medical_genetics, access_medical_storage)
-	minimal_access = list(access_medical_bay, access_medical_chem, access_medical_surgery, access_medical_genetics, access_medical_storage)
-	minimal_player_age = 7
+	idtype = /obj/item/weapon/card/id/silver
+	access = list(access_sulaco_CE, access_sulaco_engineering, access_sulaco_bridge)
+	minimal_access = list(access_sulaco_CE, access_sulaco_engineering, access_sulaco_bridge)
+	minimal_player_age = 3
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		switch(H.backbag)
@@ -30,15 +31,15 @@
 /datum/job/sul_eng
 	title = "Maintenance Tech"
 	flag = SULENG
-	department_flag = ENGSEC
+	department_flag = ENGI
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Sulaco Chief Engineer, the Commander"
 	selection_color = "#fff5cc"
-	access = list(access_medical_bay, access_medical_chem, access_medical_surgery, access_medical_genetics, access_medical_storage)
-	minimal_access = list(access_medical_bay, access_medical_chem, access_medical_surgery, access_medical_genetics, access_medical_storage)
-	minimal_player_age = 7
+	access = list(access_sulaco_engineering)
+	minimal_access = list(access_sulaco_engineering)
+	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		switch(H.backbag)

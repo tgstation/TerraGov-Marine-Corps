@@ -340,6 +340,7 @@
 #include "code\game\gamemodes\wizard\spellbook.dm"
 #include "code\game\gamemodes\wizard\wizard.dm"
 #include "code\game\jobs\access.dm"
+#include "code\game\jobs\departments.dm"
 #include "code\game\jobs\job_controller.dm"
 #include "code\game\jobs\jobprocs.dm"
 #include "code\game\jobs\jobs.dm"
@@ -350,6 +351,7 @@
 #include "code\game\jobs\job\marines.dm"
 #include "code\game\jobs\job\medical.dm"
 #include "code\game\jobs\job\security.dm"
+#include "code\game\jobs\job\squads.dm"
 #include "code\game\machinery\adv_med.dm"
 #include "code\game\machinery\ai_slipper.dm"
 #include "code\game\machinery\alarm.dm"
@@ -1580,3 +1582,5 @@
 #include "interface\skin.dmf"
 #include "maps\COLONIAL MARINES.dmm"
 // END_INCLUDE
+
+

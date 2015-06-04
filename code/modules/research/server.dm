@@ -12,7 +12,7 @@
 	var/produces_heat = 1
 	idle_power_usage = 800
 	var/delay = 10
-	req_access = list(access_rd) //Only the R&D can change server settings.
+	req_access = list(access_sulaco_CMO) //Only the R&D can change server settings.
 
 /obj/machinery/r_n_d/server/New()
 	..()
@@ -103,7 +103,7 @@
 /obj/machinery/r_n_d/server/proc/produce_heat()
 	if (!produces_heat)
 		return
-	
+
 	if (!use_power)
 		return
 
@@ -118,7 +118,7 @@
 
 			if(removed)
 				var/heat_produced = idle_power_usage	//obviously can't produce more heat than the machine draws from it's power source
-				
+
 				removed.add_thermal_energy(heat_produced)
 
 			env.merge(removed)

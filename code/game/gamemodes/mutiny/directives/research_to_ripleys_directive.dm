@@ -5,7 +5,7 @@ datum/directive/research_to_ripleys
 	var/materials_shipped = 0
 
 	proc/is_researcher(mob/M)
-		return M.mind.assigned_role in science_positions - "Research Director"
+		return M.mind.assigned_role in medical_positions
 
 	proc/get_researchers()
 		var/list/researchers[0]

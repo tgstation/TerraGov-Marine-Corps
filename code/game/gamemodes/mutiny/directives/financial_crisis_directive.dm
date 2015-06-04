@@ -6,7 +6,7 @@ datum/directive/terminations/financial_crisis
 
 datum/directive/terminations/financial_crisis/get_crew_to_terminate()
 	var/list/civilians[0]
-	var/list/candidates = civilian_positions - "Head of Personnel"
+	var/list/candidates = command_positions
 	for(var/mob/M in player_list)
 		if (M.is_ready() && candidates.Find(M.mind.assigned_role))
 			civilians.Add(M)
