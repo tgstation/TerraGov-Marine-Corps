@@ -45,7 +45,7 @@
 
 	// Handle Survivors
 
-	numsurvivors = Clamp((readyplayers/5), 0, 3) //(n, minimum, maximum)
+	numsurvivors = Clamp((readyplayers/6), 0, 3) //(n, minimum, maximum)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 	if(possible_survivors.len >= 1)
 		for(var/i = 0, i < numsurvivors, i++)
@@ -154,9 +154,9 @@ var/list/toldstory = list()
 	//For each survivor, add one to the count. Should work accurately enough.
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H) //Prevent any runtime errors
-			if(H.client && !findtext(H.get_species(), "Xenomorph") && H.stat != DEAD) // If they're connected/unghosted and alive and not debrained
+			if(H.client && !istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD) // If they're connected/unghosted and alive and not debrained
 				humansurvivors += 1 //Add them to the amount of people who're alive.
-			else if(H.client && findtext(H.get_species(), "Xenomorph") && H.stat != DEAD)
+			else if(H.client && istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD)
 				aliensurvivors += 1
 
 /*
@@ -301,6 +301,7 @@ datum/game_mode/colonialmarines/proc/check_alien_victory()
 		feedback_set_details("round_end_result","draw - the station has been nuked")
 		world << "\red <FONT size = 3><B>Draw.</B></FONT>"
 		world << "\red <FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
+		world << 'sound/misc/sadtrombone.ogg'
 
 	..()
 	return 1

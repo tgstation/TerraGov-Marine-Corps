@@ -20,7 +20,7 @@
 	use_power = 1			// this turret uses and requires power
 	idle_power_usage = 50	// when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300// when active, this turret takes up constant 300 Equipment power
-	req_access = list(access_security)
+	req_access = list(access_sulaco_engineering)
 	power_channel = EQUIP	// drains power from the EQUIPMENT channel
 
 	var/lasercolor = ""		// Something to do with lasertag turrets, blame Sieve for not adding a comment.
@@ -81,7 +81,7 @@
 					iconholder = null
 					reqpower = 100
 					lasercolor = "b"
-					req_access = list(access_maint_tunnels)
+					req_access = list(access_sulaco_engineering)
 					check_records = 0
 					criminals = 0
 					auth_weapons = 1
@@ -95,7 +95,7 @@
 					iconholder = null
 					reqpower = 100
 					lasercolor = "r"
-					req_access = list(access_maint_tunnels)
+					req_access = list(access_sulaco_engineering)
 					check_records = 0
 					criminals = 0
 					auth_weapons = 1

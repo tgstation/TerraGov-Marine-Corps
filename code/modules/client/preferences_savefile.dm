@@ -133,15 +133,18 @@
 
 	//Jobs
 	S["alternate_option"]	>> alternate_option
-	S["job_civilian_high"]	>> job_civilian_high
-	S["job_civilian_med"]	>> job_civilian_med
-	S["job_civilian_low"]	>> job_civilian_low
+	S["job_command_high"]	>> job_command_high
+	S["job_command_med"]	>> job_command_med
+	S["job_command_low"]	>> job_command_low
 	S["job_medsci_high"]	>> job_medsci_high
 	S["job_medsci_med"]		>> job_medsci_med
 	S["job_medsci_low"]		>> job_medsci_low
-	S["job_engsec_high"]	>> job_engsec_high
-	S["job_engsec_med"]		>> job_engsec_med
-	S["job_engsec_low"]		>> job_engsec_low
+	S["job_engi_high"]		>> job_engi_high
+	S["job_engi_med"]		>> job_engi_med
+	S["job_engi_low"]		>> job_engi_low
+	S["job_marines_high"]	>> job_marines_high
+	S["job_marines_med"]	>> job_marines_med
+	S["job_marines_low"]	>> job_marines_low
 
 	//Flavour Text
 	S["flavor_texts_general"]	>> flavor_texts["general"]
@@ -215,15 +218,18 @@
 	b_type			= sanitize_text(b_type, initial(b_type))
 
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
-	job_civilian_high = sanitize_integer(job_civilian_high, 0, 65535, initial(job_civilian_high))
-	job_civilian_med = sanitize_integer(job_civilian_med, 0, 65535, initial(job_civilian_med))
-	job_civilian_low = sanitize_integer(job_civilian_low, 0, 65535, initial(job_civilian_low))
+	job_command_high = sanitize_integer(job_command_high, 0, 65535, initial(job_command_high))
+	job_command_med = sanitize_integer(job_command_med, 0, 65535, initial(job_command_med))
+	job_command_low = sanitize_integer(job_command_low, 0, 65535, initial(job_command_low))
 	job_medsci_high = sanitize_integer(job_medsci_high, 0, 65535, initial(job_medsci_high))
 	job_medsci_med = sanitize_integer(job_medsci_med, 0, 65535, initial(job_medsci_med))
 	job_medsci_low = sanitize_integer(job_medsci_low, 0, 65535, initial(job_medsci_low))
-	job_engsec_high = sanitize_integer(job_engsec_high, 0, 65535, initial(job_engsec_high))
-	job_engsec_med = sanitize_integer(job_engsec_med, 0, 65535, initial(job_engsec_med))
-	job_engsec_low = sanitize_integer(job_engsec_low, 0, 65535, initial(job_engsec_low))
+	job_engi_high = sanitize_integer(job_engi_high, 0, 65535, initial(job_engi_high))
+	job_engi_med = sanitize_integer(job_engi_med, 0, 65535, initial(job_engi_med))
+	job_engi_low = sanitize_integer(job_engi_low, 0, 65535, initial(job_engi_low))
+	job_marines_high = sanitize_integer(job_marines_high, 0, 65535, initial(job_marines_high))
+	job_marines_med = sanitize_integer(job_marines_med, 0, 65535, initial(job_marines_med))
+	job_marines_low = sanitize_integer(job_marines_low, 0, 65535, initial(job_marines_low))
 
 	if(!skills) skills = list()
 	if(!used_skillpoints) used_skillpoints= 0
@@ -277,15 +283,18 @@
 
 	//Jobs
 	S["alternate_option"]	<< alternate_option
-	S["job_civilian_high"]	<< job_civilian_high
-	S["job_civilian_med"]	<< job_civilian_med
-	S["job_civilian_low"]	<< job_civilian_low
+	S["job_command_high"]	<< job_command_high
+	S["job_command_med"]	<< job_command_med
+	S["job_command_low"]	<< job_command_low
 	S["job_medsci_high"]	<< job_medsci_high
 	S["job_medsci_med"]		<< job_medsci_med
 	S["job_medsci_low"]		<< job_medsci_low
-	S["job_engsec_high"]	<< job_engsec_high
-	S["job_engsec_med"]		<< job_engsec_med
-	S["job_engsec_low"]		<< job_engsec_low
+	S["job_engi_high"]		<< job_engi_high
+	S["job_engi_med"]		<< job_engi_med
+	S["job_engi_low"]		<< job_engi_low
+	S["job_marines_high"]	<< job_marines_high
+	S["job_marines_med"]	<< job_marines_med
+	S["job_marines_low"]	<< job_marines_low
 
 	//Flavour Text
 	S["flavor_texts_general"]	<< flavor_texts["general"]

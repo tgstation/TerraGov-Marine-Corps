@@ -41,7 +41,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr><td><font color='#A50000'><b>Security</b></font></td>"//Red
-		for(var/job in security_positions)
+		for(var/job in command_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -68,23 +68,8 @@
 
 		counter = 0
 		jobs_all += "</tr><tr height='20'><td><font color='#800080'><b>Science</b></font></td>"//Purple
-		for(var/job in science_positions)
-			counter++
-			if(counter >= 6)
-				jobs_all += "</tr><tr height='20'><td></td><td></td>"
-				counter = 0
-			jobs_all += "<td weight='100'><a href='?src=\ref[src];assign=[job]'>[replacetext(job, " ", "&nbsp")]</a></td>"
 
-		counter = 0
-		jobs_all += "</tr><tr height='20'><td><font color='#808080'><b>Civilian</b></font></td>"//Grey
-		for(var/job in civilian_positions)
-			counter++
-			if(counter >= 6)
-				jobs_all += "</tr><tr height='20'><td></td><td></td>"
-				counter = 0
-			jobs_all += "<td weight='100'><a href='?src=\ref[src];assign=[job]'>[replacetext(job, " ", "&nbsp")]</a></td>"
-
-			dat = {"<script type="text/javascript">
+		dat = {"<script type="text/javascript">
 								function markRed(){
 									var nameField = document.getElementById('namefield');
 									nameField.style.backgroundColor = "#FFDDDD";
@@ -190,7 +175,7 @@
 
 	// These are here partly in order to be overwritten by the centcom card computer code
 	proc/authenticate()
-		if(access_change_ids in reader.access)
+		if(access_sulaco_logistics in reader.access)
 			return 1
 		if(istype(usr,/mob/living/silicon/ai))
 			return 1
@@ -342,6 +327,6 @@
 		return accesses
 
 	authenticate()
-		if(access_cent_captain in reader.access)
+		if(access_sulaco_captain in reader.access)
 			return 1
 		return 0

@@ -54,7 +54,7 @@
 							I.name = "[M.real_name]'s Lifetime ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
 						else if(M.ckey == "nerezza" && M.real_name == "Asher Spock") //This is an Odysseus Specialist ID
 							I.name = "[M.real_name]'s Odysseus Specialist ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
-							I.access += list(access_robotics) //Station-based mecha pilots need this to access the recharge bay.
+							I.access += list(access_sulaco_research) //Station-based mecha pilots need this to access the recharge bay.
 						else if(M.ckey == "roaper" && M.real_name == "Ian Colm") //This is a Technician ID
 							I.name = "[M.real_name]'s Technician ID ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
 

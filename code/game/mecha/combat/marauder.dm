@@ -15,7 +15,7 @@
 	var/smoke_ready = 1
 	var/smoke_cooldown = 100
 	var/datum/effect/effect/system/smoke_spread/smoke_system = new
-	operation_req_access = list(access_cent_specops)
+	operation_req_access = list(access_centcomm)
 	wreckage = /obj/effect/decal/mecha_wreckage/marauder
 	add_req_access = 0
 	internal_damage_threshold = 25
@@ -27,7 +27,7 @@
 	name = "Seraph"
 	icon_state = "seraph"
 	initial_icon = "seraph"
-	operation_req_access = list(access_cent_creed)
+	operation_req_access = list(access_centcomm)
 	step_in = 3
 	health = 550
 	wreckage = /obj/effect/decal/mecha_wreckage/seraph

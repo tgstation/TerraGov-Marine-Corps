@@ -13,7 +13,7 @@
 	throw_range = 2
 	w_class = 2.0
 	var/access = list()
-	access = access_crate_cash
+	access = access_sulaco_captain
 	var/worth = 0
 
 /obj/item/weapon/spacecash/attackby(obj/item/weapon/W as obj, mob/user as mob)

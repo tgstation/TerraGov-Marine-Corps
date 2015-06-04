@@ -40,7 +40,7 @@
 	cost = 250
 	containertype = /obj/structure/closet/crate
 	containername = "Authentication Key Pinpointer crate"
-	access = access_heads
+	access = access_sulaco_captain
 	group = "Operations"
 
 	New()

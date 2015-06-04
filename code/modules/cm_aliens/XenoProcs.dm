@@ -240,7 +240,7 @@
 			O.hitby(src,speed)
 			if(O.density)
 				src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
-				src.Weaken(1)
+				src.Weaken(2)
 
 		if(istype(O,/obj/structure/table) && istype(src,/mob/living/carbon/Xenomorph/Ravager)) //Ravagers destroy tables.
 			visible_message("<span class='danger'>[src] plows straight through the [O.name].</span>")
@@ -279,7 +279,7 @@
 		var/turf/T = hit_atom
 		if(T.density)
 			src << "Bonk!" //ouchie
-			src.Weaken(1)
+			src.Weaken(2)
 
 	..() //Do the rest normally - mostly turfs.
 	return

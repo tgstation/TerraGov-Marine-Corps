@@ -7,7 +7,7 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_medical)
+	req_access = list(access_sulaco_medbay)
 
 
 	New()
@@ -36,7 +36,7 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_surgery)
+	req_access = list(access_sulaco_medbay)
 
 
 	New()
@@ -54,7 +54,7 @@
 
 /obj/structure/closet/secure_closet/medical3
 	name = "Medical Doctor's Locker"
-	req_access = list(access_surgery)
+	req_access = list(access_sulaco_medbay)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
 	icon_locked = "securemed1"
@@ -105,7 +105,7 @@
 
 /obj/structure/closet/secure_closet/CMO
 	name = "Chief Medical Officer's Locker"
-	req_access = list(access_cmo)
+	req_access = list(access_sulaco_CMO)
 	icon_state = "cmosecure1"
 	icon_closed = "cmosecure"
 	icon_locked = "cmosecure1"
@@ -147,7 +147,7 @@
 
 /obj/structure/closet/secure_closet/animal
 	name = "Animal Control"
-	req_access = list(access_surgery)
+	req_access = list(access_sulaco_medbay)
 
 
 	New()
@@ -170,7 +170,7 @@
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(access_chemistry)
+	req_access = list(access_sulaco_chemistry)
 
 
 	New()
@@ -192,7 +192,7 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
-	req_access = list(access_medical)
+	req_access = list(access_sulaco_medbay)
 
 /obj/structure/closet/secure_closet/medical_wall/update_icon()
 	if(broken)

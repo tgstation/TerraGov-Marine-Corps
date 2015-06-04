@@ -198,7 +198,7 @@
 
 /obj/item/weapon/card/id/syndicate
 	name = "agent card"
-	access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+	access = list(access_syndicate)
 	origin_tech = "syndicate=3"
 	var/registered_user=null
 
@@ -270,7 +270,7 @@
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
-	access = list(access_syndicate, access_external_airlocks)
+	access = list(access_syndicate)
 
 /obj/item/weapon/card/id/captains_spare
 	name = "captain's spare ID"

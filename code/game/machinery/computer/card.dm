@@ -4,7 +4,7 @@
 	name = "Identification Computer"
 	desc = "Terminal for programming NanoTrasen employee ID cards to access parts of the station."
 	icon_state = "id"
-	req_access = list(access_change_ids)
+	req_access = list(access_sulaco_logistics)
 	circuit = "/obj/item/weapon/circuitboard/card"
 	var/obj/item/weapon/card/id/scan = null
 	var/obj/item/weapon/card/id/modify = null
@@ -57,7 +57,7 @@
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && access_change_ids in id_card.access)
+	if(!scan && access_sulaco_logistics in id_card.access)
 		user.drop_item()
 		id_card.loc = src
 		scan = id_card
@@ -81,6 +81,8 @@
 	ui_interact(user)
 
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
+	return
+/*//We'll get back to this shit later
 	user.set_machine(src)
 
 	var/data[0]
@@ -283,11 +285,11 @@
 		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 
 	return 1
-
+*/
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
 	circuit = "/obj/item/weapon/circuitboard/card/centcom"
-	req_access = list(access_cent_captain)
+	req_access = list(access_centcomm)
 
 
 /obj/machinery/computer/card/centcom/is_centcom()

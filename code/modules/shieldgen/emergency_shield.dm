@@ -136,7 +136,7 @@
 	opacity = 0
 	anchored = 0
 	pressure_resistance = 2*ONE_ATMOSPHERE
-	req_access = list(access_engine)
+	req_access = list(access_sulaco_engineering, access_marine_engprep)
 	var/const/max_health = 100
 	var/health = max_health
 	var/active = 0
@@ -161,7 +161,7 @@
 	update_icon()
 
 	create_shields()
-	
+
 	idle_power_usage = 0
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
 		idle_power_usage += shield_tile.shield_idle_power
@@ -174,7 +174,7 @@
 	update_icon()
 
 	collapse_shields()
-	
+
 	update_use_power(0)
 
 /obj/machinery/shieldgen/proc/create_shields()
@@ -201,22 +201,22 @@
 /obj/machinery/shieldgen/process()
 	if (!active || (stat & NOPOWER))
 		return
-	
+
 	if(malfunction)
 		if(deployed_shields.len && prob(5))
 			del(pick(deployed_shields))
 	else
 		if (check_delay <= 0)
 			create_shields()
-			
+
 			var/new_power_usage = 0
 			for(var/obj/machinery/shield/shield_tile in deployed_shields)
 				new_power_usage += shield_tile.shield_idle_power
-			
+
 			if (new_power_usage != idle_power_usage)
 				idle_power_usage = new_power_usage
 				use_power(0)
-			
+
 			check_delay = 60
 		else
 			check_delay--

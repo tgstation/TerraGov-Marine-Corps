@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/ert/commander
 	name = "\improper ERT commander locker"
-	req_access = list(ACCESS_SECURITY)
+	req_access = list(access_sulaco_brig)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
 	icon_locked = "capsecure1"
@@ -24,7 +24,7 @@
 
 /obj/structure/closet/secure_closet/ert/security
 	name = "\improper ERT security locker"
-	req_access = list(ACCESS_SECURITY)
+	req_access = list(access_sulaco_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
 	icon_locked = "sec1"

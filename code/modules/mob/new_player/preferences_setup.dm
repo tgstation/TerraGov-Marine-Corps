@@ -247,14 +247,13 @@ datum/preferences
 			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = "undershirt[undershirt]_s")
 
 		var/icon/clothes_s = null
-		if(job_civilian_low & MARINE)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
-			clothes_s = new /icon('icons/mob/uniform.dmi', "grey_s")
-			clothes_s.Blend(new /icon('icons/mob/feet.dmi', "black"), ICON_UNDERLAY)
-			if(backbag == 2)
-				clothes_s.Blend(new /icon('icons/mob/back.dmi', "backpack"), ICON_OVERLAY)
-			else if(backbag == 3 || backbag == 4)
-				clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
-
+		clothes_s = new /icon('icons/mob/uniform.dmi', "grey_s")
+		clothes_s.Blend(new /icon('icons/mob/feet.dmi', "black"), ICON_UNDERLAY)
+		if(backbag == 2)
+			clothes_s.Blend(new /icon('icons/mob/back.dmi', "backpack"), ICON_OVERLAY)
+		else if(backbag == 3 || backbag == 4)
+			clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
+/*
 		else if(job_civilian_high)//I hate how this looks, but there's no reason to go through this switch if it's empty
 			switch(job_civilian_high)
 				if(HOP)
@@ -730,6 +729,7 @@ datum/preferences
 							clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel-med"), ICON_OVERLAY)
 						if(4)
 							clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
+				*/
 
 		if(disabilities & NEARSIGHTED)
 			preview_icon.Blend(new /icon('icons/mob/eyes.dmi', "glasses"), ICON_OVERLAY)
