@@ -98,7 +98,7 @@
 
 	src.air_contents.adjust_gas("phoron", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
 	return
-
+/*
 /obj/item/weapon/tank/phoron/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
@@ -110,6 +110,7 @@
 		user.before_take_item(src)
 		src.loc = F
 	return
+*/
 
 /*
  * Emergency Oxygen

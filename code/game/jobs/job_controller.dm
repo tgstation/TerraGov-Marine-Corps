@@ -515,6 +515,9 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		spawnId(H, rank, alt_title)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
 
+		if(job.is_squad_job) //Are we a muhreen? Randomize our squad. This should go AFTER IDs.
+			randomize_squad(H)
+
 		//Gives glasses to the vision impaired
 		if(H.disabilities & NEARSIGHTED)
 			var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
@@ -528,6 +531,44 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		H.hud_updateflag |= (1 << SPECIALROLE_HUD)
 		return 1
 
+	proc/randomize_squad(var/mob/living/carbon/human/H) //Put the person into a squad. This does not check squad-job validity.
+		if(!H || !H.mind) return
+
+		var/list/all_squads = get_squads()
+		var/count_prev_squad = 0
+		var/found = 0
+
+		if(!all_squads.len) return //woh that went wrong
+
+		for(var/datum/squad/S in all_squads) //Loop through all the squads
+			if(!S || isnull(S)) break //Nope
+
+			if(count_prev_squad > S.count)
+				count_prev_squad = S.count //Previous loop was higher count, skip ahead
+				continue
+
+			if(H.mind.assigned_role == "Squad Engineer")
+				if(S.num_engineers >= S.max_engineers) continue //Already got maxed
+			if(H.mind.assigned_role == "Squad Medic")
+				if(S.num_medics >= S.max_medics) continue //Already got maxed
+			if(H.mind.assigned_role == "Squad Leader")
+				if(S.num_leaders >= S.max_leaders) continue //Already got maxed
+			if(H.mind.assigned_role == "Squad Specialist")
+				if(S.num_specialists >= S.max_specialists) continue //Already got maxed
+
+			S.put_marine_in_squad(H) //Found one, finish up
+			found = 1
+			break
+
+		if(!found) //All squads are equal, or the randomizer messed up, force alpha squad
+			for(var/datum/squad/A in all_squads)
+				if(A.name == "Alpha")
+					A.put_marine_in_squad(H)
+					break
+		if(H.mind)
+			H << "You have been assigned to: \b [H.mind.assigned_squad.name] squad."
+			H << "Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."
+		return
 
 	proc/spawnId(var/mob/living/carbon/human/H, rank, title)
 		if(!H)	return 0
@@ -559,12 +600,12 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 			H.equip_to_slot_or_del(C, slot_wear_id)
 
-		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
-		if(locate(/obj/item/device/pda,H))
-			var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
-			pda.owner = H.real_name
-			pda.ownjob = C.assignment
-			pda.name = "PDA-[H.real_name] ([pda.ownjob])"
+//		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
+//		if(locate(/obj/item/device/pda,H))
+//			var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
+//			pda.owner = H.real_name
+//			pda.ownjob = C.assignment
+//			pda.name = "PDA-[H.real_name] ([pda.ownjob])"
 
 		return 1
 

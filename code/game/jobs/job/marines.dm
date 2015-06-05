@@ -6,8 +6,9 @@
 	flag = SQUADLE
 	department_flag = MARINES
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 4
+	spawn_positions = 4
+	is_squad_job = 1
 	supervisors = "the commander"
 	selection_color = "#ffeeee"
 	access = list(access_marine_prep, access_marine_engprep, access_marine_medprep, access_marine_specprep, access_marine_leader)
@@ -33,8 +34,9 @@
 	flag = SQUADEN
 	department_flag = MARINES
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 8
+	spawn_positions = 8
+	is_squad_job = 1
 	supervisors = "the squad leader"
 	selection_color = "#ffeeee"
 	access = list(access_marine_prep, access_marine_engprep)
@@ -60,8 +62,9 @@
 	flag = SQUADME
 	department_flag = MARINES
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 8
+	spawn_positions = 8
+	is_squad_job = 1
 	supervisors = "the squad leader"
 	selection_color = "#ffeeee"
 	access = list(access_marine_prep, access_marine_medprep)
@@ -87,8 +90,9 @@
 	flag = SQUADSP
 	department_flag = MARINES
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 4
+	spawn_positions = 4
+	is_squad_job = 1
 	supervisors = "the squad leader"
 	selection_color = "#ffeeee"
 	access = list(access_marine_prep, access_marine_specprep)
@@ -116,6 +120,7 @@
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
+	is_squad_job = 1
 	supervisors = "the squad leader"
 	selection_color = "#ffeeee"
 	access = list(access_marine_prep)

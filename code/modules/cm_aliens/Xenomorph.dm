@@ -57,6 +57,7 @@
 	var/middle_mouse_toggle = 0 //This toggles middle mouse clicking for certain abilities.
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/armor_deflection = 0 //Chance of deflecting projectiles. No xenos have this yet........
+	var/fire_immune = 0 //boolean
 
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
