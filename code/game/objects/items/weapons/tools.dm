@@ -180,7 +180,7 @@
 		src.add_fingerprint(user)
 		return
 
-	if((!status) && (istype(W,/obj/item/stack/rods)))
+/*	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
 		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
@@ -200,7 +200,7 @@
 		src.loc = F
 		src.add_fingerprint(user)
 		return
-
+*/
 	..()
 	return
 

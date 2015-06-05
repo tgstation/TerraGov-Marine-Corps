@@ -364,7 +364,7 @@
 		if(access_marine_medprep)
 			return "Marine Medical"
 		if(access_marine_specprep)
-			return "Marine Special Forces"
+			return "Marine Specialist"
 		if(access_marine_leader)
 			return "Marine Leader"
 		if(access_squad_alpha)
