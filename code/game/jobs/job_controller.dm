@@ -13,10 +13,12 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 	var/list/unassigned = list()
 		//Debug info
 	var/list/job_debug = list()
+	var/list/squads = list()
 
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
+		squads = list()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
 			world << "\red \b Error setting up jobs, no job datums found"
@@ -28,6 +30,15 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			// if(job.title in get_marine_jobs())
 			occupations += job
 
+		var/list/all_squads = typesof(/datum/squad)
+		if(!all_squads.len)
+			world << "\red \b Error setting up squads, no squad datums found"
+			return 0
+		for(var/S in all_squads)
+			var/datum/squad/squad = new S()
+			if(!squad)	continue
+			if(!squad.usable) continue
+			squads += squad
 
 		return 1
 
@@ -534,13 +545,12 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 	proc/randomize_squad(var/mob/living/carbon/human/H) //Put the person into a squad. This does not check squad-job validity.
 		if(!H || !H.mind) return
 
-		var/list/all_squads = get_squads()
 		var/count_prev_squad = 0
 		var/found = 0
 
-		if(!all_squads.len) return //woh that went wrong
+		if(!squads.len) return //woh that went wrong
 
-		for(var/datum/squad/S in all_squads) //Loop through all the squads
+		for(var/datum/squad/S in squads) //Loop through all the squads
 			if(!S || isnull(S)) break //Nope
 
 			if(count_prev_squad > S.count)
@@ -561,7 +571,8 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			break
 
 		if(!found) //All squads are equal, or the randomizer messed up, force alpha squad
-			for(var/datum/squad/A in all_squads)
+			for(var/datum/squad/A in squads)
+				if(!A) break
 				if(A.name == "Alpha")
 					A.put_marine_in_squad(H)
 					break
