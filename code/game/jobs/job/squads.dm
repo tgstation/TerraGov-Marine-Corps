@@ -48,6 +48,7 @@
 	access = list(access_squad_delta)
 	usable = 1
 
+/*
 /proc/get_squads()
 	var/list/squads = list()
 	var/list/all_squads = typesof(/datum/squad)
@@ -58,7 +59,7 @@
 		squads += squad
 
 	return squads
-
+*/
 //Counts up the # of people in a specific squad or in all squads
 /datum/squad/proc/get_count(var/datum/squad/S)
 	var/total = 0
