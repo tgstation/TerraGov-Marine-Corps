@@ -24,11 +24,13 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		)
 
+/mob/living/carbon/Xenomorph/Hunter/ClickOn(var/atom/A, params)
 
-
-
-
-
+	var/list/modifiers = params2list(params)
+	if(modifiers["middle"] && middle_mouse_toggle)
+		Pounce(A)
+		return
+	..()
 
 
 // OLD CODE FOR REFERENCE

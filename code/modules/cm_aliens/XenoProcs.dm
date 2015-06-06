@@ -114,30 +114,100 @@
 	return
 
 
-
 //These aren't procs, but oh well. These are the spit projectiles.
-/obj/item/projectile/energy/neuro_weak
+/obj/item/xeno_projectile
 	name = "neurotoxin"
 	icon_state = "neurotoxin"
-	damage = 5
-	damage_type = TOX
+	var/brute_damage = 0
+	var/tox_damage = 0
+	var/weaken = 0
+	var/agony = 0
+	var/irradiate = 0
+	var/stun = 0
+	var/paralyze = 0
+	var/eye_blur = 0
+	anchored = 1
+	flags = FPRINT | TABLEPASS
+	pass_flags = PASSTABLE
+	mouse_opacity = 0
+	unacidable = 1
+
+
+/obj/item/xeno_projectile/neuro_weak
+	name = "neurotoxin"
+	icon_state = "neurotoxin"
+	brute_damage = 5
+	tox_damage = 5
 	weaken = 4
 
-/obj/item/projectile/energy/neurotoxin
+/obj/item/xeno_projectile/neurotoxin
 	name = "neuro"
 	icon_state = "neurotoxin"
-	damage = 10
-	damage_type = TOX
+	brute_damage = 10
+	tox_damage = 10
 	weaken = 7
+	eye_blur = 1
 
-/obj/item/projectile/energy/neuro_uber
+/obj/item/xeno_projectile/neuro_uber
 	name = "neuro"
 	icon_state = "neurotoxin"
-	damage = 20
-	damage_type = TOX
+	brute_damage = 10
+	tox_damage = 20
 	agony = 40
 	weaken = 10
 	irradiate = 5
+	eye_blur = 3
+
+/obj/item/xeno_projectile/throw_impact(atom/hit_atom)
+	if(!src) return //Some logic
+
+	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
+		var/mob/living/carbon/V = hit_atom
+		if(istype(V) && !V.stat && !istype(V,/mob/living/carbon/Xenomorph)) //We totally ignore other xenos. LIKE GREASED WEASELS
+			if(istype(V,/mob/living/carbon/human))
+				var/mob/living/carbon/human/H = V //Human shield block.
+				if(H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot) || H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot) && rand(0,100) < 65)
+					visible_message("\red <B> \The neurotoxic spit spatters against [H]'s shield!</B>")
+					del(src)
+					return
+			//apply various effects
+			if(brute_damage)
+				V.apply_damage(BRUTE,brute_damage)
+			if(tox_damage)
+				V.apply_damage(TOX,tox_damage)
+			if(weaken)
+				V.apply_effect(WEAKEN,weaken)
+			if(agony)
+				V.apply_damage(HALLOSS,agony)
+			if(irradiate)
+				V.apply_effect(IRRADIATE,irradiate)
+			if(paralyze)
+				V.apply_effect(PARALYZE,paralyze)
+			if(eye_blur)
+				V.apply_effect(EYE_BLUR,eye_blur)
+			if(stun)
+				V.apply_effect(STUN,stun)
+			del(src)
+		return
+	else if(isobj(hit_atom))
+		var/obj/O = hit_atom
+		if(O.density) //Hit a dense object, just stop & delete
+			src.throwing = 0
+			del(src)
+			return
+
+	else if(isturf(hit_atom))
+		var/turf/T = hit_atom
+		if(T.density)
+			src.throwing = 0
+			del(src)
+			return
+
+		if(!src.throwing) //finished range
+			del(src)
+			return
+	..()
+	return
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here

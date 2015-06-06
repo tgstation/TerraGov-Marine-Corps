@@ -23,6 +23,7 @@
 	is_intelligent = 1
 	speed = 1.5
 	jellyMax = 0
+	adjust_pixel_x = -16
 	fire_immune = 1
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 	inherent_verbs = list(
@@ -33,7 +34,8 @@
 		/mob/living/carbon/Xenomorph/proc/gut,
 		/mob/living/carbon/Xenomorph/proc/build_resin,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/proc/screech
+		/mob/living/carbon/Xenomorph/proc/screech,
+		/mob/living/carbon/Xenomorph/proc/produce_jelly,
 		)
 
 
