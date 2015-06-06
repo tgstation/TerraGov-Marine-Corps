@@ -55,7 +55,7 @@
 			weakened--
 
 		if(paralysis)
-			AdjustParalysis(-1)
+			AdjustParalysis(-3)
 			blinded = 1
 			stat = UNCONSCIOUS
 			if(halloss > 0)
@@ -102,19 +102,9 @@
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
-	if (stat == 2 || (XRAY in src.mutations))
-		sight |= SEE_TURFS
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (stat != 2)
-		sight &= ~SEE_TURFS
-		sight &= ~SEE_MOBS
-		sight &= ~SEE_OBJS
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LIVING
-		sight |= SEE_MOBS //Lets try this
+	//This should give full x-ray vision for the time being. Fuckin sight code god damn it
+	sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+	see_in_dark = 8
 
 	if (healths)
 		if (stat != 2)
@@ -182,13 +172,13 @@
 	if(!T || !istype(T)) return
 
 	if(locate(/obj/effect/alien/weeds) in T)
-		if(health >= maxHealth -getCloneLoss())
+		if(health >= maxHealth - getCloneLoss())
 			storedplasma += plasma_gain
 		else
-			adjustBruteLoss(-(maxHealth / 25)) //Heal 1/25th of your max health per tick-- 4/100hp, 20/500hp. So, scales with maxHealth
+			adjustBruteLoss(-(maxHealth / 31)) //Heal 1/31th of your max health in brute per tick.
 			adjustFireLoss(-(maxHealth / 50)) //Heal from fire half as fast
 			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
-			adjustToxLoss(plasma_gain) //hmmmm, this is probably unnecessary
+			adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 			storedplasma += plasma_gain
 		if(storedplasma > maxplasma) storedplasma = maxplasma
 	else //Xenos restore plasma VERY slowly off weeds, and only at full health

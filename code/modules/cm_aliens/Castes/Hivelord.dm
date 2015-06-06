@@ -16,6 +16,7 @@
 	plasma_gain = 50
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
+	adjust_pixel_x = -16
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/build_resin,

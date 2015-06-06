@@ -380,3 +380,8 @@
 		return
 	else
 		return attack_hand(M)
+
+//APCs. Don't slash em for now, we'll deal with that later.
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	M << "You stare at the glowing box cluelessly."
+	return

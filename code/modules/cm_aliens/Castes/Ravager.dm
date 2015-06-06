@@ -23,6 +23,7 @@
 	var/CHARGECOOLDOWN = 80
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
+	adjust_pixel_x = -16
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

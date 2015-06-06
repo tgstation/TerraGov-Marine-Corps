@@ -337,8 +337,11 @@
 
 			//Grab some data from the character prefs for use in random news procs.
 
-			AnnounceArrival(character, rank, join_message)
-
+			//AnnounceArrival(character, rank, join_message)
+			var/datum/job/job = job_master.GetJob(character.mind.assigned_role)
+			if(job)
+				if(job.is_squad_job)
+					job_master.randomize_squad(character)
 		else
 			character.Robotize()
 		del(src)

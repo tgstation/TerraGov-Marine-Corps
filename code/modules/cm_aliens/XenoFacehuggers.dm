@@ -39,8 +39,12 @@ var/const/MAX_ACTIVE_TIME = 400
 	if(istype(user,/mob/living/carbon/Xenomorph/Carrier)) //Deal with carriers grabbing huggies
 		var/mob/living/carbon/Xenomorph/Carrier/C = user
 		if(C.huggers_cur < C.huggers_max)
-			C.huggers_cur++
-			user << "You scoop up the facehugger and carry it for safekeeping. Now sheltering: [C.huggers_cur] / [C.huggers_max]."
+			if(src.stat == CONSCIOUS)
+				C.huggers_cur++
+				user << "You scoop up the facehugger and carry it for safekeeping. Now sheltering: [C.huggers_cur] / [C.huggers_max]."
+				del(src)
+			else
+				user << "That one looks unhealthy."
 			return
 	user.put_in_active_hand(src) //Not a carrier, or already full? Just pick it up.
 
