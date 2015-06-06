@@ -1,4 +1,10 @@
-//Xenomorph Super - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
+//Xenomorph "generic" parent, does not actually appear in game
+//Many of these defines aren't referenced in the castes and so are assumed to be defaulted
+//Castes are all merely subchildren of this parent
+//Just about ALL the procs are tied to the parent, not to the children
+//This is so they can be easily transferred between them without copypasta
+
+//All this stuff was written by Absynth.
 
 /mob/living/carbon/Xenomorph
 	var/caste = ""
@@ -6,31 +12,68 @@
 	desc = "What the hell is THAT?"
 	icon = 'icons/xeno/Colonial_Aliens1x1.dmi'
 	icon_state = "Drone Walking"
-	pass_flags = PASSTABLE
-	melee_damage_lower = 0
-	melee_damage_upper = 0
-	attacktext = "Bites"
+	voice_name = "xenomorph"
+	speak_emote = list("hisses")
+	melee_damage_lower = 5
+	melee_damage_upper = 10 //Arbitrary damage values
+	attacktext = "claws"
 	attack_sound = null
-	friendly = "Nuzzles"
+	friendly = "nuzzles"
 	wall_smash = 0
+	universal_understand = 0
+	universal_speak = 0
 	health = 5
 	maxHealth = 5
+	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
+	see_in_dark = 8
+	see_infrared = 1
+	see_invisible = SEE_INVISIBLE_LEVEL_ONE
+	var/dead_icon = "Drone Dead"
+	var/language = "Xenomorph"
+	var/obj/item/clothing/suit/wear_suit = null
+	var/obj/item/clothing/head/head = null
+	var/obj/item/weapon/r_store = null
+	var/obj/item/weapon/l_store = null
 	var/storedplasma = 0
-	var/maxplasma = 50
+	var/maxplasma = 10
 	var/amount_grown = 0
-	var/max_grown = 10
+	var/max_grown = 200
 	var/time_of_birth
-	var/language
+	var/plasma_gain = 5
 	var/mob/living/carbon/Xenomorph/new_xeno
 	var/jelly = 0 //variable to check if they ate delicious jelly or not
 	var/jellyGrow = 0 //how much the jelly has grown
 	var/jellyMax = 0 //max amount jelly will grow till evolution
+	var/list/evolves_to = list() //This is where you add castes to evolve into. "Seperated", "by", "commas"
+	var/tacklemin = 2
+	var/tacklemax = 4
+	var/tackle_chance = 50
+	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
+	var/caste_desc = "A generic xenomorph. You should never see this."
+	var/usedPounce = 0
+	var/has_spat = 0
+	var/spit_delay = 50 //Delay timer for spitting
+	var/has_screeched = 0
+	var/middle_mouse_toggle = 0 //This toggles middle mouse clicking for certain abilities.
+	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
+	var/armor_deflection = 0 //Chance of deflecting projectiles. No xenos have this yet........
+
+	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
+	//This list of inherent verbs lets us take any proc basically anywhere and add them.
+	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
+	//It should add them properly on New() and should reset/readd them on evolves
+	var/list/inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/regurgitate
+		)
 
 /mob/living/carbon/Xenomorph/New()
 	..()
 	time_of_birth = world.time
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	add_language("Xenomorph") //xenocommon
+	add_language("Hivemind") //hivemind
+	add_inherent_verbs()
+
+	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
 
 
 /*	src.frozen = 1 //Freeze the alien in place a moment, while it evolves... WHY DOESN'T THIS WORK? 08FEB2015
@@ -41,60 +84,10 @@
 	real_name = name
 	regenerate_icons()
 
-	if(language)
-		add_language(language)
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R
 	R.my_atom = src
 	gender = NEUTER
-
-
-
-/mob/living/carbon/Xenomorph/u_equip(obj/item/W as obj)
-	return
-
-/mob/living/carbon/Xenomorph/Stat()
-	..()
-	stat(null, "Progress: [amount_grown]/[max_grown]")
-
-/mob/living/carbon/Xenomorph/restrained()
-	return 0
-
-/mob/living/carbon/Xenomorph/can_use_vents()
-	return
-
-/mob/living/carbon/Xenomorph/proc/update_progression()
-	return
-
-//Show_Inv might get removed later, depending on how I make the aliens.
-/mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
-	return
-
-
-//Mind Initializer
-/mob/living/carbon/Xenomorph/larva/mind_initialize()
-	..()
-	mind.special_role = "Larva"
-
-/mob/living/carbon/Xenomorph/Drone/mind_initialize()
-	..()
-	mind.special_role = "Drone"
-
-
-
-//Environment Handling
-/mob/living/carbon/Xenomorph/handle_environment(var/datum/gas_mixture/environment)
-
-	if(!environment) return
-
-	var/turf/T = get_turf(src)
-	if(environment.gas["phoron"] > 0 || (T && locate(/obj/effect/alien/weeds) in T.contents))
-		update_progression()
-		adjustBruteLoss(-1)
-		adjustFireLoss(-1)
-		adjustToxLoss(-1)
-		adjustOxyLoss(-1)
-
 
 
 

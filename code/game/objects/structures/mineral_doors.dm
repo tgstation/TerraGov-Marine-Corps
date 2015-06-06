@@ -246,13 +246,37 @@
 
 /obj/structure/mineral_door/resin
 	mineralType = "resin"
+	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
+	var/health = 80
 	var/close_delay = 100
 
-	TryToSwitchState(atom/user)
+	attack_paw(mob/user as mob)
+		if(user.a_intent == "hurt")
+			// if (islarva(user))//Safety check for larva. /N
+				// return
+			user << "\green You claw at the [name]."
+			for(var/mob/O in oviewers(src))
+				O.show_message("\red [user] claws at the resin!", 1)
+			playsound(loc, 'sound/effects/attackblob.ogg', 30, 1, -4)
+			health -= rand(40, 60)
+			if(health <= 0)
+				user << "\green You slice the [name] to pieces."
+				for(var/mob/O in oviewers(src))
+					O.show_message("\red [user] slices the [name] apart!", 1)
+			healthcheck()
+			return
+		else 
+			return TryToSwitchState(user)
 
-		var/mob/living/carbon/M = user
-		if(istype(M) && locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs)
+	bullet_act(var/obj/item/projectile/Proj)
+		health -= Proj.damage
+		..()
+		healthcheck()
+
+
+	TryToSwitchState(atom/user)
+		if(isalien(user))
 			return ..()
 
 	Open()
@@ -288,3 +312,6 @@
 		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 		..()
 
+/obj/structure/mineral_door/resin/proc/healthcheck()
+	if(src.health <= 0)
+		src.Dismantle(1)

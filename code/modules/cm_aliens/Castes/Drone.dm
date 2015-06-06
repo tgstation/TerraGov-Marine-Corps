@@ -4,38 +4,24 @@
 	caste = "Drone"
 	name = "Drone"
 	desc = "An Alien Drone"
-	icon = 'icons/xeno/Colonial_Aliens1x1.dmi'
 	icon_state = "Drone Walking"
-	pass_flags = PASSTABLE
 	melee_damage_lower = 12
 	melee_damage_upper = 16
-	attacktext = "Bites"
-	attack_sound = null
-	friendly = "Nuzzles"
-	wall_smash = 0
 	health = 170
 	maxHealth = 170
 	storedplasma = 350
 	maxplasma = 750
-
-//new drone Code 06FEB2015
-
-mob/living/carbon/Xenomorph/Drone/New()
-	..()
-	jelly = 0
-	jellyMax = 1200
-
-
-// either freeze is currently broken and needs to be investigated...
-	/
-	src.frozen = 1
-	spawn (25)
-		src.frozen = 0
-//	verbs.Add(/mob/living/carbon/Xenomorph/proc/resin,/mob/living/carbon/Xenomorph/proc/weak_acid) //This will be enabled later
-//	growJelly()  TEMP DISABLED (was infinite Looping?)
-
-
-
+	jellyMax = 750
+	plasma_gain = 12
+	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
+	caste_desc = "A builder of hives. Only drones may evolve into Queens."
+	inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/plant,
+		/mob/living/carbon/Xenomorph/proc/build_resin,
+		/mob/living/carbon/Xenomorph/proc/regurgitate,
+		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
+		/mob/living/carbon/Xenomorph/proc/vent_crawl
+		)
 
 
 

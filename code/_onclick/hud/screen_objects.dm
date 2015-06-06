@@ -235,6 +235,8 @@
 					if("walk")
 						usr.m_intent = "run"
 						usr.hud_used.move_intent.icon_state = "running"
+				if(istype(usr,/mob/living/carbon/Xenomorph) && !usr.stat)
+					usr.update_icons() //This is to immediately toggle your moving state rather than wait for an update
 		if("m_intent")
 			if(!usr.m_int)
 				switch(usr.m_intent)

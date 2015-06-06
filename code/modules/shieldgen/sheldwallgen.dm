@@ -6,7 +6,7 @@
 		icon_state = "Shield_Gen"
 		anchored = 0
 		density = 1
-		req_access = list(access_teleporter)
+		req_access = list(access_sulaco_engineering, access_marine_engprep)
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -70,12 +70,12 @@
 	var/shieldload = between(500, max_stored_power - storedpower, power_draw)	//what we try to draw
 	shieldload = PN.draw_power(shieldload) //what we actually get
 	storedpower += shieldload
-	
+
 	//If we're still in the red, then there must not be enough available power to cover our load.
 	if(storedpower <= 0)
 		power = 0
 		return 0
-	
+
 	power = 1	// IVE GOT THE POWER!
 	return 1
 

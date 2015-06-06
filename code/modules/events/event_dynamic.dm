@@ -191,12 +191,8 @@ var/list/event_last_fired = list()
 	var/list/active_with_role = list()
 	active_with_role["Engineer"] = 0
 	active_with_role["Medical"] = 0
-	active_with_role["Security"] = 0
-	active_with_role["Scientist"] = 0
 	active_with_role["AI"] = 0
 	active_with_role["Cyborg"] = 0
-	active_with_role["Janitor"] = 0
-	active_with_role["Gardener"] = 0
 
 	for(var/mob/M in player_list)
 		if(!M.mind || !M.client || M.client.inactivity > 10 * 10 * 60) // longer than 10 minutes AFK counts them as inactive
@@ -204,32 +200,19 @@ var/list/event_last_fired = list()
 
 		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "engineering robot module")
 			active_with_role["Engineer"]++
-		if(M.mind.assigned_role in list("Chief Engineer", "Station Engineer"))
+
+		if(M.mind.assigned_role in list("Sulaco Chief Engineer", "Maintenance Tech"))
 			active_with_role["Engineer"]++
 
 		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "medical robot module")
 			active_with_role["Medical"]++
-		if(M.mind.assigned_role in list("Chief Medical Officer", "Medical Doctor"))
+		if(M.mind.assigned_role in list("Sulaco Chief Medical Officer", "Sulaco Doctor", "Sulaco Researcher", "Sulaco Chemist"))
 			active_with_role["Medical"]++
-
-		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "security robot module")
-			active_with_role["Security"]++
-		if(M.mind.assigned_role in security_positions)
-			active_with_role["Security"]++
-
-		if(M.mind.assigned_role in list("Research Director", "Scientist"))
-			active_with_role["Scientist"]++
 
 		if(M.mind.assigned_role == "AI")
 			active_with_role["AI"]++
 
 		if(M.mind.assigned_role == "Cyborg")
 			active_with_role["Cyborg"]++
-
-		if(M.mind.assigned_role == "Janitor")
-			active_with_role["Janitor"]++
-
-		if(M.mind.assigned_role == "Gardener")
-			active_with_role["Gardener"]++
 
 	return active_with_role

@@ -2,8 +2,8 @@
 
 //TODO: Make these simple_animals
 
-var/const/MIN_IMPREGNATION_TIME = 100 //time it takes to impregnate someone
-var/const/MAX_IMPREGNATION_TIME = 150
+var/const/MIN_IMPREGNATION_TIME = 250 //time it takes to impregnate someone
+var/const/MAX_IMPREGNATION_TIME = 350
 
 var/const/MIN_ACTIVE_TIME = 200 //time between being dropped and going idle
 var/const/MAX_ACTIVE_TIME = 400
@@ -38,8 +38,9 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M as mob, mob/user as mob)
 	..()
-	user.drop_from_inventory(src)
-	Attach(M)
+	if(istype(M))
+		user.drop_from_inventory(src,M)
+		Attach(M)
 
 /obj/item/clothing/mask/facehugger/New()
 	if(aliens_allowed)
@@ -113,8 +114,10 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	var/mob/living/carbon/C = M
 	if(istype(C) && locate(/datum/organ/internal/xenos/hivenode) in C.internal_organs)
-		return
+		return 0
 
+	if(istype(C,/mob/living/carbon/Xenomorph))
+		return 0
 
 	attached++
 	spawn(MAX_IMPREGNATION_TIME)
@@ -122,7 +125,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	var/mob/living/L = M //just so I don't need to use :
 
-	if(loc == L) return
+//	if(loc == L) return
 	if(stat != CONSCIOUS)	return
 	if(!sterile) L.take_organ_damage(strength,0) //done here so that even borgs and humans in helmets take damage
 
@@ -139,13 +142,11 @@ var/const/MAX_ACTIVE_TIME = 400
 		var/mob/living/carbon/target = L
 
 		if(target.wear_mask)
-			if(prob(20))	return
+//			if(prob(20))	return
 			var/obj/item/clothing/W = target.wear_mask
 			if(!W.canremove)	return
 			target.drop_from_inventory(W)
-
 			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
-
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
 
@@ -166,6 +167,9 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target as mob)
 	if(!target || target.wear_mask != src || target.stat == DEAD) //was taken off or something
+		return
+
+	if(istype(target,/mob/living/carbon/Xenomorph))
 		return
 
 	if(!sterile)
@@ -227,6 +231,9 @@ var/const/MAX_ACTIVE_TIME = 400
 		return 1
 
 	if(!iscarbon(M))
+		return 0
+
+	if(istype(M,/mob/living/carbon/Xenomorph))
 		return 0
 
 	var/mob/living/carbon/C = M

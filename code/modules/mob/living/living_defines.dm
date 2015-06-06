@@ -49,3 +49,5 @@
 
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
+
+	var/is_being_hugged = 0 //Is there a hugger humping our face?

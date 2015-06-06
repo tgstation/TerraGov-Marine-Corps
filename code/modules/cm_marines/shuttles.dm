@@ -122,7 +122,7 @@ proc/move_marine_b_shuttle()
 	name = "marine transport shuttle one console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
-	req_access = list(access_security)
+	req_access = list(access_sulaco_brig)
 	circuit = "/obj/item/weapon/circuitboard/marine_a_shuttle"
 	var/hacked = 0
 	var/location = 0
@@ -229,7 +229,7 @@ proc/move_marine_b_shuttle()
 	name = "marine transport shuttle two console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
-	req_access = list(access_security)
+	req_access = list(access_sulaco_brig)
 	circuit = "/obj/item/weapon/circuitboard/marine_b_shuttle"
 	var/hacked = 0
 	var/location = 0

@@ -17,7 +17,7 @@
 	icon_opened = "miningsecopen"
 	icon_broken = "miningsecbroken"
 	icon_off = "miningsecoff"
-	req_access = list(access_mining)
+	req_access = list(access_civilian_generic)
 
 /obj/structure/closet/secure_closet/miner/New()
 	..()

@@ -61,7 +61,7 @@
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
-	req_access = list(access_tox_storage)
+	req_access = list(access_civilian_generic)
 	icon_state = "secureres1"
 	icon_closed = "secureres"
 	icon_locked = "secureres1"
@@ -109,7 +109,7 @@
 //---- Isolation room air alarms
 
 /obj/machinery/alarm/isolation
-	req_one_access = list(access_research, access_atmospherics, access_engine_equip)
+	req_one_access = list(access_sulaco_engineering, access_sulaco_research)
 
 /obj/machinery/alarm/monitor/isolation
-	req_one_access = list(access_research, access_atmospherics, access_engine_equip)
+	req_one_access = list(access_sulaco_engineering, access_sulaco_research)

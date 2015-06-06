@@ -143,10 +143,10 @@
 /datum/language/xenos
 	name = "Hivemind"
 	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verb = "hisses"
-	colour = "alien"
+	speech_verb = "hiveminds"
+	ask_verb = "hiveminds"
+	exclaim_verb = "hiveminds"
+	colour = "soghun"
 	key = "a"
 	flags = RESTRICTED | HIVEMIND
 
@@ -155,7 +155,7 @@
 	var/mob/living/carbon/M = other
 	if(!istype(M))
 		return 1
-	if(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs)
+	if(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs || istype(other,/mob/living/carbon/Xenomorph))
 		return 1
 
 	return 0

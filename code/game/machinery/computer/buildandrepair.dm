@@ -52,7 +52,7 @@
 	name = "Circuit board (Security Camera Monitor)"
 	build_path = /obj/machinery/computer/security
 	var/network = list("SS13")
-	req_access = list(access_security)
+	req_access = list(access_sulaco_brig)
 	var/locked = 1
 	var/emagged = 0
 

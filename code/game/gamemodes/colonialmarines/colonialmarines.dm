@@ -19,14 +19,14 @@
 		// return 0
 
 	// Handle Aliens
-	
+
 	/* // 1 Alien per 5 players, 1 Survivor per 10 players
 	var/players = num_players()
 	for(var/C = 0, C<players, C+=5)
 		numaliens++
 	for(var/C = 0, C<players, C+=10)
 		numsurvivors++ */
-	
+
 	// Alien number scales to player number (preferred). Swap these to test solo.
 	var/readyplayers = num_players()
 	// numaliens = Clamp((readyplayers/5), 2, 8) //(n, minimum, maximum)
@@ -44,8 +44,8 @@
 		A.special_role = "Alien"
 
 	// Handle Survivors
-	
-	numsurvivors = Clamp((readyplayers/5), 0, 3) //(n, minimum, maximum)
+
+	numsurvivors = Clamp((readyplayers/6), 0, 3) //(n, minimum, maximum)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 	if(possible_survivors.len >= 1)
 		for(var/i = 0, i < numsurvivors, i++)
@@ -69,7 +69,8 @@
 	for(var/datum/mind/survivor in survivors)
 		survivor.current.loc = pick(surv_spawn)
 	spawn (50)
-	command_announcement.Announce("Distress signal received from the NSS Nostromo. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
+//	command_announcement.Announce("Distress signal received from the NSS Nostromo. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
+	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -107,7 +108,7 @@
 
 	//Give them some information
 	H.client << "<h2>You are a survivor!</h2>"
-	H.client << "\blue You were a crew member on the Nostromo. Your crew was wiped out by an alien infestation. You should try to locate and help other survivors (if there are any other than you.)"
+	H.client << "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now."
 	return 1
 
 var/list/survivorstory = list("You watched your friend {name}'s chest burst and an alien larva come out. You tried to capture it but it escaped through the vents. ", "{name} was attacked by a facehugging alien, which impregnated them with an alien lifeform. {name}'s chest burst and a larva emerged and escaped through the vents", "You watched {name} get the alien lifeform's acid on them, melting away their flesh. You can still hear the screams... ", "The Head of Security, {name}, made an announcement that the aliens killed the Captain and Head of Personnel, and that all crew should hide and wait for rescue." )
@@ -153,9 +154,9 @@ var/list/toldstory = list()
 	//For each survivor, add one to the count. Should work accurately enough.
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H) //Prevent any runtime errors
-			if(H.client && !findtext(H.get_species(), "Xenomorph") && H.stat != DEAD) // If they're connected/unghosted and alive and not debrained
+			if(H.client && !istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD) // If they're connected/unghosted and alive and not debrained
 				humansurvivors += 1 //Add them to the amount of people who're alive.
-			else if(H.client && findtext(H.get_species(), "Xenomorph") && H.stat != DEAD)
+			else if(H.client && istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD)
 				aliensurvivors += 1
 
 /*
@@ -300,6 +301,7 @@ datum/game_mode/colonialmarines/proc/check_alien_victory()
 		feedback_set_details("round_end_result","draw - the station has been nuked")
 		world << "\red <FONT size = 3><B>Draw.</B></FONT>"
 		world << "\red <FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
+		world << 'sound/misc/sadtrombone.ogg'
 
 	..()
 	return 1

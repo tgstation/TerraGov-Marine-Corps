@@ -12,7 +12,7 @@
 	braintype = "Robot"
 	lawupdate = 0
 	density = 1
-	req_access = list(access_engine, access_robotics)
+	req_access = list(access_sulaco_engineering, access_sulaco_research)
 	integrated_light_power = 2
 	local_transmit = 1
 

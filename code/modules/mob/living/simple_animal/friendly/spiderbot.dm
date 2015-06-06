@@ -11,7 +11,7 @@
 	var/obj/item/weapon/cell/cell = null
 	var/obj/machinery/camera/camera = null
 	var/obj/item/device/mmi/mmi = null
-	var/list/req_access = list(access_robotics) //Access needed to pop out the brain.
+	var/list/req_access = list(access_sulaco_research) //Access needed to pop out the brain.
 
 	name = "Spider-bot"
 	desc = "A skittering robotic friend!"
@@ -109,7 +109,7 @@
 			var/obj/item/device/pda/pda = O
 			id_card = pda.id
 
-		if(access_robotics in id_card.access)
+		if(access_sulaco_research in id_card.access)
 			user << "\blue You swipe your access card and pop the brain out of [src]."
 			eject_brain()
 

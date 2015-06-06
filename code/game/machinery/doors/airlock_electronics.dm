@@ -8,7 +8,7 @@
 
 	matter = list("metal" = 50,"glass" = 50)
 
-	req_access = list(access_engine)
+	req_access = list(access_sulaco_engineering)
 
 	var/list/conf_access = null
 	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access

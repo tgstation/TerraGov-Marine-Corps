@@ -4,7 +4,7 @@
 /obj/structure/stool/bed/nest
 	name = "alien nest"
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "nest"
 	var/health = 100
 	var/on_fire = 0
@@ -47,10 +47,10 @@
 	var/mob/living/carbon/xenos = user
 	var/mob/living/carbon/victim = M
 
-	if(istype(victim) && locate(/datum/organ/internal/xenos/hivenode) in victim.internal_organs)
+	if(istype(victim) && istype(victim,/mob/living/carbon/Xenomorph))
 		return
 
-	if(istype(xenos) && !(locate(/datum/organ/internal/xenos/hivenode) in xenos.internal_organs))
+	if(istype(xenos) && !istype(victim,/mob/living/carbon/Xenomorph))
 		return
 
 	if(M == usr)

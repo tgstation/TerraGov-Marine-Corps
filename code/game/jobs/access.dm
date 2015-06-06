@@ -1,5 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
+/*
 /var/const/access_security = 1 // Security equipment
 /var/const/access_brig = 2 // Brig timers and permabrig
 /var/const/access_armory = 3
@@ -87,7 +88,7 @@
 
 /var/const/access_logistics = 300
 
-//Alpha prep stuff
+/*
 /var/const/access_alpha_prep = 301
 /var/const/access_alpha_mprep = 302
 /var/const/access_alpha_eprep = 303
@@ -114,6 +115,7 @@
 /var/const/access_delta_eprep = 318
 /var/const/access_delta_sprep = 319
 /var/const/access_delta_leader = 320
+*/
 
 /var/const/access_xeno_containment = 400
 
@@ -125,6 +127,51 @@
 
 /var/const/access_sulaco_brig = 600
 /var/const/access_sulaco_cells = 601
+
+/var/const/access_marine_prep = 301
+/var/const/access_marine_medprep = 302
+/var/const/access_marine_engprep = 303
+/var/const/access_marine_leader = 304
+
+/var/const/access_alpha_squad = 330
+/var/const/access_bravo_squad = 331
+/var/const/access_charlie_squad = 332
+/var/const/access_delta_squad = 333
+*/
+
+//Sulaco access levels
+
+/var/const/access_sulaco_captain = 1
+/var/const/access_sulaco_logistics = 2
+/var/const/access_sulaco_brig = 3
+/var/const/access_sulaco_armory = 4
+/var/const/access_sulaco_CMO = 5
+/var/const/access_sulaco_CE = 6
+/var/const/access_sulaco_engineering = 7
+/var/const/access_sulaco_medbay = 8
+/var/const/access_marine_prep = 9
+/var/const/access_marine_medprep = 10
+/var/const/access_marine_engprep = 11
+/var/const/access_marine_leader = 12
+/var/const/access_marine_specprep = 13
+/var/const/access_sulaco_research = 14
+/var/const/access_squad_alpha = 15
+/var/const/access_squad_bravo = 16
+/var/const/access_squad_charlie = 17
+/var/const/access_squad_delta = 18
+/var/const/access_sulaco_bridge = 19
+/var/const/access_sulaco_chemistry = 20
+
+//Surface access levels
+
+/var/const/access_civilian_generic = 100
+/var/const/access_civilian_command = 101
+/var/const/access_civilian_engi = 102
+/var/const/access_civilian_research = 103
+
+/var/const/access_centcomm = 200 // One generic access for centcomm, fuckit
+/var/const/access_syndicate = 201 // One generic access for centcomm, fuckit
+
 
 /obj/var/list/req_access = null
 /obj/var/req_access_txt = "0"
@@ -213,6 +260,8 @@
 	return 1
 
 /proc/get_centcom_access(job)
+	return get_all_centcom_access()
+	/*
 	switch(job)
 		if("VIP Guest")
 			return list(access_cent_general)
@@ -231,23 +280,17 @@
 		if("BlackOps Commander")
 			return list(access_cent_general, access_cent_thunder, access_cent_specops, access_cent_living, access_cent_storage, access_cent_creed)
 		if("Supreme Commander")
-			return get_all_centcom_access()
+		*/
+
 
 /proc/get_all_accesses()
-	return list(access_security, access_sec_doors, access_brig, access_armory, access_forensics_lockers, access_court,
-	            access_medical, access_genetics, access_morgue, access_rd,
-	            access_tox, access_tox_storage, access_chemistry, access_engine, access_engine_equip, access_maint_tunnels,
-	            access_external_airlocks, access_change_ids, access_ai_upload,
-	            access_teleporter, access_eva, access_heads, access_captain, access_all_personal_lockers,
-	            access_tech_storage, access_chapel_office, access_atmospherics, access_kitchen,
-	            access_bar, access_janitor, access_crematorium, access_robotics, access_cargo, access_construction,
-	            access_hydroponics, access_library, access_lawyer, access_virology, access_psychiatrist, access_cmo, access_qm, access_clown, access_mime, access_surgery,
-	            access_theatre, access_research, access_mining, access_mailsorting,
-	            access_heads_vault, access_mining_station, access_xenobiology, access_ce, access_hop, access_hos, access_RC_announce,
-	            access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch)
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
+
+/proc/get_all_marine_access()
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry)
 
 /proc/get_all_centcom_access()
-	return list(access_cent_general, access_cent_thunder, access_cent_specops, access_cent_medical, access_cent_living, access_cent_storage, access_cent_teleporter, access_cent_creed, access_cent_captain)
+	return list(access_centcomm)
 
 /proc/get_all_syndicate_access()
 	return list(access_syndicate)
@@ -257,369 +300,94 @@
 		if(0)
 			return get_all_accesses()
 		if(1) //security
-			return list(access_sec_doors, access_security, access_brig, access_armory, access_forensics_lockers, access_court, access_hos)
+			return list(access_sulaco_brig)
 		if(2) //medbay
-			return list(access_medical, access_genetics, access_morgue, access_chemistry, access_psychiatrist, access_virology, access_surgery, access_cmo)
+			return list(access_sulaco_CMO, access_sulaco_medbay)
 		if(3) //research
-			return list(access_research, access_tox, access_tox_storage, access_robotics, access_xenobiology, access_xenoarch, access_rd)
+			return list(access_sulaco_research, access_sulaco_chemistry)
 		if(4) //engineering and maintenance
-			return list(access_construction, access_maint_tunnels, access_engine, access_engine_equip, access_external_airlocks, access_tech_storage, access_atmospherics, access_ce)
+			return list(access_sulaco_CE, access_sulaco_engineering)
 		if(5) //command
-			return list(access_heads, access_RC_announce, access_keycard_auth, access_change_ids, access_ai_upload, access_teleporter, access_eva, access_tcomsat, access_gateway, access_all_personal_lockers, access_heads_vault, access_hop, access_captain)
-		if(6) //station general
-			return list(access_kitchen,access_bar, access_hydroponics, access_janitor, access_chapel_office, access_crematorium, access_library, access_theatre, access_lawyer, access_clown, access_mime)
-		if(7) //supply
-			return list(access_mailsorting, access_mining, access_mining_station, access_cargo, access_qm)
+			return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_CMO, access_sulaco_CE)
+		if(6) //spess mahreens
+			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep)
+		if(7) //squads
+			return list(access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta)
+		if(8) //Civilian
+			return list(access_civilian_generic, access_civilian_command, access_civilian_research, access_civilian_engi)
 
 /proc/get_region_accesses_name(var/code)
 	switch(code)
 		if(0)
 			return "All"
 		if(1) //security
-			return "Security"
+			return "Sulaco Security"
 		if(2) //medbay
-			return "Medbay"
+			return "Sulaco Medbay"
 		if(3) //research
-			return "Research"
+			return "Sulaco Research"
 		if(4) //engineering and maintenance
-			return "Engineering"
+			return "Sulaco Engineering"
 		if(5) //command
-			return "Command"
-		if(6) //station general
-			return "Station General"
-		if(7) //supply
-			return "Supply"
-
+			return "Sulaco Command"
+		if(6) //marine prep
+			return "Marines"
+		if(7) //squads
+			return "Squads"
+		if(8) //Civilian
+			return "Civilian"
 
 /proc/get_access_desc(A)
 	switch(A)
-		if(access_cargo)
-			return "Cargo Bay"
-		if(access_cargo_bot)
-			return "Cargo Bot Delivery"
-		if(access_security)
-			return "Security"
-		if(access_brig)
-			return "Holding Cells"
-		if(access_court)
-			return "Courtroom"
-		if(access_forensics_lockers)
-			return "Forensics"
-		if(access_medical)
-			return "Medical"
-		if(access_genetics)
-			return "Genetics Lab"
-		if(access_morgue)
-			return "Morgue"
-		if(access_tox)
-			return "R&D Lab"
-		if(access_tox_storage)
-			return "Toxins Lab"
-		if(access_chemistry)
-			return "Chemistry Lab"
-		if(access_rd)
-			return "Research Director"
-		if(access_bar)
-			return "Bar"
-		if(access_janitor)
-			return "Custodial Closet"
-		if(access_engine)
-			return "Engineering"
-		if(access_engine_equip)
-			return "Power Equipment"
-		if(access_maint_tunnels)
-			return "Maintenance"
-		if(access_external_airlocks)
-			return "External Airlocks"
-		if(access_emergency_storage)
-			return "Emergency Storage"
-		if(access_change_ids)
-			return "ID Computer"
-		if(access_ai_upload)
-			return "AI Upload"
-		if(access_teleporter)
-			return "Teleporter"
-		if(access_eva)
-			return "EVA"
-		if(access_heads)
-			return "Bridge"
-		if(access_captain)
-			return "Captain"
-		if(access_all_personal_lockers)
-			return "Personal Lockers"
-		if(access_chapel_office)
-			return "Chapel Office"
-		if(access_tech_storage)
-			return "Technical Storage"
-		if(access_atmospherics)
-			return "Atmospherics"
-		if(access_crematorium)
-			return "Crematorium"
-		if(access_armory)
-			return "Armory"
-		if(access_construction)
-			return "Construction Areas"
-		if(access_kitchen)
-			return "Kitchen"
-		if(access_hydroponics)
-			return "Hydroponics"
-		if(access_library)
-			return "Library"
-		if(access_lawyer)
-			return "Law Office"
-		if(access_robotics)
-			return "Robotics"
-		if(access_virology)
-			return "Virology"
-		if(access_psychiatrist)
-			return "Psychiatrist's Office"
-		if(access_cmo)
-			return "Chief Medical Officer"
-		if(access_qm)
-			return "Quartermaster"
-/*		if(access_clown)
-			return "HONK! Access"
-		if(access_mime)
-			return "Silent Access"*/
-		if(access_surgery)
-			return "Surgery"
-		if(access_theatre)
-			return "Theatre"
-		if(access_manufacturing)
-			return "Manufacturing"
-		if(access_research)
-			return "Science"
-		if(access_mining)
-			return "Mining"
-		if(access_mining_office)
-			return "Mining Office"
-		if(access_mailsorting)
-			return "Cargo Office"
-		if(access_mint)
-			return "Mint"
-		if(access_mint_vault)
-			return "Mint Vault"
-		if(access_heads_vault)
-			return "Main Vault"
-		if(access_mining_station)
-			return "Mining EVA"
-		if(access_xenobiology)
-			return "Xenobiology Lab"
-		if(access_xenoarch)
-			return "Xenoarchaeology"
-		if(access_hop)
-			return "Head of Personnel"
-		if(access_hos)
-			return "Head of Security"
-		if(access_ce)
-			return "Chief Engineer"
-		if(access_RC_announce)
-			return "RC Announcements"
-		if(access_keycard_auth)
-			return "Keycode Auth. Device"
-		if(access_tcomsat)
-			return "Telecommunications"
-		if(access_gateway)
-			return "Gateway"
-		if(access_sec_doors)
+		if(access_sulaco_brig)
 			return "Brig"
+		if(access_sulaco_CMO)
+			return "CMO's Office"
+		if(access_sulaco_medbay)
+			return "Medbay"
+		if(access_sulaco_research)
+			return "Research"
+		if(access_sulaco_CE)
+			return "CE's Office"
+		if(access_sulaco_engineering)
+			return "Engineering"
+		if(access_sulaco_captain)
+			return "Captain"
+		if(access_sulaco_logistics)
+			return "Logistics"
+		if(access_sulaco_bridge)
+			return "Bridge"
+		if(access_marine_prep)
+			return "Marine"
+		if(access_marine_engprep)
+			return "Marine Engineer"
+		if(access_marine_medprep)
+			return "Marine Medical"
+		if(access_marine_specprep)
+			return "Marine Special Forces"
+		if(access_marine_leader)
+			return "Marine Leader"
+		if(access_squad_alpha)
+			return "Alpha Squad"
+		if(access_squad_bravo)
+			return "Bravo Squad"
+		if(access_squad_charlie)
+			return "Charlie Squad"
+		if(access_squad_delta)
+			return "Delta Squad"
+		if(access_civilian_research)
+			return "Civilian Research"
+		if(access_civilian_command)
+			return "Civilian Command"
+		if(access_civilian_engi)
+			return "Civilian Engineering"
+		if(access_civilian_generic)
+			return "Civilian"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
-		if(access_cent_general)
-			return "Code Grey"
-		if(access_cent_thunder)
-			return "Code Yellow"
-		if(access_cent_storage)
-			return "Code Orange"
-		if(access_cent_living)
-			return "Code Green"
-		if(access_cent_medical)
-			return "Code White"
-		if(access_cent_teleporter)
-			return "Code Blue"
-		if(access_cent_specops)
+		if(access_centcomm)
 			return "Code Black"
-		if(access_cent_creed)
-			return "Code Silver"
-		if(access_cent_captain)
-			return "Code Gold"
-
-/proc/get_marine_jobs()
-		return list(
-		"Commander",
-		"Executive Officer",
-		"Bridge Officer",
-		"Military Police",
-		"Sulaco Chief Medical Officer",
-		"Sulaco Doctor",
-		"Sulaco Chemist",
-		"Sulaco Chief Engineer",
-		"Sulaco Maintenance Tech",
-		"Alpha Squad Medic",
-		"Alpha Squad Engineer",
-		"Alpha Squad Standard",
-		"Bravo Squad Leader",
-		"Bravo Squad Medic",
-		"Bravo Squad Engineer",
-		"Bravo Squad Standard",
-		"Delta Squad Leader",
-		"Delta Squad Medic",
-		"Delta Squad Engineer",
-		"Delta Squad Standard",
-		"Charlie Squad Leader",
-		"Charlie Squad Medic",
-		"Charlie Squad Engineer",
-		"Charlie Squad Standard",
-		"Researcher",
-		"Marine"
-		)
-
-
-/proc/get_marine_access(job)
-	switch(job)
-		if("Alpha Squad Leader")
-			return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader)
-		if("Alpha Squad Medic")
-			return list(access_alpha_prep, access_alpha_mprep)
-		if("Alpha Squad Engineer")
-			return list(access_alpha_prep, access_alpha_eprep)
-		if("Alpha Squad Standard")
-			return list(access_alpha_prep, access_alpha_sprep)
-		if("Bravo Squad Leader")
-			return list(access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader)
-		if("Bravo Squad Medic")
-			return list(access_bravo_prep, access_bravo_mprep)
-		if("Bravo Squad Engineer")
-			return list(access_bravo_prep, access_bravo_eprep)
-		if("Bravo Squad Standard")
-			return list(access_bravo_prep, access_bravo_sprep)
-		if("Charlie Squad Leader")
-			return list(access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader)
-		if("Charlie Squad Medic")
-			return list(access_charlie_prep, access_charlie_mprep)
-		if("Charlie Squad Engineer")
-			return list(access_charlie_prep, access_charlie_eprep)
-		if("Charlie Squad Standard")
-			return list(access_charlie_prep, access_charlie_sprep)
-		if("Delta Squad Leader")
-			return list(access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader)
-		if("Delta Squad Medic")
-			return list(access_delta_prep, access_delta_mprep)
-		if("Delta Squad Engineer")
-			return list(access_delta_prep, access_delta_eprep)
-		if("Delta Squad Standard")
-			return list(access_delta_prep, access_delta_sprep)
-		if("Logistics Officer")
-			return list(access_logistics)
-		if("Commander")
-			return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader, access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader, access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader, access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader, access_logistics, access_xeno_containment, access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_robotics, access_sulaco_brig, access_sulaco_cells)
-		if("Researcher")
-			return list(access_xeno_containment, access_robotics)
-		if("Sulaco Medic")
-			return list(access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_genetics, access_medical_storage)
-		if("Military Police")
-			return list(access_sulaco_brig, access_sulaco_cells, access_logistics, access_xeno_containment, access_robotics, access_medical_bay, access_medical_surgery)
-
-
-/proc/get_marine_access_desc(A)
-	switch(A)
-		if(access_alpha_prep)
-			return "Alpha Preparation"
-		if(access_alpha_mprep)
-			return "Alpha Medical Preparation"
-		if(access_alpha_eprep)
-			return "Alpha Engineering Preparation"
-		if(access_alpha_sprep)
-			return "Alpha Standard Preparation"
-		if(access_alpha_leader)
-			return "Alpha Leader Preparation"
-		if(access_bravo_prep)
-			return "Bravo Preparation"
-		if(access_bravo_mprep)
-			return "Bravo Medical Preparation"
-		if(access_bravo_eprep)
-			return "Bravo Engineering Preparation"
-		if(access_bravo_sprep)
-			return "Bravo Standard Preparation"
-		if(access_bravo_leader)
-			return "Bravo Leader Preparation"
-		if(access_charlie_prep)
-			return "Charlie Preparation"
-		if(access_charlie_mprep)
-			return "Charlie Medical Preparation"
-		if(access_charlie_eprep)
-			return "Charlie Engineering Preparation"
-		if(access_charlie_sprep)
-			return "Charlie Standard Preparation"
-		if(access_charlie_leader)
-			return "Charlie Leader Preparation"
-		if(access_delta_prep)
-			return "Delta Preparation"
-		if(access_delta_mprep)
-			return "Delta Medical Preparation"
-		if(access_delta_eprep)
-			return "Delta Engineering Preparation"
-		if(access_delta_sprep)
-			return "Delta Standard Preparation"
-		if(access_delta_leader)
-			return "Delta Leader Preparation"
-		if(access_logistics)
-			return "Logistics"
-		if(access_xeno_containment)
-			return "Xenomorphic Containment"
-		if(access_medical_bay)
-			return "Sulaco Med Bay"
-		if(access_medical_chem)
-			return "Sulaco Med Chemistry"
-		if(access_medical_genetics)
-			return "Sulaco Med Genetics"
-		if(access_medical_surgery)
-			return "Sulaco Med Surgery"
-		if(access_medical_storage)
-			return "Sulaco Med Storage"
-		if(access_sulaco_brig)
-			return "Sulaco Brig"
-		if(access_sulaco_cells)
-			return "Sulaco Brig Cells"
-
-/proc/get_all_marine_accesses()
-	return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader, access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader, access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader, access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader, access_logistics, access_xeno_containment, access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_robotics, access_sulaco_brig, access_sulaco_cells)
-
-/proc/get_marine_region_accesses_name(var/code)
-	switch(code)
-		if(1)
-			return "Alpha"
-		if(2)
-			return "Bravo"
-		if(3)
-			return "Charlie"
-		if(4)
-			return "Delta"
-		if(5)
-			return "Command"
-		if(6)
-			return "Research"
-		if(7)
-			return "Misc"
-
-/proc/get_marine_region_accesses(var/code)
-	switch(code)
-		if(1)
-			return list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader)
-		if(2)
-			return list(access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader)
-		if(3)
-			return list(access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader)
-		if(4)
-			return list(access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader)
-		if(5)
-			return list(access_logistics)
-		if(6)
-			return list(access_xeno_containment)
-		if(7)
-			return list(access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_sulaco_brig, access_sulaco_cells)
-
 
 /proc/get_all_jobs()
 	var/list/all_jobs = list()
@@ -734,3 +502,118 @@ proc/get_all_job_icons() //For all existing HUD icons
 		return
 
 	return "Unknown" //Return unknown if none of the above apply
+
+
+
+
+/*
+/proc/get_marine_jobs()
+		return list(
+		"Commander",
+		"Executive Officer",
+		"Bridge Officer",
+		"Military Police",
+		"Sulaco Chief Medical Officer",
+		"Sulaco Doctor",
+		"Sulaco Chemist",
+		"Sulaco Chief Engineer",
+		"Sulaco Maintenance Tech",
+		"Squad Leader",
+		"Squad Medic",
+		"Squad Engineer",
+		"Squad Marine",
+		"Researcher",
+		"Marine"
+		)
+
+
+/proc/get_marine_access(job)
+	switch(job)
+		if("Squad Leader")
+			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader)
+		if("Squad Medic")
+			return list(access_marine_prep, access_marine_medprep)
+		if("Squad Engineer")
+			return list(access_marine_prep, access_marine_eprep)
+		if("Squad Marine")
+			return list(access_marine_prep, access_marine_sprep)
+		if("Logistics Officer")
+			return list(access_logistics)
+		if("Commander")
+			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_logistics, access_xeno_containment, access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_robotics, access_sulaco_brig, access_sulaco_cells)
+		if("Researcher")
+			return list(access_xeno_containment, access_robotics)
+		if("Sulaco Medic")
+			return list(access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_genetics, access_medical_storage)
+		if("Military Police")
+			return list(access_sulaco_brig, access_sulaco_cells, access_logistics, access_xeno_containment, access_robotics, access_medical_bay, access_medical_surgery)
+
+
+/proc/get_marine_access_desc(A)
+	switch(A)
+		if(access_marine_prep)
+			return "Marine Preparation"
+		if(access_marine_mprep)
+			return "Medical Preparation"
+		if(access_marine_eprep)
+			return "Engineering Preparation"
+		if(access_marine_sprep)
+			return "Standard Preparation"
+		if(access_marine_leader)
+			return "Leader Preparation"
+		if(access_logistics)
+			return "Logistics"
+		if(access_xeno_containment)
+			return "Xenomorphic Containment"
+		if(access_medical_bay)
+			return "Sulaco Med Bay"
+		if(access_medical_chem)
+			return "Sulaco Med Chemistry"
+		if(access_medical_genetics)
+			return "Sulaco Med Genetics"
+		if(access_medical_surgery)
+			return "Sulaco Med Surgery"
+		if(access_medical_storage)
+			return "Sulaco Med Storage"
+		if(access_sulaco_brig)
+			return "Sulaco Brig"
+		if(access_sulaco_cells)
+			return "Sulaco Brig Cells"
+
+/proc/get_all_marine_accesses()
+	return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_logistics, access_xeno_containment, access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_robotics, access_sulaco_brig, access_sulaco_cells)
+
+/proc/get_marine_region_accesses_name(var/code)
+	switch(code)
+		if(1)
+			return "Alpha"
+		if(2)
+			return "Bravo"
+		if(3)
+			return "Charlie"
+		if(4)
+			return "Delta"
+		if(5)
+			return "Command"
+		if(6)
+			return "Research"
+		if(7)
+			return "Misc"
+//All obsolete
+/proc/get_marine_region_accesses(var/code)
+	switch(code)
+		if(1)
+			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader)
+		if(2)
+			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader)
+		if(3)
+			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader)
+		if(4)
+			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader)
+		if(5)
+			return list(access_logistics)
+		if(6)
+			return list(access_xeno_containment)
+		if(7)
+			return list(access_medical_bay, access_medical_surgery, access_medical_chem, access_medical_storage, access_medical_genetics, access_sulaco_brig, access_sulaco_cells)
+*/
