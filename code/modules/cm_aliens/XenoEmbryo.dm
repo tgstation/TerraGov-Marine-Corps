@@ -89,9 +89,9 @@
 		return
 
 	if(affected_mob.lying)
-		affected_mob.overlays += image('icons/mob/alien.dmi', loc = affected_mob, icon_state = "burst_lie")
+		affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_lie")
 	else
-		affected_mob.overlays += image('icons/mob/alien.dmi', loc = affected_mob, icon_state = "burst_stand")
+		affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
 	spawn(6)
 		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(affected_mob.loc)
 		new_xeno.key = picked
@@ -121,7 +121,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 			for(var/mob/living/L in mob_list)
 				if(iscorgi(L) || iscarbon(L))
 					if(L.status_flags & XENO_HOST)
-						var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[stage]")
+						var/I = image('icons/Xeno/Misc.dmi', loc = L, icon_state = "infected[stage]")
 						alien.client.images += I
 
 /*----------------------------------------
@@ -141,7 +141,7 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 
 			if(alien.client)
 				if(C.status_flags & XENO_HOST)
-					var/I = image('icons/mob/alien.dmi', loc = C, icon_state = "infected[stage]")
+					var/I = image('icons/Xeno/Misc.dmi', loc = C, icon_state = "infected[stage]")
 					alien.client.images += I
 
 /*----------------------------------------

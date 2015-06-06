@@ -6,36 +6,72 @@
 ######################################################################
 
 # not_a_user - Host
-verbose lucidity - Host
-Apophis775 - Head Developer
-unknownmurder - Head Admin
+Apophis775 - Host
+ColonialMarines - Host
 
-sir octagon - Game Admin
+Rahlzel - Vice Host
+
+
+
+SASoperative - Head Admin
+
+
+ - Head Moderator
+
+
 coroneljones - Game Admin
-Caryl - Game Admin
-minimike1220 - Game Admin
-Void00 - Game Admin
 
-Speedybast - Trial Admin
-SASoperative - Trial Admin
-obey_stylez - Trial Admin
-Rovernic - Trial Admin
-Razerwing - Trial Admin
-CampinKiller - Trial Admin
+Speedybast - Game Admin
 
-Chief_Executive - Moderator
-Doctor Clockwork - Moderator
-tristan1333 - Moderator
-Lordekilly - Moderator
+Rovernic - Game Admin
 
-mdom - Trial Moderator
-AncientV25 - Trial Moderator
-Shadowling1232 - Trial Moderator
+Unknownmurder - Game Admin
 
-Rahlzel - Developer
-Allan1234 - Mapper
+
+
+
+Allan1234 - Trial Admin
+
+Caryl - Trial Admin
+
+Kyrac - Trial Admin
+
+Johnkilla56 - Trial Admin
+
+
+
+felkvir - Moderator
+
+TotalAnarchy - Moderator
+
+Fickmacher - Moderator
+
+Biolock - Moderator
+
+Officialjake -Moderator
+
+NijiShadow - Moderator
+
+
+
+Ordukai - Trial Moderator
+
+Pawoverlord - Trial Moderator
+
+Hailstorm77 - Trial Moderator
+
+Septimius - Trial Moderator
+
+
+
+
+
 Infernus44 - Mapper
+
 mewth - Mapper
+
 Slayerplayer99 - Coder
-Aztectornado - Coder
+
 SailorDave - Coder
+
+Absynth - Coder

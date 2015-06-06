@@ -120,7 +120,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 				for (var/mob/living/carbon/C in mob_list)
 					if(C)
 						if (C.status_flags & XENO_HOST)
-							var/I = image('icons/mob/alien.dmi', loc = C, icon_state = "infected[stage]")
+							var/I = image('icons/Xeno/Misc.dmi', loc = C, icon_state = "infected[stage]")
 							alien.client.images += I
 		return
 
@@ -133,7 +133,7 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 		for (var/mob/living/carbon/alien/alien in player_list)
 			if (alien.client)
 				if (C.status_flags & XENO_HOST)
-					var/I = image('icons/mob/alien.dmi', loc = C, icon_state = "infected[stage]")
+					var/I = image('icons/Xeno/Misc.dmi', loc = C, icon_state = "infected[stage]")
 					alien.client.images += I
 	return
 
