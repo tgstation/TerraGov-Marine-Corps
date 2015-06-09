@@ -166,6 +166,9 @@ var/syndicate_code_response//Code response for traitors.
 
 /proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
 
+//Fuck all this stuff for now I can't be arsed to figure out where the null proc is coming from
+//Abby
+/*
 	var/code_phrase = ""//What is returned when the proc finishes.
 	var/words = pick(//How many words there will be. Minimum of two. 2, 4 and 5 have a lesser chance of being selected. 3 is the most likely.
 		50; 2,
@@ -196,12 +199,12 @@ var/syndicate_code_response//Code response for traitors.
 			if(1)//1 and 2 can only be selected once each to prevent more than two specific names/places/etc.
 				switch(rand(1,2))//Mainly to add more options later.
 					if(1)
-						if(names.len&&prob(70))
+						if(names.len && prob(70))
 							code_phrase += pick(names)
-						else
-							code_phrase += pick(pick(first_names_male,first_names_female))
-							code_phrase += " "
-							code_phrase += pick(last_names)
+//						else
+//							code_phrase += pick(pick(first_names_male,first_names_female))
+//							code_phrase += " "
+//							code_phrase += pick(last_names)
 					if(2)
 						code_phrase += pick(joblist)//Returns a job.
 				safety -= 1
@@ -224,8 +227,8 @@ var/syndicate_code_response//Code response for traitors.
 			code_phrase += "."
 		else
 			code_phrase += ", "
-
-	return code_phrase
+*/
+	return pick("love","hate","anger","peace","pride","sympathy","bravery","loyalty","honesty","integrity","compassion","charity","success","courage","deceit","skill","beauty","brilliance","pain","misery","beliefs","dreams","justice","truth","faith","liberty","knowledge","thought","information","culture","trust","dedication","progress","education","hospitality","leisure","trouble","friendships", "relaxation")
 
 /*
 //This proc tests the gen above.

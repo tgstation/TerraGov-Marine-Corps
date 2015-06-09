@@ -20,8 +20,6 @@
 			src << "\green You feel the royal jelly swirl in your veins.."
 			jellyGrow = jellyMax
 
-	blinded = null
-
 	if(loc)
 		handle_environment(loc.return_air())
 
@@ -33,6 +31,8 @@
 
 	if(client)
 		handle_regular_hud_updates()
+
+
 
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
@@ -79,15 +79,15 @@
 				adjustHalLoss(-1)
 
 		// Eyes and blindness.
-		if(!has_eyes())
-			eye_blind =  1
-			blinded =    1
-			eye_blurry = 1
-		else if(eye_blind)
-			eye_blind =  max(eye_blind-1,0)
-			blinded =    1
-		else if(eye_blurry)
-			eye_blurry = max(eye_blurry-1, 0)
+//		if(!has_eyes())
+//			eye_blind =  1
+//			blinded =    1
+//			eye_blurry = 1
+//		else if(eye_blind)
+//			eye_blind =  max(eye_blind-1,0)
+//			blinded =    1
+//		else if(eye_blurry)
+//			eye_blurry = max(eye_blurry-1, 0)
 
 		//Ears
 		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
@@ -103,7 +103,7 @@
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
 	//This should give full x-ray vision for the time being. Fuckin sight code god damn it
-	sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	see_in_dark = 8
 
 	if (healths)
@@ -131,19 +131,19 @@
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
 
 	if (client)
-		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
+		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
-	if ((blind && stat != 2))
-		if ((blinded))
-			blind.layer = 18
-		else
-			blind.layer = 0
-			if (disabilities & NEARSIGHTED)
-				client.screen += global_hud.vimpaired
-			if (eye_blurry)
-				client.screen += global_hud.blurry
-			if (druggy)
-				client.screen += global_hud.druggy
+//	if ((blind && stat != 2))
+//		if ((blinded))
+//			blind.layer = 18
+//		else
+//			blind.layer = 0
+//			if (disabilities & NEARSIGHTED)
+//				client.screen += global_hud.vimpaired
+//			if (eye_blurry)
+//				client.screen += global_hud.blurry
+//			if (druggy)
+//				client.screen += global_hud.druggy
 
 	if (stat != 2)
 		if (machine)

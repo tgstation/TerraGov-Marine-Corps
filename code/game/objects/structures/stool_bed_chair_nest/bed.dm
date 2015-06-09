@@ -93,6 +93,10 @@
 		user << "The [M] is too squishy to buckle in."
 		return
 
+	if (istype(M, /mob/living/carbon/Xenomorph))
+		user << "The [M] is too big to buckle in."
+		return
+
 	unbuckle()
 
 	if (M == usr)

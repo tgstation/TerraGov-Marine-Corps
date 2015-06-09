@@ -24,6 +24,7 @@
 
 /obj/item/weapon/melee/baton/New()
 	..()
+	bcell = new/obj/item/weapon/cell/high(src) //Fuckit lets givem all the good cells
 	update_icon()
 	return
 

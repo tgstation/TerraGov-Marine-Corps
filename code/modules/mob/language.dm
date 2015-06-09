@@ -153,12 +153,20 @@
 /datum/language/xenos/check_special_condition(var/mob/other)
 
 	var/mob/living/carbon/M = other
-	if(!istype(M))
+	if(!istype(M)) //Ghosts etc
 		return 1
-	if(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs || istype(other,/mob/living/carbon/Xenomorph))
+
+	if(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs || istype(M,/mob/living/carbon/Xenomorph))
 		return 1
 
 	return 0
+
+//Make queens BOLD text
+/datum/language/xenos/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+	if(istype(speaker,/mob/living/carbon/Xenomorph/Queen))
+		message = "\b [message]"
+
+	..(speaker,message)
 
 /datum/language/ling
 	name = "Changeling"

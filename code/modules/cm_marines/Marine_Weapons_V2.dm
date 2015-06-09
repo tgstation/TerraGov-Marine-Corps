@@ -3,19 +3,19 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 25
-
-/obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
-	damage = 45
-
-/obj/item/projectile/bullet/m39 // M39 SMG
 	damage = 20
 
+/obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
+	damage = 35
+
+/obj/item/projectile/bullet/m39 // M39 SMG
+	damage = 18
+
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 30
+	damage = 25
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
-	damage = 80
+	damage = 50
 
 ///***Ammo***///
 
@@ -56,14 +56,9 @@
 	ammo_type = "/obj/item/ammo_casing/m4a3"
 	max_ammo = 12
 
-/obj/item/ammo_magazine/m4a3e/empty //45 Pistol
+/obj/item/ammo_magazine/m4a3/empty //45 Pistol
 	icon_state = ".45a0"
 	max_ammo = 0
-
-/obj/item/weapon/gun/projectile/pistol/m4a3/New() //45 Pistol
-	..()
-	empty_mag = new /obj/item/ammo_magazine/m4a3e/empty(src) //45 Pistol
-	return
 
 /obj/item/ammo_magazine/m44m // 44 Magnum Peacemaker
 	name = "44 Magnum Speed Loader (.44)"
@@ -115,16 +110,28 @@
 
 ///***Pistols***///
 
-/obj/item/weapon/gun/projectile/pistol/m4a3 //45 Pistol
+/obj/item/weapon/gun/projectile/m4a3 //45 Pistol
 	name = "\improper M4A3 Service Pistol"
-	desc = "M4A3 Service Pistol. Uses .45 special rounds."
+	desc = "M4A3 standard issue USCM pistol. It is composed of a lightweight steel alloy and fires .45 calibre rounds."
+	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "colt"
 	max_shells = 12
 	caliber = "45s"
 	ammo_type = "/obj/item/ammo_casing/m4a3"
 	recoil = 0
+	w_class = 2
+	silenced = 0
+	load_method = 2
+	fire_sound = 'sound/weapons/servicepistol.ogg'
 
-/obj/item/weapon/gun/projectile/pistol/m4a3/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	New()
+		..()
+		empty_mag = new /obj/item/ammo_magazine/m4a3/empty(src)
+//		update_icon()
+		return
+
+
+/obj/item/weapon/gun/projectile/m4a3/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	if(!loaded.len && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
@@ -133,36 +140,54 @@
 
 /obj/item/weapon/gun/projectile/m44m //mm44 Magnum Peacemaker
 	name = "\improper 44 Magnum"
-	desc = "A 44 Magnum revolver. Uses 44 Magnum rounds"
+	desc = "A classic .44 calibre Magnum revolver from Earth's wilder days. Not standard issue."
 	icon_state = "mateba"
 	caliber = "38s"
 	ammo_type = "/obj/item/ammo_casing/m44m"
+	max_shells = 6
+
 
 
 ///***SMGS***///
 
-/obj/item/weapon/gun/projectile/automatic/Assault/m39 // M39 SMG
+/obj/item/weapon/gun/projectile/automatic/m39 // M39 SMG
 	name = "\improper M39 SMG"
-	desc = " Armat Battlefield Systems M39 SMG. Uses 9mm rounds."
+	desc = " Armat Battlefield Systems M39 SMG. Uses 9mm rounds. Often used by PMCs or in civilian zones due to its lack of stopping power."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smg"
 	item_state = "c20r"
-	max_shells = 30
+	max_shells = 35
 	caliber = "9mms"
 	ammo_type = "/obj/item/ammo_casing/m39"
-	fire_delay = 0
+//	fire_delay = 1
 	force = 9.0
+	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	ejectshell = 0 //Caseless
+	load_method = 2
+	recoil = 0
+
+	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+		..()
+		if(!loaded.len && empty_mag)
+			empty_mag.loc = get_turf(src.loc)
+			empty_mag = null
+			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 30, 1)
+		return
+
+	New()
+		..()
+		empty_mag = new /obj/item/ammo_magazine/m39/empty(src)
+		update_icon()
+		return
 
 	isHandgun()
 		return 0
 
-
 ///***RIFLES***///
 
-/obj/item/weapon/gun/projectile/Assault/m41 //M41 Assault Rifle
+/obj/item/weapon/gun/projectile/automatic/m41 //M41 Assault Rifle
 	name = "\improper M41A Rifle"
-	desc = "M41A Pulse Rifle. Uses 10mm special ammunition."
+	desc = "M41A Pulse Rifle produced by Armat Battlefield Systems. Uses 10mm caseless ammunition. Peace Through Superior Firepower (tm)."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m41a0"
 	item_state = "m41a"
@@ -176,6 +201,8 @@
 	ejectshell = 0 //Caseless
 	fire_delay = 4
 	slot_flags = SLOT_BACK
+	recoil = 0
+	twohanded = 1
 
 	New()
 		..()
@@ -201,17 +228,46 @@
 		return
 
 
+	verb/eject_magazine(mob/user)
+		set category = "Object"
+		set name = "Eject current magazine"
+		set src in usr
+
+		if(!usr.canmove || usr.stat || usr.restrained())
+			user << "Not right now."
+			return
+
+		var/obj/item/ammo_magazine/AM = empty_mag
+		if (loaded.len && AM)
+			for (var/obj/item/ammo_casing/AC in loaded)
+				AM.stored_ammo += AC
+				loaded -= AC
+			AM.loc = get_turf(src)
+			empty_mag = null
+			update_icon()
+			if(AM.stored_ammo.len)
+				AM.icon_state = "m309a"
+			user << "\blue You unload the magazine from \the [src]!"
+			playsound(user, 'sound/weapons/unload.ogg', 20, 1)
+		else
+			user << "\red Nothing loaded in \the [src]!"
+
+		return
+
+
 ///***SHOTGUNS***///
 
 /obj/item/weapon/gun/projectile/shotgun/pump/m37 //M37 Pump Shotgun
 	name = "\improper M37 Pump Shotgun"
-	desc = "Colonial Marine M37 Pump Shotgun"
+	desc = "A Colonial Marines M37 Pump Shotgun. It fires heavily damaging quasi-explosive 12-gauge slugs. Shift click to pump it or use the verb."
 	icon_state = "cshotgun"
 	max_shells = 8
 	caliber = "12gs"
 	ammo_type = "/obj/item/ammo_casing/m37"
 	recoil = 1
 	force = 10.0
+	twohanded = 1
+	fire_delay = 30
 
 
 ///***MELEE/THROWABLES***///
@@ -238,8 +294,28 @@
 							"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
 		return (BRUTELOSS)
 
-//EXTRA CODE TO MAKE THINGS WORK  Just... Leave it for now...
+/obj/item/weapon/throwing_knife
+	name ="Throwing Knife"
+	icon='icons/obj/weapons.dmi'
+	item_state="knife"
+	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
+	flags = FPRINT | TABLEPASS | CONDUCT
+	sharp = 1
+	force = 10
+	w_class = 1.0
+	throwforce = 35
+	throw_speed = 4
+	throw_range = 7
+	hitsound = 'sound/weapons/slash.ogg'
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	slot_flags = SLOT_POCKET
 
+
+
+
+
+//EXTRA CODE TO MAKE THINGS WORK  Just... Leave it for now...
+/*
 /obj/item/weapon/gun/projectile/Assault
 	name = "\improper C-20r SMG"
 	desc = "A standard issue assault rifle. Uses 12mm ammunition."
@@ -284,14 +360,14 @@
 		return
 
 ///////NEW FANCY FLASHLIGHT CODE MADE OF HOPES AND DREAMS./
+*/
 
 
 
-
-
+/*
 /obj/item/weapon/gun/projectile/Assault/verb/toggle_light()
 	set name = "Toggle Flashlight"
-	set category = "Weapon"
+	set category = "Object"
 
 	if(haslight && !islighton) //Turns the light on
 		usr << "\blue You turn the flashlight on."
@@ -314,4 +390,6 @@
 		SetLuminosity(gun_light)
 		usr.SetLuminosity(0)
 
+
+*/
 

@@ -308,7 +308,7 @@
 		EquipCustomItems(character)
 
 		//Find our spawning point.
-		var/join_message
+//		var/join_message
 		var/datum/spawnpoint/S
 
 		if(spawning_at)
@@ -316,10 +316,10 @@
 
 		if(S && istype(S))
 			character.loc = pick(S.turfs)
-			join_message = S.msg
+//			join_message = S.msg
 		else
 			character.loc = pick(latejoin)
-			join_message = "has arrived on the station"
+//			join_message = "has arrived on the station"
 
 		character.lastarea = get_area(loc)
 		// Moving wheelchair if they have one

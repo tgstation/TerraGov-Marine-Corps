@@ -11,11 +11,12 @@
 	storedplasma = 150
 	plasma_gain = 24
 	maxplasma = 600
-	jellyMax = 900
+	jellyMax = 0
 	spit_delay = 45
 	adjust_pixel_x = -16
 	caste_desc = "Ptui!"
 	evolves_to = list()
+	armor_deflection = 30
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

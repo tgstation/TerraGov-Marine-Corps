@@ -206,6 +206,8 @@ Alien plants should do something if theres a lot of poison
 
 	//		if (locate(/obj/movable, T)) // don't propogate into movables
 	//			continue
+			if(istype(T,/turf/simulated/floor/gm/grass) || istype(T,/turf/simulated/floor/gm/river) || istype(T,/turf/simulated/floor/gm/coast))
+				continue
 
 			for(var/obj/O in T)
 				if(O.density)

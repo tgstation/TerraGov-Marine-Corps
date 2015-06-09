@@ -98,8 +98,9 @@
 		src.num_leaders++
 	if(M.mind.assigned_role == "Squad Specialist")
 		src.num_specialists++
+	if(M.mind.assigned_role == "Squad Marine")
+		count++ //Add up the tally -- Only counts basic marines.
 
-	count++ //Add up the tally
 	M.mind.assigned_squad = src //Add them to the squad
 	var/c_oldass = C.assignment
 	C.access += src.access //Add their squad access to their ID
