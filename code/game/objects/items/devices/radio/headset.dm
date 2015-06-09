@@ -28,7 +28,7 @@
 			var/datum/language/hivemind = all_languages["Hivemind"]
 			hivemind.broadcast(M, message)
 		return null
-	
+
 	return ..()
 
 /obj/item/device/radio/headset/receive_range(freq, level, aiOverride = 0)
@@ -57,12 +57,19 @@
 	keyslot1 = new /obj/item/device/encryptionkey/binary
 	recalculateChannels()
 
-/obj/item/device/radio/headset/headset_sec
-	name = "security radio headset"
-	desc = "This is used by your elite security force. To access the security channel, use :s."
-	icon_state = "sec_headset"
+/obj/item/device/radio/headset/heads/ce
+	name = "chief engineer's headset"
+	desc = "The headset of the guy who is in charge of morons. To access the engineering channel, use :e. For command, use :v."
+	icon_state = "com_headset"
 	item_state = "headset"
-	keyslot2 = new /obj/item/device/encryptionkey/headset_sec
+	keyslot2 = new /obj/item/device/encryptionkey/heads/ce
+
+/obj/item/device/radio/headset/heads/cmo
+	name = "chief medical officer's headset"
+	desc = "The headset of the highly trained medical chief. To access the medical channel, use :m. For command, use :v."
+	icon_state = "com_headset"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/heads/cmo
 
 /obj/item/device/radio/headset/headset_eng
 	name = "engineering radio headset"
@@ -71,13 +78,6 @@
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/headset_eng
 
-/obj/item/device/radio/headset/headset_rob
-	name = "robotics radio headset"
-	desc = "Made specifically for the roboticists who cannot decide between departments. To access the engineering channel, use :e. For research, use :n."
-	icon_state = "rob_headset"
-	item_state = "headset"
-	keyslot2 = new /obj/item/device/encryptionkey/headset_rob
-
 /obj/item/device/radio/headset/headset_med
 	name = "medical radio headset"
 	desc = "A headset for the trained staff of the medbay. To access the medical channel, use :m."
@@ -85,6 +85,48 @@
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/headset_med
 
+/obj/item/device/radio/headset/heads/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
+	name = "AI Subspace Transceiver"
+	desc = "Integrated AI radio transceiver."
+	icon = 'icons/obj/robot_component.dmi'
+	icon_state = "radio"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/heads/ai_integrated
+	var/myAi = null    // Atlantis: Reference back to the AI which has this radio.
+	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
+
+/obj/item/device/radio/headset/heads/ai_integrated/receive_range(freq, level)
+	if (disabledAi)
+		return -1 //Transciever Disabled.
+	return ..(freq, level, 1)
+
+/obj/item/device/radio/headset/ert
+	name = "W-Y Response Team headset"
+	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - command, :p - security, :e - engineering, :m - medical."
+	icon_state = "com_headset"
+	item_state = "headset"
+	freerange = 1
+	keyslot2 = new /obj/item/device/encryptionkey/ert
+
+/*
+/obj/item/device/radio/headset/headset_sec
+	name = "security radio headset"
+	desc = "This is used by your elite security force. To access the security channel, use :s."
+	icon_state = "sec_headset"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/headset_sec
+*/
+
+/*
+/obj/item/device/radio/headset/headset_rob
+	name = "robotics radio headset"
+	desc = "Made specifically for the roboticists who cannot decide between departments. To access the engineering channel, use :e. For research, use :n."
+	icon_state = "rob_headset"
+	item_state = "headset"
+	keyslot2 = new /obj/item/device/encryptionkey/headset_rob
+*/
+
+/*
 /obj/item/device/radio/headset/headset_sci
 	name = "science radio headset"
 	desc = "A sciency headset. Like usual. To access the science channel, use :n."
@@ -112,22 +154,9 @@
 	icon_state = "com_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/heads/captain
+*/
 
-/obj/item/device/radio/headset/heads/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
-	name = "AI Subspace Transceiver"
-	desc = "Integrated AI radio transceiver."
-	icon = 'icons/obj/robot_component.dmi'
-	icon_state = "radio"
-	item_state = "headset"
-	keyslot2 = new /obj/item/device/encryptionkey/heads/ai_integrated
-	var/myAi = null    // Atlantis: Reference back to the AI which has this radio.
-	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
-
-/obj/item/device/radio/headset/heads/ai_integrated/receive_range(freq, level)
-	if (disabledAi)
-		return -1 //Transciever Disabled.
-	return ..(freq, level, 1)
-
+/*
 /obj/item/device/radio/headset/heads/rd
 	name = "Research Director's headset"
 	desc = "Headset of the researching God. To access the science channel, use :n. For command, use :c."
@@ -141,28 +170,16 @@
 	icon_state = "com_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/heads/hos
+*/
 
-/obj/item/device/radio/headset/heads/ce
-	name = "chief engineer's headset"
-	desc = "The headset of the guy who is in charge of morons. To access the engineering channel, use :e. For command, use :c."
-	icon_state = "com_headset"
-	item_state = "headset"
-	keyslot2 = new /obj/item/device/encryptionkey/heads/ce
-
-/obj/item/device/radio/headset/heads/cmo
-	name = "chief medical officer's headset"
-	desc = "The headset of the highly trained medical chief. To access the medical channel, use :m. For command, use :c."
-	icon_state = "com_headset"
-	item_state = "headset"
-	keyslot2 = new /obj/item/device/encryptionkey/heads/cmo
-
+/*
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
 	desc = "The headset of the guy who will one day be captain. Channels are as follows: :u - supply, :c - command, :s - security"
 	icon_state = "com_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/heads/hop
-/*
+
 /obj/item/device/radio/headset/headset_mine
 	name = "mining radio headset"
 	desc = "Headset used by miners. How useless. To access the mining channel, use :d."
@@ -176,21 +193,15 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/heads/qm
-*/
+
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
 	desc = "A headset used by the QM and his slaves. To access the supply channel, use :u."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/headset_cargo
+*/
 
-/obj/item/device/radio/headset/ert
-	name = "CentCom Response Team headset"
-	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - command, :s - security, :e - engineering, :d - mining, :q - cargo, :m - medical, :n - science."
-	icon_state = "com_headset"
-	item_state = "headset"
-	freerange = 1
-	keyslot2 = new /obj/item/device/encryptionkey/ert
 
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()

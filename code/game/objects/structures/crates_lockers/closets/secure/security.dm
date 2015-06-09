@@ -23,7 +23,7 @@
 		new /obj/item/weapon/cartridge/captain(src)
 		new /obj/item/clothing/head/helmet/swat(src)
 		new /obj/item/clothing/shoes/brown(src)
-		new /obj/item/device/radio/headset/heads/captain(src)
+//		new /obj/item/device/radio/headset/heads/captain(src)
 		new /obj/item/clothing/gloves/captain(src)
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/clothing/suit/armor/captain(src)
@@ -52,7 +52,7 @@
 		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/clothing/head/helmet(src)
 		new /obj/item/weapon/cartridge/hop(src)
-		new /obj/item/device/radio/headset/heads/hop(src)
+//		new /obj/item/device/radio/headset/heads/hop(src)
 		new /obj/item/weapon/storage/box/ids(src)
 		new /obj/item/weapon/storage/box/ids( src )
 		new /obj/item/weapon/gun/energy/gun(src)
@@ -114,7 +114,7 @@
 		new /obj/item/clothing/suit/armor/hos(src)
 		new /obj/item/clothing/head/helmet/HoS/dermal(src)
 		new /obj/item/weapon/cartridge/hos(src)
-		new /obj/item/device/radio/headset/heads/hos(src)
+//		new /obj/item/device/radio/headset/heads/hos(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
 		new /obj/item/weapon/shield/riot(src)
@@ -154,7 +154,7 @@
 		new /obj/item/clothing/suit/armor/vest/warden(src)
 		new /obj/item/clothing/head/helmet/warden(src)
 //		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/device/radio/headset/headset_sec(src)
+//		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
 		new /obj/item/weapon/storage/box/flashbangs(src)
@@ -188,7 +188,7 @@
 		new /obj/item/clothing/suit/armor/vest/security(src)
 		new /obj/item/clothing/head/helmet(src)
 //		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/device/radio/headset/headset_sec(src)
+//		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
@@ -209,7 +209,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/cargo(src)
-		new /obj/item/device/encryptionkey/headset_cargo(src)
+//		new /obj/item/device/encryptionkey/headset_cargo(src)
 		return
 
 /obj/structure/closet/secure_closet/security/engine
@@ -225,7 +225,7 @@
 	New()
 		..()
 		new /obj/item/clothing/tie/armband/science(src)
-		new /obj/item/device/encryptionkey/headset_sci(src)
+//		new /obj/item/device/encryptionkey/headset_sci(src)
 		return
 
 /obj/structure/closet/secure_closet/security/med
@@ -262,7 +262,7 @@
 		new /obj/item/clothing/head/det_hat/black(src)
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/weapon/storage/box/evidence(src)
-		new /obj/item/device/radio/headset/headset_sec(src)
+//		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/device/detective_scanner(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/ammo_magazine/c45r(src)

@@ -80,7 +80,7 @@
 	ask_verb = "creels"
 	exclaim_verb = "SHRIEKS"
 	colour = "vox"
-	key = "v"
+	key = "9"
 	flags = RESTRICTED
 
 /datum/language/diona
@@ -90,7 +90,7 @@
 	ask_verb = "creaks"
 	exclaim_verb = "rustles"
 	colour = "soghun"
-	key = "q"
+	key = "8"
 	flags = RESTRICTED
 
 /datum/language/common
@@ -164,7 +164,7 @@
 //Make queens BOLD text
 /datum/language/xenos/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	if(istype(speaker,/mob/living/carbon/Xenomorph/Queen))
-		message = "\b [message]"
+		message = "<B> [message]</b>"
 
 	..(speaker,message)
 
@@ -173,7 +173,7 @@
 	desc = "Although they are normally wary and suspicious of each other, changelings can commune over a distance."
 	speech_verb = "says"
 	colour = "changeling"
-	key = "g"
+	key = "7"
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
@@ -214,7 +214,7 @@
 	speech_verb = "states"
 	ask_verb = "queries"
 	exclaim_verb = "declares"
-	key = "b"
+	key = "6"
 	flags = RESTRICTED | HIVEMIND
 	var/drone_only
 

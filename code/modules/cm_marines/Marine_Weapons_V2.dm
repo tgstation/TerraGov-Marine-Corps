@@ -311,6 +311,64 @@
 	slot_flags = SLOT_POCKET
 
 
+/obj/item/weapon/gun/projectile/M42C
+	name = "M42C Scoped Rifle"
+	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 6-round magazine."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "sniper"
+	fire_sound = 'sound/weapons/GunFireSniper.ogg'
+	ammo_type = "/obj/item/ammo_casing/m42c"
+	fire_delay = 80
+	w_class = 4.0
+	max_shells = 6
+	caliber = ".50"
+	load_method = 2
+	force = 10.0
+	recoil = 2
+	twohanded = 1
+	zoomdevicename = "scope"
+
+	New()
+		..()
+		empty_mag = new /obj/item/ammo_magazine/m42c/empty(src)
+		update_icon()
+		return
+
+	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+		..()
+		if(!loaded.len && empty_mag)
+			empty_mag.loc = get_turf(src.loc)
+			empty_mag = null
+			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
+			update_icon()
+		return
+
+/obj/item/weapon/gun/projectile/M42C/verb/scope()
+	set category = "Object"
+	set name = "Use Scope"
+	set popup_menu = 1
+
+	zoom()
+
+
+/obj/item/projectile/bullet/m42c //M42C Sniper Rifle
+	damage = 80
+
+/obj/item/ammo_casing/m42c
+	desc = "A .50 special bullet casing."
+	caliber = ".50"
+	projectile_type = "/obj/item/projectile/bullet/m42c"
+
+/obj/item/ammo_magazine/m42c // M39 SMG
+	name = "M42C Scoped Rifle Magazine"
+	desc = "A .50 cal sniper rifle magazine"
+	icon_state = "75"
+	ammo_type = "/obj/item/ammo_casing/m39"
+	max_ammo = 30
+
+/obj/item/ammo_magazine/m42c/empty // M39 SMG
+	icon_state = "75-0"
+	max_ammo = 0
 
 
 

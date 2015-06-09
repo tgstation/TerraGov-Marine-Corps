@@ -63,12 +63,12 @@
 
 		// Channel macros
 		interpreter.SetVar("$common",	PUB_FREQ)
-		interpreter.SetVar("$science",	SCI_FREQ)
-		interpreter.SetVar("$command",	COMM_FREQ)
+//		interpreter.SetVar("$science",	SCI_FREQ)
+//		interpreter.SetVar("$command",	COMM_FREQ)
 		interpreter.SetVar("$medical",	MED_FREQ)
 		interpreter.SetVar("$engineering",ENG_FREQ)
-		interpreter.SetVar("$security",	SEC_FREQ)
-		interpreter.SetVar("$supply",	SUP_FREQ)
+//		interpreter.SetVar("$security",	SEC_FREQ)
+//		interpreter.SetVar("$supply",	SUP_FREQ)
 
 		// Signal data
 
