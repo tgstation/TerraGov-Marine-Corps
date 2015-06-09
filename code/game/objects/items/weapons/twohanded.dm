@@ -49,6 +49,9 @@
 		var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
 		if(istype(O))
 			O.unwield()
+		var/obj/item/weapon/gun/G = user.get_inactive_hand()
+		if(istype(G))
+			G.unwield()
 	return	unwield()
 
 /obj/item/weapon/twohanded/update_icon()

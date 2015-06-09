@@ -144,8 +144,8 @@
 
 /obj/item/clothing/under/marine/officer/commander
 	name = "marine commander uniform"
-	icon_state = "mcomm"
-	item_state = "mcomm"
+	icon_state = "captain_formal" //Placeholder
+	item_state = "captain_formal"
 
 /*   //////SLATED FOR DELTION 05JAN2014 - APOPHIS
 /obj/item/clothing/under/marine/officer/chief
@@ -306,6 +306,7 @@ v
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
+				playsound(M, 'shotgun_shell_insert.ogg', 40, 1)
 				knife = 0
 				update_icon()
 			return
@@ -318,6 +319,7 @@ v
 			knife = I
 			I.loc = src
 			M << "<div class='notice'>You slide the [I] into [src].</div>"
+			playsound(M, 'shotgun_shell_insert.ogg', 40, 1)
 			update_icon()
 
 	update_icon()
@@ -343,8 +345,8 @@ v
 /obj/item/weapon/storage/backpack/mcommander
 	name = "marine commander backpack"
 	desc = "The contents of this backpack are top secret."
-	icon_state = "mcommpack"
-	item_state = "mcommpack"
+	icon_state = "marinepack"
+	item_state = "marinepack" //Placeholder
 
 /obj/item/weapon/storage/backpack/marine
 	name = "marine backpack"
@@ -390,6 +392,22 @@ v
 
 /obj/item/weapon/storage/belt/marine/full/New()
 	..()
-	new /obj/item/weapon/gun/projectile/pistol/m4a3(src)
+	new /obj/item/weapon/gun/projectile/m4a3(src)
 	new /obj/item/ammo_magazine/m4a3(src)
 	new /obj/item/ammo_magazine/m4a3(src)
+
+/obj/item/weapon/storage/belt/knifepouch
+	name="Knife Rig"
+	desc="Storage for your sharp toys"
+	icon_state="securitybelt" // temp
+	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
+	storage_slots = 3
+	max_w_class = 1
+	max_combined_w_class=3
+	can_hold=list("/obj/item/weapon/throwing_knife")
+
+/obj/item/weapon/storage/belt/knifepouch/New()
+	..()
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)

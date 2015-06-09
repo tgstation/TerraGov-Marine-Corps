@@ -91,8 +91,13 @@
 		M << "You're already filled with delicious jelly."
 		return
 
+	if(!M.jellyMax)
+		M << "Doesn't smell very good to you. You aren't able to evolve further using jelly."
+		return
+
 	M.jelly = 1
 	visible_message("\green [M] greedily devours the [src].","You greedily gulp down the [src].")
+	del(src)
 
 /mob/living/carbon/Xenomorph/proc/produce_jelly()
 
@@ -547,7 +552,7 @@
 //The acid items are stored in XenoProcs.
 /mob/living/carbon/Xenomorph/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (variable)"
-	set desc = "Drench an object in acid, destroying it over time."
+	set desc = "Drench an object in acid. Drones/Sentinel cost 75, Praetorians 200, everything else 100."
 	set category = "Alien"
 
 	if(!check_state())	return
@@ -567,26 +572,24 @@
 	else if(istype(O, /turf/simulated))
 		var/turf/T = O
 		// R WALL
-		if(istype(T, /turf/simulated/wall/r_wall))
+		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor))
 			src << "\green You cannot dissolve this object."
 			return
-		if(istype(T, /turf/simulated/shuttle))
-			src << "\green You cannot dissolve this object."
-			return
-		// NO FLOORS! NONE!
-		if(istype(T, /turf/simulated/floor) || istype(T,/turf/unsimulated/floor))
+		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Praetorian))
 			src << "\green You cannot dissolve this object."
 			return
 	else
 		src << "\green You cannot dissolve this object."
 		return
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Sentinel)) //weak level
+	if(istype(src,/mob/living/carbon/Xenomorph/Sentinel) || istype(src,/mob/living/carbon/Xenomorph/Drone) ) //weak level
 		if(!check_plasma(75)) return
 		new /obj/effect/xenomorph/acid/weak(get_turf(O), O)
+
 	else if(istype(src,/mob/living/carbon/Xenomorph/Praetorian)) //strong level
 		if(!check_plasma(200)) return
 		new /obj/effect/xenomorph/acid/strong(get_turf(O), O)
+
 	else
 		if(!check_plasma(100)) return
 		new /obj/effect/xenomorph/acid(get_turf(O), O) //Everything else? Medium.

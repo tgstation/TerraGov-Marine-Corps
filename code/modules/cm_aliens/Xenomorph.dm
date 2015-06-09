@@ -77,10 +77,11 @@
 
 	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
 
-
 /*	src.frozen = 1 //Freeze the alien in place a moment, while it evolves... WHY DOESN'T THIS WORK? 08FEB2015
 	spawn (25)
 		src.frozen = 0*/
+
+	see_invisible = SEE_INVISIBLE_OBSERVER //blerghhh. This lets you see in the dark
 
 	name = "[initial(name)] ([rand(1, 1000)])"
 	real_name = name

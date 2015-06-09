@@ -34,6 +34,7 @@ var/global/datum/global_init/init = new ()
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
 
 	load_configuration()
+	initialize_marine_armor()
 
 	if(config && config.server_name != null && config.server_suffix && world.port > 0)
 		// dumb and hardcoded but I don't care~
@@ -295,8 +296,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	if (config && config.server_name)
 		s += "<a href=\"http://newedenstation.com/forumdisplay.php?fid=56\"><b>[config.server_name]</b> &#8212; "
-		s += "<b>NMV Sulaco</b> | Hosted by New Eden";
-		s += "<br><img src=\"http://i.imgur.com/OQ5OIMJ.png\"><br>"
+		s += "<b>NMV Sulaco</b> | Hosted by Apophis";
+//		s += "<br><img src=\"http://i.imgur.com/OQ5OIMJ.png\"><br>"
 		s += "</a>"
 
 	var/list/features = list()
