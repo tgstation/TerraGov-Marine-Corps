@@ -22,7 +22,7 @@
 			attachable = 1
 			usr << "\red You screw open the side panel on [src], which can now be attached!"
 	return
-
+/*
 /obj/item/weapon/gun/projectile/Assault/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/device/flashlight/combat))
 		var/obj/item/device/flashlight/combat/F = A
@@ -32,7 +32,7 @@
 			haslight = 1
 			del(A)
 	return
-
+*/
 
 
 //MARINE ENCRYPTION KEYS

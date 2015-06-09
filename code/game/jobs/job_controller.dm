@@ -461,7 +461,8 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 					return 1
 				if("AI","Clown")	//don't need bag preference stuff!
 				else
-					switch(H.backbag) //BS12 EDIT
+					/*
+					switch(H.backbag) //Fuck backpacks for now, just get one from your locker.
 						if(1)
 							H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
 						if(2)
@@ -476,6 +477,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 							var/obj/item/weapon/storage/backpack/BPK = new/obj/item/weapon/storage/backpack/satchel(H)
 							new /obj/item/weapon/storage/box/survival(BPK)
 							H.equip_to_slot_or_del(BPK, slot_back,1)
+					*/
 
 					//Deferred item spawning.
 					if(spawn_in_storage && spawn_in_storage.len)
@@ -524,10 +526,11 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
 
 		spawnId(H, rank, alt_title)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
+//		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
 
 		if(job.is_squad_job) //Are we a muhreen? Randomize our squad. This should go AFTER IDs.
-			randomize_squad(H)
+			if(H.mind && !H.mind.assigned_squad)
+				randomize_squad(H)
 
 		//Gives glasses to the vision impaired
 		if(H.disabilities & NEARSIGHTED)
@@ -553,8 +556,9 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		for(var/datum/squad/S in squads) //Loop through all the squads
 			if(!S || isnull(S)) break //Nope
 
-			if(count_prev_squad > S.count)
-				count_prev_squad = S.count //Previous loop was higher count, skip ahead
+			//Marines only spread out, other jobs just get inserted on a per-squad basis since they are limited in number.
+			if(count_prev_squad > S.count && H.mind.assigned_role == "Squad Marine")
+				count_prev_squad = S.count //Previous squad was higher count, skip ahead
 				continue
 
 			if(H.mind.assigned_role == "Squad Engineer")

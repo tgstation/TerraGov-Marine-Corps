@@ -36,23 +36,47 @@
 	loaded -= AC //Remove casing from loaded list.
 	if(isnull(AC) || !istype(AC))
 		return 0
-	AC.loc = get_turf(src) //Eject casing onto ground.
+	if(ejectshell)
+		AC.loc = get_turf(src) //Eject casing onto ground.
 	if(AC.BB)
 		AC.desc += " This one is spent."	//descriptions are magic - only when there's a projectile in the casing
 		in_chamber = AC.BB //Load projectile into chamber.
 		AC.BB.loc = src //Set projectile loc to gun.
+		if(!ejectshell) //Hopefully this will get rid of ghost shells floating around in our guns
+			del(AC)
 		return 1
+	if(!isnull(AC) && !ejectshell)
+		del(AC)
 	return 0
 
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 
 	var/num_loaded = 0
+/*
+	if(istype(A, /obj/item/device/flashlight))
+		if(!istype(src,/obj/item/weapon/gun/projectile/Assault) && !istype(src,/obj/item/weapon/gun/projectile/automatic)) //Add gun types here to make them gun-specific
+			user << "It doesn't fit."
+			return
+		if(haslight)
+			user << "It's already got a flashlight."
+			return
+		if(A:attachable)
+			user << "\red You attach [A] to [src]. Use 'toggle weapon light' in the Object tab to turn it on."
+			haslight = 1
+			del(A)
+			return
+		else
+			user << "Use a screwdriver to modify the flashlight first."
+			return
+*/
 	if(istype(A, /obj/item/ammo_magazine))
-		if((load_method == MAGAZINE) && loaded.len)	return
+		if((load_method == MAGAZINE) && loaded.len)
+			user << "There's a magazine in there already."
+			return
 		var/obj/item/ammo_magazine/AM = A
 		if(AM.stored_ammo.len <= 0)
-			user << "<span class='warning'>The magazine is empty!</span>"
+			user << "<span class='warning'>The new magazine is empty!</span>"
 			return
 		for(var/obj/item/ammo_casing/AC in AM.stored_ammo)
 			if(loaded.len >= max_shells)
@@ -62,10 +86,14 @@
 				AM.stored_ammo -= AC
 				loaded += AC
 				num_loaded++
-		if(load_method == MAGAZINE)
+//				empty_mag = AM	//a temporary solution to get rid of magazines from mob hand
+//				user.remove_from_mob(AM)
+
+		if(load_method == MAGAZINE && !isnull(AM))
 			user.remove_from_mob(AM)
 			empty_mag = AM
 			empty_mag.loc = src
+
 	if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
 		var/obj/item/ammo_casing/AC = A
 		if(AC.caliber == caliber && loaded.len < max_shells)
@@ -74,7 +102,8 @@
 			loaded += AC
 			num_loaded++
 	if(num_loaded)
-		user << "\blue You load [num_loaded] shell\s into the gun!"
+		user << "\blue You load [num_loaded] shell\s into \the [src]!"
+		playsound(user, 'sound/weapons/unload.ogg', 20, 1)
 	A.update_icon()
 	update_icon()
 	return
@@ -82,6 +111,30 @@
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
 	if (target)
 		return ..()
+
+	if(twohanded)
+		if(wielded) //Trying to unwield it
+			unwield()
+			user << "<span class='notice'>You are now carrying the [name] with one hand.</span>"
+
+			var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
+			if(O && istype(O))
+				O.unwield()
+			return
+
+		else //Trying to wield it
+			if(user.get_inactive_hand())
+				user << "<span class='warning'>You need your other hand to be empty.</span>"
+				return
+			wield()
+			user << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
+
+			var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+			O.name = "[initial(name)] - offhand"
+			O.desc = "Your second grip on the [initial(name)]"
+			user.put_in_inactive_hand(O)
+			return
+
 	if (loaded.len)
 		if (load_method == SPEEDLOADER)
 			var/obj/item/ammo_casing/AC = loaded[1]

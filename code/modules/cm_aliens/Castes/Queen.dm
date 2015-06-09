@@ -21,10 +21,11 @@
 	maxplasma = 700
 	plasma_gain = 30
 	is_intelligent = 1
-	speed = 1.5
+	speed = 2.5
 	jellyMax = 0
 	adjust_pixel_x = -16
 	fire_immune = 1
+	armor_deflection = 50
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,

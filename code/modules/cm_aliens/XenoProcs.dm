@@ -361,3 +361,28 @@
 		return -1
 	..(Proj) //Do normal stuff
 	return
+
+//Bleuugh
+/mob/living/carbon/Xenomorph/proc/empty_gut()
+	if(stomach_contents.len)
+		for(var/S in src.stomach_contents)
+			if(S)
+				stomach_contents.Remove(S)
+				S:loc = get_turf(src)
+
+	if(contents.len) //Get rid of anything that may be stuck inside us as well
+		for(var/A in src.contents)
+			if(A)
+				src.contents.Remove(A)
+				A:loc = get_turf(src)
+
+	return
+
+mob/living/carbon/Xenomorph/verb/toggle_darkness()
+	set name = "Toggle Darkvision"
+	set category = "Alien"
+
+	if (see_invisible == SEE_INVISIBLE_OBSERVER)
+		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	else
+		see_invisible = SEE_INVISIBLE_OBSERVER

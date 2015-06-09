@@ -35,13 +35,19 @@
 			affected_mob = null
 		return
 
-	if(stage < 5 && prob(3))
+	if(affected_mob.stat == DEAD) //Stop. just stop it.
+		return 0
+
+	if(stage < 5 && prob(2))
 		stage++
 		spawn(0)
 			RefreshInfectionImage(affected_mob)
 
 	switch(stage)
-		if(2, 3)
+		if(2)
+			if(prob(1))
+				affected_mob << "Your chest hurts a little bit."
+		if(3)
 			if(prob(1))
 				affected_mob.emote("sneeze")
 			if(prob(1))
@@ -68,8 +74,8 @@
 			affected_mob << "\red You feel something tearing its way out of your stomach..."
 			affected_mob.adjustToxLoss(10)
 			affected_mob.updatehealth()
-			if(prob(50))
-				AttemptGrow()
+//			if(prob(50))
+			AttemptGrow()
 
 /obj/item/alien_embryo/proc/AttemptGrow(var/gib_on_success = 1)
 	var/list/candidates = get_alien_candidates()
@@ -93,11 +99,13 @@
 	else
 		affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
 	spawn(6)
-		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(affected_mob.loc)
+		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
 		new_xeno.key = picked
 		new_xeno << sound('sound/voice/hiss5.ogg',0,0,0,100)	//To get the player's attention
-		if(gib_on_success)
-			affected_mob.gib()
+		affected_mob.adjustToxLoss(200) //This should kill without gibbing da body
+		affected_mob.updatehealth()
+//		if(gib_on_success)
+//			affected_mob.gib()
 		del(src)
 
 /*----------------------------------------

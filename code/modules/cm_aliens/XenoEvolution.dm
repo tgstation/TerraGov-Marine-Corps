@@ -40,15 +40,8 @@
 		return
 
 	if(caste == "Queen") // Special case for dealing with queenae
-		if(!istype(src,/mob/living/carbon/Xenomorph/Drone)) //logic! - Remove this if you want any caste to be able to queen it up
-			return
 		if(storedplasma >= 500)
-			var/no_queen = 1 //Assume queen is dead
-			for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
-				if(Q.stat != DEAD)
-					break
-				no_queen = 0
-			if(!no_queen)
+			if(is_queen_alive())
 				src << "\red There is already a queen."
 				return
 		else
@@ -82,7 +75,7 @@
 		if("Queen")
 			M = /mob/living/carbon/Xenomorph/Queen
 	if(isnull(M))
-		usr << "[M] is not a valid caste! If you're seeing this message tell a coder!"
+		usr << "[caste] is not a valid caste! If you're seeing this message tell a coder!"
 		return
 
 	if(jellyMax && caste != "Queen") //Does the caste have a jelly timer? Then check it
@@ -103,20 +96,28 @@
 
 	new_xeno.add_inherent_verbs()
 	new_xeno.jellyGrow = 0
+	if(jelly)
+		new_xeno.jelly = jelly
 	new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
 
 	for (var/obj/item/W in src.contents) //Drop stuff
 		src.drop_from_inventory(W)
 
-	src.drop_l_hand() //Drop dem huggies
+	src.drop_l_hand() //Drop dem huggies, just in case
 	src.drop_r_hand()
 
-	//bleergh. Evolving makes you throw up, just to avoid messy (heheh!) issues
-	if(stomach_contents.len)
-		for(var/mob/S in src)
-			if(S in stomach_contents)
-				stomach_contents.Remove(S)
-				S.loc = loc
+	empty_gut()
+
 	del(src)
 	return
 
+
+/proc/is_queen_alive()
+	var/found = 0
+
+	for(var/mob/living/carbon/Xenomorph/Queen/Q in mob_list)
+		if(Q.stat != DEAD)
+			found = 1
+			break
+
+	return found
