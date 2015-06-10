@@ -208,14 +208,17 @@ var/list/toldstory = list()
 	//////////////////////////
 //Checks for alien victory//
 //////////////////////////
-/*datum/game_mode/colonialmarines/proc/check_alien_victory()
-	for(var/mob/living/carbon/alien/A in living_mob_list)
-		var/turf/Terf = get_turf(A)
-		if((A) && (A.stat != 2) && (humansurvivors < 1) && Terf && (Terf.z == 2))
+/*
+datum/game_mode/colonialmarines/proc/check_alien_victory()
+	for(var/mob/living/carbon/Xenomorph/A in living_mob_list)
+		var/turf/T = get_turf(A)
+		if((A) && (A.stat != 2) && (humansurvivors < 1) && Terf && (Terf.z == 1))
 			return 1
 		else
-			return 0*/
-datum/game_mode/colonialmarines/proc/check_alien_victory()
+			return 0
+*/
+
+/datum/game_mode/colonialmarines/proc/check_alien_victory()
 	if(aliensurvivors > 0 && humansurvivors < 1)
 		return 1
 	else
@@ -233,14 +236,15 @@ datum/game_mode/colonialmarines/proc/check_alien_victory()
 ///////////////////////////////
 //Checks for a marine victory//
 ///////////////////////////////
-/*datum/game_mode/colonialmarines/proc/check_marine_victory()
+/*
+datum/game_mode/colonialmarines/proc/check_marine_victory()
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		var/turf/Terf = get_turf(H)
 		if((H) && (H.stat != 2) && (aliensurvivors < 1) && Terf && (Terf.z == 2))
 			return 1
 		else
 			return 0
-			*/
+*/
 /datum/game_mode/colonialmarines/proc/check_marine_victory()
 	if(aliensurvivors < 1 && humansurvivors > 0)
 		return 1

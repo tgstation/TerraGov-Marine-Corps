@@ -33,6 +33,9 @@
 	var/fire_delay = 6
 	var/last_fired = 0
 
+	var/twohanded = 0
+	var/wielded = 0 //Do not set this in gun defines
+
 	proc/ready_to_fire()
 		if(world.time >= last_fired + fire_delay)
 			last_fired = world.time
@@ -49,6 +52,43 @@
 	emp_act(severity)
 		for(var/obj/O in contents)
 			O.emp_act(severity)
+
+
+
+/obj/item/weapon/gun/proc/unwield()
+	if(!twohanded) return
+	wielded = 0
+	name = "[initial(name)]"
+
+/obj/item/weapon/gun/proc/wield()
+	if(!twohanded) return
+	wielded = 1
+	name = "[initial(name)] (Wielded)"
+
+/obj/item/weapon/gun/mob_can_equip(M as mob, slot)
+	//Cannot equip wielded items.
+	if(wielded)
+		M << "<span class='warning'>Unwield the [initial(name)] first!</span>"
+		return 0
+
+	return ..()
+
+/obj/item/weapon/gun/dropped(mob/user as mob)
+	//handles unwielding a twohanded weapon when dropped as well as clearing up the offhand
+	if(twohanded)
+		if(user)
+			var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
+			if(istype(O))
+				O.unwield()
+		return	unwield()
+	else
+		..()
+
+/obj/item/weapon/gun/pickup(mob/user)
+	..()
+	if(twohanded)
+		unwield()
+
 
 /obj/item/weapon/gun/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 	if(flag)	return //It's adjacent, is the user, or is on the user's person
@@ -76,6 +116,11 @@
 	if (!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
 		return
+
+	if(twohanded && !wielded)
+		user << "\red You need a more secure grip to fire this weapon!"
+		return
+
 	if(istype(user, /mob/living))
 		var/mob/living/M = user
 		if (HULK in M.mutations)

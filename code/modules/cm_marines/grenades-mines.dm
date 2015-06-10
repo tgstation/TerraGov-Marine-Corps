@@ -12,7 +12,7 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,0,0,3)
+			explosion(src.loc,-1,-1,4)
 			del(src)
 		return
 
@@ -29,7 +29,7 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,0,0,1, flame_range = 4)
+			explosion(src.loc,-1,-1,1, flame_range = 4)
 			del(src)
 		return
 
@@ -117,31 +117,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///***MINES***///
 /obj/item/device/mine
-	name = "explosive mine"
-	desc = "Anti-personnel mine."
+	name = "Proximity Mine"
+	desc = "An anti-personnel mine. Useful for setting traps or for area denial. "
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "mine"
 	force = 5.0
@@ -150,17 +129,16 @@
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
+	unacidable = 1
 	flags = FPRINT | TABLEPASS
 
 	var/triggered = 0
-	var/triggertype = "explosive"
+	var/triggertype = "explosive" //Calls that proc
 	/*
 		"explosive"
-		"incendiary"
+		//"incendiary" //New bay//
 	*/
-/obj/item/device/mine/incendiary
-	name = "incendiary mine"
-	triggertype = "incendiary" //Calls that proc
+
 
 //Arming
 /obj/item/device/mine/attack_self(mob/living/user as mob)
@@ -199,7 +177,7 @@
 	if(!anchored) return //If armed
 	if(triggered) return
 
-	if(istype(M, /mob/living/carbon/alien) && !istype(M, /mob/living/carbon/alien/larva)) //Only humanoid aliens can trigger it.
+	if(istype(M, /mob/living/carbon/Xenomorph) && !istype(M, /mob/living/carbon/Xenomorph/Larva)) //Only humanoid aliens can trigger it.
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
 		triggered = 1
@@ -208,15 +186,6 @@
 //TYPES//
 //Explosive
 /obj/item/device/mine/proc/explosive(obj)
-	explosion(src.loc,0,0,2)
+	explosion(src.loc,-1,-1,2)
 	spawn(0)
 		del(src)
-
-/obj/item/device/mine/proc/incendiary(obj)
-	explosion(src.loc,0,0,1, flame_range = 3)
-	spawn(0)
-		del(src)
-//Incendiary
-//**//TODO
-
-

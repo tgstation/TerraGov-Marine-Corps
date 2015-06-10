@@ -163,6 +163,12 @@
 		else
 			visible_message("<span class='danger'>[M] slashes at [src]!</span>")
 
+/obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	visible_message("<span class='danger'>[M] slices [src] apart!</span>")
+	new /obj/item/weapon/rack_parts( src.loc )
+	del(src)
+
 //Default "structure" proc. This should be overwritten by sub procs.
 //If we sent it to monkey we'd get some weird shit happening.
 /obj/structure/attack_alien(mob/living/carbon/Xenomorph/M as mob)
@@ -279,12 +285,13 @@
 
 //Foamed metal
 /obj/structure/foamedmetal/attack_alien(mob/living/carbon/Xenomorph/M as mob)
-	if (rand(0,4) == 0)
+	if (rand(0,2) == 0)
 		M << "\blue You slice through the metal foam wall."
 		for(var/mob/O in oviewers(M))
 			if ((O.client && !( O.blinded )))
 				O << "\red [M] slice through the foamed metal."
-			del(src)
+		del(src)
+		return
 	else
 		M << "\blue You try to slice through the foamed metal, but only tear off little shreds."
 	return
@@ -377,6 +384,41 @@
 //Others do nothing.
 /obj/machinery/computer/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(!M.is_intelligent)
+		M << "You stare at [src.name] cluelessly."
 		return
 	else
 		return attack_hand(M)
+
+//APCs. Don't slash em for now, we'll deal with that later.
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(!M)
+		return
+
+	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
+	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
+	var/allcut = 1
+	for(var/wire in apcwirelist)
+		if(!isWireCut(apcwirelist[wire]))
+			allcut = 0
+			break
+	if(beenhit >= pick(3, 4) && wiresexposed != 1)
+		wiresexposed = 1
+		src.update_icon()
+		src.visible_message("\red The [src.name]'s cover flies open, exposing the wires!")
+
+	else if(wiresexposed == 1 && allcut == 0)
+		for(var/wire in apcwirelist)
+			cut(apcwirelist[wire])
+		src.update_icon()
+		src.visible_message("\red The [src.name]'s wires are shredded!")
+	else
+		beenhit += 1
+	return
+
+//Some generic defaults
+/obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	M << "You stare at [src.name] cluelessly."
+	return
+
+/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	return

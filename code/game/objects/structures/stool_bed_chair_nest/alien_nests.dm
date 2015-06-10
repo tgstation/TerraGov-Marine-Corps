@@ -9,6 +9,7 @@
 	var/health = 100
 	var/on_fire = 0
 
+
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
@@ -44,13 +45,8 @@
 
 	unbuckle()
 
-	var/mob/living/carbon/xenos = user
-	var/mob/living/carbon/victim = M
-
-	if(istype(victim) && istype(victim,/mob/living/carbon/Xenomorph))
-		return
-
-	if(istype(xenos) && !istype(victim,/mob/living/carbon/Xenomorph))
+	if (istype(M, /mob/living/carbon/Xenomorph))
+		user << "The [M] is too big to buckle in."
 		return
 
 	if(M == usr)

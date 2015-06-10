@@ -2,8 +2,8 @@
 
 //TODO: Make these simple_animals
 
-var/const/MIN_IMPREGNATION_TIME = 250 //time it takes to impregnate someone
-var/const/MAX_IMPREGNATION_TIME = 350
+var/const/MIN_IMPREGNATION_TIME = 750 //time it takes to impregnate someone
+var/const/MAX_IMPREGNATION_TIME = 850
 
 var/const/MIN_ACTIVE_TIME = 200 //time between being dropped and going idle
 var/const/MAX_ACTIVE_TIME = 400
@@ -32,23 +32,26 @@ var/const/MAX_ACTIVE_TIME = 400
 	if((stat == CONSCIOUS && !sterile))
 		if(Attach(user))
 			return
-	..()
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user as mob)
 	if(istype(user,/mob/living/carbon/Xenomorph/Carrier)) //Deal with carriers grabbing huggies
 		var/mob/living/carbon/Xenomorph/Carrier/C = user
 		if(C.huggers_cur < C.huggers_max)
-			C.huggers_cur++
-			user << "You scoop up the facehugger and carry it for safekeeping. Now sheltering: [C.huggers_cur] / [C.huggers_max]."
+			if(src.stat == CONSCIOUS)
+				C.huggers_cur++
+				user << "You scoop up the facehugger and carry it for safekeeping. Now sheltering: [C.huggers_cur] / [C.huggers_max]."
+				del(src)
+			else
+				user << "That one looks unhealthy."
 			return
 	user.put_in_active_hand(src) //Not a carrier, or already full? Just pick it up.
 
 /obj/item/clothing/mask/facehugger/attack(mob/living/M as mob, mob/user as mob)
 	..()
 	if(istype(M))
-		user.update_icons() //Just to be safe here
 		Attach(M)
+		user.update_icons() //Just to be safe here
 
 /obj/item/clothing/mask/facehugger/examine()
 	..()
@@ -75,7 +78,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	return
 
 /obj/item/clothing/mask/facehugger/equipped(mob/M)
-	Attach(M)
+	return
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
 	HasProximity(target)
@@ -121,6 +124,11 @@ var/const/MAX_ACTIVE_TIME = 400
 	if(istype(C) && locate(/datum/organ/internal/xenos/hivenode) in C.internal_organs)
 		return 0
 
+	if(ishuman(C))
+		if(!C:has_organ("head"))
+			visible_message("[src] looks for a face to hug, but finds none!")
+			return 0
+
 	if(istype(C,/mob/living/carbon/Xenomorph))
 		return 0
 
@@ -136,18 +144,19 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
 
+	if(istype(src.loc,/mob/living/carbon/Xenomorph)) //Being carried? Drop it
+		var/mob/living/carbon/Xenomorph/X = src.loc
+		X.drop_from_inventory(src)
+		X.update_icons()
+
 	if(isturf(L.loc))
 		src.loc = L.loc //Just checkin
-
-	if(istype(L.loc,/mob/living/carbon/Xenomorph)) //We did all our checks, let's take it out of hand
-		var/mob/living/carbon/Xenomorph/X = L.loc
-		X.drop_from_inventory(src)
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.head)
-			if((H.head.flags & HEADCOVERSMOUTH) || !H.head.canremove)
-				if(rand(0,2) != 0)
+			if((H.head.flags & HEADCOVERSMOUTH))
+				if(rand(0,1) == 0 || !H.head.canremove) //Just a flat 50% chance for now
 					H.visible_message("\red \b [src] smashes against [H]'s [H.head] and bounces off!")
 					Die()
 					return 0
@@ -170,8 +179,9 @@ var/const/MAX_ACTIVE_TIME = 400
 		src.loc = target
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
+		target.update_icons()
 
-		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/6) //something like 25 ticks = 20 seconds with the default settings
+		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/4) //something like 25 ticks = 20 seconds with the default settings
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
 		src.loc = corgi

@@ -88,7 +88,7 @@
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "planttop1"
 
-/obj/structure/jungle/tree/
+/obj/structure/jungle/tree
 	icon = 'icons/ground_map64.dmi'
 	desc = "What an enormous tree!"
 

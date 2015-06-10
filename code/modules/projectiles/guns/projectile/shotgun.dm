@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
-	desc = "Useful for sweeping alleys."
+	desc = "Useful for sweeping alleys. Shift click to pump it or use the verb."
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
@@ -14,6 +14,7 @@
 	var/recentpump = 0 // to prevent spammage
 	var/pumped = 0
 	var/obj/item/ammo_casing/current_shell = null
+	twohanded = 1
 
 	isHandgun()
 		return 0
@@ -23,15 +24,17 @@
 			return 1
 		return 0
 
-
-	attack_self(mob/living/user as mob)
+	ShiftClick(var/mob/user)
 		if(recentpump)	return
-		pump(user)
+		var/mob/living/carbon/human/M = user
+		if(!istype(M)) return //wat
+		if(M.get_active_hand() != src && !M.get_inactive_hand() != src) return //not holding it
+
+		pump(M)
 		recentpump = 1
-		spawn(10)
+		spawn(20)
 			recentpump = 0
 		return
-
 
 	proc/pump(mob/M as mob)
 		playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
@@ -49,6 +52,30 @@
 			in_chamber = AC.BB //Load projectile into chamber.
 		update_icon()	//I.E. fix the desc
 		return 1
+
+	verb/pump_shotgun(mob/user)
+		set category = "Object"
+		set name = "Pump Shotgun"
+		set src in usr
+
+		if(!usr.canmove || usr.stat || usr.restrained())
+			user << "Not right now."
+			return
+
+		if(recentpump)	return
+		var/mob/living/carbon/human/M = user
+		if(!istype(M)) return //wat
+
+		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
+			user << "You have to be holding it!"
+			return //not holding it
+
+		pump(M)
+		recentpump = 1
+		spawn(20)
+			recentpump = 0
+
+		return
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"

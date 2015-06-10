@@ -86,6 +86,11 @@
 				loc = A.loc
 				return 0// nope.avi
 
+			if(get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir))
+				bumped = 0
+				permutated.Add(A)
+				return 0
+
 			var/distance = get_dist(starting,loc)
 			var/miss_modifier = -30
 
@@ -201,3 +206,17 @@
 				M = locate() in get_step(src,target)
 				if(istype(M))
 					return 1
+
+//Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals
+/proc/get_adj_simple(atom/Loc1 as turf|mob|obj,atom/Loc2 as turf|mob|obj)
+	var/dx = Loc1.x - Loc2.x
+	var/dy = Loc1.y - Loc2.y
+
+	if(dx == 0) //left or down of you
+		if(dy == -1 || dy == 1)
+			return 1
+	if(dy == 0) //above or below you
+		if(dx == -1 || dx == 1)
+			return 1
+
+	return 0

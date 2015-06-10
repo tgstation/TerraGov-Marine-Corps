@@ -2,8 +2,8 @@
 	caste = "Praetorian"
 	name = "Praetorian"
 	desc = "A huge, looming beast of an alien."
-	icon_state = "Praetorian Walking"
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Praetorian Walking"
 	melee_damage_lower = 20
 	melee_damage_upper = 26
 	health = 300
@@ -11,10 +11,12 @@
 	storedplasma = 150
 	plasma_gain = 24
 	maxplasma = 600
-	jellyMax = 900
+	jellyMax = 0
 	spit_delay = 45
+	adjust_pixel_x = -16
 	caste_desc = "Ptui!"
 	evolves_to = list()
+	armor_deflection = 30
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

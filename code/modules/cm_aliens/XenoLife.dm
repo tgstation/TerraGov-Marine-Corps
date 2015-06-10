@@ -20,8 +20,6 @@
 			src << "\green You feel the royal jelly swirl in your veins.."
 			jellyGrow = jellyMax
 
-	blinded = null
-
 	if(loc)
 		handle_environment(loc.return_air())
 
@@ -33,6 +31,8 @@
 
 	if(client)
 		handle_regular_hud_updates()
+
+
 
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
@@ -55,7 +55,7 @@
 			weakened--
 
 		if(paralysis)
-			AdjustParalysis(-1)
+			AdjustParalysis(-3)
 			blinded = 1
 			stat = UNCONSCIOUS
 			if(halloss > 0)
@@ -79,15 +79,15 @@
 				adjustHalLoss(-1)
 
 		// Eyes and blindness.
-		if(!has_eyes())
-			eye_blind =  1
-			blinded =    1
-			eye_blurry = 1
-		else if(eye_blind)
-			eye_blind =  max(eye_blind-1,0)
-			blinded =    1
-		else if(eye_blurry)
-			eye_blurry = max(eye_blurry-1, 0)
+//		if(!has_eyes())
+//			eye_blind =  1
+//			blinded =    1
+//			eye_blurry = 1
+//		else if(eye_blind)
+//			eye_blind =  max(eye_blind-1,0)
+//			blinded =    1
+//		else if(eye_blurry)
+//			eye_blurry = max(eye_blurry-1, 0)
 
 		//Ears
 		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
@@ -102,19 +102,9 @@
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
-	if (stat == 2 || (XRAY in src.mutations))
-		sight |= SEE_TURFS
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (stat != 2)
-		sight &= ~SEE_TURFS
-		sight &= ~SEE_MOBS
-		sight &= ~SEE_OBJS
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LIVING
-		sight |= SEE_MOBS //Lets try this
+	//This should give full x-ray vision for the time being. Fuckin sight code god damn it
+	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
+	see_in_dark = 8
 
 	if (healths)
 		if (stat != 2)
@@ -141,19 +131,19 @@
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
 
 	if (client)
-		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
+		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
-	if ((blind && stat != 2))
-		if ((blinded))
-			blind.layer = 18
-		else
-			blind.layer = 0
-			if (disabilities & NEARSIGHTED)
-				client.screen += global_hud.vimpaired
-			if (eye_blurry)
-				client.screen += global_hud.blurry
-			if (druggy)
-				client.screen += global_hud.druggy
+//	if ((blind && stat != 2))
+//		if ((blinded))
+//			blind.layer = 18
+//		else
+//			blind.layer = 0
+//			if (disabilities & NEARSIGHTED)
+//				client.screen += global_hud.vimpaired
+//			if (eye_blurry)
+//				client.screen += global_hud.blurry
+//			if (druggy)
+//				client.screen += global_hud.druggy
 
 	if (stat != 2)
 		if (machine)
@@ -182,13 +172,13 @@
 	if(!T || !istype(T)) return
 
 	if(locate(/obj/effect/alien/weeds) in T)
-		if(health >= maxHealth -getCloneLoss())
+		if(health >= maxHealth - getCloneLoss())
 			storedplasma += plasma_gain
 		else
-			adjustBruteLoss(-(maxHealth / 25)) //Heal 1/25th of your max health per tick-- 4/100hp, 20/500hp. So, scales with maxHealth
+			adjustBruteLoss(-(maxHealth / 31)) //Heal 1/31th of your max health in brute per tick.
 			adjustFireLoss(-(maxHealth / 50)) //Heal from fire half as fast
 			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
-			adjustToxLoss(plasma_gain) //hmmmm, this is probably unnecessary
+			adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 			storedplasma += plasma_gain
 		if(storedplasma > maxplasma) storedplasma = maxplasma
 	else //Xenos restore plasma VERY slowly off weeds, and only at full health

@@ -2,7 +2,7 @@
 //STANDARD MARINE CLOSET
 /obj/structure/closet/secure_closet/marine
 	name = "Marine's Locker"
-	req_access = list()
+	req_access = list(access_marine_prep)
 	icon_state = "standard_locked"
 	icon_closed = "standard_unlocked"
 	icon_locked = "standard_locked"
@@ -17,17 +17,17 @@
 		new /obj/item/weapon/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine2(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/gloves/marine(src)
 		new /obj/item/clothing/under/marine2(src)
 		new /obj/item/device/radio/headset/msulaco(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
 	name = "Marine Commander's Locker"
-	req_access = list()
+	req_access = list(access_sulaco_captain)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
 	icon_locked = "capsecure1"
@@ -53,7 +53,7 @@
 
 /obj/structure/closet/secure_closet/marine/marine_lo
 	name = "Logistics Locker"
-	req_access = list()
+	req_access = list(access_sulaco_logistics)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
 	icon_locked = "hopsecure1"
@@ -76,6 +76,7 @@
 		new /obj/item/clothing/suit/storage/marine(src)
 		new /obj/item/weapon/storage/belt/marine(src)
 		new /obj/item/weapon/storage/belt/marine(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 
@@ -85,7 +86,7 @@
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/marine/military_officer
 	name = "Military Police's Locker"
-	req_access = list()
+	req_access = list(access_sulaco_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
 	icon_locked = "sec1"
@@ -93,7 +94,7 @@
 	icon_broken = "secbroken"
 	icon_off = "secoff"
 	icon = 'icons/obj/closet.dmi'
-	
+
 	New()
 		sleep(2)
 		new /obj/item/clothing/shoes/marine(src)
@@ -108,12 +109,13 @@
 		// new /obj/item/weapon/gun/twohanded/projectile/shotgun/pump/riot(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/melee/baton(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 
 /obj/structure/closet/secure_closet/marine/military_officer_spare
 	name = "Extra Equipment Locker"
-	req_access = list()
+	req_access = list(access_sulaco_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
 	icon_locked = "sec1"
@@ -121,7 +123,7 @@
 	icon_broken = "secbroken"
 	icon_off = "secoff"
 	icon = 'icons/obj/closet.dmi'
-	
+
 	New()
 		sleep(2)
 		new /obj/item/clothing/shoes/marine(src)
@@ -148,7 +150,7 @@
 //ALPHA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_alpha_equipment
 	name = "Alpha Equipment Locker"
-	req_access = list()
+	req_access = list(access_marine_prep, access_squad_alpha)
 	icon_state = "squad_alpha_locked"
 	icon_closed = "squad_alpha_unlocked"
 	icon_locked = "squad_alpha_locked"
@@ -165,14 +167,15 @@
 		new /obj/item/weapon/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine2(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/malpha(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return
+
 
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment
 	name = "Bravo Equipment Locker"
-	req_access = list()
+	req_access = list(access_marine_prep, access_squad_bravo)
 	icon_state = "squad_bravo_locked"
 	icon_closed = "squad_bravo_unlocked"
 	icon_locked = "squad_bravo_locked"
@@ -189,14 +192,14 @@
 		new /obj/item/weapon/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine2(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/mbravo(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 //CHARLIE EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_charlie_equipment
 	name = "Charlie Equipment Locker"
-	req_access = list()
+	req_access = list(access_marine_prep, access_squad_charlie)
 	icon_state = "squad_charlie_locked"
 	icon_closed = "squad_charlie_unlocked"
 	icon_locked = "squad_charlie_locked"
@@ -213,14 +216,14 @@
 		new /obj/item/weapon/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine2(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/mcharlie(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 //Delta EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
 	name = "Delta Equipment Locker"
-	req_access = list()
+	req_access = list(access_marine_prep, access_squad_delta)
 	icon_state = "squad_delta_locked"
 	icon_closed = "squad_delta_unlocked"
 	icon_locked = "squad_delta_locked"
@@ -237,8 +240,8 @@
 		new /obj/item/weapon/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine2(src)
 		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/mdelta(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 
@@ -246,7 +249,7 @@
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
 	name = "Sulaco Medical Doctor's Locker"
-	req_access_txt = 504
+	req_access = list(access_sulaco_medbay)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
 	icon_locked = "securemed1"
@@ -313,6 +316,7 @@
 			new /obj/item/clothing/suit/storage/marine2(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 
