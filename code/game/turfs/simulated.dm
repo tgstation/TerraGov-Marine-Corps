@@ -94,7 +94,7 @@
 					else
 						M.inertia_dir = 0
 						return
-				else if(!istype(M, /mob/living/carbon/slime))
+				else if(!istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/carbon/Xenomorph) )
 					if (M.m_intent == "run")
 						M.stop_pulling()
 						step(M, M.dir)
@@ -107,7 +107,7 @@
 						return
 
 			if(2) //lube                //can cause infinite loops - needs work
-				if(!istype(M, /mob/living/carbon/slime) && !M.buckled)
+				if(!istype(M, /mob/living/carbon/slime) && !M.buckled && !istype(M, /mob/living/carbon/Xenomorph))
 					M.stop_pulling()
 					step(M, M.dir)
 					spawn(1) step(M, M.dir)
@@ -130,7 +130,7 @@
 					else
 						M.inertia_dir = 0
 						return
-				else if(!istype(M, /mob/living/carbon/slime))
+				else if(!istype(M, /mob/living/carbon/slime) && !istype(M, /mob/living/carbon/Xenomorph))
 					if (M.m_intent == "run" && prob(30))
 						M.stop_pulling()
 						step(M, M.dir)
@@ -163,7 +163,7 @@
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
 	if(istype(M, /mob/living/carbon/monkey))
 		blood_splatter(src,M,1)
-	else if( istype(M, /mob/living/carbon/alien ))
+	else if( istype(M, /mob/living/carbon/Xenomorph))
 		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 	else if( istype(M, /mob/living/silicon/robot ))

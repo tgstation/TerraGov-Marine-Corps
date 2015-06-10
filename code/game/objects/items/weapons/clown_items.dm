@@ -14,6 +14,9 @@
 		if (istype(M, /mob/living/carbon/human) && (isobj(M:shoes) && M:shoes.flags&NOSLIP) || M.buckled)
 			return
 
+		if(istype(M,/mob/living/carbon/Xenomorph))
+			return //NOPE
+
 		M.stop_pulling()
 		M << "\blue You slipped on the [name]!"
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
@@ -28,6 +31,9 @@
 		var/mob/M =	AM
 		if (istype(M, /mob/living/carbon/human) && (isobj(M:shoes) && M:shoes.flags&NOSLIP) || M.buckled)
 			return
+
+		if(istype(M,/mob/living/carbon/Xenomorph))
+			return //NOPE
 
 		M.stop_pulling()
 		M << "\blue You slipped on the [name]!"
