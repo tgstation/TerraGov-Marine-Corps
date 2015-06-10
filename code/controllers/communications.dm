@@ -95,32 +95,54 @@ On the map:
 1453 for engineering access
 1455 for AI access
 */
+//var/const/COMM_FREQ = 1353
+//var/const/SCI_FREQ = 1351
+//var/const/SUP_FREQ = 1347
 
-var/const/COMM_FREQ = 1353
+
+//Misc channels
 var/const/SYND_FREQ = 1213
 var/const/ERT_FREQ = 1345
 var/const/DTH_FREQ = 1341
 var/const/AI_FREQ = 1447
 
-// department channels
-var/const/PUB_FREQ = 1459
-var/const/SEC_FREQ = 1359
-var/const/ENG_FREQ = 1357
-var/const/SCI_FREQ = 1351
+//Sulaco department channels
+var/const/PUB_FREQ = 1461
+
+var/const/COMM_FREQ = 1353
 var/const/MED_FREQ = 1355
-var/const/SUP_FREQ = 1347
+var/const/ENG_FREQ = 1357
+var/const/SEC_FREQ = 1359
+
+//Marine channels
+var/const/ALPHA_FREQ = 1361
+var/const/BRAVO_FREQ = 1363
+var/const/CHARLIE_FREQ = 1365
+var/const/DELTA_FREQ = 1367
+
+//Civilian channels
+var/const/CIV_GEN_FREQ = 1469
+var/const/CIV_COMM_FREQ = 1471
+
 
 var/list/radiochannels = list(
-	"Common"		= PUB_FREQ,
-	"Science"		= SCI_FREQ,
-	"Command"		= COMM_FREQ,
-	"Medical"		= MED_FREQ,
-	"Engineering"	= ENG_FREQ,
-	"Security" 		= SEC_FREQ,
 	"Response Team" = ERT_FREQ,
 	"Special Ops" 	= DTH_FREQ,
 	"Syndicate" 	= SYND_FREQ,
-	"Supply" 		= SUP_FREQ
+
+	"Sulaco"		= PUB_FREQ,
+	"Command"		= COMM_FREQ,
+	"MedSci"		= MED_FREQ,
+	"Engi"			= ENG_FREQ,
+	"MP"			= SEC_FREQ,
+
+	"Alpha"			= ALPHA_FREQ,
+	"Bravo"			= BRAVO_FREQ,
+	"Charlie"		= CHARLIE_FREQ,
+	"Delta"			= DELTA_FREQ,
+
+	"Common"		= CIV_GEN_FREQ,
+	"Civ Command"	= CIV_COMM_FREQ
 )
 
 // central command channels, i.e deathsquid & response teams
@@ -129,8 +151,8 @@ var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
 // Antag channels, i.e. Syndicate
 var/list/ANTAG_FREQS = list(SYND_FREQ)
 
-//depenging helpers
-var/list/DEPT_FREQS = list(SCI_FREQ, MED_FREQ, ENG_FREQ, SEC_FREQ, SUP_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ)
+//Depts - just used for colors in headset.dm
+var/list/DEPT_FREQS = list(MED_FREQ, ENG_FREQ, SEC_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, ALPHA_FREQ, BRAVO_FREQ,CHARLIE_FREQ, DELTA_FREQ)
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1

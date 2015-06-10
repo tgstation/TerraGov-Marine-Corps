@@ -7,8 +7,7 @@
 	name = "ColMarTech"
 	desc = "A marine equipment vendor"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 25,
-
+	products = list(
 					/obj/item/weapon/gun/projectile/m4a3 = 8,
 					/obj/item/weapon/gun/projectile/m44m = 8,
 					/obj/item/weapon/gun/projectile/automatic/m39 = 8,
@@ -21,10 +20,14 @@
 					/obj/item/ammo_magazine/m41 = 25,
 					/obj/item/weapon/storage/box/m37 = 25,
 
-					/obj/item/weapon/combat_knife = 5,
-					/obj/item/device/flashlight/flare = 10,
+					/obj/item/weapon/combat_knife = 10,
 					/obj/item/weapon/storage/belt/knifepouch = 3,
+					/obj/item/weapon/throwing_knife = 9,
+					/obj/item/device/flashlight/flare = 10,
 					/obj/item/weapon/storage/backpack/marine = 20,
+					/obj/item/device/radio/headset/msulaco = 5,
+
+					/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 5
 
 					)
 	contraband = list(/*bj/item/weapon/storage/fancy/donut_box = 5,
@@ -45,7 +48,7 @@
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/monkeyburger = 20, /obj/item/weapon/reagent_containers/food/snacks/tofuburger = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/omelette = 10, /obj/item/weapon/reagent_containers/food/snacks/muffin = 20,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 30, /obj/item/weapon/reagent_containers/food/snacks/meatsteak = 10)
-	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
 	product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it;"
 	product_ads = "Your only choice for food...Literally;"
