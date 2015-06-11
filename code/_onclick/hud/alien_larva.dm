@@ -34,13 +34,13 @@
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
 	mymob.flash.layer = 17
-
+/*
 	mymob.fire = new /obj/screen()
 	mymob.fire.icon = 'icons/mob/screen1_alien.dmi'
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
 	mymob.fire.screen_loc = ui_fire
-
+*/
 	mymob.client.screen = null
-	mymob.client.screen += list( mymob.healths, mymob.blind, mymob.flash, mymob.fire) //, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen += list( mymob.healths, mymob.blind, mymob.flash) //, mymob.fire, mymob.rest, mymob.sleep, mymob.mach )
 	mymob.client.screen += src.adding + src.other

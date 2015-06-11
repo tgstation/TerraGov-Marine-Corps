@@ -295,7 +295,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"http://newedenstation.com/forumdisplay.php?fid=56\"><b>[config.server_name]</b> &#8212; "
+		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; "
 		s += "<b>NMV Sulaco</b> | Hosted by Apophis";
 //		s += "<br><img src=\"http://i.imgur.com/OQ5OIMJ.png\"><br>"
 		s += "</a>"

@@ -572,11 +572,11 @@
 	else if(istype(O, /turf/simulated))
 		var/turf/T = O
 		// R WALL
-		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor))
-			src << "\green You cannot dissolve this object."
+		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral))
+			src << "\green You cannot dissolve this."
 			return
 		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-			src << "\green You cannot dissolve this object."
+			src << "\green This wall is too tough to be melted by your weak acid."
 			return
 	else
 		src << "\green You cannot dissolve this object."
