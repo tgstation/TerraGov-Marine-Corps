@@ -148,7 +148,8 @@
 				L.visible_message("<span class='danger'>[L] has been prodded with [src] by [user]!</span>")
 
 	//stun effects
-	L.stun_effect_act(stun, agony, target_zone, src)
+	if(!istype(L,/mob/living/carbon/Xenomorph)) //Xenos are IMMUNE to all baton stuns.
+		L.stun_effect_act(stun, agony, target_zone, src)
 
 	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")

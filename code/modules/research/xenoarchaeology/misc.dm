@@ -76,7 +76,7 @@
 		new /obj/item/clothing/suit/storage/labcoat(src)
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/clothing/glasses/science(src)
-		new /obj/item/device/radio/headset/headset_sci(src)
+//		new /obj/item/device/radio/headset/headset_sci(src)
 		new /obj/item/weapon/storage/belt/archaeology(src)
 		new /obj/item/weapon/storage/box/excavation(src)
 		return

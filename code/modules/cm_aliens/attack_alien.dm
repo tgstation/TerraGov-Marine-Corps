@@ -18,14 +18,14 @@
 
 	switch(M.a_intent)
 		if ("help")
-			visible_message(text("\blue [M] caresses [src] with its scythe like arm."))
+			visible_message(text("\blue \The [M] caresses [src] with its scythe like arm."))
 			return 0
 
 		if ("grab") //Defaults to ctrl-click pull. Grabs are fucked up!
 			if(M == src || anchored)
 				return
 			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
-				visible_message("\red <B>[M]'s grab is blocked by [src]'s shield!</B>")
+				visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>")
 				return 0
 
 			if(Adjacent(M)) //Logic!
@@ -36,12 +36,12 @@
 			visible_message(text("\red [] has grabbed []!", M, src))
 		if("hurt")
 			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
-				visible_message("\red <B>[M]'s slash is blocked by [src]'s shield!</B>")
+				visible_message("\red <B>\The [M]'s slash is blocked by [src]'s shield!</B>")
 				return 0
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			if(!damage)
 				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
-				visible_message("\red <B>[M] has lunged at [src]!</B>")
+				visible_message("\red <B>\The [M] has lunged at [src]!</B>")
 				return 0
 			var/datum/organ/external/affecting
 //			if(istype(M, /mob/living/carbon/alien/humanoid/ravager))
@@ -56,7 +56,7 @@
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-			visible_message("\red <B>[M] has slashed at [src]!</B>")
+			visible_message("\red <B>\The [M] has slashed at [src]!</B>")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 //			if (src.stat != 2)
@@ -67,7 +67,7 @@
 
 		if("disarm")
 			if(check_shields(0, M.name) && rand(0,7) != 0) //Bit of a bonus
-				visible_message("\red <B>[M]'s tackle is blocked by [src]'s shield!</B>")
+				visible_message("\red <B> \The [M]'s tackle is blocked by [src]'s shield!</B>")
 				return 0
 			if(weakened)
 				if (prob(20))
@@ -77,10 +77,10 @@
 //						score_tackles_made++
 					for(var/mob/O in viewers(src, null))
 						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has tackled down []!</B>", M, src), 1)
+							O.show_message(text("\red <B>\The [] has tackled down []!</B>", M, src), 1)
 				else
 					playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
-					visible_message(text("\red <B>[] tried to tackle [], but they're already down!</B>", M, src))
+					visible_message(text("\red <B>\The [] tried to tackle [], but they're already down!</B>", M, src))
 
 			else
 				if (prob(M.tackle_chance)) //Tackle_chance is now a special var for each caste.
@@ -90,10 +90,10 @@
 //						score_tackles_made++
 					for(var/mob/O in viewers(src, null))
 						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has tackled down []!</B>", M, src), 1)
+							O.show_message(text("\red <B>\The [] has tackled down []!</B>", M, src), 1)
 				else
 					playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
-					visible_message(text("\red [] tried to tackle []!", M, src))
+					visible_message(text("\red \The [] tried to tackle []!", M, src))
 	return
 
 //Every other type of nonhuman mob
@@ -114,18 +114,22 @@
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
 				update_icons(M) //To immediately show the grab
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message(text("\red [] has grabbed [] passively!", M, src))
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				visible_message(text("\red \The [] has grabbed [] passively!", M, src))
 
 		if("hurt")//Can't slash other xenos for now. SORRY
-			visible_message("\red [M] nibbles at [src].")
+			if(istype(src,/mob/living/carbon/Xenomorph))
+				visible_message("\red \The [M] nibbles at [src].")
+				return
+			var/damage = rand(5,20) //Who cares, it's just Ian and the Monkeys (that would make a great band name)
+			visible_message("\red \The [M] bites at \the [src]!")
+			apply_damage(damage, BRUTE)
 
-		if("disarm") //Can only tackle humans
+		if("disarm")
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 			visible_message(text("\red [] shoves [].", M, src))
 			if(ismonkey(src))
-				src.Weaken(3)
+				src.Weaken(8)
 	return
 
 //This is a generic "attack an object" proc that doesn't use attack_alien.
@@ -134,10 +138,6 @@
 //Mostly used to stop xenos from picking stuff up.
 /obj/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(istype(src,/obj/item/clothing/mask/facehugger)) //dealt with in hugger code
-		src.attack_hand(M)
-		return
-
-	if(istype(src,/obj/machinery/computer) && M.is_intelligent) //Queens can use shuttle consoles
 		src.attack_hand(M)
 		return
 
@@ -327,7 +327,7 @@
 			return
 
 	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-	M.visible_message("<span class='warning'>[M] digs into [src.name] and begins to pry it open.</span>", \
+	M.visible_message("<span class='warning'> \The [M] digs into [src.name] and begins to pry it open.</span>", \
 		 			"<span class='warning'>You begin to pry open [src.name].</span>")
 
 	if(do_after(M,40))
@@ -346,7 +346,7 @@
 	if(isXenoLarva(M)) return //Larvae can't do shit
 
 	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-	M.visible_message("<span class='warning'>[M] digs into [src.name] and begins to pry it open.</span>", \
+	M.visible_message("<span class='warning'> \The [M] digs into [src.name] and begins to pry it open.</span>", \
 		 			"<span class='warning'>You begin to pry open [src.name].</span>")
 
 	if(do_after(M,30))
@@ -363,7 +363,6 @@
 
 //clicking on resin doors attacks them, or opens them without harm intent
 /obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M as mob)
-	if(isXenoLarva(M)) return //Larvae can't do shit
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc)) return //Some basic logic here
 	if(M.a_intent != "hurt")

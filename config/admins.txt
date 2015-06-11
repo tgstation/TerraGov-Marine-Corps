@@ -1,7 +1,13 @@
+######################################################################
+# Basically, ckey goes first. Rank goes after the "-"                #
+# Case is not important for ckey.                                    #
+# Case IS important for the rank. However punctuation/spaces are not #
+# Ranks can be anything defined in admin_ranks.txt           ~Carn   #
+######################################################################
+
+# not_a_user - Host
 Apophis775 - Host
 ColonialMarines - Host
-Absynth - Host
-
 
 Rahlzel - Vice Host
 
@@ -10,11 +16,7 @@ Rahlzel - Vice Host
 SASoperative - Head Admin
 
 
-
-
  - Head Moderator
-
-
 
 
 coroneljones - Game Admin
@@ -50,17 +52,17 @@ Officialjake -Moderator
 
 NijiShadow - Moderator
 
-Ordukai - Moderator
-
-Pawoverlord - Moderator
 
 
+Ordukai - Trial Moderator
+
+Pawoverlord - Trial Moderator
 
 Hailstorm77 - Trial Moderator
 
 Septimius - Trial Moderator
 
-Vrai - Trial Moderator
+
 
 
 
@@ -71,3 +73,5 @@ mewth - Mapper
 Slayerplayer99 - Coder
 
 SailorDave - Coder
+
+Absynth - Coder

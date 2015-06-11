@@ -80,7 +80,7 @@
 	ask_verb = "creels"
 	exclaim_verb = "SHRIEKS"
 	colour = "vox"
-	key = "v"
+	key = "9"
 	flags = RESTRICTED
 
 /datum/language/diona
@@ -90,7 +90,7 @@
 	ask_verb = "creaks"
 	exclaim_verb = "rustles"
 	colour = "soghun"
-	key = "q"
+	key = "8"
 	flags = RESTRICTED
 
 /datum/language/common
@@ -130,6 +130,16 @@
 	colour = "rough"
 	key = "3"
 
+/datum/language/sainja
+	name = "Sainja"
+	desc = "The deep, rumbling, gutteral sounds of the Yautja predators. It is difficult to speak for those without facial mandibles."
+	speech_verb = "rumbles"
+	ask_verb = "rumbles"
+	exclaim_verb = "roars"
+	colour = "tajaran"
+	key = "s"
+	flags = WHITELISTED
+
 /datum/language/xenocommon
 	name = "Xenomorph"
 	colour = "alien"
@@ -137,7 +147,7 @@
 	speech_verb = "hisses"
 	ask_verb = "hisses"
 	exclaim_verb = "hisses"
-	key = "4"
+	key = "x"
 	flags = RESTRICTED
 
 /datum/language/xenos
@@ -164,7 +174,7 @@
 //Make queens BOLD text
 /datum/language/xenos/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	if(istype(speaker,/mob/living/carbon/Xenomorph/Queen))
-		message = "\b [message]"
+		message = "<B> [message]</b>"
 
 	..(speaker,message)
 
@@ -173,7 +183,7 @@
 	desc = "Although they are normally wary and suspicious of each other, changelings can commune over a distance."
 	speech_verb = "says"
 	colour = "changeling"
-	key = "g"
+	key = "7"
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
@@ -214,7 +224,7 @@
 	speech_verb = "states"
 	ask_verb = "queries"
 	exclaim_verb = "declares"
-	key = "b"
+	key = "6"
 	flags = RESTRICTED | HIVEMIND
 	var/drone_only
 

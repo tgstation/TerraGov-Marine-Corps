@@ -256,6 +256,9 @@
 	if(!target)
 		del(src)
 
+	if(!src) //Woops, abort
+		return
+
 	var/tick_timer = rand(200,300) * acid_strength / 100 //Acid strength is just a percentage of time between ticks
 
 	ticks += 1
@@ -273,7 +276,12 @@
 				for(var/mob/S in target)
 					if(S in target.contents && !isnull(target.loc))
 						S.loc = target.loc
-			del(target)
+
+			if(istype(target,/turf)) //We don't want space tiles appearing everywhere... but this sucks!
+				var/turf/T = target
+				T.ChangeTurf(/turf/simulated/floor/plating)
+			else
+				del(target)
 		del(src)
 		return
 
@@ -327,21 +335,21 @@
 					if (prob(45))	// If the human has riot shield in his hand,  65% chance
 						src.Weaken(3) //Stun the fucker instead
 						visible_message("\red <B> \The [src] bounces off [H]'s shield!</B>")
+						src.throwing = 0
 						return
 
-			if(charge_type == 2) //Ravagers get a free attack if they charge into someone.
+			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)
-				V.Weaken(1)
-				step_away(V,src,15)
-//				V.hitby(src,speed) hmmm
+				src.throwing = 0
 
 			if(charge_type == 1) //Runner/hunter pounce.
 				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
 				V.Weaken(3)
 				src.canmove = 0
 				src.frozen = 1
-//				V.hitby(src,speed)	hmmmmm. Don't want to push them back.
-				spawn(18)
+				src.loc = V.loc
+				src.throwing = 0 //Stop the movement
+				spawn(20)
 					src.frozen = 0
 		return
 
@@ -357,7 +365,7 @@
 //Deal with armor deflection.
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
 	if(prob(armor_deflection))
-		visible_message("The [src]'s thick exoskeleton deflects the projectile!","Your thick exoskeleton deflected a projectile!")
+		visible_message("The [src]'s thick exoskeleton deflects \the [Proj]!","Your thick exoskeleton deflected \the [Proj]!")
 		return -1
 	..(Proj) //Do normal stuff
 	return

@@ -14,6 +14,10 @@
 		// GROW!
 		update_progression()
 
+	//Stops larva from sneakily hitting the hotkey for intents, so they can grab
+	if(isXenoLarva(src) && src.a_intent != "help")
+		src.a_intent = "help"
+
 	if(jelly && jellyGrow < jellyMax)
 		jellyGrow++
 		if(jellyGrow > jellyMax)
@@ -28,6 +32,7 @@
 	update_canmove()
 	update_icons()
 	handle_statuses() //Deals with stunned, etc
+
 
 	if(client)
 		handle_regular_hud_updates()

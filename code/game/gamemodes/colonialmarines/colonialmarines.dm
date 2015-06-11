@@ -147,17 +147,21 @@ var/list/toldstory = list()
 			toldstory.Add(H.name)
 
 /datum/game_mode/colonialmarines/process()
-	//Reset the survivor count to zero per process call.
-	humansurvivors = 0
-	aliensurvivors = 0
 
-	//For each survivor, add one to the count. Should work accurately enough.
-	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(H) //Prevent any runtime errors
-			if(H.client && !istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD) // If they're connected/unghosted and alive and not debrained
-				humansurvivors += 1 //Add them to the amount of people who're alive.
-			else if(H.client && istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD)
-				aliensurvivors += 1
+	checkwin_counter++
+
+	//We're not going to tally up every mob every tick. Just do it a random number of ticks to ease any unnecessary CPU strain.
+	//This part should always trigger before the check_win(), so we don't get GAME OVER on game start.
+	if(checkwin_counter >= rand(2,4) && !finished)
+		humansurvivors = 0
+		aliensurvivors = 0
+
+		for(var/mob/living/carbon/H in living_mob_list)
+			if(H) //Prevent any runtime errors
+				if(H.client && istype(H,/mob/living/carbon/human) && H.stat != DEAD && (!H.status_flags & XENO_HOST) && H.z != 0) // If they're connected/unghosted and alive and not debrained
+					humansurvivors += 1 //Add them to the amount of people who're alive.
+				else if(H.client && istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD && H.z != 0)
+					aliensurvivors += 1
 
 /*
 	for(var/mob/living/carbon/alien/A in living_mob_list)
@@ -171,8 +175,8 @@ var/list/toldstory = list()
 	//world << "there are [aliensurvivors] aliens left."
 	//world << "there are [humansurvivors] humans left."
 
-	checkwin_counter++
-	if(checkwin_counter >= 5)
+
+	if(checkwin_counter > 5) //Only check win conditions every 6 ticks.
 		if(!finished)
 			ticker.mode.check_win()
 		checkwin_counter = 0

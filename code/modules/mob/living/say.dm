@@ -4,27 +4,35 @@ var/list/department_radio_keys = list(
 	  ":i" = "intercom",	"#i" = "intercom",		".i" = "intercom",
 	  ":h" = "department",	"#h" = "department",	".h" = "department",
 	  ":+" = "special",		"#+" = "special",		".+" = "special", //activate radio-specific special functions
-	  ":c" = "Command",		"#c" = "Command",		".c" = "Command",
-	  ":n" = "Science",		"#n" = "Science",		".n" = "Science",
-	  ":m" = "Medical",		"#m" = "Medical",		".m" = "Medical",
-	  ":e" = "Engineering", "#e" = "Engineering",	".e" = "Engineering",
-	  ":s" = "Security",	"#s" = "Security",		".s" = "Security",
 	  ":w" = "whisper",		"#w" = "whisper",		".w" = "whisper",
 	  ":t" = "Syndicate",	"#t" = "Syndicate",		".t" = "Syndicate",
-	  ":u" = "Supply",		"#u" = "Supply",		".u" = "Supply",
 
-	  ":R" = "right ear",	"#R" = "right ear",		".R" = "right ear",
-	  ":L" = "left ear",	"#L" = "left ear",		".L" = "left ear",
-	  ":I" = "intercom",	"#I" = "intercom",		".I" = "intercom",
-	  ":H" = "department",	"#H" = "department",	".H" = "department",
-	  ":C" = "Command",		"#C" = "Command",		".C" = "Command",
-	  ":N" = "Science",		"#N" = "Science",		".N" = "Science",
-	  ":M" = "Medical",		"#M" = "Medical",		".M" = "Medical",
-	  ":E" = "Engineering",	"#E" = "Engineering",	".E" = "Engineering",
-	  ":S" = "Security",	"#S" = "Security",		".S" = "Security",
-	  ":W" = "whisper",		"#W" = "whisper",		".W" = "whisper",
-	  ":T" = "Syndicate",	"#T" = "Syndicate",		".T" = "Syndicate",
-	  ":U" = "Supply",		"#U" = "Supply",		".U" = "Supply",
+	  ":m" = "MedSci",		"#m" = "MedSci",		".m" = "MedSci",
+	  ":e" = "Engi", 		"#e" = "Engi",			".e" = "Engi",
+	  ":z" = "Sulaco",		"#z" = "Sulaco",		".z" = "Sulaco",
+	  ":v" = "Command",		"#v" = "Command",		".v" = "Command",
+	  ":q" = "Alpha",		"#q" = "Alpha",			".q" = "Alpha",
+	  ":b" = "Bravo",		"#b" = "Bravo",			".b" = "Bravo",
+	  ":c" = "Charlie",		"#c" = "Charlie",		".c" = "Charlie",
+	  ":d" = "Delta",		"#d" = "Delta",			".d" = "Delta",
+	  ":p" = "MP",			"#p" = "MP",			".p" = "MP",
+
+	  ":R" = "right ear",	"#R" = "right ear",		".r" = "right ear",
+	  ":L" = "left ear",	"#L" = "left ear",		".l" = "left ear",
+	  ":I" = "intercom",	"#I" = "intercom",		".i" = "intercom",
+	  ":H" = "department",	"#H" = "department",	".h" = "department",
+	  ":W" = "whisper",		"#W" = "whisper",		".w" = "whisper",
+	  ":T" = "Syndicate",	"#T" = "Syndicate",		".t" = "Syndicate",
+
+	  ":M" = "MedSci",		"#M" = "MedSci",		".M" = "MedSci",
+	  ":E" = "Engi", 		"#E" = "Engi",			".E" = "Engi",
+	  ":Z" = "Sulaco",		"#Z" = "Sulaco",		".Z" = "Sulaco",
+	  ":V" = "Command",		"#V" = "Command",		".V" = "Command",
+	  ":Q" = "Alpha",		"#Q" = "Alpha",			".Q" = "Alpha",
+	  ":B" = "Bravo",		"#B" = "Bravo",			".B" = "Bravo",
+	  ":C" = "Charlie",		"#C" = "Charlie",		".c" = "Charlie",
+	  ":D" = "Delta",		"#D" = "Delta",			".d" = "Delta",
+	  ":P" = "MP",			"#P" = "MP",			".p" = "MP",
 
 	  //kinda localization -- rastaf0
 	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
@@ -33,13 +41,10 @@ var/list/department_radio_keys = list(
 	  ":ø" = "intercom",	"#ø" = "intercom",		".ø" = "intercom",
 	  ":ð" = "department",	"#ð" = "department",	".ð" = "department",
 	  ":ñ" = "Command",		"#ñ" = "Command",		".ñ" = "Command",
-	  ":ò" = "Science",		"#ò" = "Science",		".ò" = "Science",
 	  ":ü" = "Medical",		"#ü" = "Medical",		".ü" = "Medical",
 	  ":ó" = "Engineering",	"#ó" = "Engineering",	".ó" = "Engineering",
-	  ":û" = "Security",	"#û" = "Security",		".û" = "Security",
 	  ":ö" = "whisper",		"#ö" = "whisper",		".ö" = "whisper",
 	  ":å" = "Syndicate",	"#å" = "Syndicate",		".å" = "Syndicate",
-	  ":é" = "Supply",		"#é" = "Supply",		".é" = "Supply",
 )
 
 /mob/living/proc/binarycheck()
@@ -73,7 +78,7 @@ var/list/department_radio_keys = list(
 		if (speaking.flags & SIGNLANG)
 			say_signlang(message, pick(speaking.signlang_verb), speaking)
 			return 1
-	
+
 	var/list/listening = list()
 	var/list/listening_obj = list()
 
@@ -83,11 +88,11 @@ var/list/department_radio_keys = list(
 		var/pressure = (environment)? environment.return_pressure() : 0
 		if(pressure < SOUND_MINIMUM_PRESSURE)
 			message_range = 1
-		
+
 		if (pressure < ONE_ATMOSPHERE*0.4) //sound distortion pressure, to help clue people in that the air is thin, even if it isn't a vacuum yet
 			italics = 1
 			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-	
+
 		var/list/hear = hear(message_range, T)
 		var/list/hearturfs = list()
 

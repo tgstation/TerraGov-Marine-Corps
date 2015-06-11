@@ -473,6 +473,24 @@
 		"brain" =    /datum/organ/internal/brain,
 		)
 
+/datum/species/yautja
+	name = "Yautja"
+	name_plural = "Yautja"
+	icobase = 'icons/mob/human_races/r_lizard.dmi'
+	deform = 'icons/mob/human_races/r_def_lizard.dmi'
+	brute_mod = 0.5 //Beefy!
+	flags = IS_WHITELISTED | HAS_UNDERWEAR | HAS_SKIN_COLOR
+	language = "Sainja" //"Warrior"
+	default_language = "Sainja"
+	secondary_langs = list("Galactic Common")  // Sure, what the hell. They can grunt a few words.
+	unarmed_type = /datum/unarmed_attack/punch
+	blood_color = "#2299FC"
+	flesh_color = "#808D11"
+
+	inherent_verbs = list(
+		/mob/living/carbon/human/proc/leap
+		)
+
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)
 

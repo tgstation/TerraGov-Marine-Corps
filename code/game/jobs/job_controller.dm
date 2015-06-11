@@ -532,6 +532,8 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			if(H.mind && !H.mind.assigned_squad)
 				randomize_squad(H)
 
+		H.nutrition = rand(30,200) //SO HUNGRY. WHERES ME DONK POCKETS
+
 		//Gives glasses to the vision impaired
 		if(H.disabilities & NEARSIGHTED)
 			var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)

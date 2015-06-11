@@ -28,7 +28,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 
 /proc/initialize_marine_armor()
 	var/i
-	for(i=1, i<4, i++)
+	for(i=1, i<5, i++)
 		var/image/armor
 		var/image/helmet
 		armor = image('icons/Marine/marine_armor.dmi',icon_state = "std-armor")
@@ -123,11 +123,11 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 */
 	equipped(var/mob/living/carbon/human/mob, slot)
 		update_squad_overlays(mob)
-		..()
+		..(mob, slot)
 
 	dropped(var/mob/living/carbon/human/mob)
 		update_squad_overlays(mob)
-		..()
+		..(mob)
 
 	proc/update_squad_overlays(var/mob/living/carbon/human/H)
 		if(istype(H,/mob/living/carbon/human)) //Are we on a person?

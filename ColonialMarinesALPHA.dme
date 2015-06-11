@@ -1580,7 +1580,9 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\COLONIAL MARINES.dmm"
+#include "maps\Z.1.LV624.dmm"
+#include "maps\Z.2.Centcomm.dmm"
+#include "maps\Z.3.PlaceholderSulaco.dmm"
 // END_INCLUDE
 
 
