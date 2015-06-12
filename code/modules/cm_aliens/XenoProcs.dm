@@ -10,12 +10,6 @@
 	if(maxplasma > 0)
 		stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
-//Mind Initializer
-/mob/living/carbon/Xenomorph/mind_initialize()
-	..()
-	if(caste != "" && caste != null && mind != null)
-		mind.special_role = caste
-
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
 	if(!istype(src,/mob/living/carbon/Xenomorph) || isnull(src)) //somehow

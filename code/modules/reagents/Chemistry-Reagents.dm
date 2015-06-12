@@ -202,8 +202,8 @@ datum
 					if(T.wet_overlay)
 						T.overlays -= T.wet_overlay
 						T.wet_overlay = null
-					T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-					T.overlays += T.wet_overlay
+//					T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
+//					T.overlays += T.wet_overlay
 
 					spawn(800)
 						if (!istype(T)) return

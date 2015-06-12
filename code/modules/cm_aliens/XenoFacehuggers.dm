@@ -2,8 +2,8 @@
 
 //TODO: Make these simple_animals
 
-var/const/MIN_IMPREGNATION_TIME = 750 //time it takes to impregnate someone
-var/const/MAX_IMPREGNATION_TIME = 850
+var/const/MIN_IMPREGNATION_TIME = 450 //time it takes to impregnate someone
+var/const/MAX_IMPREGNATION_TIME = 550
 
 var/const/MIN_ACTIVE_TIME = 200 //time between being dropped and going idle
 var/const/MAX_ACTIVE_TIME = 400
@@ -181,7 +181,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		target.contents += src // Monkey sanity check - Snapshot
 		target.update_icons()
 
-		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/4) //something like 25 ticks = 20 seconds with the default settings
+		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/8) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
 		src.loc = corgi
