@@ -532,7 +532,8 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			if(H.mind && !H.mind.assigned_squad)
 				randomize_squad(H)
 
-		H.nutrition = rand(30,200) //SO HUNGRY. WHERES ME DONK POCKETS
+		if(H.mind.assigned_squad)//Marines start hungry.
+			H.nutrition = rand(60,250) //WHERES ME DONK POCKETS
 
 		//Gives glasses to the vision impaired
 		if(H.disabilities & NEARSIGHTED)
@@ -547,44 +548,66 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		H.hud_updateflag |= (1 << SPECIALROLE_HUD)
 		return 1
 
-	proc/randomize_squad(var/mob/living/carbon/human/H) //Put the person into a squad. This does not check squad-job validity.
+//Find which squad has the least population. If all 4 squads are equal it should just use the first one (alpha)
+	proc/get_lowest_squad()
+		if(!squads.len) //Something went wrong, our squads aren't set up.
+			world << "Warning, something messed up in get_lowest_squad(). No squads set up!"
+			return null
+
+		var/current_count = 0
+		var/datum/squad/lowest = squads[0] //Our lowest squad will start out as alpha.
+		var/lowest_count = lowest.count
+
+		//Loop through squads.
+		for(var/datum/squad/S in squads)
+			if(!S)
+				world << "Warning: Null squad in get_lowest_squad. Call a coder!"
+				break //null squad somehow, let's just abort
+			current_count = S.count //Grab our current squad's #
+			if(current_count >= lowest_count) //Current squad is bigger or the same as our value. Skip it.
+				continue
+			lowest_count = current_count //We found a winner! This squad is lower than our default. Make it the new default.
+			lowest = S //'Select' this squad.
+
+		return lowest //Return whichever squad won the competition.
+
+//This proc is a bit of a misnomer, since there's no actual randomization going on.
+	proc/randomize_squad(var/mob/living/carbon/human/H)
 		if(!H || !H.mind) return
 
-		var/count_prev_squad = 0
-		var/found = 0
+		if(!squads.len)
+			H << "Something went wrong with your squad randomizer! Tell a coder!"
+			return //Shit, where's our squad data
 
-		if(!squads.len) return //woh that went wrong
+		//Deal with non-standards first.
+		//Non-standards are distributed regardless of squad population.
+		//If the number of available positions for the job are more than max_whatever, it will break.
+		//Ie. 8 squad medic jobs should be available, and total medics in squads should be 8.
+		if(H.mind.assigned_role != "Squad Marine")
+			for(var/datum/squad/S in squads) //Loop through the squads to find the first one one with an empty slot.
+				if(!S) break //something weird happened!
 
-		for(var/datum/squad/S in squads) //Loop through all the squads
-			if(!S || isnull(S)) break //Nope
+				//Check the current squad's roster. If we're full, move on to the next squad and try that one.
+				if(H.mind.assigned_role == "Squad Engineer" && S.num_engineers >= S.max_engineers) continue
+				if(H.mind.assigned_role == "Squad Medic" && S.num_medics >= S.max_medics) continue
+				if(H.mind.assigned_role == "Squad Leader" && S.num_leaders >= S.max_leaders) continue
+				if(H.mind.assigned_role == "Squad Specialist" && S.num_specialists >= S.max_specialists) continue
 
-			//Marines only spread out, other jobs just get inserted on a per-squad basis since they are limited in number.
-			if(count_prev_squad > S.count && H.mind.assigned_role == "Squad Marine")
-				count_prev_squad = S.count //Previous squad was higher count, skip ahead
-				continue
+				S.put_marine_in_squad(H) //Found one, add them in and stop the loop.
+				break
+		else
+			//Deal with marines. They get distributed to the lowest populated squad.
+			var/datum/squad/given_squad = get_lowest_squad()
+			if(!given_squad || !istype(given_squad)) //Something went horribly wrong!
+				H << "Something went wrong with randomize_squad()! Tell a coder!"
+				return
 
-			if(H.mind.assigned_role == "Squad Engineer")
-				if(S.num_engineers >= S.max_engineers) continue //Already got maxed
-			if(H.mind.assigned_role == "Squad Medic")
-				if(S.num_medics >= S.max_medics) continue //Already got maxed
-			if(H.mind.assigned_role == "Squad Leader")
-				if(S.num_leaders >= S.max_leaders) continue //Already got maxed
-			if(H.mind.assigned_role == "Squad Specialist")
-				if(S.num_specialists >= S.max_specialists) continue //Already got maxed
+			given_squad.put_marine_in_squad(H) //Found one, finish up
 
-			S.put_marine_in_squad(H) //Found one, finish up
-			found = 1
-			break
-
-		if(!found) //All squads are equal, or the randomizer messed up, force alpha squad
-			for(var/datum/squad/A in squads)
-				if(!A) break
-				if(A.name == "Alpha")
-					A.put_marine_in_squad(H)
-					break
 		if(H.mind)
-			H << "You have been assigned to: \b [H.mind.assigned_squad.name] squad."
-			H << "Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."
+			if(H.mind.assigned_squad)
+				H << "You have been assigned to: \b [H.mind.assigned_squad.name] squad."
+				H << "Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."
 		return
 
 	proc/spawnId(var/mob/living/carbon/human/H, rank, title)

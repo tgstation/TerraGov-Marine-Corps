@@ -307,7 +307,7 @@
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-	reagents.add_reagent("water", 2)
+//	reagents.add_reagent("water", 2)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0
