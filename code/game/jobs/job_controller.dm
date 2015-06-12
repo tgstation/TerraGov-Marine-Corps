@@ -557,7 +557,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		var/current_count = 0
 		var/datum/squad/lowest = null
 		for(var/datum/squad/L in squads) //This is kinda stupid, but whatever. We need a default squad.
-			if(!L)
+			if(L)
 				lowest = L
 				break
 
