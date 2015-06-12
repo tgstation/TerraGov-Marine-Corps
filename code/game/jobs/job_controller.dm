@@ -555,7 +555,16 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			return null
 
 		var/current_count = 0
-		var/datum/squad/lowest = squads[0] //Our lowest squad will start out as alpha.
+		var/datum/squad/lowest = null
+		for(var/datum/squad/L in squads) //This is kinda stupid, but whatever. We need a default squad.
+			if(!L)
+				lowest = L
+				break
+
+		if(!lowest)
+			world << "Warning! Bug in get_random_squad()!"
+			return null
+
 		var/lowest_count = lowest.count
 
 		//Loop through squads.
