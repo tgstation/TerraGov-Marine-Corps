@@ -71,7 +71,7 @@
 
 		var/turf/pos = get_turf(C)
 
-		if((C) && (C.has_sensor) && (pos) && (pos.z == src.z) && C.sensor_mode)
+		if((C) && (C.has_sensor) && (pos) /* && (pos.z == src.z)*/ && C.sensor_mode)
 			if(istype(C.loc, /mob/living/carbon/human))
 
 				var/mob/living/carbon/human/H = C.loc
@@ -100,8 +100,8 @@
 
 				var/area/A = get_area(H)
 				crewmemberData["area"] = sanitize(A.name)
-				crewmemberData["x"] = pos.x
-				crewmemberData["y"] = pos.y
+//				crewmemberData["x"] = pos.x
+//				crewmemberData["y"] = pos.y
 
 				// Works around list += list2 merging lists; it's not pretty but it works
 				crewmembers += "temporary item"
@@ -116,9 +116,9 @@
 		ui = new(user, src, ui_key, "crew_monitor.tmpl", "Crew Monitoring Computer", 900, 800)
 
 		// adding a template with the key "mapContent" enables the map ui functionality
-		ui.add_template("mapContent", "crew_monitor_map_content.tmpl")
+//		ui.add_template("mapContent", "crew_monitor_map_content.tmpl")
 		// adding a template with the key "mapHeader" replaces the map header content
-		ui.add_template("mapHeader", "crew_monitor_map_header.tmpl")
+//		ui.add_template("mapHeader", "crew_monitor_map_header.tmpl")
 
 		ui.set_initial_data(data)
 		ui.open()

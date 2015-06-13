@@ -114,6 +114,13 @@ var/list/marine_squad_positions = list(
 	"Squad Specialist"
 )
 
+var/list/all_squad_positions = list(
+	"Alpha",
+	"Bravo",
+	"Charlie",
+	"Delta"
+)
+
 var/list/marine_unassigned_positions = list(
 	"Squad Marine"
 )

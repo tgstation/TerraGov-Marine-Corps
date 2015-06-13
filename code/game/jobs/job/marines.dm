@@ -22,6 +22,7 @@
 			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/slippers(H), slot_shoes)
+		H.implant_loyalty(src)
 		// H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_store)
 		// if(H.backbag == 1)
 			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H), slot_r_hand)

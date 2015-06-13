@@ -9,8 +9,8 @@
 	supervisors = "the Commander"
 	selection_color = "#99FF99"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research)
-	minimal_access = list(access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research)
+	access = list(access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research, access_sulaco_bridge)
+	minimal_access = list(access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research, access_sulaco_bridge)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
