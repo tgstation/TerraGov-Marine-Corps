@@ -83,3 +83,15 @@
 	C.assignment = "[src.name] [c_oldass]"
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 	return 1
+
+//Not a safe proc. Returns null if squads or jobs aren't set up.
+//Mostly used in the marine squad console in marine_consoles.dm.
+/proc/get_squad_by_name(var/text)
+	if(!job_master || job_master.squads.len == 0)
+		return null
+
+	for(var/datum/squad/S in job_master.squads)
+		if(S.name == text)
+			return S
+
+	return null

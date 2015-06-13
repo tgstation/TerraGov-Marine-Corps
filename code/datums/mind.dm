@@ -1224,7 +1224,7 @@ datum/mind
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Marine"	//defualt
+	if(!mind.assigned_role)	mind.assigned_role = "Squad Marine"	//defualt
 
 //MONKEY
 /mob/living/carbon/monkey/mind_initialize()

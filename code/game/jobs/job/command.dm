@@ -59,6 +59,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
+		H.implant_loyalty(src)
 		return 1
 
 //Bridge Officer
@@ -83,6 +84,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
+		H.implant_loyalty(src)
 		return 1
 
 //Marine

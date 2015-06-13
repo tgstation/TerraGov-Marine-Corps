@@ -82,7 +82,7 @@
 
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
 	return
-/*//We'll get back to this shit later
+
 	user.set_machine(src)
 
 	var/data[0]
@@ -102,11 +102,11 @@
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
+	data["command_jobs"] = format_jobs(command_positions)
 	data["engineering_jobs"] = format_jobs(engineering_positions)
 	data["medical_jobs"] = format_jobs(medical_positions)
-	data["science_jobs"] = format_jobs(science_positions)
-	data["security_jobs"] = format_jobs(security_positions)
-	data["civilian_jobs"] = format_jobs(civilian_positions)
+	data["marine_jobs"] = format_jobs(marine_squad_positions)
+//	data["squad_jobs"] = format_jobs(all_squad_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
 	if (modify && is_centcom())
@@ -285,7 +285,7 @@
 		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 
 	return 1
-*/
+
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
 	circuit = "/obj/item/weapon/circuitboard/card/centcom"
