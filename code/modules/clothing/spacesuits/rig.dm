@@ -34,8 +34,8 @@
 		icon_state = "rig[on]-[item_color]"
 //		item_state = "rig[on]-[color]"
 
-		if(on)	user.SetLuminosity(user.luminosity + brightness_on)
-		else	user.SetLuminosity(user.luminosity - brightness_on)
+		if(on)	user.SetLuminosity(brightness_on)
+		else	user.SetLuminosity(-brightness_on)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -43,13 +43,13 @@
 
 	pickup(mob/user)
 		if(on)
-			user.SetLuminosity(user.luminosity + brightness_on)
+			user.SetLuminosity(brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(0)
 
 	dropped(mob/user)
 		if(on)
-			user.SetLuminosity(user.luminosity - brightness_on)
+			user.SetLuminosity(-brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
 

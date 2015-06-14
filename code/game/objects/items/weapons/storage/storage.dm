@@ -36,12 +36,12 @@
 
 		if (!( istype(over_object, /obj/screen) ))
 			return ..()
-		
+
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
 		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
 			return
-		
+
 		if (!( usr.restrained() ) && !( usr.stat ))
 			switch(over_object.name)
 				if("r_hand")
@@ -99,7 +99,7 @@
 /obj/item/weapon/storage/proc/open(mob/user as mob)
 	if (src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
-	
+
 	orient2hud(user)
 	if (user.s_active)
 		user.s_active.close(user)
@@ -259,7 +259,7 @@
 	if(usr)
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= W
-		W.dropped(usr)
+//		W.dropped(usr) Dropped is already fucking called on u_equip god damn it
 		add_fingerprint(usr)
 
 		if(!prevent_warning && !istype(W, /obj/item/weapon/gun/energy/crossbow))
@@ -292,7 +292,7 @@
 
 	if(new_location)
 		if(ismob(loc))
-			W.dropped(usr)
+			W.pickup(loc)
 		if(ismob(new_location))
 			W.layer = 20
 		else
@@ -352,7 +352,7 @@
 			H.put_in_hands(src)
 			H.r_store = null
 			return
-	
+
 	if (src.loc == user)
 		src.open(user)
 	else
@@ -459,33 +459,33 @@
 /atom/proc/storage_depth(atom/container)
 	var/depth = 0
 	var/atom/cur_atom = src
-	
+
 	while (cur_atom && !(cur_atom in container.contents))
 		if (isarea(cur_atom))
 			return -1
 		if (istype(cur_atom.loc, /obj/item/weapon/storage))
 			depth++
 		cur_atom = cur_atom.loc
-	
+
 	if (!cur_atom)
 		return -1	//inside something with a null loc.
-	
+
 	return depth
-	
+
 //Like storage depth, but returns the depth to the nearest turf
 //Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
 /atom/proc/storage_depth_turf()
 	var/depth = 0
 	var/atom/cur_atom = src
-	
+
 	while (cur_atom && !isturf(cur_atom))
 		if (isarea(cur_atom))
 			return -1
 		if (istype(cur_atom.loc, /obj/item/weapon/storage))
 			depth++
 		cur_atom = cur_atom.loc
-	
+
 	if (!cur_atom)
 		return -1	//inside something with a null loc.
-	
+
 	return depth
