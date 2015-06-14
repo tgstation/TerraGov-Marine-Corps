@@ -93,6 +93,8 @@
 
 	var/name_archive //For admin things like possession
 
+	var/luminosity_total = 0 //For max luminosity stuff.
+
 	var/timeofdeath = 0.0//Living
 	var/cpr_time = 1.0//Carbon
 

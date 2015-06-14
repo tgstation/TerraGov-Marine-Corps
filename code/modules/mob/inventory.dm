@@ -166,19 +166,31 @@
 	return
 
 
-/mob/proc/u_equip(W as obj)
+/mob/proc/u_equip(var/obj/item/W)
+	var success = 0
+
+	if(!W) return
+
 	if (W == r_hand)
 		r_hand = null
 		update_inv_r_hand(0)
+		success = 1
 	else if (W == l_hand)
 		l_hand = null
 		update_inv_l_hand(0)
+		success = 1
 	else if (W == back)
 		back = null
 		update_inv_back(0)
+		success = 1
 	else if (W == wear_mask)
 		wear_mask = null
 		update_inv_wear_mask(0)
+		success = 1
+
+	if(W && success) //This cleans up stuff like monkeys dropping flashlights or binoculars. Weird, but better to have it.
+		W.dropped(src)
+
 	return
 
 

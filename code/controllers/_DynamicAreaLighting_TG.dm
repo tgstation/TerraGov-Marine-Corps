@@ -200,6 +200,23 @@ atom/proc/AddLuminosity(delta_luminosity)
 	else if(delta_luminosity < 0)
 		SetLuminosity(trueLuminosity - delta_luminosity*delta_luminosity, TRUE)
 
+
+//This slightly modifies human luminosity. Source of light do NOT stack.
+//When you drop a light source it should keep a running total of your actual luminosity and set it accordingly.
+mob/SetLuminosity(new_luminosity, trueLum)
+	if(!new_luminosity) //Our new addition is positive. Add it to our running total.
+		return..(0, trueLum)  //Set to ZERO.
+	else
+		luminosity_total += new_luminosity //Keep track of our new total.
+
+	if(new_luminosity > luminosity) //The lum we want to set to is higher. Use it.
+		..(new_luminosity, trueLum)
+
+	else if(luminosity_total < luminosity) //We want to drop our actual luminosity.
+		..(luminosity_total, trueLum)
+
+	return
+
 area/SetLuminosity(new_luminosity)			//we don't want dynamic lighting for areas
 	luminosity = !!new_luminosity
 	trueLuminosity = luminosity

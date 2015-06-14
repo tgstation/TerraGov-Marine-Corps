@@ -68,16 +68,16 @@
 		lit = 0
 		update_icon()
 		SetLuminosity(0)
-		user.SetLuminosity(user.luminosity - CANDLE_LUM)
+		user.SetLuminosity(-CANDLE_LUM)
 
 
 /obj/item/weapon/flame/candle/pickup(mob/user)
-	if(lit)
+	if(lit && src.loc != user)
 		SetLuminosity(0)
-		user.SetLuminosity(user.luminosity + CANDLE_LUM)
+		user.SetLuminosity(CANDLE_LUM)
 
 
 /obj/item/weapon/flame/candle/dropped(mob/user)
-	if(lit)
-		user.SetLuminosity(user.luminosity - CANDLE_LUM)
+	if(lit && src.loc != user)
+		user.SetLuminosity(-CANDLE_LUM)
 		SetLuminosity(CANDLE_LUM)

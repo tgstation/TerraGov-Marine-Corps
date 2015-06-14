@@ -319,13 +319,13 @@
 	u_equip(item)
 	update_icons()
 
-	if (istype(usr, /mob/living/carbon)) //Check if a carbon mob is throwing. Modify/remove this line as required.
+/*	if (istype(usr, /mob/living/carbon)) //ALL this shit is called in u_equip 2 lines above. What the actual fuck
 		item.loc = src.loc
 		if(src.client)
 			src.client.screen -= item
 		if(istype(item, /obj/item))
 			item:dropped(src) // let it know it's been dropped
-
+*/
 	//actually throw it!
 	if (item)
 		src.visible_message("\red [src] has thrown [item].")
