@@ -359,16 +359,37 @@
 	caliber = ".50"
 	projectile_type = "/obj/item/projectile/bullet/m42c"
 
-/obj/item/ammo_magazine/m42c // M39 SMG
+/obj/item/ammo_magazine/m42c
 	name = "M42C Scoped Rifle Magazine"
 	desc = "A .50 cal sniper rifle magazine"
 	icon_state = "75"
 	ammo_type = "/obj/item/ammo_casing/m39"
 	max_ammo = 30
 
-/obj/item/ammo_magazine/m42c/empty // M39 SMG
+/obj/item/ammo_magazine/m42c/empty
 	icon_state = "75-0"
 	max_ammo = 0
+
+
+/* I'll get to this soonish.
+/obj/item/weapon/gun/projectile/M56_Smartgun
+	name = "M56 Smartgun"
+	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "sniper"
+	fire_sound = 'sound/weapons/GunFireSniper.ogg'
+	ammo_type = "/obj/item/ammo_casing/m42c"
+	fire_delay = 80
+	w_class = 4.0
+	max_shells = 6
+	caliber = ".50"
+	load_method = 2
+	force = 10.0
+	recoil = 2
+	twohanded = 1
+*/
+
+
 
 
 

@@ -245,6 +245,42 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	armor = list(melee = 45, bullet = 75, laser = 70, energy = 20, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun, /obj/item/device/binoculars, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton, /obj/item/weapon/melee/stunprod, /obj/item/weapon/handcuffs, /obj/item/weapon/restraints, /obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade, /obj/item/weapon/combat_knife)
+	var/brightness_on = 6
+	var/on = 0
+
+	pickup(mob/user)
+		if(on && src.loc != user)
+			user.SetLuminosity(brightness_on)
+			SetLuminosity(0)
+
+
+	dropped(mob/user)
+		if(on && src.loc != user)
+			user.SetLuminosity(-brightness_on)
+			SetLuminosity(brightness_on)
+
+	attack_self(mob/user)
+		if(!isturf(user.loc))
+			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+			return 0
+
+		if(on) //Turn it off.
+			if(user)
+				user.SetLuminosity(-brightness_on)
+			else //Shouldn't be possible, but whatever
+				SetLuminosity(0)
+			icon_state = "[initial(icon_state)]"
+			on = 0
+		else //Turn it on!
+			if(user)
+				user.SetLuminosity(brightness_on)
+			else //Somehow
+				SetLuminosity(brightness_on)
+			icon_state = "[initial(icon_state)]-on"
+
+		on = !on //Do the opposite
+		playsound(src,'sound/machines/click.ogg', 20, 1)
+		return 1
 
 
 /proc/get_squad_from_card(var/mob/living/carbon/human/H)

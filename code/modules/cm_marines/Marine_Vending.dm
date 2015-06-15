@@ -27,6 +27,7 @@
 					/obj/item/weapon/storage/backpack/marine = 20,
 					/obj/item/device/radio/headset/msulaco = 5,
 
+
 					/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 5
 
 					)
@@ -100,6 +101,7 @@
 						/obj/item/clothing/glasses/meson = 3,
 						/obj/item/device/multitool = 4,
 						/obj/item/weapon/storage/backpack/industrial = 3,
+						/obj/item/weapon/plastique = 3,
 						/obj/item/weapon/airlock_electronics = 10,
 						/obj/item/weapon/module/power_control = 10,
 						/obj/item/weapon/airalarm_electronics = 10,
@@ -152,20 +154,29 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(
-						/obj/item/clothing/suit/storage/marine_spec_armor = 1,
+						/obj/item/weapon/coin/marine = 1,
+						/obj/item/clothing/suit/storage/marine_spec_armor = 2,
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 5,
-						/obj/item/weapon/grenade/smokebomb = 2,
-						/obj/item/device/mine = 3,
-						/obj/item/weapon/gun/rocketlauncher = 1,
+						/obj/item/weapon/grenade/smokebomb = 5,
+						/obj/item/device/mine = 2,
 						/obj/item/ammo_casing/rocket = 3,
-						/obj/item/weapon/gun/grenadelauncher = 1,
 						/obj/item/weapon/flamethrower = 1,
 						/obj/item/weapon/tank/phoron = 2,
-						/obj/item/weapon/shield/riot = 1
-					)
+						/obj/item/weapon/shield/riot = 1,
+						/obj/item/ammo_magazine/m42c = 1,
+						/obj/item/weapon/arrow = 8,
+						/obj/item/weapon/cell/high = 1,
+						/obj/item/weapon/arrow/rod = 3
+			)
 	contraband = list()
-	premium = list()
+	premium = list(
+					/obj/item/weapon/gun/rocketlauncher = 1,
+					/obj/item/weapon/gun/grenadelauncher = 1,
+					/obj/item/weapon/gun/launcher/pneumatic = 1,
+					/obj/item/weapon/gun/launcher/crossbow  = 1,
+					/obj/item/weapon/gun/projectile/M42C = 1
+			)
 	prices = list()
 
 /obj/machinery/vending/marine_leader
@@ -180,10 +191,10 @@
 						/obj/item/weapon/plastique = 3,
 						/obj/item/weapon/grenade/explosive = 5,
 						/obj/item/device/binoculars = 1,
-						/obj/item/weapon/storage/pill_bottle/zoom = 1,
 						/obj/item/device/paicard = 1,
 						/obj/item/weapon/handcuffs = 2,
-						/obj/item/weapon/implantcase/adrenalin = 1
+						/obj/item/weapon/implantcase/adrenalin = 1,
+						/obj/item/weapon/storage/box/explosive_mines = 1
 					)
 	contraband = list()
 	premium = list()
