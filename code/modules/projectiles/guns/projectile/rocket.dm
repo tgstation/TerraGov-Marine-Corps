@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/rocketlauncher
 	var/projectile
-	name = "rocket launcher"
+	name = "M6-B rocket launcher"
 	desc = "MAGGOT."
 	icon_state = "rocket"
 	item_state = "rocket"

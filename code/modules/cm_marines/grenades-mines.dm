@@ -12,7 +12,7 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,4)
+			explosion(src.loc,-1,-1,2)
 			del(src)
 		return
 
