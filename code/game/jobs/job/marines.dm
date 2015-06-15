@@ -11,23 +11,13 @@
 	is_squad_job = 1
 	supervisors = "the commander"
 	selection_color = "#ffeeee"
-	access = list(access_marine_prep, access_marine_engprep, access_marine_medprep, access_marine_specprep, access_marine_leader)
-	minimal_access = list(access_marine_prep, access_marine_engprep, access_marine_medprep, access_marine_specprep, access_marine_leader)
+	access = list(access_marine_prep, access_marine_leader)
+	minimal_access = list(access_marine_prep, access_marine_leader)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		switch(H.backbag)
-			// if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/slippers(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
 		H.implant_loyalty(src)
-		// H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_store)
-		// if(H.backbag == 1)
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H), slot_r_hand)
-		// else
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H.back), slot_in_backpack)
 		return 1
 
 /datum/job/squadengineer
@@ -45,17 +35,7 @@
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		switch(H.backbag)
-			// if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/slippers(H), slot_shoes)
-		// H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_store)
-		// if(H.backbag == 1)
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H), slot_r_hand)
-		// else
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H.back), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
 		return 1
 
 /datum/job/squadmedic
@@ -73,17 +53,7 @@
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		switch(H.backbag)
-			// if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/slippers(H), slot_shoes)
-		// H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_store)
-		// if(H.backbag == 1)
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H), slot_r_hand)
-		// else
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H.back), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
 		return 1
 
 /datum/job/squadspecial
@@ -101,17 +71,7 @@
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		switch(H.backbag)
-			// if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/slippers(H), slot_shoes)
-		// H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_store)
-		// if(H.backbag == 1)
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H), slot_r_hand)
-		// else
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H.back), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
 		return 1
 
 /datum/job/squadmarine
@@ -129,15 +89,5 @@
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		switch(H.backbag)
-			// if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/slippers(H), slot_shoes)
-		// H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_store)
-		// if(H.backbag == 1)
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H), slot_r_hand)
-		// else
-			// H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/marine(H.back), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
 		return 1

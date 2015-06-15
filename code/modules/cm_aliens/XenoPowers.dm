@@ -526,7 +526,7 @@
 		return
 
 	has_screeched = 1
-	spawn(80)
+	spawn(160)
 		has_screeched = 0
 		src << "You feel your throat muscles vibrate. You are ready to screech again."
 

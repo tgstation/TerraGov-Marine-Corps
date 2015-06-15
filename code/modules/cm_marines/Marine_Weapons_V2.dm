@@ -191,7 +191,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m41a0"
 	item_state = "m41a"
-	w_class = 3.0
+	w_class = 4.0
 	max_shells = 30
 	caliber = "10mms"
 	ammo_type = "/obj/item/ammo_casing/m41"
@@ -297,7 +297,7 @@
 /obj/item/weapon/throwing_knife
 	name ="Throwing Knife"
 	icon='icons/obj/weapons.dmi'
-	item_state="knife"
+	item_state="throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
 	flags = FPRINT | TABLEPASS | CONDUCT
 	sharp = 1
@@ -352,7 +352,7 @@
 
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
-	damage = 80
+	damage = 66
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -364,7 +364,7 @@
 	desc = "A .50 cal sniper rifle magazine"
 	icon_state = "75"
 	ammo_type = "/obj/item/ammo_casing/m39"
-	max_ammo = 30
+	max_ammo = 6
 
 /obj/item/ammo_magazine/m42c/empty
 	icon_state = "75-0"

@@ -361,8 +361,8 @@ v
 	desc = "A standard issue toolbelt for Nanotrasen military forces."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
-	storage_slots = 7 //5
-	max_w_class = 3
+	storage_slots = 5
+	max_w_class = 2
 	max_combined_w_class = 10
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
@@ -411,3 +411,29 @@ v
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
+
+/obj/item/clothing/under/marine_jumpsuit
+	name = "marine jumpsuit"
+	desc = "Soft as silk. Light as feather. Protective as Kevlar. Smelly as a swamp."
+	armor = list(melee = 5, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	flags = FPRINT | TABLEPASS
+	siemens_coefficient = 0.9
+
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "marine_jumpsuit"
+	item_state = "marine_jumpsuit"
+	item_color = "marine_jumpsuit"
+
+
+/obj/item/clothing/under/marine_underoos
+	name = "marine underpants"
+	desc = "Specially designed to protect your naughty bits from the ravages of extended cryo sleep."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	flags = FPRINT | TABLEPASS
+	siemens_coefficient = 0.9
+
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "marine_underpants"
+	item_state = "marine_underpants"
+	item_color = "marine_underpants"
+
