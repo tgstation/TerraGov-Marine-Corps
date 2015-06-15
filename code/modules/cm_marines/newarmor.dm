@@ -1,17 +1,3 @@
-/obj/item/clothing/under/marine2
-	name = "marine jumpsuit"
-	desc = "Soft as silk. Light as feather. Protective as Kevlar."
-	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
-	flags = FPRINT | TABLEPASS
-	siemens_coefficient = 0.9
-
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "jumpsuit1_s"
-	item_state = "jumpsuit1"
-	item_color = "jumpsuit1"
-	var/sleeves = 1
-	icon_override = 'icons/Marine/marine_armor.dmi'
-
 
 #define ALPHA		1
 #define BRAVO		2
@@ -245,6 +231,44 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	armor = list(melee = 45, bullet = 75, laser = 70, energy = 20, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun, /obj/item/device/binoculars, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton, /obj/item/weapon/melee/stunprod, /obj/item/weapon/handcuffs, /obj/item/weapon/restraints, /obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade, /obj/item/weapon/combat_knife)
+	var/brightness_on = 6
+	var/on = 0
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+
+	pickup(mob/user)
+		if(on && src.loc != user)
+			user.SetLuminosity(brightness_on)
+			SetLuminosity(0)
+
+
+	dropped(mob/user)
+		if(on && src.loc != user)
+			user.SetLuminosity(-brightness_on)
+			SetLuminosity(brightness_on)
+
+	attack_self(mob/user)
+		if(!isturf(user.loc))
+			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+			return 0
+
+		if(on) //Turn it off.
+			if(user)
+				user.SetLuminosity(-brightness_on)
+			else //Shouldn't be possible, but whatever
+				SetLuminosity(0)
+			icon_state = "[initial(icon_state)]"
+			on = 0
+		else //Turn it on!
+			on = 1
+			if(user)
+				user.SetLuminosity(brightness_on)
+			else //Somehow
+				SetLuminosity(brightness_on)
+			icon_state = "[initial(icon_state)]-on"
+
+		playsound(src,'sound/machines/click.ogg', 20, 1)
+		update_clothing_icon()
+		return 1
 
 
 /proc/get_squad_from_card(var/mob/living/carbon/human/H)

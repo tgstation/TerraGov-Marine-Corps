@@ -14,6 +14,9 @@
 	if(usr.hand && usr.l_hand == null)
 		usr << "\red You don't have anything in your left hand to give to [src.name]"
 		return
+	if(!istype(src,/mob/living/carbon/human) || !istype(usr,/mob/living/carbon/human))
+		usr << "Nope."
+		return
 	if(usr.hand)
 		I = usr.l_hand
 	else if(!usr.hand)

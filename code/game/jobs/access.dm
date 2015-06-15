@@ -284,10 +284,10 @@
 
 
 /proc/get_all_accesses()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
 
 /proc/get_all_marine_access()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry)
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research)
 
 /proc/get_all_centcom_access()
 	return list(access_centcomm)
@@ -308,7 +308,7 @@
 		if(4) //engineering and maintenance
 			return list(access_sulaco_CE, access_sulaco_engineering)
 		if(5) //command
-			return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_CMO, access_sulaco_CE)
+			return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge)
 		if(6) //spess mahreens
 			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep)
 		if(7) //squads
@@ -344,29 +344,29 @@
 		if(access_sulaco_CMO)
 			return "CMO's Office"
 		if(access_sulaco_medbay)
-			return "Medbay"
+			return "Sulaco Medbay"
 		if(access_sulaco_research)
-			return "Research"
+			return "Sulaco Research"
 		if(access_sulaco_CE)
 			return "CE's Office"
 		if(access_sulaco_engineering)
-			return "Engineering"
+			return "Sulaco Engineering"
 		if(access_sulaco_captain)
-			return "Captain"
+			return "Captain's Quarters"
 		if(access_sulaco_logistics)
-			return "Logistics"
+			return "Sulaco Logistics"
 		if(access_sulaco_bridge)
-			return "Bridge"
+			return "Sulaco Bridge"
 		if(access_marine_prep)
-			return "Marine"
+			return "Marine Prep"
 		if(access_marine_engprep)
-			return "Marine Engineer"
+			return "Marine Engineer Prep"
 		if(access_marine_medprep)
-			return "Marine Medical"
+			return "Marine Medical Prep"
 		if(access_marine_specprep)
-			return "Marine Specialist"
+			return "Marine Specialist Prep"
 		if(access_marine_leader)
-			return "Marine Leader"
+			return "Marine Leader Prep"
 		if(access_squad_alpha)
 			return "Alpha Squad"
 		if(access_squad_bravo)
@@ -504,9 +504,6 @@ proc/get_all_job_icons() //For all existing HUD icons
 	return "Unknown" //Return unknown if none of the above apply
 
 
-
-
-/*
 /proc/get_marine_jobs()
 		return list(
 		"Commander",
@@ -516,17 +513,17 @@ proc/get_all_job_icons() //For all existing HUD icons
 		"Sulaco Chief Medical Officer",
 		"Sulaco Doctor",
 		"Sulaco Chemist",
-		"Sulaco Chief Engineer",
-		"Sulaco Maintenance Tech",
+		"Sulaco Researcher",
+		"Chief Engineer",
+		"Maintenance Tech",
 		"Squad Leader",
 		"Squad Medic",
 		"Squad Engineer",
 		"Squad Marine",
-		"Researcher",
-		"Marine"
+		"Squad Specialist"
 		)
 
-
+/*
 /proc/get_marine_access(job)
 	switch(job)
 		if("Squad Leader")

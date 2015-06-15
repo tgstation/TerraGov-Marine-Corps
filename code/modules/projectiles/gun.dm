@@ -35,7 +35,17 @@
 
 	var/twohanded = 0
 	var/wielded = 0 //Do not set this in gun defines
+	var/list/attachables = list()
+	var/list/attach_num = list(0,0,0,0,0,0) //Muzzle, rail, under, internals, magazine, stock. See setup.dm for #defines
 
+/* FOR REFERENCE (do not uncomment)
+ 	ATTACH_MUZZLE	0
+ 	ATTACH_RAIL		1
+ 	ATTACH_UNDER	2
+ 	ATTACH_INTERNAL	3
+ 	ATTACH_MAGAZINE	4
+ 	ATTACH_STOCK	5
+*/
 	proc/ready_to_fire()
 		if(world.time >= last_fired + fire_delay)
 			last_fired = world.time

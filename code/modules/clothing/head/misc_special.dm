@@ -138,18 +138,18 @@
 		icon_state = "hardhat[on]_[item_color]"
 		item_state = "hardhat[on]_[item_color]"
 
-		if(on)	user.SetLuminosity(user.luminosity + brightness_on)
-		else	user.SetLuminosity(user.luminosity - brightness_on)
+		if(on)	user.SetLuminosity(brightness_on)
+		else	user.SetLuminosity(-brightness_on)
 
 	pickup(mob/user)
 		if(on)
-			user.SetLuminosity(user.luminosity + brightness_on)
+			user.SetLuminosity(brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(0)
 
 	dropped(mob/user)
 		if(on)
-			user.SetLuminosity(user.luminosity - brightness_on)
+			user.SetLuminosity(-brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
 

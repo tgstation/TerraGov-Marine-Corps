@@ -12,105 +12,146 @@
 	var/aliensurvivors = 0
 	var/numaliens = 0
 	var/numsurvivors = 0
+	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 
 /* Pre-pre-startup */
+//We have to be really careful that we don't pick() from null lists.
+//So use list.len as much as possible before a pick() for logic checks.
 /datum/game_mode/colonialmarines/can_start()
-	// if(!..())
-		// return 0
-
-	// Handle Aliens
-
-	/* // 1 Alien per 5 players, 1 Survivor per 10 players
-	var/players = num_players()
-	for(var/C = 0, C<players, C+=5)
-		numaliens++
-	for(var/C = 0, C<players, C+=10)
-		numsurvivors++ */
 
 	// Alien number scales to player number (preferred). Swap these to test solo.
 	var/readyplayers = num_players()
-	// numaliens = Clamp((readyplayers/5), 2, 8) //(n, minimum, maximum)
-	numaliens = Clamp((readyplayers/5), 1, 8) //(n, minimum, maximum)
 
-	var/list/possible_aliens = get_players_for_role(BE_ALIEN)
+	numaliens = Clamp((readyplayers/5), 1, 8) //(n, minimum, maximum)
+	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
+	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
+
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
-	for(var/i = 0, i < numaliens, i++)
-		var/datum/mind/new_alien = pick(possible_aliens)
-		aliens += new_alien
+
+	while(numaliens > 0)
+		if(!possible_aliens.len) //Ran out of aliens! Abort!
+			numaliens = 0
+		else
+			var/datum/mind/new_alien = pick(possible_aliens)
+			if(numaliens > 0 && !new_alien) //We ran out of total alien candidates!
+				numaliens = 0
+			else
+				aliens += new_alien
+				possible_aliens -= new_alien
+				numaliens--
+
+	if(!aliens.len) //Our list is empty! This shouldn't EVER happen. Abort!
+		world << "<h2 style=\"color:red\">Something is messed up with the alien generator - no alien candidates found. Aborting.</h2>"
+		return 0
+
 	for(var/datum/mind/A in aliens)
-		A.assigned_role = "Alien"
+		A.assigned_role = "MODE"
 		A.special_role = "Alien"
 
 	// Handle Survivors
+	//First make sure we have ANY candidates. There might be none.
+	if(possible_survivors.len)
+		for(var/datum/mind/X in possible_survivors) //Strip out any xenos first so we don't double-dip.
+			if(X.assigned_role == "MODE")
+				possible_survivors -= X
 
-	numsurvivors = Clamp((readyplayers/6), 0, 3) //(n, minimum, maximum)
-	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
-	if(possible_survivors.len >= 1)
-		for(var/i = 0, i < numsurvivors, i++)
-			var/datum/mind/new_survivor = pick(possible_survivors)
-			survivors += new_survivor
+		numsurvivors = Clamp((readyplayers/7), 0, 3) //(n, minimum, maximum)
+		if(possible_survivors.len) //We may have stripped out all the contendors, so check again.
+			while(numsurvivors > 0)
+				if(!possible_survivors.len) //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
+					numsurvivors = 0
+				else
+					var/datum/mind/new_survivor = pick(possible_survivors)
+					if(numsurvivors > 0 && !new_survivor) //We ran out of survivors!
+						numsurvivors = 0
+					else
+						survivors += new_survivor
+						possible_survivors -= new_survivor
+						numsurvivors--
+
+	//Unlike the alien list, survivor lists CAN be empty. It's really unlikely though
+	if(survivors.len)
 		for(var/datum/mind/S in survivors)
-			S.assigned_role = "Survivor" //So they aren't chosen for other jobs.
-			S.special_role = "Survivor"
+			if(S.assigned_role != "MODE") //Make sure it's not already here.
+				S.assigned_role = "MODE"
+				S.special_role = "Survivor"
 
 	return 1
+
+/datum/game_mode/colonialmarines/announce()
+	world << "<B>The current game mode is - Colonial Marines! Hoooah!</B>"
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Pre-setup */
+//We can ignore this for now, we don't want to do anything before characters are set up.
 /datum/game_mode/colonialmarines/pre_setup()
-	//Spawn aliens
-	for(var/datum/mind/alien in aliens)
-		alien.current.loc = pick(xeno_spawn)
-	//Spawn survivors
-	for(var/datum/mind/survivor in survivors)
-		survivor.current.loc = pick(surv_spawn)
-	spawn (50)
-//	command_announcement.Announce("Distress signal received from the NSS Nostromo. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
-	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Post-setup */
+//This happens after create_character, so our mob SHOULD be valid and built by now, but without job data.
+//We move it later with transform_survivor but they might flicker at any start_loc spawn landmark effects then disappear.
+//Xenos and survivors should not spawn anywhere until we transform them.
 /datum/game_mode/colonialmarines/post_setup()
-	defer_powernet_rebuild = 2
-	for(var/datum/mind/alien in aliens)
-		transform_player(alien.current)
-	for(var/datum/mind/survivor in survivors)
-		transform_player2(survivor.current)
-	tell_story()
 
-//Start the Alien players
-/datum/game_mode/proc/transform_player(mob/living/carbon/human/H)
+	for(var/datum/mind/alien in aliens) //Build and move the xenos.
+		transform_xeno(alien)
 
-	//Transform alien players into only Drones by calling the "Alienize2" proc in modules/mob/transform_procs.dm
-	H.Alienize2()
+	for(var/datum/mind/survivor in survivors) //Build and move to the survivors.
+		transform_survivor(survivor)
 
-	//Give them some information
-	H.client << "<h2>You are an alien!</h2>"
-	H.client << "<h2>Use Say \":a <message>\" to communicate with other aliens.</h2>"
-	return 1
+	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
-//Start the Survivor players
-/datum/game_mode/proc/transform_player2(mob/living/carbon/human/H)
+	spawn (50)
+		command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
+
+
+/datum/game_mode/colonialmarines/proc/transform_xeno(var/datum/mind/ghost)
+
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn))
+	new_xeno.amount_grown = 200
+	var/mob/original = ghost.current
+
+	ghost.transfer_to(new_xeno)
+
+	new_xeno << "<B>You are now an alien!</B>"
+	new_xeno << "<B>Your job is to spread the hive and protect the Queen. You can become the Queen yourself by evolving into a drone.</B>"
+	new_xeno << "Use say :a to talk to the hive."
+
+	new_xeno.update_icons()
+
+	if(original) //Just to be sure.
+		del(original)
+
+//Start the Survivor players. This must go post-setup so we already have a body.
+/datum/game_mode/colonialmarines/proc/transform_survivor(var/datum/mind/ghost)
+
+	var/mob/living/carbon/human/H = ghost.current
+
+	H.loc = pick(surv_spawn)
 
 	//Damage them for realism purposes
-	H.take_organ_damage(rand(1,25), rand(1,25))
+	H.take_organ_damage(rand(0,25), rand(0,25))
 
-	//Equip them
+//Give them proper jobs and stuff here later
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 
 	//Give them some information
-	H.client << "<h2>You are a survivor!</h2>"
-	H.client << "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now."
+	H << "<h2>You are a survivor!</h2>"
+	H << "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now."
+	H << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
+	H.update_icons()
 	return 1
 
+//Deferred for now, this can wait.
+/*
 var/list/survivorstory = list("You watched your friend {name}'s chest burst and an alien larva come out. You tried to capture it but it escaped through the vents. ", "{name} was attacked by a facehugging alien, which impregnated them with an alien lifeform. {name}'s chest burst and a larva emerged and escaped through the vents", "You watched {name} get the alien lifeform's acid on them, melting away their flesh. You can still hear the screams... ", "The Head of Security, {name}, made an announcement that the aliens killed the Captain and Head of Personnel, and that all crew should hide and wait for rescue." )
 var/list/survivorstorymulti = list("You were separated from your friend, {surv}. You hope they're still alive. ", "You were having some drinks at the bar with {surv} and {name} when an alien crawled out of the vent and dragged {name} away. You and {surv} split up to find help. ")
 var/list/toldstory = list()
@@ -145,59 +186,85 @@ var/list/toldstory = list()
 				H << replacetext(story, "{surv}", "[OH.name]")
 
 			toldstory.Add(H.name)
+*/
 
+//This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
 /datum/game_mode/colonialmarines/process()
 
 	checkwin_counter++
 
-	//We're not going to tally up every mob every tick. Just do it a random number of ticks to ease any unnecessary CPU strain.
-	//This part should always trigger before the check_win(), so we don't get GAME OVER on game start.
-	if(checkwin_counter >= rand(2,4) && !finished)
-		humansurvivors = 0
-		aliensurvivors = 0
+	if(has_started_timer > 0) //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
+		has_started_timer--
 
-		for(var/mob/living/carbon/H in living_mob_list)
-			if(H) //Prevent any runtime errors
-				if(H.client && istype(H,/mob/living/carbon/human) && H.stat != DEAD && (!H.status_flags & XENO_HOST) && H.z != 0) // If they're connected/unghosted and alive and not debrained
-					humansurvivors += 1 //Add them to the amount of people who're alive.
-				else if(H.client && istype(H,/mob/living/carbon/Xenomorph) && H.stat != DEAD && H.z != 0)
-					aliensurvivors += 1
-
-/*
-	for(var/mob/living/carbon/alien/A in living_mob_list)
-		if(A) //Prevent any runtime errors
-			if(A.client && A.stat != DEAD) // If they're connected/unghosted and alive and not debrained
-				aliensurvivors += 1
-*/
-	//Debug messages, remove when not needed.
-	//log_debug("there are [aliensurvivors] aliens left.")
-	//log_debug("there are [humansurvivors] humans left.")
-	//world << "there are [aliensurvivors] aliens left."
-	//world << "there are [humansurvivors] humans left."
-
-
-	if(checkwin_counter > 5) //Only check win conditions every 6 ticks.
+	if(checkwin_counter >= 5) //Only check win conditions every 5 ticks.
 		if(!finished)
 			ticker.mode.check_win()
 		checkwin_counter = 0
 	return 0
 
+
+//Count up surviving humans.
+//This checks for humans that are:
+//Played by a person, is not dead, is not infected, is not in a closet/mech, and is not in space.
+//It does NOT check for valid species or marines. vs. survivors.
+/datum/game_mode/colonialmarines/proc/count_humans()
+	var/human_count = 0
+	for(var/mob/living/carbon/human/H in living_mob_list)
+		if(H) //Prevent any runtime errors
+			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
+				human_count += 1 //Add them to the amount of people who're alive.
+		else
+			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
+			break
+
+	return human_count
+
+//Count up surviving xenos.
+//This checks xenos that are:
+//Played by a person, is not dead, is not in a closet, is not in space.
+/datum/game_mode/colonialmarines/proc/count_xenos()
+	var/xeno_count = 0
+	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+		if(X) //Prevent any runtime errors
+			if(X.client && istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
+				xeno_count += 1 //Add them to the amount of people who're alive.
+		else
+			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_XENOS()")
+			break
+
+	return xeno_count
+
+
+
 ///////////////////////////
 //Checks to see who won///
 //////////////////////////
 /datum/game_mode/colonialmarines/check_win()
-	if(check_alien_victory())
+	if(has_started_timer) //Let's hold off on checking win conditions till everyone has spawned.
+		finished = 0
+		return
+
+	if(finished > 0) //Don't keep checking this if we're already done the game. It's already checked elsewhere, but just to be safe..
+		return
+
+	//Count up our player controlled mobs.
+	var/count_h = count_humans()
+	var/count_x = count_xenos()
+
+	if(count_h == 0 && count_x > 0) //No humans, some xenos
 		finished = 1
-	else if(check_marine_victory())
+	else if(count_h > 0 && count_x == 0) //Some humans, no xenos
 		finished = 2
-	if(check_nosurvivors_victory())
+	else if(!count_h && !count_x) //No survivors!
 		finished = 3
-	else if(check_survivors_victory())
+	else if(emergency_shuttle.returned()) //Emergency shuttle finished
 		finished = 4
-	else if(check_nuclear_victory())
+	else if(station_was_nuked) //Boom!
 		finished = 5
-//	check_shuttle()
-	..()
+	else
+		finished = 0
+
+	return
 
 ///////////////////////////////
 //Checks if the round is over//
@@ -209,74 +276,8 @@ var/list/toldstory = list()
 		return 0
 
 
-	//////////////////////////
-//Checks for alien victory//
-//////////////////////////
-/*
-datum/game_mode/colonialmarines/proc/check_alien_victory()
-	for(var/mob/living/carbon/Xenomorph/A in living_mob_list)
-		var/turf/T = get_turf(A)
-		if((A) && (A.stat != 2) && (humansurvivors < 1) && Terf && (Terf.z == 1))
-			return 1
-		else
-			return 0
-*/
-
-/datum/game_mode/colonialmarines/proc/check_alien_victory()
-	if(aliensurvivors > 0 && humansurvivors < 1)
-		return 1
-	else
-		return 0
-
-///////////////////////////////
-//Check for a neutral victory//
-///////////////////////////////
-/datum/game_mode/colonialmarines/proc/check_nosurvivors_victory()
-	if(humansurvivors < 1 && aliensurvivors < 1)
-		return 1
-	else
-		return 0
-
-///////////////////////////////
-//Checks for a marine victory//
-///////////////////////////////
-/*
-datum/game_mode/colonialmarines/proc/check_marine_victory()
-	for(var/mob/living/carbon/human/H in living_mob_list)
-		var/turf/Terf = get_turf(H)
-		if((H) && (H.stat != 2) && (aliensurvivors < 1) && Terf && (Terf.z == 2))
-			return 1
-		else
-			return 0
-*/
-/datum/game_mode/colonialmarines/proc/check_marine_victory()
-	if(aliensurvivors < 1 && humansurvivors > 0)
-		return 1
-	else
-		return 0
-
-///////////////////////////////////////////////
-//Check for a survivors victory (Alien minor)//
-///////////////////////////////////////////////
-/datum/game_mode/colonialmarines/proc/check_survivors_victory()
-	if(emergency_shuttle.returned())
-		return 1
-	else
-		return 0
-
-//////////////////////////////////////
-//Check for a nuclear victory (Draw)//
-//////////////////////////////////////
-
-/datum/game_mode/colonialmarines/proc/check_nuclear_victory()
-	if(station_was_nuked)
-		return 1
-	else
-		return 0
-
-
 //////////////////////////////////////////////////////////////////////
-//Announces the end of the game with all relavent information stated//
+//Announces the end of the game with all relevent information stated//
 //////////////////////////////////////////////////////////////////////
 /datum/game_mode/colonialmarines/declare_completion()
 	if(finished == 1)
@@ -315,19 +316,23 @@ datum/game_mode/colonialmarines/proc/check_marine_victory()
 	return 1
 
 /datum/game_mode/proc/auto_declare_completion_colonialmarines()
-	if( aliens.len || (ticker && istype(ticker.mode,/datum/game_mode/colonialmarines)) )
-		var/text = "<FONT size = 2><B>The aliens were:</B></FONT>"
-		for(var/mob/living/A in mob_list)
-			if(A.mind && A.mind.assigned_role)
-				if(A.mind.assigned_role == "Alien")
-					var/mob/M = A.mind.current
+	if(ticker && istype(ticker.mode,/datum/game_mode/colonialmarines) )
+		if(aliens.len)
+			var/text = "<FONT size = 2><B>The aliens were:</B></FONT>"
+			for(var/datum/mind/A in aliens)
+				if(A)
+					var/mob/M = A.current
+					if(!M)
+						M = A.original
+
+					text += "<br>[M.key] was "
 					if(M)
-						text += "<br>[M.key] was [M.name] ("
+						text += "[M.name] ("
 						if(M.stat == DEAD)
 							text += "died"
 						else
 							text += "survived"
 					else
-						text += "body destroyed"
+						text += "GIBBED! (body destroyed)"
 					text += ")"
-		world << text
+			world << text
