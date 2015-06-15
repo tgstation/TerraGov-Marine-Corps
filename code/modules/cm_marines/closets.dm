@@ -126,6 +126,7 @@
 
 	New()
 		sleep(2)
+		new /obj/item/weapon/storage/backpack/security(src)
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/under/marine/mp(src)
 		new /obj/item/clothing/suit/armor/riot/marine(src)
@@ -143,6 +144,8 @@
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/clothing/gloves/black(src)
 		new /obj/item/clothing/gloves/black(src)
+		new /obj/item/device/radio/headset/mmpo(src)
+		new /obj/item/clothing/tie/holster/waist(src)
 		return
 
 

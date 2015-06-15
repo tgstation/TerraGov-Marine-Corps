@@ -653,7 +653,7 @@ var/list/liftable_structures = list(\
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_LOOC)
 
-/* 
+/*
 #define BE_TRAITOR    1
 #define BE_OPERATIVE  2
 #define BE_CHANGELING 4
@@ -891,3 +891,10 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 // Reagent metabolism defines.
 #define FOOD_METABOLISM 0.4
 #define ALCOHOL_METABOLISM 0.1
+
+#define ATTACH_MUZZLE	0
+#define ATTACH_RAIL		1
+#define ATTACH_UNDER	2
+#define ATTACH_INTERNAL	3
+#define ATTACH_MAGAZINE	4
+#define ATTACH_STOCK	5

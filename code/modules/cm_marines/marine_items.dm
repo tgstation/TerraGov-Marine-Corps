@@ -300,3 +300,13 @@ obj/item/device/radio/headset/mdelta
 		new /obj/item/device/mine(src)
 		new /obj/item/device/mine(src)
 		return
+
+/obj/item/weapon/coin/marine
+	name = "marine specialist weapon token"
+	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
+	icon_state = "coin_adamantine"
+
+	attackby(obj/item/weapon/W as obj, mob/user as mob) //To remove attaching a string functionality
+		return
+
+
