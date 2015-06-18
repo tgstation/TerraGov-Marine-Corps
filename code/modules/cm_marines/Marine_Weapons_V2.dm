@@ -3,16 +3,16 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 20
+	damage = 25
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
 	damage = 35
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 18
+	damage = 22
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 25
+	damage = 32
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
 	damage = 50
@@ -297,7 +297,7 @@
 /obj/item/weapon/throwing_knife
 	name ="Throwing Knife"
 	icon='icons/obj/weapons.dmi'
-	item_state="throwing_knife"
+	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
 	flags = FPRINT | TABLEPASS | CONDUCT
 	sharp = 1
@@ -352,7 +352,7 @@
 
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
-	damage = 66
+	damage = 70
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -363,7 +363,7 @@
 	name = "M42C Scoped Rifle Magazine"
 	desc = "A .50 cal sniper rifle magazine"
 	icon_state = "75"
-	ammo_type = "/obj/item/ammo_casing/m39"
+	ammo_type = "/obj/item/ammo_casing/m42c"
 	max_ammo = 6
 
 /obj/item/ammo_magazine/m42c/empty

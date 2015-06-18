@@ -44,10 +44,14 @@
 									 "<span class='notice'>You climb up \the [src]!</span>")
 				user.loc = get_turf(up)
 				up.add_fingerprint(user)
+				if(user.pulling)
+					user.pulling.loc = user.loc
 			if("Down")
 				user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 									 "<span class='notice'>You climb down \the [src]!</span>")
 				user.loc = get_turf(down)
+				if(user.pulling)
+					user.pulling.loc = user.loc
 				down.add_fingerprint(user)
 			if("Cancel")
 				return
@@ -56,12 +60,16 @@
 		user.visible_message("<span class='notice'>[user] climbs up \the [src]!</span>", \
 							 "<span class='notice'>You climb up \the [src]!</span>")
 		user.loc = get_turf(up)
+		if(user.pulling)
+			user.pulling.loc = user.loc
 		up.add_fingerprint(user)
 
 	else if(down)
 		user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 							 "<span class='notice'>You climb down \the [src]!</span>")
 		user.loc = get_turf(down)
+		if(user.pulling)
+			user.pulling.loc = user.loc
 		down.add_fingerprint(user)
 
 	add_fingerprint(user)

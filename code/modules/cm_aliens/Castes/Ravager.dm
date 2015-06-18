@@ -7,8 +7,8 @@
 	icon_state = "Ravager Walking"
 	melee_damage_lower = 30
 	melee_damage_upper = 55
-	health = 700
-	maxHealth = 700
+	health = 550
+	maxHealth = 550
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100

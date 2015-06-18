@@ -111,6 +111,7 @@
 //These aren't procs, but oh well. These are the spit projectiles.
 /obj/item/xeno_projectile
 	name = "neurotoxin"
+	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "neurotoxin"
 	var/brute_damage = 0
 	var/tox_damage = 0
@@ -120,7 +121,7 @@
 	var/stun = 0
 	var/paralyze = 0
 	var/eye_blur = 0
-	anchored = 1
+	anchored = 0
 	flags = FPRINT | TABLEPASS
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
@@ -128,23 +129,17 @@
 
 
 /obj/item/xeno_projectile/neuro_weak
-	name = "neurotoxin"
-	icon_state = "neurotoxin"
 	brute_damage = 5
 	tox_damage = 5
 	weaken = 4
 
 /obj/item/xeno_projectile/neurotoxin
-	name = "neuro"
-	icon_state = "neurotoxin"
 	brute_damage = 10
 	tox_damage = 10
 	weaken = 7
 	eye_blur = 1
 
 /obj/item/xeno_projectile/neuro_uber
-	name = "neuro"
-	icon_state = "neurotoxin"
 	brute_damage = 10
 	tox_damage = 20
 	agony = 40
