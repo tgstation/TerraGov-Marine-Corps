@@ -193,7 +193,7 @@
 						/obj/item/device/binoculars = 1,
 						/obj/item/device/paicard = 1,
 						/obj/item/weapon/handcuffs = 2,
-						/obj/item/weapon/implantcase/adrenalin = 1,
+						/obj/item/weapon/implanter/adrenalin = 1,
 						/obj/item/weapon/storage/box/explosive_mines = 1
 					)
 	contraband = list()

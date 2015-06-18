@@ -44,13 +44,50 @@
 		return
 
 	if(forced)
-
 		playsound(loc, "hiss", 25, 1, 1)
 
-	..(message, speaking, verb, null, null, message_range, null)
+	if(forced)
+		..(message, speaking, verb, null, null, message_range, null)
+	else
+		hivemind_talk(message)
 
 /mob/living/carbon/Xenomorph/say_understands(var/mob/other,var/datum/language/speaking = null)
 
 	if(istype(other,/mob/living/carbon/Xenomorph) && !speaking)
 		return 1
 	return ..()
+
+
+//General proc for hivemind. Lame, but effective.
+/mob/living/carbon/Xenomorph/proc/hivemind_talk(var/message)
+	if (!message)
+		return
+
+	var/rendered
+	if(istype(src, /mob/living/carbon/Xenomorph/Queen))
+		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'>[message]</span></span></i></font>"
+	else
+		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'>[message]</span></span></i>"
+
+	for (var/mob/S in player_list)
+		if((istype(S,/mob/living/carbon/Xenomorph) || S.stat == DEAD) && !istype(S,/mob/new_player))
+			S.show_message(rendered, 2)
+
+	var/list/listening = hearers(1, src)
+	var/list/heard = list()
+
+	for (var/mob/M in listening)
+		if(!istype(M, /mob/living/carbon/Xenomorph))
+			heard += M
+
+	if (length(heard))
+		var/message_b
+
+		message_b = "hsssss"
+		message_b = say_quote(message_b)
+		message_b = "<i>[message_b]</i>"
+
+		rendered = "<i><span class='game say'><span class='name'>[voice_name]</span> <span class='message'>[message_b]</span></span></i>"
+
+		for (var/mob/M in heard)
+			M.show_message(rendered, 2)

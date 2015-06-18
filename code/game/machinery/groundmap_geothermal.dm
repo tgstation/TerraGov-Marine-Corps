@@ -12,7 +12,7 @@
 	var/powernet_connection_failed = 0 //Logic checking for powernets
 	var/buildstate = 1 //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = 0  //Is this damn thing on or what?
-	var/fail_rate = 15 //% chance of failure each fail_tick check
+	var/fail_rate = 10 //% chance of failure each fail_tick check
 	var/fail_check_ticks = 80 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
 	var/turf/start_loc = null

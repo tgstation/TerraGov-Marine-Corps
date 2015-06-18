@@ -59,7 +59,7 @@ var/const/COMMANDER			=(1<<0)
 var/const/EXECUTIVE			=(1<<1)
 var/const/BRIDGE			=(1<<2)
 var/const/MPOLICE			=(1<<3)
-
+var/const/LIASON			=(1<<4)
 
 var/const/ENGI				=(1<<1)
 
@@ -90,7 +90,8 @@ var/list/command_positions = list(
 	"Bridge Officer",
 	"Military Police",
 	"Sulaco Chief Medical Officer",
-	"Sulaco Chief Engineer"
+	"Sulaco Chief Engineer",
+	"Corporate Liason"
 )
 
 var/list/engineering_positions = list(

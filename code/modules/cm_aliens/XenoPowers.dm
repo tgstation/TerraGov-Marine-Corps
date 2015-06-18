@@ -260,7 +260,7 @@
 
 	if(!check_state())	return
 
-	if (get_dist(src,M) <= 3)
+	if (get_dist(src,M) >= 3)
 		src << "\green You need to be closer."
 		return
 
@@ -268,8 +268,7 @@
 	if (amount)
 		amount = abs(round(amount))
 		if(storedplasma < amount)
-			src << "You don't have that much. You only have: [storedplasma]."
-			return
+			amount = storedplasma //Just use all of it
 		storedplasma -= amount
 		M.storedplasma += amount
 		if(M.storedplasma > M.maxplasma) M.storedplasma = M.maxplasma

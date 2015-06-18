@@ -13,8 +13,8 @@
 	attack_sound = null
 	friendly = "nuzzles"
 	wall_smash = 0
-	health = 700
-	maxHealth = 700
+	health = 500
+	maxHealth = 500
 	amount_grown = 0
 	max_grown = 10
 	storedplasma = 300
