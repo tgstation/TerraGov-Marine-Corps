@@ -437,3 +437,9 @@ v
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
 
+/obj/item/clothing/under/liason_suit
+	desc = "A very fancy suit for a liason from Weyland Yutani."
+	name = "liason's suit"
+	icon_state = "blacksuit"
+	item_state = "blacksuit"
+	item_color = "blacksuit"
