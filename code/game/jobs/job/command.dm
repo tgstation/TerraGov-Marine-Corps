@@ -104,7 +104,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		if(!H)	return 0
 
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/navy(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/internalaffairs(H), slot_wear_suit)
 		spawn(10)

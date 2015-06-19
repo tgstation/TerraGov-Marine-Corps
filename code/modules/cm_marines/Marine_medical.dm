@@ -5,40 +5,40 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord
 	name = "Tricordrazine Auto-Injector"
 	desc = "An auto-injector loaded with Tricordrazine."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
+	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 5
 	volume = 5
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
 	name = "Quick Clot"
 	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
+	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 5
 	volume = 5
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP
 	name = "Dexalin Plus Auto-Injector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
+	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 10
 	volume = 10
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix
 	name = "Clone-Fix"
 	desc = "An auto-injector loaded with special chemicals to aid in recovery after cloning, to be used in conjunction with Cryo."
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
+	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 10
 	volume = 10
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate
 	name = "Anesthetic"
 	desc = "An anesthetic autoinjector, to aid with surgery"
-	icon_state = "autoinjector"
-	item_state = "autoinjector"
+	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 10
 	volume = 10
 

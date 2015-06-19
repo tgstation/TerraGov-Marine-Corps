@@ -309,4 +309,40 @@ obj/item/device/radio/headset/mdelta
 	attackby(obj/item/weapon/W as obj, mob/user as mob) //To remove attaching a string functionality
 		return
 
+/obj/structure/broken_apc
+	name = "M577 Armored Personnel Carrier"
+	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional for repairs."
+	anchored = 1
+	opacity = 1
+	density = 1
+	icon = 'icons/Marine/apc.dmi'
+	icon_state = "apc"
 
+/obj/structure/largecrate/random
+	name = "supply crate"
+
+	New()
+		spawn(1)
+			var/i = rand(0,3)
+
+			while(i)
+				if(!i)
+					break
+				i--
+				var/obj/item/thing = pick(/obj/item/weapon/cell/high,
+								/obj/item/weapon/storage/belt/utility/full,
+								/obj/item/device/multitool,
+								/obj/item/weapon/crowbar,
+								/obj/item/device/flashlight,
+								/obj/item/weapon/reagent_containers/food/snacks/donkpocket,
+								/obj/item/weapon/grenade/smokebomb,
+								/obj/item/device/paicard,
+								/obj/item/weapon/airlock_electronics,
+								/obj/item/device/assembly/igniter,
+								/obj/item/weapon/weldingtool,
+								/obj/item/weapon/wirecutters,
+								/obj/item/device/analyzer,
+								/obj/item/clothing/under/marine_jumpsuit,
+								/obj/item/clothing/under/marine_underoos,
+								/obj/item/clothing/shoes/marine)
+				new thing(src)
