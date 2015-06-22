@@ -43,70 +43,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	var/squad = 0
 	var/rank = 0
 	var/image/markingoverlay
-/*
-	proc/get_squad(var/obj/item/weapon/card/id/card)
-		rank = 0
-		squad = 0
-		if(findtext(card.assignment, "Leader") != 0)
-			rank = 1
-		if(findtext(card.assignment, "Alpha") != 0)
-			squad = 1
-		if(findtext(card.assignment, "Bravo") != 0)
-			squad = 2
-		if(findtext(card.assignment, "Charlie") != 0)
-			squad = 3
-		if(findtext(card.assignment, "Delta") != 0)
-			squad = 4
 
-		return
-
-	proc/update_helmet()
-		spawn while(1)
-			if(istype(wornby) && src.loc == wornby)
-				var/obj/item/weapon/card/id/card = wornby.wear_id
-				var/currsquad = squad
-				var/currrank = rank
-				if(istype(card))
-					get_squad(card)
-					if(currsquad != squad || currrank != rank)
-						update_icon()
-			sleep(rand(50,100)) //Randomizer gives our CPU a bit of a break so everything doesn't update at once.
-
-	New(loc)
-		..(loc)
-		update_helmet()
-
-	equipped(var/mob/living/carbon/human/mob, slot)
-		if(slot == slot_head)
-			wornby = mob
-			if(istype(markingoverlay))
-				mob.overlays_standing += markingoverlay
-		else
-			if(istype(markingoverlay) && markingoverlay in mob.overlays_standing)
-				mob.overlays_standing.Remove(markingoverlay)
-
-	dropped(var/mob/living/carbon/human/mob)
-		if(istype(markingoverlay) && markingoverlay in mob.overlays_standing)
-			mob.overlays_standing.Remove(markingoverlay)
-
-	update_icon()
-		overlays = list() //resets list
-		underlays = list()
-
-		if(istype(markingoverlay) && markingoverlay in wornby.overlays_standing)
-			wornby.overlays_standing.Remove(markingoverlay)
-
-		if(squad > 0)
-			if(rank)
-				markingoverlay = helmetmarkings_sql[squad]
-				overlays += markingoverlay
-				wornby.overlays_standing += markingoverlay
-			else
-				markingoverlay = helmetmarkings[squad]
-				overlays += markingoverlay
-				wornby.overlays_standing += markingoverlay
-		wornby.update_icons()
-*/
 	equipped(var/mob/living/carbon/human/mob, slot)
 		update_squad_overlays(mob)
 		..(mob, slot)
@@ -200,11 +137,12 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	name = "B18 Defensive Armor"
-	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though."
+	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
 	blood_overlay_type = "armor"
 	slowdown = 1
 	armor = list(melee = 95, bullet = 90, laser = 80, energy = 50, bomb = 75, bio = 20, rad = 10)
 	siemens_coefficient = 0.7
+	var/injections = 2
 	allowed = list(/obj/item/weapon/gun,
 					/obj/item/weapon/tank/emergency_oxygen,
 					/obj/item/device/flashlight,
@@ -214,6 +152,28 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 					/obj/item/device/mine,
 					/obj/item/weapon/combat_knife)
 
+	verb/inject()
+		set name = "Create Injector"
+		set category = "Object"
+		set src in usr
+
+		if(!usr.canmove || usr.stat || usr.restrained())
+			return 0
+
+		if(!injections)
+			usr << "Your armor is all out of injectors."
+			return 0
+
+		if(usr.get_active_hand())
+			usr << "Your active hand must be empty."
+			return 0
+
+		usr << "You feel a faint hiss and an injector drops into your hand."
+		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord/O = new(usr)
+		usr.put_in_active_hand(O)
+		injections--
+		playsound(src,'sound/machines/click.ogg', 20, 1)
+		return
 
 /obj/item/clothing/suit/storage/marine_leader_armor
 	icon = 'icons/Marine/marine_armor.dmi'

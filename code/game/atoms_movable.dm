@@ -7,7 +7,7 @@
 	var/l_move_time = 1
 	var/m_flag = 1
 	var/throwing = 0
-	var/thrower
+	var/thrower = null
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7

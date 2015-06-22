@@ -30,6 +30,9 @@
 	if(modifiers["middle"] && middle_mouse_toggle)
 		Pounce(A)
 		return
+	if(modifiers["shift"] && shift_mouse_toggle)
+		Pounce(A)
+		return
 	..()
 
 
