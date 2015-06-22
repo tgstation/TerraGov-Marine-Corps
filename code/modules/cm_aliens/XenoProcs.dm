@@ -1,5 +1,18 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 
+//First, dealing with alt-clicking vents.
+/mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
+	var/list/modifiers = params2list(params)
+
+	if(modifiers["alt"] && istype(A,/obj/machinery/atmospherics/unary/vent_pump))
+		for(var/verb_path in inherent_verbs)
+			if(verb_path == /mob/living/carbon/Xenomorph/proc/vent_crawl)
+				src.handle_ventcrawl(A)
+				return
+	else
+		..()
+
+
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
@@ -88,6 +101,9 @@
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
+	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
+		tally += 1.3
+
 	if(src.pulling)  //Dragging stuff slows you down a bit.
 		tally += 1.5
 
@@ -98,12 +114,11 @@
 	return 0
 
 /mob/living/carbon/Xenomorph/can_use_vents()
-	return
+	return 1
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	return
 
-//Show_Inv might get removed later, depending on how I make the aliens.
 /mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
 	return
 
@@ -155,10 +170,12 @@
 		if(istype(V) && !V.stat && !istype(V,/mob/living/carbon/Xenomorph)) //We totally ignore other xenos. LIKE GREASED WEASELS
 			if(istype(V,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = V //Human shield block.
-				if(H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot) || H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot) && rand(0,100) < 65)
-					visible_message("\red <B> \The neurotoxic spit spatters against [H]'s shield!</B>")
-					del(src)
-					return
+				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
+					if(rand(0,100) < 65)
+						visible_message("\red <B> \The neurotoxic spit spatters against [H]'s shield!</B>")
+						throwing = 0
+						del(src)
+						return
 			//apply various effects
 			if(brute_damage)
 				V.apply_damage(BRUTE,brute_damage)
@@ -353,11 +370,11 @@
 
 //Deal with armor deflection.
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
-	if(prob(armor_deflection))
-		visible_message("The [src]'s thick exoskeleton deflects \the [Proj]!","Your thick exoskeleton deflected \the [Proj]!")
-		return -1
+	if(Proj && istype(Proj))
+		if(prob(armor_deflection - Proj.damage))
+			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
+			return -1
 	..(Proj) //Do normal stuff
-	return
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -375,7 +392,7 @@
 
 	return
 
-mob/living/carbon/Xenomorph/verb/toggle_darkness()
+/mob/living/carbon/Xenomorph/verb/toggle_darkness()
 	set name = "Toggle Darkvision"
 	set category = "Alien"
 
@@ -383,3 +400,4 @@ mob/living/carbon/Xenomorph/verb/toggle_darkness()
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER
+

@@ -14,9 +14,11 @@
 	jellyMax = 0
 	spit_delay = 45
 	adjust_pixel_x = -16
+	adjust_size_x = 0.9
+	adjust_size_y = 0.85
 	caste_desc = "Ptui!"
 	evolves_to = list()
-	armor_deflection = 30
+	armor_deflection = 70
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -30,6 +32,9 @@
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
+		neurotoxin3(A)
+		return
+	if(modifiers["shift"] && shift_mouse_toggle)
 		neurotoxin3(A)
 		return
 	..()

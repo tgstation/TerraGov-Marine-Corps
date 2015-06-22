@@ -10,7 +10,7 @@
 
 /*
  * Borrowbook datum
- */
+
 datum/borrowbook // Datum used to keep track of who has borrowed what when and for how long.
 	var/bookname
 	var/mobname
@@ -466,3 +466,5 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		del(O)
 	else
 		..()
+*/
+

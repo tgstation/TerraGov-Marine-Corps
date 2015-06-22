@@ -26,6 +26,12 @@
 	if(wear_suit)
 		tally += wear_suit.slowdown
 
+	if(isturf(src.loc))
+		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
+			tally += 3
+		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
+			tally += 1.75
+
 	if(istype(buckled, /obj/structure/stool/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))
 			var/datum/organ/external/E = get_organ(organ_name)
@@ -47,7 +53,7 @@
 				tally += 0.5
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
-	
+
 	if(shock_stage >= 10) tally += 3
 
 	if(FAT in src.mutations)

@@ -38,10 +38,11 @@
 	icon_state = "grass1"
 
 //Ground map walls
-/turf/simulated/wall/gm/
+/turf/simulated/wall/gm
 	name = "dense jungle"
 	icon = 'icons/ground_map.dmi'
-	icon_state = "jw1"
+	icon_state = "wall2"
+	desc = "Some thick jungle."
 	density = 1
 	opacity = 1
 
@@ -66,6 +67,7 @@
 
 /turf/simulated/wall/gm/dense
 	name = "dense jungle wall"
+	icon = 'icons/ground_map.dmi'
 	icon_state = "wall2"
 
 	New()

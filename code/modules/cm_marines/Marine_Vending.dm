@@ -169,7 +169,7 @@
 	contraband = list()
 	premium = list(
 					/obj/item/weapon/gun/rocketlauncher = 1,
-					/obj/item/weapon/gun/grenadelauncher = 1,
+					/obj/item/weapon/gun/m92 = 1,
 					/obj/item/weapon/gun/projectile/M42C = 1,
 					/obj/item/weapon/storage/box/m56_system = 1,
 					/obj/item/clothing/suit/storage/marine_spec_armor = 1

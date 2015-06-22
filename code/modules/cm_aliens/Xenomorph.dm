@@ -54,11 +54,17 @@
 	var/has_spat = 0
 	var/spit_delay = 50 //Delay timer for spitting
 	var/has_screeched = 0
-	var/middle_mouse_toggle = 0 //This toggles middle mouse clicking for certain abilities.
+	var/middle_mouse_toggle = 1 //This toggles middle mouse clicking for certain abilities.
+	var/shift_mouse_toggle = 0 //The same, but for shift clicking.
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/armor_deflection = 0 //Chance of deflecting projectiles. No xenos have this yet........
 	var/fire_immune = 0 //boolean
+	var/obj/structure/tunnel/start_dig = null
+	var/tunnel_delay = 0
+
 	var/adjust_pixel_x = 0
+	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
+	var/adjust_size_y = 1
 
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
@@ -93,6 +99,13 @@
 	gender = NEUTER
 	if(adjust_pixel_x != 0) //Adjust large 2x2 sprites
 		src.pixel_x += adjust_pixel_x
+
+	if(adjust_size_x != 1)
+		var/matrix/M = matrix()
+		M.Scale(adjust_size_x, adjust_size_y)
+//		M.Translate(0, 16*(adjust_size-1))
+		src.transform = M
+
 
 	if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
 		src.mind.assigned_role = "MODE"

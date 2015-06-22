@@ -99,6 +99,7 @@
 	if(jelly)
 		new_xeno.jelly = jelly
 	new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
+	new_xeno.shift_mouse_toggle = src.shift_mouse_toggle //Keep our toggle state
 
 	for (var/obj/item/W in src.contents) //Drop stuff
 		src.drop_from_inventory(W)

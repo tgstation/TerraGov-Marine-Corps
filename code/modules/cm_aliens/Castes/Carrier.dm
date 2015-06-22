@@ -17,6 +17,8 @@
 	plasma_gain = 8
 	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."
+	adjust_size_x = 1.1
+	adjust_size_y = 1.15
 	var/huggers_max = 6
 	var/huggers_cur = 0
 	var/throwspeed = 2
@@ -38,6 +40,9 @@
 //FUCK SHIFT CLICK! FUCK YOUUUUUUUU. SHIFT CLICK IS EXAMINE!
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
+		throw_hugger(A) //Just try to chuck it, throw_hugger has all the required checks anyway
+		return
+	if(modifiers["shift"] && shift_mouse_toggle)
 		throw_hugger(A) //Just try to chuck it, throw_hugger has all the required checks anyway
 		return
 	..()

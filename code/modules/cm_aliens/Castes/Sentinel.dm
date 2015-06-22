@@ -30,6 +30,9 @@
 	if(modifiers["middle"] && middle_mouse_toggle)
 		neurotoxin(A)
 		return
+	if(modifiers["shift"] && shift_mouse_toggle)
+		neurotoxin(A)
+		return
 	..()
 
 // OLD CODE FOR REFERENCE

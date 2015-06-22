@@ -259,7 +259,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/m37 //M37 Pump Shotgun
 	name = "\improper M37 Pump Shotgun"
-	desc = "A Colonial Marines M37 Pump Shotgun. It fires heavily damaging quasi-explosive 12-gauge slugs. Shift click to pump it or use the verb."
+	desc = "A Colonial Marines M37 Pump Shotgun. It fires heavily damaging quasi-explosive 12-gauge slugs. Shift click to pump it or use the verb.\nGood to keep handy for close encounters."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "shotgun"
 	max_shells = 8
@@ -314,7 +314,7 @@
 
 /obj/item/weapon/gun/projectile/M42C
 	name = "M42C Scoped Rifle"
-	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 6-round magazine."
+	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 6-round magazine.\n'Peace Through Superior Firepower'"
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "sniper"
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
@@ -375,7 +375,7 @@
 
 
 /obj/item/weapon/gun/projectile/M56_Smartgun
-	name = "M56 Smartgun"
+	name = "M56 smartgun"
 	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a Powerpack. Click the powerpack icon in the top left to reload."
 //	icon = 'icons/Marine/marine-weapons64.dmi'
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -417,7 +417,7 @@
 
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
-	name = "M56 Combat Harness"
+	name = "M56 combat harness"
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "8"
 	item_state = "armor"
@@ -439,7 +439,7 @@
 					/obj/item/weapon/combat_knife)
 
 /obj/item/smartgun_powerpack
-	name = "M56 Powerpack"
+	name = "M56 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
@@ -528,7 +528,7 @@
 	projectile_type = "/obj/item/projectile/bullet/m56"
 
 /obj/item/clothing/glasses/m56_goggles
-	name = "M56 Head Mounted Sight"
+	name = "M56 head mounted sight"
 	desc = "A headset and goggles system for the M56 Smartgun. Required in order to fire the weapon. Also has a low-res short range omnithermal imager."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
@@ -554,7 +554,7 @@
 
 
 /obj/item/weapon/storage/box/m56_system
-	name = "M56 Smartgun System"
+	name = "M56 smartgun system"
 	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
@@ -570,3 +570,63 @@
 			new /obj/item/smartgun_powerpack(src)
 			new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
 			new /obj/item/weapon/gun/projectile/M56_Smartgun(src)
+
+/obj/item/weapon/gun/m92
+	name = "M92 grenade launcher"
+	desc = "A heavy, 5-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "m92"
+	item_state = "riotgun" //Ugh replace this plz
+	w_class = 4.0
+	throw_speed = 2
+	throw_range = 10
+	force = 5.0
+	var/list/grenades = new/list()
+	var/max_grenades = 5
+
+	examine()
+		set src in view()
+		..()
+		if(grenades.len)
+			if (!(usr in view(2)) && usr!=src.loc) return
+			usr << "\icon [src] Grenade launcher:"
+			usr << "\blue [grenades.len] / [max_grenades] Grenades."
+
+	attackby(obj/item/I as obj, mob/user as mob)
+		if((istype(I, /obj/item/weapon/grenade)))
+			if(grenades.len < max_grenades)
+				user.drop_item()
+				I.loc = src
+				grenades += I
+				user << "\blue You put the [I] in the grenade launcher."
+				user << "\blue Now storing: [grenades.len] / [max_grenades] grenades."
+			else
+				usr << "\red The grenade launcher cannot hold more grenades."
+
+	afterattack(atom/target, mob/user , flag)
+		if(get_dist(target,user) <= 2)
+			usr << "\red The grenade launcher beeps a warning noise. You are too close!"
+			return
+
+		if(grenades.len)
+			spawn(0) fire_grenade(target,user)
+			playsound(user.loc, 'sound/weapons/grenadelaunch.ogg', 50, 1)
+		else
+			usr << "\red The grenade launcher is empty."
+
+	proc
+		fire_grenade(atom/target, mob/user)
+			for(var/mob/O in viewers(world.view, user))
+				O.show_message(text("\red [] fired a grenade!", user), 1)
+			user << "\red You fire the grenade launcher!"
+			var/obj/item/weapon/grenade/F = grenades[1]
+			grenades -= F
+			F.loc = user.loc
+			F.throw_at(target, 30, 2, user)
+			message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
+			log_game("[key_name_admin(user)] used a grenade ([src.name]).")
+			F.active = 1
+			F.icon_state = initial(icon_state) + "_active"
+			playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
+			spawn(15)
+				F.prime()

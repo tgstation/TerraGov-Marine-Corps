@@ -90,7 +90,7 @@
 			if(get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir))
 				bumped = 0
 				permutated.Add(A)
-				return -1
+				return 0
 
 			var/distance = get_dist(starting,loc)
 			var/miss_modifier = -30
@@ -99,6 +99,13 @@
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
 				if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
 					miss_modifier += -30
+
+			if(istype(src,/obj/item/projectile/bullet/m42c)) //Sniper rifles have different miss chance by distance.
+				if(distance <= 5)
+					miss_modifier += 30
+				else
+					miss_modifier -= 30
+
 			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
 
 			if(!def_zone)
@@ -118,8 +125,9 @@
 					msg_admin_attack("UNKNOWN shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
 
 		if(A)
-			if (!forcedodge)
+			if(!forcedodge)
 				forcedodge = A.bullet_act(src, def_zone) // searches for return value
+
 			if(forcedodge == -1) // the bullet passes through a dense object!
 				bumped = 0 // reset bumped variable!
 				if(istype(A, /turf))

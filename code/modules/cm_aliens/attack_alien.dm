@@ -382,7 +382,7 @@
 //Computers -- Queens can use any consoles!
 //Others do nothing.
 /obj/machinery/computer/attack_alien(mob/living/carbon/Xenomorph/M as mob)
-	if(!M.is_intelligent)
+	if(!M.is_intelligent || !istype(src,/obj/machinery/computer/shuttle))
 		M << "You stare at [src.name] cluelessly."
 		return
 	else

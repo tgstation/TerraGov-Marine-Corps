@@ -198,6 +198,7 @@
 					src.author = newauthor
 			else
 				return
+/*
 	else if(istype(W, /obj/item/weapon/barcodescanner))
 		var/obj/item/weapon/barcodescanner/scanner = W
 		if(!scanner.computer)
@@ -227,6 +228,7 @@
 							return
 					scanner.computer.inventory.Add(src)
 					user << "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
+*/
 	else if(istype(W, /obj/item/weapon/kitchenknife) || istype(W, /obj/item/weapon/wirecutters))
 		if(carved)	return
 		user << "<span class='notice'>You begin to carve out [title].</span>"
@@ -245,8 +247,8 @@
 
 
 /*
- * Barcode Scanner
- */
+ Barcode Scanner
+/
 /obj/item/weapon/barcodescanner
 	name = "barcode scanner"
 	icon = 'icons/obj/library.dmi'
@@ -282,3 +284,5 @@
 		else
 			user << "<font color=red>No associated computer found. Only local scans will function properly.</font>"
 		user << "\n"
+*/
+
