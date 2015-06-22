@@ -3,7 +3,7 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 25
+	damage = 24
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
 	damage = 35
@@ -73,7 +73,7 @@
 	desc = "A 9mm special magazine"
 	icon_state = "9x19p-8"
 	ammo_type = "/obj/item/ammo_casing/m39"
-	max_ammo = 30
+	max_ammo = 35
 
 /obj/item/ammo_magazine/m39/empty // M39 SMG
 	icon_state = "9x19p-0"
@@ -260,7 +260,8 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/m37 //M37 Pump Shotgun
 	name = "\improper M37 Pump Shotgun"
 	desc = "A Colonial Marines M37 Pump Shotgun. It fires heavily damaging quasi-explosive 12-gauge slugs. Shift click to pump it or use the verb."
-	icon_state = "cshotgun"
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "shotgun"
 	max_shells = 8
 	caliber = "12gs"
 	ammo_type = "/obj/item/ammo_casing/m37"
@@ -360,7 +361,7 @@
 	projectile_type = "/obj/item/projectile/bullet/m42c"
 
 /obj/item/ammo_magazine/m42c
-	name = "M42C Scoped Rifle Magazine"
+	name = "scoped rifle magazine"
 	desc = "A .50 cal sniper rifle magazine"
 	icon_state = "75"
 	ammo_type = "/obj/item/ammo_casing/m42c"
@@ -371,104 +372,201 @@
 	max_ammo = 0
 
 
-/* I'll get to this soonish.
+
+
 /obj/item/weapon/gun/projectile/M56_Smartgun
 	name = "M56 Smartgun"
-	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun."
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "sniper"
-	fire_sound = 'sound/weapons/GunFireSniper.ogg'
-	ammo_type = "/obj/item/ammo_casing/m42c"
-	fire_delay = 80
-	w_class = 4.0
-	max_shells = 6
-	caliber = ".50"
-	load_method = 2
-	force = 10.0
-	recoil = 2
+	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a Powerpack. Click the powerpack icon in the top left to reload."
+//	icon = 'icons/Marine/marine-weapons64.dmi'
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "m56"
+	item_state = "m56"
+	fire_sound = 'sound/weapons/Gunshot.ogg'
+	ammo_type = "/obj/item/ammo_casing/m56"
+	fire_delay = 1
+	w_class = 5.0
+	max_shells = 40
+	caliber = "28mm"
+//	load_method = 2
+	force = 12.0
+//	pixel_x = -16 //To center it
 	twohanded = 1
-*/
+	ejectshell = 0
+	recoil = 0
+
+	special_check(user)
+		if(istype(user,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = user
+			if(!H.back || !istype(H.back,/obj/item/smartgun_powerpack))
+				user << "The [src] makes a sad beeping noise. It cannot be fired without a powerpack and Combat Harness."
+				return 0
+			if(!H.wear_suit || !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+				user << "The [src] makes a sad beeping noise. It cannot be fired without a powerpack and Combat Harness."
+				return 0
+			return 1
+		return 0
+
+	attack_hand(mob/user as mob)
+		if(istype(user,/mob/living/carbon/human) && src.loc != user )
+			var/mob/living/carbon/human/H = user
+			if(!H.wear_suit || !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+				user << "\red The [src] is much too heavy to pick up without a matching combat harness."
+				return
+		return ..(user)
 
 
 
+/obj/item/clothing/suit/storage/marine_smartgun_armor
+	name = "M56 Combat Harness"
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "8"
+	item_state = "armor"
+	slowdown = 1
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = UPPER_TORSO|LOWER_TORSO
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
+	blood_overlay_type = "armor"
+	armor = list(melee = 55, bullet = 75, laser = 30, energy = 0, bomb = 35, bio = 0, rad = 0)
+	allowed = list(/obj/item/weapon/tank/emergency_oxygen,
+					/obj/item/device/flashlight,
+					/obj/item/ammo_magazine,
+					/obj/item/ammo_casing,
+					/obj/item/device/mine,
+					/obj/item/weapon/combat_knife)
+
+/obj/item/smartgun_powerpack
+	name = "M56 Powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "powerpack"
+	item_state = "powerpack"
+	flags = FPRINT | CONDUCT | TABLEPASS
+	slot_flags = SLOT_BACK
+	w_class = 5.0
+	var/obj/item/weapon/cell/pcell = null
+	var/rounds_remaining = 200
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+	var/reloading = 0
+
+	New()
+		spawn(1)
+			pcell = new /obj/item/weapon/cell(src)
+
+	attack_self(mob/user)
+		if(!ishuman(user) || user.stat) return 0
+
+		var/obj/item/weapon/gun/projectile/M56_Smartgun/mygun = user.get_active_hand()
+
+		if(isnull(mygun) || !mygun || !istype(mygun))
+			user << "You must be holding an M56 Smartgun to begin the reload process."
+			return 0
+		if(rounds_remaining < 1)
+			user << "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!"
+			return 0
+		if(!pcell)
+			user << "Your powerpack doesn't have a battery! Slap one in there!"
+			return 0
+		if(reloading)
+			user << "Already busy."
+			return 0
+		if(pcell.charge <= 50)
+			user << "Your powerpack's battery is too drained! Get a new one!"
+			return 0
+
+		reloading = 1
+		user.visible_message("[user.name] begin feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
+		if(do_after(user,35))
+			pcell.charge -= 50
+			var/obj/item/ammo_casing/m56/shell
+			var/num_loaded = 0
+			for(var/i = 1, i <= 50, i++)
+				num_loaded++
+				rounds_remaining--
+				shell = new /obj/item/ammo_casing/m56(mygun)
+				mygun.loaded += shell
+				if(mygun.loaded.len >= 50 || rounds_remaining <= 0)
+					break
+			user << "You finish loading [num_loaded] shells into the M56 Smartgun. Ready to rumble!"
+			reloading = 0
+			playsound(user, 'sound/weapons/unload.ogg', 20, 1)
+			return 1
+		else
+			user << "Your reloading was interrupted!"
+			return 0
+		return 1
+
+	attackby(var/obj/item/A as obj, mob/user as mob)
+		if(istype(A,/obj/item/weapon/cell))
+			var/obj/item/weapon/cell/C = A
+			visible_message("[user.name] swaps out the power cell in the [src.name].","You swap out the power cell in the [src] and drop the old one.")
+			user << "The new cell contains: [C.charge] power."
+			pcell.loc = get_turf(user)
+			pcell = C
+			C.loc = src
+			playsound(src,'sound/machines/click.ogg', 20, 1)
+		else
+			..()
+
+	examine()
+		set src in oview(1)
+		..()
+
+		if (get_dist(usr, src) <= 1)
+			if(pcell)
+				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 200."
+
+/obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
+	damage = 20
+
+/obj/item/ammo_casing/m56
+	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."
+	caliber = "28mm"
+	projectile_type = "/obj/item/projectile/bullet/m56"
+
+/obj/item/clothing/glasses/m56_goggles
+	name = "M56 Head Mounted Sight"
+	desc = "A headset and goggles system for the M56 Smartgun. Required in order to fire the weapon. Also has a low-res short range omnithermal imager."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "m56_goggles"
+	item_state = "m56_goggles"
+	darkness_view = 5
+	toggleable = 1
+	icon_action_button = "action_meson"
+
+	mob_can_equip(mob/user, slot)
+		if(slot == slot_glasses)
+			if(!ishuman(user)) return ..() //Doesn't matter, just pass it to the main proc
+			var/mob/living/carbon/human/H = user
+			var/obj/item/smartgun_powerpack/P = H.back
+			if(!P || !istype(P))
+				user << "You must be wearing an M56 Powerpack on your back to wear these."
+				return 0
+		return ..(user, slot)
 
 
-//EXTRA CODE TO MAKE THINGS WORK  Just... Leave it for now...
-/*
-/obj/item/weapon/gun/projectile/Assault
-	name = "\improper C-20r SMG"
-	desc = "A standard issue assault rifle. Uses 12mm ammunition."
-	icon_state = "c20r"
-	item_state = "c20r"
-	w_class = 3.0
-	max_shells = 20
-	caliber = "12mm"
-	origin_tech = "combat=5;materials=2;syndicate=8"
-	ammo_type = "/obj/item/ammo_casing/a12mm"
-	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
-	load_method = 2
-	fire_delay = 2
-	var/gun_light = 7 // Defines how bright the light on the flashlight will be
-	var/haslight = 0  // Checks if there is a light on the rifle
-	var/islighton = 0 // Checks if the Light is on
+/obj/item/clothing/glasses/m56_goggles/New()
+	..()
+	overlay = global_hud.thermal
 
+
+/obj/item/weapon/storage/box/m56_system
+	name = "M56 Smartgun System"
+	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "smartgun_case"
+	w_class = 5
+	storage_slots = 4
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
 	New()
 		..()
-		empty_mag = new /obj/item/ammo_magazine/a12mm/empty(src)
-		update_icon()
-		return
-
-
-	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
-		..()
-		if(!loaded.len && empty_mag)
-			empty_mag.loc = get_turf(src.loc)
-			empty_mag = null
-			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
-			update_icon()
-		return
-
-
-	update_icon()
-		..()
-		if(empty_mag)
-			icon_state = "c20r-[round(loaded.len,4)]"
-		else
-			icon_state = "c20r"
-		return
-
-///////NEW FANCY FLASHLIGHT CODE MADE OF HOPES AND DREAMS./
-*/
-
-
-
-/*
-/obj/item/weapon/gun/projectile/Assault/verb/toggle_light()
-	set name = "Toggle Flashlight"
-	set category = "Object"
-
-	if(haslight && !islighton) //Turns the light on
-		usr << "\blue You turn the flashlight on."
-		usr.SetLuminosity(gun_light)
-		islighton = 1
-	else if(haslight && islighton) //Turns the light off
-		usr << "\blue You turn the flashlight off."
-		usr.SetLuminosity(0)
-		islighton = 0
-	else if(!haslight) //Points out how stupid you are
-		usr << "\red You foolishly look at where the flashlight would be, if it was attached..."
-
-/obj/item/weapon/gun/projectile/Assault/pickup(mob/user)//Transfers the lum to the user when picked up
-	if(islighton)
-		SetLuminosity(0)
-		usr.SetLuminosity(gun_light)
-
-/obj/item/weapon/gun/projectile/Assault/dropped(mob/user)//Transfers the Lum back to the gun when dropped
-	if(islighton)
-		SetLuminosity(gun_light)
-		usr.SetLuminosity(0)
-
-
-*/
-
+		spawn(1)
+			new /obj/item/clothing/glasses/m56_goggles(src)
+			new /obj/item/smartgun_powerpack(src)
+			new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
+			new /obj/item/weapon/gun/projectile/M56_Smartgun(src)

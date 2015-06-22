@@ -94,7 +94,7 @@
 	if(adjust_pixel_x != 0) //Adjust large 2x2 sprites
 		src.pixel_x += adjust_pixel_x
 
-	if(src.mind && src.mind.assigned_role != "MODE") //Are we not an NPC? Set us to actually be a xeno.
+	if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
 		src.mind.assigned_role = "MODE"
 		src.mind.special_role = "Alien"
 		if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len) //Add them to the gametype xeno tracker
@@ -104,6 +104,7 @@
 			for(var/datum/mind/M in ticker.mode.aliens) //Scan through the ticker to see if they're already there.
 				if(src.mind == M)
 					found = 1
+					break
 			if(!found) //Not there? add them, so they show up on antag panel, etc
 				ticker.mode.aliens += src.mind
 

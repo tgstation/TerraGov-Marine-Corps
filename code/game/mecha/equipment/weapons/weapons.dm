@@ -252,6 +252,7 @@
 	..()
 
 /obj/item/missile
+	name = "fragmentation rocket"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "missile"
 	var/primed = null
@@ -259,7 +260,19 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 0, 2, 4)
+			explosion(hit_atom, 0, 0, 3, 5)
+			del(src)
+		else
+			..()
+		return
+
+/obj/item/missile/ap
+	name = "armor piercing rocket"
+	throwforce = 75
+
+	throw_impact(atom/hit_atom)
+		if(primed)
+			explosion(hit_atom, 0, 0, 1, 2)
 			del(src)
 		else
 			..()
