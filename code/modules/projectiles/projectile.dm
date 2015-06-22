@@ -90,7 +90,7 @@
 			if(get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir))
 				bumped = 0
 				permutated.Add(A)
-				return 0
+				return -1
 
 			var/distance = get_dist(starting,loc)
 			var/miss_modifier = -30
@@ -221,3 +221,4 @@
 			return 1
 
 	return 0
+

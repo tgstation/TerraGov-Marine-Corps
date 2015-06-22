@@ -155,27 +155,24 @@
 	icon_deny = "robotics-deny"
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
-						/obj/item/clothing/suit/storage/marine_spec_armor = 2,
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 5,
 						/obj/item/weapon/grenade/smokebomb = 5,
 						/obj/item/device/mine = 2,
-						/obj/item/ammo_casing/rocket = 3,
+						/obj/item/ammo_casing/rocket = 2,
+						/obj/item/ammo_casing/rocket/ap = 2,
 						/obj/item/weapon/flamethrower = 1,
 						/obj/item/weapon/tank/phoron = 2,
 						/obj/item/weapon/shield/riot = 1,
 						/obj/item/ammo_magazine/m42c = 1,
-						/obj/item/weapon/arrow = 8,
-						/obj/item/weapon/cell/high = 1,
-						/obj/item/weapon/arrow/rod = 3
 			)
 	contraband = list()
 	premium = list(
 					/obj/item/weapon/gun/rocketlauncher = 1,
 					/obj/item/weapon/gun/grenadelauncher = 1,
-					/obj/item/weapon/gun/launcher/pneumatic = 1,
-					/obj/item/weapon/gun/launcher/crossbow  = 1,
-					/obj/item/weapon/gun/projectile/M42C = 1
+					/obj/item/weapon/gun/projectile/M42C = 1,
+					/obj/item/weapon/storage/box/m56_system = 1,
+					/obj/item/clothing/suit/storage/marine_spec_armor = 1
 			)
 	prices = list()
 

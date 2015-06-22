@@ -28,7 +28,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/commander(H), slot_head)
 
-		captain_announcement.Announce("<i>All hands, Commander [H.real_name] on deck!</i>")
+		captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
 
 		H.implant_loyalty(src)
 

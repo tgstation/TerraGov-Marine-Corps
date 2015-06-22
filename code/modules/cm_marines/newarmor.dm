@@ -138,7 +138,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 /obj/item/clothing/suit/storage/marine2
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "1"
-	item_state = "1"
+	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	cold_protection = UPPER_TORSO|LOWER_TORSO
@@ -191,19 +191,19 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 
 /obj/item/clothing/suit/storage/marine_spec_armor
 	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "8"
-	item_state = "8"
+	icon_state = "9"
+	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	name = "specialist armor"
+	name = "B18 Defensive Armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though."
 	blood_overlay_type = "armor"
 	slowdown = 1
-	armor = list(melee = 85, bullet = 80, laser = 50, energy = 0, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 95, bullet = 90, laser = 80, energy = 50, bomb = 75, bio = 20, rad = 10)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun,
 					/obj/item/weapon/tank/emergency_oxygen,
@@ -218,15 +218,15 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 /obj/item/clothing/suit/storage/marine_leader_armor
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "7"
-	item_state = "7"
+	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	name = "squad leader armor"
-	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green."
+	name = "B12 Squad Leader Armor"
+	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
 	blood_overlay_type = "armor"
 	armor = list(melee = 45, bullet = 75, laser = 70, energy = 20, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7

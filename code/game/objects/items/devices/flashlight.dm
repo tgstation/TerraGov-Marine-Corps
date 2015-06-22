@@ -159,6 +159,7 @@
 	icon_state = "flare"
 	item_state = "flare"
 	icon_action_button = null	//just pull it manually, neckbeard.
+//	l_color = "500000"
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500

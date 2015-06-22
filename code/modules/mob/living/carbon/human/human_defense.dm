@@ -42,6 +42,9 @@ emp_act
 
 				return -1 // complete projectile permutation
 
+	if(get_marine_id() && istype(P,/obj/item/projectile/bullet/m56)) //M56 Smartguns avoid shooting fellow marines.
+		return -1
+
 	//Shrapnel
 	if (P.damage_type == BRUTE)
 		var/armor = getarmor_organ(organ, "bullet")
@@ -424,3 +427,16 @@ emp_act
 	var/penetrated_dam = max(0,(damage - SS.breach_threshold)) // - SS.damage)) - Consider uncommenting this if suits seem too hardy on dev.
 
 	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
+
+//This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
+//Does not actually check for station jobs or access yet, cuz I'm mad lazy.
+/mob/living/carbon/human/proc/get_marine_id()
+	var/obj/item/weapon/card/id/mobcard = wear_id
+
+	if(!mobcard || !istype(mobcard))
+		mobcard = get_active_hand() //Not a PDA or in ID slot? Fine, check their hand.
+
+	if(!mobcard)
+		return 0 //Still nothing!
+
+	return 1 //Yay!
