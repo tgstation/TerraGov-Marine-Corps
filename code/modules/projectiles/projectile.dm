@@ -50,6 +50,7 @@
 	var/drowsy = 0
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
+	var/skip_over = 0
 
 	proc/on_hit(var/atom/target, var/blocked = 0)
 		if(blocked >= 2)		return 0//Full block
@@ -73,6 +74,7 @@
 		return output //Send it back to the gun!
 
 	Bump(atom/A as mob|obj|turf|area)
+		world << "[src] - bump1"
 		if(A == firer)
 			loc = A.loc
 			return 0 //cannot shoot yourself
@@ -90,6 +92,7 @@
 			if(get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir))
 				bumped = 0
 				permutated.Add(A)
+				skip_over = 1
 				return 0
 
 			var/distance = get_dist(starting,loc)
@@ -105,6 +108,16 @@
 					miss_modifier += 30
 				else
 					miss_modifier -= 30
+
+			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
+				var/mob/living/carbon/human/H = A
+				if(H.get_marine_id())
+					bumped = 0
+					permutated.Add(H)
+					src.loc = get_turf(H.loc)
+					world << "[src] - bump3"
+					skip_over = 1
+					return 0
 
 			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
 
@@ -135,15 +148,24 @@
 				else
 					loc = A.loc
 				permutated.Add(A)
+				world << "[src] - bump4"
 				return 0
 			if(istype(A,/turf))
 				for(var/obj/O in A)
 					O.bullet_act(src)
 				for(var/mob/M in A)
+					world << "[src] - bump5"
 					M.bullet_act(src, def_zone)
-			density = 0
-			invisibility = 101
-			del(src)
+			if(bumped && !skip_over)
+				world << "[src] - bump6"
+				density = 0
+				invisibility = 101
+				del(src)
+			else if(skip_over)
+				world << "[src] - bump6.1"
+				skip_over--
+		bumped = 0
+		world << "[src] - bump7"
 		return 1
 
 
@@ -171,6 +193,7 @@
 			if(!bumped && !isturf(original))
 				if(loc == get_turf(original))
 					if(!(original in permutated))
+						world << "[src] - bump8"
 						Bump(original)
 						sleep(1)
 		return

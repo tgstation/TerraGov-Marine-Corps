@@ -221,7 +221,7 @@
 /obj/effect/xenomorph
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/Xeno/effects.dmi'
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
