@@ -42,21 +42,6 @@ emp_act
 
 				return -1 // complete projectile permutation
 
-	//Smartgunnnnnssss
-	if(istype(P,/obj/item/projectile/bullet/m56) && get_marine_id())
-		var/new_x = P.starting.x
-		var/new_y = P.starting.y
-		var/turf/curloc = get_turf(src)
-		visible_message("\red <B>The [P.name] deftly avoids hitting [src]!</B>")
-		// redirect the projectile
-		P.original = locate(new_x, new_y, P.z)
-		P.starting = curloc
-		P.current = curloc
-		P.yo = new_y - curloc.y
-		P.xo = new_x - curloc.x
-		world << "[P.name] - [P.x],[P.y], [P.xo],[P.yo]"
-		return -1
-
 	//Shrapnel
 	if (P.damage_type == BRUTE)
 		var/armor = getarmor_organ(organ, "bullet")
@@ -448,7 +433,7 @@ emp_act
 	if(!mobcard || !istype(mobcard))
 		mobcard = get_active_hand() //Not a PDA or in ID slot? Fine, check their hand.
 
-	if(!mobcard)
+	if(!mobcard || !istype(mobcard))
 		return 0 //Still nothing!
 
 	return 1 //Yay!

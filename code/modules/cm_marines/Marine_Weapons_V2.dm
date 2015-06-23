@@ -317,6 +317,7 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 6-round magazine.\n'Peace Through Superior Firepower'"
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "sniper"
+	item_state = "sniper"
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	ammo_type = "/obj/item/ammo_casing/m42c"
 	fire_delay = 80
@@ -443,7 +444,7 @@
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
-	item_state = "powerpack"
+	item_state = "armor"
 	flags = FPRINT | CONDUCT | TABLEPASS
 	slot_flags = SLOT_BACK
 	w_class = 5.0

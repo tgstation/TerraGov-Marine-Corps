@@ -37,6 +37,7 @@
 	name = "sticky resin"
 	desc = "Some disgusting sticky slime. Gross!."
 	icon_state = "sticky"
+	density = 0
 	opacity = 0
 	health = 150
 
@@ -421,6 +422,7 @@
 /obj/structure/tunnel
 	name = "tunnel"
 	desc = "A tunnel entrance. Looks like it was dug by some kind of clawed beast."
+	icon = 'icons/Xeno/effects.dmi'
 	icon_state = "hole"
 
 	density = 0
@@ -500,9 +502,6 @@
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.loc = other.loc
 			visible_message("\blue [M] pops out of a tunnel.","\blue You pop out the other side!")
-			var/area/new_area = get_area(M.loc)
-			if(new_area)
-				new_area.Entered(src)
 		else
 			M << "The tunnel ended unexpectedly, so you return back up."
 	else
