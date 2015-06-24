@@ -335,9 +335,9 @@
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		var/mob/living/carbon/V = hit_atom
 		if(istype(V) && !V.stat && !istype(V,/mob/living/carbon/Xenomorph)) //We totally ignore other xenos. LIKE GREASED WEASELS
-			if(istype(V,/mob/living/carbon/human))
+			if(istype(V,/mob/living/carbon/human) && charge_type != 2)
 				var/mob/living/carbon/human/H = V //Human shield block.
-				if(H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot) || H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot))
+				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
 					if (prob(45))	// If the human has riot shield in his hand,  65% chance
 						src.Weaken(3) //Stun the fucker instead
 						visible_message("\red <B> \The [src] bounces off [H]'s shield!</B>")
@@ -350,12 +350,13 @@
 
 			if(charge_type == 1) //Runner/hunter pounce.
 				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
-				V.Weaken(3)
+				V.Weaken(2)
 				src.canmove = 0
 				src.frozen = 1
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
-				spawn(20)
+				playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+				spawn(24)
 					src.frozen = 0
 		return
 
@@ -370,8 +371,10 @@
 
 //Deal with armor deflection.
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
-	if(Proj && istype(Proj))
-		if(prob(armor_deflection - Proj.damage))
+	if(Proj && istype(Proj) )
+		var/dmg = Proj.damage
+		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 10 //Smartgun hits weak points easier.
+		if(prob(armor_deflection - dmg))
 			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
 			return -1
 	..(Proj) //Do normal stuff

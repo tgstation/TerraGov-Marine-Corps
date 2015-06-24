@@ -428,27 +428,34 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	luminosity = 1 //Why not.
+	unacidable = 1
 
-	var/health = 240
+	var/health = 140
 	var/obj/structure/tunnel/other = null
 	var/mob/living/carbon/Xenomorph/builder = null
 	var/being_used = 0
+	var/id = null //For mapping
+
+	New()
+		if(id)
+			spawn(5)
+				if(other == null)
+					for(var/obj/structure/tunnel/T in world)
+						if(T.id == id && T != src && T.other == null) //Found a matching tunnel
+							T.other = src
+							src.other = T //Link them!
+							break
 
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)
 		visible_message("The [src] suddenly collapses!")
 		if(other && isturf(other.loc))
-			other.health -= 150
-			other.healthcheck()
-		density = 0
+			visible_message("The [other] suddenly collapses!")
+			del(other)
 		del(src)
 	return
 
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
-	..()
-	healthcheck()
 	return
 
 /obj/structure/tunnel/ex_act(severity)
@@ -456,7 +463,7 @@
 		if(1.0)
 			health-=200
 		if(2.0)
-			health-=150
+			health-=120
 		if(3.0)
 			if (prob(50))
 				health-=50
@@ -477,13 +484,13 @@
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(!istype(M) || M.stat || M.health < 1) return
-	var/tunnel_time = 50
+	var/tunnel_time = 40
 
 	if(M.adjust_pixel_x) //Big xenos take WAY longer
-		tunnel_time = 150
+		tunnel_time = 120
 
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva)) //Larva can zip through near-instantly, they are wormlike after all
-		tunnel_time = 10
+		tunnel_time = 5
 
 	if(being_used)
 		M << "Someone's already climbing down there! Wait your turn!"
@@ -515,11 +522,3 @@
 /obj/structure/tunnel/attack_paw()
 	return attack_hand()
 
-/obj/structure/tunnel/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(user,/mob/living/carbon/Xenomorph)) return
-	var/aforce = W.force
-	health = max(0, health - aforce)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
-	healthcheck()
-	..()
-	return

@@ -796,6 +796,7 @@ var/list/ghostteleportlocs = list()
 /area/hallway/primary/central_one
 	name = "\improper Central Primary Hallway"
 	icon_state = "hallC1"
+	ambience = list('sound/ambience/signal.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg')
 
 /area/hallway/primary/central_two
 	name = "\improper Central Primary Hallway"

@@ -45,7 +45,7 @@
 	Sound(message_sound)
 	Log(message, message_title)
 
-datum/announcement/proc/Message(message as text, message_title as text)
+/datum/announcement/proc/Message(message as text, message_title as text)
 	for(var/mob/M in player_list)
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << "<h2 class='alert'>[title]</h2>"
@@ -53,17 +53,17 @@ datum/announcement/proc/Message(message as text, message_title as text)
 			if (announcer)
 				M << "<span class='alert'> -[html_encode(announcer)]</span>"
 
-datum/announcement/minor/Message(message as text, message_title as text)
+/datum/announcement/minor/Message(message as text, message_title as text)
 	world << "<b>[message]</b>"
 
-datum/announcement/priority/Message(message as text, message_title as text)
+/datum/announcement/priority/Message(message as text, message_title as text)
 	world << "<h1 class='alert'>[message_title]</h1>"
 	world << "<span class='alert'>[message]</span>"
 	if(announcer)
 		world << "<span class='alert'> -[html_encode(announcer)]</span>"
 	world << "<br>"
 
-datum/announcement/priority/command/Message(message as text, message_title as text)
+/datum/announcement/priority/command/Message(message as text, message_title as text)
 	var/command
 	command += "<h1 class='alert'>[command_name()] Update</h1>"
 	if (message_title)
@@ -75,11 +75,11 @@ datum/announcement/priority/command/Message(message as text, message_title as te
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << command
 
-datum/announcement/priority/security/Message(message as text, message_title as text)
+/datum/announcement/priority/security/Message(message as text, message_title as text)
 	world << "<font size=4 color='red'>[message_title]</font>"
 	world << "<font color='red'>[message]</font>"
 
-datum/announcement/proc/NewsCast(message as text, message_title as text)
+/datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)
 		return
 
@@ -91,24 +91,24 @@ datum/announcement/proc/NewsCast(message as text, message_title as text)
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-datum/announcement/proc/PlaySound(var/message_sound)
+/datum/announcement/proc/PlaySound(var/message_sound)
 	if(!message_sound)
 		return
 	for(var/mob/M in player_list)
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << message_sound
 
-datum/announcement/proc/Sound(var/message_sound)
+/datum/announcement/proc/Sound(var/message_sound)
 	PlaySound(message_sound)
 
-datum/announcement/priority/Sound(var/message_sound)
+/datum/announcement/priority/Sound(var/message_sound)
 	if(sound)
 		world << sound
 
-datum/announcement/priority/command/Sound(var/message_sound)
+/datum/announcement/priority/command/Sound(var/message_sound)
 	PlaySound(message_sound)
 
-datum/announcement/proc/Log(message as text, message_title as text)
+/datum/announcement/proc/Log(message as text, message_title as text)
 	if(log)
 		log_say("[key_name(usr)] has made \a [announcement_type]: [message_title] - [message] - [announcer]")
 		message_admins("[key_name_admin(usr)] has made \a [announcement_type].", 1)

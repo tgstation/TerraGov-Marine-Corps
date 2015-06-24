@@ -48,7 +48,7 @@
 				m_type = 2
 		if("roar")
 			if (!muzzled)
-				message = "<B>The [src.name]</B> roars."
+				message = "<B>The [src.name]</B> roars!"
 				m_type = 2
 		if("hiss")
 			if(!muzzled)
@@ -120,7 +120,10 @@
 	if ((message && src.stat == 0))
 		log_emote("[name]/[key] : [message]")
 		if (act == "roar")
-			playsound(src.loc, 'sound/voice/hiss5.ogg', 40, 1, 1)
+			if(!adjust_pixel_x)
+				playsound(src.loc, 'sound/voice/hiss5.ogg', 40, 1, 1)
+			else
+				playsound(src.loc, 'sound/voice/ed209_20sec.ogg', 60, 1, 1)
 		if (act == "deathgasp")
 			playsound(src.loc, 'sound/voice/hiss6.ogg', 80, 1, 1)
 		if (m_type & 1)

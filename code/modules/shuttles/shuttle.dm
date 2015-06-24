@@ -122,7 +122,7 @@
 			if(!M.buckled)
 				M.Weaken(3)
 
-	for(var/atom/T in origin) // WOW so hacky - who cares. Abby
+	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
 		if(istype(T,/turf/space))
 			new /turf/simulated/floor/plating(T)
 
