@@ -74,7 +74,7 @@
 		return output //Send it back to the gun!
 
 	Bump(atom/A as mob|obj|turf|area)
-		world << "[src] - bump1"
+
 		if(A == firer)
 			loc = A.loc
 			return 0 //cannot shoot yourself
@@ -115,7 +115,6 @@
 					bumped = 0
 					permutated.Add(H)
 					src.loc = get_turf(H.loc)
-					world << "[src] - bump3"
 					skip_over = 1
 					return 0
 
@@ -148,24 +147,19 @@
 				else
 					loc = A.loc
 				permutated.Add(A)
-				world << "[src] - bump4"
 				return 0
 			if(istype(A,/turf))
 				for(var/obj/O in A)
 					O.bullet_act(src)
 				for(var/mob/M in A)
-					world << "[src] - bump5"
 					M.bullet_act(src, def_zone)
 			if(bumped && !skip_over)
-				world << "[src] - bump6"
 				density = 0
 				invisibility = 101
 				del(src)
 			else if(skip_over)
-				world << "[src] - bump6.1"
 				skip_over--
 		bumped = 0
-		world << "[src] - bump7"
 		return 1
 
 
@@ -193,7 +187,6 @@
 			if(!bumped && !isturf(original))
 				if(loc == get_turf(original))
 					if(!(original in permutated))
-						world << "[src] - bump8"
 						Bump(original)
 						sleep(1)
 		return

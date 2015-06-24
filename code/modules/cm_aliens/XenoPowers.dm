@@ -143,7 +143,7 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
-	set name = "Pounce (5)"
+	set name = "Pounce (10)"
 	set desc = "Pounce on someone. Click a turf to just leap there."
 	set category = "Alien"
 
@@ -153,7 +153,7 @@
 		src << "\red You must wait before pouncing."
 		return
 
-	if(!check_plasma(5))
+	if(!check_plasma(10))
 		return
 
 	if(!T)
@@ -165,7 +165,6 @@
 
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
-		playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
 		usedPounce = 150 //about 12 seconds
 		src.throw_at(T, 4, 2, src) //victim, distance, speed
 		spawn(usedPounce)
@@ -227,7 +226,7 @@
 	last_special = world.time + 50
 
 	visible_message("<span class='warning'><b>\The [src]</b> lifts [victim] into the air...</span>")
-	if(do_after(src,70))
+	if(do_after(src,50))
 		if(!victim || isnull(victim)) return
 		if(victim.loc != cur_loc) return
 		visible_message("<span class='warning'><b>\The [src]</b> viciously wrenches [victim] apart!</span>")
@@ -324,7 +323,7 @@
 
 	src << "\green You shape a [choice]."
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("\red <B>[src] vomits up a thick purple substance and begins to shape it!</B>"), 1)
+		O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
 	switch(choice)
 		if("resin door")
 			new /obj/structure/mineral_door/resin(T)
@@ -417,7 +416,7 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/charge(var/atom/T)
-	set name = "Charge (10)"
+	set name = "Charge (20)"
 	set desc = "Charge towards something! Raaaugh!"
 	set category = "Alien"
 
@@ -438,7 +437,7 @@
 			T = input(X, "Who should you charge towards?") as null|anything in victims
 
 		if(T)
-			if(!check_plasma(10))
+			if(!check_plasma(20))
 				return
 			visible_message("\red <B>[X] charges towards [T]!</B>","\red <b> You charge at [T]!</B>" )
 			emote("roar") //heheh
@@ -653,11 +652,13 @@
 			src << "\blue You finish digging out the two tunnels and connect them together!"
 			var/obj/structure/tunnel/newt = new /obj/structure/tunnel(T)
 			newt.other = start_dig
-			start_dig = null
+			start_dig.other = newt //Link the two together
+			start_dig = null //Now clear it
 			tunnel_delay = 1
-			spawn(1500)
+			spawn(1800)
 				src << "\blue Your claws are ready to dig a new tunnel."
 				src.tunnel_delay = 0
+		playsound(loc, 'sound/weapons/pierce.ogg', 30, 1)
 	else
 		src << "You were interrupted, and your tunnel collapses, you irresponsible monster you."
 		src.storedplasma += 100 //refund half their plasma

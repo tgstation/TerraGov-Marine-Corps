@@ -193,3 +193,27 @@
 /area/sulaco/lower_maint2
 	name = "\improper Maintenance"
 	icon_state = "maintcentral"
+
+/area/shuttle/drop1/sulaco
+	name = "\improper Dropship 1"
+	icon_state = "shuttlered"
+
+/area/shuttle/drop1/ground
+	name = "\improper Dropship 1"
+	icon_state = "shuttle"
+
+/area/shuttle/drop1/transit
+	name = "\improper Dropship 1"
+	icon_state = "shuttle2"
+
+/area/shuttle/drop2/sulaco
+	name = "\improper Dropship 2"
+	icon_state = "shuttle"
+
+/area/shuttle/drop2/ground
+	name = "\improper Dropship 2"
+	icon_state = "shuttle2"
+
+/area/shuttle/drop2/transit
+	name = "\improper Dropship 2"
+	icon_state = "shuttlered"

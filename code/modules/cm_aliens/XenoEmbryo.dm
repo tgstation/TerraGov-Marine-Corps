@@ -49,10 +49,6 @@
 				affected_mob << "Your chest hurts a little bit."
 		if(3)
 			if(prob(1))
-				affected_mob.emote("sneeze")
-			if(prob(1))
-				affected_mob.emote("cough")
-			if(prob(1))
 				affected_mob << "\red Your throat feels sore."
 			if(prob(1))
 				affected_mob << "\red Mucous runs down the back of your throat."
@@ -61,11 +57,11 @@
 				affected_mob.emote("sneeze")
 			if(prob(1))
 				affected_mob.emote("cough")
-			if(prob(2))
+			if(prob(1))
 				affected_mob << "\red Your muscles ache."
 				if(prob(20))
 					affected_mob.take_organ_damage(1)
-			if(prob(2))
+			if(prob(1))
 				affected_mob << "\red Your stomach hurts."
 				if(prob(20))
 					affected_mob.adjustToxLoss(1)
@@ -89,21 +85,34 @@
 	if(candidates.len)
 		picked = pick(candidates)
 	else if(affected_mob.client)
-		picked = affected_mob.key
+		if(affected_mob.client.holder && istype(affected_mob.client.holder,/datum/admins))
+			affected_mob << "You were about to burst, but admins are immune to forced xenos. Lucky you!"
+			stage = 4
+			return
+		else
+			picked = affected_mob.key
 	else
 		stage = 4 // Let's try again later.
 		return
-
+	var/image/overlay_l = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_lie")
+	var/image/overlay_s = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
 	if(affected_mob.lying)
-		affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_lie")
+		affected_mob.overlays += overlay_l
 	else
-		affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
+		affected_mob.overlays += overlay_s
 	spawn(6)
 		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
 		new_xeno.key = picked
 		new_xeno << sound('sound/voice/hiss5.ogg',0,0,0,100)	//To get the player's attention
 		affected_mob.adjustToxLoss(200) //This should kill without gibbing da body
 		affected_mob.updatehealth()
+
+		affected_mob.overlays -= overlay_l
+		affected_mob.overlays -= overlay_s
+		if(affected_mob.lying)
+			affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "bursted_lie")
+		else
+			affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "bursted_stand")
 //		if(gib_on_success)
 //			affected_mob.gib()
 		del(src)
@@ -115,9 +124,6 @@ Des: Removes all infection images from aliens and places an infection image on a
 /obj/item/alien_embryo/proc/RefreshInfectionImage()
 
 	for(var/mob/living/carbon/Xenomorph/alien in player_list)
-
-		if(!locate(/datum/organ/internal/xenos/hivenode) in alien.internal_organs)
-			continue
 
 		if(!istype(alien,/mob/living/carbon/Xenomorph))
 			continue //Shouldn't be possible, just to be safe
@@ -144,9 +150,6 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 			if(!istype(alien,/mob/living/carbon/Xenomorph))
 				continue //Shouldn't be possible, just to be safe
 
-			if(!locate(/datum/organ/internal/xenos/hivenode) in alien.internal_organs)
-				continue
-
 			if(alien.client)
 				if(C.status_flags & XENO_HOST)
 					var/I = image('icons/Xeno/Misc.dmi', loc = C, icon_state = "infected[stage]")
@@ -162,9 +165,6 @@ Des: Removes the alien infection image from all aliens in the world located in p
 	if(C)
 
 		for(var/mob/living/carbon/Xenomorph/alien in player_list)
-
-			if(!locate(/datum/organ/internal/xenos/hivenode) in alien.internal_organs)
-				continue
 
 			if(!istype(alien,/mob/living/carbon/Xenomorph))
 				continue //Shouldn't be possible, just to be safe

@@ -165,6 +165,7 @@
 						/obj/item/weapon/tank/phoron = 2,
 						/obj/item/weapon/shield/riot = 1,
 						/obj/item/ammo_magazine/m42c = 1,
+						/obj/item/smartgun_powerpack = 1
 			)
 	contraband = list()
 	premium = list(

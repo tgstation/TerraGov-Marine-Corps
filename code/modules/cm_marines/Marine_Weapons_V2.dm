@@ -12,7 +12,7 @@
 	damage = 22
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 32
+	damage = 30
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
 	damage = 50
@@ -384,13 +384,10 @@
 	item_state = "m56"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	ammo_type = "/obj/item/ammo_casing/m56"
-	fire_delay = 1
 	w_class = 5.0
 	max_shells = 40
 	caliber = "28mm"
-//	load_method = 2
 	force = 12.0
-//	pixel_x = -16 //To center it
 	twohanded = 1
 	ejectshell = 0
 	recoil = 0
@@ -521,7 +518,7 @@
 				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 200."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 20
+	damage = 26
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."
