@@ -7,7 +7,6 @@
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
-
 /obj/machinery/computer/shuttle_control/attack_hand(user as mob)
 	if(..(user))
 		return
@@ -77,10 +76,10 @@
 		return
 
 	if(href_list["move"])
-		if(!shuttle.in_use)
+		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 			shuttle.launch(src)
 	if(href_list["force"])
-		if(!shuttle.in_use)
+		if(shuttle.moving_status  == SHUTTLE_IDLE)
 			shuttle.force_launch(src)
 	else if(href_list["cancel"])
 		shuttle.cancel_launch(src)

@@ -12,6 +12,7 @@
 	icon_action_button = "action_hardhat"
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	anti_hug = 2
 
 	//Species-specific stuff.
 	species_restricted = list("exclude","Unathi","Tajara","Skrell","Diona","Vox")

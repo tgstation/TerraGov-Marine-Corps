@@ -79,6 +79,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
+	anti_hug = 1
 
 /obj/item/clothing/head/cueball
 	name = "cueball helmet"
@@ -253,3 +254,4 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
+	anti_hug = 10 //Lel

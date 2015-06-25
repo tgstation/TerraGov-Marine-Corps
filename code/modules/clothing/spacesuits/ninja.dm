@@ -9,6 +9,7 @@
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
+	anti_hug = 5
 
 /obj/item/clothing/suit/space/space_ninja
 	name = "ninja suit"
