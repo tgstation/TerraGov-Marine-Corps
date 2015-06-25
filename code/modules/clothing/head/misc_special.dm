@@ -25,6 +25,7 @@
 	icon_action_button = "action_welding"
 	siemens_coefficient = 0.9
 	w_class = 3
+	anti_hug = 2
 
 /obj/item/clothing/head/welding/attack_self()
 	toggle()
@@ -42,12 +43,15 @@
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = initial(icon_state)
 			usr << "You flip the [src] down to protect your eyes."
+			anti_hug = 2 //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
 			src.up = !src.up
 			src.flags &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push the [src] up out of your face."
+			anti_hug = 0
+
 		update_clothing_icon()	//so our mob-overlays update
 
 
@@ -129,6 +133,7 @@
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0
 	w_class = 3
+	anti_hug = 1
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))

@@ -2,11 +2,11 @@
 
 //TODO: Make these simple_animals
 
-var/const/MIN_IMPREGNATION_TIME = 450 //time it takes to impregnate someone
-var/const/MAX_IMPREGNATION_TIME = 550
+var/const/MIN_IMPREGNATION_TIME = 400 //time it takes to impregnate someone
+var/const/MAX_IMPREGNATION_TIME = 500
 
-var/const/MIN_ACTIVE_TIME = 200 //time between being dropped and going idle
-var/const/MAX_ACTIVE_TIME = 400
+var/const/MIN_ACTIVE_TIME = 100 //time between being dropped and going idle
+var/const/MAX_ACTIVE_TIME = 200
 
 /obj/item/clothing/mask/facehugger
 	name = "alien"
@@ -30,8 +30,9 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /obj/item/clothing/mask/facehugger/attack_hand(user as mob)
 	if((stat == CONSCIOUS && !sterile))
-		if(Attach(user))
-			return
+		Attach(user) //If we're conscious, don't let them pick us up even if this fails. Just return.
+		return
+	..()
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user as mob)
@@ -154,36 +155,54 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.head)
-			if((H.head.flags & HEADCOVERSMOUTH))
-				if(rand(0,1) == 0 || !H.head.canremove) //Just a flat 50% chance for now
-					H.visible_message("\red \b [src] smashes against [H]'s [H.head] and bounces off!")
-					Die()
-					return 0
-				else
-					H.visible_message("\red \b [src] smashes against [H]'s [H.head] and rips it off!")
-					H.drop_from_inventory(H.head)
+		if(H.head && H.head.canremove)
+			var/obj/item/clothing/head/D = H.head
+			if(D.anti_hug > 1)
+				H.visible_message("\red \b [src] smashes against [H]'s [D] and bounces off!")
+				D.anti_hug--
+				Die()
+				return 0
+			else if(D.anti_hug == 1)
+				H.visible_message("\red \b [src] smashes against [H]'s [D] and rips it off!")
+				H.drop_from_inventory(D)
+				D.anti_hug--
+				src.GoIdle()
+				H.update_icons()
+				return 0
 	if(iscarbon(M))
 		var/mob/living/carbon/target = L
 
 		if(target.wear_mask)
-//			if(prob(20))	return
-			var/obj/item/clothing/W = target.wear_mask
+			var/obj/item/clothing/mask/W = target.wear_mask
 			if(!W.canremove)
 				return 0
 			if(istype(W,/obj/item/clothing/mask/facehugger))
 				return 0
-			target.drop_from_inventory(W)
-			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
+			if(W.anti_hug > 1)
+				target.visible_message("\red \b [src] smashes against [target]'s [W] and bounces off!")
+				W.anti_hug--
+				Die()
+				return 0
+			else if(W.anti_hug == 1)
+				target.visible_message("\red \b [src] smashes against [target]'s [W] and rips it off!")
+				target.drop_from_inventory(W)
+				W.anti_hug--
+				src.GoIdle()
+				target.update_icons()
+				return 0
+			else
+				target.drop_from_inventory(W)
+				target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
 
 		src.loc = target
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
 		target.update_icons()
 
-		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/8) //THIS MIGHT NEED TWEAKS
+		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/10) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
+		if(corgi.wear_mask || corgi.facehugger) return 0
 		src.loc = corgi
 		corgi.facehugger = src
 		corgi.wear_mask = src
@@ -286,4 +305,7 @@ var/const/MAX_ACTIVE_TIME = 400
 				return 0
 			if(istype(W,/obj/item/clothing/mask/facehugger))
 				return 0
+
+	if(iscorgi(M) && M:wear_mask) return 0
+
 	return 1

@@ -171,11 +171,11 @@
 	icon_state = "mining"
 
 /area/sulaco/hangar/one
-	name = "\improper APC Hangar 1"
+	name = "\improper Firing Range"
 	icon_state = "red2"
 
 /area/sulaco/hangar/two
-	name = "\improper APC Hangar 2"
+	name = "\improper Atmospherics"
 	icon_state = "blue-red2"
 
 /area/sulaco/rear_maintenance

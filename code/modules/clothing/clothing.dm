@@ -246,6 +246,7 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = 2.0
+	var/anti_hug = 0
 
 /obj/item/clothing/head/update_clothing_icon()
 	if (ismob(src.loc))
@@ -261,6 +262,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
+	var/anti_hug = 0
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))

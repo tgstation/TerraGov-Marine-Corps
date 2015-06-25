@@ -133,6 +133,11 @@
 		success = 1
 		update_inv_belt()
 	else if (W == wear_mask)
+		if(istype(W,/obj/item/clothing/mask/facehugger))
+			var/obj/item/clothing/mask/facehugger/F = W
+			if(!F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
+				visible_message("\red [F] frantically claws at [src]'s face!","\red [F] frantically crawls at your face! Auugh!")
+				adjustBruteLossByPart(25,"head")
 		wear_mask = null
 		success = 1
 		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR))

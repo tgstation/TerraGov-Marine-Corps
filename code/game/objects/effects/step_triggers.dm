@@ -115,10 +115,11 @@
 				A.y = rand(teleport_y, teleport_y_offset)
 				A.z = rand(teleport_z, teleport_z_offset)
 
-				if(z == 1) //Ground map Z-level
+				if(A.z == 1 && isliving(A)) //Ground map Z-level
 					var/mob/living/carbon/M = A
-					if(!istype(M) || M.stat == DEAD) return
-					var/dmg = rand(90,500)
+					if(!istype(M)) return
+					var/dmg = rand(250,500)
+					M.Weaken(10)
 					M.visible_message("\red [src] falls from the sky!","\red SPLAT!!")
-					M.apply_damage(dmg, BRUTE)
+					M.adjustBruteLoss(dmg)
 
