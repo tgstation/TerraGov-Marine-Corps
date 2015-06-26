@@ -50,6 +50,7 @@
 	var/drowsy = 0
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
+	var/skip_over = 0
 
 	proc/on_hit(var/atom/target, var/blocked = 0)
 		if(blocked >= 2)		return 0//Full block
@@ -73,6 +74,7 @@
 		return output //Send it back to the gun!
 
 	Bump(atom/A as mob|obj|turf|area)
+
 		if(A == firer)
 			loc = A.loc
 			return 0 //cannot shoot yourself
@@ -90,6 +92,7 @@
 			if(get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir))
 				bumped = 0
 				permutated.Add(A)
+				skip_over = 1
 				return 0
 
 			var/distance = get_dist(starting,loc)
@@ -99,6 +102,22 @@
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
 				if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
 					miss_modifier += -30
+
+			if(istype(src,/obj/item/projectile/bullet/m42c)) //Sniper rifles have different miss chance by distance.
+				if(distance <= 5)
+					miss_modifier += 30
+				else
+					miss_modifier -= 30
+
+			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
+				var/mob/living/carbon/human/H = A
+				if(H.get_marine_id())
+					bumped = 0
+					permutated.Add(H)
+					src.loc = get_turf(H.loc)
+					skip_over = 1
+					return 0
+
 			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
 
 			if(!def_zone)
@@ -118,8 +137,9 @@
 					msg_admin_attack("UNKNOWN shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
 
 		if(A)
-			if (!forcedodge)
+			if(!forcedodge)
 				forcedodge = A.bullet_act(src, def_zone) // searches for return value
+
 			if(forcedodge == -1) // the bullet passes through a dense object!
 				bumped = 0 // reset bumped variable!
 				if(istype(A, /turf))
@@ -133,9 +153,13 @@
 					O.bullet_act(src)
 				for(var/mob/M in A)
 					M.bullet_act(src, def_zone)
-			density = 0
-			invisibility = 101
-			del(src)
+			if(bumped && !skip_over)
+				density = 0
+				invisibility = 101
+				del(src)
+			else if(skip_over)
+				skip_over--
+		bumped = 0
 		return 1
 
 
@@ -221,3 +245,4 @@
 			return 1
 
 	return 0
+

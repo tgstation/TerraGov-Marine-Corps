@@ -1,5 +1,18 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 
+//First, dealing with alt-clicking vents.
+/mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
+	var/list/modifiers = params2list(params)
+
+	if(modifiers["alt"] && istype(A,/obj/machinery/atmospherics/unary/vent_pump))
+		for(var/verb_path in inherent_verbs)
+			if(verb_path == /mob/living/carbon/Xenomorph/proc/vent_crawl)
+				src.handle_ventcrawl(A)
+				return
+	else
+		..()
+
+
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
@@ -88,6 +101,9 @@
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
+	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
+		tally += 1.3
+
 	if(src.pulling)  //Dragging stuff slows you down a bit.
 		tally += 1.5
 
@@ -98,12 +114,11 @@
 	return 0
 
 /mob/living/carbon/Xenomorph/can_use_vents()
-	return
+	return 1
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	return
 
-//Show_Inv might get removed later, depending on how I make the aliens.
 /mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
 	return
 
@@ -111,6 +126,7 @@
 //These aren't procs, but oh well. These are the spit projectiles.
 /obj/item/xeno_projectile
 	name = "neurotoxin"
+	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "neurotoxin"
 	var/brute_damage = 0
 	var/tox_damage = 0
@@ -120,7 +136,7 @@
 	var/stun = 0
 	var/paralyze = 0
 	var/eye_blur = 0
-	anchored = 1
+	anchored = 0
 	flags = FPRINT | TABLEPASS
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
@@ -128,23 +144,17 @@
 
 
 /obj/item/xeno_projectile/neuro_weak
-	name = "neurotoxin"
-	icon_state = "neurotoxin"
 	brute_damage = 5
 	tox_damage = 5
 	weaken = 4
 
 /obj/item/xeno_projectile/neurotoxin
-	name = "neuro"
-	icon_state = "neurotoxin"
 	brute_damage = 10
 	tox_damage = 10
 	weaken = 7
 	eye_blur = 1
 
 /obj/item/xeno_projectile/neuro_uber
-	name = "neuro"
-	icon_state = "neurotoxin"
 	brute_damage = 10
 	tox_damage = 20
 	agony = 40
@@ -160,10 +170,12 @@
 		if(istype(V) && !V.stat && !istype(V,/mob/living/carbon/Xenomorph)) //We totally ignore other xenos. LIKE GREASED WEASELS
 			if(istype(V,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = V //Human shield block.
-				if(H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot) || H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot) && rand(0,100) < 65)
-					visible_message("\red <B> \The neurotoxic spit spatters against [H]'s shield!</B>")
-					del(src)
-					return
+				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
+					if(rand(0,100) < 65)
+						visible_message("\red <B> \The neurotoxic spit spatters against [H]'s shield!</B>")
+						throwing = 0
+						del(src)
+						return
 			//apply various effects
 			if(brute_damage)
 				V.apply_damage(BRUTE,brute_damage)
@@ -209,7 +221,7 @@
 /obj/effect/xenomorph
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/Xeno/effects.dmi'
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
@@ -323,9 +335,9 @@
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		var/mob/living/carbon/V = hit_atom
 		if(istype(V) && !V.stat && !istype(V,/mob/living/carbon/Xenomorph)) //We totally ignore other xenos. LIKE GREASED WEASELS
-			if(istype(V,/mob/living/carbon/human))
+			if(istype(V,/mob/living/carbon/human) && charge_type != 2)
 				var/mob/living/carbon/human/H = V //Human shield block.
-				if(H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot) || H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot))
+				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
 					if (prob(45))	// If the human has riot shield in his hand,  65% chance
 						src.Weaken(3) //Stun the fucker instead
 						visible_message("\red <B> \The [src] bounces off [H]'s shield!</B>")
@@ -338,12 +350,13 @@
 
 			if(charge_type == 1) //Runner/hunter pounce.
 				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
-				V.Weaken(3)
+				V.Weaken(2)
 				src.canmove = 0
 				src.frozen = 1
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
-				spawn(20)
+				playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+				spawn(24)
 					src.frozen = 0
 		return
 
@@ -358,11 +371,13 @@
 
 //Deal with armor deflection.
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
-	if(prob(armor_deflection))
-		visible_message("The [src]'s thick exoskeleton deflects \the [Proj]!","Your thick exoskeleton deflected \the [Proj]!")
-		return -1
+	if(Proj && istype(Proj) )
+		var/dmg = Proj.damage
+		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 10 //Smartgun hits weak points easier.
+		if(prob(armor_deflection - dmg))
+			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
+			return -1
 	..(Proj) //Do normal stuff
-	return
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -380,7 +395,7 @@
 
 	return
 
-mob/living/carbon/Xenomorph/verb/toggle_darkness()
+/mob/living/carbon/Xenomorph/verb/toggle_darkness()
 	set name = "Toggle Darkvision"
 	set category = "Alien"
 
@@ -388,3 +403,4 @@ mob/living/carbon/Xenomorph/verb/toggle_darkness()
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER
+

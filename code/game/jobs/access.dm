@@ -1,4 +1,36 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+//Sulaco access levels
+
+/var/const/access_sulaco_captain = 1
+/var/const/access_sulaco_logistics = 2
+/var/const/access_sulaco_brig = 3
+/var/const/access_sulaco_armory = 4
+/var/const/access_sulaco_CMO = 5
+/var/const/access_sulaco_CE = 6
+/var/const/access_sulaco_engineering = 7
+/var/const/access_sulaco_medbay = 8
+/var/const/access_marine_prep = 9
+/var/const/access_marine_medprep = 10
+/var/const/access_marine_engprep = 11
+/var/const/access_marine_leader = 12
+/var/const/access_marine_specprep = 13
+/var/const/access_sulaco_research = 14
+/var/const/access_squad_alpha = 15
+/var/const/access_squad_bravo = 16
+/var/const/access_squad_charlie = 17
+/var/const/access_squad_delta = 18
+/var/const/access_sulaco_bridge = 19
+/var/const/access_sulaco_chemistry = 20
+
+//Surface access levels
+
+/var/const/access_civilian_generic = 100
+/var/const/access_civilian_command = 101
+/var/const/access_civilian_engi = 102
+/var/const/access_civilian_research = 103
+
+/var/const/access_centcomm = 200 // One generic access for centcomm, fuckit
+/var/const/access_syndicate = 201 // One generic access for centcomm, fuckit
 
 /*
 /var/const/access_security = 1 // Security equipment
@@ -139,38 +171,7 @@
 /var/const/access_delta_squad = 333
 */
 
-//Sulaco access levels
 
-/var/const/access_sulaco_captain = 1
-/var/const/access_sulaco_logistics = 2
-/var/const/access_sulaco_brig = 3
-/var/const/access_sulaco_armory = 4
-/var/const/access_sulaco_CMO = 5
-/var/const/access_sulaco_CE = 6
-/var/const/access_sulaco_engineering = 7
-/var/const/access_sulaco_medbay = 8
-/var/const/access_marine_prep = 9
-/var/const/access_marine_medprep = 10
-/var/const/access_marine_engprep = 11
-/var/const/access_marine_leader = 12
-/var/const/access_marine_specprep = 13
-/var/const/access_sulaco_research = 14
-/var/const/access_squad_alpha = 15
-/var/const/access_squad_bravo = 16
-/var/const/access_squad_charlie = 17
-/var/const/access_squad_delta = 18
-/var/const/access_sulaco_bridge = 19
-/var/const/access_sulaco_chemistry = 20
-
-//Surface access levels
-
-/var/const/access_civilian_generic = 100
-/var/const/access_civilian_command = 101
-/var/const/access_civilian_engi = 102
-/var/const/access_civilian_research = 103
-
-/var/const/access_centcomm = 200 // One generic access for centcomm, fuckit
-/var/const/access_syndicate = 201 // One generic access for centcomm, fuckit
 
 
 /obj/var/list/req_access = null

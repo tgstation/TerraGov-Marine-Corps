@@ -8,6 +8,7 @@
 	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
+	anti_hug = 1
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
@@ -437,3 +438,9 @@ v
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
 
+/obj/item/clothing/under/liason_suit
+	desc = "A very fancy suit for a liason from Weyland Yutani."
+	name = "liason's suit"
+	icon_state = "blacksuit"
+	item_state = "blacksuit"
+	item_color = "blacksuit"

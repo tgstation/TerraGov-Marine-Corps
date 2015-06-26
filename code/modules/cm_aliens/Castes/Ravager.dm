@@ -7,8 +7,8 @@
 	icon_state = "Ravager Walking"
 	melee_damage_lower = 30
 	melee_damage_upper = 55
-	health = 700
-	maxHealth = 700
+	health = 550
+	maxHealth = 550
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
@@ -24,7 +24,9 @@
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
 	adjust_pixel_x = -16
-	armor_deflection = 25
+	armor_deflection = 75
+	adjust_size_x = 0.9
+	adjust_size_y = 0.85
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -36,6 +38,9 @@
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
+		charge(A)
+		return
+	if(modifiers["shift"] && shift_mouse_toggle)
 		charge(A)
 		return
 	..()

@@ -2,6 +2,8 @@
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(newtime < 10)
 		newtime = 10
+	if(newtime > 60)
+		newtime = 60
 	timer = newtime
 	user << "Timer set for [timer] seconds."
 
@@ -9,6 +11,10 @@
 	if (!flag)
 		return
 	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/))
+		user << "Nope."
+		return
+	if(istype(target,/obj/item))
+		user << "Nope."
 		return
 	user << "Planting explosives..."
 	if(ismob(target))

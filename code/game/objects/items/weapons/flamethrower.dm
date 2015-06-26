@@ -1,7 +1,7 @@
 /obj/item/weapon/flamethrower
 	name = "flamethrower"
 	desc = "You are a firestarter!"
-	icon = 'icons/obj/flamethrower.dmi'
+	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "flamethrowerbase"
 	item_state = "flamethrower_0"
 	flags = FPRINT | TABLEPASS| CONDUCT

@@ -17,11 +17,14 @@
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	adjust_pixel_x = -16
+	adjust_size_x = 0.9
+	adjust_size_y = 0.85
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/build_resin,
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/transfer_plasma, //They're basically drones, but with way more stuffs
+		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
+		/mob/living/carbon/Xenomorph/proc/build_tunnel
 		)
 
 

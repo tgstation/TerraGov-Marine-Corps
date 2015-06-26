@@ -424,3 +424,16 @@ emp_act
 	var/penetrated_dam = max(0,(damage - SS.breach_threshold)) // - SS.damage)) - Consider uncommenting this if suits seem too hardy on dev.
 
 	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
+
+//This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
+//Does not actually check for station jobs or access yet, cuz I'm mad lazy.
+/mob/living/carbon/human/proc/get_marine_id()
+	var/obj/item/weapon/card/id/mobcard = wear_id
+
+	if(!mobcard || !istype(mobcard))
+		mobcard = get_active_hand() //Not a PDA or in ID slot? Fine, check their hand.
+
+	if(!mobcard || !istype(mobcard))
+		return 0 //Still nothing!
+
+	return 1 //Yay!

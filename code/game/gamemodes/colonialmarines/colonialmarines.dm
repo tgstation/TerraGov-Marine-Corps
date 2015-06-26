@@ -142,6 +142,7 @@
 //Give them proper jobs and stuff here later
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
 
 	//Give them some information
 	H << "<h2>You are a survivor!</h2>"

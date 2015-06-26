@@ -37,6 +37,47 @@
 	name = "grass"
 	icon_state = "grass1"
 
+//Ground map walls
+/turf/simulated/wall/gm
+	name = "dense jungle"
+	icon = 'icons/ground_map.dmi'
+	icon_state = "wall2"
+	desc = "Some thick jungle."
+	density = 1
+	opacity = 1
+
+	//Not yet
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				src.ChangeTurf(/turf/simulated/floor/gm/grass)
+				return
+			if(2.0)
+				return
+			if(3.0)
+				return
+	fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+		return
+
+	attackby() //Put machete-cutting here later
+		return
+
+	dismantle_wall()
+		return
+
+/turf/simulated/wall/gm/dense
+	name = "dense jungle wall"
+	icon = 'icons/ground_map.dmi'
+	icon_state = "wall2"
+
+	New()
+		spawn(1)
+			if(rand(0,15) == 0)
+				icon_state = "wall1"
+			else if (rand(0,20) == 0)
+				icon_state = "wall3"
+
+
 /turf/simulated/floor/gm/dirtgrassborder
 	name = "grass"
 	icon_state = "grassdirt_edge"

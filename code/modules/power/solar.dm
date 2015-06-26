@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 #define SOLAR_MAX_DIST 40
-#define SOLARGENRATE 1500
+#define SOLARGENRATE 1200
 
 var/list/solars_list = list()
 

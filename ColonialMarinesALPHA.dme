@@ -258,6 +258,7 @@
 #include "code\game\area\ai_monitored.dm"
 #include "code\game\area\areas.dm"
 #include "code\game\area\Space Station 13 areas.dm"
+#include "code\game\area\Sulaco.dm"
 #include "code\game\dna\dna2.dm"
 #include "code\game\dna\dna2_domutcheck.dm"
 #include "code\game\dna\dna2_helpers.dm"
@@ -891,6 +892,7 @@
 #include "code\modules\cm_aliens\XenoPowers.dm"
 #include "code\modules\cm_aliens\XenoProcs.dm"
 #include "code\modules\cm_aliens\XenoSay.dm"
+#include "code\modules\cm_aliens\XenoStructures.dm"
 #include "code\modules\cm_aliens\XenoUpdateIcons.dm"
 #include "code\modules\cm_aliens\Castes\Carrier.dm"
 #include "code\modules\cm_aliens\Castes\Drone.dm"
@@ -1584,6 +1586,7 @@
 #include "maps\Z.1.LV624.dmm"
 #include "maps\Z.2.Centcomm.dmm"
 #include "maps\Z.3.PlaceholderSulaco.dmm"
+#include "maps\Z.4.SulacoBottom.dmm"
 // END_INCLUDE
 
 

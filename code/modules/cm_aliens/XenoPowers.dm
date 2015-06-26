@@ -17,6 +17,20 @@
 
 	return
 
+/mob/living/carbon/Xenomorph/verb/shift_mousetoggle()
+	set name = "Toggle Shift Clicking"
+	set desc = "Toggles shift + mouse button for hugger throwing, neuro spit, and other abilities."
+	set category = "Alien"
+
+	if(!shift_mouse_toggle)
+		src << "You turn shift clicking ON for certain xeno abilities."
+		shift_mouse_toggle = 1
+	else
+		src << "You turn shift clicking OFF. Shift click will instead examine."
+		shift_mouse_toggle = 0
+
+	return
+
 /mob/living/carbon/Xenomorph/proc/plant()
 	set name = "Plant Weeds (75)"
 	set desc = "Plants some alien weeds"
@@ -129,7 +143,7 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
-	set name = "Pounce (5)"
+	set name = "Pounce (10)"
 	set desc = "Pounce on someone. Click a turf to just leap there."
 	set category = "Alien"
 
@@ -139,7 +153,7 @@
 		src << "\red You must wait before pouncing."
 		return
 
-	if(!check_plasma(5))
+	if(!check_plasma(10))
 		return
 
 	if(!T)
@@ -151,7 +165,7 @@
 
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
-		usedPounce = 70 //about 10 seconds
+		usedPounce = 150 //about 12 seconds
 		src.throw_at(T, 4, 2, src) //victim, distance, speed
 		spawn(usedPounce)
 			usedPounce = 0
@@ -212,7 +226,7 @@
 	last_special = world.time + 50
 
 	visible_message("<span class='warning'><b>\The [src]</b> lifts [victim] into the air...</span>")
-	if(do_after(src,60))
+	if(do_after(src,50))
 		if(!victim || isnull(victim)) return
 		if(victim.loc != cur_loc) return
 		visible_message("<span class='warning'><b>\The [src]</b> viciously wrenches [victim] apart!</span>")
@@ -260,7 +274,7 @@
 
 	if(!check_state())	return
 
-	if (get_dist(src,M) <= 3)
+	if (get_dist(src,M) >= 3)
 		src << "\green You need to be closer."
 		return
 
@@ -268,8 +282,7 @@
 	if (amount)
 		amount = abs(round(amount))
 		if(storedplasma < amount)
-			src << "You don't have that much. You only have: [storedplasma]."
-			return
+			amount = storedplasma //Just use all of it
 		storedplasma -= amount
 		M.storedplasma += amount
 		if(M.storedplasma > M.maxplasma) M.storedplasma = M.maxplasma
@@ -296,13 +309,13 @@
 		src << "You can only shape on weeds. Find some resin before you start building!"
 		return
 
-	if(locate(/obj/structure/mineral_door/resin) in T || locate(/obj/effect/alien/resin/wall) in T || locate(/obj/effect/alien/resin/membrane) in T || locate(/obj/structure/stool/bed/nest) in T )
+	if(locate(/obj/structure/mineral_door/resin) in T || locate(/obj/effect/alien/resin/wall) in T || locate(/obj/effect/alien/resin/membrane) in T || locate(/obj/structure/stool/bed/nest) in T || locate(/obj/effect/alien/resin/sticky) in T)
 		src << "There's something built here already."
 		return
 
-	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest")
+	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
 
-	if(!choice)
+	if(!choice || choice == "cancel")
 		return
 
 	if(!check_plasma(75))
@@ -310,7 +323,7 @@
 
 	src << "\green You shape a [choice]."
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("\red <B>[src] vomits up a thick purple substance and begins to shape it!</B>"), 1)
+		O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
 	switch(choice)
 		if("resin door")
 			new /obj/structure/mineral_door/resin(T)
@@ -320,6 +333,8 @@
 			new /obj/effect/alien/resin/membrane(T)
 		if("resin nest")
 			new /obj/structure/stool/bed/nest(T)
+		if("sticky resin")
+			new /obj/effect/alien/resin/sticky(T)
 	return
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
@@ -401,7 +416,7 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/charge(var/atom/T)
-	set name = "Charge (10)"
+	set name = "Charge (20)"
 	set desc = "Charge towards something! Raaaugh!"
 	set category = "Alien"
 
@@ -422,7 +437,7 @@
 			T = input(X, "Who should you charge towards?") as null|anything in victims
 
 		if(T)
-			if(!check_plasma(10))
+			if(!check_plasma(20))
 				return
 			visible_message("\red <B>[X] charges towards [T]!</B>","\red <b> You charge at [T]!</B>" )
 			emote("roar") //heheh
@@ -531,21 +546,21 @@
 		src << "You feel your throat muscles vibrate. You are ready to screech again."
 
 	//Ours uses screech2.....
-	playsound(loc, 'sound/effects/screech.ogg', 100, 1)
+	playsound(loc, 'sound/effects/screech2.ogg', 100, 1)
 	visible_message("\red <B> \The [src] emits a high pitched screech!</B>")
 	for (var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue
 		if (get_dist(src.loc, M.loc) <= 4)
-			M << "You spasm in agony as the noise fills your head!"
+			M << "\blue You spasm in agony as the noise fills your head!"
 			M.stunned += 3
 			M.Weaken(1)
 //			M.drop_l_hand() //Weaken will drop them on the floor anyway
 //			M.drop_r_hand()
-			M.ear_deaf += 60 //Deafens them temporarily (about 8 seconds)
+			M.ear_deaf += 40 //Deafens them temporarily (about 5 seconds)
 		else if(get_dist(src.loc, M.loc) >= 5)
 			M.stunned += 2
-			M << "The sound stuns you!"
+			M << "\blue The sound stuns you!"
 	return
 
 //Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
@@ -595,4 +610,56 @@
 		new /obj/effect/xenomorph/acid(get_turf(O), O) //Everything else? Medium.
 
 	visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
+	return
+
+/mob/living/carbon/Xenomorph/proc/build_tunnel() // -- TLE
+	set name = "Dig Tunnel (200)"
+	set desc = "Place a start or end tunnel. You must place both parts before it is useable and they can NOT be moved. Choose carefully!"
+	set category = "Alien"
+
+	if(!check_state())	return
+
+	var/turf/T = loc
+	if(!T) //logic
+		src << "You can only do this on a turf."
+		return
+
+	if(istype(T,/turf/simulated/floor/gm/river))
+		src << "What, you want to flood your fellow xenos?"
+		return
+
+	if(!istype(T,/turf/simulated/floor/gm))
+		src << "You scrape around, but nothing happens. You can only place these on open ground."
+		return
+
+	if(locate(/obj/structure/tunnel) in src.loc)
+		src << "There's already a tunnel here. Go somewhere else."
+		return
+
+	if(tunnel_delay)
+		src << "You are not yet ready to fashion a new tunnel. Be patient! Tunneling is hard work!"
+		return
+
+	if(!check_plasma(200))
+		return
+
+	visible_message("\blue [src] begins carefully digging out a huge, wide tunnel.","\blue You begin carefully digging out a tunnel..")
+	if(do_after(src,100))
+		if(!start_dig) //Let's start a new one.
+			src << "\blue You dig out the beginning of a new tunnel. Go somewhere else and dig a new one to finish it!"
+			start_dig = new /obj/structure/tunnel(T)
+		else
+			src << "\blue You finish digging out the two tunnels and connect them together!"
+			var/obj/structure/tunnel/newt = new /obj/structure/tunnel(T)
+			newt.other = start_dig
+			start_dig.other = newt //Link the two together
+			start_dig = null //Now clear it
+			tunnel_delay = 1
+			spawn(1800)
+				src << "\blue Your claws are ready to dig a new tunnel."
+				src.tunnel_delay = 0
+		playsound(loc, 'sound/weapons/pierce.ogg', 30, 1)
+	else
+		src << "You were interrupted, and your tunnel collapses, you irresponsible monster you."
+		src.storedplasma += 100 //refund half their plasma
 	return

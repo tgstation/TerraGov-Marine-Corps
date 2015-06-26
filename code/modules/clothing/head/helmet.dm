@@ -12,6 +12,7 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = 3
+	anti_hug = 1
 
 /obj/item/clothing/head/helmet/warden
 	name = "warden's hat"
@@ -43,6 +44,7 @@
 	armor = list(melee = 82, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
+	anti_hug = 1
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -55,6 +57,7 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
+	anti_hug = 1
 
 /obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
@@ -82,6 +85,7 @@
 	icon_state = "swathelm"
 	item_state = "helmet"
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES
+	anti_hug = 1
 
 	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
 	flags_inv = HIDEEARS
@@ -98,6 +102,7 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
+	anti_hug = 3
 
 //Non-hardsuit ERT helmets.
 /obj/item/clothing/head/helmet/ert
@@ -106,6 +111,7 @@
 	icon_state = "erthelmet_cmd"
 	item_state = "syndicate-helm-green"
 	armor = list(melee = 62, bullet = 50, laser = 50,energy = 35, bomb = 10, bio = 2, rad = 0)
+	anti_hug = 5
 
 //Commander
 /obj/item/clothing/head/helmet/ert/command
