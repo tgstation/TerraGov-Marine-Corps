@@ -379,18 +379,27 @@
 		del(src)
 	return
 
-//Computers -- Queens can use any consoles!
+//Computers -- Queens can use -some- consoles!
 //Others do nothing.
 /obj/machinery/computer/attack_alien(mob/living/carbon/Xenomorph/M as mob)
-	if(!M.is_intelligent || !istype(src,/obj/machinery/computer/shuttle))
-		M << "You stare at [src.name] cluelessly."
-		return
+	M << "You stare at [src.name] cluelessly."
+	return
+
+/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(M.is_intelligent)
+		attack_hand(M)
 	else
-		return attack_hand(M)
+		..()
+	return
+
 
 //APCs. Don't slash em for now, we'll deal with that later.
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(!M)
+		return
+
+	if(src.unacidable) //May as well use it as an immunity toggle
+		M << "This one's much too tough for you to slash up."
 		return
 
 	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
@@ -421,3 +430,6 @@
 
 /obj/structure/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	return
+
+/obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	return attack_hand(M)

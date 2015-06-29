@@ -19,6 +19,7 @@
 	opacity = 1
 	anchored = 1
 	var/health = 200
+	layer = 2.8
 	//var/mob/living/affecting = null
 
 /obj/effect/alien/resin/wall
@@ -97,7 +98,7 @@
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	M.visible_message("\red [M] claws at the [name]!", "\blue You claw at the [name].")
 	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
-	health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	health -= (rand(M.melee_damage_lower,M.melee_damage_upper) + 50) //Beef up the damage a bit
 	healthcheck()
 	return
 
@@ -143,7 +144,7 @@
 	icon_state = "weednode"
 	name = "purple sac"
 	desc = "Weird purple octopus-like thing."
-	layer = 3
+	layer = 2.7
 	luminosity = NODERANGE
 	var/node_range = NODERANGE
 
@@ -432,8 +433,6 @@
 
 	var/health = 140
 	var/obj/structure/tunnel/other = null
-	var/mob/living/carbon/Xenomorph/builder = null
-	var/being_used = 0
 	var/id = null //For mapping
 
 	New()
@@ -492,23 +491,18 @@
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
-	if(being_used)
-		M << "Someone's already climbing down there! Wait your turn!"
-		return
-
 	if(!other || !isturf(other.loc))
 		M << "The tunnel doesn't seem to lead anywhere."
 		return
-	if(tunnel_time == 50)
-		visible_message("[M] begins crawling down into the tunnel.","You begin crawling down into the tunnel..")
+	if(tunnel_time <= 50)
+		M.visible_message("[M] begins crawling down into the tunnel.","You begin crawling down into the tunnel..")
 	else
-		visible_message("[M] begins heaving their huge bulk down into the tunnel.","You begin heaving your monstrous bulk into the tunnel.")
-	being_used = 1
+		M.visible_message("[M] begins heaving their huge bulk down into the tunnel.","You begin heaving your monstrous bulk into the tunnel.")
+
 	if(do_after(M,tunnel_time))
-		being_used = 0
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.loc = other.loc
-			visible_message("\blue [M] pops out of a tunnel.","\blue You pop out the other side!")
+			M.visible_message("\blue [M] pops out of a tunnel.","\blue You pop out the other side!")
 		else
 			M << "The tunnel ended unexpectedly, so you return back up."
 	else

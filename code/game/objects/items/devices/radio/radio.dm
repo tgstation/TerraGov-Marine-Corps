@@ -86,13 +86,13 @@
 
 	dat += {"
 				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
-				Frequency:
-				<A href='byond://?src=\ref[src];freq=-10'>-</A>
-				<A href='byond://?src=\ref[src];freq=-2'>-</A>
-				[format_frequency(frequency)]
-				<A href='byond://?src=\ref[src];freq=2'>+</A>
-				<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-				"}
+				Frequency: 	[format_frequency(frequency)] "}
+//				<A href='byond://?src=\ref[src];freq=-10'>-</A>
+//				<A href='byond://?src=\ref[src];freq=-2'>-</A>
+//
+//				<A href='byond://?src=\ref[src];freq=2'>+</A>
+//				<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+//				"}
 
 	for (var/ch_name in channels)
 		dat+=text_sec_channel(ch_name, channels[ch_name])
@@ -204,15 +204,15 @@
 	// If a channel isn't specified, send to common.
 	if(!message_mode || message_mode == "headset")
 		return radio_connection
-	
+
 	// Otherwise, if a channel is specified, look for it.
 	if(channels)
 		if (message_mode == "department") // Department radio shortcut
 			message_mode = channels[1]
-		
+
 		if (channels[message_mode]) // only broadcast if the channel is set on
 			return secure_radio_connections[message_mode]
-	
+
 	// If we were to send to a channel we don't have, drop it.
 	return null
 

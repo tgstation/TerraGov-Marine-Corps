@@ -7,6 +7,7 @@
 	var/height = 0							//the 'height' of the ladder. higher numbers are considered physically higher
 	var/obj/structure/ladder/down = null	//the ladder below this one
 	var/obj/structure/ladder/up = null		//the ladder above this one
+	anchored = 1
 
 /obj/structure/ladder/New()
 	spawn(8)

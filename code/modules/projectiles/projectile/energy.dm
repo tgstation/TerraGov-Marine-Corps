@@ -17,6 +17,8 @@
 	*/
 	agony = 40
 	damage_type = HALLOSS
+	stun = 5
+	weaken = 5
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
 

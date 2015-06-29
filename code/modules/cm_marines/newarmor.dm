@@ -38,7 +38,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	health = 5
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
+	flags = FPRINT|TABLEPASS
 	var/mob/living/carbon/human/wornby
 	var/squad = 0
 	var/rank = 0
@@ -72,12 +72,19 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 					H.update_icons() //Show it.
 
 
+/obj/item/clothing/head/helmet/marine2/heavy
+	name = "heavy specialist helmet"
+	icon_state = "helmet_hvy"
+	item_state = "helmet"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
+
 /obj/item/clothing/suit/storage/marine2
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "1"
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
@@ -131,16 +138,16 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	icon_state = "9"
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	name = "B18 Defensive Armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
 	blood_overlay_type = "armor"
 	slowdown = 1
-	armor = list(melee = 95, bullet = 90, laser = 80, energy = 50, bomb = 75, bio = 20, rad = 10)
+	armor = list(melee = 95, bullet = 95, laser = 80, energy = 50, bomb = 75, bio = 20, rad = 10)
 	siemens_coefficient = 0.7
 	var/injections = 2
 	allowed = list(/obj/item/weapon/gun,
@@ -174,6 +181,21 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 		injections--
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		return
+
+/obj/item/weapon/storage/box/heavy_armor
+	name = "B18 defensive system crate"
+	desc = "A large case containing a helmet and armor for the discerning specialist."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "armorchest"
+	w_class = 5
+	storage_slots = 2
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine_spec_armor(src)
+			new /obj/item/clothing/head/helmet/marine2/heavy(src)
 
 /obj/item/clothing/suit/storage/marine_leader_armor
 	icon = 'icons/Marine/marine_armor.dmi'
@@ -261,3 +283,4 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 		return 1
 
 	return 0
+

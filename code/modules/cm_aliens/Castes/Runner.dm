@@ -2,7 +2,7 @@
 
 /mob/living/carbon/Xenomorph/Runner
 	caste = "Runner"
-	name = "Alien Runner"
+	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
 	icon_state = "Runner Walking"
 	melee_damage_lower = 13

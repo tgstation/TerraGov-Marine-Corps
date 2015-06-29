@@ -19,23 +19,24 @@
 	caste_desc = "Ptui!"
 	evolves_to = list()
 	armor_deflection = 70
+	spit_projectile = /obj/item/projectile/energy/neurostrongest
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/proc/neurotoxin3 //Stronger version
+		/mob/living/carbon/Xenomorph/proc/neurotoxin //Stronger version
 		)
 
 /mob/living/carbon/Xenomorph/Praetorian/ClickOn(var/atom/A, params)
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
-		neurotoxin3(A)
+		neurotoxin(A)
 		return
 	if(modifiers["shift"] && shift_mouse_toggle)
-		neurotoxin3(A)
+		neurotoxin(A)
 		return
 	..()
 

@@ -119,7 +119,7 @@
 					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
 
 		else
-			var/damage = rand(1, 9)
+			var/damage = rand(1, 2)
 			if (prob(90))
 				if (HULK in M.mutations)
 					damage += 5
@@ -139,3 +139,25 @@
 					if ((O.client && !( O.blinded )))
 						O.show_message(text("\red <B>[] has attempted to punch []!</B>", M, src), 1)
 	return
+
+//Hot hot Aliens on Aliens action.
+//Actually just used for eating people.
+/mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(src != M)
+		return ..() //Do the standard proc.
+
+	if(pulling)
+		var/mob/living/carbon/pulled = pulling
+		if(!istype(pulled)) return
+		if(istype(pulled,/mob/living/carbon/Xenomorph))
+			src << "Nice try! That wouldn't taste very good."
+			return
+		src.visible_message("\red [src] starts to devour [pulled]!","\red You start to devour [pulled]!")
+		if(do_after(src,50))
+			src.visible_message("\red [src] devours [pulled]!","\red You devour [pulled]!")
+			src.stop_pulling()
+			pulled.loc = src
+			src.stomach_contents.Add(pulled)
+		else
+			src << "You stop devouring. [pulled] probably tastes gross anyway."
+			return

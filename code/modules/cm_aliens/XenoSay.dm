@@ -29,7 +29,7 @@
 
 	if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
 		for(var/datum/language/L in languages)
-			if(L.key == "4")
+			if(L.key == "x")
 				verb = L.speech_verb
 				speaking = L
 				forced = 1
@@ -45,8 +45,6 @@
 
 	if(forced)
 		playsound(loc, "hiss", 25, 1, 1)
-
-	if(forced)
 		..(message, speaking, verb, null, null, message_range, null)
 	else
 		hivemind_talk(message)
@@ -65,9 +63,9 @@
 
 	var/rendered
 	if(istype(src, /mob/living/carbon/Xenomorph/Queen))
-		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'>[message]</span></span></i></font>"
+		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> '[message]'</span></span></i></font>"
 	else
-		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'>[message]</span></span></i>"
+		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> '[message]'</span></span></i>"
 
 	for (var/mob/S in player_list)
 		if((istype(S,/mob/living/carbon/Xenomorph) || S.stat == DEAD) && !istype(S,/mob/new_player))

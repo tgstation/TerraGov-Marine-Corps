@@ -31,6 +31,8 @@
 	var/obj/screen/gun/move/gun_move_icon = null
 	var/obj/screen/gun/run/gun_run_icon = null
 	var/obj/screen/gun/mode/gun_setting_icon = null
+	var/obj/screen/alien_plasma_display = null
+	var/obj/screen/locate_queen = null
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.

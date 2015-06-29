@@ -27,7 +27,7 @@
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
 	see_infrared = 1
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	var/dead_icon = "Drone Dead"
 	var/language = "Xenomorph"
 	var/obj/item/clothing/suit/wear_suit = null
@@ -61,6 +61,7 @@
 	var/fire_immune = 0 //boolean
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
+	var/spit_projectile = null
 
 	var/adjust_pixel_x = 0
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
@@ -87,9 +88,10 @@
 	spawn (25)
 		src.frozen = 0*/
 
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING //blerghhh. This lets you see in the dark
+	see_invisible = SEE_INVISIBLE_LEVEL_TWO //blerghhh. This lets you see in the dark
 
-	name = "[initial(name)] ([rand(1, 1000)])"
+	if(caste != "Queen")
+		name = "[initial(name)] ([rand(1, 1000)])"
 	real_name = name
 	regenerate_icons()
 
@@ -106,20 +108,20 @@
 //		M.Translate(0, 16*(adjust_size-1))
 		src.transform = M
 
-
-	if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
-		src.mind.assigned_role = "MODE"
-		src.mind.special_role = "Alien"
-		if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len) //Add them to the gametype xeno tracker
-			var/found = 0
-			//Note: This part shouldn't actually fire during round setup, it's all handled in colonialmarines.dm
-			//Which is why we need to make sure they're not already in the system.
-			for(var/datum/mind/M in ticker.mode.aliens) //Scan through the ticker to see if they're already there.
-				if(src.mind == M)
-					found = 1
-					break
-			if(!found) //Not there? add them, so they show up on antag panel, etc
-				ticker.mode.aliens += src.mind
+	spawn(3) //Mind has to be transferred! Hopefully this will give it enough time to do so.
+		if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
+			src.mind.assigned_role = "MODE"
+			src.mind.special_role = "Alien"
+			if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len) //Add them to the gametype xeno tracker
+				var/found = 0
+				//Note: This part shouldn't actually fire during round setup, it's all handled in colonialmarines.dm
+				//Which is why we need to make sure they're not already in the system.
+				for(var/datum/mind/M in ticker.mode.aliens) //Scan through the ticker to see if they're already there.
+					if(src.mind == M)
+						found = 1
+						break
+				if(!found) //Not there? add them, so they show up on antag panel, etc
+					ticker.mode.aliens += src.mind
 
 
 

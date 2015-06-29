@@ -5,10 +5,10 @@
 	var/list/modifiers = params2list(params)
 
 	if(modifiers["alt"] && istype(A,/obj/machinery/atmospherics/unary/vent_pump))
-		for(var/verb_path in inherent_verbs)
-			if(verb_path == /mob/living/carbon/Xenomorph/proc/vent_crawl)
-				src.handle_ventcrawl(A)
-				return
+		var/verb_path = /mob/living/carbon/Xenomorph/proc/vent_crawl
+		if(verb_path in inherent_verbs)
+			src.handle_ventcrawl(A)
+			return
 	else
 		..()
 
@@ -122,98 +122,29 @@
 /mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
 	return
 
-
-//These aren't procs, but oh well. These are the spit projectiles.
-/obj/item/xeno_projectile
-	name = "neurotoxin"
-	icon = 'icons/obj/projectiles.dmi'
+/obj/item/projectile/energy/neurotoxin
+	name = "neuro"
 	icon_state = "neurotoxin"
-	var/brute_damage = 0
-	var/tox_damage = 0
-	var/weaken = 0
-	var/agony = 0
-	var/irradiate = 0
-	var/stun = 0
-	var/paralyze = 0
-	var/eye_blur = 0
-	anchored = 0
-	flags = FPRINT | TABLEPASS
-	pass_flags = PASSTABLE
-	mouse_opacity = 0
-	unacidable = 1
+	damage = 5
+	damage_type = TOX
+	weaken = 5
 
+/obj/item/projectile/energy/neurostrong
+	name = "neuro"
+	icon_state = "neurotoxin"
+	damage = 10
+	damage_type = TOX
+	weaken = 8
+	eyeblur = 1
 
-/obj/item/xeno_projectile/neuro_weak
-	brute_damage = 5
-	tox_damage = 5
-	weaken = 4
+/obj/item/projectile/energy/neurostrongest
+	name = "neuro"
+	icon_state = "neurotoxin"
+	damage = 15
+	damage_type = TOX
+	weaken = 12
+	eyeblur = 2
 
-/obj/item/xeno_projectile/neurotoxin
-	brute_damage = 10
-	tox_damage = 10
-	weaken = 7
-	eye_blur = 1
-
-/obj/item/xeno_projectile/neuro_uber
-	brute_damage = 10
-	tox_damage = 20
-	agony = 40
-	weaken = 10
-	irradiate = 5
-	eye_blur = 3
-
-/obj/item/xeno_projectile/throw_impact(atom/hit_atom)
-	if(!src) return //Some logic
-
-	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
-		var/mob/living/carbon/V = hit_atom
-		if(istype(V) && !V.stat && !istype(V,/mob/living/carbon/Xenomorph)) //We totally ignore other xenos. LIKE GREASED WEASELS
-			if(istype(V,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = V //Human shield block.
-				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
-					if(rand(0,100) < 65)
-						visible_message("\red <B> \The neurotoxic spit spatters against [H]'s shield!</B>")
-						throwing = 0
-						del(src)
-						return
-			//apply various effects
-			if(brute_damage)
-				V.apply_damage(BRUTE,brute_damage)
-			if(tox_damage)
-				V.apply_damage(TOX,tox_damage)
-			if(weaken)
-				V.apply_effect(WEAKEN,weaken)
-			if(agony)
-				V.apply_damage(HALLOSS,agony)
-			if(irradiate)
-				V.apply_effect(IRRADIATE,irradiate)
-			if(paralyze)
-				V.apply_effect(PARALYZE,paralyze)
-			if(eye_blur)
-				V.apply_effect(EYE_BLUR,eye_blur)
-			if(stun)
-				V.apply_effect(STUN,stun)
-			del(src)
-		return
-	else if(isobj(hit_atom))
-		var/obj/O = hit_atom
-		if(O.density) //Hit a dense object, just stop & delete
-			src.throwing = 0
-			del(src)
-			return
-
-	else if(isturf(hit_atom))
-		var/turf/T = hit_atom
-		if(T.density)
-			src.throwing = 0
-			del(src)
-			return
-
-		if(!src.throwing) //finished range
-			del(src)
-			return
-	..()
-	return
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
@@ -231,7 +162,7 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	layer = 3.2 //Should be on top of most things
+	layer = 5 //Should be on top of most things
 
 	var/atom/target
 	var/ticks = 0
@@ -399,8 +330,8 @@
 	set name = "Toggle Darkvision"
 	set category = "Alien"
 
-	if (see_invisible == SEE_INVISIBLE_OBSERVER)
+	if (see_invisible == SEE_INVISIBLE_LEVEL_TWO)
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	else
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
