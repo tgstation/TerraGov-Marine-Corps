@@ -8,12 +8,16 @@
 	icon_state = "nest"
 	var/health = 100
 	var/on_fire = 0
+	var/resisting = 0
 
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
+				if(user.stat || user.restrained())
+					user << "Nice try."
+					return
 				buckled_mob.visible_message(\
 					"<span class='notice'>[user.name] pulls [buckled_mob.name] free from the sticky nest!</span>",\
 					"<span class='notice'>[user.name] pulls you free from the gelatinous resin.</span>",\
@@ -21,7 +25,14 @@
 				buckled_mob.pixel_y = 0
 				buckled_mob.old_y = 0
 				unbuckle()
+				resisting = 0
 			else
+				if(buckled_mob.stat)
+					buckled_mob << "You're a little too unconscious to try that."
+					return
+				if(resisting)
+					buckled_mob << "You're already trying to free yourself. Give it some time."
+					return
 				if(world.time <= buckled_mob.last_special+NEST_RESIST_TIME)
 					return
 				buckled_mob.last_special = world.time
@@ -29,8 +40,10 @@
 					"<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
 					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
 					"<span class='notice'>You hear squelching...</span>")
+				resisting = 1
 				spawn(NEST_RESIST_TIME)
-					if(user && buckled_mob && user.buckled == src)
+					if(user && buckled_mob && user.buckled == src && user.stat != DEAD)
+						resisting = 0
 						buckled_mob.last_special = world.time
 						buckled_mob.pixel_y = 0
 						buckled_mob.old_y = 0
@@ -43,10 +56,14 @@
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
-	unbuckle()
+//	unbuckle()
 
 	if (istype(M, /mob/living/carbon/Xenomorph))
-		user << "The [M] is too big to buckle in."
+		user << "The [M] is too big to shove in the nest."
+		return
+
+	if(buckled_mob)
+		user << "There's someone already in that nest."
 		return
 
 	if(M == usr)

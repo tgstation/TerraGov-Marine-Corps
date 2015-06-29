@@ -121,16 +121,12 @@ var/const/MAX_ACTIVE_TIME = 200
 	if(istype(M,/mob/living))
 		if(M:status_flags & XENO_HOST) return 0
 
-	var/mob/living/carbon/C = M
-	if(istype(C) && locate(/datum/organ/internal/xenos/hivenode) in C.internal_organs)
-		return 0
-
-	if(ishuman(C))
-		if(!C:has_organ("head"))
+	if(ishuman(M))
+		if(!M:has_organ("head"))
 			visible_message("[src] looks for a face to hug, but finds none!")
 			return 0
 
-	if(istype(C,/mob/living/carbon/Xenomorph))
+	if(istype(M,/mob/living/carbon/Xenomorph))
 		return 0
 
 	attached++
@@ -141,7 +137,7 @@ var/const/MAX_ACTIVE_TIME = 200
 
 	if(loc == L) return 0
 	if(stat != CONSCIOUS)	return 0
-	if(!sterile) L.take_organ_damage(strength,0) //done here so that even borgs and humans in helmets take damage
+//	if(!sterile) L.take_organ_damage(strength,0) //done here so that even borgs and humans in helmets take damage
 
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
 
@@ -157,48 +153,59 @@ var/const/MAX_ACTIVE_TIME = 200
 		var/mob/living/carbon/human/H = L
 		if(H.head && H.head.canremove)
 			var/obj/item/clothing/head/D = H.head
-			if(D.anti_hug > 1)
-				H.visible_message("\red \b [src] smashes against [H]'s [D] and bounces off!")
-				D.anti_hug--
-				Die()
-				return 0
-			else if(D.anti_hug == 1)
-				H.visible_message("\red \b [src] smashes against [H]'s [D] and rips it off!")
-				H.drop_from_inventory(D)
-				D.anti_hug--
-				src.GoIdle()
-				H.update_icons()
-				return 0
+			if(istype(D))
+				if(D.anti_hug > 1)
+					H.visible_message("\red \b [src] smashes against [H]'s [D] and bounces off!")
+					D.anti_hug--
+					if(rand(50))
+						src.Die()
+					else
+						src.GoIdle()
+					return 0
+				else if(D.anti_hug == 1)
+					H.visible_message("\red \b [src] smashes against [H]'s [D] and rips it off!")
+					H.drop_from_inventory(D)
+					D.anti_hug--
+					if(rand(50))
+						src.GoIdle()
+					else
+						src.Die()
+					H.update_icons()
+					return 0
 	if(iscarbon(M))
 		var/mob/living/carbon/target = L
 
 		if(target.wear_mask)
 			var/obj/item/clothing/mask/W = target.wear_mask
-			if(!W.canremove)
-				return 0
-			if(istype(W,/obj/item/clothing/mask/facehugger))
-				return 0
-			if(W.anti_hug > 1)
-				target.visible_message("\red \b [src] smashes against [target]'s [W] and bounces off!")
-				W.anti_hug--
-				Die()
-				return 0
-			else if(W.anti_hug == 1)
-				target.visible_message("\red \b [src] smashes against [target]'s [W] and rips it off!")
-				target.drop_from_inventory(W)
-				W.anti_hug--
-				src.GoIdle()
-				target.update_icons()
-				return 0
-			else
-				target.drop_from_inventory(W)
-				target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
-
+			if(istype(W))
+				if(!W.canremove)
+					return 0
+				if(istype(W,/obj/item/clothing/mask/facehugger))
+					return 0
+				if(W.anti_hug > 1)
+					target.visible_message("\red \b [src] smashes against [target]'s [W] and bounces off!")
+					W.anti_hug--
+					if(rand(50))
+						Die()
+					else
+						GoIdle()
+					return 0
+				else if(W.anti_hug == 1)
+					target.visible_message("\red \b [src] smashes against [target]'s [W] and rips it off!")
+					target.drop_from_inventory(W)
+					W.anti_hug--
+					if(rand(50))
+						Die()
+					else
+						GoIdle()
+					target.update_icons()
+					return 0
+			target.drop_from_inventory(W)
+			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
 		src.loc = target
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
 		target.update_icons()
-
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/10) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M

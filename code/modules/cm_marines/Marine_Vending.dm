@@ -64,10 +64,10 @@
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access_txt = "0"
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 10,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP =10,
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP =5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix = 10)
-	contraband = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate =5)
+	contraband = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate =3)
 
 
 
@@ -138,7 +138,7 @@
 						/obj/item/stack/medical/advanced/bruise_pack = 6,
 						/obj/item/stack/medical/advanced/ointment = 6,
 						/obj/item/stack/medical/splint = 2,
-						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 10,
+						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/clothing/glasses/hud/health = 3
 					)
@@ -173,7 +173,7 @@
 					/obj/item/weapon/gun/m92 = 1,
 					/obj/item/weapon/gun/projectile/M42C = 1,
 					/obj/item/weapon/storage/box/m56_system = 1,
-					/obj/item/clothing/suit/storage/marine_spec_armor = 1
+					/obj/item/weapon/storage/box/heavy_armor = 1
 			)
 	prices = list()
 

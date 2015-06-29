@@ -2621,3 +2621,13 @@
 			if("list")
 				PlayerNotesPage(text2num(href_list["index"]))
 		return
+
+	if(href_list["dibs"])
+		var/mob/ref_person = locate(href_list["dibs"])
+//		var/adminckey = href_list["ckey"]
+		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=darkgreen>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>.</b>"
+
+		//send this msg to all admins
+		for(var/client/X in admins)
+			if((R_ADMIN|R_MOD) & X.holder.rights)
+				X << msg

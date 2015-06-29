@@ -41,6 +41,13 @@
 	mymob.fire.name = "fire"
 	mymob.fire.screen_loc = ui_fire
 */
+
+	mymob.locate_queen = new /obj/screen()
+	mymob.locate_queen.icon = 'icons/mob/screen1_alien.dmi'
+	mymob.locate_queen.icon_state = "trackoff"
+	mymob.locate_queen.name = "queen locator"
+	mymob.locate_queen.screen_loc = ui_queen_locator
+
 	mymob.client.screen = null
-	mymob.client.screen += list( mymob.healths, mymob.blind, mymob.flash) //, mymob.fire, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen += list( mymob.healths, mymob.blind, mymob.flash, mymob.locate_queen) //, mymob.fire, mymob.rest, mymob.sleep, mymob.mach )
 	mymob.client.screen += src.adding + src.other

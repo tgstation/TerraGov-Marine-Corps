@@ -329,6 +329,7 @@
 	recoil = 2
 	twohanded = 1
 	zoomdevicename = "scope"
+	slot_flags = SLOT_BACK
 
 	New()
 		..()
@@ -446,7 +447,7 @@
 	slot_flags = SLOT_BACK
 	w_class = 5.0
 	var/obj/item/weapon/cell/pcell = null
-	var/rounds_remaining = 200
+	var/rounds_remaining = 250
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/reloading = 0
 
@@ -468,9 +469,7 @@
 		if(!pcell)
 			user << "Your powerpack doesn't have a battery! Slap one in there!"
 			return 0
-		if(reloading)
-			user << "Already busy."
-			return 0
+		if(reloading) return 0
 		if(pcell.charge <= 50)
 			user << "Your powerpack's battery is too drained! Get a new one!"
 			return 0
@@ -490,10 +489,11 @@
 					break
 			user << "You finish loading [num_loaded] shells into the M56 Smartgun. Ready to rumble!"
 			reloading = 0
-			playsound(user, 'sound/weapons/unload.ogg', 20, 1)
+			playsound(user, 'sound/weapons/unload.ogg', 50, 1)
 			return 1
 		else
 			user << "Your reloading was interrupted!"
+			reloading = 0
 			return 0
 		return 1
 
@@ -515,10 +515,10 @@
 
 		if (get_dist(usr, src) <= 1)
 			if(pcell)
-				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 200."
+				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 250."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 26
+	damage = 36
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."

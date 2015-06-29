@@ -1,4 +1,4 @@
-/obj/machinery/ai_slipper
+/*/obj/machinery/ai_slipper
 	name = "\improper AI Liquid Dispenser"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
@@ -125,3 +125,4 @@
 		cooldown_on = 0
 	src.power_change()
 	return
+*/

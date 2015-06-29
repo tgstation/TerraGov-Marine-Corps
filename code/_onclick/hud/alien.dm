@@ -216,10 +216,9 @@
 	mymob.healths.icon_state = "health0"
 	mymob.healths.name = "health"
 	mymob.healths.screen_loc = ui_alien_health
-//PLASMA AND QUEEN TRACKERS TEMP DISABLED
-/*
+
 	mymob.alien_plasma_display = new /obj/screen()
-	mymob.alien_plasma_display.icon = 'icons/mob/screen_gen.dmi'
+	mymob.alien_plasma_display.icon = 'icons/mob/screen1_alien.dmi'
 	mymob.alien_plasma_display.icon_state = "power_display2"
 	mymob.alien_plasma_display.name = "plasma stored"
 	mymob.alien_plasma_display.screen_loc = ui_alienplasmadisplay
@@ -229,7 +228,7 @@
 	mymob.locate_queen.icon_state = "trackoff"
 	mymob.locate_queen.name = "queen locator"
 	mymob.locate_queen.screen_loc = ui_queen_locator
-*/
+
 	mymob.pullin = new /obj/screen()
 	mymob.pullin.icon = 'icons/mob/screen1_alien.dmi'
 	mymob.pullin.icon_state = "pull0"
@@ -258,5 +257,5 @@
 
 	mymob.client.screen = null
 
-	mymob.client.screen += list( mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.toxin, mymob.fire, mymob.healths,  mymob.pullin, mymob.blind, mymob.flash) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach, mymob.alien_plasma_display, mymob.locate_queen, QUEEN AND PLASMA DISABLED TEMP
+	mymob.client.screen += list(mymob.locate_queen, mymob.alien_plasma_display, mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.toxin, mymob.fire, mymob.healths,  mymob.pullin, mymob.blind, mymob.flash) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach, mymob.alien_plasma_display, mymob.locate_queen, QUEEN AND PLASMA DISABLED TEMP
 	mymob.client.screen += src.adding + src.other

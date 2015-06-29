@@ -1,3 +1,4 @@
+/*
 var/list/doppler_arrays = list()
 
 /obj/machinery/doppler_array
@@ -52,3 +53,4 @@ var/list/doppler_arrays = list()
 			icon_state = initial(icon_state)
 		else
 			icon_state = "[initial(icon_state)]-off"
+*/

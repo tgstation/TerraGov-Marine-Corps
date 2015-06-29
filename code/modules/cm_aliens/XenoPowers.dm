@@ -166,7 +166,7 @@
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
 		usedPounce = 150 //about 12 seconds
-		src.throw_at(T, 4, 2, src) //victim, distance, speed
+		src.throw_at(T, 6, 3, src) //victim, distance, speed
 		spawn(usedPounce)
 			usedPounce = 0
 			src << "You get ready to pounce again."
@@ -302,6 +302,7 @@
 		return
 
 	var/turf/T = loc
+	var/turf/T2 = null
 	if(!T) //logic
 		return
 
@@ -316,6 +317,12 @@
 	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
 
 	if(!choice || choice == "cancel")
+		return
+
+	T2 = loc
+
+	if(T != T2)
+		src << "You have to stand still when making your selection."
 		return
 
 	if(!check_plasma(75))
@@ -353,20 +360,40 @@
 		usr << "You can't spit from here!"
 		return
 
+	if(!spit_projectile) return
+
 	if(!T)
 		var/list/victims = list()
 		for(var/mob/living/carbon/human/C in oview(7))
 			if(!C.stat)
 				victims += C
+		victims += "Cancel"
 		T = input(src, "Who should you spit towards?") as null|anything in victims
+	if(T == "Cancel")
+		return
 
 	if(T)
 		if(!check_plasma(50))
 			return
 
 		visible_message("\red <B>\The [src] spits neurotoxin at [T]!</B>","\red <b> You spit at [T]!</B>" )
-		var/obj/item/xeno_projectile/neuro_weak/A = new /obj/item/xeno_projectile/neuro_weak(usr.loc)
-		A.throw_at(T, 10, 2, src) //victim, distance, speed, thrower
+
+		var/turf/Turf = get_turf(src)
+		var/turf/Target_Turf = get_turf(T)
+
+		if(!Target_Turf || !Turf)
+			return
+
+		var/obj/item/projectile/energy/A = new spit_projectile(Turf)
+		A.current = Target_Turf
+		A.yo = Target_Turf.y - Turf.y
+		A.xo = Target_Turf.x - Turf.x
+		A.def_zone = get_organ_target()
+		A.firer = src
+		A.original= T
+		spawn(1)
+			A.process()
+
 		has_spat = 1
 		spawn(spit_delay)
 			has_spat = 0
@@ -374,9 +401,6 @@
 	else
 		src << "You cannot spit at nothing!"
 	return
-
-
-
 
 /mob/living/carbon/Xenomorph/proc/throw_hugger(var/mob/living/carbon/T)
 	set name = "Throw Facehugger"
@@ -449,82 +473,6 @@
 
 		else
 			X << "\blue You cannot charge at nothing!"
-
-//Note: All the neurotoxin projectile items are stored in XenoProcs.dm
-/mob/living/carbon/Xenomorph/proc/neurotoxin2(var/atom/T)
-	set name = "Spit Neurotoxin (75)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time."
-	set category = "Alien"
-
-	if(!check_state())	return
-
-	if(has_spat)
-		usr << "You must wait for your neurotoxin glands to refill."
-		return
-
-	if(!isturf(usr.loc))
-		usr << "You can't spit from here!"
-		return
-
-	if(!T)
-		var/list/victims = list()
-		for(var/mob/living/carbon/human/C in oview(7))
-			if(!C.stat)
-				victims += C
-		T = input(src, "Who should you spit towards?") as null|anything in victims
-
-	if(T)
-		if(!check_plasma(75))
-			return
-
-		visible_message("\red <B>\The [src] spits neurotoxin at [T]!</B>","\red <b> You spit at [T]!</B>" )
-		var/obj/item/xeno_projectile/neurotoxin/A = new /obj/item/xeno_projectile/neurotoxin(usr.loc)
-		A.throw_at(T, 10, 2, src) //victim, distance, speed, thrower
-		has_spat = 1
-		spawn(spit_delay)
-			has_spat = 0
-			src << "You feel your glands swell with ichor. You can spit again."
-	else
-		src << "You cannot spit at nothing!"
-	return
-
-//Note: All the neurotoxin projectile items are stored in XenoProcs.dm
-/mob/living/carbon/Xenomorph/proc/neurotoxin3(var/atom/T)
-	set name = "Spit Neurotoxin (100)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time."
-	set category = "Alien"
-
-	if(!check_state())	return
-
-	if(!isturf(usr.loc))
-		usr << "You can't spit from here!"
-		return
-
-	if(has_spat)
-		usr << "You must wait for your neurotoxin glands to refill."
-		return
-
-	if(!T)
-		var/list/victims = list()
-		for(var/mob/living/carbon/human/C in oview(7))
-			if(!C.stat)
-				victims += C
-		T = input(src, "Who should you spit towards?") as null|anything in victims
-
-	if(T)
-		if(!check_plasma(100))
-			return
-
-		visible_message("\red <B>\The [src] spits neurotoxin at [T]!</B>","\red <b> You spit at [T]!</B>" )
-		var/obj/item/xeno_projectile/neuro_uber/A = new /obj/item/xeno_projectile/neuro_uber(usr.loc)
-		A.throw_at(T, 12, 1, src) //victim, distance, speed, thrower
-		has_spat = 1
-		spawn(spit_delay)
-			has_spat = 0
-			src << "You feel your glands swell with ichor. You can spit again."
-	else
-		src << "You cannot spit at nothing!"
-	return
 
 /mob/living/carbon/Xenomorph/proc/screech()
 	set name = "Screech (250)"
@@ -608,7 +556,8 @@
 	else
 		if(!check_plasma(100)) return
 		new /obj/effect/xenomorph/acid(get_turf(O), O) //Everything else? Medium.
-
+	if(!isturf(O))
+		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
 	visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
 	return
 
@@ -655,7 +604,7 @@
 			start_dig.other = newt //Link the two together
 			start_dig = null //Now clear it
 			tunnel_delay = 1
-			spawn(1800)
+			spawn(2400)
 				src << "\blue Your claws are ready to dig a new tunnel."
 				src.tunnel_delay = 0
 		playsound(loc, 'sound/weapons/pierce.ogg', 30, 1)

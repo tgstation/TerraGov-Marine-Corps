@@ -110,11 +110,11 @@
 	//This should give full x-ray vision for the time being. Fuckin sight code god damn it
 	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	see_in_dark = 8
+	blind = 0
 
 	if (healths)
 		if (stat != 2)
-			var/HP = (health/maxHealth)*100
-			switch(HP)
+			switch(health * 100 / maxHealth)
 				if(100 to INFINITY)
 					healths.icon_state = "health0"
 				if(80 to 100)
@@ -131,6 +131,32 @@
 					healths.icon_state = "health6"
 		else
 			healths.icon_state = "health7"
+
+	if(alien_plasma_display)
+		if (stat != 2)
+			switch(storedplasma * 100 / maxplasma)
+				if(100 to INFINITY)
+					alien_plasma_display.icon_state = "power_display2_9"
+				if(71 to 99)
+					alien_plasma_display.icon_state = "power_display2_8"
+				if(61 to 70)
+					alien_plasma_display.icon_state = "power_display2_7"
+				if(51 to 60)
+					alien_plasma_display.icon_state = "power_display2_6"
+				if(41 to 50)
+					alien_plasma_display.icon_state = "power_display2_5"
+				if(31 to 40)
+					alien_plasma_display.icon_state = "power_display2_4"
+				if(21 to 30)
+					alien_plasma_display.icon_state = "power_display2_3"
+				if(11 to 20)
+					alien_plasma_display.icon_state = "power_display2_2"
+				if(1 to 10)
+					alien_plasma_display.icon_state = "power_display2_1"
+				else
+					alien_plasma_display.icon_state = "power_display2"
+		else
+			alien_plasma_display.icon_state = "power_display2"
 
 	if(pullin)
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
@@ -197,3 +223,24 @@
 		icon_state = "[caste] Dead"
 	playsound(loc, 'sound/voice/hiss6.ogg', 50, 1, 1)
 	return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
+
+/mob/living/carbon/Xenomorph/proc/queen_locator()
+	var/mob/living/carbon/Xenomorph/Queen/target = null
+
+	if(locate_queen)
+		for(var/mob/living/carbon/Xenomorph/Queen/M in living_mob_list)
+			if(M && !M.stat)
+				target = M
+				break
+
+	if(!target)
+		locate_queen.icon_state = "trackoff"
+		return
+
+	if(target.z != src.z || get_dist(src,target) < 1 || src == target)
+		locate_queen.icon_state = "trackondirect"
+	else
+		locate_queen.dir = get_dir(src,target)
+		locate_queen.icon_state = "trackon"
+
+	spawn(10) .()
