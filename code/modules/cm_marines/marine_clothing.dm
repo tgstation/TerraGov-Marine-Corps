@@ -388,6 +388,8 @@ v
 		"/obj/item/ammo_magazine/m41",
 		"/obj/item/weapon/storage/box/m37",
 		"/obj/item/ammo_casing/m37",
+		"/obj/item/flareround_s",
+		"/obj/item/flareround_sp"
 
 		)
 
