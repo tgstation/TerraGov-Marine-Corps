@@ -470,6 +470,27 @@
 					dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 			dat += "</table>"
 
+		if(ticker.liason)
+			dat += "<br><table cellspacing=5><tr><td><B>Corporate Liason</B></td><td></td><td></td></tr>"
+			var/mob/M = ticker.liason.current
+			if(M)
+				dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+				dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+				dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+			dat += "</table>"
+
+		if(ticker.mode.survivors.len)
+			dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
+			for(var/datum/mind/L in ticker.mode.survivors)
+				var/mob/M = L.current
+				if(M)
+					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+					dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+			dat += "</table>"
+
+
+
 		if(ticker.mode.changelings.len)
 			dat += check_role_table("Changelings", ticker.mode.changelings, src)
 

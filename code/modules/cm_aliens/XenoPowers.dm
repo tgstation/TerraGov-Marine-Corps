@@ -216,6 +216,10 @@
 		src << "Not with a widdle alium inside! How cruel!"
 		return
 
+	if(istype(victim,/mob/living/carbon/Xenomorph))
+		src << "Hey now, that's just not cool."
+		return
+
 	var/turf/cur_loc = victim.loc
 	if(!cur_loc) return //logic
 	if(!cur_loc || !istype(cur_loc)) return

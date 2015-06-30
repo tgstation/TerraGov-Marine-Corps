@@ -337,3 +337,22 @@ var/list/toldstory = list()
 						text += "GIBBED! (body destroyed)"
 					text += ")"
 			world << text
+		if(survivors.len)
+			var/text = "<br><FONT size = 2><B>The survivors were:</B></FONT>"
+			for(var/datum/mind/A in survivors)
+				if(A)
+					var/mob/M = A.current
+					if(!M)
+						M = A.original
+
+					text += "<br>[M.key] was "
+					if(M)
+						text += "[M.name] ("
+						if(M.stat == DEAD)
+							text += "died"
+						else
+							text += "survived"
+					else
+						text += "GIBBED! (body destroyed)"
+					text += ")"
+			world << text

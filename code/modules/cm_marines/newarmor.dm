@@ -72,13 +72,6 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 					H.update_icons() //Show it.
 
 
-/obj/item/clothing/head/helmet/marine2/heavy
-	name = "heavy specialist helmet"
-	icon_state = "helmet_hvy"
-	item_state = "helmet"
-	icon_override = 'icons/Marine/marine_armor.dmi'
-	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
-
 /obj/item/clothing/suit/storage/marine2
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "1"
@@ -135,7 +128,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 
 /obj/item/clothing/suit/storage/marine_spec_armor
 	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "9"
+	icon_state = "xarmor"
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
@@ -181,6 +174,13 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 		injections--
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		return
+
+/obj/item/clothing/head/helmet/marine2/heavy
+	name = "heavy specialist helmet"
+	icon_state = "xhelm"
+	item_state = "helmet"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/weapon/storage/box/heavy_armor
 	name = "B18 defensive system crate"
