@@ -1,3 +1,4 @@
+/*
 /obj/machinery/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
@@ -134,3 +135,4 @@
 			if (C.has_sensor)
 				tracked |= C
 	return 1
+*/

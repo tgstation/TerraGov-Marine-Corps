@@ -77,7 +77,7 @@
 	data["on"] = on ? 1 : 0
 	data["gasPressure"] = round(air_contents.return_pressure())
 	data["gasTemperature"] = round(air_contents.temperature)
-	data["minGasTemperature"] = 0
+	data["minGasTemperature"] = 1
 	data["maxGasTemperature"] = round(T20C+500)
 	data["targetGasTemperature"] = round(set_temperature)
 	data["powerSetting"] = power_setting
@@ -112,7 +112,7 @@
 		if(amount > 0)
 			src.set_temperature = min(src.set_temperature+amount, 1000)
 		else
-			src.set_temperature = max(src.set_temperature+amount, 0)
+			src.set_temperature = max(src.set_temperature+amount, 1)
 	if(href_list["setPower"]) //setting power to 0 is redundant anyways
 		var/new_setting = between(0, text2num(href_list["setPower"]), 100)
 		set_power_level(new_setting)

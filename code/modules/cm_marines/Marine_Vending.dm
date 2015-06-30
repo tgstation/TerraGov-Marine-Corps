@@ -161,7 +161,7 @@
 						/obj/item/device/mine = 2,
 						/obj/item/ammo_casing/rocket = 2,
 						/obj/item/ammo_casing/rocket/ap = 2,
-						/obj/item/weapon/flamethrower = 1,
+						/obj/item/weapon/flamethrower/full = 1,
 						/obj/item/weapon/tank/phoron = 2,
 						/obj/item/weapon/shield/riot = 1,
 						/obj/item/ammo_magazine/m42c = 1,

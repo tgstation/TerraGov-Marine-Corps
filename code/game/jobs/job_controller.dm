@@ -367,6 +367,8 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		var/list/spawn_in_storage = list()
 
 		if(job)
+			if(job.flag == LIASON && ticker && H.mind)
+				ticker.liason = H.mind
 
 			//Equip custom gear loadout.
 			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
