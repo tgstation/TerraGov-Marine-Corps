@@ -1588,6 +1588,7 @@
 #include "maps\Z.2.Centcomm.dmm"
 #include "maps\Z.3.PlaceholderSulaco.dmm"
 #include "maps\Z.4.SulacoBottom.dmm"
+#include "maps\Z.5.Space.dmm"
 // END_INCLUDE
 
 

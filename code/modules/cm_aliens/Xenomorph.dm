@@ -27,7 +27,7 @@
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
 	see_infrared = 1
-	see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	var/dead_icon = "Drone Dead"
 	var/language = "Xenomorph"
 	var/obj/item/clothing/suit/wear_suit = null
@@ -88,7 +88,7 @@
 	spawn (25)
 		src.frozen = 0*/
 
-	see_invisible = SEE_INVISIBLE_LEVEL_TWO //blerghhh. This lets you see in the dark
+	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING //blerghhh. This lets you see in the dark
 
 	if(caste != "Queen")
 		name = "[initial(name)] ([rand(1, 1000)])"

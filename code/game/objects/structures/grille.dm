@@ -31,6 +31,7 @@
 	//width=80
 	//height=42
 	icon='icons/fence-ew.dmi'
+	dir = 4
 
 /obj/structure/grille/fence/north_south
 	//width=80
@@ -177,7 +178,7 @@
 				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
 					user << "<span class='notice'>There is already a window facing this way there.</span>"
 					return
-			
+
 			var/wtype = ST.created_window
 			if (ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)

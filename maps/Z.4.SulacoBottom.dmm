@@ -468,7 +468,7 @@
 "iZ" = (/obj/structure/rack,/obj/item/weapon/circuitboard/arcade,/obj/item/weapon/circuitboard/operating,/obj/item/weapon/circuitboard/telecomms/broadcaster,/obj/item/weapon/circuitboard/telecomms/bus,/obj/item/weapon/circuitboard/telecomms/hub,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/lower_maint)
 "ja" = (/obj/structure/rack,/obj/item/weapon/circuitboard/autolathe,/obj/item/weapon/circuitboard/pacman,/obj/item/weapon/circuitboard/telecomms/processor,/obj/item/weapon/circuitboard/telecomms/receiver,/obj/item/weapon/circuitboard/telecomms/relay,/obj/item/weapon/circuitboard/med_data,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/lower_maint)
 "jb" = (/obj/machinery/light/small,/obj/structure/rack,/obj/item/weapon/circuitboard/batteryrack,/obj/item/weapon/circuitboard/smes,/obj/item/weapon/circuitboard/telecomms/server,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/lower_maint)
-"jc" = (/obj/machinery/power/emitter{anchored = 1; dir = 4; id = "EngineEmitter"; state = 2},/turf/simulated/floor{icon_state = "vault"},/area/sulaco/lower_maint)
+"jc" = (/obj/machinery/power/emitter{anchored = 0; dir = 4; id = "EngineEmitter"; state = 2},/turf/simulated/floor{icon_state = "vault"},/area/sulaco/lower_maint)
 "jd" = (/obj/structure/rack,/obj/item/device/assembly/signaler,/obj/item/device/assembly/signaler,/obj/item/device/assembly/signaler,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/lower_maint)
 "je" = (/obj/machinery/telecomms/server/presets/medical{produces_heat = 0},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
 "jf" = (/obj/machinery/telecomms/hub/preset{produces_heat = 0},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)

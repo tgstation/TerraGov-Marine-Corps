@@ -7,7 +7,8 @@
 	if(modifiers["alt"] && istype(A,/obj/machinery/atmospherics/unary/vent_pump))
 		var/verb_path = /mob/living/carbon/Xenomorph/proc/vent_crawl
 		if(verb_path in inherent_verbs)
-			src.handle_ventcrawl(A)
+			if(check_state())
+				src.handle_ventcrawl(A)
 			return
 	else
 		..()
@@ -122,28 +123,22 @@
 /mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
 	return
 
-/obj/item/projectile/energy/neurotoxin
+/obj/item/projectile/energy/neuro
 	name = "neuro"
 	icon_state = "neurotoxin"
-	damage = 5
+	damage = 1
 	damage_type = TOX
-	weaken = 5
+	weaken = 3
 
-/obj/item/projectile/energy/neurostrong
-	name = "neuro"
-	icon_state = "neurotoxin"
-	damage = 10
-	damage_type = TOX
-	weaken = 8
+/obj/item/projectile/energy/neuro/strong
+	damage = 5
+	weaken = 6
 	eyeblur = 1
 
-/obj/item/projectile/energy/neurostrongest
-	name = "neuro"
-	icon_state = "neurotoxin"
-	damage = 15
-	damage_type = TOX
-	weaken = 12
-	eyeblur = 2
+/obj/item/projectile/energy/neuro/strongest
+	damage = 10
+	weaken = 9
+	eyeblur = 3
 
 
 //Xeno-style acids

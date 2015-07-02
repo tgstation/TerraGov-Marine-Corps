@@ -250,7 +250,7 @@
 /obj/effect/alien/acid
 	name = "acid"
 	desc = "Burbling corrossive stuff. I wouldn't want to touch it."
-	icon_state = "acid"
+	icon_state = "Acid"
 
 	density = 0
 	opacity = 0

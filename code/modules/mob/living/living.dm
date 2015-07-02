@@ -728,12 +728,12 @@
 	if(lying)
 		src << "You can't vent crawl while you're stunned!"
 		return
-
+/*
 	var/special_fail_msg = can_use_vents()
-	if(special_fail_msg)
+	if(!special_fail_msg)
 		src << "\red [special_fail_msg]"
 		return
-
+*/
 	if(vent_found) // one was passed in, probably from vent/AltClick()
 		if(vent_found.welded)
 			src << "That vent is welded shut."
