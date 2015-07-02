@@ -236,7 +236,6 @@
 	if(locate_queen)
 		for(var/mob/living/carbon/Xenomorph/Queen/M in living_mob_list)
 			if(M && !M.stat)
-				world << "Queen found: [M]"
 				target = M
 				break
 
