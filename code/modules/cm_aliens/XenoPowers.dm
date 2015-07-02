@@ -230,7 +230,7 @@
 	last_special = world.time + 50
 
 	visible_message("<span class='warning'><b>\The [src]</b> lifts [victim] into the air...</span>")
-	if(do_after(src,50))
+	if(do_after(src,70))
 		if(!victim || isnull(victim)) return
 		if(victim.loc != cur_loc) return
 		visible_message("<span class='warning'><b>\The [src]</b> viciously wrenches [victim] apart!</span>")
@@ -388,7 +388,7 @@
 		if(!Target_Turf || !Turf)
 			return
 
-		var/obj/item/projectile/energy/A = new spit_projectile(Turf)
+		var/obj/item/projectile/energy/neuro/A = new spit_projectile(Turf)
 		A.current = Target_Turf
 		A.yo = Target_Turf.y - Turf.y
 		A.xo = Target_Turf.x - Turf.x
@@ -503,14 +503,15 @@
 	for (var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue
-		if (get_dist(src.loc, M.loc) <= 4)
+		var/dist = get_dist(src,M)
+		if (dist <= 4)
 			M << "\blue You spasm in agony as the noise fills your head!"
 			M.stunned += 3
 			M.Weaken(1)
 //			M.drop_l_hand() //Weaken will drop them on the floor anyway
 //			M.drop_r_hand()
 			M.ear_deaf += 40 //Deafens them temporarily (about 5 seconds)
-		else if(get_dist(src.loc, M.loc) >= 5)
+		else if(dist >= 5 && dist < 8)
 			M.stunned += 2
 			M << "\blue The sound stuns you!"
 	return

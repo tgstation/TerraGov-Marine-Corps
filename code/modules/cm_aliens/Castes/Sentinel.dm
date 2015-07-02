@@ -12,10 +12,10 @@
 	plasma_gain = 10
 	maxplasma = 300
 	jellyMax = 750
-	spit_delay = 70
+	spit_delay = 90
 	caste_desc = ""
 	evolves_to = list("Spitter")
-	spit_projectile = /obj/item/projectile/energy/neurotoxin
+	spit_projectile = /obj/item/projectile/energy/neuro
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

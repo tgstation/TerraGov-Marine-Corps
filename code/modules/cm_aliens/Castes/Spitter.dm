@@ -12,10 +12,10 @@
 	plasma_gain = 24
 	maxplasma = 600
 	jellyMax = 900
-	spit_delay = 55
+	spit_delay = 85
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian")
-	spit_projectile = /obj/item/projectile/energy/neurostrong
+	spit_projectile = /obj/item/projectile/energy/neuro/strong
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

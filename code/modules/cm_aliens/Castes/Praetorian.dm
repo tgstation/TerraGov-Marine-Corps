@@ -12,14 +12,14 @@
 	plasma_gain = 24
 	maxplasma = 600
 	jellyMax = 0
-	spit_delay = 45
+	spit_delay = 75
 	adjust_pixel_x = -16
 	adjust_size_x = 0.9
 	adjust_size_y = 0.85
 	caste_desc = "Ptui!"
 	evolves_to = list()
 	armor_deflection = 70
-	spit_projectile = /obj/item/projectile/energy/neurostrongest
+	spit_projectile = /obj/item/projectile/energy/neuro/strongest
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

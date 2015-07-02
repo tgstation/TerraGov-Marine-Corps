@@ -134,27 +134,30 @@
 
 	if(alien_plasma_display)
 		if (stat != 2)
-			switch(storedplasma * 100 / maxplasma)
-				if(100 to INFINITY)
-					alien_plasma_display.icon_state = "power_display2_9"
-				if(71 to 99)
-					alien_plasma_display.icon_state = "power_display2_8"
-				if(61 to 70)
-					alien_plasma_display.icon_state = "power_display2_7"
-				if(51 to 60)
-					alien_plasma_display.icon_state = "power_display2_6"
-				if(41 to 50)
-					alien_plasma_display.icon_state = "power_display2_5"
-				if(31 to 40)
-					alien_plasma_display.icon_state = "power_display2_4"
-				if(21 to 30)
-					alien_plasma_display.icon_state = "power_display2_3"
-				if(11 to 20)
-					alien_plasma_display.icon_state = "power_display2_2"
-				if(1 to 10)
-					alien_plasma_display.icon_state = "power_display2_1"
-				else
-					alien_plasma_display.icon_state = "power_display2"
+			if(maxplasma) //No divide by zeros please
+				switch(storedplasma * 100 / maxplasma)
+					if(100 to INFINITY)
+						alien_plasma_display.icon_state = "power_display2_9"
+					if(71 to 99)
+						alien_plasma_display.icon_state = "power_display2_8"
+					if(61 to 70)
+						alien_plasma_display.icon_state = "power_display2_7"
+					if(51 to 60)
+						alien_plasma_display.icon_state = "power_display2_6"
+					if(41 to 50)
+						alien_plasma_display.icon_state = "power_display2_5"
+					if(31 to 40)
+						alien_plasma_display.icon_state = "power_display2_4"
+					if(21 to 30)
+						alien_plasma_display.icon_state = "power_display2_3"
+					if(11 to 20)
+						alien_plasma_display.icon_state = "power_display2_2"
+					if(1 to 10)
+						alien_plasma_display.icon_state = "power_display2_1"
+					else
+						alien_plasma_display.icon_state = "power_display2"
+			else
+				alien_plasma_display.icon_state = "power_display2"
 		else
 			alien_plasma_display.icon_state = "power_display2"
 
@@ -175,6 +178,9 @@
 //				client.screen += global_hud.blurry
 //			if (druggy)
 //				client.screen += global_hud.druggy
+
+	if(!stat && rand(20)) //Only a 20% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
+		queen_locator()
 
 	if (stat != 2)
 		if (machine)
@@ -233,7 +239,7 @@
 				target = M
 				break
 
-	if(!target)
+	if(!target || !istype(target))
 		locate_queen.icon_state = "trackoff"
 		return
 
@@ -242,5 +248,3 @@
 	else
 		locate_queen.dir = get_dir(src,target)
 		locate_queen.icon_state = "trackon"
-
-	spawn(10) .()

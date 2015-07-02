@@ -118,7 +118,8 @@
 					skip_over = 1
 					return 0
 
-			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
+			if (!istype(src,/obj/item/projectile/energy/neuro))
+				def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
 
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")
