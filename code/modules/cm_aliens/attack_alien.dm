@@ -398,6 +398,8 @@
 	if(!M)
 		return
 
+	if(isXenoLarva(M)) return
+
 	if(src.unacidable) //May as well use it as an immunity toggle
 		M << "This one's much too tough for you to slash up."
 		return

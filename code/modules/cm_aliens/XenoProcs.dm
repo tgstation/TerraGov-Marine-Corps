@@ -276,13 +276,13 @@
 
 			if(charge_type == 1) //Runner/hunter pounce.
 				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
-				V.Weaken(2)
+				V.Weaken(4)
 				src.canmove = 0
 				src.frozen = 1
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
-				spawn(24)
+				spawn(22)
 					src.frozen = 0
 		return
 

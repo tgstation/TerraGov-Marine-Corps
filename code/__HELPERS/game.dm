@@ -314,18 +314,13 @@ proc/isInSight(var/atom/A, var/atom/B)
 	return candidates
 
 // Same as above but for alien candidates.
-
+//Rewritten by Abby, little more simplified.
 /proc/get_alien_candidates()
-
-	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
-	var/i = 0
-	while(candidates.len <= 0 && i < 5)
-		for(var/mob/dead/observer/G in player_list)
-			if(G.client.prefs.be_special & BE_ALIEN)
-				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
-					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-						candidates += G.key
-		i++
+	var/list/candidates = list() //List of candidate KEYS
+	for(var/mob/dead/observer/G in player_list)
+		if(G.client && G.client.prefs.be_special & BE_ALIEN)
+			if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + 5)
+				candidates += G.key
 	return candidates
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)

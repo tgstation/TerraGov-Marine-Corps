@@ -11,7 +11,7 @@
 	if(..(user))
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
-	if(!allowed(user))
+	if(!allowed(user) && !istype(user,/mob/living/carbon/Xenomorph))
 		user << "\red Access Denied."
 		return 1
 
