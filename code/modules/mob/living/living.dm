@@ -535,6 +535,8 @@
 							O.show_message("\red <B>[usr] manages to unbuckle themself!</B>", 1)
 						C << "\blue You successfully unbuckle yourself."
 						C.buckled.manual_unbuckle(C)
+			if(istype(L.buckled,/obj/structure/stool/bed/nest))
+				L.buckled.manual_unbuckle(L)
 		else
 			L.buckled.manual_unbuckle(L)
 

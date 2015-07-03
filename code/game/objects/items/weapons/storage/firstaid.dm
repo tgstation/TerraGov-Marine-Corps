@@ -29,7 +29,7 @@
 		icon_state = pick("ointment","firefirstaid")
 
 		new /obj/item/device/healthanalyzer( src )
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
+		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
@@ -50,7 +50,6 @@
 		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/device/healthanalyzer(src)
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
 		return
 
 /obj/item/weapon/storage/firstaid/toxin
@@ -87,7 +86,7 @@
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
+		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
 		new /obj/item/weapon/reagent_containers/syringe/inaprovaline( src )
 		new /obj/item/device/healthanalyzer( src )
 		return
@@ -101,7 +100,7 @@
 /obj/item/weapon/storage/firstaid/adv/New()
 	..()
 	if (empty) return
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector( src )
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)

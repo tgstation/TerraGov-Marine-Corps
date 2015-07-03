@@ -189,6 +189,9 @@
 		success = 1
 
 	if(W && success) //This cleans up stuff like monkeys dropping flashlights or binoculars. Weird, but better to have it.
+		if (client)
+			client.screen -= W
+		W.loc = loc
 		W.dropped(src)
 
 	return
