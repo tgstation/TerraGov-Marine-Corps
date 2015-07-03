@@ -1,3 +1,4 @@
+/*
 
 // Basic transit tubes. Straight pieces, curved sections,
 //  and basic splits/joins (no routing logic).
@@ -637,3 +638,4 @@ obj/structure/ex_act(severity)
 			return "SW"
 		else
 	return
+*/

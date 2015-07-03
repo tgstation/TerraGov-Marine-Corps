@@ -102,10 +102,10 @@
 		else
 			user << "\blue Tank is empty!"
 		src.add_fingerprint(user)
-	else if (istype(W,/obj/item/latexballon))
-		var/obj/item/latexballon/LB = W
-		LB.blow(src)
-		src.add_fingerprint(user)
+//	else if (istype(W,/obj/item/latexballon))
+//		var/obj/item/latexballon/LB = W
+//		LB.blow(src)
+//		src.add_fingerprint(user)
 
 	if(istype(W, /obj/item/device/assembly_holder))
 		bomb_assemble(W,user)

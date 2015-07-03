@@ -203,6 +203,7 @@
 	if(W == get_active_hand())
 		u_equip(W)
 
+	W.loc = src
 	switch(slot)
 		if(slot_back)
 			src.back = W

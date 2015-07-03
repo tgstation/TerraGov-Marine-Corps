@@ -22,10 +22,7 @@
 					"<span class='notice'>[user.name] pulls [buckled_mob.name] free from the sticky nest!</span>",\
 					"<span class='notice'>[user.name] pulls you free from the gelatinous resin.</span>",\
 					"<span class='notice'>You hear squelching...</span>")
-				buckled_mob.pixel_y = 0
-				buckled_mob.old_y = 0
 				unbuckle()
-				resisting = 0
 			else
 				if(buckled_mob.stat)
 					buckled_mob << "You're a little too unconscious to try that."
@@ -43,10 +40,6 @@
 				resisting = 1
 				spawn(NEST_RESIST_TIME)
 					if(user && buckled_mob && user.buckled == src && user.stat != DEAD)
-						resisting = 0
-						buckled_mob.last_special = world.time
-						buckled_mob.pixel_y = 0
-						buckled_mob.old_y = 0
 						unbuckle()
 			src.add_fingerprint(user)
 	return
@@ -56,10 +49,14 @@
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
-//	unbuckle()
+	unbuckle()
 
 	if (istype(M, /mob/living/carbon/Xenomorph))
 		user << "The [M] is too big to shove in the nest."
+		return
+
+	if (!istype(user, /mob/living/carbon/Xenomorph))
+		user << "Gross! You're not touching that stuff."
 		return
 
 	if(buckled_mob)
@@ -108,3 +105,11 @@
 		update_icon()
 		spawn(rand(225,400))
 			del(src)
+
+/obj/structure/stool/bed/nest/unbuckle(mob/user as mob)
+	if(!buckled_mob) return
+	resisting = 0
+	buckled_mob.last_special = world.time
+	buckled_mob.pixel_y = 0
+	buckled_mob.old_y = 0
+	..()
