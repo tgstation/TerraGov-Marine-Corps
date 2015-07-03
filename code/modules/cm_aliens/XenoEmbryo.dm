@@ -63,12 +63,9 @@
 					affected_mob.take_organ_damage(1)
 			if(prob(1))
 				affected_mob << "\red Your stomach hurts."
-				if(prob(20))
-					affected_mob.adjustToxLoss(1)
-					affected_mob.updatehealth()
 		if(5)
 			affected_mob << "\red You feel something tearing its way out of your stomach..."
-			affected_mob.adjustToxLoss(10)
+			affected_mob.adjustToxLoss(5)
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()
@@ -82,10 +79,13 @@
 	// he will become the alien but if he doesn't then we will set the stage
 	// to 2, so we don't do a process heavy check everytime.
 
+	if(!affected_mob)
+		return
+
 	if(candidates.len)
 		picked = pick(candidates)
 	else if(affected_mob.client)
-		if(affected_mob.client.holder && istype(affected_mob.client.holder,/datum/admins))
+		if(affected_mob.client.holder && istype(affected_mob.client.holder,/datum/admins) && !(affected_mob.client.prefs.be_special & BE_ALIEN))
 			affected_mob << "You were about to burst, but admins are immune to forced xenos. Lucky you!"
 			stage = 4
 			return
@@ -94,6 +94,11 @@
 	else
 		stage = 4 // Let's try again later.
 		return
+
+	if(!picked)
+		stage = 4
+		return
+
 	var/image/overlay_l = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_lie")
 	var/image/overlay_s = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
 	if(affected_mob.lying)
@@ -115,6 +120,7 @@
 			affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "bursted_stand")
 //		if(gib_on_success)
 //			affected_mob.gib()
+		processing_objects.Remove(src)
 		del(src)
 
 /*----------------------------------------

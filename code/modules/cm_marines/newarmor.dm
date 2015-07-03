@@ -36,7 +36,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	icon_state = "helmet"
 	item_state = "helmet"
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 70, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	flags = FPRINT|TABLEPASS
 	var/mob/living/carbon/human/wornby
@@ -85,7 +85,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	name = "marine armor"
 	desc = "A standard issue marine combat vest designed to protect them from their worst enemies: themselves."
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 80, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 70, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun/, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton, /obj/item/weapon/melee/stunprod, /obj/item/weapon/handcuffs, /obj/item/weapon/restraints, /obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade, /obj/item/weapon/combat_knife)
 	var/mob/living/carbon/human/wornby
@@ -213,7 +213,7 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	armor = list(melee = 45, bullet = 75, laser = 70, energy = 20, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun, /obj/item/device/binoculars, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton, /obj/item/weapon/melee/stunprod, /obj/item/weapon/handcuffs, /obj/item/weapon/restraints, /obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade, /obj/item/weapon/combat_knife)
-	var/brightness_on = 6
+	var/brightness_on = 7
 	var/on = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
@@ -257,8 +257,16 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	if(!istype(H))	return 0
 
 	var/squad = 0
-	var/obj/item/weapon/card/id/card = H.wear_id
-	if(!card)
+	var/obj/item/device/pda/I = H.wear_id
+	var/obj/item/weapon/card/id/card = null
+
+	if(I && istype(I))
+		if(I.id)
+			card = I.id
+	else
+		card = I
+
+	if(!card || !istype(card))
 		return 0
 
 	if(findtext(card.assignment, "Alpha"))
@@ -275,8 +283,16 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 /proc/is_leader_from_card(var/mob/living/carbon/human/H)
 	if(!istype(H)) return 0
 
-	var/obj/item/weapon/card/id/card = H.wear_id
-	if(!card)
+	var/obj/item/device/pda/I = H.wear_id
+	var/obj/item/weapon/card/id/card = null
+
+	if(I && istype(I))
+		if(I.id)
+			card = I.id
+	else
+		card = I
+
+	if(!card || !istype(card))
 		return 0
 
 	if(findtext(card.assignment, "Leader"))

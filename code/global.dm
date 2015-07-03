@@ -162,8 +162,8 @@ var/list/adminlog = list()
 
 var/list/powernets = list()
 
-var/Debug = 0	// global debug switch
-var/Debug2 = 0
+var/Debug = 1	// global debug switch
+var/Debug2 = 1
 
 var/datum/debug/debugobj
 
