@@ -140,15 +140,40 @@
 	H.take_organ_damage(rand(0,25), rand(0,25))
 
 //Give them proper jobs and stuff here later
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
+	var/randjob = rand(0,8)
+	switch(randjob)
+		if(0) //assistant
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
+		if(1) //civilian in pajamas
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
+		if(2) //Scientist
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+		if(3) //Doctor
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+		if(4) //Chef!
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), slot_wear_suit)
+		if(5) //Botanist
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
+		if(6)//Atmos
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), slot_w_uniform)
+		if(7) //Chaplain
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
+		if(8) //Miner
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
+	H.update_icons()
 
 	//Give them some information
-	H << "<h2>You are a survivor!</h2>"
-	H << "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now."
-	H << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
-	H.update_icons()
+	spawn(4)
+		H << "<h2>You are a survivor!</h2>"
+		H << "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now."
+		H << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
+		H << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
 	return 1
 
 //Deferred for now, this can wait.
