@@ -94,7 +94,7 @@
 
 /obj/item/weapon/storage/box/m37 //M37 Shotgun
 	name = "M37 Shotgun shells (box)"
-	desc = "It has a picture of a M37 shotgun on the side."
+	desc = "A box of standard issue high-powered 12 gauge buckshot rounds. Manufactured by Armat Systems for military and civilian use."
 	icon_state = "shells"
 	w_class = 2 //Can fit in belts
 	New()
@@ -112,9 +112,10 @@
 
 /obj/item/weapon/gun/projectile/m4a3 //45 Pistol
 	name = "\improper M4A3 Service Pistol"
-	desc = "M4A3 standard issue USCM pistol. It is composed of a lightweight steel alloy and fires .45 calibre rounds."
+	desc = "M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses .45 special rounds."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "colt"
+	item_state = "m4a3"
 	max_shells = 12
 	caliber = "45s"
 	ammo_type = "/obj/item/ammo_casing/m4a3"
@@ -140,8 +141,9 @@
 
 /obj/item/weapon/gun/projectile/m44m //mm44 Magnum Peacemaker
 	name = "\improper 44 Magnum"
-	desc = "A classic .44 calibre Magnum revolver from Earth's wilder days. Not standard issue."
+	desc = "A bulky 44 Magnum revolver, occasionally carried by assault troops and officers in the Colonial Marines. Uses 44 Magnum rounds"
 	icon_state = "mateba"
+	item_state = "44"
 	caliber = "38s"
 	ammo_type = "/obj/item/ammo_casing/m44m"
 	max_shells = 6
@@ -152,10 +154,10 @@
 
 /obj/item/weapon/gun/projectile/automatic/m39 // M39 SMG
 	name = "\improper M39 SMG"
-	desc = " Armat Battlefield Systems M39 SMG. Uses 9mm rounds. Often used by PMCs or in civilian zones due to its lack of stopping power."
+	desc = " Armat Battlefield Systems M39 SMG. Occasionally carried by light-infantry, scouts or non-combat personnel. Uses 9mm rounds."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smg"
-	item_state = "c20r"
+	item_state = "m39"
 	max_shells = 35
 	caliber = "9mms"
 	ammo_type = "/obj/item/ammo_casing/m39"
@@ -187,7 +189,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/m41 //M41 Assault Rifle
 	name = "\improper M41A Rifle"
-	desc = "M41A Pulse Rifle produced by Armat Battlefield Systems. Uses 10mm caseless ammunition. Peace Through Superior Firepower (tm)."
+	desc = "M41A Pulse Rifle. The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10mm special ammunition."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m41a0"
 	item_state = "m41a"
@@ -259,9 +261,10 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/m37 //M37 Pump Shotgun
 	name = "\improper M37 Pump Shotgun"
-	desc = "A Colonial Marines M37 Pump Shotgun. It fires heavily damaging quasi-explosive 12-gauge slugs. Shift click to pump it or use the verb.\nGood to keep handy for close encounters."
+	desc = "An M37 Pump Shotgun, a weapon commonly carried by Colonial Marines pointmen, law enforcement, and civilians. Shift click to pump it or use the verb.\nGood to keep handy for close encounters."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "shotgun"
+	item_state = "m37"
 	max_shells = 8
 	caliber = "12gs"
 	ammo_type = "/obj/item/ammo_casing/m37"
@@ -278,7 +281,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "knife"
-	desc = "When shits gets serious! You can slide this knife into your boots."
+	desc = "The standard issue combat knife issued to Colonial Marines soldiers. You can slide this knife into your boots."
 	flags = FPRINT | TABLEPASS | CONDUCT
 	sharp = 1
 	force = 25

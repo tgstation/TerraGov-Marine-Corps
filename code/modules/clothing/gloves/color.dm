@@ -1,21 +1,21 @@
 /obj/item/clothing/gloves/yellow
 	desc = "These gloves will protect the wearer from electric shock."
 	name = "insulated gloves"
-	icon_state = "yellow"
-	item_state = "ygloves"
+	icon_state = "lightbrown"
+	item_state = "lightbrowngloves"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	item_color="yellow"
+	item_color="brown"
 
 /obj/item/clothing/gloves/fyellow                             //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
 	name = "budget insulated gloves"
-	icon_state = "yellow"
-	item_state = "ygloves"
+	icon_state = "lightbrown"
+	item_state = "lightbrowngloves"
 	siemens_coefficient = 1			//Set to a default of 1, gets overridden in New()
 	permeability_coefficient = 0.05
 
-	item_color="yellow"
+	item_color="brown"
 
 	New()
 		siemens_coefficient = pick(0,0.5,0.5,0.5,0.5,0.75,1.5)
