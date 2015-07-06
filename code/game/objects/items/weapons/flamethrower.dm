@@ -1,9 +1,9 @@
 /obj/item/weapon/flamethrower
-	name = "flamethrower"
-	desc = "You are a firestarter!"
+	name = "M240 Incinerator Unit"
+	desc = "M240 Incinerator Unit has proven to be one of the most effective weapons at clearing out soft-targets. Carried by specialists, this weapon is one to be feared."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "flamethrowerbase"
-	item_state = "flamethrower_0"
+	item_state = "flamer"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	force = 3.0
 	throwforce = 10.0

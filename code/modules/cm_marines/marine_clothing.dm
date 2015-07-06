@@ -97,8 +97,8 @@
 
 //JUMPSUITS
 /obj/item/clothing/under/marine
-	name = "marine jumpsuit"
-	desc = "Soft as silk. Light as feather. Protective as Kevlar."
+	name = "Marine jumpsuit"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts."
 	icon_state = "grey"
 	item_state = "gy_suit"
 	item_color = "grey"

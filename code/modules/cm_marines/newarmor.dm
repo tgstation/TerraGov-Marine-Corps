@@ -9,7 +9,7 @@ var/list/armormarkings = list()
 var/list/armormarkings_sql = list()
 var/list/helmetmarkings = list()
 var/list/helmetmarkings_sql = list()
-var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(0,0,255))
+var/list/squad_colors = list(rgb(230,25,25), rgb(210,175,45), rgb(160,32,240), rgb(80,130,210))
 
 
 /proc/initialize_marine_armor()
@@ -36,7 +36,9 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	icon_state = "helmet"
 	item_state = "helmet"
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	armor = list(melee = 50, bullet = 70, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	name = "M10 Pattern Marine Helmet"
+	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	armor = list(melee = 50, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	flags = FPRINT|TABLEPASS
 	var/mob/living/carbon/human/wornby
@@ -82,8 +84,8 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	name = "marine armor"
-	desc = "A standard issue marine combat vest designed to protect them from their worst enemies: themselves."
+	name = "M3 Pattern Marine Armor"
+	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 70, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
@@ -176,15 +178,16 @@ var/list/squad_colors = list(rgb(255,0,0), rgb(255,255,0), rgb(160,32,240), rgb(
 		return
 
 /obj/item/clothing/head/helmet/marine2/heavy
-	name = "heavy specialist helmet"
+	name = "B18 Helmet"
 	icon_state = "xhelm"
 	item_state = "helmet"
+	desc = "The B18 Helmet that goes along with the B18 Defensive armor."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/weapon/storage/box/heavy_armor
 	name = "B18 defensive system crate"
-	desc = "A large case containing a helmet and armor for the discerning specialist."
+	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "armorchest"
 	w_class = 5
