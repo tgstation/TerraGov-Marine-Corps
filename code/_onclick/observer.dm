@@ -70,6 +70,22 @@
 	else
 		user << "[src] has no destination."
 
+/obj/structure/ladder/attack_ghost(mob/user as mob)
+	if(up && down)
+		switch( alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
+			if("Up")
+				user.loc = get_turf(up)
+			if("Down")
+				user.loc = get_turf(down)
+			if("Cancel")
+				return
+
+	else if(up)
+		user.loc = get_turf(up)
+
+	else if(down)
+		user.loc = get_turf(down)
+
 // -------------------------------------------
 // This was supposed to be used by adminghosts
 // I think it is a *terrible* idea

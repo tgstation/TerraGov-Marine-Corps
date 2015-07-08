@@ -11,7 +11,7 @@
 
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	return affected.open == (affected.encased ? 3 : 2)
-/*
+
 //////////////////////////////////////////////////////////////////
 //					ALIEN EMBRYO SURGERY						//
 //////////////////////////////////////////////////////////////////
@@ -45,13 +45,17 @@
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message("\red [user] rips the larva out of [target]'s ribcage!",
-							 "You rip the larva out of [target]'s ribcage!")
+		if(!hasorgans(target)) return
+
+		user.visible_message("\red [user] rips a wriggling parasite out of [target]'s ribcage!",
+							 "You rip a wriggling parasite out of [target]'s ribcage!")
 
 		for(var/obj/item/alien_embryo/A in target)
 			A.loc = A.loc.loc
 
-*/
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		affected.createwound(CUT, rand(0,70), 1)
+
 //////////////////////////////////////////////////////////////////
 //				CHEST INTERNAL ORGAN SURGERY					//
 //////////////////////////////////////////////////////////////////

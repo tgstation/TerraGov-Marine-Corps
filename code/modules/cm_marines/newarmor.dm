@@ -38,7 +38,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(210,175,45), rgb(160,32,240), r
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	name = "M10 Pattern Marine Helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	armor = list(melee = 50, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	flags = FPRINT|TABLEPASS
 	var/mob/living/carbon/human/wornby
@@ -303,3 +303,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(210,175,45), rgb(160,32,240), r
 
 	return 0
 
+/obj/item/weapon/card/id/equipped(var/mob/living/carbon/human/M, slot)
+	if(!istype(M))
+		return ..()
+
+	var/obj/item/clothing/head/helmet/marine2/H = M.head
+	var/obj/item/clothing/suit/storage/marine2/A = M.wear_suit
+
+	if(!isnull(H) && istype(H)) H.update_squad_overlays(M)
+	if(!isnull(A) && istype(A)) A.update_squad_overlays(M)
+
+	..(M, slot)

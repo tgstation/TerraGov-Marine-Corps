@@ -66,6 +66,7 @@
 	req_access_txt = "0"
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP =5,
+					/obj/item/weapon/storage/firstaid = 6,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix = 10)
 	contraband = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate =3)
 
@@ -102,6 +103,7 @@
 						/obj/item/device/multitool = 4,
 						/obj/item/weapon/storage/backpack/industrial = 3,
 						/obj/item/weapon/plastique = 3,
+						/obj/item/device/lightreplacer = 2,
 						/obj/item/weapon/airlock_electronics = 10,
 						/obj/item/weapon/module/power_control = 10,
 						/obj/item/weapon/airalarm_electronics = 10,
@@ -140,7 +142,9 @@
 						/obj/item/stack/medical/splint = 2,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
 						/obj/item/weapon/storage/belt/medical = 3,
-						/obj/item/clothing/glasses/hud/health = 3
+						/obj/item/clothing/glasses/hud/health = 3,
+						/obj/item/weapon/storage/firstaid = 4,
+						/obj/item/weapon/storage/firstaid/adv = 2
 					)
 	contraband = list()
 	premium = list()

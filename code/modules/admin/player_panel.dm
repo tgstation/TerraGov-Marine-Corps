@@ -467,7 +467,7 @@
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+					dat += "<td><A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 			dat += "</table>"
 
 		if(ticker.liason)
@@ -476,7 +476,8 @@
 			if(M)
 				dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-				dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+				dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>TP</A></td>"
+				dat += "<td><A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 			dat += "</table>"
 
 		if(ticker.mode.survivors.len)
@@ -486,7 +487,7 @@
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+					dat += "<td><A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 			dat += "</table>"
 
 

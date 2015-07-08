@@ -5,26 +5,29 @@
 	desc = "A huge, nasty red alien with enormous scythed claws."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Ravager Walking"
-	melee_damage_lower = 30
-	melee_damage_upper = 55
-	health = 550
-	maxHealth = 550
+	melee_damage_lower = 28
+	melee_damage_upper = 52
+	health = 350
+	maxHealth = 350
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
 	jellyMax = 0
 	caste_desc = "A brutal, devastating front-line attacker."
-	speed = -1.2 //Not as fast as runners, but faster than other xenos.
+	speed = -1.1 //Not as fast as runners, but faster than other xenos.
 	evolves_to = list()
 	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
 	var/CHARGESPEED = 2
 	var/CHARGESTRENGTH = 2
-	var/CHARGEDISTANCE = 5
-	var/CHARGECOOLDOWN = 80
+	var/CHARGEDISTANCE = 4
+	var/CHARGECOOLDOWN = 120
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
-	adjust_pixel_x = -16
 	armor_deflection = 75
+
+	adjust_pixel_x = -16
+	adjust_pixel_y = -6
+
 	adjust_size_x = 0.8
 	adjust_size_y = 0.75
 

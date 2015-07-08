@@ -30,7 +30,8 @@ var/const/MAX_ACTIVE_TIME = 200
 
 /obj/item/clothing/mask/facehugger/attack_hand(user as mob)
 	if((stat == CONSCIOUS && !sterile))
-		Attach(user) //If we're conscious, don't let them pick us up even if this fails. Just return.
+		if(CanHug(user))
+			Attach(user) //If we're conscious, don't let them pick us up even if this fails. Just return.
 		return
 	..()
 
@@ -48,11 +49,13 @@ var/const/MAX_ACTIVE_TIME = 200
 			return
 	user.put_in_active_hand(src) //Not a carrier, or already full? Just pick it up.
 
-/obj/item/clothing/mask/facehugger/attack(mob/living/M as mob, mob/user as mob)
-	..()
-	if(istype(M))
+/obj/item/clothing/mask/facehugger/attack(mob/M as mob, mob/user as mob)
+	if(CanHug(M))
 		Attach(M)
 		user.update_icons() //Just to be safe here
+	else
+		user << "\red The facehugger refuses to attach."
+		..()
 
 /obj/item/clothing/mask/facehugger/examine()
 	..()
@@ -107,7 +110,8 @@ var/const/MAX_ACTIVE_TIME = 200
 	..()
 	if(stat == CONSCIOUS)
 		icon_state = "[initial(icon_state)]"
-		Attach(hit_atom)
+		if(CanHug(hit_atom))
+			Attach(hit_atom)
 		throwing = 0
 
 /obj/item/clothing/mask/facehugger/proc/Attach(M as mob)
@@ -123,7 +127,7 @@ var/const/MAX_ACTIVE_TIME = 200
 
 	if(ishuman(M))
 		if(!M:has_organ("head"))
-			visible_message("[src] looks for a face to hug, but finds none!")
+			visible_message("\red [src] looks for a face to hug, but finds none!")
 			return 0
 
 	if(istype(M,/mob/living/carbon/Xenomorph))
@@ -295,12 +299,6 @@ var/const/MAX_ACTIVE_TIME = 200
 		return 0
 
 	if(M.status_flags & XENO_HOST) return 0
-
-//This is dealt with in the Attach() code
-/*	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		if(H.head && H.head.flags & HEADCOVERSMOUTH)
-			return 0*/
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,

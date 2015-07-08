@@ -28,7 +28,7 @@ em						{font-style: normal;	font-weight: bold;}
 .deadsay				{color: #5c00e6;}
 .radio					{color: #008000;}
 .deptradio				{color: #993399;}
-.comradio				{color: #193A7A;}
+.comradio				{color: #ACACAC;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #5C5C8A;}
 .airadio				{color: #FF00FF;}
@@ -38,6 +38,11 @@ em						{font-style: normal;	font-weight: bold;}
 .medradio				{color: #008160;}
 .sciradio				{color: #993399;}
 .supradio				{color: #5F4519;}
+
+.alpharadio				{color: #EA0000;}
+.bravoradio				{color: #F1B441;}
+.charlieradio			{color: #9632C8;}
+.deltaradio				{color: #32C8EE;}
 
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}

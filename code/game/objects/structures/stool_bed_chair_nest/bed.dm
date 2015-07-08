@@ -116,6 +116,7 @@
 	src.buckled_mob = M
 	src.add_fingerprint(user)
 	afterbuckle(M)
+
 	return
 
 /*

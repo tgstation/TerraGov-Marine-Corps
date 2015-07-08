@@ -26,7 +26,10 @@
 	..()
 
 /obj/item/alien_embryo/process()
-	if(!affected_mob)	return
+	if(!affected_mob)
+		processing_objects.Remove(src)
+		return
+
 	if(loc != affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
 		processing_objects.Remove(src)
@@ -38,7 +41,7 @@
 	if(affected_mob.stat == DEAD) //Stop. just stop it.
 		return 0
 
-	if(stage < 5 && prob(2))
+	if(stage < 5 && prob(1))
 		stage++
 		spawn(0)
 			RefreshInfectionImage(affected_mob)
@@ -65,10 +68,13 @@
 				affected_mob << "\red Your stomach hurts."
 		if(5)
 			affected_mob << "\red You feel something tearing its way out of your stomach..."
+			affected_mob.emote("scream")
 			affected_mob.adjustToxLoss(5)
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()
+
+
 
 /obj/item/alien_embryo/proc/AttemptGrow(var/gib_on_success = 1)
 	var/list/candidates = get_alien_candidates()
@@ -80,7 +86,7 @@
 	// to 2, so we don't do a process heavy check everytime.
 
 	if(!affected_mob)
-		return
+		return 0
 
 	if(candidates.len)
 		picked = pick(candidates)
@@ -88,16 +94,16 @@
 		if(affected_mob.client.holder && istype(affected_mob.client.holder,/datum/admins) && !(affected_mob.client.prefs.be_special & BE_ALIEN))
 			affected_mob << "You were about to burst, but admins are immune to forced xenos. Lucky you!"
 			stage = 4
-			return
+			return 0
 		else
 			picked = affected_mob.key
 	else
 		stage = 4 // Let's try again later.
-		return
+		return 0
 
 	if(!picked)
 		stage = 4
-		return
+		return 0
 
 	var/image/overlay_l = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_lie")
 	var/image/overlay_s = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
@@ -121,6 +127,7 @@
 //		if(gib_on_success)
 //			affected_mob.gib()
 		processing_objects.Remove(src)
+		affected_mob.update_icons()
 		del(src)
 
 /*----------------------------------------

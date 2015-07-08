@@ -366,11 +366,11 @@ datum/preferences
 			if(ind > 1)
 				dat += ", "
 			dat += "\tMechanical [organ_name] prothesis"
-		else if(status == "amputated")
-			++ind
-			if(ind > 1)
-				dat += ", "
-			dat += "\tAmputated [organ_name]"
+//		else if(status == "amputated")
+//			++ind
+//			if(ind > 1)
+//				dat += ", "
+//			dat += "\tAmputated [organ_name]"
 		else if(status == "mechanical")
 			++ind
 			if(ind > 1)
@@ -1377,7 +1377,7 @@ datum/preferences
 							limb = "r_hand"
 							third_limb = "r_arm"
 
-					var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in list("Normal","Amputated","Prothesis")
+					var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in list("Normal","Prothesis") //"Amputated"
 					if(!new_state) return
 
 					switch(new_state)
@@ -1385,10 +1385,10 @@ datum/preferences
 							organ_data[limb] = null
 							if(third_limb)
 								organ_data[third_limb] = null
-						if("Amputated")
-							organ_data[limb] = "amputated"
-							if(second_limb)
-								organ_data[second_limb] = "amputated"
+//						if("Amputated")
+//							organ_data[limb] = "amputated"
+//							if(second_limb)
+//								organ_data[second_limb] = "amputated"
 						if("Prothesis")
 							organ_data[limb] = "cyborg"
 							if(second_limb)

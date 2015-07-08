@@ -17,4 +17,10 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine, slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), slot_back)
+		spawn(10)
+			H << "\red You are a Military Police Officer!"
+			H << "Your primary job is to maintain peace and stability on board the Sulaco."
+			H << "Marines can get rowdy after a few weeks of cryosleep!"
+			H << "In addition, you are tasked with the security of high-ranking personnel. Keep them safe!"
 		return 1
