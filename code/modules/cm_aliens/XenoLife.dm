@@ -220,6 +220,12 @@
 	if(!gibbed)
 		icon_state = "[caste] Dead"
 	playsound(loc, 'sound/voice/hiss6.ogg', 50, 1, 1)
+	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
+		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",4)
+		xeno_message("The slashing of hosts is now permitted!",3)
+		slashing_allowed = 1
+	else
+		xeno_message("\The [src] has died!",3)
 	return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()

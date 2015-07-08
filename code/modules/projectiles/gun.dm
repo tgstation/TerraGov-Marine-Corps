@@ -35,8 +35,9 @@
 
 	var/twohanded = 0
 	var/wielded = 0 //Do not set this in gun defines
-	var/list/attachables = list()
-	var/list/attach_num = list(0,0,0,0,0,0) //Muzzle, rail, under, internals, magazine, stock. See setup.dm for #defines
+	var/obj/item/attachable/muzzle = null
+	var/obj/item/attachable/rail = null
+	var/obj/item/attachable/under = null
 
 /* FOR REFERENCE (do not uncomment)
  	ATTACH_MUZZLE	0

@@ -6,6 +6,10 @@
 
 //All this stuff was written by Absynth.
 
+
+//This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
+var/slashing_allowed = 0
+
 /mob/living/carbon/Xenomorph
 	var/caste = ""
 	name = "Drone"
@@ -62,6 +66,7 @@
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
 	var/spit_projectile = null
+	var/pslash_delay = 0
 
 	var/adjust_pixel_x = 0
 	var/adjust_pixel_y = 0

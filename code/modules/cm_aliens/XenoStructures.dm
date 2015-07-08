@@ -250,7 +250,7 @@
 /obj/effect/alien/acid
 	name = "acid"
 	desc = "Burbling corrossive stuff. I wouldn't want to touch it."
-	icon_state = "Acid"
+	icon_state = "acid"
 
 	density = 0
 	opacity = 0
@@ -348,6 +348,9 @@
 			user << "\red The child is not developed yet."
 			return
 		if(GROWN)
+			if(isXenoLarva(user))
+				user << "\red You nudge the egg, but nothing happens."
+				return
 			user << "\red You retrieve the child."
 			Burst(0)
 			return

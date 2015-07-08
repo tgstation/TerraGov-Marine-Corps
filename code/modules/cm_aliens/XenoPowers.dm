@@ -159,7 +159,7 @@
 	if(!T)
 		var/list/victims = list()
 		for(var/mob/living/carbon/human/C in oview(7))
-			if(!C.stat)
+			if(C && istype(C) && !C.stat && !C.lying )
 				victims += C
 		T = input(src, "Who should you pounce towards?") as null|anything in victims
 
@@ -460,8 +460,9 @@
 	if(!usedPounce)
 		if(!T)
 			var/list/victims = list()
-			for(var/mob/living/carbon/human/C in oview(7))
-				victims += C
+			for(var/mob/living/carbon/human/C in oview(6))
+				if(C && istype(C) && !C.lying && !C.stat)
+					victims += C
 			T = input(X, "Who should you charge towards?") as null|anything in victims
 
 		if(T)
@@ -511,7 +512,7 @@
 //			M.drop_l_hand() //Weaken will drop them on the floor anyway
 //			M.drop_r_hand()
 			M.ear_deaf += 40 //Deafens them temporarily (about 5 seconds)
-		else if(dist >= 5 && dist < 8)
+		else if(dist >= 5 && dist < 7)
 			M.stunned += 2
 			M << "\blue The sound stuns you!"
 	return
@@ -616,4 +617,42 @@
 	else
 		src << "You were interrupted, and your tunnel collapses, you irresponsible monster you."
 		src.storedplasma += 100 //refund half their plasma
+	return
+
+/mob/living/carbon/Xenomorph/proc/claw_toggle()
+	set name = "Permit/Disallow Slashing"
+	set desc = "Allows you to permit the hive to harm."
+	set category = "Alien"
+
+	if(pslash_delay)
+		src << "You must wait a bit before you can toggle this again."
+		return
+
+	spawn(300)
+		pslash_delay = 0
+
+	pslash_delay = 1
+	if(!slashing_allowed)
+		xeno_message("The Queen has permitted the harming of hosts!",3)
+		slashing_allowed = 1
+	else
+		xeno_message("The Queen has disallowed the harming of hosts. You will now hesitate when slashing.",3)
+		slashing_allowed = 0
+	return
+
+/mob/living/carbon/Xenomorph/verb/hive_status()
+	set name = "Hive Status"
+	set desc = "Check the status of your current hive."
+	set category = "Alien"
+
+	var/dat = "<html><head><title>Hive Status</title></head><body>"
+
+	if(ticker && ticker.mode.aliens.len)
+		dat += "<table cellspacing=4>"
+		for(var/datum/mind/L in ticker.mode.aliens)
+			var/mob/M = L.current
+			if(M && istype(M,/mob/living/carbon/Xenomorph))
+				dat += "<tr><td>[M.name] [M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+		dat += "</table></body>"
+	usr << browse(dat, "window=roundstatus;size=400x300")
 	return

@@ -39,6 +39,9 @@
 				visible_message("\red <B>\The [M]'s slash is blocked by [src]'s shield!</B>")
 				return 0
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+			if(!slashing_allowed && !istype(M,/mob/living/carbon/Xenomorph/Queen))
+				damage = M.melee_damage_lower / 2
+				M << "\blue Slashing is not currently permitted by the Queen. You hesitate and only lightly graze."
 			if(!damage)
 				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 				visible_message("\red <B>\The [M] lunges at [src]!</B>")
