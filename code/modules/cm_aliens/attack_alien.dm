@@ -25,7 +25,7 @@
 			if(M == src || anchored)
 				return
 			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
-				visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>")
+				visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>", "\red <B>Your grab was blocked by a shield!</B>")
 				return 0
 
 			if(Adjacent(M)) //Logic!
@@ -33,21 +33,21 @@
 				update_icons(M) //To immediately show the grab
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message(text("\red [] has grabbed []!", M, src))
+			visible_message(text("\red [] has grabbed []!", M, src), "\red You grab [M]!")
 		if("hurt")
-			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
+			if(check_shields(0, M.name) && rand(0,3) != 0) //Bit of a bonus
 				visible_message("\red <B>\The [M]'s slash is blocked by [src]'s shield!</B>")
 				return 0
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			if(!damage)
 				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
-				visible_message("\red <B>\The [M] has lunged at [src]!</B>")
+				visible_message("\red <B>\The [M] lunges at [src]!</B>")
 				return 0
 			var/datum/organ/external/affecting
 //			if(istype(M, /mob/living/carbon/alien/humanoid/ravager))
 //				affecting = get_organ(ran_zone("head", 95))
 //			else
-			affecting = get_organ(ran_zone(M.zone_sel.selecting,90))
+			affecting = get_organ(ran_zone(M.zone_sel.selecting,75))
 			if(!affecting) //No organ, just get a random one
 				affecting = get_organ(ran_zone(null,0))
 			if(!affecting) //Still nothing??
@@ -115,7 +115,7 @@
 				M.start_pulling(src)
 				update_icons(M) //To immediately show the grab
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				visible_message(text("\red \The [] has grabbed [] passively!", M, src))
+				visible_message(text("\red \The [] has grabbed []!", M, src), "\red You grab [M]!")
 
 		if("hurt")//Can't slash other xenos for now. SORRY
 			if(istype(src,/mob/living/carbon/Xenomorph))
@@ -137,6 +137,9 @@
 //Technically this proc isn't even necessary since most things are taken care of by specific sub-procs.
 //Mostly used to stop xenos from picking stuff up.
 /obj/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+
+	if(isXenoLarva(M)) return //NOPE.jpg
+
 	if(istype(src,/obj/item/clothing/mask/facehugger)) //dealt with in hugger code
 		src.attack_hand(M)
 		return
@@ -187,7 +190,7 @@
 /obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if (M.a_intent == "hurt")
-		attack_generic(M,M.melee_damage_lower / 3)
+		attack_generic(M,M.melee_damage_lower / 2)
 		return
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
@@ -326,7 +329,7 @@
 			M.loc = src.loc
 			return
 
-	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 50, 1)
 	M.visible_message("<span class='warning'> \The [M] digs into [src.name] and begins to pry it open.</span>", \
 		 			"<span class='warning'>You begin to pry open [src.name].</span>")
 
@@ -345,7 +348,7 @@
 		return
 	if(isXenoLarva(M)) return //Larvae can't do shit
 
-	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 50, 1)
 	M.visible_message("<span class='warning'> \The [M] digs into [src.name] and begins to pry it open.</span>", \
 		 			"<span class='warning'>You begin to pry open [src.name].</span>")
 
@@ -435,3 +438,7 @@
 
 /obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	return attack_hand(M)
+
+/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	return attack_hand(M)
+

@@ -64,6 +64,7 @@
 	var/spit_projectile = null
 
 	var/adjust_pixel_x = 0
+	var/adjust_pixel_y = 0
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
 	var/adjust_size_y = 1
 
@@ -99,8 +100,11 @@
 	reagents = R
 	R.my_atom = src
 	gender = NEUTER
-	if(adjust_pixel_x != 0) //Adjust large 2x2 sprites
+	if(adjust_pixel_x) //Adjust large 2x2 sprites
 		src.pixel_x += adjust_pixel_x
+
+	if(adjust_pixel_y) //Adjust large 2x2 sprites
+		src.pixel_y += adjust_pixel_y
 
 	if(adjust_size_x != 1)
 		var/matrix/M = matrix()

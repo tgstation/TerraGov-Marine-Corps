@@ -72,7 +72,7 @@
 			src.playsound_local(source, speech_sound, sound_vol, 1)
 
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="", var/command = 0)
 
 	if(!client)
 		return
@@ -166,9 +166,15 @@
 		if(prob(20))
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
 	else if(track)
-		src << "[part_a][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
+		if(!command)
+			src << "[part_a][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
+		else
+			src << "<font size='[command]'>[part_a][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span></font>"
 	else
-		src << "[part_a][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
+		if(!command)
+			src << "[part_a][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
+		else
+			src << "<font size = '[command]'>[part_a][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span></font>"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
 	if(!client)

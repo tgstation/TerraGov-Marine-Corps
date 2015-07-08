@@ -44,6 +44,10 @@
 		build_click(src, client.buildmode, params, A)
 		return
 
+	if(buckled && lying && isturf(A.loc)) //Stops nesting stuff, mostly.
+		RestrainedClickOn(A)
+		return
+
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"])
 		MiddleClickOn(A)

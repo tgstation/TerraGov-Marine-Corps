@@ -165,7 +165,7 @@
 
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
-		usedPounce = 150 //about 12 seconds
+		usedPounce = 180 //about 12 seconds
 		src.throw_at(T, 6, 3, src) //victim, distance, speed
 		spawn(usedPounce)
 			usedPounce = 0
@@ -493,7 +493,7 @@
 		return
 
 	has_screeched = 1
-	spawn(160)
+	spawn(280)
 		has_screeched = 0
 		src << "You feel your throat muscles vibrate. You are ready to screech again."
 

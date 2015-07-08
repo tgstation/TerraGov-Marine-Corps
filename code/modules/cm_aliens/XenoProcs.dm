@@ -246,16 +246,17 @@
 		if(!O.anchored)
 			step(O,src.dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
+		if(istype(src,/mob/living/carbon/Xenomorph/Ravager)) //Ravagers destroy tables.
+			if(istype(O,/obj/structure/table) || istype(O,/obj/structure/rack) || istype(O,/obj/structure/barricade/wooden))
+				var/obj/structure/S = O
+				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
+				S.destroy()
+
 		if(!istype(O,/obj/structure/table)) // new - xeno charge ignore tables
 			O.hitby(src,speed)
 			if(O.density)
 				src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
 				src.Weaken(2)
-
-		if(istype(O,/obj/structure/table) && istype(src,/mob/living/carbon/Xenomorph/Ravager)) //Ravagers destroy tables.
-			visible_message("<span class='danger'>[src] plows straight through the [O.name].</span>")
-			O:destroy() //We know it's a good var, sucks to use thou
-
 		return
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
@@ -272,6 +273,7 @@
 
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)
+				V.Weaken(1)
 				src.throwing = 0
 
 			if(charge_type == 1) //Runner/hunter pounce.

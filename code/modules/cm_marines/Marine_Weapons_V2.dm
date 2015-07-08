@@ -43,7 +43,7 @@
 	name = "Shotgun shell"
 	desc = "A 12 gauge shell."
 	icon_state = "gshell"
-	caliber = "12gs"
+	caliber = "shotgun"
 	projectile_type = "/obj/item/projectile/bullet/m37"
 
 ///***Ammo Boxes***///
@@ -266,7 +266,7 @@
 	icon_state = "shotgun"
 	item_state = "m37"
 	max_shells = 8
-	caliber = "12gs"
+	caliber = "shotgun"
 	ammo_type = "/obj/item/ammo_casing/m37"
 	recoil = 1
 	force = 10.0
@@ -389,7 +389,7 @@
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	ammo_type = "/obj/item/ammo_casing/m56"
 	w_class = 5.0
-	max_shells = 40
+	max_shells = 50
 	caliber = "28mm"
 	force = 12.0
 	twohanded = 1
@@ -534,7 +534,7 @@
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
-	darkness_view = 5
+	darkness_view = 6
 	toggleable = 1
 	icon_action_button = "action_meson"
 

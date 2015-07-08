@@ -28,7 +28,7 @@
 
 	if(isturf(src.loc))
 		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
-			tally += 3
+			tally += 5
 		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75
 

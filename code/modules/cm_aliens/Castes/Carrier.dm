@@ -18,7 +18,7 @@
 	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."
 	adjust_size_x = 1.1
-	adjust_size_y = 1.15
+	adjust_size_y = 1.2
 	var/huggers_max = 6
 	var/huggers_cur = 0
 	var/throwspeed = 2

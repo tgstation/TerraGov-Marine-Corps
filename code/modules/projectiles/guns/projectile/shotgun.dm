@@ -56,7 +56,7 @@
 	verb/pump_shotgun(mob/user)
 		set category = "Object"
 		set name = "Pump Shotgun"
-		set src in usr
+//		set src in usr
 
 		if(!usr.canmove || usr.stat || usr.restrained())
 			user << "Not right now."
@@ -67,7 +67,7 @@
 		if(!istype(M)) return //wat
 
 		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
-			user << "You have to be holding it!"
+			user << "You have to be holding a shotgun!"
 			return //not holding it
 
 		pump(M)

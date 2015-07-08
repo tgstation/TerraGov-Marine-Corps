@@ -808,6 +808,13 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	if(lying)
 		density = 0
+		//Deal with two handed stuff before the drop. Sometimes doesn't clear the drop properly when being pounced etc
+		if(src.r_hand && istype(src.r_hand,/obj/item/weapon/gun))
+			var/obj/item/weapon/gun/O = r_hand
+			if (O.twohanded) O.unwield()
+		if(src.l_hand && istype(src.l_hand,/obj/item/weapon/gun))
+			var/obj/item/weapon/gun/O = l_hand
+			if (O.twohanded) O.unwield()
 		drop_l_hand()
 		drop_r_hand()
 	else

@@ -50,11 +50,19 @@
 	else
 		updatehealth()
 
-		if(health <= 0)
+		if(health <= -100)
 			death()
 			blinded = 1
 			silent = 0
 			return 1
+		else if(health > -100 && health < 0)
+			Paralyse(4)
+			health -= rand(0,4)
+
+		ear_deaf = 0
+		ear_damage = 0
+		eye_blind = 0
+		eye_blurry = 0
 
 		if(weakened)
 			weakened--
@@ -75,31 +83,15 @@
 			stat = UNCONSCIOUS
 
 		else if(resting)
+			blinded = 0
 			if(halloss > 0)
 				adjustHalLoss(-3)
 
 		else
 			stat = CONSCIOUS
+			blinded = 0
 			if(halloss > 0)
 				adjustHalLoss(-1)
-
-		// Eyes and blindness.
-//		if(!has_eyes())
-//			eye_blind =  1
-//			blinded =    1
-//			eye_blurry = 1
-//		else if(eye_blind)
-//			eye_blind =  max(eye_blind-1,0)
-//			blinded =    1
-//		else if(eye_blurry)
-//			eye_blurry = max(eye_blurry-1, 0)
-
-		//Ears
-		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
-			ear_deaf = max(ear_deaf, 1)
-		else if(ear_deaf)			//deafness, heals slowly over time
-			ear_deaf = max(ear_deaf-1, 0)
-			ear_damage = max(ear_damage-0.05, 0)
 
 		update_icons()
 

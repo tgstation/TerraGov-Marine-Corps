@@ -10,13 +10,14 @@
 	melee_damage_upper = 20
 	health = 320
 	maxHealth = 320
-	storedplasma = 100
-	maxplasma = 1000
+	storedplasma = 200
+	maxplasma = 800
 	jellyMax = 0 //Final evolution anyway
 	plasma_gain = 50
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	adjust_pixel_x = -16
+	adjust_pixel_y = -6
 	adjust_size_x = 0.8
 	adjust_size_y = 0.75
 	inherent_verbs = list(

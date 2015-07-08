@@ -12,7 +12,7 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,2)
+			explosion(src.loc,-1,-1,3)
 			del(src)
 		return
 
@@ -181,7 +181,10 @@
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
 		triggered = 1
-		call(src,triggertype)(M)
+		explosion(src.loc,-1,2,1)
+		spawn(0)
+			if(src)
+				del(src)
 
 //TYPES//
 //Explosive

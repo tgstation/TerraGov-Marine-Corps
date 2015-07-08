@@ -345,12 +345,6 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 		Debug("DO, Running AC2")
 
-		// For those who wanted to be assistant if their preferences were filled, here you go.
-		for(var/mob/new_player/player in unassigned)
-			if(player.client.prefs.alternate_option == BE_ASSISTANT)
-				Debug("AC2 Assistant located, Player: [player]")
-				AssignRole(player, "Assistant")
-
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
@@ -367,7 +361,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		var/list/spawn_in_storage = list()
 
 		if(job)
-			if(job.flag == LIASON && ticker && H.mind)
+			if(job.title == "Corporate Liason" && ticker && H.mind)
 				ticker.liason = H.mind
 
 			//Equip custom gear loadout.

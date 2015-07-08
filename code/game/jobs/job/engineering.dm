@@ -25,6 +25,11 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
+		spawn(10)
+			H << "\red You are the Chief Engineer!"
+			H << "Your job is to maintain the USS Sulaco and ensure things don't explode."
+			H << "Your primary goal is to maintain the Supermatter engine."
+			H << "The Engine is just about already set up, see the forums for a guide on what to do or ask an admin."
 		return 1
 
 //Maintenance Tech
@@ -52,4 +57,10 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/t_scanner(H), slot_r_store)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/engineering(H), slot_l_store)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), slot_l_ear)
+		spawn(10)
+			H << "You are a Sulaco maintenance technician!"
+			H << "Your boss is the Chief Engineer. Follow his or her orders!"
+			H << "Your first priority is to make sure the Supermatter engine is running smoothly."
+			H << "Don't fuck up!"
 		return 1

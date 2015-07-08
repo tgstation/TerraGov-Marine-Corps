@@ -270,9 +270,6 @@ var/list/toldstory = list()
 		finished = 0
 		return
 
-	if(finished > 0) //Don't keep checking this if we're already done the game. It's already checked elsewhere, but just to be safe..
-		return
-
 	//Count up our player controlled mobs.
 	var/count_h = count_humans()
 	var/count_x = count_xenos()
@@ -316,7 +313,7 @@ var/list/toldstory = list()
 			world << 'sound/misc/asses_kicked.ogg'
 
 	else if(finished == 2)
-		feedback_set_details("round_end_result","marine major victory - xenomorph infestation erradicated")
+		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
 		world << "\red <FONT size = 4><B>Marines major victory!</B></FONT>"
 		world << "\red <FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>"
 		if(prob(50))
@@ -327,11 +324,11 @@ var/list/toldstory = list()
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
 		world << "\red <FONT size = 3><B>Marine minor victory.</B></FONT>"
-		world << "\red <FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been erradicated!</B></FONT>"
+		world << "\red <FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>"
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
 		world << "\red <FONT size = 3><B>Alien minor victory.</B></FONT>"
-		world << "\red <FONT size = 3><B>The station has been evacuated... but the infestation remains!</B></FONT>"
+		world << "\red <FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
 		world << "\red <FONT size = 3><B>Draw.</B></FONT>"

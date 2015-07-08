@@ -376,8 +376,6 @@ v
 		"/obj/item/ammo_magazine/a357",
 		"/obj/item/ammo_magazine/c38",
 		"/obj/item/weapon/melee/baton",
-		"/obj/item/weapon/melee/stunprod",
-		"/obj/item/weapon/restraints",
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
@@ -389,7 +387,9 @@ v
 		"/obj/item/weapon/storage/box/m37",
 		"/obj/item/ammo_casing/m37",
 		"/obj/item/flareround_s",
-		"/obj/item/flareround_sp"
+		"/obj/item/flareround_sp",
+		"/obj/item/weapon/grenade",
+		"/obj/item/device/mine"
 
 		)
 

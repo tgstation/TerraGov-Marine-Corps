@@ -27,10 +27,17 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/commander(H), slot_head)
-
-		captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
-
 		H.implant_loyalty(src)
+		spawn(10)
+			H << "\red You are the Sulaco Commander!"
+			H << "Your job is HEAVY ROLE PLAY and requires you to stay IN CHARACTER at all times."
+			H << "You are hired by Weyland-Yutani to investigate the archaeology dig site Lazarus Landing."
+			H << "Your primary task is the safety of the Sulaco and its crew, and ensuring the survival of the Marines."
+			H << "Your first order of business should be briefing the Marines east of the ladder hallway."
+			H << "If you require any help, use adminhelp to talk to game staff about what you're supposed to do."
+			H << "Don't fuck up!"
+		spawn(15)
+			captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
 
 		return 1
 
@@ -53,6 +60,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
+		var/obj/item/weapon/storage/backpack/BPK = new(H)
+		new /obj/item/weapon/storage/box/survival(BPK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), slot_w_uniform)
@@ -60,6 +69,11 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.implant_loyalty(src)
+		spawn(10)
+			H << "\red You are the Executive Officer of the USS Sulaco!"
+			H << "You are second in command aboard the ship and are in charge of all personnel except the Commander."
+			H << "You may need to fill in for other duties if areas are understaffed."
+			H << "If the Commander bites it, you're in charge!"
 		return 1
 
 //Bridge Officer
@@ -78,6 +92,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
+		var/obj/item/weapon/storage/backpack/BPK = new(H)
+		new /obj/item/weapon/storage/box/survival(BPK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), slot_w_uniform)
@@ -85,6 +101,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.implant_loyalty(src)
+		spawn(10)
+			H << "\red You are a bridge officer of the USS Sulaco!"
+			H << "Your job is to monitor the marines, and ensure the ship's survival."
+			H << "You are also in charge of Logistics, including giving new IDs, manning the supply bay and sending dropships."
 		return 1
 
 /datum/job/liason

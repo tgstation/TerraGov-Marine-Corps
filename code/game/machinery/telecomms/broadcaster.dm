@@ -283,6 +283,25 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
+	var/command = 0 //Is this a commander?
+
+	if(M && istype(M,/mob/living/carbon/human))
+		var/obj/item/device/pda/I = M:wear_id
+		var/obj/item/weapon/card/id/card = null
+
+		if(I && istype(I))
+			if(I.id)
+				card = I.id
+		else
+			card = I
+
+		if(card)
+			if(card.assignment == "Commander")
+				command = 4
+			else if(card.assignment == "Bridge Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
+				command = 3
+
+
 	for (var/mob/R in receive)
 
 	  /* --- Loop through the receivers and categorize them --- */
@@ -375,13 +394,13 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 
 		else if (display_freq == ALPHA_FREQ)
-			part_a = "<span class='synradio'><span class='name'>"
+			part_a = "<span class='alpharadio'><span class='name'>"
 		else if (display_freq == BRAVO_FREQ)
-			part_a = "<span class='supradio'><span class='name'>"
+			part_a = "<span class='bravoradio'><span class='name'>"
 		else if (display_freq == CHARLIE_FREQ)
-			part_a = "<span class='sciradio'><span class='name'>"
+			part_a = "<span class='charlieradio'><span class='name'>"
 		else if (display_freq == DELTA_FREQ)
-			part_a = "<span class='comradio'><span class='name'>"
+			part_a = "<span class='deltaradio'><span class='name'>"
 
 		// If all else fails and it's a dept_freq, color me purple!
 		else if (display_freq in DEPT_FREQS)
@@ -434,33 +453,33 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		if (length(heard_masked))
 			for (var/mob/R in heard_masked)
-				R.hear_radio(message,verbage, speaking, part_a, part_b, M, 0, name)
+				R.hear_radio(message,verbage, speaking, part_a, part_b, M, 0, name, command)
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
 		if (length(heard_normal))
 			for (var/mob/R in heard_normal)
-				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, realname)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, realname, command)
 
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 
 		if (length(heard_voice))
 			for (var/mob/R in heard_voice)
-				R.hear_radio(message,verbage, speaking, part_a, part_b, M,0, vname)
+				R.hear_radio(message,verbage, speaking, part_a, part_b, M,0, vname, 0)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
 
 		if (length(heard_garbled))
 			for (var/mob/R in heard_garbled)
-				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, vname)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, vname, 0)
 
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 
 		if (length(heard_gibberish))
 			for (var/mob/R in heard_gibberish)
-				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, 0)
 
 
 /proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/level)
