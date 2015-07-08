@@ -13,6 +13,17 @@
 	else
 		..()
 
+//Send a message to all xenos. Mostly used in the deathgasp display
+proc/xeno_message(var/message = null, var/size = 3)
+	if(!message)
+		return
+
+	if(ticker && ticker.mode.aliens.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+		for(var/datum/mind/L in ticker.mode.aliens)
+			var/mob/living/carbon/Xenomorph/M = L.current
+			if(M && istype(M) && !M.stat && M.client) //Only living and connected xenos
+				M << "\red <font size=[size]> [message]</font>"
+
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.

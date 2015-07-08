@@ -93,8 +93,12 @@
 			m_type = 1
 		if("dance")
 			if (!src.restrained())
-				message = "<B>The [src.name]</B> dances around happily."
+				message = "<B>The [src.name]</B> dances around!"
 				m_type = 1
+				spawn(0)
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+						dir = i
+						sleep(1)
 		if("roll")
 			if (!src.restrained())
 				message = "<B>The [src.name]</B> rolls."

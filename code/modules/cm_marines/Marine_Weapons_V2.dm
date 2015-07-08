@@ -233,10 +233,13 @@
 	verb/eject_magazine(mob/user)
 		set category = "Object"
 		set name = "Eject current magazine"
-		set src in usr
+//		set src in usr
 
 		if(!usr.canmove || usr.stat || usr.restrained())
 			user << "Not right now."
+			return
+
+		if(!src || usr.get_active_hand() != src)
 			return
 
 		var/obj/item/ammo_magazine/AM = empty_mag
@@ -318,9 +321,9 @@
 /obj/item/weapon/gun/projectile/M42C
 	name = "M42C Scoped Rifle"
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 6-round magazine.\n'Peace Through Superior Firepower'"
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "sniper"
-	item_state = "sniper"
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "M42c"
+	item_state = "l6closednomag"  //placeholder
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	ammo_type = "/obj/item/ammo_casing/m42c"
 	fire_delay = 80

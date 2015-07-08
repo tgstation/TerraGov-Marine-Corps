@@ -152,7 +152,7 @@
 		if(istype(pulled,/mob/living/carbon/Xenomorph))
 			src << "Nice try! That wouldn't taste very good."
 			return
-		src.visible_message("\red [src] starts to devour [pulled]!","\red You start to devour [pulled]!")
+		src.visible_message("\red <B>[src] starts to devour [pulled]!</b>","\red <b>You start to devour [pulled]!</b>")
 		if(do_after(src,50))
 			src.visible_message("\red [src] devours [pulled]!","\red You devour [pulled]!")
 			src.stop_pulling()

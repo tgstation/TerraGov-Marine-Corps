@@ -51,7 +51,7 @@
 
 /mob/living/carbon/Xenomorph/say_understands(var/mob/other,var/datum/language/speaking = null)
 
-	if(istype(other,/mob/living/carbon/Xenomorph) && !speaking)
+	if(istype(other,/mob/living/carbon/Xenomorph))
 		return 1
 	return ..()
 
@@ -63,9 +63,9 @@
 
 	var/rendered
 	if(istype(src, /mob/living/carbon/Xenomorph/Queen))
-		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> '[message]'</span></span></i></font>"
+		rendered = "<font size='4' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i></font>"
 	else
-		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> '[message]'</span></span></i>"
+		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i>"
 
 	for (var/mob/S in player_list)
 		if((istype(S,/mob/living/carbon/Xenomorph) || S.stat == DEAD) && !istype(S,/mob/new_player))

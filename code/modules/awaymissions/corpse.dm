@@ -129,7 +129,6 @@
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseback = /obj/item/weapon/storage/backpack
-	corpseradio = /obj/item/device/radio/headset
 	corpseid = 1
 	corpseidjob = "Chef"
 //	corpseidaccess = "Syndicate"
@@ -137,7 +136,6 @@
 
 /obj/effect/landmark/corpse/doctor
 	name = "Doctor"
-	corpseradio = /obj/item/device/radio/headset/headset_med
 	corpseuniform = /obj/item/clothing/under/rank/medical
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
 	corpseback = /obj/item/weapon/storage/backpack/medic
@@ -149,7 +147,6 @@
 
 /obj/effect/landmark/corpse/engineer
 	name = "Engineer"
-	corpseradio = /obj/item/device/radio/headset/headset_eng
 	corpseuniform = /obj/item/clothing/under/rank/engineer
 	corpseback = /obj/item/weapon/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
@@ -169,7 +166,6 @@
 	name = "Clown"
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
 	corpsepocket1 = /obj/item/weapon/bikehorn
 	corpseback = /obj/item/weapon/storage/backpack/clown
@@ -179,7 +175,6 @@
 
 /obj/effect/landmark/corpse/scientist
 	name = "Scientist"
-//	corpseradio = /obj/item/device/radio/headset/headset_sci
 	corpseuniform = /obj/item/clothing/under/rank/scientist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat/science
 	corpseback = /obj/item/weapon/storage/backpack
@@ -189,7 +184,6 @@
 //	corpseidaccess = "Scientist"
 
 /obj/effect/landmark/corpse/miner
-//	corpseradio = /obj/item/device/radio/headset/headset_cargo
 	corpseuniform = /obj/item/clothing/under/rank/miner
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpseback = /obj/item/weapon/storage/backpack/industrial
@@ -208,7 +202,6 @@
 
 /obj/effect/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
-//	corpseradio = /obj/item/device/radio/headset/heads/hop
 	corpseuniform = /obj/item/clothing/under/rank/centcom_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseshoes = /obj/item/clothing/shoes/black
@@ -221,7 +214,6 @@
 	name = "Commander"
 	corpseuniform = /obj/item/clothing/under/rank/centcom_commander
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-//	corpseradio = /obj/item/device/radio/headset/heads/captain
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
 	corpsemask = /obj/item/clothing/mask/cigarette/cigar/cohiba
 	corpsehelmet = /obj/item/clothing/head/centhat

@@ -1,8 +1,9 @@
 /obj/item/weapon/gun/rocketlauncher
 	var/projectile
-	name = "M6-B rocket launcher"
+	name = "M83 rocket launcher"
 	desc = "MAGGOT."
-	icon_state = "rocket"
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "M83sadar"
 	item_state = "rocket"
 	w_class = 4.0
 	throw_speed = 2

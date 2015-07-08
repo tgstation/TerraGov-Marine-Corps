@@ -62,7 +62,7 @@
 	dizziness = 0
 	jitteriness = 0
 
-	layer = MOB_LAYER
+	layer = MOB_LAYER - 0.1 //So people stand on corpses
 
 	if(blind && client)
 		blind.layer = 0
