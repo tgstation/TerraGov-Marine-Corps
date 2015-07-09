@@ -171,12 +171,18 @@ mob/living/proc/Targeted(var/obj/item/weapon/gun/I) //Self explanitory.
 
 	if(targeted_by.len == 1)
 		spawn(0)
-			target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking")
+			if(istype(I,/obj/item/weapon/gun/plasma_caster))
+				target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking-y")
+			else
+				target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking")
 			overlays += target_locked
 			spawn(0)
 				sleep(20)
 				if(target_locked)
-					target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locked")
+					if(istype(I,/obj/item/weapon/gun/plasma_caster))
+						target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locked-y")
+					else
+						target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locked")
 					update_targeted()
 
 	//Adding the buttons to the controller person

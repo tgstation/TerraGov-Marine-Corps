@@ -16,9 +16,9 @@
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
-	var/has_enabled_antagHUD = 0
+//	var/has_enabled_antagHUD = 0
 	var/medHUD = 0
-	var/antagHUD = 0
+//	var/antagHUD = 0
 	universal_speak = 1
 	var/atom/movable/following = null
 
@@ -112,13 +112,13 @@ Works together with spawning an observer, noted above.
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
 
-	if(antagHUD)
-		var/list/target_list = list()
-		for(var/mob/living/target in oview(src, 14))
-			if(target.mind&&(target.mind.special_role||issilicon(target)) )
-				target_list += target
-		if(target_list.len)
-			assess_targets(target_list, src)
+//	if(antagHUD)
+//		var/list/target_list = list()
+//		for(var/mob/living/target in oview(src, 14))
+//			if(target.mind&&(target.mind.special_role||issilicon(target)) )
+//				target_list += target
+//		if(target_list.len)
+//			assess_targets(target_list, src)
 	if(medHUD)
 		process_medHUD(src)
 
@@ -129,10 +129,10 @@ Works together with spawning an observer, noted above.
 		C.images += patient.hud_list[HEALTH_HUD]
 		C.images += patient.hud_list[STATUS_HUD_OOC]
 
-/mob/dead/proc/assess_targets(list/target_list, mob/dead/observer/U)
-	var/client/C = U.client
-	for(var/mob/living/carbon/human/target in target_list)
-		C.images += target.hud_list[SPECIALROLE_HUD]
+///mob/dead/proc/assess_targets(list/target_list, mob/dead/observer/U)
+//	var/client/C = U.client
+//	for(var/mob/living/carbon/human/target in target_list)
+//		C.images += target.hud_list[SPECIALROLE_HUD]
 
 
 /*
@@ -152,8 +152,8 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
-		if(!ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
-			ghost.verbs -= /mob/dead/observer/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+//		if(!ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
+//			ghost.verbs -= /mob/dead/observer/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 		return ghost
 
 /*
@@ -255,34 +255,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		medHUD = 1
 		src << "\blue <B>Medical HUD Enabled</B>"
-
-/mob/dead/observer/verb/toggle_antagHUD()
-	set category = "Ghost"
-	set name = "Toggle AntagHUD"
-	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
-
-	if(!client)
-		return
-	var/mentor = is_mentor(usr.client)
-	if(!config.antag_hud_allowed && (!client.holder || mentor))
-		src << "\red Admins have disabled this for this round."
-		return
-	var/mob/dead/observer/M = src
-	if(jobban_isbanned(M, "AntagHUD"))
-		src << "\red <B>You have been banned from using this feature</B>"
-		return
-	if(config.antag_hud_restricted && !M.has_enabled_antagHUD && (!client.holder || mentor))
-		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
-		if(response == "No") return
-		M.can_reenter_corpse = 0
-	if(!M.has_enabled_antagHUD && (!client.holder || mentor))
-		M.has_enabled_antagHUD = 1
-	if(M.antagHUD)
-		M.antagHUD = 0
-		src << "\blue <B>AntagHUD Disabled</B>"
-	else
-		M.antagHUD = 1
-		src << "\blue <B>AntagHUD Enabled</B>"
 
 /mob/dead/observer/proc/dead_tele()
 	set category = "Ghost"

@@ -16,7 +16,7 @@ proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 			continue
 
 		var/mob/living/carbon/human/H = patient
-		if(patient.species && patient.species.name == "Yautja")
+		if(H.species && H.species.name == "Yautja")
 			continue
 
 		if(!local_scanner)

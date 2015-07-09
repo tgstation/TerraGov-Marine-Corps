@@ -284,6 +284,7 @@ emp_act
 	//Melee weapon embedded object code.
 	if (I.damtype == BRUTE && !I.is_robot_module())
 		var/damage = I.force
+		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
 		if (armor)
 			damage /= armor+1
 

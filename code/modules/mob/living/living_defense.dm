@@ -51,7 +51,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		var/obj/item/clothing/gloves/yautja/Y = M.gloves
-		if(Y && istype(Y) && Y.cloaked && rand(30))
+		if(Y && istype(Y) && Y.cloaked && rand(0,100) < 25 )
 			Y.decloak(src)
 
 	//Being hit while using a deadman switch
