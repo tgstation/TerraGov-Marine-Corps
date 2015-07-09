@@ -41,12 +41,18 @@
 	flash_weak_pain()
 
 	//Being hit while using a cloaking device
-	var/obj/item/weapon/cloaking_device/C = locate((/obj/item/weapon/cloaking_device) in src)
-	if(C && C.active)
-		C.attack_self(src)//Should shut it off
-		update_icons()
-		src << "\blue Your [C.name] was disrupted!"
-		Stun(2)
+//	var/obj/item/weapon/cloaking_device/C = locate((/obj/item/weapon/cloaking_device) in src)
+//	if(C && C.active)
+//		C.attack_self(src)//Should shut it off
+//		update_icons()
+//		src << "\blue Your [C.name] was disrupted!"
+//		Stun(2)
+
+	if(ishuman(src))
+		var/mob/living/carbon/human/M = src
+		var/obj/item/clothing/gloves/yautja/Y = M.gloves
+		if(Y && istype(Y) && Y.cloaked && rand(30))
+			Y.decloak(src)
 
 	//Being hit while using a deadman switch
 	if(istype(equipped(),/obj/item/device/assembly/signaler))

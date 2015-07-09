@@ -1163,6 +1163,19 @@
 				if(!E.len)
 					embedded_flag = 0
 
+			//Predator bracers
+			if(gloves)
+				var/obj/item/clothing/gloves/yautja/Y = gloves
+				if(Y && istype(Y))
+					if(Y.cloaked)
+						Y.charge -= 5
+						if(Y.charge <= 0)
+							Y.decloak(src)
+						if(Y.charge < 0) Y.charge = 0
+					else
+						Y.charge += 30
+						if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
+
 			//Eyes
 			if(!species.has_organ["eyes"]) // Presumably if a species has no eyes, they see via something else.
 				eye_blind =  0

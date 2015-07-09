@@ -541,6 +541,17 @@
 					message = "<B>[src]</B> makes a very loud noise."
 					m_type = 2
 
+		if ("roar")
+			if(src.species && src.species.name == "Yautja" && src.loc)
+				message = "<B>[src] roars!</b>"
+				m_type = 1
+				spawn(2)
+					if(rand(50))
+						playsound(src.loc, 'sound/voice/pred_roar1.ogg', 50, 1)
+					else
+						playsound(src.loc, 'sound/voice/pred_roar2.ogg', 50, 1)
+			else
+				src << "\blue Unusable emote '[act]'. Say *help for a list."
 		if ("help")
 			src << "blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,\ncry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,\ngrin, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, raise, salute, shake, shiver, shrug,\nsigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, tremble, twitch, twitch_s, whimper,\nwink, yawn"
 
