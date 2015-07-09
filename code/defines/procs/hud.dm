@@ -12,6 +12,13 @@ proc/process_med_hud(var/mob/M, var/local_scanner, var/mob/Alt)
 		if(P.Mob.see_invisible < patient.invisibility)
 			continue
 
+		if(!ishuman(patient))
+			continue
+
+		var/mob/living/carbon/human/H = patient
+		if(patient.species && patient.species.name == "Yautja")
+			continue
+
 		if(!local_scanner)
 			if(istype(patient.w_uniform, /obj/item/clothing/under))
 				var/obj/item/clothing/under/U = patient.w_uniform
