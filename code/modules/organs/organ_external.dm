@@ -837,6 +837,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			del(spark_system)
 
 /datum/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
+	if(!W || isnull(W) || !W.canremove)
+		return
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
 	implants += W
@@ -846,7 +848,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc
 		H.drop_item()
-	W.loc = owner
+	if(W)
+		W.loc = owner
 
 /****************************************************
 			   ORGAN DEFINES

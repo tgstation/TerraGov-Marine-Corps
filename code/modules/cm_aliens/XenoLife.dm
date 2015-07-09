@@ -45,21 +45,33 @@
 	if(status_flags & GODMODE)	return 0
 
 	if(stat == DEAD)
+		sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 		blinded = 1
 		silent = 0
 	else
 		updatehealth()
 
-		if(health <= -100)
+		if(health <= -100 || (health < 0 && isXenoLarva(src))) //Just died!
 			death()
 			blinded = 1
 			silent = 0
 			return 1
-		else if(health > -100 && health < 0)
+		else if(health > -100 && health < 0) //Unconscious
+			blinded = 1
+			sight &= ~SEE_TURFS
+			sight &= ~SEE_MOBS
+			sight &= ~SEE_OBJS
+			see_in_dark = 2
 			Paralyse(4)
-			health -= rand(0,4)
+			health -= rand(0,8)
+		else										//Alive! Yey! Turn on their vision.
+			sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
+			see_in_dark = 8
 
-		ear_deaf = 0
+		if(health > 0) //Just to be safe
+			blinded = 0
+
+		ear_deaf = 0 //All this stuff is prob unnecessary
 		ear_damage = 0
 		eye_blind = 0
 		eye_blurry = 0
@@ -67,26 +79,23 @@
 		if(weakened)
 			weakened--
 
-		if(paralysis)
+		if(paralysis) //If they're down, make sure they are actually down.
 			AdjustParalysis(-3)
 			blinded = 1
 			stat = UNCONSCIOUS
 			if(halloss > 0)
 				adjustHalLoss(-3)
 		else if(sleeping)
-
 			adjustHalLoss(-3)
 			if (mind)
 				if((mind.active && client != null) || immune_to_ssd)
 					sleeping = max(sleeping-1, 0)
 			blinded = 1
 			stat = UNCONSCIOUS
-
 		else if(resting)
 			blinded = 0
 			if(halloss > 0)
 				adjustHalLoss(-3)
-
 		else
 			stat = CONSCIOUS
 			blinded = 0
@@ -98,11 +107,6 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
-
-	//This should give full x-ray vision for the time being. Fuckin sight code god damn it
-	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
-	see_in_dark = 8
-	blind = 0
 
 	if (healths)
 		if (stat != 2)
@@ -159,11 +163,11 @@
 	if (client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
-//	if ((blind && stat != 2))
-//		if ((blinded))
-//			blind.layer = 18
-//		else
-//			blind.layer = 0
+	if ((blind && stat != 2))
+		if ((blinded))
+			blind.layer = 18
+		else
+			blind.layer = 0
 //			if (disabilities & NEARSIGHTED)
 //				client.screen += global_hud.vimpaired
 //			if (eye_blurry)

@@ -42,6 +42,10 @@
 	if(istype(Proj ,/obj/item/projectile/beam/pulse))
 		src.ex_act(2)
 
+	if(istype(Proj ,/obj/item/projectile/beam/yautja3))
+		explosion(src,-1,-1,1)
+		if(src)
+			src.ex_act(3)
 	if(istype(Proj ,/obj/item/projectile/bullet/gyro))
 		explosion(src, -1, 0, 2)
 	..()
