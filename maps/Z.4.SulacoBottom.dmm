@@ -55,7 +55,7 @@
 "bc" = (/obj/structure/table,/obj/item/stack/sheet/mineral/phoron{amount = 25},/obj/machinery/atmospherics/unary/vent_pump{on = 1},/obj/machinery/reagentgrinder,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "bd" = (/obj/machinery/computer/rdconsole{id = 1},/turf/simulated/floor{dir = 9; icon_state = "warnwhite"},/area/sulaco/research)
 "be" = (/obj/machinery/r_n_d/destructive_analyzer,/turf/simulated/floor{icon_state = "warnwhite"; dir = 5},/area/sulaco/research)
-"bf" = (/obj/machinery/smartfridge/chemistry,/obj/machinery/light{dir = 1},/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
+"bf" = (/obj/machinery/light{dir = 1},/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "bg" = (/obj/machinery/chem_master,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "bh" = (/obj/machinery/vending/marine_medic,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "bi" = (/obj/structure/stool/bed,/obj/machinery/atmospherics/unary/vent_pump{on = 1},/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)

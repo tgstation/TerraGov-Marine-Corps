@@ -31,6 +31,12 @@
 			tally += 5
 		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75
+			if(gloves && rand(60))
+				if(istype(src.gloves,/obj/item/clothing/gloves/yautja))
+					var/obj/item/clothing/gloves/yautja/Y = src.gloves
+					if(Y && istype(Y) && Y.cloaked)
+						src << "\red Your bracers hiss and spark as they short out!"
+						Y.decloak(src)
 
 	if(istype(buckled, /obj/structure/stool/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))

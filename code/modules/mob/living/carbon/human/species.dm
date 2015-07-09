@@ -484,12 +484,27 @@
 	default_language = "Sainja"
 	secondary_langs = list("Galactic Common")  // Sure, what the hell. They can grunt a few words.
 	unarmed_type = /datum/unarmed_attack/punch
+	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
+	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
+	speech_chance = 100
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/leap
+//		/mob/living/carbon/human/proc/leap
 		)
+
+/datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
+	//Spawn them some equipment
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/yautja(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), slot_gloves)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/harpoon/yautja(H), slot_r_hand)
+	return ..()
 
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)
