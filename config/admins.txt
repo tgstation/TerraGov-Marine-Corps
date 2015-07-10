@@ -1,4 +1,62 @@
+######################################################################
+# Basically, ckey goes first. Rank goes after the "-"                #
+# Case is not important for ckey.                                    #
+# Case IS important for the rank. However punctuation/spaces are not #
+# Ranks can be anything defined in admin_ranks.txt           ~Carn   #
+######################################################################
+
+# not_a_user - Host
 Apophis775 - Host
+ColonialMarines - Host
+
+Rahlzel - Vice Host
+
+
+
+SASoperative - Head Admin
+
+
+ - Head Moderator
+
+
+coroneljones - Game Admin
+
+Speedybast - Game Admin
+
+Rovernic - Game Admin
+
+Unknownmurder - Game Admin
+
+
+
+
+Allan1234 - Trial Admin
+
+Caryl - Trial Admin
+
+Kyrac - Trial Admin
+
+Johnkilla56 - Trial Admin
+
+
+
+felkvir - Moderator
+
+TotalAnarchy - Moderator
+
+Fickmacher - Moderator
+
+Biolock - Moderator
+
+Officialjake -Moderator
+
+NijiShadow - Moderator
+
+
+
+Ordukai - Trial Moderator
+
+Pawoverlord - Trial ModeratorApophis775 - Host
 ColonialMarines - Host
 
 
@@ -10,50 +68,80 @@ Rahlzel - Vice Host
 SASoperative - Head Admin
 
 
+
+
  - Head Moderator
 
-Secretstamos - Head Spriter
 
-
-Absynth - Developer
 
 
 coroneljones - Game Admin
 
 Speedybast - Game Admin
+
 Rovernic - Game Admin
+
 Unknownmurder - Game Admin
-Allan1234 - Game Admin
-Caryl - Game Admin
-
-Johnkilla56 - GameAdmin
 
 
 
+
+Allan1234 - Trial Admin
+
+Caryl - Trial Admin
 
 Kyrac - Trial Admin
+
+Johnkilla56 - Trial Admin
+
 felkvir - Trial Admin
 
 
 
 
 TotalAnarchy - Moderator
+
 Fickmacher - Moderator
+
 Biolock - Moderator
+
 Officialjake -Moderator
+
 NijiShadow - Moderator
+
 Ordukai - Moderator
+
 Pawoverlord - Moderator
+
 Juninho77 - Moderator
-Mordrehel - Moderator
-Mizari - Moderator
+
+
 
 
 
 
 Lostmixup - Trial Moderator
-Tranquill - Trial Moderator
-Lordekilly - Trial Moderator
+
+Mizari - Trial Moderator
+
+Mordrehel - Trial Moderator
+
+
+
+Infernus44 - Mapper
+
+mewth - Mapper
+
+Slayerplayer99 - Coder
+
+SailorDave - Coder
+
+Absynth - Host
+
+
+Hailstorm77 - Trial Moderator
+
+Septimius - Trial Moderator
 
 
 
@@ -67,3 +155,4 @@ Slayerplayer99 - Coder
 
 SailorDave - Coder
 
+Absynth - Host
