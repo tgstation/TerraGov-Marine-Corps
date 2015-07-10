@@ -76,7 +76,7 @@
 	edge = 1
 	sharp = 0
 	flags = NOSHIELD
-	hitsound = 'sound/weapons/slash.ogg'
+	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
 
@@ -163,7 +163,7 @@
 				usr.update_inv_l_hand()
 			if(found)
 				usr << "You retract your wrist blades."
-				playsound(src.loc,'sound/weapons/slice.ogg', 20, 1)
+				playsound(src.loc,'sound/weapons/wristblades_off.ogg', 20, 1)
 				blades_active = 0
 			return
 		else //Turn it on!
@@ -178,7 +178,7 @@
 			blades_active = 1
 			charge -= 50
 			usr << "You activate your wrist blades."
-			playsound(src,'sound/weapons/slice.ogg', 20, 1)
+			playsound(src,'sound/weapons/wristblades_on.ogg', 20, 1)
 			usr.update_icons()
 		return 1
 
@@ -204,7 +204,7 @@
 			usr << "\blue You are now invisible to normal detection."
 			for(var/mob/O in oviewers(usr))
 				O.show_message("[usr.name] vanishes into thin air!",1)
-			playsound(usr.loc,'sound/effects/EMPulse.ogg', 50, 1)
+			playsound(usr.loc,'sound/effects/cloakon.ogg', 50, 1)
 			usr.update_icons()
 			spawn(1)
 				anim(usr.loc,usr,'icons/mob/mob.dmi',,"cloak",,usr.dir)
@@ -217,7 +217,7 @@
 		cloaked = 0
 		for(var/mob/O in oviewers(user))
 			O.show_message("[user.name] wavers into existence!",1)
-		playsound(user.loc,'sound/effects/EMPulse.ogg', 50, 1)
+		playsound(user.loc,'sound/effects/cloakoff.ogg', 50, 1)
 		user.update_icons()
 		spawn(1)
 			if(user)
@@ -253,7 +253,7 @@
 				usr.update_inv_l_hand()
 			if(found)
 				usr << "You deactivate your plasma caster."
-				playsound(src,'sound/weapons/empty.ogg', 20, 1)
+				playsound(src,'sound/weapons/plasmacaster_off.ogg', 20, 1)
 				caster_active = 0
 			return
 		else //Turn it on!
@@ -269,7 +269,7 @@
 			caster_active = 1
 			charge -= 50
 			usr << "You activate your plasma caster."
-			playsound(src,'sound/weapons/empty.ogg', 20, 1)
+			playsound(src,'sound/weapons/plasmacaster_on.ogg', 20, 1)
 			usr.update_icons()
 		return 1
 
@@ -279,7 +279,7 @@
 	item_state = "plasma_wear"
 	name = "plasma caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
-	fire_sound = 'sound/weapons/emitter2.ogg'
+	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	canremove = 0
 	w_class = 5
 	var/obj/item/clothing/gloves/yautja/source = null
