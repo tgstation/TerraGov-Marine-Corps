@@ -14,7 +14,7 @@
 		..()
 
 //Send a message to all xenos. Mostly used in the deathgasp display
-proc/xeno_message(var/message = null, var/size = 3)
+/proc/xeno_message(var/message = null, var/size = 3)
 	if(!message)
 		return
 
@@ -278,9 +278,15 @@ proc/xeno_message(var/message = null, var/size = 3)
 				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
 					if (prob(45))	// If the human has riot shield in his hand,  65% chance
 						src.Weaken(3) //Stun the fucker instead
-						visible_message("\red <B> \The [src] bounces off [H]'s shield!</B>")
+						visible_message("\red <B> \The [src] bounces off [H]'s shield!</B>", "\red <B>You bounce off [src]'s shield!</B>")
 						src.throwing = 0
 						return
+
+				if(H.species && H.species.name == "Yautja" && rand(100) < 40)
+					visible_message("\red <b>[H] emits a roar and body slams \the [src]!")
+					src.Weaken(4)
+					src.throwing = 0
+					return
 
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)

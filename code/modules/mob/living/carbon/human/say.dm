@@ -126,7 +126,7 @@
 	var/sound_vol
 	if(species.speech_sounds && prob(species.speech_chance))
 		speech_sound = sound(pick(species.speech_sounds))
-		sound_vol = 50
+		sound_vol = 70
 
 	//speaking into radios
 	if(used_radios.len)

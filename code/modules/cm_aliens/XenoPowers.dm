@@ -633,9 +633,11 @@
 
 	pslash_delay = 1
 	if(!slashing_allowed)
+		src << "You permit slashing."
 		xeno_message("The Queen has permitted the harming of hosts!",3)
 		slashing_allowed = 1
 	else
+		src << "You forbid slashing."
 		xeno_message("The Queen has disallowed the harming of hosts. You will now hesitate when slashing.",3)
 		slashing_allowed = 0
 	return
