@@ -7,8 +7,8 @@
 	icon_state = "Ravager Walking"
 	melee_damage_lower = 28
 	melee_damage_upper = 52
-	health = 350
-	maxHealth = 350
+	health = 200
+	maxHealth = 200
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
@@ -23,7 +23,7 @@
 	var/CHARGECOOLDOWN = 120
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
-	armor_deflection = 75
+	armor_deflection = 65
 
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
