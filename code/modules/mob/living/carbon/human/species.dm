@@ -504,6 +504,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/weapon/harpoon/yautja(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night(H), slot_glasses)
 	return ..()
 
 // Called when using the shredding behavior.

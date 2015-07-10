@@ -238,7 +238,8 @@ var/list/toldstory = list()
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H) //Prevent any runtime errors
 			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
-				human_count += 1 //Add them to the amount of people who're alive.
+				if(H.species != "Yautja") // Preds don't count in round end.
+					human_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
 			break
