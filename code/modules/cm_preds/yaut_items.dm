@@ -146,7 +146,7 @@
 			return
 		var/obj/item/weapon/wristblades/R = usr.r_hand
 		var/obj/item/weapon/wristblades/L = usr.l_hand
-		if(!R && !L && !istype(R) && !istype(L))
+		if(!istype(R) && !istype(L))
 			blades_active = 0
 
 		if(blades_active) //Turn it off.
@@ -237,7 +237,7 @@
 			return
 		var/obj/item/weapon/gun/plasma_caster/R = usr.r_hand
 		var/obj/item/weapon/gun/plasma_caster/L = usr.l_hand
-		if(!R && !L && !istype(R) && !istype(L))
+		if(!istype(R) && !istype(L))
 			caster_active = 0
 		if(caster_active) //Turn it off.
 			var/found = 0
@@ -298,13 +298,13 @@
 				projectile_type = "/obj/item/projectile/beam/yautja1"
 			if(0)
 				mode = 1
-				charge_cost = 100
+				charge_cost = 75
 				fire_sound = 'sound/weapons/emitter2.ogg'
 				user << "\red \The [src.name] is now set to fire medium plasma bolts."
 				projectile_type = "/obj/item/projectile/beam/yautja2"
 			if(1)
 				mode = 2
-				charge_cost = 200
+				charge_cost = 150
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma bolts."
 				projectile_type = "/obj/item/projectile/beam/yautja3"
