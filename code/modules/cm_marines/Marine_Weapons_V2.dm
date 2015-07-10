@@ -398,6 +398,7 @@
 	twohanded = 1
 	ejectshell = 0
 	recoil = 0
+	fire_delay = 1
 
 	special_check(user)
 		if(istype(user,/mob/living/carbon/human))

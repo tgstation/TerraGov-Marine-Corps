@@ -48,12 +48,11 @@
 
 
 	if(stat == DEAD)
-		sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 		blinded = 1
 		silent = 0
 		see_in_dark = 8
 	else
-		updatehealth()
+//		updatehealth()
 
 		if(health <= -100 || (health < 0 && isXenoLarva(src))) //Just died!
 			death()
