@@ -44,10 +44,14 @@
 
 	if(status_flags & GODMODE)	return 0
 
+	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
+
+
 	if(stat == DEAD)
 		sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 		blinded = 1
 		silent = 0
+		see_in_dark = 8
 	else
 		updatehealth()
 
@@ -58,15 +62,12 @@
 			return 1
 		else if(health > -100 && health < 0) //Unconscious
 			blinded = 1
-			sight &= ~SEE_TURFS
-			sight &= ~SEE_MOBS
-			sight &= ~SEE_OBJS
-			see_in_dark = 2
+			see_in_dark = 3
 			Paralyse(4)
 			health -= rand(0,8)
 		else										//Alive! Yey! Turn on their vision.
-			sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 			see_in_dark = 8
+			blinded = 0
 
 		if(health > 0) //Just to be safe
 			blinded = 0
@@ -226,7 +227,7 @@
 	playsound(loc, 'sound/voice/hiss6.ogg', 50, 1, 1)
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
 		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",4)
-		xeno_message("The slashing of hosts is now permitted!",3)
+		xeno_message("The slashing of hosts is now permitted!",2)
 		slashing_allowed = 1
 	else
 		xeno_message("\The [src] has died!",3)
