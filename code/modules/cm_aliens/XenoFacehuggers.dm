@@ -37,6 +37,7 @@ var/const/MAX_ACTIVE_TIME = 200
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user as mob)
+	if(isXenoLarva(user)) return
 	if(istype(user,/mob/living/carbon/Xenomorph/Carrier)) //Deal with carriers grabbing huggies
 		var/mob/living/carbon/Xenomorph/Carrier/C = user
 		if(C.huggers_cur < C.huggers_max)

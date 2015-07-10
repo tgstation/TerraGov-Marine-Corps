@@ -297,7 +297,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		if(card)
 			if(card.assignment == "Commander")
-				command = 4
+				command = 3
 			else if(card.assignment == "Bridge Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
 				command = 3
 
