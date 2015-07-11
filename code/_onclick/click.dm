@@ -44,16 +44,15 @@
 		build_click(src, client.buildmode, params, A)
 		return
 
-	if(buckled && lying && isturf(A.loc)) //Stops nesting stuff, mostly.
-		RestrainedClickOn(A)
-		return
-
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
+		return
+	if(buckled && lying && istype(A.buckled,/obj/structure/stool/bed/nest)) //Stops nesting stuff, mostly.
+		RestrainedClickOn(A)
 		return
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		AltClickOn(A)
