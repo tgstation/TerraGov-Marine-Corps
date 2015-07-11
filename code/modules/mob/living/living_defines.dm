@@ -51,3 +51,4 @@
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
 
 	var/is_being_hugged = 0 //Is there a hugger humping our face?
+	var/worldtod = null //World time of death.  Used for defibs.
