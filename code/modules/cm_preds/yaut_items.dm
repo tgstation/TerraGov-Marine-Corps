@@ -122,11 +122,11 @@
 	icon_state = "s-ninja"//placeholder
 	item_state = "s-ninja"
 	species_restricted = null
-	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+//	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	var/charge = 1000
-	var/charge_max = 1000
+	var/charge = 2000
+	var/charge_max = 2000
 	var/cloaked = 0
 	var/selfdestruct = 0
 	var/blades_active = 0
@@ -327,16 +327,16 @@
 /obj/item/projectile/beam/yautja1
 	name = "plasma bolt"
 	icon_state = "bluelaser"
-	damage = 12
+	damage = 25
 	stun = 5
 	weaken = 1
 
 /obj/item/projectile/beam/yautja2
 	name = "plasma"
 	icon_state = "pulse1"
-	damage = 35
+	damage = 45
 
 /obj/item/projectile/beam/yautja3
 	name = "heavy plasma"
 	icon_state = "pulse1_bl"
-	damage = 60
+	damage = 70

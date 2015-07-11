@@ -6,8 +6,8 @@
 	icon_state = "Sentinel Walking"
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	health = 160
-	maxHealth = 160
+	health = 140
+	maxHealth = 140
 	storedplasma = 75
 	plasma_gain = 10
 	maxplasma = 300
