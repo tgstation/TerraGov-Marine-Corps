@@ -132,30 +132,30 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			if(mentorholders.len)
 				for(var/client/X in mentorholders) // Mentors get a message without buttons and no character name
 					if(X.prefs.toggles & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp.ogg'
+						X << 'sound/effects/adminhelp_new.ogg'
 					X << mentor_msg
 			if(adminholders.len)
 				for(var/client/X in adminholders) // Admins get the full monty
 					if(X.prefs.toggles & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp.ogg'
+						X << 'sound/effects/adminhelp_new.ogg'
 					X << msg
 		if("Rule/Gameplay issue")
 			if(adminholders.len)
 				for(var/client/X in adminholders) // Admins of course get everything in their helps
 					if(X.prefs.toggles & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp.ogg'
+						X << 'sound/effects/adminhelp_new.ogg'
 					X << msg
 		if("Bug report")
 			if(debugholders.len)
 				for(var/client/X in debugholders)
 					if(R_ADMIN | R_MOD & X.holder.rights) // Admins get every button & special highlights in theirs
 						if(X.prefs.toggles & SOUND_ADMINHELP)
-							X << 'sound/effects/adminhelp.ogg'
+							X << 'sound/effects/adminhelp_new.ogg'
 						X << msg
 					else
 						if (R_DEBUG & X.holder.rights) // Just devs or devmentors get non-highlighted names, but they do get JMP and VV for their bug reports.
 							if(X.prefs.toggles & SOUND_ADMINHELP)
-								X << 'sound/effects/adminhelp.ogg'
+								X << 'sound/effects/adminhelp_new.ogg'
 						X << dev_msg
 
 
