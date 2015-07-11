@@ -56,7 +56,7 @@
 	verb/pump_shotgun(mob/user)
 		set category = "Object"
 		set name = "Pump Shotgun"
-//		set src in usr
+		set src in usr
 
 		if(!usr.canmove || usr.stat || usr.restrained())
 			user << "Not right now."
