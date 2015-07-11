@@ -209,10 +209,10 @@
 		if(health >= maxHealth - getCloneLoss())
 			storedplasma += plasma_gain
 		else
-			adjustBruteLoss(-(maxHealth / 40)) //Heal 1/40th of your max health in brute per tick.
-			adjustFireLoss(-(maxHealth / 50)) //Heal from fire half as fast
-			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
-			adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
+			adjustBruteLoss(maxHealth / 40) //Heal 1/40th of your max health in brute per tick.
+			adjustFireLoss(maxHealth / 50) //Heal from fire half as fast
+			adjustOxyLoss(maxHealth / 10) //Xenos don't actually take oxyloss, oh well
+			adjustToxLoss(maxHealth / 5) //hmmmm, this is probably unnecessary
 			storedplasma += plasma_gain
 		if(storedplasma > maxplasma) storedplasma = maxplasma
 	else //Xenos restore plasma VERY slowly off weeds, and only at full health
