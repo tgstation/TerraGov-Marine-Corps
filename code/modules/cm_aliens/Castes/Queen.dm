@@ -13,8 +13,8 @@
 	attack_sound = null
 	friendly = "nuzzles"
 	wall_smash = 0
-	health = 400
-	maxHealth = 400
+	health = 300
+	maxHealth = 300
 	amount_grown = 0
 	max_grown = 10
 	storedplasma = 300
@@ -28,7 +28,7 @@
 	adjust_size_x = 0.8
 	adjust_size_y = 0.75
 	fire_immune = 1
-	armor_deflection = 85
+	armor_deflection = 65
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,

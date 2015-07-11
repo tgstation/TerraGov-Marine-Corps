@@ -7,8 +7,8 @@
 	icon_state = "Runner Walking"
 	melee_damage_lower = 10
 	melee_damage_upper = 18
-	health = 90
-	maxHealth = 90
+	health = 80
+	maxHealth = 80
 	storedplasma = 50
 	plasma_gain = 1
 	maxplasma = 100

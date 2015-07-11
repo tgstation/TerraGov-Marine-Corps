@@ -52,7 +52,7 @@
 		silent = 0
 		see_in_dark = 8
 	else
-//		updatehealth()
+		updatehealth()
 
 		if(health <= -100 || (health < 0 && isXenoLarva(src))) //Just died!
 			death()
@@ -63,7 +63,7 @@
 			blinded = 1
 			see_in_dark = 3
 			Paralyse(4)
-			health -= rand(0,8)
+			adjustBruteLoss(-15)
 		else										//Alive! Yey! Turn on their vision.
 			see_in_dark = 8
 			blinded = 0
@@ -109,6 +109,7 @@
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
 	if (healths)
+		updatehealth()
 		if (stat != 2)
 			switch(health * 100 / maxHealth)
 				if(100 to INFINITY)
