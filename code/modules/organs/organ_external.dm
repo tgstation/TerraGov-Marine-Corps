@@ -364,7 +364,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if (owner.germ_level > W.germ_level && W.infection_check())
 			W.germ_level++
 
-	if (antibiotics < 5)
+	if (antibiotics < MIN_ANTIBIOTICS)
 		for(var/datum/wound/W in wounds)
 			//Infected wounds raise the organ's germ level
 			if (W.germ_level > germ_level)
@@ -373,10 +373,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/organ/external/proc/handle_germ_effects()
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
-
+//LEVEL 0
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE && prob(60))	//this could be an else clause, but it looks cleaner this way
 		germ_level--	//since germ_level increases at a rate of 1 per second with dirty wounds, prob(60) should give us about 5 minutes before level one.
-
+//LEVEL I
 	if(germ_level >= INFECTION_LEVEL_ONE)
 		//having an infection raises your body temperature
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
@@ -384,19 +384,30 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
 		if(prob(round(germ_level/10)))
-			if (antibiotics < 5)
+			if (antibiotics < MIN_ANTIBIOTICS)
 				germ_level++
 
 			if (prob(10))	//adjust this to tweak how fast people take toxin damage from infections
 				owner.adjustToxLoss(1)
-
-	if(germ_level >= INFECTION_LEVEL_TWO && antibiotics < 5)
+				owner.adjustHalLoss(5)
+			if (prob(1))
+				owner << "<span class='notice'>Your infected wound itches...</span>"
+//LEVEL II
+	if(germ_level >= INFECTION_LEVEL_TWO && antibiotics < 3)
 		//spread the infection to internal organs
 		var/datum/organ/internal/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/datum/organ/internal/I in internal_organs)
 			if (I.germ_level > 0 && I.germ_level < min(germ_level, INFECTION_LEVEL_TWO))	//once the organ reaches whatever we can give it, or level two, switch to a different one
 				if (!target_organ || I.germ_level > target_organ.germ_level)	//choose the organ with the highest germ_level
 					target_organ = I
+
+		if(prob(round(germ_level/10)))
+			if (antibiotics < MIN_ANTIBIOTICS)
+				germ_level++
+
+		if (prob(10))	//adjust this to tweak how fast people take toxin damage from infections
+				owner.adjustToxLoss(1)
+				owner.adjustHalLoss(5)
 
 		if (!target_organ)
 			//figure out which organs we can spread germs to and pick one at random
@@ -421,16 +432,19 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if (parent.germ_level < germ_level && !(parent.status & ORGAN_ROBOT))
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
-
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)	//overdosing is necessary to stop severe infections
+//LEVEL III
+	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 25)	//overdosing is necessary to stop severe infections
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
 			owner << "<span class='notice'>You can't feel your [display_name] anymore...</span>"
 			owner.update_body(1)
 
 		germ_level++
-		owner.adjustToxLoss(1)
-
+		if (prob(50))	//adjust this to tweak how fast people take toxin damage from infections
+			owner.adjustToxLoss(1)
+			owner.adjustHalLoss(4)
+		if (prob(1))
+			owner << "<span class='notice'>Your infected wound itches badly...</span>"
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /datum/organ/external/proc/update_wounds()
 
@@ -456,6 +470,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 			if(prob(1 * wound_update_accuracy))
 				owner.custom_pain("You feel a stabbing pain in your [display_name]!",1)
+
+		if(owner.reagents.get_reagent_amount("quickclot") >=1)
+			W.internal = 0;
 
 		// slow healing
 		var/heal_amt = 0

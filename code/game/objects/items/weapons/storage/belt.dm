@@ -69,6 +69,7 @@
 		"/obj/item/device/flashlight/pen",
 		"/obj/item/clothing/mask/surgical",
 		"/obj/item/clothing/gloves/latex",
+		"/obj/item/weapon/storage/syringe_case",
 	        "/obj/item/weapon/reagent_containers/hypospray"
 	)
 

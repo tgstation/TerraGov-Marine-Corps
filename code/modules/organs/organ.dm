@@ -23,15 +23,18 @@
 /datum/organ/proc/handle_antibiotics()
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (!germ_level || antibiotics < 5)
+	if (!germ_level || antibiotics < MIN_ANTIBIOTICS)
 		return
 
-	if (germ_level < INFECTION_LEVEL_ONE)
+	if (germ_level < 10)
 		germ_level = 0	//cure instantly
+	else if (germ_level < INFECTION_LEVEL_ONE)
+		germ_level -= 4
 	else if (germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 6	//at germ_level == 500, this should cure the infection in a minute
+		germ_level -= 3	//at germ_level == 500, this should cure the infection in a minute
 	else
 		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
+
 
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()

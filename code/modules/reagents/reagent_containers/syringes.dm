@@ -417,7 +417,7 @@
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
 	name = "Syringe (spaceacillin)"
-	desc = "Contains antiviral agents."
+	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	New()
 		..()
 		reagents.add_reagent("spaceacillin", 15)

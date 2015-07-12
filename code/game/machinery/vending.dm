@@ -813,12 +813,35 @@
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access_txt = "8"
-	products = list(/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
-					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
-					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/syringe = 12,
-					/obj/item/device/healthanalyzer = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
-					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
-	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix = 10,
+					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 5,
+					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 5,
+					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 5,
+					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 5,
+					/obj/item/weapon/reagent_containers/syringe = 20,
+					/obj/item/weapon/storage/syringe_case = 6,
+					/obj/item/bodybag/cryobag = 4,
+					/obj/item/weapon/reagent_containers/hypospray = 4,
+					/obj/item/device/healthanalyzer = 5,
+					/obj/item/stack/medical/advanced/bruise_pack = 4,
+					/obj/item/stack/medical/advanced/ointment = 4,
+					/obj/item/stack/medical/ointment = 8,
+					/obj/item/stack/medical/bruise_pack = 8,
+					/obj/item/stack/medical/splint = 2,
+					/obj/item/weapon/storage/pill_bottle/kelotane = 2,
+					/obj/item/weapon/storage/pill_bottle/spaceacillin = 4,
+					/obj/item/weapon/storage/pill_bottle/inaprovaline = 2,
+					/obj/item/weapon/storage/pill_bottle/tramadol = 4,
+					/obj/item/weapon/storage/pill_bottle/antitox = 4)
+
+	contraband = list(/obj/item/weapon/reagent_containers/pill/spaceacillin = 10,
+					/obj/item/weapon/reagent_containers/pill/stox = 10,
+					/obj/item/weapon/reagent_containers/pill/antitox = 10,
+					/obj/item/weapon/reagent_containers/pill/tramadol = 10)
+
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 
@@ -836,20 +859,27 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
-	req_access_txt = "8"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/healthanalyzer = 1)
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+	products = list(/obj/item/stack/medical/bruise_pack = 2,
+					/obj/item/stack/medical/ointment = 2,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,
+					/obj/item/device/healthanalyzer = 1)
+
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,
+						/obj/item/weapon/reagent_containers/syringe/antiviral = 4,
+						/obj/item/weapon/reagent_containers/pill/tox = 1)
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
-	req_access_txt = "8"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
-					/obj/item/stack/medical/ointment =3,/obj/item/device/healthanalyzer = 3)
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,
+					/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,
+					/obj/item/stack/medical/bruise_pack = 3,
+					/obj/item/stack/medical/ointment =3,
+					/obj/item/device/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 
 /obj/machinery/vending/security
