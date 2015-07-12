@@ -1,8 +1,10 @@
 #ignore misc BYOND files
+Thumbs.db
 *.log
 *.int
 *.rsc
 *.dmb
 *.lk
+*.backup
 data/
-scripts/voicequeue.txt
+cfg/

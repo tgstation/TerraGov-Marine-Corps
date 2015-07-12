@@ -1,9 +1,0 @@
-<h3>Welcome to Colonial-Marines - NVM Sulaco!</h3>
-<i><font color="purple">Please be sure to fully-understand our rules before you begin to play.</i></font>
-<br>
-<font color="red">This is a <b>role-playing</b> server, please adhere to at least a <b>moderate</b> level of role-play at all times. <b>This is mandatory.</b>
-<font size="2">If you want to role-play but do not know how, admin-help for advice or check out this <a href="http://baystation12.net/wiki/index.php?title=A_Crash_Course_In_Roleplaying">crash course.</a>
-No meta-gaming, Marines know <b>nothing</b> about Xenomorphs. 
-You must <b>witness</b> things before you understand infection. 
-Report any meta-gamers or griefers.
-Adhere to the chain-of-command, no rogue marines going rambo. <br>Listen to your Commander and await orders before doing anything.
