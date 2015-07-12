@@ -46,12 +46,20 @@
 /obj/item/weapon/twohanded/dropped(mob/user as mob)
 	//handles unwielding a twohanded weapon when dropped as well as clearing up the offhand
 	if(user)
-		var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
-		if(istype(O))
-			O.unwield()
-		var/obj/item/weapon/gun/G = user.get_inactive_hand()
-		if(istype(G))
-			G.unwield()
+		if(src == user.get_active_hand()) //Are we holding the offhand?
+			var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
+			if(istype(O))
+				O.unwield()
+			var/obj/item/weapon/gun/G = user.get_inactive_hand()
+			if(istype(G))
+				G.unwield()
+		else //Is our active hand elsewhere? Ie. we're being forced to drop the offhand item.
+			var/obj/item/weapon/twohanded/O = user.get_active_hand()
+			if(istype(O))
+				O.unwield()
+			var/obj/item/weapon/gun/G = user.get_active_hand()
+			if(istype(G))
+				G.unwield()
 	return	unwield()
 
 /obj/item/weapon/twohanded/update_icon()

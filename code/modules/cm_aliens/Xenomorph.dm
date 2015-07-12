@@ -93,7 +93,7 @@ var/slashing_allowed = 0
 /*	src.frozen = 1 //Freeze the alien in place a moment, while it evolves... WHY DOESN'T THIS WORK? 08FEB2015
 	spawn (25)
 		src.frozen = 0*/
-
+	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING //blerghhh. This lets you see in the dark
 
 	if(caste != "Queen")
