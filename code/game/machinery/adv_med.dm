@@ -386,11 +386,11 @@
 				infected = "Mild Infection+:"
 			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
 				infected = "Mild Infection++:"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
+			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 100)
 				infected = "Acute Infection:"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
+			if (INFECTION_LEVEL_TWO + 100 to INFECTION_LEVEL_TWO + 200)
 				infected = "Acute Infection+:"
-			if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
+			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
 				infected = "Acute Infection++:"
 			if (INFECTION_LEVEL_THREE to INFINITY)
 				infected = "Septic:"
@@ -429,12 +429,14 @@
 				infection = "Mild Infection+:"
 			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
 				infection = "Mild Infection++:"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
+			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 100)
 				infection = "Acute Infection:"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
+			if (INFECTION_LEVEL_TWO + 100 to INFECTION_LEVEL_TWO + 200)
 				infection = "Acute Infection+:"
-			if (INFECTION_LEVEL_TWO + 300 to INFINITY)
+			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
 				infection = "Acute Infection++:"
+			if (INFECTION_LEVEL_THREE to INFINITY)
+				infection = "Septic:"
 
 		dat += "<tr>"
 		dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech]</td><td></td>"

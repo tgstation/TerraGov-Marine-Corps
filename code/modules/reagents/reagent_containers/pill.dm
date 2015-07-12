@@ -93,7 +93,7 @@
 
 //Pills
 /obj/item/weapon/reagent_containers/pill/antitox
-	name = "Anti-toxins pill"
+	name = "Anti-toxins pill (25u)"
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill17"
 	New()
@@ -133,7 +133,7 @@
 		reagents.add_reagent("stoxin", 15)
 
 /obj/item/weapon/reagent_containers/pill/kelotane
-	name = "Kelotane pill"
+	name = "Kelotane pill (15u)"
 	desc = "Used to treat burns."
 	icon_state = "pill11"
 	New()
@@ -149,9 +149,9 @@
 		reagents.add_reagent("paracetamol", 15)
 
 /obj/item/weapon/reagent_containers/pill/tramadol
-	name = "Tramadol pill"
+	name = "Tramadol pill (15u)"
 	desc = "A simple painkiller."
-	icon_state = "pill8"
+	icon_state = "pill7"
 	New()
 		..()
 		reagents.add_reagent("tramadol", 15)
@@ -175,15 +175,15 @@
 
 
 /obj/item/weapon/reagent_containers/pill/inaprovaline
-	name = "Inaprovaline pill"
+	name = "Inaprovaline pill (30u)"
 	desc = "Used to stabilize patients."
-	icon_state = "pill20"
+	icon_state = "pill2"
 	New()
 		..()
 		reagents.add_reagent("inaprovaline", 30)
 
 /obj/item/weapon/reagent_containers/pill/dexalin
-	name = "Dexalin pill"
+	name = "Dexalin pill (15u)"
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill16"
 	New()
@@ -191,12 +191,20 @@
 		reagents.add_reagent("dexalin", 15)
 
 /obj/item/weapon/reagent_containers/pill/bicaridine
-	name = "Bicaridine pill"
+	name = "Bicaridine pill (20u)"
 	desc = "Used to treat physical injuries."
-	icon_state = "pill18"
+	icon_state = "pill10"
 	New()
 		..()
 		reagents.add_reagent("bicaridine", 20)
+
+/obj/item/weapon/reagent_containers/pill/spaceacillin
+	name = "Spaceacillin pill (10u)"
+	desc = "Used to treat infected wounds and slow down viral infections."
+	icon_state = "pill9"
+	New()
+		..()
+		reagents.add_reagent("spaceacillin", 10)
 
 /obj/item/weapon/reagent_containers/pill/happy
 	name = "Happy pill"

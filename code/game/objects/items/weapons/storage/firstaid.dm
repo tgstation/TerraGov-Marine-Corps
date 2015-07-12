@@ -34,7 +34,7 @@
 		new /obj/item/stack/medical/ointment( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
 		new /obj/item/weapon/reagent_containers/pill/kelotane( src )
-		new /obj/item/weapon/reagent_containers/pill/kelotane( src ) //Replaced ointment with these since they actually work --Errorage
+		new /obj/item/weapon/storage/syringe_case/burn( src )
 		return
 
 
@@ -44,12 +44,13 @@
 	New()
 		..()
 		if (empty) return
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/ointment(src)
-		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/device/healthanalyzer(src)
+		new /obj/item/stack/medical/bruise_pack(src)
+		new /obj/item/stack/medical/bruise_pack(src)
+		new /obj/item/stack/medical/bruise_pack(src)
+		new /obj/item/stack/medical/ointment(src)
+		new /obj/item/stack/medical/ointment(src)
+		new /obj/item/weapon/storage/syringe_case/regular(src)
 		return
 
 /obj/item/weapon/storage/firstaid/toxin
@@ -64,13 +65,14 @@
 
 		icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
 
-		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
-		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
-		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
-		new /obj/item/weapon/reagent_containers/pill/antitox( src )
 		new /obj/item/device/healthanalyzer( src )
+		new /obj/item/weapon/reagent_containers/syringe/antitoxin( src )
+		new /obj/item/weapon/reagent_containers/pill/antitox( src )
+		new /obj/item/weapon/reagent_containers/pill/antitox( src )
+		new /obj/item/weapon/reagent_containers/pill/antitox( src )
+		new /obj/item/weapon/reagent_containers/pill/antitox( src )
+		new /obj/item/weapon/storage/syringe_case/tox( src )
+
 		return
 
 /obj/item/weapon/storage/firstaid/o2
@@ -82,13 +84,13 @@
 	New()
 		..()
 		if (empty) return
+		new /obj/item/device/healthanalyzer( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
-		new /obj/item/weapon/reagent_containers/syringe/inaprovaline( src )
-		new /obj/item/device/healthanalyzer( src )
+		new /obj/item/weapon/storage/syringe_case/oxy( src )
 		return
 
 /obj/item/weapon/storage/firstaid/adv
@@ -108,9 +110,60 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
 	return
+
+
+	/*
+ * Syringe Case
+ */
+
+
+/obj/item/weapon/storage/syringe_case
+	name = "syringe case"
+	desc = "It's an medical case for storing syringes and bottles."
+	icon_state = "syringe_case"
+	throw_speed = 2
+	throw_range = 8
+	storage_slots = 3
+	w_class = 2.0
+	can_hold = list("/obj/item/weapon/reagent_containers/pill","/obj/item/weapon/reagent_containers/glass/bottle","/obj/item/weapon/paper","/obj/item/weapon/reagent_containers/syringe","/obj/item/weapon/reagent_containers/hypospray/autoinjector")
+
+/obj/item/weapon/storage/syringe_case/regular
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/spaceacillin( src )
+
+/obj/item/weapon/storage/syringe_case/burn
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/kelotane( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/spaceacillin( src )
+
+/obj/item/weapon/storage/syringe_case/tox
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin( src )
+
+/obj/item/weapon/storage/syringe_case/oxy
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline( src )
+		new /obj/item/weapon/reagent_containers/glass/bottle/dexalin( src )
+
 /*
  * Pill Bottles
  */
+
+
 /obj/item/weapon/storage/pill_bottle
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
@@ -179,4 +232,31 @@
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
+		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
 
+/obj/item/weapon/storage/pill_bottle/spaceacillin
+	name = "Antibiotic Pills"
+	desc = "Contains pills used to treat infected wounds."
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )
+		new /obj/item/weapon/reagent_containers/pill/spaceacillin( src )

@@ -59,11 +59,41 @@
 	name = "inaprovaline bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle16"
+	icon_state = "bottle19"
 
 	New()
 		..()
 		reagents.add_reagent("inaprovaline", 60)
+
+/obj/item/weapon/reagent_containers/glass/bottle/kelotane
+	name = "kelotane bottle"
+	desc = "A small bottle. Contains kelotane - used to treat burned areas."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle16"
+
+	New()
+		..()
+		reagents.add_reagent("kelotane", 60)
+
+/obj/item/weapon/reagent_containers/glass/bottle/dexalin
+	name = "dexaline bottle"
+	desc = "A small bottle. Contains dexalin - used to supply blood with oxygen."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle10"
+
+	New()
+		..()
+		reagents.add_reagent("dexalin", 60)
+
+/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin
+	name = "spaceacillin bottle"
+	desc = "A small bottle. Contains spaceacillin - used to treat infected wounds."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle8"
+
+	New()
+		..()
+		reagents.add_reagent("spaceacillin", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
@@ -109,7 +139,7 @@
 	name = "dylovene bottle"
 	desc = "A small bottle of dylovene. Counters poisons, and repairs damage. A wonder drug."
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle17"
+	icon_state = "bottle7"
 
 	New()
 		..()
@@ -119,7 +149,7 @@
 	name = "unstable mutagen bottle"
 	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle20"
+	icon_state = "bottle7"
 
 	New()
 		..()

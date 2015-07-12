@@ -821,7 +821,9 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 #define INFECTION_LEVEL_ONE		100
 #define INFECTION_LEVEL_TWO		500
-#define INFECTION_LEVEL_THREE	1000
+#define INFECTION_LEVEL_THREE	800
+
+#define MIN_ANTIBIOTICS			3
 
 
 /*

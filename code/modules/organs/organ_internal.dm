@@ -58,13 +58,13 @@
 
 		if (germ_level >= INFECTION_LEVEL_ONE/2)
 			//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
-			if(antibiotics < 5 && prob(round(germ_level/6)))
+			if(antibiotics < MIN_ANTIBIOTICS && prob(round(germ_level/6)))
 				germ_level++
 
 		if (germ_level >= INFECTION_LEVEL_TWO)
 			var/datum/organ/external/parent = owner.get_organ(parent_organ)
 			//spread germs
-			if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
+			if (antibiotics < MIN_ANTIBIOTICS && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 				parent.germ_level++
 
 			if (prob(3))	//about once every 30 seconds

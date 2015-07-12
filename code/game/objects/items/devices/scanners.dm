@@ -187,8 +187,11 @@ REAGENT SCANNER
 			if(e.status & ORGAN_BROKEN)
 				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg")) && (!(e.status & ORGAN_SPLINTED)))
 					user << "\red Unsecured fracture in subject [limb]. Splinting recommended for transport."
-			if(e.has_infected_wound())
-				user << "\red Infected wound detected in subject [limb]. Disinfection recommended."
+
+			if(e.germ_level >= INFECTION_LEVEL_ONE)
+				user << "\red Subjects [limb] is fighting off with an infection. Antibiotics and disinfection of wounds recommended."
+			if(e.has_infected_wound() && !(e.germ_level >= INFECTION_LEVEL_ONE))
+				user << "\red Infected wound detected in subject [limb]."
 
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/e = H.organs_by_name[name]

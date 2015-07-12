@@ -1323,6 +1323,18 @@ datum
 				..()
 				return
 
+		quickclot
+			name = "Quick clot"
+			id = "quickclot"
+			description = "A chemical designed to quickly stop internal bleeding"
+			reagent_state = LIQUID
+			color = "#CC00FF"
+			on_mob_life(var/mob/living/M as mob)
+				if(!M) M = holder.my_atom
+				M.take_organ_damage(1*REM, 0)
+				..()
+				return
+
 		hyperzine
 			name = "Hyperzine"
 			id = "hyperzine"

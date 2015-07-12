@@ -5,8 +5,8 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord
 	name = "Tricordrazine Auto-Injector"
 	desc = "An auto-injector loaded with Tricordrazine."
-	amount_per_transfer_from_this = 5
-	volume = 5
+	amount_per_transfer_from_this = 15
+	volume = 15
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
 	name = "Quick Clot"
@@ -37,7 +37,7 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord/New()
 	..()
 	spawn(1)
-		reagents.add_reagent("tricordrazine", 5)
+		reagents.add_reagent("tricordrazine", 15)
 		update_icon()
 	return
 
