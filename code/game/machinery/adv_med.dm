@@ -364,46 +364,50 @@
 		dat += "<tr>"
 
 		for(var/datum/wound/W in e.wounds) if(W.internal)
-			internal_bleeding = "<br>Internal bleeding"
+			internal_bleeding = "Internal bleeding<br>"
 			break
 		if(istype(e, /datum/organ/external/chest) && occ["lung_ruptured"])
-			lung_ruptured = "Lung ruptured:"
+			lung_ruptured = "Lung ruptured:<br>"
 		if(e.status & ORGAN_SPLINTED)
-			splint = "Splinted:"
+			splint = "Splinted:<br>"
 		if(e.status & ORGAN_BLEEDING)
-			bled = "Bleeding:"
+			bled = "Bleeding:<br>"
 		if(e.status & ORGAN_BROKEN)
-			AN = "[e.broken_description]:"
+			AN = "[e.broken_description]:<br>"
 		if(e.status & ORGAN_ROBOT)
-			robot = "Prosthetic:"
+			robot = "Prosthetic:<br>"
 		if(e.open)
-			open = "Open:"
+			open = "Open:<br>"
 
 		switch (e.germ_level)
 			if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
-				infected = "Mild Infection:"
+				infected = "Mild Infection:<br>"
 			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infected = "Mild Infection+:"
+				infected = "Mild Infection+:<br>"
 			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infected = "Mild Infection++:"
+				infected = "Mild Infection++:<br>"
 			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 100)
-				infected = "Acute Infection:"
+				infected = "Acute Infection:<br>"
 			if (INFECTION_LEVEL_TWO + 100 to INFECTION_LEVEL_TWO + 200)
-				infected = "Acute Infection+:"
+				infected = "Acute Infection+:<br>"
 			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infected = "Acute Infection++:"
+				infected = "Acute Infection++:<br>"
+			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 300)
+				infected = "Septic:<br>"
+			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 600)
+				infected = "Septic+:<br>"
 			if (INFECTION_LEVEL_THREE to INFINITY)
-				infected = "Septic:"
+				infected = "Septic++:<br>"
 
 		if (e.implants.len)
 			var/unknown_body = 0
 			for(var/I in e.implants)
 				if(is_type_in_list(I,known_implants))
-					imp += "[I] implanted:"
+					imp += "[I] implanted:<br>"
 				else
 					unknown_body++
 			if(unknown_body || e.hidden)
-				imp += "Unknown body present:"
+				imp += "Unknown body present:<br>"
 
 		if(!AN && !open && !infected & !imp)
 			AN = "None:"
@@ -417,26 +421,30 @@
 
 		var/mech = ""
 		if(i.robotic == 1)
-			mech = "Assisted:"
+			mech = "Assisted:<br>"
 		if(i.robotic == 2)
-			mech = "Mechanical:"
+			mech = "Mechanical:<br>"
 
 		var/infection = "None"
 		switch (i.germ_level)
 			if (1 to INFECTION_LEVEL_ONE + 200)
-				infection = "Mild Infection:"
+				infection = "Mild Infection:<br>"
 			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				infection = "Mild Infection+:"
+				infection = "Mild Infection+:<br>"
 			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				infection = "Mild Infection++:"
+				infection = "Mild Infection++:<br>"
 			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 100)
-				infection = "Acute Infection:"
+				infection = "Acute Infection:<br>"
 			if (INFECTION_LEVEL_TWO + 100 to INFECTION_LEVEL_TWO + 200)
-				infection = "Acute Infection+:"
+				infection = "Acute Infection+:<br>"
 			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				infection = "Acute Infection++:"
+				infection = "Acute Infection++:<br>"
+			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 300)
+				infection = "Septic:<br>"
+			if (INFECTION_LEVEL_THREE to INFECTION_LEVEL_THREE + 600)
+				infection = "Septic+:<br>"
 			if (INFECTION_LEVEL_THREE to INFINITY)
-				infection = "Septic:"
+				infection = "Septic++:<br>"
 
 		dat += "<tr>"
 		dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech]</td><td></td>"

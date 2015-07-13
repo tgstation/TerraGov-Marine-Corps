@@ -389,9 +389,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 			if (prob(10))	//adjust this to tweak how fast people take toxin damage from infections
 				owner.adjustToxLoss(1)
-				owner.adjustHalLoss(5)
-			if (prob(1))
-				owner << "<span class='notice'>Your infected wound itches...</span>"
+			if (prob(1) && (germ_level <= INFECTION_LEVEL_TWO))
+				owner << "<span class='notice'>You have a slight fever...</span>"
 //LEVEL II
 	if(germ_level >= INFECTION_LEVEL_TWO && antibiotics < 3)
 		//spread the infection to internal organs
@@ -404,10 +403,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (antibiotics < MIN_ANTIBIOTICS)
 				germ_level++
+		if (prob(1) && (germ_level <= INFECTION_LEVEL_THREE))
+			owner << "<span class='notice'>Your infected wound itches and badly hurts!</span>"
 
 		if (prob(10))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
-			owner.adjustHalLoss(5)
 
 		if (!target_organ)
 			//figure out which organs we can spread germs to and pick one at random
@@ -442,9 +442,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		germ_level++
 		if (prob(50))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
-			owner.adjustHalLoss(4)
 		if (prob(1))
-			owner << "<span class='notice'>Your infected wound itches badly...</span>"
+			owner << "<span class='notice'>You have a high fever!</span>"
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /datum/organ/external/proc/update_wounds()
 

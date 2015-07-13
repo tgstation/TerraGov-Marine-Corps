@@ -162,45 +162,50 @@ REAGENT SCANNER
 			for (var/ID in C.virus2)
 				if (ID in virusDB)
 					var/datum/data/record/V = virusDB[ID]
-					user.show_message(text("\red Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]"))
+					user.show_message(text("\red *Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]"))
 //			user.show_message(text("\red Warning: Unknown pathogen detected in subject's blood."))
 	if (M.getCloneLoss())
-		user.show_message("\red Subject appears to have been imperfectly cloned.")
+		user.show_message("\red *Subject appears to have been imperfectly cloned.")
 	for(var/datum/disease/D in M.viruses)
 		if(!D.hidden[SCANNER])
-			user.show_message(text("\red <b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
+			user.show_message(text("\red <b>*Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
 //	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
 //		user.show_message("\blue Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.")
 	if (M.has_brain_worms())
-		user.show_message("\red Subject suffering from aberrant brain activity. Recommend further scanning.")
+		user.show_message("\red *Subject suffering from aberrant brain activity. Recommend further scanning.")
 	else if (M.getBrainLoss() >= 100 || !M.has_brain())
-		user.show_message("\red Subject is brain dead.")
+		user.show_message("\red *Subject is brain dead.")
 	else if (M.getBrainLoss() >= 60)
-		user.show_message("\red Severe brain damage detected. Subject likely to have mental retardation.")
+		user.show_message("\red *Severe brain damage detected. Subject likely to have mental retardation.")
 	else if (M.getBrainLoss() >= 10)
-		user.show_message("\red Significant brain damage detected. Subject may have had a concussion.")
+		user.show_message("\red *Significant brain damage detected. Subject may have had a concussion.")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/e = H.organs_by_name[name]
 			var/limb = e.display_name
+			var/can_amputate = ""
 			if(e.status & ORGAN_BROKEN)
 				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg")) && (!(e.status & ORGAN_SPLINTED)))
-					user << "\red Unsecured fracture in subject [limb]. Splinting recommended for transport."
+					user << "\red *Unsecured fracture in subject [limb]. Splinting recommended for transport."
 
-			if(e.germ_level >= INFECTION_LEVEL_ONE)
-				user << "\red Subjects [limb] is fighting off with an infection. Antibiotics and disinfection of wounds recommended."
-			if(e.has_infected_wound() && !(e.germ_level >= INFECTION_LEVEL_ONE))
-				user << "\red Infected wound detected in subject [limb]."
+			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
+				can_amputate = "or amputation"
+			if(e.germ_level >= INFECTION_LEVEL_THREE)
+				user << "\red *Subject's [limb] is in the last stage of infection. 30u> of Antibiotics [can_amputate] recommended."
+			if(e.germ_level >= INFECTION_LEVEL_ONE && e.germ_level < INFECTION_LEVEL_THREE)
+				user << "\red *Subject's [limb] is fighting off with an infection. Antibiotics recommended."
+			if(e.has_infected_wound())
+				user << "\red *Infected wound detected in subject [limb]. Disinfection of wounds recommended"
 
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/e = H.organs_by_name[name]
 			if(e.status & ORGAN_BROKEN)
-				user.show_message(text("\red Bone fractures detected. Advanced scanner required for location."), 1)
+				user.show_message(text("\red *Bone fractures detected. Advanced scanner required for location."), 1)
 				break
 		for(var/datum/organ/external/e in H.organs)
 			for(var/datum/wound/W in e.wounds) if(W.internal)
-				user.show_message(text("\red Internal bleeding detected. Advanced scanner required for location."), 1)
+				user.show_message(text("\red *Internal bleeding detected. Advanced scanner required for location."), 1)
 				break
 		if(M:vessel)
 			var/blood_volume = round(M:vessel.get_reagent_amount("blood"))
