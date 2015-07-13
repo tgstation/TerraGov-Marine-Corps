@@ -44,7 +44,8 @@
 				src.traumatic_shock += 30
 				if(organ.status & ORGAN_SPLINTED)
 					src.traumatic_shock -= 25
-
+			if(organ.status && (organ.germ_level >= INFECTION_LEVEL_ONE))
+				src.traumatic_shock += organ.germ_level*0.05
 	if(src.traumatic_shock < 0)
 		src.traumatic_shock = 0
 
