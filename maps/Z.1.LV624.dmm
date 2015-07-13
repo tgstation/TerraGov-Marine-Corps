@@ -939,7 +939,7 @@
 "sc" = (/obj/machinery/vending/cigarette,/turf/simulated/floor{icon_state = "white"},/area/hallway/primary/central_one)
 "sd" = (/obj/item/device/radio/intercom{anyai = 1; freerange = 1; frequency = 1469; name = "General Listening Channel"; pixel_x = -30; pixel_y = 0},/turf/simulated/floor{dir = 8; icon_state = "warning"},/area/hallway/primary/central_one)
 "se" = (/obj/item/weapon/crowbar/red,/turf/simulated/floor{tag = "icon-warningcorner (WEST)"; icon_state = "warningcorner"; dir = 8},/area)
-"sf" = (/obj/machinery/computer/shuttle_control/mining{name = "shuttle console"; req_one_access_txt = "1;2;12;19;200"; shuttle_tag = "Dropship 1"; unacidable = 1},/turf/simulated/floor{dir = 1; icon_state = "warning"},/area)
+"sf" = (/obj/machinery/computer/shuttle_control/marine1{req_one_access_txt = "1;2;12;19;200"},/turf/simulated/floor{dir = 1; icon_state = "warning"},/area)
 "sg" = (/turf/simulated/floor{icon_state = "warningcorner"; dir = 4},/area)
 "sh" = (/obj/structure/jungle/plantbot1,/turf/simulated/floor/gm/grass,/area/space)
 "si" = (/obj/structure/grille/fence/north_south,/turf/simulated/floor/gm/grass,/area/space)

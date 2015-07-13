@@ -12,6 +12,8 @@
 
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
 
+	var/recharging = 0
+
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE) return
 
@@ -29,11 +31,13 @@
 	//world << "shuttle/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
 	if(moving_status != SHUTTLE_IDLE) return
 
-	//it would be cool to play a sound here
+	for(var/obj/structure/enginesound/O in departing)
+		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
+
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
-			return	//someone cancelled the launch
+			return	//someone canceled the launch
 
 		arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
@@ -45,6 +49,21 @@
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
+
+		recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
+		spawn(1200) // 2 minutes in deciseconds
+			recharging = 0
+
+/* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
+/datum/shuttle/proc/toggle_doors(var/close_doors, var/bolt_doors, var/area/whatArea)
+	if(!whatArea) return <-- logic checks!
+  		for(all doors in whatArea)
+  			if(door.id is the same as src.id)
+				if(close_doors)
+			    	toggle dat shit
+			   	if(bolt_doors)
+			   		bolt dat shit
+*/
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
@@ -131,3 +150,9 @@
 //returns 1 if the shuttle has a valid arrive time
 /datum/shuttle/proc/has_arrive_time()
 	return (moving_status == SHUTTLE_INTRANSIT)
+
+/*
+/datum/shuttle/proc/play_engine_sound()
+	for(var/obj/structure/enginesound/O in get_area(src))
+		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 1)
+*/

@@ -35,11 +35,11 @@
 			if (shuttle.in_use)
 				shuttle_status = "Busy."
 			else if (!shuttle.location)
-				shuttle_status = "Standing-by at station."
+				shuttle_status = "Standing by at station."
 			else
-				shuttle_status = "Standing-by at offsite location."
+				shuttle_status = "Standing by at off-site location."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
-			shuttle_status = "Shuttle has recieved command and will depart shortly."
+			shuttle_status = "Shuttle has received command and will depart shortly."
 		if(WAIT_ARRIVE)
 			shuttle_status = "Proceeding to destination."
 		if(WAIT_FINISH)
@@ -76,6 +76,9 @@
 		return
 
 	if(href_list["move"])
+		if(shuttle.recharging) // Prevent the shuttle from moving again until it finishes recharging. This could be made to look better by using the shuttle computer's visual UI.
+			usr << "The shuttle requires 2 minutes to recharge."
+			return
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 			shuttle.launch(src)
 	if(href_list["force"])
