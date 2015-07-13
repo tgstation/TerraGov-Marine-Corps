@@ -406,8 +406,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 				germ_level++
 
 		if (prob(10))	//adjust this to tweak how fast people take toxin damage from infections
-				owner.adjustToxLoss(1)
-				owner.adjustHalLoss(5)
+			owner.adjustToxLoss(1)
+			owner.adjustHalLoss(5)
 
 		if (!target_organ)
 			//figure out which organs we can spread germs to and pick one at random
