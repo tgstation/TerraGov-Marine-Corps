@@ -21,6 +21,7 @@
 /var/const/access_squad_delta = 18
 /var/const/access_sulaco_bridge = 19
 /var/const/access_sulaco_chemistry = 20
+/var/const/access_sulaco_cargo = 21
 
 //Surface access levels
 
@@ -285,10 +286,10 @@
 
 
 /proc/get_all_accesses()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command, access_sulaco_cargo)
 
 /proc/get_all_marine_access()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research)
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo)
 
 /proc/get_all_centcom_access()
 	return list(access_centcomm)
@@ -309,7 +310,7 @@
 		if(4) //engineering and maintenance
 			return list(access_sulaco_CE, access_sulaco_engineering)
 		if(5) //command
-			return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge)
+			return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_cargo)
 		if(6) //spess mahreens
 			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep)
 		if(7) //squads
@@ -384,6 +385,8 @@
 			return "Civilian Engineering"
 		if(access_civilian_generic)
 			return "Civilian"
+		if(access_sulaco_cargo)
+			return "Requisitions"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
@@ -521,7 +524,8 @@ proc/get_all_job_icons() //For all existing HUD icons
 		"Squad Medic",
 		"Squad Engineer",
 		"Squad Marine",
-		"Squad Specialist"
+		"Squad Specialist",
+		"Requisitions Officer"
 		)
 
 /*
