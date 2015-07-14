@@ -448,3 +448,16 @@ v
 	icon_state = "blacksuit"
 	item_state = "blacksuit"
 	item_color = "blacksuit"
+
+/obj/item/clothing/head/soft/ro_cap
+	name = "Requisition officer cap"
+	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
+	icon_state = "corpsoft"
+	item_color = "corp"
+
+/obj/item/clothing/under/rank/ro_suit
+	name = "Requisition officer suit."
+	desc = "A nicely-fitting military suit for a requisition officer."
+	icon_state = "warden_corporate"
+	item_state = "warden_corporate"
+	item_color = "warden_corporate"
