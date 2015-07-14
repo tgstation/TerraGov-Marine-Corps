@@ -249,7 +249,7 @@
 
 
 	verb/eject_magazine()
-		set category = "Object"
+		set category = "Weapons"
 		set name = "Eject current magazine"
 		set src in usr
 
@@ -383,7 +383,7 @@
 		return
 
 /obj/item/weapon/gun/projectile/M42C/verb/scope()
-	set category = "Object"
+	set category = "Weapons"
 	set name = "Use Scope"
 	set popup_menu = 1
 

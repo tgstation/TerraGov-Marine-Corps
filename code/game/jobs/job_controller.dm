@@ -584,6 +584,9 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			H << "Something went wrong with your squad randomizer! Tell a coder!"
 			return //Shit, where's our squad data
 
+		if(H.mind.assigned_squad) //Wait, we already have a squad. Get outta here!
+			return
+
 		//Deal with non-standards first.
 		//Non-standards are distributed regardless of squad population.
 		//If the number of available positions for the job are more than max_whatever, it will break.
