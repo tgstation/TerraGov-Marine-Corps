@@ -13,7 +13,7 @@
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	if(severity <= 2)
 		power_supply.use(round(power_supply.maxcharge / severity))
-		update_icon()
+//		update_icon()
 	else
 		return
 

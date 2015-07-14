@@ -36,9 +36,8 @@
 
 
 	update_icon()
-		var/ratio = power_supply.charge / power_supply.maxcharge
-		ratio = round(ratio, 0.25) * 100
 		if(modifystate)
-			icon_state = "[modifystate][ratio]"
+			icon_state = "[modifystate]"
 		else
-			icon_state = "[initial(icon_state)][ratio]"
+			icon_state = "[initial(icon_state)]"
+
