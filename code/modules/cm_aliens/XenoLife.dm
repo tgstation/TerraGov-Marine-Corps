@@ -24,6 +24,9 @@
 			src << "\green You feel the royal jelly swirl in your veins.."
 			jellyGrow = jellyMax
 
+	if(stat != DEAD) //If not dead, go ahead and update.
+		updatehealth()
+
 	if(loc)
 		handle_environment(loc.return_air())
 
@@ -32,28 +35,18 @@
 	update_canmove()
 	update_icons()
 	handle_statuses() //Deals with stunned, etc
-
-
 	if(client)
 		handle_regular_hud_updates()
-
-
-
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
 
 	if(status_flags & GODMODE)	return 0
-
-	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
-
 
 	if(stat == DEAD)
 		blinded = 1
 		silent = 0
 		see_in_dark = 8
 	else
-		updatehealth()
-
 		if(health <= -100 || (health < 0 && isXenoLarva(src))) //Just died!
 			death()
 			blinded = 1
@@ -109,25 +102,22 @@
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
 	if (healths)
-		updatehealth()
 		if (stat != 2)
 			switch(health * 100 / maxHealth)
 				if(100 to INFINITY)
 					healths.icon_state = "health0"
-				if(80 to 100)
+				if(76 to 99)
 					healths.icon_state = "health1"
-				if(60 to 80)
+				if(51 to 75)
 					healths.icon_state = "health2"
-				if(40 to 60)
+				if(26 to 50)
 					healths.icon_state = "health3"
-				if(20 to 40)
+				if(0 to 25)
 					healths.icon_state = "health4"
-				if(0 to 20)
-					healths.icon_state = "health5"
 				else
-					healths.icon_state = "health6"
+					healths.icon_state = "health5"
 		else
-			healths.icon_state = "health7"
+			healths.icon_state = "health6"
 
 	if(alien_plasma_display)
 		if (stat != 2)
@@ -176,7 +166,7 @@
 //			if (druggy)
 //				client.screen += global_hud.druggy
 
-	if(!stat && rand(20)) //Only a 20% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
+	if(!stat && prob(20)) //Only a 20% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
 
 	if (stat != 2)
@@ -190,9 +180,6 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_environment(var/datum/gas_mixture/environment)
-	// Both alien subtypes survive in vaccum and suffer in high temperatures,
-	// so I'll just define this once, for both (see radiation comment above)
-
 	var/turf/T = src.loc
 	if(environment)
 		if(environment.temperature > (T0C+66))
@@ -213,21 +200,18 @@
 			adjustFireLoss(-(maxHealth / 50)) //Heal from fire half as fast
 			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 			adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
-			updatehealth()
-			storedplasma += plasma_gain
+			updatehealth() //Make sure their actual health updates immediately.
 		if(storedplasma > maxplasma) storedplasma = maxplasma
-	else //Xenos restore plasma VERY slowly off weeds, and only at full health
-		if(health >= maxHealth - getCloneLoss())
-			if(rand(0,2) == 0) storedplasma += 1
-			if(storedplasma > maxplasma) storedplasma = maxplasma
-	//..()
+	else //Xenos restore plasma VERY slowly off weeds, regardless of health
+		if(rand(0,1) == 0) storedplasma += 1
+		if(storedplasma > maxplasma) storedplasma = maxplasma
 
 /mob/living/carbon/Xenomorph/death(gibbed)
 	if(!gibbed)
 		icon_state = "[caste] Dead"
 	playsound(loc, 'sound/voice/hiss6.ogg', 50, 1, 1)
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",4)
+		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
 		xeno_message("The slashing of hosts is now permitted!",2)
 		slashing_allowed = 1
 	else

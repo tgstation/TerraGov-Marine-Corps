@@ -51,25 +51,10 @@
 
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+	if(istype(A,/obj/item/attachable))
+		return ..()
 
 	var/num_loaded = 0
-/*
-	if(istype(A, /obj/item/device/flashlight))
-		if(!istype(src,/obj/item/weapon/gun/projectile/Assault) && !istype(src,/obj/item/weapon/gun/projectile/automatic)) //Add gun types here to make them gun-specific
-			user << "It doesn't fit."
-			return
-		if(haslight)
-			user << "It's already got a flashlight."
-			return
-		if(A:attachable)
-			user << "\red You attach [A] to [src]. Use 'toggle weapon light' in the Object tab to turn it on."
-			haslight = 1
-			del(A)
-			return
-		else
-			user << "Use a screwdriver to modify the flashlight first."
-			return
-*/
 	if(istype(A, /obj/item/ammo_magazine))
 		if((load_method == MAGAZINE) && loaded.len)
 			user << "There's a magazine in there already."
@@ -94,18 +79,19 @@
 			empty_mag = AM
 			empty_mag.loc = src
 
-	if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
+	else if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
 		var/obj/item/ammo_casing/AC = A
 		if(AC.caliber == caliber && loaded.len < max_shells)
 			user.drop_item()
 			AC.loc = src
 			loaded += AC
 			num_loaded++
+
 	if(num_loaded)
 		user << "\blue You load [num_loaded] shell\s into \the [src]!"
 		playsound(user, 'sound/weapons/unload.ogg', 20, 1)
-	A.update_icon()
-	update_icon()
+		A.update_icon()
+		update_icon()
 	return
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)

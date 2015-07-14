@@ -102,12 +102,19 @@
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
 				if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
 					miss_modifier += -30
+				if(daddy.rail)
+					if(daddy.rail.accuracy_mod) miss_modifier -= daddy.rail.accuracy_mod
+				if(daddy.muzzle)
+					if(daddy.muzzle.accuracy_mod) miss_modifier -= daddy.muzzle.accuracy_mod
+				if(daddy.under)
+					if(daddy.under.accuracy_mod) miss_modifier -= daddy.under.accuracy_mod
 
 			if(istype(src,/obj/item/projectile/bullet/m42c)) //Sniper rifles have different miss chance by distance.
 				if(distance <= 5)
 					miss_modifier += 30
 				else
 					miss_modifier -= 30
+
 
 			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
 				var/mob/living/carbon/human/H = A
@@ -158,6 +165,7 @@
 				density = 0
 				invisibility = 101
 				del(src)
+				return
 			else if(skip_over)
 				skip_over--
 		bumped = 0
@@ -174,8 +182,10 @@
 
 
 	process()
+		if(!src) return
 		if(kill_count < 1)
 			del(src)
+			return
 		kill_count--
 		spawn while(src)
 			if((!( current ) || loc == current))
@@ -185,7 +195,7 @@
 				return
 			step_towards(src, current)
 			sleep(1)
-			if(!bumped && !isturf(original))
+			if(!bumped && !isturf(original) && !istype(original,/obj/effect/alien/weeds))
 				if(loc == get_turf(original))
 					if(!(original in permutated))
 						Bump(original)

@@ -76,6 +76,8 @@
 				icon_state = "wall1"
 			else if (rand(0,20) == 0)
 				icon_state = "wall3"
+			else
+				icon_state = "wall2"
 
 
 /turf/simulated/floor/gm/dirtgrassborder

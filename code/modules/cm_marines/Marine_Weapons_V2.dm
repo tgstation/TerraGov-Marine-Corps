@@ -124,6 +124,12 @@
 	silenced = 0
 	load_method = 2
 	fire_sound = 'sound/weapons/servicepistol.ogg'
+	muzzle_pixel_x = 28
+	muzzle_pixel_y = 19
+	rail_pixel_x = 20
+	rail_pixel_y = 21
+	under_pixel_x = 20
+	under_pixel_y = 17
 
 	New()
 		..()
@@ -167,6 +173,12 @@
 	ejectshell = 0 //Caseless
 	load_method = 2
 	recoil = 0
+	muzzle_pixel_x = 33
+	muzzle_pixel_y = 19
+	rail_pixel_x = 22
+	rail_pixel_y = 21
+	under_pixel_x = 24
+	under_pixel_y = 16
 
 	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 		..()
@@ -205,6 +217,12 @@
 	slot_flags = SLOT_BACK
 	recoil = 0
 	twohanded = 1
+	muzzle_pixel_y = 15
+	muzzle_pixel_x = 33
+	rail_pixel_y = 19
+	rail_pixel_x = 26
+	under_pixel_y = 12
+	under_pixel_x = 21
 
 	New()
 		..()
@@ -230,13 +248,13 @@
 		return
 
 
-	verb/eject_magazine(mob/user)
+	verb/eject_magazine()
 		set category = "Object"
 		set name = "Eject current magazine"
-//		set src in usr
+		set src in usr
 
 		if(!usr.canmove || usr.stat || usr.restrained())
-			user << "Not right now."
+			usr << "Not right now."
 			return
 
 		if(!src || usr.get_active_hand() != src)
@@ -252,10 +270,10 @@
 			update_icon()
 			if(AM.stored_ammo.len)
 				AM.icon_state = "m309a"
-			user << "\blue You unload the magazine from \the [src]!"
-			playsound(user, 'sound/weapons/unload.ogg', 20, 1)
+			usr << "\blue You unload the magazine from \the [src]!"
+			playsound(usr, 'sound/weapons/unload.ogg', 20, 1)
 		else
-			user << "\red Nothing loaded in \the [src]!"
+			usr << "\red Nothing loaded in \the [src]!"
 
 		return
 
@@ -275,6 +293,12 @@
 	force = 10.0
 	twohanded = 1
 	fire_delay = 30
+	muzzle_pixel_x = 32
+	muzzle_pixel_y = 16
+	rail_pixel_x = 16
+	rail_pixel_y = 19
+	under_pixel_x = 22
+	under_pixel_y = 15
 
 
 ///***MELEE/THROWABLES***///
@@ -336,6 +360,12 @@
 	twohanded = 1
 	zoomdevicename = "scope"
 	slot_flags = SLOT_BACK
+	muzzle_pixel_x = 33
+	muzzle_pixel_y = 17
+	rail_pixel_x = 22
+	rail_pixel_y = 20
+	under_pixel_x = 25
+	under_pixel_y = 12
 
 	New()
 		..()
@@ -399,6 +429,12 @@
 	ejectshell = 0
 	recoil = 0
 	fire_delay = 1
+	muzzle_pixel_x = 33
+	muzzle_pixel_y = 17
+	rail_pixel_x = 18
+	rail_pixel_y = 18
+	under_pixel_x = 23
+	under_pixel_y = 14
 
 	special_check(user)
 		if(istype(user,/mob/living/carbon/human))
@@ -594,7 +630,7 @@
 		..()
 		if(grenades.len)
 			if (!(usr in view(2)) && usr!=src.loc) return
-			usr << "\icon [src] Grenade launcher:"
+			usr << "\icon[src] Grenade launcher:"
 			usr << "\blue [grenades.len] / [max_grenades] Grenades."
 
 	attackby(obj/item/I as obj, mob/user as mob)
@@ -619,19 +655,18 @@
 		else
 			usr << "\red The grenade launcher is empty."
 
-	proc
-		fire_grenade(atom/target, mob/user)
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("\red [] fired a grenade!", user), 1)
-			user << "\red You fire the grenade launcher!"
-			var/obj/item/weapon/grenade/F = grenades[1]
-			grenades -= F
-			F.loc = user.loc
-			F.throw_at(target, 30, 2, user)
-			message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
-			log_game("[key_name_admin(user)] used a grenade ([src.name]).")
-			F.active = 1
-			F.icon_state = initial(icon_state) + "_active"
-			playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
-			spawn(15)
-				F.prime()
+	proc/fire_grenade(atom/target, mob/user)
+		for(var/mob/O in viewers(world.view, user))
+			O.show_message(text("\red [] fired a grenade!", user), 1)
+		user << "\red You fire the grenade launcher!"
+		var/obj/item/weapon/grenade/F = grenades[1]
+		grenades -= F
+		F.loc = user.loc
+		F.throw_at(target, 30, 2, user)
+		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
+		log_game("[key_name_admin(user)] used a grenade ([src.name]).")
+		F.active = 1
+		F.icon_state = initial(icon_state) + "_active"
+		playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
+		spawn(15)
+			F.prime()

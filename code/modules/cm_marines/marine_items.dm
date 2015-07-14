@@ -204,7 +204,7 @@ obj/item/device/radio/headset/mdelta
 /obj/item/weapon/storage/box/beanbags
 	name = "box of beanbag shells"
 	desc = "A box of 12 gauge beanbag rounds. Manufactured by Armat Systems for prison guard and police use in non-lethal pacification."
-	icon_state = "beanshells"
+	icon_state = "box"
 	storage_slots = 14
 	can_hold = list(
 		"/obj/item/ammo_casing/shotgun",
@@ -311,7 +311,7 @@ obj/item/device/radio/headset/mdelta
 
 /obj/structure/broken_apc
 	name = "M577 Armored Personnel Carrier"
-	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional for repairs."
+	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
 	anchored = 1
 	opacity = 1
 	density = 1

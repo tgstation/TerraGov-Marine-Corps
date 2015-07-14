@@ -6,11 +6,11 @@
 	item_state = "glaive"
 	name = "glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
-	force = 24
+	force = 34
 	w_class = 4.0
 	slot_flags = SLOT_BACK
-	force_unwielded = 24
-	force_wielded = 58
+	force_unwielded = 34
+	force_wielded = 60
 	throwforce = 28
 	throw_speed = 2
 	edge = 1
@@ -33,8 +33,8 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "clan mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 40, bullet = 35, laser = 80,energy = 60, bomb = 75, bio = 100, rad = 100)
-	anti_hug = 5
+	armor = list(melee = 60, bullet = 45, laser = 80,energy = 60, bomb = 75, bio = 100, rad = 100)
+	anti_hug = 7
 	flags = FPRINT|TABLEPASS
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
@@ -53,8 +53,8 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 40, bullet = 40, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.2
+	armor = list(melee = 50, bullet = 50, laser = 20, energy = 20, bomb = 10, bio = 50, rad = 50)
+	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
 
@@ -62,7 +62,7 @@
 	name = "alien harpoon"
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
 	force = 25
-	throwforce = 65
+	throwforce = 85
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
 
 /obj/item/weapon/wristblades
@@ -71,7 +71,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
 	item_state = "wristblades"
-	force = 48
+	force = 52
 	w_class = 5.0
 	edge = 1
 	sharp = 0
@@ -95,7 +95,7 @@
 	permeability_coefficient = 0.01
 	flags = NOSLIP
 	body_parts_covered = FEET|LEGS
-	armor = list(melee = 30, bullet = 30, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 50, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -334,9 +334,9 @@
 /obj/item/projectile/beam/yautja2
 	name = "plasma"
 	icon_state = "pulse1"
-	damage = 45
+	damage = 55
 
 /obj/item/projectile/beam/yautja3
 	name = "heavy plasma"
 	icon_state = "pulse1_bl"
-	damage = 70
+	damage = 80
