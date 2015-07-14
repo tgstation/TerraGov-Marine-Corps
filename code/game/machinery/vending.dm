@@ -823,7 +823,7 @@
 					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 3,
 					/obj/item/weapon/reagent_containers/syringe = 10,
 					/obj/item/weapon/storage/syringe_case = 4,
-					/obj/item/weapon/reagent_containers/hypospray = 2,
+					/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 2,
 					/obj/item/device/healthanalyzer = 3,
 					/obj/item/stack/medical/advanced/bruise_pack = 4,
 					/obj/item/stack/medical/advanced/ointment = 4,

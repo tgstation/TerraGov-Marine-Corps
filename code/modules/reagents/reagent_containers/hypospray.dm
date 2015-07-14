@@ -17,12 +17,12 @@
 /obj/item/weapon/reagent_containers/hypospray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-
+/*
 /obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
 	..()
 	reagents.add_reagent("tricordrazine", 30)
 	return
-
+*/
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
 		user << "\red [src] is empty."
@@ -84,3 +84,11 @@
 		usr << "\blue It is currently loaded."
 	else
 		usr << "\blue It is spent."
+
+/obj/item/weapon/reagent_containers/hypospray/tricordrazine
+	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients. Contains tricordrazine."
+
+/obj/item/weapon/reagent_containers/hypospray/tricordrazine/New()
+	..()
+	reagents.add_reagent("tricordrazine", 30)
+	return
