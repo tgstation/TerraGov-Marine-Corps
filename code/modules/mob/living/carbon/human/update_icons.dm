@@ -181,6 +181,12 @@ Please contact me on #coderbus IRC. ~Carn x
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
 			overlays += I
+			if(chestburst == 1)
+				var/image/C = image('icons/Xeno/Misc.dmi',src,"burst_stand")
+				overlays += C
+			else if(chestburst == 2)
+				var/image/C = image('icons/Xeno/Misc.dmi',src,"bursted_stand")
+				overlays += C
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
