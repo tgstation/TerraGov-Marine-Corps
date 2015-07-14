@@ -298,7 +298,7 @@
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/device/radio/headset/msulaco(src)
 		new /obj/item/weapon/storage/belt/medical(src)
-		new /obj/item/weapon/reagent_containers/hypospray(src)
+		new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 		return
 

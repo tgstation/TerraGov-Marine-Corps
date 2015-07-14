@@ -23,6 +23,9 @@
 		new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)
 		new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
 		new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
+		new /obj/item/weapon/reagent_containers/glass/bottle/spaceacillin(src)
+		new /obj/item/weapon/reagent_containers/glass/bottle/kelotane(src)
+		new /obj/item/weapon/storage/box/pillbottles(src)
 		return
 
 

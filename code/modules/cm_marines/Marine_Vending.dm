@@ -64,10 +64,27 @@
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access_txt = "0"
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP =5,
-					/obj/item/weapon/storage/firstaid = 6,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix = 10)
+	products = list(/obj/item/weapon/storage/syringe_case = 2,
+					/obj/item/bodybag/cryobag = 2,
+					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
+					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 2,
+					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 2,
+					/obj/item/weapon/reagent_containers/syringe = 8,
+					/obj/item/weapon/storage/pill_bottle/kelotane = 1,
+					/obj/item/weapon/storage/pill_bottle/spaceacillin = 1,
+					/obj/item/weapon/storage/pill_bottle/inaprovaline = 1,
+					/obj/item/weapon/storage/pill_bottle/tramadol = 2,
+					/obj/item/weapon/storage/pill_bottle/antitox = 2,
+					/obj/item/device/healthanalyzer = 2,
+					/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 3,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 6,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 6,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 6,
+					/obj/item/stack/medical/advanced/bruise_pack = 4,
+					/obj/item/stack/medical/advanced/ointment = 4,
+					/obj/item/stack/medical/ointment = 8,
+					/obj/item/stack/medical/bruise_pack = 8,
+					/obj/item/stack/medical/splint = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate =3)
 
 
@@ -137,7 +154,7 @@
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,
 						/obj/item/clothing/under/rank/medical = 3,
-						/obj/item/weapon/storage/syringe_case = 6,
+						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/weapon/melee/defibrillator = 3,
 						/obj/item/bodybag/cryobag = 4,
@@ -151,7 +168,7 @@
 						/obj/item/weapon/storage/pill_bottle/tramadol = 4,
 						/obj/item/weapon/storage/pill_bottle/antitox = 4,
 						/obj/item/device/healthanalyzer = 3,
-						/obj/item/weapon/reagent_containers/hypospray = 3,
+						/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 3,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 6,
