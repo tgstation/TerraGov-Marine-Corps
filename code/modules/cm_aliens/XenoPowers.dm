@@ -511,7 +511,8 @@
 			M.Weaken(1)
 //			M.drop_l_hand() //Weaken will drop them on the floor anyway
 //			M.drop_r_hand()
-			M.ear_deaf += 40 //Deafens them temporarily (about 5 seconds)
+			if(!M.ear_deaf)
+				M.ear_deaf += 8 //Deafens them temporarily (about 5 seconds)
 		else if(dist >= 5 && dist < 7)
 			M.stunned += 2
 			M << "\blue The sound stuns you!"

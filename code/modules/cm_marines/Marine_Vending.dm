@@ -118,7 +118,9 @@
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
 						/obj/item/device/multitool = 4,
+						/obj/item/device/mine = 2,
 						/obj/item/weapon/storage/backpack/industrial = 3,
+						/obj/item/clothing/glasses/welding = 3,
 						/obj/item/weapon/plastique = 3,
 						/obj/item/device/lightreplacer = 2,
 						/obj/item/weapon/airlock_electronics = 10,
@@ -190,13 +192,12 @@
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 5,
 						/obj/item/weapon/grenade/smokebomb = 5,
-						/obj/item/device/mine = 2,
 						/obj/item/ammo_casing/rocket = 2,
 						/obj/item/ammo_casing/rocket/ap = 2,
 						/obj/item/weapon/flamethrower/full = 1,
-						/obj/item/weapon/tank/phoron = 2,
+						/obj/item/weapon/tank/phoron = 3,
 						/obj/item/weapon/shield/riot = 1,
-						/obj/item/ammo_magazine/m42c = 1,
+						/obj/item/ammo_magazine/m42c = 2,
 						/obj/item/smartgun_powerpack = 1
 			)
 	contraband = list()

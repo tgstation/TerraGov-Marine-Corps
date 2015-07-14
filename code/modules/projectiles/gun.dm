@@ -35,18 +35,20 @@
 
 	var/twohanded = 0
 	var/wielded = 0 //Do not set this in gun defines
-	var/obj/item/attachable/muzzle = null
+
+	var/obj/item/attachable/muzzle = null //Attachable slots. Only one item per slot.
 	var/obj/item/attachable/rail = null
 	var/obj/item/attachable/under = null
+	var/muzzle_pixel_y = 15 //These determine the position of the overlay relative to the gun.
+	var/muzzle_pixel_x = 33 //Ie. where the overlay should be placed depending on the slot.
+	var/rail_pixel_y = 19 //They can go above normal values.
+	var/rail_pixel_x = 28  //These defaults are all for the m41a, and should be changed according to the weapon.
+	var/under_pixel_y = 13
+	var/under_pixel_x = 21
 
-/* FOR REFERENCE (do not uncomment)
- 	ATTACH_MUZZLE	0
- 	ATTACH_RAIL		1
- 	ATTACH_UNDER	2
- 	ATTACH_INTERNAL	3
- 	ATTACH_MAGAZINE	4
- 	ATTACH_STOCK	5
-*/
+	var/flashlight_on = 0 //Mounted flashlight stuff.
+	var/flash_lum = 0
+
 	proc/ready_to_fire()
 		if(world.time >= last_fired + fire_delay)
 			last_fired = world.time
@@ -64,17 +66,33 @@
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 
+	examine()
+		..()
+		if(rail)
+			usr << "It has \icon[rail] [rail.name] mounted on the top."
+		if(muzzle)
+			usr << "It has \icon[muzzle] [muzzle.name] mounted on the front."
+		if(under)
+			usr << "It has \icon[under] [under.name] mounted underneath."
+
 
 
 /obj/item/weapon/gun/proc/unwield()
 	if(!twohanded) return
 	wielded = 0
 	name = "[initial(name)]"
+	item_state = initial(item_state)
+	if(usr)
+		usr.update_icons()
 
 /obj/item/weapon/gun/proc/wield()
 	if(!twohanded) return
 	wielded = 1
 	name = "[initial(name)] (Wielded)"
+	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41)) //Only one that has a wielded sprite atm. Add more here later or remove it?
+		item_state = "[initial(item_state)]-w"
+		if(usr)
+			usr.update_icons()
 
 /obj/item/weapon/gun/mob_can_equip(M as mob, slot)
 	//Cannot equip wielded items.
@@ -84,7 +102,15 @@
 
 	return ..()
 
+//Note: pickup and dropped on weapons must have both the ..() to update zoom, AND twohanded,
+//As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
 /obj/item/weapon/gun/dropped(mob/user as mob)
+	..()
+
+	if(flashlight_on && src.loc != user)
+		user.SetLuminosity(-flash_lum)
+		SetLuminosity(flash_lum)
+
 	//handles unwielding a twohanded weapon when dropped as well as clearing up the offhand
 	if(twohanded)
 		if(user)
@@ -92,14 +118,17 @@
 			if(istype(O))
 				O.unwield()
 		return	unwield()
-	else
-		..()
+
 
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
+
+	if(flashlight_on && src.loc != user)
+		user.SetLuminosity(flash_lum)
+		SetLuminosity(0)
+
 	if(twohanded)
 		unwield()
-
 
 /obj/item/weapon/gun/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 	if(flag)	return //It's adjacent, is the user, or is on the user's person
@@ -176,12 +205,25 @@
 			shake_camera(user, recoil + 1, recoil)
 
 	if(silenced)
-		playsound(user, fire_sound, 10, 1)
+		playsound(user, fire_sound, 8, 1)
 	else
 		playsound(user, fire_sound, 50, 1)
-		user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-		"<span class='warning'>You fire [src][reflex ? "by reflex":""]!</span>", \
-		"You hear a [istype(in_chamber, /obj/item/projectile/beam) ? "laser blast" : "gunshot"]!")
+		if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) || istype(src,/obj/item/weapon/gun/projectile/automatic/m39))
+			var/obj/item/weapon/gun/projectile/automatic/Q = src
+			user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
+			"<span class='warning'>You fire [src][reflex ? "by reflex":""]! \[[Q.loaded.len]/[Q.max_shells]\]</span>", \
+			"You hear a [istype(in_chamber, /obj/item/projectile/beam) ? "laser blast" : "gunshot"]!")
+		else
+			user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
+			"<span class='warning'>You fire [src][reflex ? "by reflex":""]!</span>", \
+			"You hear a [istype(in_chamber, /obj/item/projectile/beam) ? "laser blast" : "gunshot"]!")
+
+	if(rail)
+		if(rail.ranged_dmg_mod) in_chamber.damage = (in_chamber.damage * rail.ranged_dmg_mod / 100)
+	if(muzzle)
+		if(muzzle.ranged_dmg_mod) in_chamber.damage = (in_chamber.damage * muzzle.ranged_dmg_mod / 100)
+	if(under)
+		if(under.ranged_dmg_mod) in_chamber.damage = (in_chamber.damage * under.ranged_dmg_mod / 100)
 
 	in_chamber.original = target
 	in_chamber.loc = get_turf(user)
@@ -282,3 +324,125 @@
 			return
 	else
 		return ..() //Pistolwhippin'
+
+
+//Attachables!
+/obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
+	..()
+
+	if(!istype(I,/obj/item/attachable)) return
+	var/obj/item/attachable/A = I
+
+	if(!(src.type in A.guns_allowed))
+		user << "\The [A] doesn't fit on [src]."
+		return
+
+	//First, deal with the slot in question.
+	var/nope = 0
+	if(A.slot == "rail" && src.rail) nope = 1
+	if(A.slot == "muzzle" && src.muzzle) nope = 1
+	if(A.slot == "under" && src.under) nope = 1
+	if(nope)
+		user << "There's already something attached in that weapon slot. Field strip your weapon first."
+		return
+
+	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying your \the [src]..")
+	if(do_after(user,70))
+		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
+		user.drop_item()
+		A.loc = src
+		A.Attach(src)
+		update_attachables()
+		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+	return
+
+/obj/item/weapon/gun/proc/update_attachables()
+	overlays.Cut()
+	if(rail)
+		var/flash = 0
+		var/image/I
+		if(rail.light_mod) //Currently only rail-mounted flashlights.
+			if(flashlight_on)
+				I = new(rail.icon, "[rail.icon_state]-on")
+				I.icon_state = "[rail.icon_state]-on"
+				flash = 1
+		if(!flash)
+			I = new(rail.icon, rail.icon_state)
+			I.icon_state = rail.icon_state
+		I.pixel_x = src.rail_pixel_x - rail.pixel_shift_x
+		I.pixel_y = src.rail_pixel_y - rail.pixel_shift_y
+		overlays += I
+	if(muzzle)
+		var/image/I = new(muzzle.icon, muzzle.icon_state)
+		I.icon_state = muzzle.icon_state
+		I.pixel_x = src.muzzle_pixel_x - muzzle.pixel_shift_x
+		I.pixel_y = src.muzzle_pixel_y - muzzle.pixel_shift_y
+		overlays += I
+	if(under)
+		var/image/I = new(under.icon, under.icon_state)
+		I.icon_state = under.icon_state
+		I.pixel_x = src.under_pixel_x - under.pixel_shift_x
+		I.pixel_y = src.under_pixel_y - under.pixel_shift_y
+		overlays += I
+
+/obj/item/weapon/gun/verb/field_strip()
+	set category = "Weapons"
+	set name = "Field Strip Weapon"
+	set desc = "Remove all attachables from a weapon."
+	set src in usr
+
+	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
+		usr << "Not right now."
+		return
+
+	if(!rail && !muzzle && !under)
+		usr << "This weapon has no attachables. You can only field strip enhanced weapons."
+		return
+
+	usr.visible_message("\blue [usr] begins field stripping their [src].","\blue You begin field-stripping your [src].")
+	if(!do_after(usr,40))
+		return
+
+	if(rail)
+		usr << "You remove the weapon's [rail]."
+		rail.loc = get_turf(usr)
+		rail.Detach(src)
+	if(muzzle)
+		usr << "You remove the weapon's [muzzle]."
+		muzzle.loc = get_turf(usr)
+		muzzle.Detach(src)
+	if(under)
+		usr << "You remove the weapon's [under]."
+		under.loc = get_turf(usr)
+		under.Detach(src)
+
+	playsound(src,'sound/machines/click.ogg', 50, 1)
+	update_attachables()
+
+/obj/item/weapon/gun/verb/toggle_light()
+	set category = "Weapons"
+	set name = "Toggle Weapon Light"
+	set desc = "Toggle on or off your weapon's flashlight, if it has one."
+	set src in usr
+
+	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
+		usr << "Not right now."
+		return
+
+	if(!flash_lum)
+		usr << "This weapon has no flashlight installed. To install one, find or build a mountable flashlight."
+		return
+
+	playsound(src.loc,'sound/machines/click.ogg', 50, 1)
+	flashlight_on = !flashlight_on
+	if(flashlight_on)
+		if(loc == usr)
+			usr.SetLuminosity(flash_lum)
+		else if(isturf(loc))
+			SetLuminosity(flash_lum)
+	else
+		if(loc == usr)
+			usr.SetLuminosity(-flash_lum)
+		else if(isturf(loc))
+			SetLuminosity(0)
+	update_attachables()

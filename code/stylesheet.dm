@@ -40,7 +40,7 @@ em						{font-style: normal;	font-weight: bold;}
 .supradio				{color: #5F4519;}
 
 .alpharadio				{color: #EA0000;}
-.bravoradio				{color: #F1B441;}
+.bravoradio				{color: #C68610;}
 .charlieradio			{color: #9632C8;}
 .deltaradio				{color: #32C8EE;}
 

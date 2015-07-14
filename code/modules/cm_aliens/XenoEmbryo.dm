@@ -105,29 +105,20 @@
 		stage = 4
 		return 0
 
-	var/image/overlay_l = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_lie")
-	var/image/overlay_s = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
-	if(affected_mob.lying)
-		affected_mob.overlays += overlay_l
-	else
-		affected_mob.overlays += overlay_s
+	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
+	affected_mob.update_icons()
 	spawn(6)
+		if(!affected_mob || !src) return //Might have died or something in that half second
 		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
 		new_xeno.key = picked
 		new_xeno << sound('sound/voice/hiss5.ogg',0,0,0,100)	//To get the player's attention
 		affected_mob.adjustToxLoss(200) //This should kill without gibbing da body
 		affected_mob.updatehealth()
-
-		affected_mob.overlays -= overlay_l
-		affected_mob.overlays -= overlay_s
-		if(affected_mob.lying)
-			affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "bursted_lie")
-		else
-			affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "bursted_stand")
-//		if(gib_on_success)
-//			affected_mob.gib()
+		affected_mob.chestburst = 2
 		processing_objects.Remove(src)
 		affected_mob.update_icons()
+//		if(gib_on_success)
+//			affected_mob.gib()
 		del(src)
 
 /*----------------------------------------

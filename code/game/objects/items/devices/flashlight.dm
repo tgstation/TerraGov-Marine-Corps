@@ -45,6 +45,17 @@
 	update_brightness(user)
 	return 1
 
+/obj/item/device/flashlight/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I,/obj/item/weapon/screwdriver))
+		user << "You modify the flashlight. It can now be mounted on a weapon."
+		user << "Use a screwdriver on the rail flashlight to change it back."
+		if(src.loc == user)
+			user.drop_from_inventory(src)
+			new /obj/item/attachable/flashlight(src.loc)
+			del(src)
+			return
+	..()
+
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)

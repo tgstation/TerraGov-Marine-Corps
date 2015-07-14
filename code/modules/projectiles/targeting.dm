@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/verb/toggle_firerate()
 	set name = "Toggle Firerate"
-	set category = "Object"
+	set category = "Weapons"
 
 	firerate = !firerate
 
@@ -11,7 +11,7 @@
 
 /obj/item/weapon/gun/verb/lower_aim()
 	set name = "Lower Aim"
-	set category = "Object"
+	set category = "Weapons"
 	if(target)
 		stop_aim()
 		usr.visible_message("\blue \The [usr] lowers \the [src]...")
