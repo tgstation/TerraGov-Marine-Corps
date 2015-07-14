@@ -43,7 +43,7 @@
 				R.cell.use(charge_cost) 		//Take power from the borg...
 				power_supply.give(charge_cost)	//... to recharge the shot
 
-		update_icon()
+//		update_icon()
 		return 1
 
 

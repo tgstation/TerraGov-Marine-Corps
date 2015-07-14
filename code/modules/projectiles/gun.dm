@@ -81,11 +81,18 @@
 	if(!twohanded) return
 	wielded = 0
 	name = "[initial(name)]"
+	item_state = initial(item_state)
+	if(usr)
+		usr.update_icons()
 
 /obj/item/weapon/gun/proc/wield()
 	if(!twohanded) return
 	wielded = 1
 	name = "[initial(name)] (Wielded)"
+	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41)) //Only one that has a wielded sprite atm. Add more here later or remove it?
+		item_state = "[initial(item_state)]-w"
+		if(usr)
+			usr.update_icons()
 
 /obj/item/weapon/gun/mob_can_equip(M as mob, slot)
 	//Cannot equip wielded items.

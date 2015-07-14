@@ -64,7 +64,7 @@
 		if((power_supply.charge / power_supply.maxcharge) != 1)
 			if(!failcheck())	return 0
 			power_supply.give(100)
-			update_icon()
+//			update_icon()
 		return 1
 
 
