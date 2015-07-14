@@ -53,21 +53,21 @@
 		update_icon()	//I.E. fix the desc
 		return 1
 
-	verb/pump_shotgun(mob/user)
+	verb/pump_shotgun()
 		set category = "Object"
 		set name = "Pump Shotgun"
 		set src in usr
 
 		if(!usr.canmove || usr.stat || usr.restrained())
-			user << "Not right now."
+			usr << "Not right now."
 			return
 
 		if(recentpump)	return
-		var/mob/living/carbon/human/M = user
+		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return //wat
 
 		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
-			user << "You have to be holding a shotgun!"
+			M << "You have to be holding a shotgun!"
 			return //not holding it
 
 		pump(M)
