@@ -25,8 +25,8 @@
 	jellyMax = 0
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
-	adjust_size_x = 0.8
-	adjust_size_y = 0.75
+	adjust_size_x = 0.9
+	adjust_size_y = 0.85
 	fire_immune = 1
 	armor_deflection = 65
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."

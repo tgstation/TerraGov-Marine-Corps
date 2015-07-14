@@ -54,7 +54,7 @@
 		return 1
 
 	verb/pump_shotgun()
-		set category = "Object"
+		set category = "Weapons"
 		set name = "Pump Shotgun"
 		set src in usr
 

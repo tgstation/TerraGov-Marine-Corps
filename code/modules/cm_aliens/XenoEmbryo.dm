@@ -105,13 +105,20 @@
 		stage = 4
 		return 0
 
-	var/image/overlay_l = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_lie")
-	var/image/overlay_s = image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "burst_stand")
+	var/image/overlay_l = new()
+	overlay_l.icon = 'icons/Xeno/Misc.dmi'
+	overlay_l.icon_state = "burst_lie"
+
+	var/image/overlay_s = new()
+	overlay_s.icon = 'icons/Xeno/Misc.dmi'
+	overlay_s.icon_state = "burst_stand"
+
 	if(affected_mob.lying)
 		affected_mob.overlays += overlay_l
 	else
 		affected_mob.overlays += overlay_s
 	spawn(6)
+		if(!affected_mob || !src) return //Might have died or something in that half second
 		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
 		new_xeno.key = picked
 		new_xeno << sound('sound/voice/hiss5.ogg',0,0,0,100)	//To get the player's attention
@@ -120,10 +127,19 @@
 
 		affected_mob.overlays -= overlay_l
 		affected_mob.overlays -= overlay_s
+
+		var/image/overlay_l_b = new()
+		overlay_l_b.icon = 'icons/Xeno/Misc.dmi'
+		overlay_l_b.icon_state = "bursted_lie"
+
+		var/image/overlay_s_b = new()
+		overlay_s_b.icon = 'icons/Xeno/Misc.dmi'
+		overlay_s_b.icon_state = "bursted_stand"
+
 		if(affected_mob.lying)
-			affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "bursted_lie")
+			affected_mob.overlays += overlay_l_b
 		else
-			affected_mob.overlays += image('icons/Xeno/Misc.dmi', loc = affected_mob, icon_state = "bursted_stand")
+			affected_mob.overlays += overlay_s_b
 //		if(gib_on_success)
 //			affected_mob.gib()
 		processing_objects.Remove(src)

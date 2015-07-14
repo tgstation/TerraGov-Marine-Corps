@@ -21,7 +21,7 @@
 
 	verb/rename_gun()
 		set name = "Name Gun"
-		set category = "Object"
+		set category = "Weapons"
 		set desc = "Click to rename your gun. If you're the detective."
 
 		var/mob/M = usr

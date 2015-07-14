@@ -228,7 +228,7 @@ obj/item/weapon/gun/energy/staff/focus
 	zoomdevicename = "scope"
 
 /obj/item/weapon/gun/energy/sniperrifle/verb/scope()
-	set category = "Object"
+	set category = "Weapons"
 	set name = "Use Scope"
 	set popup_menu = 1
 

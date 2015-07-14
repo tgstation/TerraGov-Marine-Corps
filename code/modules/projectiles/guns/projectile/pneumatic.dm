@@ -28,7 +28,7 @@
 /obj/item/weapon/gun/launcher/pneumatic/verb/set_pressure() //set amount of tank pressure.
 
 	set name = "Set Valve Pressure"
-	set category = "Object"
+	set category = "Weapons"
 	set src in range(0)
 	var/N = input("Percentage of tank used per shot:","[src]") as null|anything in possible_pressure_amounts
 	if (N)
@@ -38,7 +38,7 @@
 /obj/item/weapon/gun/launcher/pneumatic/verb/eject_tank() //Remove the tank.
 
 	set name = "Eject Tank"
-	set category = "Object"
+	set category = "Weapons"
 	set src in range(0)
 
 	if(tank)

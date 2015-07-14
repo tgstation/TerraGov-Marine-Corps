@@ -386,7 +386,7 @@
 		overlays += I
 
 /obj/item/weapon/gun/verb/field_strip()
-	set category = "Object"
+	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
 	set src in usr
@@ -420,7 +420,7 @@
 	update_attachables()
 
 /obj/item/weapon/gun/verb/toggle_light()
-	set category = "Object"
+	set category = "Weapons"
 	set name = "Toggle Weapon Light"
 	set desc = "Toggle on or off your weapon's flashlight, if it has one."
 	set src in usr

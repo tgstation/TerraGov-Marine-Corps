@@ -389,8 +389,10 @@ v
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine"
-
+		"/obj/item/device/mine",
+		"/obj/item/ammo_casing/m44m",
+		"/obj/item/ammo_magazine/m44m",
+		"/obj/item/ammo_magazine/m42c"
 		)
 
 /obj/item/weapon/storage/belt/marine/full/New()
