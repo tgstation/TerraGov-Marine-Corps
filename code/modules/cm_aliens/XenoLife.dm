@@ -27,14 +27,13 @@
 	if(stat != DEAD) //If not dead, go ahead and update.
 		updatehealth()
 
-	if(loc)
-		handle_environment(loc.return_air())
-
 	//Status updates, death etc.
 	handle_regular_status_updates()
 	update_canmove()
 	update_icons()
 	handle_statuses() //Deals with stunned, etc
+	if(loc)
+		handle_environment(loc.return_air())
 	if(client)
 		handle_regular_hud_updates()
 
@@ -56,7 +55,10 @@
 			blinded = 1
 			see_in_dark = 3
 			Paralyse(4)
-			adjustBruteLoss(5)
+			var/turf/T = loc
+			if(istype(T))
+				if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
+					adjustBruteLoss(5)
 		else										//Alive! Yey! Turn on their vision.
 			see_in_dark = 8
 			blinded = 0
@@ -103,7 +105,7 @@
 
 	if (healths)
 		if (stat != 2)
-			switch(health * 100 / maxHealth)
+			switch(health * 100 / maxHealth) //Maxhealth should never be zero or this will generate runtimes.
 				if(100 to INFINITY)
 					healths.icon_state = "health0"
 				if(76 to 99)
@@ -159,12 +161,6 @@
 			blind.layer = 18
 		else
 			blind.layer = 0
-//			if (disabilities & NEARSIGHTED)
-//				client.screen += global_hud.vimpaired
-//			if (eye_blurry)
-//				client.screen += global_hud.blurry
-//			if (druggy)
-//				client.screen += global_hud.druggy
 
 	if(!stat && prob(20)) //Only a 20% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
@@ -193,11 +189,11 @@
 	if(!T || !istype(T)) return
 
 	if(locate(/obj/effect/alien/weeds) in T)
-		if(health >= maxHealth - getCloneLoss())
+		if(health >= maxHealth)
 			storedplasma += plasma_gain
 		else
-			adjustBruteLoss(-(maxHealth / 40)) //Heal 1/40th of your max health in brute per tick.
-			adjustFireLoss(-(maxHealth / 50)) //Heal from fire half as fast
+			adjustBruteLoss(-(maxHealth / 40) - 2) //Heal 1/40th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+			adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
 			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 			adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 			updatehealth() //Make sure their actual health updates immediately.
@@ -236,3 +232,16 @@
 	else
 		locate_queen.dir = get_dir(src,target)
 		locate_queen.icon_state = "trackon"
+
+/mob/living/carbon/Xenomorph/updatehealth()
+	if(status_flags & GODMODE)
+		health = 100
+		stat = CONSCIOUS
+	else
+		health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
+
+	if(health <= -100 && stat != DEAD) //We'll put a death check here for safety.
+		death()
+		blinded = 1
+		silent = 0
+		return

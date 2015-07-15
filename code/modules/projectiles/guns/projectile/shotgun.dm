@@ -70,7 +70,7 @@
 			M << "You have to be holding a shotgun!"
 			return //not holding it
 
-		pump(M)
+		src.pump(M)
 		recentpump = 1
 		spawn(20)
 			recentpump = 0

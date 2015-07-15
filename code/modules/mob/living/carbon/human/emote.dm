@@ -546,7 +546,7 @@
 				message = "<B>[src] roars!</b>"
 				m_type = 1
 				spawn(2)
-					if(rand(50))
+					if(rand(0,100) < 70)
 						playsound(src.loc, 'sound/voice/pred_roar1.ogg', 100, 1)
 					else
 						playsound(src.loc, 'sound/voice/pred_roar2.ogg', 100, 1)

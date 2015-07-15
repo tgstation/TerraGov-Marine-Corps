@@ -302,6 +302,15 @@
 		mymob.nutrition_icon.screen_loc = ui_nutrition
 		hud_elements |= mymob.nutrition_icon
 
+	//Add predator icon.
+	if(hud_data.is_yautja)
+		mymob.pred_power_icon = new /obj/screen()
+		mymob.pred_power_icon.icon = 'icons/Predator/hud_icons.dmi'
+		mymob.pred_power_icon.icon_state = "powerbar10"
+		mymob.pred_power_icon.name = "bracer power stored"
+		mymob.pred_power_icon.screen_loc = ui_predator_power
+		hud_elements |= mymob.pred_power_icon
+
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"

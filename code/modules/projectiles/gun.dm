@@ -347,7 +347,7 @@
 		return
 
 	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying your \the [src]..")
-	if(do_after(user,70))
+	if(do_after(user,60))
 		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
 		user.drop_item()
 		A.loc = src
@@ -385,7 +385,7 @@
 		I.pixel_y = src.under_pixel_y - under.pixel_shift_y
 		overlays += I
 
-/obj/item/weapon/gun/verb/field_strip()
+/obj/item/weapon/gun/projectile/verb/field_strip()
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
@@ -419,7 +419,7 @@
 	playsound(src,'sound/machines/click.ogg', 50, 1)
 	update_attachables()
 
-/obj/item/weapon/gun/verb/toggle_light()
+/obj/item/weapon/gun/projectile/verb/toggle_light()
 	set category = "Weapons"
 	set name = "Toggle Weapon Light"
 	set desc = "Toggle on or off your weapon's flashlight, if it has one."

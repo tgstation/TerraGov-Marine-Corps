@@ -3,6 +3,7 @@
 	var/climbable
 	var/breakable
 	var/parts
+	anchored = 1
 
 /obj/structure/proc/destroy()
 	if(parts)

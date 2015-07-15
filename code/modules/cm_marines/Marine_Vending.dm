@@ -239,12 +239,12 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(
-						/obj/item/attachable/suppressor = 4,
+						/obj/item/attachable/suppressor = 6,
 						/obj/item/attachable/bayonet = 20,
-						/obj/item/attachable/reddot = 5,
-						/obj/item/attachable/foregrip = 12,
-						/obj/item/attachable/gyro = 2,
-						/obj/item/attachable/flashlight = 20,
+						/obj/item/attachable/reddot = 8,
+						/obj/item/attachable/foregrip = 16,
+						/obj/item/attachable/gyro = 3,
+						/obj/item/attachable/flashlight = 40,
 						/obj/item/attachable/bipod = 6
 					)
 	contraband = list()

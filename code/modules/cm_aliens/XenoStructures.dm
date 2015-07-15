@@ -145,7 +145,7 @@
 	name = "purple sac"
 	desc = "Weird purple octopus-like thing."
 	layer = 2.7
-	luminosity = NODERANGE
+//	luminosity = NODERANGE
 	var/node_range = NODERANGE
 
 

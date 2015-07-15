@@ -49,12 +49,15 @@
 	if(istype(I,/obj/item/weapon/screwdriver))
 		user << "You modify the flashlight. It can now be mounted on a weapon."
 		user << "Use a screwdriver on the rail flashlight to change it back."
+		var/obj/item/attachable/flashlight/F = new(src.loc)
 		if(src.loc == user)
-			user.drop_from_inventory(src)
-			new /obj/item/attachable/flashlight(src.loc)
-			del(src)
-			return
-	..()
+			user.drop_from_inventory(src) //This part is important to make sure our light sources update, as it calls dropped()
+		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
+		if(F.loc != user) //It ended up on the floor, put it where the flashlight is.
+			F.loc = src.loc
+		del(src) //Delete da old flashlight
+	else
+		..()
 
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)

@@ -33,6 +33,11 @@
 	Trigger(var/atom/A)
 		if(!A || !istype(A, /atom/movable))
 			return
+
+		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
+			return
+		if(istype(A,/obj/effect)) return
+
 		var/atom/movable/AM = A
 		var/curtiles = 0
 		var/stopthrow = 0
@@ -94,8 +99,10 @@
 	var/teleport_z = 0
 
 	Trigger(var/atom/movable/A)
+		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
+			return
+		if(istype(A,/obj/effect) || A.anchored) return
 		if(teleport_x && teleport_y && teleport_z)
-
 			A.x = teleport_x
 			A.y = teleport_y
 			A.z = teleport_z
@@ -108,6 +115,10 @@
 	var/teleport_z_offset = 0
 
 	Trigger(var/atom/movable/A)
+		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
+			return
+		if(istype(A,/obj/effect) || A.anchored) return
+
 		if(teleport_x && teleport_y && teleport_z)
 			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
 
@@ -118,8 +129,9 @@
 				if(A.z == 1 && isliving(A)) //Ground map Z-level
 					var/mob/living/carbon/M = A
 					if(!istype(M)) return
-					var/dmg = rand(250,500)
+					var/dmg = rand(150,400)
 					M.Weaken(10)
-					M.visible_message("\red [src] falls from the sky!","\red SPLAT!!")
+					M.inertia_dir = 0
+					M.make_floating(0)
+					M.visible_message("\red <B> [M] falls from the sky!</B>","\red <B>SPLAT!!</B>")
 					M.adjustBruteLoss(dmg)
-

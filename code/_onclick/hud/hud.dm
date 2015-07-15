@@ -125,6 +125,7 @@ var/datum/global_hud/global_hud = new()
 	var/obj/screen/action_intent
 	var/obj/screen/move_intent
 	var/obj/screen/alien_plasma_display
+	var/obj/screen/pred_power_icon
 
 	var/list/adding
 	var/list/other
