@@ -346,3 +346,53 @@ obj/item/device/radio/headset/mdelta
 								/obj/item/clothing/under/marine_underoos,
 								/obj/item/clothing/shoes/marine)
 				new thing(src)
+
+/obj/item/weapon/storage/box/uscm_mre
+	name = "USCM Meal Ready to Eat"
+	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\nOn the box is a picture of a shouting Squad Leader. \"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
+	icon_state = "mre1"
+
+	New()
+		..()
+		pixel_y = rand(-3,3)
+		pixel_x = rand(-3,3)
+		new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/protein_pack
+	name = "satchel of protein substitute"
+	desc = "What.. what IS this? Is this food? Are you supposed to put it in your mouth? It oozes inside the translucent bag and smells like hobo vomit."
+	icon_state = "yummers"
+	filling_color = "#ED1169"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 8)
+		bitesize = 4
+
+/obj/item/weapon/storage/box/wy_mre
+	name = "Weyland-Yutani Brand MRE"
+	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: <b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
+	icon_state = "mre2"
+
+	New()
+		..()
+		pixel_y = rand(-3,3)
+		pixel_x = rand(-3,3)
+		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/coffee(src)
+		var/randsnack = rand(0,5)
+		switch(randsnack)
+			if(0)
+				new /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers(src)
+			if(1)
+				new /obj/item/weapon/reagent_containers/food/snacks/no_raisin(src)
+			if(2)
+				new /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie(src)
+			if(4)
+				new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
+			if(5)
+				new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)

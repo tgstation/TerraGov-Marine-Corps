@@ -156,7 +156,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		if(!H)	return 0
 		var/obj/item/weapon/storage/backpack/BPK = new(H)
 		new /obj/item/weapon/storage/box/survival(BPK)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
@@ -166,7 +165,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		spawn(10)
 			H << "\red You are the Requisitions Officer!"
 			H << "Your job is to dispense basic weapon attachments and extra supplies."
-			H << "You are permitted to hand out only ONE attachment to marines, and THREE maximum to Squad Leaders. The Commander or Executive Officer can override this."
-			H << "Don't order all kinds of shit unnecessarily! Only what is required."
+			H << "Squad leaders are allowed THREE attachments just by asking. You should ask marines for a stamped form from Logistics."
+			H << "Commanders and Executive Officers have full access to the vendor."
+			H << "You don't have to stay in your department all the time, but you should go if someone needs something."
 		return 1
 
