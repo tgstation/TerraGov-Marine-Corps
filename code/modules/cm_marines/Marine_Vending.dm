@@ -230,3 +230,23 @@
 	contraband = list()
 	premium = list()
 	prices = list()
+
+/obj/machinery/vending/attachments
+	name = "Armat Systems Module Vendor"
+	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer."
+	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	req_access = list(access_sulaco_cargo)
+	icon_state = "robotics"
+	icon_deny = "robotics-deny"
+	products = list(
+						/obj/item/attachable/suppressor = 4,
+						/obj/item/attachable/bayonet = 20,
+						/obj/item/attachable/reddot = 5,
+						/obj/item/attachable/foregrip = 12,
+						/obj/item/attachable/gyro = 2,
+						/obj/item/attachable/flashlight = 20,
+						/obj/item/attachable/bipod = 6
+					)
+	contraband = list()
+	premium = list()
+	prices = list()
