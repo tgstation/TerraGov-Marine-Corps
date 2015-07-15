@@ -19,6 +19,9 @@
 
 /obj/effect/step_trigger/teleport_fancy/Trigger(mob/M as mob)
 	var/dest = locate(locationx, locationy, z)
+	if(!M || !istype(M))
+		return
+
 	M.Move(dest)
 
 	if(entersparks)

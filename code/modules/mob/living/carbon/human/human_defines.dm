@@ -81,3 +81,4 @@
 	var/hand_blood_color
 
 	var/list/flavor_texts = list()
+	var/recently_unbuckled = 0

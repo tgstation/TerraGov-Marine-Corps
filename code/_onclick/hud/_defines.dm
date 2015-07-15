@@ -76,6 +76,8 @@
 #define ui_alien_fire "14:28,12:25"
 #define ui_alien_oxygen "14:28,11:25"
 
+#define ui_predator_power "14:28,9:13"
+
 //Middle right (status indicators)
 #define ui_nutrition "14:28,5:11"
 #define ui_temp "14:28,6:13"

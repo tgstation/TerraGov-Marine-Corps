@@ -125,7 +125,7 @@
 						/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 						/obj/item/weapon/gun/projectile/m4a3
 						)
-	accuracy_mod = 30 //30% accuracy bonus
+	accuracy_mod = 20 //20% accuracy bonus
 	slot = "rail"
 
 /obj/item/attachable/foregrip
@@ -171,12 +171,15 @@
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I,/obj/item/weapon/screwdriver))
 			user << "You modify the rail flashlight back into a normal flashlight."
+			var/obj/item/device/flashlight/F = new(src.loc)
 			if(src.loc == user)
 				user.drop_from_inventory(src)
-				new /obj/item/device/flashlight(src.loc)
-				del(src)
-				return
-		..()
+			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
+			if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
+				F.loc = src.loc
+			del(src) //Delete da old flashlight
+		else
+			..()
 
 /obj/item/attachable/grenade
 	name = "underslung grenade launcher"
@@ -231,8 +234,8 @@
 	slot = "under"
 
 /obj/item/attachable/bipod
-	name = "folding bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. Greatly increases accuracy, but also increases weapon size."
+	name = "bipod"
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. Greatly increases accuracy and reduces recoil, but also increases weapon size."
 	icon_state = "bipod"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/M42C)

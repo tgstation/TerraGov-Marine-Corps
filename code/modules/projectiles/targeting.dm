@@ -11,7 +11,7 @@
 
 /obj/item/weapon/gun/verb/lower_aim()
 	set name = "Lower Aim"
-	set category = "Weapons"
+	set category = "Object"
 	if(target)
 		stop_aim()
 		usr.visible_message("\blue \The [usr] lowers \the [src]...")

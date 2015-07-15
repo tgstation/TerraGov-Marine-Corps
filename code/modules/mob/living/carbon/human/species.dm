@@ -489,6 +489,7 @@
 	flesh_color = "#907E4A"
 	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
 	speech_chance = 100
+	hud_type = /datum/hud_data/yautja
 
 	inherent_verbs = list(
 //		/mob/living/carbon/human/proc/leap
@@ -496,15 +497,18 @@
 
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/yautja(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/weapon/harpoon/yautja(H), slot_r_hand)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night(H), slot_glasses)
+
+//	H.equip_to_slot_or_del(new /obj/item/weapon/harpoon/yautja(H), slot_r_hand)
+
+	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
+	H.hud_used = new /datum/hud(H)
 	return ..()
 
 // Called when using the shredding behavior.
@@ -599,6 +603,7 @@
 	var/has_throw = 1     // Set to draw throw button.
 	var/has_resist = 1    // Set to draw resist button.
 	var/has_internals = 1 // Set to draw the internals toggle button.
+	var/is_yautja = 0
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 
 	// Contains information on the position and tag for all inventory slots

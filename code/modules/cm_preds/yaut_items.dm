@@ -1,4 +1,5 @@
 //Items specific to yautja. Other people can use em, they're not restricted or anything.
+//They can't, however, activate any of the special functions.
 
 /obj/item/weapon/twohanded/glaive
 	icon = 'icons/Predator/items.dmi'
@@ -39,11 +40,54 @@
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
+	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 
 	New()
 		spawn(0)
 			var/mask = rand(1,3)
 			icon_state = "pred_mask[mask]"
+
+	verb/togglesight()
+		set name = "Toggle Mask Visors"
+		set desc = "Toggle your mask visor sights. You must only be wearing a type of Yautja visor for this to work."
+		set category = "Yautja"
+
+		if(!usr || usr.stat) return
+		var/mob/living/carbon/human/M = usr
+		if(!istype(M)) return
+		if(M.species && M.species.name != "Yautja")
+			M << "You have no idea how to work these things."
+			return
+		var/obj/item/clothing/gloves/yautja/Y = M.gloves //Doesn't actually reduce power, but needs the bracers anyway.
+		if(!Y || !istype(Y))
+			M << "You must be wearing your bracers, as they have the power source."
+			return
+		var/obj/item/G = M.glasses
+		if(G)
+			if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
+				M << "You need to remove your glasses first. Why are you even wearing these?"
+				return
+			M.drop_from_inventory(G) //Get rid of ye existinge gogglors
+			del(G)
+		switch(current_goggles)
+			if(0)
+				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), slot_glasses)
+				M << "Low-light vision module: activated."
+				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1) //Could probably use custom noises for these, but eh. Sounds fine.
+			if(1)
+				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), slot_glasses)
+				M << "Thermal sight module: activated."
+				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
+			if(2)
+				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), slot_glasses)
+				M << "Material vision module: activated."
+				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
+			if(3)
+				M << "You deactivate your visor."
+				playsound(src,'sound/weapons/plasmacaster_off.ogg', 40, 1)
+		M.update_inv_glasses()
+		current_goggles++
+		if(current_goggles > 3) current_goggles = 0
 
 /obj/item/clothing/suit/armor/yautja
 	name = "clan armor"
@@ -81,6 +125,7 @@
 	canremove = 0
 
 	dropped(var/mob/living/carbon/human/mob)
+		playsound(mob,'sound/weapons/wristblades_off.ogg', 40, 1)
 		mob << "The wrist blades retract back into your armband."
 		del(src)
 
@@ -122,17 +167,18 @@
 	icon_state = "s-ninja"//placeholder
 	item_state = "s-ninja"
 	species_restricted = null
-//	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
+	canremove = 0
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
 	var/selfdestruct = 0
 	var/blades_active = 0
 	var/caster_active = 0
+	var/exploding = 0
 
-	//Should put a cool menu here, like ninjas. Or maybe in the wrist bracers....
+	//Should put a cool menu here, like ninjas.
 	verb/wristblades()
 		set name = "Use Wrist Blades"
 		set desc = "Extend your wrist blades. They cannot be dropped, but can be retracted."
@@ -163,22 +209,19 @@
 				usr.update_inv_l_hand()
 			if(found)
 				usr << "You retract your wrist blades."
-				playsound(src.loc,'sound/weapons/wristblades_off.ogg', 20, 1)
+				playsound(src.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 				blades_active = 0
 			return
 		else //Turn it on!
-			if(charge < 50)
-				usr << "Your wrist bracers are out of power. Let them recharge a bit first."
-				return
 			if(usr.get_active_hand())
 				usr << "Your hand must be free to activate your wrist blades."
 				return
+			if(!drain_power(usr,50)) return
 			var/obj/item/weapon/wristblades/W = new(usr)
 			usr.put_in_active_hand(W)
 			blades_active = 1
-			charge -= 50
 			usr << "You activate your wrist blades."
-			playsound(src,'sound/weapons/wristblades_on.ogg', 20, 1)
+			playsound(src,'sound/weapons/wristblades_on.ogg', 40, 1)
 			usr.update_icons()
 		return 1
 
@@ -196,10 +239,7 @@
 		if(cloaked) //Turn it off.
 			decloak(usr)
 		else //Turn it on!
-			if(charge < 50)
-				usr << "Your wrist bracers are out of power. Let them recharge first."
-				return
-			charge -= 50
+			if(!drain_power(usr,50)) return
 			cloaked = 1
 			usr << "\blue You are now invisible to normal detection."
 			for(var/mob/O in oviewers(usr))
@@ -253,24 +293,84 @@
 				usr.update_inv_l_hand()
 			if(found)
 				usr << "You deactivate your plasma caster."
-				playsound(src,'sound/weapons/plasmacaster_off.ogg', 20, 1)
+				playsound(src,'sound/weapons/plasmacaster_off.ogg', 40, 1)
 				caster_active = 0
 			return
 		else //Turn it on!
 			if(usr.get_active_hand())
 				usr << "Your hand must be free to activate your wrist blades."
 				return
-			if(charge < 50)
-				usr << "Your wrist bracers are out of power. Let them recharge a bit first."
-				return
+			if(!drain_power(usr,50)) return
+
 			var/obj/item/weapon/gun/plasma_caster/W = new(usr)
 			usr.put_in_active_hand(W)
 			W.source = src
 			caster_active = 1
-			charge -= 50
 			usr << "You activate your plasma caster."
-			playsound(src,'sound/weapons/plasmacaster_on.ogg', 20, 1)
+			playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
 			usr.update_icons()
+		return 1
+
+	proc/explodey()
+		if(exploding) return //arleady there
+		for(var/mob/O in viewers())
+			O.show_message("\red \The [src] begin beeping.",2) // 2 stands for hearable message
+		playsound(src.loc,'sound/ambience/signal.ogg', 100, 1)
+		exploding = 1
+		spawn(100)
+			if(!exploding)
+				return
+			else
+				for(var/mob/O in viewers())
+					O.show_message("\red <B>\The [src] begin beeping frantically!</B>",2)
+		spawn(200)
+			if(!exploding)
+				return
+			else
+				var/turf/T = get_turf(src.loc)
+				if(T && istype(T))
+					explosion(T, 1, 3, 5, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
+					if(src)
+						del(src)
+
+	verb/activate_suicide()
+		set name = "Final Countdown"
+		set desc = "Activate the explosive device implanted into your bracers. You have failed! Show some honor!"
+		set category = "Yautja"
+
+		if(!usr) return
+		var/mob/living/carbon/human/M = usr
+		if(!istype(M)) return
+		if(M.species && M.species.name != "Yautja")
+			usr << "You have no idea how to work these things."
+			return
+
+		if(!M.stat) //We're conscious, first look for another dead yautja to blow up.
+			for(var/mob/living/carbon/human/victim in oview(1))
+				if(victim && victim.species.name == "Yautja" && victim.stat == DEAD)
+					if(victim.gloves && istype(victim.gloves,/obj/item/clothing/gloves/yautja))
+						if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
+							var/obj/item/clothing/gloves/yautja/G = victim.gloves
+							G.explodey()
+							M.visible_message("\red [M] presses a few buttons on [victim]'s wrist bracer.","\red You activate the timer. May [victim]'s final hunt be swift.")
+							return
+		if(exploding)
+			if(alert("Are you sure you want to stop the countdown? You coward.","Bracers", "Yes", "No") == "Yes")
+				exploding = 0
+				M << "Your bracers stop beeping."
+				return
+
+		if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
+			M << "\red You set the timer. May your journey to the great hunting grounds be swift."
+			src.explodey()
+
+	proc/drain_power(var/mob/living/carbon/human/M, var/amount)
+		if(charge < amount)
+			M << "Your bracers lack the energy. They have only <b>[charge]/[charge_max]</b> remaining."
+			return 0
+		charge -= amount
+		var/perc = (charge / charge_max * 100)
+		M.update_power_display(perc)
 		return 1
 
 /obj/item/weapon/gun/plasma_caster
@@ -313,7 +413,10 @@
 	dropped(var/mob/living/carbon/human/mob)
 		..()
 		mob << "The plasma caster deactivates."
+		playsound(mob,'sound/weapons/plasmacaster_off.ogg', 40, 1)
 		del(src)
+		return
+
 
 	load_into_chamber()
 		if(in_chamber)	return 1
@@ -323,6 +426,16 @@
 		in_chamber = new projectile_type(src)
 		source.charge -= charge_cost
 		return 1
+
+	afterattack(atom/target, mob/user , flag)
+		if(ishuman(user))
+			var/mob/living/carbon/human/M = user
+			if(M.species && M.species == "Yautja")
+				if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves/yautja))
+					var/obj/item/clothing/gloves/yautja/Y = M.gloves
+					var/perc_charge = (Y.charge / Y.charge_max * 100)
+					M.update_power_display(perc_charge)
+		..()
 
 /obj/item/projectile/beam/yautja1
 	name = "plasma bolt"
@@ -340,3 +453,48 @@
 	name = "heavy plasma"
 	icon_state = "pulse1_bl"
 	damage = 80
+
+//Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
+/obj/item/weapon/storage/backpack/yautja
+	name = "leather bag"
+	desc = "A huge leather pouch worn around the waist, made from the hide of some unknown beast."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "beltbag"
+	item_state = "beltbag"
+	slot_flags = SLOT_BELT
+
+	New() //Spawn some items inside
+		..()
+		new /obj/item/weapon/harpoon/yautja(src)
+		new /obj/item/weapon/harpoon/yautja(src)
+		new /obj/item/weapon/harpoon/yautja(src)
+
+
+/obj/item/clothing/glasses/night/yautja
+	name = "alien nightvision visor"
+	desc = "Strange alien technology"
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "visor_nvg"
+	item_state = "securityhud"
+	darkness_view = 6 //Not quite as good as regular NVG.
+
+	New()
+		..()
+		overlay = null  //Stops the green overlay.
+
+/obj/item/clothing/glasses/thermal/yautja
+	name = "alien thermal visor"
+	desc = "Strange alien technology"
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "visor_thermal"
+	item_state = "securityhud"
+	vision_flags = SEE_MOBS
+	invisa_view = 2
+
+/obj/item/clothing/glasses/meson/yautja
+	name = "alien X-ray visor"
+	desc = "Strange alien technology"
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "visor_meson"
+	item_state = "securityhud"
+	vision_flags = SEE_TURFS

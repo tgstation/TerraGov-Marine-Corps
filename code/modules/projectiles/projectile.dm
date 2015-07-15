@@ -96,12 +96,14 @@
 				return 0
 
 			var/distance = get_dist(starting,loc)
-			var/miss_modifier = -30
+			var/miss_modifier = -30 //NEGATIVE IS BETTER HERE.
 
 			if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
 				if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
-					miss_modifier += -30
+					miss_modifier -= 30
+
+				//Weapon attachment modifiers.
 				if(daddy.rail)
 					if(daddy.rail.accuracy_mod) miss_modifier -= daddy.rail.accuracy_mod
 				if(daddy.muzzle)
@@ -110,11 +112,12 @@
 					if(daddy.under.accuracy_mod) miss_modifier -= daddy.under.accuracy_mod
 
 			if(istype(src,/obj/item/projectile/bullet/m42c)) //Sniper rifles have different miss chance by distance.
-				if(distance <= 5)
+				if(distance <= 5) //< 5 tiles, +30% miss chance.
 					miss_modifier += 30
-				else
-					miss_modifier -= 30
-
+				else if (distance > 5 && distance < 8) //In sight range but not close, only +5%
+					miss_modifier += 5
+				else if (distance >= 8 && distance < 15) //Beyond sight range (scoped), -20%
+					miss_modifier -= 20
 
 			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
 				var/mob/living/carbon/human/H = A
@@ -126,7 +129,7 @@
 					return 0
 
 			if (!istype(src,/obj/item/projectile/energy/neuro))
-				def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
+				def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (8 * distance))
 
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")

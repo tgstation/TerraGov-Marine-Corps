@@ -1,3 +1,4 @@
+
 // SPACE VINES (Note that this code is very similar to Biomass code)
 /obj/effect/plantsegment
 	name = "space vines"

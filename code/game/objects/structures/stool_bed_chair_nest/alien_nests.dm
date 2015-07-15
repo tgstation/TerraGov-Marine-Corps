@@ -22,6 +22,13 @@
 					"<span class='notice'>[user.name] pulls [buckled_mob.name] free from the sticky nest!</span>",\
 					"<span class='notice'>[user.name] pulls you free from the gelatinous resin.</span>",\
 					"<span class='notice'>You hear squelching...</span>")
+				if(istype(buckled_mob,/mob/living/carbon/human))
+					var/mob/living/carbon/human/H = buckled_mob
+					H.recently_unbuckled = 1
+					spawn(120)
+						if(H) //Make sure the mob reference still exists.
+							H.recently_unbuckled = 0
+
 				unbuckle()
 			else
 				if(buckled_mob.stat)
@@ -30,16 +37,17 @@
 				if(resisting)
 					buckled_mob << "You're already trying to free yourself. Give it some time."
 					return
-				if(world.time <= buckled_mob.last_special+NEST_RESIST_TIME)
-					return
-				buckled_mob.last_special = world.time
 				buckled_mob.visible_message(\
 					"<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
 					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
 					"<span class='notice'>You hear squelching...</span>")
 				resisting = 1
 				spawn(NEST_RESIST_TIME)
-					if(user && buckled_mob && user.buckled == src && user.stat != DEAD)
+					if(buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
+						buckled_mob.visible_message(\
+						"<span class='warning'>[buckled_mob.name] breaks free from the nest!</span>",\
+						"<span class='warning'>You pull yourself free from the nest!</span>",\
+						"<span class='notice'>You hear squelching...</span>")
 						unbuckle()
 			src.add_fingerprint(user)
 	return
@@ -63,6 +71,12 @@
 		user << "There's someone already in that nest."
 		return
 
+	if(istype(M,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(H.recently_unbuckled)
+			user << "[M] was recently recently unbuckled. Wait a bit."
+			return
+
 	if(M == usr)
 		return
 	else
@@ -76,6 +90,7 @@
 	M.update_canmove()
 	M.pixel_y = 6
 	M.old_y = 6
+	resisting = 0
 	src.buckled_mob = M
 	src.add_fingerprint(user)
 	return
@@ -109,7 +124,6 @@
 /obj/structure/stool/bed/nest/unbuckle(mob/user as mob)
 	if(!buckled_mob) return
 	resisting = 0
-	buckled_mob.last_special = world.time
 	buckled_mob.pixel_y = 0
 	buckled_mob.old_y = 0
 	..()
