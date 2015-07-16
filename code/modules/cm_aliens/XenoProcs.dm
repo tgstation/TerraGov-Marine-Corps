@@ -35,6 +35,13 @@
 	if(maxplasma > 0)
 		stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
+	if(slashing_allowed == 1)
+		stat(null,"Slashing of hosts is currently: PERMITTED.")
+	else if(slashing_allowed == 2)
+		stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
+	else
+		stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
+
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
 	if(!istype(src,/mob/living/carbon/Xenomorph) || isnull(src)) //somehow
@@ -349,3 +356,73 @@
 	else
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
+//Random bite attack. Procs more often on downed people. Returns 0 if the check fails.
+//Does a LOT of damage.
+/mob/living/carbon/Xenomorph/proc/check_bite(var/mob/living/carbon/human/M)
+	if(!M || !istype(M)) return 0
+	if(!bite_chance) return 0 //does not have a bite attack
+
+	var/chance = bite_chance
+	var/dmg = rand(melee_damage_lower,melee_damage_upper) + 20
+	var/datum/organ/external/affecting
+
+	if(M.lying) chance += 30
+	if(M.head) chance -= 5 //Helmet? Less likely to bite, even if not all bites target head.
+
+	if(rand(0,100) > chance) return 0 //Failed the check, get out
+
+	affecting = M.get_organ(ran_zone("head",50))
+	if(!affecting) //No head? Just get a random one
+		affecting = M.get_organ(ran_zone(null,0))
+	if(!affecting) //Still nothing??
+		affecting = M.get_organ("chest") // Gotta have a torso?!
+	var/armor_block = M.run_armor_check(affecting, "melee")
+
+	playsound(loc, 'sound/weapons/bite.ogg', 100, 1, -1)
+	visible_message("<span class = 'warning'>[M] is viciously shredded by \the [src]'s sharp teeth!</span>","<span class='warning'>You viciously rend [M] with your teeth!</span>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was bitten by [M.name] ([M.ckey])</font>")
+
+	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
+	M.updatehealth()
+
+	return 1
+
+//Tail stab. Checked during a slash, after the above.
+//Deals a monstrous amount of damage based on how long it's been charging, but charging it drains plasma.
+//Toggle is in XenoPowers.dm.
+/mob/living/carbon/Xenomorph/proc/check_tail_attack(var/mob/living/carbon/human/M)
+	if(!M || !istype(M)) return 0
+
+	if(!readying_tail || readying_tail == -1) return 0 //Tail attack not prepared, or not available.
+
+	var/dmg = (readying_tail * 2) + rand(20,40) //60-90 damage fully charged-up. yup.
+	var/datum/organ/external/affecting
+	var/tripped = 0
+
+	if(M.lying) dmg += 15 //more damage when hitting the head.
+
+	affecting = M.get_organ(ran_zone(zone_sel.selecting,75))
+	if(!affecting) //No organ, just get a random one
+		affecting = M.get_organ(ran_zone(null,0))
+	if(!affecting) //Still nothing??
+		affecting = M.get_organ("chest") // Gotta have a torso?!
+	var/armor_block = M.run_armor_check(affecting, "melee")
+
+	//Selecting feet? Drop the damage and trip them.
+	if(zone_sel.selecting == "r_leg" || zone_sel.selecting == "l_leg" || zone_sel.selecting == "l_foot" || zone_sel.selecting == "r_foot")
+		if(prob(60))
+			playsound(loc, 'sound/weapons/wristblades_hit.ogg', 50, 1, -1) //Stolen from Yautja! Owned!
+			visible_message("<span class = 'warning'>\The [src] lashes out with its tail and [M] goes down!</span>","<span class='warning'><b>You snap your tail out and trip [M]!</span></b>")
+			M.Weaken(5)
+			dmg = dmg / 2 //Half damage for a tail strike.
+			tripped = 1
+
+	playsound(loc, 'sound/weapons/wristblades_hit.ogg', 50, 1, -1) //Stolen from Yautja! Owned!
+	if(!tripped) visible_message("<span class = 'warning'><b>[M] is suddenly impaled by \the [src]'s sharp tail!</span>","<span class='warning'><b>You violently impale [M] with your tail!</span></b>")
+	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [src.name] ([src.ckey])</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [M.name] ([M.ckey])</font>")
+
+	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
+	M.updatehealth()
+	return 1

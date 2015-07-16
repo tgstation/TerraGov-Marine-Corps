@@ -50,8 +50,10 @@
 			death()
 			blinded = 1
 			silent = 0
+			readying_tail = 0
 			return 1
 		else if(health > -100 && health < 0) //Unconscious
+			readying_tail = 0
 			blinded = 1
 			see_in_dark = 3
 			Paralyse(4)
@@ -59,9 +61,13 @@
 			if(istype(T))
 				if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
 					adjustBruteLoss(5)
-		else										//Alive! Yey! Turn on their vision.
+		else						//Alive! Yey! Turn on their vision.
 			see_in_dark = 8
 			blinded = 0
+			if(readying_tail && readying_tail < 20)
+				readying_tail++
+				if(readying_tail == 20)
+					src << "\blue Your tail is now fully poised to impale some unfortunate target."
 
 		if(health > 0) //Just to be safe
 			blinded = 0
@@ -190,17 +196,21 @@
 
 	if(locate(/obj/effect/alien/weeds) in T)
 		if(health >= maxHealth)
-			storedplasma += plasma_gain
+			if(!readying_tail) //Readying tail = no plasma increase.
+				storedplasma += plasma_gain
 		else
 			adjustBruteLoss(-(maxHealth / 40) - 2) //Heal 1/40th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 			adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
 			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 			adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 			updatehealth() //Make sure their actual health updates immediately.
-		if(storedplasma > maxplasma) storedplasma = maxplasma
 	else //Xenos restore plasma VERY slowly off weeds, regardless of health
 		if(rand(0,1) == 0) storedplasma += 1
-		if(storedplasma > maxplasma) storedplasma = maxplasma
+
+	if(readying_tail) storedplasma -= 2
+	if(storedplasma > maxplasma) storedplasma = maxplasma
+	if(storedplasma < 0) storedplasma = 0
+	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
 	if(!gibbed)

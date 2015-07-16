@@ -547,6 +547,8 @@ var/list/slot_equipment_priority = list( \
 	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
+	if(isXenoLarva(src)) return
+
 	if (AM.anchored)
 		return
 

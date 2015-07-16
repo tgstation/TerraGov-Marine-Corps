@@ -242,7 +242,6 @@ var/list/toldstory = list()
 					human_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
-			break
 
 	return human_count
 
@@ -257,7 +256,6 @@ var/list/toldstory = list()
 				xeno_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_XENOS()")
-			break
 
 	return xeno_count
 
@@ -336,7 +334,7 @@ var/list/toldstory = list()
 		world << "\red <FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
 		world << 'sound/misc/sadtrombone.ogg'
 
-	..()
+//	..()
 	return 1
 
 /datum/game_mode/proc/auto_declare_completion_colonialmarines()

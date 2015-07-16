@@ -35,13 +35,22 @@
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			visible_message(text("\red [] has grabbed []!", M, src), "\red You grab [M]!")
 		if("hurt")
-			if(check_shields(0, M.name) && rand(0,3) != 0) //Bit of a bonus
+			if(slashing_allowed == 0 && !M.is_intelligent)
+				visible_message("<b>\The [M] tries to slash [src], but suddenly hesitates!","Slashing is currently <b>forbidden</b> by the Queen. You hesitate and miss your target.")
+				return
+
+			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+			if(slashing_allowed == 2 && !M.is_intelligent)
+				damage = M.melee_damage_lower / 2
+//				M << "Slashing is currently restricted by the Queen. You hesitate and only lightly graze."
+
+			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
 				visible_message("\red <B>\The [M]'s slash is blocked by [src]'s shield!</B>")
 				return 0
-			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
-			if(!slashing_allowed && !istype(M,/mob/living/carbon/Xenomorph/Queen))
-				damage = M.melee_damage_lower / 2
-				M << "\blue Slashing is not currently permitted by the Queen. You hesitate and only lightly graze."
+
+			if(M.check_bite(src)) return 1 //Check for a special bite attack.
+			if(M.check_tail_attack(src)) return 1 //Check for a special bite attack.
+
 			if(!damage)
 				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 				visible_message("\red <B>\The [M] lunges at [src]!</B>")

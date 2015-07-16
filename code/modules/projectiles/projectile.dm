@@ -119,6 +119,9 @@
 				else if (distance >= 8 && distance < 15) //Beyond sight range (scoped), -20%
 					miss_modifier -= 20
 
+			if(istype(src,/obj/item/projectile/energy/neuro)) //Neuro spit rarely, if ever misses.
+				miss_modifier -= 40
+
 			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
 				var/mob/living/carbon/human/H = A
 				if(H.get_marine_id())
@@ -128,8 +131,7 @@
 					skip_over = 1
 					return 0
 
-			if (!istype(src,/obj/item/projectile/energy/neuro))
-				def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (8 * distance))
+			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (8 * distance))
 
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")
