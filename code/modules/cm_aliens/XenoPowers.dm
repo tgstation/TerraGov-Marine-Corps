@@ -633,14 +633,27 @@
 		pslash_delay = 0
 
 	pslash_delay = 1
-	if(!slashing_allowed)
+
+
+	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("allow","restricted","forbid","cancel")
+
+	if(!choice || choice == "cancel")
+		return
+
+	if(choice == "allow")
 		src << "You permit slashing."
-		xeno_message("The Queen has permitted the harming of hosts!",3)
+		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!",3)
 		slashing_allowed = 1
-	else
-		src << "You forbid slashing."
-		xeno_message("The Queen has disallowed the harming of hosts. You will now hesitate when slashing.",3)
+	else if(choice == "restricted")
+		src << "You restrict slashing."
+		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.",3)
+		slashing_allowed = 2
+	else if(choice == "forbid")
+		src << "You forbid slashing entirely."
+		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.",3)
 		slashing_allowed = 0
+	else
+		src << "Something went wrong here. Call a coder woop woop"
 	return
 
 /mob/living/carbon/Xenomorph/verb/hive_status()
@@ -659,3 +672,18 @@
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
 	return
+
+/mob/living/carbon/Xenomorph/proc/tail_attack()
+	set name = "Ready Tail Attack (20)"
+	set desc = "Wind up your tail for a devastating stab on your next harm attack. Drains plasma when active."
+	set category = "Alien"
+
+	if(!check_state()) return //Nope
+
+	if(!readying_tail)
+		if(!check_plasma(20)) return
+		visible_message("\blue \The [src]'s tail starts to coil like a spring..","\blue You begin to ready your tail for a vicious attack. This will drain plasma to keep active.")
+		readying_tail = 1
+	else
+		src << "\blue You relax your tail. You are no longer readying a tail attack."
+		readying_tail = 0
