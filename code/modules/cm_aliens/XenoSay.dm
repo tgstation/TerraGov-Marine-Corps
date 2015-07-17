@@ -13,6 +13,8 @@
 	if(stat == 2)
 		return say_dead(message)
 
+	if(stat) return //Unconscious? Nope.
+
 	if(copytext(message,1,2) == "*")
 		return emote(copytext(message,2))
 
@@ -58,7 +60,7 @@
 
 //General proc for hivemind. Lame, but effective.
 /mob/living/carbon/Xenomorph/proc/hivemind_talk(var/message)
-	if (!message)
+	if (!message || src.stat)
 		return
 
 	var/rendered

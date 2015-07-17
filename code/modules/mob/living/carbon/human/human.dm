@@ -41,6 +41,8 @@
 
 	prev_gender = gender // Debug for plural genders
 	make_blood()
+	//Store the "being slashed" icon so we can pull it without constantly creating it.
+	slashed_icon = new('icons/Xeno/effects.dmi',"slashflick")
 
 /mob/living/carbon/human/Stat()
 	..()
@@ -1350,3 +1352,19 @@
 		if(eyes && istype(eyes) && !eyes.status & ORGAN_CUT_AWAY)
 			return 1
 	return 0
+
+//Flicks a slash icon when being slashed by xenos. Need to see if it causes lag at all..
+/mob/living/carbon/human/proc/slash_flick()
+
+
+	if(slashed_icon)
+		if(prob(50))
+			slashed_icon.icon_state = "slashflick2"
+		else
+			slashed_icon.icon_state = "slashflick"
+
+		overlays += slashed_icon
+
+	spawn(5)
+		if(slashed_icon in overlays)
+			overlays -= slashed_icon

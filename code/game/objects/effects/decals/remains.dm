@@ -5,6 +5,7 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"
 	anchored = 1
+	layer = 2.9 //Puts them under most objects.
 
 /obj/effect/decal/remains/xeno
 	name = "remains"
@@ -13,6 +14,7 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remainsxeno"
 	anchored = 1
+	layer = 2.9
 
 /obj/effect/decal/remains/robot
 	name = "remains"
@@ -21,3 +23,4 @@
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "remainsrobot"
 	anchored = 1
+	layer = 2.9

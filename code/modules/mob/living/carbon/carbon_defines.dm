@@ -19,3 +19,4 @@
 	var/pose = null
 
 	var/pulse = PULSE_NORM	//current pulse level
+	var/butchery_progress = 0

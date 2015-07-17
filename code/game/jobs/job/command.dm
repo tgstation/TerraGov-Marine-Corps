@@ -19,7 +19,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		var/obj/item/clothing/under/U = new /obj/item/clothing/under/marine/officer/commander(H)
-		U.hastie = new /obj/item/clothing/tie/medal/gold/captain(U)
 		var/obj/item/weapon/storage/backpack/mcommander/BPK = new/obj/item/weapon/storage/backpack/mcommander(H)
 		new /obj/item/weapon/storage/box/survival(BPK)
 		H.equip_to_slot_or_del(BPK, slot_back,1)

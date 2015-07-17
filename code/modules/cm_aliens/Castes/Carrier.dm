@@ -28,6 +28,7 @@
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/throw_hugger,
+		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
 

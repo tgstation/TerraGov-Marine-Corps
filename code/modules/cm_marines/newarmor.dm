@@ -9,7 +9,7 @@ var/list/armormarkings = list()
 var/list/armormarkings_sql = list()
 var/list/helmetmarkings = list()
 var/list/helmetmarkings_sql = list()
-var/list/squad_colors = list(rgb(230,25,25), rgb(210,175,45), rgb(160,32,240), rgb(80,130,210))
+var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(80,130,210))
 
 
 /proc/initialize_marine_armor()
@@ -45,6 +45,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(210,175,45), rgb(160,32,240), r
 	var/squad = 0
 	var/rank = 0
 	var/image/markingoverlay
+	var/image/hugger_overlay
+	var/hug_damage = 0
+
+	New()
+		..()
+		hugger_overlay = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage") //Initialize the overlay icon
 
 	equipped(var/mob/living/carbon/human/mob, slot)
 		update_squad_overlays(mob)
@@ -57,22 +63,31 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(210,175,45), rgb(160,32,240), r
 	proc/update_squad_overlays(var/mob/living/carbon/human/H)
 		if(istype(H,/mob/living/carbon/human)) //Are we on a person?
 			if(!H || !istype(H)) return //Something went wrong, abort
-			var/squad = get_squad_from_card(H) //Get the squad from the ID.
-			var/is_leader = is_leader_from_card(H) //Leader?
+			squad = get_squad_from_card(H) //Get the squad from the ID.
+			rank = is_leader_from_card(H) //Leader?
 			if(H.head == src && squad > 0 && squad < 5) //We're being worn on a valid squad.
-				if(is_leader) //We are worn on a leader.
+				if(rank) //We are worn on a leader.
 					markingoverlay = helmetmarkings_sql[squad]
 				else //We are worn on a regular squaddie.
 					markingoverlay = helmetmarkings[squad]
+				overlays.Cut()
 				overlays += markingoverlay //Add our overlay to the item.
-				H.overlays_standing += markingoverlay  //Add the overlay to the person. This is SO FUCKING DUMB
-				H.update_icons() //Update our wearer's icons so the people see it.
+				H.overlays_standing += markingoverlay  //Add the overlay to the person. Ughhhhhhhhhhh
+				H.update_inv_head() //Update our wearer's icons so the people see it.
 			else //We are NOT being worn, or our squad doesn't exist. Remove everything.
-				overlays = list()
+				overlays.Cut()
+				if(hug_damage) overlays += hugger_overlay //Re-adds the hug damage overlay
 				if(istype(markingoverlay) && markingoverlay in H.overlays_standing)
 					H.overlays_standing.Remove(markingoverlay) //Dump the overlay off the person.
-					H.update_icons() //Show it.
+					H.update_inv_head() //Show it.
+			if(H.head == src)
+				if(hug_damage) H.overlays_standing += hugger_overlay //We're being worn, add the hugger marks.
+			else
+				if(hugger_overlay in H.overlays_standing) H.overlays_standing -= hugger_overlay //We were removed, remove the hugger marks.
 
+	proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
+		hug_damage = 1
+		overlays += hugger_overlay
 
 /obj/item/clothing/suit/storage/marine2
 	icon = 'icons/Marine/marine_armor.dmi'
@@ -111,18 +126,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(210,175,45), rgb(160,32,240), r
 	proc/update_squad_overlays(var/mob/living/carbon/human/H)
 		if(istype(H,/mob/living/carbon/human)) //Are we on a person?
 			if(!H || !istype(H)) return //Something went wrong, abort
-			var/squad = get_squad_from_card(H) //Get the squad from the ID.
-			var/is_leader = is_leader_from_card(H) //Leader?
+			squad = get_squad_from_card(H) //Get the squad from the ID.
+			rank = is_leader_from_card(H) //Leader?
 			if(H.wear_suit == src && squad > 0 && squad < 5) //We're being worn, in a valid squad.
-				if(is_leader) //We are worn on a leader.
+				if(rank) //We are worn on a leader.
 					markingoverlay = armormarkings_sql[squad]
 				else //We are worn on a regular squaddie.
 					markingoverlay = armormarkings[squad]
+				overlays.Cut()
 				overlays += markingoverlay //Add our overlay to the item.
 				H.overlays_standing += markingoverlay  //Add the overlay to the person. This is SO FUCKING DUMB
 				H.update_icons() //Update our wearer's icons so the people see it.
 			else //We are NOT being worn, or our squad doesn't exist. Remove everything.
-				overlays = list()
+				overlays.Cut()
 				if(istype(markingoverlay) && markingoverlay in H.overlays_standing)
 					H.overlays_standing.Remove(markingoverlay) //Dump the overlay off the person.
 					H.update_icons() //Show it.
