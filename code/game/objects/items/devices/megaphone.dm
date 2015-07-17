@@ -21,6 +21,12 @@
 		return
 	if(user.silent)
 		return
+
+	var/mob/living/carbon/human/H = user
+	if(H.species && H.species == "Yautja")
+		user << "Some soft-meat toy. It's useless to you."
+		return
+
 	if(spamcheck)
 		user << "\red \The [src] needs to recharge!"
 		return
@@ -38,7 +44,10 @@
 			else
 				user << "\red *BZZZZzzzzzt*"
 		else
-			for(var/mob/O in (viewers(user)))
+			for(var/mob/living/carbon/human/O in (viewers(user)))
+				if(O.species && O.species.name == "Yautja") //NOPE
+					O.show_message("[user] says something on the microphone, but you can't understand it.")
+					continue
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
 
 		spamcheck = 1

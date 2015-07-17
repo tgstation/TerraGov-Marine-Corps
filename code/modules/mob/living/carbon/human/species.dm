@@ -493,11 +493,12 @@
 
 	inherent_verbs = list(
 //		/mob/living/carbon/human/proc/leap
+		/mob/living/carbon/human/proc/butcher
 		)
 
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/yautja(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)

@@ -89,6 +89,16 @@
 		current_goggles++
 		if(current_goggles > 3) current_goggles = 0
 
+	dropped(var/mob/living/carbon/human/mob) //Clear the gogglors if the helmet is removed. This should work even though they're !canremove.
+		..()
+		if(!istype(mob)) return //Somehow
+		var/obj/item/G = mob.glasses
+		if(G)
+			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
+				mob.drop_from_inventory(G)
+				del(G)
+				mob.update_inv_glasses()
+
 /obj/item/clothing/suit/armor/yautja
 	name = "clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
@@ -101,6 +111,11 @@
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
+
+	New()
+		..()
+		if(prob(50))
+			icon_state = "predarmor2"
 
 /obj/item/weapon/harpoon/yautja
 	name = "alien harpoon"
@@ -148,6 +163,11 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
+	New()
+		..()
+		if(prob(50))
+			icon_state = "y-boots2"
+
 /obj/item/clothing/under/chainshirt
 	name = "chain-mesh shirt"
 	icon = 'icons/Predator/items.dmi'
@@ -177,6 +197,20 @@
 	var/blades_active = 0
 	var/caster_active = 0
 	var/exploding = 0
+	var/inject_timer = 0
+
+	//This is the main proc for checking AND draining the bracer energy. It must have M passed as an argument.
+	//It can take a negative value in amount to restore energy.
+	//Also instantly updates the yautja power HUD display.
+	proc/drain_power(var/mob/living/carbon/human/M, var/amount)
+		if(!M) return 0
+		if(charge < amount)
+			M << "Your bracers lack the energy. They have only <b>[charge]/[charge_max]</b> remaining and need <B>[amount]</b>."
+			return 0
+		charge -= amount
+		var/perc = (charge / charge_max * 100)
+		M.update_power_display(perc)
+		return 1
 
 	//Should put a cool menu here, like ninjas.
 	verb/wristblades()
@@ -334,12 +368,15 @@
 						del(src)
 
 	verb/activate_suicide()
-		set name = "Final Countdown"
+		set name = "Final Countdown (!)"
 		set desc = "Activate the explosive device implanted into your bracers. You have failed! Show some honor!"
 		set category = "Yautja"
 
 		if(!usr) return
 		var/mob/living/carbon/human/M = usr
+		if(M.stat == DEAD)
+			usr << "Little too late for that now!"
+			return
 		if(!istype(M)) return
 		if(M.species && M.species.name != "Yautja")
 			usr << "You have no idea how to work these things."
@@ -354,24 +391,51 @@
 							G.explodey()
 							M.visible_message("\red [M] presses a few buttons on [victim]'s wrist bracer.","\red You activate the timer. May [victim]'s final hunt be swift.")
 							return
+
+		if(!M.stat && !exploding)
+			M << "You can only do this when unconscious, you coward. Go hunting and die gloriously."
+			return
 		if(exploding)
 			if(alert("Are you sure you want to stop the countdown? You coward.","Bracers", "Yes", "No") == "Yes")
 				exploding = 0
-				M << "Your bracers stop beeping."
+				M << "Your bracers stop beeping. Wuss."
 				return
-
+		if((M.wear_mask && istype(M.wear_mask,/obj/item/clothing/mask/facehugger)) || M.status_flags & XENO_HOST)
+			M << "Strange.. something seems to be interfering with your bracer functions.."
+			return
 		if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
 			M << "\red You set the timer. May your journey to the great hunting grounds be swift."
 			src.explodey()
 
-	proc/drain_power(var/mob/living/carbon/human/M, var/amount)
-		if(charge < amount)
-			M << "Your bracers lack the energy. They have only <b>[charge]/[charge_max]</b> remaining."
+	verb/injectors()
+		set name = "Create Self-Heal Crystal"
+		set category = "Yautja"
+		set desc = "Create a focus crystal to energize your natural healing processes."
+
+		if(!usr.canmove || usr.stat || usr.restrained())
 			return 0
-		charge -= amount
-		var/perc = (charge / charge_max * 100)
-		M.update_power_display(perc)
-		return 1
+
+		if(usr.get_active_hand())
+			usr << "Your active hand must be empty."
+			return 0
+
+		if(inject_timer)
+			usr << "You recently activated the healing crystal. Be patient."
+			return
+
+		if(!drain_power(usr,1000)) return
+
+		inject_timer = 1
+		spawn(3600)
+			if(usr && src.loc == usr)
+				usr << "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created."
+				inject_timer = 0
+
+		usr << "\blue You feel a faint hiss and a crystalline injector drops into your hand."
+		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord/O = new(usr)
+		usr.put_in_active_hand(O)
+		playsound(src,'sound/machines/click.ogg', 20, 1)
+		return
 
 /obj/item/weapon/gun/plasma_caster
 	icon = 'icons/Predator/items.dmi'
@@ -382,6 +446,7 @@
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	canremove = 0
 	w_class = 5
+	fire_delay = 6
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/projectile_type = "/obj/item/projectile/beam/yautja1"
@@ -421,10 +486,10 @@
 	load_into_chamber()
 		if(in_chamber)	return 1
 		if(!source)	return 0
-		if(source.charge < charge_cost) return 0
 		if(!projectile_type)	return 0
+		if(!usr) return 0 //somehow
+		if(!source.drain_power(usr,charge_cost)) return 0
 		in_chamber = new projectile_type(src)
-		source.charge -= charge_cost
 		return 1
 
 	afterattack(atom/target, mob/user , flag)
@@ -465,9 +530,10 @@
 
 	New() //Spawn some items inside
 		..()
-		new /obj/item/weapon/harpoon/yautja(src)
-		new /obj/item/weapon/harpoon/yautja(src)
-		new /obj/item/weapon/harpoon/yautja(src)
+		spawn(2)
+			new /obj/item/weapon/harpoon/yautja(src)
+			new /obj/item/weapon/harpoon/yautja(src)
+			new /obj/item/weapon/harpoon/yautja(src)
 
 
 /obj/item/clothing/glasses/night/yautja
@@ -477,6 +543,7 @@
 	icon_state = "visor_nvg"
 	item_state = "securityhud"
 	darkness_view = 6 //Not quite as good as regular NVG.
+	canremove = 0
 
 	New()
 		..()
@@ -490,6 +557,7 @@
 	item_state = "securityhud"
 	vision_flags = SEE_MOBS
 	invisa_view = 2
+	canremove = 0
 
 /obj/item/clothing/glasses/meson/yautja
 	name = "alien X-ray visor"
@@ -498,3 +566,4 @@
 	icon_state = "visor_meson"
 	item_state = "securityhud"
 	vision_flags = SEE_TURFS
+	canremove = 0

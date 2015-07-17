@@ -50,10 +50,10 @@
 			death()
 			blinded = 1
 			silent = 0
-			readying_tail = 0
+			if(readying_tail) readying_tail = 0
 			return 1
 		else if(health > -100 && health < 0) //Unconscious
-			readying_tail = 0
+			if(readying_tail) readying_tail = 0
 			blinded = 1
 			see_in_dark = 3
 			Paralyse(4)
@@ -65,8 +65,10 @@
 			see_in_dark = 8
 			blinded = 0
 			if(readying_tail && readying_tail < 20)
-				readying_tail++
-				if(readying_tail == 20)
+				readying_tail += rand(1,2)
+				if(istype(src,/mob/living/carbon/Xenomorph/Hunter)) readying_tail++ //Warriors get a speed bonus.
+				if(readying_tail >= 20)
+					readying_tail = 20
 					src << "\blue Your tail is now fully poised to impale some unfortunate target."
 
 		if(health > 0) //Just to be safe

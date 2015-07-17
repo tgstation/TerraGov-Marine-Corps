@@ -142,25 +142,19 @@
 		if (hit && hitsound)
 			playsound(loc, hitsound, 50, 1, -1)
 		return hit
-	else
+	else //Xenos taking damage from weapons goes here.
 		if (hitsound)
 			playsound(loc, hitsound, 50, 1, -1)
 		switch(damtype)
 			if("brute")
 				if(istype(src, /mob/living/carbon/slime))
 					M.adjustBrainLoss(power)
-
 				else
-
-					M.take_organ_damage(power)
-					if (prob(33)) // Added blood for whacking non-humans too
-						var/turf/location = M.loc
-						if (istype(location, /turf/simulated))
-							location:add_blood_floor(M)
+					M.apply_damage(power,BRUTE)
 			if("fire")
 				if (!(COLD_RESISTANCE in M.mutations))
-					M.take_organ_damage(0, power)
-					M << "Aargh it burns!"
+					M.apply_damage(power,BURN)
+					M << "\red It burns!"
 		M.updatehealth()
 	add_fingerprint(user)
 	return 1

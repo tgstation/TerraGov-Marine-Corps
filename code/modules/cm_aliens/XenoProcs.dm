@@ -289,7 +289,7 @@
 						src.throwing = 0
 						return
 
-				if(H.species && H.species.name == "Yautja" && rand(100) < 40)
+				if(H.species && H.species.name == "Yautja" && prob(40))
 					visible_message("\red <b>[H] emits a roar and body slams \the [src]!")
 					src.Weaken(4)
 					src.throwing = 0
@@ -308,7 +308,7 @@
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
-				spawn(22)
+				spawn(20)
 					src.frozen = 0
 		return
 
@@ -321,15 +321,6 @@
 	..() //Do the rest normally - mostly turfs.
 	return
 
-//Deal with armor deflection.
-/mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
-	if(Proj && istype(Proj) )
-		var/dmg = Proj.damage
-		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 10 //Smartgun hits weak points easier.
-		if(prob(armor_deflection - dmg))
-			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
-			return -1
-	..(Proj) //Do normal stuff
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -366,7 +357,7 @@
 	var/dmg = rand(melee_damage_lower,melee_damage_upper) + 20
 	var/datum/organ/external/affecting
 
-	if(M.lying) chance += 30
+	if(M.lying) chance += 20
 	if(M.head) chance -= 5 //Helmet? Less likely to bite, even if not all bites target head.
 
 	if(rand(0,100) > chance) return 0 //Failed the check, get out
@@ -383,7 +374,7 @@
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was bitten by [M.name] ([M.ckey])</font>")
 
-	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
+	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp=1) //This should slicey dicey
 	M.updatehealth()
 
 	return 1
@@ -396,11 +387,13 @@
 
 	if(!readying_tail || readying_tail == -1) return 0 //Tail attack not prepared, or not available.
 
-	var/dmg = (readying_tail * 2) + rand(20,40) //60-90 damage fully charged-up. yup.
+	var/dmg = (readying_tail * 3) + rand(5,10) //Ready max is 20
+	if(adjust_pixel_x) //Big xenos get a damage bonus.
+		dmg += 10
 	var/datum/organ/external/affecting
 	var/tripped = 0
 
-	if(M.lying) dmg += 15 //more damage when hitting the head.
+	if(M.lying) dmg += 15 //more damage when hitting downed people.
 
 	affecting = M.get_organ(ran_zone(zone_sel.selecting,75))
 	if(!affecting) //No organ, just get a random one
@@ -411,8 +404,8 @@
 
 	//Selecting feet? Drop the damage and trip them.
 	if(zone_sel.selecting == "r_leg" || zone_sel.selecting == "l_leg" || zone_sel.selecting == "l_foot" || zone_sel.selecting == "r_foot")
-		if(prob(60))
-			playsound(loc, 'sound/weapons/wristblades_hit.ogg', 50, 1, -1) //Stolen from Yautja! Owned!
+		if(prob(60) && !M.lying)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 			visible_message("<span class = 'warning'>\The [src] lashes out with its tail and [M] goes down!</span>","<span class='warning'><b>You snap your tail out and trip [M]!</span></b>")
 			M.Weaken(5)
 			dmg = dmg / 2 //Half damage for a tail strike.
@@ -425,4 +418,5 @@
 
 	M.apply_damage(dmg, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
 	M.updatehealth()
+	readying_tail = 0
 	return 1

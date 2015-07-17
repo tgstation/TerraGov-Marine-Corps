@@ -1350,3 +1350,16 @@
 		if(eyes && istype(eyes) && !eyes.status & ORGAN_CUT_AWAY)
 			return 1
 	return 0
+
+//Flicks a slash icon when being slashed by xenos. Need to see if it causes lag at all..
+/mob/living/carbon/human/proc/slash_flick()
+	if(prob(50))
+		slashed_icon = image("icon" = 'icons/Xeno/effects.dmi',"icon_state" = "slashflick")
+	else
+		slashed_icon = image("icon" = 'icons/Xeno/effects.dmi',"icon_state" = "slashflick2")
+
+	overlays += slashed_icon
+	spawn(0)
+		sleep(5)
+		slashed_icon = null
+		update_icons()

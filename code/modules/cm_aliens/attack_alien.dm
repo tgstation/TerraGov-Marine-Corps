@@ -49,7 +49,7 @@
 				return 0
 
 			if(M.check_bite(src)) return 1 //Check for a special bite attack.
-			if(M.check_tail_attack(src)) return 1 //Check for a special bite attack.
+			if(M.check_tail_attack(src)) return 1 //Check for a special tail attack.
 
 			if(!damage)
 				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
@@ -75,6 +75,7 @@
 //				score_slashes_made++
 
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
+			slash_flick()
 			updatehealth()
 
 		if("disarm")
@@ -387,8 +388,8 @@
 	M.visible_message("<span class='warning'> \red [M] digs into [src.name] and begins ripping it down. </span>", \
 		 			"<span class='warning'> \red You begin to rip down [src.name]. Hold still.. </span>")
 	if(do_after(M,80))
-		if(M.loc != cur_loc) return //Make sure we're still there
 		if(!src) return //Someone already destroyed it, do_after should check this but best to be safe
+		if(M.loc != cur_loc) return //Make sure we're still there
 		M.visible_message("<span class='warning'> \red [M] rips down [src.name]! </span>", \
 		 			"<span class='warning'> \red You rip down [src.name]! </span>")
 		del(src)
@@ -408,7 +409,7 @@
 	return
 
 
-//APCs. Don't slash em for now, we'll deal with that later.
+//APCs.
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(!M)
 		return

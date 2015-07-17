@@ -3,19 +3,19 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 24
+	damage = 22
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
 	damage = 35
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 22
+	damage = 18
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
 	damage = 30
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
-	damage = 50
+	damage = 55
 
 ///***Ammo***///
 
@@ -167,7 +167,7 @@
 	max_shells = 35
 	caliber = "9mms"
 	ammo_type = "/obj/item/ammo_casing/m39"
-//	fire_delay = 1
+	fire_delay = 0
 	force = 9.0
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	ejectshell = 0 //Caseless
@@ -428,7 +428,7 @@
 	twohanded = 1
 	ejectshell = 0
 	recoil = 0
-	fire_delay = 1
+	fire_delay = 2
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 17
 	rail_pixel_x = 18

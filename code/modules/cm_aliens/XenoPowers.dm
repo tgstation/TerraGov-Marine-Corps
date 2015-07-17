@@ -166,7 +166,11 @@
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
 		usedPounce = 180 //about 12 seconds
+		pass_flags = PASSTABLE
+		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 3, src) //victim, distance, speed
+		spawn(12)
+			pass_flags = 0 //Reset the passtable.
 		spawn(usedPounce)
 			usedPounce = 0
 			src << "You get ready to pounce again."
@@ -470,8 +474,12 @@
 				return
 			visible_message("\red <B>[X] charges towards [T]!</B>","\red <b> You charge at [T]!</B>" )
 			emote("roar") //heheh
+			X.pass_flags = PASSTABLE
 			X.usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+			if(readying_tail) readying_tail = 0
 			X.throw_at(T, X.CHARGEDISTANCE, X.CHARGESPEED, src)
+			spawn(10)
+				X.pass_flags = 0
 			spawn(X.CHARGECOOLDOWN)
 				X.usedPounce = 0
 				X << "Your exoskeleton quivers as you get ready to charge again."

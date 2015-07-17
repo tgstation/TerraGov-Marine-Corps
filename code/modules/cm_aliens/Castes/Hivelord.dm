@@ -25,7 +25,8 @@
 		/mob/living/carbon/Xenomorph/proc/build_resin,
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
-		/mob/living/carbon/Xenomorph/proc/build_tunnel
+		/mob/living/carbon/Xenomorph/proc/build_tunnel,
+		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
 

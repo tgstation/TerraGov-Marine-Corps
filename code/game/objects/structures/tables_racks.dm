@@ -40,6 +40,12 @@
 	update_icon()
 	update_adjacent()
 
+/obj/structure/table/Crossed(atom/movable/O)
+	..()
+	if(istype(O,/mob/living/carbon/Xenomorph/Ravager))
+		visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
+		destroy()
+
 /obj/structure/table/Del()
 	update_adjacent()
 	..()

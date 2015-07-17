@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/verb/toggle_firerate()
 	set name = "Toggle Firerate"
-	set category = "Weapons"
+	set category = "Object"
 
 	firerate = !firerate
 

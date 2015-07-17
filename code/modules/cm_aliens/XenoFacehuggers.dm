@@ -5,7 +5,7 @@
 var/const/MIN_IMPREGNATION_TIME = 400 //time it takes to impregnate someone
 var/const/MAX_IMPREGNATION_TIME = 500
 
-var/const/MIN_ACTIVE_TIME = 100 //time between being dropped and going idle
+var/const/MIN_ACTIVE_TIME = 150 //time between being dropped and going idle
 var/const/MAX_ACTIVE_TIME = 200
 
 /obj/item/clothing/mask/facehugger
@@ -170,6 +170,10 @@ var/const/MAX_ACTIVE_TIME = 200
 				else if(D.anti_hug == 1)
 					H.visible_message("\red \b [src] smashes against [H]'s [D] and rips it off!")
 					H.drop_from_inventory(D)
+					if(istype(D,/obj/item/clothing/head/helmet/marine2)) //Marine helmets now get a fancy overlay.
+						D.desc += "\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>"
+						D:add_hugger_damage() //We know this proc is okay.
+
 					D.anti_hug--
 					if(rand(50))
 						src.GoIdle()
@@ -289,17 +293,15 @@ var/const/MAX_ACTIVE_TIME = 200
 
 /proc/CanHug(var/mob/living/M)
 
-	if(!istype(M)) return 0
+	if(!istype(M)) return 0 //No ghosts?
 
-	if(!M.stat == DEAD) return 0
+	if(M.stat == DEAD) return 0 //No deads.
 
-	if(!iscarbon(M) && !iscorgi(M))
-		return 0
+	if(!iscarbon(M) && !iscorgi(M)) return 0 //No simple animals but Ian.
 
-	if(istype(M,/mob/living/carbon/Xenomorph))
-		return 0
+	if(istype(M,/mob/living/carbon/Xenomorph)) return 0 //No xenos, hurr
 
-	if(M.status_flags & XENO_HOST) return 0
+	if(M.status_flags & XENO_HOST) return 0 //No hosts.
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,
@@ -315,3 +317,4 @@ var/const/MAX_ACTIVE_TIME = 200
 	if(iscorgi(M) && M:wear_mask) return 0
 
 	return 1
+
