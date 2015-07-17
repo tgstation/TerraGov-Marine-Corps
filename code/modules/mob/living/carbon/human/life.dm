@@ -1156,7 +1156,7 @@
 			else
 				stat = CONSCIOUS
 
-			if(species && species.name == "Yautja") //Hurr hurr.
+			if(has_species(src,"Yautja")) //Hurr hurr.
 				if(weakened)
 					weakened-- //Yautja stand up twice as fast from knockdown.
 

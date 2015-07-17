@@ -534,6 +534,9 @@
 			new /obj/item/weapon/harpoon/yautja(src)
 			new /obj/item/weapon/harpoon/yautja(src)
 			new /obj/item/weapon/harpoon/yautja(src)
+			new /obj/item/weapon/legcuffs/yautja(src)
+			new /obj/item/weapon/legcuffs/yautja(src)
+			new /obj/item/weapon/legcuffs/yautja(src)
 
 
 /obj/item/clothing/glasses/night/yautja
@@ -567,3 +570,49 @@
 	item_state = "securityhud"
 	vision_flags = SEE_TURFS
 	canremove = 0
+
+/obj/item/weapon/legcuffs/yautja
+	name = "alien trap"
+	throw_speed = 2
+	throw_range = 2
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "yauttrap0"
+	desc = "A trap used to catch prey."
+	var/armed = 0
+	breakouttime = 600 // 1 minute
+
+/obj/item/weapon/legcuffs/yautja/attack_self(mob/user as mob)
+	..()
+	if(ishuman(user) && !user.stat && !user.restrained())
+		armed = !armed
+		icon_state = "yauttrap[armed]"
+		user << "<span class='notice'>\The [src] is now [armed ? "armed" : "disarmed"]</span>"
+		if(armed) layer = 2.8 //To put it under most things. Weeds are 2.9, tables are 2.7
+		if(!armed) layer = 3
+
+/obj/item/weapon/legcuffs/yautja/Crossed(AM as mob|obj)
+	if(armed)
+		if(ishuman(AM))
+			if(isturf(src.loc))
+				var/mob/living/carbon/H = AM
+				if(has_species(AM,"Yautja"))
+					AM << "You carefully avoid stepping on the trap."
+					return
+				if(H.m_intent == "run")
+					armed = 0
+					H.legcuffed = src
+					src.loc = H
+					H.update_inv_legcuffed()
+					layer = 3
+					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
+					H << "\icon[src] \red <B>You step on \the [src]!</B>"
+					feedback_add_details("handcuffs","B")
+					for(var/mob/O in viewers(H, null))
+						if(O == H)
+							continue
+						O.show_message("\icon[src] \red <B>[H] steps on \the [src].</B>", 1)
+		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
+			armed = 0
+			var/mob/living/simple_animal/SA = AM
+			SA.health -= 20
+	..()
