@@ -129,7 +129,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define R_HAND_LAYER			22
 #define TARGETED_LAYER			23
 #define FIRE_LAYER				24		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS			24
+#define CLAW_LAYER				25 	//Flicks a claw attack. Stored permanently as a blank overlay until it's required.
+#define TOTAL_LAYERS			25
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -187,6 +188,8 @@ Please contact me on #coderbus IRC. ~Carn x
 			else if(chestburst == 2)
 				var/image/C = image('icons/Xeno/Misc.dmi',src,"bursted_stand")
 				overlays += C
+			if(slashed_icon)
+				overlays += slashed_icon
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
