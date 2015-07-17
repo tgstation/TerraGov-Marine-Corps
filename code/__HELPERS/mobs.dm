@@ -97,3 +97,12 @@ proc/RoundHealth(health)
 		else
 			return "health-100"
 	return "0"
+
+proc/has_species(var/mob/M, var/species)
+	if(!M || !istype(M,/mob/living/carbon/human)) return 0
+	var/mob/living/carbon/human/H = M
+
+	if(!H.species) return 0
+	if(H.species.name != species) return 0
+
+	return 1

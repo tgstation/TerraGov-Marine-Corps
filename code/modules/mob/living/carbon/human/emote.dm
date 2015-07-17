@@ -542,7 +542,7 @@
 					m_type = 2
 
 		if ("roar")
-			if(src.species && src.species.name == "Yautja" && src.loc)
+			if(has_species(src,"Yautja") && src.loc)
 				message = "<B>[src] roars!</b>"
 				m_type = 1
 				spawn(2)
