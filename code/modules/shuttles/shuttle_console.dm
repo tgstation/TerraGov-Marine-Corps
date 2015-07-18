@@ -81,11 +81,11 @@
 			return
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 			shuttle.launch(src)
-	if(href_list["force"])
-		if(shuttle.moving_status  == SHUTTLE_IDLE)
-			shuttle.force_launch(src)
-	else if(href_list["cancel"])
-		shuttle.cancel_launch(src)
+//	if(href_list["force"])
+//		if(shuttle.moving_status  == SHUTTLE_IDLE)
+//			shuttle.force_launch(src)
+//	else if(href_list["cancel"])
+//		shuttle.cancel_launch(src)
 
 /obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
