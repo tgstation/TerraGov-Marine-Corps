@@ -21,6 +21,8 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
+	anchored = 0
+
 	var/const/mob_size = 15
 
 /obj/structure/closet/New()
