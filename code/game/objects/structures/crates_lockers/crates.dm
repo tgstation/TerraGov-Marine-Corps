@@ -10,6 +10,7 @@
 	climbable = 1
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
 	var/rigged = 0
+	anchored = 0
 
 /obj/structure/closet/crate/can_open()
 	return 1

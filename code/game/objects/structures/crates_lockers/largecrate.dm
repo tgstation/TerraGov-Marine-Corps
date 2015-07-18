@@ -5,6 +5,7 @@
 	icon_state = "densecrate"
 	density = 1
 	flags = FPRINT
+	anchored = 0
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	user << "<span class='notice'>You need a crowbar to pry this open!</span>"
