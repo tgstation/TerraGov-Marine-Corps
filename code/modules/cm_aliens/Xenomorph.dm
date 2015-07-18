@@ -67,7 +67,7 @@ var/slashing_allowed = 0
 	var/tunnel_delay = 0
 	var/spit_projectile = null
 	var/pslash_delay = 0
-	var/bite_chance = 10 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
+	var/bite_chance = 6 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
 	var/readying_tail = 0 //'charges' up to 10, next attack does a tail stab.
 
 	var/adjust_pixel_x = 0

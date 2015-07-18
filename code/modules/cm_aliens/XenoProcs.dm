@@ -355,13 +355,13 @@
 
 	var/chance = bite_chance
 	var/dmg = rand(melee_damage_lower,melee_damage_upper) + 20
-	var/datum/organ/external/affecting
 
-	if(M.lying) chance += 20
+	if(M.lying) chance += 10
 	if(M.head) chance -= 5 //Helmet? Less likely to bite, even if not all bites target head.
 
 	if(rand(0,100) > chance) return 0 //Failed the check, get out
 
+	var/datum/organ/external/affecting
 	affecting = M.get_organ(ran_zone("head",50))
 	if(!affecting) //No head? Just get a random one
 		affecting = M.get_organ(ran_zone(null,0))
