@@ -166,7 +166,7 @@
 	// opens the wound again
 	proc/open_wound(damage)
 		src.damage += damage
-		bleed_timer += damage
+		bleed_timer += damage*1.5
 
 		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= src.damage / src.amount)
 			src.current_stage--
@@ -209,9 +209,9 @@
 
 /** WOUND DEFINITIONS **/
 
-//Note that the MINIMUM damage before a wound can be applied should correspond to 
+//Note that the MINIMUM damage before a wound can be applied should correspond to
 //the damage amount for the stage with the same name as the wound.
-//e.g. /datum/wound/cut/deep should only be applied for 15 damage and up, 
+//e.g. /datum/wound/cut/deep should only be applied for 15 damage and up,
 //because in it's stages list, "deep cut" = 15.
 /proc/get_wound_type(var/type = CUT, var/damage)
 	switch(type)

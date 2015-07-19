@@ -131,7 +131,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 			if(!(temp.status & ORGAN_BLEEDING) || temp.status & ORGAN_ROBOT)
 				continue
 			for(var/datum/wound/W in temp.wounds) if(W.bleeding())
-				blood_max += W.damage / 40
+				blood_max += W.damage / 15
+			if(temp.status & ORGAN_DESTROYED && !(temp.status & ORGAN_GAUZED) && !temp.amputated)
+				blood_max += 25 //Yer missing a fucking limb.
 			if (temp.open)
 				blood_max += 2  //Yer stomach is cut open
 		drip(blood_max)
