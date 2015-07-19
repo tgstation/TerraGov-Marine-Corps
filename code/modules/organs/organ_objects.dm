@@ -49,7 +49,7 @@
 		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 		blood_splatter(src,B,1)
 
-	health -= rand(1,3)
+	health -= rand(0,1)
 	if(health <= 0)
 		die()
 

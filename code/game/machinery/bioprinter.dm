@@ -13,8 +13,8 @@
 	var/working = 0
 	var/stored_matter = 0
 	var/stored_metal = 0
-	var/loaded_dna //Blood sample for DNA hashing.
-	//"Name" = list(location, matter, metal, time)
+
+	//"Name" = list(location, matter, metal, time, isorganic)
 	var/list/products = list(
 		"heart (50 - Matter)" =   list(/obj/item/organ/heart,  50, 0, 350),
 		"lungs (40 - Matter)" =   list(/obj/item/organ/lungs,  40, 0, 350),
@@ -48,7 +48,7 @@
 		user << "\blue \The [src] is now printing the selected organ. Please hold."
 		working = 1
 		spawn(products[choice][4]) //Time
-			var/new_organ = products[choice][1] //Location
+			var/new_organ = products[choice][1]
 			new new_organ(get_turf(src))
 			working = 0
 			visible_message("The bio/synthetic printer spits out a new organ.")
@@ -57,13 +57,14 @@
 		user << "There is not enough materials in the printer."
 
 /obj/machinery/bioprinter/attackby(obj/item/weapon/W, mob/user)
-
+//Matter
 	if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		user << "\blue \The [src] processes \the [W]."
 		stored_matter += 50
 		user.drop_item()
 		del(W)
 		return
+//Metal
 	else if(istype(W, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = W
 		user << "\blue \The [src] processes \the [W]."
@@ -77,4 +78,3 @@
 /obj/machinery/bioprinter/examine()
 	..()
 	usr << "It has [stored_matter] matter and [stored_metal] metal left."
-
