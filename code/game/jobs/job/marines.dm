@@ -72,6 +72,7 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(H), slot_head)
 		return 1
 
 /datum/job/squadmarine

@@ -161,9 +161,43 @@
 	item_color = "johnny"
 
 /obj/item/clothing/under/marine/officer/logistics
-	name = "logistics officer uniform"
-	icon_state = "hop"
-	item_color = "hop"
+	name = "marine officer uniform"
+	icon_state = "BO_jumpsuit"
+	item_color = "BO_jumpsuit"
+
+
+/obj/item/clothing/under/marine/officer/BO
+	name = "marine officer uniform"
+	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	armor = list(melee = 30, bullet = 30, laser = 10,energy = 10, bomb = 20, bio = 10, rad = 10)
+	icon_state = "BO_jumpsuit"
+	item_state = "BO_jumpsuit"
+	item_color = "BO_jumpsuit"
+
+/obj/item/clothing/under/marine/officer/XO
+	name = "marine officer uniform"
+	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	armor = list(melee = 30, bullet = 30, laser = 10,energy = 10, bomb = 20, bio = 10, rad = 10)
+	icon_state = "XO_jumpsuit"
+	item_state = "XO_jumpsuit"
+	item_color = "XO_jumpsuit"
+
+/obj/item/clothing/under/marine/officer/CO
+	name = "marine officer uniform"
+	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	armor = list(melee = 30, bullet = 30, laser = 10,energy = 10, bomb = 20, bio = 10, rad = 10)
+	icon_state = "CO_jumpsuit"
+	item_state = "CO_jumpsuit"
+	item_color = "CO_jumpsuit"
+
+/obj/item/clothing/under/marine/officer/E
+	name = "Engineer uniform"
+	desc = "A uniform for the engineering crew of the USS Sulaco. Slightly protective against enviromental hazards."
+	armor = list(melee = 5, bullet = 5, laser = 5,energy = 5, bomb = 20, bio = 20, rad = 20)
+	icon_state = "E_jumpsuit"
+	item_state = "E_jumpsuit"
+	item_color = "E_jumpsuit"
+
 
 //ARMOR
 /obj/item/clothing/suit/storage/marine
@@ -458,6 +492,6 @@ v
 /obj/item/clothing/under/rank/ro_suit
 	name = "Requisition officer suit."
 	desc = "A nicely-fitting military suit for a requisition officer."
-	icon_state = "warden_corporate"
-	item_state = "warden_corporate"
-	item_color = "warden_corporate"
+	icon_state = "RO_jumpsuit"
+	item_state = "RO_jumpsuit"
+	item_color = "RO_jumpsuit"

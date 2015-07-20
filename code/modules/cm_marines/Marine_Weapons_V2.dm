@@ -43,7 +43,7 @@
 	name = "Shotgun shell"
 	desc = "A 12 gauge shell."
 	icon_state = "gshell"
-	caliber = "shotgun"
+	caliber = "m37"
 	projectile_type = "/obj/item/projectile/bullet/m37"
 
 ///***Ammo Boxes***///
@@ -148,12 +148,12 @@
 /obj/item/weapon/gun/projectile/m44m //mm44 Magnum Peacemaker
 	name = "\improper 44 Magnum"
 	desc = "A bulky 44 Magnum revolver, occasionally carried by assault troops and officers in the Colonial Marines. Uses 44 Magnum rounds"
-	icon_state = "mateba"
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "44"
 	item_state = "44"
 	caliber = "38s"
 	ammo_type = "/obj/item/ammo_casing/m44m"
 	max_shells = 6
-
 
 
 ///***SMGS***///
