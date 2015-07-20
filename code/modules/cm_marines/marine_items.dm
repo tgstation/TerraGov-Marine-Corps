@@ -357,7 +357,7 @@ obj/item/device/radio/headset/mdelta
 		pixel_y = rand(-3,3)
 		pixel_x = rand(-3,3)
 		var/rand_type = rand(0,10)
-		if(rand_type < 4)
+		if(rand_type <= 4)
 			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
 			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
 			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
