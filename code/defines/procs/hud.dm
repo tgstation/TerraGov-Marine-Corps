@@ -40,6 +40,10 @@ proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
 
+		if(!ishuman(perp)) continue
+
+		if(isYautja(perp)) continue
+
 		P.Client.images += perp.hud_list[ID_HUD]
 		if(advanced_mode)
 			P.Client.images += perp.hud_list[WANTED_HUD]

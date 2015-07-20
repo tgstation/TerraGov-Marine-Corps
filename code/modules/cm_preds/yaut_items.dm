@@ -144,6 +144,27 @@
 		mob << "The wrist blades retract back into your armband."
 		del(src)
 
+	afterattack(obj/O as obj, mob/user as mob, proximity)
+		if(!proximity || !user) return
+		if (istype(O, /obj/machinery/door/airlock) && get_dist(src,O) <= 1)
+			var/obj/machinery/door/airlock/D = O
+			if(!D.density)
+				return
+
+			if(D.locked)
+				user << "There's some kind of lock keeping it shut."
+				return
+
+			if(D.welded)
+				user << "It's welded shut. You won't be able to rip it open."
+				return
+
+			user << "\blue You jam a wristblade into [O] and strain to rip it open."
+			if(do_after(user,70))
+				D.open(1)
+
+
+
 /obj/item/clothing/shoes/yautja
 	name = "armored boots"
 	icon = 'icons/Predator/items.dmi'
@@ -580,6 +601,18 @@
 	desc = "A trap used to catch prey."
 	var/armed = 0
 	breakouttime = 600 // 1 minute
+	layer = 2.8 //Goes under weeds.
+
+	dropped(var/mob/living/carbon/human/mob) //Changes to "camouflaged" icons based on where it was dropped.
+		..()
+		if(armed)
+			if(isturf(mob.loc))
+				if(istype(mob.loc,/turf/simulated/floor/gm/dirt))
+					icon_state = "yauttrapdirt"
+				else if (istype(mob.loc,/turf/simulated/floor/gm/dirt))
+					icon_state = "yauttrapgrass"
+				else
+					icon_state = "yauttrap1"
 
 /obj/item/weapon/legcuffs/yautja/attack_self(mob/user as mob)
 	..()
@@ -587,8 +620,6 @@
 		armed = !armed
 		icon_state = "yauttrap[armed]"
 		user << "<span class='notice'>\The [src] is now [armed ? "armed" : "disarmed"]</span>"
-		if(armed) layer = 2.8 //To put it under most things. Weeds are 2.9, tables are 2.7
-		if(!armed) layer = 3
 
 /obj/item/weapon/legcuffs/yautja/Crossed(AM as mob|obj)
 	if(armed)
@@ -600,12 +631,14 @@
 					return
 				if(H.m_intent == "run")
 					armed = 0
+					icon_state = "yauttrap0"
 					H.legcuffed = src
 					src.loc = H
 					H.update_inv_legcuffed()
-					layer = 3
 					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
 					H << "\icon[src] \red <B>You step on \the [src]!</B>"
+					H.Weaken(5)
+					H.emote("scream")
 					feedback_add_details("handcuffs","B")
 					for(var/mob/O in viewers(H, null))
 						if(O == H)
@@ -616,3 +649,23 @@
 			var/mob/living/simple_animal/SA = AM
 			SA.health -= 20
 	..()
+
+//Yautja channel. Has to delete stock encryption key so we don't receive sulaco channel.
+/obj/item/device/radio/headset/yautja
+	name = "alien earpiece"
+	desc = "A strange headset that fits in a bizarrely-shaped ear."
+	icon_state = "cargo_headset"
+	item_state = "headset"
+	frequency = 1214
+
+	New()
+		..()
+		del(keyslot1)
+		keyslot1 = new /obj/item/device/encryptionkey/yautja
+		recalculateChannels()
+
+/obj/item/device/encryptionkey/yautja
+	name = "Yautja Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains cypherkeys."
+	icon_state = "cypherkey"
+	channels = list("Yautja" = 1)

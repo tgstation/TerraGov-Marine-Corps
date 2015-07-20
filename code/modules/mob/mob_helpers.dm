@@ -126,6 +126,12 @@ proc/isXenoLarva(A) //Xenomorph Larva Hud Test APOPHIS 22MAY2015
 		return 1
 	return 0
 
+proc/isYautja(A)
+	if(!ishuman(A) || !ismob(A)) return 0
+	if(!A:species) return 0
+	if(A:species.name != "Yautja") return 0
+	return 1
+
 proc/hasorgans(A)
 	return ishuman(A)
 

@@ -121,8 +121,9 @@
 				new /obj/item/stack/sheet/animalhide/xeno(T.loc)
 			else if(istype(T,/mob/living/carbon/human) && isturf(T.loc))
 				visible_message("<b>[src] reaches down and rips out \the [T]'s spinal cord and skull!</b>.","<b>You firmly grip the revealed spinal column and rip [T]'s head off!</b>")
-				if(T:get_organ("head"))
-					T.apply_damage(150,BRUTE,"head",0,1,1)
+				var/mob/living/carbon/human/H = T
+				if(H.get_organ("head"))
+					H.apply_damage(150,BRUTE,"head",0,1,1)
 				else
 					new /obj/item/weapon/reagent_containers/food/snacks/meat(T.loc)
 				new /obj/item/stack/sheet/animalhide/human(T.loc)

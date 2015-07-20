@@ -402,6 +402,14 @@
 		affecting = M.get_organ("chest") // Gotta have a torso?!
 	var/armor_block = M.run_armor_check(affecting, "melee")
 
+	var/miss_chance = 15
+	if(istype(src,/mob/living/carbon/Xenomorph/Hivelord)) miss_chance += 20 //Fuck hivelords
+	if(prob(miss_chance))
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
+		visible_message("<span class = 'warning'>\The [src] lashes out with its tail but <b>misses</b> [M]!","<span class='warning'>You snap your tail out but <b>miss</b> [M]!</span>")
+		readying_tail = 0
+		return
+
 	//Selecting feet? Drop the damage and trip them.
 	if(zone_sel.selecting == "r_leg" || zone_sel.selecting == "l_leg" || zone_sel.selecting == "l_foot" || zone_sel.selecting == "r_foot")
 		if(prob(60) && !M.lying)

@@ -1247,7 +1247,6 @@
 			handle_hud_list()
 
 		// now handle what we see on our screen
-
 		if(!client)
 			return 0
 
@@ -1703,7 +1702,6 @@
 
 
 /mob/living/carbon/human/proc/handle_hud_list()
-
 	if(hud_updateflag & 1 << HEALTH_HUD)
 		var/image/holder = hud_list[HEALTH_HUD]
 		if(stat == 2)

@@ -81,7 +81,7 @@
 	if(!twohanded) return
 	wielded = 0
 	name = "[initial(name)]"
-	item_state = initial(item_state)
+	item_state = "[initial(item_state)]"
 	if(usr)
 		usr.update_icons()
 

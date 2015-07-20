@@ -42,7 +42,7 @@ em						{font-style: normal;	font-weight: bold;}
 .alpharadio				{color: #EA0000;}
 .bravoradio				{color: #C68610;}
 .charlieradio			{color: #9632C8;}
-.deltaradio				{color: #32C8EE;}
+.deltaradio				{color: #007FCF;}
 
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}

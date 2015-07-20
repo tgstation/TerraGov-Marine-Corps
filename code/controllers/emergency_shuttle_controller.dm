@@ -11,7 +11,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	var/launch_time			//the time at which the shuttle will be launched
 	var/auto_recall = 0		//if set, the shuttle will be auto-recalled
 	var/auto_recall_time	//the time at which the shuttle will be auto-recalled
-	var/evac = 0			//1 = emergency evacuation, 0 = crew transfer
+	var/evac = 1			//1 = emergency evacuation, 0 = crew transfer
 	var/wait_for_launch = 0	//if the shuttle is waiting to launch
 	var/autopilot = 1		//set to 0 to disable the shuttle automatically launching
 
