@@ -69,7 +69,7 @@
 
 			if (prob(3))	//about once every 30 seconds
 				take_damage(1,silent=prob(30))
-
+/*
 		// Process unsuitable transplants. TODO: consider some kind of
 		// immunosuppressant that changes transplant data to make it match.
 		if(transplant_data)
@@ -90,7 +90,7 @@
 						if(501 to INFINITY)
 							take_damage(4)
 							owner.reagents.add_reagent("toxin", rand(3,5))
-
+*/
 /datum/organ/internal/proc/take_damage(amount, var/silent=0)
 	if(src.robotic == 2)
 		src.damage += (amount * 0.8)
