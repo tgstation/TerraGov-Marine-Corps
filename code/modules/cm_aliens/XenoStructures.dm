@@ -323,7 +323,7 @@
 	density = 0
 	anchored = 1
 
-	var/health = 100
+	var/health = 80
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
 
@@ -529,7 +529,7 @@
 	var/health = 100
 	var/on_fire = 0
 	var/resisting = 0
-	var/nest_resist_time = 2400
+	var/nest_resist_time = 1900
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)

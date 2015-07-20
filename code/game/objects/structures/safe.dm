@@ -5,6 +5,21 @@ FLOOR SAFES
 */
 
 //SAFES
+
+/obj/item/weapon/paper/safe_key
+	name = "Secure Safe Combination"
+	var/obj/structure/safe/safe = null
+
+/obj/item/weapon/paper/monitorkey/New()
+	..()
+	spawn(10)
+		for(var/obj/structure/safe/safe in loc)
+			if(safe)
+				info = "This looks like a handwritten page with two numbers on it: \n\n<b>[safe.tumbler_1_open] | [safe.tumbler_2_open]</b>."
+				info_links = info
+				icon_state = "paper_words"
+				break
+
 /obj/structure/safe
 	name = "safe"
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
@@ -32,6 +47,8 @@ FLOOR SAFES
 
 /obj/structure/safe/initialize()
 	for(var/obj/item/I in loc)
+		if(istype(I,/obj/item/weapon/paper/safe_key))
+			continue
 		if(space >= maxspace)
 			return
 		if(I.w_class + space <= maxspace)

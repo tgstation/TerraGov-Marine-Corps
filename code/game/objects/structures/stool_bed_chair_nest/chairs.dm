@@ -153,7 +153,7 @@
 	if(propelled)
 		var/mob/living/occupant = buckled_mob
 		unbuckle()
-		
+
 		var/def_zone = ran_zone()
 		var/blocked = occupant.run_armor_check(def_zone, "melee")
 		occupant.throw_at(A, 3, propelled)
@@ -174,6 +174,8 @@
 
 /obj/structure/stool/bed/chair/office/light
 	icon_state = "officechair_white"
+	anchored = 0
 
 /obj/structure/stool/bed/chair/office/dark
 	icon_state = "officechair_dark"
+	anchored = 0

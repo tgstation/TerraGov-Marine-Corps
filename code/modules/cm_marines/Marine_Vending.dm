@@ -25,10 +25,7 @@
 					/obj/item/weapon/throwing_knife = 9,
 					/obj/item/device/flashlight/flare = 10,
 					/obj/item/weapon/storage/backpack/marine = 20,
-					/obj/item/device/radio/headset/msulaco = 5,
-
-
-					/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 5
+					/obj/item/device/radio/headset/msulaco = 5
 
 					)
 	contraband = list(/*bj/item/weapon/storage/fancy/donut_box = 5,
@@ -44,20 +41,13 @@
 /obj/machinery/vending/marineFood
 	name = "Marine Food Vendor"
 	desc = "Standard Issue Food Vendor, containing standard military food"
-	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
+	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1 = 15, /obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal2 = 15,
-	 				/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal3 =15, /obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal4 =15,
-	 				/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal5 =15, /obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal6 =5,
-	 				)
-	/*
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/monkeyburger = 20, /obj/item/weapon/reagent_containers/food/snacks/tofuburger = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/omelette = 10, /obj/item/weapon/reagent_containers/food/snacks/muffin = 20,
-					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 30, /obj/item/weapon/reagent_containers/food/snacks/meatsteak = 10)
-	*/
+	products = list(/obj/item/weapon/storage/box/uscm_mre = 50	)
+
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
-	product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it;"
+	product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Your only choice for food...Literally;"
 	req_access_txt = ""
 

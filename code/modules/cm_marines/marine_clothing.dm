@@ -319,10 +319,10 @@ v
 	permeability_coefficient = 0.01
 
 /obj/item/clothing/gloves/marine/techofficer/commander
-	name = "commander gloves"
+	name = "commander's gloves"
 	desc = "You may like these gloves, but THEY think you are unworthy of them."
-	icon_state = "mcommgloves"
-	item_state = "mcommgloves"
+	icon_state = "captain"
+	item_state = "egloves"
 
 //SHOES
 
@@ -337,7 +337,7 @@ v
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
-		if(knife)
+		if(knife && src.loc == M) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"

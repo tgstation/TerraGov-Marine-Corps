@@ -96,12 +96,12 @@
 				return 0
 
 			var/distance = get_dist(starting,loc)
-			var/miss_modifier = -30 //NEGATIVE IS BETTER HERE.
+			var/miss_modifier = -20 //NEGATIVE IS BETTER HERE.
 
 			if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
 				if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
-					miss_modifier -= 30
+					miss_modifier -= 20
 
 				//Weapon attachment modifiers.
 				if(daddy.rail)
@@ -120,7 +120,7 @@
 					miss_modifier -= 20
 
 			if(istype(src,/obj/item/projectile/energy/neuro)) //Neuro spit rarely, if ever misses.
-				miss_modifier -= 40
+				miss_modifier -= 80
 
 			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
 				var/mob/living/carbon/human/H = A
@@ -131,7 +131,7 @@
 					skip_over = 1
 					return 0
 
-			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (8 * distance))
+			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (9 * distance))
 
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")

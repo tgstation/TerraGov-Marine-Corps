@@ -349,16 +349,31 @@ obj/item/device/radio/headset/mdelta
 
 /obj/item/weapon/storage/box/uscm_mre
 	name = "USCM Meal Ready to Eat"
-	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\nOn the box is a picture of a shouting Squad Leader. \"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
+	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
 
 	New()
 		..()
 		pixel_y = rand(-3,3)
 		pixel_x = rand(-3,3)
-		new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+		var/rand_type = rand(0,10)
+		if(rand_type < 4)
+			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+		else if(rand_type == 5)
+			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1(src)
+		else if(rand_type == 6)
+			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2(src)
+		else if(rand_type == 7)
+			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3(src)
+		else if(rand_type == 8)
+			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4(src)
+		else if(rand_type == 9)
+			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5(src)
+		else if(rand_type == 10)
+			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6(src)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/protein_pack
 	name = "satchel of protein substitute"
@@ -370,7 +385,12 @@ obj/item/device/radio/headset/mdelta
 		..()
 		reagents.add_reagent("nutriment", 8)
 		bitesize = 4
-/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack
+	name = "Generic MRE Pack"
+
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1
 	name = "USCM MRE (cornbread)"
 	desc = "A tray of standard USCM rations. Stale cornbread, tomato paste and some green goop fill this tray."
 	icon_state = "MREa"
@@ -378,20 +398,20 @@ obj/item/device/radio/headset/mdelta
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 16)
-		bitesize = 1
+		reagents.add_reagent("nutriment", 12)
+		bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal2
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2
 	name = "USCM MRE (pork)"
 	desc = "A tray of standard USCM rations. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
 	icon_state = "MREb"
 
-/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal3
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3
 	name = "USCM MRE (pasta)"
 	desc = "A tray of standard USCM rations. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
 	icon_state = "MREc"
 
-/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal4
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4
 	name = "USCM MRE (pizza)"
 	desc = "A tray of standard USCM rations. Cold pizza, wet greenbeans and a shitty egg fill this tray. Get something other than pizza, lardass."
 	icon_state = "MREd"
@@ -401,12 +421,12 @@ obj/item/device/radio/headset/mdelta
 		reagents.add_reagent("nutriment", 9)
 		bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal5
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5
 	name = "USCM MRE (chicken)"
 	desc = "A tray of standard USCM rations. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
 	icon_state = "MREe"
 
-/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal6
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6
 	name = "USCM MRE (tofu)"
 	desc = "The USCM doesn't serve tofu you grass sucking hippie. The flag signifies your defeat."
 	icon_state = "MREf"
@@ -419,7 +439,7 @@ obj/item/device/radio/headset/mdelta
 
 /obj/item/weapon/storage/box/wy_mre
 	name = "Weyland-Yutani Brand MRE"
-	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: <b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
+	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
 
 	New()
