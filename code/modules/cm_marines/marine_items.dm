@@ -370,6 +370,52 @@ obj/item/device/radio/headset/mdelta
 		..()
 		reagents.add_reagent("nutriment", 8)
 		bitesize = 4
+/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1
+	name = "USCM MRE (cornbread)"
+	desc = "A tray of standard USCM rations. Stale cornbread, tomato paste and some green goop fill this tray."
+	icon_state = "MREa"
+	filling_color = "#ED1169"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 16)
+		bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal2
+	name = "USCM MRE (pork)"
+	desc = "A tray of standard USCM rations. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
+	icon_state = "MREb"
+
+/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal3
+	name = "USCM MRE (pasta)"
+	desc = "A tray of standard USCM rations. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
+	icon_state = "MREc"
+
+/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal4
+	name = "USCM MRE (pizza)"
+	desc = "A tray of standard USCM rations. Cold pizza, wet greenbeans and a shitty egg fill this tray. Get something other than pizza, lardass."
+	icon_state = "MREd"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 9)
+		bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal5
+	name = "USCM MRE (chicken)"
+	desc = "A tray of standard USCM rations. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
+	icon_state = "MREe"
+
+/obj/item/weapon/reagent_containers/food/snacks/protein_pack/meal1/meal6
+	name = "USCM MRE (tofu)"
+	desc = "The USCM doesn't serve tofu you grass sucking hippie. The flag signifies your defeat."
+	icon_state = "MREf"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 1)
+		bitesize = 1
+
 
 /obj/item/weapon/storage/box/wy_mre
 	name = "Weyland-Yutani Brand MRE"

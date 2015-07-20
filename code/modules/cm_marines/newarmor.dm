@@ -193,6 +193,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		return
 
+/obj/item/clothing/head/helmet/specrag
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "band"
+	item_state = "band"
+	name = "Specialist head-rag"
+	desc = "A hat worn by heavy-weapons operators to block sweat."
+	health = 5
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+
 /obj/item/clothing/head/helmet/marine2/heavy
 	name = "B18 Helmet"
 	icon_state = "xhelm"
@@ -330,3 +339,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	if(!isnull(A) && istype(A)) A.update_squad_overlays(M)
 
 	..(M, slot)
+
+
+/obj/item/clothing/suit/storage/marineMP
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "mp"
+	item_state = "armor"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = UPPER_TORSO|LOWER_TORSO
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	blood_overlay_type = "armor"
+	armor = list(melee = 50, bullet = 70, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	name = "M3 Pattern Marine Armor"
+	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
