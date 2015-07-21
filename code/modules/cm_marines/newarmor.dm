@@ -104,7 +104,20 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 70, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
-	allowed = list(/obj/item/weapon/gun/, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton, /obj/item/weapon/melee/stunprod, /obj/item/weapon/handcuffs, /obj/item/weapon/restraints, /obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade, /obj/item/weapon/combat_knife)
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/ammo_casing/,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/melee/stunprod,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/combat_knife)
+
 	var/mob/living/carbon/human/wornby
 	var/squad = 0
 	var/rank = 0

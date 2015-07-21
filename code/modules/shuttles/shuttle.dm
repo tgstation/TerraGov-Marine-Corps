@@ -42,12 +42,13 @@
 		arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
-
+		close_doors(interim)
 
 		while (world.time < arrive_time)
 			sleep(5)
 
 		move(interim, destination, direction)
+		open_doors(destination)
 		moving_status = SHUTTLE_IDLE
 
 		recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
@@ -64,6 +65,31 @@
 			   	if(bolt_doors)
 			   		bolt dat shit
 */
+
+/datum/shuttle/proc/close_doors(var/area/area)
+	if(!area || !istype(area)) //somehow
+		return
+
+	for(var/obj/machinery/door/unpowered/D in area)
+		if(!D.density && !D.locked)
+			D.close()
+
+	for(var/obj/machinery/door/poddoor/shutters/P in area)
+		if(!P.density)
+			P.close()
+
+/datum/shuttle/proc/open_doors(var/area/area)
+	if(!area || !istype(area)) //somehow
+		return
+
+	for(var/obj/machinery/door/unpowered/D in area)
+		if(D.density && !D.locked)
+			D.open()
+
+	for(var/obj/machinery/door/poddoor/shutters/P in area)
+		if(P.density)
+			P.open()
+
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)

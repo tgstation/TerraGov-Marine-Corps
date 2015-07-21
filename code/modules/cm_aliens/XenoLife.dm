@@ -209,7 +209,7 @@
 	else //Xenos restore plasma VERY slowly off weeds, regardless of health
 		if(rand(0,1) == 0) storedplasma += 1
 
-	if(readying_tail) storedplasma -= 2
+	if(readying_tail) storedplasma -= 3
 	if(storedplasma > maxplasma) storedplasma = maxplasma
 	if(storedplasma < 0) storedplasma = 0
 	return

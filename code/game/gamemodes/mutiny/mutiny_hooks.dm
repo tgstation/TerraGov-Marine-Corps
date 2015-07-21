@@ -12,11 +12,11 @@
 	mode.update_icon(H.mind)
 	return 1
 
-/hook/harvest_podman/proc/update_icon(mob/living/carbon/alien/diona/D)
-	var/datum/game_mode/mutiny/mode = get_mutiny_mode()
-	if (!mode) return 1
-
-	mode.update_icon(D.mind)
+/hook/harvest_podman/proc/update_icon()
+//	var/datum/game_mode/mutiny/mode = get_mutiny_mode()
+//	if (!mode) return 1
+//
+//	mode.update_icon(D.mind)
 	return 1
 
 /hook/roundend/proc/report_mutiny_news()

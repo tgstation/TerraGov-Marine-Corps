@@ -138,22 +138,9 @@
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
-	armor = list(melee = 30, bullet = 30, laser = 10,energy = 10, bomb = 20, bio = 10, rad = 10)
 	icon_state = "milohachert"
 	item_state = "milohachert"
 	item_color = "milohachert"
-
-/obj/item/clothing/under/marine/officer/commander
-	name = "marine commander uniform"
-	icon_state = "captain_formal" //Placeholder
-	item_state = "captain_formal"
-
-/*   //////SLATED FOR DELTION 05JAN2014 - APOPHIS
-/obj/item/clothing/under/marine/officer/chief
-	name = "chief officer uniform"
-	icon_state = "wyatt_uniform"
-	item_state = "wyatt_uniform"
-	item_color = "wyatt_uniform"*/
 
 /obj/item/clothing/under/marine/officer/technical
 	name = "technical officer uniform"
@@ -165,35 +152,39 @@
 	icon_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
-
-/obj/item/clothing/under/marine/officer/BO
-	name = "marine officer uniform"
+/obj/item/clothing/under/marine/officer/bridge
+	name = "bridge officer uniform"
 	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
-	armor = list(melee = 30, bullet = 30, laser = 10,energy = 10, bomb = 20, bio = 10, rad = 10)
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
-/obj/item/clothing/under/marine/officer/XO
-	name = "marine officer uniform"
+/obj/item/clothing/under/marine/officer/exec
+	name = "executive officer uniform"
 	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
-	armor = list(melee = 30, bullet = 30, laser = 10,energy = 10, bomb = 20, bio = 10, rad = 10)
 	icon_state = "XO_jumpsuit"
 	item_state = "XO_jumpsuit"
 	item_color = "XO_jumpsuit"
 
-/obj/item/clothing/under/marine/officer/CO
-	name = "marine officer uniform"
+/obj/item/clothing/under/marine/officer/command
+	name = "commander uniform"
 	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
-	armor = list(melee = 30, bullet = 30, laser = 10,energy = 10, bomb = 20, bio = 10, rad = 10)
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
 	item_color = "CO_jumpsuit"
 
-/obj/item/clothing/under/marine/officer/E
-	name = "Engineer uniform"
+/obj/item/clothing/under/marine/officer/ce
+	name = "chief engineer uniform"
+	desc = "A uniform for the engineering crew of the USS Sulaco. Slightly protective against enviromental hazards. Fancy overalls."
+	armor = list(melee = 0, bullet = 0, laser = 25,energy = 0, bomb = 0, bio = 0, rad = 25)
+	icon_state = "mechanic"
+	item_state = "mechanic"
+	item_color = "mechanic"
+
+/obj/item/clothing/under/marine/officer/engi
+	name = "engineer uniform"
 	desc = "A uniform for the engineering crew of the USS Sulaco. Slightly protective against enviromental hazards."
-	armor = list(melee = 5, bullet = 5, laser = 5,energy = 5, bomb = 20, bio = 20, rad = 20)
+	armor = list(melee = 0, bullet = 0, laser = 15,energy = 0, bomb = 0, bio = 0, rad = 10)
 	icon_state = "E_jumpsuit"
 	item_state = "E_jumpsuit"
 	item_color = "E_jumpsuit"
@@ -214,22 +205,26 @@
 	armor = list(melee = 50, bullet = 80, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun/, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade)
+
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
 	desc = "Festive!"
 	icon_state = "santa"
 	item_state = "santa"
+
 /obj/item/clothing/suit/storage/marine/fluff/cia
 	name = "CIA jacket"
 	desc = "An armored jacket with CIA on the back."
 	icon_state = "cia"
 	item_state = "cia"
+
 /obj/item/clothing/suit/storage/marine/fluff/armorammo
 	name = "marine armor w/ ammo"
 	desc = "A marine combat vest with ammunition on it."
 	icon_state = "bulletproofammo"
 	item_state = "bulletproofammo"
 	item_color = "bulletproofammo"
+
 /obj/item/clothing/suit/storage/marine/officer
 	name = "officer jacket"
 	desc = "The leather is fake, but the style is real."
@@ -237,7 +232,7 @@
 	icon_state = "leatherjack"
 	item_state = "leatherjack"
 	item_color = "leatherjack"
-v
+
 /obj/item/clothing/suit/storage/marine/officer/commander
 	name = "commander jacket"
 	desc = "This single item cost as much as a brand new space station. Remember to drywash."
@@ -261,7 +256,7 @@ v
 	item_state = "johnny"
 
 /obj/item/clothing/suit/armor/riot/marine
-	name = "Military Police Suit"
+	name = "Military Police suit"
 	desc = "A suit of armor with heavy plates and padding. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat_suit"
@@ -383,11 +378,21 @@ v
 	icon_state = "marinepack"
 	item_state = "marinepack" //Placeholder
 
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/storage/box(src)
+
 /obj/item/weapon/storage/backpack/marine
 	name = "marine backpack"
 	desc = "A large backpack used by military."
 	icon_state = "marinepack"
 	item_state = "marinepack"
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/storage/box(src)
 
 //BELT
 
@@ -396,9 +401,10 @@ v
 	desc = "A standard issue toolbelt for Nanotrasen military forces."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
+	w_class = 3
 	storage_slots = 5
-	max_w_class = 2
-	max_combined_w_class = 10
+	max_w_class = 3
+	max_combined_w_class = 15
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
 		"/obj/item/ammo_magazine/a12mm",
@@ -440,9 +446,11 @@ v
 	desc="Storage for your sharp toys"
 	icon_state="securitybelt" // temp
 	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
+	w_class = 3
 	storage_slots = 3
 	max_w_class = 1
 	max_combined_w_class=3
+
 	can_hold=list("/obj/item/weapon/throwing_knife")
 
 /obj/item/weapon/storage/belt/knifepouch/New()
@@ -467,7 +475,7 @@ v
 /obj/item/clothing/under/marine_underoos
 	name = "marine underpants"
 	desc = "Specially designed to protect your naughty bits from the ravages of extended cryo sleep."
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 

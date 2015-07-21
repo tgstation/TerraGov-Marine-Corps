@@ -352,7 +352,7 @@
 	ammo_type = "/obj/item/ammo_casing/m42c"
 	fire_delay = 80
 	w_class = 4.0
-	max_shells = 6
+	max_shells = 7
 	caliber = ".50"
 	load_method = 2
 	force = 10.0
@@ -391,7 +391,7 @@
 
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
-	damage = 70
+	damage = 75
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -403,7 +403,7 @@
 	desc = "A .50 cal sniper rifle magazine"
 	icon_state = "75"
 	ammo_type = "/obj/item/ammo_casing/m42c"
-	max_ammo = 6
+	max_ammo = 7
 
 /obj/item/ammo_magazine/m42c/empty
 	icon_state = "75-0"
@@ -561,7 +561,7 @@
 				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 250."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 36
+	damage = 30
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."

@@ -112,12 +112,14 @@ var/global/floorIsLava = 0
 					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A> |
 					<A href='?src=\ref[src];makeslime=\ref[M]'>Make Slime</A> |
 				"}
-
 			//Simple Animals
 			if(isanimal(M))
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
+
+			//Makin Yautjas
+			body += "<a href='?src=\ref[src];makeyautja=\ref[M]'>Make Yautja</a> | "
 
 			// DNA2 - Admin Hax
 			if(M.dna && iscarbon(M))
@@ -735,7 +737,7 @@ var/global/floorIsLava = 0
 	set desc="Globally Toggles LOOC"
 	set name="Toggle LOOC"
 	looc_allowed = !( looc_allowed )
-	if (ooc_allowed)
+	if (looc_allowed)
 		world << "<B>The LOOC channel has been globally enabled!</B>"
 	else
 		world << "<B>The LOOC channel has been globally disabled!</B>"

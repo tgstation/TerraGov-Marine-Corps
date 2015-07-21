@@ -69,9 +69,9 @@
 	host << "\green <B>You awaken slowly, stirring into sluggish motion as the air caresses you.</B>"
 
 	// This is a hack, replace with some kind of species blurb proc.
-	if(istype(host,/mob/living/carbon/alien/diona))
-		host << "<B>You are [host], one of a race of drifting interstellar plantlike creatures that sometimes share their seeds with human traders.</B>"
-		host << "<B>Too much darkness will send you into shock and starve you, but light will help you heal.</B>"
+//	if(istype(host,/mob/living/carbon/alien/diona))
+//		host << "<B>You are [host], one of a race of drifting interstellar plantlike creatures that sometimes share their seeds with human traders.</B>"
+//		host << "<B>Too much darkness will send you into shock and starve you, but light will help you heal.</B>"
 
 	var/newname = input(host,"Enter a name, or leave blank for the default name.", "Name change","") as text
 	newname = sanitize(newname)

@@ -55,7 +55,6 @@
 		if(isSwitchingStates) return
 		if(ismob(user))
 			var/mob/M = user
-			if(world.time - user.last_bumped <= 60) return //NOTE do we really need that?
 			if(M.client)
 				if(iscarbon(M))
 					var/mob/living/carbon/C = M
@@ -266,7 +265,7 @@
 					O.show_message("\red [user] slices the [name] apart!", 1)
 			healthcheck()
 			return
-		else 
+		else
 			return TryToSwitchState(user)
 
 	bullet_act(var/obj/item/projectile/Proj)
