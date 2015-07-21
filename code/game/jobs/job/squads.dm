@@ -19,39 +19,50 @@
 	var/num_specialists = 0
 	var/max_leaders = 1
 	var/num_leaders = 0
-	//vvv Do not change these
+	var/radio_freq = 1461 //Squad radio headset frequency.
+	//vvv Do not set these in squad defines
 	var/mob/living/carbon/human/squad_leader = null //Who currently leads it.
 	var/num_engineers = 0
 	var/num_medics = 0
 	var/count = 0 //Current # in the squad
 	var/list/current_squads = list()
-	//^^^ Do not change these
 
+	var/mob/living/carbon/human/overwatch_officer = null //Who's overwatching this squad?
+	var/supply_timer = 0 //Timer for supply drops
+	var/bomb_timer = 0 //Timer for orbital bombardment
+	var/primary_objective = null //Text strings
+	var/secondary_objective = null
+	var/obj/item/device/squad_beacon/sbeacon = null
+	var/obj/item/device/squad_beacon/bomb/bbeacon = null
+	//^^^
 
 /datum/squad/alpha
 	name = "Alpha"
 	color = 1
 	access = list(access_squad_alpha)
 	usable = 1
+	radio_freq = ALPHA_FREQ
 
 /datum/squad/bravo
 	name = "Bravo"
 	color = 2
 	access = list(access_squad_bravo)
 	usable = 1
+	radio_freq = BRAVO_FREQ
 
 /datum/squad/charlie
 	name = "Charlie"
 	color = 3
 	access = list(access_squad_charlie)
 	usable = 1
+	radio_freq = CHARLIE_FREQ
 
 /datum/squad/delta
 	name = "Delta"
 	color = 4
 	access = list(access_squad_delta)
 	usable = 1
-
+	radio_freq = DELTA_FREQ
 
 
 //Straight-up insert a marine into a squad.
@@ -95,3 +106,27 @@
 			return S
 
 	return null
+
+//Slightly different, returns the squad itself via the ID.
+/proc/get_squad_data_from_card(var/mob/living/carbon/human/H)
+	if(!istype(H))	return null
+
+	var/text = null
+	var/obj/item/device/pda/I = H.wear_id
+	var/obj/item/weapon/card/id/card = null
+
+	if(I && istype(I))
+		if(I.id)
+			card = I.id
+	else
+		card = I
+
+	if(!card || !istype(card))
+		return null
+
+	if(findtext(card.assignment, "Alpha")) text = "Alpha"
+	if(findtext(card.assignment, "Bravo")) text = "Bravo"
+	if(findtext(card.assignment, "Charlie")) text = "Charlie"
+	if(findtext(card.assignment, "Delta")) text = "Delta"
+
+	return get_squad_by_name(text)

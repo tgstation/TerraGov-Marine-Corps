@@ -24,6 +24,18 @@
 	name = "\improper Sulaco Medbay"
 	icon_state = "medbay"
 
+/area/sulaco/medbay/storage
+	name = "\improper Sulaco Medbay Storage"
+	icon_state = "medbay2"
+
+/area/sulaco/medbay/storage2
+	name = "\improper Sulaco Medbay Storage"
+	icon_state = "medbay3"
+
+/area/sulaco/medbay/west
+	name = "\improper Sulaco Medbay West"
+	icon_state = "medbay3"
+
 /area/sulaco/brig
 	name = "\improper Sulaco Brig"
 	icon_state = "brig"

@@ -82,8 +82,9 @@
 	wielded = 0
 	name = "[initial(name)]"
 	item_state = "[initial(item_state)]"
-	if(usr)
-		usr.update_icons()
+	if(usr && ishuman(usr))
+		usr:update_inv_l_hand() //Updating invs is more efficient than updating the entire icon set.
+		usr:update_inv_r_hand()
 
 /obj/item/weapon/gun/proc/wield()
 	if(!twohanded) return
@@ -91,8 +92,9 @@
 	name = "[initial(name)] (Wielded)"
 	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41)) //Only one that has a wielded sprite atm. Add more here later or remove it?
 		item_state = "[initial(item_state)]-w"
-		if(usr)
-			usr.update_icons()
+		if(usr && ishuman(usr))
+			usr:update_inv_l_hand()
+			usr:update_inv_r_hand()
 
 /obj/item/weapon/gun/mob_can_equip(M as mob, slot)
 	//Cannot equip wielded items.

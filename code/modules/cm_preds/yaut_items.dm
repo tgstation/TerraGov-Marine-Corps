@@ -107,7 +107,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 50, bullet = 50, laser = 20, energy = 20, bomb = 10, bio = 50, rad = 50)
+	armor = list(melee = 58, bullet = 62, laser = 20, energy = 20, bomb = 10, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
@@ -176,7 +176,7 @@
 	permeability_coefficient = 0.01
 	flags = NOSLIP
 	body_parts_covered = FEET|LEGS
-	armor = list(melee = 50, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -384,7 +384,7 @@
 			else
 				var/turf/T = get_turf(src.loc)
 				if(T && istype(T))
-					explosion(T, 1, 3, 5, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
+					explosion(T, 2, 4, 8, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
 					if(src)
 						del(src)
 
@@ -447,15 +447,29 @@
 		if(!drain_power(usr,1000)) return
 
 		inject_timer = 1
-		spawn(3600)
+		spawn(3800)
 			if(usr && src.loc == usr)
 				usr << "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created."
 				inject_timer = 0
 
 		usr << "\blue You feel a faint hiss and a crystalline injector drops into your hand."
-		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord/O = new(usr)
+		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja/O = new(usr)
 		usr.put_in_active_hand(O)
 		playsound(src,'sound/machines/click.ogg', 20, 1)
+		return
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
+	name = "alien injector"
+	desc = "A strange, thin alien needle."
+	amount_per_transfer_from_this = 13
+	volume = 13
+
+	New()
+		..()
+		spawn(1)
+			reagents.add_reagent("quickclot", 5)
+			reagents.add_reagent("tricordrazine", 5)
+			reagents.add_reagent("peridaxon", 3)
 		return
 
 /obj/item/weapon/gun/plasma_caster

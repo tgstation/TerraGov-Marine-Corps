@@ -51,8 +51,8 @@
 	if(!diona)
 		del(src)
 
-	var/mob/living/carbon/alien/diona/D = new(get_turf(src))
-	diona.request_player(D)
+//	var/mob/living/carbon/alien/diona/D = new(get_turf(src))
+//	diona.request_player(D)
 
 	del(src)
 

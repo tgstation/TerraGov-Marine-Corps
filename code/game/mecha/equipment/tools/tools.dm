@@ -3,7 +3,7 @@
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
-	var/dam_force = 20
+	var/dam_force = 50
 	var/obj/mecha/working/ripley/cargo_holder
 	required_type = list(/obj/mecha/working, /obj/mecha/hoverpod) //so that hoverpods are a bit more useful as space transportation
 
@@ -69,7 +69,7 @@
 	icon_state = "mecha_drill"
 	equip_cooldown = 30
 	energy_drain = 10
-	force = 15
+	force = 55
 	required_type = list(/obj/mecha/working, /obj/mecha/combat)
 
 	action(atom/target)
@@ -111,7 +111,7 @@
 									ore.Move(ore_box)
 				else if(target.loc == C)
 					log_message("Drilled through [target]")
-					target.ex_act(2)
+					target.ex_act(1) //BRING BACK GIBS! BRING BACK GIBS!
 		return 1
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill

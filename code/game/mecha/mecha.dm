@@ -948,12 +948,47 @@
 	set popup_menu = 0
 	if(usr!=occupant)	return
 	lights = !lights
-	if(lights)	SetLuminosity(luminosity + lights_power)
-	else		SetLuminosity(luminosity - lights_power)
+	if(lights)	SetLuminosity(lights_power)
+	else		SetLuminosity(0)
 	src.occupant_message("Toggled lights [lights?"on":"off"].")
 	log_message("Toggled lights [lights?"on":"off"].")
 	return
 
+/obj/mecha/verb/go_down()
+	set name = "Use Ladder"
+	set category = "Exosuit Interface"
+	set src = usr.loc
+	set popup_menu = 0
+
+	if(usr!=occupant)	return
+
+	var/obj/structure/ladder/L
+	L = locate(/obj/structure/ladder in src.loc)
+	if(!L)
+		src.occupant_message("There is no ladder here.")
+	else
+		if(L.up && L.down)
+			switch(alert("Go up or down?", "Ladder", "Up", "Down", "Cancel") )
+				if("Up")
+					src.visible_message("<span class='notice'>[src] climbs to an upper level.</span>")
+					src.occupant_message("You climb upwards.")
+					src.loc = get_turf(L.up)
+				if("Down")
+					src.visible_message("<span class='notice'>[src] climbs to a lower level.</span>")
+					src.occupant_message("You climb downwards.")
+					src.loc = get_turf(L.down)
+				if("Cancel")
+					return
+		else if(L.up)
+			src.visible_message("<span class='notice'>[src] climbs to an upper level.</span>")
+			src.occupant_message("You climb upwards.")
+			src.loc = get_turf(L.up)
+		else if(L.down)
+			src.visible_message("<span class='notice'>[src] climbs to a lower level.</span>")
+			src.occupant_message("You climb downwards.")
+			src.loc = get_turf(L.down)
+		log_message("Used a ladder.")
+	return
 
 /obj/mecha/verb/toggle_internal_tank()
 	set name = "Toggle internal airtank usage."

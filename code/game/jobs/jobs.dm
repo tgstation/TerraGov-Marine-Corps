@@ -66,7 +66,7 @@ var/const/ENGI				=(1<<1)
 
 var/const/SULCE				=(1<<0)
 var/const/SULENG			=(1<<1)
-
+var/const/SULCARG			=(1<<2)
 
 var/const/MEDSCI			=(1<<2)
 

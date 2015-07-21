@@ -296,7 +296,7 @@
 			if("ravager")			M.change_mob_type( /mob/living/carbon/Xenomorph/Ravager , null, null, delmob )
 			if("spitter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Spitter , null, null, delmob )
 			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen , null, null, delmob )
-			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
+//			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
 			if("slime")				M.change_mob_type( /mob/living/carbon/slime , null, null, delmob )
 			if("monkey")			M.change_mob_type( /mob/living/carbon/monkey , null, null, delmob )
@@ -1085,6 +1085,40 @@
 			return
 
 		usr.client.cmd_admin_alienize(H)
+
+	else if(href_list["makeyautja"])
+		if(!check_rights(R_SPAWN))	return
+
+		if(alert("Are you sure you want to make this person into a yautja? It will delete their old character.","Make Yautja","Yes","No") == "No")
+			return
+
+		var/mob/H = locate(href_list["makeyautja"])
+
+		if(!istype(H))
+			usr << "This can only be used on mobs. How did you even do this?"
+			return
+
+		if(!usr.loc || !isturf(usr.loc))
+			usr << "Only on turfs, please."
+			return
+
+		var/y_name = input(usr, "What name would you like to give this new Predator?","Name", "")
+		if(!y_name)
+			usr << "That is not a valid name."
+			return
+
+		var/mob/living/carbon/human/M = new(usr.loc)
+		M.set_species("Yautja")
+		M.name = y_name
+		if(H.mind)
+			H.mind.transfer_to(M)
+		else
+			M.key = H.key
+
+		log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.name].")
+		if(H) del(H) //May have to clear up round-end vars and such....
+
+		return
 
 	else if(href_list["makeslime"])
 		if(!check_rights(R_SPAWN))	return

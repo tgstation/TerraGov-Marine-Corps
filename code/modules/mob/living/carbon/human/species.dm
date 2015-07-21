@@ -378,7 +378,7 @@
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
 	language = "Rootspeak"
 	unarmed_type = /datum/unarmed_attack/diona
-	primitive = /mob/living/carbon/alien/diona
+//	primitive = /mob/living/carbon/alien/diona
 	slowdown = 7
 	rarity_value = 3
 
@@ -412,9 +412,9 @@
 	reagent_tag = IS_DIONA
 
 /datum/species/diona/can_understand(var/mob/other)
-	var/mob/living/carbon/alien/diona/D = other
-	if(istype(D))
-		return 1
+//	var/mob/living/carbon/alien/diona/D = other
+//	if(istype(D))
+//		return 1
 	return 0
 
 /datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
@@ -423,16 +423,16 @@
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
 
-	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
+//	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
 
-	if(H.mind)
-		H.mind.transfer_to(S)
+//	if(H.mind)
+//		H.mind.transfer_to(S)
 
-	for(var/mob/living/carbon/alien/diona/D in H.contents)
-		if(D.client)
-			D.loc = H.loc
-		else
-			del(D)
+//	for(var/mob/living/carbon/alien/diona/D in H.contents)
+//		if(D.client)
+//			D.loc = H.loc
+//		else
+//			del(D)
 
 	H.visible_message("\red[H] splits apart with a wet slithering noise!")
 
@@ -498,15 +498,14 @@
 
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(H), slot_r_hand)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/yautja(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
-
-//	H.equip_to_slot_or_del(new /obj/item/weapon/harpoon/yautja(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), slot_l_ear)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(H), slot_belt)
 
 	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
 	H.hud_used = new /datum/hud(H)
