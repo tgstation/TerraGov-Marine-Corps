@@ -77,6 +77,13 @@
 		if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
 			stat("Energy Charge", round(wear_suit:cell:charge/100))
 
+	if(mind)
+		if(mind.assigned_squad)
+			var/datum/squad/S = mind.assigned_squad
+			if(S.primary_objective)
+				stat(null,"Primary Objective: [S.primary_objective]")
+			if(S.secondary_objective)
+				stat(null,"Secondary Objective: [S.secondary_objective]")
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)

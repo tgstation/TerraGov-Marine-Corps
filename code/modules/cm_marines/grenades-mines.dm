@@ -189,6 +189,6 @@
 //TYPES//
 //Explosive
 /obj/item/device/mine/proc/explosive(obj)
-	explosion(src.loc,-1,-1,2)
+	explosion(src.loc,-1,-1,3)
 	spawn(0)
 		del(src)

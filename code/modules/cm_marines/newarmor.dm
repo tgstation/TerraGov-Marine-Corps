@@ -174,6 +174,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 95, bullet = 95, laser = 80, energy = 50, bomb = 75, bio = 20, rad = 10)
 	siemens_coefficient = 0.7
 	var/injections = 2
+	unacidable = 1
 	allowed = list(/obj/item/weapon/gun,
 					/obj/item/weapon/tank/emergency_oxygen,
 					/obj/item/device/flashlight,
@@ -224,6 +225,32 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 3
+	unacidable = 1
+
+/obj/item/clothing/head/helmet/marine2/leader
+	name = "M11 Pattern Leader Helmet"
+	icon_state = "xhelm"
+	item_state = "helmet"
+	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	armor = list(melee = 75, bullet = 60, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
+	anti_hug = 2
+	var/obj/machinery/camera/camera
+
+	New()
+		spawn(8)
+			camera = new /obj/machinery/camera(src)
+			camera.network = list("LEADER")
+
+	equipped(var/mob/living/carbon/human/mob, slot)
+		if(camera)
+			camera.c_tag = mob.name
+		..()
+
+	dropped(var/mob/living/carbon/human/mob)
+		if(camera)
+			camera.c_tag = "Unknown"
+		..()
 
 /obj/item/weapon/storage/box/heavy_armor
 	name = "B18 defensive system crate"
@@ -295,53 +322,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		update_clothing_icon()
 		return 1
 
-
-/proc/get_squad_from_card(var/mob/living/carbon/human/H)
-	if(!istype(H))	return 0
-
-	var/squad = 0
-	var/obj/item/device/pda/I = H.wear_id
-	var/obj/item/weapon/card/id/card = null
-
-	if(I && istype(I))
-		if(I.id)
-			card = I.id
-	else
-		card = I
-
-	if(!card || !istype(card))
-		return 0
-
-	if(findtext(card.assignment, "Alpha"))
-		squad = 1
-	if(findtext(card.assignment, "Bravo"))
-		squad = 2
-	if(findtext(card.assignment, "Charlie"))
-		squad = 3
-	if(findtext(card.assignment, "Delta"))
-		squad = 4
-
-	return squad
-
-/proc/is_leader_from_card(var/mob/living/carbon/human/H)
-	if(!istype(H)) return 0
-
-	var/obj/item/device/pda/I = H.wear_id
-	var/obj/item/weapon/card/id/card = null
-
-	if(I && istype(I))
-		if(I.id)
-			card = I.id
-	else
-		card = I
-
-	if(!card || !istype(card))
-		return 0
-
-	if(findtext(card.assignment, "Leader"))
-		return 1
-
-	return 0
 
 /obj/item/weapon/card/id/equipped(var/mob/living/carbon/human/M, slot)
 	if(!istype(M))

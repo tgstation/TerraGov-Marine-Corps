@@ -1,5 +1,3 @@
-///**************COLONIAL MARINES GEAR CONVERSION TO NEW BAY- LAST EDIT: 21DEC2014 BY APOPHIS775**************///
-
 
 /**********************Marine Gear**************************/
 
@@ -200,7 +198,7 @@
 	frequency = 1461
 
 //MARINE CONTAINERS
-
+/*
 /obj/item/weapon/storage/box/beanbags
 	name = "box of beanbag shells"
 	desc = "A box of 12 gauge beanbag rounds. Manufactured by Armat Systems for prison guard and police use in non-lethal pacification."
@@ -280,7 +278,7 @@
 		new /obj/item/ammo_casing/shotgun/incendiary(src)
 		new /obj/item/ammo_casing/shotgun/incendiary(src)
 		new /obj/item/ammo_casing/shotgun/incendiary(src)
-
+*/
 /obj/item/weapon/storage/box/explosive_mines
 	name = "mine box"
 	desc = "A secure box holding anti-personel proximity mines"
@@ -397,7 +395,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 10)
+		reagents.add_reagent("nutriment", 9)
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2
@@ -407,8 +405,8 @@
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 12)
-		bitesize = 3
+		reagents.add_reagent("nutriment", 9)
+		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3
 	name = "USCM MRE (pasta)"
@@ -417,7 +415,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 11)
+		reagents.add_reagent("nutriment", 9)
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4
@@ -427,7 +425,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 9)
+		reagents.add_reagent("nutriment", 8)
 		bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5
@@ -437,7 +435,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 12)
+		reagents.add_reagent("nutriment", 10)
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6
@@ -483,8 +481,9 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
 	var/activated = 0
+	w_class = 2
 	var/datum/squad/squad = null
-	var/icon_activated = "motion3"
+	var/icon_activated = "motion2"
 
 	attack_self(mob/user)
 		if(activated)
@@ -506,20 +505,31 @@
 		if(squad.sbeacon)
 			user << "Your squad already has a beacon activated."
 			return
+		if(!istype(get_turf(user),/turf/simulated/floor/gm))
+			user << "You have to be outside (on a ground map turf) to activate this."
+			return
 
 		squad.sbeacon = src
+		user.drop_item()
 		activated = 1
+		anchored = 1
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		user << "You activate the [src]. Now toss it on the ground outside and wait, assuming someone is watching over you."
+		user << "You activate the [src]. Now just wait and hope someone's watching you from above."
 		return
+
+	Del()
+		if(squad) //Clear the beacon data.
+			squad.sbeacon = null
+		..()
 
 /obj/item/device/squad_beacon/bomb
 	name = "Orbital Beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion4"
-	icon_activated = "motion2"
+	w_class = 2
+	icon_activated = "motion1"
 
 	attack_self(mob/user)
 		if(activated)
@@ -542,9 +552,20 @@
 			user << "Your squad already has a beacon activated."
 			return
 
+		if(!istype(get_turf(user),/turf/simulated/floor/gm))
+			user << "You have to be outside (on a ground map turf) to activate this or the signal won't transmit."
+			return
+
 		squad.bbeacon = src //Set us up the bomb~
+		user.drop_item()
 		activated = 1
+		anchored = 1
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		user << "You activate the [src]. Now toss it on the ground outside and wait, assuming someone is watching over you."
+		user << "You activate the [src]. Now get outside of danger close!"
 		return
+
+	Del()
+		if(squad) //Clear the beacon data.
+			squad.bbeacon = null
+		..()
