@@ -19,17 +19,24 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
 
-	/**src.verbs -= /client/verb/adminhelp
-
-	spawn(1200)
-		src.verbs += /client/verb/adminhelp	// 2 minute cool-down for adminhelps
-		src.verbs += /client/verb/adminhelp	// 2 minute cool-down for adminhelps//Go to hell
-	**/
 	var/msg
-	var/list/type = list ("Gameplay/Roleplay question", "Rule/Gameplay issue", "Bug report")
+	var/list/type = list ("Gameplay / Roleplay Issue", "Suggestion / Bug Report")
 	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
-	if(selected_type)
+	if(selected_type == "Gameplay / Roleplay Issue")
 		msg = input("Please enter your message:", "Admin Help", null, null) as text
+		// Adminhelp cooldown
+		src.verbs -= /client/verb/adminhelp
+		spawn(1200)
+			src.verbs += /client/verb/adminhelp
+
+	if(selected_type == "Suggestion / Bug Report")
+		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our forum.",,"Go to Suggestions forum","Go to Bugs forum","Cancel"))
+			if("Go to Suggestions forum")
+				src << link("http://www.colonial-marines.com/viewforum.php?f=59")
+			if("Go to Bugs forum")
+				src << link("http://www.colonial-marines.com/viewforum.php?f=116")
+			else
+				return
 
 	var/selected_upper = uppertext(selected_type)
 
@@ -102,7 +109,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	var/ref_mob = "\ref[mob]"
 	var/mentor_msg = "\blue <b><font color=red>[selected_upper]: </font> (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) [get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
-	var/dev_msg = "\blue <b><font color=red>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) </font>[get_options_bar(mob, 3, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
+	// var/dev_msg = "\blue <b><font color=red>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) </font>[get_options_bar(mob, 3, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
 	msg = "\blue <b><font color=red>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) </font>[get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
 
 
@@ -127,19 +134,18 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			if(X.is_afk())
 				admin_number_afk++
 
-	switch(selected_type)
-		if("Gameplay/Roleplay question")
-			if(mentorholders.len)
-				for(var/client/X in mentorholders) // Mentors get a message without buttons and no character name
-					if(X.prefs.toggles & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp_new.ogg'
-					X << mentor_msg
-			if(adminholders.len)
-				for(var/client/X in adminholders) // Admins get the full monty
-					if(X.prefs.toggles & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp_new.ogg'
-					X << msg
-		if("Rule/Gameplay issue")
+	if("Gameplay/Roleplay Issue")
+		if(mentorholders.len)
+			for(var/client/X in mentorholders) // Mentors get a message without buttons and no character name
+				if(X.prefs.toggles & SOUND_ADMINHELP)
+					X << 'sound/effects/adminhelp_new.ogg'
+				X << mentor_msg
+		if(adminholders.len)
+			for(var/client/X in adminholders) // Admins get the full monty
+				if(X.prefs.toggles & SOUND_ADMINHELP)
+					X << 'sound/effects/adminhelp_new.ogg'
+				X << msg
+/*		if("Suggestion")
 			if(adminholders.len)
 				for(var/client/X in adminholders) // Admins of course get everything in their helps
 					if(X.prefs.toggles & SOUND_ADMINHELP)
@@ -157,7 +163,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 							if(X.prefs.toggles & SOUND_ADMINHELP)
 								X << 'sound/effects/adminhelp_new.ogg'
 						X << dev_msg
-
+*/
 
 
 
