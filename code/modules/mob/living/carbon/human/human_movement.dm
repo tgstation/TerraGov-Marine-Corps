@@ -29,6 +29,17 @@
 	if(isturf(src.loc))
 		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
 			tally += 5
+
+		if(istype(src.loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
+			var/turf/simulated/floor/gm/snow/S = src.loc
+			if(S && istype(S) && S.slayer > 0)
+				tally += 2 * S.slayer
+				if(S.slayer && prob(2))
+					src << "\red Moving trough /the [S] slows you down"
+				if(S.slayer == 3 && prob(5))
+					src << "\red Your foot got stuck in /the [S]!"
+					tally += 10
+
 		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75
 			if(gloves && rand(0,100) < 60)

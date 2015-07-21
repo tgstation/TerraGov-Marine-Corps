@@ -25,6 +25,7 @@
 	//Mining resource generation stuff.
 	var/has_resources
 	var/list/resources
+	var/slayer = -1 //Can snow make snow layers on top of it?
 
 /turf/New()
 	..()
