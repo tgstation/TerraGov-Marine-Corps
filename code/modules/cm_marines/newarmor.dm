@@ -9,7 +9,7 @@ var/list/armormarkings = list()
 var/list/armormarkings_sql = list()
 var/list/helmetmarkings = list()
 var/list/helmetmarkings_sql = list()
-var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(80,130,210))
+var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(90,150,200))
 
 
 /proc/initialize_marine_armor()
@@ -39,7 +39,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "M10 Pattern Marine Helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	armor = list(melee = 75, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
-	health = 5
 	flags = FPRINT|TABLEPASS
 	var/mob/living/carbon/human/wornby
 	var/squad = 0
@@ -47,6 +46,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	var/image/markingoverlay
 	var/image/hugger_overlay
 	var/hug_damage = 0
+	anti_hug = 1
 
 	New()
 		..()
@@ -199,16 +199,18 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "band"
 	name = "Specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
-	health = 5
+	anti_hug = 1
+
 	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
 
 /obj/item/clothing/head/helmet/marine2/heavy
 	name = "B18 Helmet"
 	icon_state = "xhelm"
 	item_state = "helmet"
-	desc = "The B18 Helmet that goes along with the B18 Defensive armor."
+	desc = "The B18 Helmet that goes along with the B18 Defensive armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
+	anti_hug = 3
 
 /obj/item/weapon/storage/box/heavy_armor
 	name = "B18 defensive system crate"
@@ -352,6 +354,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 70, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 85, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	name = "M3 Pattern Marine Armor"
 	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."

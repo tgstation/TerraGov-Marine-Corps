@@ -23,13 +23,25 @@
 		src << "\red The forum URL is not set in the server configuration."
 	return
 
-#define RULES_FILE "config/rules.html"
+/client/verb/rules()
+	set name = "rules"
+	set desc = "Read our rules."
+	set hidden = 1
+	if( config.rulesurl )
+		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.rulesurl)
+	else
+		src << "\red The rules URL is not set in the server configuration."
+	return
+
+/*#define RULES_FILE "config/rules.html"
 /client/verb/rules()
 	set name = "Rules"
 	set desc = "Show Server Rules."
 	set hidden = 1
 	src << browse(file(RULES_FILE), "window=rules;size=480x320")
-#undef RULES_FILE
+#undef RULES_FILE*/
 
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"

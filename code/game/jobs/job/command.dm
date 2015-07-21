@@ -26,6 +26,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/commander(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), slot_gloves)
+
 		H.implant_loyalty(src)
 		spawn(10)
 			H << "\red You are the Sulaco Commander!"
@@ -160,6 +162,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/ro_cap(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		H.implant_loyalty(src)
 		spawn(10)
 			H << "\red You are the Requisitions Officer!"

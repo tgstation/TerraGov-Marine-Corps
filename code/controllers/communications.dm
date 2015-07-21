@@ -102,6 +102,7 @@ On the map:
 
 //Misc channels
 var/const/SYND_FREQ = 1213
+var/const/YAUT_FREQ = 1214
 var/const/ERT_FREQ = 1345
 var/const/DTH_FREQ = 1341
 var/const/AI_FREQ = 1447
@@ -129,6 +130,7 @@ var/list/radiochannels = list(
 	"Response Team" = ERT_FREQ,
 	"Special Ops" 	= DTH_FREQ,
 	"Syndicate" 	= SYND_FREQ,
+	"Yautja" 		= YAUT_FREQ,
 
 	"Sulaco"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,
@@ -149,7 +151,7 @@ var/list/radiochannels = list(
 var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
 
 // Antag channels, i.e. Syndicate
-var/list/ANTAG_FREQS = list(SYND_FREQ)
+var/list/ANTAG_FREQS = list(SYND_FREQ, YAUT_FREQ)
 
 //Depts - just used for colors in headset.dm
 var/list/DEPT_FREQS = list(MED_FREQ, ENG_FREQ, SEC_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, ALPHA_FREQ, BRAVO_FREQ,CHARLIE_FREQ, DELTA_FREQ)

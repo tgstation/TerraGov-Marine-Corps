@@ -175,8 +175,8 @@
 	recoil = 0
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 19
-	rail_pixel_x = 22
-	rail_pixel_y = 21
+	rail_pixel_x = 20
+	rail_pixel_y = 22
 	under_pixel_x = 24
 	under_pixel_y = 16
 
@@ -284,7 +284,7 @@
 	name = "\improper M37 Pump Shotgun"
 	desc = "An M37 Pump Shotgun, a weapon commonly carried by Colonial Marines pointmen, law enforcement, and civilians. Shift click to pump it or use the verb.\nGood to keep handy for close encounters."
 	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "shotgun"
+	icon_state = "m37"
 	item_state = "m37"
 	max_shells = 8
 	caliber = "shotgun"

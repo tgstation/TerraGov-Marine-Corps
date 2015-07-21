@@ -177,6 +177,9 @@ GUEST_BAN
 ## Wiki address
 # WIKIURL http://example.com
 
+## Rules address
+# RULESURL http://example.com
+
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://example.com
 

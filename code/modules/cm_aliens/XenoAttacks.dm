@@ -102,9 +102,10 @@
 			help_shake_act(M)
 
 		if ("grab")
-			if (M == src)
+			if (M == src || src.anchored)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
+
+			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, src )
 
 			M.put_in_active_hand(G)
 

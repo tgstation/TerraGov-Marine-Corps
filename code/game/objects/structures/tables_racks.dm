@@ -368,6 +368,17 @@
 		for(var/mob/O in viewers(user, 4))
 			O.show_message("\blue The [src] was sliced apart by [user]!", 1, "\red You hear [src] coming apart.", 2)
 		destroy()
+		return
+
+	if(istype(W, /obj/item/weapon/wristblades))
+		if(rand(0,2) == 0)
+			playsound(src.loc, 'sound/weapons/wristblades_hit.ogg', 50, 1)
+			for(var/mob/O in viewers(user, 4))
+				O.show_message("\red <b>The [src] was sliced apart by [user]!</b>", 1, "\red <b>You hear [src] coming apart.</b>", 2)
+			destroy()
+		else
+			user << "\red You slice at the table, but only claw it up a little."
+		return
 
 	user.drop_item(src)
 	return

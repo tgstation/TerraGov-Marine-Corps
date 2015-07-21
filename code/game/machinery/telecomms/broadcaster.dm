@@ -283,7 +283,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	var/command = 0 //Is this a commander?
+	var/command = 0 //Is this a commander? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
 
 	if(M && istype(M,/mob/living/carbon/human))
 		var/obj/item/device/pda/I = M:wear_id
@@ -320,6 +320,14 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(compression > 0)
 			heard_gibberish += R
 			continue
+
+		//This is hacky as fuck, but I'm not going to dig into telecomms to do it all properly.
+		//We can't do this via the broadcasters since Sulaco is multi-Z.
+		if(display_freq == PUB_FREQ)
+			if(M.z == 1 && R.z != 1) //Ground cannot send to off-ground on public channel.
+				continue
+			if(R.z == 1 && M.z != 1) //Off-ground cannot send to ground.
+				continue
 
 		// --- Can understand the speech ---
 
@@ -403,7 +411,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			part_a = "<span class='deltaradio'><span class='name'>"
 
 		// If all else fails and it's a dept_freq, color me purple!
-		else if (display_freq in DEPT_FREQS)
+		else if (display_freq in DEPT_FREQS || display_freq == YAUT_FREQ)
 			part_a = "<span class='deptradio'><span class='name'>"
 
 		// --- Filter the message; place it in quotes apply a verb ---

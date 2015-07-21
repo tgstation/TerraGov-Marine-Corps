@@ -365,8 +365,6 @@
 		new /obj/item/device/radio/headset/mdeltal(src)
 		return
 
-
-
 /obj/structure/closet/crate/plastic/marine/REBEL
 	name = "REBEL Supply Crate"
 	desc = "A crate with additional REBEL ALLIANCE Supplies"
@@ -381,4 +379,28 @@
 			new /obj/item/weapon/storage/belt/utility/full(src)
 			new /obj/item/device/multitool(src)
 			new /obj/item/weapon/storage/backpack(src)
+		return
+
+/obj/structure/closet/secure_closet/req_officer
+	name = "RO's Locker"
+	req_access = list(access_sulaco_cargo)
+	icon_state = "securecargo1"
+	icon_closed = "securecargo"
+	icon_locked = "securecargo1"
+	icon_opened = "securecargoopen"
+	icon_broken = "securecargobroken"
+	icon_off = "securecargooff"
+
+	New()
+		sleep(2)
+		new /obj/item/device/radio/headset/mcom(src)
+		new /obj/item/clothing/under/rank/ro_suit(src)
+		new /obj/item/clothing/shoes/marine(src)
+		new /obj/item/weapon/storage/belt/marine/full(src)
+		new /obj/item/clothing/head/soft/ro_cap(src)
+		new /obj/item/clothing/head/helmet/marine2(src)
+		new /obj/item/device/flashlight(src)
+		new /obj/item/weapon/gun/energy/taser(src)
+		new /obj/item/weapon/melee/baton(src)
+		new /obj/item/weapon/storage/backpack/marine(src)
 		return

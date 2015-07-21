@@ -280,6 +280,7 @@ var/list/toldstory = list()
 	else if(!count_h && !count_x) //No survivors!
 		finished = 3
 	else if(emergency_shuttle.returned()) //Emergency shuttle finished
+		emergency_shuttle.evac = 1
 		finished = 4
 	else if(station_was_nuked) //Boom!
 		finished = 5
@@ -294,8 +295,8 @@ var/list/toldstory = list()
 /datum/game_mode/colonialmarines/check_finished()
 	if(finished != 0)
 		return 1
-	else
-		return 0
+
+	return 0
 
 
 //////////////////////////////////////////////////////////////////////
@@ -305,42 +306,40 @@ var/list/toldstory = list()
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
 		world << "\red <FONT size = 4><B>Alien major victory!</B></FONT>"
-		world << "\red <FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>"
+		world << "<FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>"
 		if(prob(50))
 			world << 'sound/misc/Game_Over_Man.ogg'
 		else
 			world << 'sound/misc/asses_kicked.ogg'
-
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
 		world << "\red <FONT size = 4><B>Marines major victory!</B></FONT>"
-		world << "\red <FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>"
+		world << "<FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>"
 		if(prob(50))
 			world << 'sound/misc/hardon.ogg'
 		else
 			world << 'sound/misc/hell_march.ogg'
-
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
 		world << "\red <FONT size = 3><B>Marine minor victory.</B></FONT>"
-		world << "\red <FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>"
+		world << "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>"
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
 		world << "\red <FONT size = 3><B>Alien minor victory.</B></FONT>"
-		world << "\red <FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
+		world << "<FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
 		world << "\red <FONT size = 3><B>Draw.</B></FONT>"
-		world << "\red <FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
+		world << "<FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
 		world << 'sound/misc/sadtrombone.ogg'
+	else
+		world << "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!"
 
-//	..()
-	return 1
+	world << "font size=3>Xenos Remaining: [count_humans()]. Humans remaining: [count_xenos()].</font>"
 
-/datum/game_mode/proc/auto_declare_completion_colonialmarines()
-	if(ticker && istype(ticker.mode,/datum/game_mode/colonialmarines) )
+	spawn(45)
 		if(aliens.len)
-			var/text = "<FONT size = 2><B>The aliens were:</B></FONT>"
+			var/text = "<FONT size = 3><B>The aliens were:</B></FONT>"
 			for(var/datum/mind/A in aliens)
 				if(A)
 					var/mob/M = A.current
@@ -359,7 +358,7 @@ var/list/toldstory = list()
 					text += ")"
 			world << text
 		if(survivors.len)
-			var/text = "<br><FONT size = 2><B>The survivors were:</B></FONT>"
+			var/text = "<br><FONT size = 3><B>The survivors were:</B></FONT>"
 			for(var/datum/mind/A in survivors)
 				if(A)
 					var/mob/M = A.current
@@ -377,3 +376,11 @@ var/list/toldstory = list()
 						text += "GIBBED! (body destroyed)"
 					text += ")"
 			world << text
+
+
+//	..()
+	return 1
+
+/datum/game_mode/proc/auto_declare_completion_colonialmarines()
+	return
+
