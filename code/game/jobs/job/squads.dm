@@ -34,6 +34,7 @@
 	var/secondary_objective = null
 	var/obj/item/device/squad_beacon/sbeacon = null
 	var/obj/item/device/squad_beacon/bomb/bbeacon = null
+	var/obj/item/effect/drop_pad = null
 	//^^^
 
 /datum/squad/alpha
@@ -130,3 +131,73 @@
 	if(findtext(card.assignment, "Delta")) text = "Delta"
 
 	return get_squad_by_name(text)
+
+//These are to handle the tick timers on the supply drops, so they aren't reset if Overwatch changes squads.
+/datum/squad/proc/handle_stimer(var/ticks)
+	supply_timer = 1
+	spawn(ticks)
+		supply_timer = 0
+	return
+
+/datum/squad/proc/handle_btimer(var/ticks)
+	bomb_timer = 1
+	spawn(ticks)
+		bomb_timer = 0
+	return
+
+/proc/get_squad_from_card(var/mob/living/carbon/human/H)
+	if(!istype(H))	return 0
+
+	var/squad = 0
+	var/obj/item/device/pda/I = H.wear_id
+	var/obj/item/weapon/card/id/card = null
+
+	if(I && istype(I))
+		if(I.id)
+			card = I.id
+	else
+		card = I
+
+	if(!card || !istype(card))
+		return 0
+
+	if(findtext(card.assignment, "Alpha"))
+		squad = 1 //Returns the card's numeric squad so we can pull the armor colors.
+		if(H.mind)
+			H.mind.assigned_squad = get_squad_by_name("Alpha") //Sets their assigned squad so Overwatch can grab it.
+	else if(findtext(card.assignment, "Bravo"))
+		squad = 2
+		if(H.mind)
+			H.mind.assigned_squad = get_squad_by_name("Bravo")
+	else if(findtext(card.assignment, "Charlie"))
+		squad = 3
+		if(H.mind)
+			H.mind.assigned_squad = get_squad_by_name("Charlie")
+	else if(findtext(card.assignment, "Delta"))
+		squad = 4
+		if(H.mind)
+			H.mind.assigned_squad = get_squad_by_name("Delta")
+	else
+		return 0
+
+	return squad
+
+/proc/is_leader_from_card(var/mob/living/carbon/human/H)
+	if(!istype(H)) return 0
+
+	var/obj/item/device/pda/I = H.wear_id
+	var/obj/item/weapon/card/id/card = null
+
+	if(I && istype(I))
+		if(I.id)
+			card = I.id
+	else
+		card = I
+
+	if(!card || !istype(card))
+		return 0
+
+	if(findtext(card.assignment, "Leader"))
+		return 1
+
+	return 0

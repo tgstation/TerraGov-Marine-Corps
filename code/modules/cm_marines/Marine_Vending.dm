@@ -215,12 +215,14 @@
 	icon_deny = "tool-deny"
 	products = list(
 						/obj/item/clothing/suit/storage/marine_leader_armor = 1,
+						/obj/item/clothing/head/helmet/marine2/leader = 1,
+						/obj/item/device/squad_beacon = 3,
+						/obj/item/device/squad_beacon/bomb = 1,
 						/obj/item/weapon/plastique = 3,
 						/obj/item/weapon/grenade/explosive = 5,
 						/obj/item/device/binoculars = 1,
 						/obj/item/device/paicard = 1,
 						/obj/item/weapon/handcuffs = 2,
-						/obj/item/weapon/implanter/adrenalin = 1,
 						/obj/item/weapon/storage/box/explosive_mines = 1
 					)
 	contraband = list()
@@ -235,13 +237,13 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(
-						/obj/item/attachable/suppressor = 6,
-						/obj/item/attachable/bayonet = 20,
-						/obj/item/attachable/reddot = 8,
-						/obj/item/attachable/foregrip = 16,
-						/obj/item/attachable/gyro = 3,
-						/obj/item/attachable/flashlight = 40,
-						/obj/item/attachable/bipod = 6
+						/obj/item/attachable/suppressor = 4,
+						/obj/item/attachable/bayonet = 10,
+						/obj/item/attachable/reddot = 4,
+						/obj/item/attachable/foregrip = 8,
+						/obj/item/attachable/gyro = 1,
+						/obj/item/attachable/flashlight = 20,
+						/obj/item/attachable/bipod = 2
 					)
 	contraband = list()
 	premium = list()
