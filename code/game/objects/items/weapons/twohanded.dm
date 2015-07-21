@@ -34,6 +34,9 @@
 	force = force_wielded
 	name = "[initial(name)] (Wielded)"
 	update_icon()
+	if(usr && ishuman(usr))
+		usr:update_inv_l_hand()
+		usr:update_inv_r_hand()
 
 /obj/item/weapon/twohanded/mob_can_equip(M as mob, slot)
 	//Cannot equip wielded items.
@@ -130,6 +133,7 @@
 
 /obj/item/weapon/twohanded/fireaxe/update_icon()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "fireaxe[wielded]"
+	item_state = "fireaxe[wielded]"
 	return
 
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)

@@ -18,7 +18,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		var/obj/item/clothing/under/U = new /obj/item/clothing/under/marine/officer/CO(H)
+		var/obj/item/clothing/under/U = new /obj/item/clothing/under/marine/officer/command(H)
 		var/obj/item/weapon/storage/backpack/mcommander/BPK = new/obj/item/weapon/storage/backpack/mcommander(H)
 		new /obj/item/weapon/storage/box/survival(BPK)
 		H.equip_to_slot_or_del(BPK, slot_back,1)
@@ -65,7 +65,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		new /obj/item/weapon/storage/box/survival(BPK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/XO(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		//H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
@@ -91,8 +91,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_logistics, access_sulaco_bridge)
-	minimal_access = list(access_sulaco_logistics, access_sulaco_bridge)
+	access = list(access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig)
+	minimal_access = list(access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

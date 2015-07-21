@@ -176,7 +176,7 @@
 	keyslot2 = new /obj/item/device/encryptionkey/mdeltal
 	frequency = 1461
 
-obj/item/device/radio/headset/mdelta
+/obj/item/device/radio/headset/mdelta
 	name = "marine delta radio headset"
 	desc = "This is used by delta squad members. Channels are as follows: :d - delta squad."
 	icon_state = "com_headset"
@@ -356,22 +356,22 @@ obj/item/device/radio/headset/mdelta
 		..()
 		pixel_y = rand(-3,3)
 		pixel_x = rand(-3,3)
-		var/rand_type = rand(0,10)
-		if(rand_type <= 4)
+		var/rand_type = rand(0,8)
+		if(rand_type <= 2)
 			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
 			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
 			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
-		else if(rand_type == 5)
+		else if(rand_type == 3)
 			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1(src)
-		else if(rand_type == 6)
+		else if(rand_type == 4)
 			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2(src)
-		else if(rand_type == 7)
+		else if(rand_type == 5)
 			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3(src)
-		else if(rand_type == 8)
+		else if(rand_type == 6)
 			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4(src)
-		else if(rand_type == 9)
+		else if(rand_type == 7)
 			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5(src)
-		else if(rand_type == 10)
+		else if(rand_type == 8)
 			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6(src)
 
 
@@ -389,7 +389,6 @@ obj/item/device/radio/headset/mdelta
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack
 	name = "Generic MRE Pack"
 
-
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1
 	name = "USCM MRE (cornbread)"
 	desc = "A tray of standard USCM rations. Stale cornbread, tomato paste and some green goop fill this tray."
@@ -398,7 +397,7 @@ obj/item/device/radio/headset/mdelta
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 12)
+		reagents.add_reagent("nutriment", 10)
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2
@@ -406,10 +405,20 @@ obj/item/device/radio/headset/mdelta
 	desc = "A tray of standard USCM rations. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
 	icon_state = "MREb"
 
+	New()
+		..()
+		reagents.add_reagent("nutriment", 12)
+		bitesize = 3
+
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3
 	name = "USCM MRE (pasta)"
 	desc = "A tray of standard USCM rations. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
 	icon_state = "MREc"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 11)
+		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4
 	name = "USCM MRE (pizza)"
@@ -426,6 +435,11 @@ obj/item/device/radio/headset/mdelta
 	desc = "A tray of standard USCM rations. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
 	icon_state = "MREe"
 
+	New()
+		..()
+		reagents.add_reagent("nutriment", 12)
+		bitesize = 3
+
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6
 	name = "USCM MRE (tofu)"
 	desc = "The USCM doesn't serve tofu you grass sucking hippie. The flag signifies your defeat."
@@ -433,7 +447,7 @@ obj/item/device/radio/headset/mdelta
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 1)
+		reagents.add_reagent("nutriment", 2)
 		bitesize = 1
 
 
@@ -462,3 +476,75 @@ obj/item/device/radio/headset/mdelta
 				new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
 			if(5)
 				new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
+
+/obj/item/device/squad_beacon
+	name = "Squad Supply Beacon"
+	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "motion0"
+	var/activated = 0
+	var/datum/squad/squad = null
+	var/icon_activated = "motion3"
+
+	attack_self(mob/user)
+		if(activated)
+			user << "It's already been activated. Just throw it somewhere outside."
+			return
+		if(!ishuman(user)) return
+		if(!user.mind)
+			user << "It doesn't seem to do anything for you."
+			return
+
+		if(user.mind.assigned_squad)
+			squad = user.mind.assigned_squad
+		else
+			squad = get_squad_data_from_card(user)
+
+		if(squad == null)
+			user << "You need to be in a squad for this to do anything."
+			return
+		if(squad.sbeacon)
+			user << "Your squad already has a beacon activated."
+			return
+
+		squad.sbeacon = src
+		activated = 1
+		icon_state = "[icon_activated]"
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		user << "You activate the [src]. Now toss it on the ground outside and wait, assuming someone is watching over you."
+		return
+
+/obj/item/device/squad_beacon/bomb
+	name = "Orbital Beacon"
+	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "motion4"
+	icon_activated = "motion2"
+
+	attack_self(mob/user)
+		if(activated)
+			user << "It's already been activated. Just throw it somewhere outside."
+			return
+		if(!ishuman(user)) return
+		if(!user.mind)
+			user << "It doesn't seem to do anything for you."
+			return
+
+		if(user.mind.assigned_squad)
+			squad = user.mind.assigned_squad
+		else
+			squad = get_squad_data_from_card(user)
+
+		if(squad == null)
+			user << "You need to be in a squad for this to do anything."
+			return
+		if(squad.bbeacon)
+			user << "Your squad already has a beacon activated."
+			return
+
+		squad.bbeacon = src //Set us up the bomb~
+		activated = 1
+		icon_state = "[icon_activated]"
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		user << "You activate the [src]. Now toss it on the ground outside and wait, assuming someone is watching over you."
+		return

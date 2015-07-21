@@ -34,6 +34,7 @@
 
 /obj/item/device/flash/attack(mob/living/M as mob, mob/user as mob)
 	if(!user || !M)	return	//sanity
+	if(!ishuman(M)) return
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been flashed (attempt) with [src.name]  by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>")

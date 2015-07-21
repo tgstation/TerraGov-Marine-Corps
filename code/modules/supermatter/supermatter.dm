@@ -25,7 +25,7 @@
 
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 900
-#define DETONATION_HALLUCINATION 400
+#define DETONATION_HALLUCINATION 0
 
 
 #define WARNING_DELAY 30 		//seconds between warnings.
@@ -50,7 +50,7 @@
 	var/warning_alert = "Danger! Crystal hyperstructure instability!"
 	var/emergency_point = 700
 	var/emergency_alert = "CRYSTAL DELAMINATION IMMINENT."
-	var/explosion_point = 1200
+	var/explosion_point = 1500
 
 	l_color = "#8A8A00"
 	var/warning_color = "#B8B800"

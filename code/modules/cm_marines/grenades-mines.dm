@@ -177,7 +177,7 @@
 	if(!anchored) return //If armed
 	if(triggered) return
 
-	if(istype(M, /mob/living/carbon/Xenomorph) && !istype(M, /mob/living/carbon/Xenomorph/Larva)) //Only humanoid aliens can trigger it.
+	if(istype(M, /mob/living/carbon/Xenomorph) && !istype(M, /mob/living/carbon/Xenomorph/Larva) && M.stat != DEAD) //Only humanoid aliens can trigger it.
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
 		triggered = 1

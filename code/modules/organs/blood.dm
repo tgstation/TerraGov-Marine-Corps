@@ -86,10 +86,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				if(!pale)
 					pale = 1
 					update_body()
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel [word]"
 				if(prob(1))
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel [word]"
 				if(oxyloss < 20)
 					oxyloss += 3
@@ -103,13 +103,13 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				oxyloss += 1
 				if(prob(15))
 					Paralyse(rand(1,3))
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel extremely [word]"
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				oxyloss += 5
 				toxloss += 3
 				if(prob(15))
-					var/word = pick("dizzy","woosey","faint")
+					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel extremely [word]"
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				// There currently is a strange bug here. If the mob is not below -100 health
@@ -133,7 +133,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 			for(var/datum/wound/W in temp.wounds) if(W.bleeding())
 				blood_max += W.damage / 40
 			if(temp.status & ORGAN_DESTROYED && !(temp.status & ORGAN_GAUZED) && !temp.amputated)
-				blood_max += 25 //Yer missing a fucking limb.
+				blood_max += 5 //Yer missing a fucking limb.
 			if (temp.open)
 				blood_max += 2  //Yer stomach is cut open
 		drip(blood_max)

@@ -3,9 +3,9 @@
 	name = "APLU \"Ripley\""
 	icon_state = "ripley"
 	initial_icon = "ripley"
-	step_in = 6
+	step_in = 4
 	max_temperature = 20000
-	health = 200
+	health = 250
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	var/list/cargo = new
 	var/cargo_capacity = 10
