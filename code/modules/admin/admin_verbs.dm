@@ -28,7 +28,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_admin_check_contents,	/*displays the contents of an instance*/
-	/datum/admins/proc/access_news_network,	/*allows access of newscasters*/
+	// /datum/admins/proc/access_news_network,	/*allows access of newscasters*/
 	/client/proc/giveruntimelog,		/*allows us to give access to runtime logs to somebody*/
 	/client/proc/getserverlog,			/*allows us to fetch server logs (diary) for other days*/
 	/client/proc/jumptocoord,			/*we ghost and jump to a coordinate*/
@@ -70,8 +70,10 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggledebuglogs,
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
-	/datum/admins/proc/show_skills,
-	/client/proc/check_customitem_activity,
+	/datum/admins/proc/togglesleep,
+	/datum/admins/proc/sleepall,
+	// /datum/admins/proc/show_skills,
+	// /client/proc/check_customitem_activity,
 	/client/proc/man_up,
 	/client/proc/global_man_up,
 	/client/proc/response_team, // Response Teams admin verb
@@ -92,16 +94,16 @@ var/list/admin_verbs_fun = list(
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
-        /client/proc/everyone_random,
+	// /client/proc/everyone_random,
 	/client/proc/cinematic,
 	/client/proc/one_click_antag,
-	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_space_ninja,
+	// /datum/admins/proc/toggle_aliens,
+	// /datum/admins/proc/toggle_space_ninja,
 	/client/proc/send_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/make_sound,
-	/client/proc/toggle_random_events,
+	// /client/proc/toggle_random_events,
 	/client/proc/set_ooc,
 	/client/proc/editappear
 	)
@@ -117,18 +119,18 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
 	/client/proc/toggle_log_hrefs,
-	/datum/admins/proc/immreboot,
-	/client/proc/everyone_random,
+	// /datum/admins/proc/immreboot,
+	// /client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_debug_del_all,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
-	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_space_ninja,
-	/client/proc/toggle_random_events,
-	/client/proc/check_customitem_activity,
+	// /datum/admins/proc/toggle_aliens,
+	// /datum/admins/proc/toggle_space_ninja,
+	// /client/proc/toggle_random_events,
+	// /client/proc/check_customitem_activity,
 	/client/proc/nanomapgen_DumpImage
 	)
 var/list/admin_verbs_debug = list(
@@ -154,8 +156,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/toggledebuglogs,
-	/client/proc/SDQL_query,
-	/client/proc/SDQL2_query,
+	// /client/proc/SDQL_query,
+	// /client/proc/SDQL2_query,
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -192,7 +194,7 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/view_atk_log,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_check_contents,
-	/datum/admins/proc/access_news_network,
+	// /datum/admins/proc/access_news_network,
 	/client/proc/admin_call_shuttle,
 	/client/proc/admin_cancel_shuttle,
 	/client/proc/cmd_admin_direct_narrate,
@@ -205,14 +207,14 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/cinematic,
-	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_space_ninja,
+	// /datum/admins/proc/toggle_aliens,
+	// /datum/admins/proc/toggle_space_ninja,
 	/client/proc/send_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/make_sound,
-	/client/proc/toggle_random_events,
+	// /client/proc/toggle_random_events,
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
@@ -221,7 +223,7 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
 	/client/proc/toggle_log_hrefs,
-	/datum/admins/proc/immreboot,
+	// /datum/admins/proc/immreboot,
 	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
 	/datum/admins/proc/adrev,
@@ -256,10 +258,12 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_info,
 	/client/proc/player_panel_new,
 	/client/proc/dsay,
-	/datum/admins/proc/show_skills,
+	/datum/admins/proc/togglesleep,
+	// /datum/admins/proc/show_skills,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
 	/client/proc/jobbans,
+	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
 )
 

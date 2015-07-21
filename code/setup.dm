@@ -708,8 +708,8 @@ var/list/be_special_flags = list(
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"pAI" = BE_PAI,
-	"Survivor" = BE_SURVIVOR,
-	"Wizard" = BE_WIZARD,
+	"Survivor" = BE_SURVIVOR
+/*	"Wizard" = BE_WIZARD,
 	"Malf AI" = BE_MALF,
 	"Revolutionary" = BE_REV,
 	"Traitor" = BE_TRAITOR,
@@ -720,7 +720,7 @@ var/list/be_special_flags = list(
 	"Raider" = BE_RAIDER,
 	"Diona" = BE_PLANT,
 	"Mutineer" = BE_MUTINEER,
-	"Changeling" = BE_CHANGELING
+	"Changeling" = BE_CHANGELING*/
 	)
 
 #define AGE_MIN 17			//youngest a character can be
