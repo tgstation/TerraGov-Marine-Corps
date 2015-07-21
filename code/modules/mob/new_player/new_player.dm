@@ -29,8 +29,10 @@
 		output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
 
 		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
-			if(!ready)	output += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</A></p>"
-			else	output += "<p><b>You are ready</b> (<a href='byond://?src=\ref[src];ready=2'>Cancel</A>)</p>"
+			if(ready)
+				output += "<p>\[ <b>Ready</b> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			else
+				output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <b>Not Ready</b> \]</p>"
 
 		else
 			output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
@@ -59,7 +61,7 @@
 
 		output += "</div>"
 
-		src << browse(output,"window=playersetup;size=210x240;can_close=0")
+		src << browse(output,"window=playersetup;size=240x300;can_close=0")
 		return
 
 	Stat()
@@ -96,7 +98,7 @@
 
 		if(href_list["ready"])
 			if(!ticker || ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
-				ready = !ready
+				ready = text2num(href_list["ready"])
 			else
 				ready = 0
 
@@ -117,8 +119,11 @@
 				observer.started_as_observer = 1
 				close_spawn_windows()
 				var/obj/O = locate("landmark*Observer-Start")
-				src << "\blue Now teleporting."
-				observer.loc = O.loc
+				if(istype(O))
+					src << "<span class='notice'>Now teleporting.</span>"
+					observer.loc = O.loc
+				else
+					src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
 				observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 				client.prefs.update_preview_icon()
