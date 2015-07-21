@@ -322,13 +322,16 @@ datum/controller/vote
 		else
 			. += "<h2>Start a vote:</h2><hr><ul><li>"
 			//restart
-			if(trialmin || config.allow_vote_restart)
+			if(trialmin)
 				. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
 			else
 				. += "<font color='grey'>Restart (Disallowed)</font>"
 			. += "</li><li>"
 			if(trialmin || config.allow_vote_restart)
-				. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
+				if(admins.len > 0 && !trialmin)
+					. += "Crew Transfer (Disabled - Staff online)"
+				else
+					. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 			else
 				. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
 			if(trialmin)
