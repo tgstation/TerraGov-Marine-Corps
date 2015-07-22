@@ -424,8 +424,8 @@
 	usr << "\icon[src] \red FIRING!!"
 	send_to_squad("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	if(current_squad.bbeacon)
-		playsound(current_squad.bbeacon.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehh
-	spawn(6)
+		playsound(current_squad.bbeacon.loc,'sound/effects/bomb_fall.ogg', 100, 1)  //Ehh
+	spawn(50)
 		if(!current_squad.bbeacon) //May have been destroyed en route
 			send_to_squad("Trajectory beacon not found. Aborting launch.")
 			return
