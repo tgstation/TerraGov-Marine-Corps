@@ -214,8 +214,8 @@
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 	products = list(
-						/obj/item/clothing/suit/storage/marine_leader_armor = 1,
-						/obj/item/clothing/head/helmet/marine2/leader = 1,
+						/obj/item/clothing/suit/storage/marine/marine_leader_armor = 1,
+						/obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/device/squad_beacon = 3,
 						/obj/item/device/squad_beacon/bomb = 1,
 						/obj/item/weapon/plastique = 3,

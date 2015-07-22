@@ -31,7 +31,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		helmet.color = squad_colors[i]
 		helmetmarkings_sql += helmet
 
-/obj/item/clothing/head/helmet/marine2
+/obj/item/clothing/head/helmet/marine
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "helmet"
 	item_state = "helmet"
@@ -40,67 +40,28 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	armor = list(melee = 75, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags = FPRINT|TABLEPASS
-	var/mob/living/carbon/human/wornby
-	var/squad = 0
-	var/rank = 0
-	var/image/markingoverlay
-	var/image/hugger_overlay
 	var/hug_damage = 0
 	anti_hug = 1
 
-	New()
-		..()
-		hugger_overlay = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage") //Initialize the overlay icon
-
-	equipped(var/mob/living/carbon/human/mob, slot)
-		update_squad_overlays(mob)
-		..(mob, slot)
-
-	dropped(var/mob/living/carbon/human/mob)
-		update_squad_overlays(mob)
-		..(mob)
-
-	proc/update_squad_overlays(var/mob/living/carbon/human/H)
-		if(istype(H,/mob/living/carbon/human)) //Are we on a person?
-			if(!H || !istype(H)) return //Something went wrong, abort
-			squad = get_squad_from_card(H) //Get the squad from the ID.
-			rank = is_leader_from_card(H) //Leader?
-			if(H.head == src && squad > 0 && squad < 5) //We're being worn on a valid squad.
-				if(rank) //We are worn on a leader.
-					markingoverlay = helmetmarkings_sql[squad]
-				else //We are worn on a regular squaddie.
-					markingoverlay = helmetmarkings[squad]
-				overlays.Cut()
-				overlays += markingoverlay //Add our overlay to the item.
-				H.overlays_standing += markingoverlay  //Add the overlay to the person. Ughhhhhhhhhhh
-				H.update_inv_head() //Update our wearer's icons so the people see it.
-			else //We are NOT being worn, or our squad doesn't exist. Remove everything.
-				overlays.Cut()
-				if(hug_damage) overlays += hugger_overlay //Re-adds the hug damage overlay
-				if(istype(markingoverlay) && markingoverlay in H.overlays_standing)
-					H.overlays_standing.Remove(markingoverlay) //Dump the overlay off the person.
-					H.update_inv_head() //Show it.
-			if(H.head == src)
-				if(hug_damage) H.overlays_standing += hugger_overlay //We're being worn, add the hugger marks.
-			else
-				if(hugger_overlay in H.overlays_standing) H.overlays_standing -= hugger_overlay //We were removed, remove the hugger marks.
-
 	proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
-		hug_damage = 1
-		overlays += hugger_overlay
+		if(!hug_damage) //If this is our first check.
+			var/image/scratchy = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
+			overlays += scratchy
+			hug_damage = 1
+			desc = "[initial(desc)]\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>"
 
-/obj/item/clothing/suit/storage/marine2
+/obj/item/clothing/suit/storage/marine
+	name = "M3 Pattern Marine Armor"
+	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "1"
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	name = "M3 Pattern Marine Armor"
-	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 70, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
@@ -110,7 +71,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/ammo_magazine/,
 		/obj/item/ammo_casing/,
 		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/melee/stunprod,
 		/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,
 		/obj/item/weapon/flame/lighter,
@@ -118,61 +78,16 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/bible,
 		/obj/item/weapon/combat_knife)
 
-	var/mob/living/carbon/human/wornby
-	var/squad = 0
-	var/rank = 0
-	var/image/markingoverlay
 
-	New(loc)
-		..(loc)
-		icon_state = "[rand(1,6)]"
-		item_state = icon_state
-
-	equipped(var/mob/living/carbon/human/mob, slot)
-		update_squad_overlays(mob)
-		..()
-
-	dropped(var/mob/living/carbon/human/mob)
-		update_squad_overlays(mob)
-		..()
-
-	proc/update_squad_overlays(var/mob/living/carbon/human/H)
-		if(istype(H,/mob/living/carbon/human)) //Are we on a person?
-			if(!H || !istype(H)) return //Something went wrong, abort
-			squad = get_squad_from_card(H) //Get the squad from the ID.
-			rank = is_leader_from_card(H) //Leader?
-			if(H.wear_suit == src && squad > 0 && squad < 5) //We're being worn, in a valid squad.
-				if(rank) //We are worn on a leader.
-					markingoverlay = armormarkings_sql[squad]
-				else //We are worn on a regular squaddie.
-					markingoverlay = armormarkings[squad]
-				overlays.Cut()
-				overlays += markingoverlay //Add our overlay to the item.
-				H.overlays_standing += markingoverlay  //Add the overlay to the person. This is SO FUCKING DUMB
-				H.update_icons() //Update our wearer's icons so the people see it.
-			else //We are NOT being worn, or our squad doesn't exist. Remove everything.
-				overlays.Cut()
-				if(istype(markingoverlay) && markingoverlay in H.overlays_standing)
-					H.overlays_standing.Remove(markingoverlay) //Dump the overlay off the person.
-					H.update_icons() //Show it.
-
-
-/obj/item/clothing/suit/storage/marine_spec_armor
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "xarmor"
-	item_state = "armor"
-	icon_override = 'icons/Marine/marine_armor.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+/obj/item/clothing/suit/storage/marine/marine_spec_armor
 	name = "B18 Defensive Armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
-	blood_overlay_type = "armor"
+	icon_state = "xarmor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	slowdown = 1
 	armor = list(melee = 95, bullet = 95, laser = 80, energy = 50, bomb = 75, bio = 20, rad = 10)
-	siemens_coefficient = 0.7
 	var/injections = 2
 	unacidable = 1
 	allowed = list(/obj/item/weapon/gun,
@@ -217,22 +132,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
 
-/obj/item/clothing/head/helmet/marine2/heavy
+/obj/item/clothing/head/helmet/marine/heavy
 	name = "B18 Helmet"
 	icon_state = "xhelm"
-	item_state = "helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 3
 	unacidable = 1
 
-/obj/item/clothing/head/helmet/marine2/leader
+/obj/item/clothing/head/helmet/marine/leader
 	name = "M11 Pattern Leader Helmet"
 	icon_state = "xhelm"
-	item_state = "helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 75, bullet = 60, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 2
 	var/obj/machinery/camera/camera
@@ -264,25 +176,31 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	New()
 		..()
 		spawn(1)
-			new /obj/item/clothing/suit/storage/marine_spec_armor(src)
-			new /obj/item/clothing/head/helmet/marine2/heavy(src)
+			new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
+			new /obj/item/clothing/head/helmet/marine/heavy(src)
 
-/obj/item/clothing/suit/storage/marine_leader_armor
-	icon = 'icons/Marine/marine_armor.dmi'
+/obj/item/clothing/suit/storage/marine/marine_leader_armor
+	name = "B12 Pattern Leader Armor"
+	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
 	icon_state = "7"
-	item_state = "armor"
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	cold_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	name = "B12 Squad Leader Armor"
-	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
-	blood_overlay_type = "armor"
 	armor = list(melee = 45, bullet = 75, laser = 70, energy = 20, bomb = 15, bio = 0, rad = 0)
-	siemens_coefficient = 0.7
-	allowed = list(/obj/item/weapon/gun, /obj/item/device/binoculars, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton, /obj/item/weapon/melee/stunprod, /obj/item/weapon/handcuffs, /obj/item/weapon/restraints, /obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade, /obj/item/weapon/combat_knife)
+	allowed = list(
+					/obj/item/weapon/gun,
+					/obj/item/device/binoculars,
+					/obj/item/weapon/tank/emergency_oxygen,
+					/obj/item/device/flashlight,
+					/obj/item/ammo_magazine,
+					/obj/item/ammo_casing,
+					/obj/item/weapon/melee/baton,
+					/obj/item/weapon/handcuffs,
+					/obj/item/weapon/storage/fancy/cigarettes,
+					/obj/item/weapon/flame/lighter,
+					/obj/item/weapon/grenade,
+					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/storage/bible)
 	var/brightness_on = 7
 	var/on = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
@@ -291,7 +209,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		if(on && src.loc != user)
 			user.SetLuminosity(brightness_on)
 			SetLuminosity(0)
-
 
 	dropped(mob/user)
 		if(on && src.loc != user)
@@ -322,31 +239,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		update_clothing_icon()
 		return 1
 
-
-/obj/item/weapon/card/id/equipped(var/mob/living/carbon/human/M, slot)
-	if(!istype(M))
-		return ..()
-
-	var/obj/item/clothing/head/helmet/marine2/H = M.head
-	var/obj/item/clothing/suit/storage/marine2/A = M.wear_suit
-
-	if(!isnull(H) && istype(H)) H.update_squad_overlays(M)
-	if(!isnull(A) && istype(A)) A.update_squad_overlays(M)
-
-	..(M, slot)
-
-
-/obj/item/clothing/suit/storage/marineMP
-	icon = 'icons/Marine/marine_armor.dmi'
+/obj/item/clothing/suit/storage/marine/MP
 	icon_state = "mp"
-	item_state = "armor"
-	icon_override = 'icons/Marine/marine_armor.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 85, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-	name = "M3 Pattern Marine Armor"
-	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	armor = list(melee = 40, bullet = 85, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	name = "M2 Pattern MP Armor"
+	desc = "A standard Colonial Marines M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+

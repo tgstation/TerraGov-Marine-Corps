@@ -292,3 +292,19 @@
 	New()
 		access = get_all_centcom_access()
 		..()
+
+
+/obj/item/weapon/card/id/equipped(var/mob/living/carbon/human/M, slot)
+	if(!istype(M)) return ..(M,slot)
+
+	get_squad_from_card(M)	//This normally returns a squad # but also sets unsquadded people, so we can use it.
+	M.update_inv_head(0) //Don't do a full update yet
+	M.update_inv_wear_suit()
+	..(M, slot)
+
+/obj/item/weapon/card/id/dropped(mob/user as mob)
+	if(!istype(user,/mob/living/carbon/human)) return ..(user)
+
+	user.update_inv_head(0) //Don't do a full update yet
+	user.update_inv_wear_suit()
+	..(user)

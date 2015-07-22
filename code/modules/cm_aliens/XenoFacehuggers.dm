@@ -170,10 +170,8 @@ var/const/MAX_ACTIVE_TIME = 200
 				else if(D.anti_hug == 1)
 					H.visible_message("\red \b [src] smashes against [H]'s [D] and rips it off!")
 					H.drop_from_inventory(D)
-					if(istype(D,/obj/item/clothing/head/helmet/marine2)) //Marine helmets now get a fancy overlay.
-						D.desc += "\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>"
+					if(istype(D,/obj/item/clothing/head/helmet/marine)) //Marine helmets now get a fancy overlay.
 						D:add_hugger_damage() //We know this proc is okay.
-
 					D.anti_hug--
 					if(rand(50))
 						src.GoIdle()
