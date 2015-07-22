@@ -12,16 +12,14 @@
 	icon = 'icons/Marine/Marine_Lockers.dmi'
 
 	New()
-		sleep(2)
-		new /obj/item/clothing/suit/storage/marine2(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/clothing/head/helmet/marine2(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/gloves/marine(src)
-		new /obj/item/clothing/under/marine_jumpsuit(src)
-		new /obj/item/device/radio/headset/msulaco(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
+		spawn(5)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 //MARINE COMMAND CLOSET
@@ -38,21 +36,19 @@
 
 
 	New()
-		sleep(2)
-		new /obj/item/weapon/storage/backpack/mcommander(src)
-		new /obj/item/clothing/shoes/marinechief/commander(src)
-		new /obj/item/clothing/gloves/marine/techofficer/commander(src)
-		new /obj/item/clothing/under/marine/officer/command(src)
-		new /obj/item/clothing/suit/storage/marine/officer/commander(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/clothing/head/beret/marine/commander(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
-		new /obj/item/device/radio/headset/mcom(src)
-		return
+		spawn(2)
+			new /obj/item/weapon/storage/backpack/mcommander(src)
+			new /obj/item/clothing/shoes/marinechief/commander(src)
+			new /obj/item/clothing/gloves/marine/techofficer/commander(src)
+			new /obj/item/clothing/under/marine/officer/command(src)
+			new /obj/item/clothing/suit/storage/marine/officer/commander(src)
+			new /obj/item/clothing/head/beret/marine/commander(src)
+			new /obj/item/clothing/glasses/sunglasses(src)
+			new /obj/item/device/radio/headset/mcom(src)
+
 
 /obj/structure/closet/secure_closet/marine/marine_lo
-	name = "Logistics Locker"
+	name = "Bridge Officer's Locker"
 	req_access = list(access_sulaco_logistics)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
@@ -63,25 +59,20 @@
 	icon = 'icons/obj/closet.dmi'
 
 	New()
-		sleep(2)
-		new /obj/item/clothing/head/beret/marine/logisticsofficer(src)
-		new /obj/item/clothing/head/beret/marine/logisticsofficer(src)
-		new /obj/item/device/radio/headset/mcom(src)
-		new /obj/item/device/radio/headset/mcom(src)
-		new /obj/item/clothing/under/marine/officer/logistics(src)
-		new /obj/item/clothing/under/marine/officer/logistics(src)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/suit/storage/marine(src)
-		new /obj/item/clothing/suit/storage/marine(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
-		return
-
-
-
-
+		spawn(2)
+			new /obj/item/clothing/head/beret/marine/logisticsofficer(src)
+			new /obj/item/clothing/head/beret/marine/logisticsofficer(src)
+			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/clothing/under/marine/officer/logistics(src)
+			new /obj/item/clothing/under/marine/officer/logistics(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
 
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/marine/military_officer
@@ -96,19 +87,19 @@
 	icon = 'icons/obj/closet.dmi'
 
 	New()
-		sleep(2)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/under/marine/mp(src)
-		new /obj/item/clothing/suit/armor/riot/marine(src)
-		new /obj/item/clothing/head/helmet/riot(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
-		new /obj/item/device/radio/headset/mmpo(src)
-		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/melee/baton(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
-		return
+		spawn(3)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/under/marine/mp(src)
+			new /obj/item/clothing/suit/armor/riot/marine(src)
+			new /obj/item/clothing/head/helmet/riot(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/clothing/glasses/sunglasses(src)
+			new /obj/item/device/radio/headset/mmpo(src)
+			new /obj/item/weapon/gun/energy/taser(src)
+			new /obj/item/weapon/melee/baton(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
+
 
 
 /obj/structure/closet/secure_closet/marine/military_officer_spare
@@ -123,27 +114,18 @@
 	icon = 'icons/obj/closet.dmi'
 
 	New()
-		sleep(2)
-		new /obj/item/weapon/storage/backpack/security(src)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/under/marine/mp(src)
-		new /obj/item/clothing/suit/armor/riot/marine(src)
-		new /obj/item/clothing/head/helmet/riot(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/glasses/sunglasses(src)
-		new /obj/item/device/radio/headset/mmpo(src)
-		new /obj/item/weapon/gun/energy/taser(src)
-//		new /obj/item/weapon/shield/riot(src)
-//		new /obj/item/weapon/shield/riot(src)
-		new /obj/item/weapon/melee/baton(src)
-		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/clothing/gloves/black(src)
-		new /obj/item/clothing/gloves/black(src)
-		new /obj/item/device/radio/headset/mmpo(src)
-		new /obj/item/clothing/tie/holster/waist(src)
-		return
-
-
+		spawn(3)
+			new /obj/item/weapon/storage/backpack/security(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/under/marine/mp(src)
+			new /obj/item/clothing/suit/storage/marine/MP(src)
+			new /obj/item/clothing/head/helmet/riot(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/clothing/glasses/sunglasses(src)
+			new /obj/item/device/radio/headset/mmpo(src)
+			new /obj/item/clothing/gloves/black(src)
+			new /obj/item/device/radio/headset/mmpo(src)
+			new /obj/item/clothing/tie/holster/waist(src)
 
 //ALPHA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_alpha_equipment
@@ -157,18 +139,16 @@
 	icon_off = "squad_alpha_off"
 
 	New()
-		sleep(2)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/gloves/marine/alpha(src)
-		new /obj/item/clothing/under/marine_jumpsuit(src)
-		new /obj/item/clothing/suit/storage/marine2(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/clothing/head/helmet/marine2(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/device/radio/headset/malpha(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
-		return
-
+		spawn(5)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/gloves/marine/alpha(src)
+			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/device/radio/headset/malpha(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
 
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment
@@ -182,17 +162,17 @@
 	icon_off = "squad_bravo_off"
 
 	New()
-		sleep(2)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/gloves/marine/bravo(src)
-		new /obj/item/clothing/under/marine_jumpsuit(src)
-		new /obj/item/clothing/suit/storage/marine2(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/clothing/head/helmet/marine2(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/device/radio/headset/mbravo(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
-		return
+		spawn(6)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/gloves/marine/bravo(src)
+			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/device/radio/headset/mbravo(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
+
 
 //CHARLIE EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_charlie_equipment
@@ -206,17 +186,16 @@
 	icon_off = "squad_charlie_off"
 
 	New()
-		sleep(2)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/gloves/marine/charlie(src)
-		new /obj/item/clothing/under/marine_jumpsuit(src)
-		new /obj/item/clothing/suit/storage/marine2(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/clothing/head/helmet/marine2(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/device/radio/headset/mcharlie(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
-		return
+		spawn(7)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/gloves/marine/charlie(src)
+			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/device/radio/headset/mcharlie(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
 
 //Delta EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
@@ -230,19 +209,16 @@
 	icon_off = "squad_delta_off"
 
 	New()
-		sleep(2)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/clothing/gloves/marine/delta(src)
-		new /obj/item/clothing/under/marine_jumpsuit(src)
-		new /obj/item/clothing/suit/storage/marine2(src)
-		new /obj/item/weapon/storage/belt/marine(src)
-		new /obj/item/clothing/head/helmet/marine2(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/device/radio/headset/mdelta(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
-		return
-
-
+		spawn(8)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/gloves/marine/delta(src)
+			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/device/radio/headset/mdelta(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
@@ -258,48 +234,47 @@
 
 
 	New()
-		sleep(2)
-		if(prob(50))
-			new /obj/item/weapon/storage/backpack/medic(src)
-		else
-			new /obj/item/weapon/storage/backpack/satchel_med(src)
-		new /obj/item/clothing/under/rank/nursesuit (src)
-		new /obj/item/clothing/head/nursehat (src)
-		switch(pick("blue", "green", "purple"))
-			if ("blue")
-				new /obj/item/clothing/under/rank/medical/blue(src)
-				new /obj/item/clothing/head/surgery/blue(src)
-			if ("green")
-				new /obj/item/clothing/under/rank/medical/green(src)
-				new /obj/item/clothing/head/surgery/green(src)
-			if ("purple")
-				new /obj/item/clothing/under/rank/medical/purple(src)
-				new /obj/item/clothing/head/surgery/purple(src)
-		switch(pick("blue", "green", "purple"))
-			if ("blue")
-				new /obj/item/clothing/under/rank/medical/blue(src)
-				new /obj/item/clothing/head/surgery/blue(src)
-			if ("green")
-				new /obj/item/clothing/under/rank/medical/green(src)
-				new /obj/item/clothing/head/surgery/green(src)
-			if ("purple")
-				new /obj/item/clothing/under/rank/medical/purple(src)
-				new /obj/item/clothing/head/surgery/purple(src)
-		new /obj/item/clothing/under/rank/medical(src)
-		new /obj/item/clothing/under/rank/nurse(src)
-		new /obj/item/clothing/under/rank/orderly(src)
-		new /obj/item/clothing/suit/storage/labcoat(src)
-		new /obj/item/clothing/suit/storage/fr_jacket(src)
-		new /obj/item/clothing/shoes/white(src)
-		new /obj/item/device/radio/headset/msulaco(src)
-		new /obj/item/weapon/storage/belt/medical(src)
-		new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(src)
-		new /obj/item/clothing/glasses/hud/health(src)
-		return
-
+		spawn(9)
+			if(prob(50))
+				new /obj/item/weapon/storage/backpack/medic(src)
+			else
+				new /obj/item/weapon/storage/backpack/satchel_med(src)
+			new /obj/item/clothing/under/rank/nursesuit (src)
+			new /obj/item/clothing/head/nursehat (src)
+			switch(pick("blue", "green", "purple"))
+				if ("blue")
+					new /obj/item/clothing/under/rank/medical/blue(src)
+					new /obj/item/clothing/head/surgery/blue(src)
+				if ("green")
+					new /obj/item/clothing/under/rank/medical/green(src)
+					new /obj/item/clothing/head/surgery/green(src)
+				if ("purple")
+					new /obj/item/clothing/under/rank/medical/purple(src)
+					new /obj/item/clothing/head/surgery/purple(src)
+			switch(pick("blue", "green", "purple"))
+				if ("blue")
+					new /obj/item/clothing/under/rank/medical/blue(src)
+					new /obj/item/clothing/head/surgery/blue(src)
+				if ("green")
+					new /obj/item/clothing/under/rank/medical/green(src)
+					new /obj/item/clothing/head/surgery/green(src)
+				if ("purple")
+					new /obj/item/clothing/under/rank/medical/purple(src)
+					new /obj/item/clothing/head/surgery/purple(src)
+			new /obj/item/clothing/under/rank/medical(src)
+			new /obj/item/clothing/under/rank/nurse(src)
+			new /obj/item/clothing/under/rank/orderly(src)
+			new /obj/item/clothing/suit/storage/labcoat(src)
+			new /obj/item/clothing/suit/storage/fr_jacket(src)
+			new /obj/item/clothing/shoes/white(src)
+			new /obj/item/device/radio/headset/msulaco(src)
+			new /obj/item/weapon/storage/belt/medical(src)
+			new /obj/item/clothing/glasses/hud/health(src)
 
 //MARINE SUPPLY CRATES APOPHIS775 15JAN2015
 
+//Meh.
+/*
 /obj/structure/closet/crate/large/marine/gear
 	name = "Marine Gear"
 	desc = "A crate containing standard issue Marine gear for 5 marines"
@@ -307,13 +282,12 @@
 		..()
 		for(var/c, c<5, c++)
 			new /obj/item/clothing/under/marine_jumpsuit(src)
-			new /obj/item/clothing/head/helmet/marine2(src)
-			new /obj/item/clothing/suit/storage/marine2(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
 		return
-
 
 
 /obj/structure/closet/crate/plastic/marine/alpha
@@ -375,9 +349,10 @@
 			new /obj/item/device/multitool(src)
 			new /obj/item/weapon/storage/backpack(src)
 		return
+*/
 
 /obj/structure/closet/secure_closet/req_officer
-	name = "RO's Locker"
+	name = "RO's Extra Locker"
 	req_access = list(access_sulaco_cargo)
 	icon_state = "securecargo1"
 	icon_closed = "securecargo"
@@ -387,15 +362,14 @@
 	icon_off = "securecargooff"
 
 	New()
-		sleep(2)
-		new /obj/item/device/radio/headset/mcom(src)
-		new /obj/item/clothing/under/rank/ro_suit(src)
-		new /obj/item/clothing/shoes/marine(src)
-		new /obj/item/weapon/storage/belt/marine/full(src)
-		new /obj/item/clothing/head/soft/ro_cap(src)
-		new /obj/item/clothing/head/helmet/marine2(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/melee/baton(src)
-		new /obj/item/weapon/storage/backpack/marine(src)
-		return
+		spawn(2)
+			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/clothing/under/rank/ro_suit(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/weapon/storage/belt/marine/full(src)
+			new /obj/item/clothing/head/soft/ro_cap(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/weapon/gun/energy/taser(src)
+			new /obj/item/weapon/melee/baton(src)
+			new /obj/item/weapon/storage/backpack/marine(src)

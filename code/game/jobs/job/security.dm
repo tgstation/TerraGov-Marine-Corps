@@ -19,7 +19,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine, slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/sec/alt(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marineMP(H), slot_wear_suit)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/security(H), slot_glasses)
 		spawn(10)
 			H << "\red You are a Military Police Officer!"

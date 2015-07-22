@@ -42,13 +42,15 @@
 		arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
-		close_doors(interim)
+		spawn(1)
+			close_doors(interim)
 
 		while (world.time < arrive_time)
 			sleep(5)
 
 		move(interim, destination, direction)
-		open_doors(destination)
+		spawn(1)
+			open_doors(destination)
 		moving_status = SHUTTLE_IDLE
 
 		recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
@@ -72,11 +74,13 @@
 
 	for(var/obj/machinery/door/unpowered/D in area)
 		if(!D.density && !D.locked)
-			D.close()
+			spawn(0)
+				D.close()
 
 	for(var/obj/machinery/door/poddoor/shutters/P in area)
 		if(!P.density)
-			P.close()
+			spawn(0)
+				P.close()
 
 /datum/shuttle/proc/open_doors(var/area/area)
 	if(!area || !istype(area)) //somehow

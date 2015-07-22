@@ -234,16 +234,16 @@ var/list/all_supply_groups = list("Operations","Security","Supplies","Engineerin
 /datum/supply_packs/armor_basic
 	name = "Marine armor crate"
 	contains = list(
-					/obj/item/clothing/head/helmet/marine2,
-					/obj/item/clothing/head/helmet/marine2,
-					/obj/item/clothing/head/helmet/marine2,
-					/obj/item/clothing/head/helmet/marine2,
-					/obj/item/clothing/head/helmet/marine2,
-					/obj/item/clothing/suit/storage/marine2,
-					/obj/item/clothing/suit/storage/marine2,
-					/obj/item/clothing/suit/storage/marine2,
-					/obj/item/clothing/suit/storage/marine2,
-					/obj/item/clothing/suit/storage/marine2
+					/obj/item/clothing/head/helmet/marine,
+					/obj/item/clothing/head/helmet/marine,
+					/obj/item/clothing/head/helmet/marine,
+					/obj/item/clothing/head/helmet/marine,
+					/obj/item/clothing/head/helmet/marine,
+					/obj/item/clothing/suit/storage/marine,
+					/obj/item/clothing/suit/storage/marine,
+					/obj/item/clothing/suit/storage/marine,
+					/obj/item/clothing/suit/storage/marine,
+					/obj/item/clothing/suit/storage/marine
 				)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -253,8 +253,8 @@ var/list/all_supply_groups = list("Operations","Security","Supplies","Engineerin
 /datum/supply_packs/armor_leader
 	name = "Squad leader armor crate"
 	contains = list(
-					/obj/item/clothing/head/helmet/marine2/leader,
-					/obj/item/clothing/suit/storage/marine_leader_armor
+					/obj/item/clothing/head/helmet/marine/leader,
+					/obj/item/clothing/suit/storage/marine/marine_leader_armor
 				)
 	cost = 80
 	containertype = /obj/structure/closet/crate

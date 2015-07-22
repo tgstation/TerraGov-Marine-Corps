@@ -11,6 +11,11 @@
 	var/obj/machinery/camera/cam = null
 	var/list/network = list("LEADER")
 	var/is_watching = 0
+	var/x_offset_s = 0
+	var/y_offset_s = 0
+	var/x_offset_b = 0
+	var/y_offset_b = 0
+	var/console_locked = 0
 
 
 /obj/machinery/computer/overwatch/attackby(var/obj/I as obj, var/mob/user as mob)  //Can't break or disassemble.
@@ -30,14 +35,24 @@
 	if(..())  //Checks for power outages
 		return
 
+	if(operator && console_locked && operator != usr)
+		usr << "\icon[src] This console is currently <b>LOCKED</b> by [operator.name]. You are unable to access the controls."
+		return
+
 	user.set_machine(src)
 	var/dat = "<head><title>Overwatch Console</title></head><body>"
 
 	if(!operator)
-		dat += "<BR>Operator: <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
+		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
 	else
-		dat += "<BR>Operator: <A href='?src=\ref[src];operation=change_operator'>[operator.name]</A><BR>"
-		dat += "<A href='?src=\ref[src];operation=logout'>{Stop Overwatch}</A><BR>"
+		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>[operator.name]</A><BR>"
+		dat += "   <A href='?src=\ref[src];operation=logout'>{Stop Overwatch}</A><BR>"
+		dat += "<BR><B>Console Lock:</b> "
+		if(console_locked)
+			dat += "ON "
+		else
+			dat += "OFF "
+		dat += "<A href='?src=\ref[src];operation=toggle_lock'>\[Toggle\]</A><BR>"
 		dat += "----------------------<br>"
 
 		switch(src.state)
@@ -45,7 +60,7 @@
 				if(!current_squad) //No squad has been set yet. Pick one.
 					dat += "Current Squad: <A href='?src=\ref[src];operation=pick_squad'>----------</A><BR>"
 				else
-					dat += "Current Squad: <A href='?src=\ref[src];operation=pick_squad'>[current_squad.name] Squad</A>  "
+					dat += "Current Squad: [current_squad.name] Squad</A>   "
 					dat += "<A href='?src=\ref[src];operation=message'>\[Message Squad\]</a><br><br>"
 					dat += "----------------------<BR><BR>"
 					if(current_squad.squad_leader && istype(current_squad.squad_leader))
@@ -65,22 +80,9 @@
 					else
 						dat += "<B><font color=red>NONE!</font></B> <A href='?src=\ref[src];operation=set_secondary'>\[Set\]</A><BR>"
 					dat += "<BR>"
-					if(!current_squad.supply_timer)
-						if(!current_squad.sbeacon)
-							dat += "<b>Supply Drop Status:</b> No beacon located! <A href='?src=\ref[src];operation=refresh'>\[Locate\]</A><BR>"
-						else
-							dat += "<b>Supply Drop Status:</b> Available - <A href='?src=\ref[src];operation=dropsupply'>\[Drop\]</A><BR>"
-					else
-						dat += "<b>Supply Drop Status:</b> Launch Tubes Resetting</A><BR>"
-
-					if(!current_squad.bomb_timer)
-						if(!current_squad.bbeacon)
-							dat += "<b>Orbital Bombardment Status:</b> No beacon located! <A href='?src=\ref[src];operation=refresh'>\[Locate\]</A><BR>"
-						else
-							dat += "<b>Orbital Bombardment Status:</b> Available - <A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</A><BR>"
-					else
-						dat += "<b>Orbital Bombardment Status:</b> Orbital Cannon Resetting</A><BR><BR>"
-					dat += "<A href='?src=\ref[src];operation=monitor'>Squad Monitor</a>"
+					dat += "<A href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><BR>"
+					dat += "<A href='?src=\ref[src];operation=bombs'>Orbital Bombardment Control</a><BR>"
+					dat += "<A href='?src=\ref[src];operation=monitor'>Squad Monitor</a><BR>"
 					dat += "<BR><BR>----------------------<BR></Body>"
 					dat += "<BR><BR><A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
 
@@ -122,10 +124,64 @@
 						else if (dist == -2)
 							dat += "<td><font color='red'>Leader</font></td></tr>"
 					dat += "</table>"
-
 				dat += "<BR><BR>----------------------<br>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
 				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
+			if(2)
+				dat += "<BR><B>Supply Drop Control</B><BR><BR>"
+				if(!current_squad)
+					dat += "No squad selected!"
+				else
+					dat += "<B>Current Supply Drop Status:</B> "
+					if(current_squad.supply_timer)
+						dat += "Launch tubes resetting<br>"
+					else
+						dat += "<font color='green'>Ready!</font><br>"
+					dat += "<B>Launch Pad Status:</b> "
+					var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc
+					if(C)
+						dat += "<font color='green'>Supply crate loaded</font><BR>"
+					else
+						dat += "Empty<BR>"
+					dat += "<B>Supply Beacon Status:</b> "
+					if(current_squad.sbeacon)
+						if(istype(current_squad.sbeacon.loc,/turf))
+							dat += "<font color='green'>Transmitting!</font><BR>"
+						else
+							dat += "Not Transmitting<BR>"
+					else
+						dat += "Not Transmitting<BR>"
+					dat += "<B>X-Coordinate Offset:</B> [x_offset_s] <A href='?src=\ref[src];operation=supply_x'>\[Change\]</a><BR>"
+					dat += "<B>Y-Coordinate Offset:</B> [y_offset_s] <A href='?src=\ref[src];operation=supply_y'>\[Change\]</a><BR><BR>"
+					dat += "<A href='?src=\ref[src];operation=dropsupply'>\[LAUNCH!\]</a>"
+				dat += "<BR><BR>----------------------<br>"
+				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
+				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
+			if(3)
+				dat += "<BR><B>Orbital Bombardment Control</B><BR><BR>"
+				if(!current_squad)
+					dat += "No squad selected!"
+				else
+					dat += "<B>Current Cannon Status:</B> "
+					if(current_squad.supply_timer)
+						dat += "Shells Reloading<br>"
+					else
+						dat += "<font color='green'>Ready!</font><br>"
+					dat += "<B>Beacon Status:</b> "
+					if(current_squad.bbeacon)
+						if(istype(current_squad.bbeacon.loc,/turf))
+							dat += "<font color='green'>Transmitting!</font><BR>"
+						else
+							dat += "Not Transmitting<BR>"
+					else
+						dat += "Not Transmitting<BR>"
+					dat += "<B>X-Coordinate Offset:</B> [x_offset_b] <A href='?src=\ref[src];operation=bomb_x'>\[Change\]</a><BR>"
+					dat += "<B>Y-Coordinate Offset:</B> [y_offset_b] <A href='?src=\ref[src];operation=bomb_y'>\[Change\]</a><BR><BR>"
+					dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a>"
+				dat += "<BR><BR>----------------------<br>"
+				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
+				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
+
 	user << browse(dat, "window=overwatch;size=500x500")
 	onclose(user, "overwatch")
 	return
@@ -146,6 +202,12 @@
 			src.state = 0
 		if("monitor")
 			src.state = 1
+		if("supplies")
+			src.state = 2
+		if("bombs")
+			src.state = 3
+		if("toggle_lock")
+			src.console_locked = !src.console_locked
 		if("change_operator")
 			if(current_squad)
 				current_squad.overwatch_officer = usr
@@ -180,6 +242,7 @@
 							current_squad = selected
 							send_to_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
 							send_to_squad("Your Overwatch officer is: [operator.name].")
+							src.attack_hand(usr)
 							find_helmet_cam() //Set the helmet cam, if one is being worn by the SL
 							if(!current_squad.drop_pad) //Why the hell did this not link?
 								for(var/obj/item/effect/supply_drop/S in world)
@@ -215,6 +278,30 @@
 			if(input)
 				current_squad.secondary_objective = input
 				send_to_squad("Your secondary objective has changed. See Status pane for details.")
+		if("supply_x")
+			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
+			usr << "\icon[src] X-offset is now [input]."
+			src.x_offset_s = input
+		if("supply_y")
+			var/input = input(usr,"What Y-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
+			usr << "\icon[src] Y-offset is now [input]."
+			y_offset_s = input
+		if("bomb_x")
+			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
+			usr << "\icon[src] X-offset is now [input]."
+			x_offset_b = input
+		if("bomb_x")
+			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
+			usr << "\icon[src] Y-offset is now [input]."
+			y_offset_b = input
 		if("refresh")
 			src.attack_hand(usr)
 		if("dropsupply")
@@ -222,80 +309,13 @@
 				if(current_squad.supply_timer)
 					usr << "\icon[src] Supply drop not yet available!"
 				else
-					if(current_squad.sbeacon)
-						var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc
-						if(C && istype(C))
-							if(isturf(current_squad.sbeacon.loc))
-								var/turf/T = get_turf(current_squad.sbeacon)
-								if(istype(T,/turf/simulated/floor/gm))
-									var/x_offset = input(usr,"X Offset","Set an X offset for the drop? (-5 to 5)","0") as num
-									var/y_offset = input(usr,"Y Offset","Set a Y offset for the drop? (-5 to 5)","0") as num
-									if(x_offset) x_offset = round(x_offset)
-									if(y_offset) y_offset = round(y_offset) //Sanitize the values a bit, so we don't get like, 3.1415927
-									if(x_offset < -5) x_offset = -5
-									if(x_offset > 5) x_offset = 5
-									if(y_offset < -5) y_offset = -5
-									if(y_offset > 5) y_offset = 5
-									x_offset += rand(-2,2) //Randomize the drop zone a little bit.
-									y_offset += rand(-2,2)
-									C.visible_message("The [C] begins to load into a launch tube. Stand clear!")
-									current_squad.handle_stimer(5000)
-									send_to_squad("Supply Drop Incoming!")
-									del(current_squad.sbeacon) //Wipe the beacon. It's only good for one use.
-									spawn(50)
-										playsound(C.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehh
-										C.z = T.z
-										C.x = T.x + x_offset
-										C.y = T.y + x_offset
-										spawn(1)
-											playsound(C.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehhhhhhhhh.
-											C.visible_message("\icon[src] The [C] falls from the sky!")
-									usr << "\icon[src] [C] launched! Another launch will be available in <b>5</b> minutes."
-
-								else
-									usr << "\icon[src] The beacon is not located outside."
-							else
-								usr << "\icon[src] The beacon is not on the ground!"
-						else
-							usr << "\icon[src] There's nothing located on the launch pad! Get Requisitions on the line!"
-					else
-						usr << "\icon[src] No beacon!"
+					handle_supplydrop()
 		if("dropbomb")
 			if(current_squad)
 				if(current_squad.bomb_timer)
 					usr << "\icon[src] Orbital bombardment not yet available!"
 				else
-					if(current_squad.bbeacon)
-						if(isturf(current_squad.bbeacon.loc))
-							var/turf/T = get_turf(current_squad.bbeacon)
-							if(istype(T,/turf/simulated/floor/gm))
-								var/x_offset = input(usr,"X Offset","Set an X offset for the bombardment? (-5 to 5)","0") as num
-								var/y_offset = input(usr,"Y Offset","Set a Y offset for the bombardment? (-5 to 5)","0") as num
-								if(x_offset) x_offset = round(x_offset)
-								if(y_offset) y_offset = round(y_offset) //Sanitize the values a bit, so we don't get like, 3.1415927
-								if(x_offset < -5) x_offset = -5
-								if(x_offset > 5) x_offset = 5
-								if(y_offset < -5) y_offset = -5
-								if(y_offset > 5) y_offset = 5
-								x_offset += rand(-3,3) //Randomize the drop zone a little bit.
-								y_offset += rand(-3,3)
-								usr << "\icon[src] \red FIRING!!"
-								current_squad.handle_btimer(15000)
-								send_to_squad("WARNING: Orbital Bombardment beginning! Get outside of Danger Close!")
-								del(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
-								spawn(50)
-									for(var/mob/living/carbon/H in living_mob_list)
-										if(H.z == src.z && !src.stat)
-											H << "<span class='warning'>The deck of the Sulaco shudders as the orbital cannons fire at LV-624.</span>"
-									var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
-									if(target && istype(target))
-										explosion(target, 2, 3, 4, 1) //Kaboom!
-							else
-								usr << "\icon[src] The beacon is not located outside."
-						else
-							usr << "\icon[src] The beacon is not on the ground!"
-					else
-						usr << "\icon[src] No beacon!"
+					handle_bombard()
 		if("monitor")
 			src.state = 1
 			src.attack_hand(usr)
@@ -327,7 +347,6 @@
 //	src.updateUsrDialog()
 	src.attack_hand(usr) //The above doesn't ever seem to work.
 
-
 /obj/machinery/computer/overwatch/check_eye(var/mob/user as mob)
 	if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
 		is_watching = 0
@@ -353,8 +372,8 @@
 	if(current_squad && !cam) //Look for a cam if we don't have one already.
 		if(current_squad.squad_leader) //Link the camera, if any.
 			var/mob/living/carbon/human/L = current_squad.squad_leader
-			if(L && istype(L) && istype(L.head,/obj/item/clothing/head/helmet/marine2/leader))
-				var/obj/item/clothing/head/helmet/marine2/leader/helm = L.head
+			if(L && istype(L) && istype(L.head,/obj/item/clothing/head/helmet/marine/leader))
+				var/obj/item/clothing/head/helmet/marine/leader/helm = L.head
 				if(helm.camera)
 					cam = helm.camera //Found and linked.
 					return
@@ -369,12 +388,116 @@
 		nametext = "[usr.name] transmits: "
 
 	for(var/mob/living/carbon/human/M in living_mob_list)
-		if(M && istype(M) && !M.stat && M.client && M.mind && M.mind.assigned_squad == current_squad) //Only living and connected people in our squad
+		if(M && istype(M) && !M.stat && M.client && M.mind && (M.mind.assigned_squad == current_squad || M == usr)) //Only living and connected people in our squad
 			if(!only_leader)
 				M << "\icon[src] <font color='blue'><B>\[Overwatch\]:</b> [nametext][text]</font>"
 			else
 				if(is_leader_from_card(M))
 					M << "\icon[src] <font color='blue'><B>\[SL Overwatch\]:</b> [nametext][text]</font>"
+
+/obj/machinery/computer/overwatch/proc/handle_bombard()
+	if(!usr) return 0
+	if(!current_squad)
+		usr << "\icon[src] No squad selected!"
+		return 0
+	if(!current_squad.bbeacon)
+		usr << "\icon[src] No beacon detected!"
+		return 0
+	if(!isturf(current_squad.bbeacon.loc) || current_squad.bbeacon.z != 1)
+		usr << "\icon[src] Beacon is not transmitting from the ground."
+		return 0
+	var/x_offset = x_offset_b
+	var/y_offset = y_offset_b
+	var/turf/T = get_turf(current_squad.bbeacon)
+	x_offset = round(x_offset)
+	y_offset = round(y_offset)
+	if(x_offset < -5 || x_offset > 5) x_offset = 0
+	if(y_offset < -5 || y_offset > 5) x_offset = 0
+	//All set, let's do this.
+	current_squad.bbeacon.visible_message("The beacon begins blinking red!")
+	send_to_squad("Initializing fire coordinates..")
+	sleep(15)
+	send_to_squad("Transmitting beacon feed..")
+	sleep(15)
+	send_to_squad("Calibrating trajectory window..")
+	sleep(15)
+	usr << "\icon[src] \red FIRING!!"
+	send_to_squad("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
+	if(current_squad.bbeacon)
+		playsound(current_squad.bbeacon.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehh
+	spawn(6)
+		if(!current_squad.bbeacon) //May have been destroyed en route
+			send_to_squad("Trajectory beacon not found. Aborting launch.")
+			return
+		current_squad.handle_btimer(20000)
+		message_admins("ALERT: [usr] ([usr.key]) used an orbital bombardment.")
+		del(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
+		current_squad.bbeacon = null
+		for(var/mob/living/carbon/H in living_mob_list)
+			if((H.z == 3 || H.z == 4) && !src.stat) //Sulaco decks.
+				H << "<span class='warning'>The deck of the Sulaco shudders as the orbital cannons open fire on LV-624.</span>"
+				if(!H.buckled && H.client)
+					shake_camera(H, 5, 1)
+		x_offset += rand(-2,2) //Little bit of randomness.
+		y_offset += rand(-2,2)
+		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
+		if(target && istype(target))
+			explosion(target, 2, 2, 5, 1) //Kaboom!
+			spawn(rand(5,30)) //This is all better done in a for loop, but I am mad lazy
+				x_offset += rand(-1,1)
+				y_offset += rand(-1,1)
+				target = locate(T.x + x_offset,T.y + y_offset,T.z)
+				explosion(target,1,1,4)
+				spawn(rand(5,30))
+					x_offset += rand(-1,1)
+					y_offset += rand(-1,1)
+					target = locate(T.x + x_offset,T.y + y_offset,T.z)
+					explosion(target,1,1,4)
+
+/obj/machinery/computer/overwatch/proc/handle_supplydrop()
+	if(!usr || usr != operator)
+		return
+
+	if(!current_squad.sbeacon)
+		usr << "\icon[src] No supply beacon detected!"
+		return
+
+	var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	if(!C || !istype(C))
+		usr << "\icon[src] No crate was detected on the drop pad. Get Requisitions on the line!"
+		return
+
+	if(!isturf(current_squad.sbeacon.loc))
+		usr << "\icon[src] The beacon was not detected on the ground."
+		return
+
+	var/turf/T = get_turf(current_squad.sbeacon)
+	var/x_offset = x_offset_s
+	var/y_offset = y_offset_s
+	x_offset = round(x_offset)
+	y_offset = round(y_offset)
+	if(x_offset < -5 || x_offset > 5) x_offset = 0
+	if(y_offset < -5 || y_offset > 5) y_offset = 0
+	x_offset += rand(-2,2) //Randomize the drop zone a little bit.
+	y_offset += rand(-2,2)
+
+	C.visible_message("The [C] begins to load into a launch tube. Stand clear!")
+	current_squad.handle_stimer(5000)
+	send_to_squad("Supply Drop Incoming!")
+	current_squad.sbeacon.visible_message("\blue The beacon begins to beep!")
+	spawn(100)
+		if(current_squad.sbeacon)
+			del(current_squad.sbeacon) //Wipe the beacon. It's only good for one use.
+			current_squad.sbeacon = null
+		playsound(C.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehh
+		C.z = T.z
+		C.x = T.x + x_offset
+		C.y = T.y + x_offset
+		spawn(0)
+			playsound(C.loc,'sound/effects/bamf.ogg', 100, 1)  //Ehhhhhhhhh.
+		C.visible_message("\icon[C] The [C] falls from the sky!")
+		usr << "\icon[src] [C] launched! Another launch will be available in <b>5</b> minutes."
+
 
 /obj/item/effect/supply_drop
 	name = "Supply Drop Pad"
@@ -413,3 +536,98 @@
 /obj/item/effect/supply_drop/delta
 	icon_state = "deltadrop"
 	squad = "Delta"
+
+/obj/item/device/squad_beacon
+	name = "Squad Supply Beacon"
+	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "motion0"
+	var/activated = 0
+	w_class = 2
+	var/datum/squad/squad = null
+	var/icon_activated = "motion2"
+
+	attack_self(mob/user)
+		if(activated)
+			user << "It's already been activated. Just leave it."
+			return
+		if(!ishuman(user)) return
+		if(!user.mind)
+			user << "It doesn't seem to do anything for you."
+			return
+
+		if(user.mind.assigned_squad)
+			squad = user.mind.assigned_squad
+		else
+			squad = get_squad_data_from_card(user)
+
+		if(squad == null)
+			user << "You need to be in a squad for this to do anything."
+			return
+		if(squad.sbeacon)
+			user << "Your squad already has a beacon activated."
+			return
+		if(!istype(get_turf(user),/turf/simulated/floor/gm))
+			user << "You have to be outside (on a ground map turf) to activate this."
+			return
+
+		squad.sbeacon = src
+		activated = 1
+		anchored = 1
+		w_class = 10
+		icon_state = "[icon_activated]"
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		user << "You activate the [src]. Now toss it on the ground and wait for your supply drop."
+		return
+
+	Del()
+		if(squad) //Clear the beacon data.
+			squad.sbeacon = null
+		..()
+
+/obj/item/device/squad_beacon/bomb
+	name = "Orbital Beacon"
+	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "motion4"
+	w_class = 2
+	icon_activated = "motion1"
+
+	attack_self(mob/user)
+		if(activated)
+			user << "It's already been activated. Just leave it."
+			return
+		if(!ishuman(user)) return
+		if(!user.mind)
+			user << "It doesn't seem to do anything for you."
+			return
+
+		if(user.mind.assigned_squad)
+			squad = user.mind.assigned_squad
+		else
+			squad = get_squad_data_from_card(user)
+
+		if(squad == null)
+			user << "You need to be in a squad for this to do anything."
+			return
+		if(squad.bbeacon)
+			user << "Your squad already has a beacon activated."
+			return
+
+		if(user.z != 1)
+			user << "You have to be on the ground to use this or it won't transmit."
+			return
+
+		squad.bbeacon = src //Set us up the bomb~
+		activated = 1
+		anchored = 1
+		w_class = 10
+		icon_state = "[icon_activated]"
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		user << "You activate the [src]. Now toss it and get outside of danger close!"
+		return
+
+	Del()
+		if(squad) //Clear the beacon data.
+			squad.bbeacon = null
+		..()

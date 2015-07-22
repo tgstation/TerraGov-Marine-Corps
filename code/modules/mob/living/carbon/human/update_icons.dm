@@ -130,7 +130,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define TARGETED_LAYER			23
 #define FIRE_LAYER				24		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
 #define CLAW_LAYER				25 	//Flicks a claw attack. Stored permanently as a blank overlay until it's required.
-#define TOTAL_LAYERS			25
+#define SQUAD_LAYER				26  //Used for squad armor/helmet overlays.
+#define TOTAL_LAYERS			26
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -764,6 +765,18 @@ proc/get_damage_icon_part(damage_state, body_part)
 			bloodsies.color = head.blood_color
 			standing.overlays	+= bloodsies
 
+		if(istype(head,/obj/item/clothing/head/helmet/marine))
+			var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
+			var/leader = is_leader_from_card(src)
+			if(leader)
+				standing.overlays += helmetmarkings_sql[squad]
+			else if(squad > 0 && squad < 5)
+				standing.overlays += helmetmarkings[squad]
+
+			if(head:hug_damage) //We know this is a good var.
+				var/image/scratchy = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
+				standing.overlays += scratchy
+
 		overlays_standing[HEAD_LAYER] = standing
 
 	else
@@ -809,6 +822,14 @@ proc/get_damage_icon_part(damage_state, body_part)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color
 			standing.overlays	+= bloodsies
+
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
+			var/leader = is_leader_from_card(src)
+			if(leader)
+				standing.overlays += armormarkings_sql[squad]
+			else if(squad > 0 && squad < 5)
+				standing.overlays += armormarkings[squad]
 
 		overlays_standing[SUIT_LAYER]	= standing
 
