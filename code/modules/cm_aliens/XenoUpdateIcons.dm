@@ -45,11 +45,12 @@
 	..()
 	if (monkeyizing)	return
 
-	update_inv_head(0)
-	update_inv_wear_suit(0)
+//We don't need to do most of this stuff anymore, they don't even have the slots.
+//	update_inv_head(0)
+//	update_inv_wear_suit(0)
 	update_inv_r_hand(0)
 	update_inv_l_hand(0)
-	update_inv_pockets(0)
+//	update_inv_pockets(0)
 	//update_hud() //Icons already update hud
 	update_icons()
 

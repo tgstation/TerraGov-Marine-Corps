@@ -206,14 +206,14 @@
 	t = replacetext(t, "\[/large\]", "</font>")
 	t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
 	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
-	
+
 	t = replacetext(t, "\[h1\]", "<H1>")
 	t = replacetext(t, "\[/h1\]", "</H1>")
 	t = replacetext(t, "\[h2\]", "<H2>")
 	t = replacetext(t, "\[/h2\]", "</H2>")
 	t = replacetext(t, "\[h3\]", "<H3>")
 	t = replacetext(t, "\[/h3\]", "</H3>")
-	
+
 	if(!iscrayon)
 		t = replacetext(t, "\[*\]", "<li>")
 		t = replacetext(t, "\[hr\]", "<HR>")
@@ -506,5 +506,8 @@
 /obj/item/weapon/paper/crumpled/update_icon()
 	return
 
-/obj/item/weapon/paper/crumpled/bloody
+/obj/item/weapon/paper/crumpled/bloody/
 	icon_state = "scrap_bloodied"
+
+/obj/item/weapon/paper/crumpled/bloody/csheet
+	info = "<b>Character Sheet</b>\n\nKorbath the Barbarian\nLevel 6 Barbarian\nHitpoints: 47/93\nSTR: 18\nDEX: 14\nCON: 16\nINT: 8\nWIS: 11\nCHA: 15\n\n<B>Inventory:</b>\nGreatsword +3 \nChain M--\n\n\nThe rest of the page is covered in smears of blood."

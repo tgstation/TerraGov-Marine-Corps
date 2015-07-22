@@ -116,7 +116,7 @@
 
 	var/atom/movable/A = atom
 
-	var/loopsanity = 100
+	var/loopsanity = 30 //Dropping this cuts down on lag in areas with shitloads of objects around (blood spatters, etc). Was 100
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.lastarea)

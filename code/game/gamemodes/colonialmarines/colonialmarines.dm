@@ -137,7 +137,7 @@
 	H.loc = pick(surv_spawn)
 
 	//Damage them for realism purposes
-	H.take_organ_damage(rand(0,25), rand(0,25))
+	H.take_organ_damage(rand(0,15), rand(0,15))
 
 //Give them proper jobs and stuff here later
 	var/randjob = rand(0,8)
@@ -166,6 +166,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
 	H.update_icons()
 
 	//Give them some information
