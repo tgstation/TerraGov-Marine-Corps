@@ -130,8 +130,7 @@ Please contact me on #coderbus IRC. ~Carn x
 #define TARGETED_LAYER			23
 #define FIRE_LAYER				24		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
 #define CLAW_LAYER				25 	//Flicks a claw attack. Stored permanently as a blank overlay until it's required.
-#define SQUAD_LAYER				26  //Used for squad armor/helmet overlays.
-#define TOTAL_LAYERS			26
+#define TOTAL_LAYERS			25
 //////////////////////////////////
 
 /mob/living/carbon/human

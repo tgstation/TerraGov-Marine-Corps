@@ -2124,7 +2124,8 @@ var/list/the_station_areas = list (
 	luminosity = 1
 	lighting_use_dynamic = 0
 	requires_power = 0
-	var/sound/mysound = null
+
+/*	var/sound/mysound = null
 
 	New()
 		..()
@@ -2174,3 +2175,4 @@ var/list/the_station_areas = list (
 
 		spawn(60) .()
 
+*/

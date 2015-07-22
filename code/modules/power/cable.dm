@@ -186,6 +186,9 @@
 		return 0
 
 /obj/structure/cable/ex_act(severity)
+	if(src.z == 1 && layer < 2) //ground map - no blowie. They are buried underground.
+		return
+
 	switch(severity)
 		if(1.0)
 			del(src)

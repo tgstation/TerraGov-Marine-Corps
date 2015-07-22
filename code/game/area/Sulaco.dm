@@ -1,4 +1,7 @@
 
+/area/sulaco
+	ambience = list('sound/ambience/shipambience.ogg')
+
 /area/sulaco/bridge
 	name = "\improper Bridge"
 	icon_state = "bridge"
@@ -23,18 +26,22 @@
 /area/sulaco/medbay
 	name = "\improper Sulaco Medbay"
 	icon_state = "medbay"
+	ambience = list('sound/ambience/signal.ogg'	)
 
 /area/sulaco/medbay/storage
 	name = "\improper Sulaco Medbay Storage"
 	icon_state = "medbay2"
+	ambience = list('sound/ambience/signal.ogg'	)
 
 /area/sulaco/medbay/storage2
 	name = "\improper Sulaco Medbay Storage"
 	icon_state = "medbay3"
+	ambience = list('sound/ambience/signal.ogg'	)
 
 /area/sulaco/medbay/west
 	name = "\improper Sulaco Medbay West"
 	icon_state = "medbay3"
+	ambience = list('sound/ambience/signal.ogg'	)
 
 /area/sulaco/brig
 	name = "\improper Sulaco Brig"
@@ -97,6 +104,7 @@
 /area/sulaco/engineering
 	name = "\improper Engineering"
 	icon_state = "engine"
+	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/sulaco/engineering/storage
 	name = "\improper Engineering Storage"
@@ -109,14 +117,17 @@
 /area/sulaco/engineering/atmos
 	name = "\improper Atmospherics"
 	icon_state = "atmos"
+	ambience = list('sound/ambience/ambiatm1.ogg','sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg')
 
 /area/sulaco/engineering/engine
 	name = "\improper Engine Chamber"
 	icon_state = "yellow"
+	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/sulaco/engineering/smes
 	name = "\improper Engineering SMES"
 	icon_state = "engine_smes"
+	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/sulaco/marine
 	name = "\improper Marine Prep"
@@ -206,6 +217,9 @@
 	name = "\improper Maintenance"
 	icon_state = "maintcentral"
 
+/area/shuttle/drop1
+	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg', 'sound/ambience/song_game.ogg')
+
 /area/shuttle/drop1/sulaco
 	name = "\improper Dropship 1"
 	icon_state = "shuttlered"
@@ -229,3 +243,147 @@
 /area/shuttle/drop2/transit
 	name = "\improper Dropship 2"
 	icon_state = "shuttlered"
+
+/area/ground
+	name = "Ground"
+	icon_state = "green"
+	always_unpowered = 1 //Will this mess things up? God only knows
+
+/area/ground/jungle1
+	name ="\improper Southeast Jungle"
+	icon_state = "southeast"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/jungle2
+	name ="\improper Southern Jungle"
+	icon_state = "south"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/jungle3
+	name ="\improper Southwest Jungle"
+	icon_state = "southwest"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/jungle4
+	name ="\improper Western Jungle"
+	icon_state = "west"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/jungle5
+	name ="\improper Eastern Jungle"
+	icon_state = "east"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/jungle6
+	name ="\improper Northwest Jungle"
+	icon_state = "northwest"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/jungle7
+	name ="\improper Northern Jungle"
+	icon_state = "north"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/jungle8
+	name ="\improper Northeast Jungle"
+	icon_state = "northeast"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+
+/area/ground/caves //Does not actually exist
+	name ="\improper Caves"
+	icon_state = "cave"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/caves/west1
+	name ="\improper Western Caves"
+	icon_state = "away1"
+
+/area/ground/caves/east1
+	name ="\improper Eastern Caves"
+	icon_state = "away"
+
+/area/ground/caves/central1
+	name ="\improper Central Caves"
+	icon_state = "away4" //meh
+
+/area/ground/caves/west2
+	name ="\improper North Western Caves"
+	icon_state = "cave"
+
+/area/ground/caves/east2
+	name ="\improper North Eastern Caves"
+	icon_state = "cave"
+
+/area/ground/caves/central2
+	name ="\improper North Central Caves"
+	icon_state = "away3" //meh
+
+/area/ground/caves/central3
+	name ="\improper South Central Caves"
+	icon_state = "away2" //meh
+
+/area/ground/sand1
+	name = "\improper Western Barrens"
+	icon_state = "west"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand2
+	name = "\improper Central Barrens"
+	icon_state = "red"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand3
+	name = "\improper Eastern Barrens"
+	icon_state = "east"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand4
+	name = "\improper North Western Barrens"
+	icon_state = "northwest"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand5
+	name = "\improper North Central Barrens"
+	icon_state = "blue-red"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand6
+	name = "\improper North Eastern Barrens"
+	icon_state = "northeast"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand7
+	name = "\improper South Western Barrens"
+	icon_state = "southwest"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand8
+	name = "\improper South Central Barrens"
+	icon_state = "away1"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/sand9
+	name = "\improper South Eastern Barrens"
+	icon_state = "southeast"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/ground/river1
+	name = "\improper Western River"
+	icon_state = "blueold"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/river2
+	name = "\improper Central River"
+	icon_state = "purple"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/river3
+	name = "\improper Eastern River"
+	icon_state = "bluenew"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/ground/compound
+	name = "\improper Weyland Yutani Compound"
+	icon_state = "green"
+	ambience = list('sound/ambience/jungle_amb1.ogg')

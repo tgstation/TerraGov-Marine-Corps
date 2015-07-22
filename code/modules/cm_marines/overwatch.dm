@@ -163,7 +163,7 @@
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Cannon Status:</B> "
-					if(current_squad.supply_timer)
+					if(current_squad.bomb_timer)
 						dat += "Shells Reloading<br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
@@ -316,9 +316,6 @@
 					usr << "\icon[src] Orbital bombardment not yet available!"
 				else
 					handle_bombard()
-		if("monitor")
-			src.state = 1
-			src.attack_hand(usr)
 		if("back")
 			src.state = 0
 			src.attack_hand(usr)
@@ -329,15 +326,17 @@
 						usr << "\icon[src] Stopping helmet cam view."
 						is_watching = 0
 						usr.reset_view(null)
+						send_to_squad("Helmet camera: Activated.",0,1) //1-> Only to SL
 					else
 						usr << "\icon[src] Helmet camera activated."
 						is_watching = 1
 						check_eye(usr)
+						send_to_squad("Helmet camera: Deactivated.",0,1)
 				else
 					usr << "\icon[src] Searching for helmet cam.."
 					find_helmet_cam()
 					if(!cam)
-						usr << "\icon[src] No helmet cam found for this squad! Tell your Squad Leader!"
+						usr << "\icon[src] No helmet cam found for this squad! Tell your Squad Leader to wear an SL helmet!"
 						is_watching = 0
 					else
 						usr << "\icon[src] Helmet cam found and linked."
@@ -396,16 +395,21 @@
 					M << "\icon[src] <font color='blue'><B>\[SL Overwatch\]:</b> [nametext][text]</font>"
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
-	if(!usr) return 0
+	if(!usr) return
 	if(!current_squad)
 		usr << "\icon[src] No squad selected!"
-		return 0
+		return
 	if(!current_squad.bbeacon)
 		usr << "\icon[src] No beacon detected!"
-		return 0
+		return
 	if(!isturf(current_squad.bbeacon.loc) || current_squad.bbeacon.z != 1)
 		usr << "\icon[src] Beacon is not transmitting from the ground."
-		return 0
+		return
+	var/area/A = get_area(src)
+	if(A && istype(A,/area/ground/caves))
+		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
+		return
+
 	var/x_offset = x_offset_b
 	var/y_offset = y_offset_b
 	var/turf/T = get_turf(current_squad.bbeacon)
@@ -416,23 +420,24 @@
 	//All set, let's do this.
 	current_squad.bbeacon.visible_message("The beacon begins blinking red!")
 	send_to_squad("Initializing fire coordinates..")
-	sleep(15)
+	if(current_squad.bbeacon)
+		playsound(current_squad.bbeacon,'sound/effects/alert.ogg', 100, 1)  //Placeholder
+	sleep(25)
 	send_to_squad("Transmitting beacon feed..")
-	sleep(15)
+	sleep(25)
 	send_to_squad("Calibrating trajectory window..")
-	sleep(15)
+	sleep(25)
 	usr << "\icon[src] \red FIRING!!"
 	send_to_squad("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
-	if(current_squad.bbeacon)
-		playsound(current_squad.bbeacon.loc,'sound/effects/bomb_fall.ogg', 100, 1)  //Ehh
-	spawn(50)
+	spawn(6)
 		if(!current_squad.bbeacon) //May have been destroyed en route
 			send_to_squad("Trajectory beacon not found. Aborting launch.")
 			return
 		current_squad.handle_btimer(20000)
 		message_admins("ALERT: [usr] ([usr.key]) used an orbital bombardment.")
-		del(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
-		current_squad.bbeacon = null
+		if(current_squad.bbeacon)
+			del(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
+			current_squad.bbeacon = null
 		for(var/mob/living/carbon/H in living_mob_list)
 			if((H.z == 3 || H.z == 4) && !src.stat) //Sulaco decks.
 				H << "<span class='warning'>The deck of the Sulaco shudders as the orbital cannons open fire on LV-624.</span>"
@@ -580,11 +585,6 @@
 		user << "You activate the [src]. Now toss it on the ground and wait for your supply drop."
 		return
 
-	Del()
-		if(squad) //Clear the beacon data.
-			squad.sbeacon = null
-		..()
-
 /obj/item/device/squad_beacon/bomb
 	name = "Orbital Beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
@@ -618,6 +618,13 @@
 			user << "You have to be on the ground to use this or it won't transmit."
 			return
 
+		var/area/A = get_area(user)
+		if(A && istype(A))
+			if(istype(A,/area/ground/caves))
+				user << "This won't work if you're standing in a cave."
+				return
+
+		message_admins("ALERT: [user] ([user.key]) triggered an orbital strike beacon.")
 		squad.bbeacon = src //Set us up the bomb~
 		activated = 1
 		anchored = 1
@@ -626,8 +633,3 @@
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		user << "You activate the [src]. Now toss it and get outside of danger close!"
 		return
-
-	Del()
-		if(squad) //Clear the beacon data.
-			squad.bbeacon = null
-		..()
