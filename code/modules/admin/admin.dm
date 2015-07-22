@@ -1157,6 +1157,41 @@ var/global/floorIsLava = 0
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)</b>"
 
+/datum/admins/proc/togglesleep(var/mob/living/M as mob in world)
+	set category = "Admin"
+	set name = "Toggle Sleeping"
+
+	if(!check_rights(0))	return
+
+	if (M.sleeping > 0)
+		M.sleeping = 0
+	else
+		M.sleeping = 9999999
+
+	log_admin("[key_name(usr)] used Toggle Sleeping on [key_name(M)].")
+	message_admins("[key_name(usr)] used Toggle Sleeping on [key_name(M)].")
+
+	return
+
+/datum/admins/proc/sleepall()
+	set category = "Admin"
+	set name = "Toggle Sleep All in View"
+
+	if(!check_rights(0))	return
+
+	if(alert("This will toggle a sleep/awake status on ALL mobs within your view range (for Administration purposes). Are you sure?",,"Yes","Cancel") == "Yes")
+		for(var/mob/living/M in view())
+			if (M.sleeping > 0)
+				M.sleeping = 0
+			else
+				M.sleeping = 9999999
+	else
+		return
+
+	log_admin("[key_name(usr)] used Toggle Sleep All in View.")
+	message_admins("[key_name(usr)] used Toggle Sleep All in View.")
+
+	return
 
 /proc/ishost(whom)
 	if(!whom)
