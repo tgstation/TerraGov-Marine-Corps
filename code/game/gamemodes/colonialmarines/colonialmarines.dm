@@ -336,7 +336,7 @@ var/list/toldstory = list()
 	else
 		world << "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!"
 
-	world << "font size=3>Xenos Remaining: [count_humans()]. Humans remaining: [count_xenos()].</font>"
+	world << "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]."
 
 	spawn(45)
 		if(aliens.len)

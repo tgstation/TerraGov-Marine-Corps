@@ -19,18 +19,12 @@
 	update_hud()		//TODO: remove the need for this to be here
 	overlays.Cut()
 	if(stat == DEAD)
-		//If we mostly took damage from fire
-		if(fireloss > 125)
-			icon_state = "[caste] Dead"
-		else
-			icon_state = "[caste] Dead"
+		icon_state = "[caste] Dead"
 		for(var/image/I in overlays_lying)
 			overlays += I
 	else if(lying)
 		if(resting)
 			icon_state = "[caste] Sleeping"
-		else if(stat == UNCONSCIOUS)
-			icon_state = "[caste] Knocked Down"
 		else
 			icon_state = "[caste] Knocked Down"
 		for(var/image/I in overlays_lying)
@@ -40,6 +34,7 @@
 		else						icon_state = "[caste] Walking"
 		for(var/image/I in overlays_standing)
 			overlays += I
+
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
 	..()

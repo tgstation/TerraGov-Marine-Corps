@@ -86,13 +86,18 @@
 	for(var/mob/O in viewers(src, null))
 		O.show_message(text("\green <B>[src] begins to twist and contort!</B>"), 1)
 
+	var/mob/living/carbon/Xenomorph/new_xeno = new M(get_turf(src))
 	remove_inherent_verbs()
-	new_xeno = new M(get_turf(src))
 
 	if(mind)
 		mind.transfer_to(new_xeno)
 	else
 		new_xeno.key = src.key
+
+	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
+		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
+		new_xeno.fireloss = src.fireloss //Transfers the damage over.
+		new_xeno.updatehealth()
 
 	new_xeno.add_inherent_verbs()
 	new_xeno.jellyGrow = 0

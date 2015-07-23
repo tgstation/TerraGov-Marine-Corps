@@ -14,7 +14,7 @@ var/slashing_allowed = 0
 	var/caste = ""
 	name = "Drone"
 	desc = "What the hell is THAT?"
-	icon = 'icons/xeno/Colonial_Aliens1x1.dmi'
+	icon = 'icons/xeno/1x1_Xenos.dmi'
 	icon_state = "Drone Walking"
 	voice_name = "xenomorph"
 	speak_emote = list("hisses")
@@ -44,7 +44,6 @@ var/slashing_allowed = 0
 	var/max_grown = 200
 	var/time_of_birth
 	var/plasma_gain = 5
-	var/mob/living/carbon/Xenomorph/new_xeno
 	var/jelly = 0 //variable to check if they ate delicious jelly or not
 	var/jellyGrow = 0 //how much the jelly has grown
 	var/jellyMax = 0 //max amount jelly will grow till evolution
@@ -53,7 +52,7 @@ var/slashing_allowed = 0
 	var/tacklemax = 4
 	var/tackle_chance = 50
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
-	var/caste_desc = "A generic xenomorph. You should never see this."
+	var/caste_desc = null
 	var/usedPounce = 0
 	var/has_spat = 0
 	var/spit_delay = 50 //Delay timer for spitting
@@ -61,7 +60,7 @@ var/slashing_allowed = 0
 	var/middle_mouse_toggle = 1 //This toggles middle mouse clicking for certain abilities.
 	var/shift_mouse_toggle = 0 //The same, but for shift clicking.
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
-	var/armor_deflection = 0 //Chance of deflecting projectiles. No xenos have this yet........
+	var/armor_deflection = 0 //Chance of deflecting projectiles.
 	var/fire_immune = 0 //boolean
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
@@ -69,6 +68,9 @@ var/slashing_allowed = 0
 	var/pslash_delay = 0
 	var/bite_chance = 6 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
 	var/readying_tail = 0 //'charges' up to 10, next attack does a tail stab.
+	var/evo_points = 0 //Current # of evolution points. Max is 1000.
+	var/list/upgrades_bought = list()
+	var/is_robotic = 0 //Robots use charge, not plasma (same thing sort of), and can only be healed with welders.
 
 	var/adjust_pixel_x = 0
 	var/adjust_pixel_y = 0
@@ -92,9 +94,6 @@ var/slashing_allowed = 0
 
 	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
 
-/*	src.frozen = 1 //Freeze the alien in place a moment, while it evolves... WHY DOESN'T THIS WORK? 08FEB2015
-	spawn (25)
-		src.frozen = 0*/
 	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING //blerghhh. This lets you see in the dark
 
@@ -123,44 +122,32 @@ var/slashing_allowed = 0
 		if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
 			src.mind.assigned_role = "MODE"
 			src.mind.special_role = "Alien"
-			if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len) //Add them to the gametype xeno tracker
-				var/found = 0
-				//Note: This part shouldn't actually fire during round setup, it's all handled in colonialmarines.dm
-				//Which is why we need to make sure they're not already in the system.
-				for(var/datum/mind/M in ticker.mode.aliens) //Scan through the ticker to see if they're already there.
-					if(src.mind == M)
-						found = 1
-						break
-				if(!found) //Not there? add them, so they show up on antag panel, etc
+			//Add them to the gametype xeno tracker
+			if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len && !is_robotic) //Robots don't get added.
+				if(!(src.mind in ticker.mode.aliens))
 					ticker.mode.aliens += src.mind
 
+/mob/living/carbon/Xenomorph/examine()
+	if(!usr) return //Somehow?
+	..()
+	if(istype(usr,/mob/living/carbon/Xenomorph) && caste_desc)
+		usr << caste_desc
 
-
-//Xenomorph Hud Health Adjuster Apophis 08FEB2015
-
-/*  Enable later, and it may need to be adjusted once the hud is operational
-/mob/living/carbon/Xenomorph
-
-	handle_regular_hud_updates()
-
-		..()
-		var/HP = (health/maxHealth)*100
-
-		if (healths)
-			if (stat != 2)
-				switch(HP)
-					if(80 to INFINITY)
-						healths.icon_state = "health0"
-					if(60 to 80)
-						healths.icon_state = "health1"
-					if(40 to 60)
-						healths.icon_state = "health2"
-					if(20 to 40)
-						healths.icon_state = "health3"
-					if(0 to 20)
-						healths.icon_state = "health4"
-					else
-						healths.icon_state = "health5"
-			else
-				healths.icon_state = "health6"
-*/
+	if(stat == DEAD)
+		usr << "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
+	else if (stat == UNCONSCIOUS)
+		usr << "It quivers a bit, but barely moves."
+	else
+		var/percent = (health / maxHealth * 100)
+		switch(percent)
+			if(95 to 101)
+				usr << "It looks quite healthy."
+			if(75 to 94)
+				usr << "It looks slightly injured."
+			if(50 to 74)
+				usr << "It looks injured."
+			if(25 to 49)
+				usr << "It bleeds with sizzling wounds."
+			if(1 to 24)
+				usr << "It is heavily injured and limping badly."
+	return

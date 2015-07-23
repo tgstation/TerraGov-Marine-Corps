@@ -46,7 +46,12 @@
 		return
 
 	if(forced)
-		playsound(loc, "hiss", 25, 1, 1)
+		if(is_robotic)
+			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
+			verb = pick("beeps","buzzes","pings")
+			playsound(src.loc, noise, 20, 1, 1)
+		else
+			playsound(loc, "hiss", 25, 1, 1)
 		..(message, speaking, verb, null, null, message_range, null)
 	else
 		hivemind_talk(message)

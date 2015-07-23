@@ -5,7 +5,6 @@
 	name = "Alien Larva"
 	real_name = "Alien Larva"
 	speak_emote = list("hisses")
-	icon = 'icons/xeno/Colonial_Aliens1x1.dmi'
 	caste = "Bloody Larva"
 	icon_state = "Bloody Larva"
 	language = "Hivemind"
@@ -17,7 +16,7 @@
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	evolves_to = list("Drone", "Runner", "Sentinel") //Add sentinel etc here
-	see_in_dark = 20
+	see_in_dark = 8
 	caste_desc = "D'awwwww, so cute!"
 	pass_flags = PASSTABLE
 	speed = -1 //Zoom!

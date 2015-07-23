@@ -33,7 +33,10 @@
 		stat(null, "Jelly Progress: [jellyGrow]/[jellyMax]")
 
 	if(maxplasma > 0)
-		stat(null, "Plasma: [storedplasma]/[maxplasma]")
+		if(is_robotic)
+			stat(null, "Charge: [storedplasma]/[maxplasma]")
+		else
+			stat(null, "Plasma: [storedplasma]/[maxplasma]")
 
 	if(slashing_allowed == 1)
 		stat(null,"Slashing of hosts is currently: PERMITTED.")
@@ -59,16 +62,17 @@
 		src << "\red Can't do this while unconcious."
 		return 0
 
-	if(value > 0)
+	if(value)
+		if(is_robotic)
+			if(storedplasma < value)
+				src << "\red Beep. Insufficient charge. You require [value] but have only [storedplasma]."
+				return 0
 		if(storedplasma < value)
 			src << "\red Insufficient plasma. You require [value] but have only [storedplasma]."
 			return 0
 
 		storedplasma -= value
-//		adjustToxLoss(-value) //Is this even used at all anymore??
-		return 1
-	else
-		return 1 //If plasma cost is 0 just go ahead and do it
+	return 1 //If plasma cost is 0 just go ahead and do it
 
 
 //Check if you can plant on groundmap turfs.
@@ -158,6 +162,11 @@
 	weaken = 9
 	eyeblur = 3
 
+/obj/item/projectile/energy/neuro/robot
+	damage = 50
+	weaken = 6
+	icon_state = "pulse1"
+	damage_type = BURN
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
@@ -284,14 +293,14 @@
 				var/mob/living/carbon/human/H = V //Human shield block.
 				if((H.r_hand && istype(H.r_hand, /obj/item/weapon/shield/riot)) || (H.l_hand && istype(H.l_hand, /obj/item/weapon/shield/riot)))
 					if (prob(45))	// If the human has riot shield in his hand,  65% chance
-						src.Weaken(3) //Stun the fucker instead
+						src.Weaken(4) //Stun the fucker instead
 						visible_message("\red <B> \The [src] bounces off [H]'s shield!</B>", "\red <B>You bounce off [src]'s shield!</B>")
 						src.throwing = 0
 						return
 
 				if(H.species && H.species.name == "Yautja" && prob(40))
 					visible_message("\red <b>[H] emits a roar and body slams \the [src]!")
-					src.Weaken(4)
+					src.Weaken(5)
 					src.throwing = 0
 					return
 
@@ -307,7 +316,8 @@
 				src.frozen = 1
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
-				playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+				if(!is_robotic)
+					playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
 				spawn(20)
 					src.frozen = 0
 		return

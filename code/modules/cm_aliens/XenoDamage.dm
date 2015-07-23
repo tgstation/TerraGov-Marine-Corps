@@ -3,6 +3,9 @@
 	if(!blinded)
 		flick("flash", flash)
 
+	if(is_robotic) //Robots are IMMUNE, having blast-proof exoskeletons.
+		return
+
 	var/b_loss = 0
 	var/f_loss = 0
 	switch (severity)
