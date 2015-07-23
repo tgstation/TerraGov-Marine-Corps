@@ -697,3 +697,16 @@
 	else
 		src << "\blue You relax your tail. You are no longer readying a tail attack."
 		readying_tail = 0
+
+/*/mob/living/carbon/Xenomorph/proc/bestial_roar()
+	set name = "Bestial Roar"
+	set desc = "Shake the ground with a roar from the underworld."
+	set category = "Alien"
+
+	for(var/mob/M in view(50))
+		if(M.client)
+		// playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global)
+			playsound(M, 'sound/voice/alien_bestial_roar.ogg', 100, 0, 100, -1) //About as loud as it can possibly get
+			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
+			M << "<span class='warning'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
+*/

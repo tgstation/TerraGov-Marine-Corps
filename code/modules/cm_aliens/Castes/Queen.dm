@@ -41,6 +41,7 @@
 		/mob/living/carbon/Xenomorph/proc/screech,
 		/mob/living/carbon/Xenomorph/proc/produce_jelly,
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
+		// /mob/living/carbon/Xenomorph/proc/bestial_roar,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
