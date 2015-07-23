@@ -10,7 +10,7 @@ FLOOR SAFES
 	name = "Secure Safe Combination"
 	var/obj/structure/safe/safe = null
 
-/obj/item/weapon/paper/monitorkey/New()
+/obj/item/weapon/paper/safe_key/New()
 	..()
 	spawn(10)
 		for(var/obj/structure/safe/safe in loc)
@@ -27,6 +27,9 @@ FLOOR SAFES
 	icon_state = "safe"
 	anchored = 1
 	density = 1
+	layer = 2.1
+	unacidable = 1
+	explosion_resistance = 500
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72
 	var/tumbler_1_open	//the tumbler position to open at- 0 to 72
@@ -44,6 +47,9 @@ FLOOR SAFES
 	tumbler_2_pos = rand(0, 72)
 	tumbler_2_open = rand(0, 72)
 
+	spawn(5)
+		if(loc)
+			new /obj/item/weapon/paper/safe_key(loc) //Spawn the key on top of the safe.
 
 /obj/structure/safe/initialize()
 	for(var/obj/item/I in loc)

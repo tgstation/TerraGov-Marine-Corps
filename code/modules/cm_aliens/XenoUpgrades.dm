@@ -44,7 +44,7 @@ proc/initialize_upgrades()
 	melee_damage_lower += 10
 	melee_damage_upper += 10
 	src << "\red Your claws feel sharper."
-
+	update_icons()
 
 /datum/upgrade/claws2
 	name = "Razor Claws"
