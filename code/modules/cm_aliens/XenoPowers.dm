@@ -90,7 +90,7 @@
 /obj/royaljelly
 	name = "royal jelly"
 	desc = "A greenish-yellow blob of slime that encourages xenomorph evolution."
-	icon = 'icons/Xeno/Colonial_Aliens1x1.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "jelly"
 	anchored = 1
 	opacity = 0
@@ -384,7 +384,7 @@
 		if(!check_plasma(50))
 			return
 
-		visible_message("\red <B>\The [src] spits neurotoxin at [T]!</B>","\red <b> You spit at [T]!</B>" )
+		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
 
 		var/turf/Turf = get_turf(src)
 		var/turf/Target_Turf = get_turf(T)
@@ -393,6 +393,8 @@
 			return
 
 		var/obj/item/projectile/energy/neuro/A = new spit_projectile(Turf)
+		if(is_robotic && isturf(src.loc))
+			playsound(src.loc,'sound/weapons/pulse.ogg',75,1)
 		A.current = Target_Turf
 		A.yo = Target_Turf.y - Turf.y
 		A.xo = Target_Turf.x - Turf.x
