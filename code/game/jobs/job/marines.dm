@@ -30,8 +30,8 @@
 	is_squad_job = 1
 	supervisors = "the squad leader"
 	selection_color = "#ffeeee"
-	access = list(access_marine_prep, access_marine_engprep)
-	minimal_access = list(access_marine_prep, access_marine_engprep)
+	access = list(access_marine_prep, access_marine_engprep, access_sulaco_engineering)
+	minimal_access = list(access_marine_prep, access_marine_engprep, access_sulaco_engineering)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -48,8 +48,8 @@
 	is_squad_job = 1
 	supervisors = "the squad leader"
 	selection_color = "#ffeeee"
-	access = list(access_marine_prep, access_marine_medprep)
-	minimal_access = list(access_marine_prep, access_marine_medprep)
+	access = list(access_marine_prep, access_marine_medprep, access_sulaco_medbay)
+	minimal_access = list(access_marine_prep, access_marine_medprep, access_sulaco_medbay)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

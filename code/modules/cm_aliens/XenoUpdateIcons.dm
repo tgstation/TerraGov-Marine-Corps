@@ -18,23 +18,40 @@
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	update_hud()		//TODO: remove the need for this to be here
 	overlays.Cut()
+	var/is_lying = 0
+	var/image/overlay_claws = null
+	var/enh_claws = has_upgrade("eclaws")  //Rebuilding the image each time? Why not, ugh.
 	if(stat == DEAD)
 		icon_state = "[caste] Dead"
-		for(var/image/I in overlays_lying)
-			overlays += I
+		is_lying = 1
+		if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
 	else if(lying)
 		if(resting)
 			icon_state = "[caste] Sleeping"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Sleeping")
 		else
 			icon_state = "[caste] Knocked Down"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
+		is_lying = 1
+
+	else
+		if(m_intent == "run")
+			icon_state = "[caste] Running"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Running")
+		else
+			icon_state = "[caste] Walking"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Walking")
+		is_lying = 0
+
+	if(overlay_claws && enh_claws)
+		overlays += overlay_claws
+
+	if(is_lying)
 		for(var/image/I in overlays_lying)
 			overlays += I
 	else
-		if(m_intent == "run")		icon_state = "[caste] Running"
-		else						icon_state = "[caste] Walking"
 		for(var/image/I in overlays_standing)
 			overlays += I
-
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
 	..()
