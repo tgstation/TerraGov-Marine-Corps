@@ -183,10 +183,10 @@ Please contact me on #coderbus IRC. ~Carn x
 		for(var/image/I in overlays_standing)
 			overlays += I
 			if(chestburst == 1)
-				var/image/C = image('icons/Xeno/Misc.dmi',src,"burst_stand")
+				var/image/C = image('icons/Xeno/Effects.dmi',src,"burst_stand")
 				overlays += C
 			else if(chestburst == 2)
-				var/image/C = image('icons/Xeno/Misc.dmi',src,"bursted_stand")
+				var/image/C = image('icons/Xeno/Effects.dmi',src,"bursted_stand")
 				overlays += C
 			if(slashed_icon)
 				overlays += slashed_icon
