@@ -547,12 +547,12 @@
 /obj/item/projectile/beam/yautja2
 	name = "plasma"
 	icon_state = "pulse1"
-	damage = 55
+	damage = 45
 
 /obj/item/projectile/beam/yautja3
 	name = "heavy plasma"
 	icon_state = "pulse1_bl"
-	damage = 80
+	damage = 60
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
 /obj/item/weapon/storage/backpack/yautja

@@ -20,9 +20,8 @@
 
 	if(jelly && jellyGrow < jellyMax)
 		jellyGrow++
-		if(jellyGrow > jellyMax)
+		if(jellyGrow == jellyMax-1)
 			src << "\green You feel the royal jelly swirl in your veins.."
-			jellyGrow = jellyMax
 
 	if(stat != DEAD) //If not dead, go ahead and update.
 		updatehealth()
@@ -184,34 +183,40 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_environment(var/datum/gas_mixture/environment)
-	var/turf/T = src.loc
-	if(environment)
-		if(environment.temperature > (T0C+66))
-			adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-			if (fire) fire.icon_state = "fire2"
-			if(prob(20))
-				src << "\red You feel a searing heat!"
-		else
-			if (fire) fire.icon_state = "fire0"
+	if(stat != DEAD)
+		var/turf/T = src.loc
+		if(environment && !fire_immune)
+			if(environment.temperature > (T0C+66))
+				adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
+				if (fire) fire.icon_state = "fire2"
+				if(prob(20))
+					src << "\red You feel a searing heat!"
+			else
+				if (fire) fire.icon_state = "fire0"
 
-	if(!T || !istype(T)) return
+		if(!T || !istype(T)) return
 
-	if(locate(/obj/effect/alien/weeds) in T)
-		if(health >= maxHealth)
-			if(!readying_tail) //Readying tail = no plasma increase.
-				storedplasma += plasma_gain
-		else
-			adjustBruteLoss(-(maxHealth / 40) - 2) //Heal 1/40th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
-			adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
-			adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
-			adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
-			updatehealth() //Make sure their actual health updates immediately.
-	else //Xenos restore plasma VERY slowly off weeds, regardless of health
-		if(rand(0,1) == 0) storedplasma += 1
+		if(!is_robotic)//Robot no heal
+			if(locate(/obj/effect/alien/weeds) in T)
+				if(health >= maxHealth)
+					if(!readying_tail) //Readying tail = no plasma increase.
+						storedplasma += plasma_gain
+				else
+					adjustBruteLoss(-(maxHealth / 40) - 2) //Heal 1/40th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+					adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
+					adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
+					adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
+					updatehealth() //Make sure their actual health updates immediately.
+			else //Xenos restore plasma VERY slowly off weeds, regardless of health
+				if(rand(0,1) == 0) storedplasma += 1
 
-	if(readying_tail) storedplasma -= 3
-	if(storedplasma > maxplasma) storedplasma = maxplasma
-	if(storedplasma < 0) storedplasma = 0
+			if(readying_tail) storedplasma -= 3
+		if(storedplasma > maxplasma) storedplasma = maxplasma
+		if(storedplasma < 0)
+			storedplasma = 0
+			if(readying_tail)
+				readying_tail =0
+				src << "You feel your tail relax."
 	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
@@ -223,8 +228,15 @@
 		xeno_message("The slashing of hosts is now permitted!",2)
 		slashing_allowed = 1
 	else
-		xeno_message("\The [src] has died!",3)
-	return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
+		var/area/A = get_area(src)
+		if(A)
+			xeno_message("A [src.name] has died at [sanitize(A.name)]!",3)
+		else
+			xeno_message("A [src.name] has died!",3)
+	if(!is_robotic)
+		return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
+	else
+		return ..(gibbed,"begins to shudder, and the lights go out in its eyes as it lies still.")
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null
@@ -235,7 +247,7 @@
 				target = M
 				break
 
-	if(!target || !istype(target))
+	if(!target || !istype(target) || is_intelligent)
 		locate_queen.icon_state = "trackoff"
 		return
 
