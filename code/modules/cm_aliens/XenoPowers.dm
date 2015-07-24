@@ -188,7 +188,7 @@
 		usedPounce = 180 //about 12 seconds
 		pass_flags = PASSTABLE
 		if(readying_tail) readying_tail = 0
-		src.throw_at(T, 6, 3, src) //victim, distance, speed
+		src.throw_at(T, 6, 2, src) //victim, distance, speed
 		spawn(12)
 			pass_flags = 0 //Reset the passtable.
 		spawn(usedPounce)

@@ -146,20 +146,20 @@
 	return
 
 /obj/item/projectile/energy/neuro
-	name = "neuro"
+	name = "spit"
 	icon_state = "neurotoxin"
 	damage = 1
 	damage_type = TOX
-	weaken = 3
+	weaken = 4
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5
-	weaken = 6
+	weaken = 7
 	eyeblur = 1
 
 /obj/item/projectile/energy/neuro/strongest
 	damage = 10
-	weaken = 9
+	weaken = 10
 	eyeblur = 3
 
 /obj/item/projectile/energy/neuro/robot
@@ -170,6 +170,7 @@
 
 /obj/item/projectile/energy/neuro/acid
 	damage = 15
+	name = "acid"
 	icon_state = "decloner"
 	damage_type = BURN
 
@@ -190,6 +191,8 @@
 						new /obj/effect/xenomorph/splatter(get_turf(M))
 					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
 					M.apply_damage(damage,BURN) //Will pick a single random part to splat
+					spawn(0)
+						M.update_icons() //Give a bit of a delay for the procs to catch up, update icons is expensive.
 
 /obj/item/projectile/energy/neuro/acid/heavy
 	damage = 30

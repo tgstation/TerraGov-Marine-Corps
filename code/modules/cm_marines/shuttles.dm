@@ -18,3 +18,7 @@
 	name = "enginesound"
 	unacidable = 1
 	anchored = 1
+	invisibility = 101
+
+	ex_act(severity) //nope
+		return

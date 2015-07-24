@@ -23,7 +23,7 @@
 	var/CHARGECOOLDOWN = 120
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
-	armor_deflection = 60
+	armor_deflection = 65
 
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
