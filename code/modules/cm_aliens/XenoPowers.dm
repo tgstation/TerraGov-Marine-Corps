@@ -31,6 +31,26 @@
 
 	return
 
+/mob/living/carbon/Xenomorph/proc/shift_spits()
+	set name = "Toggle Spit Type"
+	set desc = "Toggles between a lighter, single-target stun spit or a heavier area acid that burns. The heavy version requires more plasma."
+	set category = "Alien"
+
+	if(!spit_type)
+		src << "You will now spit heavier globs of acid instead of neurotoxin."
+		spit_type = 1
+		spit_delay = (initial(spit_delay) + 50) //Takes longer to recharge.
+		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
+			spit_projectile = /obj/item/projectile/energy/neuro/acid/heavy
+		else
+			spit_projectile = /obj/item/projectile/energy/neuro/acid/
+	else
+		src << "You will now spit lighter neurotoxin instead of acid."
+		spit_type = 0
+		spit_projectile = initial(spit_projectile)
+		spit_delay = initial(spit_delay)
+	return
+
 /mob/living/carbon/Xenomorph/proc/plant()
 	set name = "Plant Weeds (75)"
 	set desc = "Plants some alien weeds"
@@ -234,7 +254,7 @@
 	last_special = world.time + 50
 
 	visible_message("<span class='warning'><b>\The [src]</b> lifts [victim] into the air...</span>")
-	if(do_after(src,70))
+	if(do_after(src,80))
 		if(!victim || isnull(victim)) return
 		if(victim.loc != cur_loc) return
 		visible_message("<span class='warning'><b>\The [src]</b> viciously wrenches [victim] apart!</span>")
@@ -354,8 +374,8 @@
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/neurotoxin(var/atom/T)
-	set name = "Spit Neurotoxin (50)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time."
+	set name = "Spit Neurotoxin (50/100)"
+	set desc = "Spits neurotoxin at someone, paralyzing them for a short time, or globs of acid which burn in an area."
 	set category = "Alien"
 
 	if(!check_state())	return
@@ -381,8 +401,12 @@
 		return
 
 	if(T)
-		if(!check_plasma(50))
-			return
+		if(spit_type)
+			if(!check_plasma(100))
+				return
+		else
+			if(!check_plasma(50))
+				return
 
 		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
 
@@ -511,12 +535,8 @@
 	//Ours uses screech2.....
 	playsound(loc, 'sound/effects/screech2.ogg', 100, 1)
 	visible_message("\red <B> \The [src] emits a high pitched screech!</B>")
-	var/image/waves = image("icon" = src.icon, "icon_state" = "shriek_waves")
-	overlays_standing[SUIT_LAYER] = waves //Ehh, suit layer's not being used.
-	update_icons() //Two updates? WHY NOT
-	spawn(16)
-		overlays_standing[SUIT_LAYER] = null
-		update_icons()
+	create_shriekwave() //Adds the visual effect. Wom wom wom
+
 	for (var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue

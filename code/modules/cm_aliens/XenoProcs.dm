@@ -168,6 +168,32 @@
 	icon_state = "pulse1"
 	damage_type = BURN
 
+/obj/item/projectile/energy/neuro/acid
+	damage = 15
+	icon_state = "decloner"
+	damage_type = BURN
+
+	on_hit(var/atom/target, var/blocked = 0)
+		aoe_spit(target)
+		return 1
+
+	proc/aoe_spit(var/atom/target) //Spatters acid on all mobs adjacent to the hit zone.
+		var/turf/T = get_turf(target)
+		if(!T) return
+
+		new /obj/effect/xenomorph/splatter(T) //First do a splatty splat
+		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
+		spawn(7)
+			for(var/mob/living/carbon/human/M in view(1,T))
+				if(M && M.stat != DEAD && !isYautja(M))
+					if(!(/obj/effect/xenomorph/splatter in get_turf(M)))
+						new /obj/effect/xenomorph/splatter(get_turf(M))
+					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
+					M.apply_damage(damage,BURN) //Will pick a single random part to splat
+
+/obj/item/projectile/energy/neuro/acid/heavy
+	damage = 30
+
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
 //Also need to change the icons
@@ -175,6 +201,20 @@
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/Xeno/effects.dmi'
+
+/obj/effect/xenomorph/splatter
+	name = "splatter"
+	desc = "It burns! It burns like hygiene!"
+	icon_state = "splatter"
+	density = 0
+	opacity = 0
+	anchored = 1
+	layer = 5
+
+	New() //Self-deletes after creation & animation
+		spawn(8)
+			del(src)
+			return
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
@@ -397,13 +437,13 @@
 
 	if(!readying_tail || readying_tail == -1) return 0 //Tail attack not prepared, or not available.
 
-	var/dmg = (readying_tail * 3) + rand(5,10) //Ready max is 20
+	var/dmg = (round(readying_tail * 2.5)) + rand(5,10) //Ready max is 20
 	if(adjust_pixel_x) //Big xenos get a damage bonus.
 		dmg += 10
 	var/datum/organ/external/affecting
 	var/tripped = 0
 
-	if(M.lying) dmg += 15 //more damage when hitting downed people.
+	if(M.lying) dmg += 10 //more damage when hitting downed people.
 
 	affecting = M.get_organ(ran_zone(zone_sel.selecting,75))
 	if(!affecting) //No organ, just get a random one
