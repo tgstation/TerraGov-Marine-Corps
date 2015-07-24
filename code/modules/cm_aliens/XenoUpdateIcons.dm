@@ -159,6 +159,15 @@
 		overlays_standing[TARGETED_LAYER]	= null
 	if(update_icons)		update_icons()
 
+/mob/living/carbon/Xenomorph/proc/create_shriekwave()
+	var/image/waves = image("icon" = src.icon, "icon_state" = "shriek_waves")
+	overlays_standing[X_SUIT_LAYER] = waves //Ehh, suit layer's not being used.
+	update_icons()
+	spawn(16)
+		overlays_standing[X_SUIT_LAYER] = null
+		update_icons()
+
+
 //Xeno Overlays Indexes//////////
 #undef X_HEAD_LAYER
 #undef X_SUIT_LAYER

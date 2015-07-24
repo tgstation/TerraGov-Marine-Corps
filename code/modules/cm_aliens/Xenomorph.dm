@@ -55,7 +55,7 @@ var/slashing_allowed = 0
 	var/caste_desc = null
 	var/usedPounce = 0
 	var/has_spat = 0
-	var/spit_delay = 50 //Delay timer for spitting
+	var/spit_delay = 60 //Delay timer for spitting
 	var/has_screeched = 0
 	var/middle_mouse_toggle = 1 //This toggles middle mouse clicking for certain abilities.
 	var/shift_mouse_toggle = 0 //The same, but for shift clicking.
@@ -76,6 +76,7 @@ var/slashing_allowed = 0
 	var/adjust_pixel_y = 0
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
 	var/adjust_size_y = 1
+	var/spit_type = 0 //0: normal, 1: heavy
 
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
