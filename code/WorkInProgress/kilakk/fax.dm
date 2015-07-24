@@ -1,11 +1,11 @@
 var/list/obj/machinery/faxmachine/allfaxes = list()
-var/list/alldepartments = list("Central Command")
+var/list/alldepartments = list("Weyland Yutani")
 
 /obj/machinery/faxmachine
 	name = "fax machine"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "fax"
-	req_one_access = list(access_sulaco_bridge) //Warden needs to be able to Fax solgov too.
+//	req_one_access = list(access_sulaco_bridge) //Warden needs to be able to Fax solgov too.
 	anchored = 1
 	density = 1
 	use_power = 1
@@ -19,18 +19,21 @@ var/list/alldepartments = list("Central Command")
 	var/obj/item/weapon/paper/tofax = null // what we're sending
 	var/sendcooldown = 0 // to avoid spamming fax messages
 
-	var/department = "Unknown" // our department
+	var/department = "Liason" // our department
 
-	var/dpt = "Central Command" // the department we're sending to
+	var/dpt = "Weyland Yutani" // the department we're sending to
 
 
 /obj/machinery/faxmachine/New()
 	..()
 	allfaxes += src
 
-	if( !("[department]" in alldepartments) )
+	if( !("[department]" in alldepartments) ) //Initialize departments. This will work with multiple fax machines.
 		alldepartments += department
-		alldepartments += "Sol Government"
+	if(!("Weyland Yutani" in alldepartments))
+		alldepartments += "Weyland Yutani"
+	if(!("USCM High Command" in alldepartments))
+		alldepartments += "USCM High Command"
 
 /obj/machinery/faxmachine/process()
 	return 0
@@ -62,7 +65,7 @@ var/list/alldepartments = list("Central Command")
 	dat += "<hr>"
 
 	if(authenticated)
-		dat += "<b>Logged in to:</b> Central Command Quantum Entanglement Network<br><br>"
+		dat += "<b>Logged in to:</b> Weyland-Yutani Private Corporate Network<br><br>"
 
 		if(tofax)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Paper</a><br><br>"
@@ -96,11 +99,11 @@ var/list/alldepartments = list("Central Command")
 	if(href_list["send"])
 		if(tofax)
 
-			if(dpt == "Central Command")
+			if(dpt == "USCM High Command")
 				Centcomm_fax(src, tofax.info, tofax.name, usr)
 				sendcooldown = 1800
 
-			else if(dpt == "Sol Government")
+			else if(dpt == "Weyland Yutani")
 				Solgov_fax(src, tofax.info, tofax.name, usr)
 				sendcooldown = 1800
 			else
@@ -184,18 +187,18 @@ var/list/alldepartments = list("Central Command")
 
 /proc/Centcomm_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
 
-	var/msg = "\blue <b><font color='#006100'>CENTCOMM FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CentcommFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[sent]'>view message</a>"
+	var/msg = "\blue <b><font color='#006100'>USCM FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CentcommFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[sent]'>view message</a>"
 
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
-			C << msg
+//		if(R_ADMIN & C.holder.rights)
+		C << msg
 
 /proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
-	var/msg = "\blue <b><font color='#1F66A0'>SOL GOVERNMENT FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;SolGovFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[sent]'>view message</a>"
+	var/msg = "\blue <b><font color='#1F66A0'>WEYLAND-YUTANI FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;SolGovFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[sent]'>view message</a>"
 
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
-			C << msg
+//		if(R_ADMIN & C.holder.rights)
+		C << msg
 
 
 proc/SendFax(var/sent, var/sentname, var/mob/Sender, var/dpt)

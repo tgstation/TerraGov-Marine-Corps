@@ -112,7 +112,7 @@
 
 	if (healths)
 		if (stat != 2)
-			switch(health * 100 / maxHealth) //Maxhealth should never be zero or this will generate runtimes.
+			switch(round(health * 100 / maxHealth)) //Maxhealth should never be zero or this will generate runtimes.
 				if(100 to INFINITY)
 					healths.icon_state = "health0"
 				if(76 to 99)
@@ -131,7 +131,7 @@
 	if(alien_plasma_display)
 		if (stat != 2)
 			if(maxplasma) //No divide by zeros please
-				switch(storedplasma * 100 / maxplasma)
+				switch(round(storedplasma * 100 / maxplasma))
 					if(100 to INFINITY)
 						alien_plasma_display.icon_state = "power_display2_9"
 					if(71 to 99)
@@ -151,11 +151,11 @@
 					if(1 to 10)
 						alien_plasma_display.icon_state = "power_display2_1"
 					else
-						alien_plasma_display.icon_state = "power_display2"
+						alien_plasma_display.icon_state = "power_display2_0"
 			else
-				alien_plasma_display.icon_state = "power_display2"
+				alien_plasma_display.icon_state = "power_display2_0"
 		else
-			alien_plasma_display.icon_state = "power_display2"
+			alien_plasma_display.icon_state = "power_display2_0"
 
 	if(pullin)
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
@@ -169,10 +169,10 @@
 		else
 			blind.layer = 0
 
-	if(!stat && prob(20)) //Only a 20% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
+	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
 
-	if (stat != 2)
+	if (stat != 2 && prob(10)) //Is this really necessary? Xenos can't look thru cameras.
 		if (machine)
 			if (!( machine.check_eye(src) ))
 				reset_view(null)
@@ -230,9 +230,9 @@
 	else
 		var/area/A = get_area(src)
 		if(A)
-			xeno_message("A [src.name] has died at [sanitize(A.name)]!",3)
+			xeno_message("Hive: A [src.name] has <b>died</b> at [sanitize(A.name)]!",3)
 		else
-			xeno_message("A [src.name] has died!",3)
+			xeno_message("Hive: A [src.name] has <b>died!</b>",3)
 	if(!is_robotic)
 		return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
 	else
