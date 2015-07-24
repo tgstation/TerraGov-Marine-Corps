@@ -504,13 +504,19 @@
 		return
 
 	has_screeched = 1
-	spawn(280)
+	spawn(300)
 		has_screeched = 0
 		src << "You feel your throat muscles vibrate. You are ready to screech again."
 
 	//Ours uses screech2.....
 	playsound(loc, 'sound/effects/screech2.ogg', 100, 1)
 	visible_message("\red <B> \The [src] emits a high pitched screech!</B>")
+	var/image/waves = image("icon" = src.icon, "icon_state" = "shriek_waves")
+	overlays_standing[SUIT_LAYER] = waves //Ehh, suit layer's not being used.
+	update_icons() //Two updates? WHY NOT
+	spawn(16)
+		overlays_standing[SUIT_LAYER] = null
+		update_icons()
 	for (var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue
