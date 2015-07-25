@@ -12,7 +12,7 @@
 	plasma_gain = 24
 	maxplasma = 600
 	jellyMax = 0
-	spit_delay = 95
+	spit_delay = 75
 	speed = 2.1
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6

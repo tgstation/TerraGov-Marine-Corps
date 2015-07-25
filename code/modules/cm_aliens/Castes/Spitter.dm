@@ -12,8 +12,8 @@
 	plasma_gain = 24
 	maxplasma = 600
 	jellyMax = 900
-	spit_delay = 115
-	speed = 1.8
+	spit_delay = 80
+	speed = 1.2
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian")
 	spit_projectile = /obj/item/projectile/energy/neuro/strong
