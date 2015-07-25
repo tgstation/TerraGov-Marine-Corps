@@ -1204,7 +1204,7 @@
 "xh" = (/obj/item/device/radio/intercom{anyai = 1; freerange = 1; frequency = 1469; name = "General Listening Channel"; pixel_x = -30; pixel_y = 0},/turf/simulated/floor{dir = 8; icon_state = "warning"},/area/hallway/primary/central_one)
 "xi" = (/obj/item/weapon/crowbar/red,/turf/simulated/floor{tag = "icon-warningcorner (WEST)"; icon_state = "warningcorner"; dir = 8},/area/ground/compound)
 "xj" = (/turf/simulated/floor{dir = 1; icon_state = "warning"},/area/space)
-"xk" = (/obj/machinery/computer/shuttle_control/marine1{req_one_access_txt = "1;2;12;19;200"},/turf/simulated/floor{dir = 1; icon_state = "warning"},/area/space)
+"xk" = (/obj/machinery/computer/shuttle_control/marine1{active_power_usage = 0; idle_power_usage = 0; req_one_access_txt = "0"; use_power = 0},/turf/simulated/floor{dir = 1; icon_state = "warning"},/area/space)
 "xl" = (/turf/simulated/floor{icon_state = "warningcorner"; dir = 4},/area/space)
 "xm" = (/obj/item/weapon/bananapeel,/turf/simulated/floor/gm/grass,/area/ground/jungle4)
 "xn" = (/obj/structure/flora/ausbushes/sunnybush,/turf/simulated/floor/gm/coast{dir = 1},/area/ground/jungle4)
