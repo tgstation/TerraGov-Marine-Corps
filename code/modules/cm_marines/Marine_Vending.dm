@@ -43,7 +43,13 @@
 	desc = "Standard Issue Food Vendor, containing standard military food"
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/weapon/storage/box/uscm_mre = 50	)
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 8	)
 
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
