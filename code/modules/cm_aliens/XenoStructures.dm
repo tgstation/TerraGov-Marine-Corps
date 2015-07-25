@@ -545,7 +545,7 @@
 				if(istype(buckled_mob,/mob/living/carbon/human))
 					var/mob/living/carbon/human/H = buckled_mob
 					H.recently_unbuckled = 1
-					spawn(120)
+					spawn(40)
 						if(H) //Make sure the mob reference still exists.
 							H.recently_unbuckled = 0
 
