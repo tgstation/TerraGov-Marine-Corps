@@ -86,7 +86,12 @@
 			AC.loc = src
 			loaded += AC
 			num_loaded++
-
+	else if(istype(A, /obj/item/ammo_casing) && !load_method)
+		var/obj/item/ammo_casing/AC = A
+		if(AC.caliber == caliber && (loaded.len < max_shells) && (contents.len < max_shells))
+			user.drop_item()
+			AC.loc = src
+			loaded += AC
 	if(num_loaded)
 		user << "\blue You load [num_loaded] shell\s into \the [src]!"
 		playsound(user, 'sound/weapons/unload.ogg', 20, 1)

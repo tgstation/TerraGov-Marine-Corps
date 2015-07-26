@@ -184,15 +184,14 @@
 
 		new /obj/effect/xenomorph/splatter(T) //First do a splatty splat
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
-		spawn(7)
-			for(var/mob/living/carbon/human/M in view(1,T))
-				if(M && M.stat != DEAD && !isYautja(M))
+		for(var/mob/living/carbon/human/M in view(1,T))
+			if(M && M.stat != DEAD && !isYautja(M))
+				spawn(0)
 					if(!(/obj/effect/xenomorph/splatter in get_turf(M)))
 						new /obj/effect/xenomorph/splatter(get_turf(M))
 					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
 					M.apply_damage(damage,BURN) //Will pick a single random part to splat
-					spawn(0)
-						M.update_icons() //Give a bit of a delay for the procs to catch up, update icons is expensive.
+					M.update_icons() //Give a bit of a delay for the procs to catch up, update icons is expensive.
 
 /obj/item/projectile/energy/neuro/acid/heavy
 	damage = 30
@@ -322,11 +321,10 @@
 				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
 				S.destroy()
 
-		if(!istype(O,/obj/structure/table)) // new - xeno charge ignore tables
+		if(!istype(O,/obj/structure/table) && O.density && O.anchored) // new - xeno charge ignore tables
 			O.hitby(src,speed)
-			if(O.density)
-				src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
-				src.Weaken(2)
+			src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
+			src.Weaken(2)
 		return
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.

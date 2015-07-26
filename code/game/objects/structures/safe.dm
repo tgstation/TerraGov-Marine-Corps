@@ -41,11 +41,11 @@ FLOOR SAFES
 
 
 /obj/structure/safe/New()
-	tumbler_1_pos = rand(0, 72)
-	tumbler_1_open = rand(0, 72)
+	tumbler_1_pos = 0
+	tumbler_1_open = (rand(0,10) * 5)
 
-	tumbler_2_pos = rand(0, 72)
-	tumbler_2_open = rand(0, 72)
+	tumbler_2_pos = 0
+	tumbler_2_open = (rand(0,10) * 5)
 
 	spawn(5)
 		if(loc)
@@ -75,15 +75,15 @@ FLOOR SAFES
 
 
 /obj/structure/safe/proc/decrement(num)
-	num -= 1
+	num -= 5
 	if(num < 0)
-		num = 71
+		num = 50
 	return num
 
 
 /obj/structure/safe/proc/increment(num)
-	num += 1
-	if(num > 71)
+	num += 5
+	if(num > 50)
 		num = 0
 	return num
 
@@ -98,7 +98,7 @@ FLOOR SAFES
 /obj/structure/safe/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	var/dat = "<center>"
-	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='?src=\ref[src];decrement=1'>-</a> [dial * 5] <a href='?src=\ref[src];increment=1'>+</a>"
+	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='?src=\ref[src];decrement=1'>-</a> [dial] <a href='?src=\ref[src];increment=1'>+</a>"
 	if(open)
 		dat += "<table>"
 		for(var/i = contents.len, i>=1, i--)
@@ -129,29 +129,14 @@ FLOOR SAFES
 
 	if(href_list["decrement"])
 		dial = decrement(dial)
-		if(dial == tumbler_1_pos + 1 || dial == tumbler_1_pos - 71)
-			tumbler_1_pos = decrement(tumbler_1_pos)
-			if(canhear)
-				user << "<span class='notice'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>"
-			if(tumbler_1_pos == tumbler_2_pos + 37 || tumbler_1_pos == tumbler_2_pos - 35)
-				tumbler_2_pos = decrement(tumbler_2_pos)
-				if(canhear)
-					user << "<span class='notice'>You hear a [pick("click", "chink", "clink")] from [src].</span>"
-			check_unlocked(user, canhear)
-		updateUsrDialog()
+		check_unlocked(user, canhear)
+//		updateUsrDialog()
+		src.attack_hand(user)
 		return
 
 	if(href_list["increment"])
 		dial = increment(dial)
-		if(dial == tumbler_1_pos - 1 || dial == tumbler_1_pos + 71)
-			tumbler_1_pos = increment(tumbler_1_pos)
-			if(canhear)
-				user << "<span class='notice'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>"
-			if(tumbler_1_pos == tumbler_2_pos - 37 || tumbler_1_pos == tumbler_2_pos + 35)
-				tumbler_2_pos = increment(tumbler_2_pos)
-				if(canhear)
-					user << "<span class='notice'>You hear a [pick("click", "chink", "clink")] from [src].</span>"
-			check_unlocked(user, canhear)
+		check_unlocked(user, canhear)
 		updateUsrDialog()
 		return
 
