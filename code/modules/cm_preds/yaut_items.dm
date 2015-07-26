@@ -73,18 +73,18 @@
 			if(0)
 				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), slot_glasses)
 				M << "Low-light vision module: activated."
-				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1) //Could probably use custom noises for these, but eh. Sounds fine.
+				playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(1)
 				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), slot_glasses)
 				M << "Thermal sight module: activated."
-				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
+				playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(2)
 				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), slot_glasses)
 				M << "Material vision module: activated."
-				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
+				playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(3)
 				M << "You deactivate your visor."
-				playsound(src,'sound/weapons/plasmacaster_off.ogg', 40, 1)
+				playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 		M.update_inv_glasses()
 		current_goggles++
 		if(current_goggles > 3) current_goggles = 0
@@ -367,26 +367,25 @@
 		return 1
 
 	proc/explodey()
-		if(exploding) return //arleady there
+		// if(exploding) return //already there
 		for(var/mob/O in viewers())
 			O.show_message("\red \The [src] begin beeping.",2) // 2 stands for hearable message
-		playsound(src.loc,'sound/ambience/signal.ogg', 100, 1)
-		exploding = 1
-		spawn(100)
-			if(!exploding)
-				return
-			else
-				for(var/mob/O in viewers())
-					O.show_message("\red <B>\The [src] begin beeping frantically!</B>",2)
-		spawn(200)
-			if(!exploding)
-				return
-			else
-				var/turf/T = get_turf(src.loc)
-				if(T && istype(T))
-					explosion(T, 2, 4, 8, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
-					if(src)
-						del(src)
+		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0)
+		// exploding = 1
+		// spawn(70)
+		// 	if(!exploding)
+		// 		return
+		// 	else
+		// 		for(var/mob/O in viewers())
+		// 			O.show_message("\red <B>\The [src] begin beeping frantically!</B>",2)
+		spawn(80)
+			// if(!exploding)
+				// return
+			var/turf/T = get_turf(src.loc)
+			if(T && istype(T))
+				explosion(T, 2, 4, 8, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
+				if(src)
+					del(src)
 
 	verb/activate_suicide()
 		set name = "Final Countdown (!)"
@@ -447,7 +446,7 @@
 		if(!drain_power(usr,1000)) return
 
 		inject_timer = 1
-		spawn(3800)
+		spawn(1200)
 			if(usr && src.loc == usr)
 				usr << "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created."
 				inject_timer = 0
