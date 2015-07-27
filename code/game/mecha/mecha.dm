@@ -963,7 +963,7 @@
 	if(usr!=occupant)	return
 
 	var/obj/structure/ladder/L
-	L = locate(/obj/structure/ladder in src.loc)
+	L = locate(/obj/structure/ladder) in src.loc
 	if(!L)
 		src.occupant_message("There is no ladder here.")
 	else

@@ -116,7 +116,7 @@
 
 	var/atom/movable/A = atom
 
-	var/loopsanity = 30 //Dropping this cuts down on lag in areas with shitloads of objects around (blood spatters, etc). Was 100
+
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.lastarea)
@@ -128,6 +128,8 @@
 			M.inertia_dir = 0
 			M.make_floating(0)
 	..()
+/*
+	var/loopsanity = 30 //Dropping this cuts down on lag in areas with shitloads of objects around (blood spatters, etc). Was 100
 	var/objects = 0
 	for(var/atom/O as mob|obj|turf|area in range(1))
 		if(objects > loopsanity)	break
@@ -136,6 +138,7 @@
 			if ((O && A))
 				O.HasProximity(A, 1)
 			return
+*/
 	return
 
 /turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)

@@ -134,38 +134,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			H << "As the representative of Weyland-Yutani Corporation, your job requires you to stay in character at all times."
 			H << "You are not required to follow military orders, however you also cannot give them."
 			H << "Your primary job is to observe and report back your findings to Weyland Yutani. You still must follow normal rules unless told otherwise."
-			H << "Use 'pray' to communicate with them or to acquire new directives, if they are feeling generous."
+			H << "Use your office fax machine to communicate with them or to acquire new directives, if they are feeling generous."
 		return 1
 
-//Requisitions Officer
-/datum/job/req_officer
-	title = "Requisitions Officer"
-	flag = REQUI
-	department_flag = COMMAND
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the Commander, the Executive Officer"
-	selection_color = "#aa85ff"
-	access = list(access_sulaco_cargo)
-	minimal_access = list(access_sulaco_cargo)
-	minimal_player_age = 7
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		var/obj/item/weapon/storage/backpack/BPK = new(H)
-		new /obj/item/weapon/storage/box/survival(BPK)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/ro_cap(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-		H.implant_loyalty(src)
-		spawn(10)
-			H << "\red You are the Requisitions Officer!"
-			H << "Your job is to dispense basic weapon attachments and extra supplies."
-			H << "Squad leaders are allowed THREE attachments just by asking. You should ask marines for a stamped form from Logistics."
-			H << "Commanders and Executive Officers have full access to the vendor."
-			H << "You don't have to stay in your department all the time, but you should go if someone needs something."
-		return 1
+
 

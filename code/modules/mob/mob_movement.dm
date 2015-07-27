@@ -256,6 +256,17 @@
 			var/tickcomp = ((1/(world.tick_lag))*1.3)
 			move_delay = move_delay + tickcomp
 
+		//New proximity code. This replaces turf/Entered:HasProximity checks.
+		//Host is checked already but we can check here for efficiency.
+		//We can use orange instead of range, since Crossed already checks their turf.
+		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD)
+			var/obj/item/clothing/mask/facehugger/F = locate(/obj/item/clothing/mask/facehugger) in orange(1,mob)
+			if(F)
+				F.HasProximity(mob)
+			var/obj/effect/alien/egg/E = locate(/obj/effect/alien/egg) in orange(1,mob)
+			if(E)
+				E.HasProximity(mob)
+
 		if(istype(mob.buckled, /obj/vehicle))
 			return mob.buckled.relaymove(mob,direct)
 

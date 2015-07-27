@@ -1109,14 +1109,16 @@
 
 		var/mob/living/carbon/human/M = new(usr.loc)
 		M.set_species("Yautja")
-		M.name = y_name
-		if(H.mind)
-			H.mind.transfer_to(M)
-		else
-			M.key = H.key
+		spawn(0)
+			M.real_name = y_name
+			if(H.mind)
+				H.mind.transfer_to(M)
+			else
+				M.key = H.key
 
-		log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.name].")
-		if(H) del(H) //May have to clear up round-end vars and such....
+			log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.real_name].")
+			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
+			if(H) del(H) //May have to clear up round-end vars and such....
 
 		return
 
