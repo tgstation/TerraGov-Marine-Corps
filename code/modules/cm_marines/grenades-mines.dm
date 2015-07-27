@@ -179,7 +179,7 @@
 
 	if(istype(M, /mob/living/carbon/Xenomorph) && !istype(M, /mob/living/carbon/Xenomorph/Larva) && M.stat != DEAD) //Only humanoid aliens can trigger it.
 		var/mob/living/carbon/Xenomorph/X = M
-		if(M.is_robotic) return //NOPE.jpg
+		if(X.is_robotic) return //NOPE.jpg
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
 		triggered = 1
