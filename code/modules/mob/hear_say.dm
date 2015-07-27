@@ -10,7 +10,7 @@
 		return
 
 	//make sure the air can transmit speech - hearer's side
-	// var/turf/T = get_turf(src)
+//	var/turf/T = get_turf(src)
 	/*
 	if ((T) && (!(istype(src, /mob/dead/observer)))) //Ghosts can hear even in vacuum.
 		var/datum/gas_mixture/environment = T.return_air()

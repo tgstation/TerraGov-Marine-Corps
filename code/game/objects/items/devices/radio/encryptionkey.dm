@@ -132,13 +132,9 @@
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "qm_cypherkey"
 	channels = list("Cargo" = 1, "Mining" = 1)
-
+*/
 /obj/item/device/encryptionkey/headset_cargo
 	name = "Supply Radio Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "cargo_cypherkey"
-	channels = list("Supply" = 1)
-
-*/
-
-
+	channels = list("Req" = 1)

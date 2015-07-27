@@ -349,7 +349,7 @@
 #include "code\game\jobs\jobs.dm"
 #include "code\game\jobs\whitelist.dm"
 #include "code\game\jobs\job\command.dm"
-#include "code\game\jobs\job\engineering.dm"
+#include "code\game\jobs\job\engineering cargo.dm"
 #include "code\game\jobs\job\job.dm"
 #include "code\game\jobs\job\marines.dm"
 #include "code\game\jobs\job\medical.dm"

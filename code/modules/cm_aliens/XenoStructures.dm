@@ -530,6 +530,7 @@
 	var/on_fire = 0
 	var/resisting = 0
 	var/nest_resist_time = 1900
+	layer = 2.9 //Just above weeds.
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)

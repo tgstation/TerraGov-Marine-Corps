@@ -39,7 +39,7 @@
 	if(!spit_type)
 		src << "You will now spit heavier globs of acid instead of neurotoxin."
 		spit_type = 1
-		spit_delay = (initial(spit_delay) + 50) //Takes longer to recharge.
+		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
 		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
 			spit_projectile = /obj/item/projectile/energy/neuro/acid/heavy
 		else
@@ -331,15 +331,17 @@
 
 	var/turf/T = loc
 	var/turf/T2 = null
-	if(!T) //logic
+	if(!T || !istype(T)) //logic
 		return
 
 	if(!locate(/obj/effect/alien/weeds) in T)
 		src << "You can only shape on weeds. Find some resin before you start building!"
 		return
-
-	if(locate(/obj/structure/mineral_door/resin) in T || locate(/obj/effect/alien/resin/wall) in T || locate(/obj/effect/alien/resin/membrane) in T || locate(/obj/structure/stool/bed/nest) in T || locate(/obj/effect/alien/resin/sticky) in T)
+	if(locate(/obj/structure/mineral_door) in T || locate(/obj/effect/alien/resin) in T)
 		src << "There's something built here already."
+		return
+	if(locate(/obj/structure/) in T)
+		src << "There's something here already."
 		return
 
 	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
@@ -349,8 +351,18 @@
 
 	T2 = loc
 
-	if(T != T2)
+	if(T != T2 || !isturf(T2))
 		src << "You have to stand still when making your selection."
+		return
+	//Another check, in case someone built where they were standing somehow.
+	if(!locate(/obj/effect/alien/weeds) in T2)
+		src << "You can only shape on weeds. Find some resin before you start building!"
+		return
+	if(locate(/obj/structure/mineral_door) in T2 || locate(/obj/effect/alien/resin) in T2)
+		src << "There's something built here already."
+		return
+	if(locate(/obj/structure/) in T)
+		src << "There's something here already."
 		return
 
 	if(!check_plasma(75))
@@ -358,7 +370,9 @@
 
 	src << "\green You shape a [choice]."
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
+		if(O != src)
+			O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
+
 	switch(choice)
 		if("resin door")
 			new /obj/structure/mineral_door/resin(T)

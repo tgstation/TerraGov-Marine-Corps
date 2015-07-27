@@ -69,24 +69,34 @@ FLOOR SAFES
 		if(tumbler_2_pos == tumbler_2_open)
 			user << "<span class='notice'>You hear a [pick("tink", "krink", "plink")] from [src].</span>"
 	if(tumbler_1_pos == tumbler_1_open && tumbler_2_pos == tumbler_2_open)
-		if(user) visible_message("<b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Krunk")]!</b>")
+		if(user) visible_message("<b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Click")]!</b>")
 		return 1
 	return 0
 
 
-/obj/structure/safe/proc/decrement(num)
-	num -= 5
-	if(num < 0)
-		num = 50
-	return num
+/obj/structure/safe/proc/decrement()
+	tumbler_1_pos -= 5
+	if(tumbler_1_pos < 0)
+		tumbler_1_pos = 50
+	return
 
+/obj/structure/safe/proc/increment()
+	tumbler_1_pos += 5
+	if(tumbler_1_pos > 50)
+		tumbler_1_pos = 0
+	return
 
-/obj/structure/safe/proc/increment(num)
-	num += 5
-	if(num > 50)
-		num = 0
-	return num
+/obj/structure/safe/proc/decrement2()
+	tumbler_2_pos -= 5
+	if(tumbler_2_pos < 0)
+		tumbler_2_pos = 50
+	return
 
+/obj/structure/safe/proc/increment2()
+	tumbler_2_pos += 5
+	if(tumbler_2_pos > 50)
+		tumbler_2_pos = 0
+	return
 
 /obj/structure/safe/update_icon()
 	if(open)
@@ -98,7 +108,9 @@ FLOOR SAFES
 /obj/structure/safe/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	var/dat = "<center>"
-	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='?src=\ref[src];decrement=1'>-</a> [dial] <a href='?src=\ref[src];increment=1'>+</a>"
+	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a>"
+	dat += "Dial 1: <a href='?src=\ref[src];decrement=1'>-</a> [tumbler_1_pos] <a href='?src=\ref[src];increment=1'>+</a>"
+	dat += "Dial 2: <a href='?src=\ref[src];decrement2=1'>-</a> [tumbler_2_pos] <a href='?src=\ref[src];increment2=1'>+</a>"
 	if(open)
 		dat += "<table>"
 		for(var/i = contents.len, i>=1, i--)
@@ -121,23 +133,31 @@ FLOOR SAFES
 			user << "<span class='notice'>You [open ? "close" : "open"] [src].</span>"
 			open = !open
 			update_icon()
-			updateUsrDialog()
+			src.attack_hand(user)
 			return
 		else
 			user << "<span class='notice'>You can't [open ? "close" : "open"] [src], the lock is engaged!</span>"
 			return
 
 	if(href_list["decrement"])
-		dial = decrement(dial)
+		decrement()
 		check_unlocked(user, canhear)
-//		updateUsrDialog()
 		src.attack_hand(user)
 		return
-
 	if(href_list["increment"])
-		dial = increment(dial)
+		increment()
 		check_unlocked(user, canhear)
-		updateUsrDialog()
+		src.attack_hand(user)
+		return
+	if(href_list["decrement2"])
+		decrement2()
+		check_unlocked(user, canhear)
+		src.attack_hand(user)
+		return
+	if(href_list["increment2"])
+		increment2()
+		check_unlocked(user, canhear)
+		src.attack_hand(user)
 		return
 
 	if(href_list["retrieve"])
@@ -147,7 +167,7 @@ FLOOR SAFES
 		if(open)
 			if(P && in_range(src, user))
 				user.put_in_hands(P)
-				updateUsrDialog()
+				src.attack_hand(user)
 
 
 /obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
@@ -157,7 +177,7 @@ FLOOR SAFES
 			user.drop_item()
 			I.loc = src
 			user << "<span class='notice'>You put [I] in [src].</span>"
-			updateUsrDialog()
+			src.attack_hand(user)
 			return
 		else
 			user << "<span class='notice'>[I] won't fit in [src].</span>"
