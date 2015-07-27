@@ -196,6 +196,9 @@
 
 	else if(istype(W, /obj/item/weapon/wrench))
 
+		if (istype(src, /obj/machinery/vending/marine) || istype(src, /obj/machinery/vending/marineFood) || istype(src, /obj/machinery/vending/MarineMed) || istype(src, /obj/machinery/vending/MarineMed/Blood) || istype(src, /obj/machinery/vending/marine_engi) || istype(src, /obj/machinery/vending/marine_medic) || istype(src, /obj/machinery/vending/marine_special) || istype(src, /obj/machinery/vending/marine_leader) || istype(src, /obj/machinery/vending/attachments))
+			return
+
 		if(do_after(user, 20))
 			if(!src) return
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
