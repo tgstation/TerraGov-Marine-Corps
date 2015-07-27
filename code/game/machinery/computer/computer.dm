@@ -8,6 +8,7 @@
 	active_power_usage = 300
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
+	var/exproof = 0
 
 /obj/machinery/computer/New()
 	..()
@@ -39,6 +40,8 @@
 
 
 /obj/machinery/computer/ex_act(severity)
+	if(exproof)
+		return
 	switch(severity)
 		if(1.0)
 			del(src)
