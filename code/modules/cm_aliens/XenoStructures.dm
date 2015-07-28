@@ -362,26 +362,27 @@
 			Burst(0)
 			return
 
+/*
 /obj/effect/alien/egg/proc/GetFacehugger()
 	return locate(/obj/item/clothing/mask/facehugger) in contents
-
+*/
 /obj/effect/alien/egg/proc/Grow()
 	icon_state = "Egg"
 	status = GROWN
-	new /obj/item/clothing/mask/facehugger(src)
+//	new /obj/item/clothing/mask/facehugger(src)
 	return
 
 /obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
 	if(status == GROWN || status == GROWING)
-		var/obj/item/clothing/mask/facehugger/child = GetFacehugger()
 		icon_state = "Egg Opened"
 		flick("Egg Opening", src)
 		status = BURSTING
 		spawn(15)
 			status = BURST
-			child.loc = get_turf(src)
-			if(kill && istype(child)) //Make sure it's still there
-				child.Die()
+			if(src.loc)
+				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
+				if(kill && istype(child)) //Make sure it's still there
+					child.Die()
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
