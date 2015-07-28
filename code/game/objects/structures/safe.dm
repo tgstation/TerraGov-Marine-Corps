@@ -108,9 +108,9 @@ FLOOR SAFES
 /obj/structure/safe/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	var/dat = "<center>"
-	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a>"
-	dat += "Dial 1: <a href='?src=\ref[src];decrement=1'>-</a> [tumbler_1_pos] <a href='?src=\ref[src];increment=1'>+</a>"
-	dat += "Dial 2: <a href='?src=\ref[src];decrement2=1'>-</a> [tumbler_2_pos] <a href='?src=\ref[src];increment2=1'>+</a>"
+	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a><br>"
+	dat += "Dial 1: <a href='?src=\ref[src];decrement=1'>-</a> [tumbler_1_pos] <a href='?src=\ref[src];increment=1'>+</a><br>"
+	dat += "Dial 2: <a href='?src=\ref[src];decrement2=1'>-</a> [tumbler_2_pos] <a href='?src=\ref[src];increment2=1'>+</a><br>"
 	if(open)
 		dat += "<table>"
 		for(var/i = contents.len, i>=1, i--)
@@ -118,7 +118,7 @@ FLOOR SAFES
 			dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 		dat += "</table></center>"
 	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
-
+	onclose(user, "safe")
 
 /obj/structure/safe/Topic(href, href_list)
 	if(!ishuman(usr))	return

@@ -5,9 +5,9 @@
 	desc = "What.. what is this monstrosity? A cyborg in the shape of a xenomorph?! What hath our science wrought?"
 	icon_state = "Xenoborg Walking"
 	melee_damage_lower = 24
-	melee_damage_upper = 28
-	health = 200
-	maxHealth = 200
+	melee_damage_upper = 24
+	health = 300
+	maxHealth = 300
 	storedplasma = 1500
 	plasma_gain = 0
 	maxplasma = 1500
@@ -20,7 +20,7 @@
 	universal_speak = 1
 	universal_understand = 1
 	speak_emote = list("buzzes", "beeps")
-	armor_deflection = 70
+	armor_deflection = 90
 	fire_immune = 1
 	is_robotic = 1
 
@@ -46,8 +46,8 @@
 
 /mob/living/carbon/Xenomorph/Xenoborg/emp_act(severity)
 	src.visible_message("[src] visibly shudders!","\red WARN__--d-sEIE)(*##&&$*@#*&#")
-	adjustBruteLoss(20 * severity)
-	adjustFireLoss(20 * severity)
+	adjustBruteLoss(50 * severity)
+	adjustFireLoss(50 * severity)
 	Weaken(12)
 	updatehealth()
 

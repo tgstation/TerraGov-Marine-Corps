@@ -113,6 +113,9 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
 				continue
 
+			if(prob(70))
+				AssignRole(player,"Squad Marine") //Fuck it.
+
 			if(job in command_positions) //If you want a command position, select it!
 				continue
 
@@ -154,10 +157,10 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 				// Different head positions have different good ages.
 				var/good_age_minimal = 25
-				var/good_age_maximal = 60
+				var/good_age_maximal = 90
 				if(command_position == "Commander")
 					good_age_minimal = 30
-					good_age_maximal = 70 // Old geezer captains ftw
+					good_age_maximal = 200 // Old geezer captains ftw
 
 				for(var/mob/V in candidates)
 					// Log-out during round-start? What a bad boy, no head position for you!

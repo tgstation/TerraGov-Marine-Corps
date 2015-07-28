@@ -106,20 +106,6 @@
 	caliber = "a762"
 	projectile_type = "/obj/item/projectile/bullet/a762"
 
-/obj/item/ammo_casing/rocket
-	name = "frag rocket shell"
-	desc = "A high explosive designed to be fired from a launcher."
-	icon_state = "rocketshell"
-	projectile_type = "/obj/item/missile"
-	caliber = "rocket"
-
-/obj/item/ammo_casing/rocket/ap
-	name = "armor piercing rocket shell"
-	desc = "A dense explosive designed to be fired from a launcher. Serious damage, but not much fragmentation."
-	icon_state = "rocketshell"
-	projectile_type = "/obj/item/missile/ap"
-	caliber = "rocket"
-
 /obj/item/ammo_casing/chameleon
 	name = "chameleon bullets"
 	desc = "A set of bullets for the Chameleon Gun."

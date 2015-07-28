@@ -39,7 +39,7 @@
 	name = "Marine Command Radio Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "cap_cypherkey"
-	channels = list("Command" = 1, "MP" = 1, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 1, "MedSci" = 0 )
+	channels = list("Command" = 1, "MP" = 1, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 1, "MedSci" = 1, "Req" = 1 )
 /*
 /obj/item/device/encryptionkey/mhaz
 	name = "Hazteam Echo Radio Encryption Key"
@@ -105,7 +105,7 @@
 
 /obj/item/device/radio/headset/mcom
 	name = "marine command radio headset"
-	desc = "This is used by the marine command. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad."
+	desc = "This is used by the marine command. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
 	icon_state = "med_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mcom
