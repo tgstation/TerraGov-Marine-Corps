@@ -54,8 +54,16 @@
 				m_type = 2
 				message = "<B>The [src.name]</B> lashes its tail."
 				playsound(src.loc, 'sound/voice/alien_tail.ogg', 100, 1, 1)
+		if("dance")
+			if (!src.restrained())
+				message = "<B>The [src.name]</B> dances around!"
+				m_type = 1
+				spawn(0)
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+						dir = i
+						sleep(1)
 		if("help")
-			src << "Available emotes: *roar, *growl, *sneer, *tail"
+			src << "Available emotes: *roar, *growl, *sneer, *tail, *dance"
 		else
 			src << text("Invalid Emote: []", act)
 	if ((message && src.stat == 0))
