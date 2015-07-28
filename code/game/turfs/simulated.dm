@@ -30,6 +30,7 @@
 		if(M.lying)
 			..()
 			return
+		/*
 		dirt++
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
 		if (dirt >= 50)
@@ -38,9 +39,10 @@
 				dirtoverlay.alpha = 15
 			else if (dirt > 50)
 				dirtoverlay.alpha = min(dirtoverlay.alpha+5, 255)
-
+		*/
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
+			/*
 			if(istype(H.shoes, /obj/item/clothing/shoes/clown_shoes))
 				var/obj/item/clothing/shoes/clown_shoes/O = H.shoes
 				if(H.m_intent == "run")
@@ -51,7 +53,7 @@
 						O.footstep++
 				else
 					playsound(src, "clownstep", 20, 1)
-
+			*/
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
@@ -75,12 +77,14 @@
 
 				bloodDNA = null
 
-		var/noslip = 0
-		for (var/obj/structure/stool/bed/chair/C in loc)
-			if (C.buckled_mob == M)
-				noslip = 1
-		if (noslip)
-			return // no slipping while sitting in a chair, plz
+//		var/noslip = 0
+		if(M.buckled && istype(M.buckled,/obj/structure/stool/bed/chair))
+			return
+//		for (var/obj/structure/stool/bed/chair/C in loc)
+//			if (C.buckled_mob == M)
+//				noslip = 1
+//		if (noslip)
+//			return // no slipping while sitting in a chair, plz
 		switch (src.wet)
 			if(1)
 				if(istype(M, /mob/living/carbon/human)) // Added check since monkeys don't have shoes
