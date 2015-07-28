@@ -136,7 +136,7 @@ var/list/mechtoys = list(
 	var/points = 100
 	var/points_per_process = 2
 	var/points_per_slip = 2
-	var/points_per_crate = 10
+	var/points_per_crate = 5
 	var/points_per_platinum = 10
 	var/points_per_phoron = 10
 	//control

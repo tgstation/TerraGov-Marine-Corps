@@ -225,7 +225,7 @@
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL
-	name = "glowing slime extract"
+	name = "glowing slime"
 	desc = "A glowing ball of what appears to be amber."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
