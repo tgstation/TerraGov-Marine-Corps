@@ -57,14 +57,11 @@
 /obj/effect/alien/resin/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			health-=50
+			health-=500
 		if(2.0)
-			health-=50
+			health-=(rand(140,300))
 		if(3.0)
-			if (prob(50))
-				health-=50
-			else
-				health-=25
+			health-=(rand(50,100))
 	healthcheck()
 	return
 
@@ -200,10 +197,10 @@
 		if(1.0)
 			del(src)
 		if(2.0)
-			if (prob(50))
+			if (prob(70))
 				del(src)
 		if(3.0)
-			if (prob(25))
+			if (prob(50))
 				del(src)
 	return
 
@@ -332,6 +329,16 @@
 	spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
 		Grow()
 
+/obj/effect/alien/egg/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			health -= rand(50,100)
+		if(2.0)
+			health -= rand(40,95)
+		if(3.0)
+			health -= rand(20,81)
+	healthcheck()
+	return
 
 /obj/effect/alien/egg/attack_alien(user as mob)
 
@@ -530,6 +537,7 @@
 	var/on_fire = 0
 	var/resisting = 0
 	var/nest_resist_time = 1900
+	layer = 2.9 //Just above weeds.
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)

@@ -22,7 +22,7 @@
 	// Alien number scales to player number (preferred). Swap these to test solo.
 	var/readyplayers = num_players()
 
-	numaliens = Clamp((readyplayers/4), 1, 15) //(n, minimum, maximum)
+	numaliens = Clamp((readyplayers/4), 1, 12) //(n, minimum, maximum)
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 

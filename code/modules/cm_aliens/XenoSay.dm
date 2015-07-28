@@ -29,7 +29,7 @@
 					speaking = L
 					break
 
-	if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
+	if(isnull(speaking) || speaking.key != "a" && !is_robotic) //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
 		for(var/datum/language/L in languages)
 			if(L.key == "x")
 				verb = L.speech_verb

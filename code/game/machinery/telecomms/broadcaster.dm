@@ -396,8 +396,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		else if (display_freq == MED_FREQ)
 			part_a = "<span class='medradio'><span class='name'>"
 
-//		else if (display_freq == SUP_FREQ) // cargo
-//			part_a = "<span class='supradio'><span class='name'>"
+		else if (display_freq == SUP_FREQ) // cargo
+			part_a = "<span class='supradio'><span class='name'>"
 
 
 

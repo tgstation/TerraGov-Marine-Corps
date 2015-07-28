@@ -169,9 +169,9 @@
 	damage_type = BURN
 
 /obj/item/projectile/energy/neuro/acid
-	damage = 15
+	damage = 25
 	name = "acid"
-	icon_state = "decloner"
+	icon_state = "declone"
 	damage_type = BURN
 
 	on_hit(var/atom/target, var/blocked = 0)
@@ -184,17 +184,16 @@
 
 		new /obj/effect/xenomorph/splatter(T) //First do a splatty splat
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
-		for(var/mob/living/carbon/human/M in view(1,T))
+		for(var/mob/living/carbon/human/M in range(1,T))
 			if(M && M.stat != DEAD && !isYautja(M))
 				spawn(0)
-					if(!(/obj/effect/xenomorph/splatter in get_turf(M)))
+					if(!locate(/obj/effect/xenomorph/splatter) in get_turf(M))
 						new /obj/effect/xenomorph/splatter(get_turf(M))
 					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
 					M.apply_damage(damage,BURN) //Will pick a single random part to splat
-					M.update_icons() //Give a bit of a delay for the procs to catch up, update icons is expensive.
 
 /obj/item/projectile/energy/neuro/acid/heavy
-	damage = 30
+	damage = 40
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here

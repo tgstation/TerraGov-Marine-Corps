@@ -22,27 +22,33 @@
 	if(!buildstate && is_on)
 		icon_state = "geo_working"
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
+		var/image/over = image('icons/ground_map.dmi', src, "turbine0")
+		var/changed = 0
 		if(power_gen_percent == 5)
-			overlays.Cut()
-			overlays += "turbine0"
+			over.icon_state = "turbine0"
+			changed = 1
 		else if (power_gen_percent == 20)
-			overlays.Cut()
-			overlays += "turbine1"
+			over.icon_state = "turbine1"
+			changed = 1
 		else if (power_gen_percent == 40)
-			overlays.Cut()
-			overlays += "turbine2"
+			over.icon_state = "turbine2"
+			changed = 1
 		else if (power_gen_percent == 60)
-			overlays.Cut()
-			overlays += "turbine3"
+			over.icon_state = "turbine3"
+			changed = 1
 		else if (power_gen_percent == 75)
-			overlays.Cut()
-			overlays += "turbine4"
+			over.icon_state = "turbine4"
+			changed = 1
 		else if (power_gen_percent == 90)
-			overlays.Cut()
-			overlays += "turbine5"
+			over.icon_state = "turbine5"
+			changed = 1
 		else if (power_gen_percent == 99) //99 better than 100, since it could stay at 100 for a long time but not 99
+			over.icon_state = "turbine6"
+			changed = 1
+
+		if(changed)
 			overlays.Cut()
-			overlays += "turbine6"
+			overlays += over
 
 	else if (!buildstate && !is_on)
 		overlays.Cut()

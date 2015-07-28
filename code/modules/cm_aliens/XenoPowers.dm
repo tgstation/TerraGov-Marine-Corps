@@ -39,7 +39,7 @@
 	if(!spit_type)
 		src << "You will now spit heavier globs of acid instead of neurotoxin."
 		spit_type = 1
-		spit_delay = (initial(spit_delay) + 50) //Takes longer to recharge.
+		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
 		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
 			spit_projectile = /obj/item/projectile/energy/neuro/acid/heavy
 		else
@@ -331,15 +331,17 @@
 
 	var/turf/T = loc
 	var/turf/T2 = null
-	if(!T) //logic
+	if(!T || !istype(T)) //logic
 		return
 
 	if(!locate(/obj/effect/alien/weeds) in T)
 		src << "You can only shape on weeds. Find some resin before you start building!"
 		return
-
-	if(locate(/obj/structure/mineral_door/resin) in T || locate(/obj/effect/alien/resin/wall) in T || locate(/obj/effect/alien/resin/membrane) in T || locate(/obj/structure/stool/bed/nest) in T || locate(/obj/effect/alien/resin/sticky) in T)
+	if(locate(/obj/structure/mineral_door) in T || locate(/obj/effect/alien/resin) in T)
 		src << "There's something built here already."
+		return
+	if(locate(/obj/structure/) in T)
+		src << "There's something here already."
 		return
 
 	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
@@ -349,8 +351,18 @@
 
 	T2 = loc
 
-	if(T != T2)
+	if(T != T2 || !isturf(T2))
 		src << "You have to stand still when making your selection."
+		return
+	//Another check, in case someone built where they were standing somehow.
+	if(!locate(/obj/effect/alien/weeds) in T2)
+		src << "You can only shape on weeds. Find some resin before you start building!"
+		return
+	if(locate(/obj/structure/mineral_door) in T2 || locate(/obj/effect/alien/resin) in T2)
+		src << "There's something built here already."
+		return
+	if(locate(/obj/structure/) in T)
+		src << "There's something here already."
 		return
 
 	if(!check_plasma(75))
@@ -358,7 +370,9 @@
 
 	src << "\green You shape a [choice]."
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
+		if(O != src)
+			O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
+
 	switch(choice)
 		if("resin door")
 			new /obj/structure/mineral_door/resin(T)
@@ -671,26 +685,22 @@
 	pslash_delay = 1
 
 
-	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("allow","restricted","forbid","cancel")
+	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allow","Restricted - less damage","Forbid")
 
-	if(!choice || choice == "cancel")
-		return
-
-	if(choice == "allow")
-		src << "You permit slashing."
+	if(choice == "Allow")
+		src << "You allow slashing."
 		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!",3)
 		slashing_allowed = 1
-	else if(choice == "restricted")
+	else if(choice == "Restricted - less damage")
 		src << "You restrict slashing."
 		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.",3)
 		slashing_allowed = 2
-	else if(choice == "forbid")
+	else if(choice == "Forbid")
 		src << "You forbid slashing entirely."
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.",3)
 		slashing_allowed = 0
 	else
-		src << "Something went wrong here. Call a coder woop woop"
-	return
+		return
 
 /mob/living/carbon/Xenomorph/verb/hive_status()
 	set name = "Hive Status"
