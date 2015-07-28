@@ -27,8 +27,6 @@
 /datum/hud_data/yautja
 	is_yautja = 1
 
-
-
 /mob/living/carbon/human/proc/butcher()
 	set category = "Yautja"
 	set name = "Butcher"

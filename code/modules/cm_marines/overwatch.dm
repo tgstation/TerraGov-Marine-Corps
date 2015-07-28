@@ -68,7 +68,7 @@
 						dat += "<A href='?src=\ref[src];operation=cam'>\[CAM\]</a> "
 						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a><BR><BR>"
 					else
-						dat += "<B>Squad Leader:</B> <font color=red>NONE</font><br><BR>"
+						dat += "<B>Squad Leader:</B> <font color=red>NONE</font><br> <A href='?src=\ref[src];operation=scan_leader'>\[SCAN\]</a><BR>"
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "<A href='?src=\ref[src];operation=check_primary'>\[Check\]</A> <A href='?src=\ref[src];operation=set_primary'>\[Set\]</A><BR>"
@@ -296,7 +296,7 @@
 			if(input < -5) input = -5
 			usr << "\icon[src] X-offset is now [input]."
 			x_offset_b = input
-		if("bomb_x")
+		if("bomb_y")
 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
 			if(input > 5) input = 5
 			if(input < -5) input = -5
@@ -304,6 +304,10 @@
 			y_offset_b = input
 		if("refresh")
 			src.attack_hand(usr)
+		if("scan_leader")
+			search_for_leader()
+			spawn(0)
+				src.attack_hand(usr)
 		if("dropsupply")
 			if(current_squad)
 				if(current_squad.supply_timer)
@@ -347,7 +351,7 @@
 	src.attack_hand(usr) //The above doesn't ever seem to work.
 
 /obj/machinery/computer/overwatch/check_eye(var/mob/user as mob)
-	if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+	if (user.stat || get_dist(user, src) > 1 || user.blinded) //user can't see - not sure why canmove is here.
 		is_watching = 0
 		user.unset_machine()
 	else
@@ -458,6 +462,26 @@
 					y_offset += rand(-1,1)
 					target = locate(T.x + x_offset,T.y + y_offset,T.z)
 					explosion(target,1,1,4)
+
+/obj/machinery/computer/overwatch/proc/search_for_leader()
+	if(!usr || usr != operator)
+		return
+	if(!current_squad)
+		usr << "\icon[src] No squad selected!"
+		return
+	if(current_squad.squad_leader)
+		usr << "\icon[src] This squad has a leader!"
+		return
+
+	for(var/mob/living/carbon/human/H in living_mob_list)
+		if(is_leader_from_card(H) && get_squad_from_card(H) == current_squad)
+			current_squad.squad_leader = H
+			usr << "\icon[src] New leader found and linked!"
+			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
+			return
+
+	usr << "\icon[src] No valid leaders found for this squad. They must have a squad set using the squad consoles."
+	return
 
 /obj/machinery/computer/overwatch/proc/handle_supplydrop()
 	if(!usr || usr != operator)

@@ -7,7 +7,8 @@
 #define X_L_HAND_LAYER			3
 #define X_R_HAND_LAYER			4
 #define TARGETED_LAYER			5
-#define X_TOTAL_LAYERS			5
+#define X_LEGCUFF_LAYER			6
+#define X_TOTAL_LAYERS			6
 /////////////////////////////////
 
 /mob/living/carbon/Xenomorph
@@ -159,6 +160,15 @@
 		overlays_standing[TARGETED_LAYER]	= null
 	if(update_icons)		update_icons()
 
+/mob/living/carbon/Xenomorph/update_inv_legcuffed(var/update_icons=1)
+	if(legcuffed)
+		overlays_standing[X_LEGCUFF_LAYER]	= image("icon" = 'icons/Xeno/Effects.dmi', "icon_state" = "legcuff")
+		if(src.m_intent != "walk")
+			src.m_intent = "walk"
+	else
+		overlays_standing[X_LEGCUFF_LAYER]	= null
+	if(update_icons)   update_icons()
+
 /mob/living/carbon/Xenomorph/proc/create_shriekwave()
 	var/image/waves = image("icon" = src.icon, "icon_state" = "shriek_waves")
 	overlays_standing[X_SUIT_LAYER] = waves //Ehh, suit layer's not being used.
@@ -174,4 +184,5 @@
 #undef X_L_HAND_LAYER
 #undef X_R_HAND_LAYER
 #undef TARGETED_LAYER
+#undef X_LEGCUFF_LAYER
 #undef X_TOTAL_LAYERS

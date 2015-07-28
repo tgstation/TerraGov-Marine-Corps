@@ -88,9 +88,9 @@
 			victim.visible_message("\green [victim] is scalded with hissing green blood!","\green <b>You are splattered with sizzling blood! IT BURNS!!<b>")
 			if(prob(60) && !victim.stat)
 				victim.emote("scream") //Topkek
-			victim.take_organ_damage(0,rand(5,70))  //Sizzledam! This automagically burns a random existing body part
+			victim.take_organ_damage(0,rand(5,50))  //Sizzledam! This automagically burns a random existing body part
 			if(prob(30)) //So good, you do it twice!
-				victim.take_organ_damage(0,rand(5,60))   //The 0 is for brute damage.
+				victim.take_organ_damage(0,rand(5,30))   //The 0 is for brute damage.
 	return
 
 //Deal with armor deflection.

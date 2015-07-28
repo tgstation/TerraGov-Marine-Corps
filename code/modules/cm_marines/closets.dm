@@ -41,7 +41,7 @@
 			new /obj/item/clothing/shoes/marinechief/commander(src)
 			new /obj/item/clothing/gloves/marine/techofficer/commander(src)
 			new /obj/item/clothing/under/marine/officer/command(src)
-			new /obj/item/clothing/suit/storage/marine/officer/commander(src)
+//			new /obj/item/clothing/suit/storage/marine/officer/commander(src)
 			new /obj/item/clothing/head/beret/marine/commander(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mcom(src)

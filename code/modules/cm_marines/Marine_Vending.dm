@@ -25,8 +25,13 @@
 					/obj/item/weapon/throwing_knife = 9,
 					/obj/item/device/flashlight/flare = 10,
 					/obj/item/weapon/storage/backpack/marine = 20,
-					/obj/item/device/radio/headset/msulaco = 5
-
+					/obj/item/device/radio/headset/msulaco = 5,
+					/obj/item/device/flashlight/flare = 10,
+					/obj/item/clothing/suit/storage/marine = 5,
+					/obj/item/weapon/storage/belt/marine = 5,
+					/obj/item/clothing/head/helmet/marine = 5,
+					/obj/item/clothing/shoes/marine = 5,
+					/obj/item/clothing/under/marine_jumpsuit =5
 					)
 	contraband = list(/*bj/item/weapon/storage/fancy/donut_box = 5,
 					/obj/item/ammo_magazine/a357 = 5,
@@ -44,12 +49,12 @@
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 8	)
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 10	)
 
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
@@ -194,8 +199,8 @@
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 5,
 						/obj/item/weapon/grenade/smokebomb = 5,
-						/obj/item/ammo_casing/rocket = 2,
-						/obj/item/ammo_casing/rocket/ap = 2,
+						/obj/item/ammo_casing/rocket = 3,
+						/obj/item/ammo_casing/rocket/ap = 3,
 						/obj/item/weapon/flamethrower/full = 1,
 						/obj/item/weapon/tank/phoron = 3,
 						/obj/item/weapon/shield/riot = 1,
@@ -243,9 +248,9 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(
-						/obj/item/attachable/suppressor = 4,
-						/obj/item/attachable/bayonet = 10,
-						/obj/item/attachable/reddot = 4,
+						/obj/item/attachable/suppressor = 6,
+						/obj/item/attachable/bayonet = 12,
+						/obj/item/attachable/reddot = 8,
 						/obj/item/attachable/foregrip = 8,
 						/obj/item/attachable/gyro = 1,
 						/obj/item/attachable/flashlight = 20,
