@@ -285,7 +285,7 @@
 
 
 /area/Entered(A)
-	var/musVolume = 25
+	var/musVolume = 20
 	var/sound = 'sound/ambience/ambigen1.ogg'
 
 	if(!istype(A,/mob/living))	return
@@ -308,12 +308,12 @@
 
 	if(!L.client.ambience_playing)
 		L.client.ambience_playing = 1
-		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = 2)
+		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 30, channel = 2)
 
 	if(src.ambience.len && prob(35))
 		sound = pick(ambience)
 
-		if(world.time > L.client.played + 600)
+		if(world.time > L.client.played + 900)
 			L << sound(sound, repeat = 0, wait = 0, volume = musVolume, channel = 1)
 			L.client.played = world.time
 

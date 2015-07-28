@@ -422,10 +422,10 @@
 	if(x_offset < -5 || x_offset > 5) x_offset = 0
 	if(y_offset < -5 || y_offset > 5) x_offset = 0
 	//All set, let's do this.
-	current_squad.bbeacon.visible_message("The beacon begins blinking red!")
+	current_squad.bbeacon.visible_message("\red <b>The beacon begins blinking red!</b>")
 	send_to_squad("Initializing fire coordinates..")
 	if(current_squad.bbeacon)
-		playsound(current_squad.bbeacon,'sound/effects/alert.ogg', 100, 1)  //Placeholder
+		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 100, 1)  //Placeholder
 	sleep(25)
 	send_to_squad("Transmitting beacon feed..")
 	sleep(25)
@@ -446,22 +446,22 @@
 			if((H.z == 3 || H.z == 4) && !src.stat) //Sulaco decks.
 				H << "<span class='warning'>The deck of the Sulaco shudders as the orbital cannons open fire on LV-624.</span>"
 				if(!H.buckled && H.client)
-					shake_camera(H, 5, 1)
+					shake_camera(H, 10, 1)
 		x_offset += rand(-2,2) //Little bit of randomness.
 		y_offset += rand(-2,2)
 		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 		if(target && istype(target))
 			explosion(target, 2, 2, 5, 1) //Kaboom!
 			spawn(rand(5,30)) //This is all better done in a for loop, but I am mad lazy
-				x_offset += rand(-1,1)
-				y_offset += rand(-1,1)
+				x_offset += rand(-2,2)
+				y_offset += rand(-2,2)
 				target = locate(T.x + x_offset,T.y + y_offset,T.z)
-				explosion(target,1,1,4)
+				explosion(target,1,2,4)
 				spawn(rand(5,30))
-					x_offset += rand(-1,1)
-					y_offset += rand(-1,1)
+					x_offset += rand(-2,2)
+					y_offset += rand(-2,2)
 					target = locate(T.x + x_offset,T.y + y_offset,T.z)
-					explosion(target,1,1,4)
+					explosion(target,1,2,4)
 
 /obj/machinery/computer/overwatch/proc/search_for_leader()
 	if(!usr || usr != operator)
