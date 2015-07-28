@@ -99,7 +99,11 @@
 	switch(M.a_intent)
 
 		if ("help")
-			help_shake_act(M)
+			if(src.stat == DEAD)
+				M << "You poke [src] but nothing happens."
+			else
+				M << "You poke [src]."
+				src << "[M] pokes you."
 
 		if ("grab")
 			if (M == src || src.anchored)
@@ -145,8 +149,39 @@
 //Actually just used for eating people.
 /mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(src != M)
-		return ..() //Do the standard proc.
+		if(istype(M,/mob/living/carbon/Xenomorph/Larva))
+			visible_message("\red <B>[M] nudges its head against [src].</B>")
+			return 0
 
+		switch(M.a_intent)
+			if ("help")
+				visible_message(text("\blue [M] caresses [src] with its scythe like arm."))
+
+			if ("grab")
+				if(M == src || anchored)
+					return
+
+				if(Adjacent(M)) //Logic!
+					M.start_pulling(src)
+					update_icons(M) //To immediately show the grab
+					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+					visible_message(text("\red \The [] has grabbed []!", M, src), "\red You grab [M]!")
+
+			if("hurt")//Can't slash other xenos for now. SORRY
+				if(istype(src,/mob/living/carbon/Xenomorph))
+					visible_message("\red \The [M] nibbles at [src].")
+					return
+				var/damage = rand(5,20) //Who cares, it's just Ian and the Monkeys (that would make a great band name)
+				visible_message("\red \The [M] bites at \the [src]!")
+				apply_damage(damage, BRUTE)
+
+			if("disarm")
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
+				visible_message(text("\red [] shoves [].", M, src))
+				if(ismonkey(src))
+					src.Weaken(8)
+		return
+	//Clicked on self.
 	if(pulling)
 		var/mob/living/carbon/pulled = pulling
 		if(!istype(pulled)) return

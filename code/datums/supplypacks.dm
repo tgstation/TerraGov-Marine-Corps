@@ -755,6 +755,33 @@ var/list/all_supply_groups = list("Operations","Security","Supplies","Engineerin
 	containername = "Officer dress closet"
 	group = "Clothing"
 
+/datum/supply_packs/marine_outfits
+	contains = list(
+					/obj/item/clothing/under/marine_jumpsuit,
+					/obj/item/clothing/under/marine_jumpsuit,
+					/obj/item/clothing/under/marine_jumpsuit,
+					/obj/item/clothing/under/marine_jumpsuit,
+					/obj/item/clothing/under/marine_jumpsuit,
+					/obj/item/weapon/storage/belt/marine,
+					/obj/item/weapon/storage/belt/marine,
+					/obj/item/weapon/storage/belt/marine,
+					/obj/item/weapon/storage/backpack/marine,
+					/obj/item/weapon/storage/backpack/marine,
+					/obj/item/weapon/storage/backpack/marine,
+					/obj/item/weapon/storage/backpack/marine,
+					/obj/item/weapon/storage/backpack/marine,
+					/obj/item/clothing/shoes/marine,
+					/obj/item/clothing/shoes/marine,
+					/obj/item/clothing/shoes/marine,
+					/obj/item/clothing/shoes/marine,
+					/obj/item/clothing/shoes/marine
+					)
+	name = "Marine outfit closet"
+	cost = 25
+	containertype = /obj/structure/closet
+	containername = "Marine outfit closet"
+	group = "Clothing"
+
 /datum/supply_packs/formal_wear
 	contains = list(/obj/item/clothing/head/bowler,
 					/obj/item/clothing/head/that,
