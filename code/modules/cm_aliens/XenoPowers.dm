@@ -685,26 +685,22 @@
 	pslash_delay = 1
 
 
-	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("allow","restricted","forbid","cancel")
+	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allow","Restricted - less damage","Forbid")
 
-	if(!choice || choice == "cancel")
-		return
-
-	if(choice == "allow")
-		src << "You permit slashing."
+	if(choice == "Allow")
+		src << "You allow slashing."
 		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!",3)
 		slashing_allowed = 1
-	else if(choice == "restricted")
+	else if(choice == "Restricted - less damage")
 		src << "You restrict slashing."
 		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.",3)
 		slashing_allowed = 2
-	else if(choice == "forbid")
+	else if(choice == "Forbid")
 		src << "You forbid slashing entirely."
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.",3)
 		slashing_allowed = 0
 	else
-		src << "Something went wrong here. Call a coder woop woop"
-	return
+		return
 
 /mob/living/carbon/Xenomorph/verb/hive_status()
 	set name = "Hive Status"
