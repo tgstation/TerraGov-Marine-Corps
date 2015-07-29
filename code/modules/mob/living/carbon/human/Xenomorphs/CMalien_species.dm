@@ -38,7 +38,7 @@
 	death_message = "lets out a waning guttural screech, green blood bubbling from its maw."
 	death_sound = 'sound/voice/alien_death.ogg'
 
-	speech_sounds = list('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg')
+	// speech_sounds = list('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg') // Not used anymore
 	speech_chance = 100
 
 	breath_type = null

@@ -222,7 +222,7 @@
 /mob/living/carbon/Xenomorph/death(gibbed)
 	if(!gibbed)
 		icon_state = "[caste] Dead"
-	playsound(loc, 'sound/voice/hiss6.ogg', 50, 1, 1)
+	playsound(loc, 'sound/voice/alien_death.ogg', 50, 1, 1)
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
 		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
 		xeno_message("The slashing of hosts is now permitted!",2)
