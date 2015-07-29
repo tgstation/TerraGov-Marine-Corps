@@ -48,6 +48,10 @@
 			src << "You require more plasma! Currently at: [storedplasma] / 500."
 			return
 
+		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
+			src << "You must wait for the hive to recover from the previous Queen's death."
+			return
+
 	var/mob/living/carbon/Xenomorph/M = null
 
 	//Better to use a get_caste_by_text proc but ehhhhhhhh. Lazy.

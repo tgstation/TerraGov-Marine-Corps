@@ -1,6 +1,7 @@
 /datum/game_mode
 	var/list/datum/mind/aliens = list()
 	var/list/datum/mind/survivors = list()
+	var/queen_death_timer = 0
 
 /datum/game_mode/colonialmarines
 	name = "colonial marines"
@@ -217,6 +218,11 @@ var/list/toldstory = list()
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
 /datum/game_mode/colonialmarines/process()
+
+	if(queen_death_timer && !finished)
+		queen_death_timer--
+		if(queen_death_timer == 1)
+			xeno_message("The Hive is ready for a new Queen to evolve.")
 
 	checkwin_counter++
 

@@ -227,6 +227,8 @@
 		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
 		xeno_message("The slashing of hosts is now permitted!",2)
 		slashing_allowed = 1
+		if(ticker && ticker.mode)
+			ticker.mode.queen_death_timer = 1000
 	else
 		var/area/A = get_area(src)
 		if(A)

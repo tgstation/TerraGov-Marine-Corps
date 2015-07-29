@@ -212,7 +212,7 @@
 	permeability_coefficient = 0.05
 	canremove = 0
 	body_parts_covered = HANDS|ARMS
-	armor = list(melee = 30, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 70, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
