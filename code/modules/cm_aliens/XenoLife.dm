@@ -228,7 +228,7 @@
 		xeno_message("The slashing of hosts is now permitted!",2)
 		slashing_allowed = 1
 		if(ticker && ticker.mode)
-			ticker.mode.queen_death_timer = 1000
+			ticker.mode.queen_death_timer = queen_time // 5 minutes. Defined in Xenomorph.dm
 	else
 		var/area/A = get_area(src)
 		if(A)

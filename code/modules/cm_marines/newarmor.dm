@@ -78,6 +78,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/bible,
 		/obj/item/weapon/combat_knife)
 
+	New()
+		if(src.name == "M3 Pattern Marine Armor") //This is to stop subtypes from icon changing. There's prolly a better way
+			spawn(5)
+				icon_state = "[rand(1,6)]"
+
 
 /obj/item/clothing/suit/storage/marine/marine_spec_armor
 	name = "B18 Defensive Armor"

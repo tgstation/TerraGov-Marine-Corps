@@ -340,7 +340,7 @@
 	if(locate(/obj/structure/mineral_door) in T || locate(/obj/effect/alien/resin) in T)
 		src << "There's something built here already."
 		return
-	if(locate(/obj/structure/) in T)
+	if(locate(/obj/structure/stool/) in T)
 		src << "There's something here already."
 		return
 
@@ -361,7 +361,7 @@
 	if(locate(/obj/structure/mineral_door) in T2 || locate(/obj/effect/alien/resin) in T2)
 		src << "There's something built here already."
 		return
-	if(locate(/obj/structure/) in T)
+	if(locate(/obj/structure/stool) in T)
 		src << "There's something here already."
 		return
 
