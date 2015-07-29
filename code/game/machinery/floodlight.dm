@@ -14,14 +14,15 @@
 	var/brightness_on = 7		//can't remember what the maxed out value is
 
 /obj/machinery/floodlight/New()
-	src.cell = new(src)
 	..()
+	spawn(1)
+		cell = new /obj/item/weapon/cell(src)
 
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 
 /obj/machinery/floodlight/process()
-	if(on)
+	if(on && cell)
 		if(cell.charge >= use)
 			cell.use(use)
 		else
