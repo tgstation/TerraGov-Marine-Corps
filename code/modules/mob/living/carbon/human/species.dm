@@ -490,6 +490,7 @@
 	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
 	speech_chance = 100
 	hud_type = /datum/hud_data/yautja
+	darksight = 3
 
 	inherent_verbs = list(
 //		/mob/living/carbon/human/proc/leap

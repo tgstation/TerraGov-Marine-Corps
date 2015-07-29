@@ -42,6 +42,7 @@
 	var/minimal_player_age = 0
 
 	var/is_squad_job = 0 //Should we place this job into squads?
+	var/comm_title = "" //The mini-title to display over comms.
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H)
 	return 1

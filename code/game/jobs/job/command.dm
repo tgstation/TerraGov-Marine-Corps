@@ -3,6 +3,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 //Commander
 /datum/job/captain
 	title = "Commander"
+	comm_title = "CO"
 	flag = COMMANDER
 	department_flag = COMMAND
 	faction = "Station"
@@ -48,6 +49,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 //Executive Officer
 /datum/job/executive_officer
 	title = "Executive Officer"
+	comm_title = "EO"
 	flag = EXECUTIVE
 	department_flag = COMMAND
 	faction = "Station"
@@ -82,6 +84,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 //Bridge Officer
 /datum/job/bridge_officer
 	title = "Bridge Officer"
+	comm_title = "BO"
 	flag = BRIDGE
 	department_flag = COMMAND
 	faction = "Station"
@@ -111,6 +114,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 //Liason
 /datum/job/liason
 	title = "Corporate Liason"
+	comm_title = "CL"
 	flag = LIASON
 	department_flag = COMMAND
 	faction = "Station"

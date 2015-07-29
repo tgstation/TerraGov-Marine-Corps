@@ -66,9 +66,10 @@
 					if(current_squad.squad_leader && istype(current_squad.squad_leader))
 						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=get_info;info_from=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
 						dat += "<A href='?src=\ref[src];operation=cam'>\[CAM\]</a> "
-						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a><BR><BR>"
+						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
+						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE\]</a><BR><BR>"
 					else
-						dat += "<B>Squad Leader:</B> <font color=red>NONE</font><br> <A href='?src=\ref[src];operation=scan_leader'>\[SCAN\]</a><BR>"
+						dat += "<B>Squad Leader:</B> <font color=red>NONE</font><br> <A href='?src=\ref[src];operation=change_lead'>\[SCAN\]</a><BR>"
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "<A href='?src=\ref[src];operation=check_primary'>\[Check\]</A> <A href='?src=\ref[src];operation=set_primary'>\[Set\]</A><BR>"
@@ -304,8 +305,8 @@
 			y_offset_b = input
 		if("refresh")
 			src.attack_hand(usr)
-		if("scan_leader")
-			search_for_leader()
+		if("change_lead")
+			change_lead()
 			spawn(0)
 				src.attack_hand(usr)
 		if("dropsupply")
@@ -426,19 +427,20 @@
 	send_to_squad("Initializing fire coordinates..")
 	if(current_squad.bbeacon)
 		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 100, 1)  //Placeholder
-	sleep(25)
+	sleep(20)
 	send_to_squad("Transmitting beacon feed..")
-	sleep(25)
+	sleep(20)
 	send_to_squad("Calibrating trajectory window..")
-	sleep(25)
+	sleep(20)
 	usr << "\icon[src] \red FIRING!!"
 	send_to_squad("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	spawn(6)
 		if(!current_squad.bbeacon) //May have been destroyed en route
 			send_to_squad("Trajectory beacon not found. Aborting launch.")
 			return
+		if(A)
+			message_admins("ALERT: [usr] ([usr.key]) fired an orbital bombardment in [A.name] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 		current_squad.handle_btimer(20000)
-		message_admins("ALERT: [usr] ([usr.key]) used an orbital bombardment.")
 		if(current_squad.bbeacon)
 			del(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.bbeacon = null
@@ -451,36 +453,32 @@
 		y_offset += rand(-2,2)
 		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 		if(target && istype(target))
-			explosion(target, 2, 2, 5, 1) //Kaboom!
-			spawn(rand(5,30)) //This is all better done in a for loop, but I am mad lazy
+			explosion(target, 1, 2, 6, 1) //Kaboom!
+			spawn(rand(15,30)) //This is all better done in a for loop, but I am mad lazy
 				x_offset += rand(-2,2)
 				y_offset += rand(-2,2)
 				target = locate(T.x + x_offset,T.y + y_offset,T.z)
 				explosion(target,1,2,4)
-				spawn(rand(5,30))
+				spawn(rand(15,30))
 					x_offset += rand(-2,2)
 					y_offset += rand(-2,2)
 					target = locate(T.x + x_offset,T.y + y_offset,T.z)
 					explosion(target,1,2,4)
 
-/obj/machinery/computer/overwatch/proc/search_for_leader()
+/obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
 		return
 	if(!current_squad)
 		usr << "\icon[src] No squad selected!"
 		return
-	if(current_squad.squad_leader)
-		usr << "\icon[src] This squad has a leader!"
-		return
-
 	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(is_leader_from_card(H) && get_squad_from_card(H) == current_squad)
+		if(is_leader_from_card(H) && get_squad_from_card(H) == current_squad && current_squad.squad_leader != H)
 			current_squad.squad_leader = H
 			usr << "\icon[src] New leader found and linked!"
 			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
 			return
 
-	usr << "\icon[src] No valid leaders found for this squad. They must have a squad set using the squad consoles."
+	usr << "\icon[src] No new leaders found for this squad. They must have a squad set using the squad consoles."
 	return
 
 /obj/machinery/computer/overwatch/proc/handle_supplydrop()
