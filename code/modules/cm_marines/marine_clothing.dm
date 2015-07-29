@@ -275,6 +275,8 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	body_parts_covered = HANDS
+	armor = list(melee = 60, bullet = 50, laser = 20,energy = 15, bomb = 30, bio = 30, rad = 30)
 
 /obj/item/clothing/gloves/marine/alpha
 	name = "alpha squad gloves"
