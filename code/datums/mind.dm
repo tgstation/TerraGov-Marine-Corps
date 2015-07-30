@@ -42,6 +42,7 @@ datum/mind
 	var/special_role
 
 	var/role_alt_title
+	var/role_comm_title
 
 	var/datum/job/assigned_job
 	var/datum/squad/assigned_squad

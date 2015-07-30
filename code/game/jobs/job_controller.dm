@@ -73,6 +73,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 				player.mind.assigned_role = rank
 				player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
+				player.mind.role_comm_title = job.comm_title
 				unassigned -= player
 				job.current_positions++
 				return 1
@@ -113,8 +114,9 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
 				continue
 
-			if(prob(70))
+			if(prob(75))
 				AssignRole(player,"Squad Marine") //Fuck it.
+				continue
 
 			if(job in command_positions) //If you want a command position, select it!
 				continue

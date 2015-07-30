@@ -3,6 +3,7 @@
 
 /datum/job/squadleader
 	title = "Squad Leader"
+	comm_title = "SL"
 	flag = SQUADLE
 	department_flag = MARINES
 	faction = "Station"
@@ -22,6 +23,7 @@
 
 /datum/job/squadengineer
 	title = "Squad Engineer"
+	comm_title = "Eng"
 	flag = SQUADEN
 	department_flag = MARINES
 	faction = "Station"
@@ -40,6 +42,7 @@
 
 /datum/job/squadmedic
 	title = "Squad Medic"
+	comm_title = "Med"
 	flag = SQUADME
 	department_flag = MARINES
 	faction = "Station"
@@ -58,6 +61,7 @@
 
 /datum/job/squadspecial
 	title = "Squad Specialist"
+	comm_title = "Spc"
 	flag = SQUADSP
 	department_flag = MARINES
 	faction = "Station"
@@ -77,6 +81,7 @@
 
 /datum/job/squadmarine
 	title = "Squad Marine"
+	comm_title = "Mar"
 	flag = SQUADMA
 	department_flag = MARINES
 	faction = "Station"

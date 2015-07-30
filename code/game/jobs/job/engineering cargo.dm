@@ -1,6 +1,7 @@
 //Sulaco Chief Engineer
 /datum/job/sul_ce
 	title = "Chief Engineer"
+	comm_title = "CE"
 	flag = SULCE
 	department_flag = ENGI
 	faction = "Station"
@@ -31,6 +32,7 @@
 //Maintenance Tech
 /datum/job/sul_eng
 	title = "Maintenance Tech"
+	comm_title = "MT"
 	flag = SULENG
 	department_flag = ENGI
 	faction = "Station"
@@ -61,6 +63,7 @@
 //Cargo Tech. Don't ask why this is in engineering
 /datum/job/sul_cargo
 	title = "Cargo Technician"
+	comm_title = "CT"
 	flag = SULCARG
 	department_flag = ENGI
 	faction = "Station"
@@ -92,6 +95,7 @@
 //Requisitions Officer
 /datum/job/req_officer
 	title = "Requisitions Officer"
+	comm_title = "RO"
 	flag = REQUI
 	department_flag = COMMAND
 	faction = "Station"
@@ -107,7 +111,7 @@
 		var/obj/item/weapon/storage/backpack/BPK = new(H)
 		new /obj/item/weapon/storage/box/survival(BPK)
 		H.equip_to_slot_or_del(BPK, slot_back)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)

@@ -3,8 +3,8 @@
 		var/t1 = findtext(act, "-", 1, null)
 		act = copytext(act, 1, t1)
 
-	if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
-		act = copytext(act,1,length(act))
+	// if(findtext(act,"s",-1) && !findtext(act,"_",-2))//Removes ending s's unless they are prefixed with a '_'
+	// 	act = copytext(act,1,length(act))
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 
 	switch(act)
@@ -37,18 +37,18 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> growls."
-				if(prob(50))
-					playsound(src.loc, 'sound/voice/alien_growl.ogg', 100, 1, 1)
+				if(!adjust_pixel_x)
+					playsound(src.loc, 'sound/voice/alien_growl_small.ogg', 100, 1, 1)
 				else
-					playsound(src.loc, 'sound/voice/alien_growl2.ogg', 100, 1, 1)
-		if("sneer")
+					playsound(src.loc, 'sound/voice/alien_growl_large.ogg', 100, 1, 1)
+		if("hiss")
 			if (!muzzled)
 				m_type = 2
-				message = "<B>The [src.name]</B> sneers."
-				if(prob(50))
-					playsound(src.loc, 'sound/voice/alien_sneer.ogg', 100, 1, 1)
+				message = "<B>The [src.name]</B> hisses."
+				if(!adjust_pixel_x)
+					playsound(src.loc, 'sound/voice/alien_hiss_small.ogg', 100, 1, 1)
 				else
-					playsound(src.loc, 'sound/voice/alien_sneer2.ogg', 100, 1, 1)
+					playsound(src.loc, 'sound/voice/alien_hiss_large.ogg', 100, 1, 1)
 		if("tail")
 			if (!muzzled)
 				m_type = 2
@@ -63,7 +63,7 @@
 						dir = i
 						sleep(1)
 		if("help")
-			src << "Available emotes: *roar, *growl, *sneer, *tail, *dance"
+			src << "Available emotes: *roar, *growl, *hiss, *tail, *dance"
 		else
 			src << text("Invalid Emote: []", act)
 	if ((message && src.stat == 0))

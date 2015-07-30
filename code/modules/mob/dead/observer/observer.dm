@@ -394,13 +394,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 
-/mob/dead/observer/verb/become_mouse()
+/*/mob/dead/observer/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
 
 //	if(config.disable_player_mice)
 	src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
-	return
+	return*/
 /*
 	var/mob/dead/observer/M = usr
 	if(config.antag_hud_restricted && M.has_enabled_antagHUD == 1)
@@ -448,7 +448,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
 
 //Used for drawing on walls with blood puddles as a spooky ghost.
-/mob/dead/verb/bloody_doodle()
+/*/mob/dead/verb/bloody_doodle()
 
 	set category = "Ghost"
 	set name = "Write in blood"
@@ -521,4 +521,4 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.update_icon()
 		W.message = message
 		W.add_hiddenprint(src)
-		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")
+		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")*/

@@ -49,7 +49,7 @@
 			return
 
 		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
-			src << "You must wait for the hive to recover from the previous Queen's death."
+			src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
 			return
 
 	var/mob/living/carbon/Xenomorph/M = null

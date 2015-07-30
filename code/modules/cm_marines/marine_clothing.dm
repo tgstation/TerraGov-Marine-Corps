@@ -330,6 +330,7 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	armor = list(melee = 10, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
+	body_parts_covered = FEET
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife //Thank you Apo and LLA~~
 

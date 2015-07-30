@@ -185,8 +185,8 @@
 		new /obj/effect/xenomorph/splatter(T) //First do a splatty splat
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
 		for(var/mob/living/carbon/human/M in range(1,T))
-			if(M && M.stat != DEAD && !isYautja(M))
-				spawn(0)
+			spawn(0)
+				if(M && M.stat != DEAD && !isYautja(M))
 					if(!locate(/obj/effect/xenomorph/splatter) in get_turf(M))
 						new /obj/effect/xenomorph/splatter(get_turf(M))
 					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
@@ -340,7 +340,7 @@
 
 				if(H.species && H.species.name == "Yautja" && prob(40))
 					visible_message("\red <b>[H] emits a roar and body slams \the [src]!")
-					src.Weaken(5)
+					src.Weaken(4)
 					src.throwing = 0
 					return
 

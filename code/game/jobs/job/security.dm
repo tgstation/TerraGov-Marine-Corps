@@ -1,6 +1,7 @@
 //Military Police
 /datum/job/military_police
 	title = "Military Police"
+	comm_title = "MP"
 	flag = MPOLICE
 	department_flag = COMMAND
 	faction = "Station"

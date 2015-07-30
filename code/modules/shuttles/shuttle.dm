@@ -88,11 +88,13 @@
 
 	for(var/obj/machinery/door/unpowered/D in area)
 		if(D.density && !D.locked)
-			D.open()
+			spawn(0)
+				D.open()
 
 	for(var/obj/machinery/door/poddoor/shutters/P in area)
 		if(P.density)
-			P.open()
+			spawn(0)
+				P.open()
 
 
 /datum/shuttle/proc/dock()

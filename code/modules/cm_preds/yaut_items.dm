@@ -645,7 +645,7 @@
 					H.update_inv_legcuffed()
 					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
 					H << "\icon[src] \red <B>You step on \the [src]!</B>"
-					H.Weaken(5)
+					H.Weaken(3)
 					if(ishuman(H))
 						H.emote("scream")
 					feedback_add_details("handcuffs","B")
