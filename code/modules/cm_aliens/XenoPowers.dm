@@ -542,29 +542,32 @@
 		return
 
 	has_screeched = 1
-	spawn(300)
+	spawn(500)
 		has_screeched = 0
 		src << "You feel your throat muscles vibrate. You are ready to screech again."
 
-	//Ours uses screech2.....
-	playsound(loc, 'sound/effects/screech2.ogg', 100, 1)
-	visible_message("\red <B> \The [src] emits a high pitched screech!</B>")
+	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
+	visible_message("\red <B> \The [src] emits an ear-splitting guttural roar!</B>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
+
+	for(var/mob/M in view())
+		if(M.client)
+			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
 
 	for (var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue
 		var/dist = get_dist(src,M)
 		if (dist <= 4)
-			M << "\blue You spasm in agony as the noise fills your head!"
-			M.stunned += 3
+			M << "\blue An ear-splitting guttural roar shakes the ground beneath your feet!"
+			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
 			M.Weaken(1)
 //			M.drop_l_hand() //Weaken will drop them on the floor anyway
 //			M.drop_r_hand()
 			if(!M.ear_deaf)
-				M.ear_deaf += 8 //Deafens them temporarily (about 5 seconds)
+				M.ear_deaf += 8 //Deafens them temporarily
 		else if(dist >= 5 && dist < 7)
-			M.stunned += 2
+			M.stunned += 3
 			M << "\blue The sound stuns you!"
 	return
 

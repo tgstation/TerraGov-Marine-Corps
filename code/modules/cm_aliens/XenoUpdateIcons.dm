@@ -173,7 +173,7 @@
 	var/image/waves = image("icon" = src.icon, "icon_state" = "shriek_waves")
 	overlays_standing[X_SUIT_LAYER] = waves //Ehh, suit layer's not being used.
 	update_icons()
-	spawn(16)
+	spawn(50)
 		overlays_standing[X_SUIT_LAYER] = null
 		update_icons()
 
