@@ -72,7 +72,6 @@
 #define FILE_DIR "sound/piano"
 #define FILE_DIR "sound/violin"
 #define FILE_DIR "sound/voice"
-#define FILE_DIR "sound/voice/Serithi"
 #define FILE_DIR "sound/weapons"
 #define FILE_DIR "tools"
 #define FILE_DIR "tools/AddToChangelog"
