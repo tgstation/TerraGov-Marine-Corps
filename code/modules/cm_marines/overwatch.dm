@@ -410,7 +410,7 @@
 	if(!isturf(current_squad.bbeacon.loc) || current_squad.bbeacon.z != 1)
 		usr << "\icon[src] Beacon is not transmitting from the ground."
 		return
-	var/area/A = get_area(src)
+	var/area/A = get_area(current_squad.bbeacon)
 	if(A && istype(A,/area/ground/caves))
 		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return

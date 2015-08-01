@@ -154,13 +154,11 @@
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5
-	weaken = 7
-	eyeblur = 1
+	weaken = 6
 
 /obj/item/projectile/energy/neuro/strongest
 	damage = 10
-	weaken = 10
-	eyeblur = 3
+	weaken = 8
 
 /obj/item/projectile/energy/neuro/robot
 	damage = 50
@@ -169,7 +167,7 @@
 	damage_type = BURN
 
 /obj/item/projectile/energy/neuro/acid
-	damage = 25
+	damage = 15
 	name = "acid"
 	icon_state = "declone"
 	damage_type = BURN
@@ -193,7 +191,7 @@
 					M.apply_damage(damage,BURN) //Will pick a single random part to splat
 
 /obj/item/projectile/energy/neuro/acid/heavy
-	damage = 40
+	damage = 30
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
