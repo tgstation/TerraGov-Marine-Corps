@@ -165,6 +165,14 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 
 
+	var/file = file2text("config/donators.txt")
+	var/lines = text2list(file, "\n")
+
+	for(var/line in lines)
+		if(src.ckey == line)
+			src.donator = 1
+			verbs += /client/proc/colorooc
+
 	//////////////
 	//DISCONNECT//
 	//////////////

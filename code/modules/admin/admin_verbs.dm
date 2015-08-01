@@ -465,7 +465,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/colorooc()
 	set category = "Fun"
 	set name = "OOC Text Color"
-	if(!holder)	return
+	if(!holder && !donator)	return
 	var/new_ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color|null
 	if(new_ooccolor)
 		prefs.ooccolor = new_ooccolor
