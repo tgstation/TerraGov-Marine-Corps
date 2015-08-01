@@ -46,7 +46,7 @@
 	else if (stage == 4 && prob(50))  counter++
 
 	if(counter > 300) counter = 300 //somehow
-	if(stage < 5 && prob(1 + round(counter / 30))) //Adds 1% probability to change stages for each 30 cycles.
+	if(stage < 5 && prob(1 + round(counter / 60))) //Adds 1% probability to change stages for each 60 cycles.
 		counter = 0
 		stage++
 		spawn(0)

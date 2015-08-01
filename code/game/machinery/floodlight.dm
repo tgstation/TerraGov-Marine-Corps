@@ -8,7 +8,7 @@
 	anchored = 1
 	var/on = 0
 	var/obj/item/weapon/cell/cell = null
-	var/use = 10
+	var/use = 1
 	var/unlocked = 0
 	var/open = 0
 	var/brightness_on = 7		//can't remember what the maxed out value is
@@ -66,6 +66,9 @@
 
 
 /obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!ishuman(user))
+		return
+
 	if (istype(W, /obj/item/weapon/screwdriver))
 		if (!open)
 			if(unlocked)
