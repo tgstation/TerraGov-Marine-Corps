@@ -1,3 +1,5 @@
+//EDITING BY APOPHIS:  Non-Ripleys disabled, as well as mech suit weapons.
+
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 /***************************************************************
@@ -628,7 +630,7 @@ datum/design/ripley_peri
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/mecha/ripley/peripherals"
 
-datum/design/odysseus_main
+/*datum/design/odysseus_main
 	name = "Circuit Design (\"Odysseus\" Central Control module)"
 	desc = "Allows for the construction of a \"Odysseus\" Central Control module."
 	id = "odysseus_main"
@@ -725,13 +727,13 @@ datum/design/honker_targ
 	req_tech = list("programming" = 3)
 	build_type = IMPRINTER
 	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/mecha/honker/targeting"
+	build_path = "/obj/item/weapon/circuitboard/mecha/honker/targeting"*/
 
 ////////////////////////////////////////
 /////////// Mecha Equpment /////////////
 ////////////////////////////////////////
 
-datum/design/mech_scattershot
+/*datum/design/mech_scattershot
 	name = "Exosuit Weapon Design (LBX AC 10 \"Scattershot\")"
 	desc = "Allows for the construction of LBX AC 10."
 	id = "mech_scattershot"
@@ -810,7 +812,7 @@ datum/design/mech_teleporter
 	build_type = MECHFAB
 	req_tech = list("bluespace" = 10, "magnets" = 5)
 	build_path = "/obj/item/mecha_parts/mecha_equipment/teleporter"
-	category = "Exosuit Equipment"
+	category = "Exosuit Equipment"*/
 
 datum/design/mech_rcd
 	name = "Exosuit Module Design (RCD Module)"
@@ -821,7 +823,7 @@ datum/design/mech_rcd
 	build_path = "/obj/item/mecha_parts/mecha_equipment/tool/rcd"
 	category = "Exosuit Equipment"
 
-datum/design/mech_gravcatapult
+/*datum/design/mech_gravcatapult
 	name = "Exosuit Module Design (Gravitational Catapult Module)"
 	desc = "An exosuit mounted Gravitational Catapult."
 	id = "mech_gravcatapult"
@@ -900,7 +902,7 @@ datum/design/mech_generator_nuclear
 	build_type = MECHFAB
 	req_tech = list("powerstorage"= 3, "engineering" = 3, "materials" = 3)
 	build_path = "/obj/item/mecha_parts/mecha_equipment/generator/nuclear"
-	category = "Exosuit Equipment"
+	category = "Exosuit Equipment"*/
 
 
 ////////////////////////////////////////
@@ -1502,7 +1504,7 @@ datum/design/scalpel_manager
 /////////////////////////////////////////
 /////////////////Weapons/////////////////
 /////////////////////////////////////////
-
+/*
 datum/design/nuclear_gun
 	name = "Advanced Energy Gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
@@ -1512,7 +1514,7 @@ datum/design/nuclear_gun
 	materials = list("$metal" = 5000, "$glass" = 1000, "$uranium" = 500)
 	reliability_base = 76
 	build_path = "/obj/item/weapon/gun/energy/gun/nuclear"
-	locked = 1
+	locked = 1*/
 
 datum/design/stunrevolver
 	name = "Stun Revolver"
@@ -1523,7 +1525,7 @@ datum/design/stunrevolver
 	materials = list("$metal" = 4000)
 	build_path = "/obj/item/weapon/gun/energy/stunrevolver"
 	locked = 1
-
+/*
 datum/design/lasercannon
 	name = "Laser Cannon"
 	desc = "A heavy duty laser cannon."
@@ -1542,7 +1544,7 @@ datum/design/decloner
 	build_type = PROTOLATHE
 	materials = list("$gold" = 5000,"$uranium" = 10000, "mutagen" = 40)
 	build_path = "/obj/item/weapon/gun/energy/decloner"
-	locked = 1
+	locked = 1*/
 
 datum/design/chemsprayer
 	name = "Chem Sprayer"
@@ -1571,7 +1573,7 @@ datum/design/largecrossbow
 	build_type = PROTOLATHE
 	materials = list("$metal" = 5000, "$glass" = 1000, "$uranium" = 1000, "$silver" = 1000)
 	build_path = "/obj/item/weapon/gun/energy/crossbow/largecrossbow"
-*/
+
 datum/design/temp_gun
 	name = "Temperature Gun"
 	desc = "A gun that shoots temperature bullet energythings to change temperature."//Change it if you want
@@ -1589,7 +1591,7 @@ datum/design/flora_gun
 	req_tech = list("materials" = 2, "biotech" = 3, "powerstorage" = 3)
 	build_type = PROTOLATHE
 	materials = list("$metal" = 2000, "$glass" = 500, "$uranium" = 500)
-	build_path = "/obj/item/weapon/gun/energy/floragun"
+	build_path = "/obj/item/weapon/gun/energy/floragun"*/
 
 datum/design/large_grenade
 	name = "Large Grenade"
@@ -1629,14 +1631,14 @@ datum/design/stunshell
 	materials = list("$metal" = 4000)
 	build_path = "/obj/item/ammo_casing/shotgun/stunshell"
 
-datum/design/phoronpistol
+/*datum/design/phoronpistol
 	name = "phoron pistol"
 	desc = "A specialized firearm designed to fire lethal bolts of phoron."
 	id = "ppistol"
 	req_tech = list("combat" = 5, "phorontech" = 4)
 	build_type = PROTOLATHE
 	materials = list("$metal" = 5000, "$glass" = 1000, "$phoron" = 3000)
-	build_path = "/obj/item/weapon/gun/energy/toxgun"
+	build_path = "/obj/item/weapon/gun/energy/toxgun"*/
 /////////////////////////////////////////
 /////////////////Mining//////////////////
 /////////////////////////////////////////

@@ -357,7 +357,7 @@
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
-					playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
 				spawn(20)
 					src.frozen = 0
 		return
