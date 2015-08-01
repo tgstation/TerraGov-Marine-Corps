@@ -603,6 +603,10 @@
 		user << "Gross! You're not touching that stuff."
 		return
 
+	if(isYautja(M))
+		user << "[M] seems to be wearing some kind of resin-resistant armor!"
+		return
+
 	if(buckled_mob)
 		user << "There's someone already in that nest."
 		return
