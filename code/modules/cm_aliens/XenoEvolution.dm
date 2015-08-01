@@ -9,6 +9,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+
 	if(stat)
 		src << "You have to be conscious to evolve."
 		return
@@ -37,6 +38,14 @@
 
 	var/caste = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
 	if(caste == "Cancel" || isnull(caste) || caste == "") //Changed my mind
+		return
+
+	if(stat)
+		src << "You have to be conscious to evolve."
+		return
+
+	if(handcuffed || legcuffed)
+		src << "\red The restraints are too restricting to allow you to evolve."
 		return
 
 	if(caste == "Queen") // Special case for dealing with queenae
