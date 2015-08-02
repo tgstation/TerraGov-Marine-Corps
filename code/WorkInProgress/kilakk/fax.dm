@@ -195,6 +195,7 @@ var/list/alldepartments = list()
 	for(var/client/C in admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			C << msg
+			C << 'sound/effects/sos-morse-code.ogg'
 
 proc/SendFax(var/sent, var/sentname, var/mob/Sender, var/dpt)
 

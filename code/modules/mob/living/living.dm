@@ -355,8 +355,7 @@
 				return
 			else
 				if(Debug)
-					log_debug("pulling disappeared? at [__LINE__] in mob.dm - pulling = [pulling]")
-					log_debug("REPORT THIS")
+					log_debug("Pulling disappeared at line# [__LINE__] in [__FILE__] ([src] was pulling [pulling])")
 
 		/////
 		if(pulling && pulling.anchored)
