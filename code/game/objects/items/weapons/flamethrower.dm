@@ -73,8 +73,9 @@
 			usr << "No tank attached!"
 			lit = 0
 			return
-		if(ptank.air_contents.gas["phoron"] <= 0.4)
+		if(ptank.air_contents.gas["phoron"] <= 0.5)
 			usr << "You try to get your flame on, but nothing happens. You're all out of burn juice!"
+			playsound(src.loc, 'sound/weapons/flamethrower_empty.ogg', 100, 1)
 			lit = 0
 			update_icon()
 			return
@@ -83,6 +84,7 @@
 			var/turflist = getline(user, target_turf)
 			for (var/mob/O in viewers(user, null))
 				O << "\red [user] unleashes a blast of flames!"
+				playsound(src.loc, 'sound/weapons/flamethrower_shoot.ogg', 100, 1)
 			flame_turf(turflist)
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
@@ -149,7 +151,7 @@
 	usr.set_machine(src)
 	if(href_list["light"])
 		if(!ptank)	return
-		if(ptank.air_contents.gas["phoron"] < 0.4)
+		if(ptank.air_contents.gas["phoron"] < 0.5)
 			usr << "There's not enough gas left to ignite the flamethrower."
 			return
 		if(!status)	return

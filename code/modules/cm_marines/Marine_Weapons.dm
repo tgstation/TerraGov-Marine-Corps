@@ -291,6 +291,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m37"
 	item_state = "m37"
+	fire_sound = 'sound/weapons/shotgun.ogg'
 	max_shells = 8
 	caliber = "shotgun"
 	ammo_type = "/obj/item/ammo_casing/m37"
