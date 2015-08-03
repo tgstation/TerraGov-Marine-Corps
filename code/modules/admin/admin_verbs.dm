@@ -72,6 +72,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggledrones,
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
+	/client/proc/cmd_admin_changekey,
 	// /datum/admins/proc/show_skills,
 	// /client/proc/check_customitem_activity,
 	/client/proc/man_up,
@@ -267,6 +268,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/toggleattacklogs,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
+	/client/proc/cmd_admin_changekey,
 	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
 )
 

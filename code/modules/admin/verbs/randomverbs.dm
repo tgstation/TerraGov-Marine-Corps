@@ -615,6 +615,21 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			src << "[job.title]: [job.total_positions]"
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_changekey(mob/O in living_mob_list)
+	set category = "Admin"
+	set name = "Change CKey"
+	var/new_ckey = null
+
+	if (!holder)
+		src << "Only administrators may use this command."
+		return
+
+	new_ckey = input("Enter new ckey:","CKey") as null|text
+	log_admin("[key_name(usr)] modified [O.name]'s name to [new_ckey]")
+	message_admins("[key_name_admin(usr)] modified [O.name]'s name to [new_ckey]", 1)
+	feedback_add_details("admin_verb","KEY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	O.ckey = new_ckey
+
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
 	set category = "Special Verbs"
 	set name = "Explosion"
