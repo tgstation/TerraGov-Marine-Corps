@@ -90,7 +90,7 @@
 	if(!twohanded) return
 	wielded = 1
 	name = "[initial(name)] (Wielded)"
-	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41)) //Only one that has a wielded sprite atm. Add more here later or remove it?
+	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) || istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37)) //Ugh
 		item_state = "[initial(item_state)]-w"
 		if(usr && ishuman(usr))
 			usr:update_inv_l_hand(0)

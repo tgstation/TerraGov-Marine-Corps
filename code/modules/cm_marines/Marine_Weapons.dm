@@ -189,6 +189,7 @@
 		..()
 		if(!loaded.len && empty_mag)
 			empty_mag.loc = get_turf(src.loc)
+			empty_mag.update_icon()
 			empty_mag = null
 			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 30, 1)
 		return
@@ -239,6 +240,7 @@
 		..()
 		if(!loaded.len && empty_mag)
 			empty_mag.loc = get_turf(src.loc)
+			empty_mag.update_icon()
 			empty_mag = null
 			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
 			update_icon()
@@ -271,6 +273,7 @@
 				AM.stored_ammo += AC
 				loaded -= AC
 			AM.loc = get_turf(src)
+			AM.update_icon()
 			empty_mag = null
 			update_icon()
 			if(AM.stored_ammo.len)
@@ -757,6 +760,7 @@
 	icon_state = "rocketshell"
 	projectile_type = "/obj/item/missile"
 	caliber = "rocket"
+	w_class = 3
 
 /obj/item/ammo_casing/rocket/ap
 	name = "armor piercing rocket shell"

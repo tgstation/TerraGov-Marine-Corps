@@ -8,22 +8,22 @@
 	desc = "A marine equipment vendor"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/weapon/gun/projectile/m4a3 = 8,
-					/obj/item/weapon/gun/projectile/m44m = 8,
-					/obj/item/weapon/gun/projectile/automatic/m39 = 8,
-					/obj/item/weapon/gun/projectile/automatic/m41 = 10,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37 = 5,
+					/obj/item/weapon/gun/projectile/m4a3 = 10,
+					/obj/item/weapon/gun/projectile/m44m = 10,
+					/obj/item/weapon/gun/projectile/automatic/m39 = 10,
+					/obj/item/weapon/gun/projectile/automatic/m41 = 20,
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37 = 10,
 
-					/obj/item/ammo_magazine/m4a3 = 25,
-					/obj/item/ammo_magazine/m44m =25,
-					/obj/item/ammo_magazine/m39 = 25,
-					/obj/item/ammo_magazine/m41 = 25,
+					/obj/item/ammo_magazine/m4a3 = 30,
+					/obj/item/ammo_magazine/m44m =30,
+					/obj/item/ammo_magazine/m39 = 30,
+					/obj/item/ammo_magazine/m41 = 50,
 					/obj/item/weapon/storage/box/m37 = 25,
 
 					/obj/item/weapon/combat_knife = 10,
-					/obj/item/weapon/storage/belt/knifepouch = 3,
-					/obj/item/weapon/throwing_knife = 9,
-					/obj/item/device/flashlight/flare = 10,
+					/obj/item/weapon/storage/belt/knifepouch = 5,
+					/obj/item/weapon/throwing_knife = 10,
+					/obj/item/device/flashlight/flare = 20,
 					/obj/item/weapon/storage/backpack/marine = 20,
 					/obj/item/device/radio/headset/msulaco = 5,
 					/obj/item/device/flashlight/flare = 10,
@@ -49,12 +49,12 @@
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 10	)
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15	)
 
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
@@ -248,13 +248,13 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(
-						/obj/item/attachable/suppressor = 6,
-						/obj/item/attachable/bayonet = 12,
-						/obj/item/attachable/reddot = 8,
-						/obj/item/attachable/foregrip = 8,
-						/obj/item/attachable/gyro = 1,
+						/obj/item/attachable/suppressor = 8,
+						/obj/item/attachable/bayonet = 15,
+						/obj/item/attachable/reddot = 10,
+						/obj/item/attachable/foregrip = 10,
+						/obj/item/attachable/gyro = 4,
 						/obj/item/attachable/flashlight = 20,
-						/obj/item/attachable/bipod = 2
+						/obj/item/attachable/bipod = 4
 					)
 	contraband = list()
 	premium = list()
