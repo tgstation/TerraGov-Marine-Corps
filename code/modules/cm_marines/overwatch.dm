@@ -476,6 +476,7 @@
 			current_squad.squad_leader = H
 			usr << "\icon[src] New leader found and linked!"
 			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
+			find_helmet_cam()
 			return
 
 	usr << "\icon[src] No new leaders found for this squad. They must have a squad set using the squad consoles."
