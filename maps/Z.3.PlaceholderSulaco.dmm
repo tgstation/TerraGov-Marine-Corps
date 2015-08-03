@@ -771,7 +771,7 @@
 "oQ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor,/area/sulaco/bridge)
 "oR" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor{dir = 4; icon_state = "bluecorner"},/area/sulaco/bridge)
 "oS" = (/obj/machinery/light{tag = "icon-tube1 (NORTH)"; icon_state = "tube1"; dir = 1},/obj/machinery/alarm{pixel_y = 30},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor{dir = 4; icon_state = "blue"},/area/sulaco/bridge)
-"oT" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/wall/sulaco,/area/sulaco/bridge/office)
+"oT" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/door/airlock/command{name = "XO's Quarter"; req_access_txt = "2"},/turf/simulated/floor/carpet{icon_state = "carpetnoconnect"},/area/sulaco/bridge/office)
 "oU" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/obj/structure/disposalpipe/junction{icon_state = "pipe-j2"; dir = 4},/turf/simulated/floor/carpet{icon_state = "carpetnoconnect"},/area/sulaco/bridge/office)
 "oV" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/green,/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/carpet{icon_state = "carpetnoconnect"},/area/sulaco/bridge/office)
 "oW" = (/obj/structure/table,/obj/structure/disposalpipe/segment{dir = 4},/obj/item/weapon/stamp/hop{name = "logistics rubber stamp"; pixel_x = 3; pixel_y = 3},/obj/item/weapon/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/weapon/pen,/turf/simulated/floor/carpet{icon_state = "carpetnoconnect"},/area/sulaco/bridge/office)
