@@ -1245,7 +1245,7 @@
 		check_antagonists()
 
 	else if(href_list["adminplayerobservecoodjump"])
-		if(!check_rights(R_ADMIN))	return
+		if(!check_rights(R_MOD))	return
 
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
@@ -2695,9 +2695,12 @@
 	if(href_list["dibs"])
 		var/mob/ref_person = locate(href_list["dibs"])
 //		var/adminckey = href_list["ckey"]
-		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=darkgreen>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>.</b>"
+		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person]). The player has been notified.</font></b>"
+		var/msgplayer = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key] has marked your Adminhelp and is preparing to respond...</font></b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				X << msg
+		
+		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
