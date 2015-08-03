@@ -80,8 +80,8 @@
 						if(O == src)
 							continue
 						O.show_message(text("\red <B>[affected_mob] starts having a seizure!"), 1)
-					affected_mob.Paralyse(8)
-					affected_mob.make_jittery(800)
+					affected_mob.Paralyse(12)
+					affected_mob.make_jittery(300)
 			if(prob(1))
 				affected_mob << "\red Your chest hurts badly."
 			if(prob(1))

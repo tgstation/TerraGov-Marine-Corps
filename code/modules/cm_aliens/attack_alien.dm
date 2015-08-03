@@ -30,7 +30,7 @@
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
-				update_icons(M) //To immediately show the grab
+				M.update_icons() //To immediately show the grab
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			visible_message(text("\red [] has grabbed []!", M, src), "\red You grab [M]!")
@@ -126,7 +126,7 @@
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
-				update_icons(M) //To immediately show the grab
+				M.update_icons()
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				visible_message(text("\red \The [] has grabbed []!", M, src), "\red You grab [M]!")
 
@@ -203,7 +203,7 @@
 /obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if (M.a_intent == "hurt")
-		attack_generic(M,M.melee_damage_lower / 2)
+		attack_generic(M,M.melee_damage_lower)
 		return
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
