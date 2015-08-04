@@ -92,6 +92,26 @@
 	..()
 	overlays += image("icon"='icons/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
 
+/turf/simulated/floor/gm/river/proc/cleanup(var/mob/living/carbon/human/M)
+	if(!M || !istype(M)) return
+
+	if(M.back)
+		if(M.back.clean_blood())
+			M.update_inv_back(0)
+	if(M.wear_suit)
+		if(M.wear_suit.clean_blood())
+			M.update_inv_wear_suit(0)
+	if(M.w_uniform)
+		if(M.w_uniform.clean_blood())
+			M.update_inv_w_uniform(0)
+	if(M.gloves)
+		if(M.gloves.clean_blood())
+			M.update_inv_gloves(0)
+	if(M.shoes)
+		if(M.shoes.clean_blood())
+			M.update_inv_shoes(0)
+	M.clean_blood()
+
 /turf/simulated/floor/gm/coast
 	name = "coastline"
 	icon_state = "beach"

@@ -6,14 +6,14 @@
 	icon_state = "Praetorian Walking"
 	melee_damage_lower = 18
 	melee_damage_upper = 26
-	health = 280
-	maxHealth = 280
+	health = 220
+	maxHealth = 220
 	storedplasma = 150
 	plasma_gain = 24
 	maxplasma = 600
 	jellyMax = 0
 	spit_delay = 75
-	speed = 2.1
+	speed = 2.5
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9

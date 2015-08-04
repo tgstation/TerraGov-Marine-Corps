@@ -862,7 +862,7 @@
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 4,
 					/obj/item/stack/medical/bruise_pack = 2,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/device/healthanalyzer = 1)
@@ -876,7 +876,7 @@
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
 					/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,
 					/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,
