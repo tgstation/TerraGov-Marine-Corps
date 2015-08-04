@@ -28,25 +28,20 @@
 
 	if(isturf(src.loc))
 		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
-			tally += 8
-
-		if(locate(/obj/effect/alien/weeds) in src.loc) //Sticky resin slows you down
-			tally += 0.5
+			tally += 5
 
 		if(istype(src.loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
 			var/turf/simulated/floor/gm/snow/S = src.loc
 			if(S && istype(S) && S.slayer > 0)
 				tally += 2 * S.slayer
 				if(S.slayer && prob(2))
-					src << "\red Moving through /the [S] slows you down"
+					src << "\red Moving trough [S] slows you down"
 				if(S.slayer == 3 && prob(5))
-					src << "\red Your foot got stuck in /the [S]!"
-					tally += 10
+					src << "\red Your foot got stuck for a moment in [S]!"
+					tally += 15
 
 		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75
-			var/turf/simulated/floor/gm/river/T = src.loc
-			T.cleanup(src)
 			if(gloves && rand(0,100) < 60)
 				if(istype(src.gloves,/obj/item/clothing/gloves/yautja))
 					var/obj/item/clothing/gloves/yautja/Y = src.gloves
