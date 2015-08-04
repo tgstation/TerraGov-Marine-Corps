@@ -36,7 +36,7 @@
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
 	armor = list(melee = 60, bullet = 45, laser = 80,energy = 60, bomb = 75, bio = 100, rad = 100)
 	anti_hug = 7
-	flags = FPRINT|TABLEPASS
+	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
@@ -44,7 +44,7 @@
 
 	New()
 		spawn(0)
-			var/mask = rand(1,3)
+			var/mask = rand(1,4)
 			icon_state = "pred_mask[mask]"
 
 	verb/togglesight()
@@ -73,18 +73,18 @@
 			if(0)
 				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), slot_glasses)
 				M << "Low-light vision module: activated."
-				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1) //Could probably use custom noises for these, but eh. Sounds fine.
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(1)
 				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), slot_glasses)
 				M << "Thermal sight module: activated."
-				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(2)
 				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), slot_glasses)
 				M << "Material vision module: activated."
-				playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(3)
 				M << "You deactivate your visor."
-				playsound(src,'sound/weapons/plasmacaster_off.ogg', 40, 1)
+				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 		M.update_inv_glasses()
 		current_goggles++
 		if(current_goggles > 3) current_goggles = 0
@@ -107,7 +107,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 58, bullet = 62, laser = 20, energy = 20, bomb = 10, bio = 50, rad = 50)
+	armor = list(melee = 58, bullet = 72, laser = 20, energy = 20, bomb = 10, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
@@ -211,6 +211,8 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	canremove = 0
+	body_parts_covered = HANDS|ARMS
+	armor = list(melee = 70, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
@@ -242,7 +244,7 @@
 		if(!usr || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
-		if(M.species && M.species.name != "Yautja")
+		if(!isYautja(usr))
 			usr << "You have no idea how to work these things."
 			return
 		var/obj/item/weapon/wristblades/R = usr.r_hand
@@ -288,7 +290,7 @@
 		if(!usr || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
-		if(M.species && M.species.name != "Yautja")
+		if(!isYautja(usr))
 			usr << "You have no idea how to work these things."
 			return
 		if(cloaked) //Turn it off.
@@ -327,7 +329,7 @@
 		if(!usr || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
-		if(M.species && M.species.name != "Yautja")
+		if(!isYautja(usr))
 			usr << "You have no idea how to work these things."
 			return
 		var/obj/item/weapon/gun/plasma_caster/R = usr.r_hand
@@ -367,26 +369,15 @@
 		return 1
 
 	proc/explodey()
-		if(exploding) return //arleady there
 		for(var/mob/O in viewers())
-			O.show_message("\red \The [src] begin beeping.",2) // 2 stands for hearable message
-		playsound(src.loc,'sound/ambience/signal.ogg', 100, 1)
-		exploding = 1
-		spawn(100)
-			if(!exploding)
-				return
-			else
-				for(var/mob/O in viewers())
-					O.show_message("\red <B>\The [src] begin beeping frantically!</B>",2)
-		spawn(200)
-			if(!exploding)
-				return
-			else
-				var/turf/T = get_turf(src.loc)
-				if(T && istype(T))
-					explosion(T, 2, 4, 8, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
-					if(src)
-						del(src)
+			O.show_message("\red <B>The [src] begin beeping.</b>",2) // 2 stands for hearable message
+		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0)
+		spawn(80)
+			var/turf/T = get_turf(src.loc)
+			if(T && istype(T))
+				explosion(T, 1, 3, 7, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
+				if(src)
+					del(src)
 
 	verb/activate_suicide()
 		set name = "Final Countdown (!)"
@@ -399,13 +390,12 @@
 			usr << "Little too late for that now!"
 			return
 		if(!istype(M)) return
-		if(M.species && M.species.name != "Yautja")
+		if(!isYautja(usr))
 			usr << "You have no idea how to work these things."
 			return
-
 		if(!M.stat) //We're conscious, first look for another dead yautja to blow up.
 			for(var/mob/living/carbon/human/victim in oview(1))
-				if(victim && victim.species.name == "Yautja" && victim.stat == DEAD)
+				if(victim && isYautja(victim) && victim.stat == DEAD)
 					if(victim.gloves && istype(victim.gloves,/obj/item/clothing/gloves/yautja))
 						if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
 							var/obj/item/clothing/gloves/yautja/G = victim.gloves
@@ -413,7 +403,7 @@
 							M.visible_message("\red [M] presses a few buttons on [victim]'s wrist bracer.","\red You activate the timer. May [victim]'s final hunt be swift.")
 							return
 
-		if(!M.stat && !exploding)
+		if(!M.stat)
 			M << "You can only do this when unconscious, you coward. Go hunting and die gloriously."
 			return
 		if(exploding)
@@ -436,6 +426,10 @@
 		if(!usr.canmove || usr.stat || usr.restrained())
 			return 0
 
+		if(!isYautja(usr))
+			usr << "You have no idea how to work these things."
+			return
+
 		if(usr.get_active_hand())
 			usr << "Your active hand must be empty."
 			return 0
@@ -447,7 +441,7 @@
 		if(!drain_power(usr,1000)) return
 
 		inject_timer = 1
-		spawn(3800)
+		spawn(1200)
 			if(usr && src.loc == usr)
 				usr << "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created."
 				inject_timer = 0
@@ -580,7 +574,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "visor_nvg"
 	item_state = "securityhud"
-	darkness_view = 6 //Not quite as good as regular NVG.
+	darkness_view = 5 //Not quite as good as regular NVG.
 	canremove = 0
 
 	New()
@@ -623,7 +617,7 @@
 			if(isturf(mob.loc))
 				if(istype(mob.loc,/turf/simulated/floor/gm/dirt))
 					icon_state = "yauttrapdirt"
-				else if (istype(mob.loc,/turf/simulated/floor/gm/dirt))
+				else if (istype(mob.loc,/turf/simulated/floor/gm/grass))
 					icon_state = "yauttrapgrass"
 				else
 					icon_state = "yauttrap1"
@@ -637,11 +631,11 @@
 
 /obj/item/weapon/legcuffs/yautja/Crossed(AM as mob|obj)
 	if(armed)
-		if(ishuman(AM))
+		if(iscarbon(AM))
 			if(isturf(src.loc))
 				var/mob/living/carbon/H = AM
-				if(has_species(AM,"Yautja"))
-					AM << "You carefully avoid stepping on the trap."
+				if(isYautja(H))
+					H << "You carefully avoid stepping on the trap."
 					return
 				if(H.m_intent == "run")
 					armed = 0
@@ -651,8 +645,9 @@
 					H.update_inv_legcuffed()
 					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
 					H << "\icon[src] \red <B>You step on \the [src]!</B>"
-					H.Weaken(5)
-					H.emote("scream")
+					H.Weaken(3)
+					if(ishuman(H))
+						H.emote("scream")
 					feedback_add_details("handcuffs","B")
 					for(var/mob/O in viewers(H, null))
 						if(O == H)
@@ -677,6 +672,13 @@
 		del(keyslot1)
 		keyslot1 = new /obj/item/device/encryptionkey/yautja
 		recalculateChannels()
+
+	talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
+		if(!isYautja(M)) //Nope.
+			M << "You try to talk into the headset, but just get a horrible shrieking in your ears."
+			return
+		..()
+		return
 
 /obj/item/device/encryptionkey/yautja
 	name = "Yautja Encryption Key"

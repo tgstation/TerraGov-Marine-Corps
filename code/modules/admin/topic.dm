@@ -936,6 +936,30 @@
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
 		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
 
+	else if(href_list["sendbacktolobby"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["sendbacktolobby"])
+
+		if(!isobserver(M))
+			usr << "<span class='notice'>You can only send ghost players back to the Lobby.</span>"
+			return
+
+		if(!M.client)
+			usr << "<span class='warning'>[M] doesn't seem to have an active client.</span>"
+			return
+
+		if(alert(usr, "Send [key_name(M)] back to Lobby?", "Message", "Yes", "No") != "Yes")
+			return
+
+		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+		message_admins("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+
+		var/mob/new_player/NP = new()
+		NP.ckey = M.ckey
+		del(M)
+
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))	return
 
@@ -1109,14 +1133,16 @@
 
 		var/mob/living/carbon/human/M = new(usr.loc)
 		M.set_species("Yautja")
-		M.name = y_name
-		if(H.mind)
-			H.mind.transfer_to(M)
-		else
-			M.key = H.key
+		spawn(0)
+			M.real_name = y_name
+			if(H.mind)
+				H.mind.transfer_to(M)
+			else
+				M.key = H.key
 
-		log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.name].")
-		if(H) del(H) //May have to clear up round-end vars and such....
+			log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.real_name].")
+			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
+			if(H) del(H) //May have to clear up round-end vars and such....
 
 		return
 
@@ -1219,7 +1245,7 @@
 		check_antagonists()
 
 	else if(href_list["adminplayerobservecoodjump"])
-		if(!check_rights(R_ADMIN))	return
+		if(!check_rights(R_MOD))	return
 
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
@@ -1386,13 +1412,13 @@
 	else if(href_list["CentcommFaxView"])
 		var/info = locate(href_list["CentcommFaxView"])
 
-		usr << browse("<HTML><HEAD><TITLE>Centcomm Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Centcomm Fax Message")
+		usr << browse("<HTML><HEAD><TITLE>Liason Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
 
 	else if(href_list["CentcommFaxReply"])
 		var/mob/living/carbon/human/H = locate(href_list["CentcommFaxReply"])
 		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
+		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
 		if(!input)	return
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
@@ -1407,7 +1433,47 @@
 					// give the sprite some time to flick
 					spawn(20)
 						var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
-						P.name = "[command_name()]- [customname]"
+						P.name = "USCM High Command - [customname]"
+						P.info = input
+						P.update_icon()
+
+						playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
+
+						// Stamps
+						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
+						stampoverlay.icon_state = "paper_stamp-uscm"
+						if(!P.stamped)
+							P.stamped = new
+						P.stamped += /obj/item/weapon/stamp
+						P.overlays += stampoverlay
+						P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
+
+				src.owner << "Message reply to transmitted successfully."
+				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
+				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
+				return
+		src.owner << "/red Unable to locate fax!"
+
+	else if(href_list["SolGovFaxReply"])
+		var/mob/living/carbon/human/H = locate(href_list["SolGovFaxReply"])
+		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
+
+		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Weyland Yutani", "") as message|null
+		if(!input)	return
+
+		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
+
+		for(var/obj/machinery/faxmachine/F in machines)
+			if(F == fax)
+				if(! (F.stat & (BROKEN|NOPOWER) ) )
+
+					// animate! it's alive!
+					flick("faxreceive", F)
+
+					// give the sprite some time to flick
+					spawn(20)
+						var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
+						P.name = "Weyland Yutani - [customname]"
 						P.info = input
 						P.update_icon()
 
@@ -1420,47 +1486,7 @@
 							P.stamped = new
 						P.stamped += /obj/item/weapon/stamp
 						P.overlays += stampoverlay
-						P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
-
-				src.owner << "Message reply to transmitted successfully."
-				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
-				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
-				return
-		src.owner << "/red Unable to locate fax!"
-
-	else if(href_list["SolGovFaxReply"])
-		var/mob/living/carbon/human/H = locate(href_list["SolGovFaxReply"])
-		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
-
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
-		if(!input)	return
-
-		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
-
-		for(var/obj/machinery/faxmachine/F in machines)
-			if(F == fax)
-				if(! (F.stat & (BROKEN|NOPOWER) ) )
-
-					// animate! it's alive!
-					flick("faxreceive", F)
-
-					// give the sprite some time to flick
-					spawn(20)
-						var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
-						P.name = "Sol Government- [customname]"
-						P.info = input
-						P.update_icon()
-
-						playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
-
-						// Stamps
-						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-						stampoverlay.icon_state = "paper_stamp-cap"
-						if(!P.stamped)
-							P.stamped = new
-						P.stamped += /obj/item/weapon/stamp
-						P.overlays += stampoverlay
-						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Sol Government Quantum Relay.</i>"
+						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Weyland Yutani Quantum Relay (tm).</i>"
 
 				src.owner << "Message reply to transmitted successfully."
 				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
@@ -2669,9 +2695,12 @@
 	if(href_list["dibs"])
 		var/mob/ref_person = locate(href_list["dibs"])
 //		var/adminckey = href_list["ckey"]
-		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=darkgreen>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>.</b>"
+		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person]). The player has been notified.</font></b>"
+		var/msgplayer = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key] has marked your Adminhelp and is preparing to respond...</font></b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				X << msg
+		
+		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"

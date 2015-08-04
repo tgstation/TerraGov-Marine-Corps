@@ -67,7 +67,7 @@
 			A.y = ty
 			A.z = tz
 			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
+		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[tx];Y=[ty];Z=[tz]'>JMP</a>)")
 
 	else
 		alert("Admin jumping disabled")

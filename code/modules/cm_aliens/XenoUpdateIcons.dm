@@ -7,7 +7,8 @@
 #define X_L_HAND_LAYER			3
 #define X_R_HAND_LAYER			4
 #define TARGETED_LAYER			5
-#define X_TOTAL_LAYERS			5
+#define X_LEGCUFF_LAYER			6
+#define X_TOTAL_LAYERS			6
 /////////////////////////////////
 
 /mob/living/carbon/Xenomorph
@@ -18,23 +19,40 @@
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	update_hud()		//TODO: remove the need for this to be here
 	overlays.Cut()
+	var/is_lying = 0
+	var/image/overlay_claws = null
+	var/enh_claws = has_upgrade("eclaws")  //Rebuilding the image each time? Why not, ugh.
 	if(stat == DEAD)
 		icon_state = "[caste] Dead"
-		for(var/image/I in overlays_lying)
-			overlays += I
+		is_lying = 1
+		if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
 	else if(lying)
 		if(resting)
 			icon_state = "[caste] Sleeping"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Sleeping")
 		else
 			icon_state = "[caste] Knocked Down"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
+		is_lying = 1
+
+	else
+		if(m_intent == "run")
+			icon_state = "[caste] Running"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Running")
+		else
+			icon_state = "[caste] Walking"
+			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Walking")
+		is_lying = 0
+
+	if(overlay_claws && enh_claws)
+		overlays += overlay_claws
+
+	if(is_lying)
 		for(var/image/I in overlays_lying)
 			overlays += I
 	else
-		if(m_intent == "run")		icon_state = "[caste] Running"
-		else						icon_state = "[caste] Walking"
 		for(var/image/I in overlays_standing)
 			overlays += I
-
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
 	..()
@@ -142,10 +160,29 @@
 		overlays_standing[TARGETED_LAYER]	= null
 	if(update_icons)		update_icons()
 
+/mob/living/carbon/Xenomorph/update_inv_legcuffed(var/update_icons=1)
+	if(legcuffed)
+		overlays_standing[X_LEGCUFF_LAYER]	= image("icon" = 'icons/Xeno/Effects.dmi', "icon_state" = "legcuff")
+		if(src.m_intent != "walk")
+			src.m_intent = "walk"
+	else
+		overlays_standing[X_LEGCUFF_LAYER]	= null
+	if(update_icons)   update_icons()
+
+/mob/living/carbon/Xenomorph/proc/create_shriekwave()
+	var/image/waves = image("icon" = src.icon, "icon_state" = "shriek_waves")
+	overlays_standing[X_SUIT_LAYER] = waves //Ehh, suit layer's not being used.
+	update_icons()
+	spawn(50)
+		overlays_standing[X_SUIT_LAYER] = null
+		update_icons()
+
+
 //Xeno Overlays Indexes//////////
 #undef X_HEAD_LAYER
 #undef X_SUIT_LAYER
 #undef X_L_HAND_LAYER
 #undef X_R_HAND_LAYER
 #undef TARGETED_LAYER
+#undef X_LEGCUFF_LAYER
 #undef X_TOTAL_LAYERS

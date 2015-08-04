@@ -73,6 +73,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 				player.mind.assigned_role = rank
 				player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
+				player.mind.role_comm_title = job.comm_title
 				unassigned -= player
 				job.current_positions++
 				return 1
@@ -111,6 +112,10 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				continue
 
 			if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
+				continue
+
+			if(prob(75))
+				AssignRole(player,"Squad Marine") //Fuck it.
 				continue
 
 			if(job in command_positions) //If you want a command position, select it!
@@ -154,10 +159,10 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 				// Different head positions have different good ages.
 				var/good_age_minimal = 25
-				var/good_age_maximal = 60
+				var/good_age_maximal = 90
 				if(command_position == "Commander")
 					good_age_minimal = 30
-					good_age_maximal = 70 // Old geezer captains ftw
+					good_age_maximal = 200 // Old geezer captains ftw
 
 				for(var/mob/V in candidates)
 					// Log-out during round-start? What a bad boy, no head position for you!

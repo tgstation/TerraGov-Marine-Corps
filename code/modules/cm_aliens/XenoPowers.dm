@@ -31,6 +31,26 @@
 
 	return
 
+/mob/living/carbon/Xenomorph/proc/shift_spits()
+	set name = "Toggle Spit Type"
+	set desc = "Toggles between a lighter, single-target stun spit or a heavier area acid that burns. The heavy version requires more plasma."
+	set category = "Alien"
+
+	if(!spit_type)
+		src << "You will now spit heavier globs of acid instead of neurotoxin."
+		spit_type = 1
+		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
+		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
+			spit_projectile = /obj/item/projectile/energy/neuro/acid/heavy
+		else
+			spit_projectile = /obj/item/projectile/energy/neuro/acid/
+	else
+		src << "You will now spit lighter neurotoxin instead of acid."
+		spit_type = 0
+		spit_projectile = initial(spit_projectile)
+		spit_delay = initial(spit_delay)
+	return
+
 /mob/living/carbon/Xenomorph/proc/plant()
 	set name = "Plant Weeds (75)"
 	set desc = "Plants some alien weeds"
@@ -168,7 +188,7 @@
 		usedPounce = 180 //about 12 seconds
 		pass_flags = PASSTABLE
 		if(readying_tail) readying_tail = 0
-		src.throw_at(T, 6, 3, src) //victim, distance, speed
+		src.throw_at(T, 6, 2, src) //victim, distance, speed
 		spawn(12)
 			pass_flags = 0 //Reset the passtable.
 		spawn(usedPounce)
@@ -234,7 +254,7 @@
 	last_special = world.time + 50
 
 	visible_message("<span class='warning'><b>\The [src]</b> lifts [victim] into the air...</span>")
-	if(do_after(src,70))
+	if(do_after(src,80))
 		if(!victim || isnull(victim)) return
 		if(victim.loc != cur_loc) return
 		visible_message("<span class='warning'><b>\The [src]</b> viciously wrenches [victim] apart!</span>")
@@ -282,6 +302,8 @@
 
 	if(!check_state())	return
 
+	if(!M || !istype(M)) return
+
 	if (get_dist(src,M) >= 3)
 		src << "\green You need to be closer."
 		return
@@ -311,15 +333,17 @@
 
 	var/turf/T = loc
 	var/turf/T2 = null
-	if(!T) //logic
+	if(!T || !istype(T)) //logic
 		return
 
 	if(!locate(/obj/effect/alien/weeds) in T)
 		src << "You can only shape on weeds. Find some resin before you start building!"
 		return
-
-	if(locate(/obj/structure/mineral_door/resin) in T || locate(/obj/effect/alien/resin/wall) in T || locate(/obj/effect/alien/resin/membrane) in T || locate(/obj/structure/stool/bed/nest) in T || locate(/obj/effect/alien/resin/sticky) in T)
+	if(locate(/obj/structure/mineral_door) in T || locate(/obj/effect/alien/resin) in T)
 		src << "There's something built here already."
+		return
+	if(locate(/obj/structure/stool/) in T)
+		src << "There's something here already."
 		return
 
 	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
@@ -329,8 +353,18 @@
 
 	T2 = loc
 
-	if(T != T2)
+	if(T != T2 || !isturf(T2))
 		src << "You have to stand still when making your selection."
+		return
+	//Another check, in case someone built where they were standing somehow.
+	if(!locate(/obj/effect/alien/weeds) in T2)
+		src << "You can only shape on weeds. Find some resin before you start building!"
+		return
+	if(locate(/obj/structure/mineral_door) in T2 || locate(/obj/effect/alien/resin) in T2)
+		src << "There's something built here already."
+		return
+	if(locate(/obj/structure/stool) in T)
+		src << "There's something here already."
 		return
 
 	if(!check_plasma(75))
@@ -338,7 +372,9 @@
 
 	src << "\green You shape a [choice]."
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
+		if(O != src)
+			O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
+
 	switch(choice)
 		if("resin door")
 			new /obj/structure/mineral_door/resin(T)
@@ -354,8 +390,8 @@
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/neurotoxin(var/atom/T)
-	set name = "Spit Neurotoxin (50)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time."
+	set name = "Spit Neurotoxin (50/100)"
+	set desc = "Spits neurotoxin at someone, paralyzing them for a short time, or globs of acid which burn in an area."
 	set category = "Alien"
 
 	if(!check_state())	return
@@ -381,8 +417,12 @@
 		return
 
 	if(T)
-		if(!check_plasma(50))
-			return
+		if(spit_type)
+			if(!check_plasma(100))
+				return
+		else
+			if(!check_plasma(50))
+				return
 
 		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
 
@@ -504,27 +544,35 @@
 		return
 
 	has_screeched = 1
-	spawn(280)
+	spawn(500)
 		has_screeched = 0
 		src << "You feel your throat muscles vibrate. You are ready to screech again."
 
-	//Ours uses screech2.....
-	playsound(loc, 'sound/effects/screech2.ogg', 100, 1)
-	visible_message("\red <B> \The [src] emits a high pitched screech!</B>")
+	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
+	visible_message("\red <B> \The [src] emits an ear-splitting guttural roar!</B>")
+	create_shriekwave() //Adds the visual effect. Wom wom wom
+
+	for(var/mob/M in view())
+		if(M && M.client)
+			if(istype(M,/mob/living/carbon/Xenomorph))
+				shake_camera(M, 10, 1)
+			else
+				shake_camera(M, 30, 1) // 50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+
 	for (var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue
 		var/dist = get_dist(src,M)
 		if (dist <= 4)
-			M << "\blue You spasm in agony as the noise fills your head!"
-			M.stunned += 3
+			M << "\blue An ear-splitting guttural roar shakes the ground beneath your feet!"
+			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
 			M.Weaken(1)
 //			M.drop_l_hand() //Weaken will drop them on the floor anyway
 //			M.drop_r_hand()
 			if(!M.ear_deaf)
-				M.ear_deaf += 8 //Deafens them temporarily (about 5 seconds)
+				M.ear_deaf += 8 //Deafens them temporarily
 		else if(dist >= 5 && dist < 7)
-			M.stunned += 2
+			M.stunned += 3
 			M << "\blue The sound stuns you!"
 	return
 
@@ -645,26 +693,22 @@
 	pslash_delay = 1
 
 
-	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("allow","restricted","forbid","cancel")
+	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allow","Restricted - less damage","Forbid")
 
-	if(!choice || choice == "cancel")
-		return
-
-	if(choice == "allow")
-		src << "You permit slashing."
+	if(choice == "Allow")
+		src << "You allow slashing."
 		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!",3)
 		slashing_allowed = 1
-	else if(choice == "restricted")
+	else if(choice == "Restricted - less damage")
 		src << "You restrict slashing."
 		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.",3)
 		slashing_allowed = 2
-	else if(choice == "forbid")
+	else if(choice == "Forbid")
 		src << "You forbid slashing entirely."
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.",3)
 		slashing_allowed = 0
 	else
-		src << "Something went wrong here. Call a coder woop woop"
-	return
+		return
 
 /mob/living/carbon/Xenomorph/verb/hive_status()
 	set name = "Hive Status"

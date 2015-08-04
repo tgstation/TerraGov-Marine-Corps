@@ -16,13 +16,14 @@ var/list/department_radio_keys = list(
 	  ":c" = "Charlie",		"#c" = "Charlie",		".c" = "Charlie",
 	  ":d" = "Delta",		"#d" = "Delta",			".d" = "Delta",
 	  ":p" = "MP",			"#p" = "MP",			".p" = "MP",
+	  ":u" = "Req",			"#u" = "Req",			".u" = "Req",
 
-	  ":R" = "right ear",	"#R" = "right ear",		".r" = "right ear",
-	  ":L" = "left ear",	"#L" = "left ear",		".l" = "left ear",
-	  ":I" = "intercom",	"#I" = "intercom",		".i" = "intercom",
-	  ":H" = "department",	"#H" = "department",	".h" = "department",
-	  ":W" = "whisper",		"#W" = "whisper",		".w" = "whisper",
-	  ":T" = "Syndicate",	"#T" = "Syndicate",		".t" = "Syndicate",
+	  ":R" = "right ear",	"#R" = "right ear",		".R" = "right ear",
+	  ":L" = "left ear",	"#L" = "left ear",		".L" = "left ear",
+	  ":I" = "intercom",	"#I" = "intercom",		".I" = "intercom",
+	  ":H" = "department",	"#H" = "department",	".H" = "department",
+	  ":W" = "whisper",		"#W" = "whisper",		".W" = "whisper",
+	  ":T" = "Syndicate",	"#T" = "Syndicate",		".T" = "Syndicate",
 
 	  ":M" = "MedSci",		"#M" = "MedSci",		".M" = "MedSci",
 	  ":E" = "Engi", 		"#E" = "Engi",			".E" = "Engi",
@@ -30,9 +31,10 @@ var/list/department_radio_keys = list(
 	  ":V" = "Command",		"#V" = "Command",		".V" = "Command",
 	  ":Q" = "Alpha",		"#Q" = "Alpha",			".Q" = "Alpha",
 	  ":B" = "Bravo",		"#B" = "Bravo",			".B" = "Bravo",
-	  ":C" = "Charlie",		"#C" = "Charlie",		".c" = "Charlie",
-	  ":D" = "Delta",		"#D" = "Delta",			".d" = "Delta",
-	  ":P" = "MP",			"#P" = "MP",			".p" = "MP",
+	  ":C" = "Charlie",		"#C" = "Charlie",		".C" = "Charlie",
+	  ":D" = "Delta",		"#D" = "Delta",			".D" = "Delta",
+	  ":P" = "MP",			"#P" = "MP",			".P" = "MP",
+	  ":U" = "Req",			"#U" = "Req",			".U" = "Req",
 
 	  //kinda localization -- rastaf0
 	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
@@ -84,6 +86,7 @@ var/list/department_radio_keys = list(
 
 	if(T)
 		//make sure the air can transmit speech - speaker's side
+		/*
 		var/datum/gas_mixture/environment = T.return_air()
 		if(environment)
 			var/pressure = (environment)? environment.return_pressure() : 0
@@ -93,7 +96,7 @@ var/list/department_radio_keys = list(
 			if (pressure < ONE_ATMOSPHERE*0.4) //sound distortion pressure, to help clue people in that the air is thin, even if it isn't a vacuum yet
 				italics = 1
 				sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
-
+		*/
 		var/list/hear = hear(message_range, T)
 		var/list/hearturfs = list()
 

@@ -12,8 +12,8 @@
 	plasma_gain = 24
 	maxplasma = 600
 	jellyMax = 900
-	spit_delay = 115
-	speed = 1.8
+	spit_delay = 80
+	speed = 0.8
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian")
 	spit_projectile = /obj/item/projectile/energy/neuro/strong
@@ -24,6 +24,7 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
+		/mob/living/carbon/Xenomorph/proc/shift_spits,
 		/mob/living/carbon/Xenomorph/proc/neurotoxin //Stronger version
 		)
 

@@ -34,6 +34,10 @@
 	for(var/obj/structure/enginesound/O in departing)
 		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
 
+	recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
+	spawn(1200) // 2 minutes in deciseconds
+		recharging = 0
+
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
@@ -53,9 +57,6 @@
 			open_doors(destination)
 		moving_status = SHUTTLE_IDLE
 
-		recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
-		spawn(1200) // 2 minutes in deciseconds
-			recharging = 0
 
 /* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
 /datum/shuttle/proc/toggle_doors(var/close_doors, var/bolt_doors, var/area/whatArea)
@@ -88,11 +89,13 @@
 
 	for(var/obj/machinery/door/unpowered/D in area)
 		if(D.density && !D.locked)
-			D.open()
+			spawn(0)
+				D.open()
 
 	for(var/obj/machinery/door/poddoor/shutters/P in area)
 		if(P.density)
-			P.open()
+			spawn(0)
+				P.open()
 
 
 /datum/shuttle/proc/dock()

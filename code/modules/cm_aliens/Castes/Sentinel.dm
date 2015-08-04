@@ -12,7 +12,7 @@
 	plasma_gain = 10
 	maxplasma = 300
 	jellyMax = 750
-	spit_delay = 140
+	spit_delay = 90
 	caste_desc = ""
 	evolves_to = list("Spitter")
 	spit_projectile = /obj/item/projectile/energy/neuro

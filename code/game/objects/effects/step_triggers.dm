@@ -117,7 +117,7 @@
 	Trigger(var/atom/movable/A)
 		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
 			return
-		if(istype(A,/obj/effect) || A.anchored) return
+		if(istype(A,/obj/effect)) return
 
 		if(teleport_x && teleport_y && teleport_z)
 			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)

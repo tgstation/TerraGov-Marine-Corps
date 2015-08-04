@@ -43,7 +43,7 @@
 	name = "Shotgun shell"
 	desc = "A 12 gauge shell."
 	icon_state = "gshell"
-	caliber = "m37"
+	caliber = "shotgun"
 	projectile_type = "/obj/item/projectile/bullet/m37"
 
 ///***Ammo Boxes***///
@@ -154,7 +154,12 @@
 	caliber = "38s"
 	ammo_type = "/obj/item/ammo_casing/m44m"
 	max_shells = 6
-
+	muzzle_pixel_x = 30
+	muzzle_pixel_y = 19
+	rail_pixel_x = 17
+	rail_pixel_y = 21
+	under_pixel_x = 23
+	under_pixel_y = 17
 
 ///***SMGS***///
 
@@ -184,6 +189,7 @@
 		..()
 		if(!loaded.len && empty_mag)
 			empty_mag.loc = get_turf(src.loc)
+			empty_mag.update_icon()
 			empty_mag = null
 			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 30, 1)
 		return
@@ -234,6 +240,7 @@
 		..()
 		if(!loaded.len && empty_mag)
 			empty_mag.loc = get_turf(src.loc)
+			empty_mag.update_icon()
 			empty_mag = null
 			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
 			update_icon()
@@ -266,6 +273,7 @@
 				AM.stored_ammo += AC
 				loaded -= AC
 			AM.loc = get_turf(src)
+			AM.update_icon()
 			empty_mag = null
 			update_icon()
 			if(AM.stored_ammo.len)
@@ -286,6 +294,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m37"
 	item_state = "m37"
+	fire_sound = 'sound/weapons/shotgun.ogg'
 	max_shells = 8
 	caliber = "shotgun"
 	ammo_type = "/obj/item/ammo_casing/m37"
@@ -319,6 +328,25 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
+
+	attackby(obj/item/I as obj, mob/user as mob)
+		if(istype(I,/obj/item/stack/cable_coil))
+			var/obj/item/stack/cable_coil/CC = I
+			if (CC.use(5))
+				user << "You wrap some cable around the bayonet. It can now be attached to a gun."
+				var/obj/item/attachable/bayonet/F = new(src.loc)
+				if(src.loc == user)
+					user.drop_from_inventory(src)
+				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
+				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
+					F.loc = src.loc
+				del(src) //Delete da old knife
+			else
+				user << "<span class='notice'>This cable coil appears to be empty.</span>"
+				return
+		else
+			..()
+
 	suicide_act(mob/user)
 		viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
 							"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
@@ -350,7 +378,7 @@
 	item_state = "l6closednomag"  //placeholder
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	ammo_type = "/obj/item/ammo_casing/m42c"
-	fire_delay = 80
+	fire_delay = 60
 	w_class = 4.0
 	max_shells = 7
 	caliber = ".50"
@@ -391,7 +419,7 @@
 
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
-	damage = 75
+	damage = 85
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -409,7 +437,23 @@
 	icon_state = "75-0"
 	max_ammo = 0
 
+/obj/item/weapon/storage/box/m42c_system
+	name = "M42C Scoped Rifle system"
+	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 4
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/projectile/M42C(src)
+			new /obj/item/ammo_magazine/m42c(src)
+			new /obj/item/ammo_magazine/m42c(src)
+			new /obj/item/ammo_magazine/m42c(src)
 
 
 /obj/item/weapon/gun/projectile/M56_Smartgun
@@ -490,7 +534,7 @@
 	slot_flags = SLOT_BACK
 	w_class = 5.0
 	var/obj/item/weapon/cell/pcell = null
-	var/rounds_remaining = 250
+	var/rounds_remaining = 200
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/reloading = 0
 
@@ -519,7 +563,7 @@
 
 		reloading = 1
 		user.visible_message("[user.name] begin feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
-		if(do_after(user,35))
+		if(do_after(user,50))
 			pcell.charge -= 50
 			var/obj/item/ammo_casing/m56/shell
 			var/num_loaded = 0
@@ -561,7 +605,7 @@
 				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 250."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 30
+	damage = 26
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."
@@ -574,7 +618,7 @@
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
-	darkness_view = 6
+	darkness_view = 5
 	toggleable = 1
 	icon_action_button = "action_meson"
 
@@ -670,3 +714,141 @@
 		playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
 		spawn(15)
 			F.prime()
+
+/obj/item/weapon/storage/box/grenade_system
+	name = "M92 Grenade Launcher case"
+	desc = "A large case containing a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "grenade_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/m92(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+
+
+/obj/item/weapon/gun/rocketlauncher
+	var/projectile
+	name = "M83 rocket launcher"
+	desc = "MAGGOT."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "M83sadar"
+	item_state = "rocket"
+	w_class = 4.0
+	throw_speed = 2
+	throw_range = 10
+	force = 5.0
+	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY
+	slot_flags = 0
+	origin_tech = "combat=8;materials=5"
+	projectile = /obj/item/missile
+	var/missile_speed = 2
+	var/missile_range = 30
+	var/max_rockets = 1
+	var/list/rockets = new/list()
+
+/obj/item/weapon/gun/rocketlauncher/examine()
+	set src in view()
+	..()
+	if (!(usr in view(2)) && usr!=src.loc) return
+	usr << "\blue [rockets.len] / [max_rockets] rockets."
+
+/obj/item/weapon/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/ammo_casing/rocket))
+		if(rockets.len < max_rockets)
+			user.drop_item()
+			I.loc = src
+			rockets += I
+			user << "\blue You put the rocket in [src]."
+			user << "\blue [rockets.len] / [max_rockets] rocket(s)."
+		else
+			usr << "\red [src] cannot hold more rockets."
+
+/obj/item/weapon/gun/rocketlauncher/can_fire()
+	return rockets.len
+
+/obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+	if(rockets.len)
+		var/obj/item/ammo_casing/rocket/I = rockets[1]
+		var/obj/item/missile/M = new projectile(user.loc)
+		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
+		M.primed = 1
+		M.throw_at(target, missile_range, missile_speed,user)
+		message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).")
+		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")
+		rockets -= I
+		del(I)
+		return
+	else
+		usr << "\red [src] is empty."
+
+/obj/item/ammo_casing/rocket
+	name = "high explosive rocket shell"
+	desc = "A high explosive designed to be fired from a launcher."
+	icon_state = "rocketshell"
+	projectile_type = "/obj/item/missile"
+	caliber = "rocket"
+	w_class = 3
+
+/obj/item/ammo_casing/rocket/ap
+	name = "armor piercing rocket shell"
+	desc = "A dense explosive designed to be fired from a launcher. Serious damage, but not much fragmentation."
+	icon_state = "rocketshell"
+	projectile_type = "/obj/item/missile/ap"
+	caliber = "rocket"
+
+/obj/item/missile
+	name = "high explosive rocket"
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "missile"
+	var/primed = null
+	throwforce = 10
+
+	throw_impact(atom/hit_atom)
+		if(primed)
+			explosion(hit_atom, 0, 1, 4, 1)
+			del(src)
+		else
+			..()
+		return
+
+/obj/item/missile/ap
+	name = "armor piercing rocket"
+	throwforce = 150
+
+	throw_impact(atom/hit_atom)
+		if(primed)
+			explosion(hit_atom, 0, 0, 2, 1)
+			del(src)
+		else
+			..()
+		return
+
+/obj/item/weapon/storage/box/rocket_system
+	name = "M83 Rocket Launcher crate"
+	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/rocketlauncher(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket/ap(src)
+			new /obj/item/ammo_casing/rocket/ap(src)

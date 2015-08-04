@@ -146,27 +146,52 @@
 	return
 
 /obj/item/projectile/energy/neuro
-	name = "neuro"
+	name = "spit"
 	icon_state = "neurotoxin"
 	damage = 1
 	damage_type = TOX
-	weaken = 3
+	weaken = 4
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5
 	weaken = 6
-	eyeblur = 1
 
 /obj/item/projectile/energy/neuro/strongest
 	damage = 10
-	weaken = 9
-	eyeblur = 3
+	weaken = 8
 
 /obj/item/projectile/energy/neuro/robot
 	damage = 50
 	weaken = 6
 	icon_state = "pulse1"
 	damage_type = BURN
+
+/obj/item/projectile/energy/neuro/acid
+	damage = 15
+	name = "acid"
+	icon_state = "declone"
+	damage_type = BURN
+
+	on_hit(var/atom/target, var/blocked = 0)
+		aoe_spit(target)
+		return 1
+
+	proc/aoe_spit(var/atom/target) //Spatters acid on all mobs adjacent to the hit zone.
+		var/turf/T = get_turf(target)
+		if(!T) return
+
+		new /obj/effect/xenomorph/splatter(T) //First do a splatty splat
+		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
+		for(var/mob/living/carbon/human/M in range(1,T))
+			spawn(0)
+				if(M && M.stat != DEAD && !isYautja(M))
+					if(!locate(/obj/effect/xenomorph/splatter) in get_turf(M))
+						new /obj/effect/xenomorph/splatter(get_turf(M))
+					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
+					M.apply_damage(damage,BURN) //Will pick a single random part to splat
+
+/obj/item/projectile/energy/neuro/acid/heavy
+	damage = 30
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
@@ -175,6 +200,20 @@
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/Xeno/effects.dmi'
+
+/obj/effect/xenomorph/splatter
+	name = "splatter"
+	desc = "It burns! It burns like hygiene!"
+	icon_state = "splatter"
+	density = 0
+	opacity = 0
+	anchored = 1
+	layer = 5
+
+	New() //Self-deletes after creation & animation
+		spawn(8)
+			del(src)
+			return
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
@@ -278,12 +317,12 @@
 				var/obj/structure/S = O
 				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
 				S.destroy()
+				O = null
 
-		if(!istype(O,/obj/structure/table)) // new - xeno charge ignore tables
+		if(!isnull(O) && !istype(O,/obj/structure/table) && O.density && O.anchored) // new - xeno charge ignore tables
 			O.hitby(src,speed)
-			if(O.density)
-				src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
-				src.Weaken(2)
+			src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
+			src.Weaken(2)
 		return
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
@@ -300,7 +339,7 @@
 
 				if(H.species && H.species.name == "Yautja" && prob(40))
 					visible_message("\red <b>[H] emits a roar and body slams \the [src]!")
-					src.Weaken(5)
+					src.Weaken(4)
 					src.throwing = 0
 					return
 
@@ -317,7 +356,7 @@
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
-					playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
 				spawn(20)
 					src.frozen = 0
 		return
@@ -397,13 +436,13 @@
 
 	if(!readying_tail || readying_tail == -1) return 0 //Tail attack not prepared, or not available.
 
-	var/dmg = (readying_tail * 3) + rand(5,10) //Ready max is 20
+	var/dmg = (round(readying_tail * 2.5)) + rand(5,10) //Ready max is 20
 	if(adjust_pixel_x) //Big xenos get a damage bonus.
 		dmg += 10
 	var/datum/organ/external/affecting
 	var/tripped = 0
 
-	if(M.lying) dmg += 15 //more damage when hitting downed people.
+	if(M.lying) dmg += 10 //more damage when hitting downed people.
 
 	affecting = M.get_organ(ran_zone(zone_sel.selecting,75))
 	if(!affecting) //No organ, just get a random one

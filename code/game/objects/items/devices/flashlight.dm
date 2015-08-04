@@ -47,18 +47,21 @@
 
 /obj/item/device/flashlight/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/weapon/screwdriver))
+		if(on)
+			user << "Turn it off first."
+			return
 		user << "You modify the flashlight. It can now be mounted on a weapon."
 		user << "Use a screwdriver on the rail flashlight to change it back."
-		var/obj/item/attachable/flashlight/F = new(src.loc)
 		if(src.loc == user)
 			user.drop_from_inventory(src) //This part is important to make sure our light sources update, as it calls dropped()
+		var/obj/item/attachable/flashlight/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		if(F.loc != user) //It ended up on the floor, put it where the flashlight is.
 			F.loc = src.loc
 		del(src) //Delete da old flashlight
+		return
 	else
 		..()
-
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
@@ -222,7 +225,7 @@
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL
-	name = "glowing slime extract"
+	name = "glowing slime"
 	desc = "A glowing ball of what appears to be amber."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!

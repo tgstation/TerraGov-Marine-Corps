@@ -96,7 +96,7 @@
 				return 0
 
 			var/distance = get_dist(starting,loc)
-			var/miss_modifier = -20 //NEGATIVE IS BETTER HERE.
+			var/miss_modifier = -15 //NEGATIVE IS BETTER HERE.
 
 			if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
@@ -112,15 +112,15 @@
 					if(daddy.under.accuracy_mod) miss_modifier -= daddy.under.accuracy_mod
 
 			if(istype(src,/obj/item/projectile/bullet/m42c)) //Sniper rifles have different miss chance by distance.
-				if(distance <= 5) //< 5 tiles, +30% miss chance.
-					miss_modifier += 30
-				else if (distance > 5 && distance < 8) //In sight range but not close, only +5%
-					miss_modifier += 5
-				else if (distance >= 8 && distance < 15) //Beyond sight range (scoped), -20%
+				if(distance <= 4) //< 5 tiles, +30% miss chance.
+					miss_modifier += 20
+				else if (distance > 5 && distance < 8) //In sight range but not close, only -5%
+					miss_modifier -= 5
+				else if (distance >= 8) //Beyond sight range (scoped), -20%
 					miss_modifier -= 20
 
-			if(istype(src,/obj/item/projectile/energy/neuro)) //Neuro spit rarely, if ever misses.
-				miss_modifier -= 80
+			if(istype(src,/obj/item/projectile/bullet/m37)) //Shotguns count as twice as far away.
+				distance *= 2
 
 			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
 				var/mob/living/carbon/human/H = A
@@ -131,7 +131,15 @@
 					skip_over = 1
 					return 0
 
-			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (9 * distance))
+			if(istype(src,/obj/item/projectile/energy/neuro) && isXeno(A)) //Xenos are immune to spit.
+				bumped = 0
+				permutated.Add(A)
+				src.loc = get_turf(A.loc)
+				skip_over = 1
+				return 0
+
+			if(!istype(src,/obj/item/projectile/energy/neuro)) //Neuro spit never misses.
+				def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (9 * distance))
 
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")

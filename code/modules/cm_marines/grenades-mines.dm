@@ -12,7 +12,7 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,3)
+			explosion(src.loc,-1,-1,2)
 			del(src)
 		return
 
@@ -178,6 +178,8 @@
 	if(triggered) return
 
 	if(istype(M, /mob/living/carbon/Xenomorph) && !istype(M, /mob/living/carbon/Xenomorph/Larva) && M.stat != DEAD) //Only humanoid aliens can trigger it.
+		var/mob/living/carbon/Xenomorph/X = M
+		if(X.is_robotic) return //NOPE.jpg
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
 		triggered = 1

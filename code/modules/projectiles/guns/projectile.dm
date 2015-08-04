@@ -86,7 +86,8 @@
 			AC.loc = src
 			loaded += AC
 			num_loaded++
-
+	else
+		return ..() //Just do generic shit.
 	if(num_loaded)
 		user << "\blue You load [num_loaded] shell\s into \the [src]!"
 		playsound(user, 'sound/weapons/unload.ogg', 20, 1)

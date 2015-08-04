@@ -66,9 +66,10 @@
 					if(current_squad.squad_leader && istype(current_squad.squad_leader))
 						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=get_info;info_from=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
 						dat += "<A href='?src=\ref[src];operation=cam'>\[CAM\]</a> "
-						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a><BR><BR>"
+						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
+						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE\]</a><BR><BR>"
 					else
-						dat += "<B>Squad Leader:</B> <font color=red>NONE</font><br><BR>"
+						dat += "<B>Squad Leader:</B> <font color=red>NONE</font><br> <A href='?src=\ref[src];operation=change_lead'>\[SCAN\]</a><BR>"
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "<A href='?src=\ref[src];operation=check_primary'>\[Check\]</A> <A href='?src=\ref[src];operation=set_primary'>\[Set\]</A><BR>"
@@ -296,7 +297,7 @@
 			if(input < -5) input = -5
 			usr << "\icon[src] X-offset is now [input]."
 			x_offset_b = input
-		if("bomb_x")
+		if("bomb_y")
 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
 			if(input > 5) input = 5
 			if(input < -5) input = -5
@@ -304,6 +305,10 @@
 			y_offset_b = input
 		if("refresh")
 			src.attack_hand(usr)
+		if("change_lead")
+			change_lead()
+			spawn(0)
+				src.attack_hand(usr)
 		if("dropsupply")
 			if(current_squad)
 				if(current_squad.supply_timer)
@@ -347,7 +352,7 @@
 	src.attack_hand(usr) //The above doesn't ever seem to work.
 
 /obj/machinery/computer/overwatch/check_eye(var/mob/user as mob)
-	if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+	if (user.stat || get_dist(user, src) > 1 || user.blinded) //user can't see - not sure why canmove is here.
 		is_watching = 0
 		user.unset_machine()
 	else
@@ -405,7 +410,7 @@
 	if(!isturf(current_squad.bbeacon.loc) || current_squad.bbeacon.z != 1)
 		usr << "\icon[src] Beacon is not transmitting from the ground."
 		return
-	var/area/A = get_area(src)
+	var/area/A = get_area(current_squad.bbeacon)
 	if(A && istype(A,/area/ground/caves))
 		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return
@@ -418,23 +423,24 @@
 	if(x_offset < -5 || x_offset > 5) x_offset = 0
 	if(y_offset < -5 || y_offset > 5) x_offset = 0
 	//All set, let's do this.
-	current_squad.bbeacon.visible_message("The beacon begins blinking red!")
+	current_squad.bbeacon.visible_message("\red <b>The beacon begins blinking red!</b>")
 	send_to_squad("Initializing fire coordinates..")
 	if(current_squad.bbeacon)
-		playsound(current_squad.bbeacon,'sound/effects/alert.ogg', 100, 1)  //Placeholder
-	sleep(25)
+		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 100, 1)  //Placeholder
+	sleep(20)
 	send_to_squad("Transmitting beacon feed..")
-	sleep(25)
+	sleep(20)
 	send_to_squad("Calibrating trajectory window..")
-	sleep(25)
+	sleep(20)
 	usr << "\icon[src] \red FIRING!!"
 	send_to_squad("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	spawn(6)
 		if(!current_squad.bbeacon) //May have been destroyed en route
 			send_to_squad("Trajectory beacon not found. Aborting launch.")
 			return
+		if(A)
+			message_admins("ALERT: [usr] ([usr.key]) fired an orbital bombardment in [A.name] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 		current_squad.handle_btimer(20000)
-		message_admins("ALERT: [usr] ([usr.key]) used an orbital bombardment.")
 		if(current_squad.bbeacon)
 			del(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.bbeacon = null
@@ -442,22 +448,39 @@
 			if((H.z == 3 || H.z == 4) && !src.stat) //Sulaco decks.
 				H << "<span class='warning'>The deck of the Sulaco shudders as the orbital cannons open fire on LV-624.</span>"
 				if(!H.buckled && H.client)
-					shake_camera(H, 5, 1)
+					shake_camera(H, 10, 1)
 		x_offset += rand(-2,2) //Little bit of randomness.
 		y_offset += rand(-2,2)
 		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 		if(target && istype(target))
-			explosion(target, 2, 2, 5, 1) //Kaboom!
-			spawn(rand(5,30)) //This is all better done in a for loop, but I am mad lazy
-				x_offset += rand(-1,1)
-				y_offset += rand(-1,1)
+			explosion(target, 1, 2, 6, 1) //Kaboom!
+			spawn(rand(15,30)) //This is all better done in a for loop, but I am mad lazy
+				x_offset += rand(-2,2)
+				y_offset += rand(-2,2)
 				target = locate(T.x + x_offset,T.y + y_offset,T.z)
-				explosion(target,1,1,4)
-				spawn(rand(5,30))
-					x_offset += rand(-1,1)
-					y_offset += rand(-1,1)
+				explosion(target,1,2,4)
+				spawn(rand(15,30))
+					x_offset += rand(-2,2)
+					y_offset += rand(-2,2)
 					target = locate(T.x + x_offset,T.y + y_offset,T.z)
-					explosion(target,1,1,4)
+					explosion(target,1,2,4)
+
+/obj/machinery/computer/overwatch/proc/change_lead()
+	if(!usr || usr != operator)
+		return
+	if(!current_squad)
+		usr << "\icon[src] No squad selected!"
+		return
+	for(var/mob/living/carbon/human/H in living_mob_list)
+		if(is_leader_from_card(H) && get_squad_from_card(H) == current_squad && current_squad.squad_leader != H)
+			current_squad.squad_leader = H
+			usr << "\icon[src] New leader found and linked!"
+			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
+			find_helmet_cam()
+			return
+
+	usr << "\icon[src] No new leaders found for this squad. They must have a squad set using the squad consoles."
+	return
 
 /obj/machinery/computer/overwatch/proc/handle_supplydrop()
 	if(!usr || usr != operator)

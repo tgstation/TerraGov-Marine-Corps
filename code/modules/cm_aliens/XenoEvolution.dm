@@ -9,6 +9,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+
 	if(stat)
 		src << "You have to be conscious to evolve."
 		return
@@ -39,6 +40,14 @@
 	if(caste == "Cancel" || isnull(caste) || caste == "") //Changed my mind
 		return
 
+	if(stat)
+		src << "You have to be conscious to evolve."
+		return
+
+	if(handcuffed || legcuffed)
+		src << "\red The restraints are too restricting to allow you to evolve."
+		return
+
 	if(caste == "Queen") // Special case for dealing with queenae
 		if(storedplasma >= 500)
 			if(is_queen_alive())
@@ -46,6 +55,10 @@
 				return
 		else
 			src << "You require more plasma! Currently at: [storedplasma] / 500."
+			return
+
+		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
+			src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
 			return
 
 	var/mob/living/carbon/Xenomorph/M = null

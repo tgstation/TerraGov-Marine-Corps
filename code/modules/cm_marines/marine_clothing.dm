@@ -105,6 +105,7 @@
 	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
+	has_sensor = 1
 
 /obj/item/clothing/under/marine/alpha
 	name = "alpha team jumpsuit"
@@ -131,9 +132,9 @@
 
 /obj/item/clothing/under/marine/mp
 	name = "military police jumpsuit"
-	icon_state = "sec_corporate"
-	item_state = "sec_corporate"
-	item_color = "sec_corporate"
+	icon_state = "MP_jumpsuit"
+	item_state = "MP_jumpsuit"
+	item_color = "MP_jumpsuit"
 
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
@@ -274,6 +275,8 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	body_parts_covered = HANDS
+	armor = list(melee = 60, bullet = 50, laser = 20,energy = 15, bomb = 30, bio = 30, rad = 30)
 
 /obj/item/clothing/gloves/marine/alpha
 	name = "alpha squad gloves"
@@ -327,6 +330,7 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	armor = list(melee = 10, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
+	body_parts_covered = FEET
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife //Thank you Apo and LLA~~
 
@@ -470,6 +474,7 @@
 	icon_state = "marine_jumpsuit"
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
+	has_sensor = 1
 
 
 /obj/item/clothing/under/marine_underoos
@@ -483,6 +488,7 @@
 	icon_state = "marine_underpants"
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
+	has_sensor = 1
 
 /obj/item/clothing/under/liason_suit
 	desc = "A very fancy suit for a liason from Weyland Yutani."
@@ -490,6 +496,7 @@
 	icon_state = "blacksuit"
 	item_state = "blacksuit"
 	item_color = "blacksuit"
+	has_sensor = 1
 
 /obj/item/clothing/head/soft/ro_cap
 	name = "Requisition officer cap"
@@ -503,3 +510,4 @@
 	icon_state = "RO_jumpsuit"
 	item_state = "RO_jumpsuit"
 	item_color = "RO_jumpsuit"
+	has_sensor = 1

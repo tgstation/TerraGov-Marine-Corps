@@ -74,7 +74,7 @@
 	var/distance = 0 //Distance, decreases splash chance.
 	var/i = 0 //Tally up our victims.
 
-	for(var/mob/living/carbon/human/victim in range(2)) //Loop through all nearby victims, including the tile.
+	for(var/mob/living/carbon/human/victim in range(1,src)) //Loop through all nearby victims, including the tile.
 		distance = get_dist(src,victim)
 		splash_chance = 40 - (i * 5)
 		if(victim.loc == src.loc)
@@ -88,16 +88,17 @@
 			victim.visible_message("\green [victim] is scalded with hissing green blood!","\green <b>You are splattered with sizzling blood! IT BURNS!!<b>")
 			if(prob(60) && !victim.stat)
 				victim.emote("scream") //Topkek
-			victim.take_organ_damage(0,rand(5,70))  //Sizzledam! This automagically burns a random existing body part
+			victim.take_organ_damage(0,rand(5,50))  //Sizzledam! This automagically burns a random existing body part
 			if(prob(30)) //So good, you do it twice!
-				victim.take_organ_damage(0,rand(5,60))   //The 0 is for brute damage.
+				victim.take_organ_damage(0,rand(5,30))   //The 0 is for brute damage.
 	return
 
 //Deal with armor deflection.
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
 	if(Proj && istype(Proj) )
 		var/dmg = Proj.damage
-		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 10 //Smartgun hits weak points easier.
+		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 5 //Smartgun hits weak points easier.
+		if(istype(Proj,/obj/item/projectile/bullet/m42c)) dmg += 50 //Sniper is anti-armor.
 		if(prob(armor_deflection - dmg))
 			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
 			return -1

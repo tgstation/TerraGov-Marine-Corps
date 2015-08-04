@@ -8,6 +8,7 @@
 	icon_state = "larva0_dead"
 	var/mob/living/affected_mob
 	var/stage = 0
+	var/counter = 0
 
 /obj/item/alien_embryo/New()
 	if(istype(loc, /mob/living))
@@ -41,7 +42,12 @@
 	if(affected_mob.stat == DEAD) //Stop. just stop it.
 		return 0
 
-	if(stage < 5 && prob(1))
+	if(stage < 4) counter++ //A counter to add to probability over time.
+	else if (stage == 4 && prob(50))  counter++
+
+	if(counter > 300) counter = 300 //somehow
+	if(stage < 5 && prob(1 + round(counter / 60))) //Adds 1% probability to change stages for each 60 cycles.
+		counter = 0
 		stage++
 		spawn(0)
 			RefreshInfectionImage(affected_mob)
@@ -50,22 +56,38 @@
 		if(2)
 			if(prob(1))
 				affected_mob << "Your chest hurts a little bit."
+			if(prob(1))
+				affected_mob << "Your stomach hurts."
 		if(3)
 			if(prob(1))
 				affected_mob << "\red Your throat feels sore."
 			if(prob(1))
 				affected_mob << "\red Mucous runs down the back of your throat."
-		if(4)
-			if(prob(1))
-				affected_mob.emote("sneeze")
-			if(prob(1))
-				affected_mob.emote("cough")
 			if(prob(1))
 				affected_mob << "\red Your muscles ache."
 				if(prob(20))
 					affected_mob.take_organ_damage(1)
 			if(prob(1))
-				affected_mob << "\red Your stomach hurts."
+				affected_mob.emote("sneeze")
+			if(prob(1))
+				affected_mob.emote("cough")
+		if(4)
+
+			if(prob(1))
+				if(affected_mob.paralysis < 1)
+					affected_mob << "\red You have a seizure!"
+					for(var/mob/O in viewers(affected_mob, null))
+						if(O == src)
+							continue
+						O.show_message(text("\red <B>[affected_mob] starts having a seizure!"), 1)
+					affected_mob.Paralyse(12)
+					affected_mob.make_jittery(300)
+			if(prob(1))
+				affected_mob << "\red Your chest hurts badly."
+			if(prob(1))
+				affected_mob << "\red It becomes difficult to breathe."
+			if(prob(1))
+				affected_mob << "\red Your heart starts beating rapidly, and each beat is painful."
 		if(5)
 			affected_mob << "\red You feel something tearing its way out of your stomach..."
 			affected_mob.emote("scream")
@@ -139,7 +161,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 			for(var/mob/living/L in mob_list)
 				if(iscorgi(L) || iscarbon(L))
 					if(L.status_flags & XENO_HOST)
-						var/I = image('icons/Xeno/Archived/Misc.dmi', loc = L, icon_state = "infected[stage]")
+						var/I = image('icons/Xeno/Effects.dmi', loc = L, icon_state = "infected[stage]")
 						alien.client.images += I
 
 /*----------------------------------------
@@ -156,7 +178,7 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 
 			if(alien.client)
 				if(C.status_flags & XENO_HOST)
-					var/I = image('icons/Xeno/Archived/Misc.dmi', loc = C, icon_state = "infected[stage]")
+					var/I = image('icons/Xeno/Effects.dmi', loc = C, icon_state = "infected[stage]")
 					alien.client.images += I
 
 /*----------------------------------------

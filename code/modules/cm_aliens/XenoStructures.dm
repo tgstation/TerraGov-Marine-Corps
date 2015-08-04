@@ -57,14 +57,11 @@
 /obj/effect/alien/resin/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			health-=50
+			health-=500
 		if(2.0)
-			health-=50
+			health-=(rand(140,300))
 		if(3.0)
-			if (prob(50))
-				health-=50
-			else
-				health-=25
+			health-=(rand(50,100))
 	healthcheck()
 	return
 
@@ -200,10 +197,10 @@
 		if(1.0)
 			del(src)
 		if(2.0)
-			if (prob(50))
+			if (prob(70))
 				del(src)
 		if(3.0)
-			if (prob(25))
+			if (prob(50))
 				del(src)
 	return
 
@@ -332,6 +329,16 @@
 	spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
 		Grow()
 
+/obj/effect/alien/egg/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			health -= rand(50,100)
+		if(2.0)
+			health -= rand(40,95)
+		if(3.0)
+			health -= rand(20,81)
+	healthcheck()
+	return
 
 /obj/effect/alien/egg/attack_alien(user as mob)
 
@@ -355,26 +362,27 @@
 			Burst(0)
 			return
 
+/*
 /obj/effect/alien/egg/proc/GetFacehugger()
 	return locate(/obj/item/clothing/mask/facehugger) in contents
-
+*/
 /obj/effect/alien/egg/proc/Grow()
 	icon_state = "Egg"
 	status = GROWN
-	new /obj/item/clothing/mask/facehugger(src)
+//	new /obj/item/clothing/mask/facehugger(src)
 	return
 
 /obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
 	if(status == GROWN || status == GROWING)
-		var/obj/item/clothing/mask/facehugger/child = GetFacehugger()
 		icon_state = "Egg Opened"
 		flick("Egg Opening", src)
 		status = BURSTING
 		spawn(15)
 			status = BURST
-			child.loc = get_turf(src)
-			if(kill && istype(child)) //Make sure it's still there
-				child.Die()
+			if(src.loc)
+				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
+				if(kill && istype(child)) //Make sure it's still there
+					child.Die()
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
@@ -530,6 +538,7 @@
 	var/on_fire = 0
 	var/resisting = 0
 	var/nest_resist_time = 1900
+	layer = 2.9 //Just above weeds.
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
@@ -545,7 +554,7 @@
 				if(istype(buckled_mob,/mob/living/carbon/human))
 					var/mob/living/carbon/human/H = buckled_mob
 					H.recently_unbuckled = 1
-					spawn(120)
+					spawn(40)
 						if(H) //Make sure the mob reference still exists.
 							H.recently_unbuckled = 0
 
@@ -592,6 +601,10 @@
 
 	if (!istype(user, /mob/living/carbon/Xenomorph))
 		user << "Gross! You're not touching that stuff."
+		return
+
+	if(isYautja(M))
+		user << "[M] seems to be wearing some kind of resin-resistant armor!"
 		return
 
 	if(buckled_mob)

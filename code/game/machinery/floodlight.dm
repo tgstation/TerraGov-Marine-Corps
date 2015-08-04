@@ -5,22 +5,24 @@
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
 	density = 1
+	anchored = 1
 	var/on = 0
-	var/obj/item/weapon/cell/high/cell = null
-	var/use = 5
+	var/obj/item/weapon/cell/cell = null
+	var/use = 1
 	var/unlocked = 0
 	var/open = 0
-	var/brightness_on = 8		//can't remember what the maxed out value is
+	var/brightness_on = 7		//can't remember what the maxed out value is
 
 /obj/machinery/floodlight/New()
-	src.cell = new(src)
 	..()
+	spawn(1)
+		cell = new /obj/item/weapon/cell(src)
 
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 
 /obj/machinery/floodlight/process()
-	if(on)
+	if(on && cell)
 		if(cell.charge >= use)
 			cell.use(use)
 		else
@@ -43,13 +45,13 @@
 		cell.updateicon()
 
 		src.cell = null
-		user << "You remove the power cell"
+		user << "You remove the power cell."
 		updateicon()
 		return
 
 	if(on)
 		on = 0
-		user << "\blue You turn off the light"
+		user << "\blue You turn off the light."
 		SetLuminosity(0)
 	else
 		if(!cell)
@@ -57,13 +59,16 @@
 		if(cell.charge <= 0)
 			return
 		on = 1
-		user << "\blue You turn on the light"
+		user << "\blue You turn on the light."
 		SetLuminosity(brightness_on)
 
 	updateicon()
 
 
 /obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!ishuman(user))
+		return
+
 	if (istype(W, /obj/item/weapon/screwdriver))
 		if (!open)
 			if(unlocked)

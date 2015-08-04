@@ -42,6 +42,8 @@ var/global/normal_ooc_colour = "#002eb8"
 	log_ooc("[mob.name]/[key] : [msg]")
 
 	var/display_colour = normal_ooc_colour
+	if(donator)
+		display_colour = src.prefs.ooccolor
 	if(holder && !holder.fakekey)
 		display_colour = "#2e78d9"	//light blue
 		if(holder.rights & R_MOD && !(holder.rights & R_ADMIN))
@@ -63,7 +65,7 @@ var/global/normal_ooc_colour = "#002eb8"
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
-			C << "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
+			C << "<font color='[display_colour]'><span class='ooc'>[src.donator ? "\[D\] " : ""]<span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
 
 			/*
 			if(holder)

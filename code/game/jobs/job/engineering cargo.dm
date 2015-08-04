@@ -1,6 +1,7 @@
 //Sulaco Chief Engineer
 /datum/job/sul_ce
 	title = "Chief Engineer"
+	comm_title = "CE"
 	flag = SULCE
 	department_flag = ENGI
 	faction = "Station"
@@ -31,6 +32,7 @@
 //Maintenance Tech
 /datum/job/sul_eng
 	title = "Maintenance Tech"
+	comm_title = "MT"
 	flag = SULENG
 	department_flag = ENGI
 	faction = "Station"
@@ -61,6 +63,7 @@
 //Cargo Tech. Don't ask why this is in engineering
 /datum/job/sul_cargo
 	title = "Cargo Technician"
+	comm_title = "CT"
 	flag = SULCARG
 	department_flag = ENGI
 	faction = "Station"
@@ -77,7 +80,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/grey(H), slot_head)
 
 		spawn(10)
@@ -86,4 +89,40 @@
 			H << "You should be respectful to your RO at all times, as they outrank you."
 			H << "If your RO goes braindead you should take over."
 			H << "You are also permitted to head to the planet to make deliveries if your RO approves."
+			H << "Pay attention to the supply pads west of Requisition! Overwatch might want crates put there."
+		return 1
+
+//Requisitions Officer
+/datum/job/req_officer
+	title = "Requisitions Officer"
+	comm_title = "RO"
+	flag = REQUI
+	department_flag = COMMAND
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Commander, the Executive Officer"
+	selection_color = "#aa85ff"
+	access = list(access_sulaco_cargo)
+	minimal_access = list(access_sulaco_cargo)
+	minimal_player_age = 7
+	equip(var/mob/living/carbon/human/H)
+		if(!H)	return 0
+		var/obj/item/weapon/storage/backpack/BPK = new(H)
+		new /obj/item/weapon/storage/box/survival(BPK)
+		H.equip_to_slot_or_del(BPK, slot_back)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/ro_cap(H), slot_head)
+
+		H.implant_loyalty(src)
+		spawn(10)
+			H << "\red You are the Requisitions Officer!"
+			H << "Your job is to dispense basic weapon attachments and extra supplies."
+			H << "Squad Leaders are allowed THREE attachments just by asking. You should ask marines for a stamped form from Logistics."
+			H << "Commanders and Executive Officers have full access to the vendor."
+			H << "You don't have to stay in your department all the time, but you should go if someone needs something."
+			H << "You also have supply pads west of Requisitions. Overwatch might want crates put there for delivery."
 		return 1

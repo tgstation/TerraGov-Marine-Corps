@@ -83,17 +83,17 @@
 	name = "[initial(name)]"
 	item_state = "[initial(item_state)]"
 	if(usr && ishuman(usr))
-		usr:update_inv_l_hand() //Updating invs is more efficient than updating the entire icon set.
+		usr:update_inv_l_hand(0) //Updating invs is more efficient than updating the entire icon set.
 		usr:update_inv_r_hand()
 
 /obj/item/weapon/gun/proc/wield()
 	if(!twohanded) return
 	wielded = 1
 	name = "[initial(name)] (Wielded)"
-	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41)) //Only one that has a wielded sprite atm. Add more here later or remove it?
+	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) || istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37)) //Ugh
 		item_state = "[initial(item_state)]-w"
 		if(usr && ishuman(usr))
-			usr:update_inv_l_hand()
+			usr:update_inv_l_hand(0)
 			usr:update_inv_r_hand()
 
 /obj/item/weapon/gun/mob_can_equip(M as mob, slot)
@@ -318,12 +318,12 @@
 		//Point blank shooting if on harm intent or target we were targeting.
 		if(user.a_intent == "hurt")
 			user.visible_message("\red <b> \The [user] fires \the [src] point blank at [M]!</b>")
-			if(istype(in_chamber)) in_chamber.damage *= 1.3
+			if(istype(in_chamber)) in_chamber.damage *= 1.1
 			Fire(M,user)
 			return
-		else if(target && M in target)
-			Fire(M,user) ///Otherwise, shoot!
-			return
+//		else if(target && M in target)
+//			Fire(M,user) ///Otherwise, shoot!
+//			return
 	else
 		return ..() //Pistolwhippin'
 

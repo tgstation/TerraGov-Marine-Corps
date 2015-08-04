@@ -229,7 +229,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
   /* ###### Prepare the radio connection ###### */
 
 	var/display_freq = freq
-
+	var/comm_title = ""
 	var/list/obj/item/device/radio/radios = list()
 
 	// --- Broadcast only to intercom devices ---
@@ -301,6 +301,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			else if(card.assignment == "Bridge Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
 				command = 3
 
+		if(M.mind && M.mind.role_comm_title)
+			comm_title = M.mind.role_comm_title //Set up [CO] and stuff after frequency
+
 
 	for (var/mob/R in receive)
 
@@ -358,7 +361,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	  /* --- Some miscellaneous variables to format the string output --- */
 		var/part_a = "<span class='radio'><span class='name'>" // goes in the actual output
-		var/freq_text = get_frequency_name(display_freq)
+		var/freq_text
+		if(comm_title != "" && comm_title)
+			freq_text = "[get_frequency_name(display_freq)] ([comm_title])"
+		else
+			freq_text = get_frequency_name(display_freq)
 
 		// --- Some more pre-message formatting ---
 
@@ -390,14 +397,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		else if (display_freq == ENG_FREQ)
 			part_a = "<span class='engradio'><span class='name'>"
 
-//		else if (display_freq == SCI_FREQ)
-//			part_a = "<span class='sciradio'><span class='name'>"
-
 		else if (display_freq == MED_FREQ)
 			part_a = "<span class='medradio'><span class='name'>"
 
-//		else if (display_freq == SUP_FREQ) // cargo
-//			part_a = "<span class='supradio'><span class='name'>"
+		else if (display_freq == SUP_FREQ) // cargo
+			part_a = "<span class='supradio'><span class='name'>"
 
 
 

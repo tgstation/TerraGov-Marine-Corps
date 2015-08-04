@@ -325,7 +325,7 @@ BLIND     // can't see anything
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
-	var/sensor_mode = 0
+	var/sensor_mode = 3
 		/*
 		1 = Report living/dead
 		2 = Report detailed damages
@@ -358,6 +358,15 @@ BLIND     // can't see anything
 
 		return
 
+	if(src.loc == user && istype(I,/obj/item/clothing/under) && src != I)
+		if(istype(user,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = user
+			if(H.w_uniform == src)
+				H.u_equip(src)
+				if(H.equip_to_appropriate_slot(I))
+					H.put_in_active_hand(src)
+					H.update_icons()
+
 	..()
 
 /obj/item/clothing/under/attack_hand(mob/user as mob)
@@ -378,14 +387,15 @@ BLIND     // can't see anything
 			return
 
 		if (!( usr.restrained() ) && !( usr.stat ))
-			switch(over_object.name)
-				if("r_hand")
-					usr.u_equip(src)
-					usr.put_in_r_hand(src)
-				if("l_hand")
-					usr.u_equip(src)
-					usr.put_in_l_hand(src)
-			src.add_fingerprint(usr)
+			if(over_object)
+				switch(over_object.name)
+					if("r_hand")
+						usr.u_equip(src)
+						usr.put_in_r_hand(src)
+					if("l_hand")
+						usr.u_equip(src)
+						usr.put_in_l_hand(src)
+				src.add_fingerprint(usr)
 			return
 	return
 

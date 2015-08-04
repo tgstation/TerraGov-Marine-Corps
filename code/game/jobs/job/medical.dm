@@ -1,6 +1,7 @@
 //Sulaco Chief Medical Officer
 /datum/job/sul_cmo
 	title = "Sulaco Chief Medical Officer"
+	comm_title = "CMO"
 	flag = SULCMO
 	department_flag = MEDSCI
 	faction = "Station"
@@ -30,6 +31,7 @@
 //Sulaco Doctor
 /datum/job/sul_doc
 	title = "Sulaco Doctor"
+	comm_title = "Doc"
 	flag = SULDOC
 	department_flag = MEDSCI
 	faction = "Station"
@@ -59,6 +61,7 @@
 //Sulaco Doctor
 /datum/job/sul_res
 	title = "Sulaco Researcher"
+	comm_title = "Rsr"
 	flag = SULRES
 	department_flag = MEDSCI
 	faction = "Station"

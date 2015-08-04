@@ -218,7 +218,7 @@
 		if(istype(usr, /mob/living/carbon/human) && !usr.stat && Adjacent(usr))
 			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
 		spawn(15)
-			if(distance <= 1 && usr.stat != 1)
+			if(distance <= 1 && usr.stat != 1 && usr && src)
 				if(pulse == PULSE_NONE)
 					usr << "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>"
 				else
