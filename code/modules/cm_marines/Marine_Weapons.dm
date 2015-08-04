@@ -419,7 +419,7 @@
 
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
-	damage = 75
+	damage = 85
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -437,7 +437,23 @@
 	icon_state = "75-0"
 	max_ammo = 0
 
+/obj/item/weapon/storage/box/m42c_system
+	name = "M42C Scoped Rifle system"
+	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 4
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/projectile/M42C(src)
+			new /obj/item/ammo_magazine/m42c(src)
+			new /obj/item/ammo_magazine/m42c(src)
+			new /obj/item/ammo_magazine/m42c(src)
 
 
 /obj/item/weapon/gun/projectile/M56_Smartgun
@@ -699,6 +715,27 @@
 		spawn(15)
 			F.prime()
 
+/obj/item/weapon/storage/box/grenade_system
+	name = "M92 Grenade Launcher case"
+	desc = "A large case containing a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "grenade_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/m92(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+
+
 /obj/item/weapon/gun/rocketlauncher
 	var/projectile
 	name = "M83 rocket launcher"
@@ -714,7 +751,7 @@
 	slot_flags = 0
 	origin_tech = "combat=8;materials=5"
 	projectile = /obj/item/missile
-	var/missile_speed = 3
+	var/missile_speed = 2
 	var/missile_range = 30
 	var/max_rockets = 1
 	var/list/rockets = new/list()
@@ -732,7 +769,7 @@
 			I.loc = src
 			rockets += I
 			user << "\blue You put the rocket in [src]."
-			user << "\blue [rockets.len] / [max_rockets] rockets."
+			user << "\blue [rockets.len] / [max_rockets] rocket(s)."
 		else
 			usr << "\red [src] cannot hold more rockets."
 
@@ -755,7 +792,7 @@
 		usr << "\red [src] is empty."
 
 /obj/item/ammo_casing/rocket
-	name = "frag rocket shell"
+	name = "high explosive rocket shell"
 	desc = "A high explosive designed to be fired from a launcher."
 	icon_state = "rocketshell"
 	projectile_type = "/obj/item/missile"
@@ -774,11 +811,11 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "missile"
 	var/primed = null
-	throwforce = 15
+	throwforce = 10
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 1, 5, 1)
+			explosion(hit_atom, 0, 1, 4, 1)
 			del(src)
 		else
 			..()
@@ -786,7 +823,7 @@
 
 /obj/item/missile/ap
 	name = "armor piercing rocket"
-	throwforce = 175
+	throwforce = 150
 
 	throw_impact(atom/hit_atom)
 		if(primed)
@@ -795,3 +832,23 @@
 		else
 			..()
 		return
+
+/obj/item/weapon/storage/box/rocket_system
+	name = "M83 Rocket Launcher crate"
+	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/rocketlauncher(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket/ap(src)
+			new /obj/item/ammo_casing/rocket/ap(src)

@@ -7,14 +7,14 @@
 	icon_state = "Ravager Walking"
 	melee_damage_lower = 28
 	melee_damage_upper = 52
-	health = 270
-	maxHealth = 270
+	health = 250
+	maxHealth = 250
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
 	jellyMax = 0
 	caste_desc = "A brutal, devastating front-line attacker."
-	speed = -0.5 //Not as fast as runners, but faster than other xenos.
+	speed = -0.3 //Not as fast as runners, but faster than other xenos.
 	evolves_to = list()
 	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
 	var/CHARGESPEED = 2

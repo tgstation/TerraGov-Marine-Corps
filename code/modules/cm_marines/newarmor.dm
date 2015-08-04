@@ -171,10 +171,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		..()
 
 /obj/item/weapon/storage/box/heavy_armor
-	name = "B18 defensive system crate"
+	name = "B-Series Defensive Armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "armorchest"
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "armor_case"
 	w_class = 5
 	storage_slots = 2
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.

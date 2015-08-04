@@ -128,7 +128,7 @@
 						/obj/item/device/mine = 2,
 						/obj/item/weapon/storage/backpack/industrial = 3,
 						/obj/item/clothing/glasses/welding = 3,
-						/obj/item/weapon/plastique = 3,
+						/obj/item/weapon/plastique = 4,
 						/obj/item/device/lightreplacer = 2,
 						/obj/item/weapon/airlock_electronics = 10,
 						/obj/item/weapon/module/power_control = 10,
@@ -197,21 +197,17 @@
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
 						/obj/item/weapon/plastique = 2,
-						/obj/item/weapon/grenade/explosive = 5,
-						/obj/item/weapon/grenade/smokebomb = 5,
-						/obj/item/ammo_casing/rocket = 3,
-						/obj/item/ammo_casing/rocket/ap = 3,
+						/obj/item/weapon/grenade/explosive = 2,
 						/obj/item/weapon/flamethrower/full = 1,
 						/obj/item/weapon/tank/phoron = 3,
 						/obj/item/weapon/shield/riot = 1,
-						/obj/item/ammo_magazine/m42c = 2,
 						/obj/item/smartgun_powerpack = 1
 			)
 	contraband = list()
 	premium = list(
-					/obj/item/weapon/gun/rocketlauncher = 1,
-					/obj/item/weapon/gun/m92 = 1,
-					/obj/item/weapon/gun/projectile/M42C = 1,
+					/obj/item/weapon/storage/box/rocket_system = 1,
+					/obj/item/weapon/storage/box/grenade_system = 1,
+					/obj/item/weapon/storage/box/m42c_system = 1,
 					/obj/item/weapon/storage/box/m56_system = 1,
 					/obj/item/weapon/storage/box/heavy_armor = 1
 			)
@@ -229,8 +225,8 @@
 						/obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/device/squad_beacon = 3,
 						/obj/item/device/squad_beacon/bomb = 1,
-						/obj/item/weapon/plastique = 3,
-						/obj/item/weapon/grenade/explosive = 5,
+						/obj/item/weapon/plastique = 1,
+						/obj/item/weapon/grenade/explosive = 3,
 						/obj/item/device/binoculars = 1,
 						/obj/item/device/paicard = 1,
 						/obj/item/weapon/handcuffs = 2,

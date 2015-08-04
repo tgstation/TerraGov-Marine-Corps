@@ -150,6 +150,9 @@
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+
+	if(istype(src,/turf/simulated/floor/gm/river)) return 0//Not in the river
+
 	if (!..())
 		return 0
 
@@ -165,6 +168,8 @@
 
 // Only adds blood on the floor -- Skie
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
+	if(istype(src,/turf/simulated/floor/gm/river)) return 0//Not in the river
+
 	if(istype(M, /mob/living/carbon/monkey))
 		blood_splatter(src,M,1)
 	else if( istype(M, /mob/living/carbon/Xenomorph))

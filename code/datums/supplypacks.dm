@@ -7,7 +7,7 @@
 
 //var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Science","Hydroponics", "Supply", "Miscellaneous")
 
-var/list/all_supply_groups = list("Operations","Security","Supplies","Engineering","Weapons","Ammo","Armor","Medical", "Clothing", "Science")
+var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons","Ammo","Armor","Medical", "Clothing", "Science")
 
 /datum/supply_packs
 	var/name = null
@@ -185,13 +185,13 @@ var/list/all_supply_groups = list("Operations","Security","Supplies","Engineerin
 					/obj/item/weapon/tank/phoron,
 					/obj/item/weapon/tank/phoron
 				)
-	cost = 50
+	cost = 70
 	containertype = /obj/structure/closet/crate
 	containername = "Incinerator crate"
 	group = "Weapons"
 
 /datum/supply_packs/ammo_big
-	name = "Large-calibre Ammo crate"
+	name = "Large-calibre ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/m41,
 					/obj/item/ammo_magazine/m41,
@@ -206,7 +206,7 @@ var/list/all_supply_groups = list("Operations","Security","Supplies","Engineerin
 	group = "Ammo"
 
 /datum/supply_packs/ammo_small
-	name = "Small-calibre Ammo crate"
+	name = "Small-calibre ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/m39,
 					/obj/item/ammo_magazine/m39,
@@ -226,11 +226,26 @@ var/list/all_supply_groups = list("Operations","Security","Supplies","Engineerin
 					/obj/item/ammo_magazine/m42c,
 					/obj/item/ammo_magazine/m42c,
 					/obj/item/ammo_magazine/m42c,
-					/obj/item/ammo_magazine/m42c,
 					/obj/item/smartgun_powerpack,
 					/obj/item/smartgun_powerpack
 				)
 	cost = 40
+	containertype = /obj/structure/closet/crate
+	containername = "Ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/explosive_ammo_crate
+	name = "Explosive Ammo crate"
+	contains = list(
+					/obj/item/ammo_casing/rocket,
+					/obj/item/ammo_casing/rocket,
+					/obj/item/ammo_casing/rocket/ap,
+					/obj/item/ammo_casing/rocket/ap,
+					/obj/item/weapon/grenade/explosive,
+					/obj/item/weapon/grenade/explosive,
+					/obj/item/weapon/grenade/explosive
+				)
+	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "Ammo crate"
 	group = "Ammo"

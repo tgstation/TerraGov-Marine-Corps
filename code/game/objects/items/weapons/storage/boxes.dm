@@ -469,7 +469,7 @@
 	New()
 		..()
 		for (var/i; i < storage_slots; i++)
-			new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
+			new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
 
 /obj/item/weapon/storage/box/lights
 	name = "box of replacement bulbs"

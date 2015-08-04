@@ -617,7 +617,7 @@
 			if(isturf(mob.loc))
 				if(istype(mob.loc,/turf/simulated/floor/gm/dirt))
 					icon_state = "yauttrapdirt"
-				else if (istype(mob.loc,/turf/simulated/floor/gm/dirt))
+				else if (istype(mob.loc,/turf/simulated/floor/gm/grass))
 					icon_state = "yauttrapgrass"
 				else
 					icon_state = "yauttrap1"

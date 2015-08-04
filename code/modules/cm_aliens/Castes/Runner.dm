@@ -17,6 +17,7 @@
 	speed = -2.2
 	evolves_to = list("Hunter")
 	charge_type = 1 //Pounce
+	armor_deflection = 28
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
