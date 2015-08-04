@@ -33,7 +33,11 @@ var/const/MAX_ACTIVE_TIME = 200
 		if(CanHug(user))
 			Attach(user) //If we're conscious, don't let them pick us up even if this fails. Just return.
 		return
-	if(ishuman(user)) return
+	if(ishuman(user))
+		if(stat == DEAD)
+			return ..()
+		else
+			return //Can't pick up live ones.
 
 	return ..()
 
