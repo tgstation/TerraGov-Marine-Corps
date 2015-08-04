@@ -317,8 +317,9 @@
 				var/obj/structure/S = O
 				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
 				S.destroy()
+				O = null
 
-		if(!istype(O,/obj/structure/table) && O.density && O.anchored) // new - xeno charge ignore tables
+		if(!isnull(O) && !istype(O,/obj/structure/table) && O.density && O.anchored) // new - xeno charge ignore tables
 			O.hitby(src,speed)
 			src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
 			src.Weaken(2)

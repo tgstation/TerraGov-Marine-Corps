@@ -302,6 +302,8 @@
 
 	if(!check_state())	return
 
+	if(!M || !istype(M)) return
+
 	if (get_dist(src,M) >= 3)
 		src << "\green You need to be closer."
 		return
@@ -551,8 +553,11 @@
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/M in view())
-		if(M.client)
-			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
+		if(M && M.client)
+			if(istype(M,/mob/living/carbon/Xenomorph))
+				shake_camera(M, 10, 1)
+			else
+				shake_camera(M, 30, 1) // 50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 
 	for (var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))

@@ -260,10 +260,10 @@
 		//Host is checked already but we can check here for efficiency.
 		//We can use orange instead of range, since Crossed already checks their turf.
 		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD)
-			var/obj/item/clothing/mask/facehugger/F = locate(/obj/item/clothing/mask/facehugger) in orange(1,mob)
+			var/obj/item/clothing/mask/facehugger/F = locate(/obj/item/clothing/mask/facehugger) in range(1,mob)
 			if(F)
 				F.HasProximity(mob)
-			var/obj/effect/alien/egg/E = locate(/obj/effect/alien/egg) in orange(1,mob)
+			var/obj/effect/alien/egg/E = locate(/obj/effect/alien/egg) in range(1,mob)
 			if(E)
 				E.HasProximity(mob)
 
