@@ -188,7 +188,7 @@ var/global/list/PDA_Manifest = list()
 
 
 		if(real_rank in marine_squad_positions)
-			mar[++marine_squad_positions.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			mar[++mar.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && mar.len != 1)
 				mar.Swap(1,mar.len)

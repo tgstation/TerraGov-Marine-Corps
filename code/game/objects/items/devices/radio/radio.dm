@@ -206,8 +206,8 @@
 		return radio_connection
 
 	// Otherwise, if a channel is specified, look for it.
-	if(channels)
-		if (message_mode == "department") // Department radio shortcut
+	if(channels && channels.len)
+		if (message_mode == "department" ) // Department radio shortcut
 			message_mode = channels[1]
 
 		if (channels[message_mode]) // only broadcast if the channel is set on

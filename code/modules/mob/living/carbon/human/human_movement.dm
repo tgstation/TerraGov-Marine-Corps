@@ -31,7 +31,7 @@
 			tally += 8
 
 		if(locate(/obj/effect/alien/weeds) in src.loc) //Sticky resin slows you down
-			tally += 1
+			tally += 0.5
 
 		if(istype(src.loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
 			var/turf/simulated/floor/gm/snow/S = src.loc
