@@ -92,7 +92,8 @@ var/list/command_positions = list(
 	"Military Police",
 	"Sulaco Chief Medical Officer",
 	"Sulaco Chief Engineer",
-	"Corporate Liason"
+	"Corporate Liason",
+	"Requisitions Officer"
 )
 
 var/list/engineering_positions = list(

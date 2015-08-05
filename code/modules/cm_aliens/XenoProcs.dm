@@ -167,7 +167,7 @@
 	damage_type = BURN
 
 /obj/item/projectile/energy/neuro/acid
-	damage = 15
+	damage = 12
 	name = "acid"
 	icon_state = "declone"
 	damage_type = BURN
@@ -191,7 +191,7 @@
 					M.apply_damage(damage,BURN) //Will pick a single random part to splat
 
 /obj/item/projectile/energy/neuro/acid/heavy
-	damage = 30
+	damage = 20
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here

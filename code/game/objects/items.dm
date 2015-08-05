@@ -134,6 +134,10 @@
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return
 
+	if(src.anchored)
+		user << "[src] is anchored to the ground."
+		return
+
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
 		S.remove_from_storage(src)

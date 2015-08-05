@@ -60,7 +60,6 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
 
 	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
-		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 		if(player && player.mind && rank)
 			var/datum/job/job = GetJob(rank)
 			if(!job)	return 0
@@ -70,14 +69,12 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			if(!latejoin)
 				position_limit = job.spawn_positions
 			if((job.current_positions < position_limit) || position_limit == -1)
-				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 				player.mind.assigned_role = rank
 				player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
 				player.mind.role_comm_title = job.comm_title
 				unassigned -= player
 				job.current_positions++
 				return 1
-		Debug("AR has failed, Player: [player], Rank: [rank]")
 		return 0
 
 	proc/FreeRole(var/rank)	//making additional slot on the fly
@@ -88,33 +85,24 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		return 0
 
 	proc/FindOccupationCandidates(datum/job/job, level, flag)
-		Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 		var/list/candidates = list()
 		for(var/mob/new_player/player in unassigned)
 			if(jobban_isbanned(player, job.title))
-				Debug("FOC isbanned failed, Player: [player]")
 				continue
 			if(!job.player_old_enough(player.client))
-				Debug("FOC player not old enough, Player: [player]")
 				continue
 			if(flag && (!player.client.prefs.be_special & flag))
-				Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 				continue
 			if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
-				Debug("FOC pass, Player: [player], Level:[level]")
 				candidates += player
 		return candidates
 
 	proc/GiveRandomJob(var/mob/new_player/player)
-		Debug("GRJ Giving random job, Player: [player]")
 		for(var/datum/job/job in shuffle(occupations))
 			if(!job)
 				continue
 
-			if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
-				continue
-
-			if(prob(75))
+			if(prob(85))
 				AssignRole(player,"Squad Marine") //Fuck it.
 				continue
 
@@ -122,15 +110,12 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				continue
 
 			if(jobban_isbanned(player, job.title))
-				Debug("GRJ isbanned failed, Player: [player], Job: [job.title]")
 				continue
 
 			if(!job.player_old_enough(player.client))
-				Debug("GRJ player not old enough, Player: [player]")
 				continue
 
 			if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-				Debug("GRJ Random job given, Player: [player], Job: [job]")
 				AssignRole(player, job.title)
 				unassigned -= player
 				break
@@ -240,7 +225,6 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
  **/
 	proc/DivideOccupations()
 		//Setup new player list and get the jobs list
-		Debug("Running DO")
 		SetupOccupations()
 
 		//Holder for Triumvirate is stored in the ticker, this just processes it
@@ -254,7 +238,6 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			if(player.ready && player.mind && !player.mind.assigned_role)
 				unassigned += player
 
-		Debug("DO, Len: [unassigned.len]")
 		if(unassigned.len == 0)	return 0
 
 		//Shuffle players and jobs
@@ -262,29 +245,11 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 		HandleFeedbackGathering()
 
-		//People who wants to be assistants, sure, go on.
-		Debug("DO, Running Assistant Check 1")
-		var/datum/job/assist = new /datum/job/assistant()
-		var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
-		Debug("AC1, Candidates: [assistant_candidates.len]")
-		for(var/mob/new_player/player in assistant_candidates)
-			Debug("AC1 pass, Player: [player]")
-			AssignRole(player, "Assistant")
-			assistant_candidates -= player
-		Debug("DO, AC1 end")
-
 		//Select one head
-		Debug("DO, Running Head Check")
 		FillHeadPosition()
-		Debug("DO, Head Check end")
 
 		//Check for an AI
-		Debug("DO, Running AI Check")
 		FillAIPosition()
-		Debug("DO, AI Check end")
-
-		//Other jobs are now checked
-		Debug("DO, Running Standard Check")
 
 
 		// New job giving system by Donkie
@@ -326,29 +291,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		// Hand out random jobs to the people who didn't get any in the last check
 		// Also makes sure that they got their preference correct
 		for(var/mob/new_player/player in unassigned)
-			if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
-				GiveRandomJob(player)
-		/*
-		Old job system
-		for(var/level = 1 to 3)
-			for(var/datum/job/job in occupations)
-				Debug("Checking job: [job]")
-				if(!job)
-					continue
-				if(!unassigned.len)
-					break
-				if((job.current_positions >= job.spawn_positions) && job.spawn_positions != -1)
-					continue
-				var/list/candidates = FindOccupationCandidates(job, level)
-				while(candidates.len && ((job.current_positions < job.spawn_positions) || job.spawn_positions == -1))
-					var/mob/new_player/candidate = pick(candidates)
-					Debug("Selcted: [candidate], for: [job.title]")
-					AssignRole(candidate, job.title)
-					candidates -= candidate*/
-
-		Debug("DO, Standard Check end")
-
-		Debug("DO, Running AC2")
+			GiveRandomJob(player)
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)

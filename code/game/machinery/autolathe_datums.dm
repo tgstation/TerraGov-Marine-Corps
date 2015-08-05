@@ -248,13 +248,13 @@
 	name = "camera assembly"
 	path = /obj/item/weapon/camera_assembly
 	category = "Engineering"
-
+/*
 /datum/autolathe/recipe/flamethrower
 	name = "flamethrower"
 	path = /obj/item/weapon/flamethrower/full
 	hidden = 1
 	category = "Arms and Ammunition"
-
+*/
 /datum/autolathe/recipe/magazine_revolver_1
 	name = "ammunition (.357)"
 	path = /obj/item/ammo_magazine/a357

@@ -33,7 +33,7 @@
 	var/stat_msg1
 	var/stat_msg2
 
-	var/datum/announcement/priority/crew_announcement = new
+	var/datum/announcement/priority/command/crew_announcement = new
 
 /obj/machinery/computer/communications/New()
 	..()
@@ -113,7 +113,7 @@
 				var/input = stripped_input(usr, "Please write a message to announce to the station crew.", "Priority Announcement")
 				if(!input || !(usr in view(1,src)))
 					return
-				crew_announcement.Announce(input)
+				crew_announcement.Announce(input, to_xenos = 0)
 				message_cooldown = 1
 				spawn(600)//One minute cooldown
 					message_cooldown = 0
