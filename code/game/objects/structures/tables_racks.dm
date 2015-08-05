@@ -43,8 +43,10 @@
 /obj/structure/table/Crossed(atom/movable/O)
 	..()
 	if(istype(O,/mob/living/carbon/Xenomorph/Ravager))
-		visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
-		destroy()
+		var/mob/living/carbon/Xenomorph/M = O
+		if(!M.stat) //No dead xenos jumpin on the bed~
+			visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
+			destroy()
 
 /obj/structure/table/Del()
 	update_adjacent()
