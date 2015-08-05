@@ -20,7 +20,7 @@
 //	adjust_size_y = 0.85
 	caste_desc = "Ptui!"
 	evolves_to = list()
-	armor_deflection = 88
+	armor_deflection = 82
 	spit_projectile = /obj/item/projectile/energy/neuro/strongest
 
 	inherent_verbs = list(

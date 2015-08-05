@@ -46,7 +46,7 @@
 	else if (stage == 4 && prob(50))  counter++
 
 	if(counter > 300) counter = 300 //somehow
-	if(stage < 5 && prob(1 + round(counter / 60))) //Adds 1% probability to change stages for each 60 cycles.
+	if(stage < 5 && prob(1 + round(counter / 80))) //Adds 1% probability to change stages for each 60 cycles.
 		counter = 0
 		stage++
 		spawn(0)
@@ -54,25 +54,24 @@
 
 	switch(stage)
 		if(2)
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "Your chest hurts a little bit."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "Your stomach hurts."
 		if(3)
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red Your throat feels sore."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red Mucous runs down the back of your throat."
 			if(prob(1))
 				affected_mob << "\red Your muscles ache."
 				if(prob(20))
 					affected_mob.take_organ_damage(1)
-			if(prob(1))
+			if(prob(2))
 				affected_mob.emote("sneeze")
-			if(prob(1))
+			if(prob(2))
 				affected_mob.emote("cough")
 		if(4)
-
 			if(prob(1))
 				if(affected_mob.paralysis < 1)
 					affected_mob << "\red You have a seizure!"
@@ -80,13 +79,13 @@
 						if(O == src)
 							continue
 						O.show_message(text("\red <B>[affected_mob] starts having a seizure!"), 1)
-					affected_mob.Paralyse(12)
+					affected_mob.Paralyse(10)
 					affected_mob.make_jittery(300)
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red Your chest hurts badly."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red It becomes difficult to breathe."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red Your heart starts beating rapidly, and each beat is painful."
 		if(5)
 			affected_mob << "\red You feel something tearing its way out of your stomach..."
