@@ -75,7 +75,13 @@
 		if(under)
 			usr << "It has \icon[under] [under.name] mounted underneath."
 
-
+	proc/has_attachment(var/obj/item/attachable/A)
+		if(!A)
+			return 0
+		if(istype(muzzle,A)) return 1
+		if(istype(under,A)) return 1
+		if(istype(rail,A)) return 1
+		return 0
 
 /obj/item/weapon/gun/proc/unwield()
 	if(!twohanded) return

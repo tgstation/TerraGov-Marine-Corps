@@ -21,9 +21,10 @@
 	var/melee_mod = 100 //Modifier to melee damage - PERCENTAGE / 100
 	var/w_class_mod = 0 //Modifier to weapon's weight class -- FLAT
 	var/capacity_mod = 100 //Modifier to a weapon's magazine capacity - PERCENTAGE / 100
-	var/list/contains = new/list() //Stores an attachable's internal contents, ie. grenades
-	var/ammo_type = 0 //Which type of casing it stores, if reloadable
+	var/list/loaded = new/list() //Stores an attachable's internal contents, ie. grenades
+	var/ammo_type = null //Which type of casing it stores, if reloadable
 	var/ammo_capacity = 0 //How much ammo it can store
+	var/shoot_sound = null //Sound to play when firing it alternately
 	var/twohanded_mod = 0 //If 1, removes two handed, if 2, adds two-handed.
 	var/recoil_mod = 0 //If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
 	var/silence_mod = 0 //Adds silenced to weapon
@@ -36,7 +37,7 @@
 			spawn(0)
 				for(var/i = 1, i <= ammo_capacity, i++)
 					var/A = new ammo_type(src)
-					contains += A
+					loaded += A
 
 
 	proc/Attach(var/obj/item/weapon/gun/G)
@@ -137,7 +138,8 @@
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 						/obj/item/weapon/gun/projectile/automatic/m39,
 						/obj/item/weapon/gun/projectile/shotgun/pump/m37,
-						/obj/item/weapon/gun/projectile/m4a3
+						/obj/item/weapon/gun/projectile/m4a3,
+						/obj/item/weapon/gun/projectile/m44m
 						)
 	accuracy_mod = 20 //20% accuracy bonus
 	slot = "rail"
@@ -148,10 +150,8 @@
 	icon_state = "sparemag"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/M42C)
-	accuracy_mod = 25
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+	accuracy_mod = 15
 	twohanded_mod = 1
 	w_class_mod = 1
 	recoil_mod = -1
@@ -162,11 +162,11 @@
 	desc = "A set of weights and balances to allow a two handed weapon to be fired with one hand. Greatly reduces accuracy, however."
 	icon_state = "gyro"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/M42C)
 	twohanded_mod = 2
 	recoil_mod = 1
-	accuracy_mod = -5
-//	capacity_mod = 50 //50% ammo capacity.
+	accuracy_mod = -15
 	slot = "under"
 
 /obj/item/attachable/flashlight
@@ -177,7 +177,8 @@
 					/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/automatic/m39
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m
 					)
 	light_mod = 5
 	slot = "rail"
@@ -195,7 +196,22 @@
 		else
 			..()
 
-/obj/item/attachable/grenade
+/obj/item/attachable/altfire
+	name = "alternating fire attachable"
+
+	attackby(obj/item/I as obj, mob/user as mob)
+		if(loaded.len >= ammo_capacity)
+			user << "It's full already."
+			return
+
+		if(ammo_type && istype(I,ammo_type))
+			user << "You insert \the [I] into the [src]."
+			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+			user.drop_from_inventory(I)
+			I.loc = src
+			loaded += I
+
+/obj/item/attachable/altfire/grenade
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, two-shot grenade launcher. When empty, it must be detached before being reloaded."
 	icon_state = "grenade"
@@ -203,24 +219,15 @@
 	ammo_capacity = 2
 	ammo_type = /obj/item/weapon/grenade
 	slot = "under"
-
+	shoot_sound = 'sound/weapons/grenadelaunch.ogg'
 
 	New() //Make these spawn with real grenades instead of the fake ones determined by ammo_type
 		spawn(0)
 			for(var/i = 1, i <= ammo_capacity, i++)
 				var/A = new /obj/item/weapon/grenade/explosive(src)
-				contains += A
+				loaded += A
 
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(contains.len >= ammo_capacity)
-			user << "It's full already."
-			return
-
-		if(istype(I,ammo_type))
-			user << "You insert \the [I] into the [src]."
-			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
-
-/obj/item/attachable/shotgun
+/obj/item/attachable/altfire/shotgun
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. To reload it, it must first be detached.\nTakes only M37 shells."
@@ -228,15 +235,7 @@
 	ammo_capacity = 4
 	ammo_type = /obj/item/ammo_casing/m37
 	slot = "under"
-
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(contains.len >= ammo_capacity)
-			user << "It's full already."
-			return
-
-		if(istype(I,ammo_type))
-			user << "You insert \the [I] into the [src]."
-			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+	shoot_sound = 'sound/weapons/shotgun.ogg'
 
 /obj/item/attachable/flamer
 	name = "mini flamethrower"
@@ -255,6 +254,7 @@
 					/obj/item/weapon/gun/projectile/M42C)
 	recoil_mod = -1
 	accuracy_mod = 30
+	ranged_dmg_mod = 110
 	slot = "under"
 	w_class_mod = 2
 	melee_mod = 50 //50% melee damage. Can't swing it around as easily.

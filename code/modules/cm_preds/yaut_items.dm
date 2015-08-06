@@ -19,6 +19,7 @@
 	flags = NOSHIELD
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
+	unacidable = 1
 
 /obj/item/weapon/twohanded/glaive/update_icon()
 	if(wielded)
@@ -41,6 +42,7 @@
 	body_parts_covered = HEAD|FACE
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
+	unacidable = 1
 
 	New()
 		spawn(0)
@@ -107,10 +109,11 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 58, bullet = 72, laser = 20, energy = 20, bomb = 10, bio = 50, rad = 50)
+	armor = list(melee = 58, bullet = 75, laser = 20, energy = 20, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
+	unacidable = 1
 
 	New()
 		..()
@@ -123,6 +126,7 @@
 	force = 25
 	throwforce = 85
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
+	unacidable = 1
 
 /obj/item/weapon/wristblades
 	name = "wrist blades"
@@ -176,7 +180,7 @@
 	permeability_coefficient = 0.01
 	flags = NOSLIP
 	body_parts_covered = FEET|LEGS
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -196,7 +200,7 @@
 	icon_state = "mesh_shirt"
 	icon_override = 'icons/Predator/items.dmi'
 	has_sensor = 0
-	armor = list(melee = 5, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 5, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	species_restricted = null
 
@@ -212,7 +216,7 @@
 	permeability_coefficient = 0.05
 	canremove = 0
 	body_parts_covered = HANDS|ARMS
-	armor = list(melee = 70, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 70, bullet = 50, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
@@ -372,7 +376,7 @@
 		for(var/mob/O in viewers())
 			O.show_message("\red <B>The [src] begin beeping.</b>",2) // 2 stands for hearable message
 		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0)
-		spawn(80)
+		spawn(85)
 			var/turf/T = get_turf(src.loc)
 			if(T && istype(T))
 				explosion(T, 1, 3, 7, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.

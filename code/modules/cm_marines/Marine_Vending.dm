@@ -125,7 +125,8 @@
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
 						/obj/item/device/multitool = 4,
-						/obj/item/device/mine = 2,
+						/obj/item/weapon/grenade/incendiary = 2,
+						/obj/item/weapon/storage/box/explosive_mines = 1,
 						/obj/item/weapon/storage/backpack/industrial = 3,
 						/obj/item/clothing/glasses/welding = 3,
 						/obj/item/weapon/plastique = 4,
@@ -133,18 +134,7 @@
 						/obj/item/weapon/airlock_electronics = 10,
 						/obj/item/weapon/module/power_control = 10,
 						/obj/item/weapon/airalarm_electronics = 10,
-						/obj/item/weapon/cell/high = 10,
-						/obj/item/device/assembly/prox_sensor = 5,
-						/obj/item/device/assembly/igniter = 3,
-						/obj/item/device/assembly/signaler = 4,
-						/obj/item/stack/cable_coil/random = 10,
-						/obj/item/weapon/crowbar = 5,
-						/obj/item/weapon/weldingtool = 3,
-						/obj/item/weapon/wirecutters = 5,
-						/obj/item/weapon/wrench = 5,
-						/obj/item/device/analyzer = 5,
-						/obj/item/device/t_scanner = 5,
-						/obj/item/weapon/screwdriver = 5
+						/obj/item/weapon/cell/high = 10
 					)
 	contraband = list()
 	premium = list()
@@ -198,6 +188,7 @@
 						/obj/item/weapon/coin/marine = 1,
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 2,
+						/obj/item/weapon/grenade/incendiary = 2,
 						/obj/item/weapon/flamethrower/full = 1,
 						/obj/item/weapon/tank/phoron = 3,
 						/obj/item/weapon/shield/riot = 1,
@@ -226,11 +217,9 @@
 						/obj/item/device/squad_beacon = 3,
 						/obj/item/device/squad_beacon/bomb = 1,
 						/obj/item/weapon/plastique = 1,
-						/obj/item/weapon/grenade/explosive = 3,
+						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
-						/obj/item/device/paicard = 1,
-						/obj/item/weapon/handcuffs = 2,
-						/obj/item/weapon/storage/box/explosive_mines = 1
+						/obj/item/device/paicard = 1
 					)
 	contraband = list()
 	premium = list()

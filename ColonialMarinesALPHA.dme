@@ -898,6 +898,7 @@
 #include "code\modules\cm_aliens\XenoUpdateIcons.dm"
 #include "code\modules\cm_aliens\XenoUpgrades.dm"
 #include "code\modules\cm_aliens\Castes\Carrier.dm"
+#include "code\modules\cm_aliens\Castes\Crusher.dm"
 #include "code\modules\cm_aliens\Castes\Drone.dm"
 #include "code\modules\cm_aliens\Castes\Hivelord.dm"
 #include "code\modules\cm_aliens\Castes\Hunter.dm"

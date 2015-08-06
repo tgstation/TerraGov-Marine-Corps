@@ -106,6 +106,22 @@
 
 		update_icons()
 
+		//Deal with dissolving/damaging stuff in stomach.
+		if(stomach_contents.len)
+			for(var/mob/living/M in src)
+				if(!isnull(M) && M in stomach_contents)
+					M.acid_damage++
+					if(M.stat != DEAD)
+						M.adjustToxLoss(rand(1,5))
+						M.adjustFireLoss(rand(1,5))
+						if(prob(25))
+							M << "You are burned by stomach acids!"
+					if(M.acid_damage > 120)
+						src << "\green [M] is dissolved in your gut with a gurgle."
+						stomach_contents.Remove(M)
+						del(M)
+
+
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()

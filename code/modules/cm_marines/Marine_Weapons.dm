@@ -729,11 +729,7 @@
 		..()
 		spawn(1)
 			new /obj/item/weapon/gun/m92(src)
-			new /obj/item/weapon/grenade/explosive(src)
-			new /obj/item/weapon/grenade/explosive(src)
-			new /obj/item/weapon/grenade/explosive(src)
-			new /obj/item/weapon/grenade/explosive(src)
-			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/storage/belt/grenade(src)
 
 
 /obj/item/weapon/gun/rocketlauncher

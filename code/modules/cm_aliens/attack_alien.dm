@@ -25,7 +25,7 @@
 			if(M == src || anchored)
 				return
 			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
-				visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>", "\red <B>Your grab was blocked by a shield!</B>")
+				M.visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>", "\red <B>Your grab was blocked by a shield!</B>")
 				return 0
 
 			if(Adjacent(M)) //Logic!
@@ -36,7 +36,7 @@
 			visible_message(text("\red [] has grabbed []!", M, src), "\red You grab [M]!")
 		if("hurt")
 			if(slashing_allowed == 0 && !M.is_intelligent)
-				visible_message("<b>\The [M] tries to slash [src], but suddenly hesitates!","Slashing is currently <b>forbidden</b> by the Queen. You hesitate and miss your target.")
+				M.visible_message("<b>\The [M] tries to slash [src], but suddenly hesitates!","Slashing is currently <b>forbidden</b> by the Queen. You hesitate and miss your target.")
 				return
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)

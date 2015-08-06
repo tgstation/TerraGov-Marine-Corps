@@ -457,6 +457,30 @@
 
 	can_hold=list("/obj/item/weapon/throwing_knife")
 
+
+/obj/item/weapon/storage/belt/grenade
+	name="grenade bandolier"
+	desc="Storage for your exploding toys."
+	icon_state="grenadebelt" // temp
+	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
+	w_class = 4
+	storage_slots = 8
+	max_w_class = 1
+	max_combined_w_class = 8
+
+	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb")
+
+	New()
+		spawn(1)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+
 /obj/item/weapon/storage/belt/knifepouch/New()
 	..()
 	new /obj/item/weapon/throwing_knife(src)

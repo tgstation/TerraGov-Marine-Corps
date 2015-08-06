@@ -22,8 +22,8 @@
 
 /datum/announcement/priority/command/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)
-	title = "[command_name()] Update"
-	announcement_type = "[command_name()] Update"
+	title = "Priority Announcement"
+	announcement_type = "Command Staff"
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)
@@ -67,7 +67,7 @@
 
 /datum/announcement/priority/command/Message(message as text, message_title as text, var/to_xenos = 1)
 	var/command
-	command += "<h1 class='alert'>[command_name()] Update</h1>"
+//	command += "<h1 class='alert'>[message_title]</h1>"
 	if (message_title)
 		command += "<br><h2 class='alert'>[message_title]</h2>"
 
@@ -76,7 +76,7 @@
 	for(var/mob/M in player_list)
 		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
 			continue
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
+		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isYautja(M))
 			M << command
 
 /datum/announcement/priority/security/Message(message as text, message_title as text)
