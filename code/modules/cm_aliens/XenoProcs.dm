@@ -176,19 +176,12 @@
 		aoe_spit(target)
 		return 1
 
-	proc/aoe_spit(var/atom/target) //Spatters acid on all mobs adjacent to the hit zone.
+	proc/aoe_spit(var/atom/target) //Doesn't actually do AoE anymore, just splatters
 		var/turf/T = get_turf(target)
 		if(!T) return
 
-		new /obj/effect/xenomorph/splatter(T) //First do a splatty splat
+		new /obj/effect/xenomorph/splatter(T) //do a splatty splat
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
-		for(var/mob/living/carbon/human/M in range(1,T))
-			spawn(0)
-				if(M && M.stat != DEAD && !isYautja(M))
-					if(!locate(/obj/effect/xenomorph/splatter) in get_turf(M))
-						new /obj/effect/xenomorph/splatter(get_turf(M))
-					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
-					M.apply_damage(damage,BURN) //Will pick a single random part to splat
 
 /obj/item/projectile/energy/neuro/acid/heavy
 	damage = 20
@@ -319,7 +312,7 @@
 				S.destroy()
 				O = null
 
-		if(!isnull(O) && !istype(O,/obj/structure/table) && O.density && O.anchored) // new - xeno charge ignore tables
+		if(!isnull(O) && !istype(O,/obj/structure/table) && O.density && O.anchored && !istype(O,/obj/item)) // new - xeno charge ignore tables
 			O.hitby(src,speed)
 			src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
 			src.Weaken(2)

@@ -16,7 +16,7 @@
 	var/max_shells = 7
 	var/load_method = SPEEDLOADER //0 = Single shells or quick loader, 1 = box, 2 = magazine
 	var/obj/item/ammo_magazine/empty_mag = null
-
+	var/using_alt = 0 //1: using underslung, 2: using rail, 3: using muzzle attachment to shoot.
 
 /obj/item/weapon/gun/projectile/New()
 	..()
@@ -86,14 +86,39 @@
 			AC.loc = src
 			loaded += AC
 			num_loaded++
+		else
+			if(!check_attach_reload()) //Check if we're trying to reload an altfiring attachment
+				return ..()
 	else
-		return ..() //Just do generic shit.
+		if(!check_attach_reload()) //Check if we're trying to reload an altfiring attachment
+			return ..() //Just do generic shit.
+
 	if(num_loaded)
 		user << "\blue You load [num_loaded] shell\s into \the [src]!"
 		playsound(user, 'sound/weapons/unload.ogg', 20, 1)
 		A.update_icon()
 		update_icon()
 	return
+
+/obj/item/weapon/gun/projectile/proc/check_attach_reload(var/obj/item/A as obj, mob/user as mob)
+	if(!user || !A) return
+
+	if(muzzle) //First lets check muzzle attachments
+		if(istype(muzzle,/obj/item/attachable/altfire))
+			if(istype(A,muzzle.ammo_type))
+				muzzle.attackby(A,user)
+				return 1
+	if(rail)
+		if(istype(rail,/obj/item/attachable/altfire))
+			if(istype(A,rail.ammo_type))
+				rail.attackby(A,user)
+				return 1
+	if(under)
+		if(istype(under,/obj/item/attachable/altfire))
+			if(istype(A,under.ammo_type))
+				under.attackby(A,user)
+				return 1
+	return 0
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
 	if (target)

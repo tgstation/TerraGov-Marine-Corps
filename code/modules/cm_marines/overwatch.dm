@@ -423,7 +423,6 @@
 	if(x_offset < -5 || x_offset > 5) x_offset = 0
 	if(y_offset < -5 || y_offset > 5) x_offset = 0
 	//All set, let's do this.
-	current_squad.bbeacon.visible_message("\red <b>The beacon begins blinking red!</b>")
 	send_to_squad("Initializing fire coordinates..")
 	if(current_squad.bbeacon)
 		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 100, 1)  //Placeholder
@@ -472,7 +471,7 @@
 		usr << "\icon[src] No squad selected!"
 		return
 	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(is_leader_from_card(H) && get_squad_from_card(H) == current_squad && current_squad.squad_leader != H)
+		if(is_leader_from_card(H) && get_squad_data_from_card(H) == current_squad && current_squad.squad_leader != H)
 			current_squad.squad_leader = H
 			usr << "\icon[src] New leader found and linked!"
 			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")

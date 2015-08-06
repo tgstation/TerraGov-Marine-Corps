@@ -118,15 +118,16 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Webbing crate"
 	group = "Operations"
 
-/datum/supply_packs/beacons
+/datum/supply_packs/explosives
 	name = "Explosives crate"
 	contains = list(
 					/obj/item/weapon/storage/box/explosive_mines,
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/explosive,
-					/obj/item/weapon/grenade/explosive,
-					/obj/item/weapon/grenade/explosive
+					/obj/item/weapon/grenade/incendiary,
+					/obj/item/weapon/grenade/incendiary,
+					/obj/item/weapon/grenade/incendiary
 				)
 	cost = 50
 	containertype = /obj/structure/closet/crate

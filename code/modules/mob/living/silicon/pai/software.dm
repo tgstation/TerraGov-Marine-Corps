@@ -702,8 +702,8 @@
 
 	else
 		translator_on = 1
-		universal_speak = 0
-		universal_understand = 0
+		universal_speak = 1
+		universal_understand = 1
 
 
 		src << "\blue Translator Module toggled ON."

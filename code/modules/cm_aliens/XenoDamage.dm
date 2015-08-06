@@ -3,7 +3,7 @@
 	if(!blinded)
 		flick("flash", flash)
 
-	if(is_robotic) //Robots are IMMUNE, having blast-proof exoskeletons.
+	if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Robots and crushers are immune.
 		return
 
 	var/b_loss = 0
@@ -97,9 +97,17 @@
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
 	if(Proj && istype(Proj) )
 		var/dmg = Proj.damage
-		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 5 //Smartgun hits weak points easier.
-		if(istype(Proj,/obj/item/projectile/bullet/m42c)) dmg += 50 //Sniper is anti-armor.
-		if(prob(armor_deflection - dmg))
+		var/armor = armor_deflection
+		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances - more depending on facing.
+			if(Proj.dir == src.dir) //Both facing same way -- ie. shooting from behind.
+				armor -= 60 //Ouch.
+			else if(Proj.dir == reverse_direction(src.dir)) //We are facing the bullet.
+				armor += 40
+			//Otherwise use the standard armor deflection for crushers.
+
+		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 10 //Smartgun hits weak points easier.
+		if(istype(Proj,/obj/item/projectile/bullet/m42c)) dmg += 80 //Sniper is anti-armor.
+		if(prob(armor - dmg))
 			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
 			return -1
 	..(Proj) //Do normal stuff
