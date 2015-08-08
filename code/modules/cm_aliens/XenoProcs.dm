@@ -130,6 +130,19 @@
 	if(src.pulling)  //Dragging stuff slows you down a bit.
 		tally += 1.5
 
+	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
+		var/mob/living/carbon/Xenomorph/Crusher/X = src
+		X.has_moved = 1
+		X.charge_timer = 1
+		if(X.momentum == 0)
+			X.charge_dir = dir
+		else
+			if(X.charge_dir != dir) //Have we changed direction?
+				spawn(1)
+					X.stop_momentum() //This should disallow rapid turn bumps
+		X.handle_momentum()
+		X.lastturf = get_turf(X.loc)
+
 	return (tally)
 
 //These don't do much currently. Or anything? Only around for legacy code.
@@ -264,9 +277,9 @@
 			W.dismantle_wall(1)
 		else
 			if(target.contents) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/mob/S in target)
-					if(S in target.contents && !isnull(target.loc))
-						S.loc = target.loc
+				for(var/atom/movable/S in target)
+					if(S in target.contents && !isnull(get_turf(target)))
+						S.loc = get_turf(target)
 
 			if(istype(target,/turf)) //We don't want space tiles appearing everywhere... but this sucks!
 				var/turf/T = target
@@ -306,7 +319,7 @@
 			step(O,src.dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
 		if(istype(src,/mob/living/carbon/Xenomorph/Ravager)) //Ravagers destroy tables.
-			if(istype(O,/obj/structure/table) || istype(O,/obj/structure/rack) || istype(O,/obj/structure/barricade/wooden))
+			if(istype(O,/obj/structure/table) || istype(O,/obj/structure/rack))
 				var/obj/structure/S = O
 				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
 				S.destroy()

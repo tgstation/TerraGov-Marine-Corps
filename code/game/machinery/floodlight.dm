@@ -12,6 +12,7 @@
 	var/unlocked = 0
 	var/open = 0
 	var/brightness_on = 7		//can't remember what the maxed out value is
+	unacidable = 1
 
 /obj/machinery/floodlight/New()
 	..()
@@ -53,6 +54,7 @@
 		on = 0
 		user << "\blue You turn off the light."
 		SetLuminosity(0)
+		unacidable = 1
 	else
 		if(!cell)
 			return
@@ -61,6 +63,7 @@
 		on = 1
 		user << "\blue You turn on the light."
 		SetLuminosity(brightness_on)
+		unacidable = 0
 
 	updateicon()
 

@@ -64,7 +64,12 @@
 	if(stat || paralysis || stunned || weakened)
 		return
 
-	face_atom(A) // change direction to face what you clicked on
+	face_atom(A)
+
+	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
+		var/mob/living/carbon/Xenomorph/Crusher/X = src
+		if(X.momentum > 1 && dir != X.charge_dir )
+			X.stop_momentum(X.charge_dir)
 
 	if(next_move > world.time) // in the year 2000...
 		return

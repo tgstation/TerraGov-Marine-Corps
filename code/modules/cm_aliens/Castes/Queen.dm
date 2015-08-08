@@ -9,6 +9,9 @@
 //	pass_flags = PASSTABLE
 	melee_damage_lower = 20
 	melee_damage_upper = 32
+	tacklemin = 2
+	tacklemax = 6
+	tackle_chance = 80
 	attacktext = "bites"
 	attack_sound = null
 	friendly = "nuzzles"
@@ -21,7 +24,7 @@
 	maxplasma = 700
 	plasma_gain = 20
 	is_intelligent = 1
-	speed = 2.8
+	speed = 2.6
 	jellyMax = 0
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6

@@ -456,6 +456,15 @@
 							src.other = T //Link them!
 							break
 
+	examine()
+		if(!usr || !istype(usr, /mob/living/carbon/Xenomorph)) return ..()
+
+		if(!other)
+			usr << "It does not seem to lead anywhere."
+		else
+			var/area/A = get_area(other)
+			usr << "It seems to lead to <b>[A.name]</b>."
+
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)
 		visible_message("The [src] suddenly collapses!")
@@ -490,6 +499,11 @@
 /obj/structure/tunnel/meteorhit()
 	health-=50
 	healthcheck()
+	return
+
+/obj/structure/tunnel/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!isXeno(user)) return ..()
+	attack_alien(user)
 	return
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M as mob)

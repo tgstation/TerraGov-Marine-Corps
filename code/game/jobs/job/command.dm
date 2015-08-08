@@ -49,7 +49,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 //Executive Officer
 /datum/job/executive_officer
 	title = "Executive Officer"
-	comm_title = "EO"
+	comm_title = "XO"
 	flag = EXECUTIVE
 	department_flag = COMMAND
 	faction = "Station"
@@ -88,8 +88,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	flag = BRIDGE
 	department_flag = COMMAND
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver

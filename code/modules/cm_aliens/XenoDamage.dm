@@ -96,17 +96,22 @@
 //Deal with armor deflection.
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
 	if(Proj && istype(Proj) )
+		if(istype(Proj,/obj/item/projectile/energy)) //Energy doesnt care about your puny armors
+			return ..(Proj)
+
 		var/dmg = Proj.damage
 		var/armor = armor_deflection
 		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances - more depending on facing.
+			armor += (src:momentum / 2) //Up to +15% armor deflection all-around when charging.
 			if(Proj.dir == src.dir) //Both facing same way -- ie. shooting from behind.
-				armor -= 60 //Ouch.
+				armor -= 50 //Ouch.
 			else if(Proj.dir == reverse_direction(src.dir)) //We are facing the bullet.
 				armor += 40
 			//Otherwise use the standard armor deflection for crushers.
 
+
 		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 10 //Smartgun hits weak points easier.
-		if(istype(Proj,/obj/item/projectile/bullet/m42c)) dmg += 80 //Sniper is anti-armor.
+		if(istype(Proj,/obj/item/projectile/bullet/m42c)) dmg += 100 //Sniper is anti-armor.
 		if(prob(armor - dmg))
 			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
 			return -1

@@ -112,15 +112,21 @@
 				if(!isnull(M) && M in stomach_contents)
 					M.acid_damage++
 					if(M.stat != DEAD)
-						M.adjustToxLoss(rand(1,5))
-						M.adjustFireLoss(rand(1,5))
-						if(prob(25))
-							M << "You are burned by stomach acids!"
-					if(M.acid_damage > 120)
+						M.adjustToxLoss(1)
+						if(prob(50))
+							M.adjustFireLoss(1)
+							if(prob(10))
+								M << "\green <b>You are burned by stomach acids!</b>"
+					if(M.acid_damage > 160)
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
 						del(M)
 
+		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Checks each tick to see if we've stopped.
+			var/mob/living/carbon/Xenomorph/Crusher/H = src
+			H.has_moved = 0
+			if(H.momentum && !H.charge_timer && !throwing)
+				H.stop_momentum(H.charge_dir)
 
 	return 1
 

@@ -754,3 +754,4 @@
 			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
 			M << "<span class='warning'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 */
+

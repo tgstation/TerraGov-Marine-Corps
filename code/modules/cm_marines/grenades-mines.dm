@@ -20,9 +20,9 @@
 	desc = "It is set to detonate in 4 seconds."
 	name = "incendiary grenade"
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_ex"
+	icon_state = "large_grenade"
 	det_time = 40
-	item_state = "grenade_ex"
+	item_state = "flashbang"
 	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BELT
 	dangerous = 1
