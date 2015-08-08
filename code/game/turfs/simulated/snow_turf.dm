@@ -1,5 +1,5 @@
 /turf/simulated/floor/gm/snow
-	name = "snow"
+	name = "snow layer"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow0_0"
 	slayer = 0 //Snow layer //Defined in /turf
@@ -21,15 +21,15 @@
 			//Mode 0 + 1 -Removing snow + gaining snow
 			if((S.mode == 0 || S.mode == 1) && !S.has_snow)
 				if(S.working)
-					user  << "\blue You are already shoveling!"
+					user  << "\red You are already shoveling!"
 					return
 				if(!slayer)
-					user  << "\blue You can't shovel beyond this layer, the shovel will break!"
+					user  << "\red You can't shovel beyond this layer, the shovel will break!"
 					return
 				user.visible_message("[user.name] starts clearing out the snow layer.","You start removing some of the snow layer.")
 				S.working = 1
-				if(!do_after(user,60))
-					user.visible_message("\blue \The [user] decides not to clear out \the [src] anymore.")
+				if(!do_after(user,50))
+					user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 					S.working = 0
 					return
 				user.visible_message("\blue \The [user] clears out \the [src].")
@@ -41,18 +41,18 @@
 				S.working = 0
 
 			//Mode 1 -Dispatching snow to the ground
-			if(S.mode == 1)
+			if(S.mode == 1 && S.has_snow)
 				if(S.working)//If adding snow
-					user  << "\blue You are already shoveling!"
+					user  << "\red You are already shoveling!"
 					return
 				if(slayer == 3)
-					user  << "\blue You can't add any more snow here!"
+					user  << "\red You can't add any more snow here!"
 					return
 				if(S.has_snow)
 					user.visible_message("[user.name] starts throwing out the snow to the ground.","You start throwing out the snow to the ground.")
 					S.working = 1
-					if(!do_after(user,60))
-						user.visible_message("\blue \The [user] decides not to dump \the [S] anymore.")
+					if(!do_after(user,50))
+						user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
 						S.working = 0
 						return
 					user.visible_message("\blue \The [user] clears out \the [src].")
@@ -65,16 +65,15 @@
 			//Mode 2 -Making barricades
 			if(S.mode == 2)
 				if(S.working)//If adding snow
-					user  << "\blue You are already shoveling!"
+					user  << "\red You are already shoveling!"
 					return
 				if(!slayer)
-					user  << "\blue You can't build the barricade here, there must be more snow on that area!"
+					user  << "\red You can't build the barricade here, there must be more snow on that area!"
 					return
-		//NEEDS FIXING
-				user.visible_message("[user.name] starts throwing out the snow to the ground.","You start throwing out the snow to the ground.")
+				user.visible_message("[user.name] starts shaping the barricade.","You start shaping the barricade")
 				S.working = 1
 				if(!do_after(user,150))
-					user.visible_message("\blue \The [user] decides not to dump \the [S] anymore.")
+					user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
 					S.working = 0
 					return
 
@@ -85,18 +84,28 @@
 				update_icon(1)
 				S.working = 0
 
-//Update icon
+
+//Update icon on start
 	New()
 		..()
 		update_icon(1)
-		//update_icon_weather()
 
 //Update icon
 
-//This code is so mad, it makes me wanna cry ;_;
+//This code is so bad, it makes me wanna cry ;_;
 //Needs to re recoded in total
 	update_icon(var/update_sides)
 		icon_state = "snow[slayer]_[pick("1","2","3")]"
+		switch(slayer)
+			if(0)
+				name = "[initial(name)]"
+			if(1)
+				name = "shallow [initial(name)]"
+			if(2)
+				name = "deep [initial(name)]"
+			if(3)
+				name = "very deep [initial(name)]"
+
 		if(update_sides)
 			var/turf/simulated/floor/gm/snow/T
 			//turf/simulated/floor/gm/snow
@@ -137,13 +146,7 @@
 				if (T && slayer > T.slayer)
 					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
 
-/turf/simulated/floor/gm/snow/proc/update_icon_weather()
-	spawn(3000)
-		spawn(rand(100,500))
-			if(slayer != 3 && prob(0.5))
-				slayer += 1
-				update_icon()
-		update_icon_weather()
+
 
 //LAYERS
 /turf/simulated/floor/gm/snow/layer0
@@ -205,10 +208,18 @@
 	luminosity = 2
 	l_color = "#47A3FF"
 
-/obj/machinery/lightstick/attack_hand(mob/user as mob)
-	user  << "\blue You pull out the [src] from ground."
-	new /obj/item/lightstick(src)
-	del(src)
+//Remove lightstick
+/*
+	attack_hand(mob/user as mob)
+
+	if(!user)
+		return
+
+	var/obj/item/lightstick/L
+	user.put_in_hands(L)
+	src.L = null
+	user.visible_message("\red [user.name] removes the [scr] from the ground!", "\blue You pull out the [src] from the ground.")
+*/
 
 /obj/item/snow_shovel
 	name = "snow shovel"
@@ -247,10 +258,10 @@
 		else
 			overlays.Cut()
 
-//Snow barricade UNFINISHED
+//Snow barricade
 /obj/structure/snow/barricade
 	name = "snow barricade"
-	desc = "It could be better..."
+	desc = "It could be worse..."
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow_barricade"
 	var/health = 0
@@ -268,7 +279,7 @@
 					return
 				user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
 				S.working = 1
-				if(!do_after(user,60))
+				if(!do_after(user,100))
 					user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 					S.working = 0
 					return
@@ -282,3 +293,115 @@
 		health = max(0, health - damage)
 		if(health <= 0)
 			del(src)
+
+//Areas
+/area/ice_colony
+	name = "\improper ice colony"
+
+/area/ice_colony/storage
+	name = "\improper Storage Unit"
+	icon_state = "storage"
+
+/area/ice_colony/doorms
+	name = "\improper Doorms"
+	icon_state = "yellow"
+
+/area/ice_colony/outpost_foyer
+	name = "\improper Outpost Foyer"
+	icon_state = "hallC1"
+
+/area/ice_colony/outpost_central
+	name = "\improper Outpost Central"
+	icon_state = "hallC2"
+
+/area/ice_colony/outpost_hall
+	name = "\improper Outpost Hallway"
+	icon_state = "hallC3"
+
+/area/ice_colony/medbay
+	name = "\improper Medbay"
+	icon_state = "medbay"
+
+/area/ice_colony/medbay_foyer
+	name = "\improper Medbay Foyer"
+	icon_state = "medbay3"
+
+/area/ice_colony/maintenance
+	name = "\improper Maintenance Shaft"
+	icon_state = "maintcentral"
+
+/area/ice_colony/recreation
+	name = "\improper Recreation Room"
+	icon_state = "crew_quarters"
+
+/area/ice_colony/hydroponics
+	name = "\improper Hydroponics"
+	icon_state = "hydro"
+
+/area/ice_colony/garage_a
+	name = "\improper Garage"
+	icon_state = "east"
+
+/area/ice_colony/garage_b
+	name = "\improper Garage"
+	icon_state = "west"
+
+/area/ice_colony/hangar_a
+	name = "\improper Hangar"
+	icon_state = "east"
+
+/area/ice_colony/hangar_b
+	name = "\improper Hangar"
+	icon_state = "west"
+
+/area/ice_colony/relay
+	name = "\improper Relay"
+	icon_state = "tcomsatcham"
+
+/area/ice_colony/disposal
+	name = "\improper Disposal"
+	icon_state = "disposal"
+
+/area/ice_colony/power_plant
+	name = "\improper Power Plant"
+	icon_state = "engine"
+
+/area/ice_colony/power_storage
+	name = "\improper Power Storage"
+	icon_state = "substation"
+
+/area/ice_colony/water_pump
+	name = "\improper Water Pump"
+	icon_state = "substation"
+
+/area/ice_colony/construction
+	name = "\improper Construction Area"
+	icon_state = "purple"
+
+/area/ice_colony/research_entrance
+	name = "\improper Interdyne Research Entrance"
+	icon_state = "research"
+
+/area/ice_colony/research_entrance/foyer
+	name = "\improper IR Foyer"
+	icon_state = "research"
+
+/area/ice_colony/outside
+	name = "\improper ice colony"
+	icon_state = "green"
+	requires_power = 1
+	always_unpowered = 1
+	lighting_use_dynamic = 1
+	power_light = 0
+	power_equip = 0
+	power_environ = 0
+	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+
+/area/space/firealert()
+	return
+
+/area/space/readyalert()
+	return
+
+/area/space/partyalert()
+	return
