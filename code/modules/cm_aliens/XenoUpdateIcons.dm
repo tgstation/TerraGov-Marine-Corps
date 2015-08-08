@@ -37,7 +37,13 @@
 
 	else
 		if(m_intent == "run")
-			icon_state = "[caste] Running"
+			if(istype(src,/mob/living/carbon/Xenomorph/Crusher))
+				if(src:momentum > 1) //Let it build up a bit so we're not changing icons every single turf
+					icon_state = "[caste] Charging"
+				else
+					icon_state = "[caste] Running"
+			else
+				icon_state = "[caste] Running"
 			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Running")
 		else
 			icon_state = "[caste] Walking"

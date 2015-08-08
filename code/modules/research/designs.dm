@@ -390,6 +390,7 @@ datum/design/smes_cell
 ///////////////////////////////////
 //////////AI Module Disks//////////
 ///////////////////////////////////
+/*
 datum/design/safeguard_module
 	name = "Module Design (Safeguard)"
 	desc = "Allows for the construction of a Safeguard AI Module."
@@ -506,7 +507,7 @@ datum/design/tyrant_module
 	build_type = IMPRINTER
 	materials = list("$glass" = 2000, "sacid" = 20, "$diamond" = 100)
 	build_path = "/obj/item/weapon/aiModule/tyrant"
-
+*/
 
 
 ///////////////////////////////////
@@ -597,7 +598,7 @@ datum/design/paicard
 	build_type = PROTOLATHE
 	materials = list("$glass" = 500, "$metal" = 500)
 	build_path = "/obj/item/device/paicard"
-
+/*
 datum/design/posibrain
 	name = "Positronic Brain"
 	desc = "Allows for the construction of a positronic brain"
@@ -607,7 +608,7 @@ datum/design/posibrain
 	build_type = PROTOLATHE
 	materials = list("$metal" = 2000, "$glass" = 1000, "$silver" = 1000, "$gold" = 500, "$phoron" = 500, "$diamond" = 100)
 	build_path = "/obj/item/device/mmi/posibrain"
-
+*/
 ///////////////////////////////////
 //////////Mecha Module Disks///////
 ///////////////////////////////////
@@ -831,7 +832,7 @@ datum/design/mech_rcd
 	req_tech = list("bluespace" = 2, "magnets" = 3, "engineering" = 3)
 	build_path = "/obj/item/mecha_parts/mecha_equipment/gravcatapult"
 	category = "Exosuit Equipment"
-
+*/
 datum/design/mech_repair_droid
 	name = "Exosuit Module Design (Repair Droid Module)"
 	desc = "Automated Repair Droid. BEEP BOOP"
@@ -876,7 +877,7 @@ datum/design/mech_proj_armor
 	req_tech = list("materials" = 5, "combat" = 5, "engineering"=3)
 	build_path = "/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster"
 	category = "Exosuit Equipment"
-
+/*
 datum/design/mech_syringe_gun
 	name = "Exosuit Module Design(Syringe Gun)"
 	desc = "Exosuit-mounted syringe gun and chemical synthesizer."
@@ -1362,7 +1363,7 @@ datum/design/adv_reagent_scanner
 	materials = list("$metal" = 30, "$glass" = 20)
 	reliability_base = 74
 	build_path = "/obj/item/device/reagent_scanner/adv"
-
+/*
 datum/design/mmi
 	name = "Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
@@ -1384,7 +1385,7 @@ datum/design/mmi_radio
 	reliability_base = 74
 	build_path = "/obj/item/device/mmi/radio_enabled"
 	category = "Misc"
-
+*/
 datum/design/synthetic_flash
 	name = "Synthetic Flash"
 	desc = "When a problem arises, SCIENCE is the solution."
@@ -1433,7 +1434,7 @@ datum/design/implant_free
 	build_type = PROTOLATHE
 	materials = list("$metal" = 50, "$glass" = 50)
 	build_path = "/obj/item/weapon/implantcase/freedom"
-
+/*
 datum/design/chameleon
 	name = "Chameleon Kit"
 	desc = "It's a set of clothes with dials on them."
@@ -1442,7 +1443,7 @@ datum/design/chameleon
 	build_type = PROTOLATHE
 	materials = list("$metal" = 500)
 	build_path = "/obj/item/weapon/storage/box/syndie_kit/chameleon"
-
+*/
 
 datum/design/bluespacebeaker
 	name = "bluespace beaker"
@@ -1602,7 +1603,7 @@ datum/design/large_grenade
 	materials = list("$metal" = 3000)
 	reliability_base = 79
 	build_path = "/obj/item/weapon/grenade/chem_grenade/large"
-
+/*
 datum/design/smg
 	name = "Submachine Gun"
 	desc = "A lightweight, fast firing gun."
@@ -1621,7 +1622,7 @@ datum/design/ammo_9mm
 	build_type = PROTOLATHE
 	materials = list("$metal" = 3750, "$silver" = 100)
 	build_path = "/obj/item/ammo_magazine/c9mm"
-
+*/
 datum/design/stunshell
 	name = "Stun Shell"
 	desc = "A stunning shell for a shotgun."

@@ -382,67 +382,48 @@
 	icon_state = "marinepack"
 	item_state = "marinepack" //Placeholder
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/storage/box(src)
-
 /obj/item/weapon/storage/backpack/marine
 	name = "marine backpack"
 	desc = "A large backpack used by military."
 	icon_state = "marinepack"
 	item_state = "marinepack"
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/storage/box(src)
-
 //BELT
 
 /obj/item/weapon/storage/belt/marine
 	name = "marine belt"
-	desc = "A standard issue toolbelt for Nanotrasen military forces."
+	desc = "A standard issue toolbelt for USCM military forces. Put your ammo in here."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
-	w_class = 3
-	storage_slots = 5
+	w_class = 4
+	storage_slots = 8
 	max_w_class = 3
-	max_combined_w_class = 15
+	max_combined_w_class = 24
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
-		"/obj/item/ammo_magazine/a12mm",
-		"/obj/item/ammo_magazine/c45",
-		"/obj/item/ammo_magazine/mc9mm",
-		"/obj/item/ammo_magazine/a50",
-		"/obj/item/ammo_magazine/c9mm",
 		"/obj/item/weapon/gun/energy/taser",
-		"/obj/item/ammo_magazine/a357",
-		"/obj/item/ammo_magazine/c38",
 		"/obj/item/weapon/melee/baton",
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
 		"/obj/item/ammo_magazine/m4a3",
-		"/obj/item/ammo_magazine/mshotgun",
 		"/obj/item/ammo_magazine/m38s",
 		"/obj/item/ammo_magazine/m39",
 		"/obj/item/ammo_magazine/m41",
+		"/obj/item/ammo_casing/m44m",
+		"/obj/item/ammo_magazine/m44m",
+		"/obj/item/ammo_magazine/m42c",
 		"/obj/item/weapon/storage/box/m37",
 		"/obj/item/ammo_casing/m37",
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine",
-		"/obj/item/ammo_casing/m44m",
-		"/obj/item/ammo_magazine/m44m",
-		"/obj/item/ammo_magazine/m42c"
+		"/obj/item/device/mine"
 		)
 
 /obj/item/weapon/storage/belt/marine/full/New()
 	..()
 	new /obj/item/weapon/gun/projectile/m4a3(src)
-	new /obj/item/ammo_magazine/m4a3(src)
 	new /obj/item/ammo_magazine/m4a3(src)
 
 /obj/item/weapon/storage/belt/knifepouch
@@ -471,6 +452,7 @@
 	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb")
 
 	New()
+		..()
 		spawn(1)
 			new /obj/item/weapon/grenade/incendiary(src)
 			new /obj/item/weapon/grenade/incendiary(src)
@@ -490,7 +472,7 @@
 /obj/item/clothing/under/marine_jumpsuit
 	name = "marine jumpsuit"
 	desc = "Soft as silk. Light as feather. Protective as Kevlar. Smelly as a swamp."
-	armor = list(melee = 5, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 

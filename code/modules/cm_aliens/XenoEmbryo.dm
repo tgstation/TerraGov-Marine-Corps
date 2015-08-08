@@ -43,10 +43,10 @@
 		return 0
 
 	if(stage < 4) counter++ //A counter to add to probability over time.
-	else if (stage == 4 && prob(50))  counter++
+	else if (stage == 4 && prob(30))  counter++
 
-	if(counter > 300) counter = 300 //somehow
-	if(stage < 5 && prob(1 + round(counter / 80))) //Adds 1% probability to change stages for each 60 cycles.
+	if(counter > 400) counter = 400 //somehow
+	if(stage < 5 && prob(1 + round(counter / 80))) //Adds 1% probability to change stages for each 70 cycles.
 		counter = 0
 		stage++
 		spawn(0)

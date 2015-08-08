@@ -89,7 +89,7 @@
 					else
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
-						if (do_after(user,40))
+						if (do_after(user,80))
 							if (S.use(2))
 								user << "<span class='notice'>You added the plating!</span>"
 								var/turf/Tsrc = get_turf(src)
@@ -106,8 +106,10 @@
 							new /obj/structure/falserwall (src.loc)
 							del(src)
 					else
+					/*
 						if (src.icon_state == "reinforced") //I cant believe someone would actually write this line of code...
 							if(S.get_amount() < 1) return ..()
+
 							user << "<span class='notice'>Now finalising reinforced wall.</span>"
 							if(do_after(user, 50))
 								if (S.use(1))
@@ -117,16 +119,17 @@
 									for(var/turf/simulated/wall/r_wall/X in Tsrc.loc)
 										if(X)	X.add_hiddenprint(usr)
 									del(src)
-							return
-						else
-							if(S.get_amount() < 1) return ..()
-							user << "<span class='notice'>Now reinforcing girders...</span>"
-							if (do_after(user,60))
-								if(S.use(1))
-									user << "<span class='notice'>Girders reinforced!</span>"
-									new/obj/structure/girder/reinforced( src.loc )
-									del(src)
-							return
+
+							return*/
+//						else
+						if(S.get_amount() < 1) return ..()
+						user << "<span class='notice'>Now reinforcing girders...</span>"
+						if (do_after(user,60))
+							if(S.use(1))
+								user << "<span class='notice'>Girders reinforced!</span>"
+								new/obj/structure/girder/reinforced( src.loc )
+								del(src)
+						return
 
 			if(S.sheettype)
 				var/M = S.sheettype
