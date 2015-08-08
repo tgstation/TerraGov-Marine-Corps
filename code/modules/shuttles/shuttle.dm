@@ -35,6 +35,7 @@
 		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
 
 	moving_status = SHUTTLE_WARMUP
+	recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
 			return	//someone canceled the launch
@@ -53,7 +54,7 @@
 			open_doors(destination)
 		moving_status = SHUTTLE_IDLE
 
-		recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
+
 		spawn(600) // 1 minute in deciseconds
 			recharging = 0
 
