@@ -114,6 +114,13 @@ Class Procs:
 		T.dbg(invalid_zone)
 	#endif
 
+	//rebuild the old zone's edges so that the will be possesed by the new zone
+	for(var/connection_edge/E in edges)
+		if(E.contains_zone(into))
+			continue //don't need to rebuild this edge
+		for(var/turf/T in E.connecting_turfs)
+			air_master.mark_for_update(T)
+
 /zone/proc/rebuild()
 	if(invalid) return //Short circuit for explosions where rebuild is called many times over.
 	c_invalidate()
@@ -137,6 +144,10 @@ Class Procs:
 			T.update_graphic(graphic_add, graphic_remove)
 		graphic_add.len = 0
 		graphic_remove.len = 0
+
+	for(var/connection_edge/E in edges)
+		if(E.sleeping)
+			E.recheck()
 
 /zone/proc/dbg_data(mob/M)
 	M << name
