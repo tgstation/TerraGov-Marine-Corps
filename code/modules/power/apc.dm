@@ -41,6 +41,8 @@
 
 
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
+/obj/machinery/power/apc/weak
+	cell_type = /obj/item/weapon/cell
 
 /obj/machinery/power/apc/high
 	cell_type = /obj/item/weapon/cell/high
