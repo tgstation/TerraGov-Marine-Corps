@@ -16,6 +16,7 @@
 	var/state = STATE_DEFAULT
 	var/aistate = STATE_DEFAULT
 	var/message_cooldown = 0
+	var/request_cooldown = 0
 	var/centcomm_message_cooldown = 0
 	var/tmp_alertlevel = 0
 	var/const/STATE_DEFAULT = 1
@@ -128,6 +129,26 @@
 				if(emergency_shuttle.online())
 					post_status("shuttle")
 			src.state = STATE_DEFAULT
+		if("requestshuttle")
+			if(src.authenticated)
+				if(request_cooldown)
+					usr << "\red Assistance has already been requested. Please wait."
+					return
+				
+				// var/input = stripped_input(usr, "What is the nature of your emergency?", "Request Emergency Shuttle")
+				// if(!input || !(usr in view(1,src)))
+					// return
+				var/confirm = alert(usr, "Are you sure? Requesting an Emergency Shuttle takes time. You won't be able to request anything else for 5 minutes.", "Confirm", "Yes", "No")
+				if(confirm != "Yes") return
+					
+				for(var/client/C in admins)
+					if((R_ADMIN|R_MOD) & C.holder.rights)
+						C << "<span class=\"danger\">ADMINS/MODS: [usr] has used</span> <span class=\"name\">\"Request Emergency Shuttle\"</span> <span class=\"name\">(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;call_shuttle=1'>Call Shuttle</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
+						C << 'sound/effects/sos-morse-code.ogg'
+						usr << "\blue Emergency Shuttle request sent to CentComm."
+				request_cooldown = 1
+				spawn(3000)//5 minutes in deciseconds
+					request_cooldown = 0
 		if("cancelshuttle")
 			src.state = STATE_DEFAULT
 			if(src.authenticated)
@@ -187,14 +208,14 @@
 				if(centcomm_message_cooldown)
 					usr << "\red Arrays recycling.  Please stand by."
 					return
-				var/input = stripped_input(usr, "Please choose a message to transmit to USCM via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "")
+				var/input = stripped_input(usr, "Please choose a message to transmit to USCM.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
 				if(!input || !(usr in view(1,src)))
 					return
 				Centcomm_announce(input, usr)
 				usr << "\blue Message transmitted."
-				log_say("[key_name(usr)] has made an USMC announcement: [input]")
+				log_say("[key_name(usr)] has made an USCM announcement: [input]")
 				centcomm_message_cooldown = 1
-				spawn(300)//10 minute cooldown
+				spawn(300) //Deciseconds
 					centcomm_message_cooldown = 0
 
 
@@ -267,11 +288,11 @@
 
 	src.updateUsrDialog()
 
-/obj/machinery/computer/communications/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I,/obj/item/weapon/card/emag/))
-		src.emagged = 1
-		user << "You scramble the communication routing circuits!"
-	..()
+// /obj/machinery/computer/communications/attackby(var/obj/I as obj, var/mob/user as mob)
+// 	if(istype(I,/obj/item/weapon/card/emag/))
+// 		src.emagged = 1
+// 		user << "You scramble the communication routing circuits!"
+// 	..()
 
 /obj/machinery/computer/communications/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
@@ -302,29 +323,44 @@
 			onclose(user, "communications")
 		return
 
+	var/count_humans = 0
+	var/count_aliens = 0
+
+	for(var/mob/living/M in player_list)
+		if(ishuman(M) && M.stat != DEAD)
+			count_humans++
+		if(isalien(M) && M.stat != DEAD)
+			count_aliens++
+
 	switch(src.state)
 		if(STATE_DEFAULT)
 			if (src.authenticated)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>Log Out</A> \]"
+				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
+				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set Status Display</A> \]"
+				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message List</A> \]"		
+				dat += "<BR><hr>"		
+
 				if (src.authenticated==2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make An Announcement</A> \]"
-					if(src.emagged == 0)
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentcomm'>Send an emergency message to USMC</A> \]"
+					if(admins.len > 0)
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentcomm'>Send a message to USCM</A> \]"
 					else
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
+						dat += "<BR>\[ USCM communication offline \]"
 
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
 				if(emergency_shuttle.location())
 					if (emergency_shuttle.online())
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Shuttle Call</A> \]"
-					else
+						dat += "<BR>\[ Shuttle en-route! \]"
+					else if(count_aliens >= count_humans*0.8 && admins.len > 0) // 80% of humans will disregard most non-combat marines
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=requestshuttle'>Request Emergency Shuttle</A> \]"
+					else if(count_aliens >= count_humans*0.8 && admins.len == 0)
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Call Emergency Shuttle</A> \]"
+					else
+						dat += "<BR>\[ Shuttle unavailable \]"
 
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set Status Display</A> \]"
 			else
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>Log In</A> \]"
-			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message List</A> \]"
+
 		if(STATE_CALLSHUTTLE)
 			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=callshuttle2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_CANCELSHUTTLE)
@@ -443,12 +479,12 @@
 		user << "The emergency shuttle may not be sent at this time. Please try again later."
 		return
 
-	if(world.time < 9000) // ~150 minute grace period to let the game get going without lolmetagaming. -- TLE
-		user << "The emergency shuttle is refueling. Please wait another [round((9000-world.time)/60)] minutes before trying again."
+	if(world.time < 36000) // 1 hour grace period to let the game get going without lolmetagaming. -- TLE
+		user << "The emergency shuttle is refueling. Please wait another [round((36000-world.time)/600)] minutes before trying again."
 		return
 
 	if(emergency_shuttle.going_to_centcom())
-		user << "The emergency shuttle may not be called while returning to Corporate HQ."
+		user << "The emergency shuttle may not be called while returning to USCM."
 		return
 
 	if(emergency_shuttle.online())
@@ -462,7 +498,7 @@
 	emergency_shuttle.call_evac()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
-
+	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 
 	return
 
@@ -488,8 +524,8 @@
 			user << "Weyland Yutani will not allow the shuttle to be called. Consider all contracts terminated."
 			return
 
-		if(world.time < 19000) // grace period to let the game get going
-			user << "The shuttle is refueling. Please wait another [round((19000-world.time)/60)] minutes before trying again."
+		if(world.time < 36000) // 1 hour grace period to let the game get going without lolmetagaming. -- TLE
+			user << "The emergency shuttle is refueling. Please wait another [round((36000-world.time)/600)] minutes before trying again."
 			return
 
 		if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || ticker.mode.name == "sandbox")

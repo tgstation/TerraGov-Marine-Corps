@@ -1341,7 +1341,7 @@
 			usr << "This can only be used on instances of type /mob/living"
 			return
 
-		if(alert(src.owner, "Are you sure you wish to hit [key_name(M)] with Blue Space Artillery?",  "Confirm Firing?" , "Yes" , "No") != "Yes")
+		if(alert(src.owner, "Are you sure you wish to hit [key_name(M)] with Blue Space Artillery? This will severely hurt and most likely kill them.",  "Confirm Firing?" , "Yes" , "No") != "Yes")
 			return
 
 		if(BSACooldown)
@@ -1385,13 +1385,15 @@
 			usr << "The person you are trying to contact is not wearing a headset"
 			return
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from Centcomm", "")
+		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from USCM", "")
 		if(!input)	return
 
 		src.owner << "You sent [input] to [H] via a secure channel."
-		log_admin("[src.owner] replied to [key_name(H)]'s Centcomm message with the message [input].")
-		message_admins("[src.owner] replied to [key_name(H)]'s Centcom message with: \"[input]\"")
-		H << "You hear something crackle in your headset for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows. <b>\"[input]\"</b>  Message ends.\""
+		log_admin("[src.owner] replied to [key_name(H)]'s USCM message with the message [input].")
+		for(var/client/X in admins)
+			if((R_ADMIN|R_MOD) & X.holder.rights)
+				X << "<b>ADMINS/MODS: \red [src.owner] replied to [key_name(H)]'s USCM message with: \blue \"[input]\"</b>"
+		H << "\red You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from USCM:\" \blue <b>\"[input]\"</b>"
 
 	else if(href_list["SyndicateReply"])
 		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])
@@ -2696,11 +2698,20 @@
 		var/mob/ref_person = locate(href_list["dibs"])
 //		var/adminckey = href_list["ckey"]
 		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person]). The player has been notified.</font></b>"
-		var/msgplayer = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key] has marked your Adminhelp and is preparing to respond...</font></b>"
+		var/msgplayer = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key] has marked your request and is preparing to respond...</font></b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				X << msg
 		
-		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"	
+
+	if(href_list["ccdibs"]) // CentComm-Dibs. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
+		var/mob/ref_person = locate(href_list["ccdibs"])
+		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person]).</font></b>"
+
+		//send this msg to all admins
+		for(var/client/X in admins)
+			if((R_ADMIN|R_MOD) & X.holder.rights)
+				X << msg
