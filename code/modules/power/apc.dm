@@ -59,6 +59,7 @@
 	anchored = 1
 	use_power = 0
 	req_access = list(access_sulaco_engineering)
+	unacidable = 1
 	var/area/area
 	var/areastring = null
 	var/obj/item/weapon/cell/cell

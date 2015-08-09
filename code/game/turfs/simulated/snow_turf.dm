@@ -405,3 +405,9 @@
 
 /area/space/partyalert()
 	return
+
+
+
+/obj/machinery/computer3/ice_colony
+	spawn_files = list(/datum/file/data/text/researchlog)
+

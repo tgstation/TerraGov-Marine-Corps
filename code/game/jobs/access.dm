@@ -33,7 +33,6 @@
 /var/const/access_centcomm = 200 // One generic access for centcomm, fuckit
 /var/const/access_syndicate = 201 // One generic access for centcomm, fuckit
 
-
 /*
 /var/const/access_security = 1 // Security equipment
 /var/const/access_brig = 2 // Brig timers and permabrig
