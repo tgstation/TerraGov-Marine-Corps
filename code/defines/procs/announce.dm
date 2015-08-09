@@ -22,8 +22,8 @@
 
 /datum/announcement/priority/command/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)
-	title = "Priority Announcement"
-	announcement_type = "Command Staff"
+	title = "Command Announcement"
+	announcement_type = "Command Announcement"
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)
