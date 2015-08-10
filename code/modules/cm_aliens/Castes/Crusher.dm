@@ -17,9 +17,9 @@
 	maxplasma = 200
 	jellyMax = 0
 	caste_desc = "A huge tanky xenomorph."
-	speed = 1.1
+	speed = -0.5
 	evolves_to = list()
-	armor_deflection = 60
+	armor_deflection = 68
 	var/charge_dir = 0
 	var/momentum = 0 //Builds up charge based on movement.
 	var/charge_timer = 0 //Has a small charge window. has to keep moving to build momentum.
@@ -35,6 +35,11 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		)
 
+/mob/living/carbon/Xenomorph/Crusher/Stat()
+	..()
+	stat(null, "Momentum: [momentum]")
+
+
 /mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction)
 	if(momentum < 0) //Somehow. Could happen if you slam into multiple things
 		momentum = 0
@@ -47,32 +52,13 @@
 		momentum = 0
 		return
 
-	speed = initial(speed)
-	momentum = round(momentum / 2)
-	canmove = 0
-	if(momentum > 5)
-		var/distance = momentum //10 turfs at max
-		var/turf/T = get_turf(src)
-		var/turf/target_t
-
-		if(direction == EAST) //Calculate our throw target. This is dependent on momentum.
-			target_t = locate(T.x + distance + 3,T.y,T.z)
-		else if(direction == WEST)
-			target_t = locate(T.x - distance - 3,T.y,T.z)
-		else if(direction == NORTH)
-			target_t = locate(T.x,T.y + distance + 3,T.z)
-		else if(direction == SOUTH)
-			target_t = locate(T.x,T.y - distance - 3,T.z)
-		if(momentum > 10)
-			Weaken(2)
-
+	if(momentum > 18)
+		Weaken(2)
 		src.visible_message("<b>[src] skids to a halt!</b>","<b>You skid to a halt.</B>")
-		if(target_t)
-			src.throw_at(target_t,distance,1,src)
-	spawn(10)
-		canmove = 1
-		momentum = 0
-		update_icons()
+
+	momentum = 0
+	speed = initial(speed)
+	update_icons()
 	return
 
 
@@ -98,10 +84,10 @@
 		stop_pulling()
 
 	if(speed > -3)
-		speed -= 0.1 //Speed increases each step taken. At 30 tiles, maximum speed is reached.
+		speed -= 0.2 //Speed increases each step taken. At 30 tiles, maximum speed is reached.
 
 	if(momentum < 30)	 //Maximum 30 momentum.
-		momentum++
+		momentum += 2 //2 per turf. Max speed in 15.
 
 	if(momentum < 0)
 		momentum = 0
@@ -109,6 +95,8 @@
 	spawn(10) //After 1 seconds, window closes. This is reset in xeno_procs, movedelay
 		if(!has_moved)
 			charge_timer = 0
+			stop_momentum()
+			return
 
 	if(!charge_timer && !has_moved)
 		stop_momentum(charge_dir)
@@ -120,7 +108,7 @@
 		stop_momentum(charge_dir)
 		return
 
-	if(momentum <= 1)
+	if(momentum <= 2)
 		charge_dir = dir
 
 	//Some flavor text.
@@ -128,7 +116,7 @@
 		src << "<b>You begin churning up the ground with your charge!</b>"
 	else if(momentum == 20)
 		src << "<b>The ground begins to shake as you run!</b>"
-	else if (momentum == 29) //Not 30, since it's max
+	else if (momentum == 28) //Not 30, since it's max
 		src << "\red <b>You have achieved maximum momentum!</b>"
 		emote("roar")
 
@@ -152,7 +140,7 @@
 		lastturf = loc
 	else
 		lastturf = null
-
+	update_icons()
 	return
 
 proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
@@ -170,122 +158,124 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	return
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
-/mob/living/carbon/Xenomorph/Crusher/Bump(atom/AM as mob|obj|turf, yes)
-	var/start_loc
-	if(src.stat || src.momentum < 3 || !AM || !yes || !istype(AM))
-		return ..() //Just do default bumping if not charging.
+/mob/living/carbon/Xenomorph/Crusher/Bump(atom/AM as mob|obj|turf)
+	spawn(0)
+		var/start_loc
 
-	if(isturf(AM) && !AM.density) //Just a plain ol turf, let's return.
-		return ..()
+		if(src.stat || src.momentum < 3 || !AM || !istype(AM) || AM == src)
+			return 0
 
-	if(dir != charge_dir) //We aren't facing the way we're charging.
-		return ..()
+		if(isturf(AM) && !AM.density) //Just a plain ol turf, let's return.
+			return 0
 
-	if(istype(AM,/obj/item)) //Small items (ie. bullets) are unaffected.
-		var/obj/item/obj = AM
-		if(obj.w_class < 3)
+		if(dir != charge_dir) //We aren't facing the way we're charging.
 			return ..()
-	start_loc = AM.loc
-	if (isobj(AM) && AM.density) //Generic dense objects that aren't tables.
-		if(AM:anchored)
-			if(momentum < 12)
-				return ..()
-			else
-				if(istype(AM,/obj/mecha))
-					var/obj/mecha/mech = AM
-					mech.take_damage(momentum * 8)
-					visible_message("<b>[src] rams into [AM]!</b>","<b>You ram into [AM]!</b>")
-					playsound(loc, "punch", 50, 1, -1)
-					if(momentum > 25)
-						diagonal_step(mech,dir,50)//Occasionally fling it diagonally.
-						step_away(mech,src)
-					Weaken(2)
-					stop_momentum(charge_dir)
+
+		if(istype(AM,/obj/item)) //Small items (ie. bullets) are unaffected.
+			var/obj/item/obj = AM
+			if(obj.w_class < 3)
+				return 0
+
+		start_loc = AM.loc
+		if (isobj(AM) && AM.density) //Generic dense objects that aren't tables.
+			if(AM:anchored)
+				if(momentum < 12)
+					return ..()
+				else
+					if(istype(AM,/obj/mecha))
+						var/obj/mecha/mech = AM
+						mech.take_damage(momentum * 8)
+						visible_message("<b>[src] rams into [AM]!</b>","<b>You ram into [AM]!</b>")
+						playsound(loc, "punch", 50, 1, -1)
+						if(momentum > 25)
+							diagonal_step(mech,dir,50)//Occasionally fling it diagonally.
+							step_away(mech,src)
+						Weaken(2)
+						stop_momentum(charge_dir)
+						return
+					if(AM:unacidable)
+						src << "\red Bonk!"
+						Weaken(2)
+						stop_momentum(charge_dir)
+						return
+					if(momentum > 20)
+						visible_message("<b>[src] crushes [AM]!</b>","<b>You crush [AM]!</b>")
+						if(AM.contents) //Hopefully won't auto-delete things inside crushed stuff..
+							for(var/atom/movable/S in AM)
+								if(S in AM.contents && !isnull(get_turf(AM)))
+									S.loc = get_turf(AM)
+							spawn(1)
+								del(AM)
 					return
-				if(AM:unacidable)
-					src << "\red Bonk!"
-					Weaken(2)
-					stop_momentum(charge_dir)
-					return
-				if(momentum > 20)
-					visible_message("<b>[src] crushes [AM]!</b>","<b>You crush [AM]!</b>")
-					if(AM.contents) //Hopefully won't auto-delete things inside crushed stuff..
-						for(var/atom/movable/S in AM)
-							if(S in AM.contents && !isnull(get_turf(AM)))
-								S.loc = get_turf(AM)
-						spawn(1)
-							del(AM)
+			if(momentum > 5)
+				visible_message("[src] knocks aside [AM]!","You casually knock aside [AM].") //Canisters, crates etc. go flying.
+				playsound(loc, "punch", 25, 1, -1)
+				diagonal_step(AM,dir)//Occasionally fling it diagonally.
+				step_away(AM,src,round(momentum/10) +1)
+				momentum -= 5
 				return
-		if(momentum > 5)
-			visible_message("[src] knocks aside [AM]!","You casually knock aside [AM].") //Canisters, crates etc. go flying.
-			playsound(loc, "punch", 25, 1, -1)
-			diagonal_step(AM,dir)//Occasionally fling it diagonally.
-			step_away(AM,src,round(momentum/10) +1)
+
+		if (istype(AM,/obj/structure/window) && momentum > 5)
+			AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
 			momentum -= 5
-			return
+			return //Might be destroyed.
 
-	if (istype(AM,/obj/structure/window) && momentum > 5)
-		AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
-		momentum -= 5
-		return //Might be destroyed.
+		if (istype(AM,/obj/structure/grille))
+			AM:health -= (momentum * 3) //Usually knocks it down.
+			AM:healthcheck()
+			return //Might be destroyed.
 
-	if (istype(AM,/obj/structure/grille))
-		AM:health -= (momentum * 3) //Usually knocks it down.
-		AM:healthcheck()
-		return //Might be destroyed.
+		if(istype(AM,/obj/structure/table) || istype(AM,/obj/structure/rack) || istype(AM,/obj/structure/barricade/wooden))
+			if(momentum > 2)
+				var/obj/structure/S = AM
+				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
+				S.destroy()
+				momentum -= 3
+				return 0//Might be destroyed, so we stop here.
+			else
+				return ..()
 
+		if(istype(AM,/mob/living/carbon/Xenomorph) && momentum > 6)
+			playsound(loc, "punch", 25, 1, -1)
+			diagonal_step(AM,dir,100)//Occasionally fling it diagonally.
+			step_away(AM,src) //GET OUTTA HERE
+			return 0
 
-	if(istype(AM,/obj/structure/table) || istype(AM,/obj/structure/rack) || istype(AM,/obj/structure/barricade/wooden))
-		if(momentum > 6)
-			var/obj/structure/S = AM
-			visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
-			S.destroy()
+		if(istype(AM,/mob/living/carbon) && momentum > 8)
+			var/mob/living/carbon/H = AM
+			playsound(loc, "punch", 25, 1, -1)
+			diagonal_step(H,dir, 50)//Occasionally fling it diagonally.
+			step_away(H,src,round(momentum / 10))
+			if(momentum < 12 && momentum > 7)
+				H.Weaken(2)
+			else if(momentum < 20)
+				H.Weaken(6)
+				H.apply_damage(momentum,BRUTE)
+			else if (momentum >= 20)
+				H.Weaken(8)
+				H.take_overall_damage(momentum * 2)
 			momentum -= 3
-			return //Might be destroyed, so we stop here.
-		else
-			return ..()
+			visible_message("<B>[src] knocks over [H]!</b>","<B>You knock over [H]!</B>")
+			return 0
 
-	if(istype(AM,/mob/living/carbon/Xenomorph) && momentum > 5)
-		playsound(loc, "punch", 25, 1, -1)
-		diagonal_step(AM,dir,100)//Occasionally fling it diagonally.
-		step_away(AM,src) //GET OUTTA HERE
+		if(isturf(AM) && AM.density) //We were called by turf bump.
+			if(momentum <= 25 && momentum > 8)
+				src << "\red Bonk!"
+				stop_momentum(charge_dir)
+				src.Weaken(3)
+				return ..()
+			if(momentum > 15)
+				AM:ex_act(3) //Should dismantle, or at least heavily damage it.
+			if(momentum > 25) //WHAM!
+				explosion(src,-1,-1,round(momentum / 10),-1)  //We're immune to explosions. Fuck that wall up.
+			if(AM) //Still there?
+				src.Weaken(4)
+				stop_momentum(charge_dir)
+				return ..()
+
+		if(AM) //If the object still exists.
+			if(AM.loc == start_loc) //And hasn't moved
+				return ..() //Bump it normally.
+		//Otherwise, just get out
 		return
 
-	if(istype(AM,/mob/living/carbon) && momentum > 7)
-		var/mob/living/carbon/H = AM
-		playsound(loc, "punch", 25, 1, -1)
-		diagonal_step(H,dir, 50)//Occasionally fling it diagonally.
-		step_away(H,src,round(momentum / 10))
-		if(momentum < 12 && momentum > 7)
-			H.Weaken(2)
-		else if(momentum < 20)
-			H.Weaken(6)
-			H.apply_damage(momentum,BRUTE)
-		else if (momentum >= 20)
-			H.Weaken(8)
-			H.take_overall_damage(momentum * 2)
-		momentum -= 3
-		visible_message("<B>[src] knocks over [H]!</b>","<B>You knock over [H]!</B>")
-
-	if(isturf(AM) && AM.density) //We were called by turf bump.
-		if(momentum <= 25 && momentum > 8)
-			src << "\red Bonk!"
-			momentum = 0
-			speed = initial(speed)
-			src.Weaken(3)
-			return ..()
-		if(momentum > 15)
-			AM:ex_act(3) //Should dismantle, or at least heavily damage it.
-		if(momentum > 25) //WHAM!
-			explosion(src,-1,-1,round(momentum / 10),-1)  //We're immune to explosions. Fuck that wall up.
-		if(AM) //Still there?
-			src.Weaken(4)
-			momentum = 0
-			speed = initial(speed)
-			update_icons()
-
-	if(AM) //If the object still exists.
-		if(AM.loc == start_loc) //And hasn't moved
-			return ..() //Bump it normally.
-	//Otherwise, just get out
-	return
