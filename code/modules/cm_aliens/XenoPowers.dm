@@ -755,3 +755,40 @@
 			M << "<span class='warning'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 */
 
+
+/mob/living/carbon/Xenomorph/proc/stomp()
+	set name = "Stomp (50)"
+	set desc = "Strike the earth!"
+	set category = "Alien"
+
+	if(!check_state()) return
+
+	if(has_screeched) //Sure, let's use this.
+		src << "\red You are not yet prepared to shake the ground."
+		return
+
+	if(!check_plasma(50))
+		return
+
+	has_screeched = 1
+	spawn(200) //20 seconds
+		has_screeched = 0
+		src << "You feel ready to shake the earth again."
+
+	playsound(loc, 'sound/effects/bang.ogg', 100, 0, 100, -1)
+	visible_message("\red <B> \The [src] smashes the ground!</B>","You smash the ground!")
+	create_shriekwave() //Adds the visual effect. Wom wom wom
+
+	for(var/mob/M in view())
+		if(M && M.client)
+			if(istype(M,/mob/living/carbon/Xenomorph))
+				shake_camera(M, 1, 1)
+			else
+				shake_camera(M, 10, 1) // 50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+
+	for (var/mob/living/carbon/human/M in oview())
+		var/dist = get_dist(src,M)
+		if (dist <= 5)
+			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
+			M.Weaken(rand(2,6))
+	return
