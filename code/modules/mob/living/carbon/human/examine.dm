@@ -340,6 +340,7 @@
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
+	/*
 	var/display_chest = 0
 	var/display_shoes = 0
 	var/display_gloves = 0
@@ -398,7 +399,68 @@
 		msg += "<span class='warning'><b>[src] has \a [implant] sticking out of [t_his] flesh!</span>\n"
 	if(digitalcamo)
 		msg += "[t_He] [t_is] repulsively uncanny!\n"
+*/
 
+//New wound examine
+	if(wound_flavor_text["head"] && (!is_destroyed["head"]))
+		msg += wound_flavor_text["head"]
+	else if(is_bleeding["head"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] face!</span>\n"
+
+	if(wound_flavor_text["chest"])
+		msg += wound_flavor_text["chest"]
+	else if(is_bleeding["chest"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] chest!</span>\n"
+
+	if(wound_flavor_text["left arm"] && (!is_destroyed["left arm"]))
+		msg += wound_flavor_text["left arm"]
+	else if(is_bleeding["left arm"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] left arm!</span>\n"
+
+	if(wound_flavor_text["left hand"] && (!is_destroyed["left hand"]))
+		msg += wound_flavor_text["left hand"]
+	else if(is_bleeding["left hand"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] left hand!</span>\n"
+
+	if(wound_flavor_text["right arm"] && (!is_destroyed["right arm"]))
+		msg += wound_flavor_text["right arm"]
+	else if(is_bleeding["right arm"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] right arm!</span>\n"
+
+	if(wound_flavor_text["right hand"] && (!is_destroyed["right hand"]))
+		msg += wound_flavor_text["right hand"]
+	else if(is_bleeding["right hand"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] right hand!</span>\n"
+
+	if(wound_flavor_text["groin"] && (!is_destroyed["groin"]))
+		msg += wound_flavor_text["groin"]
+	else if(is_bleeding["groin"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] groin!</span>\n"
+
+	if(wound_flavor_text["left leg"] && (!is_destroyed["left leg"]))
+		msg += wound_flavor_text["left leg"]
+	else if(is_bleeding["left leg"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] left leg!</span>\n"
+
+	if(wound_flavor_text["left foot"] && (!is_destroyed["left foot"]))
+		msg += wound_flavor_text["left foot"]
+	else if(is_bleeding["left foot"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] left foot!</span>\n"
+
+	if(wound_flavor_text["right leg"] && (!is_destroyed["right leg"]))
+		msg += wound_flavor_text["right leg"]
+	else if(is_bleeding["right leg"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] right leg!</span>\n"
+
+	if(wound_flavor_text["right foot"] && (!is_destroyed["right foot"]))
+		msg += wound_flavor_text["right foot"]
+	else if(is_bleeding["right foot"])
+		msg += "<span class='warning'>[src] has blood running down [t_his] right foot!</span>\n"
+
+	for(var/implant in get_visible_implants(0))
+		msg += "<span class='warning'><b>[src] has \a [implant] sticking out of [t_his] flesh!</span>\n"
+	if(digitalcamo)
+		msg += "[t_He] [t_is] repulsively uncanny!\n"
 
 	if(hasHUD(usr,"security"))
 		var/perpname = "wot"
