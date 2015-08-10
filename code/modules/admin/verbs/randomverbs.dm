@@ -568,7 +568,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!input)
 		return
 	if(!customname)
-		customname = "NanoTrasen Update"
+		customname = "USCM Update"
 	for (var/obj/machinery/computer/communications/C in machines)
 		if(! (C.stat & (BROKEN|NOPOWER) ) )
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
@@ -840,7 +840,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_MOD))	return
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
@@ -853,23 +853,20 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		else
 			return
 
-	choice = input("Is this an emergency evacuation or a crew transfer?") in list("Emergency", "Crew Transfer")
-	if (choice == "Emergency")
-		emergency_shuttle.call_evac()
-	else
-		emergency_shuttle.call_transfer()
+	emergency_shuttle.call_evac()
 
 
 	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
 	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
+	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	return
 
 /client/proc/admin_cancel_shuttle()
 	set category = "Admin"
 	set name = "Cancel Shuttle"
 
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_MOD))	return
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
 

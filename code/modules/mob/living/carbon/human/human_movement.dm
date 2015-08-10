@@ -38,10 +38,10 @@
 			if(S && istype(S) && S.slayer > 0)
 				tally += 2 * S.slayer
 				if(S.slayer && prob(2))
-					src << "\red Moving through /the [S] slows you down"
+					src << "\red Moving trough [S] slows you down"
 				if(S.slayer == 3 && prob(5))
-					src << "\red Your foot got stuck in /the [S]!"
-					tally += 10
+					src << "\red Your foot got stuck for a moment in [S]!"
+					tally += 15
 
 		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75

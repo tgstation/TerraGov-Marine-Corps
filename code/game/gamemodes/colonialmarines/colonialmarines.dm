@@ -110,7 +110,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from NMV Sulaco will be dispatched shortly to investigate.", "NMV Sulaco")
+		command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the USS Sulaco will be dispatched shortly to investigate.", "USS Sulaco")
 
 
 /datum/game_mode/colonialmarines/proc/transform_xeno(var/datum/mind/ghost)
