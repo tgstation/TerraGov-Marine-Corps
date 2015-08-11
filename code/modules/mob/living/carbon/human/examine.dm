@@ -340,7 +340,6 @@
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
-
 	var/display_chest = 0
 	var/display_shoes = 0
 	var/display_gloves = 0
