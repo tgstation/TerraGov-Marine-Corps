@@ -731,8 +731,8 @@ datum/preferences
 							clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 				*/
 //Command
-		else if(job_marines_high)
-			switch(job_marines_high)
+		else if(job_command_high)
+			switch(job_command_high)
 				if(COMMANDER)
 					clothes_s = new /icon('icons/Marine/marine_armor.dmi', "CO_jumpsuit_s")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "brown"), ICON_UNDERLAY)
@@ -801,6 +801,8 @@ datum/preferences
 							clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
 //Engineering
+		else if(job_engi_high)
+			switch(job_engi_high)
 				if(SULCE)
 					clothes_s = new /icon('icons/mob/uniform.dmi', "mechanic_s")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "brown"), ICON_UNDERLAY)
@@ -837,6 +839,8 @@ datum/preferences
 							clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
 //Medbay
+		else if(job_medsci_high)
+			switch(job_medsci_high)
 				if(SULCMO)
 					clothes_s = new /icon('icons/mob/uniform.dmi', "cmo_s")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "brown"), ICON_UNDERLAY)
@@ -894,6 +898,8 @@ datum/preferences
 							clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
 //Marines
+		else if(job_marines_high)
+			switch(job_marines_high)
 				if(SQUADLE)
 					clothes_s = new /icon('icons/Marine/marine_armor.dmi', "jumpsuit[pick("0","1")]_s")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "swat"), ICON_UNDERLAY)
