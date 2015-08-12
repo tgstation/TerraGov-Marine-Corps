@@ -741,6 +741,7 @@
 	else
 		src << "\blue You relax your tail. You are no longer readying a tail attack."
 		readying_tail = 0
+	return
 
 /*/mob/living/carbon/Xenomorph/proc/bestial_roar()
 	set name = "Bestial Roar"
@@ -767,7 +768,7 @@
 		src << "\red You are not yet prepared to shake the ground."
 		return
 
-	if(!check_plasma(50))
+	if(!check_plasma(100))
 		return
 
 	has_screeched = 1
@@ -776,19 +777,14 @@
 		src << "You feel ready to shake the earth again."
 
 	playsound(loc, 'sound/effects/bang.ogg', 100, 0, 100, -1)
-	visible_message("\red <B> \The [src] smashes the ground!</B>","You smash the ground!")
+	visible_message("\red <B> \The [src] smashes the ground!</B>","<b>You smash the ground!</b>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
-
-	for(var/mob/M in view())
-		if(M && M.client)
-			if(istype(M,/mob/living/carbon/Xenomorph))
-				shake_camera(M, 1, 1)
-			else
-				shake_camera(M, 10, 1) // 50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 
 	for (var/mob/living/carbon/human/M in oview())
 		var/dist = get_dist(src,M)
-		if (dist <= 5)
+		if(M && M.client && dist < 7)
+			shake_camera(M, 5, 1)
+		if (dist < 5 && !M.lying && M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
-			M.Weaken(rand(2,6))
+			M.Weaken(rand(2,3))
 	return

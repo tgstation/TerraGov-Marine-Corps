@@ -576,7 +576,6 @@
 			else
 				if(buckled_mob.stat)
 					buckled_mob << "You're a little too unconscious to try that."
-					resisting = 0
 					return
 				if(resisting)
 					buckled_mob << "You're already trying to free yourself. Give it some time."
@@ -585,13 +584,6 @@
 					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
 					"<span class='notice'>You hear squelching...</span>")
 				resisting = 1
-				var/mob/living/carbon/human/Y = buckled_mob
-				if(istype(Y))
-					if(Y.species && Y.species.name == "Yautja") //Yautja have half resist time due to their great strength.
-						nest_resist_time = initial(nest_resist_time) / 2
-					else
-						nest_resist_time = initial(nest_resist_time) //Reset it, in case there was a pred previously on.
-
 				spawn(nest_resist_time)
 					if(resisting && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
 						buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] breaks free from the nest!</span>",\

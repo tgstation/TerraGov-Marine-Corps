@@ -176,16 +176,24 @@
 	inv_box.layer = 19
 	src.adding += inv_box
 //end of equippable shit
-
+*/
 
 	using = new /obj/screen()
 	using.name = "resist"
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "act_resist"
-	using.screen_loc = ui_resist
+	using.screen_loc = ui_storage2
 	using.layer = 19
 	src.adding += using
-*/
+
+	//pocket 1
+	using = new /obj/screen()
+	using.name = "ready tail"
+	using.icon = 'icons/mob/screen1_alien.dmi'
+	using.icon_state = "tail_unready"
+	using.screen_loc = ui_storage1
+	using.layer = 19
+	src.adding += using
 
 	mymob.throw_icon = new /obj/screen()
 	mymob.throw_icon.icon = 'icons/mob/screen1_alien.dmi'

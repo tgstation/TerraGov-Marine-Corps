@@ -180,7 +180,7 @@
 	damage_type = BURN
 
 /obj/item/projectile/energy/neuro/acid
-	damage = 12
+	damage = 15
 	name = "acid"
 	icon_state = "declone"
 	damage_type = BURN
@@ -191,7 +191,8 @@
 
 	proc/aoe_spit(var/atom/target) //Doesn't actually do AoE anymore, just splatters
 		var/turf/T = get_turf(target)
-		if(!T) return
+		if(istype(target,/mob/living/carbon/Xenomorph)) return
+		if(isnull(T) || isnull(target)) return
 
 		new /obj/effect/xenomorph/splatter(T) //do a splatty splat
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
