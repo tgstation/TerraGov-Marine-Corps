@@ -43,6 +43,11 @@
 	icon_state = "medbay3"
 	ambience = list('sound/ambience/signal.ogg'	)
 
+/area/sulaco/medbay/hangar
+	name = "\improper Sulaco Medbay Hangar"
+	icon_state = "medbay3"
+	ambience = list('sound/ambience/signal.ogg'	)
+
 /area/sulaco/brig
 	name = "\improper Sulaco Brig"
 	icon_state = "brig"
