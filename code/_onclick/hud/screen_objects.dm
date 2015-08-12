@@ -456,8 +456,17 @@
 		if("Toggle Gun Mode")
 			usr.client.ToggleGunMode()
 
-		else
-			return 0
+		if("ready tail")
+			if(istype(usr,/mob/living/carbon/Xenomorph))
+				if(/mob/living/carbon/Xenomorph/proc/tail_attack in usr:inherent_verbs)
+					usr:tail_attack()
+					if(usr:readying_tail)
+						src.icon_state = "tail_ready"
+					else
+						src.icon_state = "tail_unready"
+				else
+					usr << "Your caste lacks the ability to do this."
+
 	return 1
 
 /obj/screen/inventory/Click()

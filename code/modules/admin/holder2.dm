@@ -18,7 +18,7 @@ var/list/admin_datums = list()
 		error("Admin datum created without a ckey argument. Datum has been deleted")
 		del(src)
 		return
-	admincaster_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	admincaster_signature = "Weyland-Yutani Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rank = initial_rank
 	rights = initial_rights
 	admin_datums[ckey] = src

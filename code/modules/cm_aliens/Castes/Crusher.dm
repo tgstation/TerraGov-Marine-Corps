@@ -26,6 +26,7 @@
 	var/turf/lastturf = null
 	var/noise_timer = 0 // Makes a mech footstep, but only every 3 turfs.
 	var/has_moved = 0
+	big_xeno = 1
 
 	adjust_pixel_x = -16
 	adjust_pixel_y = 0
@@ -33,6 +34,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
+		/mob/living/carbon/Xenomorph/proc/stomp,
 		)
 
 /mob/living/carbon/Xenomorph/Crusher/Stat()
@@ -158,28 +160,32 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	return
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
-/mob/living/carbon/Xenomorph/Crusher/Bump(atom/AM as mob|obj|turf)
+/mob/living/carbon/Xenomorph/Crusher/Bump(atom/AM as mob|obj|turf, yes)
 	spawn(0)
 		var/start_loc
 
 		if(src.stat || src.momentum < 3 || !AM || !istype(AM) || AM == src)
 			return 0
 
-		if(isturf(AM) && !AM.density) //Just a plain ol turf, let's return.
+		if(now_pushing) //Just a plain ol turf, let's return.
 			return 0
 
 		if(dir != charge_dir) //We aren't facing the way we're charging.
 			return ..()
 
+		now_pushing = 1
+
 		if(istype(AM,/obj/item)) //Small items (ie. bullets) are unaffected.
 			var/obj/item/obj = AM
 			if(obj.w_class < 3)
+				now_pushing = 0
 				return 0
 
 		start_loc = AM.loc
 		if (isobj(AM) && AM.density) //Generic dense objects that aren't tables.
 			if(AM:anchored)
 				if(momentum < 12)
+					now_pushing = 0
 					return ..()
 				else
 					if(istype(AM,/obj/mecha))
@@ -192,11 +198,13 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 							step_away(mech,src)
 						Weaken(2)
 						stop_momentum(charge_dir)
+						now_pushing = 0
 						return
 					if(AM:unacidable)
 						src << "\red Bonk!"
 						Weaken(2)
 						stop_momentum(charge_dir)
+						now_pushing = 0
 						return
 					if(momentum > 20)
 						visible_message("<b>[src] crushes [AM]!</b>","<b>You crush [AM]!</b>")
@@ -204,8 +212,9 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 							for(var/atom/movable/S in AM)
 								if(S in AM.contents && !isnull(get_turf(AM)))
 									S.loc = get_turf(AM)
-							spawn(1)
+							spawn(0)
 								del(AM)
+					now_pushing = 0
 					return
 			if(momentum > 5)
 				visible_message("[src] knocks aside [AM]!","You casually knock aside [AM].") //Canisters, crates etc. go flying.
@@ -213,16 +222,19 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				diagonal_step(AM,dir)//Occasionally fling it diagonally.
 				step_away(AM,src,round(momentum/10) +1)
 				momentum -= 5
+				now_pushing = 0
 				return
 
 		if (istype(AM,/obj/structure/window) && momentum > 5)
 			AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
 			momentum -= 5
+			now_pushing = 0
 			return //Might be destroyed.
 
 		if (istype(AM,/obj/structure/grille))
 			AM:health -= (momentum * 3) //Usually knocks it down.
 			AM:healthcheck()
+			now_pushing = 0
 			return //Might be destroyed.
 
 		if(istype(AM,/obj/structure/table) || istype(AM,/obj/structure/rack) || istype(AM,/obj/structure/barricade/wooden))
@@ -231,21 +243,22 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
 				S.destroy()
 				momentum -= 3
+				now_pushing = 0
 				return 0//Might be destroyed, so we stop here.
 			else
+				now_pushing = 0
 				return ..()
 
 		if(istype(AM,/mob/living/carbon/Xenomorph) && momentum > 6)
 			playsound(loc, "punch", 25, 1, -1)
 			diagonal_step(AM,dir,100)//Occasionally fling it diagonally.
 			step_away(AM,src) //GET OUTTA HERE
-			return 0
+			now_pushing = 0
+			return
 
-		if(istype(AM,/mob/living/carbon) && momentum > 8)
+		if(istype(AM,/mob/living/carbon) && momentum > 7)
 			var/mob/living/carbon/H = AM
 			playsound(loc, "punch", 25, 1, -1)
-			diagonal_step(H,dir, 50)//Occasionally fling it diagonally.
-			step_away(H,src,round(momentum / 10))
 			if(momentum < 12 && momentum > 7)
 				H.Weaken(2)
 			else if(momentum < 20)
@@ -254,28 +267,33 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 			else if (momentum >= 20)
 				H.Weaken(8)
 				H.take_overall_damage(momentum * 2)
+			diagonal_step(H,dir, 50)//Occasionally fling it diagonally.
+			step_away(H,src,round(momentum / 10))
 			momentum -= 3
 			visible_message("<B>[src] knocks over [H]!</b>","<B>You knock over [H]!</B>")
-			return 0
+			now_pushing = 0
+			return
 
 		if(isturf(AM) && AM.density) //We were called by turf bump.
 			if(momentum <= 25 && momentum > 8)
 				src << "\red Bonk!"
 				stop_momentum(charge_dir)
 				src.Weaken(3)
-				return ..()
 			if(momentum > 15)
 				AM:ex_act(3) //Should dismantle, or at least heavily damage it.
 			if(momentum > 25) //WHAM!
 				explosion(src,-1,-1,round(momentum / 10),-1)  //We're immune to explosions. Fuck that wall up.
 			if(AM) //Still there?
-				src.Weaken(4)
+				src.Weaken(2)
 				stop_momentum(charge_dir)
+				now_pushing = 0
 				return ..()
 
 		if(AM) //If the object still exists.
 			if(AM.loc == start_loc) //And hasn't moved
+				now_pushing = 0
 				return ..() //Bump it normally.
 		//Otherwise, just get out
+		now_pushing = 0
 		return
 

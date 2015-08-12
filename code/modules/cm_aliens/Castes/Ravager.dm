@@ -27,6 +27,7 @@
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
 	armor_deflection = 65
+	big_xeno = 1
 
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6

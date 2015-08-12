@@ -20,14 +20,14 @@
 	var/turf/T = get_turf(src)
 	if(T.z != 2)
 		new /obj/item/mecha_parts/mecha_tracking(src)
-	
+
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.start()
 
 /obj/mecha/hoverpod/range_action(atom/target as obj|mob|turf)
 	return
-	
+
 //No space drifting
 /obj/mecha/hoverpod/check_for_support()
 	//does the hoverpod have enough charge left to stabilize itself?
@@ -35,7 +35,7 @@
 		if (!ion_trail.on)
 			ion_trail.start()
 		return 1
-	
+
 	ion_trail.stop()
 	return ..()
 
@@ -47,15 +47,15 @@
 
 /obj/mecha/hoverpod/mechstep(direction)
 	var/result = step(src,direction)
-	if(result)
-		playsound(src,'sound/machines/hiss.ogg',40,1)
+//	if(result)
+//		playsound(src,'sound/machines/hiss.ogg',40,1)
 	return result
 
 
 /obj/mecha/hoverpod/mechsteprand()
 	var/result = step_rand(src)
-	if(result)
-		playsound(src,'sound/machines/hiss.ogg',40,1)
+//	if(result)
+//		playsound(src,'sound/machines/hiss.ogg',40,1)
 	return result
 
 /obj/mecha/hoverpod/Exit(atom/movable/O)
@@ -107,7 +107,7 @@
 
 //Hoverpod variants
 
-/* Commented out the combatpod as they can't reattach their equipment if it ever gets dropped, 
+/* Commented out the combatpod as they can't reattach their equipment if it ever gets dropped,
  * and making a special exception for them seems lame.
 /obj/mecha/hoverpod/combatpod
 	desc = "An ancient, run-down combat spacecraft." // Ideally would have a seperate icon.

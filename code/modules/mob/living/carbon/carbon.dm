@@ -440,6 +440,11 @@
 			if( istype(tmob, /mob/living/carbon) && prob(10) )
 				src.spread_disease_to(AM, "Contact")
 
+			if(istype(tmob, /mob/living/carbon/Xenomorph))
+				if(tmob:big_xeno)
+					now_pushing = 0
+					return
+
 			if(istype(tmob, /mob/living/carbon/human))
 
 				if(HULK in tmob.mutations)

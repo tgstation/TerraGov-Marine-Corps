@@ -893,10 +893,3 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 // Reagent metabolism defines.
 #define FOOD_METABOLISM 0.4
 #define ALCOHOL_METABOLISM 0.1
-
-#define ATTACH_MUZZLE	0
-#define ATTACH_RAIL		1
-#define ATTACH_UNDER	2
-#define ATTACH_INTERNAL	3
-#define ATTACH_MAGAZINE	4
-#define ATTACH_STOCK	5

@@ -35,8 +35,8 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "clan mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 60, bullet = 85, laser = 80,energy = 60, bomb = 75, bio = 100, rad = 100)
-	anti_hug = 7
+	armor = list(melee = 60, bullet = 80, laser = 80,energy = 60, bomb = 65, bio = 100, rad = 100)
+	anti_hug = 10
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
