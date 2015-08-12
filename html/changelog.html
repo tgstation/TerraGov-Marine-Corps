@@ -61,17 +61,33 @@ should be listed in the changelog upon commit though. Thanks. -->
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
 
 <div class='commit sansserif'>
-	<h2 class='date'>11 August 2015</h2>
+	<h2 class='date'>12 August 2015</h2>
 	<h3 class='author'>Infernus44 updated:</h3>
 	<ul class='changes bgimages16'>
-		<li class='rscadd'>Added cryo sleepers to free jobs late in game</li>
-		<li class='tweak'>Reduced sleep toxin even more in cloners</li>
-		<li class='rscadd'>Medical scanner will now show if you overdosed your patient/killed him</li>
-		<li class='tweak'>Moving with broken skull or chest will no longer kill you within seconds</li>
-		<li class='bugfix'>CMO's hypostray is no longer empty</li>
+		<li class='rscadd'><b>Surgery update:</b></li>
+		<li class=>Doing surgery without anesthetic/patient being unconsious is now very lethal</li>
+		<li class=>Stronger painkillers, sleep toxin and high shock stage will increase the chance of successful surgery if the patient is awake(And only if awake)</li>
+		<li class=>Roller beds and tables will reduce the chance of successful surgery</li>
+		<li class=>Either way, doing proper surgery (OP table, anesthetics, proper tools) won't impact your surgery speed</li>
+		<li class='tweak'>Reduced blood loss with lost limbs and open surgery wounds so they don't die instanty</li>
+		<li class='tweak'>Reduced inaprovaline injection in cloners to 5  from 30 since it is not required</li>
+		<li class='rscadd'>Added cryo pods to sleeper room to free up late game jobs. (Despawn rate 15min)</li>
+		<li class='rscadd'>Added scrubber and air alarm in engineering</li>
+		<li class='rscadd'>Health scanner will now show if you overdosed/killed your patient</li>
+		<li class='bugfix'>CMO's closet now spawns with full hypo</li>
+		<li class='bugfix'>Fixed failed surgery steps not updating health correctly</li>
 	</ul>
 </div>
 
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 August 2015</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Building certain defenses (tables, walls, racks, etc) is now disabled in the Sulaco Hangar area to deter metagaming (along with <a href='http://colonial-marines.com/viewtopic.php?f=57&t=1363#p30460'>a rule update</a> that may get you banned for it).</li>
+		<li class='tweak'>Dropship cameras removed.</li>
+	</ul>
+</div>
 
 <div class='commit sansserif'>
 	<h2 class='date'>9 August 2015</h2>
@@ -81,7 +97,6 @@ should be listed in the changelog upon commit though. Thanks. -->
 		<li class='tweak'>Cloners no longer injects a lot of sopoforic and inaprovaline while someone is being cloned.</li>
 	</ul>
 </div>
-
 
 <div class='commit sansserif'>
 	<h2 class='date'>8 August 2015</h2>

@@ -43,6 +43,8 @@
 		"\red Your hand slips, slicing [target]'s throat wth \the [tool]!" )
 		affected.createwound(CUT, 60)
 		target.losebreath += 10
+		target.updatehealth()
+		affected.update_wounds()
 
 /datum/surgery_step/face/mend_vocal
 	allowed_tools = list(
@@ -71,6 +73,7 @@
 		user.visible_message("\red [user]'s hand slips, clamping [target]'s trachea shut for a moment with \the [tool]!", \
 		"\red Your hand slips, clamping [user]'s trachea shut for a moment with \the [tool]!")
 		target.losebreath += 10
+		target.updatehealth()
 
 /datum/surgery_step/face/fix_face
 	allowed_tools = list(
@@ -99,6 +102,7 @@
 		user.visible_message("\red [user]'s hand slips, tearing skin on [target]'s face with \the [tool]!", \
 		"\red Your hand slips, tearing skin on [target]'s face with \the [tool]!")
 		target.apply_damage(10, BRUTE, affected, sharp=1, sharp=1)
+		target.updatehealth()
 
 /datum/surgery_step/face/cauterize
 	allowed_tools = list(
@@ -135,3 +139,4 @@
 		user.visible_message("\red [user]'s hand slips, leaving a small burn on [target]'s face with \the [tool]!", \
 		"\red Your hand slips, leaving a small burn on [target]'s face with \the [tool]!")
 		target.apply_damage(4, BURN, affected)
+		target.updatehealth()

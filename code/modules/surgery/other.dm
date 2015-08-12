@@ -51,6 +51,7 @@
 		user.visible_message("\red [user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!" , \
 		"\red Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!")
 		affected.take_damage(5, 0)
+		target.updatehealth()
 
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
@@ -95,6 +96,7 @@
 		user.visible_message("\red [user]'s hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!", \
 		"\red Your hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(CUT, 20, 1)
+		affected.update_wounds()
 
 /datum/surgery_step/treat_necrosis
 	priority = 2
