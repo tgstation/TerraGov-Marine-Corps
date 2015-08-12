@@ -77,7 +77,7 @@
 		user.visible_message("\red [user]'s hand slips, damaging the bone in [target]'s [affected.display_name] with \the [tool]!" , \
 			"\red Your hand slips, damaging the bone in [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(BRUISE, 5)
-		target.updatehealth()
+		affected.update_wounds()
 
 /datum/surgery_step/mend_skull
 	allowed_tools = list(
