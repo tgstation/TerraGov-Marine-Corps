@@ -11,7 +11,7 @@ var/const/MAX_ACTIVE_TIME = 200
 /obj/item/clothing/mask/facehugger
 	name = "alien"
 	desc = "It has some sort of a tube at the end of its tail."
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = 1 //note: can be picked up by aliens unlike most other items of w_class below 4
@@ -151,6 +151,8 @@ var/const/MAX_ACTIVE_TIME = 200
 //	if(!sterile) L.take_organ_damage(strength,0) //done here so that even borgs and humans in helmets take damage
 
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
+	if(throwing)
+		throwing = 0
 
 	if(istype(src.loc,/mob/living/carbon/Xenomorph)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = src.loc
@@ -216,9 +218,10 @@ var/const/MAX_ACTIVE_TIME = 200
 			target.drop_from_inventory(W)
 			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
 		src.loc = target
+		icon_state = initial(icon_state)
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
-		target.update_icons()
+		target.update_inv_wear_mask()
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/12) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
@@ -318,7 +321,8 @@ var/const/MAX_ACTIVE_TIME = 200
 			if(istype(W,/obj/item/clothing/mask/facehugger))
 				return 0
 
-	if(iscorgi(M) && M:wear_mask) return 0
+	if(iscorgi(M))
+		if(M.wear_mask) return 0
 
 	return 1
 

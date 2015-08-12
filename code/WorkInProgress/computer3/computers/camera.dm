@@ -56,7 +56,7 @@
 	name = "Security Camera Network Main Key"
 	var/title = "Station"
 	var/desc = "Connects to station security cameras."
-	var/list/networks = list("SS13")
+	var/list/networks = list("SULACO")
 	var/screen = "cameras"
 
 	execute(var/datum/file/source)
@@ -80,29 +80,29 @@
 	name = "Mining Camera Network Key"
 	title = "mining station"
 	desc = "Connects to mining security cameras."
-	networks = list("MINE")
+	networks = list("SULACO")
 	screen = "miningcameras"
 
 /datum/file/camnet_key/research
 	name = "Research Camera Network Key"
 	title = "research"
-	networks = list("RD")
+	networks = list("SULACO")
 
 /datum/file/camnet_key/bombrange
 	name = "R&D Bomb Range Camera Network Key"
 	title = "bomb range"
 	desc = "Monitors the bomb range."
-	networks = list("Toxins")
+	networks = list("SULACO")
 
 /datum/file/camnet_key/xeno
 	name = "R&D Misc. Research Camera Network Key"
 	title = "special research"
-	networks = list("Misc")
+	networks = list("SULACO")
 
 /datum/file/camnet_key/singulo
 	name = "Singularity Camera Network Key"
 	title = "singularity"
-	networks = list("Singularity")
+	networks = list("SULACO")
 
 /datum/file/camnet_key/entertainment
 	name = "Entertainment Channel Encryption Key"
@@ -115,13 +115,13 @@
 	name = "Special Ops Camera Encryption Key"
 	title = "special ops"
 	desc = "Connects to special ops secure camera feeds."
-	networks = list("CREED")
+	networks = list("SULACO")
 
 /datum/file/camnet_key/prison
 	name = "Prison Camera Network Key"
 	title = "prison"
 	desc = "Monitors the prison."
-	networks = list("Prison")
+	networks = list("SULACO")
 
 
 

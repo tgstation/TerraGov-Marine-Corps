@@ -79,6 +79,8 @@ var/queen_time = 300 //5 minutes between queen deaths
 	var/adjust_size_y = 1
 	var/spit_type = 0 //0: normal, 1: heavy
 
+	var/big_xeno = 0 //Toggles pushing
+
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs

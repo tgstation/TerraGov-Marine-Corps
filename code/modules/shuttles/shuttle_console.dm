@@ -81,6 +81,8 @@
 			return
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 			shuttle.launch(src)
+			log_admin("[usr] ([usr.key]) launched a shuttle from [src]")
+			message_admins("[usr] ([usr.key]) launched a shuttle using [src].")
 //	if(href_list["force"])
 //		if(shuttle.moving_status  == SHUTTLE_IDLE)
 //			shuttle.force_launch(src)

@@ -1131,17 +1131,25 @@
 			usr << "That is not a valid name."
 			return
 
+		var/y_gend = input(usr, "Gender?","Gender", "male")
+		if(!y_gend || (y_gend != "male" && y_gend != "female"))
+			usr << "That is not a valid gender."
+			return
+
 		var/mob/living/carbon/human/M = new(usr.loc)
 		M.set_species("Yautja")
 		spawn(0)
 			M.real_name = y_name
+			M.gender = y_gend
+			M.update_icons()
+			log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.real_name].")
+			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
 			if(H.mind)
 				H.mind.transfer_to(M)
 			else
 				M.key = H.key
 
-			log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.real_name].")
-			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
+
 			if(H) del(H) //May have to clear up round-end vars and such....
 
 		return
@@ -2704,8 +2712,8 @@
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				X << msg
-		
-		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"	
+
+		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
 	if(href_list["ccdibs"]) // CentComm-Dibs. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
 		var/mob/ref_person = locate(href_list["ccdibs"])
