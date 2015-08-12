@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/card
 	name = "Identification Computer"
-	desc = "Terminal for programming NanoTrasen employee ID cards to access parts of the station."
+	desc = "Terminal for programming Weyland Yutani employee ID card access."
 	icon_state = "id"
 	req_access = list(access_sulaco_logistics)
 	circuit = "/obj/item/weapon/circuitboard/card"

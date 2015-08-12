@@ -218,7 +218,7 @@ var/const/MAX_ACTIVE_TIME = 200
 		src.loc = target
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
-		target.update_icons()
+		target.update_inv_wear_mask()
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/12) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
@@ -318,7 +318,8 @@ var/const/MAX_ACTIVE_TIME = 200
 			if(istype(W,/obj/item/clothing/mask/facehugger))
 				return 0
 
-	if(iscorgi(M) && M:wear_mask) return 0
+	if(iscorgi(M))
+		if(M.wear_mask) return 0
 
 	return 1
 

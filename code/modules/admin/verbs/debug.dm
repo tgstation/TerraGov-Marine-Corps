@@ -544,9 +544,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"red wizard",
 		"marisa wizard",
 		"emergency response team",
-		"nanotrasen representative",
-		"nanotrasen officer",
-		"nanotrasen captain"
+		"weyland-yutani representative",
+		"USCM officer",
+		"USCM admiral"
 		)
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
 	if (isnull(dresscode))
@@ -735,7 +735,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("syndicate commando")
 			M.equip_syndicate_commando()
 
-		if("nanotrasen representative")
+		if("weyland-yutani representative")
 			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/representative(M), slot_w_uniform)
 			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
 			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
@@ -743,7 +743,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Representative"
+			pda.ownjob = "Corporate Representative"
 			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
 
 			M.equip_if_possible(pda, slot_r_store)
@@ -755,12 +755,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.item_state = "id_inv"
 			W.access = get_all_accesses()
-			W.access += list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer")
-			W.assignment = "NanoTrasen Navy Representative"
+			W.access = get_all_centcom_access()
+			W.assignment = "Corporate Representative"
 			W.registered_name = M.real_name
 			M.equip_if_possible(W, slot_wear_id)
 
-		if("nanotrasen officer")
+		if("USCM officer")
 			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/officer(M), slot_w_uniform)
 			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
 			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
@@ -769,7 +769,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Officer"
+			pda.ownjob = "USCM Officer"
 			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
 
 			M.equip_if_possible(pda, slot_r_store)
@@ -780,12 +780,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.name = "[M.real_name]'s ID Card"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
-			W.assignment = "NanoTrasen Navy Officer"
+			W.assignment = "USCM Officer"
 			W.registered_name = M.real_name
 			M.equip_if_possible(W, slot_wear_id)
 
 
-		if("nanotrasen captain")
+		if("USCM admiral")
 			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/captain(M), slot_w_uniform)
 			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
 			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
@@ -794,7 +794,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
-			pda.ownjob = "NanoTrasen Navy Captain"
+			pda.ownjob = "USCM Admiral"
 			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
 
 			M.equip_if_possible(pda, slot_r_store)
@@ -805,7 +805,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.name = "[M.real_name]'s ID Card"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
-			W.assignment = "NanoTrasen Navy Captain"
+			W.assignment = "USCM Admiral"
 			W.registered_name = M.real_name
 			M.equip_if_possible(W, slot_wear_id)
 

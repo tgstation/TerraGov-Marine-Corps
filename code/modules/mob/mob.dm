@@ -318,7 +318,7 @@ var/list/slot_equipment_priority = list( \
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
-	
+
 	var/is_admin = 0
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
@@ -554,7 +554,7 @@ var/list/slot_equipment_priority = list( \
 	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
-	if(isXenoLarva(src)) return
+	if(isXenoLarva(src) || istype(src,/mob/living/silicon/pai)) return
 
 	if (AM.anchored)
 		return
