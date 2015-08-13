@@ -48,6 +48,8 @@
 		"\red Your hand slips, slicing [target]'s eyes wth \the [tool]!" )
 		affected.createwound(CUT, 10)
 		eyes.take_damage(5, 0)
+		target.updatehealth()
+		affected.update_wounds()
 
 /datum/surgery_step/eye/lift_eyes
 	allowed_tools = list(
@@ -78,6 +80,7 @@
 		"\red Your hand slips, damaging [target]'s eyes with \the [tool]!")
 		target.apply_damage(10, BRUTE, affected)
 		eyes.take_damage(5, 0)
+		target.updatehealth()
 
 /datum/surgery_step/eye/mend_eyes
 	allowed_tools = list(
@@ -109,6 +112,7 @@
 		"\red Your hand slips, stabbing \the [tool] into [target]'s eye!")
 		target.apply_damage(10, BRUTE, affected, sharp=1)
 		eyes.take_damage(5, 0)
+		target.updatehealth()
 
 /datum/surgery_step/eye/cauterize
 	allowed_tools = list(
@@ -145,3 +149,4 @@
 		"\red Your hand slips, searing [target]'s eyes with \the [tool]!")
 		target.apply_damage(5, BURN, affected)
 		eyes.take_damage(5, 0)
+		target.updatehealth()

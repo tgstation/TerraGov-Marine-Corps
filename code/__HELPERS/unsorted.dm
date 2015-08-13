@@ -1308,8 +1308,8 @@ proc/is_hot(obj/item/W as obj)
 	if(istype(M,/mob/living/carbon/Xenomorph)) return 0
 	return (M.lying && \
 	locate(/obj/machinery/optable, M.loc) || \
-	(locate(/obj/structure/stool/bed/roller, M.loc) && prob(75)) || \
-	(locate(/obj/structure/table/, M.loc) && prob(66)))
+	(locate(/obj/structure/stool/bed/roller, M.loc)) || \
+	(locate(/obj/structure/table/, M.loc)))//Sucess rate now handeled in surgery.dm
 
 /proc/reverse_direction(var/dir)
 	switch(dir)
