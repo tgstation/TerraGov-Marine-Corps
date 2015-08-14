@@ -9,7 +9,7 @@
 	layer = 2.8
 	throwpass = 1	//You can throw objects over this, despite its density.
 	climbable = 1
-
+	flags = ON_BORDER
 	var/health = 400 //Pretty tough. Changes sprites at 300 and 150.
 
 
@@ -31,7 +31,7 @@
 	return
 
 /obj/structure/m_barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover,/obj/item/projectile))
+	if(istype(mover,/obj/item/projectile/bullet))
 		return (check_cover(mover,target))
 	if(locate(/obj/structure/table) in get_turf(mover)) //Tables let you climb on barricades.
 		return 1
@@ -66,12 +66,10 @@
 	return 1
 
 /obj/structure/m_barricade/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if (get_dir(loc, target) == dir)
+	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile/bullet))
 		return 0
 	else
 		return 1
-	return 1
-
 
 /obj/structure/m_barricade/attackby(obj/item/W as obj, mob/user as mob)
 	if (!W) return
