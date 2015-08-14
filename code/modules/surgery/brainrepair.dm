@@ -34,6 +34,7 @@
 		user.visible_message("\red [user]'s hand slips, jabbing \the [tool] in [target]'s brain!", \
 		"\red Your hand slips, jabbing \the [tool] in [target]'s brain!")
 		target.apply_damage(30, BRUTE, "head", 1, sharp=1)
+		target.updatehealth()
 
 /datum/surgery_step/brain/hematoma
 	allowed_tools = list(
@@ -66,3 +67,4 @@
 		user.visible_message("\red [user]'s hand slips, bruising [target]'s brain with \the [tool]!", \
 		"\red Your hand slips, bruising [target]'s brain with \the [tool]!")
 		target.apply_damage(20, BRUTE, "head", 1, sharp=1)
+		target.updatehealth()

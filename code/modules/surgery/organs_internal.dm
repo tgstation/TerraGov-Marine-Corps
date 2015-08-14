@@ -55,6 +55,7 @@
 
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		affected.createwound(CUT, rand(0,70), 1)
+		target.updatehealth()
 
 //////////////////////////////////////////////////////////////////
 //				CHEST INTERNAL ORGAN SURGERY					//
@@ -150,6 +151,9 @@
 		for(var/datum/organ/internal/I in affected.internal_organs)
 			if(I && I.damage > 0)
 				I.take_damage(dam_amt,0)
+		target.updatehealth()
+		affected.update_wounds()
+
 
 /datum/surgery_step/internal/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
@@ -218,7 +222,8 @@
 		for(var/datum/organ/internal/I in affected.internal_organs)
 			if(I)
 				I.take_damage(rand(3,5),0)
-
+		target.updatehealth()
+		affected.update_wounds()
 
 /datum/surgery_step/internal/detatch_organ
 
@@ -274,6 +279,8 @@
 		user.visible_message("\red [user]'s hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!", \
 		"\red Your hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(CUT, rand(30,50), 1)
+		affected.update_wounds()
+
 
 /datum/surgery_step/internal/remove_organ
 
@@ -349,6 +356,8 @@
 		user.visible_message("\red [user]'s hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!", \
 		"\red Your hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(BRUISE, 20)
+		affected.update_wounds()
+
 
 /datum/surgery_step/internal/replace_organ
 	allowed_tools = list(
@@ -444,6 +453,7 @@
 		var/obj/item/organ/I = tool
 		if(istype(I))
 			I.organ_data.take_damage(rand(3,5),0)
+		target.updatehealth()
 
 /datum/surgery_step/internal/attach_organ
 	allowed_tools = list(
@@ -493,6 +503,8 @@
 		user.visible_message("\red [user]'s hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!", \
 		"\red Your hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(BRUISE, 20)
+		affected.update_wounds()
+
 
 //////////////////////////////////////////////////////////////////
 //						HEART SURGERY							//
