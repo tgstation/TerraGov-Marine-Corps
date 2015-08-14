@@ -776,10 +776,10 @@
 		has_screeched = 0
 		src << "You feel ready to shake the earth again."
 
-	playsound(loc, 'sound/effects/bang.ogg', 100, 0, 100, -1)
-	visible_message("\red <B> \The [src] smashes the ground!</B>","<b>You smash the ground!</b>")
+	playsound(loc, 'sound/effects/bang.ogg', 50, 0, 100, -1)
+	visible_message("\red <B> \The [src] smashes the ground!</B>","\red <b>You smash the ground!</b>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
-
+	explosion(src.loc,-1,-1,1,0)
 	for (var/mob/living/carbon/human/M in oview())
 		var/dist = get_dist(src,M)
 		if(M && M.client && dist < 7)
@@ -787,4 +787,22 @@
 		if (dist < 5 && !M.lying && M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
 			M.Weaken(rand(2,3))
+	return
+
+/mob/living/carbon/Xenomorph/proc/ready_charge()
+	set name = "Toggle Charging"
+	set desc = "Stop auto-charging when you move."
+	set category = "Alien"
+
+	if(!check_state()) return //Nope
+
+	if(!istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Logic. Other mobs don't have the verb
+		return
+
+	if(!src:is_charging) //We're using tail because they don't have the verb anyway (crushers)
+		src << "\blue You will now charge when moving."
+		src:is_charging = 1
+	else
+		src << "\blue You will no longer charge when moving."
+		src:is_charging = 0
 	return

@@ -416,10 +416,6 @@
 
 	if(isXenoLarva(M)) return
 
-	if(src.unacidable) //May as well use it as an immunity toggle
-		M << "This one's much too tough for you to slash up."
-		return
-
 	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 	var/allcut = 1

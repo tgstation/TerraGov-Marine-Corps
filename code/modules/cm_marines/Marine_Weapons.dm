@@ -761,11 +761,12 @@
 /obj/item/weapon/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		if(rockets.len < max_rockets)
-			user.drop_item()
-			I.loc = src
-			rockets += I
-			user << "\blue You put the rocket in [src]."
-			user << "\blue [rockets.len] / [max_rockets] rocket(s)."
+			user.visible_message("\blue [user] starts feeding a shell into [src].","\blue You start feeding [I] into [src]. Stand still!")
+			if(do_after(user,20))
+				user.drop_item()
+				I.loc = src
+				rockets += I
+				user << "\blue You put the [I] in [src]."
 		else
 			usr << "\red [src] cannot hold more rockets."
 

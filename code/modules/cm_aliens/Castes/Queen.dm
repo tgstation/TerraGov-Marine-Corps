@@ -3,13 +3,13 @@
 /mob/living/carbon/Xenomorph/Queen
 	caste = "Queen"
 	name = "Queen"
-	desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
+	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/xeno/Colonial_Queen.dmi'
 	icon_state = "Queen Walking"
 //	pass_flags = PASSTABLE
-	melee_damage_lower = 20
-	melee_damage_upper = 32
-	tacklemin = 2
+	melee_damage_lower = 30
+	melee_damage_upper = 46
+	tacklemin = 4
 	tacklemax = 6
 	tackle_chance = 80
 	attacktext = "bites"
