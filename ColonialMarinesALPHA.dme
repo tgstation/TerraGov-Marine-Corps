@@ -923,6 +923,7 @@
 #include "code\modules\cm_marines\NonLethalRestraints.dm"
 #include "code\modules\cm_marines\overwatch.dm"
 #include "code\modules\cm_marines\shuttles.dm"
+#include "code\modules\cm_marines\structures.dm"
 #include "code\modules\cm_preds\yaut_items.dm"
 #include "code\modules\cm_preds\yaut_procs.dm"
 #include "code\modules\customitems\item_defines.dm"

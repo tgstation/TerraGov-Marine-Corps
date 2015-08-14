@@ -500,6 +500,17 @@
 				return
 		return ..(user)
 
+	dropped(var/mob/living/carbon/human/H)
+		if(H.wear_suit && !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
+			if(!H.s_store)
+				H.s_store = I
+				I.equipped(src, slot_s_store)
+				H.update_inv_s_store()
+				H << "\red The [src] snaps into place on [I]."
+				return
+		..()
+
 
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
@@ -766,7 +777,10 @@
 				user.drop_item()
 				I.loc = src
 				rockets += I
+				playsound(user.loc,'sound/machines/click.ogg', 50, 1)
 				user << "\blue You put the [I] in [src]."
+			else
+				user << "You are interrupted!"
 		else
 			usr << "\red [src] cannot hold more rockets."
 
@@ -812,7 +826,7 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 1, 4, 1)
+			explosion(hit_atom, 0, 0, 4, 1)
 			del(src)
 		else
 			..()
@@ -824,7 +838,7 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 0, 2, 1)
+			explosion(hit_atom, 0, 0, 1, 1)
 			del(src)
 		else
 			..()

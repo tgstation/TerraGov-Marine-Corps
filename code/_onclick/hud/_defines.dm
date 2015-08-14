@@ -75,6 +75,8 @@
 #define ui_alien_toxin "14:28,13:25"
 #define ui_alien_fire "14:28,12:25"
 #define ui_alien_oxygen "14:28,11:25"
+#define ui_alien_tail "10:18,1:5"
+#define ui_alien_resist "11:20,1:5"
 
 #define ui_predator_power "14:28,9:13"
 

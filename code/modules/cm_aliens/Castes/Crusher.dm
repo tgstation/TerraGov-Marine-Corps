@@ -94,6 +94,7 @@
 		return
 
 	if(!is_charging)
+		stop_momentum(charge_dir)
 		return
 
 	if(pulling && momentum > 9)
@@ -182,7 +183,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	spawn(0)
 		var/start_loc
 
-		if(src.stat || src.momentum < 3 || !AM || !istype(AM) || AM == src)
+		if(src.stat || src.momentum < 3 || !AM || !istype(AM) || AM == src || !yes)
 			return
 
 		if(now_pushing) //Just a plain ol turf, let's return.
@@ -207,6 +208,39 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 					now_pushing = 0
 					return ..()
 				else
+					if (istype(AM,/obj/structure/window) && momentum > 5)
+						AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
+						momentum -= 5
+						now_pushing = 0
+						return //Might be destroyed.
+
+					if (istype(AM,/obj/structure/grille))
+						AM:health -= (momentum * 3) //Usually knocks it down.
+						AM:healthcheck()
+						now_pushing = 0
+						return //Might be destroyed.
+
+					if(istype(AM,/obj/structure/barricade/wooden))
+						if(momentum > 8)
+							var/obj/structure/S = AM
+							visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
+							S.destroy()
+							momentum -= 3
+							now_pushing = 0
+							return //Might be destroyed, so we stop here.
+						else
+							now_pushing = 0
+							return
+					if(istype(AM,/obj/structure/m_barricade))
+						var/obj/structure/m_barricade/M = AM
+						M.health -= (momentum * 5)
+						M.update_health()
+						src << "\red Bonk!"
+						visible_message("\red The [src] smashes straight into [M]!")
+						stop_momentum()
+						now_pushing = 0
+						return
+
 					if(istype(AM,/obj/mecha))
 						var/obj/mecha/mech = AM
 						mech.take_damage(momentum * 8)
@@ -244,30 +278,6 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				momentum -= 5
 				now_pushing = 0
 				return
-
-		if (istype(AM,/obj/structure/window) && momentum > 5)
-			AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
-			momentum -= 5
-			now_pushing = 0
-			return //Might be destroyed.
-
-		if (istype(AM,/obj/structure/grille))
-			AM:health -= (momentum * 3) //Usually knocks it down.
-			AM:healthcheck()
-			now_pushing = 0
-			return //Might be destroyed.
-
-		if(istype(AM,/obj/structure/barricade/wooden))
-			if(momentum > 2)
-				var/obj/structure/S = AM
-				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
-				S.destroy()
-				momentum -= 3
-				now_pushing = 0
-				return //Might be destroyed, so we stop here.
-			else
-				now_pushing = 0
-				return ..()
 
 		if(istype(AM,/mob/living/carbon/Xenomorph))
 			if(momentum > 6)
@@ -313,6 +323,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 
 		if(AM) //If the object still exists.
 			if(AM.loc == start_loc) //And hasn't moved
+				now_pushing = 0
 				return ..() //Bump it normally.
 		//Otherwise, just get out
 		now_pushing = 0

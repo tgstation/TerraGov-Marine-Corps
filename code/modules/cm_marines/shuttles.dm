@@ -1,5 +1,5 @@
 /obj/machinery/computer/shuttle_control/marine1
-	name = "marine shuttle control console"
+	name = "Dropship Console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	shuttle_tag = "Dropship 1"
@@ -8,7 +8,7 @@
 	req_one_access_txt = "1;2;12;19;200"
 
 /obj/machinery/computer/shuttle_control/marine2
-	name = "marine shuttle control console"
+	name = "Drop Pod Console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	shuttle_tag = "Dropship 2"

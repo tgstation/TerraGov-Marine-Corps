@@ -101,11 +101,9 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
  * Plasteel
  */
 var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
-	new/datum/stack_recipe("AI core", /obj/structure/AIcore, 4, time = 50, one_per_turf = 1), \
-	new/datum/stack_recipe("Metal crate", /obj/structure/closet/crate, 10, time = 50, one_per_turf = 1), \
-	new/datum/stack_recipe("RUST fuel assembly port frame", /obj/item/rust_fuel_assembly_port_frame, 12, time = 50, one_per_turf = 1), \
-	new/datum/stack_recipe("RUST fuel compressor frame", /obj/item/rust_fuel_compressor_frame, 12, time = 50, one_per_turf = 1), \
-	new/datum/stack_recipe("knife grip", /obj/item/butterflyhandle, 4, time = 20, one_per_turf = 0, on_floor = 1),
+	new/datum/stack_recipe("Metal crate", /obj/structure/closet/crate, 5, time = 50, one_per_turf = 1), \
+	new/datum/stack_recipe("knife grip", /obj/item/butterflyhandle, 2, time = 20, one_per_turf = 0, on_floor = 1),
+	new/datum/stack_recipe("metal barricade", /obj/structure/m_barricade, 10, time = 60, one_per_turf = 1, on_floor = 1),
 	)
 
 /obj/item/stack/sheet/plasteel
