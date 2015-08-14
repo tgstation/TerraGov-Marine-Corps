@@ -118,6 +118,10 @@
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
+
+	if(stat)
+		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
+
 	var/tally = 0
 
 	tally = speed
@@ -128,7 +132,7 @@
 		tally += 1.3
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.5
+		tally += 1.7
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src
@@ -136,12 +140,13 @@
 		X.charge_timer = 1
 		if(X.momentum == 0)
 			X.charge_dir = dir
+			X.handle_momentum()
 		else
 			if(X.charge_dir != dir) //Have we changed direction?
-				spawn(1)
-					X.stop_momentum() //This should disallow rapid turn bumps
-		X.handle_momentum()
-		X.lastturf = get_turf(X.loc)
+				X.stop_momentum() //This should disallow rapid turn bumps
+			else
+				X.handle_momentum()
+		X.lastturf = get_turf(X)
 
 	return (tally)
 
@@ -180,7 +185,7 @@
 	damage_type = BURN
 
 /obj/item/projectile/energy/neuro/acid
-	damage = 15
+	damage = 12
 	name = "acid"
 	icon_state = "declone"
 	damage_type = BURN
@@ -198,7 +203,7 @@
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
 
 /obj/item/projectile/energy/neuro/acid/heavy
-	damage = 20
+	damage = 25
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here

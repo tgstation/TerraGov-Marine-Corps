@@ -121,13 +121,6 @@
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
 						del(M)
-
-		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Checks each tick to see if we've stopped.
-			var/mob/living/carbon/Xenomorph/Crusher/H = src
-			H.has_moved = 0
-			if(H.momentum && !H.charge_timer && !throwing)
-				H.stop_momentum(H.charge_dir)
-
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
