@@ -3,17 +3,21 @@
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow0_0"
 	slayer = 0 //Snow layer //Defined in /turf
+	var/obj/item/lightstick/stick //light sticks
 
 //Placing/Building/Removing
 	attackby(var/obj/item/I, var/mob/user)
-		//Light Sticks
-		//NEEDS FIXING
+	/*	//Light Sticks
 		if(istype(I, /obj/item/lightstick))
-			var/obj/item/lightstick/L = I
-			user.visible_message("[user.name] sticks the [L] into the [src].","You stick the [L] into the [src].")
-
-			new /obj/machinery/lightstick(src)
-			del(L)
+			if(stick)	return
+			user.drop_item()
+			stick = I
+			I.loc = src
+			user.visible_message("[user.name] sticks the [stick] into the [src].","You stick the [stick] into the [src].")
+			playsound(user, 'shotgun_shell_insert.ogg', 40, 1)
+			I.icon_state = "lightstick1"
+			I.anchored = 1
+*/
 
 		//Snow Shovel
 		if(istype(I, /obj/item/snow_shovel))
@@ -199,28 +203,12 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lightstick0"
 
-/obj/machinery/lightstick //Active
-	name = "blue lightstick"
-	desc = "You can stick them in the ground"
-	icon = 'icons/obj/lighting.dmi'
+/*
 	icon_state = "lightstick1"
 
 	luminosity = 2
 	l_color = "#47A3FF"
-
-//Remove lightstick
-/*
-	attack_hand(mob/user as mob)
-
-	if(!user)
-		return
-
-	var/obj/item/lightstick/L
-	user.put_in_hands(L)
-	src.L = null
-	user.visible_message("\red [user.name] removes the [scr] from the ground!", "\blue You pull out the [src] from the ground.")
 */
-
 /obj/item/snow_shovel
 	name = "snow shovel"
 	desc = "Not again..."
