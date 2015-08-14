@@ -397,8 +397,6 @@
 	item_state = "security"//Could likely use a better one.
 	w_class = 4
 	storage_slots = 8
-	max_w_class = 3
-	max_combined_w_class = 24
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
 		"/obj/item/weapon/gun/energy/taser",
