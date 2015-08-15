@@ -6,7 +6,7 @@
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
 	melee_damage_lower = 10
-	melee_damage_upper = 18
+	melee_damage_upper = 12
 	tacklemin = 3
 	tacklemax = 6
 	tackle_chance = 90
@@ -17,7 +17,7 @@
 	maxplasma = 200
 	jellyMax = 0
 	caste_desc = "A huge tanky xenomorph."
-	speed = -0.5
+	speed = 0.5
 	evolves_to = list()
 	armor_deflection = 68
 	var/charge_dir = 0
@@ -94,6 +94,7 @@
 		return
 
 	if(!is_charging)
+		stop_momentum(charge_dir)
 		return
 
 	if(pulling && momentum > 9)
@@ -182,7 +183,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	spawn(0)
 		var/start_loc
 
-		if(src.stat || src.momentum < 3 || !AM || !istype(AM) || AM == src)
+		if(src.stat || src.momentum < 3 || !AM || !istype(AM) || AM == src || !yes)
 			return
 
 		if(now_pushing) //Just a plain ol turf, let's return.
@@ -207,6 +208,39 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 					now_pushing = 0
 					return ..()
 				else
+					if (istype(AM,/obj/structure/window) && momentum > 5)
+						AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
+						momentum -= 5
+						now_pushing = 0
+						return //Might be destroyed.
+
+					if (istype(AM,/obj/structure/grille))
+						AM:health -= (momentum * 3) //Usually knocks it down.
+						AM:healthcheck()
+						now_pushing = 0
+						return //Might be destroyed.
+
+					if(istype(AM,/obj/structure/barricade/wooden))
+						if(momentum > 8)
+							var/obj/structure/S = AM
+							visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
+							S.destroy()
+							momentum -= 3
+							now_pushing = 0
+							return //Might be destroyed, so we stop here.
+						else
+							now_pushing = 0
+							return
+					if(istype(AM,/obj/structure/m_barricade))
+						var/obj/structure/m_barricade/M = AM
+						M.health -= (momentum * 4)
+						visible_message("\red The [src] smashes straight into [M]!")
+						M.update_health()
+						src << "\red Bonk!"
+						stop_momentum()
+						now_pushing = 0
+						return
+
 					if(istype(AM,/obj/mecha))
 						var/obj/mecha/mech = AM
 						mech.take_damage(momentum * 8)
@@ -245,30 +279,6 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				now_pushing = 0
 				return
 
-		if (istype(AM,/obj/structure/window) && momentum > 5)
-			AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
-			momentum -= 5
-			now_pushing = 0
-			return //Might be destroyed.
-
-		if (istype(AM,/obj/structure/grille))
-			AM:health -= (momentum * 3) //Usually knocks it down.
-			AM:healthcheck()
-			now_pushing = 0
-			return //Might be destroyed.
-
-		if(istype(AM,/obj/structure/barricade/wooden))
-			if(momentum > 2)
-				var/obj/structure/S = AM
-				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
-				S.destroy()
-				momentum -= 3
-				now_pushing = 0
-				return //Might be destroyed, so we stop here.
-			else
-				now_pushing = 0
-				return ..()
-
 		if(istype(AM,/mob/living/carbon/Xenomorph))
 			if(momentum > 6)
 				playsound(loc, "punch", 25, 1, -1)
@@ -303,16 +313,17 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				src << "\red Bonk!"
 				stop_momentum(charge_dir)
 				src.Weaken(3)
-			if(momentum > 20)
-				AM:ex_act(3) //Should dismantle, or at least heavily damage it.
-			if(momentum > 25) //WHAM!
-				explosion(src,-1,-1,round(momentum / 10),-1)  //We're immune to explosions. Fuck that wall up.
-			if(!isnull(AM) && momentum > 14) //Still there?
-				now_pushing = 0
-				return ..()
+			if(momentum > 10)
+				AM:ex_act(round(momentum / 10)) //Should dismantle, or at least heavily damage it.
+
+			if(!isnull(AM) && momentum > 18)
+				stop_momentum(charge_dir)
+			now_pushing = 0
+			return
 
 		if(AM) //If the object still exists.
 			if(AM.loc == start_loc) //And hasn't moved
+				now_pushing = 0
 				return ..() //Bump it normally.
 		//Otherwise, just get out
 		now_pushing = 0

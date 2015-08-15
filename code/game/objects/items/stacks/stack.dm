@@ -39,7 +39,7 @@
 	if(istype(get_area(usr.loc),/area/sulaco/hangar))
 		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel. ((If you are building defenses, you may be in violation of 'Building Defenses on the Sulaco' in our <a href='http://colonial-marines.com/viewtopic.php?f=57&t=1363'>Marine-Specific Rules</a>))</span>"
 		return
-		
+
 	list_recipes(user)
 
 /obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)

@@ -126,6 +126,9 @@
 			M.deconstruct(src)
 			del(src)
 	else
+		if(isXeno(user))
+			src.attack_alien(user)
+			return
 		src.attack_hand(user)
 	return
 

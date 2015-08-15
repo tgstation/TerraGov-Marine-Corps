@@ -772,21 +772,20 @@
 		return
 
 	has_screeched = 1
-	spawn(200) //20 seconds
+	spawn(500) //50 seconds
 		has_screeched = 0
 		src << "You feel ready to shake the earth again."
 
 	playsound(loc, 'sound/effects/bang.ogg', 50, 0, 100, -1)
 	visible_message("\red <B> \The [src] smashes the ground!</B>","\red <b>You smash the ground!</b>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
-	explosion(src.loc,-1,-1,1,0)
 	for (var/mob/living/carbon/human/M in oview())
 		var/dist = get_dist(src,M)
 		if(M && M.client && dist < 7)
 			shake_camera(M, 5, 1)
-		if (dist < 5 && !M.lying && M.stat)
+		if (dist < 3 && !M.lying && !M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
-			M.Weaken(rand(2,3))
+			M.Weaken(rand(1,3))
 	return
 
 /mob/living/carbon/Xenomorph/proc/ready_charge()

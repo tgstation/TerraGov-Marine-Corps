@@ -172,12 +172,19 @@
 /obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if(breakable)
-		src.health -= M.melee_damage_lower
+		src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
 		if(src.health <= 0)
 			visible_message("<span class='danger'>[M] slices [src] apart!</span>")
 			destroy()
 		else
 			visible_message("<span class='danger'>[M] slashes at [src]!</span>")
+
+//Breaking barricades
+/obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	visible_message("<span class='danger'>[M] slashes at the [src]!</span>")
+	update_health()
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
@@ -319,8 +326,8 @@
 	M.visible_message("<span class='warning'>[M] slashes at [src.name]!</span>", \
 		 "<span class='warning'>You slash at the barricade!</span>")
 	if(src.health <= 0)
-		visible_message("\red The [src.name]falls apart!")
-		del(src)
+		visible_message("\red The [src.name] falls apart!")
+		destroy()
 
 //Prying open doors
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M as mob)

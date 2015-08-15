@@ -8,7 +8,8 @@
 #define X_R_HAND_LAYER			4
 #define TARGETED_LAYER			5
 #define X_LEGCUFF_LAYER			6
-#define X_TOTAL_LAYERS			6
+#define X_FIRE_LAYER			7
+#define X_TOTAL_LAYERS			7
 /////////////////////////////////
 
 /mob/living/carbon/Xenomorph
@@ -183,6 +184,14 @@
 		overlays_standing[X_SUIT_LAYER] = null
 		update_icons()
 
+/mob/living/carbon/Xenomorph/update_fire(var/update_icons=1)
+	if(on_fire)
+		overlays_standing[X_FIRE_LAYER] = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+	else
+		overlays_standing[X_FIRE_LAYER] = null
+
+	if(update_icons) update_icons()
+
 
 //Xeno Overlays Indexes//////////
 #undef X_HEAD_LAYER
@@ -191,4 +200,5 @@
 #undef X_R_HAND_LAYER
 #undef TARGETED_LAYER
 #undef X_LEGCUFF_LAYER
+#undef X_FIRE_LAYER
 #undef X_TOTAL_LAYERS
