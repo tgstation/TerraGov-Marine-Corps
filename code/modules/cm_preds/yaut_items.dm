@@ -35,7 +35,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "clan mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 60, bullet = 80, laser = 80,energy = 60, bomb = 65, bio = 100, rad = 100)
+	armor = list(melee = 60, bullet = 70, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 10
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
@@ -109,7 +109,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 58, bullet = 90, laser = 20, energy = 20, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 58, bullet = 76, laser = 30, energy = 20, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
@@ -216,7 +216,7 @@
 	permeability_coefficient = 0.05
 	canremove = 0
 	body_parts_covered = HANDS|ARMS
-	armor = list(melee = 70, bullet = 80, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
+	armor = list(melee = 80, bullet = 80, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
