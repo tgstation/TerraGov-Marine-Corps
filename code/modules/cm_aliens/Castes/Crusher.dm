@@ -233,10 +233,10 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 							return
 					if(istype(AM,/obj/structure/m_barricade))
 						var/obj/structure/m_barricade/M = AM
-						M.health -= (momentum * 5)
+						M.health -= (momentum * 4)
+						visible_message("\red The [src] smashes straight into [M]!")
 						M.update_health()
 						src << "\red Bonk!"
-						visible_message("\red The [src] smashes straight into [M]!")
 						stop_momentum()
 						now_pushing = 0
 						return
