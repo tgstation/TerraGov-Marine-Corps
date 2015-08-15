@@ -29,8 +29,9 @@
 	//Status updates, death etc.
 	handle_regular_status_updates()
 	update_canmove()
-	update_icons()
+	update_fire(0)
 	handle_statuses() //Deals with stunned, etc
+	update_icons()
 	if(loc)
 		handle_environment(loc.return_air())
 	if(client)
@@ -39,6 +40,14 @@
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
 
 	if(status_flags & GODMODE)	return 0
+
+	if(on_fire)
+		if(!fire_stacks)
+			on_fire = 0
+		else
+			if(stat != DEAD)
+				adjustFireLoss(fire_stacks + 5)
+			fire_stacks--
 
 	if(stat == DEAD)
 		blinded = 1
@@ -103,6 +112,8 @@
 			blinded = 0
 			if(halloss > 0)
 				adjustHalLoss(-1)
+
+
 
 		update_icons()
 

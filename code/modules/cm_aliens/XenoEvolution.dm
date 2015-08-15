@@ -101,6 +101,10 @@
 
 	visible_message("\green <b> \The [src] begins to twist and contort..</b>","\green <b>You begin to twist and contort..</b>")
 	if(do_after(src,25))
+		if(caste == "Queen") // Do another check after the tick.
+			if(is_queen_alive())
+				src << "\red There is already a queen."
+				return
 		var/mob/living/carbon/Xenomorph/new_xeno = new M(get_turf(src))
 		remove_inherent_verbs()
 

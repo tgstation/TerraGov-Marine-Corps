@@ -115,4 +115,8 @@
 		if(prob(armor - dmg))
 			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
 			return -1
+	if(!fire_immune && istype(Proj,/obj/item/projectile/bullet/m42c))
+		adjust_fire_stacks(rand(5,10))
+		IgniteMob()
+
 	..(Proj) //Do normal stuff
