@@ -1,7 +1,7 @@
 
 /obj/structure/m_barricade
 	name = "metal barricade"
-	desc = "A solid barricade made of reinforced metal."
+	desc = "A solid barricade made of reinforced metal. Use a welding tool and/or plasteel to repair it if damaged."
 	icon = 'icons/Marine/structures.dmi'
 	icon_state = "barricade"
 	density = 1
@@ -11,6 +11,7 @@
 	climbable = 1
 	flags = ON_BORDER
 	var/health = 400 //Pretty tough. Changes sprites at 300 and 150.
+	unacidable = 1
 
 
 /obj/structure/m_barricade/update_icon()
@@ -66,7 +67,7 @@
 	return 1
 
 /obj/structure/m_barricade/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile/bullet))
+	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile/bullet) && !istype(O,/obj/item/missile) && !istype(O,/obj/item/weapon/grenade))
 		return 0
 	else
 		return 1
