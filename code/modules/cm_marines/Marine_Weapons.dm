@@ -501,7 +501,7 @@
 		return ..(user)
 
 	dropped(var/mob/living/carbon/human/H)
-		if(H.wear_suit && !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
 			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
 			if(!H.s_store)
 				H.s_store = I
@@ -616,7 +616,7 @@
 				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 250."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 26
+	damage = 28
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."
@@ -823,10 +823,11 @@
 	icon_state = "missile"
 	var/primed = null
 	throwforce = 10
+	pass_flags = PASSTABLE
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 0, 4, 1)
+			explosion(hit_atom, 0, 0, 3, 1)
 			del(src)
 		else
 			..()
