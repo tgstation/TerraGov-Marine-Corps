@@ -6,7 +6,7 @@
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
 	melee_damage_lower = 10
-	melee_damage_upper = 18
+	melee_damage_upper = 12
 	tacklemin = 3
 	tacklemax = 6
 	tackle_chance = 90
@@ -17,7 +17,7 @@
 	maxplasma = 200
 	jellyMax = 0
 	caste_desc = "A huge tanky xenomorph."
-	speed = -0.5
+	speed = 0.5
 	evolves_to = list()
 	armor_deflection = 68
 	var/charge_dir = 0
@@ -313,13 +313,13 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				src << "\red Bonk!"
 				stop_momentum(charge_dir)
 				src.Weaken(3)
-			if(momentum > 20)
-				AM:ex_act(3) //Should dismantle, or at least heavily damage it.
-			if(momentum > 25) //WHAM!
-				explosion(src,-1,-1,round(momentum / 10),-1)  //We're immune to explosions. Fuck that wall up.
-			if(!isnull(AM) && momentum > 14) //Still there?
-				now_pushing = 0
-				return ..()
+			if(momentum > 10)
+				AM:ex_act(round(momentum / 10)) //Should dismantle, or at least heavily damage it.
+
+			if(!isnull(AM) && momentum > 18)
+				stop_momentum(charge_dir)
+			now_pushing = 0
+			return
 
 		if(AM) //If the object still exists.
 			if(AM.loc == start_loc) //And hasn't moved
