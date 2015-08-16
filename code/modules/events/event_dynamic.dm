@@ -201,12 +201,12 @@ var/list/event_last_fired = list()
 		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "engineering robot module")
 			active_with_role["Engineer"]++
 
-		if(M.mind.assigned_role in list("Sulaco Chief Engineer", "Maintenance Tech"))
+		if(M.mind.assigned_role in list("Chief Engineer", "Maintenance Tech"))
 			active_with_role["Engineer"]++
 
 		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "medical robot module")
 			active_with_role["Medical"]++
-		if(M.mind.assigned_role in list("Sulaco Chief Medical Officer", "Sulaco Doctor", "Sulaco Researcher", "Sulaco Chemist"))
+		if(M.mind.assigned_role in list("Chief Medical Officer", "Doctor", "Researcher", "Sulaco Chemist"))
 			active_with_role["Medical"]++
 
 		if(M.mind.assigned_role == "AI")

@@ -1,6 +1,6 @@
-//Sulaco Chief Medical Officer
+//Chief Medical Officer
 /datum/job/sul_cmo
-	title = "Sulaco Chief Medical Officer"
+	title = "Chief Medical Officer"
 	comm_title = "CMO"
 	flag = SULCMO
 	department_flag = MEDSCI
@@ -28,16 +28,16 @@
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/cmo(H), slot_l_ear)
 		return 1
 
-//Sulaco Doctor
+//Doctor
 /datum/job/sul_doc
-	title = "Sulaco Doctor"
+	title = "Doctor"
 	comm_title = "Doc"
 	flag = SULDOC
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Commander, the Sulaco Chief Medical Officer"
+	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
 	access = list(access_sulaco_medbay, access_sulaco_chemistry)
 	minimal_access = list(access_sulaco_medbay, access_sulaco_chemistry)
@@ -58,16 +58,16 @@
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), slot_l_ear)
 		return 1
 
-//Sulaco Doctor
+//Doctor
 /datum/job/sul_res
-	title = "Sulaco Researcher"
+	title = "Researcher"
 	comm_title = "Rsr"
 	flag = SULRES
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Commander, the Sulaco Chief Medical Officer"
+	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
 	access = list(access_sulaco_medbay, access_sulaco_research, access_sulaco_chemistry)
 	minimal_access = list(access_sulaco_medbay, access_sulaco_research, access_sulaco_chemistry)
@@ -97,7 +97,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Commander, the Sulaco Chief Medical Officer"
+	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
 	access = list(access_sulaco_medbay, access_sulaco_chemistry)
 	minimal_access = list(access_sulaco_medbay, access_sulaco_chemistry)

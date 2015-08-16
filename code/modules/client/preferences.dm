@@ -280,7 +280,7 @@ datum/preferences
 
 	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br>"
 	dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><br>"
-	dat += "<b>Spawn Point</b>: <a href='byond://?src=\ref[user];preference=spawnpoint;task=input'>[spawnpoint]</a>"
+	// dat += "<b>Spawn Point</b>: <a href='byond://?src=\ref[user];preference=spawnpoint;task=input'>[spawnpoint]</a>"
 
 	dat += "<br>"
 	dat += "<b>UI Style:</b> <a href='?_src_=prefs;preference=ui'><b>[UI_style]</b></a><br>"
@@ -325,13 +325,13 @@ datum/preferences
 	dat += "(<a href='?_src_=prefs;preference=all;task=random'>&reg;</A>)"
 	dat += "<br>"
 	dat += "Species: <a href='byond://?src=\ref[user];preference=species;task=input'>[species]</a><br>"
-	dat += "Secondary Language:<br><a href='byond://?src=\ref[user];preference=language;task=input'>[language]</a><br>"
+	// dat += "Secondary Language:<br><a href='byond://?src=\ref[user];preference=language;task=input'>[language]</a><br>"
 	dat += "Blood Type: <a href='byond://?src=\ref[user];preference=b_type;task=input'>[b_type]</a><br>"
 	dat += "Skin Tone: <a href='?_src_=prefs;preference=s_tone;task=input'>[-s_tone + 35]/220<br></a>"
 	//dat += "Skin pattern: <a href='byond://?src=\ref[user];preference=skin_style;task=input'>Adjust</a><br>"
 	dat += "Needs Glasses: <a href='?_src_=prefs;preference=disabilities'><b>[disabilities == 0 ? "No" : "Yes"]</b></a><br>"
 	dat += "Limbs: <a href='byond://?src=\ref[user];preference=limbs;task=input'>Adjust</a><br>"
-	dat += "Internal Organs: <a href='byond://?src=\ref[user];preference=organs;task=input'>Adjust</a><br>"
+	// dat += "Internal Organs: <a href='byond://?src=\ref[user];preference=organs;task=input'>Adjust</a><br>"
 
 	//display limbs below
 	var/ind = 0
@@ -416,7 +416,7 @@ datum/preferences
 
 	dat += "<b><a href=\"byond://?src=\ref[user];preference=antagoptions;active=0\">Set Antag Options</b></a><br>"
 
-	dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)][used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
+	// dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)][used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
 
 	dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>Set Flavor Text</b></a><br>"
 
@@ -439,8 +439,8 @@ datum/preferences
 
 	dat += "<br><br><b>Background Information</b><br>"
 	dat += "<b>Home system</b>: <a href='byond://?src=\ref[user];preference=home_system;task=input'>[home_system]</a><br/>"
-	dat += "<b>Citizenship</b>: <a href='byond://?src=\ref[user];preference=citizenship;task=input'>[citizenship]</a><br/>"
-	dat += "<b>Faction</b>: <a href='byond://?src=\ref[user];preference=faction;task=input'>[faction]</a><br/>"
+	// dat += "<b>Citizenship</b>: <a href='byond://?src=\ref[user];preference=citizenship;task=input'>[citizenship]</a><br/>"
+	// dat += "<b>Faction</b>: <a href='byond://?src=\ref[user];preference=faction;task=input'>[faction]</a><br/>"
 	dat += "<b>Religion</b>: <a href='byond://?src=\ref[user];preference=religion;task=input'>[religion]</a><br/>"
 
 	dat += "<br><br>"
@@ -469,9 +469,9 @@ datum/preferences
 	dat += "<a href='?_src_=prefs;preference=reset_all'>Reset Setup</a>"
 	dat += "</center></body></html>"
 
-	user << browse(dat, "window=preferences;size=560x736")
+	user << browse(dat, "window=preferences;size=620x780")
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 16, list/splitJobs = list("Chief Medical Officer"), width = 550, height = 660)
+/datum/preferences/proc/SetChoices(mob/user, limit = 18, list/splitJobs = list(), width = 450, height = 500)
 	if(!job_master)
 		return
 

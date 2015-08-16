@@ -90,14 +90,14 @@ var/list/command_positions = list(
 	"Executive Officer",
 	"Bridge Officer",
 	"Military Police",
-	"Sulaco Chief Medical Officer",
-	"Sulaco Chief Engineer",
 	"Corporate Liason",
-	"Requisitions Officer"
+	"Requisitions Officer",
+	"Chief Engineer",
+	"Chief Medical Officer"
 )
 
 var/list/engineering_positions = list(
-	"Sulaco Chief Engineer",
+	"Chief Engineer",
 	"Maintenance Tech"
 )
 
@@ -107,9 +107,9 @@ var/list/cargo_positions = list(
 )
 
 var/list/medical_positions = list(
-	"Sulaco Chief Medical Officer",
-	"Sulaco Doctor",
-	"Sulaco Researcher"
+	"Chief Medical Officer",
+	"Doctor",
+	"Researcher"
 )
 
 var/list/marine_squad_positions = list(
