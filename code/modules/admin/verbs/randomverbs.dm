@@ -958,3 +958,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "Random events disabled"
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/editzoneair(var/turf/simulated/T in world)
+	set name = "Edit Zone Air"
+	set category = "Admin"
+	if(!src.holder)
+		src << "Only administrators may use this command."
+		return
+
+	if(T)
+		if(T.zone && T.zone.air)
+			debug_variables(T.zone.air)
