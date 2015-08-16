@@ -1,4 +1,4 @@
-//Sulaco Chief Engineer
+//Chief Engineer
 /datum/job/sul_ce
 	title = "Chief Engineer"
 	comm_title = "CE"
@@ -38,7 +38,7 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Sulaco Chief Engineer, the Commander"
+	supervisors = "the Chief Engineer, the Commander"
 	selection_color = "#fff5cc"
 	access = list(access_sulaco_engineering)
 	minimal_access = list(access_sulaco_engineering)
@@ -60,38 +60,6 @@
 			H << "Don't fuck up!"
 		return 1
 
-//Cargo Tech. Don't ask why this is in engineering
-/datum/job/sul_cargo
-	title = "Cargo Technician"
-	comm_title = "CT"
-	flag = SULCARG
-	department_flag = ENGI
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the Requisitions Officer, the Commander"
-	selection_color = "#afa5cc"
-	access = list(access_sulaco_cargo)
-	minimal_access = list(access_sulaco_cargo)
-	minimal_player_age = 0
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/grey(H), slot_head)
-
-		spawn(10)
-			H << "You are a Sulaco cargo technician! AKA the delivery officer."
-			H << "Your job is to help out the Requisitions Officer in dispensing goods and materials."
-			H << "You should be respectful to your RO at all times, as they outrank you."
-			H << "If your RO goes braindead you should take over."
-			H << "You are also permitted to head to the planet to make deliveries if your RO approves."
-			H << "Pay attention to the supply pads west of Requisition! Overwatch might want crates put there."
-		return 1
-
 //Requisitions Officer
 /datum/job/req_officer
 	title = "Requisitions Officer"
@@ -102,7 +70,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Commander, the Executive Officer"
-	selection_color = "#aa85ff"
+	selection_color = "#9990B2"
 	access = list(access_sulaco_cargo)
 	minimal_access = list(access_sulaco_cargo)
 	minimal_player_age = 7
@@ -125,4 +93,36 @@
 			H << "Commanders and Executive Officers have full access to the vendor."
 			H << "You don't have to stay in your department all the time, but you should go if someone needs something."
 			H << "You also have supply pads west of Requisitions. Overwatch might want crates put there for delivery."
+		return 1
+
+//Cargo Tech. Don't ask why this is in engineering
+/datum/job/sul_cargo
+	title = "Cargo Technician"
+	comm_title = "CT"
+	flag = SULCARG
+	department_flag = ENGI
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Requisitions Officer, the Commander"
+	selection_color = "#BAAFD9"
+	access = list(access_sulaco_cargo)
+	minimal_access = list(access_sulaco_cargo)
+	minimal_player_age = 0
+	equip(var/mob/living/carbon/human/H)
+		if(!H)	return 0
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/grey(H), slot_head)
+
+		spawn(10)
+			H << "You are a Sulaco cargo technician! AKA the delivery officer."
+			H << "Your job is to help out the Requisitions Officer in dispensing goods and materials."
+			H << "You should be respectful to your RO at all times, as they outrank you."
+			H << "If your RO goes braindead you should take over."
+			H << "You are also permitted to head to the planet to make deliveries if your RO approves."
+			H << "Pay attention to the supply pads west of Requisition! Overwatch might want crates put there."
 		return 1

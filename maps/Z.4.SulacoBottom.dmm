@@ -172,7 +172,7 @@
 "dp" = (/obj/machinery/door/airlock/research{name = "Science Lab"; req_access_txt = "14"},/obj/machinery/door/firedoor,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dq" = (/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/turf/simulated/wall/sulaco,/area/sulaco/research)
 "dr" = (/turf/simulated/floor{icon_state = "white"},/turf/simulated/shuttle/wall{dir = 1; icon_state = "diagonalWall3"},/area/sulaco/research)
-"ds" = (/obj/structure/stool/bed/chair/office/light,/obj/effect/landmark/start{name = "Sulaco Researcher"},/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
+"ds" = (/obj/structure/stool/bed/chair/office/light,/obj/effect/landmark/start{name = "Researcher"},/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dt" = (/obj/machinery/computer/cloning,/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "du" = (/obj/structure/closet/wardrobe/pjs,/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dv" = (/obj/machinery/light/small{dir = 8},/obj/structure/morgue,/turf/simulated/floor{icon_state = "cult"; dir = 2},/area/sulaco/morgue)
