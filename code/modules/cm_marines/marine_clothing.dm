@@ -515,3 +515,67 @@
 	item_state = "RO_jumpsuit"
 	item_color = "RO_jumpsuit"
 	has_sensor = 1
+
+
+/obj/item/clothing/head/cmbandana
+	name = "USCM Bandana (Green)"
+	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "band"
+	item_state = "band"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "band"
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+
+/obj/item/clothing/head/cmbandana/tan
+	name = "USCM Bandana (Tan)"
+	icon_state = "band2"
+	item_state = "band2"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "band2"
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+
+/obj/item/clothing/head/cmberet
+	name = "USCM Beret"
+	desc = "A hat typically worn by the field-officers of the USCM. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "beret"
+	item_state = "beret"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "beret"
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+
+/obj/item/clothing/head/headband
+	name = "USCM Headband"
+	desc = "A rag typically worn by the less-orthodox weapons operators in the USCM. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "headband"
+	item_state = "headband"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "headband"
+	flags = FPRINT|TABLEPASS
+
+/obj/item/clothing/head/headband/red
+	icon_state = "headbandred"
+	item_state = "headbandred"
+	item_color = "headbandred"
+
+/obj/item/clothing/head/headset
+	name = "USCM Headset"
+	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "headset"
+	item_state = "headset"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "headset"
+	flags = FPRINT|TABLEPASS
+
+/obj/item/clothing/head/cmcap
+	name = "USCM Cap"
+	desc = "A casual cap occansionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "cap"
+	item_state = "cap"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "cap"
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
