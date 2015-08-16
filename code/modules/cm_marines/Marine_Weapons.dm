@@ -499,18 +499,16 @@
 				user << "\red The [src] is much too heavy to pick up without a matching combat harness."
 				return
 		return ..(user)
-
+/*
 	dropped(var/mob/living/carbon/human/H)
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) && src.loc == H.get_active_hand())
 			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
-			if(!H.s_store)
-				H.s_store = I
-				I.equipped(src, slot_s_store)
-				H.update_inv_s_store()
+			if(isnull(H.s_store))
+				H.equip_to_slot_if_possible(src,slot_s_store)
 				H << "\red The [src] snaps into place on [I]."
 				return
 		..()
-
+*/
 
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
@@ -533,7 +531,8 @@
 					/obj/item/ammo_magazine,
 					/obj/item/ammo_casing,
 					/obj/item/device/mine,
-					/obj/item/weapon/combat_knife)
+					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/gun/projectile/M56_Smartgun)
 
 /obj/item/smartgun_powerpack
 	name = "M56 powerpack"
