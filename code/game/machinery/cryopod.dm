@@ -240,6 +240,18 @@ var/global/list/frozen_items = list()
 								O.owner.objectives -= O
 								del(O)
 
+			if(occupant.mind && occupant.mind.assigned_squad)
+				var/datum/squad/S = get_squad_by_name(occupant.mind.assigned_squad)
+				if(!isnull(S))
+					if(occupant.mind.assigned_role == "Squad Engineer") S.num_engineers--
+					if(occupant.mind.assigned_role == "Squad Medic") S.num_medics--
+					if(occupant.mind.assigned_role == "Squad Specialist") S.num_specialists--
+					if(occupant.mind.assigned_role == "Squad Leader")
+						S.squad_leader = null
+						S.num_leaders--
+					S.count--
+					occupant.mind.assigned_squad = null
+
 			//Handle job slot/tater cleanup.
 			var/job = occupant.mind.assigned_role
 

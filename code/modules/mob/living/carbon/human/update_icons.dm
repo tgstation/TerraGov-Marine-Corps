@@ -767,7 +767,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 		if(istype(head,/obj/item/clothing/head/helmet/marine))
 			var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
 			var/leader = is_leader_from_card(src)
-			if(leader)
+			if(leader && squad > 0 && squad < 5)
 				standing.overlays += helmetmarkings_sql[squad]
 			else if(squad > 0 && squad < 5)
 				standing.overlays += helmetmarkings[squad]
@@ -825,7 +825,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
 			var/leader = is_leader_from_card(src)
-			if(leader)
+			if(leader && squad > 0 && squad < 5)
 				standing.overlays += armormarkings_sql[squad]
 			else if(squad > 0 && squad < 5)
 				standing.overlays += armormarkings[squad]
