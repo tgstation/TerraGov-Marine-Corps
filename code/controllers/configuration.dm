@@ -62,6 +62,8 @@
 	var/usewhitelist = 0
 	var/mods_are_mentors = 0
 	var/kick_inactive = 0				//force disconnect for inactive players
+	var/show_mods = 0
+	var/show_mentors = 0
 	var/load_jobs_from_txt = 0
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
@@ -391,6 +393,12 @@
 
 				if("kick_inactive")
 					config.kick_inactive = 1
+					
+				if("show_mods")
+					config.show_mods = 1
+
+				if("show_mentors")
+					config.show_mentors = 1
 
 				if("load_jobs_from_txt")
 					load_jobs_from_txt = 1
