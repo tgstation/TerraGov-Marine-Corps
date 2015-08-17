@@ -520,8 +520,8 @@
 			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
 			if(isnull(H.s_store))
 				H.equip_to_slot_if_possible(src,slot_s_store)
-				H << "\red The [src] snaps into place on [I]."
-				return
+				spawn(0)
+					if(H.wear_suit == src) H << "\red The [src] snaps into place on [I]."
 		..()
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
