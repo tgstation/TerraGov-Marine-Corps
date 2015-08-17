@@ -519,9 +519,11 @@
 		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) && H.get_active_hand() == src)
 			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
 			if(isnull(H.s_store))
-				H.equip_to_slot_if_possible(src,slot_s_store)
+				if(wielded)	unwield()
 				spawn(0)
+					H.equip_to_slot_if_possible(src,slot_s_store)
 					if(H.wear_suit == src) H << "\red The [src] snaps into place on [I]."
+					H.update_inv_s_store()
 		..()
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
