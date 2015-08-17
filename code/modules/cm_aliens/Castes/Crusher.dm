@@ -43,15 +43,6 @@
 	..()
 	stat(null, "Momentum: [momentum]")
 
-/mob/living/carbon/Xenomorph/Crusher/handle_regular_status_updates()
-	..()
-	has_moved = 0
-	charge_timer = 0
-	if(src && !stat)
-		has_moved = 0
-		spawn(10)
-			if(!isnull(src) && stat && momentum && !charge_timer && !throwing && !has_moved)
-				stop_momentum(charge_dir)
 
 /mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction)
 	if(momentum < 0) //Somehow. Could happen if you slam into multiple things
@@ -85,7 +76,7 @@
 		return
 
 	if(lastturf)
-		if(loc == lastturf || get_dist(loc,lastturf) > 1 || loc.z != lastturf.z)
+		if(loc == lastturf || loc.z != lastturf.z)
 			stop_momentum(charge_dir)
 			return
 
@@ -97,10 +88,10 @@
 		stop_momentum(charge_dir)
 		return
 
-	if(pulling && momentum > 9)
+	if(pulling && momentum > 12)
 		stop_pulling()
 
-	if(speed > -2.8)
+	if(speed > -2.6)
 		speed -= 0.2 //Speed increases each step taken. At 30 tiles, maximum speed is reached.
 
 	if(momentum < 20)	 //Maximum 30 momentum.
@@ -111,12 +102,6 @@
 
 	if(momentum < 0)
 		momentum = 0
-
-	spawn(15) //After 1 seconds, window closes. This is reset in xeno_procs, movedelay
-		if(!has_moved)
-			charge_timer = 0
-			stop_momentum()
-			return
 
 	if(storedplasma > 5)
 		storedplasma -= round(momentum / 10) //eats up some plasma. max -3
@@ -313,8 +298,8 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				src << "\red Bonk!"
 				stop_momentum(charge_dir)
 				src.Weaken(3)
-			if(momentum > 10)
-				AM:ex_act(round(momentum / 10)) //Should dismantle, or at least heavily damage it.
+			if(momentum > 26)
+				AM:ex_act(2) //Should dismantle, or at least heavily damage it.
 
 			if(!isnull(AM) && momentum > 18)
 				stop_momentum(charge_dir)

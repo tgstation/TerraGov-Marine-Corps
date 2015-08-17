@@ -6,7 +6,7 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
-
+	unacidable = 1
 /*
  * Resin
  */
@@ -20,6 +20,7 @@
 	anchored = 1
 	var/health = 200
 	layer = 2.8
+	unacidable = 1
 	//var/mob/living/affecting = null
 
 /obj/effect/alien/resin/wall
@@ -133,6 +134,7 @@
 	anchored = 1
 	density = 0
 	layer = 2
+	unacidable = 1
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
@@ -252,7 +254,6 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-
 	var/atom/target
 	var/ticks = 0
 	var/target_strength = 0

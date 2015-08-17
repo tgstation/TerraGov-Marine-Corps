@@ -45,7 +45,7 @@
 		if(!fire_stacks)
 			on_fire = 0
 		else
-			if(stat != DEAD)
+			if(stat != DEAD && !fire_immune)
 				adjustFireLoss(fire_stacks + 5)
 			fire_stacks--
 
@@ -113,7 +113,15 @@
 			if(halloss > 0)
 				adjustHalLoss(-1)
 
-
+		if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !stat) //Handle crusher stuff.
+			var/mob/living/carbon/Xenomorph/Crusher/X = src
+			if(X.momentum > 2 && X.charge_dir != dir)
+				charge_timer = 0
+				stop_momentum()
+			if(X.charge_timer)
+				X.charge_timer--
+				if(X.charge_timer == 0 && X.momentum > 2)
+					X.stop_momentum()
 
 		update_icons()
 
