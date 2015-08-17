@@ -43,15 +43,6 @@
 	..()
 	stat(null, "Momentum: [momentum]")
 
-/mob/living/carbon/Xenomorph/Crusher/handle_regular_status_updates()
-	..()
-	has_moved = 0
-	charge_timer = 0
-	if(src && !stat)
-		has_moved = 0
-		spawn(10)
-			if(!isnull(src) && stat && momentum && !charge_timer && !throwing && !has_moved)
-				stop_momentum(charge_dir)
 
 /mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction)
 	if(momentum < 0) //Somehow. Could happen if you slam into multiple things

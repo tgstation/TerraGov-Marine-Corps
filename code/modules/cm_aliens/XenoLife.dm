@@ -113,8 +113,11 @@
 			if(halloss > 0)
 				adjustHalLoss(-1)
 
-		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
+		if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !stat) //Handle crusher stuff.
 			var/mob/living/carbon/Xenomorph/Crusher/X = src
+			if(X.momentum > 2 && X.charge_dir != dir)
+				charge_timer = 0
+				stop_momentum()
 			if(X.charge_timer)
 				X.charge_timer--
 				if(X.charge_timer == 0 && X.momentum > 2)

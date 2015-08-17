@@ -39,7 +39,7 @@
 	else
 		if(m_intent == "run")
 			if(istype(src,/mob/living/carbon/Xenomorph/Crusher))
-				if(src:momentum > 1) //Let it build up a bit so we're not changing icons every single turf
+				if(src:momentum > 2) //Let it build up a bit so we're not changing icons every single turf
 					icon_state = "[caste] Charging"
 				else
 					icon_state = "[caste] Running"
