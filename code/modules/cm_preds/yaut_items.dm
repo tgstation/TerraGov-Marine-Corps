@@ -467,15 +467,14 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
 	name = "alien injector"
 	desc = "A strange, thin alien needle."
-	amount_per_transfer_from_this = 20
-	volume = 20
+	amount_per_transfer_from_this = 15
+	volume = 15
 
 	New()
 		..()
 		spawn(1)
 			reagents.add_reagent("quickclot", 5)
-			reagents.add_reagent("tricordrazine", 10)
-			reagents.add_reagent("peridaxon", 5)
+			reagents.add_reagent("thwei", 10)
 		return
 
 /obj/item/weapon/gun/plasma_caster
