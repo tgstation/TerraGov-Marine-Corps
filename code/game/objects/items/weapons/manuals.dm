@@ -756,6 +756,26 @@
 
 		"}
 
+/obj/item/weapon/book/manual/marine_law
+	name = "Marine Law"
+	desc = "A set of guidelines for keeping law and order on military vessels."
+	icon_state = "bookSpaceLaw"
+	author = "The Company"
+	title = "Marine Law"
+
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<iframe width='100%' height='97%' src="http://www.colonial-marines.com/wiki/Marine_Law" frameborder="0" id="main_frame"></iframe>
+		</body>
+
+		</html>
+
+		"}
+
 
 
 /obj/item/weapon/book/manual/medical_diagnostics_manual
