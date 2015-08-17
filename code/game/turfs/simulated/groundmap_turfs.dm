@@ -209,4 +209,17 @@
 		user << "This wall is much too tough for you to do anything to with [W]."
 		return
 
+/turf/simulated/wall/sulaco/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			src.ChangeTurf(/turf/simulated/floor/plating)
+		if(2.0)
+			if(prob(75))
+				take_damage(rand(100, 250))
+			else
+				dismantle_wall(1,1)
+		if(3.0)
+			take_damage(rand(0, 250))
+
+	return
 

@@ -510,6 +510,7 @@
 
 	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
 	H.hud_used = new /datum/hud(H)
+	H.universal_understand = 1
 	return ..()
 
 // Called when using the shredding behavior.

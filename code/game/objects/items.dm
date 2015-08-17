@@ -223,12 +223,16 @@
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
-	..()
+//	..() ?? This is the base proc, why does it have a parent call
+	if(layer != initial(layer))
+		layer = initial(layer) //Set it back when dropped.
+
 	if(zoom) //binoculars, scope, etc
 		user.client.view = world.view
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
 		zoom = 0
+	return
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)

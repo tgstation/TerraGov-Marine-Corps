@@ -158,11 +158,7 @@
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			if(src.z == 1) //Ground map explosions should NEVER create space tiles.
-				src.ChangeTurf(/turf/simulated/floor/plating)
-			else
-				src.ChangeTurf(/turf/space)
-			return
+			src.ChangeTurf(/turf/simulated/floor/plating)
 		if(2.0)
 			if(prob(75))
 				take_damage(rand(150, 250))

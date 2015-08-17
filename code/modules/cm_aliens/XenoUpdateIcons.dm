@@ -186,7 +186,9 @@
 
 /mob/living/carbon/Xenomorph/update_fire(var/update_icons=1)
 	if(on_fire)
-		overlays_standing[X_FIRE_LAYER] = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+		var/image/fire = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+		fire.pixel_x = src.adjust_pixel_x
+		overlays_standing[X_FIRE_LAYER] = fire
 	else
 		overlays_standing[X_FIRE_LAYER] = null
 

@@ -437,6 +437,21 @@
 	icon_state = "75-0"
 	max_ammo = 0
 
+/obj/item/clothing/glasses/m42_goggles
+	name = "M42 Scout Sight"
+	desc = "A headset and goggles system for the M42 Scout Rifle. Allows thermal imaging of surroundings. Click it to toggle."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "m56_goggles"
+	item_state = "m56_goggles"
+	vision_flags = SEE_TURFS
+	toggleable = 1
+	icon_action_button = "action_meson"
+
+/obj/item/clothing/glasses/m42_goggles/New()
+	..()
+	overlay = global_hud.thermal
+
+
 /obj/item/weapon/storage/box/m42c_system
 	name = "M42C Scoped Rifle system"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
@@ -451,10 +466,10 @@
 		..()
 		spawn(1)
 			new /obj/item/weapon/gun/projectile/M42C(src)
+			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/m42c(src)
 			new /obj/item/ammo_magazine/m42c(src)
 			new /obj/item/ammo_magazine/m42c(src)
-
 
 /obj/item/weapon/gun/projectile/M56_Smartgun
 	name = "M56 smartgun"
@@ -499,17 +514,15 @@
 				user << "\red The [src] is much too heavy to pick up without a matching combat harness."
 				return
 		return ..(user)
-/*
+
 	dropped(var/mob/living/carbon/human/H)
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) && src.loc == H.get_active_hand())
+		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) && H.get_active_hand() == src)
 			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
 			if(isnull(H.s_store))
 				H.equip_to_slot_if_possible(src,slot_s_store)
 				H << "\red The [src] snaps into place on [I]."
 				return
 		..()
-*/
-
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
 	name = "M56 combat harness"
@@ -624,13 +637,14 @@
 
 /obj/item/clothing/glasses/m56_goggles
 	name = "M56 head mounted sight"
-	desc = "A headset and goggles system for the M56 Smartgun. Required in order to fire the weapon. Also has a low-res short range omnithermal imager."
+	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range omnithermal imager, allowing for view of terrain."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
 	darkness_view = 5
 	toggleable = 1
 	icon_action_button = "action_meson"
+
 
 	mob_can_equip(mob/user, slot)
 		if(slot == slot_glasses)

@@ -136,8 +136,7 @@
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src
-		X.has_moved = 1
-		X.charge_timer = 1
+		X.charge_timer = 2
 		if(X.momentum == 0)
 			X.charge_dir = dir
 			X.handle_momentum()
