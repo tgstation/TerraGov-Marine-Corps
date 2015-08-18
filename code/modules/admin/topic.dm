@@ -2710,7 +2710,7 @@
 
 		//send this msg to all admins
 		for(var/client/X in admins)
-			if((R_ADMIN|R_MOD) & X.holder.rights)
+			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
 				X << msg
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
