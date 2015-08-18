@@ -31,6 +31,7 @@
 	var/light_mod = 0 //Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
 	var/tank_size = 0 //Determines amount of flamethrower tiles it can spray, total.
 	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
+	var/delay_mod = 0 //Changes firing delay. Cannot go below 0.
 
 	New()
 		if(ammo_type)
@@ -61,6 +62,9 @@
 		if(silence_mod) G.silenced = 1
 		if(light_mod)
 			G.flash_lum = light_mod
+		if(delay_mod)
+			G.fire_delay += delay_mod
+			if(G.fire_delay < 0) G.fire_delay = 0
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
@@ -80,6 +84,7 @@
 		if(recoil_mod) G.recoil = initial(G.recoil)
 		if(twohanded_mod) G.twohanded = initial(G.twohanded)
 		if(silence_mod) G.silenced = initial(G.silenced)
+		if(delay_mod) G.fire_delay = initial(G.fire_delay)
 		if(light_mod)  //Remember to turn the lights off
 			if(G.flashlight_on && G.flash_lum)
 				if(!ismob(G.loc))
@@ -248,13 +253,70 @@
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. Greatly increases accuracy and reduces recoil, but also increases weapon size."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. Greatly increases accuracy and reduces recoil, but also increases weapon size and slows firing speed."
 	icon_state = "bipod"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/M42C)
 	recoil_mod = -1
 	accuracy_mod = 30
-	ranged_dmg_mod = 110
 	slot = "under"
 	w_class_mod = 2
 	melee_mod = 50 //50% melee damage. Can't swing it around as easily.
+	delay_mod = 1
+
+/obj/item/attachable/extended_barrel
+	name = "extended barrel"
+	desc = "A lengthened barrel allows for greater accuracy, particularly at long range.\nHowever, natural resistance also slows the bullet, leading to reduced damage."
+	slot = "muzzle"
+	icon_state = "ebarrel"
+	accuracy_mod = 20
+	ranged_dmg_mod = 95
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m
+					)
+
+/obj/item/attachable/heavy_barrel
+	name = "barrel charger"
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
+	slot = "muzzle"
+	icon_state = "hbarrel"
+	accuracy_mod = -40
+	ranged_dmg_mod = 140
+	delay_mod = 2
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m,
+					/obj/item/weapon/gun/projectile/M42C,
+					/obj/item/weapon/gun/projectile/M56_Smartgun
+					)
+
+/obj/item/attachable/quickfire
+	name = "quickfire adapter"
+	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. However, greatly reduces accuracy and increases weapon recoil."
+	slot = "rail"
+	icon_state = "autoloader"
+	accuracy_mod = -35
+	delay_mod = -2
+	recoil_mod = 1
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m
+					)
+
+/obj/item/attachable/compensator
+	name = "recoil compensator"
+	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. Increases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
+	slot = "muzzle"
+	icon_state = "comp"
+	accuracy_mod = 15
+	ranged_dmg_mod = 90
+	recoil_mod = -2
+	guns_allowed = list(/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/M42C
+					)

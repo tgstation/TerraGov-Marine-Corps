@@ -372,7 +372,7 @@
 
 /obj/item/weapon/gun/projectile/M42C
 	name = "M42C Scoped Rifle"
-	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 6-round magazine.\n'Peace Through Superior Firepower'"
+	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.\n'Peace Through Superior Firepower'"
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "M42c"
 	item_state = "l6closednomag"  //placeholder
@@ -419,7 +419,7 @@
 
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
-	damage = 85
+	damage = 70
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -446,10 +446,6 @@
 	vision_flags = SEE_TURFS
 	toggleable = 1
 	icon_action_button = "action_meson"
-
-/obj/item/clothing/glasses/m42_goggles/New()
-	..()
-	overlay = global_hud.thermal
 
 
 /obj/item/weapon/storage/box/m42c_system
@@ -627,7 +623,7 @@
 
 		if (get_dist(usr, src) <= 1)
 			if(pcell)
-				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 250."
+				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 200."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
 	damage = 28
