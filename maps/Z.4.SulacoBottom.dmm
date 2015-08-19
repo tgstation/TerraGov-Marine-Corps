@@ -151,7 +151,7 @@
 "cU" = (/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/turf/simulated/floor{icon_state = "red"; dir = 1},/area/sulaco/hangar/one)
 "cV" = (/turf/simulated/wall/sulaco,/area/sulaco/armory)
 "cW" = (/obj/machinery/door/airlock/maintenance_hatch{req_access_txt = "4"},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/firedoor,/obj/machinery/door/poddoor/shutters{dir = 1; id = "bot_armory"; name = "Armory Shutters"},/turf/simulated/floor/plating,/area/sulaco/armory)
-"cX" = (/obj/structure/table,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/obj/item/weapon/storage/box/monkeycubes,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
+"cX" = (/obj/structure/table,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/obj/item/weapon/storage/box/monkeycubes,/obj/item/weapon/hand_labeler,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "cY" = (/turf/simulated/floor{icon_state = "white"},/turf/simulated/shuttle/wall{icon_state = "diagonalWall3"},/area/sulaco/research)
 "cZ" = (/obj/machinery/door/airlock/glass_science{name = "Research Lab"; req_access_txt = "8;14"},/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/obj/machinery/door/firedoor,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "da" = (/obj/machinery/clonepod,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
