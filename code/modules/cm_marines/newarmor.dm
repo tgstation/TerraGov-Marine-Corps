@@ -9,7 +9,7 @@ var/list/armormarkings = list()
 var/list/armormarkings_sql = list()
 var/list/helmetmarkings = list()
 var/list/helmetmarkings_sql = list()
-var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(65,72,200))
+var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(90,150,200))
 
 
 /proc/initialize_marine_armor()
@@ -130,10 +130,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 /obj/item/clothing/head/helmet/specrag
 	icon = 'icons/Marine/marine_armor.dmi'
-	icon_override = 'icons/Marine/marine_armor.dmi'
-	icon_state = "spec"
-	item_state = "spec"
-	item_color = "spec"
+	icon_state = "band"
+	item_state = "band"
 	name = "Specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	anti_hug = 1

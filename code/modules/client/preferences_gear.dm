@@ -35,19 +35,13 @@ var/global/list/gear_datums = list()
 	cost = 3
 	slot = slot_head
 
-/datum/gear/cmberettan
-	display_name = "USCM Beret (tan)"
-	path = /obj/item/clothing/head/cmberet/tan
-	cost = 3
-	slot = slot_head
-
 /datum/gear/cmheadband
 	display_name = "USCM Headband (Green)"
 	path = /obj/item/clothing/head/headband
 	cost = 3
 	slot = slot_head
 
-/datum/gear/cmheadbandred
+/datum/gear/cmheadband
 	display_name = "USCM Headband (Red)"
 	path = /obj/item/clothing/head/headband/red
 	cost = 3

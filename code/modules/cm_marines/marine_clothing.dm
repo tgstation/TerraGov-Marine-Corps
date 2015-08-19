@@ -543,13 +543,7 @@
 	item_state = "beret"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "beret"
-	flags = FPRINT|TABLEPASS
-
-/obj/item/clothing/head/cmberet/tan
-	icon_state = "berettan"
-	item_state = "berettan"
-	item_color = "berettan"
-
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
 
 /obj/item/clothing/head/headband
 	name = "USCM Headband"
@@ -584,4 +578,4 @@
 	item_state = "cap"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "cap"
-	flags = FPRINT|TABLEPASS
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
