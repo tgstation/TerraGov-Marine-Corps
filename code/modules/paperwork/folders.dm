@@ -5,6 +5,7 @@
 	icon_state = "folder"
 	w_class = 2
 	pressure_resistance = 2
+	var/updateicon = 0//If they spawn with premade papers, update icon
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."
@@ -21,6 +22,22 @@
 /obj/item/weapon/folder/white
 	desc = "A white folder."
 	icon_state = "folder_white"
+
+/obj/item/weapon/folder/black
+	desc = "A black folder."
+	icon_state = "folder_black"
+
+/obj/item/weapon/folder/black_random
+	desc = "A black folder. It is decorated with stripes."
+	icon_state = "folder_black_green"
+
+/obj/item/weapon/folder/black_random/New()
+	..()
+	icon_state = "folder_black[pick("_red", "_green", "_blue", "_yellow", "_white")]"
+
+/obj/item/weapon/folder/New()
+	if(updateicon)
+		update_icon()
 
 /obj/item/weapon/folder/update_icon()
 	overlays.Cut()
