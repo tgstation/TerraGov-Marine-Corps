@@ -4,8 +4,10 @@
 ///******MARINE VENDOR******///
 
 /obj/machinery/vending/marine
-	name = "ColMarTech"
-	desc = "A marine equipment vendor"
+	name = "ColMarTech Automated Weapons rack"
+	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons and armor."
+	icon_state = "armory"
+	icon_vend = "armory-vend"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 					/obj/item/weapon/gun/projectile/m4a3 = 10,
