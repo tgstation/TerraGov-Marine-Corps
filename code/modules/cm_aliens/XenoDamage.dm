@@ -13,19 +13,24 @@
 			gib()
 			return
 		if (2.0)
-			b_loss += rand(25,55)
-			f_loss += rand(35,65)
+			b_loss += rand(45,55)
+			f_loss += rand(45,65)
 			Weaken(12)
+			adjustBruteLoss(b_loss)
+			adjustFireLoss(f_loss)
+			updatehealth()
+			return
 		if(3.0)
-			b_loss += rand(25,30)
-			f_loss += rand(25,40)
+			b_loss += rand(20,40)
+			f_loss += rand(25,50)
 			if (prob(40))
 				Paralyse(2)
 			Weaken(rand(4,6))
-
-	adjustBruteLoss(b_loss)
-	adjustFireLoss(f_loss)
-	updatehealth()
+			adjustBruteLoss(b_loss)
+			adjustFireLoss(f_loss)
+			updatehealth()
+			return
+	return
 
 /mob/living/carbon/Xenomorph/blob_act()
 	return
@@ -112,6 +117,8 @@
 
 		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 10 //Smartgun hits weak points easier.
 		if(istype(Proj,/obj/item/projectile/bullet/m42c)) dmg += 100 //Sniper is anti-armor.
+		if(istype(Proj,/obj/item/projectile/bullet/m30)) dmg += 60 //So are turrets!
+
 		if(prob(armor - dmg))
 			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
 			return -1

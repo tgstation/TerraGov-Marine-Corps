@@ -570,6 +570,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
 	var/activated = 0
+	unacidable = 1
 	w_class = 2
 	var/datum/squad/squad = null
 	var/icon_activated = "motion2"

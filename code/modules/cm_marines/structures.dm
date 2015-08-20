@@ -10,7 +10,7 @@
 	throwpass = 1	//You can throw objects over this, despite its density.
 	climbable = 1
 	flags = ON_BORDER
-	var/health = 400 //Pretty tough. Changes sprites at 300 and 150.
+	var/health = 500 //Pretty tough. Changes sprites at 300 and 150.
 	unacidable = 1
 
 
@@ -27,7 +27,7 @@
 		destroy()
 		return
 
-	if(health > 400) health = 400
+	if(health > 500) health = 500
 	update_icon()
 	return
 
@@ -78,10 +78,10 @@
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(health < 150)
-			user << "It's too damaged for that. You'll need reinforced metal."
+			user << "It's too damaged for that. Better just to build a new one."
 			return
 
-		if(health >= 400)
+		if(health >= 500)
 			user << "It's already in perfect condition."
 			return
 
@@ -90,19 +90,11 @@
 			if(do_after(user,50))
 				user.visible_message("\blue [user] repairs the damaged [src].","\blue Your repair the [src]'s damage.")
 				health += 150
-				if(health > 400) health = 400
+				if(health > 500) health = 500
 				update_health()
 				playsound(src.loc, 'sound/items/Welder2.ogg', 75, 1)
 				return
 		return
-	if(istype(W,/obj/item/stack/sheet/plasteel))
-		var/obj/item/stack/sheet/plasteel/P = W
-		if(health > 150)
-			user << "It's not damaged enough for that. Try a welding tool."
-			return
-		if(P.amount < 5)
-			user << "You don't have enough plasteel! You have only <b>[P.amount]</b> and need <B>5</b>."
-			return
 
 	//Otherwise, just hit it.
 	if(force > 20)

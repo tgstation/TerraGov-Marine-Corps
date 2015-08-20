@@ -120,6 +120,7 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
 	products = list(
+						/obj/item/weapon/storage/box/sentry = 1,
 						/obj/item/clothing/under/rank/engineer = 3,
 						/obj/item/weapon/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,

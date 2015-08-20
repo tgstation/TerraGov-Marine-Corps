@@ -64,6 +64,12 @@
 	if(stat || paralysis || stunned || weakened)
 		return
 
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.turret_control)
+			if(H.turret_control.handle_manual_fire(src,A,params))
+				return
+
 	face_atom(A)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
