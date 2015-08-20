@@ -229,8 +229,8 @@
 	var/mob/living/silicon/pai = null //Are we being controlled by a pAI?
 	var/manual_override = 0
 	var/on = 0
-	var/health = 100
-	var/health_max = 100
+	var/health = 200
+	var/health_max = 200
 	stat = 0 //Used just like mob.stat
 	var/datum/effect/effect/system/spark_spread/spark_system // the spark system, used for generating... sparks?
 	var/obj/item/weapon/cell/cell = null
@@ -551,7 +551,8 @@
 			if(src && src.loc)
 				explosion(src.loc,0,0,2,0)
 				new /obj/machinery/marine_turret_frame(src.loc)
-				del(src)
+				if(src)
+					del(src)
 		return
 	if(health > 100)
 		health = 100
@@ -559,7 +560,7 @@
 		if(prob(10))
 			spark_system.start()
 		if(prob(5 + round(damage / 3)))
-			visible_message("\red <B>The [src] is knocked over!<B>")
+			visible_message("\red <B>The [src] is knocked over!</B>")
 			stat = 1
 			on = 0
 	if(stat)
@@ -597,6 +598,8 @@
 	return
 
 /obj/machinery/marine_turret/ex_act(severity)
+	if(health <= 0)
+		return
 	switch(severity)
 		if(1)
 			update_health(rand(90,150))
