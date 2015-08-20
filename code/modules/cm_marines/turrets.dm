@@ -777,6 +777,7 @@
 	if(istype(A,/obj/screen)) return 0
 	if(!manual_override) return 0
 	if(gunner.turret_control != src) return 0
+	if(is_bursting) return
 	if(get_dist(user,src) > 1 || user.stat)
 		user.turret_control = null
 		gunner = null
@@ -789,7 +790,7 @@
 	if(target.z != src.z || target.z == 0 || src.z == 0 || isnull(gunner.loc) || isnull(src.loc))
 		return 0
 
-	if(get_dist(target.loc,src.loc) > 10)
+	if(get_dist(target,src.loc) > 10)
 		return 0
 
 	var/list/modifiers = params2list(params) //Only single clicks.
