@@ -777,7 +777,7 @@
 	if(!istype(target))
 		return 0
 
-	if(target.z != src.z || target.z == 0 || src.z == 0)
+	if(target.z != src.z || target.z == 0 || src.z == 0 || isnull(gunner.loc) || isnull(src.loc))
 		return 0
 
 	if(get_dist(target.loc,src.loc) > 10)
@@ -801,7 +801,7 @@
 		if(dx > 0)	direct = EAST
 		else		direct = WEST
 
-	if(direct == dir)
+	if(direct == dir && target.loc != src.loc && target.loc != gunner.loc)
 		process_shot()
 		return 1
 
