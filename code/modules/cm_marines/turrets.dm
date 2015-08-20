@@ -240,6 +240,7 @@
 	var/last_fired = 0
 	var/is_bursting = 0
 	var/obj/item/turret_laptop/laptop = null
+	use_power = 0
 
 	New()
 		spark_system = new /datum/effect/effect/system/spark_spread
