@@ -268,3 +268,6 @@ REQ_CULT_GHOSTWRITER 6
 ## designed for environments where you have testers but don't want them
 ## able to use the more powerful debug options.
 #DEBUG_PARANOID
+
+## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
+AUTOOOCMUTE

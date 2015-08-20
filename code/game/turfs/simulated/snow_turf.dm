@@ -397,5 +397,7 @@
 
 
 /obj/machinery/computer3/ice_colony
-	spawn_files = list(/datum/file/data/text/researchlog)
-
+	New()
+		..()
+		spawn_files += (/datum/file/data/text/researchlog)
+		update_spawn_files()
