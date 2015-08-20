@@ -77,6 +77,7 @@ var/blobevent = 0
 
 var/diary = null
 var/diaryofmeanpeople = null
+var/round_stats = null
 var/href_logfile = null
 var/station_name = "NMV Sulaco"
 var/game_version = "Custom Baystation12"
