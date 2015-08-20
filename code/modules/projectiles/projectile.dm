@@ -21,7 +21,7 @@
 	mouse_opacity = 0
 	var/bumped = 0		//Prevents it from hitting more than one guy at once
 	var/def_zone = ""	//Aiming at
-	var/mob/firer = null//Who shot it
+	var/atom/firer = null//Who shot it
 	var/silenced = 0	//Attack message
 	var/yo = null
 	var/xo = null

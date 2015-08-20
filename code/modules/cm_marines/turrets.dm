@@ -709,6 +709,8 @@
 	B.xo = U.x - T.x
 	if(gunner)
 		B.firer = gunner
+	else
+		B.firer = src
 
 	B.shot_from = src
 
