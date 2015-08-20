@@ -249,6 +249,8 @@
 		camera = new (src)
 		camera.network = list("SULACO")
 		camera.c_tag = src.name
+		spawn(2)
+			stat = 0
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
@@ -541,7 +543,8 @@
 
 /obj/machinery/marine_turret/proc/update_health(var/damage) //Negative damage restores health.
 	health -= damage
-	if(health <= 0)
+	if(health <= 0 && stat != 2)
+		stat = 2
 		visible_message("\icon[src] <span class='warning'>The [src] starts spitting out sparks and smoke!")
 		playsound(src.loc, 'sound/mecha/critdestrsyndi.ogg', 100, 1)
 		for(var/i = 1 to 6)
@@ -554,6 +557,7 @@
 				if(src)
 					del(src)
 		return
+
 	if(health > 100)
 		health = 100
 	if(!stat && damage > 0)
@@ -631,6 +635,10 @@
 	return
 
 /obj/machinery/marine_turret/process()
+
+	if(health > 0 && stat != 1)
+		stat = 0
+
 	if(!on || stat || !cell)
 		return
 
@@ -707,6 +715,7 @@
 	B.current = T
 	B.yo = U.y - T.y
 	B.xo = U.x - T.x
+	B.def_zone = ran_zone(null) //Random body part.
 	if(gunner)
 		B.firer = gunner
 	else
