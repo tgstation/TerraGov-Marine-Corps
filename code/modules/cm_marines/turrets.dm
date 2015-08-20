@@ -249,6 +249,8 @@
 		camera = new (src)
 		camera.network = list("SULACO")
 		camera.c_tag = src.name
+		spawn(2)
+			stat = 0
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
@@ -541,7 +543,8 @@
 
 /obj/machinery/marine_turret/proc/update_health(var/damage) //Negative damage restores health.
 	health -= damage
-	if(health <= 0)
+	if(health <= 0 && stat != 2)
+		stat = 2
 		visible_message("\icon[src] <span class='warning'>The [src] starts spitting out sparks and smoke!")
 		playsound(src.loc, 'sound/mecha/critdestrsyndi.ogg', 100, 1)
 		for(var/i = 1 to 6)
@@ -554,6 +557,7 @@
 				if(src)
 					del(src)
 		return
+
 	if(health > 100)
 		health = 100
 	if(!stat && damage > 0)
@@ -631,6 +635,10 @@
 	return
 
 /obj/machinery/marine_turret/process()
+
+	if(health > 0 && stat != 1)
+		stat = 0
+
 	if(!on || stat || !cell)
 		return
 
@@ -702,11 +710,26 @@
 			else		dir = WEST
 
 	playsound(src.loc, 'sound/weapons/Gunshot.ogg', 80, 1)
-	var/obj/item/projectile/bullet/m30/B = new(loc)
+	var/turf/ST
+
+	if(dir == NORTH)
+		ST = locate(src.loc.x,src.loc.y+1,src.loc.z)
+	else if(dir == SOUTH)
+		ST = locate(src.loc.x,src.loc.y-1,src.loc.z)
+	else if(dir == EAST)
+		ST = locate(src.loc.x+1,src.loc.y,src.loc.z)
+	else if(dir == WEST)
+		ST = locate(src.loc.x-1,src.loc.y,src.loc.z)
+
+	if(ST.density || isnull(ST)) //Bad!
+		return
+
+	var/obj/item/projectile/bullet/m30/B = new(ST)
 	B.original = target.loc
 	B.current = T
 	B.yo = U.y - T.y
 	B.xo = U.x - T.x
+	B.def_zone = ran_zone(null) //Random body part.
 	if(gunner)
 		B.firer = gunner
 	else
@@ -768,6 +791,7 @@
 	if(istype(A,/obj/screen)) return 0
 	if(!manual_override) return 0
 	if(gunner.turret_control != src) return 0
+	if(is_bursting) return
 	if(get_dist(user,src) > 1 || user.stat)
 		user.turret_control = null
 		gunner = null
@@ -780,7 +804,7 @@
 	if(target.z != src.z || target.z == 0 || src.z == 0 || isnull(gunner.loc) || isnull(src.loc))
 		return 0
 
-	if(get_dist(target.loc,src.loc) > 10)
+	if(get_dist(target,src.loc) > 10)
 		return 0
 
 	var/list/modifiers = params2list(params) //Only single clicks.

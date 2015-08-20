@@ -2,7 +2,7 @@
 
 	if(turret_control)
 		src << "\blue You stop controlling the turret."
-		turret_control.visible_message("\icon[src] \blue[src] buzzes: Manual control halted.")
+		turret_control.visible_message("\icon[src] \blue[turret_control] buzzes: Manual control halted.")
 		turret_control.gunner = null
 		turret_control = null
 

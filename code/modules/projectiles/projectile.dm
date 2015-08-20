@@ -115,9 +115,12 @@
 				if(distance <= 4) //< 5 tiles, +30% miss chance.
 					miss_modifier += 20
 				else if (distance > 5 && distance < 8) //In sight range but not close, only -5%
-					miss_modifier -= 5
-				else if (distance >= 8) //Beyond sight range (scoped), -20%
 					miss_modifier -= 20
+				else if (distance >= 8) //Beyond sight range (scoped), -40%
+					miss_modifier -= 40
+
+			if(istype(src,/obj/item/projectile/bullet/m30)) //Sniper rifles have different miss chance by distance.
+				miss_modifier -= 50
 
 			if(istype(src,/obj/item/projectile/bullet/m37)) //Shotguns count as twice as far away.
 				distance *= 2
