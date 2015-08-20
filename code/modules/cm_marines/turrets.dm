@@ -2,7 +2,7 @@
 //They are built in stages, and only engineers have access to them.
 
 /obj/item/projectile/bullet/m30
-	damage = 22
+	damage = 32
 	icon_state = "bullet2"
 
 /obj/item/sentry_ammo
@@ -274,8 +274,8 @@
 		return
 	src.add_fingerprint(user)
 
-	if(stat || !cell || cell.charge <= 0)
-		user << "Nothing happens. It doesn't look like it's functioning, maybe it needs repairs?"
+	if(!cell || cell.charge <= 0)
+		user << "Nothing happens. It doesn't look like it's functioning - probably needs a new battery."
 		return
 
 	if(!on && !stat)
@@ -438,6 +438,8 @@
 						manual_override = 0
 					else
 						user << "You're not controlling this turret."
+			if(stat == 2)
+				stat = 0 //Weird bug goin on here
 		if("power")
 			on = 0
 			visible_message("\icon[src] powers down and goes silent.")
