@@ -9,6 +9,7 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	var/list/cargo = new
 	var/cargo_capacity = 10
+	operation_req_access = list(access_sulaco_cargo)
 
 /*
 /obj/mecha/working/ripley/New()
