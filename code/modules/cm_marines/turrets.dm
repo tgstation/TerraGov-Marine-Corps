@@ -763,8 +763,7 @@
 	if(istype(A,/obj/screen)) return 0
 	if(!manual_override) return 0
 	if(gunner.turret_control != src) return 0
-
-	if(user.stat)
+	if(get_dist(user,src) > 1 || user.stat)
 		user.turret_control = null
 		gunner = null
 		return 0
