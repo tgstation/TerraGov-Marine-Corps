@@ -238,6 +238,22 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						stop_momentum(charge_dir)
 						now_pushing = 0
 						return
+					if(istype(AM,/obj/machinery/marine_turret))
+						var/obj/machinery/marine_turret/turret = AM
+						visible_message("<b>[src] rams into [AM]!</b>","<b>You ram into [AM]!</b>")
+						playsound(loc, "punch", 50, 1, -1)
+						if(momentum > 25)
+							if(prob(30))
+								turret.stat = 1
+								turret.on = 0
+								turret.update_icon()
+						turret.update_health(momentum)
+						if(!isnull(turret))
+							src << "\red Bonk!"
+							Weaken(3)
+							stop_momentum(charge_dir)
+							now_pushing = 0
+						return
 					if(AM:unacidable)
 						src << "\red Bonk!"
 						Weaken(2)

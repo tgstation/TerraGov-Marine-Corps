@@ -191,6 +191,16 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Incinerator crate"
 	group = "Weapons"
 
+/datum/supply_packs/weapons_sentry
+	name = "UA 571-C sentry crate"
+	contains = list(
+					/obj/item/weapon/storage/box/sentry
+				)
+	cost = 200
+	containertype = /obj/structure/closet/crate
+	containername = "Sentry crate"
+	group = "Weapons"
+
 /datum/supply_packs/ammo_big
 	name = "Large-calibre ammo crate"
 	contains = list(
@@ -202,6 +212,16 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/storage/box/m37
 					)
 	cost = 24
+	containertype = /obj/structure/closet/crate
+	containername = "Ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_sentry
+	name = "UA 571-C Sentry ammunition"
+	contains = list(
+					/obj/item/sentry_ammo
+					)
+	cost = 80
 	containertype = /obj/structure/closet/crate
 	containername = "Ammo crate"
 	group = "Ammo"

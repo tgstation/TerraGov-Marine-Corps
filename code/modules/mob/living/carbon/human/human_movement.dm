@@ -1,5 +1,11 @@
 /mob/living/carbon/human/movement_delay()
 
+	if(turret_control)
+		src << "\blue You stop controlling the turret."
+		turret_control.visible_message("\icon[src] \blue[src] buzzes: Manual control halted.")
+		turret_control.gunner = null
+		turret_control = null
+
 	var/tally = 0
 
 	if(species.slowdown)
