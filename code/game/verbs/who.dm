@@ -42,7 +42,7 @@
 					else
 						entry += " - <font color='black'><b>DEAD</b></font>"
 
-			var/age
+/*			var/age
 			if(isnum(C.player_age))
 				age = C.player_age
 			else
@@ -53,7 +53,7 @@
 			else if(age < 10)
 				age = "<font color='#ff8c00'><b>[age]</b></font>"
 
-			entry += " - [age]"
+			entry += " - [age]"*/
 
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
