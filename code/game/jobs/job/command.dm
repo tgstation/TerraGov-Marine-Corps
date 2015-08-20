@@ -122,8 +122,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "your Corporate Overlords"
 	selection_color = "#ffeedd"
-	access = list(access_centcomm, access_syndicate)
-	minimal_access = list(access_centcomm, access_syndicate)
+	access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_logistics, access_sulaco_research)
+	minimal_access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_logistics, access_sulaco_research)
 	idtype = /obj/item/weapon/card/id/silver
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
