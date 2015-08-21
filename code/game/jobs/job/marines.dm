@@ -18,6 +18,7 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		H.implant_loyalty(src)
 		return 1
 
@@ -38,6 +39,7 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		return 1
 
 /datum/job/squadmedic
@@ -57,6 +59,7 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		return 1
 
 /datum/job/squadspecial
@@ -77,6 +80,7 @@
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		return 1
 
 /datum/job/squadmarine
@@ -96,4 +100,5 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		return 1
