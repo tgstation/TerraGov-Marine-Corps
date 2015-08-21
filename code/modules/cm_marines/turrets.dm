@@ -4,6 +4,9 @@
 /obj/item/projectile/bullet/m30
 	damage = 32
 	icon_state = "bullet2"
+	iff = 1
+	accuracy = 100
+	armor_pierce = 70
 
 /obj/item/sentry_ammo
 	name = "M30 box magazine"
@@ -279,6 +282,10 @@
 		user << "Nothing happens. It doesn't look like it's functioning - probably needs a new battery."
 		return
 
+	if(!anchored)
+		user << "It must be anchored to the ground before you can use it."
+		return
+
 	if(!on && !stat)
 		user << "You turn on the [src]."
 		visible_message("\blue [src] hums to life and emits several beeps.")
@@ -487,6 +494,28 @@
 			else if(dir == WEST)
 				dir = NORTH
 			return
+
+	if(istype(O, /obj/item/weapon/screwdriver))
+		if(!anchored)
+			if(src.loc) //Just to be safe.
+				user << "You begin securing the [src] to the floor."
+				if(do_after(user,40))
+					user.visible_message("\blue [user] secures [src] to the floor!","\blue You secure [src] to the floor!")
+					anchored = 1
+					playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+			return
+		else
+			if(on)
+				user << "Turn it off first."
+				return
+			else
+				user << "You begin unscrewing the anchoring bolts.."
+				if(do_after(user,40))
+					user.visible_message("\blue [user] unsecures [src] from the floor!","\blue You unsecure [src] from the floor!")
+					anchored = 0
+					playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
+		return
+
 	if(istype(O, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = O
 		if(health < 0 || stat)
@@ -513,6 +542,7 @@
 				user.drop_from_inventory(O)
 				cell.loc = src.loc
 				user.put_in_active_hand(cell)
+				user.drop_from_inventory(cell) //Put it on the ground.
 				cell = O
 				O.loc = src
 			else
@@ -631,18 +661,21 @@
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
 	if(istype(Proj,/obj/item/projectile/energy))
 		visible_message("\red [src] is hit by the [Proj]!")
-		update_health(Proj.damage / 3)
+		update_health(Proj.damage / 2)
 		return
 
-	visible_message("\blue [Proj] bounces harmlessly off the [src]'s armor plating.")
+	if(!istype(Proj,/obj/item/projectile/bullet/m30))
+		visible_message("\blue [Proj] bounces harmlessly off the [src]'s armor plating.")
 	return
 
 /obj/machinery/marine_turret/process()
 
 	if(health > 0 && stat != 1)
 		stat = 0
+	if(!anchored)
+		return
 
-	if(!on || stat || !cell)
+	if(!on || stat == 1 || !cell)
 		return
 
 	if(!check_power(2))
@@ -691,8 +724,8 @@
 
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)
-	var/scatter_chance = 10
-	if(burst_fire) scatter_chance = 50
+	var/scatter_chance = 5
+	if(burst_fire) scatter_chance = 30
 
 	if(prob(scatter_chance))
 		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
@@ -716,13 +749,13 @@
 	var/turf/ST
 
 	if(dir == NORTH)
-		ST = locate(src.loc.x,src.loc.y+1,src.loc.z)
+		ST = locate(x,y+1,z)
 	else if(dir == SOUTH)
-		ST = locate(src.loc.x,src.loc.y-1,src.loc.z)
+		ST = locate(x,-1,z)
 	else if(dir == EAST)
-		ST = locate(src.loc.x+1,src.loc.y,src.loc.z)
+		ST = locate(x+1,y,z)
 	else if(dir == WEST)
-		ST = locate(src.loc.x-1,src.loc.y,src.loc.z)
+		ST = locate(x-1,y,z)
 
 	if(ST.density || isnull(ST)) //Bad!
 		return
@@ -732,7 +765,7 @@
 	B.current = T
 	B.yo = U.y - T.y
 	B.xo = U.x - T.x
-	B.def_zone = ran_zone(null) //Random body part.
+	B.def_zone = ran_zone() //Random body part.
 	if(gunner)
 		B.firer = gunner
 	else

@@ -169,8 +169,8 @@ var/list/global/organ_rel_size = list(
 	"r_leg" = 25,
 	"l_arm" = 25,
 	"r_arm" = 25,
-	"l_hand" = 10,
-	"r_hand" = 10,
+	"l_hand" = 7,
+	"r_hand" = 7,
 	"l_foot" = 10,
 	"r_foot" = 10,
 )

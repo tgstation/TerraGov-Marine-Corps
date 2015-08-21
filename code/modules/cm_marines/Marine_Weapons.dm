@@ -16,6 +16,7 @@
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
 	damage = 55
+	range_falloff_at = 4 //4 turfs
 
 ///***Ammo***///
 
@@ -420,6 +421,9 @@
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
 	damage = 70
+	armor_pierce = 100
+	accuracy = 60
+	incendiary = 1
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -623,10 +627,13 @@
 
 		if (get_dist(usr, src) <= 1)
 			if(pcell)
-				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 200."
+				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 200."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
 	damage = 28
+	iff = 1
+	armor_pierce = 5
+	accuracy = 30
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."
