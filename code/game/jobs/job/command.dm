@@ -17,13 +17,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_access = list() 	//See get_access()
 	minimal_player_age = 14
 	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		var/obj/item/clothing/under/U = new /obj/item/clothing/under/marine/officer/command(H)
-		var/obj/item/weapon/storage/backpack/mcommander/BPK = new/obj/item/weapon/storage/backpack/mcommander(H)
-		new /obj/item/weapon/storage/box/survival(BPK)
-		H.equip_to_slot_or_del(BPK, slot_back,1)
-		H.equip_to_slot_or_del(U, slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/commander(H), slot_head)
@@ -62,9 +58,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_access = list() //Meh. See below
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		var/obj/item/weapon/storage/backpack/BPK = new(H)
-		new /obj/item/weapon/storage/box/survival(BPK)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), slot_w_uniform)
@@ -97,9 +91,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_access = list(access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		var/obj/item/weapon/storage/backpack/BPK = new(H)
-		new /obj/item/weapon/storage/box/survival(BPK)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
@@ -122,13 +114,13 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "your Corporate Overlords"
 	selection_color = "#ffeedd"
-	access = list(access_centcomm, access_syndicate)
-	minimal_access = list(access_centcomm, access_syndicate)
+	access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_logistics, access_sulaco_research)
+	minimal_access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_logistics, access_sulaco_research)
 	idtype = /obj/item/weapon/card/id/silver
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)

@@ -19,7 +19,6 @@
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine_jumpsuit(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 //MARINE COMMAND CLOSET

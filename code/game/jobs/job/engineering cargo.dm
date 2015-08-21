@@ -89,7 +89,6 @@
 		spawn(10)
 			H << "\red You are the Requisitions Officer!"
 			H << "Your job is to dispense basic weapon attachments and extra supplies."
-			H << "Squad Leaders are allowed THREE attachments just by asking. You should ask marines for a stamped form from Logistics."
 			H << "Commanders and Executive Officers have full access to the vendor."
 			H << "You don't have to stay in your department all the time, but you should go if someone needs something."
 			H << "You also have supply pads west of Requisitions. Overwatch might want crates put there for delivery."
