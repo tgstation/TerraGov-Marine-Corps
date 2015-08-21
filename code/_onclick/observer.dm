@@ -98,3 +98,20 @@
 	attack_hand(user)
 
 */
+
+/* This allows Observers to click on disconnected Larva and become them, but not all Larva are clickable due to hiding
+/mob/living/carbon/Xenomorph/Larva/attack_ghost(mob/user as mob)
+	if(!istype(src, /mob/living/carbon/Xenomorph/Larva))
+		return
+
+	// if(src.key || src.mind || !src.client.is_afk())
+	if(src.client)
+		return
+
+	if(!can_mind_transfer) //away_timer is not high enough. Number below should match number in mob.dm.
+		user << "That player hasn't been away long enough. Please wait [60 - away_timer] more seconds."
+		return
+
+	if (alert(user, "Are you sure you want to transfer yourself into this Alien Larva?", "Confirmation", "Yes", "No") == "Yes")
+		src.client = user.client
+		return*/
