@@ -68,6 +68,11 @@ should be listed in the changelog upon commit though. Thanks. -->
 		<li class='bugfix'>Bunch of bugs related to sentries have been hopefully fixed.</li>
 		<li class='tweak'>Sentry guns now come equipped with IFF transponders that will fire through friendlies, like a smartgun. Woo!</li>
 	</ul>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>New Ghost/Observer verb (in the Ghost tab): "Join as Larva". Allows you (as an Observer) to take over the body of an existing, alive Larva that has been disconnected for 10 minutes, only if you haven't ghosted/suicided/died within 10 minutes yourself.</li>
+		<li class='rscadd'>Admins: New variable for all mobs that might come in handy: "away_timer". Increments approximately once per second when a mob's client is null. Resets to 0 when the mob's client is not null. E.g., away_timer = 127 means the client has been null for 127 seconds. Note: The original client might still be in-game as a ghost or cloned into a different body - just THAT mob has not had a client controlling it for [away_timer] seconds.</li>
+	</ul>
 </div>
 
 <div class='commit sansserif'>
