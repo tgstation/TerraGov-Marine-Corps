@@ -168,6 +168,8 @@
 	damage = 1
 	damage_type = TOX
 	weaken = 4
+	skips_xenos = 1
+	accuracy = 90 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5

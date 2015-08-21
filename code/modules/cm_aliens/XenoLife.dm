@@ -46,7 +46,7 @@
 			on_fire = 0
 		else
 			if(stat != DEAD && !fire_immune)
-				adjustFireLoss(fire_stacks + 5)
+				adjustFireLoss(fire_stacks + 3)
 			fire_stacks--
 
 	if(stat == DEAD)

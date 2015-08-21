@@ -20,6 +20,7 @@
 	adjust_size_x = 1.1
 	adjust_size_y = 1.2
 	var/huggers_max = 6
+	adjust_pixel_y = 3
 	var/huggers_cur = 0
 	var/throwspeed = 2
 	var/threw_a_hugger = 0

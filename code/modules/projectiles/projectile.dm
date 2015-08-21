@@ -51,6 +51,13 @@
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 	var/skip_over = 0
+	var/iff = 0
+	var/accuracy = 0
+	var/skips_xenos = 0
+	var/armor_pierce = 0
+	var/incendiary = 0
+	var/reverse_accuracy = 0
+	var/range_falloff_at = 0
 
 	proc/on_hit(var/atom/target, var/blocked = 0)
 		if(blocked >= 2)		return 0//Full block
@@ -111,21 +118,16 @@
 				if(daddy.under)
 					if(daddy.under.accuracy_mod) miss_modifier -= daddy.under.accuracy_mod
 
-			if(istype(src,/obj/item/projectile/bullet/m42c)) //Sniper rifles have different miss chance by distance.
-				if(distance <= 4) //< 5 tiles, +30% miss chance.
-					miss_modifier += 20
-				else if (distance > 5 && distance < 8) //In sight range but not close, only -5%
-					miss_modifier -= 20
-				else if (distance >= 8) //Beyond sight range (scoped), -40%
-					miss_modifier -= 40
+			miss_modifier -= accuracy
 
-			if(istype(src,/obj/item/projectile/bullet/m30)) //Sniper rifles have different miss chance by distance.
-				miss_modifier -= 50
+			if(reverse_accuracy) //Sniper rifles have different miss chance by distance.
+				if(distance <= 4)
+					miss_modifier += 50
 
-			if(istype(src,/obj/item/projectile/bullet/m37)) //Shotguns count as twice as far away.
-				distance *= 2
+			if(range_falloff_at < distance)
+				miss_modifier += (distance * 4) //Pretends to be half again as far.
 
-			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
+			if(iff && ishuman(A))
 				var/mob/living/carbon/human/H = A
 				if(H.get_marine_id())
 					bumped = 0
@@ -134,15 +136,14 @@
 					skip_over = 1
 					return 0
 
-			if(istype(src,/obj/item/projectile/energy/neuro) && isXeno(A)) //Xenos are immune to spit.
+			if(skips_xenos && isXeno(A)) //Xenos are immune to spit.
 				bumped = 0
 				permutated.Add(A)
 				src.loc = get_turf(A.loc)
 				skip_over = 1
 				return 0
 
-			if(!istype(src,/obj/item/projectile/energy/neuro)) //Neuro spit never misses.
-				def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (9 * distance))
+			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (8 * distance))
 
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")
