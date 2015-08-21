@@ -2,8 +2,9 @@
 
 	if(turret_control)
 		src << "\blue You stop controlling the turret."
-		turret_control.visible_message("\icon[src] \blue[turret_control] buzzes: Manual control halted.")
+		turret_control.visible_message("\icon[src] \blue [turret_control] buzzes: Manual control halted. AI control re-initiated.")
 		turret_control.gunner = null
+		turret_control.manual_override = 0
 		turret_control = null
 
 	var/tally = 0
