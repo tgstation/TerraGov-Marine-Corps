@@ -136,7 +136,7 @@
 				if(H.get_marine_id())
 					bumped = 0
 					permutated.Add(H)
-					src.loc = get_turf(H.loc)
+//					src.loc = get_turf(H.loc)
 					skip_over = 1
 					return 0
 
