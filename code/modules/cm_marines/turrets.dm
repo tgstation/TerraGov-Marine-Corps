@@ -746,22 +746,11 @@
 			else		dir = WEST
 
 	playsound(src.loc, 'sound/weapons/Gunshot.ogg', 80, 1)
-	var/turf/ST
 
-	if(dir == NORTH)
-		ST = locate(x,y+1,z)
-	else if(dir == SOUTH)
-		ST = locate(x,-1,z)
-	else if(dir == EAST)
-		ST = locate(x+1,y,z)
-	else if(dir == WEST)
-		ST = locate(x-1,y,z)
-
-	if(ST.density || isnull(ST)) //Bad!
-		return
-
-	var/obj/item/projectile/bullet/m30/B = new(ST)
+	var/obj/item/projectile/bullet/m30/B = new(T)
 	B.original = target.loc
+	B.starting = get_turf(src)
+
 	B.current = T
 	B.yo = U.y - T.y
 	B.xo = U.x - T.x

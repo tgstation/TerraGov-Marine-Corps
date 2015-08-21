@@ -6,7 +6,7 @@
 	icon_state = "barricade"
 	density = 1
 	anchored = 1.0
-	layer = 4.1
+	layer = 3.5
 	throwpass = 1	//You can throw objects over this, despite its density.
 	climbable = 1
 	flags = ON_BORDER

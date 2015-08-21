@@ -87,6 +87,10 @@
 			return 0 //cannot shoot yourself
 
 		if(bumped)	return 0
+
+		if(firer && A && get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir)) //No adjacencies at all.
+			return 0
+
 		var/forcedodge = 0 // force the projectile to pass
 
 		bumped = 1
