@@ -477,16 +477,16 @@
 /obj/item/clothing/under/marine/fluff/tristan
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
 	name = "captain's jumpsuit"
-	icon_state = "camojump_s"
+	icon_state = "camojump"
 	item_state = "camojump_s"
-	item_color = "camojump_s"
+	item_color = "camojump"
 
 /obj/item/clothing/under/marine/fluff/SAS
 	name = "Legion Suit"
 	desc = "This armor was custom made to resemble the small growing Legion within the galaxy started by one man slowly making its way to becoming a larger Corperation.  DONOR ITEM."
-	icon_state = "ncr_uni_s"
+	icon_state = "ncr_uni"
 	item_state = "ncr_uni_s"
-	item_color = "ncr_uni_s"
+	item_color = "ncr_uni"
 
 /obj/item/clothing/under/marine/fluff/mycroft
 	name = "Doom Uniform"
@@ -498,9 +498,9 @@
 /obj/item/clothing/under/marine/fluff/LEO
 	name = "PMC Suit"
 	desc = "A white colored PMC Suit, probably not the best color for a band of murderers....  DONOR ITEM."
-	icon_state = "pmc_jumpsuit_s"
+	icon_state = "pmc_jumpsuit"
 	item_state = "pmc_jumpsuit_s"
-	item_color = "pmc_jumpsuit_s"
+	item_color = "pmc_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/john56
 	name = "Pink Pride Jumpsuit"
@@ -512,9 +512,9 @@
 /obj/item/clothing/under/marine/fluff/sas3  //UNIQUE
 	name = "Black Fatigues"
 	desc = "Black camo Fatigues usually used on Night Operations.  UNIQUE DONOR ITEM."
-	icon_state = "hecu_u_s"
+	icon_state = "hecu_u"
 	item_state = "hecu_u_s"
-	item_color = "hecu_u_s"
+	item_color = "hecu_u"
 
 /obj/item/clothing/under/marine/fluff/leeeverett
 	name = "Rugged Outfit"

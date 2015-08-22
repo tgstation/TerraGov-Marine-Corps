@@ -71,11 +71,11 @@
 	return 0
 
 /mob/proc/Life()
-//	if(organStructure)
-//		organStructure.ProcessOrgans()
-	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
+	if(client == null) 
+		away_timer++
+	else
+		away_timer = 0
 	return
-
 
 /mob/proc/restrained()
 	return
