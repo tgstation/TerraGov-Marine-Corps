@@ -89,6 +89,12 @@
 		if(bumped)	return 0
 
 		if(firer && A && get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir)) //No adjacencies at all.
+			bumped = 0
+			if(isturf(A))
+				loc = A
+			else
+				loc = get_turf(A)
+			permutated.Add(A)
 			return 0
 
 		var/forcedodge = 0 // force the projectile to pass
@@ -136,7 +142,7 @@
 				if(H.get_marine_id())
 					bumped = 0
 					permutated.Add(H)
-//					src.loc = get_turf(H.loc)
+					src.loc = get_turf(H)
 					skip_over = 1
 					return 0
 
