@@ -35,8 +35,8 @@
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
-		/mob/living/carbon/Xenomorph/proc/stomp,
-		/mob/living/carbon/Xenomorph/proc/ready_charge
+		/mob/living/carbon/Xenomorph/Crusher/proc/stomp,
+		/mob/living/carbon/Xenomorph/Crusher/proc/ready_charge
 		)
 
 /mob/living/carbon/Xenomorph/Crusher/Stat()
@@ -330,3 +330,51 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 		now_pushing = 0
 		return
 
+/mob/living/carbon/Xenomorph/Crusher/proc/stomp()
+	set name = "Stomp (50)"
+	set desc = "Strike the earth!"
+	set category = "Alien"
+
+	if(!check_state()) return
+
+	if(has_screeched) //Sure, let's use this.
+		src << "\red You are not yet prepared to shake the ground."
+		return
+
+	if(!check_plasma(100))
+		return
+
+	has_screeched = 1
+	spawn(500) //50 seconds
+		has_screeched = 0
+		src << "You feel ready to shake the earth again."
+
+	playsound(loc, 'sound/effects/bang.ogg', 50, 0, 100, -1)
+	visible_message("\red <B> \The [src] smashes the ground!</B>","\red <b>You smash the ground!</b>")
+	create_shriekwave() //Adds the visual effect. Wom wom wom
+	for (var/mob/living/carbon/human/M in oview())
+		var/dist = get_dist(src,M)
+		if(M && M.client && dist < 7)
+			shake_camera(M, 5, 1)
+		if (dist < 3 && !M.lying && !M.stat)
+			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
+			M.Weaken(rand(1,3))
+	return
+
+/mob/living/carbon/Xenomorph/Crusher/proc/ready_charge()
+	set name = "Toggle Charging"
+	set desc = "Stop auto-charging when you move."
+	set category = "Alien"
+
+	if(!check_state()) return //Nope
+
+	if(!istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Logic. Other mobs don't have the verb
+		return
+
+	if(!src:is_charging) //We're using tail because they don't have the verb anyway (crushers)
+		src << "\blue You will now charge when moving."
+		src:is_charging = 1
+	else
+		src << "\blue You will no longer charge when moving."
+		src:is_charging = 0
+	return

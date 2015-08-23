@@ -2,6 +2,7 @@
 //They are built in stages, and only engineers have access to them.
 
 /obj/item/projectile/bullet/m30
+	name = "autocannon shell"
 	damage = 32
 	icon_state = "bullet2"
 	iff = 1
@@ -243,7 +244,7 @@
 	var/last_fired = 0
 	var/is_bursting = 0
 	var/obj/item/turret_laptop/laptop = null
-	use_power = 0
+	var/immobile = 0 //Used for prebuilt ones.
 
 	New()
 		spark_system = new /datum/effect/effect/system/spark_spread
@@ -252,13 +253,14 @@
 		cell = new (src)
 		camera = new (src)
 		camera.network = list("SULACO")
-		camera.c_tag = src.name
+		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
 			gunner.turret_control = null
+			gunner = null
 		if(camera)
 			del(camera)
 		if(cell)
@@ -284,6 +286,10 @@
 
 	if(!anchored)
 		user << "It must be anchored to the ground before you can use it."
+		return
+
+	if(immobile)
+		user << "The panel on this one is permanently locked."
 		return
 
 	if(!on && !stat)
@@ -322,6 +328,8 @@
 	dat += "--------------------<BR><BR>"
 	dat += "<B>Current Rounds:</b> [ammo] / [ammo_max]<BR>"
 	dat += "<B>Damage Status:</b> [round(health * 100 / health_max)] percent <BR>"
+	if(cell)
+		dat += "<B>Power Cell:</b> [cell.charge] / [cell.maxcharge]<BR>"
 	dat += "<B><A href='?src=\ref[src];op=power'>Power Down</a></B><br>"
 	dat += "--------------------<BR><BR>"
 	dat += "<B><A href='?src=\ref[src];op=direction'>Direction Cycle Lock</a>:</B> "
@@ -450,7 +458,7 @@
 				stat = 0 //Weird bug goin on here
 		if("power")
 			on = 0
-			visible_message("\icon[src] powers down and goes silent.")
+			visible_message("\icon[src] [src] powers down and goes silent.")
 			user << "You switch off the turret."
 			update_icon()
 			return
@@ -479,6 +487,9 @@
 			user << "<span class='warning'>Access denied.</span>"
 		return
 	if(istype(O,/obj/item/weapon/wrench))
+		if(immobile)
+			user << "This one is anchored in place and cannot be moved."
+			return
 		if(on)
 			user << "You can't rotate the sentry when it's turned on. Way too dangerous!"
 			return
@@ -493,9 +504,13 @@
 				dir = WEST
 			else if(dir == WEST)
 				dir = NORTH
-			return
+		return
 
 	if(istype(O, /obj/item/weapon/screwdriver))
+		if(immobile)
+			user << "This one is anchored in place and cannot be moved."
+			return
+
 		if(!anchored)
 			if(src.loc) //Just to be safe.
 				user << "You begin securing the [src] to the floor."
@@ -563,6 +578,9 @@
 			ammo = ammo_max
 			del(O)
 		return
+
+	if(O.force)
+		update_health(O.force / 2)
 	return ..()
 
 /obj/machinery/marine_turret/update_icon()
@@ -593,10 +611,10 @@
 
 	if(health > 100)
 		health = 100
-	if(!stat && damage > 0)
+	if(!stat && damage > 0 && !immobile)
 		if(prob(10))
 			spark_system.start()
-		if(prob(5 + round(damage / 3)))
+		if(prob(5 + round(damage / 5)))
 			visible_message("\red <B>The [src] is knocked over!</B>")
 			stat = 1
 			on = 0
@@ -645,7 +663,7 @@
 			update_health(rand(50,150))
 			return
 		if(3)
-			update_health(rand(50,120))
+			update_health(rand(30,100))
 			return
 	return
 
@@ -879,3 +897,23 @@
 	attack_self(mob/living/user as mob)
 		if(!linked_turret)
 */
+
+/obj/machinery/marine_turret/premade
+	name = "UA-577 Gauss Turret"
+	immobile = 1
+	on = 1
+	burst_fire = 1
+	ammo = 900
+	ammo_max = 900
+
+	New()
+		spark_system = new /datum/effect/effect/system/spark_spread
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		var/obj/item/weapon/cell/super/H = new(src) //Better cells in these ones.
+		cell = H
+		camera = new (src)
+		camera.network = list("SULACO")
+		camera.c_tag = "[src.name] ([rand(0,1000)])"
+		spawn(2)
+			stat = 0

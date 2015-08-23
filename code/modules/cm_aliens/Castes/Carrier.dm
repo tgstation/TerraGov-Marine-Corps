@@ -28,7 +28,7 @@
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
-		/mob/living/carbon/Xenomorph/proc/throw_hugger,
+		/mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
@@ -49,7 +49,42 @@
 		return
 	..()
 
+/mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger(var/mob/living/carbon/T)
+	set name = "Throw Facehugger"
+	set desc = "Throw one of your facehuggers. MIDDLE MOUSE BUTTON quick-throws."
+	set category = "Alien"
 
+	if(!check_state())	return
+
+	var/mob/living/carbon/Xenomorph/Carrier/X = src
+	if(!istype(X))
+		src << "How did you get this verb??" //Lel. Shouldn't be possible, butcha never know. Since this uses carrier-only vars
+		return
+
+	if(X.huggers_cur <= 0)
+		src << "\red You don't have any facehuggers to throw!"
+		return
+
+	if(!X.threw_a_hugger)
+		if(!T)
+			var/list/victims = list()
+			for(var/mob/living/carbon/human/C in oview(7))
+				victims += C
+			T = input(src, "Who should you throw at?") as null|anything in victims
+
+		if(T)
+			var/obj/item/clothing/mask/facehugger/throw = new()
+			X.huggers_cur -= 1
+			throw.loc = src.loc
+			throw.throw_at(T, 5, X.throwspeed)
+			src << "You throw a facehugger at [throw]."
+			visible_message("\red <B>[src] throws something towards [T]!</B>")
+			X.threw_a_hugger = 1
+			spawn(40)
+				X.threw_a_hugger = 0
+		else
+			src << "\blue You cannot throw at nothing!"
+	return
 
 
 

@@ -91,7 +91,7 @@
 		burn *= bumod //~2/3 damage for ROBOLIMBS
 
 	// High brute damage or sharp objects may damage internal organs
-	if(internal_organs && ( (sharp && brute >= 5) || brute >= 10) && prob(5))
+	if(internal_organs && ( (sharp && brute >= 10) || brute >= 20) && prob(5))
 		// Damage an internal organ
 		var/datum/organ/internal/I = pick(internal_organs)
 		I.take_damage(brute / 2)
@@ -839,18 +839,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	if(is_broken())
-		owner.u_equip(c_hand)
-		var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-		owner.emote("me", 1, "[(owner.species && owner.species.flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
+		if(prob(15))
+			owner.u_equip(c_hand)
+			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
+			owner.emote("me", 1, "[(owner.species && owner.species.flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
 	if(is_malfunctioning())
-		owner.u_equip(c_hand)
-		owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
-		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-		spark_system.set_up(5, 0, owner)
-		spark_system.attach(owner)
-		spark_system.start()
-		spawn(10)
-			del(spark_system)
+		if(prob(10))
+			owner.u_equip(c_hand)
+			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
+			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			spark_system.set_up(5, 0, owner)
+			spark_system.attach(owner)
+			spark_system.start()
+			spawn(10)
+				del(spark_system)
 
 /datum/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)
 	if(!W || isnull(W) || !W.canremove)
@@ -875,7 +877,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "chest"
 	icon_name = "torso"
 	display_name = "chest"
-	max_damage = 75
+	max_damage = 85
 	min_broken_damage = 40
 	body_part = UPPER_TORSO
 	vital = 1
@@ -885,8 +887,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "groin"
 	icon_name = "groin"
 	display_name = "groin"
-	max_damage = 50
-	min_broken_damage = 30
+	max_damage = 60
+	min_broken_damage = 40
 	body_part = LOWER_TORSO
 	vital = 1
 
@@ -894,8 +896,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 50
-	min_broken_damage = 20
+	max_damage = 55
+	min_broken_damage = 40
 	body_part = ARM_LEFT
 
 	process()
@@ -906,8 +908,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_leg"
 	display_name = "left leg"
 	icon_name = "l_leg"
-	max_damage = 50
-	min_broken_damage = 20
+	max_damage = 55
+	min_broken_damage = 40
 	body_part = LEG_LEFT
 	icon_position = LEFT
 
@@ -915,8 +917,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
-	max_damage = 50
-	min_broken_damage = 20
+	max_damage = 55
+	min_broken_damage = 40
 	body_part = ARM_RIGHT
 
 	process()
@@ -927,8 +929,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_leg"
 	display_name = "right leg"
 	icon_name = "r_leg"
-	max_damage = 50
-	min_broken_damage = 20
+	max_damage = 55
+	min_broken_damage = 40
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
 
@@ -936,8 +938,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_foot"
 	display_name = "left foot"
 	icon_name = "l_foot"
-	max_damage = 30
-	min_broken_damage = 15
+	max_damage = 40
+	min_broken_damage = 35
 	body_part = FOOT_LEFT
 	icon_position = LEFT
 
@@ -945,8 +947,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_foot"
 	display_name = "right foot"
 	icon_name = "r_foot"
-	max_damage = 30
-	min_broken_damage = 15
+	max_damage = 40
+	min_broken_damage = 35
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
 
@@ -954,8 +956,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_hand"
 	display_name = "right hand"
 	icon_name = "r_hand"
-	max_damage = 40
-	min_broken_damage = 20
+	max_damage = 60
+	min_broken_damage = 40
 	body_part = HAND_RIGHT
 
 	process()
@@ -966,8 +968,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_hand"
 	display_name = "left hand"
 	icon_name = "l_hand"
-	max_damage = 40
-	min_broken_damage = 20
+	max_damage = 60
+	min_broken_damage = 40
 	body_part = HAND_LEFT
 
 	process()
