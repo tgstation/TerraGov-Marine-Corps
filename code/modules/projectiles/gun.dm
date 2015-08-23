@@ -354,7 +354,7 @@
 		user << "There's already something attached in that weapon slot. Field strip your weapon first."
 		return
 
-	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying your \the [src]..")
+	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying \the [src]..")
 	if(do_after(user,60))
 		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
 		user.drop_item()

@@ -341,7 +341,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 		src << "\red You are not yet prepared to shake the ground."
 		return
 
-	if(!check_plasma(100))
+	if(!check_plasma(50))
 		return
 
 	has_screeched = 1
