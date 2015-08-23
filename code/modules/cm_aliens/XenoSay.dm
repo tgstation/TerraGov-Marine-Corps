@@ -29,18 +29,22 @@
 					speaking = L
 					break
 
-	if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
-		for(var/datum/language/L in languages)
-			if(is_robotic && L.key == "0") //Sol common.
-				speaking = L
-				forced = 1
-				break
-
-			if(L.key == "x")
-				verb = L.speech_verb
-				speaking = L
-				forced = 1
-				break
+	if(!is_robotic)
+		if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
+			for(var/datum/language/L in languages)
+				if(L.key == "x")
+					verb = L.speech_verb
+					speaking = L
+					forced = 1
+					break
+	else
+		if(!speaking || isnull(speaking))
+			for(var/datum/language/L in languages)
+				if(L.key == "0")
+					verb = L.speech_verb
+					speaking = L
+					forced = 1
+					break
 
 	if(speaking && !forced)
 		message = trim(copytext(message,3))

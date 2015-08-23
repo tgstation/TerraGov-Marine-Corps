@@ -41,8 +41,13 @@
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			if(slashing_allowed == 2 && !M.is_intelligent)
-				damage = M.melee_damage_lower / 2
-//				M << "Slashing is currently restricted by the Queen. You hesitate and only lightly graze."
+				if(src.status_flags & XENO_HOST)
+					M << "You try to slash [src], but find you <B>cannot</B>. There is a host inside!"
+					return 0
+
+				if(M.health > round(2 * M.maxHealth / 3))
+					M << "You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders."
+					return 0
 
 			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
 				visible_message("\red <B>\The [M]'s slash is blocked by [src]'s shield!</B>")

@@ -169,15 +169,17 @@
 	damage_type = TOX
 	weaken = 4
 	skips_xenos = 1
-	accuracy = 90 //Rarely misses.
+	accuracy = 100 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5
 	weaken = 6
+	accuracy = 150 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/strongest
 	damage = 10
 	weaken = 8
+	accuracy = 200 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/robot
 	damage = 50
@@ -351,7 +353,7 @@
 						return
 
 				if(H.species && H.species.name == "Yautja" && prob(40))
-					visible_message("\red <b>[H] emits a roar and body slams \the [src]!")
+					visible_message("\red <b>[H] emits a roar and body slams \the [src]!</B>","\red <B>[H] emits a roar and body slams you!</b>")
 					src.Weaken(4)
 					src.throwing = 0
 					return
