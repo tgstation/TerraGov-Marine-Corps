@@ -263,3 +263,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "M2 Pattern MP Armor"
 	desc = "A standard Colonial Marines M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 
+/obj/item/clothing/suit/storage/marine/MP/RO
+	icon_state = "officer"
+	name = "M3 Pattern Officer Armor"
+	desc = "A well-crafted suit of M3 Pattern armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
