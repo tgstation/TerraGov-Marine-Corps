@@ -110,7 +110,7 @@
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award given by Nanotrasen. It is often awarded by a captain to a member of his crew."
+	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award given by W-Y. It is often awarded by a captain to a member of his crew."
 
 /obj/item/clothing/tie/medal/bronze_heart
 	name = "bronze heart medal"
@@ -133,7 +133,7 @@
 
 /obj/item/clothing/tie/medal/silver/security
 	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of Nanotrasen's commercial interests. Often awarded to security staff."
+	desc = "An award for distinguished combat and sacrifice in defence of W-Y's commercial interests. Often awarded to security staff."
 
 /obj/item/clothing/tie/medal/gold
 	name = "gold medal"
@@ -143,7 +143,7 @@
 
 /obj/item/clothing/tie/medal/gold/captain
 	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
+	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to W-Y, and their undisputable authority over their crew."
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
@@ -406,7 +406,7 @@
 		user << "Waving around a badge before swiping an ID would be pretty pointless."
 		return
 	if(isliving(user))
-		user.visible_message("\red [user] displays their NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security.","\red You display your NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security.")
+		user.visible_message("\red [user] displays their W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.","\red You display your W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.")
 
 /obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
