@@ -4,8 +4,8 @@
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
 	icon_state = "Hunter Walking"
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 18
+	melee_damage_upper = 32
 	health = 160
 	maxHealth = 160
 	storedplasma = 50

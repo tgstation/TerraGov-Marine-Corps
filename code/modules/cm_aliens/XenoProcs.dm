@@ -492,3 +492,39 @@
 	M.updatehealth()
 	readying_tail = 0
 	return 1
+
+/mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 11, var/viewsize = 12)
+	if(stat)
+		if(is_zoomed)
+			is_zoomed = 0
+			zoom_out()
+			return
+		return
+	if(is_zoomed) return
+	if(!client) return
+	zoom_turf = get_turf(src)
+	is_zoomed = 1
+	client.view = viewsize
+	var/viewoffset = 32 * tileoffset
+	switch(dir)
+		if (NORTH)
+			client.pixel_x = 0
+			client.pixel_y = viewoffset
+		if (SOUTH)
+			client.pixel_x = 0
+			client.pixel_y = -viewoffset
+		if (EAST)
+			client.pixel_x = viewoffset
+			client.pixel_y = 0
+		if (WEST)
+			client.pixel_x = -viewoffset
+			client.pixel_y = 0
+	return
+
+/mob/living/carbon/Xenomorph/proc/zoom_out()
+	usr.client.view = world.view
+	usr.client.pixel_x = 0
+	usr.client.pixel_y = 0
+	is_zoomed = 0
+	zoom_turf = null
+	return

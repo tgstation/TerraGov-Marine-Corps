@@ -183,6 +183,9 @@
 
 	if(mob.monkeyizing)	return//This is sota the goto stop mobs from moving var
 
+	if(isXeno(mob))
+		if(mob:is_zoomed) mob:zoom_out()
+
 	if(isliving(mob))
 		var/mob/living/L = mob
 		if(L.incorporeal_move)//Move though walls

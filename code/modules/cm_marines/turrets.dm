@@ -186,7 +186,6 @@
 					var/obj/machinery/marine_turret/T = new(src.loc)  //Bing! Create a new turret.
 					T.visible_message("\icon[T] <B>[T] is now complete!</B>")
 					T.dir = src.dir
-					processing_objects.Add(T)
 					del(src)
 					return
 				else
@@ -256,6 +255,7 @@
 		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0
+			processing_objects.Add(src)
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
@@ -905,6 +905,7 @@
 	burst_fire = 1
 	ammo = 900
 	ammo_max = 900
+	icon_state = "turret-1"
 
 	New()
 		spark_system = new /datum/effect/effect/system/spark_spread
