@@ -421,7 +421,7 @@
 					modify = I
 		else if(href_list["squad"])
 			if(allowed(usr))
-				if(modify)
+				if(modify && istype(modify))
 					var/list/squad_list = list()
 					var/datum/squad/selected = null
 					var/name_sel = "Cancel" //default
@@ -433,6 +433,9 @@
 					name_sel = input("Which squad would you like to put the person in?") as null|anything in squad_list
 					if(name_sel != "Cancel" && !isnull(name_sel))
 						selected = get_squad_by_name(name_sel)
+					else
+						//Should not happen
+						return
 
 					//First, remove any existing squad access and clear the card.
 					for(var/datum/squad/Q in job_master.squads)
