@@ -79,10 +79,12 @@
 		if(shuttle.recharging) // Prevent the shuttle from moving again until it finishes recharging. This could be made to look better by using the shuttle computer's visual UI.
 			usr << "The shuttle requires 2 minutes to recharge."
 			return
+		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 			shuttle.launch(src)
 			log_admin("[usr] ([usr.key]) launched a shuttle from [src]")
 			message_admins("[usr] ([usr.key]) launched a shuttle using [src].")
+
 //	if(href_list["force"])
 //		if(shuttle.moving_status  == SHUTTLE_IDLE)
 //			shuttle.force_launch(src)

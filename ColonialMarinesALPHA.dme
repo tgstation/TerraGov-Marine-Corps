@@ -899,6 +899,7 @@
 #include "code\modules\cm_aliens\XenoStructures.dm"
 #include "code\modules\cm_aliens\XenoUpdateIcons.dm"
 #include "code\modules\cm_aliens\XenoUpgrades.dm"
+#include "code\modules\cm_aliens\Castes\Boiler.dm"
 #include "code\modules\cm_aliens\Castes\Carrier.dm"
 #include "code\modules\cm_aliens\Castes\Crusher.dm"
 #include "code\modules\cm_aliens\Castes\Drone.dm"

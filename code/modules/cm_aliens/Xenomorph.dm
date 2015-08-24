@@ -78,7 +78,8 @@ var/queen_time = 300 //5 minutes between queen deaths
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
 	var/adjust_size_y = 1
 	var/spit_type = 0 //0: normal, 1: heavy
-
+	var/is_zoomed = 0
+	var/zoom_turf = null
 	var/big_xeno = 0 //Toggles pushing
 
 	var/speed = 0 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)

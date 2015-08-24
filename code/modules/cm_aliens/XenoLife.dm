@@ -10,6 +10,11 @@
 
 	..()
 
+	if(zoom_turf)
+		if(src.loc != zoom_turf && is_zoomed)
+			zoom_out()
+
+
 	if (stat != DEAD) //still breathing
 		// GROW!
 		update_progression()

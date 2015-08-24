@@ -47,11 +47,15 @@
 	if(modifiers["middle"] && middle_mouse_toggle)
 		if(!gun_on)
 			Pounce(A)
-			return
 		else
+			fire_cannon(A)
+		return
 
 	if(modifiers["shift"] && shift_mouse_toggle)
-		Pounce(A)
+		if(!gun_on)
+			Pounce(A)
+		else
+			fire_cannon(A)
 		return
 	..()
 
