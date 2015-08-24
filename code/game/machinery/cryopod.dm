@@ -241,8 +241,8 @@ var/global/list/frozen_items = list()
 								del(O)
 
 			if(occupant.mind && occupant.mind.assigned_squad)
-				var/datum/squad/S = get_squad_by_name(occupant.mind.assigned_squad)
-				if(!isnull(S))
+				var/datum/squad/S = occupant.mind.assigned_squad
+				if(!isnull(S) && istype(S))
 					if(occupant.mind.assigned_role == "Squad Engineer") S.num_engineers--
 					if(occupant.mind.assigned_role == "Squad Medic") S.num_medics--
 					if(occupant.mind.assigned_role == "Squad Specialist") S.num_specialists--
