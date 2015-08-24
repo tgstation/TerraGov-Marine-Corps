@@ -388,7 +388,7 @@
 						M.stop_pulling()
 
 						//this is the gay blood on floor shit -- Added back -- Skie
-						if (M.lying && (prob(M.getBruteLoss() / 6)))
+						if (M.lying && (prob(M.getBruteLoss() / 6)) && M.stat != 2)
 							var/turf/location = M.loc
 							if (istype(location, /turf/simulated))
 								location.add_blood(M)
@@ -397,7 +397,7 @@
 								M.adjustBruteLoss(1)
 								visible_message("\red \The [M]'s wounds open more from being dragged!")
 						if(M.pull_damage())
-							if(prob(25))
+							if(prob(25) && M.stat != 2)
 								M.adjustBruteLoss(2)
 								visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
 								var/turf/location = M.loc

@@ -44,6 +44,7 @@ var/global/list/underwear_f = list("Red", "White", "Yellow", "Blue", "Black", "T
 var/global/list/undershirt_t = list("Black Tank top", "White Tank top", "Black shirt", "White shirt", "None")
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
+// var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 //////////////////////////
 /////Initial Building/////
@@ -90,10 +91,11 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 		side_effects[M.name] = T
 
 	//List of job. I can't believe this was calculated multiple times per tick!
-	// paths = typesof(/datum/job) -list(/datum/job,/datum/job/ai,/datum/job/cyborg)
-	// for(var/T in paths)
-		// var/datum/job/J = new T
-		// joblist[J.title] = J
+	paths = typesof(/datum/job)-/datum/job
+	// paths -= exclude_jobs
+	for(var/T in paths)
+		var/datum/job/J = new T
+		joblist[J.title] = J
 
 	//Languages and species.
 	paths = typesof(/datum/language)-/datum/language
