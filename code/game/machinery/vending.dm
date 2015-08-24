@@ -890,8 +890,12 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access_txt = "3"
-	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/device/flash = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
+	products = list(/obj/item/weapon/handcuffs = 8,
+					/obj/item/weapon/grenade/flashbang = 4,
+					/obj/item/device/flash = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,
+					/obj/item/weapon/storage/box/evidence = 6,
+					/obj/item/clothing/glasses/sunglasses/sechud = 3)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/donut_box = 2)
 
 /obj/machinery/vending/hydronutrients
