@@ -336,6 +336,7 @@ var/list/toldstory = list()
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
 		world << "\red <FONT size = 3><B>Marine minor victory.</B></FONT>"
 		world << "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>"
+		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
 
@@ -360,23 +361,21 @@ var/list/toldstory = list()
 
 	spawn(45)
 		if(aliens.len)
-			var/text = "<FONT size = 3><B>The aliens were:</B></FONT>"
+			var/text = "<FONT size = 3><B>The Queen(s) were:</B></FONT>"
 			for(var/datum/mind/A in aliens)
 				if(A)
 					var/mob/M = A.current
 					if(!M)
 						M = A.original
 
-					text += "<br>[M.key] was "
-					if(M)
+					if(M && istype(M,/mob/living/carbon/Xenomorph/Queen))
+						text += "<br>[M.key] was "
 						text += "[M.name] ("
 						if(M.stat == DEAD)
 							text += "died"
 						else
 							text += "survived"
-					else
-						text += "GIBBED! (body destroyed)"
-					text += ")"
+						text += ")"
 			world << text
 		if(survivors.len)
 			var/text = "<br><FONT size = 3><B>The survivors were:</B></FONT>"
@@ -397,8 +396,6 @@ var/list/toldstory = list()
 						text += "GIBBED! (body destroyed)"
 					text += ")"
 			world << text
-
-
 //	..()
 	return 1
 

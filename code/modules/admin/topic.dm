@@ -734,6 +734,10 @@
 
 		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
+		if(!M.ckey)
+			usr << "\red <B>Warning: Mob ckey for [mob.name] not found.</b>"
+			return
+
 		switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 			if("Yes")
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null

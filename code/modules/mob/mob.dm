@@ -71,7 +71,7 @@
 	return 0
 
 /mob/proc/Life()
-	if(client == null) 
+	if(client == null)
 		away_timer++
 	else
 		away_timer = 0
@@ -1003,7 +1003,7 @@ mob/proc/yank_out_object()
 
 	if(!do_after(U, 80))
 		return
-	if(!selection || !S || !U)
+	if(!selection || !S || !U || !istype(selection))
 		return
 
 	if(self)
@@ -1019,9 +1019,15 @@ mob/proc/yank_out_object()
 		var/datum/organ/external/affected
 
 		for(var/datum/organ/external/organ in H.organs) //Grab the organ holding the implant.
+			if(!organ) //Somehow we have no organs.
+				break
 			for(var/obj/item/weapon/O in organ.implants)
 				if(O == selection)
 					affected = organ
+					break
+
+		if(!affected) //Somehow, something fucked up. Somewhere.
+			return
 
 		affected.implants -= selection
 		H.shock_stage+=20
