@@ -735,7 +735,7 @@
 		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
 		if(!M.ckey)
-			usr << "\red <B>Warning: Mob ckey for [mob.name] not found.</b>"
+			usr << "\red <B>Warning: Mob ckey for [M.name] not found.</b>"
 			return
 
 		switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
