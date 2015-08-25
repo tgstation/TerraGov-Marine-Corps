@@ -1513,6 +1513,9 @@
 				if(!O.up && tinted_weldhelh)
 					client.screen += global_hud.darkMask
 
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
+				blind.layer = 18
+
 			if(machine)
 				if(!machine.check_eye(src))		reset_view(null)
 			else
