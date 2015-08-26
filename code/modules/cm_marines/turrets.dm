@@ -603,7 +603,7 @@
 			sleep(2)
 		spawn(10)
 			if(src && src.loc)
-				explosion(src.loc,0,0,2,0)
+				explosion(src.loc,-1,-1,2,0)
 				new /obj/machinery/marine_turret_frame(src.loc)
 				if(src)
 					del(src)
