@@ -339,7 +339,7 @@
 		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral))
 			src << "\green You cannot dissolve this."
 			return
-		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Praetorian))
+		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))
 			src << "\green This wall is too tough to be melted by your weak acid."
 			return
 	else
@@ -350,7 +350,7 @@
 		if(!check_plasma(75)) return
 		new /obj/effect/xenomorph/acid/weak(get_turf(O), O)
 
-	else if(istype(src,/mob/living/carbon/Xenomorph/Praetorian)) //strong level
+	else if(istype(src,/mob/living/carbon/Xenomorph/Boiler)) //strong level
 		if(!check_plasma(200)) return
 		new /obj/effect/xenomorph/acid/strong(get_turf(O), O)
 

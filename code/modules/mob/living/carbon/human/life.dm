@@ -760,6 +760,14 @@
 			else
 				pressure_alert = -1
 
+		if(isturf(src.loc) && !src.stat && !src.weakened)
+			var/obj/effect/effect/smoke/xeno_weak/X = locate() in src.loc
+			if(X)
+				X.affect(src)
+			var/obj/effect/effect/smoke/xeno_burn/Z = locate() in src.loc
+			if(Z)
+				Z.affect(src)
+
 		return
 
 ///FIRE CODE

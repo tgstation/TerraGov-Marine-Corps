@@ -259,9 +259,8 @@
 	if(usr)
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= W
-//		W.dropped(usr) Dropped is already fucking called on u_equip god damn it
+		W.dropped(usr)
 		add_fingerprint(usr)
-
 		if(!prevent_warning && !istype(W, /obj/item/weapon/gun/energy/crossbow))
 			for(var/mob/M in viewers(usr, null))
 				if (M == usr)

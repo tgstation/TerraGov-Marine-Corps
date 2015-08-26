@@ -133,7 +133,7 @@
 		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
 		new_xeno.key = picked
 		new_xeno << sound('sound/voice/hiss5.ogg',0,0,0,100)	//To get the player's attention
-		affected_mob.adjustToxLoss(200) //This should kill without gibbing da body
+		affected_mob.adjustToxLoss(300) //This should kill without gibbing da body
 		affected_mob.updatehealth()
 		affected_mob.chestburst = 2
 		processing_objects.Remove(src)

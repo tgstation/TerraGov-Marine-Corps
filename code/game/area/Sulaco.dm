@@ -371,24 +371,24 @@
 /area/ground/sand9
 	name = "\improper South Eastern Barrens"
 	icon_state = "southeast"
-	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+//	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
 /area/ground/river1
 	name = "\improper Western River"
 	icon_state = "blueold"
-	ambience = list('sound/ambience/jungle_amb1.ogg')
+//	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/ground/river2
 	name = "\improper Central River"
 	icon_state = "purple"
-	ambience = list('sound/ambience/jungle_amb1.ogg')
+//	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/ground/river3
 	name = "\improper Eastern River"
 	icon_state = "bluenew"
-	ambience = list('sound/ambience/jungle_amb1.ogg')
+//	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/ground/compound
 	name = "\improper Weyland Yutani Compound"
 	icon_state = "green"
-	ambience = list('sound/ambience/jungle_amb1.ogg')
+//	ambience = list('sound/ambience/jungle_amb1.ogg')

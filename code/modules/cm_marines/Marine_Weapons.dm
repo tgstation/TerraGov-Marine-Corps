@@ -4,19 +4,24 @@
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
 	damage = 22
+	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
 	damage = 35
+	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
 	damage = 18
+	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
 	damage = 30
+	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
 	damage = 55
 	range_falloff_at = 4 //4 turfs
+	name = "shotgun slug"
 
 ///***Ammo***///
 
@@ -424,6 +429,7 @@
 	armor_pierce = 100
 	accuracy = 60
 	incendiary = 1
+	name = "sniper round"
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -516,13 +522,13 @@
 		return ..(user)
 
 	dropped(var/mob/living/carbon/human/H)
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) && H.get_active_hand() == src)
+		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
 			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
 			if(isnull(H.s_store))
 				if(wielded)	unwield()
 				spawn(0)
 					H.equip_to_slot_if_possible(src,slot_s_store)
-					if(H.wear_suit == src) H << "\red The [src] snaps into place on [I]."
+					if(H.s_store == src) H << "\red The [src] snaps into place on [I]."
 					H.update_inv_s_store()
 		..()
 
@@ -634,6 +640,7 @@
 	iff = 1
 	armor_pierce = 5
 	accuracy = 30
+	name = "smartgun bullet"
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."

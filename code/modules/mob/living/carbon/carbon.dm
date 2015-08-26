@@ -316,7 +316,7 @@
 	if(!item) return //Grab processing has a chance of returning null
 
 	item.layer = initial(item.layer)
-	u_equip(item)
+	drop_from_inventory(item)
 	update_icons()
 
 /*	if (istype(usr, /mob/living/carbon)) //ALL this shit is called in u_equip 2 lines above. What the actual fuck

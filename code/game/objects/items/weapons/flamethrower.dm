@@ -75,16 +75,16 @@
 			return
 		if(ptank.air_contents.gas["phoron"] <= 0.5)
 			usr << "You try to get your flame on, but nothing happens. You're all out of burn juice!"
-			playsound(src.loc, 'sound/weapons/flamethrower_empty.ogg', 100, 1)
+//			playsound(src.loc, 'sound/weapons/flamethrower_empty.ogg', 100, 1)
 			lit = 0
 			update_icon()
 			return
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
 			var/turflist = getline(user, target_turf)
-			for (var/mob/O in viewers(user, null))
+			for (var/mob/O in viewers())
 				O << "\red [user] unleashes a blast of flames!"
-				playsound(src.loc, 'sound/weapons/flamethrower_shoot.ogg', 100, 1)
+			playsound(src.loc, 'sound/weapons/flamethrower_shoot.ogg', 80, 1)
 			flame_turf(turflist)
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
@@ -173,13 +173,19 @@
 			attack_self(M)
 	update_icon()
 	return
+
 /obj/item/weapon/flamethrower/proc/flame_turf(turflist)
 	if(!lit || operating)
 		return
 	operating = 1
+	var/distance = 0
 	for(var/turf/T in turflist)
+		distance++
 		if(T.density || istype(T, /turf/space))
 			break
+		if(distance > 6)
+			break
+
 		if(!isnull(usr))
 			if(DirBlocked(T,usr.dir))
 				break
@@ -187,11 +193,21 @@
 				break
 		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/structure/mineral_door/resin,T) || locate(/obj/effect/alien/resin/membrane,T))
 			break //Nope.avi
+
+		var/obj/structure/window/W = locate() in T
+		if(W)
+			if(W.is_full_window()) break
+			if(previousturf)
+				if(get_dir(previousturf,W) == W.dir)
+					break
+
 		if(!previousturf && length(turflist)>1)
 			previousturf = get_turf(src)
 			continue	//so we don't burn the tile we be standin on
+
 		if(previousturf && LinkBlocked(previousturf, T))
 			break
+		previousturf = T
 		ignite_turf(T)
 		sleep(1)
 	previousturf = null

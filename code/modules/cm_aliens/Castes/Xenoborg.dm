@@ -89,7 +89,7 @@
 		var/turf/U = get_turf(T)
 		if (!istype(M) || !istype(U))
 			return
-
+		face_atom(T)
 		var/obj/item/projectile/bullet/m4a3/B = new(M)
 		B.accuracy = 300 //Never misses.
 		B.armor_pierce = 50

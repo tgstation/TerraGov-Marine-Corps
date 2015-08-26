@@ -327,7 +327,7 @@
 	var/dat = "<b>[src.name]:</b> <BR><BR>"
 	dat += "--------------------<BR><BR>"
 	dat += "<B>Current Rounds:</b> [ammo] / [ammo_max]<BR>"
-	dat += "<B>Damage Status:</b> [round(health * 100 / health_max)] percent <BR>"
+	dat += "<B>Structural Integrity:</b> [round(health * 100 / health_max)] percent <BR>"
 	if(cell)
 		dat += "<B>Power Cell:</b> [cell.charge] / [cell.maxcharge]<BR>"
 	dat += "<B><A href='?src=\ref[src];op=power'>Power Down</a></B><br>"
@@ -537,7 +537,7 @@
 			user << "It's too damaged for that. Better just to build a new one."
 			return
 
-		if(health >= 100)
+		if(health >= health_max)
 			user << "It's already in perfect condition."
 			return
 

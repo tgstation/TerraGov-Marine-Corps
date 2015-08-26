@@ -139,18 +139,9 @@
 	if (docking_controller && !docking_controller.undocked())
 		docking_controller.force_undock()
 
-	var/list/dstturfs = list()
-	var/throwy = world.maxy
-
 	for(var/turf/T in destination)
-		dstturfs += T
-		if(T.y < throwy)
-			throwy = T.y
-
-	for(var/turf/T in dstturfs)
-		var/turf/D = locate(T.x, throwy - 1, 1)
-		for(var/atom/movable/AM as mob|obj in T)
-			AM.Move(D)
+		for(var/obj/O in T)
+			del(O)
 		if(istype(T, /turf/simulated))
 			del(T)
 
