@@ -277,7 +277,7 @@
 	animation.master = src
 
 	flick("gibbed-a", animation)
-	xgibs(loc, viruses, dna)
+	xgibs(get_turf(src))
 
 	spawn(15)
 		if(animation)	del(animation)
