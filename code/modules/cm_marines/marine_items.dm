@@ -447,6 +447,12 @@
 		reagents.add_reagent("nutriment", 2)
 		bitesize = 1
 
+/obj/item/weapon/paper/janitor
+	name = "Crumbled paper"
+	icon_state = "pamphlet"
+	info = "In loving memory of Cub Johnson."
+
+
 
 /obj/item/weapon/storage/box/wy_mre
 	name = "Weyland-Yutani Brand MRE"

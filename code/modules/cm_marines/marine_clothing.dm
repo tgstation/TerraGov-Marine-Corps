@@ -150,26 +150,27 @@
 
 /obj/item/clothing/under/marine/officer/logistics
 	name = "marine officer uniform"
+	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "bridge officer uniform"
-	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec
 	name = "executive officer uniform"
-	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	desc = "A uniform typically worn by a First-lieutenant in the USCM. The Executive Officer is the second in-charge of the USCM forces onboard the USS Sulaco."
 	icon_state = "XO_jumpsuit"
 	item_state = "XO_jumpsuit"
 	item_color = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
-	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled."
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
 	item_color = "CO_jumpsuit"
@@ -468,8 +469,8 @@
 	new /obj/item/weapon/throwing_knife(src)
 
 /obj/item/clothing/under/marine_jumpsuit
-	name = "marine jumpsuit"
-	desc = "Soft as silk. Light as feather. Protective as Kevlar. Smelly as a swamp."
+	name = "USCM Uniform"
+	desc = "The issue uniform for the USCM forces. It is weaved with light kevlar plates that protect against light impacts and light-caliber rounds."
 	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
@@ -483,7 +484,7 @@
 
 /obj/item/clothing/under/marine_underoos
 	name = "marine underpants"
-	desc = "Specially designed to protect your naughty bits from the ravages of extended cryo sleep."
+	desc = "A simple outfit worn by USCM operators during cyrosleep. Wear this into battle if you have no self-respect."
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
@@ -585,3 +586,10 @@
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "cap"
 	flags = FPRINT|TABLEPASS
+
+/obj/item/clothing/head/cmcap/ro
+	name = "USCM Officer Cap"
+	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	icon_state = "rocap"
+	item_state = "rocap"
+	item_color = "rocap"

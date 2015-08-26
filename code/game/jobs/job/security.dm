@@ -21,7 +21,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/sec/alt(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP(H), slot_wear_suit)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/security(H), slot_glasses)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), slot_glasses)
 		spawn(10)
 			H << "\red You are a Military Police Officer!"
 			H << "Your primary job is to maintain peace and stability on board the Sulaco."

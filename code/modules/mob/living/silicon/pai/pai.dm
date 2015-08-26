@@ -9,6 +9,8 @@
 
 	var/network = "SS13"
 	var/obj/machinery/camera/current = null
+	var/lights_on = 0 // Is our integrated light on?
+	var/integrated_light_power = 3
 
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
@@ -419,3 +421,14 @@
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
 	return 0
+
+/mob/living/silicon/pai/verb/toggle_lights()
+	set category = "pAI Commands"
+	set name = "Toggle Lights"
+
+	lights_on = !lights_on
+	usr << "You [lights_on ? "enable" : "disable"] your integrated light."
+	if(lights_on)
+		SetLuminosity(integrated_light_power)
+	else
+		SetLuminosity(0)

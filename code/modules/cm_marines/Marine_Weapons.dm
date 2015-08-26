@@ -771,7 +771,7 @@
 /obj/item/weapon/gun/rocketlauncher
 	var/projectile
 	name = "M83 rocket launcher"
-	desc = "MAGGOT."
+	desc = "The M83 SADAR is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the SADAR is a dangerous weapon with a variety of combat uses."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "M83sadar"
 	item_state = "rocket"
@@ -889,3 +889,8 @@
 			new /obj/item/ammo_casing/rocket(src)
 			new /obj/item/ammo_casing/rocket/ap(src)
 			new /obj/item/ammo_casing/rocket/ap(src)
+
+/obj/item/weapon/tank/phoron/m240
+	name = "M240 Fuel tank"
+	desc = "A fuel tank of powerful sticky-fire chemicals for use in the M240 Incinerator unit. Handle with care."
+	icon_state = "flametank"
