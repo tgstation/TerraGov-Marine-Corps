@@ -61,6 +61,27 @@ should be listed in the changelog upon commit though. Thanks. -->
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
 
 <div class='commit sansserif'>
+	<h2 class='date'>26 August 2015</h2>
+	<h3 class='author'>Abbysynth updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Some odd bugs with dropped items are fixed. This MIGHT have broken even more things, so please be on alert for weirdness with dropped or equipped items, particularly flashlights and self-deleting objects like grabs or twohanded items.</li>
+		<li class='bugfix'>Items should now however drop and calculate properly when you're tackled, pounced, throw an item, or it's dropped from damaged hands (smartgun in particular).</li>
+		<li class='tweak'>Removed xeno hud for oxygen, plasma gas, and fire. They weren't actually being used anyway (except fire, which was buggy).</li>
+		<li class='bugfix'>Flamethrowers no longer amplify their sound when fired (it was playing it overtop of itself for each person in sight)</li>
+		<li class='tweak'>Flamethrowers now have a maximum range of 6 tiles.</li>
+		<li class='tweak'>Crusher stomp knockdown normalized a bit, you shouldn't see people get up instantly.</li>
+		<li class='bugfix'>Shouldn't be possible to survive a chestburst with massive amounts of antitoxin anymore.</li>
+		<li class='bugfix'>Facehuggers now die from explosions.</li>
+		<li class='tweak'>Praetorians can for the moment not dissolve reinforced walls. Expect something else nice for them very shortly.</li>
+		<li class='tweak'>Xenos now have proper gib animations, instead of defaulting to gibbed monkeys.</li>
+		<li class='tweak'>Bullets now have names, so you know who's shooting at whom.</li>
+		<li class='bugfix'>Turrets can be repaired beyond 50% health</li>
+		<li class='tweak'>Shuttles no longer do weirdness with shoving people around on arrival, and don't teleport you to the planet. They just gib you and destroy everything on the landing pad.</li>
+		<li class='rscadd'>New xeno caste coming soon! Woo!</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
 	<h2 class='date'>24 August 2015</h2>
 	<h3 class='author'>Rahlzel updated:</h3>
 	<ul class='changes bgimages16'>
