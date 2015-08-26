@@ -274,6 +274,24 @@ datum/hud/New(mob/owner)
 			hud_used.persistant_inventory_update()
 			update_action_buttons()
 		else
-			usr << "\red Inventory hiding is currently only supported for human mobs, sorry."
+			if(isXeno(src) && !isXenoLarva(src))
+				if(!client) return
+				if(client.view != world.view)
+					return
+				if(hud_used.hud_shown)
+					hud_used.hud_shown = 0
+					src.client.screen -= src.healths
+					src.client.screen -= src.alien_plasma_display
+					src.client.screen -= src.locate_queen
+				else
+					hud_used.hud_shown = 1
+					if(src.healths)
+						src.client.screen |= src.healths
+					if(src.alien_plasma_display)
+						src.client.screen |= src.alien_plasma_display
+					if(src.locate_queen)
+						src.client.screen |= src.locate_queen
+			else
+				usr << "\red Inventory hiding is not supported for this mob, sorry."
 	else
 		usr << "\red This mob type does not use a HUD."

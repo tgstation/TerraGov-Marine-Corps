@@ -16,6 +16,7 @@
 	abstract = 1
 	item_state = "nothing"
 	w_class = 5.0
+	destroy_on_drop = 1
 
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)

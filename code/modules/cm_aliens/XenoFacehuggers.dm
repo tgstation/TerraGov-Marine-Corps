@@ -24,6 +24,10 @@ var/const/MAX_ACTIVE_TIME = 200
 	var/strength = 5
 	var/attached = 0
 
+	ex_act(severity)
+		Die()
+		return
+
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob) //can be picked up by aliens
 	attack_hand(user)
 	return

@@ -78,6 +78,7 @@
 
 
 /obj/item/weapon/flame/candle/dropped(mob/user)
+	..()
 	if(lit && src.loc != user)
 		user.SetLuminosity(-CANDLE_LUM)
 		SetLuminosity(CANDLE_LUM)

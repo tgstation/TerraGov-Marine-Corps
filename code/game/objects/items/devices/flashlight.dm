@@ -113,10 +113,10 @@
 
 
 /obj/item/device/flashlight/dropped(mob/user)
+	..()
 	if(on && src.loc != user)
 		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
-
 
 /obj/item/device/flashlight/pen
 	name = "penlight"

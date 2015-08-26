@@ -80,6 +80,14 @@
 	if(next_move > world.time) // in the year 2000...
 		return
 
+	if(istype(src,/mob/living/carbon/Xenomorph/Boiler) && !istype(A,/obj/screen))
+		var/mob/living/carbon/Xenomorph/Boiler/X = src
+		if(X.is_bombarding)
+			if(isturf(A))
+				X.bomb_turf(A)
+			else if(isturf(get_turf(A)))
+				X.bomb_turf(get_turf(A))
+
 	if(istype(loc,/obj/mecha))
 		if(!locate(/turf) in list(A,A.loc)) // Prevents inventory from being drilled
 			return

@@ -60,7 +60,10 @@
 		see_in_dark = 8
 	else
 		if(health <= -100 || (health < 0 && isXenoLarva(src))) //Just died!
-			death()
+			if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+				src:boiler_gib() //This also causes death. Boilers have special gib proc code to make em burst and destroy the corpse.
+			else
+				death()
 			blinded = 1
 			silent = 0
 			if(readying_tail) readying_tail = 0
@@ -241,7 +244,7 @@
 					if(!readying_tail) //Readying tail = no plasma increase.
 						storedplasma += plasma_gain
 				else
-					adjustBruteLoss(-(maxHealth / 40) - 2) //Heal 1/40th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+					adjustBruteLoss(-(maxHealth / 60) - 2) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 					adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
 					adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 					adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
@@ -256,6 +259,29 @@
 			if(readying_tail)
 				readying_tail =0
 				src << "You feel your tail relax."
+	return
+
+/mob/living/carbon/Xenomorph/gib()
+	death(1)
+	monkeyizing = 1
+	canmove = 0
+	icon = null
+	invisibility = 101
+	update_canmove()
+	dead_mob_list -= src
+
+	var/atom/movable/overlay/animation = null
+	animation = new(loc)
+	animation.icon_state = "blank"
+	animation.icon = 'icons/mob/mob.dmi'
+	animation.master = src
+
+	flick("gibbed-a", animation)
+	xgibs(loc, viruses, dna)
+
+	spawn(15)
+		if(animation)	del(animation)
+		if(src)			del(src)
 	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
@@ -306,7 +332,10 @@
 		health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 
 	if(health <= -100 && stat != DEAD) //We'll put a death check here for safety.
-		death()
+		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			src:boiler_gib() //Boilers gib instead of just die.
+		else
+			death()
 		blinded = 1
 		silent = 0
 		return

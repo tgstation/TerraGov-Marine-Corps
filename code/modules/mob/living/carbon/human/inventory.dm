@@ -192,12 +192,11 @@
 			if (client)
 				client.screen -= W
 			W.loc = loc
-			W.dropped(src)
-			//if(W)
-				//W.layer = initial(W.layer)
+			if(W.destroy_on_drop)
+				del(W)
+//			W.dropped(src)
 	update_action_buttons()
 	return 1
-
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()

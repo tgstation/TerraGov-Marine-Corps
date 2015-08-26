@@ -1,5 +1,8 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 
+/mob/living/carbon/Xenomorph/gib(anim="gibbed-m",do_gibs)
+	return ..(anim="gibbed-a",do_gibs)
+
 //First, dealing with alt-clicking vents.
 /mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
 	var/list/modifiers = params2list(params)
@@ -170,6 +173,7 @@
 	weaken = 4
 	skips_xenos = 1
 	accuracy = 100 //Rarely misses.
+	kill_count = 8
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5
@@ -188,7 +192,7 @@
 	damage_type = BURN
 
 /obj/item/projectile/energy/neuro/acid
-	damage = 12
+	damage = 15
 	name = "acid"
 	icon_state = "declone"
 	damage_type = BURN
@@ -215,6 +219,7 @@
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/Xeno/effects.dmi'
+	unacidable = 1
 
 /obj/effect/xenomorph/splatter
 	name = "splatter"
@@ -223,17 +228,82 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	layer = 5
+	layer = 4.1
 
 	New() //Self-deletes after creation & animation
 		spawn(8)
 			del(src)
 			return
 
+/obj/effect/xenomorph/splatterblob
+	name = "splatter"
+	desc = "It burns! It burns like hygiene!"
+	icon_state = "acidblob"
+	density = 0
+	opacity = 0
+	anchored = 1
+	layer = 5
+
+	New() //Self-deletes after creation & animation
+		spawn(40)
+			del(src)
+			return
+
+/obj/effect/xenomorph/spray
+	name = "splatter"
+	desc = "It burns! It burns like hygiene!"
+	icon_state = "acid2"
+	density = 0
+	opacity = 0
+	anchored = 1
+	layer = 3.1
+	mouse_opacity = 0
+
+	New() //Self-deletes after creation & animation
+		spawn(80 + rand(0,10))
+			processing_objects.Remove(src)
+			del(src)
+			return
+
+	Crossed(AM as mob|obj)
+		..()
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			var/chance = 100
+			if(H.shoes) chance = 45
+			if(prob(chance))
+				if(!H.lying)
+					H << "\green Your feet burn! Argh!"
+					if(prob(chance))
+						H.emote("scream")
+					if(prob(chance / 2))
+						H.Weaken(2)
+					var/datum/organ/external/affecting = H.get_organ("l_foot")
+					if(istype(affecting) && affecting.take_damage(0, 15))
+						H.UpdateDamageIcon()
+					affecting = H.get_organ("r_foot")
+					if(istype(affecting) && affecting.take_damage(0, 15))
+						H.UpdateDamageIcon()
+					H.updatehealth()
+				else
+					H.adjustFireLoss(rand(5,20))
+					H.show_message(text("\green You are burned by acid!"),1)
+
+	process()
+		var/turf/simulated/T = src.loc
+		if(!istype(T))
+			processing_objects.Remove(src)
+			del(src)
+			return
+
+		for(var/mob/living/carbon/M in loc)
+			if(isXeno(M)) continue
+			src.Crossed(M)
+
 //Medium-strength acid
 /obj/effect/xenomorph/acid
 	name = "acid"
-	desc = "Burbling corrossive stuff. I wouldn't want to touch it."
+	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
 	icon_state = "acid"
 	density = 0
 	opacity = 0
@@ -493,7 +563,7 @@
 	readying_tail = 0
 	return 1
 
-/mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 11, var/viewsize = 12)
+/mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
 	if(stat)
 		if(is_zoomed)
 			is_zoomed = 0
@@ -502,6 +572,9 @@
 		return
 	if(is_zoomed) return
 	if(!client) return
+	if(!src.hud_used.hud_shown)
+		src.button_pressed_F12(1)	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+	src.button_pressed_F12(1)
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
 	client.view = viewsize
@@ -522,9 +595,15 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/zoom_out()
-	usr.client.view = world.view
-	usr.client.pixel_x = 0
-	usr.client.pixel_y = 0
+	if(!client)
+		return
+	if(!src.hud_used.hud_shown)
+		src.button_pressed_F12(1)
+	client.view = world.view
+	client.pixel_x = 0
+	client.pixel_y = 0
 	is_zoomed = 0
+	if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+		src:zoom_timer = 0
 	zoom_turf = null
 	return
