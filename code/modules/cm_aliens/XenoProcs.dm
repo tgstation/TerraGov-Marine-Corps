@@ -259,8 +259,8 @@
 	layer = 3.1
 	mouse_opacity = 0
 
-	New() //Self-deletes after creation & animation
-		spawn(80 + rand(0,10))
+	New() //Self-deletes
+		spawn(100 + rand(0,20))
 			processing_objects.Remove(src)
 			del(src)
 			return
@@ -270,7 +270,7 @@
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			var/chance = 100
-			if(H.shoes) chance = 35
+			if(H.shoes) chance = 40
 			if(prob(chance))
 				if(!H.lying)
 					H << "\green Your feet burn! Argh!"
@@ -279,10 +279,10 @@
 					if(prob(chance / 2))
 						H.Weaken(2)
 					var/datum/organ/external/affecting = H.get_organ("l_foot")
-					if(istype(affecting) && affecting.take_damage(0, 10))
+					if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
 						H.UpdateDamageIcon()
 					affecting = H.get_organ("r_foot")
-					if(istype(affecting) && affecting.take_damage(0, 10))
+					if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
 						H.UpdateDamageIcon()
 					H.updatehealth()
 				else
@@ -323,7 +323,7 @@
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	target_strength = 20 //20% normal speed
+	acid_strength = 20 //20% normal speed
 
 /obj/effect/xenomorph/acid/New(loc, target)
 	..(loc)

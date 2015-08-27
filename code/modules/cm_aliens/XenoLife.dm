@@ -238,10 +238,15 @@
 
 		if(!T || !istype(T)) return
 
+		var/is_runner_hiding
+
+		if(istype(src,/mob/living/carbon/Xenomorph/Runner) && src.layer != initial(src.layer))
+			is_runner_hiding = 1
+
 		if(!is_robotic)//Robot no heal
 			if(locate(/obj/effect/alien/weeds) in T)
 				if(health >= maxHealth)
-					if(!readying_tail) //Readying tail = no plasma increase.
+					if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
 						storedplasma += plasma_gain
 				else
 					adjustBruteLoss(-(maxHealth / 50) - 2) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
