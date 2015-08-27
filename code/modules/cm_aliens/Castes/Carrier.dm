@@ -74,11 +74,11 @@
 			T = input(src, "Who should you throw at?") as null|anything in victims
 
 		if(T)
-			var/obj/item/clothing/mask/facehugger/throw = new()
+			var/obj/item/clothing/mask/facehugger/newthrow = new()
 			X.huggers_cur -= 1
-			throw.loc = src.loc
-			throw.throw_at(T, 5, X.throwspeed)
-			src << "You throw a facehugger at [throw]."
+			newthrow.loc = src.loc
+			newthrow.throw_at(T, 5, X.throwspeed)
+			// src << "You throw a facehugger at [T]."
 			visible_message("\red <B>[src] throws something towards [T]!</B>")
 			X.threw_a_hugger = 1
 			spawn(40)
