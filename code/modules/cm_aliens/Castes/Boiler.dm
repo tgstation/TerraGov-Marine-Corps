@@ -278,7 +278,7 @@
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_burn
 	time_to_live = 150
-	color = "#CC6A28" //Mostly green?
+	color = "#AC8A28" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_burn/Move()
 	..()
@@ -347,7 +347,7 @@
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_weak
 	time_to_live = 100
-	color = "#82AA13" //Mostly green?
+	color = "#82BA13" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_weak/Move()
 	..()
