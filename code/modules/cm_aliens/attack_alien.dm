@@ -40,6 +40,8 @@
 				return
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+			if(M.frenzy_aura) damage += (M.frenzy_aura * 2)
+
 			if(slashing_allowed == 2 && !M.is_intelligent)
 				if(src.status_flags & XENO_HOST)
 					M << "You try to slash [src], but find you <B>cannot</B>. There is a host inside!"
@@ -64,7 +66,7 @@
 //			if(istype(M, /mob/living/carbon/alien/humanoid/ravager))
 //				affecting = get_organ(ran_zone("head", 95))
 //			else
-			affecting = get_organ(ran_zone(M.zone_sel.selecting,75))
+			affecting = get_organ(ran_zone(M.zone_sel.selecting,70))
 			if(!affecting) //No organ, just get a random one
 				affecting = get_organ(ran_zone(null,0))
 			if(!affecting) //Still nothing??
@@ -101,7 +103,9 @@
 					visible_message(text("\red <B>\The [] tried to tackle [], but they're already down!</B>", M, src))
 
 			else
-				if (prob(M.tackle_chance)) //Tackle_chance is now a special var for each caste.
+				var/tackle_bonus = 0
+				if(M.frenzy_aura) tackle_bonus = (M.frenzy_aura * 3)
+				if (prob(M.tackle_chance + tackle_bonus)) //Tackle_chance is now a special var for each caste.
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 					Weaken(rand(M.tacklemin,M.tacklemax))
 //					if (src.stat != 2)

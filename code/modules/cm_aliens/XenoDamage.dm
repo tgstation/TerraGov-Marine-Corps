@@ -16,6 +16,8 @@
 			b_loss += rand(45,55)
 			f_loss += rand(45,65)
 			Weaken(12)
+			if(guard_aura)
+				b_loss /= 2
 			adjustBruteLoss(b_loss)
 			adjustFireLoss(f_loss)
 			updatehealth()
@@ -26,6 +28,8 @@
 			if (prob(40))
 				Paralyse(2)
 			Weaken(rand(4,6))
+			if(guard_aura)
+				b_loss /= 2
 			adjustBruteLoss(b_loss)
 			adjustFireLoss(f_loss)
 			updatehealth()
@@ -37,6 +41,8 @@
 
 /mob/living/carbon/Xenomorph/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 	if(!damage)	return 0
+	if(guard_aura && damage > 0)
+		damage = round(damage * 6 / 7) //Slight damage reduction.
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage)

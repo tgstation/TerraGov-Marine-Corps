@@ -276,8 +276,8 @@ datum/hud/New(mob/owner)
 		else
 			if(isXeno(src) && !isXenoLarva(src))
 				if(!client) return
-				if(client.view != world.view)
-					return
+//				if(client.view != world.view)
+//					return
 				if(hud_used.hud_shown)
 					hud_used.hud_shown = 0
 					src.client.screen -= src.healths

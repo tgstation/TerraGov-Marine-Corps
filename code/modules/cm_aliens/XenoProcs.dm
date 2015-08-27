@@ -48,6 +48,15 @@
 	else
 		stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
 
+	if(frenzy_aura)
+		stat(null,"You are affected by a pheromone of FRENZY.")
+	if(guard_aura)
+		stat(null,"You are affected by a pheromone of GUARDING.")
+	if(recovery_aura)
+		stat(null,"You are affected by a pheromone of RECOVERY.")
+
+	return
+
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
 	if(!istype(src,/mob/living/carbon/Xenomorph) || isnull(src)) //somehow
@@ -132,7 +141,13 @@
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
 	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
-		tally += 1.3
+		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			tally -= 0.5
+		else
+			tally += 1.3
+
+	if(frenzy_aura)
+		tally -= 0.5
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
 		tally += 1.7
@@ -259,8 +274,8 @@
 	layer = 3.1
 	mouse_opacity = 0
 
-	New() //Self-deletes after creation & animation
-		spawn(80 + rand(0,10))
+	New() //Self-deletes
+		spawn(100 + rand(0,20))
 			processing_objects.Remove(src)
 			del(src)
 			return
@@ -270,7 +285,7 @@
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			var/chance = 100
-			if(H.shoes) chance = 35
+			if(H.shoes) chance = 40
 			if(prob(chance))
 				if(!H.lying)
 					H << "\green Your feet burn! Argh!"
@@ -279,10 +294,10 @@
 					if(prob(chance / 2))
 						H.Weaken(2)
 					var/datum/organ/external/affecting = H.get_organ("l_foot")
-					if(istype(affecting) && affecting.take_damage(0, 10))
+					if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
 						H.UpdateDamageIcon()
 					affecting = H.get_organ("r_foot")
-					if(istype(affecting) && affecting.take_damage(0, 10))
+					if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
 						H.UpdateDamageIcon()
 					H.updatehealth()
 				else
@@ -323,7 +338,7 @@
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	target_strength = 20 //20% normal speed
+	acid_strength = 20 //20% normal speed
 
 /obj/effect/xenomorph/acid/New(loc, target)
 	..(loc)

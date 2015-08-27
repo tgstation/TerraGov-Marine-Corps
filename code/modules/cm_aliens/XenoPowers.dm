@@ -440,3 +440,22 @@
 			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
 			M << "<span class='warning'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 */
+
+/mob/living/carbon/Xenomorph/proc/toggle_auras()
+	set name = "Emit Pheromones (30)"
+	set desc = "Emit pheromones in the area around you. Nearby xenomorphs will be enhanced in some way. This drains plasma to keep active."
+	set category = "Alien"
+
+	if(!check_state()) return
+
+	if(isnull(current_aura))
+		if(!check_plasma(30))
+			return
+		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "protect","recovery")
+		current_aura = choice
+		visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
+		return
+	else
+		current_aura = null
+		src << "<b>You stop emitting pheromones.</b>"
+		return

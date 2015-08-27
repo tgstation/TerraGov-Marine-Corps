@@ -22,7 +22,8 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid
+		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
+		/mob/living/carbon/Xenomorph/proc/toggle_auras
 		)
 
 

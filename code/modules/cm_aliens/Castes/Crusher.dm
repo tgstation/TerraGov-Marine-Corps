@@ -241,13 +241,13 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 					if(istype(AM,/obj/machinery/marine_turret))
 						var/obj/machinery/marine_turret/turret = AM
 						visible_message("<b>[src] rams into [AM]!</b>","<b>You ram into [AM]!</b>")
-						playsound(loc, "punch", 50, 1, -1)
-						if(momentum > 25)
-							if(prob(30))
+						playsound(loc, "punch", 70, 1, -1)
+						if(momentum > 10)
+							if(prob(70+momentum))
 								turret.stat = 1
 								turret.on = 0
 								turret.update_icon()
-						turret.update_health(momentum)
+						turret.update_health(momentum * 2)
 						if(!isnull(turret))
 							src << "\red Bonk!"
 							Weaken(3)

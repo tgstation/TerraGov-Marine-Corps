@@ -57,10 +57,14 @@
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
-		acid_spray(A)
+		if(A)
+			face_atom(A)
+			acid_spray(A)
 		return
 	if(modifiers["shift"] && shift_mouse_toggle)
-		acid_spray(A)
+		if(A)
+			face_atom(A)
+			acid_spray(A)
 		return
 	..()
 
@@ -278,7 +282,7 @@
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_burn
 	time_to_live = 150
-	color = "#CC6A28" //Mostly green?
+	color = "#AC8A28" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_burn/Move()
 	..()
@@ -294,21 +298,25 @@
 	if(M.stat)
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(60))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(40))
+		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
 		if (prob(20))
 			M.drop_item()
-		M.adjustOxyLoss(5)
+		M.adjustOxyLoss(10)
 		M.updatehealth()
 		if (M.coughedtime != 1)
 			M.coughedtime = 1
-			M.emote("cough")
+			if(prob(50))
+				M.emote("cough")
+			else
+				M.emote("gasp")
 			spawn (15)
 				M.coughedtime = 0
 	M << "\green <b>Your skin burns!</b>"
 	if(ishuman(M))
-		M:take_overall_damage(0,rand(15,30)) //burn damage, randomizes between various parts
+		M:take_overall_damage(0,rand(20,35)) //burn damage, randomizes between various parts
 	else
 		M.burn_skin(5)
 	M.updatehealth()
@@ -347,7 +355,7 @@
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_weak
 	time_to_live = 100
-	color = "#82AA13" //Mostly green?
+	color = "#82BA13" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_weak/Move()
 	..()
@@ -362,11 +370,13 @@
 		return
 
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
 		if (M.coughedtime != 1)
 			M.coughedtime = 1
 			M.emote("gasp")
+			M.adjustOxyLoss(18)
 			spawn (15)
 				M.coughedtime = 0
 		if(!M.weakened)
@@ -374,7 +384,6 @@
 				if(M)
 					M.Weaken(6)
 					M << "<B>You feel woozy from the gas.</B>"
-
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/acid_spray(var/atom/T)
@@ -391,9 +400,9 @@
 		src << "Not here!"
 		return
 
-	if(!check_plasma(10))
+	if(storedplasma < 10)
+		src << "Not enough plasma."
 		return
-
 
 	if(!T)
 		var/list/victims = list()
@@ -415,7 +424,6 @@
 
 		if(target == src.loc)
 			src << "That's too close!"
-			storedplasma += 10
 			return
 
 		playsound(src.loc, 'sound/effects/refill.ogg', 100, 1)
@@ -424,13 +432,11 @@
 		var/turflist = getline(src, target)
 		spray_turfs(turflist)
 		acid_cooldown = 1
-		spawn(200) //20 second cooldown.
+		spawn(160) //16 second cooldown.
 			acid_cooldown = 0
 			src << "You feel your acid glands refill. You can spray acid again."
 	else
-		storedplasma += 10 //Since we already stole 5
 		src << "\blue You cannot spit at nothing!"
-
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/spray_turfs(turflist)
@@ -485,9 +491,9 @@
 			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey))
 				M.adjustFireLoss(rand(12,20))
 				M.show_message(text("\green [src] showers you in corrosive acid!"),1)
-				if(prob(30))
+				if(prob(50))
 					M.emote("scream")
-				if(prob(20))
-					M.Weaken(rand(2,3))
+				if(prob(30))
+					M.Weaken(rand(3,4))
 
 	return

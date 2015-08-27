@@ -27,7 +27,8 @@
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel,
-		/mob/living/carbon/Xenomorph/proc/tail_attack
+		/mob/living/carbon/Xenomorph/proc/tail_attack,
+		/mob/living/carbon/Xenomorph/proc/toggle_auras
 		)
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel() // -- TLE
