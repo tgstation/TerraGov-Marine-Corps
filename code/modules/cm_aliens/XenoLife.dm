@@ -131,6 +131,16 @@
 				if(X.charge_timer == 0 && X.momentum > 2)
 					X.stop_momentum()
 
+		frenzy_aura = 0
+		guard_aura = 0
+		recovery_aura = 0
+
+		for(var/mob/living/carbon/Xenomorph/Z in range(7,src))
+			if(isnull(Z.current_aura)) continue
+			if(Z.current_aura == "frenzy") frenzy_aura++
+			if(Z.current_aura == "guard") guard_aura++
+			if(Z.current_aura == "recovery") recovery_aura++
+
 		update_icons()
 
 		//Deal with dissolving/damaging stuff in stomach.
@@ -144,7 +154,7 @@
 							M.adjustFireLoss(1)
 							if(prob(10))
 								M << "\green <b>You are burned by stomach acids!</b>"
-					if(M.acid_damage > 160)
+					if(M.acid_damage > 240)
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
 						del(M)
@@ -248,19 +258,30 @@
 				if(health >= maxHealth)
 					if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
 						storedplasma += plasma_gain
+						if(recovery_aura)
+							storedplasma += (recovery_aura * 2)
 				else
 					adjustBruteLoss(-(maxHealth / 50) - 2) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+					if(recovery_aura)
+						adjustBruteLoss(-(recovery_aura))
 					adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
 					adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 					adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 					updatehealth() //Make sure their actual health updates immediately.
 			else //Xenos restore plasma VERY slowly off weeds, regardless of health
 				if(rand(0,1) == 0) storedplasma += 1
+				if(recovery_aura)
+					storedplasma += round(recovery_aura / 2)
 
 			if(readying_tail) storedplasma -= 3
+			if(current_aura)
+				storedplasma -= 5
 		if(storedplasma > maxplasma) storedplasma = maxplasma
 		if(storedplasma < 0)
 			storedplasma = 0
+			if(current_aura)
+				current_aura = null
+				src << "Having run out of plasma, you stop emitting pheromones."
 			if(readying_tail)
 				readying_tail =0
 				src << "You feel your tail relax."

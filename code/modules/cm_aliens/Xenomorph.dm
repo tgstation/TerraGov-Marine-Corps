@@ -32,7 +32,7 @@ var/queen_time = 300 //5 minutes between queen deaths
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
 	see_infrared = 1
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	see_invisible = SEE_INVISIBLE_MINIMUM
 	var/dead_icon = "Drone Dead"
 	var/language = "Xenomorph"
 	var/obj/item/clothing/suit/wear_suit = null
@@ -67,12 +67,15 @@ var/queen_time = 300 //5 minutes between queen deaths
 	var/tunnel_delay = 0
 	var/spit_projectile = null
 	var/pslash_delay = 0
-	var/bite_chance = 6 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
+	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
 	var/readying_tail = 0 //'charges' up to 10, next attack does a tail stab.
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 	var/is_robotic = 0 //Robots use charge, not plasma (same thing sort of), and can only be healed with welders.
-
+	var/frenzy_aura = 0
+	var/guard_aura = 0
+	var/recovery_aura = 0
+	var/current_aura = null //"claw", "armor", "regen", "speed"
 	var/adjust_pixel_x = 0
 	var/adjust_pixel_y = 0
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
@@ -97,7 +100,7 @@ var/queen_time = 300 //5 minutes between queen deaths
 	add_language("Hivemind") //hivemind
 	add_inherent_verbs()
 
-	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
+//	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
 
 //	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	sight |= SEE_MOBS

@@ -151,6 +151,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	products = list(
+						/obj/item/clothing/tie/storage/webbing = 2,
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,
 						/obj/item/clothing/under/rank/medical = 3,
@@ -189,6 +190,7 @@
 	icon_deny = "robotics-deny"
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
+						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 2,
 						/obj/item/weapon/grenade/incendiary = 2,
@@ -217,6 +219,7 @@
 	products = list(
 						/obj/item/clothing/suit/storage/marine/marine_leader_armor = 1,
 						/obj/item/clothing/head/helmet/marine/leader = 1,
+						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/device/squad_beacon = 3,
 						/obj/item/device/squad_beacon/bomb = 1,
 						/obj/item/weapon/plastique = 1,
@@ -246,6 +249,7 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 						/obj/item/attachable/quickfire = 2,
+						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/attachable/compensator = 4
 					)
 	contraband = list()

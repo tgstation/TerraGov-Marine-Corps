@@ -445,10 +445,10 @@
 	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
 	w_class = 4
 	storage_slots = 8
-	max_w_class = 1
-	max_combined_w_class = 8
+	max_w_class = 3
+	max_combined_w_class = 24
 
-	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb")
+	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb","/obj/item/weapon/grenade/")
 
 	New()
 		..()

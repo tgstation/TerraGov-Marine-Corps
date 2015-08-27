@@ -48,6 +48,15 @@
 	else
 		stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
 
+	if(frenzy_aura)
+		stat(null,"You are affected by a pheromone of FRENZY.")
+	if(guard_aura)
+		stat(null,"You are affected by a pheromone of GUARDING.")
+	if(recovery_aura)
+		stat(null,"You are affected by a pheromone of RECOVERY.")
+
+	return
+
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
 	if(!istype(src,/mob/living/carbon/Xenomorph) || isnull(src)) //somehow
@@ -132,7 +141,13 @@
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
 	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
-		tally += 1.3
+		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			tally -= 0.5
+		else
+			tally += 1.3
+
+	if(frenzy_aura)
+		tally -= 0.5
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
 		tally += 1.7

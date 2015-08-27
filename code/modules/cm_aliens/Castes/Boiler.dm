@@ -57,10 +57,14 @@
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
-		acid_spray(A)
+		if(A)
+			face_atom(A)
+			acid_spray(A)
 		return
 	if(modifiers["shift"] && shift_mouse_toggle)
-		acid_spray(A)
+		if(A)
+			face_atom(A)
+			acid_spray(A)
 		return
 	..()
 

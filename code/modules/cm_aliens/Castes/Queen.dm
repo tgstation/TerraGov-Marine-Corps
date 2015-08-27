@@ -46,7 +46,8 @@
 		/mob/living/carbon/Xenomorph/Queen/proc/produce_jelly,
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
 		// /mob/living/carbon/Xenomorph/proc/bestial_roar,
-		/mob/living/carbon/Xenomorph/proc/tail_attack
+		/mob/living/carbon/Xenomorph/proc/tail_attack,
+		/mob/living/carbon/Xenomorph/proc/toggle_auras
 		)
 
 
