@@ -150,6 +150,8 @@
 	//stun effects
 	if(!istype(L,/mob/living/carbon/Xenomorph)) //Xenos are IMMUNE to all baton stuns.
 		L.stun_effect_act(stun, agony, target_zone, src)
+		if(!L.weakened)
+			L.Weaken(4)
 
 	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")

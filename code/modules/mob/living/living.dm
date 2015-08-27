@@ -611,7 +611,7 @@
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
 		var/mob/living/carbon/CM = L
-		if(CM.on_fire && CM.canmove)
+		if(CM.on_fire && CM.canmove && !weakened)
 			CM.fire_stacks -= rand(3,6)
 			CM.weakened = 4
 			CM.visible_message("<span class='danger'>[CM] rolls on the floor, trying to put themselves out!</span>", \

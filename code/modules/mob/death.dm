@@ -1,6 +1,7 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
-/mob/proc/gib(anim="gibbed-m",do_gibs)
+/mob/proc/gib(var/anim,var/do_gibs = 1)
+	anim ="gibbed-m"
 	death(1)
 	monkeyizing = 1
 	canmove = 0
