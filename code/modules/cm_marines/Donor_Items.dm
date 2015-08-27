@@ -87,11 +87,9 @@
 
 /obj/item/clothing/suit/storage/marine/fluff/LEO
 	name = "Leo's Armor"
-	desc = "Used PMC armor.  DONOR ITEM."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "pmc_armor"
-	icon_state = "pmc_armor"
+	desc = "Used Mercenary armor.  DONOR ITEM."
+	item_state = "merc_armor"
+	icon_state = "merc_armor"
 
 /obj/item/clothing/suit/storage/marine/fluff/Sado
 	name = "Heavy Security Hardsuit"
@@ -418,9 +416,9 @@
 
 /obj/item/clothing/head/helmet/marine/fluff/LEO
 	name = "Leo's Helm"
-	desc = "White helmet, with a red stripe.  DONOR ITEM"
-	icon_state = "redhelm"
-	item_state = "redhelm"
+	desc = "An old mercenary helmet.  DONOR ITEM"
+	icon_state = "merc_helm"
+	item_state = "merc_helm"
 
 /obj/item/clothing/head/helmet/marine/fluff/oneonethreeeight
 	name = "Camoflage Helmet"
@@ -496,11 +494,11 @@
 	item_color = "doom_suit"
 
 /obj/item/clothing/under/marine/fluff/LEO
-	name = "PMC Suit"
-	desc = "A white colored PMC Suit, probably not the best color for a band of murderers....  DONOR ITEM."
-	icon_state = "pmc_jumpsuit"
-	item_state = "pmc_jumpsuit_s"
-	item_color = "pmc_jumpsuit"
+	name = "Mercenary Jumpsuit Suit"
+	desc = "A uniform from a band of mercenaries...  DONOR ITEM."
+	icon_state = "merc_jumpsuit"
+	item_state = "merc_jumpsuit_s"
+	item_color = "merc_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/john56
 	name = "Pink Pride Jumpsuit"
@@ -641,7 +639,6 @@
 	name = "PMC Mask"
 	desc = "A white colored PMC Mask.  DONOR ITEM."
 	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_mask"
 	icon_state = "pmc_mask"
 
