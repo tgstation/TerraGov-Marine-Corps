@@ -61,7 +61,7 @@
 	else
 		if(health <= -100 || (health < 0 && isXenoLarva(src))) //Just died!
 			if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
-				src:boiler_gib() //This also causes death. Boilers have special gib proc code to make em burst and destroy the corpse.
+				gib() //This also causes death. Boilers have special gib proc code to make em burst and destroy the corpse.
 			else
 				death()
 			blinded = 1
@@ -244,7 +244,7 @@
 					if(!readying_tail) //Readying tail = no plasma increase.
 						storedplasma += plasma_gain
 				else
-					adjustBruteLoss(-(maxHealth / 60) - 2) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+					adjustBruteLoss(-(maxHealth / 50) - 2) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 					adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
 					adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 					adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
@@ -266,10 +266,17 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
 	update_canmove()
 	dead_mob_list -= src
+	if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+		visible_message("<B>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</b>")
+		src:smoke.set_up(6, 0, get_turf(src))
+		stat = UNCONSCIOUS //Keep em from moving around and stuff.
+		spawn(0)
+			src:smoke.start()
+		sleep(20) //Hopefully enough time for smoke to clear..
 
+	invisibility = 101
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
 	animation.icon_state = "blank"
@@ -278,7 +285,6 @@
 
 	flick("gibbed-a", animation)
 	xgibs(get_turf(src))
-
 	spawn(15)
 		if(animation)	del(animation)
 		if(src)			del(src)
@@ -300,6 +306,12 @@
 			xeno_message("Hive: A [src.name] has <b>died</b> at [sanitize(A.name)]!",3)
 		else
 			xeno_message("Hive: A [src.name] has <b>died!</b>",3)
+
+	for(var/atom/movable/M in src)
+		if(M in src.stomach_contents)
+			src.stomach_contents.Remove(M)
+		M.loc = src.loc
+
 	if(!is_robotic)
 		return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
 	else
@@ -333,7 +345,7 @@
 
 	if(health <= -100 && stat != DEAD) //We'll put a death check here for safety.
 		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
-			src:boiler_gib() //Boilers gib instead of just die.
+			gib() //Boilers gib instead of just die.
 		else
 			death()
 		blinded = 1

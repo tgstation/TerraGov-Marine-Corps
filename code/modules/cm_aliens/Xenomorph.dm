@@ -99,8 +99,10 @@ var/queen_time = 300 //5 minutes between queen deaths
 
 	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
 
-	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING //blerghhh. This lets you see in the dark
+//	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
+	sight |= SEE_MOBS
+	see_invisible = SEE_INVISIBLE_MINIMUM
+	see_in_dark = 8
 
 	if(caste != "Queen")
 		name = "[initial(name)] ([rand(1, 1000)])"

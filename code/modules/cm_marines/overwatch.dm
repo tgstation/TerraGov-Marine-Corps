@@ -452,12 +452,12 @@
 		y_offset += rand(-2,2)
 		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 		if(target && istype(target))
-			explosion(target, 1, 2, 6, 1) //Kaboom!
+			explosion(target, 1, 2, 5, 1) //Kaboom!
 			spawn(rand(15,30)) //This is all better done in a for loop, but I am mad lazy
 				x_offset += rand(-2,2)
 				y_offset += rand(-2,2)
 				target = locate(T.x + x_offset,T.y + y_offset,T.z)
-				explosion(target,1,2,4)
+				explosion(target,1,2,5)
 				spawn(rand(15,30))
 					x_offset += rand(-2,2)
 					y_offset += rand(-2,2)

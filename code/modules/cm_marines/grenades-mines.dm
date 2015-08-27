@@ -195,7 +195,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
 		triggered = 1
-		explosion(src.loc,-1,0,2)
+		explosion(src.loc,-1,-1,2)
 		spawn(0)
 			if(src)
 				del(src)

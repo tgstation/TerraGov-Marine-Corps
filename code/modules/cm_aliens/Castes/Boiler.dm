@@ -51,18 +51,6 @@
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 
-/mob/living/carbon/Xenomorph/Boiler/proc/boiler_gib()
-	visible_message("<B>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</b>")
-	src.smoke.set_up(6, 0, usr.loc)
-	monkeyizing = 1
-	canmove = 0
-	stat = UNCONSCIOUS //Keep em from moving around and stuff.
-	spawn(0)
-		src.smoke.start()
-	sleep(20) //Hopefully enough time for smoke to clear..
-	gib() //Gibs.
-	return
-
 /mob/living/carbon/Xenomorph/Boiler/ClickOn(var/atom/A, params)
 	if(is_zoomed && !is_bombarding && !istype(A,/obj/screen))
 		zoom_out()
@@ -495,7 +483,11 @@
 		processing_objects.Add(S)
 		for(var/mob/living/carbon/M in target)
 			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey))
-				M.adjustFireLoss(rand(15,40))
+				M.adjustFireLoss(rand(12,20))
 				M.show_message(text("\green [src] showers you in corrosive acid!"),1)
+				if(prob(30))
+					M.emote("scream")
+				if(prob(20))
+					M.Weaken(rand(2,3))
 
 	return

@@ -1,7 +1,7 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 
-/mob/living/carbon/Xenomorph/gib(anim="gibbed-m",do_gibs)
-	return ..(anim="gibbed-a",do_gibs)
+///mob/living/carbon/Xenomorph/gib(anim="gibbed-m",do_gibs)
+//	return ..(anim="gibbed-a",do_gibs)
 
 //First, dealing with alt-clicking vents.
 /mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
@@ -270,7 +270,7 @@
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			var/chance = 100
-			if(H.shoes) chance = 45
+			if(H.shoes) chance = 35
 			if(prob(chance))
 				if(!H.lying)
 					H << "\green Your feet burn! Argh!"
@@ -279,14 +279,14 @@
 					if(prob(chance / 2))
 						H.Weaken(2)
 					var/datum/organ/external/affecting = H.get_organ("l_foot")
-					if(istype(affecting) && affecting.take_damage(0, 15))
+					if(istype(affecting) && affecting.take_damage(0, 10))
 						H.UpdateDamageIcon()
 					affecting = H.get_organ("r_foot")
-					if(istype(affecting) && affecting.take_damage(0, 15))
+					if(istype(affecting) && affecting.take_damage(0, 10))
 						H.UpdateDamageIcon()
 					H.updatehealth()
 				else
-					H.adjustFireLoss(rand(5,20))
+					H.adjustFireLoss(rand(3,10))
 					H.show_message(text("\green You are burned by acid!"),1)
 
 	process()
@@ -476,10 +476,16 @@
 	set name = "Toggle Darkvision"
 	set category = "Alien"
 
-	if (see_invisible == SEE_INVISIBLE_LEVEL_TWO)
-		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	if (see_invisible == SEE_INVISIBLE_MINIMUM)
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO //Turn it off.
+		see_in_dark = 4
+		sight |= SEE_MOBS
+		sight &= ~SEE_TURFS
+		sight &= ~SEE_OBJS
 	else
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+		see_invisible = SEE_INVISIBLE_MINIMUM
+		see_in_dark = 8
+		sight |= SEE_MOBS
 
 //Random bite attack. Procs more often on downed people. Returns 0 if the check fails.
 //Does a LOT of damage.
