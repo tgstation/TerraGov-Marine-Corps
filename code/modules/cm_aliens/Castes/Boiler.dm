@@ -143,7 +143,7 @@
 		src << "You can't do that from in here."
 		return
 
-	if(!istype(get_turf(src),/turf/simulated/floor/gm))
+	if(!istype(get_turf(src),/turf/simulated/floor/gm) || !istype(get_area(src),/area/ground))
 		src << "You can only prepare a bombardment from outside."
 		return
 
