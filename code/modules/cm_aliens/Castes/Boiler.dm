@@ -25,7 +25,7 @@
 	evolves_to = list()
 	var/zoom_timer = 0
 	var/is_bombarding = 0
-	var/obj/item/weapon/grenade/grenade_type = null
+	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"
 	var/bombard_type = 0
 	var/readying_bombard = 0
 	var/bomb_cooldown = 0
@@ -88,13 +88,15 @@
 
 	zoom_timer = 1
 	visible_message("\blue [src] begins looking off into the distance.","\blue You start looking off into the distance.. Hold still!")
+
 	if(do_after(src,20))
 		zoom_in()
 		spawn(0)
 			zoom_timer = 0 //Just so they don't spam it and weird things out
 		return
 	else
-		storedplasma += 50 //Since we stole some already.
+		zoom_timer = 0
+		storedplasma += 20 //Since we stole some already.
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/toggle_bomb()
@@ -143,7 +145,7 @@
 		src << "You can't do that from in here."
 		return
 
-	if(!istype(get_turf(src),/turf/simulated/floor/gm) || !istype(get_area(src),/area/ground))
+	if((!istype(get_turf(src),/turf/simulated/floor/gm) && !istype(get_area(src),/area/ground)) || istype(get_area(src),/area/ground/caves))
 		src << "You can only prepare a bombardment from outside."
 		return
 
@@ -180,12 +182,16 @@
 		src << "You must prepare your stance using Bombard before you can do this."
 		return
 
-	if(get_dist(T,U) <= 6)
+	if(bomb_cooldown)
+		src << "You are still preparing another spit. Be patient!"
+		return
+
+	if(get_dist(T,U) <= 5)
 		src << "You are too close! You must be at least 7 meters from the target, due to the trajectory arc."
 		return
 
 	if((!istype(T,/turf/simulated/floor/gm) && !istype(get_area(T),/area/ground)) || istype(get_area(T),/area/ground/caves))
-		src << "There's not enough space to launch from in here."
+		src << "There's not enough space to launch in here."
 		return
 
 	var/offset_x = rand(-1,1)
@@ -204,6 +210,8 @@
 	src << "<B>You begin building up acid..</B>"
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
+	is_bombarding = 0
+	bomb_cooldown = 1
 	if(do_after(src,70))
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
 		target.visible_message("\green <B>A glob of acid falls from the sky!</b>")
@@ -213,12 +221,11 @@
 			var/obj/item/weapon/grenade/G = new grenade_type(target)
 			spawn(7)
 				G.prime()
-		is_bombarding = 0
-		bomb_cooldown = 1
-		spawn(600) //60 seconds cooldown.
+		spawn(400) //40 seconds cooldown.
 			bomb_cooldown = 0
 			src << "You feel your toxin glands swell. You are able to bombard an area again."
 		return
+	bomb_cooldown = 0
 	src << "You decide not to launch any acid."
 	return
 /*
@@ -283,7 +290,7 @@
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_burn
 	time_to_live = 150
-	color = "#AC8A28" //Mostly green?
+	color = "#A0B028" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_burn/Move()
 	..()
@@ -492,6 +499,7 @@
 			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey))
 				M.adjustFireLoss(rand(12,20))
 				M.show_message(text("\green [src] showers you in corrosive acid!"),1)
+				M.radiation += rand(1,10)
 				if(prob(50))
 					M.emote("scream")
 				if(prob(30))
