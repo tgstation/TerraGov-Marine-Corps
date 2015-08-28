@@ -4,11 +4,11 @@
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Boiler Walking"
-	melee_damage_lower = 10
+	melee_damage_lower = 12
 	melee_damage_upper = 15
 	tacklemin = 2
-	tacklemax = 3
-	tackle_chance = 50
+	tacklemax = 4
+	tackle_chance = 60
 	health = 190
 	maxHealth = 190
 	storedplasma = 350
@@ -16,11 +16,11 @@
 	maxplasma = 700
 	jellyMax = 0
 	spit_delay = 40
-	speed = 3.1
+	speed = 3
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
-	adjust_size_x = 0.9
-	adjust_size_y = 0.8
+//	adjust_size_x = 0.9
+//	adjust_size_y = 0.8
 	caste_desc = "Gross!"
 	evolves_to = list()
 	var/zoom_timer = 0
@@ -50,6 +50,7 @@
 		SetLuminosity(2)
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
+		see_in_dark = 20
 
 /mob/living/carbon/Xenomorph/Boiler/ClickOn(var/atom/A, params)
 	if(is_zoomed && !is_bombarding && !istype(A,/obj/screen))

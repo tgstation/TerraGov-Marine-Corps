@@ -157,6 +157,11 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	if(locate(/obj/item/device/mine) in get_turf(src))
 		src << "There's already a mine at this position!"
 		return
+
+	if(user.z == 3 || user.z == 4) // On the Sulaco.
+		src << "Are you crazy? You can't plant a landmine on a spaceship!"
+		return
+
 	if(!anchored)
 		user.visible_message("\blue \The [user] is deploying \the [src]")
 		if(!do_after(user,40))

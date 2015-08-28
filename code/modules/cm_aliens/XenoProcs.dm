@@ -338,7 +338,7 @@
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 20 //20% normal speed
+	acid_strength = 40 //20% normal speed
 
 /obj/effect/xenomorph/acid/New(loc, target)
 	..(loc)

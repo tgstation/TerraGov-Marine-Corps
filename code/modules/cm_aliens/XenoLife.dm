@@ -71,14 +71,17 @@
 		else if(health > -100 && health < 0) //Unconscious
 			if(readying_tail) readying_tail = 0
 			blinded = 1
-			see_in_dark = 3
+			see_in_dark = 5
 			Paralyse(4)
 			var/turf/T = loc
 			if(istype(T))
 				if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
 					adjustBruteLoss(5)
 		else						//Alive! Yey! Turn on their vision.
-			see_in_dark = 8
+			if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+				see_in_dark = 20
+			else
+				see_in_dark = 8
 			blinded = 0
 			if(readying_tail && readying_tail < 20)
 				readying_tail += rand(1,2)

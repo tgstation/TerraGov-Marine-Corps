@@ -13,6 +13,7 @@
 	maxplasma = 750
 	jellyMax = 750
 	plasma_gain = 12
+
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	inherent_verbs = list(
