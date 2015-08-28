@@ -86,7 +86,7 @@
 
 
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W)
+	if(W && istype(W))
 		if(!Target)
 			Target = loc
 

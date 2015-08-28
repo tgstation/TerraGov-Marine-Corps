@@ -21,12 +21,12 @@
 		I = usr.l_hand
 	else if(!usr.hand)
 		I = usr.r_hand
-	if(!I)
+	if(!I || !istype(I) || !I.canremove)
 		return
 	if(src.r_hand == null || src.l_hand == null)
 		switch(alert(src,"[usr] wants to give you \a [I]?",,"Yes","No"))
 			if("Yes")
-				if(!I)
+				if(!I || !usr || !istype(I))
 					return
 				if(!Adjacent(usr))
 					usr << "\red You need to stay in reaching distance while giving an object."
@@ -46,15 +46,17 @@
 						src.r_hand = I
 					else
 						src.l_hand = I
-				I.loc = src
-				I.layer = 20
-				I.add_fingerprint(src)
-				src.update_inv_l_hand()
-				src.update_inv_r_hand()
-				usr.update_inv_l_hand()
-				usr.update_inv_r_hand()
-				src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
+				I.dropped(usr)
+				if(I)
+					I.loc = src
+					I.layer = 20
+					I.add_fingerprint(src)
+					src.update_inv_l_hand()
+					src.update_inv_r_hand()
+					usr.update_inv_l_hand()
+					usr.update_inv_r_hand()
+					src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
 			if("No")
-				src.visible_message("\red [usr.name] tried to hand [I.name] to [src.name] but [src.name] didn't want it.")
+				return
 	else
 		usr << "\red [src.name]'s hands are full."
