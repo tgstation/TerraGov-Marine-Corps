@@ -1,3 +1,9 @@
+/turf/simulated/floor/gm/empty
+	name = "empty space"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "black"
+	density = 1
+
 /turf/simulated/floor/gm/snow
 	name = "snow layer"
 	icon = 'icons/turf/snow.dmi'
@@ -374,6 +380,30 @@
 	name = "\improper IR Foyer"
 	icon_state = "research"
 
+/area/shuttle/elevator1/ground
+	name = "\improper Elevator 1"
+	icon_state = "shuttlered"
+
+/area/shuttle/elevator1/underground
+	name = "\improper Elevator 1"
+	icon_state = "shuttle"
+
+/area/shuttle/elevator1/transit
+	name = "\improper Elevator 1"
+	icon_state = "shuttle2"
+
+/area/shuttle/elevator2/ground
+	name = "\improper Elevator 2"
+	icon_state = "shuttle"
+
+/area/shuttle/elevator2/underground
+	name = "\improper Elevator 2"
+	icon_state = "shuttle2"
+
+/area/shuttle/elevator2/transit
+	name = "\improper Elevator 2"
+	icon_state = "shuttlered"
+
 /area/ice_colony/outside
 	name = "\improper ice colony"
 	icon_state = "green"
@@ -401,3 +431,76 @@
 		..()
 		spawn_files += (/datum/file/data/text/researchlog)
 		update_spawn_files()
+
+/obj/machinery/computer/shuttle_control/elevator1
+	name = "Elevator Console"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "elevator"
+	shuttle_tag = "Elevator 1"
+	unacidable = 1
+	exproof = 1
+	density = 0
+
+/obj/machinery/computer/shuttle_control/elevator2
+	name = "Elevator Console"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "elevator"
+	shuttle_tag = "Elevator 2"
+	unacidable = 1
+	exproof = 1
+	density = 0
+
+//RESEARCH DECORATION
+//Most of icons made by ~Morrinn
+obj/structure/xenoautopsy
+	name = "Research thingies"
+	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "jarshelf_9"
+
+obj/structure/xenoautopsy/jar_shelf
+	name = "jar shelf"
+	icon_state = "jarshelf_0"
+	var/randomise = 1 //Random icon
+
+	New()
+		if(randomise)
+			icon_state = "jarshelf_[rand(0,9)]"
+
+obj/structure/xenoautopsy/tank
+	name = "cryo tank"
+	icon_state = "tank_empty"
+	desc = "It is empty."
+
+obj/structure/xenoautopsy/tank/broken
+	name = "cryo tank"
+	icon_state = "tank_broken"
+	desc = "Something broke it..."
+
+obj/structure/xenoautopsy/tank/alien
+	name = "cryo tank"
+	icon_state = "tank_alien"
+	desc = "There is something big inside..."
+
+obj/structure/xenoautopsy/tank/hugger
+	name = "cryo tank"
+	icon_state = "tank_hugger"
+	desc = "There is something spider-like inside..."
+
+obj/structure/xenoautopsy/tank/larva
+	name = "cryo tank"
+	icon_state = "tank_larva"
+	desc = "There is something worm-like inside..."
+
+obj/item/alienjar
+	name = "sample jar"
+	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "jar_sample"
+	desc = "Used to store organic samples inside for preservation."
+
+	New()
+		var/image/I
+		I = image('icons/obj/alien_autopsy.dmi', "sample_[rand(0,11)]")
+		I.layer = src.layer - 0.1
+		overlays += I
+		src.x += rand(-3,3)
+		src.y += rand(-3,3)

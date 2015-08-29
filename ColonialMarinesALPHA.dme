@@ -742,7 +742,7 @@
 #include "code\game\turfs\simulated\floor.dm"
 #include "code\game\turfs\simulated\floor_types.dm"
 #include "code\game\turfs\simulated\groundmap_turfs.dm"
-#include "code\game\turfs\simulated\snow_turf.dm"
+#include "code\game\turfs\simulated\IceColony.dm"
 #include "code\game\turfs\simulated\walls.dm"
 #include "code\game\turfs\simulated\walls_mineral.dm"
 #include "code\game\turfs\simulated\walls_misc.dm"
