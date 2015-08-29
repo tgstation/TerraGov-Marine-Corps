@@ -21,6 +21,7 @@
 	var/autoclose = 0
 	var/glass = 0
 	var/normalspeed = 1
+	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 
@@ -64,7 +65,7 @@
 	if(p_open || operating) return
 	if(ismob(AM))
 		var/mob/M = AM
-		if(world.time - M.last_bumped <= 10) return	//Can bump-open one airlock per second. This is to prevent shock spam.
+		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
 		M.last_bumped = world.time
 		if(!M.restrained() && !M.small)
 			bumpopen(M)
@@ -229,7 +230,7 @@
 	do_animate("opening")
 	icon_state = "door0"
 	src.SetOpacity(0)
-	sleep(10)
+	sleep(openspeed)
 	src.layer = open_layer
 	src.density = 0
 	explosion_resistance = 0
@@ -240,7 +241,7 @@
 	if(operating)	operating = 0
 
 	if(autoclose  && normalspeed)
-		spawn(150)
+		spawn(150 + openspeed)
 			autoclose()
 	if(autoclose && !normalspeed)
 		spawn(5)
@@ -258,7 +259,7 @@
 	explosion_resistance = initial(explosion_resistance)
 	src.layer = closed_layer
 	do_animate("closing")
-	sleep(10)
+	sleep(openspeed)
 	update_icon()
 	if(visible && !glass)
 		SetOpacity(1)	//caaaaarn!

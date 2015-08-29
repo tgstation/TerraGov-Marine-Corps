@@ -250,10 +250,12 @@ var/const/MAX_ACTIVE_TIME = 200
 		return
 
 	if(!sterile)
-		//target.contract_disease(new /datum/disease/alien_embryo(0)) //so infection chance is same as virus infection chance
-		new /obj/item/alien_embryo(target)
+		var/obj/item/alien_embryo/E = new (target)
 		target.status_flags |= XENO_HOST
-
+		if(istype(target, /mob/living/carbon/human))
+			var/mob/living/carbon/human/T = target
+			var/datum/organ/external/chest/affected = T.get_organ("chest")
+			affected.implants += E
 		target.visible_message("\red \b [src] falls limp after violating [target]'s face!")
 
 		Die()
