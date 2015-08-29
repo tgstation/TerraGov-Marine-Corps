@@ -18,7 +18,7 @@
 	spit_delay = 40
 	speed = 3
 	adjust_pixel_x = -16
-	adjust_pixel_y = -6
+//	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
 //	adjust_size_y = 0.8
 	caste_desc = "Gross!"
@@ -38,7 +38,6 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/shift_spits,
 		/mob/living/carbon/Xenomorph/Boiler/proc/bombard,
 		/mob/living/carbon/Xenomorph/Boiler/proc/longrange,
 		/mob/living/carbon/Xenomorph/Boiler/proc/toggle_bomb,
@@ -47,7 +46,7 @@
 
 	New()
 		..()
-		SetLuminosity(2)
+		SetLuminosity(3)
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
@@ -122,7 +121,7 @@
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bombard()
-	set name = "Bombard (100-200)"
+	set name = "Bombard (200-250)"
 	set desc = "Bombard an area. Use 'Toggle bombard types' to change the effect."
 	set category = "Alien"
 
@@ -145,13 +144,6 @@
 		src << "You can't do that from in here."
 		return
 
-	if((!istype(get_turf(src),/turf/simulated/floor/gm) && !istype(get_area(src),/area/ground)) || istype(get_area(src),/area/ground/caves))
-		src << "You can only prepare a bombardment from outside."
-		return
-
-	if(!check_plasma(100 + (50 * bombard_type)))
-		return
-
 	readying_bombard = 1
 	visible_message("\blue [src] begins digging their claws into the ground.","\blue You begin preparing a bombardment..")
 	if(do_after(src,60))
@@ -159,13 +151,12 @@
 		is_bombarding = 1
 		visible_message("\blue [src] digs in!","\blue You get ready to bomb an area! If you move, you must wait again to fire.")
 		if(client)
-			client.mouse_pointer_icon = file("icons/Xeno/mouse_pointer.dmi") //Sure, why not.
+			client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
 	else
 		readying_bombard = 0
 		is_bombarding = 0
 		if(client)
 			client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		storedplasma += (75 + (25 * bombard_type)) //Refund half the cost if we moved.
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bomb_turf(var/turf/T)
@@ -179,7 +170,7 @@
 	var/turf/U = get_turf(src)
 
 	if(!is_bombarding)
-		src << "You must prepare your stance using Bombard before you can do this."
+		src << "You must prepare your stance before you can do this."
 		return
 
 	if(bomb_cooldown)
@@ -190,8 +181,7 @@
 		src << "You are too close! You must be at least 7 meters from the target, due to the trajectory arc."
 		return
 
-	if((!istype(T,/turf/simulated/floor/gm) && !istype(get_area(T),/area/ground)) || istype(get_area(T),/area/ground/caves))
-		src << "There's not enough space to launch in here."
+	if(!check_plasma(200 + (50 * bombard_type)))
 		return
 
 	var/offset_x = rand(-1,1)
@@ -216,54 +206,29 @@
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
 		target.visible_message("\green <B>A glob of acid falls from the sky!</b>")
 		new /obj/effect/xenomorph/splatter(target)
-		playsound(target, 'sound/effects/blobattack.ogg', 60, 1)
 		if(grenade_type)
-			var/obj/item/weapon/grenade/G = new grenade_type(target)
+			var/obj/item/weapon/grenade/G = new grenade_type(src.loc)
+			G.throw_at(target, 18, 4, src)
+			playsound(target, 'sound/effects/blobattack.ogg', 60, 1)
 			spawn(7)
 				G.prime()
 		spawn(400) //40 seconds cooldown.
 			bomb_cooldown = 0
 			src << "You feel your toxin glands swell. You are able to bombard an area again."
 		return
-	bomb_cooldown = 0
-	src << "You decide not to launch any acid."
-	return
-/*
-/mob/living/carbon/Xenomorph/Boiler/proc/splashdown(var/turf/T)
-	if(!istype(T)) return
-
-	new /obj/effect/xenomorph/splatterblob(T) //do a splatty splat
-	playsound(src.loc, 'sound/effects/blobattack.ogg', 60, 1)
-	if(istype(T,/turf/simulated/floor/gm) || istype(get_area(T),/area/ground)) //Rare outdoor nonground turfs.
-		for(var/mob/living/carbon/M in orange(2,T))
-			spawn(0)
-				if(!isXeno(M) && !M.stat && !isYautja(M) && prob(75))
-					if(!locate(/obj/effect/xenomorph/splatter) in get_turf(M))
-						new /obj/effect/xenomorph/splatter(get_turf(M))
-					M.visible_message("\green [M.name] is spattered with acid!","\green <B>You are spattered with vile acid!")
-					M.apply_damage(rand(10,30),BURN)
-					M.apply_effect(5,IRRADIATE)
 	else
-		T.visible_message("\green <b>Acid begins to melt through the ceiling!</b>")
-		spawn(10)
-			for(var/mob/living/carbon/M in T)
-				spawn(0)
-					if(!isXeno(M) && !M.stat && !isYautja(M) && prob(75))
-						if(!locate(/obj/effect/xenomorph/splatter) in get_turf(M))
-							new /obj/effect/xenomorph/splatter(get_turf(M))
-						M.visible_message("\green [M.name] is spattered with acid!","\green <B>You are spattered with acid!")
-						M.apply_damage(rand(5,15),BURN)
-						M.apply_effect(5,IRRADIATE)
+		bomb_cooldown = 0
+		src << "You decide not to launch any acid."
 	return
-*/
+
 //Yes, the mortar strikes are grenades. Deal with it (tm)
 /obj/item/weapon/grenade/xeno
 	desc = "Gross!"
 	name = "acid glob"
 	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "splatter"
+	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT
 	anchored = 1
 	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
 
@@ -274,7 +239,8 @@
 
 	prime()
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
-		src.smoke.set_up(5, 0, usr.loc)
+		icon_state = "splatter"
+		src.smoke.set_up(6, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
 			sleep(10)
@@ -290,7 +256,7 @@
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_burn
 	time_to_live = 150
-	color = "#A0B028" //Mostly green?
+	color = "#86B028" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_burn/Move()
 	..()
@@ -301,9 +267,7 @@
 	..()
 	if(isXeno(M))
 		return
-	if(isYautja(M) && prob(50))
-		return
-	if(M.stat)
+	if(isYautja(M) && prob(75))
 		return
 
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(40))
@@ -312,9 +276,10 @@
 	else
 		if (prob(20))
 			M.drop_item()
-		M.adjustOxyLoss(10)
+		M.adjustOxyLoss(5)
+		M.adjustFireLoss(rand(5,15))
 		M.updatehealth()
-		if (M.coughedtime != 1)
+		if (M.coughedtime != 1 && !M.stat)
 			M.coughedtime = 1
 			if(prob(50))
 				M.emote("cough")
@@ -324,7 +289,7 @@
 				M.coughedtime = 0
 	M << "\green <b>Your skin burns!</b>"
 	if(ishuman(M))
-		M:take_overall_damage(0,rand(20,35)) //burn damage, randomizes between various parts
+		M:take_overall_damage(0,rand(10,15)) //burn damage, randomizes between various parts
 	else
 		M.burn_skin(5)
 	M.updatehealth()
@@ -334,9 +299,9 @@
 	desc = "Gross!"
 	name = "acid glob"
 	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "splatter"
+	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT
 	anchored = 1
 	var/datum/effect/effect/system/smoke_spread/xeno_weaken/smoke
 
@@ -347,7 +312,8 @@
 
 	prime()
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
-		src.smoke.set_up(5, 0, usr.loc)
+		icon_state = "splatter"
+		src.smoke.set_up(6, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
 			sleep(10)
@@ -377,14 +343,17 @@
 	if(isYautja(M) && prob(75))
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+	if(M.stat)
+		return
+
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(75))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
 		if (M.coughedtime != 1)
 			M.coughedtime = 1
 			M.emote("gasp")
-			M.adjustOxyLoss(18)
+			M.adjustOxyLoss(15)
 			spawn (15)
 				M.coughedtime = 0
 		if(!M.weakened)
@@ -396,7 +365,7 @@
 
 /mob/living/carbon/Xenomorph/Boiler/proc/acid_spray(var/atom/T)
 	set name = "Spray Acid (10+)"
-	set desc = "Hose down an area with corrosive acid. Use middle mouse for best results."
+	set desc = "Hose down an area with corrosive acid. Use middle mouse button for best results."
 	set category = "Alien"
 
 	if(!check_state()) return
@@ -434,12 +403,11 @@
 			src << "That's too close!"
 			return
 
+		acid_cooldown = 1
 		playsound(src.loc, 'sound/effects/refill.ogg', 100, 1)
 		visible_message("\green <B>[src] spews forth a virulent spray of acid!</B>")
-
 		var/turflist = getline(src, target)
 		spray_turfs(turflist)
-		acid_cooldown = 1
 		spawn(160) //16 second cooldown.
 			acid_cooldown = 0
 			src << "You feel your acid glands refill. You can spray acid again."
@@ -497,12 +465,13 @@
 		processing_objects.Add(S)
 		for(var/mob/living/carbon/M in target)
 			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey))
-				M.adjustFireLoss(rand(12,20))
+				M.adjustFireLoss(rand(5,18))
 				M.show_message(text("\green [src] showers you in corrosive acid!"),1)
-				M.radiation += rand(1,10)
-				if(prob(50))
-					M.emote("scream")
-				if(prob(30))
-					M.Weaken(rand(3,4))
+				M.radiation += rand(5,20)
+				if(!isYautja(M))
+					if(prob(70))
+						M.emote("scream")
+					if(prob(40))
+						M.Weaken(rand(3,4))
 
 	return
