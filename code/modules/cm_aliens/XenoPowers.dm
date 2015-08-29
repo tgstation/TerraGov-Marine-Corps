@@ -292,6 +292,10 @@
 		if(!Target_Turf || !Turf)
 			return
 
+		if(Turf == Target_Turf)
+			src << "Too close!"
+			return
+
 		var/obj/item/projectile/energy/neuro/A = new spit_projectile(Turf)
 		if(is_robotic && isturf(src.loc))
 			playsound(src.loc,'sound/weapons/pulse.ogg',75,1)
@@ -458,7 +462,7 @@
 	if(isnull(current_aura))
 		if(!check_plasma(30))
 			return
-		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "protect","recovery")
+		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "guard","recovery")
 		current_aura = choice
 		visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
 		return
