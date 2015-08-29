@@ -38,9 +38,9 @@
 				m_type = 2
 				message = "<B>The [src.name]</B> growls."
 				if(!adjust_pixel_x)
-					playsound(src.loc, 'sound/voice/alien_growl_small.ogg', 100, 1, 1)
+					playsound(src.loc, 'sound/voice/alien_growl_small.ogg', 30, 1, 1)
 				else
-					playsound(src.loc, 'sound/voice/alien_growl_large.ogg', 100, 1, 1)
+					playsound(src.loc, 'sound/voice/alien_growl_large.ogg', 30, 1, 1)
 		if("hiss")
 			if (!muzzled)
 				m_type = 2

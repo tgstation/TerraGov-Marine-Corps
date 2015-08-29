@@ -33,9 +33,9 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = 1, on_floor = 1), \
 	null, \
 	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = 1, on_floor = 1), \
-	null, \
+	null, /*\
 	new/datum/stack_recipe("cannon frame", /obj/item/weapon/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0), \
-	null, \
+	null, \*/
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60), \
 	null, \

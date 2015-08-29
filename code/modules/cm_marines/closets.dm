@@ -94,7 +94,7 @@
 			new /obj/item/clothing/under/marine/mp(src)
 			new /obj/item/clothing/suit/armor/riot/marine(src)
 			new /obj/item/clothing/head/helmet/riot(src)
-			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/weapon/storage/belt/security/MP(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mmpo(src)
