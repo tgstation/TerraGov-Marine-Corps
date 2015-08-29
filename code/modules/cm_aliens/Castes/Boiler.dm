@@ -269,8 +269,6 @@
 		return
 	if(isYautja(M) && prob(75))
 		return
-	if(M.stat)
-		return
 
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(40))
 		M << "<b>Your gas mask protects you!</b>"
@@ -279,8 +277,9 @@
 		if (prob(20))
 			M.drop_item()
 		M.adjustOxyLoss(5)
+		M.adjustFireLoss(rand(5,15))
 		M.updatehealth()
-		if (M.coughedtime != 1)
+		if (M.coughedtime != 1 && !M.stat)
 			M.coughedtime = 1
 			if(prob(50))
 				M.emote("cough")
@@ -344,6 +343,9 @@
 	if(isYautja(M) && prob(75))
 		return
 
+	if(M.stat)
+		return
+
 	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(75))
 		M << "<b>Your gas mask protects you!</b>"
 		return
@@ -351,7 +353,7 @@
 		if (M.coughedtime != 1)
 			M.coughedtime = 1
 			M.emote("gasp")
-			M.adjustOxyLoss(18)
+			M.adjustOxyLoss(15)
 			spawn (15)
 				M.coughedtime = 0
 		if(!M.weakened)
@@ -463,11 +465,11 @@
 		processing_objects.Add(S)
 		for(var/mob/living/carbon/M in target)
 			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey))
-				M.adjustFireLoss(rand(10,20))
+				M.adjustFireLoss(rand(5,18))
 				M.show_message(text("\green [src] showers you in corrosive acid!"),1)
 				M.radiation += rand(5,20)
 				if(!isYautja(M))
-					if(prob(50))
+					if(prob(70))
 						M.emote("scream")
 					if(prob(40))
 						M.Weaken(rand(3,4))
