@@ -926,6 +926,7 @@
 #include "code\modules\cm_marines\newarmor.dm"
 #include "code\modules\cm_marines\NonLethalRestraints.dm"
 #include "code\modules\cm_marines\overwatch.dm"
+#include "code\modules\cm_marines\PMC.dm"
 #include "code\modules\cm_marines\shuttles.dm"
 #include "code\modules\cm_marines\structures.dm"
 #include "code\modules\cm_marines\turrets.dm"
