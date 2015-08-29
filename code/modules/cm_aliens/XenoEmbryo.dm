@@ -74,13 +74,13 @@
 		if(4)
 			if(prob(1))
 				if(affected_mob.paralysis < 1)
-					affected_mob << "\red You have a seizure!"
 					for(var/mob/O in viewers(affected_mob, null))
 						if(O == src)
 							continue
-						O.show_message(text("\red <B>[affected_mob] starts having a seizure!"), 1)
+						O.show_message(text("\red <B>[affected_mob] starts shaking uncontrollably!"), 1)
 					affected_mob.Paralyse(10)
-					affected_mob.make_jittery(300)
+					affected_mob.make_jittery(50)
+					affected_mob.take_organ_damage(1)
 			if(prob(2))
 				affected_mob << "\red Your chest hurts badly."
 			if(prob(2))
@@ -88,9 +88,17 @@
 			if(prob(2))
 				affected_mob << "\red Your heart starts beating rapidly, and each beat is painful."
 		if(5)
-			affected_mob << "\red You feel something tearing its way out of your stomach..."
-			affected_mob.emote("scream")
-			affected_mob.adjustToxLoss(5)
+			// affected_mob << "\red You feel something ripping up your insides!"
+			// affected_mob.emote("scream")
+			if(affected_mob.paralysis < 1)
+				for(var/mob/O in viewers(affected_mob, null))
+					if(O == src)
+						continue
+					O.show_message(text("\red <B>[affected_mob] starts shaking uncontrollably!"), 1)
+				affected_mob.Paralyse(20)
+				affected_mob.make_jittery(100)
+				affected_mob.take_organ_damage(1)
+				affected_mob.adjustToxLoss(5)
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()
@@ -109,6 +117,7 @@
 	if(!affected_mob)
 		return 0
 
+/* Saving this in case we want to swap it back, but candidates shouldn't be picked first to be a Larva. The host should be.
 	if(candidates.len)
 		picked = pick(candidates)
 	else if(affected_mob.client)
@@ -120,7 +129,17 @@
 			picked = affected_mob.key
 	else
 		stage = 4 // Let's try again later.
-		return 0
+		return 0*/
+
+	if(affected_mob.client) // Make sure the player is still there
+		if(affected_mob.client.holder && istype(affected_mob.client.holder,/datum/admins) && !(affected_mob.client.prefs.be_special & BE_ALIEN))
+			affected_mob << "You were about to burst, but Admins are immune to being forced into a Larva. Lucky you!"
+			stage = 4
+			return 0
+		else if(affected_mob.client.prefs.be_special & BE_ALIEN) // The host wants to be a Larva, so make him one
+			picked = affected_mob.key
+	else if(candidates.len) // The player doesn't want it or they're gone, let's find someone else
+		picked = pick(candidates)
 
 	if(!picked)
 		stage = 4
