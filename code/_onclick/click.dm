@@ -81,11 +81,12 @@
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Boiler) && !istype(A,/obj/screen))
 		if(src:is_bombarding)
-			src:is_bombarding = 0
 			if(isturf(A))
 				src:bomb_turf(A)
 			else if(isturf(get_turf(A)))
 				src:bomb_turf(get_turf(A))
+			if(client)
+				client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 			return
 
 	if(istype(loc,/obj/mecha))
