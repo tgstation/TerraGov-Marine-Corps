@@ -132,7 +132,7 @@
 
 			if(reverse_accuracy) //Sniper rifles have different miss chance by distance.
 				if(distance <= 4)
-					miss_modifier += 50
+					miss_modifier += 120
 
 			if(range_falloff_at > 0 && range_falloff_at < distance)
 				miss_modifier += (distance * 4) //Pretends to be half again as far.
