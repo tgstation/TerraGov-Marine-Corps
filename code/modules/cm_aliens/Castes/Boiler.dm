@@ -16,13 +16,14 @@
 	maxplasma = 700
 	jellyMax = 0
 	spit_delay = 40
-	speed = 3
+	speed = 2.5
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
 //	adjust_size_y = 0.8
 	caste_desc = "Gross!"
 	evolves_to = list()
+	big_xeno = 1 //Toggles pushing
 	var/zoom_timer = 0
 	var/is_bombarding = 0
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"
@@ -134,10 +135,11 @@
 		if(client)
 			client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 		is_bombarding = 0
+		src << "You relax your stance."
 		return
 
 	if(bomb_cooldown)
-		src << "You need to wait 60 seconds in between launches for your acid to refill."
+		src << "You are still preparing another spit. Be patient!"
 		return
 
 	if(src.z == 0)
@@ -146,7 +148,7 @@
 
 	readying_bombard = 1
 	visible_message("\blue [src] begins digging their claws into the ground.","\blue You begin preparing a bombardment..")
-	if(do_after(src,60))
+	if(do_after(src,30))
 		readying_bombard = 0
 		is_bombarding = 1
 		visible_message("\blue [src] digs in!","\blue You get ready to bomb an area! If you move, you must wait again to fire.")
@@ -201,17 +203,18 @@
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 	bomb_cooldown = 1
-	if(do_after(src,70))
+	is_bombarding = 0
+	if(do_after(src,50))
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
 		target.visible_message("\green <B>A glob of acid falls from the sky!</b>")
 		new /obj/effect/xenomorph/splatter(target)
 		if(grenade_type)
 			var/obj/item/weapon/grenade/G = new grenade_type(src.loc)
-			G.throw_at(target, 18, 4, src)
+			G.throw_at(target, 20, 2, src)
 			playsound(target, 'sound/effects/blobattack.ogg', 60, 1)
-			spawn(7)
+			spawn(10)
 				G.prime()
-		spawn(400) //40 seconds cooldown.
+		spawn(300) //30 seconds cooldown.
 			bomb_cooldown = 0
 			src << "You feel your toxin glands swell. You are able to bombard an area again."
 		return
@@ -254,7 +257,7 @@
 
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_burn
-	time_to_live = 150
+	time_to_live = 180
 	color = "#86B028" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_burn/Move()
@@ -327,7 +330,7 @@
 
 //Xeno acid smoke.
 /obj/effect/effect/smoke/xeno_weak
-	time_to_live = 100
+	time_to_live = 150
 	color = "#82BA13" //Mostly green?
 
 /obj/effect/effect/smoke/xeno_weak/Move()
