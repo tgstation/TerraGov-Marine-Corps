@@ -81,11 +81,11 @@
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Boiler) && !istype(A,/obj/screen))
 		if(src:is_bombarding)
-			is_bombarding = 0
+			src:is_bombarding = 0
 			if(isturf(A))
-				X.bomb_turf(A)
+				src:bomb_turf(A)
 			else if(isturf(get_turf(A)))
-				X.bomb_turf(get_turf(A))
+				src:bomb_turf(get_turf(A))
 			return
 
 	if(istype(loc,/obj/mecha))
