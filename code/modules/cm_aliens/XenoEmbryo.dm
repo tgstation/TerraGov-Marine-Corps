@@ -152,7 +152,7 @@
 		return 0
 
 	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
-	affected_mob.update_burst()
+	affected_mob.update_icons()
 	spawn(6)
 		if(!affected_mob || !src) return //Might have died or something in that half second
 		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
@@ -166,7 +166,7 @@
 		affected_mob.updatehealth()
 		affected_mob.chestburst = 2
 		processing_objects.Remove(src)
-		affected_mob.update_burst()
+		affected_mob.update_icons()
 //		if(gib_on_success)
 //			affected_mob.gib()
 		del(src)

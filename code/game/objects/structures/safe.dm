@@ -9,7 +9,7 @@ FLOOR SAFES
 /obj/item/weapon/paper/safe_key
 	name = "Secure Safe Combination"
 	var/obj/structure/safe/safe = null
-
+/* Nope
 /obj/item/weapon/paper/safe_key/New()
 	..()
 	spawn(10)
@@ -19,7 +19,7 @@ FLOOR SAFES
 				info_links = info
 				icon_state = "paper_words"
 				break
-
+*/
 /obj/structure/safe
 	name = "safe"
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""

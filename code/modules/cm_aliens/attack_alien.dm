@@ -82,7 +82,7 @@
 //				score_slashes_made++
 
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
-//			slash_flick()
+			slash_flick()
 			updatehealth()
 
 		if("disarm")

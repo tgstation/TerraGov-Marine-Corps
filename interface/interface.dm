@@ -35,14 +35,6 @@
 		src << "\red The rules URL is not set in the server configuration."
 	return
 
-/client/verb/donate()
-	set name = "Donate"
-	set desc = "Like our server? Buy us a beer and get some custom-made items."
-	set category = "OOC"
-
-	src << "Our server runs entirely off of player donations. If you donate, you can receive custom cosmetic items for your character. <br>The minimum amount to donate is $5 to receive your item. <br><br>View our donation page for more info: http://colonial-marines.com/page/donate <br><br>Thank you,<br>Apophis."
-	return
-
 /*#define RULES_FILE "config/rules.html"
 /client/verb/rules()
 	set name = "Rules"

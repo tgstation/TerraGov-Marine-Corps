@@ -200,6 +200,7 @@
 	src << "<B>You begin building up acid..</B>"
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
+	is_bombarding = 0
 	bomb_cooldown = 1
 	if(do_after(src,70))
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")

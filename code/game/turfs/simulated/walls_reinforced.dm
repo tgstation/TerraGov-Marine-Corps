@@ -315,3 +315,8 @@
 	else if(!d_state)
 		return attack_hand(user)
 	return
+
+//Just different looking wall
+/turf/simulated/wall/r_wall/research
+	icon_state = "research"
+	walltype = "research"

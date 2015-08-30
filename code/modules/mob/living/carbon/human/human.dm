@@ -23,7 +23,6 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
-	slashed_icon = image("icon" = 'icons/Xeno/effects.dmi',"icon_state" = "slashflick")
 
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy")
@@ -1358,7 +1357,7 @@
 		if(eyes && istype(eyes) && !eyes.status & ORGAN_CUT_AWAY)
 			return 1
 	return 0
-/*
+
 //Flicks a slash icon when being slashed by xenos. Need to see if it causes lag at all..
 /mob/living/carbon/human/proc/slash_flick()
 	if(prob(50))
@@ -1371,4 +1370,3 @@
 		sleep(5)
 		slashed_icon = null
 		update_icons()
-*/

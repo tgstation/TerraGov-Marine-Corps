@@ -106,10 +106,10 @@
 				P.open()
 
 	for(var/obj/machinery/door/airlock/D in area)//For elevators
-		if(!D.density && D.locked && iselevator)
+		if(D.density && D.locked && iselevator)
 			spawn(0)
 				D.unlock()
-				D.close()
+				D.open()
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
