@@ -65,9 +65,8 @@
 		return
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.turret_control)
-			if(H.turret_control.handle_manual_fire(src,A,params))
+		if(src:turret_control)
+			if(src:turret_control.handle_manual_fire(src,A,params))
 				return
 
 	face_atom(A)
@@ -81,12 +80,13 @@
 		return
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Boiler) && !istype(A,/obj/screen))
-		var/mob/living/carbon/Xenomorph/Boiler/X = src
-		if(X.is_bombarding)
+		if(src:is_bombarding)
+			src:is_bombarding = 0
 			if(isturf(A))
-				X.bomb_turf(A)
+				src:bomb_turf(A)
 			else if(isturf(get_turf(A)))
-				X.bomb_turf(get_turf(A))
+				src:bomb_turf(get_turf(A))
+			return
 
 	if(istype(loc,/obj/mecha))
 		if(!locate(/turf) in list(A,A.loc)) // Prevents inventory from being drilled

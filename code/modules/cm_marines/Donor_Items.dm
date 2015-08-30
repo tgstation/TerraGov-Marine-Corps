@@ -231,6 +231,12 @@
 	icon_state = "merc_vest"
 	item_state = "merc_vest"
 
+/obj/item/clothing/suit/storage/marine/fluff/radical
+	name = "Bounty Hunter Armor"
+	desc = "Armor from an ancient Bounty Hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "boba_armor"
+	item_state = "boba_armor"
+
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
 //HEAD TEMPLATE (for Helmets/Hats/Berets)  ONLY TAKE NAME, DESC, ICON_STATE, AND ITEM_STATE.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -450,6 +456,12 @@
 	icon_state = "flat_cap"
 	item_state = "flat_cap"
 
+/obj/item/clothing/head/helmet/marine/fluff/radical
+	name = "Bounty Hunter Helmet"
+	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "boba_helmet"
+	item_state = "boba_helmet"
+
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
@@ -597,6 +609,13 @@
 	icon_state = "merc_jumpsuit"
 	item_state = "merc_jumpsuit_s"
 	item_color = "merc_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/radical
+	name = "Bounty Hunter Jumpsuit"
+	desc = "Undergarmants of an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "boba_suit"
+	item_state = "boba_suit_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
+	item_color = "boba_suit" //color must always be the same as item_state
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
