@@ -187,18 +187,18 @@
 	damage_type = TOX
 	weaken = 4
 	skips_xenos = 1
-	accuracy = 100 //Rarely misses.
+	accuracy = 150 //Rarely misses.
 	kill_count = 8
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5
 	weaken = 6
-	accuracy = 150 //Rarely misses.
+	accuracy = 170 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/strongest
 	damage = 10
 	weaken = 8
-	accuracy = 200 //Rarely misses.
+	accuracy = 250 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/robot
 	damage = 50
@@ -211,6 +211,7 @@
 	name = "acid"
 	icon_state = "declone"
 	damage_type = BURN
+	accuracy = 200
 
 	on_hit(var/atom/target, var/blocked = 0)
 		aoe_spit(target)

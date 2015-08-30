@@ -129,8 +129,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define R_HAND_LAYER			22
 #define TARGETED_LAYER			23
 #define FIRE_LAYER				24		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
-#define CLAW_LAYER				25 	//Flicks a claw attack. Stored permanently as a blank overlay until it's required.
-#define TOTAL_LAYERS			25
+//#define CLAW_LAYER				25 	//Flicks a claw attack. Stored permanently as a blank overlay until it's required.
+#define TOTAL_LAYERS			24
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -158,38 +158,15 @@ Please contact me on #coderbus IRC. ~Carn x
 	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
-	var/stealth = 0
-	//cloaking devices. //TODO: get rid of this :<
-//	for(var/obj/item/weapon/cloaking_device/S in list(l_hand,r_hand,belt,l_store,r_store))
-//		if(S.active)
-//			stealth = 1
-//			break
+	if(!isnull(gloves) && istype(gloves,/obj/item/clothing/gloves/yautja))
+		if(gloves:cloaked)
+			icon = 'icons/mob/human.dmi'
+			icon_state = "body_cloaked"
 
-	if(gloves)
-		var/obj/item/clothing/gloves/yautja/Y = src.gloves
-		if(Y && istype(Y))
-			if(Y.cloaked)
-				stealth = 1
-
-	if(stealth)
-		icon = 'icons/mob/human.dmi'
-		icon_state = "body_cloaked"
-//		var/image/I	= overlays_standing[L_HAND_LAYER]
-//		if(istype(I))	overlays += I
-//		I 			= overlays_standing[R_HAND_LAYER]
-//		if(istype(I))	overlays += I
-	else if (icon_update)
+	if (icon_update && icon_state != "body_cloaked")
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
 			overlays += I
-			if(chestburst == 1)
-				var/image/C = image('icons/Xeno/Effects.dmi',src,"burst_stand")
-				overlays += C
-			else if(chestburst == 2)
-				var/image/C = image('icons/Xeno/Effects.dmi',src,"bursted_stand")
-				overlays += C
-			if(slashed_icon)
-				overlays += slashed_icon
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		var/matrix/M = matrix()
@@ -1014,6 +991,20 @@ proc/get_damage_icon_part(damage_state, body_part)
 	var/image/face_lying_image = new /image(icon = face_lying)
 	return face_lying_image
 
+/mob/living/carbon/human/update_burst(var/update_icons=1)
+	var/image/standing = null
+
+	if(chestburst == 1)
+		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "burst_stand")
+	else if(chestburst == 2)
+		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "bursted_stand")
+	else
+		standing = null
+
+	overlays_standing[MUTATIONS_LAYER]	= standing
+
+	if(update_icons)   update_icons()
+
 //Human Overlays Indexes/////////
 #undef MUTANTRACE_LAYER
 #undef MUTATIONS_LAYER
@@ -1039,4 +1030,5 @@ proc/get_damage_icon_part(damage_state, body_part)
 #undef R_HAND_LAYER
 #undef TARGETED_LAYER
 #undef FIRE_LAYER
+//#undef BURST_LAYER
 #undef TOTAL_LAYERS
