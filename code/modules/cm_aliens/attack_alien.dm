@@ -453,6 +453,16 @@
 		beenhit += 1
 	return
 
+//Snow barricades
+/obj/structure/barricade/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	M.visible_message("<span class='warning'>[M] smashes the [src.name]!</span>", \
+		 "<span class='warning'>You smash trough the barricade!</span>")
+	if(src.health <= 0)
+		visible_message("\red The [src.name] falls apart!")
+		del(src)
+
 //Some generic defaults
 /obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	M << "You stare at [src.name] cluelessly."

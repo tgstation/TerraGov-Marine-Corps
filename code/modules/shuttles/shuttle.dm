@@ -86,7 +86,7 @@
 				P.close()
 
 	for(var/obj/machinery/door/airlock/D in area)//For elevators
-		if(!D.density && !D.locked && iselevator)
+		if (iselevator)
 			spawn(0)
 				D.close()
 				D.lock()
@@ -106,7 +106,7 @@
 				P.open()
 
 	for(var/obj/machinery/door/airlock/D in area)//For elevators
-		if(D.density && D.locked && iselevator)
+		if (iselevator)
 			spawn(0)
 				D.unlock()
 				D.open()
