@@ -1,5 +1,5 @@
 	//Physical flare shot          note:may not be necessary, it does not show
-obj/item/projectile/FLARE
+obj/item/projectile/flareburst
 		density = 1
 		unacidable=1
 		anchored=1  //SEE modules/projectiles/projectile.dm
@@ -38,33 +38,33 @@ obj/item/projectile/FLARE
 
 
 	//Load Shell
-	attackby(obj/item/s as obj, mob/user as mob)
-		if( istype ( s,/obj/item/flareround_s ))
+	attackby(obj/item/S as obj, mob/user as mob)
+		if( istype ( S,/obj/item/flareround_s ))
 			if( src.loaded_s == 0)
-				src.shell_name = s.name
+				src.shell_name = S.name
 				src.loaded_s = 1
 				user.visible_message( "[user] loads the gun with [shell_name]" )
 				src.desc = "Save your life in one shot.<I> Loaded with [shell_name]."
 				playsound( user, 'shotgun_shell_insert.ogg', 50,1 )
-				del(s)
+				del(S)
 			else
-				usr << "<B><I>It's already loaded with [shell_name]..."
-		if( istype( s,/obj/item/flareround_sp ))
+				usr << "<B><I>It's already loaded with [shell_name]."
+		if( istype( S,/obj/item/flareround_sp ))
 			if(src.loaded_s == 0)
-				src.shell_name = s.name
+				src.shell_name = S.name
 				src.loaded_s = 1
 				user.visible_message( "[user] loads the gun with [shell_name]" )
 				src.desc = "Save your life in one shot.<I> Loaded with [shell_name]."
 				playsound ( user, 'shotgun_shell_insert.ogg', 50,1 )
-				del(s)
+				del(S)
 			else
-				usr << "<B><I>It's already loaded with [shell_name]..."
+				usr << "<B><I>It's already loaded with [shell_name]."
 		else
 			..()
 
 	//Fire
-	afterattack(atom/target as obj|turf|area, mob/living/user, flag)
-		var/lit = /obj/item/projectile/FLARE
+	afterattack(atom/target as turf|area, mob/living/user, flag)
+		var/lit = /obj/item/projectile/flareburst
 		var/initial_dir = get_dir(user,target)  //since dir is using numerals instead of NORTH SOUTH, etc.
 		if( istype( user,/mob/living/carbon/human ))
 			if(src.loaded_s == 1)
@@ -106,7 +106,7 @@ obj/item/projectile/FLARE
 									direction = "Southwest"
 								else
 									direction = "sky"
-							user<<"<B><I><font color=red>You see a signal flare lit up in the air in the [direction]..."
+							user<<"<B><I><font color=red>You see a signal flare light up in the [direction]!"
 						sleep(600)
 						target.SetLuminosity(3 + rand(0,3))
 						sleep(30)
@@ -149,7 +149,7 @@ obj/item/projectile/FLARE
 									direction = "Southwest"
 								else
 									direction = "sky"
-							user<<"<B><I><font color=red>You see a signal flare lit up in the air in the [direction]......"
+							user<<"<B><I><font color=red>You see a signal flare light up in the [direction]!"
 						sleep(600)
 						target.SetLuminosity(3 + rand(0,3))
 						sleep(30)

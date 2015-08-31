@@ -965,7 +965,7 @@
 "sC" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor{icon_state = "white"},/area/hallway/primary/central_one)
 "sD" = (/obj/item/stack/sheet/wood,/obj/machinery/light/small{dir = 4},/turf/simulated/floor{icon_state = "white"},/area/hallway/primary/central_one)
 "sE" = (/turf/simulated/wall,/area/crew_quarters/sleep_female)
-"sF" = (/obj/structure/closet,/obj/item/weapon/flaregun,/obj/item/flareround_s,/obj/item/flareround_s,/obj/machinery/light{dir = 1},/turf/simulated/floor{dir = 9; icon_state = "purple"},/area/crew_quarters/sleep_female)
+"sF" = (/obj/structure/closet,/obj/machinery/light{dir = 1},/turf/simulated/floor{dir = 9; icon_state = "purple"},/area/crew_quarters/sleep_female)
 "sG" = (/obj/structure/stool/bed,/obj/item/weapon/bedsheet/yellow,/turf/simulated/floor{dir = 9; icon_state = "purple"},/area/crew_quarters/sleep_female)
 "sH" = (/obj/item/stack/sheet/wood{amount = 50},/turf/simulated/floor/vault,/area/quartermaster/storage)
 "sI" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/plating{icon_state = "warnplate"; dir = 8},/area/assembly/robotics)
