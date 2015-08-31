@@ -181,6 +181,7 @@
 /obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if(breakable)
+		playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 		src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
 		if(src.health <= 0)
 			visible_message("<span class='danger'>[M] slices [src] apart!</span>")
@@ -334,6 +335,7 @@
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
 	M.visible_message("<span class='warning'>[M] slashes at [src.name]!</span>", \
 		 "<span class='warning'>You slash at the barricade!</span>")
+	playsound(src, 'sound/effects/woodhit.ogg', 100, 1)
 	if(src.health <= 0)
 		visible_message("\red The [src.name] falls apart!")
 		destroy()
