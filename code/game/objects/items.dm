@@ -134,7 +134,7 @@
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return
 
-	if(src.anchored)
+	if(src.anchored && !istype(src.loc, /obj/item/lightstick)) //Hax
 		user << "[src] is anchored to the ground."
 		return
 

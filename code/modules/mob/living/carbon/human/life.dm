@@ -31,7 +31,6 @@
 	var/pressure_alert = 0
 	var/prev_gender = null // Debug for plural genders
 	var/temperature_alert = 0
-	var/in_stasis = 0
 
 
 /mob/living/carbon/human/Life()

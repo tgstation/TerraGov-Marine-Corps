@@ -216,6 +216,19 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						else
 							now_pushing = 0
 							return
+
+					if(istype(AM,/obj/structure/barricade/snow))
+						if(momentum > 8)
+							var/obj/structure/S = AM
+							visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
+							del(S)
+							momentum -= 3
+							now_pushing = 0
+							return //Might be destroyed, so we stop here.
+						else
+							now_pushing = 0
+							return
+
 					if(istype(AM,/obj/structure/m_barricade))
 						var/obj/structure/m_barricade/M = AM
 						M.health -= (momentum * 4)
