@@ -150,7 +150,7 @@
 		tally -= 0.5
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.7
+		tally += 1.9
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src

@@ -305,6 +305,7 @@
 		A.def_zone = get_organ_target()
 		A.firer = src
 		A.original= T
+		A.starting = src.loc
 		spawn(1)
 			A.process()
 
