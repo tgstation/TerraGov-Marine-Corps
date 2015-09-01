@@ -134,13 +134,13 @@
 				if(request_cooldown)
 					usr << "\red Assistance has already been requested. Please wait."
 					return
-				
+
 				// var/input = stripped_input(usr, "What is the nature of your emergency?", "Request Emergency Shuttle")
 				// if(!input || !(usr in view(1,src)))
 					// return
 				var/confirm = alert(usr, "Are you sure? Requesting an Emergency Shuttle takes time. You won't be able to request anything else for 5 minutes.", "Confirm", "Yes", "No")
 				if(confirm != "Yes") return
-					
+
 				for(var/client/C in admins)
 					if((R_ADMIN|R_MOD) & C.holder.rights)
 						C << "<span class=\"danger\">ADMINS/MODS: [usr] has used</span> <span class=\"name\">\"Request Emergency Shuttle\"</span> <span class=\"name\">(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;call_shuttle=1'>Call Shuttle</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
@@ -182,6 +182,40 @@
 				src.state = STATE_MESSAGELIST
 			else
 				src.state = STATE_VIEWMESSAGE
+
+		if("distress")
+			if(!ticker || !ticker.mode) return //Somehow
+
+			if(ticker.mode.has_called_emergency)
+				usr << "A distress beacon has already been sent."
+				return
+
+			if(ticker.mode.distress_cooldown)
+				usr << "The launch tubes are resetting. It takes 60 seconds."
+				return
+
+			if(world.time < 36000)
+				usr << "The launch tubes require at least an hour in transit before they can be launched."
+				return
+
+			var/count_humans = 0
+			var/count_aliens = 0
+
+			for(var/mob/living/M in living_mob_list)
+				if(ishuman(M) && M.stat != DEAD && M.client)
+					count_humans++
+				if(isalien(M) && M.stat != DEAD && M.client)
+					count_aliens++
+
+			if(count_aliens < round(count_humans / 2))
+				usr << "Sensors aren't picking up enough of a threat to warrant a distress beacon."
+				return
+
+			ticker.mode.activate_distress()
+			usr << "<B>You activate and launch a distress beacon."
+			log_game("[key_name(usr)] has called a distress beacon.")
+			message_admins("[key_name_admin(usr)] called a distress beacon.", 1)
+
 		if("status")
 			src.state = STATE_STATUSDISPLAY
 
@@ -323,23 +357,14 @@
 			onclose(user, "communications")
 		return
 
-	var/count_humans = 0
-	var/count_aliens = 0
-
-	for(var/mob/living/M in player_list)
-		if(ishuman(M) && M.stat != DEAD)
-			count_humans++
-		if(isalien(M) && M.stat != DEAD)
-			count_aliens++
-
 	switch(src.state)
 		if(STATE_DEFAULT)
 			if (src.authenticated)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>Log Out</A> \]"
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set Status Display</A> \]"
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message List</A> \]"		
-				dat += "<BR><hr>"		
+				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message List</A> \]"
+				dat += "<BR><hr>"
 
 				if (src.authenticated==2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make An Announcement</A> \]"
@@ -347,6 +372,16 @@
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentcomm'>Send a message to USCM</A> \]"
 					else
 						dat += "<BR>\[ USCM communication offline \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
+
+				var/count_humans = 0
+				var/count_aliens = 0
+
+				for(var/mob/living/M in player_list)
+					if(ishuman(M) && M.stat != DEAD)
+						count_humans++
+					if(isalien(M) && M.stat != DEAD)
+						count_aliens++
 
 				if(emergency_shuttle.location())
 					if (emergency_shuttle.online())

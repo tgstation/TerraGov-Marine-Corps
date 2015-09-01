@@ -172,6 +172,18 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Dropship 2"] = shuttle
 	process_shuttles += shuttle
 
+	// One-way distress shuttle!
+	shuttle = new()
+	shuttle.location = 1
+	shuttle.warmup_time = 10
+	shuttle.area_offsite = locate(/area/shuttle/distress_start)
+	shuttle.area_station = locate(/area/shuttle/distress_transit)
+	shuttle.area_transition = pick(locate(/area/shuttle/distress_arrive_1),locate(/area/shuttle/distress_arrive_2),locate(/area/shuttle/distress_arrive_3))
+	shuttle.transit_direction = EAST
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	shuttles["Distress"] = shuttle
+	process_shuttles += shuttle
+
 	// Public shuttles
 	/*
 	shuttle = new()
@@ -204,8 +216,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_offsite = "research_outpost_dock"
 	shuttles["Research"] = shuttle
 	process_shuttles += shuttle
-*/
-	// ERT Shuttle
+
+	// Distress Shuttle
 	var/datum/shuttle/ferry/multidock/specops/ERT = new()
 	ERT.location = 0
 	ERT.warmup_time = 10
@@ -219,7 +231,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Special Operations"] = ERT
 	process_shuttles += ERT
 
-/*
 	//Vox Shuttle.
 	var/datum/shuttle/multi_shuttle/VS = new/datum/shuttle/multi_shuttle()
 	VS.origin = locate(/area/shuttle/vox/station)

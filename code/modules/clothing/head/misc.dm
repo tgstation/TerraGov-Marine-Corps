@@ -244,6 +244,7 @@
 	item_state = "bearpelt"
 	flags = FPRINT | TABLEPASS | BLOCKHAIR
 	siemens_coefficient = 2.0
+	anti_hug = 1
 
 /obj/item/clothing/head/xenos
 	name = "xenos helmet"
