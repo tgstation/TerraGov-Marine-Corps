@@ -42,8 +42,14 @@
 	if(affected_mob.stat == DEAD) //Stop. just stop it.
 		return 0
 
-	if(stage < 4) counter++ //A counter to add to probability over time.
-	else if (stage == 4 && prob(30))  counter++
+	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)//Slow down progress if in stasis bag or cryo
+		if(prob(30))
+			if(stage < 4) counter++ //A counter to add to probability over time.
+			else if (stage == 4 && prob(30))  counter++
+
+	else
+		if(stage < 4) counter++
+		else if (stage == 4 && prob(30))  counter++
 
 	if(counter > 400) counter = 400 //somehow
 	if(stage < 5 && prob(1 + round(counter / 90))) //Adds 1% probability to change stages for each 70 cycles.

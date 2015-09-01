@@ -172,16 +172,34 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Dropship 2"] = shuttle
 	process_shuttles += shuttle
 
-	// One-way distress shuttle!
+//---ELEVATOR---//
+	// Elevator I
 	shuttle = new()
-	shuttle.location = 1
+	shuttle.location = 0
 	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/distress_start)
-	shuttle.area_station = locate(/area/shuttle/distress_transit)
-	shuttle.area_transition = pick(locate(/area/shuttle/distress_arrive_1),locate(/area/shuttle/distress_arrive_2),locate(/area/shuttle/distress_arrive_3))
-	shuttle.transit_direction = EAST
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-	shuttles["Distress"] = shuttle
+	shuttle.area_offsite = locate(/area/shuttle/elevator1/underground)
+	shuttle.area_station = locate(/area/shuttle/elevator1/ground)
+	shuttle.area_transition = locate(/area/shuttle/elevator1/transit)
+//	shuttle.docking_controller_tag = "escape_shuttle"
+//	shuttle.dock_target_station = "escape_dock"
+//	shuttle.dock_target_offsite = "centcom_dock"
+	shuttle.transit_direction = NORTH
+	shuttle.move_time = 20
+	shuttle.iselevator = 1
+	shuttles["Elevator 1"] = shuttle
+	process_shuttles += shuttle
+
+	// Elevator II
+	shuttle = new()
+	shuttle.location = 0
+	shuttle.warmup_time = 10
+	shuttle.area_offsite = locate(/area/shuttle/elevator2/underground)
+	shuttle.area_station = locate(/area/shuttle/elevator2/ground)
+	shuttle.area_transition = locate(/area/shuttle/elevator2/transit)
+	shuttle.transit_direction = NORTH
+	shuttle.move_time = 20
+	shuttle.iselevator = 1
+	shuttles["Elevator 2"] = shuttle
 	process_shuttles += shuttle
 
 	// Public shuttles
@@ -216,8 +234,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_offsite = "research_outpost_dock"
 	shuttles["Research"] = shuttle
 	process_shuttles += shuttle
-
-	// Distress Shuttle
+*/
+	// ERT Shuttle
 	var/datum/shuttle/ferry/multidock/specops/ERT = new()
 	ERT.location = 0
 	ERT.warmup_time = 10
@@ -231,6 +249,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Special Operations"] = ERT
 	process_shuttles += ERT
 
+/*
 	//Vox Shuttle.
 	var/datum/shuttle/multi_shuttle/VS = new/datum/shuttle/multi_shuttle()
 	VS.origin = locate(/area/shuttle/vox/station)

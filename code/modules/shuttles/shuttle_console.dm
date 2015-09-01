@@ -59,7 +59,7 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "shuttle_control_console.tmpl", "Shuttle Control", 470, 310)
+		ui = new(user, src, ui_key, shuttle.iselevator? "elevator_control_console.tmpl" : "shuttle_control_console.tmpl", shuttle.iselevator? "Elevator Control" : "Shuttle Control", 470, 310)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -77,13 +77,13 @@
 
 	if(href_list["move"])
 		if(shuttle.recharging) // Prevent the shuttle from moving again until it finishes recharging. This could be made to look better by using the shuttle computer's visual UI.
-			usr << "The shuttle requires 2 minutes to recharge."
+			usr << "The [shuttle.iselevator? "elevator" : "shuttle"] requires 2 minutes to recharge."
 			return
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 			shuttle.launch(src)
-			log_admin("[usr] ([usr.key]) launched a shuttle from [src]")
-			message_admins("[usr] ([usr.key]) launched a shuttle using [src].")
+			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
+			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
 
 //	if(href_list["force"])
 //		if(shuttle.moving_status  == SHUTTLE_IDLE)

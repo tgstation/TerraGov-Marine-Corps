@@ -49,13 +49,14 @@
 
 		user.visible_message("\red [user] rips a wriggling parasite out of [target]'s ribcage!",
 							 "You rip a wriggling parasite out of [target]'s ribcage!")
-
+		var/datum/organ/external/affected = target.get_organ(target_zone)
 		for(var/obj/item/alien_embryo/A in target)
 			A.loc = A.loc.loc
+			affected.implants -= A
 
-		var/datum/organ/external/affected = target.get_organ(target_zone)
-		affected.createwound(CUT, rand(0,70), 1)
+		affected.createwound(CUT, rand(0,20), 1)
 		target.updatehealth()
+		affected.update_wounds()
 
 //////////////////////////////////////////////////////////////////
 //				CHEST INTERNAL ORGAN SURGERY					//
