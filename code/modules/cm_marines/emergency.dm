@@ -165,7 +165,7 @@
 				for(var/datum/mind/M in candidates)
 					members += M
 					create_member(M)
-			spawn(2400) //After 4 minutes, send the arrival message. Should be about the right time they make it there.
+			spawn(1200) //After 4 minutes, send the arrival message. Should be about the right time they make it there.
 				command_announcement.Announce(arrival_message, "Docked")
 		return
 
