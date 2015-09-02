@@ -480,3 +480,26 @@
 			if(5)
 				new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
 
+
+/obj/item/weapon/book/manual/lazarus_landing_map
+	name = "Lazarus Landing Map"
+	desc = "A satellite printout of the Lazarus Landing colony."
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	author = "Weyland Yutani"
+	title = "Lazarus Landing Map"
+
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<iframe width='100%' height='97%' src='http://www.colonial-marines.com/wiki/images/thumb/6/6f/LV624.png/800px-LV624.png' frameborder="0" id="main_frame"></iframe>
+		</body>
+
+		</html>
+
+		"}
+
