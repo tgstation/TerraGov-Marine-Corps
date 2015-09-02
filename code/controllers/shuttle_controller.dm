@@ -179,7 +179,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.area_station = pick(locate(/area/shuttle/distress_arrive_1),locate(/area/shuttle/distress_arrive_2),locate(/area/shuttle/distress_arrive_3))
 	shuttle.area_transition = locate(/area/shuttle/distress_transit)
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = round(2 * SHUTTLE_TRANSIT_DURATION_RETURN / 3)
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	shuttles["Distress"] = shuttle
 	process_shuttles += shuttle
 
