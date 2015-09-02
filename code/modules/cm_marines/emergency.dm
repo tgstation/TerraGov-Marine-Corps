@@ -147,9 +147,10 @@
 			members = list() //Empty the members list.
 			candidates = list()
 			message_admins("Aborting distress beacon, not enough candidates found.", 1)
-			command_announcement.Announce("Attention: Distress beacon received no signal. Aborting attempt.", "Distress Beacon")
+			command_announcement.Announce("The distress signal got no response.", "Distress Beacon")
 			ticker.mode.distress_cooldown = 1
-			spawn(900)
+			ticker.mode.picked_call = null
+			spawn(1200)
 				ticker.mode.distress_cooldown = 0
 		else //we got enough!
 			command_announcement.Announce(dispatch_message, "Distress Beacon")
@@ -696,17 +697,23 @@
 			return
 
 		var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
-		if(distress.members.len >= distress.mob_max)
+		if(distress.candidates.len >= distress.mob_max)
 			usr << "The emergency response team is already full!"
 			return
 		var/deathtime = world.time - usr.timeofdeath
 
-		if(deathtime < 7000) //Nice try, ghosting right after the announcement
+		if(deathtime < 600) //Nice try, ghosting right after the announcement
 			usr << "You ghosted too recently."
 			return
+
 		if(!distress.waiting_for_candidates)
 			usr << "The distress beacon is already active. Better luck next time!"
 			return
+
+		if(!usr.mind)
+			usr.mind = new(usr.key)
+			usr.mind.original = usr
+			usr.mind.current = usr
 
 		if(!usr.client || !usr.mind) return //Somehow
 		if(usr.mind in distress.candidates)
