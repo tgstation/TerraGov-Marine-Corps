@@ -205,6 +205,7 @@
 	desc = "A protective vest worn by Iron Bears mercenaries."
 	item_state = "bear_armor"
 	icon_state = "bear_armor"
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/PMC/Bear
 	name = "Iron Bear Helmet"
@@ -213,6 +214,7 @@
 	icon_state = "bear_head"
 	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHEADHAIR
 	anti_hug = 2
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 /obj/item/clothing/under/marine_jumpsuit/PMC/commando
 	name = "PMC Commando Uniform"

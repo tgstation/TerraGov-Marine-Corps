@@ -138,7 +138,7 @@
 		waiting_for_candidates = 1
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[src.name]' activated. Looking for candidates.", 1)
-	command_announcement.Announce("A distress beacon has been launched from the USS Sulaco.", "Alert")
+	command_announcement.Announce("A distress beacon has been launched from the USS Sulaco.", "Priority Alert")
 	spawn(600) //If after 60 seconds we aren't full, abort
 		if(candidates.len < mob_max)
 			waiting_for_candidates = 0
@@ -153,12 +153,18 @@
 		else //we got enough!
 			command_announcement.Announce(dispatch_message, "Distress Beacon")
 			message_admins("Distress beacon finalized, setting up candidates.", 1)
+			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
+			if(!shuttle || !istype(shuttle))
+				message_admins("Warning: Distress shuttle not found. Aborting.")
+				return
+			spawn_items()
+			shuttle.launch()
 			if(candidates.len)
 				for(var/datum/mind/M in candidates)
 					members += M
 					create_member(M)
-			spawn(1800) //After 2.5 minutes, send the arrival message. Should be about the right time they make it there.
-				command_announcement.Announce(arrival_message, "Distress Beacon")
+			spawn(2400) //After 4 minutes, send the arrival message. Should be about the right time they make it there.
+				command_announcement.Announce(arrival_message, "Docked")
 		return
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
@@ -169,18 +175,25 @@
 
 	candidates += M.mind
 
-/datum/emergency_call/proc/get_spawn_point()
+/datum/emergency_call/proc/get_spawn_point(var/is_for_items = 0)
 	var/list/spawn_list = list()
 
 	for(var/obj/effect/landmark/L in landmarks_list)
-		if(L.name == name_of_spawn) //Default is "Distress"
+		if(is_for_items && L.name == "[name_of_spawn]Item")
 			spawn_list += L
+		else
+			if(L.name == name_of_spawn) //Default is "Distress"
+				spawn_list += L
+
+	if(!spawn_list.len) //Empty list somehow
+		return null
 
 	var/turf/spawn_loc	= get_turf(pick(spawn_list))
 	if(!istype(spawn_loc))
 		return null
 
 	return spawn_loc
+
 
 /datum/emergency_call/proc/create_member(var/datum/mind/M) //This is the parent, each type spawns its own variety.
 	return
@@ -202,7 +215,11 @@
 	mob.name = mob.real_name
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
-	M.transfer_to(mob)
+
+	mob.key = M.key
+//	M.transfer_to(mob)
+
+
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "W-Y PMC LEADER"
 	ticker.mode.traitors += mob.mind
@@ -301,7 +318,7 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/VP78 (M.back), slot_in_backpack)
-	if(prob(50))
+	if(prob(70))
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_r_store)
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m39/PMC(M), slot_r_hand)
@@ -337,8 +354,7 @@
 		new_xeno = new /mob/living/carbon/Xenomorph/Drone(spawn_loc)
 
 	new_xeno.jelly = 1
-
-	M.transfer_to(new_xeno)
+	new_xeno.key  = M.key
 
 	if(original) //Just to be sure.
 		del(original)
@@ -360,7 +376,7 @@
 	mob.name = mob.real_name
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
-	M.transfer_to(mob)
+	mob.key = M.key
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Mercenary"
 	ticker.mode.traitors += mob.mind
@@ -494,7 +510,7 @@
 	mob.name = mob.real_name
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
-	M.transfer_to(mob)
+	mob.key = M.key
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "IRON BEARS"
 	ticker.mode.traitors += mob.mind
@@ -524,12 +540,9 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	if(prob(75))
-		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/Bear(M), slot_head)
-	else
-		M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/Bear(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
@@ -558,10 +571,10 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/Bear(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/sniperrifle(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -596,13 +609,13 @@
 	mob.name = mob.real_name
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
-	M.transfer_to(mob)
+	mob.key = M.key
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Pizza"
 	ticker.mode.traitors += mob.mind
 	spawn(0)
 		spawn_pizza(mob)
-		mob << "<font size='3'>\red You are a pizza deliverer!</font>"
+		mob << "<font size='3'>\red You are a pizza deliverer! Your employer is Pizzachimp Corporation.</font>"
 		mob << "Your job is to deliver your pizzas. You're PRETTY sure this is the right place.."
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -630,12 +643,10 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/pizza(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Pizzahaus Deliverer ([rand(1,1000)])"
+	W.assignment = "Pizzachimp Deliverer"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
 /obj/item/clothing/under/pizza
@@ -687,6 +698,11 @@
 		if(distress.members.len >= distress.mob_max)
 			usr << "The emergency response team is already full!"
 			return
+		var/deathtime = world.time - usr.timeofdeath
+
+		if(deathtime < 7000) //Nice try, ghosting right after the announcement
+			usr << "You ghosted too recently."
+			return
 		if(!distress.waiting_for_candidates)
 			usr << "The distress beacon is already active. Better luck next time!"
 			return
@@ -703,53 +719,96 @@
 		usr << "You need to be an observer or new player to use this."
 	return
 
-/client/proc/admin_force_distress()
-	set category = "Admin"
-	set name = "Force Distress Call"
+//Spawn various items around the shuttle area thing.
+/datum/emergency_call/proc/spawn_items()
+	return
 
-	if (!ticker  || !ticker.mode)
-		return
+/datum/emergency_call/pmc/spawn_items()
+	var/turf/drop_spawn
+	var/choice
 
-	if(!check_rights(R_MOD))	return
+	for(var/i = 1 to 6) //Spawns up to 6 random things.
+		if(prob(20)) continue
+		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
+		if(choice < 0) choice = 0
+		drop_spawn = get_spawn_point(1)
+		if(istype(drop_spawn))
+			switch(choice)
+				if(0)
+					new /obj/item/weapon/gun/projectile/VP78(drop_spawn)
+					continue
+				if(1)
+					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
+					continue
+				if(2)
+					new /obj/item/weapon/storage/box/m56_system(drop_spawn)
+					continue
+				if(3)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					continue
+				if(4)
+					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					continue
+				if(5)
+					new /obj/item/weapon/gun/m92(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					continue
+				if(6)
+					new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
+					continue
+				if(7)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					continue
+	return
 
-	if(ticker.mode.picked_call)
-		var/confirm = alert(src, "There's already been a distress call sent. Are you sure you want to send another one?", "Send a distress call?", "Yes", "No")
-		if(confirm != "Yes") return
+/datum/emergency_call/supplies/spawn_items()
+	var/turf/drop_spawn
+	var/choice
 
-		//Reset the distress call
-		ticker.mode.picked_call.members = list()
-		ticker.mode.picked_call.candidates = list()
-		ticker.mode.picked_call.waiting_for_candidates = 0
-		ticker.mode.has_called_emergency = 0
-		ticker.mode.picked_call = null
-
-	var/list/list_of_calls = list()
-	for(var/datum/emergency_call/L in ticker.mode.all_calls)
-		if(L && L.name != "name")
-			list_of_calls += L.name
-
-	list_of_calls += "Randomize"
-	list_of_calls += "Cancel"
-
-	var/choice = input("Which distress call?") as null|anything in list_of_calls
-	if(choice == "Cancel" || isnull(choice) || choice == "")
-		return
-
-	if(choice == "Randomize")
-		ticker.mode.picked_call	= ticker.mode.get_random_call()
-	else
-		for(var/datum/emergency_call/C in ticker.mode.all_calls)
-			if(C && C.name == choice)
-				ticker.mode.picked_call = C
-				break
-
-	if(!istype(ticker.mode.picked_call))
-		return
-
-	ticker.mode.picked_call.activate()
-	ticker.mode.has_called_emergency = 1
-
-	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]")
-	message_admins("\blue [key_name_admin(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]", 1)
+	for(var/i = 1 to 8) //Spawns up to 8 random things.
+		if(prob(10)) continue
+		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
+		if(choice < 0) choice = 0
+		drop_spawn = get_spawn_point(1)
+		if(istype(drop_spawn))
+			switch(choice)
+				if(0)
+					new /obj/item/weapon/gun/projectile/VP78(drop_spawn)
+					continue
+				if(1)
+					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
+					continue
+				if(2)
+					new /obj/item/weapon/storage/box/m56_system(drop_spawn)
+					continue
+				if(3)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					continue
+				if(4)
+					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					continue
+				if(5)
+					new /obj/item/weapon/gun/m92(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					continue
+				if(6)
+					new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
+					continue
+				if(7)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					continue
 	return

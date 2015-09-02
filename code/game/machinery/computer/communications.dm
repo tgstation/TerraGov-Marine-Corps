@@ -198,6 +198,9 @@
 				usr << "The launch tubes require at least an hour in transit before they can be launched."
 				return
 
+			var/confirm = alert(usr, "Are you sure? Sending a distress call can only be done once and should only be done with a good reason.", "Confirm", "Yes", "No")
+			if(confirm != "Yes") return
+
 			var/count_humans = 0
 			var/count_aliens = 0
 
@@ -212,7 +215,7 @@
 				return
 
 			ticker.mode.activate_distress()
-			usr << "<B>You activate and launch a distress beacon."
+			usr << "<B>You activate and launch a distress beacon.</b>"
 			log_game("[key_name(usr)] has called a distress beacon.")
 			message_admins("[key_name_admin(usr)] called a distress beacon.", 1)
 
