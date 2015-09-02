@@ -69,8 +69,8 @@
 		return
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw
-	name = "\improper L6 SAW"
-	desc = "A rather traditionally made light machine gun with a pleasantly lacquered wooden pistol grip. Has 'Aussec Armoury- 2531' engraved on the reciever"
+	name = "\improper PKP 6P99"
+	desc = "The PKP 'Pecheneg', a widely produced light machine gun incorporating both traditional Russian and American firearm production. This well-built weapon will probably last long after both countries are gone."
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
 	w_class = 4
@@ -83,6 +83,7 @@
 	load_method = 2
 	var/cover_open = 0
 	var/mag_inserted = 1
+	twohanded = 1
 
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)

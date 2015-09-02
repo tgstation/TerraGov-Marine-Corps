@@ -115,6 +115,7 @@
 	icon_state = "pmc_mask"
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
 	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	anti_hug = 3
 
 /obj/item/clothing/head/helmet/marine/PMC
 	name = "PMC tactical cap"
@@ -123,7 +124,7 @@
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_hat"
 	icon_state = "pmc_hat"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
 //PMC Officer gear
 
@@ -147,6 +148,7 @@
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_mask"
 	icon_state = "officer_mask"
+	anti_hug = 5
 
 
 /obj/item/clothing/head/helmet/marine/PMC/leader
@@ -155,7 +157,6 @@
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_hat"
 	icon_state = "officer_hat"
-
 
 /obj/item/weapon/grenade/explosive/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
@@ -204,6 +205,7 @@
 	desc = "A protective vest worn by Iron Bears mercenaries."
 	item_state = "bear_armor"
 	icon_state = "bear_armor"
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/PMC/Bear
 	name = "Iron Bear Helmet"
@@ -211,3 +213,45 @@
 	item_state = "bear_head"
 	icon_state = "bear_head"
 	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHEADHAIR
+	anti_hug = 2
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/under/marine_jumpsuit/PMC/commando
+	name = "PMC Commando Uniform"
+	desc = "An armored uniform worn by Weyland Yutani elite commandos."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "commando_jumpsuit"
+	item_state = "commando_jumpsuit"
+	item_color = "commando_jumpsuit"
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/marine/PMCarmor/commando
+	name = "PMC Commando Armor"
+	desc = "A heavily armored suit built by a subsidiary of Weyland Yutani for elite commandos. It is a fully self-contained system and is heavily corrosion resistant."
+	item_state = "commando_armor"
+	icon_state = "commando_armor"
+	armor = list(melee = 80, bullet = 80, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
+
+/obj/item/clothing/head/helmet/marine/PMC/commando
+	name = "PMC Commando Helmet"
+	desc = "A fully enclosed, armored helmet made for Weyland Yutani elite commandos."
+	item_state = "commando_head"
+	icon_state = "commando_head"
+	armor = list(melee = 80, bullet = 80, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
+	anti_hug = 6
+
+/obj/item/clothing/shoes/PMC
+	name = "PMC Commando Boots"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "commando_boots"
+	icon_override = 'icons/PMC/PMC.dmi'
+	desc = "A pair of heavily armored, acid-resistant boots."
+	permeability_coefficient = 0.01
+	flags = NOSLIP
+	body_parts_covered = FEET|LEGS
+	armor = list(melee = 80, bullet = 90, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
+	siemens_coefficient = 0.2
+	cold_protection = FEET
+	heat_protection = FEET
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE

@@ -1208,6 +1208,60 @@ var/global/floorIsLava = 0
 		return 1
 	else
 		return 0
+
+/datum/admins/proc/admin_force_distress()
+	set category = "Admin"
+	set name = "Force Distress Call"
+	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
+
+	if (!ticker  || !ticker.mode)
+		return
+
+	if(!check_rights(R_MOD))	return
+
+	if(ticker.mode.picked_call)
+		var/confirm = alert(src, "There's already been a distress call sent. Are you sure you want to send another one? This will probably break things.", "Send a distress call?", "Yes", "No")
+		if(confirm != "Yes") return
+
+		//Reset the distress call
+		ticker.mode.picked_call.members = list()
+		ticker.mode.picked_call.candidates = list()
+		ticker.mode.picked_call.waiting_for_candidates = 0
+		ticker.mode.has_called_emergency = 0
+		ticker.mode.picked_call = null
+
+	var/list/list_of_calls = list()
+	for(var/datum/emergency_call/L in ticker.mode.all_calls)
+		if(L && L.name != "name")
+			list_of_calls += L.name
+
+	list_of_calls += "Randomize"
+	list_of_calls += "Cancel"
+
+	var/choice = input("Which distress call?") as null|anything in list_of_calls
+	if(choice == "Cancel" || isnull(choice) || choice == "")
+		return
+
+	if(choice == "Randomize")
+		ticker.mode.picked_call	= ticker.mode.get_random_call()
+	else
+		for(var/datum/emergency_call/C in ticker.mode.all_calls)
+			if(C && C.name == choice)
+				ticker.mode.picked_call = C
+				break
+
+	if(!istype(ticker.mode.picked_call))
+		return
+
+	ticker.mode.picked_call.activate()
+	ticker.mode.has_called_emergency = 1
+
+	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]")
+	message_admins("\blue [key_name_admin(usr)] admin-called a distress beacon: [ticker.mode.picked_call.name]", 1)
+
+	return
+
 //
 //
 //ALL DONE
