@@ -112,10 +112,11 @@
 	if(!mob_max || !ticker || !ticker.mode) //Just a supply drop, don't bother.
 		return
 
-	var/list/datum/mind/possible_joiners = ticker.mode.get_players_for_role(role_needed) //Default role_needed is BE_RESPONDER
+//	var/list/datum/mind/possible_joiners = ticker.mode.get_players_for_role(role_needed) //Default role_needed is BE_RESPONDER
 	for(var/mob/dead/observer/M in player_list)
-		if(M.client && M.mind && M.mind in possible_joiners)
+		if(M.client && M.mind)
 			M << "<font size='3'>\red An emergency beacon has been activated. Use the Join Response Team verb, IC tab, to join!</font>"
+			M << "You cannot join if you have been ghosted for less than a few minutes though."
 
 /datum/game_mode/proc/activate_distress()
 	picked_call = get_random_call()
