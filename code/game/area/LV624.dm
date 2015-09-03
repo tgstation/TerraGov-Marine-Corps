@@ -212,15 +212,15 @@
 	icon_state = "toilet"
 
 /area/lv624/lazarus/sleep_male
-	name = "\improper Male Doorm"
+	name = "\improper Male Dorm"
 	icon_state = "Sleep"
 
 /area/lv624/lazarus/sleep_female
-	name = "\improper Female Doorm"
+	name = "\improper Female Dorm"
 	icon_state = "Sleep"
 
 /area/lv624/lazarus/sleep_female
-	name = "\improper Female Doorm"
+	name = "\improper Female Dorm"
 	icon_state = "Sleep"
 
 /area/lv624/lazarus/quart
