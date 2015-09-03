@@ -179,7 +179,7 @@
 	icon_state = "captain"
 
 /area/lv624/lazarus/hop
-	name = "\improper Head of Personell's Office"
+	name = "\improper Head of Personnel's Office"
 	icon_state = "head_quarters"
 
 /area/lv624/lazarus/kitchen
