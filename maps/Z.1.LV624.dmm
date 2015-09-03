@@ -1979,7 +1979,7 @@
 "Mc" = (/obj/structure/table/reinforced,/obj/item/device/flashlight,/obj/random/tool,/turf/simulated/floor{icon_state = "dark"},/area/engine/engineering)
 "Md" = (/obj/structure/window/reinforced{dir = 5; health = 80},/obj/structure/grille,/obj/machinery/door/poddoor{name = "Blast Door"},/turf/simulated/floor{icon_state = "dark"},/area/hallway/primary/central_one)
 "Me" = (/obj/machinery/door/airlock/glass_science{name = "Main Archaeology Pod"},/obj/machinery/door/poddoor{name = "Blast Door"},/turf/simulated/floor{icon_state = "dark"},/area/hallway/primary/central_one)
-"Mf" = (/obj/structure/safe{contents = newlist()},/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/item/weapon/cell/infinite,/turf/simulated/floor/greengrid,/area/storage/secure)
+"Mf" = (/obj/structure/safe{contents = newlist()},/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/item/weapon/cell/high,/turf/simulated/floor/greengrid,/area/storage/secure)
 "Mg" = (/obj/structure/rack,/obj/item/device/aicard,/turf/simulated/floor/greengrid,/area/storage/secure)
 "Mh" = (/obj/structure/rack,/obj/item/weapon/flamethrower/full,/turf/simulated/floor/greengrid,/area/storage/secure)
 "Mi" = (/turf/simulated/floor/plating{dir = 4; icon_state = "asteroidwarning"},/area/ground/compound)

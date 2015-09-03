@@ -344,6 +344,11 @@
 		var/mob/M = load
 		M.buckled = null
 		M.anchored = initial(M.anchored)
+		if(prob(50))
+			M.weakened = 5
+			for(var/mob/O in viewers(src, null))
+				if ((O.client && !( O.blinded )))
+					O.show_message("\red <B>[M] trips and stumbles out of the [src]!</B>", 1)
 		M.update_canmove()
 
 	load = null
