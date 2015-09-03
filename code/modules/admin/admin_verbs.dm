@@ -72,6 +72,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggledrones,
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
+	/datum/admins/proc/admin_force_distress,
 	/client/proc/cmd_admin_changekey,
 	// /datum/admins/proc/show_skills,
 	// /client/proc/check_customitem_activity,

@@ -143,6 +143,12 @@
 			if(istype(src,/mob/living/carbon/Xenomorph))
 				visible_message("\red \The [M] nibbles at [src].")
 				return
+			if(istype(src,/mob/living/silicon) && src.stat == 0) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
+				var/datum/effect/effect/system/spark_spread/spark_system
+				spark_system = new /datum/effect/effect/system/spark_spread() 
+				spark_system.set_up(5, 0, src)
+				spark_system.attach(src)
+				spark_system.start()
 			var/damage = rand(5,20) //Who cares, it's just Ian and the Monkeys (that would make a great band name)
 			visible_message("\red \The [M] bites at \the [src]!")
 			apply_damage(damage, BRUTE)
@@ -391,6 +397,12 @@
 
 //Beds, nests and chairs - unbuckling
 /obj/structure/stool/bed/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	attack_hand(M)
+	return
+
+//Nerfing the damn Cargo Tug Train
+/obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	attack_hand(M)
 	return

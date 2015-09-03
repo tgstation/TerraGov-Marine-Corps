@@ -6,6 +6,7 @@
 	on = 0
 	powered = 1
 	locked = 0
+	charge_use = 15
 
 	load_item_visible = 1
 	load_offset_x = 0
@@ -40,7 +41,7 @@
 //-------------------------------------------
 /obj/vehicle/train/cargo/engine/New()
 	..()
-	cell = new /obj/item/weapon/cell/high
+	cell = new /obj/item/weapon/cell/apc
 	verbs -= /atom/movable/verb/pull
 	key = new()
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs

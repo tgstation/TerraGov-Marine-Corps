@@ -17,6 +17,7 @@
 	flags = FPRINT|TABLEPASS
 	item_state = "caphat"
 	siemens_coefficient = 0.9
+	anti_hug = 1
 
 //Captain: This probably shouldn't be space-worthy
 /obj/item/clothing/head/helmet/cap
