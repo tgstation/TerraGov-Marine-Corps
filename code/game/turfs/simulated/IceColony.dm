@@ -52,6 +52,7 @@
 
 				user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
 				S.working = 1
+				playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 				if(!do_after(user,50))
 					user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 					S.working = 0
@@ -80,8 +81,9 @@
 
 					user.visible_message("[user.name] starts throwing out the snow to the ground.","You start throwing out the snow to the ground.")
 					S.working = 1
+					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 					if(!do_after(user,50))
-						user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
+						user.visible_message("\red \The [user] decides not to add any more snow to [S].")
 						S.working = 0
 						return
 
@@ -100,6 +102,7 @@
 
 					user.visible_message("[user.name] starts clearing out the [src].","You start removing some of the [src].")
 					S.working = 1
+					playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 					if(!do_after(user,50))
 						user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 						S.working = 0
@@ -128,27 +131,28 @@
 
 				user.visible_message("[user.name] starts shaping the barricade.","You start shaping the barricade")
 				S.working = 1
+				playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 				if(!do_after(user,150))
 					user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
 					S.working = 0
 					return
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
-				user.visible_message("\blue \The [user] creates \the [B].")
+				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "descent"] [B].")
 				B.health = slayer * 25
 				slayer = 0
 				update_icon(1)
 				S.working = 0
 
 
-//Update icon on start
+	//Update icon on start
 	New()
 		..()
 		update_icon(1)
 
-//Update icon
-//This code is so bad, it makes me wanna cry ;_;
-//Needs to re recoded in total
+	//Update icon
+	//This code is so bad, it makes me wanna cry ;_;
+	//Needs to re recoded in total
 	update_icon(var/update_sides)
 		icon_state = "snow[slayer]_[pick("1","2","3")]"
 		switch(slayer)
@@ -222,6 +226,7 @@
 
 
 //ICE WALLS-----------------------------------//
+//Ice
 /turf/simulated/wall/gm/ice
 	name = "thick ice"
 	icon = 'icons/turf/snow.dmi'
@@ -233,6 +238,14 @@
 		spawn(1)
 			icon_state = "ice_wall"
 
+//Icy Rock
+/turf/simulated/mineral/ice //wall piece
+	name = "Icy rock"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock_ice"
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	temperature = T20C
 
 //ITEMS-----------------------------------//
 /obj/item/weapon/storage/box/lightstick
@@ -250,13 +263,29 @@
 		new /obj/item/lightstick(src)
 		new /obj/item/lightstick(src)
 
+/obj/item/weapon/storage/box/lightstick/red
+	name = "box of lightsticks"
+	desc = "Contains red lightsticks."
+	icon_state = "lightstick"
+
+	New()
+		..()
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+		new /obj/item/lightstick/red(src)
+
 //Lightsticks----------
+//Blue
 /obj/item/lightstick
 	name = "blue lightstick"
 	desc = "You can stick them in the ground"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lightstick0"
-	l_color = "#47A3FF"
+	l_color = "#47A3FF" //Blue
 
 	//Removing from turf
 	attack_hand(mob/user)
@@ -269,12 +298,18 @@
 			return
 
 		anchored = 0
-		user.visible_message("[user.name] removes \the [src] from the ground.","You stick the [src] into the ground.")
+		user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
 		icon_state = "lightstick[anchored]"
 		SetLuminosity(0)
 		pixel_x = 0
 		pixel_y = 0
 		playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+
+//Red
+/obj/item/lightstick/red
+	name = "red lightstick"
+	l_color = "#CC3300"
+	icon_state = "lightstick0"
 
 //Snow Shovel----------
 /obj/item/snow_shovel

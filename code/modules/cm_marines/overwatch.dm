@@ -411,7 +411,7 @@
 		usr << "\icon[src] Beacon is not transmitting from the ground."
 		return
 	var/area/A = get_area(current_squad.bbeacon)
-	if(A && istype(A,/area/ground/caves))
+	if(A && istype(A,/area/lv624/ground/caves))
 		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return
 
@@ -643,7 +643,7 @@
 
 		var/area/A = get_area(user)
 		if(A && istype(A))
-			if(istype(A,/area/ground/caves))
+			if(istype(A,/area/lv624/ground/caves))
 				user << "This won't work if you're standing in a cave."
 				return
 
