@@ -462,6 +462,12 @@
 	icon_state = "boba_helmet"
 	item_state = "boba_helmet"
 
+/obj/item/clothing/head/helmet/marine/fluff/leondark
+	name = "Daniel's USCM Cap"
+	desc = "A well worn cap with the name 'Barrientos' written on the inside.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "USCM_cap"
+	item_state = "USCM_cap"
+
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
@@ -725,7 +731,7 @@
 
 /obj/item/clothing/glasses/fluff/eyepatch
 	name = "An Eyepatch"
-	desc = "Badass +10"
+	desc = "Badass +10.  Donor Item"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 

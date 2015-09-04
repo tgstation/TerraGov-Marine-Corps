@@ -566,7 +566,7 @@
 "kT" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/turf/simulated/floor{dir = 1; icon_state = "carpet"},/area/sulaco/liason)
 "kU" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason)
 "kV" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/tea,/obj/item/weapon/storage/box/wy_mre,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason)
-"kW" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{pixel_x = 6},/obj/item/weapon/folder/white,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason)
+"kW" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{pixel_x = 6},/obj/item/weapon/folder/white,/obj/item/weapon/book/manual/lazarus_landing_map,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason)
 "kX" = (/obj/structure/ore_box,/turf/simulated/floor/plating,/area/hallway/primary/fore)
 "kY" = (/obj/structure/closet/emcloset,/turf/simulated/floor/plating,/area/hallway/primary/fore)
 "kZ" = (/turf/simulated/wall/sulaco,/area/shuttle/drop1/sulaco)

@@ -485,9 +485,10 @@
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 	else if(rand_gun == 4)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/l6_saw(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a762(M), slot_l_store)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a762(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/m37(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
 	else
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/laser(M), slot_r_hand)
 
@@ -551,11 +552,12 @@
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/l6_saw(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m41(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a762(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
 
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(M), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
