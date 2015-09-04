@@ -485,9 +485,10 @@
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 	else if(rand_gun == 4)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/l6_saw(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a762(M), slot_l_store)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a762(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/m37(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
 	else
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/laser(M), slot_r_hand)
 
@@ -549,13 +550,14 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/l6_saw(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m41(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a762(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
 
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(M), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
@@ -574,15 +576,18 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
-
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/sniperrifle(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/m92(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(M), slot_r_store)
 
 	var/obj/item/weapon/card/id/W = new(src)
@@ -817,6 +822,59 @@
 					new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
 					continue
 				if(7)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					continue
+	return
+
+/datum/emergency_call/bears/spawn_items()
+	var/turf/drop_spawn
+	var/choice
+
+	for(var/i = 1 to 8) //Spawns up to 8 random things.
+		if(prob(10)) continue
+		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
+		if(choice < 0) choice = 0
+		drop_spawn = get_spawn_point(1)
+		if(istype(drop_spawn))
+			switch(choice)
+				if(0)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					continue
+				if(1)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					continue
+				if(2)
+					new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(drop_spawn)
+					new /obj/item/weapon/shield/riot(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					continue
+				if(3)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					continue
+				if(4)
+					new /obj/item/weapon/shield/riot(drop_spawn)
+					new /obj/item/weapon/shield/riot(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/l6_saw(drop_spawn)
+					continue
+				if(5)
+					new /obj/item/weapon/gun/m92(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					continue
+				if(6)
+					new /obj/item/weapon/storage/box/grenade_system(drop_spawn)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					continue
+				if(7)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return

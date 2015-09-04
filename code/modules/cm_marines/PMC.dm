@@ -203,6 +203,8 @@
 /obj/item/clothing/suit/storage/marine/PMCarmor/Bear
 	name = "H1 Iron Bears Vest"
 	desc = "A protective vest worn by Iron Bears mercenaries."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "bear_armor"
 	icon_state = "bear_armor"
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
@@ -210,10 +212,12 @@
 /obj/item/clothing/head/helmet/marine/PMC/Bear
 	name = "Iron Bear Helmet"
 	desc = "A protective skullcap of the Iron Bears mercenaries."
+	icon = 'icons/PMC/PMC.dmi'
 	item_state = "bear_head"
 	icon_state = "bear_head"
+	icon_override = 'icons/PMC/PMC.dmi'
 	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHEADHAIR
-	anti_hug = 2
+	anti_hug = 5
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 /obj/item/clothing/under/marine_jumpsuit/PMC/commando
@@ -223,21 +227,26 @@
 	icon_state = "commando_jumpsuit"
 	item_state = "commando_jumpsuit"
 	item_color = "commando_jumpsuit"
+	icon_override = 'icons/PMC/PMC.dmi'
 	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/PMCarmor/commando
 	name = "PMC Commando Armor"
 	desc = "A heavily armored suit built by a subsidiary of Weyland Yutani for elite commandos. It is a fully self-contained system and is heavily corrosion resistant."
+	icon = 'icons/PMC/PMC.dmi'
 	item_state = "commando_armor"
 	icon_state = "commando_armor"
-	armor = list(melee = 80, bullet = 80, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
+	icon_override = 'icons/PMC/PMC.dmi'
+	armor = list(melee = 85, bullet = 85, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
 
 /obj/item/clothing/head/helmet/marine/PMC/commando
 	name = "PMC Commando Helmet"
 	desc = "A fully enclosed, armored helmet made for Weyland Yutani elite commandos."
 	item_state = "commando_head"
+	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_head"
-	armor = list(melee = 80, bullet = 80, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
+	icon_override = 'icons/PMC/PMC.dmi'
+	armor = list(melee = 85, bullet = 85, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
 	anti_hug = 6
 
 /obj/item/clothing/shoes/PMC

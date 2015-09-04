@@ -64,7 +64,7 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a762
-	damage = 25
+	damage = 42
 
 /obj/item/projectile/bullet/chameleon
 	damage = 1 // stop trying to murderbone with a fake gun dumbass!!!
