@@ -160,7 +160,7 @@ var/list/beam_master = list()
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"
-	damage = 60
+	damage = 100
 	stun = 5
 	weaken = 5
 	stutter = 5
