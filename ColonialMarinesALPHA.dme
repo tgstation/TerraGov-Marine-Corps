@@ -914,6 +914,7 @@
 #include "code\modules\cm_aliens\Castes\Xenoborg.dm"
 #include "code\modules\cm_marines\closets.dm"
 #include "code\modules\cm_marines\Donor_Items.dm"
+#include "code\modules\cm_marines\emergency.dm"
 #include "code\modules\cm_marines\grenades-mines.dm"
 #include "code\modules\cm_marines\gun_attachables.dm"
 #include "code\modules\cm_marines\marine_clothing.dm"
