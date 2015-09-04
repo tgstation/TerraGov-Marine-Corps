@@ -179,7 +179,7 @@
 	icon_state = "captain"
 
 /area/lv624/lazarus/hop
-	name = "\improper Head of Personell's Office"
+	name = "\improper Head of Personnel's Office"
 	icon_state = "head_quarters"
 
 /area/lv624/lazarus/kitchen
@@ -212,15 +212,15 @@
 	icon_state = "toilet"
 
 /area/lv624/lazarus/sleep_male
-	name = "\improper Male Doorm"
+	name = "\improper Male Dorm"
 	icon_state = "Sleep"
 
 /area/lv624/lazarus/sleep_female
-	name = "\improper Female Doorm"
+	name = "\improper Female Dorm"
 	icon_state = "Sleep"
 
 /area/lv624/lazarus/sleep_female
-	name = "\improper Female Doorm"
+	name = "\improper Female Dorm"
 	icon_state = "Sleep"
 
 /area/lv624/lazarus/quart
