@@ -108,6 +108,12 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/list/airlockIndexToWireColor
 	var/list/airlockWireColorToIndex
 
+/obj/machinery/door/airlock/secure
+	name = "Airlock"
+	icon = 'icons/obj/doors/Door_secure.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_com
+	openspeed = 34
+
 /obj/machinery/door/airlock/command
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorcom.dmi'
@@ -350,7 +356,7 @@ About the new airlock wires panel:
 			if(!src.justzap)
 				if(src.shock(user, 100))
 					src.justzap = 1
-					spawn (10)
+					spawn (openspeed)
 						src.justzap = 0
 					return
 			else /*if(src.justzap)*/
@@ -1282,7 +1288,7 @@ About the new airlock wires panel:
 		for(var/turf/turf in locs)
 			if(locate(/mob/living) in turf)
 			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)	//THE BUZZING IT NEVER STOPS	-Pete
-				spawn (60)
+				spawn (60 + openspeed)
 					close()
 				return
 

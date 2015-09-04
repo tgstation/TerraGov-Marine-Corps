@@ -113,7 +113,7 @@
 				return 0
 
 			var/distance = get_dist(starting,loc)
-			var/miss_modifier = -15 //NEGATIVE IS BETTER HERE.
+			var/miss_modifier = -10 //NEGATIVE IS BETTER HERE.
 
 			if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
@@ -131,8 +131,8 @@
 			miss_modifier -= accuracy
 
 			if(reverse_accuracy) //Sniper rifles have different miss chance by distance.
-				if(distance <= 4)
-					miss_modifier += 50
+				if(distance <= 7)
+					miss_modifier += ((12 - distance) * 10)
 
 			if(range_falloff_at > 0 && range_falloff_at < distance)
 				miss_modifier += (distance * 4) //Pretends to be half again as far.

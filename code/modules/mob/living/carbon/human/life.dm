@@ -31,7 +31,6 @@
 	var/pressure_alert = 0
 	var/prev_gender = null // Debug for plural genders
 	var/temperature_alert = 0
-	var/in_stasis = 0
 
 
 /mob/living/carbon/human/Life()
@@ -590,7 +589,7 @@
 
 				// Enough to make us sleep as well
 				if(SA_pp > SA_sleep_min)
-					sleeping = min(sleeping+2, 10)
+					sleeping = min(sleeping+4, 10)
 
 			// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			else if(SA_pp > 0.15)

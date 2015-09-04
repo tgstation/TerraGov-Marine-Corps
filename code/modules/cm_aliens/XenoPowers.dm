@@ -292,6 +292,10 @@
 		if(!Target_Turf || !Turf)
 			return
 
+		if(Turf == Target_Turf)
+			src << "Too close!"
+			return
+
 		var/obj/item/projectile/energy/neuro/A = new spit_projectile(Turf)
 		if(is_robotic && isturf(src.loc))
 			playsound(src.loc,'sound/weapons/pulse.ogg',75,1)
@@ -301,6 +305,7 @@
 		A.def_zone = get_organ_target()
 		A.firer = src
 		A.original= T
+		A.starting = src.loc
 		spawn(1)
 			A.process()
 
@@ -316,7 +321,7 @@
 //The acid items are stored in XenoProcs.
 /mob/living/carbon/Xenomorph/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (variable)"
-	set desc = "Drench an object in acid. Drones/Sentinel cost 75, Praetorians 200, everything else 100."
+	set desc = "Drench an object in acid. Drones/Sentinel cost 75, Boilers 200, everything else 100."
 	set category = "Alien"
 
 	if(!check_state())	return
@@ -346,17 +351,24 @@
 		src << "\green You cannot dissolve this object."
 		return
 
+	if(isnull(O) || isnull(get_turf(O))) //Some logic.
+		return
+
 	if(istype(src,/mob/living/carbon/Xenomorph/Sentinel) || istype(src,/mob/living/carbon/Xenomorph/Drone) ) //weak level
 		if(!check_plasma(75)) return
-		new /obj/effect/xenomorph/acid/weak(get_turf(O), O)
+		var/obj/effect/xenomorph/acid/weak/A = new (get_turf(O), O)
+		A.layer = O:layer + 0.6
 
 	else if(istype(src,/mob/living/carbon/Xenomorph/Boiler)) //strong level
 		if(!check_plasma(200)) return
-		new /obj/effect/xenomorph/acid/strong(get_turf(O), O)
+		var/obj/effect/xenomorph/acid/strong/A = new (get_turf(O), O)
+		A.layer = O:layer + 0.6
 
 	else
 		if(!check_plasma(100)) return
-		new /obj/effect/xenomorph/acid(get_turf(O), O) //Everything else? Medium.
+		var/obj/effect/xenomorph/acid/A = new (get_turf(O), O)
+		A.layer = O:layer + 0.6
+
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
 	visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
@@ -451,7 +463,7 @@
 	if(isnull(current_aura))
 		if(!check_plasma(30))
 			return
-		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "protect","recovery")
+		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "guard","recovery")
 		current_aura = choice
 		visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
 		return

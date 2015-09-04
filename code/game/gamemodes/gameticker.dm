@@ -127,6 +127,10 @@ var/global/datum/controller/gameticker/ticker
 	equip_characters()
 	data_core.manifest()
 	initialize_upgrades() //Xeno upgrade datums
+	spawn(2)
+		mode.initialize_emergency_calls()
+
+
 	current_state = GAME_STATE_PLAYING
 
 	callHook("roundstart")

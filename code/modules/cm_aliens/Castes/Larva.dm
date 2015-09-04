@@ -65,8 +65,8 @@
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		src << "You cannot do this in your current state."
 		return
-	if (layer != TURF_LAYER+1)
-		layer = TURF_LAYER+1
+	if (layer != TURF_LAYER+0.2)
+		layer = TURF_LAYER+0.2
 		src << text("\blue You are now hiding.")
 	else
 		layer = MOB_LAYER

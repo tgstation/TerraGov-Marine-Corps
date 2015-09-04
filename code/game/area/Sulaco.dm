@@ -392,3 +392,24 @@
 	name = "\improper Weyland Yutani Compound"
 	icon_state = "green"
 //	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/shuttle/distress_start
+	name = "\improper Distress Shuttle"
+	icon_state = "away1"
+
+/area/shuttle/distress_transit
+	name = "\improper Distress Shuttle"
+	icon_state = "away2"
+
+/area/shuttle/distress_arrive_1
+	name = "\improper Distress Shuttle"
+	icon_state = "away3"
+
+/area/shuttle/distress_arrive_2
+	name = "\improper Distress Shuttle"
+	icon_state = "away4"
+
+/area/shuttle/distress_arrive_3
+	name = "\improper Distress Shuttle"
+	icon_state = "away"
+

@@ -12,7 +12,7 @@
 
 	icon_action_button = "action_flashlight"
 	var/on = 0
-	var/brightness_on = 5 //luminosity when on
+	var/brightness_on = 6 //luminosity when on
 
 /obj/item/device/flashlight/initialize()
 	..()

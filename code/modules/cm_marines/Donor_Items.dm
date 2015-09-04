@@ -87,11 +87,9 @@
 
 /obj/item/clothing/suit/storage/marine/fluff/LEO
 	name = "Leo's Armor"
-	desc = "Used PMC armor.  DONOR ITEM."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "pmc_armor"
-	icon_state = "pmc_armor"
+	desc = "Used Mercenary armor.  DONOR ITEM."
+	item_state = "merc_armor"
+	icon_state = "merc_armor"
 
 /obj/item/clothing/suit/storage/marine/fluff/Sado
 	name = "Heavy Security Hardsuit"
@@ -232,6 +230,12 @@
 	desc = "Armor from an old Mercenary Company, you hope it still holds up...  DONOR ITEM"
 	icon_state = "merc_vest"
 	item_state = "merc_vest"
+
+/obj/item/clothing/suit/storage/marine/fluff/radical
+	name = "Bounty Hunter Armor"
+	desc = "Armor from an ancient Bounty Hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "boba_armor"
+	item_state = "boba_armor"
 
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
@@ -418,9 +422,9 @@
 
 /obj/item/clothing/head/helmet/marine/fluff/LEO
 	name = "Leo's Helm"
-	desc = "White helmet, with a red stripe.  DONOR ITEM"
-	icon_state = "redhelm"
-	item_state = "redhelm"
+	desc = "An old mercenary helmet.  DONOR ITEM"
+	icon_state = "merc_helm"
+	item_state = "merc_helm"
 
 /obj/item/clothing/head/helmet/marine/fluff/oneonethreeeight
 	name = "Camoflage Helmet"
@@ -451,6 +455,18 @@
 	desc = "Beret from a Mercenary Company.  DONOR ITEM"
 	icon_state = "flat_cap"
 	item_state = "flat_cap"
+
+/obj/item/clothing/head/helmet/marine/fluff/radical
+	name = "Bounty Hunter Helmet"
+	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "boba_helmet"
+	item_state = "boba_helmet"
+
+/obj/item/clothing/head/helmet/marine/fluff/leondark
+	name = "Daniel's USCM Cap"
+	desc = "A well worn cap with the name 'Barrientos' written on the inside.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "USCM_cap"
+	item_state = "USCM_cap"
 
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
@@ -496,11 +512,11 @@
 	item_color = "doom_suit"
 
 /obj/item/clothing/under/marine/fluff/LEO
-	name = "PMC Suit"
-	desc = "A white colored PMC Suit, probably not the best color for a band of murderers....  DONOR ITEM."
-	icon_state = "pmc_jumpsuit"
-	item_state = "pmc_jumpsuit_s"
-	item_color = "pmc_jumpsuit"
+	name = "Mercenary Jumpsuit Suit"
+	desc = "A uniform from a band of mercenaries...  DONOR ITEM."
+	icon_state = "merc_jumpsuit"
+	item_state = "merc_jumpsuit_s"
+	item_color = "merc_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/john56
 	name = "Pink Pride Jumpsuit"
@@ -600,6 +616,13 @@
 	item_state = "merc_jumpsuit_s"
 	item_color = "merc_jumpsuit"
 
+/obj/item/clothing/under/marine/fluff/radical
+	name = "Bounty Hunter Jumpsuit"
+	desc = "Undergarmants of an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "boba_suit"
+	item_state = "boba_suit_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
+	item_color = "boba_suit" //color must always be the same as item_state
+
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
 //MASK TEMPLATE (for masks)  ONLY TAKE NAME, DESC, ICON_STATE, ITEM_STATE,  AND ITEM_COLOR.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -641,7 +664,6 @@
 	name = "PMC Mask"
 	desc = "A white colored PMC Mask.  DONOR ITEM."
 	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_mask"
 	icon_state = "pmc_mask"
 
@@ -709,7 +731,7 @@
 
 /obj/item/clothing/glasses/fluff/eyepatch
 	name = "An Eyepatch"
-	desc = "Badass +10"
+	desc = "Badass +10.  Donor Item"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 

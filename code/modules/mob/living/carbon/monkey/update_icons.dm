@@ -6,7 +6,8 @@
 #define M_R_HAND_LAYER			5
 #define TARGETED_LAYER			6
 #define M_FIRE_LAYER			7
-#define M_TOTAL_LAYERS			7
+#define M_BURST_LAYER			8
+#define M_TOTAL_LAYERS			8
 /////////////////////////////////
 
 /mob/living/carbon/monkey
@@ -31,12 +32,6 @@
 	overlays.Cut()
 	for(var/image/I in overlays_standing)
 		overlays += I
-		if(chestburst == 1)
-			var/image/C = image('icons/Xeno/Effects.dmi',src,"burst_stand")
-			overlays += C
-		else if(chestburst == 2)
-			var/image/C = image('icons/Xeno/Effects.dmi',src,"bursted_stand")
-			overlays += C
 
 	if(lying)
 		var/matrix/M = matrix()
@@ -125,6 +120,21 @@
 		overlays_standing[TARGETED_LAYER]	= null
 	if(update_icons)		update_icons()
 
+/mob/living/carbon/monkey/update_burst(var/update_icons=1)
+	var/image/standing = null
+
+	if(chestburst == 1)
+		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "burst_stand")
+	else if(chestburst == 2)
+		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "bursted_stand")
+	else
+		standing = null
+
+	overlays_standing[M_BURST_LAYER]	= standing
+
+	if(update_icons)   update_icons()
+
+
 //Monkey Overlays Indexes////////
 #undef M_MASK_LAYER
 #undef M_BACK_LAYER
@@ -133,5 +143,6 @@
 #undef M_R_HAND_LAYER
 #undef TARGETED_LAYER
 #undef M_FIRE_LAYER
+#undef M_BURST_LAYER
 #undef M_TOTAL_LAYERS
 

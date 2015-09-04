@@ -8,7 +8,7 @@
 	icon_state = "bolt"
 	item_state = "bolt"
 	flags =  FPRINT | TABLEPASS
-	throwforce = 8
+	throwforce = 20
 	w_class = 3.0
 	sharp = 1
 	edge = 0

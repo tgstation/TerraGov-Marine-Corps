@@ -89,6 +89,8 @@
 			M = /mob/living/carbon/Xenomorph/Queen
 		if("Crusher")
 			M = /mob/living/carbon/Xenomorph/Crusher
+		if("Boiler")
+			M = /mob/living/carbon/Xenomorph/Boiler
 
 	if(isnull(M))
 		usr << "[caste] is not a valid caste! If you're seeing this message tell a coder!"

@@ -3,33 +3,38 @@
 	if(!blinded)
 		flick("flash", flash)
 
-	if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Robots and crushers are immune.
-		return
-
 	var/b_loss = 0
 	var/f_loss = 0
 	switch (severity)
 		if (1.0)
+			if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher))
+				adjustBruteLoss(rand(200,300))
+				updatehealth()
+				return
 			gib()
 			return
 		if (2.0)
+			if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Robots and crushers are immune.
+				return
 			b_loss += rand(45,55)
 			f_loss += rand(45,65)
 			Weaken(12)
 			if(guard_aura)
-				b_loss /= 2
+				b_loss = round(b_loss / 2)
 			adjustBruteLoss(b_loss)
 			adjustFireLoss(f_loss)
 			updatehealth()
 			return
 		if(3.0)
+			if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Robots and crushers are immune.
+				return
 			b_loss += rand(20,40)
 			f_loss += rand(25,50)
 			if (prob(40))
 				Paralyse(2)
 			Weaken(rand(4,6))
 			if(guard_aura)
-				b_loss /= 2
+				b_loss = round(b_loss / 2)
 			adjustBruteLoss(b_loss)
 			adjustFireLoss(f_loss)
 			updatehealth()

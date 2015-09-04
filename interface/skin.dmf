@@ -1493,6 +1493,34 @@ window "rpane"
 		splitter = 50
 		show-splitter = true
 		lock = none
+	elem "donate"
+		type = BUTTON
+		pos = 413,0
+		size = 67x16
+		anchor1 = none
+		anchor2 = none
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = #8CFFA4
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = "Donate"
+		image = ""
+		command = "donate"
+		is-flat = false
+		stretch = false
+		is-checked = false
+		group = "rpanemode"
+		button-type = pushbutton
 	elem "rulesb"
 		type = BUTTON
 		pos = 278,0
@@ -1524,7 +1552,7 @@ window "rpane"
 	elem "changelog"
 		type = BUTTON
 		pos = 341,0
-		size = 67x16
+		size = 70x16
 		anchor1 = none
 		anchor2 = none
 		font-family = ""

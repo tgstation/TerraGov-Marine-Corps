@@ -13,6 +13,7 @@
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
 
 	var/recharging = 0
+	var/iselevator = 0 //Used to remove some shuttle related procs and texts to make it compatible with elevators
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE) return
@@ -84,6 +85,12 @@
 			spawn(0)
 				P.close()
 
+	for(var/obj/machinery/door/airlock/D in area)//For elevators
+		if (iselevator)
+			spawn(0)
+				D.close()
+				D.lock()
+
 /datum/shuttle/proc/open_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
 		return
@@ -98,6 +105,11 @@
 			spawn(0)
 				P.open()
 
+	for(var/obj/machinery/door/airlock/D in area)//For elevators
+		if (iselevator)
+			spawn(0)
+				D.unlock()
+				D.open()
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
@@ -154,6 +166,8 @@
 	origin.move_contents_to(destination, direction=direction)
 
 	for(var/mob/M in destination)
+		if(iselevator)
+			return
 		if(M.client)
 			spawn(0)
 				if(M.buckled)
@@ -167,7 +181,10 @@
 				M.Weaken(3)
 
 	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
-		if(istype(T,/turf/space))
+		if(iselevator)
+			if(istype(T,/turf/space))
+				new /turf/simulated/floor/gm/empty(T)
+		else if(istype(T,/turf/space))
 			new /turf/simulated/floor/plating(T)
 
 	return
