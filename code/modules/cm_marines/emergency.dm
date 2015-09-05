@@ -309,17 +309,28 @@
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/heavypmc(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/heavypmc(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M56_Smartgun(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/VP78 (M.back), slot_in_backpack)
+	if(prob(70))
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_r_store)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m39/PMC(M), slot_r_hand)
+	else
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_r_store)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M42C(M), slot_r_hand)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Heavy"
+	W.assignment = "PMC Elite Commando"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -539,7 +550,7 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m41(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
@@ -565,15 +576,18 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
-
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/sniperrifle(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/m92(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(M), slot_r_store)
 
 	var/obj/item/weapon/card/id/W = new(src)
@@ -812,38 +826,55 @@
 					continue
 	return
 
-/*
-/datum/emergency_call/pmc/proc/spawn_heavy(var/mob/M)
-	if(!M || !istype(M)) return
+/datum/emergency_call/bears/spawn_items()
+	var/turf/drop_spawn
+	var/choice
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/VP78 (M.back), slot_in_backpack)
-	if(prob(70))
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_l_store)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_r_store)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m39/PMC(M), slot_r_hand)
-	else
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_l_store)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_r_store)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M42C(M), slot_r_hand)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Elite Commando"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
-*/
+	for(var/i = 1 to 8) //Spawns up to 8 random things.
+		if(prob(10)) continue
+		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
+		if(choice < 0) choice = 0
+		drop_spawn = get_spawn_point(1)
+		if(istype(drop_spawn))
+			switch(choice)
+				if(0)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					continue
+				if(1)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					continue
+				if(2)
+					new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(drop_spawn)
+					new /obj/item/weapon/shield/riot(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					continue
+				if(3)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/plastique(drop_spawn)
+					continue
+				if(4)
+					new /obj/item/weapon/shield/riot(drop_spawn)
+					new /obj/item/weapon/shield/riot(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/l6_saw(drop_spawn)
+					continue
+				if(5)
+					new /obj/item/weapon/gun/m92(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					continue
+				if(6)
+					new /obj/item/weapon/storage/box/grenade_system(drop_spawn)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					continue
+				if(7)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					continue
+	return
