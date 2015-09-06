@@ -537,7 +537,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"Weyland-Yutani PMC (Standard)",
 		"Weyland-Yutani PMC (Leader)",
 		"Iron Bears (Standard)",
-		"Iron Bears (Leader)"
+		"Iron Bears (Leader)",
 		"tournament standard red",
 		"tournament standard green",
 		"Fleet Admiral")
@@ -835,7 +835,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Fleet Admiral"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
-						W.access = list()
+			W.access = list()
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
 

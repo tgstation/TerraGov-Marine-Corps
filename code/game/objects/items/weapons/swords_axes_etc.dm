@@ -133,7 +133,7 @@
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
 		w_class = 3
-		force = 15//quite robust
+		force = 50//Super Robust - Probably shouldn't give it to anyone who isn't staff unless you want BEATINGS
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message("\blue [user] collapses their telescopic baton.",\
