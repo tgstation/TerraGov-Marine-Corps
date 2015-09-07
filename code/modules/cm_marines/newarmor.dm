@@ -9,7 +9,7 @@ var/list/armormarkings = list()
 var/list/armormarkings_sql = list()
 var/list/helmetmarkings = list()
 var/list/helmetmarkings_sql = list()
-var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(90,150,200))
+var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(65,72,200))
 
 
 /proc/initialize_marine_armor()
@@ -38,7 +38,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	name = "M10 Pattern Marine Helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	armor = list(melee = 75, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 60, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
 	flags = FPRINT|TABLEPASS
 	var/hug_damage = 0
 	anti_hug = 1
@@ -63,7 +63,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 70, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 70, laser = 50, energy = 20, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/weapon/tank/emergency_oxygen,
@@ -76,6 +76,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/flamethrower/full,
 		/obj/item/weapon/combat_knife)
 
 	New()
@@ -93,7 +94,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	slowdown = 1
-	armor = list(melee = 95, bullet = 95, laser = 80, energy = 50, bomb = 75, bio = 20, rad = 10)
+	armor = list(melee = 95, bullet = 95, laser = 80, energy = 90, bomb = 75, bio = 20, rad = 10)
 	var/injections = 2
 	unacidable = 1
 	allowed = list(/obj/item/weapon/gun,
@@ -130,8 +131,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 /obj/item/clothing/head/helmet/specrag
 	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "band"
-	item_state = "band"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	icon_state = "spec"
+	item_state = "spec"
+	item_color = "spec"
 	name = "Specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	anti_hug = 1
@@ -143,15 +146,40 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "xhelm"
 	desc = "The B18 Helmet that goes along with the B18 Defensive armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	armor = list(melee = 95, bullet = 90, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 95, bullet = 90, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 3
 	unacidable = 1
+
+/obj/item/clothing/gloves/specialist
+	name = "B18 Defensive Gauntlets"
+	desc = "A pair of heavily armored gloves."
+	icon_state = "gray"
+	item_state = "graygloves"
+	item_color="grey"
+	armor = list(melee = 95, bullet = 90, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
+	unacidable = 1
+
+/obj/item/weapon/storage/box/heavy_armor
+	name = "B-Series Defensive Armor crate"
+	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "armor_case"
+	w_class = 5
+	storage_slots = 2
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
+			new /obj/item/clothing/head/helmet/marine/heavy(src)
+			new /obj/item/clothing/gloves/specialist(src)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "M11 Pattern Leader Helmet"
 	icon_state = "xhelm"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
-	armor = list(melee = 75, bullet = 60, laser = 70,energy = 20, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 60, laser = 70,energy = 50, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 2
 	var/obj/machinery/camera/camera
 
@@ -170,21 +198,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			camera.c_tag = "Unknown"
 		..()
 
-/obj/item/weapon/storage/box/heavy_armor
-	name = "B18 defensive system crate"
-	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "armorchest"
-	w_class = 5
-	storage_slots = 2
-	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
-			new /obj/item/clothing/head/helmet/marine/heavy(src)
-
 /obj/item/clothing/suit/storage/marine/marine_leader_armor
 	name = "B12 Pattern Leader Armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
@@ -192,7 +205,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	heat_protection = UPPER_TORSO|LOWER_TORSO
-	armor = list(melee = 45, bullet = 75, laser = 70, energy = 20, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 45, bullet = 75, laser = 70, energy = 40, bomb = 15, bio = 0, rad = 0)
 	allowed = list(
 					/obj/item/weapon/gun,
 					/obj/item/device/binoculars,
@@ -251,3 +264,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "M2 Pattern MP Armor"
 	desc = "A standard Colonial Marines M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 
+/obj/item/clothing/suit/storage/marine/MP/RO
+	icon_state = "officer"
+	name = "M3 Pattern Officer Armor"
+	desc = "A well-crafted suit of M3 Pattern armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"

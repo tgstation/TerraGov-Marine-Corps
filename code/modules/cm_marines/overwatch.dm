@@ -411,7 +411,7 @@
 		usr << "\icon[src] Beacon is not transmitting from the ground."
 		return
 	var/area/A = get_area(current_squad.bbeacon)
-	if(A && istype(A,/area/ground/caves))
+	if(A && istype(A,/area/lv624/ground/caves))
 		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return
 
@@ -423,7 +423,6 @@
 	if(x_offset < -5 || x_offset > 5) x_offset = 0
 	if(y_offset < -5 || y_offset > 5) x_offset = 0
 	//All set, let's do this.
-	current_squad.bbeacon.visible_message("\red <b>The beacon begins blinking red!</b>")
 	send_to_squad("Initializing fire coordinates..")
 	if(current_squad.bbeacon)
 		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 100, 1)  //Placeholder
@@ -453,12 +452,12 @@
 		y_offset += rand(-2,2)
 		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 		if(target && istype(target))
-			explosion(target, 1, 2, 6, 1) //Kaboom!
+			explosion(target, 1, 2, 5, 1) //Kaboom!
 			spawn(rand(15,30)) //This is all better done in a for loop, but I am mad lazy
 				x_offset += rand(-2,2)
 				y_offset += rand(-2,2)
 				target = locate(T.x + x_offset,T.y + y_offset,T.z)
-				explosion(target,1,2,4)
+				explosion(target,1,2,5)
 				spawn(rand(15,30))
 					x_offset += rand(-2,2)
 					y_offset += rand(-2,2)
@@ -472,10 +471,11 @@
 		usr << "\icon[src] No squad selected!"
 		return
 	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(is_leader_from_card(H) && get_squad_from_card(H) == current_squad && current_squad.squad_leader != H)
+		if(is_leader_from_card(H) && get_squad_data_from_card(H) == current_squad && current_squad.squad_leader != H)
 			current_squad.squad_leader = H
 			usr << "\icon[src] New leader found and linked!"
 			send_to_squad("Attention: A new squad leader has been set: [H.real_name].")
+			find_helmet_cam()
 			return
 
 	usr << "\icon[src] No new leaders found for this squad. They must have a squad set using the squad consoles."
@@ -570,6 +570,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
 	var/activated = 0
+	unacidable = 1
 	w_class = 2
 	var/datum/squad/squad = null
 	var/icon_activated = "motion2"
@@ -642,7 +643,7 @@
 
 		var/area/A = get_area(user)
 		if(A && istype(A))
-			if(istype(A,/area/ground/caves))
+			if(istype(A,/area/lv624/ground/caves))
 				user << "This won't work if you're standing in a cave."
 				return
 

@@ -38,7 +38,7 @@ var/can_call_ert
 	log_admin("[key_name(usr)] used Dispatch Response Team.")
 	trigger_armed_response_team(1)
 
-
+/*
 client/verb/JoinResponseTeam()
 	set category = "IC"
 
@@ -78,7 +78,7 @@ client/verb/JoinResponseTeam()
 
 	else
 		usr << "You need to be an observer or new player to use this."
-
+*/
 // returns a number of dead players in %
 proc/percentage_dead()
 	var/total = 0

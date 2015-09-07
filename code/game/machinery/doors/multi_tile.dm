@@ -41,3 +41,20 @@
 	icon = 'icons/obj/doors/Door2x1research.dmi'
 	opacity = 0
 	glass = 1
+
+/obj/machinery/door/airlock/multi_tile/secure
+	name = "Secure Airlock"
+	icon = 'icons/obj/doors/Door2x1_secure.dmi'
+	openspeed = 34
+
+/obj/machinery/door/airlock/multi_tile/secure2
+	name = "Secure Airlock"
+	icon = 'icons/obj/doors/Door2x1_secure2.dmi'
+	openspeed = 31
+
+/obj/machinery/door/airlock/multi_tile/secure2_glass
+	name = "Secure Airlock"
+	icon = 'icons/obj/doors/Door2x1_secure2_glass.dmi'
+	opacity = 0
+	glass = 1
+	openspeed = 31

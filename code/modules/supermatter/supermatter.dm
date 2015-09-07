@@ -151,6 +151,8 @@
 
 			if(!istype(L, /turf/space) && alert_msg)
 				radio.autosay(alert_msg, "Supermatter Monitor")
+				log_admin("[src] [alert_msg]")
+				message_admins("[src] [alert_msg]")
 
 		if(damage > explosion_point)
 			for(var/mob/living/mob in living_mob_list)

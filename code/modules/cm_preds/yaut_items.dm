@@ -19,6 +19,7 @@
 	flags = NOSHIELD
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
+	unacidable = 1
 
 /obj/item/weapon/twohanded/glaive/update_icon()
 	if(wielded)
@@ -34,13 +35,14 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "clan mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 60, bullet = 45, laser = 80,energy = 60, bomb = 75, bio = 100, rad = 100)
-	anti_hug = 7
+	armor = list(melee = 60, bullet = 70, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
+	anti_hug = 10
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
+	unacidable = 1
 
 	New()
 		spawn(0)
@@ -107,10 +109,11 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 58, bullet = 72, laser = 20, energy = 20, bomb = 10, bio = 50, rad = 50)
+	armor = list(melee = 58, bullet = 76, laser = 30, energy = 20, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
+	unacidable = 1
 
 	New()
 		..()
@@ -123,6 +126,7 @@
 	force = 25
 	throwforce = 85
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
+	unacidable = 1
 
 /obj/item/weapon/wristblades
 	name = "wrist blades"
@@ -176,7 +180,7 @@
 	permeability_coefficient = 0.01
 	flags = NOSLIP
 	body_parts_covered = FEET|LEGS
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 90, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -196,7 +200,7 @@
 	icon_state = "mesh_shirt"
 	icon_override = 'icons/Predator/items.dmi'
 	has_sensor = 0
-	armor = list(melee = 5, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 5, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	species_restricted = null
 
@@ -212,7 +216,7 @@
 	permeability_coefficient = 0.05
 	canremove = 0
 	body_parts_covered = HANDS|ARMS
-	armor = list(melee = 70, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 80, bullet = 80, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
@@ -221,6 +225,14 @@
 	var/caster_active = 0
 	var/exploding = 0
 	var/inject_timer = 0
+
+	emp_act(severity)
+		charge -= (severity * 500)
+		if(charge < 0) charge = 0
+		if(usr)
+			usr.visible_message("\red You hear a hiss and crackle!","\red Your bracers hiss and spark!")
+			if(cloaked)
+				decloak()
 
 	//This is the main proc for checking AND draining the bracer energy. It must have M passed as an argument.
 	//It can take a negative value in amount to restore energy.
@@ -372,7 +384,7 @@
 		for(var/mob/O in viewers())
 			O.show_message("\red <B>The [src] begin beeping.</b>",2) // 2 stands for hearable message
 		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0)
-		spawn(80)
+		spawn(85)
 			var/turf/T = get_turf(src.loc)
 			if(T && istype(T))
 				explosion(T, 1, 3, 7, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
@@ -455,15 +467,14 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
 	name = "alien injector"
 	desc = "A strange, thin alien needle."
-	amount_per_transfer_from_this = 13
-	volume = 13
+	amount_per_transfer_from_this = 15
+	volume = 15
 
 	New()
 		..()
 		spawn(1)
 			reagents.add_reagent("quickclot", 5)
-			reagents.add_reagent("tricordrazine", 5)
-			reagents.add_reagent("peridaxon", 3)
+			reagents.add_reagent("thwei", 10)
 		return
 
 /obj/item/weapon/gun/plasma_caster
@@ -498,7 +509,7 @@
 				projectile_type = "/obj/item/projectile/beam/yautja2"
 			if(1)
 				mode = 2
-				charge_cost = 150
+				charge_cost = 120
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma bolts."
 				projectile_type = "/obj/item/projectile/beam/yautja3"
@@ -536,7 +547,7 @@
 	icon_state = "bluelaser"
 	damage = 25
 	stun = 5
-	weaken = 1
+	weaken = 2
 
 /obj/item/projectile/beam/yautja2
 	name = "plasma"
@@ -617,7 +628,7 @@
 			if(isturf(mob.loc))
 				if(istype(mob.loc,/turf/simulated/floor/gm/dirt))
 					icon_state = "yauttrapdirt"
-				else if (istype(mob.loc,/turf/simulated/floor/gm/dirt))
+				else if (istype(mob.loc,/turf/simulated/floor/gm/grass))
 					icon_state = "yauttrapgrass"
 				else
 					icon_state = "yauttrap1"

@@ -15,6 +15,7 @@
 
 	var/damtype = "brute"
 	var/force = 0
+	var/destroy_on_drop = 0
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 

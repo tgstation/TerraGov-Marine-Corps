@@ -692,6 +692,8 @@ var/list/be_special_flags = list(
 #define BE_ALIEN      1
 #define BE_PAI		  2
 #define BE_SURVIVOR	  4
+#define BE_RESPONDER  8
+
 #define BE_WIZARD     8
 #define BE_MALF       16
 #define BE_REV        32
@@ -708,8 +710,9 @@ var/list/be_special_flags = list(
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"pAI" = BE_PAI,
-	"Survivor" = BE_SURVIVOR
-/*	"Wizard" = BE_WIZARD,
+	"Survivor" = BE_SURVIVOR,
+	"Responder" = BE_RESPONDER
+/*
 	"Malf AI" = BE_MALF,
 	"Revolutionary" = BE_REV,
 	"Traitor" = BE_TRAITOR,
@@ -893,10 +896,3 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 // Reagent metabolism defines.
 #define FOOD_METABOLISM 0.4
 #define ALCOHOL_METABOLISM 0.1
-
-#define ATTACH_MUZZLE	0
-#define ATTACH_RAIL		1
-#define ATTACH_UNDER	2
-#define ATTACH_INTERNAL	3
-#define ATTACH_MAGAZINE	4
-#define ATTACH_STOCK	5

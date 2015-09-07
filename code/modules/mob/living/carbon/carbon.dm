@@ -300,7 +300,7 @@
 
 	if (istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
-		item = G.throw() //throw the person instead of the grab
+		item = G.newthrow() //throw the person instead of the grab
 		if(ismob(item))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
@@ -316,7 +316,7 @@
 	if(!item) return //Grab processing has a chance of returning null
 
 	item.layer = initial(item.layer)
-	u_equip(item)
+	drop_from_inventory(item)
 	update_icons()
 
 /*	if (istype(usr, /mob/living/carbon)) //ALL this shit is called in u_equip 2 lines above. What the actual fuck
@@ -439,6 +439,11 @@
 
 			if( istype(tmob, /mob/living/carbon) && prob(10) )
 				src.spread_disease_to(AM, "Contact")
+
+			if(istype(tmob, /mob/living/carbon/Xenomorph))
+				if(tmob:big_xeno)
+					now_pushing = 0
+					return
 
 			if(istype(tmob, /mob/living/carbon/human))
 

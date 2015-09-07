@@ -1,10 +1,10 @@
 ///***GRENADES***///
 /obj/item/weapon/grenade/explosive
-	desc = "It is set to detonate in 3 seconds."
+	desc = "It is set to detonate in 4 seconds."
 	name = "frag grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade_ex"
-	det_time = 30
+	det_time = 40
 	item_state = "grenade_ex"
 	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BELT
@@ -17,21 +17,38 @@
 		return
 
 /obj/item/weapon/grenade/incendiary
-	desc = "It is set to detonate in 3 seconds."
+	desc = "It is set to detonate in 4 seconds."
 	name = "incendiary grenade"
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_ex"
-	det_time = 30
-	item_state = "grenade_ex"
+	icon_state = "large_grenade"
+	det_time = 40
+	item_state = "flashbang"
 	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BELT
 	dangerous = 1
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,1, flame_range = 4)
+			flame_radius(1,get_turf(src))
 			del(src)
 		return
+
+proc/flame_radius(var/radius = 1, var/turf/turf)
+	if(!turf || !isturf(turf)) return
+	if(radius < 0) radius = 0
+	if(radius > 5) radius = 5
+
+	for(var/turf/T in range(radius,turf))
+		if(T.density) continue
+		if(istype(T,/turf/space)) continue
+		if(locate(/obj/flamer_fire) in T) continue //No stacking
+
+		var/obj/flamer_fire/F = new(T)
+		processing_objects.Add(F)
+		F.firelevel = 5 + rand(0,11)
+		if(F.firelevel < 1) F.firelevel = 1
+		if(F.firelevel > 16) F.firelevel = 16
+
 
 /obj/item/weapon/grenade/smokebomb
 	desc = "It is set to detonate in 2 seconds."
@@ -64,11 +81,6 @@
 			src.smoke.start()
 			sleep(10)
 			src.smoke.start()
-
-		for(var/obj/effect/blob/B in view(8,src))
-			var/damage = round(30/(get_dist(B,src)+1))
-			B.health -= damage
-			B.update_icon()
 		sleep(20)
 		del(src)
 		return
@@ -145,6 +157,11 @@
 	if(locate(/obj/item/device/mine) in get_turf(src))
 		src << "There's already a mine at this position!"
 		return
+
+	if(user.z == 3 || user.z == 4) // On the Sulaco.
+		src << "Are you crazy? You can't plant a landmine on a spaceship!"
+		return
+
 	if(!anchored)
 		user.visible_message("\blue \The [user] is deploying \the [src]")
 		if(!do_after(user,40))
@@ -183,7 +200,7 @@
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
 		triggered = 1
-		explosion(src.loc,-1,0,2)
+		explosion(src.loc,-1,-1,2)
 		spawn(0)
 			if(src)
 				del(src)

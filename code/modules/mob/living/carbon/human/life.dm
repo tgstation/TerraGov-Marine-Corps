@@ -31,7 +31,6 @@
 	var/pressure_alert = 0
 	var/prev_gender = null // Debug for plural genders
 	var/temperature_alert = 0
-	var/in_stasis = 0
 
 
 /mob/living/carbon/human/Life()
@@ -590,7 +589,7 @@
 
 				// Enough to make us sleep as well
 				if(SA_pp > SA_sleep_min)
-					sleeping = min(sleeping+2, 10)
+					sleeping = min(sleeping+4, 10)
 
 			// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			else if(SA_pp > 0.15)
@@ -759,6 +758,14 @@
 				pressure_alert = -2
 			else
 				pressure_alert = -1
+
+		if(isturf(src.loc) && !src.stat && !src.weakened)
+			var/obj/effect/effect/smoke/xeno_weak/X = locate() in src.loc
+			if(X)
+				X.affect(src)
+			var/obj/effect/effect/smoke/xeno_burn/Z = locate() in src.loc
+			if(Z)
+				Z.affect(src)
 
 		return
 
@@ -1397,15 +1404,25 @@
 						if(1)	healths.icon_state = "health6"
 						if(2)	healths.icon_state = "health7"
 						else
-							//switch(health - halloss)
-							switch(100 - ((species && species.flags & NO_PAIN & !IS_SYNTHETIC) ? 0 : traumatic_shock))
-								if(100 to INFINITY)		healths.icon_state = "health0"
-								if(80 to 100)			healths.icon_state = "health1"
-								if(60 to 80)			healths.icon_state = "health2"
-								if(40 to 60)			healths.icon_state = "health3"
-								if(20 to 40)			healths.icon_state = "health4"
-								if(0 to 20)				healths.icon_state = "health5"
-								else					healths.icon_state = "health6"
+//							switch(health - halloss)
+							if(isYautja(src))
+								switch(health)
+									if(100 to INFINITY)		healths.icon_state = "health0"
+									if(80 to 100)			healths.icon_state = "health1"
+									if(60 to 80)			healths.icon_state = "health2"
+									if(40 to 60)			healths.icon_state = "health3"
+									if(20 to 40)			healths.icon_state = "health4"
+									if(0 to 20)				healths.icon_state = "health5"
+									else					healths.icon_state = "health6"
+							else
+								switch(100 - ((species && species.flags & NO_PAIN & !IS_SYNTHETIC) ? 0 : traumatic_shock))
+									if(100 to INFINITY)		healths.icon_state = "health0"
+									if(80 to 100)			healths.icon_state = "health1"
+									if(60 to 80)			healths.icon_state = "health2"
+									if(40 to 60)			healths.icon_state = "health3"
+									if(20 to 40)			healths.icon_state = "health4"
+									if(0 to 20)				healths.icon_state = "health5"
+									else					healths.icon_state = "health6"
 
 			if(nutrition_icon)
 				switch(nutrition)
@@ -1502,6 +1519,9 @@
 				var/obj/item/clothing/glasses/welding/O = glasses
 				if(!O.up && tinted_weldhelh)
 					client.screen += global_hud.darkMask
+
+			if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
+				blind.layer = 18
 
 			if(machine)
 				if(!machine.check_eye(src))		reset_view(null)

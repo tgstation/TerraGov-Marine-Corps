@@ -355,8 +355,7 @@
 				return
 			else
 				if(Debug)
-					log_debug("pulling disappeared? at [__LINE__] in mob.dm - pulling = [pulling]")
-					log_debug("REPORT THIS")
+					log_debug("Pulling disappeared at line# [__LINE__] in [__FILE__] ([src] was pulling [pulling])")
 
 		/////
 		if(pulling && pulling.anchored)
@@ -389,7 +388,7 @@
 						M.stop_pulling()
 
 						//this is the gay blood on floor shit -- Added back -- Skie
-						if (M.lying && (prob(M.getBruteLoss() / 6)))
+						if (M.lying && (prob(M.getBruteLoss() / 6)) && M.stat != 2)
 							var/turf/location = M.loc
 							if (istype(location, /turf/simulated))
 								location.add_blood(M)
@@ -398,7 +397,7 @@
 								M.adjustBruteLoss(1)
 								visible_message("\red \The [M]'s wounds open more from being dragged!")
 						if(M.pull_damage())
-							if(prob(25))
+							if(prob(25) && M.stat != 2)
 								M.adjustBruteLoss(2)
 								visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
 								var/turf/location = M.loc
@@ -612,7 +611,7 @@
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
 		var/mob/living/carbon/CM = L
-		if(CM.on_fire && CM.canmove)
+		if(CM.on_fire && CM.canmove && !weakened)
 			CM.fire_stacks -= rand(3,6)
 			CM.weakened = 4
 			CM.visible_message("<span class='danger'>[CM] rolls on the floor, trying to put themselves out!</span>", \

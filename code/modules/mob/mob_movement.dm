@@ -183,6 +183,9 @@
 
 	if(mob.monkeyizing)	return//This is sota the goto stop mobs from moving var
 
+	if(isXeno(mob))
+		if(mob:is_zoomed) mob:zoom_out()
+
 	if(isliving(mob))
 		var/mob/living/L = mob
 		if(L.incorporeal_move)//Move though walls
@@ -260,11 +263,11 @@
 		//Host is checked already but we can check here for efficiency.
 		//We can use orange instead of range, since Crossed already checks their turf.
 		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD)
-			var/obj/item/clothing/mask/facehugger/F = locate(/obj/item/clothing/mask/facehugger) in orange(1,mob)
-			if(F)
+			var/obj/item/clothing/mask/facehugger/F = locate(/obj/item/clothing/mask/facehugger) in range(2,mob)
+			if(F && get_dist(F,mob) <= 1)
 				F.HasProximity(mob)
-			var/obj/effect/alien/egg/E = locate(/obj/effect/alien/egg) in orange(1,mob)
-			if(E)
+			var/obj/effect/alien/egg/E = locate(/obj/effect/alien/egg) in range(2,mob)
+			if(E && get_dist(E,mob) <= 1)
 				E.HasProximity(mob)
 
 		if(istype(mob.buckled, /obj/vehicle))

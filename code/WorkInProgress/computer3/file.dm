@@ -112,6 +112,11 @@
 	content = ""
 	file_increment = 0.002 // 0.002 kilobytes per character (1024 characters per KB)
 
+/datum/file/data/text/researchlog
+	name = "Log 01"
+	image = 'icons/ntos/file.png'
+	content = "Secret"
+
 /datum/file/data/text/ClownProphecy
 	name = "Clown Prophecy"
 	content = "HONKhHONKeHONKlHONKpHONKHONmKHONKeHONKHONKpHONKlHONKeHONKaHONKsHONKe"

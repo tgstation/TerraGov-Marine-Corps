@@ -35,7 +35,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/circuitboard = null // string pointing to a circuitboard type
 	var/hide = 0				// Is it a hidden machine?
 	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
-
+	unacidable = 1
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -232,13 +232,13 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	else if(on)
 		produce_heat()
 		delay = initial(delay)
-		
-		
+
+
 
 /obj/machinery/telecomms/proc/produce_heat()
 	if (!produces_heat)
 		return
-	
+
 	if (!use_power)
 		return
 
@@ -252,11 +252,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			var/datum/gas_mixture/removed = env.remove(transfer_moles)
 
 			if(removed)
-				
+
 				var/heat_produced = idle_power_usage	//obviously can't produce more heat than the machine draws from it's power source
 				if (traffic <= 0)
 					heat_produced *= 0.30	//if idle, produce less heat.
-				
+
 				removed.add_thermal_energy(heat_produced)
 
 			env.merge(removed)

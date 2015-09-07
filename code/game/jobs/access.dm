@@ -513,19 +513,20 @@ proc/get_all_job_icons() //For all existing HUD icons
 		"Commander",
 		"Executive Officer",
 		"Bridge Officer",
-		"Military Police",
-		"Sulaco Chief Medical Officer",
-		"Sulaco Doctor",
-		"Sulaco Chemist",
-		"Sulaco Researcher",
+		"Corporate Liason",
 		"Chief Engineer",
 		"Maintenance Tech",
+		"Requisitions Officer",
+		"Cargo Technician",
 		"Squad Leader",
-		"Squad Medic",
 		"Squad Engineer",
-		"Squad Marine",
+		"Squad Medic",
 		"Squad Specialist",
-		"Requisitions Officer"
+		"Squad Marine",
+		"Chief Medical Officer",
+		"Doctor",
+		"Researcher",
+		"Military Police"
 		)
 
 /*

@@ -109,7 +109,7 @@
 									if("Released")
 										background = "'background-color:#3BB9FF;'"
 									if("None")
-										background = "'background-color:#00FF00;'"
+										background = "'background-color:#272727;'"
 									if("")
 										background = "'background-color:#00FF7F;'"
 										crimstat = "No Record."

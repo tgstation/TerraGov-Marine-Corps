@@ -79,89 +79,6 @@
 		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //splat!
 	return
 
-/mob/living/carbon/Xenomorph/proc/lay_egg()
-
-	set name = "Lay Egg (100)"
-	set desc = "Lay an egg to produce huggers to impregnate prey with."
-	set category = "Alien"
-
-	if(!check_state()) return
-
-	var/turf/T = src.loc
-
-	if(!istype(T) || isnull(T))
-		src << "You can't do that here."
-		return
-
-	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src)) //Turn em off for now
-		src << "There's already an egg or royal jelly here."
-		return
-
-	if(!locate(/obj/effect/alien/weeds) in T)
-		src << "Your eggs wouldn't grow well enough here. Lay them on resin."
-		return
-
-	if(check_plasma(100)) //New plasma check proc, removes/updates plasma automagically
-		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>\The [src] has laid an egg!</B>"), 1)
-		new /obj/effect/alien/egg(T)
-	return
-
-/obj/royaljelly
-	name = "royal jelly"
-	desc = "A greenish-yellow blob of slime that encourages xenomorph evolution."
-	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "jelly"
-	anchored = 1
-	opacity = 0
-	density = 0
-	layer = 3.4 //On top of most things
-
-/obj/royaljelly/attack_alien(mob/living/carbon/Xenomorph/M as mob)
-	if(!istype(M,/mob/living/carbon/Xenomorph) || istype(M,/mob/living/carbon/Xenomorph/Larva))
-		return
-
-	if(M.jelly)
-		M << "You're already filled with delicious jelly."
-		return
-
-	if(!M.jellyMax)
-		M << "Doesn't smell very good to you. You aren't able to evolve further using jelly."
-		return
-
-	M.jelly = 1
-	visible_message("\green [M] greedily devours the [src].","You greedily gulp down the [src].")
-	del(src)
-
-/mob/living/carbon/Xenomorph/proc/produce_jelly()
-
-	set name = "Produce Jelly (350)"
-	set desc = "Squirt out some royal jelly for hive advancement."
-	set category = "Alien"
-
-	if(!check_state())
-		return
-
-	var/turf/T = src.loc
-
-	if(!istype(T) || isnull(T))
-		src << "You can't do that here."
-		return
-
-	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src))
-		src << "There's already an egg or royal jelly here."
-		return
-
-	if(!locate(/obj/effect/alien/weeds) in T)
-		src << "Your jelly would rot here. Lay them on resin."
-		return
-
-	if(check_plasma(350)) //New plasma check proc, removes/updates plasma automagically
-		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>\The [src] squirts out a greenish blob of jelly.</B>"), 1)
-		new /obj/royaljelly(T)
-	return
-
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
 	set name = "Pounce (10)"
 	set desc = "Pounce on someone. Click a turf to just leap there."
@@ -189,8 +106,8 @@
 		pass_flags = PASSTABLE
 		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 2, src) //victim, distance, speed
-		spawn(12)
-			pass_flags = 0 //Reset the passtable.
+		spawn(6)
+			pass_flags = initial(pass_flags)//Reset the passtable.
 		spawn(usedPounce)
 			usedPounce = 0
 			src << "You get ready to pounce again."
@@ -206,63 +123,6 @@
 	if(!check_state())	return
 	handle_ventcrawl()
 	return
-
-/mob/living/carbon/Xenomorph/proc/xenohide()
-	set name = "Hide"
-	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
-	set category = "Alien"
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
-		return
-	if (layer != TURF_LAYER+0.2)
-		layer = TURF_LAYER+0.2
-		src << text("\blue You are now hiding.")
-	else
-		layer = MOB_LAYER
-		src << text("\blue You have stopped hiding.")
-
-/mob/living/carbon/Xenomorph/proc/gut()
-	set category = "Alien"
-	set name = "Gut (200)"
-	set desc = "While pulling someone, rip their guts out or tear them apart."
-
-	if(!check_state())	return
-
-	if(last_special > world.time)
-		return
-
-	var/mob/living/carbon/victim = src.pulling
-	if(!victim || isnull(victim) || !istype(victim))
-		src << "You're not pulling anyone that can be gutted."
-		return
-
-	if(locate(/obj/item/alien_embryo) in victim || locate(/obj/item/alien_embryo) in victim.contents) // Maybe they ate it??
-		src << "Not with a widdle alium inside! How cruel!"
-		return
-
-	if(istype(victim,/mob/living/carbon/Xenomorph))
-		src << "Hey now, that's just not cool."
-		return
-
-	var/turf/cur_loc = victim.loc
-	if(!cur_loc) return //logic
-	if(!cur_loc || !istype(cur_loc)) return
-
-	if(!check_plasma(200))
-		return
-
-	last_special = world.time + 50
-
-	visible_message("<span class='warning'><b>\The [src]</b> lifts [victim] into the air...</span>")
-	if(do_after(src,80))
-		if(!victim || isnull(victim)) return
-		if(victim.loc != cur_loc) return
-		visible_message("<span class='warning'><b>\The [src]</b> viciously wrenches [victim] apart!</span>")
-		emote("roar")
-		src.attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [victim.name] ([victim.ckey])</font>")
-		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>was gibbed by [src.name] ([src.ckey])</font>")
-		victim.gib() //Splut
-
 
 /mob/living/carbon/Xenomorph/proc/regurgitate()
 	set name = "Regurgitate"
@@ -301,6 +161,8 @@
 	set category = "Alien"
 
 	if(!check_state())	return
+
+	if(!M || !istype(M)) return
 
 	if (get_dist(src,M) >= 3)
 		src << "\green You need to be closer."
@@ -430,6 +292,10 @@
 		if(!Target_Turf || !Turf)
 			return
 
+		if(Turf == Target_Turf)
+			src << "Too close!"
+			return
+
 		var/obj/item/projectile/energy/neuro/A = new spit_projectile(Turf)
 		if(is_robotic && isturf(src.loc))
 			playsound(src.loc,'sound/weapons/pulse.ogg',75,1)
@@ -439,6 +305,7 @@
 		A.def_zone = get_organ_target()
 		A.firer = src
 		A.original= T
+		A.starting = src.loc
 		spawn(1)
 			A.process()
 
@@ -450,132 +317,11 @@
 		src << "You cannot spit at nothing!"
 	return
 
-/mob/living/carbon/Xenomorph/proc/throw_hugger(var/mob/living/carbon/T)
-	set name = "Throw Facehugger"
-	set desc = "Throw one of your facehuggers. MIDDLE MOUSE BUTTON quick-throws."
-	set category = "Alien"
-
-	if(!check_state())	return
-
-	var/mob/living/carbon/Xenomorph/Carrier/X = src
-	if(!istype(X))
-		src << "How did you get this verb??" //Lel. Shouldn't be possible, butcha never know. Since this uses carrier-only vars
-		return
-
-	if(X.huggers_cur <= 0)
-		src << "\red You don't have any facehuggers to throw!"
-		return
-
-	if(!X.threw_a_hugger)
-		if(!T)
-			var/list/victims = list()
-			for(var/mob/living/carbon/human/C in oview(7))
-				victims += C
-			T = input(src, "Who should you throw at?") as null|anything in victims
-
-		if(T)
-			var/obj/item/clothing/mask/facehugger/throw = new()
-			X.huggers_cur -= 1
-			throw.loc = src.loc
-			throw.throw_at(T, 5, X.throwspeed)
-			src << "You throw a facehugger at [throw]."
-			visible_message("\red <B>[src] throws something towards [T]!</B>")
-			X.threw_a_hugger = 1
-			spawn(40)
-				X.threw_a_hugger = 0
-		else
-			src << "\blue You cannot throw at nothing!"
-	return
-
-/mob/living/carbon/Xenomorph/proc/charge(var/atom/T)
-	set name = "Charge (20)"
-	set desc = "Charge towards something! Raaaugh!"
-	set category = "Alien"
-
-	if(!check_state())	return
-
-	if(!istype(src,/mob/living/carbon/Xenomorph/Ravager))
-		src << "How did you get this verb??" //Shouldn't be possible. Ravagers have some vars here that aren't in other castes.
-		return
-
-	//Hate using :
-	var/mob/living/carbon/Xenomorph/Ravager/X = src
-
-	if(!usedPounce)
-		if(!T)
-			var/list/victims = list()
-			for(var/mob/living/carbon/human/C in oview(6))
-				if(C && istype(C) && !C.lying && !C.stat)
-					victims += C
-			T = input(X, "Who should you charge towards?") as null|anything in victims
-
-		if(T)
-			if(!check_plasma(20))
-				return
-			visible_message("\red <B>[X] charges towards [T]!</B>","\red <b> You charge at [T]!</B>" )
-			emote("roar") //heheh
-			X.pass_flags = PASSTABLE
-			X.usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
-			if(readying_tail) readying_tail = 0
-			X.throw_at(T, X.CHARGEDISTANCE, X.CHARGESPEED, src)
-			spawn(10)
-				X.pass_flags = 0
-			spawn(X.CHARGECOOLDOWN)
-				X.usedPounce = 0
-				X << "Your exoskeleton quivers as you get ready to charge again."
-
-		else
-			X << "\blue You cannot charge at nothing!"
-
-/mob/living/carbon/Xenomorph/proc/screech()
-	set name = "Screech (250)"
-	set desc = "Emit a screech that stuns prey."
-	set category = "Alien"
-
-	if(!check_state()) return
-
-	if(has_screeched)
-		src << "\red Your vocal chords are not yet prepared."
-		return
-
-	if(!check_plasma(250))
-		return
-
-	has_screeched = 1
-	spawn(500)
-		has_screeched = 0
-		src << "You feel your throat muscles vibrate. You are ready to screech again."
-
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
-	visible_message("\red <B> \The [src] emits an ear-splitting guttural roar!</B>")
-	create_shriekwave() //Adds the visual effect. Wom wom wom
-
-	for(var/mob/M in view())
-		if(M.client)
-			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
-
-	for (var/mob/living/carbon/human/M in oview())
-		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
-			continue
-		var/dist = get_dist(src,M)
-		if (dist <= 4)
-			M << "\blue An ear-splitting guttural roar shakes the ground beneath your feet!"
-			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
-			M.Weaken(1)
-//			M.drop_l_hand() //Weaken will drop them on the floor anyway
-//			M.drop_r_hand()
-			if(!M.ear_deaf)
-				M.ear_deaf += 8 //Deafens them temporarily
-		else if(dist >= 5 && dist < 7)
-			M.stunned += 3
-			M << "\blue The sound stuns you!"
-	return
-
 //Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
 //The acid items are stored in XenoProcs.
 /mob/living/carbon/Xenomorph/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (variable)"
-	set desc = "Drench an object in acid. Drones/Sentinel cost 75, Praetorians 200, everything else 100."
+	set desc = "Drench an object in acid. Drones/Sentinel cost 75, Boilers 200, everything else 100."
 	set category = "Alien"
 
 	if(!check_state())	return
@@ -598,80 +344,36 @@
 		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral))
 			src << "\green You cannot dissolve this."
 			return
-		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Praetorian))
+		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))
 			src << "\green This wall is too tough to be melted by your weak acid."
 			return
 	else
 		src << "\green You cannot dissolve this object."
 		return
 
+	if(isnull(O) || isnull(get_turf(O))) //Some logic.
+		return
+
 	if(istype(src,/mob/living/carbon/Xenomorph/Sentinel) || istype(src,/mob/living/carbon/Xenomorph/Drone) ) //weak level
 		if(!check_plasma(75)) return
-		new /obj/effect/xenomorph/acid/weak(get_turf(O), O)
+		var/obj/effect/xenomorph/acid/weak/A = new (get_turf(O), O)
+		A.layer = O:layer + 0.6
 
-	else if(istype(src,/mob/living/carbon/Xenomorph/Praetorian)) //strong level
+	else if(istype(src,/mob/living/carbon/Xenomorph/Boiler)) //strong level
 		if(!check_plasma(200)) return
-		new /obj/effect/xenomorph/acid/strong(get_turf(O), O)
+		var/obj/effect/xenomorph/acid/strong/A = new (get_turf(O), O)
+		A.layer = O:layer + 0.6
 
 	else
 		if(!check_plasma(100)) return
-		new /obj/effect/xenomorph/acid(get_turf(O), O) //Everything else? Medium.
+		var/obj/effect/xenomorph/acid/A = new (get_turf(O), O)
+		A.layer = O:layer + 0.6
+
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
 	visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
 	return
 
-/mob/living/carbon/Xenomorph/proc/build_tunnel() // -- TLE
-	set name = "Dig Tunnel (200)"
-	set desc = "Place a start or end tunnel. You must place both parts before it is useable and they can NOT be moved. Choose carefully!"
-	set category = "Alien"
-
-	if(!check_state())	return
-
-	var/turf/T = loc
-	if(!T) //logic
-		src << "You can only do this on a turf."
-		return
-
-	if(istype(T,/turf/simulated/floor/gm/river))
-		src << "What, you want to flood your fellow xenos?"
-		return
-
-	if(!istype(T,/turf/simulated/floor/gm))
-		src << "You scrape around, but nothing happens. You can only place these on open ground."
-		return
-
-	if(locate(/obj/structure/tunnel) in src.loc)
-		src << "There's already a tunnel here. Go somewhere else."
-		return
-
-	if(tunnel_delay)
-		src << "You are not yet ready to fashion a new tunnel. Be patient! Tunneling is hard work!"
-		return
-
-	if(!check_plasma(200))
-		return
-
-	visible_message("\blue [src] begins carefully digging out a huge, wide tunnel.","\blue You begin carefully digging out a tunnel..")
-	if(do_after(src,100))
-		if(!start_dig) //Let's start a new one.
-			src << "\blue You dig out the beginning of a new tunnel. Go somewhere else and dig a new one to finish it!"
-			start_dig = new /obj/structure/tunnel(T)
-		else
-			src << "\blue You finish digging out the two tunnels and connect them together!"
-			var/obj/structure/tunnel/newt = new /obj/structure/tunnel(T)
-			newt.other = start_dig
-			start_dig.other = newt //Link the two together
-			start_dig = null //Now clear it
-			tunnel_delay = 1
-			spawn(2400)
-				src << "\blue Your claws are ready to dig a new tunnel."
-				src.tunnel_delay = 0
-		playsound(loc, 'sound/weapons/pierce.ogg', 30, 1)
-	else
-		src << "You were interrupted, and your tunnel collapses, you irresponsible monster you."
-		src.storedplasma += 100 //refund half their plasma
-	return
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()
 	set name = "Permit/Disallow Slashing"
@@ -736,6 +438,7 @@
 	else
 		src << "\blue You relax your tail. You are no longer readying a tail attack."
 		readying_tail = 0
+	return
 
 /*/mob/living/carbon/Xenomorph/proc/bestial_roar()
 	set name = "Bestial Roar"
@@ -749,3 +452,22 @@
 			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
 			M << "<span class='warning'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 */
+
+/mob/living/carbon/Xenomorph/proc/toggle_auras()
+	set name = "Emit Pheromones (30)"
+	set desc = "Emit pheromones in the area around you. Nearby xenomorphs will be enhanced in some way. This drains plasma to keep active."
+	set category = "Alien"
+
+	if(!check_state()) return
+
+	if(isnull(current_aura))
+		if(!check_plasma(30))
+			return
+		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "guard","recovery")
+		current_aura = choice
+		visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
+		return
+	else
+		current_aura = null
+		src << "<b>You stop emitting pheromones.</b>"
+		return

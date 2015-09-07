@@ -176,23 +176,32 @@
 	inv_box.layer = 19
 	src.adding += inv_box
 //end of equippable shit
-
+*/
 
 	using = new /obj/screen()
 	using.name = "resist"
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "act_resist"
-	using.screen_loc = ui_resist
+	using.screen_loc = ui_storage2
 	using.layer = 19
 	src.adding += using
-*/
+
+	//pocket 1
+	using = new /obj/screen()
+	using.name = "ready tail"
+	using.icon = 'icons/mob/screen1_alien.dmi'
+	using.icon_state = "tail_unready"
+	using.screen_loc = ui_storage1
+	using.layer = 19
+	src.adding += using
 
 	mymob.throw_icon = new /obj/screen()
 	mymob.throw_icon.icon = 'icons/mob/screen1_alien.dmi'
 	mymob.throw_icon.icon_state = "act_throw_off"
 	mymob.throw_icon.name = "throw"
 	mymob.throw_icon.screen_loc = ui_drop_throw
-
+/*
+//None of this stuff is remotely necessary.
 	mymob.oxygen = new /obj/screen()
 	mymob.oxygen.icon = 'icons/mob/screen1_alien.dmi'
 	mymob.oxygen.icon_state = "oxy0"
@@ -210,7 +219,7 @@
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
 	mymob.fire.screen_loc = ui_alien_fire
-
+*/
 	mymob.healths = new /obj/screen()
 	mymob.healths.icon = 'icons/mob/screen1_alien.dmi'
 	mymob.healths.icon_state = "health0"
@@ -257,5 +266,5 @@
 
 	mymob.client.screen = null
 
-	mymob.client.screen += list(mymob.locate_queen, mymob.alien_plasma_display, mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.toxin, mymob.fire, mymob.healths,  mymob.pullin, mymob.blind, mymob.flash) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach, mymob.alien_plasma_display, mymob.locate_queen, QUEEN AND PLASMA DISABLED TEMP
+	mymob.client.screen += list(mymob.locate_queen, mymob.alien_plasma_display, mymob.throw_icon, mymob.zone_sel, mymob.healths,  mymob.pullin, mymob.blind, mymob.flash) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach, mymob.oxygen, mymob.toxin, mymob.fire,
 	mymob.client.screen += src.adding + src.other

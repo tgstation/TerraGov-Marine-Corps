@@ -11,7 +11,7 @@ var/const/MAX_ACTIVE_TIME = 200
 /obj/item/clothing/mask/facehugger
 	name = "alien"
 	desc = "It has some sort of a tube at the end of its tail."
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = 1 //note: can be picked up by aliens unlike most other items of w_class below 4
@@ -24,6 +24,10 @@ var/const/MAX_ACTIVE_TIME = 200
 	var/strength = 5
 	var/attached = 0
 
+	ex_act(severity)
+		Die()
+		return
+
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob) //can be picked up by aliens
 	attack_hand(user)
 	return
@@ -33,7 +37,13 @@ var/const/MAX_ACTIVE_TIME = 200
 		if(CanHug(user))
 			Attach(user) //If we're conscious, don't let them pick us up even if this fails. Just return.
 		return
-	..()
+	if(ishuman(user))
+		if(stat == DEAD)
+			return ..()
+		else
+			return //Can't pick up live ones.
+
+	return ..()
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user as mob)
@@ -53,7 +63,7 @@ var/const/MAX_ACTIVE_TIME = 200
 /obj/item/clothing/mask/facehugger/attack(mob/M as mob, mob/user as mob)
 	if(CanHug(M))
 		Attach(M)
-		user.update_icons() //Just to be safe here
+		user.update_icons()
 	else
 		user << "\red The facehugger refuses to attach."
 		..()
@@ -145,6 +155,8 @@ var/const/MAX_ACTIVE_TIME = 200
 //	if(!sterile) L.take_organ_damage(strength,0) //done here so that even borgs and humans in helmets take damage
 
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
+	if(throwing)
+		throwing = 0
 
 	if(istype(src.loc,/mob/living/carbon/Xenomorph)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = src.loc
@@ -210,9 +222,10 @@ var/const/MAX_ACTIVE_TIME = 200
 			target.drop_from_inventory(W)
 			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
 		src.loc = target
+		icon_state = initial(icon_state)
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
-		target.update_icons()
+		target.update_inv_wear_mask()
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/12) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
@@ -237,10 +250,12 @@ var/const/MAX_ACTIVE_TIME = 200
 		return
 
 	if(!sterile)
-		//target.contract_disease(new /datum/disease/alien_embryo(0)) //so infection chance is same as virus infection chance
-		new /obj/item/alien_embryo(target)
+		var/obj/item/alien_embryo/E = new (target)
 		target.status_flags |= XENO_HOST
-
+		if(istype(target, /mob/living/carbon/human))
+			var/mob/living/carbon/human/T = target
+			var/datum/organ/external/chest/affected = T.get_organ("chest")
+			affected.implants += E
 		target.visible_message("\red \b [src] falls limp after violating [target]'s face!")
 
 		Die()
@@ -312,7 +327,8 @@ var/const/MAX_ACTIVE_TIME = 200
 			if(istype(W,/obj/item/clothing/mask/facehugger))
 				return 0
 
-	if(iscorgi(M) && M:wear_mask) return 0
+	if(iscorgi(M))
+		if(M.wear_mask) return 0
 
 	return 1
 

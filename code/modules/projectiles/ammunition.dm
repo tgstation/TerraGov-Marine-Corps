@@ -18,8 +18,8 @@
 			BB = new projectile_type(src)
 		pixel_x = rand(-10.0, 10)
 		pixel_y = rand(-10.0, 10)
-		dir = pick(cardinal)
-
+		dir = pick(NORTH,EAST,SOUTH,WEST)
+		return
 
 /obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))

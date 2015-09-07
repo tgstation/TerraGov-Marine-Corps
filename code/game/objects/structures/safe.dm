@@ -30,6 +30,7 @@ FLOOR SAFES
 	layer = 2.1
 	unacidable = 1
 	explosion_resistance = 500
+	var/spawnkey = 1 //Spawn safe code on top of it?
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72
 	var/tumbler_1_open	//the tumbler position to open at- 0 to 72
@@ -48,7 +49,7 @@ FLOOR SAFES
 	tumbler_2_open = (rand(0,10) * 5)
 
 	spawn(5)
-		if(loc)
+		if(loc && spawnkey)
 			new /obj/item/weapon/paper/safe_key(loc) //Spawn the key on top of the safe.
 
 /obj/structure/safe/initialize()

@@ -147,8 +147,8 @@
 			user << "<span class='notice'>The pages of [title] have been cut out!</span>"
 			return
 	if(src.dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
-		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+		user << browse("<TT><I>Owner: [author].</I></TT> <BR>" + "[dat]", "window=book;size=800x600")
+		user.visible_message("[user] opens \"[src.title]\".")
 		onclose(user, "book")
 	else
 		user << "This book is completely blank!"

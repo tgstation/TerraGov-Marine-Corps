@@ -53,6 +53,7 @@
 			user.visible_message("\red [user]'s hand slips, cutting [target]'s [affected.display_name] open!", \
 			"\red Your hand slips, cutting [target]'s [affected.display_name] open!")
 			affected.createwound(CUT, 10)
+			affected.update_wounds()
 
 
 /datum/surgery_step/limb/mend
@@ -88,7 +89,7 @@
 			user.visible_message("\red [user]'s hand slips, tearing flesh on [target]'s [affected.display_name]!", \
 			"\red Your hand slips, tearing flesh on [target]'s [affected.display_name]!")
 			target.apply_damage(10, BRUTE, affected, sharp=1)
-
+			target.updatehealth()
 
 /datum/surgery_step/limb/prepare
 	allowed_tools = list(
@@ -128,6 +129,7 @@
 			user.visible_message("\red [user]'s hand slips, searing [target]'s [affected.display_name]!", \
 			"\red Your hand slips, searing [target]'s [affected.display_name]!")
 			target.apply_damage(10, BURN, affected)
+			target.updatehealth()
 
 
 /datum/surgery_step/limb/attach
@@ -171,3 +173,4 @@
 		user.visible_message("\red [user]'s hand slips, damaging connectors on [target]'s [affected.display_name]!", \
 		"\red Your hand slips, damaging connectors on [target]'s [affected.display_name]!")
 		target.apply_damage(10, BRUTE, affected, sharp=1)
+		target.updatehealth()

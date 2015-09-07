@@ -64,10 +64,30 @@
 	if(stat || paralysis || stunned || weakened)
 		return
 
-	face_atom(A) // change direction to face what you clicked on
+	if(ishuman(src))
+		if(src:turret_control)
+			if(src:turret_control.handle_manual_fire(src,A,params))
+				return
+
+	face_atom(A)
+
+	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
+		var/mob/living/carbon/Xenomorph/Crusher/X = src
+		if(X.momentum > 1 && dir != X.charge_dir )
+			X.stop_momentum(X.charge_dir)
 
 	if(next_move > world.time) // in the year 2000...
 		return
+
+	if(istype(src,/mob/living/carbon/Xenomorph/Boiler) && !istype(A,/obj/screen))
+		if(src:is_bombarding)
+			if(isturf(A))
+				src:bomb_turf(A)
+			else if(isturf(get_turf(A)))
+				src:bomb_turf(get_turf(A))
+			if(client)
+				client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+			return
 
 	if(istype(loc,/obj/mecha))
 		if(!locate(/turf) in list(A,A.loc)) // Prevents inventory from being drilled

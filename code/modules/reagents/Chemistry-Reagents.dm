@@ -1171,6 +1171,48 @@ datum
 				..()
 				return
 
+		thwei //OP yautja chem
+			name = "thwei"
+			id = "thwei"
+			description = "A strange, alien liquid."
+			reagent_state = LIQUID
+			color = "#C8A5DC" // rgb: 200, 165, 220
+
+			on_mob_life(var/mob/living/carbon/M as mob)
+				if(!M) M = holder.my_atom ///This can even heal dead people.
+				if(!isYautja(M))
+					return
+				if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(1*REM,0)
+				if(M.getFireLoss() && prob(80)) M.heal_organ_damage(0,1*REM)
+				if(M.getToxLoss() && prob(80)) M.adjustToxLoss(-1*REM)
+				M.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
+				M.setCloneLoss(0)
+				M.setOxyLoss(0)
+				M.radiation = 0
+				M.adjustToxLoss(-5)
+				M.hallucination = 0
+				M.setBrainLoss(0)
+				M.disabilities = 0
+				M.sdisabilities = 0
+				M.eye_blurry = 0
+				M.eye_blind = 0
+				M.silent = 0
+				M.dizziness = 0
+				M.drowsyness = 0
+				M.stuttering = 0
+				M.confused = 0
+				M.jitteriness = 0
+				for(var/datum/organ/internal/I in M.internal_organs)
+					if(I.damage > 0)
+						I.damage = max(I.damage--, 0)
+				for(var/datum/disease/D in M.viruses)
+					D.spread = "Remissive"
+					D.stage--
+					if(D.stage < 1)
+						D.cure()
+				..()
+				return
+
 		synaptizine
 			name = "Synaptizine"
 			id = "synaptizine"
@@ -1301,7 +1343,7 @@ datum
 					//Peridaxon heals only non-robotic organs
 					for(var/datum/organ/internal/I in H.internal_organs)
 						if((I.damage > 0) && (I.robotic != 2))
-							I.damage = max(I.damage - 0.20, 0)
+							I.damage = max(I.damage - 1, 0)
 				..()
 				return
 
@@ -1793,6 +1835,7 @@ datum
 			toxpwr = 0
 			custom_metabolism = 0.1
 			overdose = REAGENTS_OVERDOSE
+			scannable = 1
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom

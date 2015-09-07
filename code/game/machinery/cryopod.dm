@@ -148,7 +148,7 @@ var/global/list/frozen_items = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
 	var/orient_right = null       // Flips the sprite.
-	var/time_till_despawn = 18000 // 30 minutes-ish safe period before being despawned.
+	var/time_till_despawn = 9000 // 15 minutes-ish safe period before being despawned.
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
@@ -239,6 +239,18 @@ var/global/list/frozen_items = list()
 								all_objectives -= O
 								O.owner.objectives -= O
 								del(O)
+
+			if(occupant.mind && occupant.mind.assigned_squad)
+				var/datum/squad/S = occupant.mind.assigned_squad
+				if(!isnull(S) && istype(S))
+					if(occupant.mind.assigned_role == "Squad Engineer") S.num_engineers--
+					if(occupant.mind.assigned_role == "Squad Medic") S.num_medics--
+					if(occupant.mind.assigned_role == "Squad Specialist") S.num_specialists--
+					if(occupant.mind.assigned_role == "Squad Leader")
+						S.squad_leader = null
+						S.num_leaders--
+					S.count--
+					occupant.mind.assigned_squad = null
 
 			//Handle job slot/tater cleanup.
 			var/job = occupant.mind.assigned_role

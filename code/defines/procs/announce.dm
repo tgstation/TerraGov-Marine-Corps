@@ -22,15 +22,15 @@
 
 /datum/announcement/priority/command/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)
-	title = "[command_name()] Update"
-	announcement_type = "[command_name()] Update"
+	title = "Command Announcement"
+	announcement_type = "Command Announcement"
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
 	..(do_log, new_sound, do_newscast)
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/to_xenos = 1)
 	if(!message)
 		return
 	var/tmp/message_title = new_title ? new_title : title
@@ -39,14 +39,16 @@
 	message = html_encode(message)
 	message_title = html_encode(message_title)
 
-	Message(message, message_title)
+	Message(message, message_title, to_xenos)
 	if(do_newscast)
 		NewsCast(message, message_title)
-	Sound(message_sound)
+	Sound(message_sound, to_xenos)
 	Log(message, message_title)
 
-/datum/announcement/proc/Message(message as text, message_title as text)
+/datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 1)
 	for(var/mob/M in player_list)
+		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
+			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << "<h2 class='alert'>[title]</h2>"
 			M << "<span class='alert'>[message]</span>"
@@ -63,16 +65,18 @@
 		world << "<span class='alert'> -[html_encode(announcer)]</span>"
 	world << "<br>"
 
-/datum/announcement/priority/command/Message(message as text, message_title as text)
+/datum/announcement/priority/command/Message(message as text, message_title as text, var/to_xenos = 1)
 	var/command
-	command += "<h1 class='alert'>[command_name()] Update</h1>"
+//	command += "<h1 class='alert'>[message_title]</h1>"
 	if (message_title)
 		command += "<br><h2 class='alert'>[message_title]</h2>"
 
 	command += "<br><span class='alert'>[message]</span><br>"
 	command += "<br>"
 	for(var/mob/M in player_list)
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
+		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
+			continue
+		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isYautja(M))
 			M << command
 
 /datum/announcement/priority/security/Message(message as text, message_title as text)
@@ -91,10 +95,12 @@
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-/datum/announcement/proc/PlaySound(var/message_sound)
+/datum/announcement/proc/PlaySound(var/message_sound, var/to_xenos = 1)
 	if(!message_sound)
 		return
 	for(var/mob/M in player_list)
+		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
+			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << message_sound
 
@@ -105,8 +111,8 @@
 	if(sound)
 		world << sound
 
-/datum/announcement/priority/command/Sound(var/message_sound)
-	PlaySound(message_sound)
+/datum/announcement/priority/command/Sound(var/message_sound, var/to_xenos = 1)
+	PlaySound(message_sound, to_xenos)
 
 /datum/announcement/proc/Log(message as text, message_title as text)
 	if(log)

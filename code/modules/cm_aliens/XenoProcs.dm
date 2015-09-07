@@ -1,5 +1,8 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 
+///mob/living/carbon/Xenomorph/gib(anim="gibbed-m",do_gibs)
+//	return ..(anim="gibbed-a",do_gibs)
+
 //First, dealing with alt-clicking vents.
 /mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
 	var/list/modifiers = params2list(params)
@@ -44,6 +47,15 @@
 		stat(null,"Slashing of hosts is currently: ONLY WHEN NEEDED.")
 	else
 		stat(null,"Slashing of hosts is currently: NOT ALLOWED.")
+
+	if(frenzy_aura)
+		stat(null,"You are affected by a pheromone of FRENZY.")
+	if(guard_aura)
+		stat(null,"You are affected by a pheromone of GUARDING.")
+	if(recovery_aura)
+		stat(null,"You are affected by a pheromone of RECOVERY.")
+
+	return
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
@@ -118,6 +130,10 @@
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
+
+	if(stat)
+		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
+
 	var/tally = 0
 
 	tally = speed
@@ -125,10 +141,39 @@
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
 	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
-		tally += 1.3
+		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			tally -= 0.5
+		else
+			tally += 1.3
+
+	if(istype(loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
+		var/turf/simulated/floor/gm/snow/S = src.loc
+		if(S && istype(S) && S.slayer > 0)
+			tally += 1 * S.slayer
+			if(S.slayer && prob(2))
+				src << "\red Moving trough [S] slows you down"
+			if(S.slayer == 3 && prob(5))
+				src << "\red You got stuck in [S] for a moment!"
+				tally += 10
+
+	if(frenzy_aura)
+		tally -= 0.5
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.5
+		tally += 1.9
+
+	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
+		var/mob/living/carbon/Xenomorph/Crusher/X = src
+		X.charge_timer = 2
+		if(X.momentum == 0)
+			X.charge_dir = dir
+			X.handle_momentum()
+		else
+			if(X.charge_dir != dir) //Have we changed direction?
+				X.stop_momentum() //This should disallow rapid turn bumps
+			else
+				X.handle_momentum()
+		X.lastturf = get_turf(X)
 
 	return (tally)
 
@@ -151,14 +196,19 @@
 	damage = 1
 	damage_type = TOX
 	weaken = 4
+	skips_xenos = 1
+	accuracy = 150 //Rarely misses.
+	kill_count = 8
 
 /obj/item/projectile/energy/neuro/strong
 	damage = 5
 	weaken = 6
+	accuracy = 170 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/strongest
 	damage = 10
 	weaken = 8
+	accuracy = 250 //Rarely misses.
 
 /obj/item/projectile/energy/neuro/robot
 	damage = 50
@@ -171,27 +221,22 @@
 	name = "acid"
 	icon_state = "declone"
 	damage_type = BURN
+	accuracy = 200
 
 	on_hit(var/atom/target, var/blocked = 0)
 		aoe_spit(target)
 		return 1
 
-	proc/aoe_spit(var/atom/target) //Spatters acid on all mobs adjacent to the hit zone.
+	proc/aoe_spit(var/atom/target) //Doesn't actually do AoE anymore, just splatters
 		var/turf/T = get_turf(target)
-		if(!T) return
+		if(istype(target,/mob/living/carbon/Xenomorph)) return
+		if(isnull(T) || isnull(target)) return
 
-		new /obj/effect/xenomorph/splatter(T) //First do a splatty splat
+		new /obj/effect/xenomorph/splatter(T) //do a splatty splat
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
-		for(var/mob/living/carbon/human/M in range(1,T))
-			spawn(0)
-				if(M && M.stat != DEAD && !isYautja(M))
-					if(!locate(/obj/effect/xenomorph/splatter) in get_turf(M))
-						new /obj/effect/xenomorph/splatter(get_turf(M))
-					M.visible_message("\green [M] is splattered with acid!","\green You are splattered with acid! It burns away at your skin!")
-					M.apply_damage(damage,BURN) //Will pick a single random part to splat
 
 /obj/item/projectile/energy/neuro/acid/heavy
-	damage = 30
+	damage = 25
 
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
@@ -200,6 +245,7 @@
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/Xeno/effects.dmi'
+	unacidable = 1
 
 /obj/effect/xenomorph/splatter
 	name = "splatter"
@@ -208,17 +254,82 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	layer = 5
+	layer = 4.1
 
 	New() //Self-deletes after creation & animation
 		spawn(8)
 			del(src)
 			return
 
+/obj/effect/xenomorph/splatterblob
+	name = "splatter"
+	desc = "It burns! It burns like hygiene!"
+	icon_state = "acidblob"
+	density = 0
+	opacity = 0
+	anchored = 1
+	layer = 5
+
+	New() //Self-deletes after creation & animation
+		spawn(40)
+			del(src)
+			return
+
+/obj/effect/xenomorph/spray
+	name = "splatter"
+	desc = "It burns! It burns like hygiene!"
+	icon_state = "acid2"
+	density = 0
+	opacity = 0
+	anchored = 1
+	layer = 3.1
+	mouse_opacity = 0
+
+	New() //Self-deletes
+		spawn(100 + rand(0,20))
+			processing_objects.Remove(src)
+			del(src)
+			return
+
+	Crossed(AM as mob|obj)
+		..()
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			var/chance = 100
+			if(H.shoes) chance = 40
+			if(prob(chance))
+				if(!H.lying)
+					H << "\green Your feet burn! Argh!"
+					if(prob(chance))
+						H.emote("scream")
+					if(prob(chance / 2))
+						H.Weaken(2)
+					var/datum/organ/external/affecting = H.get_organ("l_foot")
+					if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
+						H.UpdateDamageIcon()
+					affecting = H.get_organ("r_foot")
+					if(istype(affecting) && affecting.take_damage(0, rand(5,10)))
+						H.UpdateDamageIcon()
+					H.updatehealth()
+				else
+					H.adjustFireLoss(rand(3,10))
+					H.show_message(text("\green You are burned by acid!"),1)
+
+	process()
+		var/turf/simulated/T = src.loc
+		if(!istype(T))
+			processing_objects.Remove(src)
+			del(src)
+			return
+
+		for(var/mob/living/carbon/M in loc)
+			if(isXeno(M)) continue
+			src.Crossed(M)
+
 //Medium-strength acid
 /obj/effect/xenomorph/acid
 	name = "acid"
-	desc = "Burbling corrossive stuff. I wouldn't want to touch it."
+	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
 	icon_state = "acid"
 	density = 0
 	opacity = 0
@@ -238,7 +349,7 @@
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	target_strength = 20 //20% normal speed
+	acid_strength = 40 //20% normal speed
 
 /obj/effect/xenomorph/acid/New(loc, target)
 	..(loc)
@@ -271,9 +382,9 @@
 			W.dismantle_wall(1)
 		else
 			if(target.contents) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/mob/S in target)
-					if(S in target.contents && !isnull(target.loc))
-						S.loc = target.loc
+				for(var/atom/movable/S in target)
+					if(S in target.contents && !isnull(get_turf(target)))
+						S.loc = get_turf(target)
 
 			if(istype(target,/turf)) //We don't want space tiles appearing everywhere... but this sucks!
 				var/turf/T = target
@@ -313,12 +424,13 @@
 			step(O,src.dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
 		if(istype(src,/mob/living/carbon/Xenomorph/Ravager)) //Ravagers destroy tables.
-			if(istype(O,/obj/structure/table) || istype(O,/obj/structure/rack) || istype(O,/obj/structure/barricade/wooden))
+			if(istype(O,/obj/structure/table) || istype(O,/obj/structure/rack))
 				var/obj/structure/S = O
 				visible_message("<span class='danger'>[src] plows straight through the [S.name]!</span>")
 				S.destroy()
+				O = null
 
-		if(!istype(O,/obj/structure/table) && O.density && O.anchored) // new - xeno charge ignore tables
+		if(!isnull(O) && !istype(O,/obj/structure/table) && O.density && O.anchored && !istype(O,/obj/item)) // new - xeno charge ignore tables
 			O.hitby(src,speed)
 			src << "Bonk!" //heheh. Smacking into dense objects stuns you slightly.
 			src.Weaken(2)
@@ -337,7 +449,7 @@
 						return
 
 				if(H.species && H.species.name == "Yautja" && prob(40))
-					visible_message("\red <b>[H] emits a roar and body slams \the [src]!")
+					visible_message("\red <b>[H] emits a roar and body slams \the [src]!</B>","\red <B>[H] emits a roar and body slams you!</b>")
 					src.Weaken(4)
 					src.throwing = 0
 					return
@@ -390,10 +502,16 @@
 	set name = "Toggle Darkvision"
 	set category = "Alien"
 
-	if (see_invisible == SEE_INVISIBLE_LEVEL_TWO)
-		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	if (see_invisible == SEE_INVISIBLE_MINIMUM)
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO //Turn it off.
+		see_in_dark = 4
+		sight |= SEE_MOBS
+		sight &= ~SEE_TURFS
+		sight &= ~SEE_OBJS
 	else
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+		see_invisible = SEE_INVISIBLE_MINIMUM
+		see_in_dark = 8
+		sight |= SEE_MOBS
 
 //Random bite attack. Procs more often on downed people. Returns 0 if the check fails.
 //Does a LOT of damage.
@@ -476,3 +594,48 @@
 	M.updatehealth()
 	readying_tail = 0
 	return 1
+
+/mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
+	if(stat)
+		if(is_zoomed)
+			is_zoomed = 0
+			zoom_out()
+			return
+		return
+	if(is_zoomed) return
+	if(!client) return
+	if(!src.hud_used.hud_shown)
+		src.button_pressed_F12(1)	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+	src.button_pressed_F12(1)
+	zoom_turf = get_turf(src)
+	is_zoomed = 1
+	client.view = viewsize
+	var/viewoffset = 32 * tileoffset
+	switch(dir)
+		if (NORTH)
+			client.pixel_x = 0
+			client.pixel_y = viewoffset
+		if (SOUTH)
+			client.pixel_x = 0
+			client.pixel_y = -viewoffset
+		if (EAST)
+			client.pixel_x = viewoffset
+			client.pixel_y = 0
+		if (WEST)
+			client.pixel_x = -viewoffset
+			client.pixel_y = 0
+	return
+
+/mob/living/carbon/Xenomorph/proc/zoom_out()
+	if(!client)
+		return
+	if(!src.hud_used.hud_shown)
+		src.button_pressed_F12(1)
+	client.view = world.view
+	client.pixel_x = 0
+	client.pixel_y = 0
+	is_zoomed = 0
+	if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+		src:zoom_timer = 0
+	zoom_turf = null
+	return

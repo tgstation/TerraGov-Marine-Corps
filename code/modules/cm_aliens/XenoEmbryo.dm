@@ -42,11 +42,17 @@
 	if(affected_mob.stat == DEAD) //Stop. just stop it.
 		return 0
 
-	if(stage < 4) counter++ //A counter to add to probability over time.
-	else if (stage == 4 && prob(50))  counter++
+	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)//Slow down progress if in stasis bag or cryo
+		if(prob(30))
+			if(stage < 4) counter++ //A counter to add to probability over time.
+			else if (stage == 4 && prob(30))  counter++
 
-	if(counter > 300) counter = 300 //somehow
-	if(stage < 5 && prob(1 + round(counter / 60))) //Adds 1% probability to change stages for each 60 cycles.
+	else
+		if(stage < 4) counter++
+		else if (stage == 4 && prob(30))  counter++
+
+	if(counter > 400) counter = 400 //somehow
+	if(stage < 5 && prob(1 + round(counter / 90))) //Adds 1% probability to change stages for each 70 cycles.
 		counter = 0
 		stage++
 		spawn(0)
@@ -54,44 +60,51 @@
 
 	switch(stage)
 		if(2)
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "Your chest hurts a little bit."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "Your stomach hurts."
 		if(3)
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red Your throat feels sore."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red Mucous runs down the back of your throat."
 			if(prob(1))
 				affected_mob << "\red Your muscles ache."
 				if(prob(20))
 					affected_mob.take_organ_damage(1)
-			if(prob(1))
+			if(prob(2))
 				affected_mob.emote("sneeze")
-			if(prob(1))
+			if(prob(2))
 				affected_mob.emote("cough")
 		if(4)
-
 			if(prob(1))
 				if(affected_mob.paralysis < 1)
-					affected_mob << "\red You have a seizure!"
 					for(var/mob/O in viewers(affected_mob, null))
 						if(O == src)
 							continue
-						O.show_message(text("\red <B>[affected_mob] starts having a seizure!"), 1)
-					affected_mob.Paralyse(8)
-					affected_mob.make_jittery(800)
-			if(prob(1))
+						O.show_message(text("\red <B>[affected_mob] starts shaking uncontrollably!"), 1)
+					affected_mob.Paralyse(10)
+					affected_mob.make_jittery(50)
+					affected_mob.take_organ_damage(1)
+			if(prob(2))
 				affected_mob << "\red Your chest hurts badly."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red It becomes difficult to breathe."
-			if(prob(1))
+			if(prob(2))
 				affected_mob << "\red Your heart starts beating rapidly, and each beat is painful."
 		if(5)
-			affected_mob << "\red You feel something tearing its way out of your stomach..."
-			affected_mob.emote("scream")
-			affected_mob.adjustToxLoss(5)
+			// affected_mob << "\red You feel something ripping up your insides!"
+			// affected_mob.emote("scream")
+			if(affected_mob.paralysis < 1)
+				for(var/mob/O in viewers(affected_mob, null))
+					if(O == src)
+						continue
+					O.show_message(text("\red <B>[affected_mob] starts shaking uncontrollably!"), 1)
+				affected_mob.Paralyse(20)
+				affected_mob.make_jittery(100)
+				affected_mob.take_organ_damage(1)
+				affected_mob.adjustToxLoss(5)
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()
@@ -110,6 +123,9 @@
 	if(!affected_mob)
 		return 0
 
+//Saving this in case we want to swap it back, but candidates shouldn't be picked first to be a Larva. The host should be.
+//NOPE - Abby
+
 	if(candidates.len)
 		picked = pick(candidates)
 	else if(affected_mob.client)
@@ -118,27 +134,45 @@
 			stage = 4
 			return 0
 		else
-			picked = affected_mob.key
-	else
-		stage = 4 // Let's try again later.
-		return 0
+			if(affected_mob.client.prefs.be_special & BE_ALIEN)
+				picked = affected_mob.key
+			else
+				if(counter) counter = round(counter/2)
+				affected_mob.Weaken(10)
+				stage = 4
+				return 0
 
+/*
+	if(affected_mob.client) // Make sure the player is still there
+		if(affected_mob.client.holder && istype(affected_mob.client.holder,/datum/admins) && !(affected_mob.client.prefs.be_special & BE_ALIEN))
+			affected_mob << "You were about to burst, but Admins are immune to being forced into a Larva. Lucky you!"
+			stage = 4
+			return 0
+		else if(affected_mob.client.prefs.be_special & BE_ALIEN) // The host wants to be a Larva, so make him one
+			picked = affected_mob.key
+	else if(candidates.len) // The player doesn't want it or they're gone, let's find someone else
+		picked = pick(candidates)
+*/
 	if(!picked)
 		stage = 4
 		return 0
 
 	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
-	affected_mob.update_icons()
+	affected_mob.update_burst()
 	spawn(6)
 		if(!affected_mob || !src) return //Might have died or something in that half second
 		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
 		new_xeno.key = picked
 		new_xeno << sound('sound/voice/hiss5.ogg',0,0,0,100)	//To get the player's attention
-		affected_mob.adjustToxLoss(200) //This should kill without gibbing da body
+		if(!isYautja(affected_mob))
+			affected_mob.emote("scream")
+		else
+			affected_mob.emote("roar")
+		affected_mob.adjustToxLoss(300) //This should kill without gibbing da body
 		affected_mob.updatehealth()
 		affected_mob.chestburst = 2
 		processing_objects.Remove(src)
-		affected_mob.update_icons()
+		affected_mob.update_burst()
 //		if(gib_on_success)
 //			affected_mob.gib()
 		del(src)

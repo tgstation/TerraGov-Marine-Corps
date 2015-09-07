@@ -192,12 +192,11 @@
 			if (client)
 				client.screen -= W
 			W.loc = loc
-			W.dropped(src)
-			//if(W)
-				//W.layer = initial(W.layer)
+			if(W.destroy_on_drop)
+				del(W)
+//			W.dropped(src)
 	update_action_buttons()
 	return 1
-
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
@@ -528,15 +527,16 @@
 					message = "\red <B>[source] is trying to take off \a [target.w_uniform] from [target]'s body!</B>"
 			if("tie")
 				var/obj/item/clothing/under/suit = target.w_uniform
-				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their accessory ([suit.hastie]) removed by [source.name] ([source.ckey])</font>")
-				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) accessory ([suit.hastie])</font>")
-				if(istype(suit.hastie, /obj/item/clothing/tie/holobadge) || istype(suit.hastie, /obj/item/clothing/tie/medal))
-					for(var/mob/M in viewers(target, null))
-						M.show_message("\red <B>[source] tears off \the [suit.hastie] from [target]'s suit!</B>" , 1)
-					done()
-					return
-				else
-					message = "\red <B>[source] is trying to take off \a [suit.hastie] from [target]'s suit!</B>"
+				if(suit && istype(suit) && suit.hastie)
+					target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their accessory ([suit.hastie]) removed by [source.name] ([source.ckey])</font>")
+					source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) accessory ([suit.hastie])</font>")
+					if(istype(suit.hastie, /obj/item/clothing/tie/holobadge) || istype(suit.hastie, /obj/item/clothing/tie/medal))
+						for(var/mob/M in viewers(target, null))
+							M.show_message("\red <B>[source] tears off \the [suit.hastie] from [target]'s suit!</B>" , 1)
+						done()
+						return
+					else
+						message = "\red <B>[source] is trying to take off \a [suit.hastie] from [target]'s suit!</B>"
 			if("s_store")
 				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their suit storage item ([target.s_store]) removed by [source.name] ([source.ckey])</font>")
 				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) suit storage item ([target.s_store])</font>")
@@ -794,6 +794,7 @@ It can still be worn/put on as normal.
 			if(slot_to_process == slot_l_store) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
 				if(target.r_store)
 					target.u_equip(target.r_store) //At this stage l_store is already processed by the code above, we only need to process r_store.
+			target.update_icons()
 		else
 			if(item && target.has_organ_for_slot(slot_to_process)) //Placing an item on the mob
 				if(item.mob_can_equip(target, slot_to_process, 0))

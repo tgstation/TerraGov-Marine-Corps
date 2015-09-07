@@ -13,6 +13,7 @@
 	maxplasma = 750
 	jellyMax = 750
 	plasma_gain = 12
+
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	inherent_verbs = list(
@@ -22,7 +23,8 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/corrosive_acid
+		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
+		/mob/living/carbon/Xenomorph/proc/toggle_auras
 		)
 
 

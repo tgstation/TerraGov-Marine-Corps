@@ -193,7 +193,7 @@
 		W.loc = src
 		ewallet = W
 		user << "\blue You insert the [W] into the [src]"
-
+/*
 	else if(istype(W, /obj/item/weapon/wrench))
 
 		if (istype(src, /obj/machinery/vending/marine) || istype(src, /obj/machinery/vending/marineFood) || istype(src, /obj/machinery/vending/MarineMed) || istype(src, /obj/machinery/vending/MarineMed/Blood) || istype(src, /obj/machinery/vending/marine_engi) || istype(src, /obj/machinery/vending/marine_medic) || istype(src, /obj/machinery/vending/marine_special) || istype(src, /obj/machinery/vending/marine_leader) || istype(src, /obj/machinery/vending/attachments))
@@ -210,7 +210,7 @@
 					user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
 					anchored = 0
 		return
-
+*/
 	else if(src.panel_open)
 
 		for(var/datum/data/vending_product/R in product_records)
@@ -862,7 +862,7 @@
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 4,
 					/obj/item/stack/medical/bruise_pack = 2,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/device/healthanalyzer = 1)
@@ -876,7 +876,7 @@
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,
+	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
 					/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,
 					/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,
@@ -890,8 +890,12 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access_txt = "3"
-	products = list(/obj/item/weapon/handcuffs = 8,/obj/item/weapon/grenade/flashbang = 4,/obj/item/device/flash = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,/obj/item/weapon/storage/box/evidence = 6)
+	products = list(/obj/item/weapon/handcuffs = 8,
+					/obj/item/weapon/grenade/flashbang = 4,
+					/obj/item/device/flash = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12,
+					/obj/item/weapon/storage/box/evidence = 6,
+					/obj/item/clothing/glasses/sunglasses/sechud = 3)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/weapon/storage/donut_box = 2)
 
 /obj/machinery/vending/hydronutrients

@@ -6,7 +6,7 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
-
+	unacidable = 1
 /*
  * Resin
  */
@@ -20,6 +20,7 @@
 	anchored = 1
 	var/health = 200
 	layer = 2.8
+	unacidable = 1
 	//var/mob/living/affecting = null
 
 /obj/effect/alien/resin/wall
@@ -133,6 +134,7 @@
 	anchored = 1
 	density = 0
 	layer = 2
+	unacidable = 1
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
@@ -252,7 +254,6 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-
 	var/atom/target
 	var/ticks = 0
 	var/target_strength = 0
@@ -456,6 +457,15 @@
 							src.other = T //Link them!
 							break
 
+	examine()
+		if(!usr || !istype(usr, /mob/living/carbon/Xenomorph)) return ..()
+
+		if(!other)
+			usr << "It does not seem to lead anywhere."
+		else
+			var/area/A = get_area(other)
+			usr << "It seems to lead to <b>[A.name]</b>."
+
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)
 		visible_message("The [src] suddenly collapses!")
@@ -490,6 +500,11 @@
 /obj/structure/tunnel/meteorhit()
 	health-=50
 	healthcheck()
+	return
+
+/obj/structure/tunnel/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!isXeno(user)) return ..()
+	attack_alien(user)
 	return
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M as mob)
@@ -554,7 +569,7 @@
 				if(istype(buckled_mob,/mob/living/carbon/human))
 					var/mob/living/carbon/human/H = buckled_mob
 					H.recently_unbuckled = 1
-					spawn(40)
+					spawn(300)
 						if(H) //Make sure the mob reference still exists.
 							H.recently_unbuckled = 0
 
@@ -562,7 +577,6 @@
 			else
 				if(buckled_mob.stat)
 					buckled_mob << "You're a little too unconscious to try that."
-					resisting = 0
 					return
 				if(resisting)
 					buckled_mob << "You're already trying to free yourself. Give it some time."
@@ -571,13 +585,6 @@
 					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
 					"<span class='notice'>You hear squelching...</span>")
 				resisting = 1
-				var/mob/living/carbon/human/Y = buckled_mob
-				if(istype(Y))
-					if(Y.species && Y.species.name == "Yautja") //Yautja have half resist time due to their great strength.
-						nest_resist_time = initial(nest_resist_time) / 2
-					else
-						nest_resist_time = initial(nest_resist_time) //Reset it, in case there was a pred previously on.
-
 				spawn(nest_resist_time)
 					if(resisting && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
 						buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] breaks free from the nest!</span>",\

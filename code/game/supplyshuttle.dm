@@ -133,7 +133,7 @@ var/list/mechtoys = list(
 	var/processing_interval = 300
 	var/iteration = 0
 	//supply points
-	var/points = 100
+	var/points = 150
 	var/points_per_process = 2
 	var/points_per_slip = 2
 	var/points_per_crate = 5

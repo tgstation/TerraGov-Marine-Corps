@@ -87,6 +87,11 @@
 			M = /mob/living/carbon/Xenomorph/Hunter
 		if("Queen")
 			M = /mob/living/carbon/Xenomorph/Queen
+		if("Crusher")
+			M = /mob/living/carbon/Xenomorph/Crusher
+		if("Boiler")
+			M = /mob/living/carbon/Xenomorph/Boiler
+
 	if(isnull(M))
 		usr << "[caste] is not a valid caste! If you're seeing this message tell a coder!"
 		return
@@ -96,46 +101,51 @@
 			src << "You must wait to let the royal jelly seep into your lymph. Currently at: [jellyGrow] / [jellyMax]."
 			return
 
-	for(var/mob/O in viewers(src, null))
-		O.show_message(text("\green <B>[src] begins to twist and contort!</B>"), 1)
+	visible_message("\green <b> \The [src] begins to twist and contort..</b>","\green <b>You begin to twist and contort..</b>")
+	if(do_after(src,25))
+		if(caste == "Queen") // Do another check after the tick.
+			if(is_queen_alive())
+				src << "\red There is already a queen."
+				return
+		var/mob/living/carbon/Xenomorph/new_xeno = new M(get_turf(src))
+		remove_inherent_verbs()
 
-	var/mob/living/carbon/Xenomorph/new_xeno = new M(get_turf(src))
-	remove_inherent_verbs()
+		if(mind)
+			mind.transfer_to(new_xeno)
+		else
+			new_xeno.key = src.key
 
-	if(mind)
-		mind.transfer_to(new_xeno)
+		if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
+			new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
+			new_xeno.fireloss = src.fireloss //Transfers the damage over.
+			new_xeno.updatehealth()
+
+		new_xeno.add_inherent_verbs()
+		new_xeno.jellyGrow = 0
+		if(jelly)
+			new_xeno.jelly = jelly
+		new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
+		new_xeno.shift_mouse_toggle = src.shift_mouse_toggle //Keep our toggle state
+
+		for (var/obj/item/W in src.contents) //Drop stuff
+			src.drop_from_inventory(W)
+
+		src.drop_l_hand() //Drop dem huggies, just in case
+		src.drop_r_hand()
+
+		empty_gut()
+		new_xeno.visible_message("\green <b> \The [new_xeno] emerges from the husk of [src].</b>","\green <b>You emerge in a greater form from the husk of your old body. For the hive!</b>")
+		del(src)
 	else
-		new_xeno.key = src.key
+		src << "You quiver, but nothing happens. Hold still while evolving."
 
-	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
-		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
-		new_xeno.fireloss = src.fireloss //Transfers the damage over.
-		new_xeno.updatehealth()
-
-	new_xeno.add_inherent_verbs()
-	new_xeno.jellyGrow = 0
-	if(jelly)
-		new_xeno.jelly = jelly
-	new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
-	new_xeno.shift_mouse_toggle = src.shift_mouse_toggle //Keep our toggle state
-
-	for (var/obj/item/W in src.contents) //Drop stuff
-		src.drop_from_inventory(W)
-
-	src.drop_l_hand() //Drop dem huggies, just in case
-	src.drop_r_hand()
-
-	empty_gut()
-
-	del(src)
 	return
-
 
 /proc/is_queen_alive()
 	var/found = 0
 
 	for(var/mob/living/carbon/Xenomorph/Queen/Q in mob_list)
-		if(Q.stat != DEAD)
+		if(!isnull(Q) && Q.stat != DEAD)
 			found = 1
 			break
 

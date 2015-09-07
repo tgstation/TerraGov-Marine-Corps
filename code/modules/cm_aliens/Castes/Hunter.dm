@@ -4,18 +4,19 @@
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
 	icon_state = "Hunter Walking"
-	melee_damage_lower = 15
-	melee_damage_upper = 25
-	health = 150
-	maxHealth = 150
+	melee_damage_lower = 18
+	melee_damage_upper = 32
+	health = 160
+	maxHealth = 160
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
 	jellyMax = 900
 	caste_desc = "A fast, powerful front line combatant."
 	speed = -1.5 //Not as fast as runners, but faster than other xenos
-	evolves_to = list("Ravager")
+	evolves_to = list("Ravager", "Crusher")
 	charge_type = 1 //Pounce
+	armor_deflection = 32
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

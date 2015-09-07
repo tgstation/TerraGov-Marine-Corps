@@ -522,3 +522,100 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.message = message
 		W.add_hiddenprint(src)
 		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")*/
+
+/mob/dead/verb/join_as_larva()
+	set category = "Ghost"
+	set name = "Join As Larva"
+	set desc = "Select an alive but logged-out Alien Larva to re-join the game."
+
+	var/mob/living/carbon/Xenomorph/Larva/L = src
+
+	if(ticker.current_state < GAME_STATE_PLAYING)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	if (!usr.stat) // Make sure we're an observer
+		// usr << "!usr.stat"
+		return
+
+	if (usr != src)
+		// usr << "usr != src"
+		return 0 // Something is terribly wrong
+
+	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
+		usr << "\red You are banned from playing Aliens and cannot spawn as a larva."
+		return
+
+	var/list/larva_list = list()
+
+	for(var/mob/living/carbon/Xenomorph/Larva/A in living_mob_list)
+		if(isXenoLarva(A) && !A.client)
+			larva_list += A.name
+
+	if(larva_list.len == 0)
+		usr << "\red There aren't any available Alien Larva."
+
+	var/choice = input("Pick a Larva:") as null|anything in larva_list
+	if (isnull(choice) || choice == "Cancel")
+		return
+
+	for(var/mob/living/carbon/Xenomorph/Larva/X in living_mob_list)
+		if(choice == X.name)
+			L = X
+			break
+
+	if(!L || isnull( L ))
+		usr << "Not a valid mob!"
+		return
+
+/*	if(world.time < 36000) //None of this can happen after 1 hour into the round -- But why not? Marines can still spawn in and players are still ghosting out of Larva. Commenting out for now.
+		usr <<"\red Too late. 1 hour has passed. You can no longer join as a larva."
+		return*/
+
+	if(!istype(L, /mob/living/carbon/Xenomorph/Larva))
+		usr << "\red That's not an Alien Larva."
+		return
+
+	if(L.stat == DEAD)  // Larva is dead. Dead.
+		usr << "\red It's dead."
+		return
+
+	if(L.client) // Larva player is still online
+		usr << "\red That player is still connected."
+		return
+
+	var/deathtime = world.time - usr.timeofdeath
+	var/deathtimeminutes = round(deathtime / 600)
+	var/pluralcheck = "minute"
+	if(deathtimeminutes == 0)
+		pluralcheck = ""
+	else if(deathtimeminutes == 1)
+		pluralcheck = " [deathtimeminutes] minute and"
+	else if(deathtimeminutes > 1)
+		pluralcheck = " [deathtimeminutes] minutes and"
+	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
+
+	if (deathtime < 6000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Larva - Ignored for Admins, cause we're special
+		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
+		usr << "\red You must wait 10 minutes to spawn as a Larva!"
+		return
+
+	if(L.away_timer < 600) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
+		usr << "\red That player hasn't been away long enough. Please wait [600 - L.away_timer] more seconds."
+		return
+
+	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this Alien Larva?", "Confirmation", "Yes", "No") == "Yes")
+
+		if(L.client || L.stat == DEAD) // Do it again, just in case
+			usr << "\red Oops. That mob can no longer be controlled. Sorry."
+			return
+
+		var/mob/ghostmob = usr.client.mob
+		message_admins("[usr.ckey] has joined as an Alien Larva.")
+		log_admin("[usr.ckey] has joined as an Alien Larva.")
+		L.ckey = usr.ckey
+		// L.client = usr.client
+		if( isobserver(ghostmob) )
+			del(ghostmob)
+
+	return

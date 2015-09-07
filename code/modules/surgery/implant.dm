@@ -65,6 +65,7 @@
 		user.visible_message("\red [user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!", \
 		"\red Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(CUT, 20)
+		affected.update_wounds()
 
 /datum/surgery_step/cavity/close_space
 	priority = 2
@@ -101,6 +102,7 @@
 		user.visible_message("\red [user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!", \
 		"\red Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(CUT, 20)
+		affected.update_wounds()
 
 /datum/surgery_step/cavity/place_item
 	priority = 0
@@ -141,6 +143,7 @@
 		user.visible_message("\red [user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!", \
 		"\red Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!")
 		affected.createwound(CUT, 20)
+		affected.update_wounds()
 
 //////////////////////////////////////////////////////////////////
 //					IMPLANT/ITEM REMOVAL SURGERY						//
@@ -235,4 +238,6 @@
 				playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
 				spawn(25)
 					imp.activate()
+		target.updatehealth()
+		affected.update_wounds()
 

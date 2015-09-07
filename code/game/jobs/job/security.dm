@@ -17,11 +17,11 @@
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mmpo(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine, slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/security/MP/full, slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/sec/alt(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP(H), slot_wear_suit)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/security(H), slot_glasses)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), slot_glasses)
 		spawn(10)
 			H << "\red You are a Military Police Officer!"
 			H << "Your primary job is to maintain peace and stability on board the Sulaco."

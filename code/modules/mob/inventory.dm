@@ -86,21 +86,27 @@
 
 
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W)
+	if(W && istype(W))
 		if(!Target)
 			Target = loc
 
 		if(client)	client.screen -= W
 		u_equip(W)
+
+		if(W)
+			W.dropped(src)
+
 		if(!W) return 1 // self destroying objects (tk, grabs)
 		W.layer = initial(W.layer)
-		W.loc = Target
 
-		var/turf/T = get_turf(Target)
-		if(isturf(T))
-			T.Entered(W)
+		if(isturf(Target) && !isnull(Target))
+			W.loc = Target
+		else
+			W.loc = get_turf(Target)
 
-		W.dropped(src)
+//		if(isturf(T))
+//			T.Entered(W)
+
 		update_icons()
 		return 1
 	return 0
@@ -151,12 +157,6 @@
 
 
 
-
-
-
-
-
-
 //TODO: phase out this proc
 /mob/proc/before_take_item(var/obj/item/W)	//TODO: what is this?
 	W.loc = null
@@ -192,7 +192,10 @@
 		if (client)
 			client.screen -= W
 		W.loc = loc
-		W.dropped(src)
+
+		if(W.destroy_on_drop)
+			del(W)
+//		W.dropped(src)
 
 	return
 

@@ -96,9 +96,39 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				M.op_stage.in_progress = 1
 				S.begin_step(user, M, user.zone_sel.selecting, tool)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(prob(S.tool_quality(tool)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
+
+				//Success multiplers!
+				var/multipler = 1 //1 = 100%
+				if(locate(/obj/structure/stool/bed/roller, M.loc))
+					multipler -= 0.10
+				else if(locate(/obj/structure/table/, M.loc))
+					multipler -= 0.20
+				if(M.stat == 0)//If not on anesthetics or not unconsious
+					multipler -= 0.5
+					if(M.reagents.has_reagent("stoxin"))
+						multipler += 0.15
+					if(M.reagents.has_reagent("paracetamol"))
+						multipler += 0.15
+					if(M.reagents.has_reagent("tramadol"))
+						multipler += 0.25
+					if(M.reagents.has_reagent("oxycodone"))
+						multipler += 0.40
+					if(M.shock_stage > 100) //Being near to unconsious is good in this case
+						multipler += 0.25
+				if(multipler > 1)
+					multipler = 1
+				if(multipler < 0)
+					multipler = 0 //Somehow...
+				//user << "\blue Total multipler:[multipler]"//Debug
+
+				//Multiply tool success rate with multipler
+				if(prob(S.tool_quality(tool) * multipler) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
 					S.end_step(user, M, user.zone_sel.selecting, tool)		//finish successfully
+
 				else if ((tool in user.contents) && user.Adjacent(M))			//or
+					if (M.stat == 0)//If not on anesthetics or not unconsious, warn player
+						M.emote("scream")
+						user << "\red [M] moved during the surgery! Use anesthetics!"
 					S.fail_step(user, M, user.zone_sel.selecting, tool)		//malpractice~
 				else // This failing silently was a pain.
 					user << "\red You must remain close to your patient to conduct surgery."

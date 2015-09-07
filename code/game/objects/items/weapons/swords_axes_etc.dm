@@ -133,7 +133,7 @@
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
 		w_class = 3
-		force = 15//quite robust
+		force = 50//Super Robust - Probably shouldn't give it to anyone who isn't staff unless you want BEATINGS
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message("\blue [user] collapses their telescopic baton.",\
@@ -200,15 +200,16 @@
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	destroy_on_drop = 1
 	return
 
-/obj/item/weapon/melee/energy/blade/dropped()
-	del(src)
-	return
+///obj/item/weapon/melee/energy/blade/dropped()
+//	del(src)
+//	return
 
-/obj/item/weapon/melee/energy/blade/proc/throw()
-	del(src)
-	return
+///obj/item/weapon/melee/energy/blade/proc/throw()
+//	del(src)
+//	return
 
 /*
  * Energy Axe

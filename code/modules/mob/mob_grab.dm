@@ -16,6 +16,7 @@
 	abstract = 1
 	item_state = "nothing"
 	w_class = 5.0
+	destroy_on_drop = 1
 
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)
@@ -37,7 +38,7 @@
 
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
-/obj/item/weapon/grab/proc/throw()
+/obj/item/weapon/grab/proc/newthrow()
 	if(affecting)
 		if(affecting.buckled)
 			return null

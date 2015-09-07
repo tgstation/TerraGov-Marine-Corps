@@ -17,16 +17,16 @@
 	unacidable = 1
 	anchored = 1 //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	flags = FPRINT | TABLEPASS
-	pass_flags = PASSTABLE
+	pass_flags = PASSTABLE | PASSGRILLE
 	mouse_opacity = 0
 	var/bumped = 0		//Prevents it from hitting more than one guy at once
 	var/def_zone = ""	//Aiming at
-	var/mob/firer = null//Who shot it
+	var/atom/firer = null//Who shot it
 	var/silenced = 0	//Attack message
 	var/yo = null
 	var/xo = null
 	var/current = null
-	var/obj/shot_from = null // the object which shot us
+	var/atom/shot_from = null // the object which shot us
 	var/atom/original = null // the original target clicked
 	var/turf/starting = null // the projectile's starting turf
 	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
@@ -39,7 +39,7 @@
 	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
 	var/flag = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
 	var/projectile_type = "/obj/item/projectile"
-	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
+	var/kill_count = 30 //This will de-increment every process(). When 0, it will delete the projectile.
 		//Effects
 	var/stun = 0
 	var/weaken = 0
@@ -51,6 +51,13 @@
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 	var/skip_over = 0
+	var/iff = 0
+	var/accuracy = 0
+	var/skips_xenos = 0
+	var/armor_pierce = 0
+	var/incendiary = 0
+	var/reverse_accuracy = 0
+	var/range_falloff_at = 0
 
 	proc/on_hit(var/atom/target, var/blocked = 0)
 		if(blocked >= 2)		return 0//Full block
@@ -80,6 +87,16 @@
 			return 0 //cannot shoot yourself
 
 		if(bumped)	return 0
+
+		if(firer && A && get_adj_simple(firer,A) && A.loc != get_step(firer,firer.dir)) //No adjacencies at all.
+			bumped = 0
+			if(isturf(A))
+				loc = A
+			else
+				loc = get_turf(A)
+			permutated.Add(A)
+			return 0
+
 		var/forcedodge = 0 // force the projectile to pass
 
 		bumped = 1
@@ -96,7 +113,7 @@
 				return 0
 
 			var/distance = get_dist(starting,loc)
-			var/miss_modifier = -15 //NEGATIVE IS BETTER HERE.
+			var/miss_modifier = -10 //NEGATIVE IS BETTER HERE.
 
 			if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
@@ -111,35 +128,32 @@
 				if(daddy.under)
 					if(daddy.under.accuracy_mod) miss_modifier -= daddy.under.accuracy_mod
 
-			if(istype(src,/obj/item/projectile/bullet/m42c)) //Sniper rifles have different miss chance by distance.
-				if(distance <= 4) //< 5 tiles, +30% miss chance.
-					miss_modifier += 20
-				else if (distance > 5 && distance < 8) //In sight range but not close, only -5%
-					miss_modifier -= 5
-				else if (distance >= 8) //Beyond sight range (scoped), -20%
-					miss_modifier -= 20
+			miss_modifier -= accuracy
 
-			if(istype(src,/obj/item/projectile/bullet/m37)) //Shotguns count as twice as far away.
-				distance *= 2
+			if(reverse_accuracy) //Sniper rifles have different miss chance by distance.
+				if(distance <= 7)
+					miss_modifier += ((12 - distance) * 10)
 
-			if(istype(src,/obj/item/projectile/bullet/m56) && ishuman(A))
+			if(range_falloff_at > 0 && range_falloff_at < distance)
+				miss_modifier += (distance * 4) //Pretends to be half again as far.
+
+			if(iff && ishuman(A))
 				var/mob/living/carbon/human/H = A
 				if(H.get_marine_id())
 					bumped = 0
 					permutated.Add(H)
-					src.loc = get_turf(H.loc)
+					src.loc = get_turf(H)
 					skip_over = 1
 					return 0
 
-			if(istype(src,/obj/item/projectile/energy/neuro) && isXeno(A)) //Xenos are immune to spit.
+			if(skips_xenos && isXeno(A)) //Xenos are immune to spit.
 				bumped = 0
 				permutated.Add(A)
 				src.loc = get_turf(A.loc)
 				skip_over = 1
 				return 0
 
-			if(!istype(src,/obj/item/projectile/energy/neuro)) //Neuro spit never misses.
-				def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (9 * distance))
+			def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + (8 * distance))
 
 			if(!def_zone)
 				visible_message("\blue \The [src] misses [M] narrowly!")
@@ -150,12 +164,12 @@
 				else
 					visible_message("\red [A.name] is hit by the [src.name] in the [parse_zone(def_zone)]!")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 				if(istype(firer, /mob))
-					M.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[src.type]</b>"
-					firer.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[src.type]</b>"
-					msg_admin_attack("[firer] ([firer.ckey]) shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
+					M.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer:ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[src.type]</b>"
+					firer:attack_log += "\[[time_stamp()]\] <b>[firer]/[firer:ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[src.type]</b>"
+					msg_admin_attack("[firer] ([firer:ckey]) shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
 				else
-					M.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[M]/[M.ckey]</b> with a <b>[src]</b>"
-					msg_admin_attack("UNKNOWN shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
+					M.attack_log += "\[[time_stamp()]\] <b>SOMETHING (sentry?)</b> shot <b>[M]/[M.ckey]</b> with a <b>[src]</b>"
+					msg_admin_attack("SOMETHING (sentry probably) shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
 
 		if(A)
 			if(!forcedodge)
@@ -192,7 +206,6 @@
 			return prob(95)
 		else
 			return 1
-
 
 	process()
 		if(!src) return
@@ -270,3 +283,7 @@
 
 	return 0
 
+/obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
+	..()
+	if(isliving(AM) && AM.density)
+		Bump(AM, 1)

@@ -13,6 +13,7 @@
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
 
 	var/recharging = 0
+	var/iselevator = 0 //Used to remove some shuttle related procs and texts to make it compatible with elevators
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE) return
@@ -35,6 +36,7 @@
 		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
 
 	moving_status = SHUTTLE_WARMUP
+	recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
 			return	//someone canceled the launch
@@ -53,8 +55,8 @@
 			open_doors(destination)
 		moving_status = SHUTTLE_IDLE
 
-		recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
-		spawn(1200) // 2 minutes in deciseconds
+
+		spawn(600) // 1 minute in deciseconds
 			recharging = 0
 
 /* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
@@ -68,6 +70,7 @@
 			   		bolt dat shit
 */
 
+//Actual code. lel
 /datum/shuttle/proc/close_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
 		return
@@ -81,6 +84,12 @@
 		if(!P.density)
 			spawn(0)
 				P.close()
+
+	for(var/obj/machinery/door/airlock/D in area)//For elevators
+		if (iselevator)
+			spawn(0)
+				D.close()
+				D.lock()
 
 /datum/shuttle/proc/open_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
@@ -96,6 +105,11 @@
 			spawn(0)
 				P.open()
 
+	for(var/obj/machinery/door/airlock/D in area)//For elevators
+		if (iselevator)
+			spawn(0)
+				D.unlock()
+				D.open()
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
@@ -137,18 +151,9 @@
 	if (docking_controller && !docking_controller.undocked())
 		docking_controller.force_undock()
 
-	var/list/dstturfs = list()
-	var/throwy = world.maxy
-
 	for(var/turf/T in destination)
-		dstturfs += T
-		if(T.y < throwy)
-			throwy = T.y
-
-	for(var/turf/T in dstturfs)
-		var/turf/D = locate(T.x, throwy - 1, 1)
-		for(var/atom/movable/AM as mob|obj in T)
-			AM.Move(D)
+		for(var/obj/O in T)
+			del(O)
 		if(istype(T, /turf/simulated))
 			del(T)
 
@@ -161,6 +166,8 @@
 	origin.move_contents_to(destination, direction=direction)
 
 	for(var/mob/M in destination)
+		if(iselevator)
+			return
 		if(M.client)
 			spawn(0)
 				if(M.buckled)
@@ -174,7 +181,10 @@
 				M.Weaken(3)
 
 	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
-		if(istype(T,/turf/space))
+		if(iselevator)
+			if(istype(T,/turf/space))
+				new /turf/simulated/floor/gm/empty(T)
+		else if(istype(T,/turf/space))
 			new /turf/simulated/floor/plating(T)
 
 	return

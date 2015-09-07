@@ -62,6 +62,7 @@
 
 		affected.createwound(CUT, 20)
 		affected.fracture()
+		affected.update_wounds()
 
 
 /datum/surgery_step/open_encased/retract
@@ -119,6 +120,7 @@
 
 		affected.createwound(BRUISE, 20)
 		affected.fracture()
+		affected.update_wounds()
 
 /datum/surgery_step/open_encased/close
 	allowed_tools = list(
@@ -172,6 +174,7 @@
 
 		affected.createwound(BRUISE, 20)
 		affected.fracture()
+		affected.update_wounds()
 
 		/*if (prob(40)) //TODO: ORGAN REMOVAL UPDATE.
 			user.visible_message("\red A rib pierces the lung!")

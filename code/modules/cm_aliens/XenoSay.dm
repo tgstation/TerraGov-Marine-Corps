@@ -29,13 +29,22 @@
 					speaking = L
 					break
 
-	if(isnull(speaking) || speaking.key != "a" && !is_robotic) //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
-		for(var/datum/language/L in languages)
-			if(L.key == "x")
-				verb = L.speech_verb
-				speaking = L
-				forced = 1
-				break
+	if(!is_robotic)
+		if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
+			for(var/datum/language/L in languages)
+				if(L.key == "x")
+					verb = L.speech_verb
+					speaking = L
+					forced = 1
+					break
+	else
+		if(!speaking || isnull(speaking))
+			for(var/datum/language/L in languages)
+				if(L.key == "0")
+					verb = L.speech_verb
+					speaking = L
+					forced = 1
+					break
 
 	if(speaking && !forced)
 		message = trim(copytext(message,3))
@@ -71,28 +80,12 @@
 	var/rendered
 	if(istype(src, /mob/living/carbon/Xenomorph/Queen))
 		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i></font>"
+	else if (is_robotic)
+		var/message_b = pick("high-pitched blast of static","series of pings","long string of numbers","loud, mechanical squeal", "series of beeps")
+		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> emits a [message_b]!</span></i>"
 	else
 		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i>"
 
 	for (var/mob/S in player_list)
-		if((istype(S,/mob/living/carbon/Xenomorph) || S.stat == DEAD) && !istype(S,/mob/new_player))
+		if(!isnull(S) && (istype(S,/mob/living/carbon/Xenomorph) || S.stat == DEAD) && !istype(S,/mob/new_player))
 			S.show_message(rendered, 2)
-
-	var/list/listening = hearers(1, src)
-	var/list/heard = list()
-
-	for (var/mob/M in listening)
-		if(!istype(M, /mob/living/carbon/Xenomorph))
-			heard += M
-
-	if (length(heard))
-		var/message_b
-
-		message_b = "hsssss"
-		message_b = say_quote(message_b)
-		message_b = "<i>[message_b]</i>"
-
-		rendered = "<i><span class='game say'><span class='name'>[voice_name]</span> <span class='message'>[message_b]</span></span></i>"
-
-		for (var/mob/M in heard)
-			M.show_message(rendered, 2)

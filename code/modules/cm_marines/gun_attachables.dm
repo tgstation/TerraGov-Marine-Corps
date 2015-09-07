@@ -21,22 +21,24 @@
 	var/melee_mod = 100 //Modifier to melee damage - PERCENTAGE / 100
 	var/w_class_mod = 0 //Modifier to weapon's weight class -- FLAT
 	var/capacity_mod = 100 //Modifier to a weapon's magazine capacity - PERCENTAGE / 100
-	var/list/contains = new/list() //Stores an attachable's internal contents, ie. grenades
-	var/ammo_type = 0 //Which type of casing it stores, if reloadable
+	var/list/loaded = new/list() //Stores an attachable's internal contents, ie. grenades
+	var/ammo_type = null //Which type of casing it stores, if reloadable
 	var/ammo_capacity = 0 //How much ammo it can store
+	var/shoot_sound = null //Sound to play when firing it alternately
 	var/twohanded_mod = 0 //If 1, removes two handed, if 2, adds two-handed.
 	var/recoil_mod = 0 //If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
 	var/silence_mod = 0 //Adds silenced to weapon
 	var/light_mod = 0 //Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
 	var/tank_size = 0 //Determines amount of flamethrower tiles it can spray, total.
 	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
+	var/delay_mod = 0 //Changes firing delay. Cannot go below 0.
 
 	New()
 		if(ammo_type)
 			spawn(0)
 				for(var/i = 1, i <= ammo_capacity, i++)
 					var/A = new ammo_type(src)
-					contains += A
+					loaded += A
 
 
 	proc/Attach(var/obj/item/weapon/gun/G)
@@ -60,6 +62,9 @@
 		if(silence_mod) G.silenced = 1
 		if(light_mod)
 			G.flash_lum = light_mod
+		if(delay_mod)
+			G.fire_delay += delay_mod
+			if(G.fire_delay < 0) G.fire_delay = 0
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
@@ -79,6 +84,7 @@
 		if(recoil_mod) G.recoil = initial(G.recoil)
 		if(twohanded_mod) G.twohanded = initial(G.twohanded)
 		if(silence_mod) G.silenced = initial(G.silenced)
+		if(delay_mod) G.fire_delay = initial(G.fire_delay)
 		if(light_mod)  //Remember to turn the lights off
 			if(G.flashlight_on && G.flash_lum)
 				if(!ismob(G.loc))
@@ -137,7 +143,8 @@
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 						/obj/item/weapon/gun/projectile/automatic/m39,
 						/obj/item/weapon/gun/projectile/shotgun/pump/m37,
-						/obj/item/weapon/gun/projectile/m4a3
+						/obj/item/weapon/gun/projectile/m4a3,
+						/obj/item/weapon/gun/projectile/m44m
 						)
 	accuracy_mod = 20 //20% accuracy bonus
 	slot = "rail"
@@ -148,10 +155,8 @@
 	icon_state = "sparemag"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/M42C)
-	accuracy_mod = 25
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+	accuracy_mod = 15
 	twohanded_mod = 1
 	w_class_mod = 1
 	recoil_mod = -1
@@ -162,11 +167,11 @@
 	desc = "A set of weights and balances to allow a two handed weapon to be fired with one hand. Greatly reduces accuracy, however."
 	icon_state = "gyro"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/M42C)
 	twohanded_mod = 2
 	recoil_mod = 1
-	accuracy_mod = -5
-//	capacity_mod = 50 //50% ammo capacity.
+	accuracy_mod = -15
 	slot = "under"
 
 /obj/item/attachable/flashlight
@@ -177,7 +182,8 @@
 					/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/automatic/m39
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m
 					)
 	light_mod = 5
 	slot = "rail"
@@ -195,7 +201,22 @@
 		else
 			..()
 
-/obj/item/attachable/grenade
+/obj/item/attachable/altfire
+	name = "alternating fire attachable"
+
+	attackby(obj/item/I as obj, mob/user as mob)
+		if(loaded.len >= ammo_capacity)
+			user << "It's full already."
+			return
+
+		if(ammo_type && istype(I,ammo_type))
+			user << "You insert \the [I] into the [src]."
+			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+			user.drop_from_inventory(I)
+			I.loc = src
+			loaded += I
+
+/obj/item/attachable/altfire/grenade
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, two-shot grenade launcher. When empty, it must be detached before being reloaded."
 	icon_state = "grenade"
@@ -203,24 +224,15 @@
 	ammo_capacity = 2
 	ammo_type = /obj/item/weapon/grenade
 	slot = "under"
-
+	shoot_sound = 'sound/weapons/grenadelaunch.ogg'
 
 	New() //Make these spawn with real grenades instead of the fake ones determined by ammo_type
 		spawn(0)
 			for(var/i = 1, i <= ammo_capacity, i++)
 				var/A = new /obj/item/weapon/grenade/explosive(src)
-				contains += A
+				loaded += A
 
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(contains.len >= ammo_capacity)
-			user << "It's full already."
-			return
-
-		if(istype(I,ammo_type))
-			user << "You insert \the [I] into the [src]."
-			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
-
-/obj/item/attachable/shotgun
+/obj/item/attachable/altfire/shotgun
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. To reload it, it must first be detached.\nTakes only M37 shells."
@@ -228,15 +240,7 @@
 	ammo_capacity = 4
 	ammo_type = /obj/item/ammo_casing/m37
 	slot = "under"
-
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(contains.len >= ammo_capacity)
-			user << "It's full already."
-			return
-
-		if(istype(I,ammo_type))
-			user << "You insert \the [I] into the [src]."
-			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+	shoot_sound = 'sound/weapons/shotgun.ogg'
 
 /obj/item/attachable/flamer
 	name = "mini flamethrower"
@@ -249,7 +253,7 @@
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. Greatly increases accuracy and reduces recoil, but also increases weapon size."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. Greatly increases accuracy and reduces recoil, but also increases weapon size and slows firing speed."
 	icon_state = "bipod"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/M42C)
@@ -258,3 +262,61 @@
 	slot = "under"
 	w_class_mod = 2
 	melee_mod = 50 //50% melee damage. Can't swing it around as easily.
+	delay_mod = 1
+
+/obj/item/attachable/extended_barrel
+	name = "extended barrel"
+	desc = "A lengthened barrel allows for greater accuracy, particularly at long range.\nHowever, natural resistance also slows the bullet, leading to reduced damage."
+	slot = "muzzle"
+	icon_state = "ebarrel"
+	accuracy_mod = 20
+	ranged_dmg_mod = 95
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m
+					)
+
+/obj/item/attachable/heavy_barrel
+	name = "barrel charger"
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
+	slot = "muzzle"
+	icon_state = "hbarrel"
+	accuracy_mod = -40
+	ranged_dmg_mod = 140
+	delay_mod = 2
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m,
+					/obj/item/weapon/gun/projectile/M42C,
+					/obj/item/weapon/gun/projectile/M56_Smartgun
+					)
+
+/obj/item/attachable/quickfire
+	name = "quickfire adapter"
+	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. However, greatly reduces accuracy and increases weapon recoil."
+	slot = "rail"
+	icon_state = "autoloader"
+	accuracy_mod = -35
+	delay_mod = -2
+	recoil_mod = 1
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/m44m
+					)
+
+/obj/item/attachable/compensator
+	name = "recoil compensator"
+	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. Increases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
+	slot = "muzzle"
+	icon_state = "comp"
+	accuracy_mod = 15
+	ranged_dmg_mod = 90
+	recoil_mod = -2
+	guns_allowed = list(/obj/item/weapon/gun/projectile/shotgun/pump/m37,
+					/obj/item/weapon/gun/projectile/M42C
+					)

@@ -23,11 +23,14 @@ var/global/datum/global_init/init = new ()
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
+	var/year_string = time2text(world.realtime, "YYYY")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
-	diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
+	// diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
+	round_stats = file("data/logs/[year_string]/round_stats.log")
 	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	// diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	round_stats << "[log_end]\nStarting up - [time2text(world.realtime,"YYYY-MM-DD (hh:mm:ss)")][log_end]\n---------------------[log_end]"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
@@ -222,7 +225,9 @@ var/world_topic_spam_protect_time = world.timeofday
 		while(1)
 			sleep(INACTIVITY_KICK)
 			for(var/client/C in clients)
-				if(C.is_afk(INACTIVITY_KICK) && !(C.holder.rights & R_ADMIN))
+				if(C.holder && C.holder.rights & R_ADMIN) //Skip admins.
+					continue
+				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
 						log_access("AFK: [key_name(C)]")
 						C << "\red You have been inactive for more than 10 minutes and have been disconnected."
@@ -295,10 +300,9 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; "
-		s += "<b>NMV Sulaco</b> | Hosted by Apophis";
-//		s += "<br><img src=\"http://i.imgur.com/OQ5OIMJ.png\"><br>"
-		s += "</a>"
+		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; <b>USS Sulaco</b> | <b>Planet LV-624</b>"
+		s += "<br>Hosted by <b>Apophis</b>"
+		s += "<br><img src=\"http://i.imgur.com/VSucCrP.jpg\"></a><br>"
 
 	var/list/features = list()
 
@@ -335,8 +339,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "hosted by <b>[host]</b>"
 	*/
 
-	if (!host && config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
+	// if (!host && config && config.hostedby)
+	// 	features += "hosted by <b>Apophis</b>"
 
 	if (features)
 		s += ": [list2text(features, ", ")]"

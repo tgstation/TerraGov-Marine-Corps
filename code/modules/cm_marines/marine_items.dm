@@ -354,23 +354,22 @@
 		..()
 		pixel_y = rand(-3,3)
 		pixel_x = rand(-3,3)
-		var/rand_type = rand(0,8)
-		if(rand_type <= 2)
-			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
-			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
-			new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
-		else if(rand_type == 3)
-			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1(src)
-		else if(rand_type == 4)
-			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2(src)
-		else if(rand_type == 5)
-			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3(src)
-		else if(rand_type == 6)
-			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4(src)
-		else if(rand_type == 7)
-			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5(src)
-		else if(rand_type == 8)
-			new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6(src)
+		for(var/i = 0,i < 5,i++)
+			var/rand_type = rand(0,8)
+			if(rand_type <= 2)
+				new /obj/item/weapon/reagent_containers/food/snacks/protein_pack(src)
+			else if(rand_type == 3)
+				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1(src)
+			else if(rand_type == 4)
+				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2(src)
+			else if(rand_type == 5)
+				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3(src)
+			else if(rand_type == 6)
+				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4(src)
+			else if(rand_type == 7)
+				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5(src)
+			else if(rand_type == 8)
+				new /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6(src)
 
 
 /obj/item/weapon/reagent_containers/food/snacks/protein_pack
@@ -448,6 +447,12 @@
 		reagents.add_reagent("nutriment", 2)
 		bitesize = 1
 
+/obj/item/weapon/paper/janitor
+	name = "Crumbled paper"
+	icon_state = "pamphlet"
+	info = "In loving memory of Cub Johnson."
+
+
 
 /obj/item/weapon/storage/box/wy_mre
 	name = "Weyland-Yutani Brand MRE"
@@ -474,4 +479,27 @@
 				new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
 			if(5)
 				new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
+
+
+/obj/item/weapon/book/manual/lazarus_landing_map
+	name = "Lazarus Landing Map"
+	desc = "A satellite printout of the Lazarus Landing colony."
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	author = "Weyland Yutani"
+	title = "Lazarus Landing Map"
+
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<iframe width='100%' height='97%' src='http://www.colonial-marines.com/wiki/images/thumb/6/6f/LV624.png/800px-LV624.png' frameborder="0" id="main_frame"></iframe>
+		</body>
+
+		</html>
+
+		"}
 

@@ -71,11 +71,11 @@
 	return 0
 
 /mob/proc/Life()
-//	if(organStructure)
-//		organStructure.ProcessOrgans()
-	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
+	if(client == null)
+		away_timer++
+	else
+		away_timer = 0
 	return
-
 
 /mob/proc/restrained()
 	return
@@ -318,7 +318,7 @@ var/list/slot_equipment_priority = list( \
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
-	
+
 	var/is_admin = 0
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
@@ -554,7 +554,7 @@ var/list/slot_equipment_priority = list( \
 	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
-	if(isXenoLarva(src)) return
+	if(isXenoLarva(src) || istype(src,/mob/living/silicon/pai)) return
 
 	if (AM.anchored)
 		return
@@ -1003,7 +1003,7 @@ mob/proc/yank_out_object()
 
 	if(!do_after(U, 80))
 		return
-	if(!selection || !S || !U)
+	if(!selection || !S || !U || !istype(selection))
 		return
 
 	if(self)
@@ -1019,9 +1019,15 @@ mob/proc/yank_out_object()
 		var/datum/organ/external/affected
 
 		for(var/datum/organ/external/organ in H.organs) //Grab the organ holding the implant.
+			if(!organ) //Somehow we have no organs.
+				break
 			for(var/obj/item/weapon/O in organ.implants)
 				if(O == selection)
 					affected = organ
+					break
+
+		if(!affected) //Somehow, something fucked up. Somewhere.
+			return
 
 		affected.implants -= selection
 		H.shock_stage+=20

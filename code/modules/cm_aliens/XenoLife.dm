@@ -10,6 +10,11 @@
 
 	..()
 
+	if(zoom_turf)
+		if(src.loc != zoom_turf && is_zoomed)
+			zoom_out()
+
+
 	if (stat != DEAD) //still breathing
 		// GROW!
 		update_progression()
@@ -29,8 +34,9 @@
 	//Status updates, death etc.
 	handle_regular_status_updates()
 	update_canmove()
-	update_icons()
+	update_fire(0)
 	handle_statuses() //Deals with stunned, etc
+	update_icons()
 	if(loc)
 		handle_environment(loc.return_air())
 	if(client)
@@ -40,13 +46,24 @@
 
 	if(status_flags & GODMODE)	return 0
 
+	if(on_fire)
+		if(!fire_stacks)
+			on_fire = 0
+		else
+			if(stat != DEAD && !fire_immune)
+				adjustFireLoss(fire_stacks + 3)
+			fire_stacks--
+
 	if(stat == DEAD)
 		blinded = 1
 		silent = 0
 		see_in_dark = 8
 	else
 		if(health <= -100 || (health < 0 && isXenoLarva(src))) //Just died!
-			death()
+			if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+				gib() //This also causes death. Boilers have special gib proc code to make em burst and destroy the corpse.
+			else
+				death()
 			blinded = 1
 			silent = 0
 			if(readying_tail) readying_tail = 0
@@ -54,14 +71,17 @@
 		else if(health > -100 && health < 0) //Unconscious
 			if(readying_tail) readying_tail = 0
 			blinded = 1
-			see_in_dark = 3
+			see_in_dark = 5
 			Paralyse(4)
 			var/turf/T = loc
 			if(istype(T))
 				if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.
 					adjustBruteLoss(5)
 		else						//Alive! Yey! Turn on their vision.
-			see_in_dark = 8
+			if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+				see_in_dark = 20
+			else
+				see_in_dark = 8
 			blinded = 0
 			if(readying_tail && readying_tail < 20)
 				readying_tail += rand(1,2)
@@ -104,8 +124,43 @@
 			if(halloss > 0)
 				adjustHalLoss(-1)
 
+		if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !stat) //Handle crusher stuff.
+			var/mob/living/carbon/Xenomorph/Crusher/X = src
+			if(X.momentum > 2 && X.charge_dir != dir)
+				X.charge_timer = 0
+				X.stop_momentum()
+			if(X.charge_timer)
+				X.charge_timer--
+				if(X.charge_timer == 0 && X.momentum > 2)
+					X.stop_momentum()
+
+		frenzy_aura = 0
+		guard_aura = 0
+		recovery_aura = 0
+
+		for(var/mob/living/carbon/Xenomorph/Z in range(7,src))
+			if(isnull(Z.current_aura)) continue
+			if(Z.current_aura == "frenzy") frenzy_aura++
+			if(Z.current_aura == "guard") guard_aura++
+			if(Z.current_aura == "recovery") recovery_aura++
+
 		update_icons()
 
+		//Deal with dissolving/damaging stuff in stomach.
+		if(stomach_contents.len)
+			for(var/mob/living/M in src)
+				if(!isnull(M) && M in stomach_contents)
+					M.acid_damage++
+					if(M.stat != DEAD)
+						M.adjustToxLoss(1)
+						if(prob(50))
+							M.adjustFireLoss(1)
+							if(prob(10))
+								M << "\green <b>You are burned by stomach acids!</b>"
+					if(M.acid_damage > 240)
+						src << "\green [M] is dissolved in your gut with a gurgle."
+						stomach_contents.Remove(M)
+						del(M)
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
@@ -196,27 +251,72 @@
 
 		if(!T || !istype(T)) return
 
+		var/is_runner_hiding
+
+		if(istype(src,/mob/living/carbon/Xenomorph/Runner) && src.layer != initial(src.layer))
+			is_runner_hiding = 1
+
 		if(!is_robotic)//Robot no heal
 			if(locate(/obj/effect/alien/weeds) in T)
 				if(health >= maxHealth)
-					if(!readying_tail) //Readying tail = no plasma increase.
+					if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
 						storedplasma += plasma_gain
+						if(recovery_aura)
+							storedplasma += (recovery_aura * 2)
 				else
-					adjustBruteLoss(-(maxHealth / 40) - 2) //Heal 1/40th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+					adjustBruteLoss(-(maxHealth / 50) - 2) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+					if(recovery_aura)
+						adjustBruteLoss(-(recovery_aura))
 					adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
 					adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 					adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 					updatehealth() //Make sure their actual health updates immediately.
 			else //Xenos restore plasma VERY slowly off weeds, regardless of health
 				if(rand(0,1) == 0) storedplasma += 1
+				if(recovery_aura)
+					storedplasma += round(recovery_aura / 2)
 
 			if(readying_tail) storedplasma -= 3
+			if(current_aura)
+				storedplasma -= 5
 		if(storedplasma > maxplasma) storedplasma = maxplasma
 		if(storedplasma < 0)
 			storedplasma = 0
+			if(current_aura)
+				current_aura = null
+				src << "Having run out of plasma, you stop emitting pheromones."
 			if(readying_tail)
 				readying_tail =0
 				src << "You feel your tail relax."
+	return
+
+/mob/living/carbon/Xenomorph/gib()
+	death(1)
+	monkeyizing = 1
+	canmove = 0
+	icon = null
+	update_canmove()
+	dead_mob_list -= src
+	if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+		visible_message("<B>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</b>")
+		src:smoke.set_up(6, 0, get_turf(src))
+		stat = UNCONSCIOUS //Keep em from moving around and stuff.
+		spawn(0)
+			src:smoke.start()
+		sleep(20) //Hopefully enough time for smoke to clear..
+
+	invisibility = 101
+	var/atom/movable/overlay/animation = null
+	animation = new(loc)
+	animation.icon_state = "blank"
+	animation.icon = 'icons/mob/mob.dmi'
+	animation.master = src
+
+	flick("gibbed-a", animation)
+	xgibs(get_turf(src))
+	spawn(15)
+		if(animation)	del(animation)
+		if(src)			del(src)
 	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
@@ -235,6 +335,12 @@
 			xeno_message("Hive: A [src.name] has <b>died</b> at [sanitize(A.name)]!",3)
 		else
 			xeno_message("Hive: A [src.name] has <b>died!</b>",3)
+
+	for(var/atom/movable/M in src)
+		if(M in src.stomach_contents)
+			src.stomach_contents.Remove(M)
+		M.loc = src.loc
+
 	if(!is_robotic)
 		return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
 	else
@@ -267,7 +373,10 @@
 		health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 
 	if(health <= -100 && stat != DEAD) //We'll put a death check here for safety.
-		death()
+		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			gib() //Boilers gib instead of just die.
+		else
+			death()
 		blinded = 1
 		silent = 0
 		return

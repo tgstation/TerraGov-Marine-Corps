@@ -21,7 +21,7 @@
 	pass_flags = PASSTABLE
 	speed = -1 //Zoom!
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/xenohide,
+		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
@@ -57,3 +57,18 @@
 		icon_state = "[state] Larva Sleeping"
 	else
 		icon_state = "[state] Larva"
+
+/mob/living/carbon/Xenomorph/Larva/proc/xenohide()
+	set name = "Hide"
+	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
+	set category = "Alien"
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		src << "You cannot do this in your current state."
+		return
+	if (layer != TURF_LAYER+0.2)
+		layer = TURF_LAYER+0.2
+		src << text("\blue You are now hiding.")
+	else
+		layer = MOB_LAYER
+		src << text("\blue You have stopped hiding.")
+	return

@@ -19,7 +19,6 @@
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine_jumpsuit(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
 		return
 
 //MARINE COMMAND CLOSET
@@ -60,16 +59,19 @@
 
 	New()
 		spawn(2)
-			new /obj/item/clothing/head/beret/marine/logisticsofficer(src)
-			new /obj/item/clothing/head/beret/marine/logisticsofficer(src)
+			new /obj/item/clothing/head/cmberet(src)
+			new /obj/item/clothing/head/cmberet(src)
+			new /obj/item/clothing/head/cmcap/ro(src)
+			new /obj/item/clothing/head/cmcap/ro(src)
+			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/device/radio/headset/mcom(src)
 			new /obj/item/device/radio/headset/mcom(src)
 			new /obj/item/clothing/under/marine/officer/logistics(src)
 			new /obj/item/clothing/under/marine/officer/logistics(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/shoes/marine(src)
-			new /obj/item/clothing/suit/storage/marine(src)
-			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/clothing/suit/storage/marine/MP/RO(src)
+			new /obj/item/clothing/suit/storage/marine/MP/RO(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
@@ -92,7 +94,7 @@
 			new /obj/item/clothing/under/marine/mp(src)
 			new /obj/item/clothing/suit/armor/riot/marine(src)
 			new /obj/item/clothing/head/helmet/riot(src)
-			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/weapon/storage/belt/security/MP(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mmpo(src)
@@ -148,7 +150,6 @@
 			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/malpha(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
 
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment

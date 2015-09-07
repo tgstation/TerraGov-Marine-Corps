@@ -1,5 +1,12 @@
 /mob/living/carbon/human/movement_delay()
 
+	if(turret_control)
+		src << "\blue You stop controlling the turret."
+		turret_control.visible_message("\icon[src] \blue [turret_control] buzzes: Manual control halted. AI control re-initiated.")
+		turret_control.gunner = null
+		turret_control.manual_override = 0
+		turret_control = null
+
 	var/tally = 0
 
 	if(species.slowdown)
@@ -28,20 +35,25 @@
 
 	if(isturf(src.loc))
 		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
-			tally += 5
+			tally += 8
+
+		if(locate(/obj/effect/alien/weeds) in src.loc) //Weeds slow you down
+			tally += 2
 
 		if(istype(src.loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
 			var/turf/simulated/floor/gm/snow/S = src.loc
 			if(S && istype(S) && S.slayer > 0)
-				tally += 2 * S.slayer
+				tally += 1.25 * S.slayer
 				if(S.slayer && prob(2))
-					src << "\red Moving trough /the [S] slows you down"
+					src << "\red Moving trough [S] slows you down"
 				if(S.slayer == 3 && prob(5))
-					src << "\red Your foot got stuck in /the [S]!"
-					tally += 10
+					src << "\red You got stuck in [S] for a moment!"
+					tally += 15
 
 		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75
+			var/turf/simulated/floor/gm/river/T = src.loc
+			T.cleanup(src)
 			if(gloves && rand(0,100) < 60)
 				if(istype(src.gloves,/obj/item/clothing/gloves/yautja))
 					var/obj/item/clothing/gloves/yautja/Y = src.gloves

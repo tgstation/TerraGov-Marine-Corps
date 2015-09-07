@@ -72,6 +72,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggledrones,
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
+	/datum/admins/proc/admin_force_distress,
+	/client/proc/cmd_admin_changekey,
 	// /datum/admins/proc/show_skills,
 	// /client/proc/check_customitem_activity,
 	/client/proc/man_up,
@@ -267,6 +269,10 @@ var/list/admin_verbs_mod = list(
 	/client/proc/toggleattacklogs,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
+	/client/proc/editzoneair,
+	/client/proc/cmd_admin_changekey,
+	/client/proc/admin_call_shuttle,	/*allows us to call the emergency shuttle*/
+	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
 )
 

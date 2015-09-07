@@ -15,6 +15,8 @@
 	if(isnull(location))
 		return
 
+	recharging = 1
+
 	if(!destination)
 		destination = get_location_area(!location)
 	if(!origin)
@@ -58,6 +60,9 @@
 
 		if (!at_station())	//at centcom
 			supply_controller.sell()
+
+		spawn(0)
+			recharging = 0
 
 // returns 1 if the supply shuttle should be prevented from moving because it contains forbidden atoms
 /datum/shuttle/ferry/supply/proc/forbidden_atoms_check()

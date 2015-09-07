@@ -42,7 +42,7 @@
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "<span class='notice'>You start to add cables to the frame.</span>"
 					if(do_after(user, 20) && state == 1)
-						if(C.use(5))
+						if(C && istype(C) && C.use(5))
 							user << "<span class='notice'>You add cables to the frame.</span>"
 							state = 2
 							icon_state = "box_1"

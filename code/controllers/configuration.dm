@@ -56,12 +56,15 @@
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/allow_ai = 1					// allow ai job
+	var/autooocmute = 0					// allow ai job
 	var/hostedby = null
 	var/respawn = 1
 	var/guest_jobban = 1
 	var/usewhitelist = 0
 	var/mods_are_mentors = 0
 	var/kick_inactive = 0				//force disconnect for inactive players
+	var/show_mods = 0
+	var/show_mentors = 0
 	var/load_jobs_from_txt = 0
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
@@ -314,6 +317,9 @@
 				if ("allow_ai")
 					config.allow_ai = 1
 
+				if ("autooocmute")
+					config.autooocmute = 1
+
 //				if ("authentication")
 //					config.enable_authentication = 1
 
@@ -391,6 +397,12 @@
 
 				if("kick_inactive")
 					config.kick_inactive = 1
+					
+				if("show_mods")
+					config.show_mods = 1
+
+				if("show_mentors")
+					config.show_mentors = 1
 
 				if("load_jobs_from_txt")
 					load_jobs_from_txt = 1

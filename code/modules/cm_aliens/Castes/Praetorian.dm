@@ -6,30 +6,33 @@
 	icon_state = "Praetorian Walking"
 	melee_damage_lower = 18
 	melee_damage_upper = 26
-	health = 280
-	maxHealth = 280
+	tacklemin = 3
+	tacklemax = 8
+	tackle_chance = 75
+	health = 200
+	maxHealth = 200
 	storedplasma = 150
 	plasma_gain = 24
 	maxplasma = 600
 	jellyMax = 0
 	spit_delay = 75
-	speed = 2.1
+	speed = 2.5
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
 //	adjust_size_y = 0.85
 	caste_desc = "Ptui!"
 	evolves_to = list()
-	armor_deflection = 88
+	armor_deflection = 82
 	spit_projectile = /obj/item/projectile/energy/neuro/strongest
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/shift_spits,
+		/mob/living/carbon/Xenomorph/proc/toggle_auras,
 		/mob/living/carbon/Xenomorph/proc/neurotoxin //Stronger version
 		)
 

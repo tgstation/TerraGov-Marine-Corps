@@ -12,7 +12,7 @@
 
 	icon_action_button = "action_flashlight"
 	var/on = 0
-	var/brightness_on = 5 //luminosity when on
+	var/brightness_on = 6 //luminosity when on
 
 /obj/item/device/flashlight/initialize()
 	..()
@@ -113,10 +113,10 @@
 
 
 /obj/item/device/flashlight/dropped(mob/user)
+	..()
 	if(on && src.loc != user)
 		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
-
 
 /obj/item/device/flashlight/pen
 	name = "penlight"
@@ -170,7 +170,7 @@
 
 /obj/item/device/flashlight/flare
 	name = "flare"
-	desc = "A red Nanotrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	desc = "A red USCM issued flare. There are instructions on the side, it reads 'pull cord, make light'."
 	w_class = 2.0
 	brightness_on = 7 // Pretty bright.
 	icon_state = "flare"

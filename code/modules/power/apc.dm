@@ -41,6 +41,8 @@
 
 
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
+/obj/machinery/power/apc/weak
+	cell_type = /obj/item/weapon/cell
 
 /obj/machinery/power/apc/high
 	cell_type = /obj/item/weapon/cell/high
@@ -57,6 +59,7 @@
 	anchored = 1
 	use_power = 0
 	req_access = list(access_sulaco_engineering)
+	unacidable = 1
 	var/area/area
 	var/areastring = null
 	var/obj/item/weapon/cell/cell

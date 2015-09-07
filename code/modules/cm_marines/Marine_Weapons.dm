@@ -4,18 +4,24 @@
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
 	damage = 22
+	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
 	damage = 35
+	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
 	damage = 18
+	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
 	damage = 30
+	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
 	damage = 55
+	range_falloff_at = 4 //4 turfs
+	name = "shotgun slug"
 
 ///***Ammo***///
 
@@ -189,6 +195,7 @@
 		..()
 		if(!loaded.len && empty_mag)
 			empty_mag.loc = get_turf(src.loc)
+			empty_mag.update_icon()
 			empty_mag = null
 			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 30, 1)
 		return
@@ -239,6 +246,7 @@
 		..()
 		if(!loaded.len && empty_mag)
 			empty_mag.loc = get_turf(src.loc)
+			empty_mag.update_icon()
 			empty_mag = null
 			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
 			update_icon()
@@ -271,6 +279,7 @@
 				AM.stored_ammo += AC
 				loaded -= AC
 			AM.loc = get_turf(src)
+			AM.update_icon()
 			empty_mag = null
 			update_icon()
 			if(AM.stored_ammo.len)
@@ -291,6 +300,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m37"
 	item_state = "m37"
+	fire_sound = 'sound/weapons/shotgun.ogg'
 	max_shells = 8
 	caliber = "shotgun"
 	ammo_type = "/obj/item/ammo_casing/m37"
@@ -368,7 +378,7 @@
 
 /obj/item/weapon/gun/projectile/M42C
 	name = "M42C Scoped Rifle"
-	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 6-round magazine.\n'Peace Through Superior Firepower'"
+	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.\n'Peace Through Superior Firepower'"
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "M42c"
 	item_state = "l6closednomag"  //placeholder
@@ -415,7 +425,11 @@
 
 
 /obj/item/projectile/bullet/m42c //M42C Sniper Rifle
-	damage = 75
+	damage = 70
+	armor_pierce = 100
+	accuracy = 60
+	incendiary = 1
+	name = "sniper round"
 
 /obj/item/ammo_casing/m42c
 	desc = "A .50 special bullet casing."
@@ -433,8 +447,35 @@
 	icon_state = "75-0"
 	max_ammo = 0
 
+/obj/item/clothing/glasses/m42_goggles
+	name = "M42 Scout Sight"
+	desc = "A headset and goggles system for the M42 Scout Rifle. Allows thermal imaging of surroundings. Click it to toggle."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "m56_goggles"
+	item_state = "m56_goggles"
+	vision_flags = SEE_TURFS
+	toggleable = 1
+	icon_action_button = "action_meson"
 
 
+/obj/item/weapon/storage/box/m42c_system
+	name = "M42C Scoped Rifle system"
+	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 4
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/projectile/M42C(src)
+			new /obj/item/clothing/glasses/m42_goggles(src)
+			new /obj/item/ammo_magazine/m42c(src)
+			new /obj/item/ammo_magazine/m42c(src)
+			new /obj/item/ammo_magazine/m42c(src)
 
 /obj/item/weapon/gun/projectile/M56_Smartgun
 	name = "M56 smartgun"
@@ -480,7 +521,16 @@
 				return
 		return ..(user)
 
-
+	dropped(var/mob/living/carbon/human/H)
+		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+			var/obj/item/clothing/suit/storage/marine_smartgun_armor/I = H.wear_suit
+			if(isnull(H.s_store))
+				if(wielded)	unwield()
+				spawn(0)
+					H.equip_to_slot_if_possible(src,slot_s_store)
+					if(H.s_store == src) H << "\red The [src] snaps into place on [I]."
+					H.update_inv_s_store()
+		..()
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
 	name = "M56 combat harness"
@@ -502,7 +552,8 @@
 					/obj/item/ammo_magazine,
 					/obj/item/ammo_casing,
 					/obj/item/device/mine,
-					/obj/item/weapon/combat_knife)
+					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/gun/projectile/M56_Smartgun)
 
 /obj/item/smartgun_powerpack
 	name = "M56 powerpack"
@@ -582,10 +633,14 @@
 
 		if (get_dist(usr, src) <= 1)
 			if(pcell)
-				usr << "A small gauge in the corner reads, Cell: [pcell.charge], Ammo: [rounds_remaining] / 250."
+				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 200."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 26
+	damage = 28
+	iff = 1
+	armor_pierce = 5
+	accuracy = 30
+	name = "smartgun bullet"
 
 /obj/item/ammo_casing/m56
 	desc = "A 28mm bullet casing, somehow. Since the rounds are caseless..."
@@ -594,13 +649,14 @@
 
 /obj/item/clothing/glasses/m56_goggles
 	name = "M56 head mounted sight"
-	desc = "A headset and goggles system for the M56 Smartgun. Required in order to fire the weapon. Also has a low-res short range omnithermal imager."
+	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range omnithermal imager, allowing for view of terrain."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
 	darkness_view = 5
 	toggleable = 1
 	icon_action_button = "action_meson"
+
 
 	mob_can_equip(mob/user, slot)
 		if(slot == slot_glasses)
@@ -695,10 +751,27 @@
 		spawn(15)
 			F.prime()
 
+/obj/item/weapon/storage/box/grenade_system
+	name = "M92 Grenade Launcher case"
+	desc = "A large case containing a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "grenade_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/m92(src)
+			new /obj/item/weapon/storage/belt/grenade(src)
+
+
 /obj/item/weapon/gun/rocketlauncher
 	var/projectile
 	name = "M83 rocket launcher"
-	desc = "MAGGOT."
+	desc = "The M83 SADAR is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the SADAR is a dangerous weapon with a variety of combat uses."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "M83sadar"
 	item_state = "rocket"
@@ -710,7 +783,7 @@
 	slot_flags = 0
 	origin_tech = "combat=8;materials=5"
 	projectile = /obj/item/missile
-	var/missile_speed = 3
+	var/missile_speed = 2
 	var/missile_range = 30
 	var/max_rockets = 1
 	var/list/rockets = new/list()
@@ -724,11 +797,15 @@
 /obj/item/weapon/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		if(rockets.len < max_rockets)
-			user.drop_item()
-			I.loc = src
-			rockets += I
-			user << "\blue You put the rocket in [src]."
-			user << "\blue [rockets.len] / [max_rockets] rockets."
+			user.visible_message("\blue [user] starts feeding a shell into [src].","\blue You start feeding [I] into [src]. Stand still!")
+			if(do_after(user,20))
+				user.drop_item()
+				I.loc = src
+				rockets += I
+				playsound(user.loc,'sound/machines/click.ogg', 50, 1)
+				user << "\blue You put the [I] in [src]."
+			else
+				user << "You are interrupted!"
 		else
 			usr << "\red [src] cannot hold more rockets."
 
@@ -751,11 +828,12 @@
 		usr << "\red [src] is empty."
 
 /obj/item/ammo_casing/rocket
-	name = "frag rocket shell"
+	name = "high explosive rocket shell"
 	desc = "A high explosive designed to be fired from a launcher."
 	icon_state = "rocketshell"
 	projectile_type = "/obj/item/missile"
 	caliber = "rocket"
+	w_class = 3
 
 /obj/item/ammo_casing/rocket/ap
 	name = "armor piercing rocket shell"
@@ -769,11 +847,12 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "missile"
 	var/primed = null
-	throwforce = 15
+	throwforce = 10
+	pass_flags = PASSTABLE
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 1, 5, 1)
+			explosion(hit_atom, -1, -1, 3, 1)
 			del(src)
 		else
 			..()
@@ -781,12 +860,37 @@
 
 /obj/item/missile/ap
 	name = "armor piercing rocket"
-	throwforce = 175
+	throwforce = 150
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, 0, 0, 2, 1)
+			explosion(hit_atom, -1, 0, 1, 1)
 			del(src)
 		else
 			..()
 		return
+
+/obj/item/weapon/storage/box/rocket_system
+	name = "M83 Rocket Launcher crate"
+	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
+	w_class = 5
+	storage_slots = 6
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/rocketlauncher(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket/ap(src)
+			new /obj/item/ammo_casing/rocket/ap(src)
+
+/obj/item/weapon/tank/phoron/m240
+	name = "M240 Fuel tank"
+	desc = "A fuel tank of powerful sticky-fire chemicals for use in the M240 Incinerator unit. Handle with care."
+	icon_state = "flametank"

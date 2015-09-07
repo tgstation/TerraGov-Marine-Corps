@@ -148,7 +148,7 @@ REAGENT SCANNER
 			for(var/A in M.reagents.reagent_list)
 				var/datum/reagent/R = A
 				if(R.scannable)
-					reagentdata["[R.id]"] = "\t \blue [round(M.reagents.get_reagent_amount(R.id), 1)]u [R.name]"
+					reagentdata["[R.id]"] = "\t [R.overdose != 0 && M.reagents.get_reagent_amount(R.id) >= R.overdose ? "\red OD: " : "\blue"] [round(M.reagents.get_reagent_amount(R.id), 1)]u [R.name]"
 				else
 					unknown++
 			if(reagentdata.len)

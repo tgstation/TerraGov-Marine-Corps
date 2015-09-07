@@ -3,35 +3,51 @@
 	if(!blinded)
 		flick("flash", flash)
 
-	if(is_robotic) //Robots are IMMUNE, having blast-proof exoskeletons.
-		return
-
 	var/b_loss = 0
 	var/f_loss = 0
 	switch (severity)
 		if (1.0)
+			if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher))
+				adjustBruteLoss(rand(200,300))
+				updatehealth()
+				return
 			gib()
 			return
 		if (2.0)
-			b_loss += rand(40,80)
-			f_loss += rand(40,80)
+			if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Robots and crushers are immune.
+				return
+			b_loss += rand(45,55)
+			f_loss += rand(45,65)
 			Weaken(12)
+			if(guard_aura)
+				b_loss = round(b_loss / 2)
+			adjustBruteLoss(b_loss)
+			adjustFireLoss(f_loss)
+			updatehealth()
+			return
 		if(3.0)
-			b_loss += rand(30,50)
-			f_loss += rand(30,50)
+			if(is_robotic || istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Robots and crushers are immune.
+				return
+			b_loss += rand(20,40)
+			f_loss += rand(25,50)
 			if (prob(40))
 				Paralyse(2)
-			Weaken(rand(4,8))
-
-	adjustBruteLoss(b_loss)
-	adjustFireLoss(f_loss)
-	updatehealth()
+			Weaken(rand(4,6))
+			if(guard_aura)
+				b_loss = round(b_loss / 2)
+			adjustBruteLoss(b_loss)
+			adjustFireLoss(f_loss)
+			updatehealth()
+			return
+	return
 
 /mob/living/carbon/Xenomorph/blob_act()
 	return
 
 /mob/living/carbon/Xenomorph/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 	if(!damage)	return 0
+	if(guard_aura && damage > 0)
+		damage = round(damage * 6 / 7) //Slight damage reduction.
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage)
@@ -88,18 +104,30 @@
 			victim.visible_message("\green [victim] is scalded with hissing green blood!","\green <b>You are splattered with sizzling blood! IT BURNS!!<b>")
 			if(prob(60) && !victim.stat)
 				victim.emote("scream") //Topkek
-			victim.take_organ_damage(0,rand(5,50))  //Sizzledam! This automagically burns a random existing body part
-			if(prob(30)) //So good, you do it twice!
-				victim.take_organ_damage(0,rand(5,30))   //The 0 is for brute damage.
+			victim.take_organ_damage(0,rand(10,25))  //Sizzledam! This automagically burns a random existing body part
 	return
 
 //Deal with armor deflection.
 /mob/living/carbon/Xenomorph/bullet_act(var/obj/item/projectile/Proj) //wrapper
 	if(Proj && istype(Proj) )
-		var/dmg = Proj.damage
-		if(istype(Proj,/obj/item/projectile/bullet/m56)) dmg += 5 //Smartgun hits weak points easier.
-		if(istype(Proj,/obj/item/projectile/bullet/m42c)) dmg += 50 //Sniper is anti-armor.
-		if(prob(armor_deflection - dmg))
+		if(istype(Proj,/obj/item/projectile/energy)) //Energy doesnt care about your puny armors
+			return ..(Proj)
+
+		var/dmg = Proj.damage + Proj.armor_pierce
+		var/armor = armor_deflection
+		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances - more depending on facing.
+			armor += (src:momentum / 2) //Up to +15% armor deflection all-around when charging.
+			if(Proj.dir == src.dir) //Both facing same way -- ie. shooting from behind.
+				armor -= 50 //Ouch.
+			else if(Proj.dir == reverse_direction(src.dir)) //We are facing the bullet.
+				armor += 41
+			//Otherwise use the standard armor deflection for crushers.
+
+		if(prob(armor - dmg))
 			visible_message("\blue The [src]'s thick exoskeleton deflects \the [Proj]!","\blue Your thick exoskeleton deflected \the [Proj]!")
 			return -1
+	if(!fire_immune && Proj.incendiary)
+		adjust_fire_stacks(rand(6,11))
+		IgniteMob()
+
 	..(Proj) //Do normal stuff

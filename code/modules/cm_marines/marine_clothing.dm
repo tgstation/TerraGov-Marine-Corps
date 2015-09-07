@@ -150,26 +150,27 @@
 
 /obj/item/clothing/under/marine/officer/logistics
 	name = "marine officer uniform"
+	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "bridge officer uniform"
-	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec
 	name = "executive officer uniform"
-	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	desc = "A uniform typically worn by a First-lieutenant in the USCM. The Executive Officer is the second in-charge of the USCM forces onboard the USS Sulaco."
 	icon_state = "XO_jumpsuit"
 	item_state = "XO_jumpsuit"
 	item_color = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
-	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled."
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
 	item_color = "CO_jumpsuit"
@@ -192,7 +193,8 @@
 
 
 //ARMOR
-/obj/item/clothing/suit/storage/marine
+//DUPLICATE, CAN THIS BE REMOVED?  - APOPHIS
+/*/obj/item/clothing/suit/storage/marine
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
@@ -206,7 +208,7 @@
 	armor = list(melee = 50, bullet = 80, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun/, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade)
-
+*/
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
 	desc = "Festive!"
@@ -382,67 +384,78 @@
 	icon_state = "marinepack"
 	item_state = "marinepack" //Placeholder
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/storage/box(src)
-
 /obj/item/weapon/storage/backpack/marine
 	name = "marine backpack"
 	desc = "A large backpack used by military."
 	icon_state = "marinepack"
 	item_state = "marinepack"
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/storage/box(src)
-
 //BELT
 
 /obj/item/weapon/storage/belt/marine
 	name = "marine belt"
-	desc = "A standard issue toolbelt for Nanotrasen military forces."
+	desc = "A standard issue toolbelt for USCM military forces. Put your ammo in here."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
-	w_class = 3
-	storage_slots = 5
-	max_w_class = 3
-	max_combined_w_class = 15
+	w_class = 4
+	storage_slots = 8
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
-		"/obj/item/ammo_magazine/a12mm",
-		"/obj/item/ammo_magazine/c45",
-		"/obj/item/ammo_magazine/mc9mm",
-		"/obj/item/ammo_magazine/a50",
-		"/obj/item/ammo_magazine/c9mm",
-		"/obj/item/weapon/gun/energy/taser",
-		"/obj/item/ammo_magazine/a357",
-		"/obj/item/ammo_magazine/c38",
-		"/obj/item/weapon/melee/baton",
-		"/obj/item/weapon/handcuffs",
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
+		"/obj/item/device/flash",
 		"/obj/item/ammo_magazine/m4a3",
-		"/obj/item/ammo_magazine/mshotgun",
 		"/obj/item/ammo_magazine/m38s",
 		"/obj/item/ammo_magazine/m39",
 		"/obj/item/ammo_magazine/m41",
+		"/obj/item/ammo_casing/m44m",
+		"/obj/item/ammo_magazine/m44m",
+		"/obj/item/ammo_magazine/m42c",
 		"/obj/item/weapon/storage/box/m37",
 		"/obj/item/ammo_casing/m37",
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine",
-		"/obj/item/ammo_casing/m44m",
-		"/obj/item/ammo_magazine/m44m",
-		"/obj/item/ammo_magazine/m42c"
+		"/obj/item/device/mine"
 		)
+
+/obj/item/weapon/storage/belt/security/MP
+	name = "MP Belt"
+	desc = "Can hold Military Police Equipment."
+	icon_state = "securitybelt"
+	item_state = "security"//Could likely use a better one.
+	storage_slots = 7
+	max_w_class = 3
+	max_combined_w_class = 30
+	can_hold = list(
+		"/obj/item/weapon/grenade/flashbang",
+		"/obj/item/weapon/reagent_containers/spray/pepper",
+		"/obj/item/weapon/handcuffs",
+		"/obj/item/device/flash",
+		"/obj/item/clothing/glasses",
+		"/obj/item/weapon/gun/projectile/m4a3",
+		"/obj/item/weapon/gun/energy/taser",
+		"/obj/item/weapon/melee/baton",
+		"/obj/item/weapon/handcuffs",
+		"/obj/item/weapon/combat_knife",
+		"/obj/item/device/flashlight/flare",
+		"/obj/item/ammo_magazine/m4a3",
+		"/obj/item/weapon/reagent_containers/food/snacks/donut/normal",
+		"/obj/item/weapon/reagent_containers/food/snacks/donut/jelly",
+		"/obj/item/clothing/glasses/hud/security",
+		"/obj/item/taperoll/police"
+		)
+
+/obj/item/weapon/storage/belt/security/MP/full/New()
+	..()
+	new /obj/item/weapon/gun/energy/taser(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/weapon/melee/baton(src)
+	new /obj/item/weapon/handcuffs(src)
 
 /obj/item/weapon/storage/belt/marine/full/New()
 	..()
 	new /obj/item/weapon/gun/projectile/m4a3(src)
-	new /obj/item/ammo_magazine/m4a3(src)
 	new /obj/item/ammo_magazine/m4a3(src)
 
 /obj/item/weapon/storage/belt/knifepouch
@@ -457,6 +470,31 @@
 
 	can_hold=list("/obj/item/weapon/throwing_knife")
 
+
+/obj/item/weapon/storage/belt/grenade
+	name="grenade bandolier"
+	desc="Storage for your exploding toys."
+	icon_state="grenadebelt" // temp
+	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
+	w_class = 4
+	storage_slots = 8
+	max_w_class = 3
+	max_combined_w_class = 24
+
+	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb","/obj/item/weapon/grenade/")
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/incendiary(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+
 /obj/item/weapon/storage/belt/knifepouch/New()
 	..()
 	new /obj/item/weapon/throwing_knife(src)
@@ -464,9 +502,9 @@
 	new /obj/item/weapon/throwing_knife(src)
 
 /obj/item/clothing/under/marine_jumpsuit
-	name = "marine jumpsuit"
-	desc = "Soft as silk. Light as feather. Protective as Kevlar. Smelly as a swamp."
-	armor = list(melee = 5, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	name = "USCM Uniform"
+	desc = "The issue uniform for the USCM forces. It is weaved with light kevlar plates that protect against light impacts and light-caliber rounds."
+	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 
@@ -479,7 +517,7 @@
 
 /obj/item/clothing/under/marine_underoos
 	name = "marine underpants"
-	desc = "Specially designed to protect your naughty bits from the ravages of extended cryo sleep."
+	desc = "A simple outfit worn by USCM operators during cyrosleep. Wear this into battle if you have no self-respect."
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
@@ -511,3 +549,80 @@
 	item_state = "RO_jumpsuit"
 	item_color = "RO_jumpsuit"
 	has_sensor = 1
+
+
+/obj/item/clothing/head/cmbandana
+	name = "USCM Bandana (Green)"
+	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "band"
+	item_state = "band"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "band"
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+
+/obj/item/clothing/head/cmbandana/tan
+	name = "USCM Bandana (Tan)"
+	icon_state = "band2"
+	item_state = "band2"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "band2"
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+
+/obj/item/clothing/head/cmberet
+	name = "USCM Beret"
+	desc = "A hat typically worn by the field-officers of the USCM. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "beret"
+	item_state = "beret"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "beret"
+	flags = FPRINT|TABLEPASS
+
+/obj/item/clothing/head/cmberet/tan
+	icon_state = "berettan"
+	item_state = "berettan"
+	item_color = "berettan"
+
+
+/obj/item/clothing/head/headband
+	name = "USCM Headband"
+	desc = "A rag typically worn by the less-orthodox weapons operators in the USCM. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "headband"
+	item_state = "headband"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "headband"
+	flags = FPRINT|TABLEPASS
+
+/obj/item/clothing/head/headband/red
+	icon_state = "headbandred"
+	item_state = "headbandred"
+	item_color = "headbandred"
+
+/obj/item/clothing/head/headset
+	name = "USCM Headset"
+	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "headset"
+	item_state = "headset"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "headset"
+	flags = FPRINT|TABLEPASS
+
+/obj/item/clothing/head/cmcap
+	name = "USCM Cap"
+	desc = "A casual cap occansionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "cap"
+	item_state = "cap"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "cap"
+	flags = FPRINT|TABLEPASS
+
+/obj/item/clothing/head/cmcap/ro
+	name = "USCM Officer Cap"
+	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	icon_state = "rocap"
+	item_state = "rocap"
+	item_color = "rocap"

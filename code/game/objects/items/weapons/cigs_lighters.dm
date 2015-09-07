@@ -202,7 +202,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(ismob(loc))
 		var/mob/living/M = loc
 		M << "<span class='notice'>Your [name] goes out.</span>"
-		M.u_equip(src)	//un-equip it so the overlays can update
+		M.drop_from_inventory(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask(0)
 	processing_objects.Remove(src)
 	del(src)
@@ -481,4 +481,4 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(lit && src.loc != user)
 		user.SetLuminosity(-2)
 		SetLuminosity(2)
-	return
+	return ..()

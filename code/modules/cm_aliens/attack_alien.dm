@@ -25,24 +25,31 @@
 			if(M == src || anchored)
 				return
 			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
-				visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>", "\red <B>Your grab was blocked by a shield!</B>")
+				M.visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>", "\red <B>Your grab was blocked by a shield!</B>")
 				return 0
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
-				update_icons(M) //To immediately show the grab
+				M.update_icons() //To immediately show the grab
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			visible_message(text("\red [] has grabbed []!", M, src), "\red You grab [M]!")
 		if("hurt")
 			if(slashing_allowed == 0 && !M.is_intelligent)
-				visible_message("<b>\The [M] tries to slash [src], but suddenly hesitates!","Slashing is currently <b>forbidden</b> by the Queen. You hesitate and miss your target.")
+				M.visible_message("<b>\The [M] tries to slash [src], but suddenly hesitates!","Slashing is currently <b>forbidden</b> by the Queen. You hesitate and miss your target.")
 				return
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+			if(M.frenzy_aura) damage += (M.frenzy_aura * 2)
+
 			if(slashing_allowed == 2 && !M.is_intelligent)
-				damage = M.melee_damage_lower / 2
-//				M << "Slashing is currently restricted by the Queen. You hesitate and only lightly graze."
+				if(src.status_flags & XENO_HOST)
+					M << "You try to slash [src], but find you <B>cannot</B>. There is a host inside!"
+					return 0
+
+				if(M.health > round(2 * M.maxHealth / 3))
+					M << "You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders."
+					return 0
 
 			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
 				visible_message("\red <B>\The [M]'s slash is blocked by [src]'s shield!</B>")
@@ -59,7 +66,7 @@
 //			if(istype(M, /mob/living/carbon/alien/humanoid/ravager))
 //				affecting = get_organ(ran_zone("head", 95))
 //			else
-			affecting = get_organ(ran_zone(M.zone_sel.selecting,75))
+			affecting = get_organ(ran_zone(M.zone_sel.selecting,70))
 			if(!affecting) //No organ, just get a random one
 				affecting = get_organ(ran_zone(null,0))
 			if(!affecting) //Still nothing??
@@ -75,7 +82,7 @@
 //				score_slashes_made++
 
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
-			slash_flick()
+//			slash_flick()
 			updatehealth()
 
 		if("disarm")
@@ -96,7 +103,9 @@
 					visible_message(text("\red <B>\The [] tried to tackle [], but they're already down!</B>", M, src))
 
 			else
-				if (prob(M.tackle_chance)) //Tackle_chance is now a special var for each caste.
+				var/tackle_bonus = 0
+				if(M.frenzy_aura) tackle_bonus = (M.frenzy_aura * 3)
+				if (prob(M.tackle_chance + tackle_bonus)) //Tackle_chance is now a special var for each caste.
 					playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 					Weaken(rand(M.tacklemin,M.tacklemax))
 //					if (src.stat != 2)
@@ -126,7 +135,7 @@
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
-				update_icons(M) //To immediately show the grab
+				M.update_icons()
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				visible_message(text("\red \The [] has grabbed []!", M, src), "\red You grab [M]!")
 
@@ -134,6 +143,12 @@
 			if(istype(src,/mob/living/carbon/Xenomorph))
 				visible_message("\red \The [M] nibbles at [src].")
 				return
+			if(istype(src,/mob/living/silicon) && src.stat == 0) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
+				var/datum/effect/effect/system/spark_spread/spark_system
+				spark_system = new /datum/effect/effect/system/spark_spread() 
+				spark_system.set_up(5, 0, src)
+				spark_system.attach(src)
+				spark_system.start()
 			var/damage = rand(5,20) //Who cares, it's just Ian and the Monkeys (that would make a great band name)
 			visible_message("\red \The [M] bites at \the [src]!")
 			apply_damage(damage, BRUTE)
@@ -172,12 +187,20 @@
 /obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if(breakable)
-		src.health -= M.melee_damage_lower
+		playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
+		src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
 		if(src.health <= 0)
 			visible_message("<span class='danger'>[M] slices [src] apart!</span>")
 			destroy()
 		else
 			visible_message("<span class='danger'>[M] slashes at [src]!</span>")
+
+//Breaking barricades
+/obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	visible_message("<span class='danger'>[M] slashes at the [src]!</span>")
+	update_health()
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
@@ -203,7 +226,7 @@
 /obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if (M.a_intent == "hurt")
-		attack_generic(M,M.melee_damage_lower / 2)
+		attack_generic(M,M.melee_damage_lower)
 		return
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
@@ -318,9 +341,10 @@
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
 	M.visible_message("<span class='warning'>[M] slashes at [src.name]!</span>", \
 		 "<span class='warning'>You slash at the barricade!</span>")
+	playsound(src, 'sound/effects/woodhit.ogg', 100, 1)
 	if(src.health <= 0)
-		visible_message("\red The [src.name]falls apart!")
-		del(src)
+		visible_message("\red The [src.name] falls apart!")
+		destroy()
 
 //Prying open doors
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M as mob)
@@ -377,6 +401,12 @@
 	attack_hand(M)
 	return
 
+//Nerfing the damn Cargo Tug Train
+/obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	attack_hand(M)
+	return
+
 //clicking on resin doors attacks them, or opens them without harm intent
 /obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	var/turf/cur_loc = M.loc
@@ -416,10 +446,6 @@
 
 	if(isXenoLarva(M)) return
 
-	if(src.unacidable) //May as well use it as an immunity toggle
-		M << "This one's much too tough for you to slash up."
-		return
-
 	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 	var/allcut = 1
@@ -440,6 +466,16 @@
 	else
 		beenhit += 1
 	return
+
+//Snow barricades
+/obj/structure/barricade/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	M.visible_message("<span class='warning'>[M] smashes the [src.name]!</span>", \
+		 "<span class='warning'>You smash trough the barricade!</span>")
+	if(src.health <= 0)
+		visible_message("\red The [src.name] falls apart!")
+		del(src)
 
 //Some generic defaults
 /obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M as mob)

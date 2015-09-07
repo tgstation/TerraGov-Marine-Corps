@@ -17,12 +17,15 @@
 	speed = -2.2
 	evolves_to = list("Hunter")
 	charge_type = 1 //Pounce
+	armor_deflection = 28
+	pass_flags = PASSTABLE
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		/mob/living/carbon/Xenomorph/proc/Pounce,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
+		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 

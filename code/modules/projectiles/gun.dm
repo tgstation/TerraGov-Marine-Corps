@@ -75,7 +75,13 @@
 		if(under)
 			usr << "It has \icon[under] [under.name] mounted underneath."
 
-
+	proc/has_attachment(var/obj/item/attachable/A)
+		if(!A)
+			return 0
+		if(istype(muzzle,A)) return 1
+		if(istype(under,A)) return 1
+		if(istype(rail,A)) return 1
+		return 0
 
 /obj/item/weapon/gun/proc/unwield()
 	if(!twohanded) return
@@ -90,7 +96,7 @@
 	if(!twohanded) return
 	wielded = 1
 	name = "[initial(name)] (Wielded)"
-	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41)) //Only one that has a wielded sprite atm. Add more here later or remove it?
+	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) || istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37)) //Ugh
 		item_state = "[initial(item_state)]-w"
 		if(usr && ishuman(usr))
 			usr:update_inv_l_hand(0)
@@ -348,7 +354,7 @@
 		user << "There's already something attached in that weapon slot. Field strip your weapon first."
 		return
 
-	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying your \the [src]..")
+	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying \the [src]..")
 	if(do_after(user,60))
 		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
 		user.drop_item()

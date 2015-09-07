@@ -4,26 +4,28 @@
 ///******MARINE VENDOR******///
 
 /obj/machinery/vending/marine
-	name = "ColMarTech"
-	desc = "A marine equipment vendor"
+	name = "ColMarTech Automated Weapons rack"
+	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons and armor."
+	icon_state = "armory"
+	icon_vend = "armory-vend"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/weapon/gun/projectile/m4a3 = 8,
-					/obj/item/weapon/gun/projectile/m44m = 8,
-					/obj/item/weapon/gun/projectile/automatic/m39 = 8,
-					/obj/item/weapon/gun/projectile/automatic/m41 = 10,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37 = 5,
+					/obj/item/weapon/gun/projectile/m4a3 = 10,
+					/obj/item/weapon/gun/projectile/m44m = 10,
+					/obj/item/weapon/gun/projectile/automatic/m39 = 10,
+					/obj/item/weapon/gun/projectile/automatic/m41 = 20,
+					/obj/item/weapon/gun/projectile/shotgun/pump/m37 = 10,
 
-					/obj/item/ammo_magazine/m4a3 = 25,
-					/obj/item/ammo_magazine/m44m =25,
-					/obj/item/ammo_magazine/m39 = 25,
-					/obj/item/ammo_magazine/m41 = 25,
-					/obj/item/weapon/storage/box/m37 = 25,
+					/obj/item/ammo_magazine/m4a3 = 20,
+					/obj/item/ammo_magazine/m44m = 20,
+					/obj/item/ammo_magazine/m39 =  20,
+					/obj/item/ammo_magazine/m41 =  40,
+					/obj/item/weapon/storage/box/m37 = 20,
 
 					/obj/item/weapon/combat_knife = 10,
-					/obj/item/weapon/storage/belt/knifepouch = 3,
-					/obj/item/weapon/throwing_knife = 9,
-					/obj/item/device/flashlight/flare = 10,
+					/obj/item/weapon/storage/belt/knifepouch = 5,
+					/obj/item/weapon/throwing_knife = 10,
+					/obj/item/device/flashlight/flare = 30,
 					/obj/item/weapon/storage/backpack/marine = 20,
 					/obj/item/device/radio/headset/msulaco = 5,
 					/obj/item/device/flashlight/flare = 10,
@@ -49,12 +51,12 @@
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 10	)
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15	)
 
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
@@ -120,31 +122,22 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
 	products = list(
+						/obj/item/weapon/storage/box/sentry = 1,
 						/obj/item/clothing/under/rank/engineer = 3,
 						/obj/item/weapon/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
 						/obj/item/device/multitool = 4,
-						/obj/item/device/mine = 2,
+						/obj/item/weapon/grenade/incendiary = 2,
+						/obj/item/weapon/storage/box/explosive_mines = 1,
 						/obj/item/weapon/storage/backpack/industrial = 3,
 						/obj/item/clothing/glasses/welding = 3,
-						/obj/item/weapon/plastique = 3,
+						/obj/item/weapon/plastique = 4,
 						/obj/item/device/lightreplacer = 2,
 						/obj/item/weapon/airlock_electronics = 10,
 						/obj/item/weapon/module/power_control = 10,
 						/obj/item/weapon/airalarm_electronics = 10,
-						/obj/item/weapon/cell/high = 10,
-						/obj/item/device/assembly/prox_sensor = 5,
-						/obj/item/device/assembly/igniter = 3,
-						/obj/item/device/assembly/signaler = 4,
-						/obj/item/stack/cable_coil/random = 10,
-						/obj/item/weapon/crowbar = 5,
-						/obj/item/weapon/weldingtool = 3,
-						/obj/item/weapon/wirecutters = 5,
-						/obj/item/weapon/wrench = 5,
-						/obj/item/device/analyzer = 5,
-						/obj/item/device/t_scanner = 5,
-						/obj/item/weapon/screwdriver = 5
+						/obj/item/weapon/cell/high = 10
 					)
 	contraband = list()
 	premium = list()
@@ -158,6 +151,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	products = list(
+						/obj/item/clothing/tie/storage/webbing = 2,
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,
 						/obj/item/clothing/under/rank/medical = 3,
@@ -196,22 +190,20 @@
 	icon_deny = "robotics-deny"
 	products = list(
 						/obj/item/weapon/coin/marine = 1,
+						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/weapon/plastique = 2,
-						/obj/item/weapon/grenade/explosive = 5,
-						/obj/item/weapon/grenade/smokebomb = 5,
-						/obj/item/ammo_casing/rocket = 3,
-						/obj/item/ammo_casing/rocket/ap = 3,
+						/obj/item/weapon/grenade/explosive = 2,
+						/obj/item/weapon/grenade/incendiary = 2,
 						/obj/item/weapon/flamethrower/full = 1,
-						/obj/item/weapon/tank/phoron = 3,
+						/obj/item/weapon/tank/phoron/m240 = 3,
 						/obj/item/weapon/shield/riot = 1,
-						/obj/item/ammo_magazine/m42c = 2,
 						/obj/item/smartgun_powerpack = 1
 			)
 	contraband = list()
 	premium = list(
-					/obj/item/weapon/gun/rocketlauncher = 1,
-					/obj/item/weapon/gun/m92 = 1,
-					/obj/item/weapon/gun/projectile/M42C = 1,
+					/obj/item/weapon/storage/box/rocket_system = 1,
+					/obj/item/weapon/storage/box/grenade_system = 1,
+					/obj/item/weapon/storage/box/m42c_system = 1,
 					/obj/item/weapon/storage/box/m56_system = 1,
 					/obj/item/weapon/storage/box/heavy_armor = 1
 			)
@@ -227,34 +219,38 @@
 	products = list(
 						/obj/item/clothing/suit/storage/marine/marine_leader_armor = 1,
 						/obj/item/clothing/head/helmet/marine/leader = 1,
+						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/device/squad_beacon = 3,
 						/obj/item/device/squad_beacon/bomb = 1,
-						/obj/item/weapon/plastique = 3,
-						/obj/item/weapon/grenade/explosive = 5,
+						/obj/item/weapon/plastique = 1,
+						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
-						/obj/item/device/paicard = 1,
-						/obj/item/weapon/handcuffs = 2,
-						/obj/item/weapon/storage/box/explosive_mines = 1
+						/obj/item/device/paicard = 1
 					)
 	contraband = list()
 	premium = list()
 	prices = list()
 
 /obj/machinery/vending/attachments
-	name = "Armat Systems Module Vendor"
-	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer."
+	name = "Armat Systems Attachments Vendor"
+	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(access_sulaco_cargo)
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(
-						/obj/item/attachable/suppressor = 6,
-						/obj/item/attachable/bayonet = 12,
-						/obj/item/attachable/reddot = 8,
-						/obj/item/attachable/foregrip = 8,
-						/obj/item/attachable/gyro = 1,
+						/obj/item/attachable/suppressor = 8,
+						/obj/item/attachable/bayonet = 15,
+						/obj/item/attachable/reddot = 10,
+						/obj/item/attachable/foregrip = 10,
+						/obj/item/attachable/gyro = 4,
 						/obj/item/attachable/flashlight = 20,
-						/obj/item/attachable/bipod = 2
+						/obj/item/attachable/bipod = 4,
+						/obj/item/attachable/extended_barrel = 8,
+						/obj/item/attachable/heavy_barrel = 2,
+						/obj/item/attachable/quickfire = 2,
+						/obj/item/clothing/tie/storage/webbing = 1,
+						/obj/item/attachable/compensator = 4
 					)
 	contraband = list()
 	premium = list()

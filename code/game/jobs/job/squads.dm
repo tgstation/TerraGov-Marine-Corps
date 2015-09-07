@@ -120,7 +120,7 @@
 		if(I.id)
 			card = I.id
 	else
-		card = I
+		card = H.wear_id
 
 	if(!card || !istype(card))
 		return null
@@ -156,7 +156,7 @@
 		if(I.id)
 			card = I.id
 	else
-		card = I
+		card = H.wear_id
 
 	if(!card || !istype(card))
 		return 0
@@ -192,7 +192,7 @@
 		if(I.id)
 			card = I.id
 	else
-		card = I
+		card = H.wear_id
 
 	if(!card || !istype(card))
 		return 0

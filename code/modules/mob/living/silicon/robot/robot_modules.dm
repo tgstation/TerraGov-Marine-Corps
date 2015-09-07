@@ -199,6 +199,7 @@
 		src.modules += new /obj/item/device/flash(src)
 		src.modules += new /obj/item/borg/sight/meson(src)
 		src.modules += new /obj/item/weapon/extinguisher(src)
+		src.modules += new /obj/item/weapon/rcd/borg(src)
 		src.modules += new /obj/item/weapon/weldingtool/largetank(src)
 		src.modules += new /obj/item/weapon/screwdriver(src)
 		src.modules += new /obj/item/weapon/wrench(src)
