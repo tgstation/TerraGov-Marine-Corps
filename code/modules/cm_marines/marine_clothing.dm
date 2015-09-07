@@ -193,7 +193,8 @@
 
 
 //ARMOR
-/obj/item/clothing/suit/storage/marine
+//DUPLICATE, CAN THIS BE REMOVED?  - APOPHIS
+/*/obj/item/clothing/suit/storage/marine
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
@@ -207,7 +208,7 @@
 	armor = list(melee = 50, bullet = 80, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun/, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade)
-
+*/
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
 	desc = "Festive!"

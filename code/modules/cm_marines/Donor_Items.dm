@@ -239,7 +239,7 @@
 
 /obj/item/clothing/suit/storage/marine/fluff/stobarico
 	name = "British Admiral Uniform"
-	desc = "An ancient uniform of an Admiral.  DONOR ITEM" //Add UNIQUE if Unique
+	desc = "An ancient uniform of an Admiral.  DONOR ITEM"
 	icon_state = "lordadmiral"
 	item_state = "lordadmiral"
 
@@ -625,9 +625,9 @@
 /obj/item/clothing/under/marine/fluff/radical
 	name = "Bounty Hunter Jumpsuit"
 	desc = "Undergarmants of an ancient bounty hunter.  DONOR ITEM"
-	icon_state = "boba_suit"
-	item_state = "boba_suit_s"
-	item_color = "boba_suit"
+	icon_state = "boba_jumpsuit"
+	item_state = "boba_jumpsuit_s"
+	item_color = "boba_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/jackmcintyre
 	name = "Dress Uniform"
