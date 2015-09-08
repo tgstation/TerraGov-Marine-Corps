@@ -650,9 +650,9 @@
 /obj/item/clothing/under/marine/fluff/starscream
 	name = "Merc Jumpsuit"
 	desc = "Jumpsut from a super shady mercenary company.  DONOR ITEM"
-	icon_state = "merc_jumpsuit"
-	item_state = "merc_jumpsuit_s"
-	item_color = "merc_jumpsuit"
+	icon_state = "merc_jumpsuit2"
+	item_state = "merc_jumpsuit2_s"
+	item_color = "merc_jumpsuit2"
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
