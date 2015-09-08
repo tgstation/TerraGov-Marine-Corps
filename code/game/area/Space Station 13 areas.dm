@@ -749,6 +749,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "green"
 
 // SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
+/*
 
 /area/maintenance/substation
 	name = "Substation"
@@ -771,7 +772,7 @@ var/list/ghostteleportlocs = list()
 
 /area/maintenance/substation/security // Security, Brig, Permabrig, etc.
 	name = "Security Substation"
-
+*/
 
 
 
@@ -824,7 +825,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Bridge"
 	icon_state = "bridge"
 	music = "signal"
-
+/*
 /area/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
 	icon_state = "bridge"
@@ -857,11 +858,11 @@ var/list/ghostteleportlocs = list()
 /area/crew_quarters/courtroom
 	name = "\improper Courtroom"
 	icon_state = "courtroom"
-
+*/
 /area/mint
 	name = "\improper Mint"
 	icon_state = "green"
-
+/*
 /area/comms
 	name = "\improper Communications Relay"
 	icon_state = "tcomsatcham"
@@ -869,7 +870,7 @@ var/list/ghostteleportlocs = list()
 /area/server
 	name = "\improper Messaging Server Room"
 	icon_state = "server"
-
+*/
 //Crew
 
 /area/crew_quarters
@@ -907,7 +908,7 @@ var/list/ghostteleportlocs = list()
 /area/crew_quarters/sleep_male
 	name = "\improper Male Dorm"
 	icon_state = "Sleep"
-
+/*
 /area/crew_quarters/sleep_male/toilet_male
 	name = "\improper Male Toilets"
 	icon_state = "toilet"
@@ -919,7 +920,7 @@ var/list/ghostteleportlocs = list()
 /area/crew_quarters/sleep_female/toilet_female
 	name = "\improper Female Toilets"
 	icon_state = "toilet"
-
+*/
 /area/crew_quarters/locker
 	name = "\improper Locker Room"
 	icon_state = "locker"
@@ -1566,7 +1567,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "storage"
 
 //DJSTATION
-
+/*
 /area/djstation
 	name = "\improper Listening Post"
 	icon_state = "LP"
@@ -1574,7 +1575,7 @@ var/list/ghostteleportlocs = list()
 /area/djstation/solars
 	name = "\improper Listening Post Solars"
 	icon_state = "LPS"
-
+*/
 //DERELICT
 
 /area/derelict
@@ -1664,7 +1665,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "engine"
 
 //HALF-BUILT STATION (REPLACES DERELICT IN BAYCODE, ABOVE IS LEFT FOR DOWNSTREAM)
-
+/*
 /area/shuttle/constructionsite
 	name = "\improper Construction Site Shuttle"
 	icon_state = "yellow"
@@ -1727,7 +1728,7 @@ var/list/ghostteleportlocs = list()
 //area/constructionsite
 //	name = "\improper Construction Site Shuttle"
 
-
+*/
 //Construction
 
 /area/construction
@@ -1840,7 +1841,7 @@ var/list/ghostteleportlocs = list()
 //Misc
 
 
-
+/*
 /area/wreck/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai"
@@ -1860,7 +1861,7 @@ var/list/ghostteleportlocs = list()
 /area/generic
 	name = "Unknown"
 	icon_state = "storage"
-
+*/
 
 
 // Telecommunications Satellite
@@ -1909,7 +1910,7 @@ var/list/ghostteleportlocs = list()
 /area/awaymission
 	name = "\improper Strange Location"
 	icon_state = "away"
-
+/*
 /area/awaymission/example
 	name = "\improper Strange Station"
 	icon_state = "away"
@@ -2051,7 +2052,7 @@ var/list/ghostteleportlocs = list()
 						H << S
 
 		spawn(60) .()
-
+*/
 /////////////////////////////////////////////////////////////////////
 /*
  Lists of areas to be used with is_type_in_list.

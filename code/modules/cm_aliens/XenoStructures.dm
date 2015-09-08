@@ -626,6 +626,13 @@
 
 	if(M == usr)
 		return
+
+	if(istype(M,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(!H.weakened)  //Don't ask me why is has to be
+			user << "[M] is resisting, tackle them first"
+			return
+
 	else
 		M.visible_message(\
 			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\

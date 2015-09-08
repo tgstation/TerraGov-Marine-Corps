@@ -262,3 +262,27 @@
 	heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc
+	name = "PMC Gunner armor"
+	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "heavy_armor"
+	icon_state = "heavy_armor"
+	item_color = "bear_jumpsuit"
+	armor = list(melee = 75, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/head/helmet/marine/PMC/heavypmc
+	name = "PMC Gunner Helmet"
+	desc = "A modification of the standard Armat Systems M3 armor."
+	item_state = "heavy_helmet"
+	icon_state = "heavy_helmet"
+	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHEADHAIR
+	anti_hug = 2
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/smartgun_powerpack/heavypmc
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "powerpack2"
+	item_state = "armor"
