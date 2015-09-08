@@ -94,7 +94,7 @@
 	icon = 'icons/PMC/PMC.dmi'
 	//icon_override = 'icons/PMC/PMC.dmi'
 	icon_state = "pmc_jumpsuit"
-	item_state = "pmc_jumpsuit"
+	item_state = "armor"
 	item_color = "pmc_jumpsuit"
 	//	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 
@@ -103,7 +103,7 @@
 	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "pmc_armor"
+	item_state = "armor"
 	icon_state = "pmc_armor"
 
 /obj/item/clothing/mask/gas/PMCmask
@@ -111,7 +111,7 @@
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "pmc_mask"
+	item_state = "helmet"
 	icon_state = "pmc_mask"
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
 	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
@@ -122,7 +122,7 @@
 	desc = "A protective cap made from flexable kevlar. Standard issue for most security forms in the place of a helmet."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "pmc_hat"
+	item_state = "helmet"
 	icon_state = "pmc_hat"
 	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
@@ -132,14 +132,12 @@
 	name = "PMC command uniform"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	item_state = "officer_jumpsuit"
-	icon_state = "officer_jumpsuit"
 	item_color = "officer_jumpsuit"
 
 /obj/item/clothing/suit/storage/marine/PMCarmor/leader
 	name = "M4 Pattern PMC Armor"
 	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
 	icon = 'icons/PMC/PMC.dmi'
-	item_state = "officer_armor"
 	icon_state = "officer_armor"
 
 /obj/item/clothing/mask/gas/PMCmask/leader
@@ -242,9 +240,9 @@
 /obj/item/clothing/head/helmet/marine/PMC/commando
 	name = "PMC Commando Helmet"
 	desc = "A fully enclosed, armored helmet made for Weyland Yutani elite commandos."
-	item_state = "commando_head"
+	item_state = "commando_helmet"
 	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "commando_head"
+	icon_state = "commando_helmet"
 	icon_override = 'icons/PMC/PMC.dmi'
 	armor = list(melee = 85, bullet = 85, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
 	anti_hug = 6
