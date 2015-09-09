@@ -493,7 +493,7 @@
 				jobs += "</tr><tr align='center'>"
 				counter = 0
 		jobs += "</tr></table>"
-		
+
 		if(jobban_isbanned(M, "pAI")) //pAI isn't technically a job, but it goes in here.
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=pAI;jobban4=\ref[M]'><font color=red>pAI</font></a></td>"
 		else
@@ -2741,6 +2741,9 @@
 	if(href_list["dibs"])
 		var/mob/ref_person = locate(href_list["dibs"])
 //		var/adminckey = href_list["ckey"]
+		if(!istype(ref_person))
+			usr << "\blue Looks like that person stopped existing!"
+			return
 		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person]). The player has been notified.</font></b>"
 		var/msgplayer = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key] has marked your request and is preparing to respond...</font></b>"
 

@@ -308,8 +308,8 @@
 	force = 10.0
 	twohanded = 1
 	fire_delay = 30
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 16
+	muzzle_pixel_x = 31
+	muzzle_pixel_y = 18
 	rail_pixel_x = 16
 	rail_pixel_y = 19
 	under_pixel_x = 22
@@ -345,7 +345,7 @@
 					user.drop_from_inventory(src)
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-					F.loc = src.loc
+					F.loc = get_turf(src)
 				del(src) //Delete da old knife
 			else
 				user << "<span class='notice'>This cable coil appears to be empty.</span>"
@@ -636,7 +636,7 @@
 				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 200."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 28
+	damage = 30
 	iff = 1
 	armor_pierce = 5
 	accuracy = 30
@@ -742,6 +742,7 @@
 		var/obj/item/weapon/grenade/F = grenades[1]
 		grenades -= F
 		F.loc = user.loc
+		F.throw_range = 30
 		F.throw_at(target, 30, 2, user)
 		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
 		log_game("[key_name_admin(user)] used a grenade ([src.name]).")
@@ -749,7 +750,8 @@
 		F.icon_state = initial(icon_state) + "_active"
 		playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
 		spawn(15)
-			F.prime()
+			if(F) //If somehow got deleted since then
+				F.prime()
 
 /obj/item/weapon/storage/box/grenade_system
 	name = "M92 Grenade Launcher case"
@@ -852,7 +854,7 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, -1, -1, 3, 1)
+			explosion(hit_atom, -1, 1, 2, 1)
 			del(src)
 		else
 			..()
@@ -864,7 +866,7 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, -1, 0, 1, 1)
+			explosion(hit_atom, -1, 1, -1, 1)
 			del(src)
 		else
 			..()

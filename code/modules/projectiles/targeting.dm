@@ -23,7 +23,7 @@
 //Removing the lock and the buttons.
 /obj/item/weapon/gun/dropped(mob/user as mob)
 	stop_aim()
-	if (user.client)
+	if (user && user.client)
 		user.client.remove_gun_icons()
 	return ..()
 
@@ -223,7 +223,8 @@ mob/living/proc/NotTargeted(var/obj/item/weapon/gun/I)
 	if(!I.silenced)
 		for(var/mob/living/M in viewers(src))
 			M << 'sound/weapons/TargetOff.ogg'
-	targeted_by -= I
+	if(!isnull(targeted_by))
+		targeted_by -= I
 	I.target.Remove(src) //De-target them
 	if(!I.target.len)
 		del(I.target)

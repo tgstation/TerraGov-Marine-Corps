@@ -7,9 +7,9 @@
 	icon_state = "Crusher Walking"
 	melee_damage_lower = 10
 	melee_damage_upper = 12
-	tacklemin = 3
-	tacklemax = 6
-	tackle_chance = 90
+	tacklemin = 4
+	tacklemax = 7
+	tackle_chance = 95
 	health = 270
 	maxHealth = 270
 	storedplasma = 200
@@ -19,7 +19,7 @@
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.5
 	evolves_to = list()
-	armor_deflection = 68
+	armor_deflection = 70
 	var/charge_dir = 0
 	var/momentum = 0 //Builds up charge based on movement.
 	var/charge_timer = 0 //Has a small charge window. has to keep moving to build momentum.

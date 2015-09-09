@@ -300,8 +300,15 @@ var/const/MAX_ACTIVE_TIME = 200
 	icon_state = "[initial(icon_state)]_dead"
 	stat = DEAD
 
-	src.visible_message("\red \b[src] curls up into a ball!")
-
+	src.visible_message("\icon[src] \red <B>The [src] curls up into a ball!</b>")
+	spawn(1200) //2 minute timer for it to decay
+		src.visible_message("\icon[src] \red <B>The dead [src] decays into a mass of acid and chitin.</b>")
+		if(ismob(src.loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
+			var/mob/M = src.loc
+			M.drop_from_inventory(src)
+			M.update_icons()
+		spawn(0)
+			del(src)
 	return
 
 /proc/CanHug(var/mob/living/M)

@@ -34,10 +34,12 @@
 
 /mob/proc/say_dead(var/message)
 	var/name = src.real_name
-	var/alt_name = ""
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
+		return
+
+	if(!src.client) //Somehow
 		return
 
 	if(!src.client.holder)
@@ -45,18 +47,19 @@
 			src << "\red Deadchat is globally muted"
 			return
 
-	if(client && !(client.prefs.toggles & CHAT_DEAD))
+	if(client && client.prefs && !(client.prefs.toggles & CHAT_DEAD))
 		usr << "\red You have deadchat muted."
 		return
-
+/*
 	if(mind && mind.name)
 		name = "[mind.name]"
 	else
 		name = real_name
+
 	if(name != real_name)
 		alt_name = " (died as [real_name])"
-
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] says, <span class='message'>\"[message]\"</span></span>"
+*/
+	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 
 	for(var/mob/M in player_list)
 		if(istype(M, /mob/new_player))

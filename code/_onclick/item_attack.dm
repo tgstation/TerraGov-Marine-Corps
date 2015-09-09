@@ -7,8 +7,9 @@
 /atom/proc/attackby(obj/item/W, mob/user)
 	return
 /atom/movable/attackby(obj/item/W, mob/user)
-	if(!(W.flags&NOBLUDGEON))
-		visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
+	if(W)
+		if(!(W.flags&NOBLUDGEON))
+			visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
 
 /mob/living/attackby(obj/item/I, mob/user)
 	if(istype(I) && ismob(user))
@@ -126,8 +127,9 @@
 			showname = "."
 
 		for(var/mob/O in viewers(messagesource, null))
-			if(attack_verb.len)
-				O.show_message("\red <B>[M] has been [pick(attack_verb)] with [src][showname] </B>", 1)
+			if(!isnull(src.attack_verb))
+				if(src.attack_verb.len)
+					O.show_message("\red <B>[M] has been [pick(attack_verb)] with [src][showname] </B>", 1)
 			else
 				O.show_message("\red <B>[M] has been attacked with [src][showname] </B>", 1)
 

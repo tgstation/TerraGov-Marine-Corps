@@ -385,16 +385,17 @@ var/list/toldstory = list()
 					if(!M)
 						M = A.original
 
-					text += "<br>[M.key] was "
 					if(M)
+						text += "<br>[M.key] was "
 						text += "[M.name] ("
 						if(M.stat == DEAD)
 							text += "died"
 						else
 							text += "survived"
+						text += ")"
 					else
-						text += "GIBBED! (body destroyed)"
-					text += ")"
+						text += "<BR>[A.key] was Unknown! (body destroyed)"
+
 			world << text
 //	..()
 	return 1
