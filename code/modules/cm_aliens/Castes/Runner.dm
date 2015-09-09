@@ -5,8 +5,8 @@
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
 	icon_state = "Runner Walking"
-	melee_damage_lower = 10
-	melee_damage_upper = 18
+	melee_damage_lower = 8
+	melee_damage_upper = 12
 	health = 100
 	maxHealth = 100
 	storedplasma = 50
@@ -14,10 +14,9 @@
 	maxplasma = 100
 	jellyMax = 600
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-	speed = -2.2
+	speed = -2
 	evolves_to = list("Hunter")
 	charge_type = 1 //Pounce
-	armor_deflection = 28
 	pass_flags = PASSTABLE
 
 	inherent_verbs = list(

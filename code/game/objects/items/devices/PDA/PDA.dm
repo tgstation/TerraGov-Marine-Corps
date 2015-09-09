@@ -286,7 +286,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
  *	The Actual PDA
  */
 /obj/item/device/pda/pickup(mob/user)
-	if(fon && src.loc != user )
+	if(fon && src.loc != user)
 		SetLuminosity(0)
 		user.SetLuminosity(f_lum)
 

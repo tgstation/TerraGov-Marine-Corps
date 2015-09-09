@@ -22,6 +22,11 @@
 			return
 
 	attackby(obj/item/W as obj, mob/user as mob)
+		for(var/obj/effect/xenomorph/acid/A in src.loc)
+			if(A.target == src)
+				user << "You can't get near that, it's melting!"
+				return
+
 		if(istype(W, /obj/item/weapon/wrench) && state == 0)
 			if(anchored && !istype(src,/obj/structure/girder/displaced))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)

@@ -123,7 +123,7 @@
 				spawn(50) // Not the best fix. There should be an failure proc, for /effect/equip_e/, which is called when the first initital checks fail
 					inuse = 0
 				M.requests += O
-				if (buf.types & DNA2_BUF_SE)
+				if (buf && buf.types & DNA2_BUF_SE)
 					if(block)// Isolated injector
 						testing("Isolated block [block] injector with contents: [GetValue()]")
 						if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/human)  )
@@ -158,7 +158,7 @@
 					user << "\red Apparently it didn't work."
 					return
 
-				if (buf.types & DNA2_BUF_SE)
+				if (buf && buf.types & DNA2_BUF_SE)
 					if(block)// Isolated injector
 						testing("Isolated block [block] injector with contents: [GetValue()]")
 						if (GetState() && block == MONKEYBLOCK && istype(M, /mob/living/carbon/human)  )

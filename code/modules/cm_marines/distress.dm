@@ -222,23 +222,29 @@
 //	M.transfer_to(mob)
 
 
-	mob.mind.assigned_role = "MODE"
-	mob.mind.special_role = "W-Y PMC LEADER"
+	mob.mind.assigned_role = "PMC"
 	ticker.mode.traitors += mob.mind
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
 			spawn_officer(mob)
+			mob.mind.special_role = "MODE"
+			mob.mind.assigned_role = "PMC Leader"
 			mob << "<font size='3'>\red You are the PMC Commando leader!</font>"
 			mob << "<B> You must lead the PMCs to victory against any and all hostile threats.</b>"
 			mob << "<B> Ensure no damage is incurred against Weyland Yutani.</b>"
 		else
-			if(prob(65)) //Randomize the heavy commandos and standard PMCs.
+			mob.mind.special_role = "MODE"
+			if(prob(35)) //Randomize the heavy commandos and standard PMCs.
 				spawn_standard(mob)
 				mob << "<font size='3'>\red You are a Weyland Yutani Commando!</font>"
 			else
-				spawn_heavy(mob)
-				mob << "<font size='3'>\red You are a Weyland Yutani Heavy Commando!</font>"
+				if(prob(50))
+					spawn_heavy(mob)
+					mob << "<font size='3'>\red You are a Weyland Yutani Heavy Commando!</font>"
+				else
+					spawn_gunner(mob)
+					mob << "<font size='3'>\red You are a Weyland Yutani Heavy Smartgunner!</font>"
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
 
@@ -296,7 +302,7 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Weyland PMC Officer"
+	W.assignment = "Weyland-Yutani Officer"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -320,17 +326,45 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/VP78 (M.back), slot_in_backpack)
-	if(prob(70))
+	if(prob(30))
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_r_store)
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m39/PMC(M), slot_r_hand)
 	else
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_l_store)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_r_store)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M42C(M), slot_r_hand)
+		if(prob(30))
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M42C(M), slot_r_hand)
+		else
+
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Elite Commando"
+	W.assignment = "PMC Elite"
+	W.registered_name = M.real_name
+	W.name = "[M.real_name]'s ID Card ([W.assignment])"
+	W.icon_state = "centcom"
+	W.access = get_all_accesses()
+	W.access += get_all_centcom_access()
+	M.equip_to_slot_or_del(W, slot_wear_id)
+
+/datum/emergency_call/pmc/proc/spawn_gunner(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/heavypmc(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/VP78 (M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M56_Smartgun(M), slot_r_hand)
+
+	var/obj/item/weapon/card/id/W = new(src)
+	W.assignment = "PMC Gunner"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -464,7 +498,6 @@
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(M), slot_shoes)
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
 
 	var/rand_gun = rand(0,5)
 	if(rand_gun == 0)
@@ -543,7 +576,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/Bear(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -622,7 +655,8 @@
 	ticker.mode.traitors += mob.mind
 	spawn(0)
 		spawn_pizza(mob)
-		mob << "<font size='3'>\red You are a pizza deliverer! Your employer is Pizzachimp Corporation.</font>"
+		var/pizzatxt = pick("Pizzachimp","Pizza the Hut","Papa Donks")
+		mob << "<font size='3'>\red You are a pizza deliverer! Your employer is the [pizzatxt] Corporation.</font>"
 		mob << "Your job is to deliver your pizzas. You're PRETTY sure this is the right place.."
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -656,37 +690,7 @@
 	W.icon_state = "centcom"
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
-/obj/item/clothing/under/pizza
-	name = "pizza delivery uniform"
-	desc = "An ill-fitting, slightly stained uniform for a pizza delivery pilot. Smells of cheese."
-	icon_state = "redshirt2"
-	item_state = "r_suit"
-	item_color = "redshirt2"
 
-/obj/item/weapon/storage/box/pizza
-	name = "Food Delivery Box"
-	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
-
-	New()
-		..()
-		pixel_y = rand(-3,3)
-		pixel_x = rand(-3,3)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
-		var/randsnack
-		for(var/i = 1 to 3)
-			randsnack = rand(0,5)
-			switch(randsnack)
-				if(0)
-					new /obj/item/weapon/reagent_containers/food/snacks/fries(src)
-				if(1)
-					new /obj/item/weapon/reagent_containers/food/snacks/cheesyfries(src)
-				if(2)
-					new /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger(src)
-				if(4)
-					new /obj/item/weapon/reagent_containers/food/snacks/taco(src)
-				if(5)
-					new /obj/item/weapon/reagent_containers/food/snacks/hotdog(src)
 
 /client/verb/JoinResponseTeam()
 	set name = "Join Response Team"

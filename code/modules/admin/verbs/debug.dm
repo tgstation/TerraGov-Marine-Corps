@@ -722,7 +722,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Iron Bears (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/Bear(M), slot_head)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)

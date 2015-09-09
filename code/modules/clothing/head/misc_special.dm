@@ -99,26 +99,6 @@
 
 
 /*
- * Ushanka
- */
-/obj/item/clothing/head/ushanka
-	name = "ushanka"
-	desc = "Perfect for winter in Siberia, da?"
-	icon_state = "ushankadown"
-	item_state = "ushankadown"
-	flags_inv = HIDEEARS
-
-/obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
-	if(src.icon_state == "ushankadown")
-		src.icon_state = "ushankaup"
-		src.item_state = "ushankaup"
-		user << "You raise the ear flaps on the ushanka."
-	else
-		src.icon_state = "ushankadown"
-		src.item_state = "ushankadown"
-		user << "You lower the ear flaps on the ushanka."
-
-/*
  * Pumpkin head
  */
 /obj/item/clothing/head/pumpkinhead

@@ -154,15 +154,18 @@
 			AC.loc = get_turf(src) //Eject casing onto ground.
 			user << "\blue You unload shell from \the [src]!"
 		if (load_method == MAGAZINE)
-			var/obj/item/ammo_magazine/AM = empty_mag
-			for (var/obj/item/ammo_casing/AC in loaded)
-				AM.stored_ammo += AC
-				loaded -= AC
-			AM.loc = get_turf(src)
-			empty_mag = null
-			update_icon()
-			AM.update_icon()
-			user << "\blue You unload magazine from \the [src]!"
+			if(empty_mag)
+				var/obj/item/ammo_magazine/AM = empty_mag
+				for (var/obj/item/ammo_casing/AC in loaded)
+					AM.stored_ammo += AC
+					loaded -= AC
+				AM.loc = get_turf(src)
+				empty_mag = null
+				update_icon()
+				AM.update_icon()
+				user << "\blue You unload magazine from \the [src]!"
+			else
+				user << "\red Nothing loaded in \the [src]!"
 	else
 		user << "\red Nothing loaded in \the [src]!"
 

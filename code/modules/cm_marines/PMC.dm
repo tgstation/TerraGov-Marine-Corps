@@ -113,8 +113,6 @@
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "helmet"
 	icon_state = "pmc_mask"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
-	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
 	anti_hug = 3
 
 /obj/item/clothing/head/helmet/marine/PMC
@@ -146,8 +144,6 @@
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_mask"
 	icon_state = "officer_mask"
-	anti_hug = 5
-
 
 /obj/item/clothing/head/helmet/marine/PMC/leader
 	name = "PMC Beret"
@@ -155,6 +151,7 @@
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_hat"
 	icon_state = "officer_hat"
+	anti_hug = 3
 
 /obj/item/weapon/grenade/explosive/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
@@ -186,38 +183,6 @@
 	name = "Weyland Yutani suit"
 	desc = "A formal white undersuit."
 
-
-//IRON BEARS
-
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/Bear
-	name = "Iron Bear Uniform"
-	desc = "A uniform worn by Iron Bears mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "bear_jumpsuit"
-	item_state = "bear_jumpsuit"
-	item_color = "bear_jumpsuit"
-
-/obj/item/clothing/suit/storage/marine/PMCarmor/Bear
-	name = "H1 Iron Bears Vest"
-	desc = "A protective vest worn by Iron Bears mercenaries."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "bear_armor"
-	icon_state = "bear_armor"
-	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
-
-/obj/item/clothing/head/helmet/marine/PMC/Bear
-	name = "Iron Bear Helmet"
-	desc = "A protective skullcap of the Iron Bears mercenaries."
-	icon = 'icons/PMC/PMC.dmi'
-	item_state = "bear_head"
-	icon_state = "bear_head"
-	icon_override = 'icons/PMC/PMC.dmi'
-	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHEADHAIR
-	anti_hug = 5
-	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
-
 /obj/item/clothing/under/marine_jumpsuit/PMC/commando
 	name = "PMC Commando Uniform"
 	desc = "An armored uniform worn by Weyland Yutani elite commandos."
@@ -225,8 +190,7 @@
 	icon_state = "commando_jumpsuit"
 	item_state = "commando_jumpsuit"
 	item_color = "commando_jumpsuit"
-	icon_override = 'icons/PMC/PMC.dmi'
-	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 10, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/PMCarmor/commando
 	name = "PMC Commando Armor"
@@ -235,7 +199,7 @@
 	item_state = "commando_armor"
 	icon_state = "commando_armor"
 	icon_override = 'icons/PMC/PMC.dmi'
-	armor = list(melee = 85, bullet = 85, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
+	armor = list(melee = 85, bullet = 85, laser = 50,energy = 80, bomb = 70, bio = 100, rad = 100)
 
 /obj/item/clothing/head/helmet/marine/PMC/commando
 	name = "PMC Commando Helmet"
@@ -244,7 +208,7 @@
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_helmet"
 	icon_override = 'icons/PMC/PMC.dmi'
-	armor = list(melee = 85, bullet = 85, laser = 50,energy = 60, bomb = 70, bio = 100, rad = 100)
+	armor = list(melee = 85, bullet = 85, laser = 50,energy = 80, bomb = 70, bio = 100, rad = 100)
 	anti_hug = 6
 
 /obj/item/clothing/shoes/PMC
@@ -264,14 +228,14 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc
-	name = "PMC Gunner armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun"
+	name = "PMC Gunner Armor"
+	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "heavy_armor"
 	icon_state = "heavy_armor"
 	item_color = "bear_jumpsuit"
-	armor = list(melee = 75, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+	armor = list(melee = 85, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/PMC/heavypmc
 	name = "PMC Gunner Helmet"
@@ -279,10 +243,5 @@
 	item_state = "heavy_helmet"
 	icon_state = "heavy_helmet"
 	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHEADHAIR
-	anti_hug = 2
-	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
-
-/obj/item/smartgun_powerpack/heavypmc
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "powerpack2"
-	item_state = "armor"
+	anti_hug = 4
+	armor = list(melee = 80, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)

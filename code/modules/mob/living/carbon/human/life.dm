@@ -1254,7 +1254,7 @@
 			handle_hud_list()
 
 		// now handle what we see on our screen
-		if(!client)
+		if(!client || isnull(client))
 			return 0
 
 		for(var/image/hud in client.images)
@@ -1266,6 +1266,7 @@
 		update_action_buttons()
 
 		if(damageoverlay.overlays)
+			damageoverlay.overlays = null
 			damageoverlay.overlays = list()
 
 		if(stat == UNCONSCIOUS)
