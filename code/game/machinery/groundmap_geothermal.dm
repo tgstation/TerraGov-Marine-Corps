@@ -205,6 +205,10 @@
 		F.fswitch = src
 	..()
 
+/obj/machinery/colony_floodlight/Del()
+	SetLuminosity(0)
+	..()
+
 /obj/machinery/colony_floodlight_switch/update_icon()
 	if(!ispowered)
 		icon_state = "panelnopower"

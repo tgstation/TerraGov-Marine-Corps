@@ -53,6 +53,10 @@
 		smoke.attach(src)
 		see_in_dark = 20
 
+	Del()
+		SetLuminosity(0)
+		..()
+
 /mob/living/carbon/Xenomorph/Boiler/ClickOn(var/atom/A, params)
 	if(is_zoomed && !is_bombarding && !istype(A,/obj/screen))
 		zoom_out()

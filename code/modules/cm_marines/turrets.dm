@@ -271,6 +271,7 @@
 			operator = null
 		if(pai)
 			pai = null
+		SetLuminosity(0)
 		processing_objects.Remove(src)
 		..()
 

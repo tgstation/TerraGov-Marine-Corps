@@ -407,6 +407,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_off = "lighter-[color]"
 		icon_state = icon_off
 
+/obj/item/weapon/flame/lighter/Del()
+	if(ismob(src.loc))
+		src.loc.SetLuminosity(-2)
+	else
+		SetLuminosity(0)
+	..()
+
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(user.r_hand == src || user.l_hand == src)
 		if(!lit)
