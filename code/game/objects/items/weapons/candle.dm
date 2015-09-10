@@ -17,6 +17,12 @@
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
+/obj/item/weapon/flame/candle/Del()
+	if(ismob(src.loc))
+		src.loc.SetLuminosity(-CANDLE_LUM)
+	else
+		SetLuminosity(0)
+	..()
 
 /obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -46,7 +52,6 @@
 			O.show_message(flavor_text, 1)
 		SetLuminosity(CANDLE_LUM)
 		processing_objects.Add(src)
-
 
 /obj/item/weapon/flame/candle/process()
 	if(!lit)

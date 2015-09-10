@@ -33,6 +33,7 @@
 	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
 	var/acid_cooldown = 0
 	var/prev_turf = null
+	var/turf/bomb_turf = null
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -51,6 +52,10 @@
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
+
+	Del()
+		SetLuminosity(0)
+		..()
 
 /mob/living/carbon/Xenomorph/Boiler/ClickOn(var/atom/A, params)
 	if(is_zoomed && !is_bombarding && !istype(A,/obj/screen))
@@ -152,6 +157,7 @@
 		readying_bombard = 0
 		is_bombarding = 1
 		visible_message("\blue [src] digs in!","\blue You get ready to bomb an area! If you move, you must wait again to fire.")
+		bomb_turf = get_turf(src)
 		if(client)
 			client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
 	else
@@ -170,6 +176,12 @@
 		return
 
 	var/turf/U = get_turf(src)
+
+	if(!isnull(bomb_turf) && bomb_turf != U)
+		is_bombarding = 0
+		if(client)
+			client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
+		return
 
 	if(!is_bombarding)
 		src << "You must prepare your stance before you can do this."
@@ -205,9 +217,9 @@
 	bomb_cooldown = 1
 	is_bombarding = 0
 	if(do_after(src,50))
+		bomb_turf = null
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
 		target.visible_message("\green <B>A glob of acid falls from the sky!</b>")
-		new /obj/effect/xenomorph/splatter(target)
 		if(grenade_type)
 			var/obj/item/weapon/grenade/G = new grenade_type(src.loc)
 			G.throw_at(target, 20, 2, src)

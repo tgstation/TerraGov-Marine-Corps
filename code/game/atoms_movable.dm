@@ -22,6 +22,7 @@
 	src.m_flag = 1
 	if ((A != src.loc && A && A.z == src.z))
 		src.last_move = get_dir(A, src.loc)
+	Moved(A,dir)
 	return
 
 /atom/movable/Bump(var/atom/A as mob|obj|turf|area, yes)
@@ -36,12 +37,25 @@
 	..()
 	return
 
+/atom/movable/proc/Moved(atom/OldLoc,Dir)
+	if(isturf(loc))
+		if(opacity)
+			OldLoc.UpdateAffectingLights()
+		else
+			if(light)
+				light.changed()
+	return
+
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
+		var/oldLoc
 		if(loc)
+			oldLoc = loc
 			loc.Exited(src)
 		loc = destination
 		loc.Entered(src)
+		if(oldLoc)
+			Moved(oldLoc,dir)
 		return 1
 	return 0
 

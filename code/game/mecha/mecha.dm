@@ -92,6 +92,7 @@
 /obj/mecha/Del()
 	src.go_out()
 	mechas_list -= src //global mech list
+	SetLuminosity(0)
 	..()
 	return
 
@@ -953,6 +954,7 @@
 	src.occupant_message("Toggled lights [lights?"on":"off"].")
 	log_message("Toggled lights [lights?"on":"off"].")
 	return
+
 
 /obj/mecha/verb/go_down()
 	set name = "Use Ladder"

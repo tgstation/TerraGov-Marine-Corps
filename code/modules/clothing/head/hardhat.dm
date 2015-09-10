@@ -35,6 +35,13 @@
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
 
+	Del()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		..()
+
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

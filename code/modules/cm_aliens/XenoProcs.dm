@@ -362,11 +362,15 @@
 	tick()
 
 /obj/effect/xenomorph/acid/proc/tick()
-	if(!target)
+	if(!target || isnull(target))
 		del(src)
+		return
 
 	if(!src) //Woops, abort
 		return
+
+	if(isturf(target.loc) && src.loc != target.loc)
+		src.loc = target.loc
 
 	var/tick_timer = rand(200,300) * acid_strength / 100 //Acid strength is just a percentage of time between ticks
 

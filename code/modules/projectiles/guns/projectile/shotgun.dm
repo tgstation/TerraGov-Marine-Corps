@@ -24,7 +24,7 @@
 			return 1
 		return 0
 
-	ShiftClick(var/mob/user)
+	AltClick(var/mob/user)
 		if(recentpump)	return
 		var/mob/living/carbon/human/M = user
 		if(!istype(M)) return //wat

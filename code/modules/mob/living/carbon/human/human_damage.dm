@@ -57,7 +57,10 @@
 
 	if(species && species.has_organ["brain"])
 		var/datum/organ/internal/brain/sponge = internal_organs_by_name["brain"]
-		brainloss = min(sponge.damage,maxHealth*2)
+		if(istype(sponge)) //Make sure they actually have a brain
+			brainloss = min(sponge.damage,maxHealth*2)
+		else
+			brainloss = 50 //No brain!
 	else
 		brainloss = 0
 	return brainloss

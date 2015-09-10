@@ -96,6 +96,11 @@
 	if (istype(M, /mob/living/carbon/Xenomorph))
 		user << "The [M] is too big to buckle in."
 		return
+	if (istype(user, /mob/living/carbon/Xenomorph) && !istype(src, /obj/structure/stool/bed/nest))
+		user << "You don't have the dexterity to do that, try a nest."
+		return
+
+
 
 	unbuckle()
 

@@ -57,7 +57,7 @@ datum/light_source
 		__y = owner.y
 		__z = owner.z
 		// the lighting object maintains a list of all light sources
-		lighting_controller.lights += src
+		lighting_controller.changed_lights.Add(src)
 
 
 	//Check a light to see if its effect needs reprocessing. If it does, remove any old effect and create a new one
@@ -65,13 +65,16 @@ datum/light_source
 		if(!owner)
 			remove_effect()
 			return 1	//causes it to be removed from our list of lights. The garbage collector will then destroy it.
-
+/*
 		// check to see if we've moved since last update
+// This is in atom/movable/Moved now so we don't check all the time
 		if(owner.x != __x || owner.y != __y || owner.z != __z)
 			__x = owner.x
 			__y = owner.y
 			__z = owner.z
 			changed = 1
+*/
+
 
 		if (owner.l_color != _l_color)
 			readrgb(owner.l_color)
@@ -83,6 +86,14 @@ datum/light_source
 			return add_effect()
 		return 0
 
+	proc/changed()
+		if(owner)
+			__x = owner.x
+			__y = owner.y
+
+		if(!changed)
+			changed = 1
+			lighting_controller.changed_lights.Add(src)
 
 	proc/remove_effect()
 		// before we apply the effect we remove the light's current effect.
@@ -182,7 +193,7 @@ atom/proc/SetLuminosity(new_luminosity, trueLum = FALSE)
 		new_luminosity *= new_luminosity
 	if(light)
 		if(trueLuminosity != new_luminosity)	//non-luminous lights are removed from the lights list in add_effect()
-			light.changed = 1
+			light.changed()
 	else
 		if(new_luminosity)
 			light = new(src)
@@ -453,9 +464,18 @@ area
 //We don't need to worry about lights which lit us but moved away, since they will have change status set already
 //This proc can cause lots of lights to be updated. :(
 atom/proc/UpdateAffectingLights()
+//	for(var/atom/A in oview(LIGHTING_MAX_LUMINOSITY_STATIC-1,src))
+//		if(A.light)
+//			A.light.changed()	//force it to update at next process()
+
+atom/movable/UpdateAffectingLights()
+	if(isturf(loc))
+		loc.UpdateAffectingLights()
+
+turf/UpdateAffectingLights()
 	for(var/atom/A in oview(LIGHTING_MAX_LUMINOSITY_STATIC-1,src))
 		if(A.light)
-			A.light.changed = 1			//force it to update at next process()
+			A.light.changed()
 
 //caps luminosity effects max-range based on what type the light's owner is.
 atom/proc/get_light_range()

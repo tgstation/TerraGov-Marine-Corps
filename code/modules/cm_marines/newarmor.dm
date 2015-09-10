@@ -234,6 +234,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			user.SetLuminosity(-brightness_on)
 			SetLuminosity(brightness_on)
 
+	Del()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		..()
+
 	attack_self(mob/user)
 		if(!isturf(user.loc))
 			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.

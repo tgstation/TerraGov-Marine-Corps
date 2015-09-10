@@ -237,6 +237,18 @@
 	icon_state = "boba_armor"
 	item_state = "boba_armor"
 
+/obj/item/clothing/suit/storage/marine/fluff/stobarico
+	name = "British Admiral Uniform"
+	desc = "An ancient uniform of an Admiral.  DONOR ITEM"
+	icon_state = "lordadmiral"
+	item_state = "lordadmiral"
+
+/obj/item/clothing/suit/storage/marine/fluff/starscream
+	name = "Merc Armor"
+	desc = "A relic from a time when mercenaries were plentiful.  DONOR ITEM"
+	icon_state = "merc_armor"
+	item_state = "merc_armor"
+
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
 //HEAD TEMPLATE (for Helmets/Hats/Berets)  ONLY TAKE NAME, DESC, ICON_STATE, AND ITEM_STATE.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -458,16 +470,21 @@
 
 /obj/item/clothing/head/helmet/marine/fluff/radical
 	name = "Bounty Hunter Helmet"
-	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM"
 	icon_state = "boba_helmet"
 	item_state = "boba_helmet"
 
 /obj/item/clothing/head/helmet/marine/fluff/leondark
-	name = "Daniel's USCM Cap"
-	desc = "A well worn cap with the name 'Barrientos' written on the inside.  DONOR ITEM" //Add UNIQUE if Unique
+	name = "Hunter's USCM Cap"
+	desc = "A well worn cap with the name 'Barrientos' written on the inside.  DONOR ITEM"
 	icon_state = "USCM_cap"
 	item_state = "USCM_cap"
 
+/obj/item/clothing/head/helmet/marine/fluff/starscream
+	name = "Asset Protection Helmet"
+	desc = "A helmet used to protect your most important asset.  DONOR ITEM"
+	icon_state = "asset_protect"
+	item_state = "asset_protect"
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
@@ -618,10 +635,24 @@
 
 /obj/item/clothing/under/marine/fluff/radical
 	name = "Bounty Hunter Jumpsuit"
-	desc = "Undergarmants of an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
-	icon_state = "boba_suit"
-	item_state = "boba_suit_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
-	item_color = "boba_suit" //color must always be the same as item_state
+	desc = "Undergarmants of an ancient bounty hunter.  DONOR ITEM"
+	icon_state = "boba_jumpsuit"
+	item_state = "boba_jumpsuit_s"
+	item_color = "boba_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/jackmcintyre
+	name = "Dress Uniform"
+	desc = "A Dress uniform, worn by standard marines. DONOR ITEM"
+	icon_state = "BO_jumpsuit"
+	item_state = "BO_jumpsuit_s"
+	item_color = "BO_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/starscream
+	name = "Merc Jumpsuit"
+	desc = "Jumpsut from a super shady mercenary company.  DONOR ITEM"
+	icon_state = "merc_jumpsuit2"
+	item_state = "merc_jumpsuit2_s"
+	item_color = "merc_jumpsuit2"
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
@@ -697,6 +728,12 @@
 	desc = "A robotic looking Armored mask.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "hartmask"
 	item_state = "hartmask"
+
+/obj/item/clothing/mask/fluff/starscream
+	name = "Mercenary Mask"
+	desc = "I was born in the dark... Molded by it.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "merc_mask"
+	item_state = "merc_mask"
 
 //	BOOTS/SHOES COSMETICS  ////////////////////////////////////////////////
 

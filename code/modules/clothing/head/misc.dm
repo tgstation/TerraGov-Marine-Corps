@@ -237,16 +237,6 @@
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
 
-/obj/item/clothing/head/bearpelt
-	name = "bear pelt hat"
-	desc = "Fuzzy."
-	icon_state = "bearpelt"
-	item_state = "bearpelt"
-	flags = FPRINT | TABLEPASS | BLOCKHAIR
-	siemens_coefficient = 2.0
-	anti_hug = 1
-	armor = list(melee = 90, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
-
 /obj/item/clothing/head/xenos
 	name = "xenos helmet"
 	icon_state = "xenos"

@@ -110,6 +110,13 @@
 
 	return ..()
 
+/obj/item/weapon/gun/Del()
+	if(ismob(src.loc))
+		src.loc.SetLuminosity(-flash_lum)
+	else
+		SetLuminosity(0)
+	..()
+
 //Note: pickup and dropped on weapons must have both the ..() to update zoom, AND twohanded,
 //As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
 /obj/item/weapon/gun/dropped(mob/user as mob)

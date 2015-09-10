@@ -143,6 +143,9 @@
 		S.remove_from_storage(src)
 
 	src.throwing = 0
+	if(src.loc != user)
+		src.pickup(user)
+
 	if (src.loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
 		if(!src.canremove)
@@ -153,7 +156,6 @@
 		if(isliving(src.loc))
 			return
 		user.next_move = max(user.next_move+2,world.time + 2)
-	src.pickup(user)
 	add_fingerprint(user)
 	user.put_in_active_hand(src)
 	return
@@ -227,11 +229,12 @@
 	if(layer != initial(layer))
 		layer = initial(layer) //Set it back when dropped.
 
-	if(zoom) //binoculars, scope, etc
-		user.client.view = world.view
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
-		zoom = 0
+	if(user && user.client) //Dropped when disconnected, whoops
+		if(zoom) //binoculars, scope, etc
+			user.client.view = world.view
+			user.client.pixel_x = 0
+			user.client.pixel_y = 0
+			zoom = 0
 	return
 
 // called just as an item is picked up (loc is not yet changed)

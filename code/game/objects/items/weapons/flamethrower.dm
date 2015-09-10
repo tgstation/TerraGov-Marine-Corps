@@ -248,6 +248,7 @@
 		icon_state = "1"
 		SetLuminosity(2)
 	else  //Fire has burned out, firelevel is 0 or less. GET OUT. Shouldn't cause issues, unlike sleep() + Del
+		SetLuminosity(0)
 		processing_objects.Remove(src)
 		del(src)
 		return
