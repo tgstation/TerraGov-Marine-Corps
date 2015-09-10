@@ -149,7 +149,10 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 
 		sleep(8)
 
-		if(!lighting_controller.processing)	lighting_controller.processing = lighting_controller_was_processing
+		if(!lighting_controller.processing)
+			lighting_controller.processing = 1
+			lighting_controller.process() //Restart the lighting controller
+
 		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
 			makepowernets()
 			defer_powernet_rebuild = 0
