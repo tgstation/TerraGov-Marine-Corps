@@ -103,6 +103,7 @@
 
 /obj/machinery/power/supermatter/Del()
 	del radio
+	SetLuminosity(0)
 	. = ..()
 
 /obj/machinery/power/supermatter/proc/explode()

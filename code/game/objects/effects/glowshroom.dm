@@ -51,6 +51,7 @@
 
 /obj/effect/glowshroom/Del()
 	processing_objects -= src
+	SetLuminosity(0)
 	..()
 
 /obj/effect/glowshroom/process()
