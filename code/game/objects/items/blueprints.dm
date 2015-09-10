@@ -91,7 +91,7 @@ move an amendment</a> to the drawing.</p>
 		/area/tdome,
 		/area/syndicate_station,
 		/area/wizard_station,
-		/area/prison
+		// /area/prison
 		// /area/derelict //commented out, all hail derelict-rebuilders!
 	)
 	for (var/type in SPECIALS)

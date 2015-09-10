@@ -284,8 +284,9 @@
 	name = "blue lightstick"
 	desc = "You can stick them in the ground"
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "lightstick0"
+	icon_state = "lightstick_blue0"
 	l_color = "#47A3FF" //Blue
+	var/s_color = "blue"
 
 	//Removing from turf
 	attack_hand(mob/user)
@@ -299,7 +300,7 @@
 
 		anchored = 0
 		user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
-		icon_state = "lightstick[anchored]"
+		icon_state = "lightstick_[s_color][anchored]"
 		SetLuminosity(0)
 		pixel_x = 0
 		pixel_y = 0
@@ -309,7 +310,8 @@
 /obj/item/lightstick/red
 	name = "red lightstick"
 	l_color = "#CC3300"
-	icon_state = "lightstick0"
+	icon_state = "lightstick_red0"
+	s_color = "red"
 
 //Snow Shovel----------
 /obj/item/snow_shovel
