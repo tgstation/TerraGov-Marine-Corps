@@ -244,8 +244,8 @@
 	item_state = "lordadmiral"
 
 /obj/item/clothing/suit/storage/marine/fluff/starscream
-	name = "Merc Armor"
-	desc = "A relic from a time when mercenaries were plentiful.  DONOR ITEM"
+	name = "Kardar Hussein's Armor"
+	desc = "Slightly worn and torn.  DONOR ITEM"
 	icon_state = "merc_armor"
 	item_state = "merc_armor"
 
@@ -481,8 +481,8 @@
 	item_state = "USCM_cap"
 
 /obj/item/clothing/head/helmet/marine/fluff/starscream
-	name = "Asset Protection Helmet"
-	desc = "A helmet used to protect your most important asset.  DONOR ITEM"
+	name = "Kardar Hussein's Helmet"
+	desc = "Slightly worn and torn.  DONOR ITEM"
 	icon_state = "asset_protect"
 	item_state = "asset_protect"
 
@@ -648,8 +648,8 @@
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/starscream
-	name = "Merc Jumpsuit"
-	desc = "Jumpsut from a super shady mercenary company.  DONOR ITEM"
+	name = "Kardar Hussein's Jumpsuit"
+	desc = "Slightly worn and torn.  DONOR ITEM"
 	icon_state = "merc_jumpsuit2"
 	item_state = "merc_jumpsuit2_s"
 	item_color = "merc_jumpsuit2"
@@ -725,13 +725,13 @@
 
 /obj/item/clothing/mask/fluff/fick2
 	name = "Corporal Hart's Mask"
-	desc = "A robotic looking Armored mask.  DONOR ITEM" //Add UNIQUE if Unique
+	desc = "A robotic looking Armored mask.  DONOR ITEM"
 	icon_state = "hartmask"
 	item_state = "hartmask"
 
 /obj/item/clothing/mask/fluff/starscream
-	name = "Mercenary Mask"
-	desc = "I was born in the dark... Molded by it.  DONOR ITEM" //Add UNIQUE if Unique
+	name = "Kardar Hussein's mask"
+	desc = "Slightly worn and torn.  DONOR ITEM"
 	icon_state = "merc_mask"
 	item_state = "merc_mask"
 
