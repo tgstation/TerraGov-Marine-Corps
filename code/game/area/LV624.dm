@@ -266,3 +266,7 @@
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
 	icon_state = "tcomsatcham"
+
+/area/lv624/lazarus/console
+	name = "\improper Shuttle Console"
+	icon_state = "tcomsatcham"

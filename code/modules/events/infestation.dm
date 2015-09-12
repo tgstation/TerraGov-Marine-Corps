@@ -27,36 +27,36 @@
 	var/list/turf/simulated/floor/turfs = list()
 	var/spawn_area_type
 	switch(location)
-		if(LOC_KITCHEN)
-			spawn_area_type = /area/crew_quarters/kitchen
-			locstring = "the kitchen"
-		if(LOC_ATMOS)
-			spawn_area_type = /area/atmos
-			locstring = "atmospherics"
+//		if(LOC_KITCHEN)
+//			spawn_area_type = /area/crew_quarters/kitchen
+//			locstring = "the kitchen"
+//		if(LOC_ATMOS)
+//			spawn_area_type = /area/atmos
+//			locstring = "atmospherics"
 		if(LOC_INCIN)
 			spawn_area_type = /area/maintenance/incinerator
 			locstring = "the incinerator"
-		if(LOC_CHAPEL)
-			spawn_area_type = /area/chapel/main
-			locstring = "the chapel"
-		if(LOC_LIBRARY)
-			spawn_area_type = /area/library
-			locstring = "the library"
-		if(LOC_HYDRO)
-			spawn_area_type = /area/hydroponics
-			locstring = "hydroponics"
-		if(LOC_VAULT)
-			spawn_area_type = /area/security/nuke_storage
-			locstring = "the vault"
-		if(LOC_CONSTR)
-			spawn_area_type = /area/construction
-			locstring = "the construction area"
-		if(LOC_TECH)
-			spawn_area_type = /area/storage/tech
-			locstring = "technical storage"
-		if(LOC_TACTICAL)
-			spawn_area_type = /area/security/tactical
-			locstring = "tactical equipment storage"
+//		if(LOC_CHAPEL)
+//			spawn_area_type = /area/chapel/main
+//			locstring = "the chapel"
+//		if(LOC_LIBRARY)
+//			spawn_area_type = /area/library
+//			locstring = "the library"
+//		if(LOC_HYDRO)
+//			spawn_area_type = /area/hydroponics
+//			locstring = "hydroponics"
+//		if(LOC_VAULT)
+//			spawn_area_type = /area/security/nuke_storage
+//			locstring = "the vault"
+//		if(LOC_CONSTR)
+//			spawn_area_type = /area/construction
+//			locstring = "the construction area"
+//		if(LOC_TECH)
+//			spawn_area_type = /area/storage/tech
+//			locstring = "technical storage"
+//		if(LOC_TACTICAL)
+//			spawn_area_type = /area/security/tactical
+//			locstring = "tactical equipment storage"
 
 	//world << "looking for [spawn_area_type]"
 	for(var/areapath in typesof(spawn_area_type))

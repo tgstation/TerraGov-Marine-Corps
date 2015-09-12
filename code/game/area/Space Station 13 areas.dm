@@ -334,12 +334,12 @@ var/list/ghostteleportlocs = list()
 	has_gravity = 1
 
 // === end remove
-
+/*
 /area/alien
 	name = "\improper Alien base"
 	icon_state = "yellow"
 	requires_power = 0
-
+*/
 // CENTCOM
 
 /area/centcom
@@ -376,6 +376,10 @@ var/list/ghostteleportlocs = list()
 
 /area/centcom/holding
 	name = "\improper Holding Facility"
+
+/area/centcom/solitary
+	name = "Solitary Confinement"
+	icon_state = "brig"
 
 //SYNDICATES
 
@@ -422,12 +426,12 @@ var/list/ghostteleportlocs = list()
 
 
 
-
+/*
 /area/planet/clown
 	name = "\improper Clown Planet"
 	icon_state = "honk"
 	requires_power = 0
-
+*/
 /area/tdome
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
@@ -534,6 +538,7 @@ var/list/ghostteleportlocs = list()
 	requires_power = 0
 
 //PRISON
+/*
 /area/prison
 	name = "\improper Prison Station"
 	icon_state = "brig"
@@ -615,13 +620,13 @@ var/list/ghostteleportlocs = list()
 /area/prison/cell_block/C
 	name = "Prison Cell Block C"
 	icon_state = "brig"
-
+*/
 //STATION13
-
+/*
 /area/atmos
  	name = "Atmospherics"
  	icon_state = "atmos"
-
+*/
 //Maintenance
 
 /area/maintenance/aft
@@ -872,7 +877,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "server"
 */
 //Crew
-
+/*
 /area/crew_quarters
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
@@ -965,7 +970,7 @@ var/list/ghostteleportlocs = list()
 /area/lawoffice
 	name = "\improper Internal Affairs"
 	icon_state = "law"
-
+*/
 
 
 
@@ -1039,11 +1044,11 @@ var/list/ghostteleportlocs = list()
 //Engineering
 
 /area/engine
-
+/*
 	drone_fabrication
 		name = "\improper Drone Fabrication"
 		icon_state = "engine"
-
+*/
 	engine_smes
 		name = "Engineering SMES"
 		icon_state = "engine_smes"
@@ -1052,7 +1057,7 @@ var/list/ghostteleportlocs = list()
 	engine_room
 		name = "\improper Engine Room"
 		icon_state = "engine"
-
+/*
 	engine_airlock
 		name = "\improper Engine Room Airlock"
 		icon_state = "engine"
@@ -1108,7 +1113,7 @@ var/list/ghostteleportlocs = list()
 	locker_room
 		name = "\improper Engineering Locker Room"
 		icon_state = "engine_storage"
-
+*/
 
 //Solars
 
@@ -1200,7 +1205,7 @@ var/list/ghostteleportlocs = list()
 	ambience = list('sound/ambience/ambimalf.ogg')
 
 //MedBay
-
+/*
 /area/medical/medbay
 	name = "\improper Medbay"
 	icon_state = "medbay"
@@ -1321,9 +1326,9 @@ var/list/ghostteleportlocs = list()
 /area/medical/sleeper
 	name = "\improper Emergency Treatment Centre"
 	icon_state = "exam_room"
-
+*/
 //Security
-
+/*
 /area/security/main
 	name = "\improper Security Office"
 	icon_state = "security"
@@ -1331,7 +1336,7 @@ var/list/ghostteleportlocs = list()
 /area/security/lobby
 	name = "\improper Security lobby"
 	icon_state = "security"
-
+*/
 /area/security/brig
 	name = "\improper Brig"
 	icon_state = "brig"
@@ -1339,7 +1344,7 @@ var/list/ghostteleportlocs = list()
 /area/security/prison
 	name = "\improper Prison Wing"
 	icon_state = "sec_prison"
-
+/*
 /area/security/warden
 	name = "\improper Warden"
 	icon_state = "Warden"
@@ -1359,7 +1364,7 @@ var/list/ghostteleportlocs = list()
 /area/security/tactical
 	name = "\improper Tactical Equipment"
 	icon_state = "Tactical"
-
+*/
 
 /*
 	New()
@@ -1377,7 +1382,7 @@ var/list/ghostteleportlocs = list()
 						newIcon.GrayScale()
 						objectToGrayscale.icon = newIcon
 */
-
+/*
 /area/security/nuke_storage
 	name = "\improper Vault"
 	icon_state = "nuke_storage"
@@ -1417,15 +1422,15 @@ var/list/ghostteleportlocs = list()
 /area/quartermaster
 	name = "\improper Quartermasters"
 	icon_state = "quart"
-
+*/
 ///////////WORK IN PROGRESS//////////
-
+/*
 /area/quartermaster/sorting
 	name = "\improper Delivery Office"
 	icon_state = "quartstorage"
-
+*/
 ////////////WORK IN PROGRESS//////////
-
+/*
 /area/quartermaster/office
 	name = "\improper Cargo Office"
 	icon_state = "quartoffice"
@@ -1461,7 +1466,7 @@ var/list/ghostteleportlocs = list()
 /area/hydroponics/garden
 	name = "\improper Garden"
 	icon_state = "garden"
-
+*/
 //rnd (Research and Development
 /area/rnd/research
 	name = "\improper Research and Development"
@@ -1516,7 +1521,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "server"
 
 //Storage
-
+/*
 /area/storage/tools
 	name = "Auxiliary Tool Storage"
 	icon_state = "storage"
@@ -1565,7 +1570,7 @@ var/list/ghostteleportlocs = list()
 	requires_power = 0
 	name = "\improper Test Room"
 	icon_state = "storage"
-
+*/
 //DJSTATION
 /*
 /area/djstation
@@ -1581,7 +1586,7 @@ var/list/ghostteleportlocs = list()
 /area/derelict
 	name = "\improper Derelict Station"
 	icon_state = "storage"
-
+/*
 /area/derelict/hallway/primary
 	name = "\improper Derelict Primary Hallway"
 	icon_state = "hallP"
@@ -1663,7 +1668,7 @@ var/list/ghostteleportlocs = list()
 /area/derelict/singularity_engine
 	name = "\improper Derelict Singularity Engine"
 	icon_state = "engine"
-
+*/
 //HALF-BUILT STATION (REPLACES DERELICT IN BAYCODE, ABOVE IS LEFT FOR DOWNSTREAM)
 /*
 /area/shuttle/constructionsite
@@ -1730,7 +1735,7 @@ var/list/ghostteleportlocs = list()
 
 */
 //Construction
-
+/*
 /area/construction
 	name = "\improper Construction Area"
 	icon_state = "yellow"
@@ -1762,9 +1767,9 @@ var/list/ghostteleportlocs = list()
 /area/construction/Storage
 	name = "Construction Site Storage"
 	icon_state = "yellow"
-
+*/
 //AI
-
+/*
 /area/ai_monitored/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"
@@ -1790,20 +1795,20 @@ var/list/ghostteleportlocs = list()
 /area/turret_protected/ai_server_room
 	name = "AI Server Room"
 	icon_state = "ai_server"
-
+*/
 /area/turret_protected/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 	ambience = list('sound/ambience/ambimalf.ogg')
-
+/*
 /area/turret_protected/ai_cyborg_station
 	name = "\improper Cyborg Station"
 	icon_state = "ai_cyborg"
-
+*/
 /area/turret_protected/aisat
 	name = "\improper AI Satellite"
 	icon_state = "ai"
-
+/*
 /area/turret_protected/aisat_interior
 	name = "\improper AI Satellite"
 	icon_state = "ai"
@@ -1835,7 +1840,7 @@ var/list/ghostteleportlocs = list()
 /area/turret_protected/NewAIMain
 	name = "\improper AI Main New"
 	icon_state = "storage"
-
+*/
 
 
 //Misc
@@ -1865,6 +1870,8 @@ var/list/ghostteleportlocs = list()
 
 
 // Telecommunications Satellite
+/*
+
 /area/tcommsat/
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
@@ -1903,14 +1910,15 @@ var/list/ghostteleportlocs = list()
 /area/tcommsat/lounge
 	name = "\improper Telecommunications Satellite Lounge"
 	icon_state = "tcomsatlounge"
-
+*/
 
 
 // Away Missions
+/*
 /area/awaymission
 	name = "\improper Strange Location"
 	icon_state = "away"
-/*
+
 /area/awaymission/example
 	name = "\improper Strange Station"
 	icon_state = "away"
@@ -2086,39 +2094,39 @@ var/list/the_station_areas = list (
 	/area/shuttle/prison/station,
 	/area/shuttle/administration/station,
 	/area/shuttle/specops/station,
-	/area/atmos,
+//	/area/atmos,
 	/area/maintenance,
 	/area/hallway,
 	/area/bridge,
-	/area/crew_quarters,
+//	/area/crew_quarters,
 	/area/holodeck,
 	/area/mint,
-	/area/library,
-	/area/chapel,
-	/area/lawoffice,
+//	/area/library,
+//	/area/chapel,
+//	/area/lawoffice,
 	/area/engine,
 	/area/solar,
 	/area/assembly,
 	/area/teleporter,
-	/area/medical,
-	/area/security,
-	/area/quartermaster,
-	/area/janitor,
-	/area/hydroponics,
+//	/area/medical,
+//	/area/security,
+//	/area/quartermaster,
+//	/area/janitor,
+//	/area/hydroponics,
 	/area/rnd,
-	/area/storage,
-	/area/construction,
-	/area/ai_monitored/storage/eva, //do not try to simplify to "/area/ai_monitored" --rastaf0
-	/area/ai_monitored/storage/secure,
-	/area/ai_monitored/storage/emergency,
-	/area/turret_protected/ai_upload, //do not try to simplify to "/area/turret_protected" --rastaf0
-	/area/turret_protected/ai_upload_foyer,
-	/area/turret_protected/ai,
+//	/area/storage,
+//	/area/construction,
+//	/area/ai_monitored/storage/eva, //do not try to simplify to "/area/ai_monitored" --rastaf0
+//	/area/ai_monitored/storage/secure,
+//	/area/ai_monitored/storage/emergency,
+//	/area/turret_protected/ai_upload, //do not try to simplify to "/area/turret_protected" --rastaf0
+//	/area/turret_protected/ai_upload_foyer,
+//	/area/turret_protected/ai,
 )
 
 
 
-
+/*
 /area/beach
 	name = "Keelin's private beach"
 	icon_state = "null"
@@ -2126,7 +2134,7 @@ var/list/the_station_areas = list (
 	lighting_use_dynamic = 0
 	requires_power = 0
 
-/*	var/sound/mysound = null
+	var/sound/mysound = null
 
 	New()
 		..()

@@ -226,6 +226,10 @@
 	name = "\improper Atmospherics"
 	icon_state = "blue-red2"
 
+/area/sulaco/eva
+	name = "\improper EVA Storage"
+	icon_state = "storage"
+
 /area/sulaco/rear_maintenance
 	name = "\improper Lower Maintenance Deck"
 	icon_state = "hallP"
