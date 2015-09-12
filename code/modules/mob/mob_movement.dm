@@ -262,13 +262,15 @@
 		//New proximity code. This replaces turf/Entered:HasProximity checks.
 		//Host is checked already but we can check here for efficiency.
 		//We can use orange instead of range, since Crossed already checks their turf.
-		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD)
-			var/obj/item/clothing/mask/facehugger/F = locate(/obj/item/clothing/mask/facehugger) in range(2,mob)
-			if(F && get_dist(F,mob) <= 1)
-				F.HasProximity(mob)
-			var/obj/effect/alien/egg/E = locate(/obj/effect/alien/egg) in range(2,mob)
-			if(E && get_dist(E,mob) <= 1)
-				E.HasProximity(mob)
+		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD && !mob.lying)
+			for(var/obj/item/clothing/mask/facehugger/F in range(1,mob))
+				if(!F.stat && isturf(F.loc))
+					F.HasProximity(mob)
+					break
+			for(var/obj/effect/alien/egg/E in range(1,mob))
+				if(!E.stat && isturf(E.loc) && E.status == GROWN)
+					E.HasProximity(mob)
+					break
 
 		if(istype(mob.buckled, /obj/vehicle))
 			return mob.buckled.relaymove(mob,direct)
