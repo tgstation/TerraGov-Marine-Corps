@@ -268,7 +268,7 @@
 					F.HasProximity(mob)
 					break
 			for(var/obj/effect/alien/egg/E in range(1,mob))
-				if(!E.stat && isturf(E.loc) && E.status == GROWN)
+				if(isturf(E.loc) && E.status == GROWN)
 					E.HasProximity(mob)
 					break
 
