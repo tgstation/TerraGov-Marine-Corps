@@ -1,21 +1,127 @@
 Note: The proc name, source file, src and usr are all from the FIRST of the identical runtimes. Everything else is cropped.
 
-Total unique runtimes: 2
-Total runtimes: 2
+Total unique runtimes: 16
+Total runtimes: 48
 
 ** Runtimes **
 
-The following runtime has occured 1 time(s).
-runtime error: type mismatch: the plating (107,70,1) (/turf/simulated/floor/plating) += the plating (108,70,1) (/turf/simulated/floor/plating)
-proc name: IsolateContents (/zone/proc/IsolateContents)
-  source file: ZAS_Zones.dm,747
-  usr: null
-  src: /zone (/zone)
+The following runtime has occured 13 time(s).
+runtime error: Cannot read null.name
+proc name: Topic (/obj/machinery/chem_master/Topic)
+  source file: Chemistry-Machinery.dm,331
+  usr: Roy Oak (/mob/living/carbon/human)
+  src: ChemMaster 3000 (/obj/machinery/chem_master)
 
 
-The following runtime has occured 1 time(s).
+The following runtime has occured 6 time(s).
 runtime error: Cannot read null.len
-proc name: Rebuild (/zone/proc/Rebuild)
-  source file: ZAS_Zones.dm,669
+proc name: mergeKey (/proc/mergeKey)
+  source file: lists.dm,196
+  usr: Clark Rover (/mob/dead/observer)
+  src: null
+
+
+The following runtime has occured 6 time(s).
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,133
+  usr: Klydoo Rocks (/mob/living/carbon/human)
+  src: the reinforced (/obj/structure/girder/reinforced)
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Sergio Stone (/mob/living/carbon/human)
+  src: Erin Kowalski (/mob/living/carbon/human)
+
+
+The following runtime has occured 3 time(s).
+runtime error: Cannot read null.ckey
+proc name: mergeKey (/proc/mergeKey)
+  source file: lists.dm,199
+  usr: Clark Rover (/mob/dead/observer)
+  src: null
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot modify null.loc.
+proc name: setup field (/obj/machinery/shieldwallgen/proc/setup_field)
+  source file: sheldwallgen.dm,156
   usr: null
-  src: /zone (/zone)
+  src: Shield Generator (/obj/machinery/shieldwallgen)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,530
+  usr: null
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: null
+  src: Best Pal 9000 (/mob/living/silicon/pai)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Curtis Weeter (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined variable /turf/space/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,972
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: bad client
+proc name: Change UI (/client/verb/change_ui)
+  source file: You will now take people captive.,164
+  usr: Unknown (as Oscar Von Kristoff... (/mob/living/carbon/human)
+  src: Nickzil (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined proc or verb /connection_edge/zone/savefile load().
+
+
+
+The following runtime has occured 1 time(s).
+runtime error: Call to /area/Adjacent(), unimplemented proc
+proc name: Adjacent (/area/Adjacent)
+  source file: adjacent.dm,18
+  usr: Douglas Greenawalt (/mob/living/carbon/human)
+  src: the Engineering Storage (/area/sulaco/engineering/storage)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.add fingerprint().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,793
+  usr: Jonah Greenwood (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.x
+proc name: get cardinal dir (/proc/get_cardinal_dir)
+  source file: unsorted.dm,1114
+  usr: Jordan Harris (/mob/living/carbon/human)
+  src: null
