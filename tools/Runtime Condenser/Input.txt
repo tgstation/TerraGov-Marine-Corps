@@ -2768,3 +2768,17 @@ Allan1234 (/client): Jump to Area(the Elevator II (/area/shuttle/elevator2/trans
 Denied access to 'Guest-683113001' connecting from 172.248.180.37
 ### VarEdit by Allan1234: /obj/item/weapon/card/id/centcom registered_name=Bishop Weyland ID
 ### VarEdit by Allan1234: /obj/item/weapon/card/id/centcom registered_name=Bishop Weyland
+Rebooted server.
+Wed Sep 16 02:11:38 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 7, 9, 10, 11, 13, 14, 16, 18, 19, 21, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
