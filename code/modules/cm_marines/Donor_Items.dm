@@ -249,6 +249,12 @@
 	icon_state = "merc_armor"
 	item_state = "merc_armor"
 
+/obj/item/clothing/suit/storage/marine/fluff/steelpoint
+	name = "M4X Armor"
+	desc = "Armor to the M4X!!!!.  DONOR ITEM"
+	icon_state = "steelpoint_armor"
+	item_state = "steelpoint_armor"
+
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
 //HEAD TEMPLATE (for Helmets/Hats/Berets)  ONLY TAKE NAME, DESC, ICON_STATE, AND ITEM_STATE.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -486,6 +492,18 @@
 	icon_state = "asset_protect"
 	item_state = "asset_protect"
 
+/obj/item/clothing/head/helmet/marine/fluff/blackdragon
+	name = "Spartan Helmet"
+	desc = "SPARTANS, WHAT IS YOUR PROFESSION?  DONOR ITEM"
+	icon_state = "blackdragon_helmet"
+	item_state = "blackdragon_helmet"
+
+/obj/item/clothing/head/helmet/marine/fluff/steepoint
+	name = "M4X Helmet"
+	desc = "Helmets to the M4X!!!  DONOR ITEM"
+	item_state = "steelpoint_helmet"
+
+
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
 //UNIFORM TEMPLATE (for uniforms/jumpsuits)  ONLY TAKE NAME, DESC, ICON_STATE, ITEM_STATE,  AND ITEM_COLOR.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -654,6 +672,20 @@
 	item_state = "merc_jumpsuit2_s"
 	item_color = "merc_jumpsuit2"
 
+/obj/item/clothing/under/marine/fluff/allan
+	name = "Commander Jumpsuit"
+	desc = "Jumpsuit worn by a space commander...  DONOR ITEM"
+	icon_state = "henrick_jumpsuit"
+	item_state = "henrick_jumpsuit_s"
+	item_color = "henrick_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/steelpoint
+	name = "M4X Jumpsuit"
+	desc = "Jumpsuit to the M4X!!!  DONOR ITEM"
+	icon_state = "steelpoint_jumpsuit"
+	item_state = "steelpoint_jumpsuit_s"
+	item_color = "steelpoint_jumpsuit"
+
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
 //MASK TEMPLATE (for masks)  ONLY TAKE NAME, DESC, ICON_STATE, ITEM_STATE,  AND ITEM_COLOR.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -756,6 +788,10 @@
 	desc = "A uniform, of a famous Earth warrior... Donor Item"
 	icon_state = "doom_boots"
 	item_state = "doom_boots"
+
+/obj/item/clothing/shoes/marine/fluff/steelpoint
+	name = "M4X Boot"
+	desc = "Boots to the M4X.  DONOR ITEM"
 
 //GENERIC GLASSES, GLOVES, AND MISC ////////////////////
 
