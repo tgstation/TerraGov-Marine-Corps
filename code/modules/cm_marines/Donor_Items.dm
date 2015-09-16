@@ -495,13 +495,15 @@
 /obj/item/clothing/head/helmet/marine/fluff/blackdragon
 	name = "Spartan Helmet"
 	desc = "SPARTANS, WHAT IS YOUR PROFESSION?  DONOR ITEM"
-	icon_state = "blackdragon_helmet"
-	item_state = "blackdragon_helmet"
+	icon_state = "blackdragon_helmet_u" //UNIQUE
+	item_state = "blackdragon_helmet_u"
 
-/obj/item/clothing/head/helmet/marine/fluff/steepoint
+/obj/item/clothing/head/helmet/marine/fluff/steelpoint
 	name = "M4X Helmet"
 	desc = "Helmets to the M4X!!!  DONOR ITEM"
+	icon_state = "steelpoint_helmet"
 	item_state = "steelpoint_helmet"
+
 
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
@@ -792,6 +794,8 @@
 /obj/item/clothing/shoes/marine/fluff/steelpoint
 	name = "M4X Boot"
 	desc = "Boots to the M4X.  DONOR ITEM"
+	icon_state = "jackboots"
+	item_state = "jackboots"
 
 //GENERIC GLASSES, GLOVES, AND MISC ////////////////////
 
