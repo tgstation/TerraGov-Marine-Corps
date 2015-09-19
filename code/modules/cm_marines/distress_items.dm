@@ -102,7 +102,7 @@
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	load_method = 2
 	twohanded = 1
-	fire_delay = 4
+	fire_delay = 3
 	recoil = 0
 	muzzle_pixel_x = 31
 	muzzle_pixel_y = 18
@@ -139,12 +139,12 @@
 	desc = "A four-barrel pump action shotgun capable of firing in rapid succession. Dangerous."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "rspshotgun"
-	max_shells = 4
-	w_class = 4
+	max_shells = 6
+	w_class = 6
 	ammo_type = "/obj/item/ammo_casing/shotgun"
 	fire_delay = 4
 	recoil = 1
-	force = 10.0
+	force = 20.0
 	twohanded = 1
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 18

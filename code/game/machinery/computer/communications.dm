@@ -201,6 +201,9 @@
 			var/confirm = alert(usr, "Are you sure? Sending a distress call can only be done once and should only be done with a good reason.", "Confirm", "Yes", "No")
 			if(confirm != "Yes") return
 
+			if(ticker.mode.has_called_emergency) //Someone spammed the damn button
+				return
+
 			var/count_humans = 0
 			var/count_aliens = 0
 
