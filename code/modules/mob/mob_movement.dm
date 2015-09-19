@@ -264,7 +264,8 @@
 		//We can use orange instead of range, since Crossed already checks their turf.
 		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD && !mob.lying)
 			for(var/obj/item/clothing/mask/facehugger/F in range(1,mob))
-				if(!F.stat && isturf(F.loc))
+				if(!F.stat && isturf(F.loc) && CanHug(mob))
+					F.visible_message("<span class='warning'>[F] leaps at [mob]!</span>","<span class='warning'>[F] leaps at [mob]!</span>")
 					F.HasProximity(mob)
 					break
 			for(var/obj/effect/alien/egg/E in range(1,mob))

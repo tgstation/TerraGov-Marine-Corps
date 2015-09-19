@@ -12,6 +12,9 @@
 		return
 	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/under) || istype(target,/obj/item))
 		return
+	if(istype(target,/obj/structure/ladder) || istype(target,/turf/simulated/floor))
+		return ..()
+
 	user << "Planting explosives..."
 	user.visible_message("\red [user.name] is trying to plant some kind of explosive on [target.name]!")
 

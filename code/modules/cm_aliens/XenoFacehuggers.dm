@@ -79,7 +79,9 @@ var/const/MAX_ACTIVE_TIME = 200
 		usr << "\red \b It looks like the proboscis has been removed."
 	return
 
-/obj/item/clothing/mask/facehugger/attackby()
+/obj/item/clothing/mask/facehugger/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/clothing/mask/facehugger))
+		return
 	Die()
 	return
 

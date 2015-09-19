@@ -460,7 +460,7 @@
 
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)
-				V.Weaken(1)
+				V.Weaken(2)
 				src.throwing = 0
 
 			if(charge_type == 1) //Runner/hunter pounce.

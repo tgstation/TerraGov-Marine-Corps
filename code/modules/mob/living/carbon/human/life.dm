@@ -1089,7 +1089,6 @@
 				traumatic_shock++
 
 		if(!(species.flags & IS_SYNTHETIC)) handle_trace_chems()
-
 		updatehealth()
 
 		return //TODO: DEFERRED
@@ -1189,6 +1188,17 @@
 					if(Y.charge_max) //No runtimes!
 						var/perc_charge = (Y.charge / Y.charge_max * 100)
 						update_power_display(perc_charge)
+			if(istype(src.l_hand,/obj/item/clothing/mask/facehugger))
+				var/obj/item/clothing/mask/facehugger/hug = src.l_hand
+				if(hug.stat != DEAD)
+					src.drop_from_inventory(hug)
+					hug.GoIdle()
+
+			if(istype(src.r_hand,/obj/item/clothing/mask/facehugger))
+				var/obj/item/clothing/mask/facehugger/hug = src.r_hand
+				if(hug.stat != DEAD)
+					src.drop_from_inventory(hug)
+					hug.GoIdle()
 
 			//Eyes
 			if(!species.has_organ["eyes"]) // Presumably if a species has no eyes, they see via something else.
