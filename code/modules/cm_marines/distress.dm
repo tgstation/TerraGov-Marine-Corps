@@ -157,25 +157,27 @@
 		else //we got enough!
 			//Trim down the list
 			var/list/datum/mind/picked_candidates = list()
-			for(var/i = 1 to mob_max)
+			var/i = mob_max
+			while(i > 0)
 				if(!candidates.len) break//We ran out of candidates, maybe they alienized. Use what we have.
 				var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-				if(!istype(M,/mob/dead))
+				if(!istype(M.current,/mob/dead))
 					candidates.Remove(M) //Strip them from the list, they aren't dead anymore.
-					i--
 					continue
+				i--
 				picked_candidates.Add(M)
 				candidates.Remove(M)
 
-			for(var/datum/mind/M in candidates)
-				if(M.current)
-					M.current << "You didn't get selected to join the distress team. Better luck next time!"
-
-			candidates = null //Blank out the candidates list for next time.
-			candidates = list()
+			if(candidates.len)
+				for(var/datum/mind/M in candidates)
+					if(M.current)
+						M.current << "You didn't get selected to join the distress team. Better luck next time!"
+				spawn(1)
+					candidates = null //Blank out the candidates list for next time.
+					candidates = list()
 
 			command_announcement.Announce(dispatch_message, "Distress Beacon")
-			message_admins("Distress beacon finalized, setting up candidates.", 1)
+			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
 			if(!shuttle || !istype(shuttle))
 				message_admins("Warning: Distress shuttle not found. Aborting.")
@@ -186,9 +188,6 @@
 				for(var/datum/mind/M in picked_candidates)
 					members += M
 					create_member(M)
-
-			picked_candidates = null
-			picked_candidates = list()
 
 			spawn(1000) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
 				command_announcement.Announce(arrival_message, "Docked")
