@@ -69,3 +69,142 @@
 			reagents.add_reagent("stoxin", 9)
 			update_icon()
 		return
+
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene
+	name = "Dylovene (anti-tox) Auto-Injector"
+	desc = "An auto-injector loaded with 5u of Dylovene."
+	amount_per_transfer_from_this = 5
+	volume = 5
+
+	New()
+		..()
+		spawn(1)
+			reagents.add_reagent("anti_toxin", 5)
+			update_icon()
+		return
+
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone
+	name = "Oxycodone (EXTREME PAINKILLER) Auto-Injector"
+	desc = "An auto-injector loaded with 5u of Oxycodone."
+	amount_per_transfer_from_this = 5
+	volume = 5
+
+	New()
+		..()
+		spawn(1)
+			reagents.add_reagent("oxycodone", 5)
+			update_icon()
+		return
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo
+	name = "Kelotane Auto-Injector"
+	desc = "An auto-injector loaded with 5u of Kelotane."
+	amount_per_transfer_from_this = 5
+	volume = 5
+
+	New()
+		..()
+		spawn(1)
+			reagents.add_reagent("kelotane", 5)
+			update_icon()
+		return
+
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard
+	name = "Bicaridine Auto-Injector"
+	desc = "An auto-injector loaded with 5u of Bicaridine."
+	amount_per_transfer_from_this = 5
+	volume = 5
+
+	New()
+		..()
+		spawn(1)
+			reagents.add_reagent("bicaridine", 5)
+			update_icon()
+		return
+
+
+
+
+//New Medic Combat-Lifesaver Bag - 21SEP2015 - APOPHIS
+
+/obj/item/weapon/storage/belt/medical/combatLifesaver
+	name = "Combat Lifesaver Bag"
+	desc = "Designed to hold ."
+	icon_state = "medicalbag"
+	item_state = "medicbag"
+	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
+	can_hold = list(
+		"/obj/item/device/healthanalyzer",
+		"/obj/item/weapon/reagent_containers/glass/bottle",
+		"/obj/item/weapon/reagent_containers/pill",
+		"/obj/item/weapon/reagent_containers/syringe",
+		"/obj/item/weapon/reagent_containers/glass/dispenser",
+		"/obj/item/weapon/storage/pill_bottle",
+		"/obj/item/clothing/gloves/latex",
+		"/obj/item/weapon/storage/syringe_case",
+		"/obj/item/weapon/reagent_containers/hypospray/autoinjector",
+		"/obj/item/stack/medical"
+	)
+
+
+/obj/item/weapon/storage/belt/medical/combatLifesaver/New()  //The belt, with all it's magic inside!
+	..()
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
+	new /obj/item/weapon/storage/pill_bottle/russianRed(src)
+
+
+
+//RUSSIAN RED ANTI-RAD
+
+/obj/item/weapon/storage/pill_bottle/russianRed
+	name = "Russian Red"
+	desc = "Pills to counter extreme radiation.  (VERY DANGEROUS)"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+		new /obj/item/weapon/reagent_containers/pill/russianRed( src )
+
+
+/obj/item/weapon/reagent_containers/pill/russianRed
+	name = "Russian Red (30u)"
+	desc = "An EXTREME radiation countering pill.  VERY dangerous"
+	icon_state = "pill4"
+	New()
+		..()
+		reagents.add_reagent("arithrazine", 15)
+		reagents.add_reagent("synaptizine", 5)
+		reagents.add_reagent("ryetalyn", 10)
+
+
+
