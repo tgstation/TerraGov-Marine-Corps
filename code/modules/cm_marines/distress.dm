@@ -144,7 +144,9 @@
 		if(candidates.len < mob_max)
 			waiting_for_candidates = 0
 			ticker.mode.has_called_emergency = 0
+			members = null
 			members = list() //Empty the members list.
+			candidates = null
 			candidates = list()
 			message_admins("Aborting distress beacon, not enough candidates found.", 1)
 			command_announcement.Announce("The distress signal got no response.", "Distress Beacon")
@@ -153,19 +155,41 @@
 			spawn(1200)
 				ticker.mode.distress_cooldown = 0
 		else //we got enough!
+			//Trim down the list
+			var/list/datum/mind/picked_candidates = list()
+			var/i = mob_max
+			while(i > 0)
+				if(!candidates.len) break//We ran out of candidates, maybe they alienized. Use what we have.
+				var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
+				if(!istype(M.current,/mob/dead))
+					candidates.Remove(M) //Strip them from the list, they aren't dead anymore.
+					continue
+				i--
+				picked_candidates.Add(M)
+				candidates.Remove(M)
+
+			if(candidates.len)
+				for(var/datum/mind/M in candidates)
+					if(M.current)
+						M.current << "You didn't get selected to join the distress team. Better luck next time!"
+				spawn(1)
+					candidates = null //Blank out the candidates list for next time.
+					candidates = list()
+
 			command_announcement.Announce(dispatch_message, "Distress Beacon")
-			message_admins("Distress beacon finalized, setting up candidates.", 1)
+			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
 			if(!shuttle || !istype(shuttle))
 				message_admins("Warning: Distress shuttle not found. Aborting.")
 				return
 			spawn_items()
 			shuttle.launch()
-			if(candidates.len)
-				for(var/datum/mind/M in candidates)
+			if(picked_candidates.len)
+				for(var/datum/mind/M in picked_candidates)
 					members += M
 					create_member(M)
-			spawn(1200) //After 4 minutes, send the arrival message. Should be about the right time they make it there.
+
+			spawn(1000) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
 				command_announcement.Announce(arrival_message, "Docked")
 		return
 
@@ -514,16 +538,12 @@
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
 	else if(rand_gun == 3)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/c20r(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/laser(M), slot_r_hand)
+	else
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20, slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
-	else if(rand_gun == 4)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/m37(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M), slot_l_store)
-		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
-	else
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/laser(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 
 
 /datum/emergency_call/bears/create_member(var/datum/mind/M)
@@ -581,16 +601,15 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m41(M), slot_r_hand)
+	M.equip_to_slot_or_del(new  /obj/item/weapon/gun/projectile/automatic/mar20(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
 
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(M), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
@@ -611,10 +630,12 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/sniperrifle(M), slot_r_hand)
+
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/m92(M), slot_r_hand)
+
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/cell/super(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
@@ -682,6 +703,7 @@
 	M.equip_to_slot_or_del(new /obj/item/pizzabox/meat(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/pizza(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/pizza(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/detective(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Pizzachimp Deliverer"
@@ -706,7 +728,7 @@
 			return
 
 		var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
-		if(distress.candidates.len >= distress.mob_max)
+		if(!distress.mob_max)
 			usr << "The emergency response team is already full!"
 			return
 		var/deathtime = world.time - usr.timeofdeath
@@ -798,6 +820,7 @@
 			switch(choice)
 				if(0)
 					new /obj/item/weapon/gun/projectile/VP78(drop_spawn)
+					new /obj/item/weapon/gun/projectile/VP78(drop_spawn)
 					continue
 				if(1)
 					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
@@ -805,11 +828,15 @@
 					continue
 				if(2)
 					new /obj/item/weapon/storage/box/m56_system(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					continue
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
-					new /obj/item/weapon/plastique(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					continue
 				if(4)
 					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
@@ -882,3 +909,4 @@
 					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return
+

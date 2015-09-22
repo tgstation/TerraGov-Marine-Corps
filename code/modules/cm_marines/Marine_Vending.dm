@@ -86,9 +86,14 @@
 					/obj/item/weapon/storage/pill_bottle/antitox = 2,
 					/obj/item/device/healthanalyzer = 2,
 					/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 3,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 6,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 6,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 6,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 10,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 6,
+					/obj/item/weapon/storage/pill_bottle/russianRed = 5,
 					/obj/item/stack/medical/advanced/bruise_pack = 4,
 					/obj/item/stack/medical/advanced/ointment = 4,
 					/obj/item/stack/medical/ointment = 8,
@@ -151,7 +156,8 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	products = list(
-						/obj/item/clothing/tie/storage/webbing = 2,
+					//	/obj/item/clothing/tie/storage/webbing = 2,  Replaced with the fancy new COMBAT LIFESAVER KIT
+						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,
 						/obj/item/clothing/under/rank/medical = 3,
@@ -173,9 +179,14 @@
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 6,
+						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard = 6,
+						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 6,
+						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 6,
+						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 3,
+						/obj/item/weapon/storage/pill_bottle/russianRed = 3,
 						/obj/item/clothing/glasses/hud/health = 3,
 						/obj/item/weapon/storage/firstaid/regular = 4,
-						/obj/item/weapon/storage/firstaid/adv = 3
+						/obj/item/weapon/storage/firstaid/adv = 3,
 					)
 	contraband = list()
 	premium = list()
