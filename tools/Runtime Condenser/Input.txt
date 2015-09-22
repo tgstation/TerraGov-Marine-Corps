@@ -6891,3 +6891,69 @@ proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
   src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
   call stack:
 M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun): dropped(null)
+Denied access to 'Guest-2442030119' connecting from 177.4.204.44
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Xeiko Ziliki (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Xeiko Ziliki (/mob/living/carbon/human))
+Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=18;icon-y=15;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=15;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Xeiko Ziliki (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Xeiko Ziliki (/mob/living/carbon/human))
+Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=23;icon-y=16;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=23;icon-y=16;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Xeiko Ziliki (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Xeiko Ziliki (/mob/living/carbon/human))
+Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=18;icon-y=16;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=16;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Xeiko Ziliki (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Xeiko Ziliki (/mob/living/carbon/human))
+Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=15;icon-y=15;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=15;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Xeiko Ziliki (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Xeiko Ziliki (/mob/living/carbon/human))
+Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=15;icon-y=15;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=15;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Xeiko Ziliki (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Xeiko Ziliki (/mob/living/carbon/human))
+Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=20;icon-y=15;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=20;icon-y=15;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Xeiko Ziliki (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Xeiko Ziliki (/mob/living/carbon/human))
+Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=20;icon-y=15;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=20;icon-y=15;left=1;scr...")
+Tue Sep 22 17:23:59 2015
+Denied access to 'Guest-2348053726' connecting from 201.79.230.178
