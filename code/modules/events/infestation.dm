@@ -1,13 +1,9 @@
-#define LOC_KITCHEN 0
-#define LOC_ATMOS 1
-#define LOC_INCIN 2
-#define LOC_CHAPEL 3
-#define LOC_LIBRARY 4
-#define LOC_HYDRO 5
-#define LOC_VAULT 6
-#define LOC_CONSTR 7
-#define LOC_TECH 8
-#define LOC_TACTICAL 9
+#define LOC_CAFETERIA 0
+#define LOC_CARGO 1
+#define LOC_ENGI_STORAGE 2
+#define LOC_MORGUE 3
+#define LOC_DISPOSAL 4
+#define LOC_MEDBAY_STORAGE 5
 
 #define VERM_MICE 0
 #define VERM_LIZARDS 1
@@ -23,40 +19,28 @@
 
 /datum/event/infestation/start()
 
-	location = rand(0,9)
+	location = rand(0,5)
 	var/list/turf/simulated/floor/turfs = list()
 	var/spawn_area_type
 	switch(location)
-//		if(LOC_KITCHEN)
-//			spawn_area_type = /area/crew_quarters/kitchen
-//			locstring = "the kitchen"
-//		if(LOC_ATMOS)
-//			spawn_area_type = /area/atmos
-//			locstring = "atmospherics"
-		if(LOC_INCIN)
-			spawn_area_type = /area/maintenance/incinerator
-			locstring = "the incinerator"
-//		if(LOC_CHAPEL)
-//			spawn_area_type = /area/chapel/main
-//			locstring = "the chapel"
-//		if(LOC_LIBRARY)
-//			spawn_area_type = /area/library
-//			locstring = "the library"
-//		if(LOC_HYDRO)
-//			spawn_area_type = /area/hydroponics
-//			locstring = "hydroponics"
-//		if(LOC_VAULT)
-//			spawn_area_type = /area/security/nuke_storage
-//			locstring = "the vault"
-//		if(LOC_CONSTR)
-//			spawn_area_type = /area/construction
-//			locstring = "the construction area"
-//		if(LOC_TECH)
-//			spawn_area_type = /area/storage/tech
-//			locstring = "technical storage"
-//		if(LOC_TACTICAL)
-//			spawn_area_type = /area/security/tactical
-//			locstring = "tactical equipment storage"
+		if(LOC_CAFETERIA)
+			spawn_area_type = /area/sulaco/cafeteria
+			locstring = "the cafeteria"
+		if(LOC_CARGO)
+			spawn_area_type = /area/sulaco/cargo
+			locstring = "the cargo bay"
+		if(LOC_ENGI_STORAGE)
+			spawn_area_type = /area/sulaco/engineering/storage
+			locstring = "the engineering storage"
+		if(LOC_MORGUE)
+			spawn_area_type = /area/sulaco/morgue
+			locstring = "the morgue"
+		if(LOC_DISPOSAL)
+			spawn_area_type = /area/sulaco/disposal
+			locstring = "disposal"
+		if(LOC_MEDBAY_STORAGE)
+			spawn_area_type = /area/sulaco/medbay/storage
+			locstring = "medbay storage"
 
 	//world << "looking for [spawn_area_type]"
 	for(var/areapath in typesof(spawn_area_type))
@@ -104,15 +88,12 @@
 /datum/event/infestation/announce()
 	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
-#undef LOC_KITCHEN
-#undef LOC_ATMOS
-#undef LOC_INCIN
-#undef LOC_CHAPEL
-#undef LOC_LIBRARY
-#undef LOC_HYDRO
-#undef LOC_VAULT
-#undef LOC_TECH
-#undef LOC_TACTICAL
+#undef LOC_CAFETERIA
+#undef LOC_CARGO
+#undef LOC_ENGI_STORAGE
+#undef LOC_MORGUE
+#undef LOC_DISPOSAL
+#undef LOC_MEDBAY_STORAGE
 
 #undef VERM_MICE
 #undef VERM_LIZARDS
