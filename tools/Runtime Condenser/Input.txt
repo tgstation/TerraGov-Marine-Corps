@@ -6258,3 +6258,17 @@ proc name: Topic (/obj/machinery/computer/marine_card/Topic)
 Identification Computer (/obj/machinery/computer/marine_card): Topic("src=\[0x2006677];choice=access...", /list (/list))
 Crezilin (/client): Topic("src=\[0x2006677];choice=access...", /list (/list), Identification Computer (/obj/machinery/computer/marine_card))
 Crezilin (/client): Topic("src=\[0x2006677];choice=access...", /list (/list), Identification Computer (/obj/machinery/computer/marine_card))
+Rebooted server.
+Tue Sep 22 03:23:39 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 8, 9, 11, 12, 15, 17, 19, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
