@@ -137,7 +137,6 @@
 	item_state = "medicbag"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
 	can_hold = list(
-		"/obj/item/device/healthanalyzer",
 		"/obj/item/weapon/reagent_containers/glass/bottle",
 		"/obj/item/weapon/reagent_containers/pill",
 		"/obj/item/weapon/reagent_containers/syringe",
