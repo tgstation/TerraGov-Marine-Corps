@@ -2082,38 +2082,38 @@ var/list/centcom_areas = list (
 
 //SPACE STATION 13
 var/list/the_station_areas = list (
-	/area/shuttle/arrival,
-	/area/shuttle/escape/station,
-	/area/shuttle/escape_pod1/station,
-	/area/shuttle/escape_pod2/station,
-	/area/shuttle/escape_pod3/station,
-	/area/shuttle/escape_pod5/station,
-	/area/shuttle/mining/station,
-	/area/shuttle/transport1/station,
+	/area/shuttle/arrival,						//To be removed
+	/area/shuttle/escape/station,				//To be removed
+	/area/shuttle/escape_pod1/station,			//To be removed
+	/area/shuttle/escape_pod2/station,			//To be removed
+	/area/shuttle/escape_pod3/station,			//To be removed
+	/area/shuttle/escape_pod5/station,			//To be removed
+	/area/shuttle/mining/station,				//To be removed
+	/area/shuttle/transport1/station,			//To be removed
 	// /area/shuttle/transport2/station,
-	/area/shuttle/prison/station,
-	/area/shuttle/administration/station,
-	/area/shuttle/specops/station,
+	/area/shuttle/prison/station,				//To be removed
+	/area/shuttle/administration/station,		//To be removed
+	/area/shuttle/specops/station,				//To be removed
 //	/area/atmos,
-	/area/maintenance,
-	/area/hallway,
-	/area/bridge,
+	/area/maintenance,							//To be removed
+	/area/hallway,								//To be removed
+	/area/bridge,								//To be removed
 //	/area/crew_quarters,
-	/area/holodeck,
-	/area/mint,
+	/area/holodeck,								//To be removed
+	/area/mint,									//To be removed
 //	/area/library,
 //	/area/chapel,
 //	/area/lawoffice,
-	/area/engine,
-	/area/solar,
-	/area/assembly,
-	/area/teleporter,
+	/area/engine,								//To be removed
+	/area/solar,								//To be removed
+	/area/assembly,								//To be removed
+	/area/teleporter,							//To be removed
 //	/area/medical,
 //	/area/security,
 //	/area/quartermaster,
 //	/area/janitor,
 //	/area/hydroponics,
-	/area/rnd,
+	/area/rnd,									//To be removed
 //	/area/storage,
 //	/area/construction,
 //	/area/ai_monitored/storage/eva, //do not try to simplify to "/area/ai_monitored" --rastaf0
@@ -2122,6 +2122,12 @@ var/list/the_station_areas = list (
 //	/area/turret_protected/ai_upload, //do not try to simplify to "/area/turret_protected" --rastaf0
 //	/area/turret_protected/ai_upload_foyer,
 //	/area/turret_protected/ai,
+	/area/sulaco/cafeteria,
+	/area/sulaco/cargo,
+	/area/sulaco/engineering/storage,
+	/area/sulaco/morgue,
+	/area/sulaco/disposal,
+	/area/sulaco/medbay/storage
 )
 
 
