@@ -159,7 +159,7 @@
 		if(affecting.open == 0)
 			var/bandaged = affecting.bandage()
 			var/disinfected = affecting.disinfect()
-		
+
 			if(!(bandaged || disinfected))
 				user << "\red The wounds on [M]'s [affecting.display_name] have already been treated."
 				return 1
@@ -235,7 +235,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.display_name
-		if(!((affecting.name == "l_arm") || (affecting.name == "r_arm") || (affecting.name == "l_leg") || (affecting.name == "r_leg")))
+		if(!((affecting.name == "l_arm") || (affecting.name == "r_arm") || (affecting.name == "l_leg") || (affecting.name == "r_leg")|| (affecting.name == "r_hand")|| (affecting.name == "l_hand")|| (affecting.name == "r_root")|| (affecting.name == "l_foot")))
 			user << "\red You can't apply a splint there!"
 			return
 		if(affecting.status & ORGAN_SPLINTED)
