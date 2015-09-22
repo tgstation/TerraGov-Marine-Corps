@@ -1,4 +1,4 @@
-//MARINE SPECIAL CHEMICALS -APOPHIS - LAST UPDATE - 25JAN2015
+//MARINE SPECIAL CHEMICALS -APOPHIS - LAST UPDATE - 21SEP2015
 
 //Auto-injectors Items
 
@@ -147,6 +147,7 @@
 		"/obj/item/weapon/reagent_containers/hypospray/autoinjector",
 		"/obj/item/stack/medical"
 	)
+	max_combined_w_class = 42
 
 
 /obj/item/weapon/storage/belt/medical/combatLifesaver/New()  //The belt, with all it's magic inside!
