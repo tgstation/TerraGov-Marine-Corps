@@ -26,6 +26,7 @@
 	siemens_coefficient = 0.9
 	w_class = 3
 	anti_hug = 2
+	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self()
 	toggle()
@@ -43,13 +44,14 @@
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = initial(icon_state)
 			usr << "You flip the [src] down to protect your eyes."
-			anti_hug = 2 //This will reset the hugged var, but ehh. More efficient than making a new var for it.
+			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
 			src.up = !src.up
 			src.flags &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push the [src] up out of your face."
+			hug_memory = anti_hug
 			anti_hug = 0
 
 		update_clothing_icon()	//so our mob-overlays update
