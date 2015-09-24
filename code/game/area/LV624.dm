@@ -1,4 +1,7 @@
 //LV624 AREAS--------------------------------------//
+/area/lv624
+	icon_state = "lv-626"
+
 /area/lv624/ground
 	name = "Ground"
 	icon_state = "green"
