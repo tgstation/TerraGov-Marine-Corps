@@ -162,8 +162,9 @@
 				if(!candidates.len) break//We ran out of candidates, maybe they alienized. Use what we have.
 				var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
 				if(!istype(M.current,/mob/dead))
-					candidates.Remove(M) //Strip them from the list, they aren't dead anymore.
-					continue
+					if(!istype(M.original,/mob/dead))
+						candidates.Remove(M) //Strip them from the list, they aren't dead anymore.
+						continue
 				i--
 				picked_candidates.Add(M)
 				candidates.Remove(M)
