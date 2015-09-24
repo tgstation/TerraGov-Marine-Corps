@@ -10,6 +10,17 @@
 	listening_level = 1
 	autolinkers = list("s_relay")
 
+/obj/machinery/telecomms/relay/preset/ice_colony
+	icon = 'icons/obj/comm_tower.dmi'
+	icon_state = "comm_tower"
+	id = "Station Relay"
+	listening_level = 1
+	autolinkers = list("s_relay")
+
+	//We dont want anyone to mess with it
+	attackby()
+		return
+
 /obj/machinery/telecomms/relay/preset/telecomms
 	id = "Telecomms Relay"
 	autolinkers = list("relay")

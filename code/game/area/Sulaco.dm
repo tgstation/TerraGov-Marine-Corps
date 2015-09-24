@@ -1,6 +1,7 @@
 //SULACO AREAS--------------------------------------//
 /area/sulaco
 	ambience = list('sound/ambience/shipambience.ogg')
+	icon_state = "sulaco"
 
 /area/sulaco/bridge
 	name = "\improper Bridge"
