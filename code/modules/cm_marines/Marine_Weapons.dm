@@ -704,6 +704,16 @@
 	force = 5.0
 	var/list/grenades = new/list()
 	var/max_grenades = 5
+	twohanded = 1
+
+	New()
+		..()
+		spawn(1) //Load er up!
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/incendiary(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
 
 	examine()
 		set src in view()
@@ -727,6 +737,10 @@
 	afterattack(atom/target, mob/user , flag)
 		if(get_dist(target,user) <= 2)
 			usr << "\red The grenade launcher beeps a warning noise. You are too close!"
+			return
+
+		if(!wielded)
+			user << "\red You need two hands to fire this!"
 			return
 
 		if(grenades.len)
@@ -785,6 +799,7 @@
 	slot_flags = 0
 	origin_tech = "combat=8;materials=5"
 	projectile = /obj/item/missile
+	twohanded = 1
 	var/missile_speed = 2
 	var/missile_range = 30
 	var/max_rockets = 1
@@ -815,6 +830,10 @@
 	return rockets.len
 
 /obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+	if(!wielded)
+		usr << "\red You require two hands to fire this!"
+		return
+
 	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new projectile(user.loc)
@@ -849,12 +868,12 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "missile"
 	var/primed = null
-	throwforce = 10
+	throwforce = 30
 	pass_flags = PASSTABLE
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, -1, 1, 2, 1)
+			explosion(hit_atom, -1, 2, 2, 1)
 			del(src)
 		else
 			..()
@@ -866,7 +885,7 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, -1, 1, -1, 1)
+			explosion(hit_atom, -1, 1, 1, 1)
 			del(src)
 		else
 			..()
@@ -878,7 +897,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	w_class = 5
-	storage_slots = 6
+	storage_slots = 7
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
@@ -889,6 +908,7 @@
 			new /obj/item/ammo_casing/rocket(src)
 			new /obj/item/ammo_casing/rocket(src)
 			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket/ap(src)
 			new /obj/item/ammo_casing/rocket/ap(src)
 			new /obj/item/ammo_casing/rocket/ap(src)
 
