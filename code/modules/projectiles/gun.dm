@@ -461,3 +461,35 @@
 		else if(isturf(loc))
 			SetLuminosity(0)
 	update_attachables()
+
+/obj/item/weapon/gun/attack_self(mob/user as mob)
+	if (target)
+		return ..()
+
+	if(twohanded)
+		if(wielded) //Trying to unwield it
+			unwield()
+			user << "<span class='notice'>You are now carrying the [name] with one hand.</span>"
+
+			var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
+			if(O && istype(O))
+				O.unwield()
+			return
+
+		else //Trying to wield it
+			if(user.get_inactive_hand())
+				user << "<span class='warning'>You need your other hand to be empty.</span>"
+				return
+			wield()
+			user << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
+
+			var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+			O.name = "[initial(name)] - offhand"
+			O.desc = "Your second grip on the [initial(name)]"
+			user.put_in_inactive_hand(O)
+			return
+
+	if(!istype(src,/obj/item/weapon/gun/projectile))
+		return src:unload(user)
+
+	return ..()
