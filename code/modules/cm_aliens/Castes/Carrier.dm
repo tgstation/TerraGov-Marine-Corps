@@ -72,15 +72,14 @@
 			for(var/mob/living/carbon/human/C in oview(7))
 				victims += C
 			T = input(src, "Who should you throw at?") as null|anything in victims
-
 		if(T)
+			X.threw_a_hugger = 1
 			var/obj/item/clothing/mask/facehugger/newthrow = new()
 			X.huggers_cur -= 1
 			newthrow.loc = src.loc
 			newthrow.throw_at(T, 5, X.throwspeed)
 			// src << "You throw a facehugger at [T]."
 			visible_message("\red <B>[src] throws something towards [T]!</B>")
-			X.threw_a_hugger = 1
 			spawn(40)
 				X.threw_a_hugger = 0
 		else
