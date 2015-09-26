@@ -6957,3 +6957,2010 @@ Xeiko Ziliki (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery
 the cloning pod (/obj/machinery/clonepod): Click(the floor (115,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=20;icon-y=15;left=1;scr...")
 Tue Sep 22 17:23:59 2015
 Denied access to 'Guest-2348053726' connecting from 201.79.230.178
+runtime error: undefined proc or verb /datum/gas_mixture/savefile load().
+
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,77
+  usr: WINTERS (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015a2];option=load;...", /list (/list))
+Ed Winters (/client): Topic("src=\[0x210015a2];option=load;...", /list (/list), /datum/paiController (/datum/paiController))
+Ed Winters (/client): Topic("src=\[0x210015a2];option=load;...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: WINTERS (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015a2];option=submi...", /list (/list))
+Ed Winters (/client): Topic("src=\[0x210015a2];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Ed Winters (/client): Topic("src=\[0x210015a2];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: WINTERS (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015a2];option=submi...", /list (/list))
+Ed Winters (/client): Topic("src=\[0x210015a2];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Ed Winters (/client): Topic("src=\[0x210015a2];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Denied access to 'Guest-1366988196' connecting from 72.9.12.51
+### VarEdit by Infernus44: /obj/machinery/computer/shuttle_control/marine1 stat=0
+Tue Sep 22 18:33:29 2015
+Denied access to 'Guest-888847205' connecting from 96.54.234.199
+### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Spitter amount_grown=900
+### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Spitter jellyGrow=900
+runtime error: undefined variable /turf/space/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,972
+  usr: Alien Larva (747) (/mob/dead/observer)
+  src: Apophis775 (/client)
+  call stack:
+Apophis775 (/client): Edit Zone Air(space (193,153,3) (/turf/space))
+### VarEdit by Apophis775: /datum/gas_mixture gas=
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 12443 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check tile graphic(/list (/list), /list (/list))
+Zone 14253 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,289
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 14253 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 14253 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 2, 10, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 24, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 10, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+### VarEdit by Apophis775: /obj/machinery/nuclearbomb r_code=12345
+### VarEdit by Apophis775: /datum/organ/internal/brain damage=100
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=50
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=100
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=10000
+Denied access to 'Guest-299415622' connecting from 71.75.66.76
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 16, 17, 18, 19, 21 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: MarkValentine (/mob/new_player)
+  src: MarkValentine (/client)
+  call stack:
+MarkValentine (/client): playtitlemusic()
+MarkValentine (/mob/new_player): Login()
+Tue Sep 22 19:46:08 2015
+Denied access to 'Guest-352944749' connecting from 70.67.5.42
+Denied access to 'Guest-1325687314' connecting from 177.81.192.31
+Tue Sep 22 20:57:59 2015
+Denied access to 'Guest-2011010665' connecting from 189.47.113.79
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 4, 6, 7, 8, 9, 10, 11, 12, 13, 16, 18, 19, 21, 22, 23, 24 and 25
+
+
+
+
+
+BYOND Error: failed to certify DesFrSpace
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Apophis775: /mob/living/carbon/human real_name=Halkrath Kjhute
+Rebooted server.
+Tue Sep 22 22:53:37 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 9, 11, 16, 17, 18, 19, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/living/simple_animal/corgi desc=It&#39;s the beloved Terraforming commercial figure, Ian.
+Wed Sep 23 00:54:20 2015
+### VarEdit by Ordukai: /mob/living/carbon/human universal_understand=1
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 6, 7, 9, 10, 11, 14, 15, 16, 17, 18, 19, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Sep 23 02:53:08 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 6, 8, 9, 11, 12, 13, 14, 16, 19, 20, 21, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Sep 23 04:08:27 2015
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: null
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("pacid")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 180)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 120, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(0)
+timer end()
+process()
+/datum/controller/game_control... (/datum/controller/game_controller): process objects()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 7, 9, 10, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Sep 23 07:07:13 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 9, 10, 12, 13, 14, 15, 16, 18, 19, 21, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+BYOND Error: failed to certify BlackJack22
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 9, 10, 12, 13, 14, 15, 18, 21, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 16, 20, 22, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Sep 23 09:17:36 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 8, 9, 12, 13, 14, 15, 16, 19, 20, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Sep 23 10:51:00 2015
+runtime error: wrong type of value for list
+verb name: AllowTargetMove (/client/verb/AllowTargetMove)
+  source file: targeting.dm,296
+  usr: Miranda Hunt (/mob/living/carbon/human)
+  src: RedStar9292 (/client)
+  call stack:
+RedStar9292 (/client): AllowTargetMove()
+Allow Walking (/obj/screen/gun/move): Click(null, "mapwindow.map", "icon-x=17;icon-y=6;left=1;scre...")
+runtime error: wrong type of value for list
+proc name: add gun icons (/client/proc/add_gun_icons)
+  source file: targeting.dm,263
+  usr: Miranda Hunt (/mob/living/carbon/human)
+  src: RedStar9292 (/client)
+  call stack:
+RedStar9292 (/client): add gun icons()
+Queen (/mob/living/carbon/Xenomorph/Queen): Targeted(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): Aim(Queen (/mob/living/carbon/Xenomorph/Queen))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): PreFire(Queen (/mob/living/carbon/Xenomorph/Queen), Miranda Hunt (/mob/living/carbon/human), "icon-x=26;icon-y=38;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(Queen (/mob/living/carbon/Xenomorph/Queen), Miranda Hunt (/mob/living/carbon/human), 0, "icon-x=26;icon-y=38;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(Queen (/mob/living/carbon/Xenomorph/Queen), Miranda Hunt (/mob/living/carbon/human), 0, "icon-x=26;icon-y=38;left=1;scr...")
+Miranda Hunt (/mob/living/carbon/human): ClickOn(Queen (/mob/living/carbon/Xenomorph/Queen), "icon-x=26;icon-y=38;left=1;scr...")
+Queen (/mob/living/carbon/Xenomorph/Queen): Click(the wall (116,113,1) (/turf/simulated/shuttle/wall), "mapwindow.map", "icon-x=26;icon-y=38;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=13;icon-y=26;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=13;icon-y=26;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=13;icon-y=26;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=13;icon-y=26;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=13;icon-y=26;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=13;icon-y=26;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=13;icon-y=26;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=13;icon-y=26;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=17;icon-y=13;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=17;icon-y=13;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=17;icon-y=13;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=17;icon-y=13;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=17;icon-y=13;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=18;icon-y=21;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=18;icon-y=21;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=18;icon-y=21;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=17;icon-y=13;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=17;icon-y=13;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=17;icon-y=13;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=17;icon-y=13;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=17;icon-y=13;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Lilah Greene (/mob/living/carbon/human)
+  src: Carlos Vaz (/mob/living/carbon/human)
+  call stack:
+Carlos Vaz (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Carlos Vaz (/mob/living/carbon/human))
+Carlos Vaz (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Carlos Vaz (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Carlos Vaz (/mob/living/carbon/human), Lilah Greene (/mob/living/carbon/human), 0, "icon-x=18;icon-y=21;left=1;scr...")
+Lilah Greene (/mob/living/carbon/human): ClickOn(Carlos Vaz (/mob/living/carbon/human), "icon-x=18;icon-y=21;left=1;scr...")
+Carlos Vaz (/mob/living/carbon/human): Click(Carpet (102,153,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=18;icon-y=21;left=1;scr...")
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 9, 12, 13, 14, 17, 18, 19, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Sep 23 12:19:49 2015
+runtime error: undefined proc or verb /obj/item/weapon/shard/shrapnel/activate().
+
+proc name: fail step (/datum/surgery_step/cavity/implant_removal/fail_step)
+  source file: implant.dm,240
+  usr: Tyler Freeton (/mob/living/carbon/human)
+  src: /datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal)
+  call stack:
+/datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal): fail step(Tyler Freeton (/mob/living/carbon/human), Carlos Vaz (/mob/living/carbon/human), "chest", the hemostat (/obj/item/weapon/hemostat))
+Denied access to 'Guest-3751835300' connecting from 176.33.5.217
+Wed Sep 23 15:16:46 2015
+Denied access to 'Guest-138159871' connecting from 177.105.162.61
+Denied access to 'Guest-2243232729' connecting from 186.251.118.53
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 8, 9, 14, 15, 16, 17, 18, 21, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2969974198' connecting from 149.152.23.48
+Wed Sep 23 16:42:30 2015
+Denied access to 'Guest-2079466453' connecting from 108.247.179.18
+Denied access to 'Uristmcbigbeard' connecting from 108.75.140.54
+Denied access to 'Guest-991563809' connecting from 152.249.165.107
+Wed Sep 23 17:50:15 2015
+Denied access to 'Guest-2463382952' connecting from 177.20.163.72
+Denied access to 'Guest-4250996254' connecting from 86.129.116.120
+Denied access to 'Guest-2638798087' connecting from 177.205.64.46
+Wed Sep 23 19:07:10 2015
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Jimmy \'Iceman\' Tombstone (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Jimmy \'Iceman\' Tombstone (/mob/living/carbon/human))
+Jimmy \'Iceman\' Tombstone (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=6;icon-y=30;left=1;scre...")
+the weeds (/obj/effect/alien/weeds): Click(the floor (111,165,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=6;icon-y=30;left=1;scre...")
+Denied access to 'Guest-3098022536' connecting from 47.20.249.166
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 6, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: Kenland (/mob/new_player)
+  src: Kenland (/client)
+  call stack:
+Kenland (/client): playtitlemusic()
+Kenland (/mob/new_player): Login()
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Snow Ball
+### VarEdit by Lostmixup: /mob/living/carbon/human name=Snow Ball 
+Wed Sep 23 20:26:55 2015
+Denied access to 'Ripplyauto33477' connecting from 173.183.178.59
+runtime error: cannot write to indexed value in this type of list
+proc name: mod list (/client/proc/mod_list)
+  source file: modifyvariables.dm,246
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+  call stack:
+Lostmixup (/client): mod list(/list (/list))
+Lostmixup (/client): modify variables(Mark IV Powerloader (/obj/mecha/working/ripley), "verbs", 1)
+Lostmixup (/client): view var Topic("_src_=vars;datumedit=\[0x2006c...", /list (/list), null)
+Lostmixup (/client): Topic("_src_=vars;datumedit=\[0x2006c...", /list (/list), null)
+runtime error: cannot write to indexed value in this type of list
+proc name: mod list (/client/proc/mod_list)
+  source file: modifyvariables.dm,249
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+  call stack:
+Lostmixup (/client): mod list(/list (/list))
+Lostmixup (/client): modify variables(Mark IV Powerloader (/obj/mecha/working/ripley), "verbs", 1)
+Lostmixup (/client): view var Topic("_src_=vars;datumedit=\[0x2006c...", /list (/list), null)
+Lostmixup (/client): Topic("_src_=vars;datumedit=\[0x2006c...", /list (/list), null)
+runtime error: cannot write to indexed value in this type of list
+proc name: mod list (/client/proc/mod_list)
+  source file: modifyvariables.dm,252
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+  call stack:
+Lostmixup (/client): mod list(/list (/list))
+Lostmixup (/client): modify variables(Mark IV Powerloader (/obj/mecha/working/ripley), "verbs", 1)
+Lostmixup (/client): view var Topic("_src_=vars;datumedit=\[0x2006c...", /list (/list), null)
+Lostmixup (/client): Topic("_src_=vars;datumedit=\[0x2006c...", /list (/list), null)
+### VarEdit by Lostmixup: /obj/mecha/working/ripley name=Mark IV Powerloader
+Wed Sep 23 21:33:14 2015
+Denied access to 'Kaioshin3211' connecting from 64.237.225.47
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 16, 19, 20, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-544152211' connecting from 189.58.37.214
+Denied access to 'Guest-1333584203' connecting from 189.7.20.86
+Denied access to 'Guest-1930174596' connecting from 177.194.121.235
+Wed Sep 23 23:08:48 2015
+Denied access to 'Guest-1061618518' connecting from 86.136.252.94
+runtime error: Cannot execute null.set content().
+proc name: interact (/datum/file/program/atmos_alert/interact)
+  source file: atmos_alert.dm,56
+  usr: Lucas Oliveira (/mob/living/carbon/human)
+  src: atmospheric alert monitor (/datum/file/program/atmos_alert)
+  call stack:
+atmospheric alert monitor (/datum/file/program/atmos_alert): interact()
+atmospheric alert monitor (/datum/file/program/atmos_alert): attack hand(Lucas Oliveira (/mob/living/carbon/human))
+Laptop Computer (/obj/machinery/computer3/laptop/vended): attack hand(Lucas Oliveira (/mob/living/carbon/human))
+atmospheric alert monitor (/datum/file/program/atmos_alert): execute(YutaniOS Operating System (/datum/file/program/ntos))
+atmospheric alert monitor (/datum/file/program/atmos_alert): execute(YutaniOS Operating System (/datum/file/program/ntos))
+YutaniOS Operating System (/datum/file/program/ntos): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list))
+YutaniOS Operating System (/datum/file/program/ntos): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list))
+Lucashunte (/client): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list), YutaniOS Operating System (/datum/file/program/ntos))
+Lucashunte (/client): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list), YutaniOS Operating System (/datum/file/program/ntos))
+runtime error: Cannot execute null.set frequency().
+proc name: execute (/datum/file/program/atmos_alert/execute)
+  source file: atmos_alert.dm,21
+  usr: Lucas Oliveira (/mob/living/carbon/human)
+  src: atmospheric alert monitor (/datum/file/program/atmos_alert)
+  call stack:
+atmospheric alert monitor (/datum/file/program/atmos_alert): execute(YutaniOS Operating System (/datum/file/program/ntos))
+YutaniOS Operating System (/datum/file/program/ntos): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list))
+YutaniOS Operating System (/datum/file/program/ntos): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list))
+Lucashunte (/client): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list), YutaniOS Operating System (/datum/file/program/ntos))
+Lucashunte (/client): Topic("src=\[0x2100d893];runfile=\[0x...", /list (/list), YutaniOS Operating System (/datum/file/program/ntos))
+Thu Sep 24 00:14:18 2015
+Denied access to 'Guest-121808750' connecting from 71.89.231.33
+Denied access to 'Guest-692302178' connecting from 201.42.98.41
+### VarEdit by Apophis775: /obj/item/alien_embryo stage=4
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 8, 9, 13, 14, 15, 17, 18, 19, 20, 21, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/dead/observer name=blank text
+### VarEdit by Ordukai: /mob/dead/observer name=
+### VarEdit by Ordukai: /mob/dead/observer real_name=
+Thu Sep 24 01:19:53 2015
+### VarEdit by Ordukai: /obj/item/weapon/paper name=
+### VarEdit by Ordukai: /obj/item/weapon/paper name=
+### VarEdit by Ordukai: /obj/item/weapon/paper name=
+### VarEdit by Ordukai: /obj/item/weapon/paper name=Paper
+### VarEdit by Ordukai: /obj/item/weapon/paper name=paper
+### VarEdit by Ordukai: /obj/item/weapon/paper name=paper
+### VarEdit by Ordukai: /obj/mecha/combat/gygax opacity=0
+### VarEdit by Ordukai: /obj/mecha/combat/gygax layer=1
+### VarEdit by Ordukai: /obj/mecha/combat/gygax layer=2
+### VarEdit by Ordukai: /mob/living/carbon/human layer=4
+### VarEdit by Ordukai: /mob/living/carbon/human layer=4.1
+### VarEdit by Ordukai: /obj/mecha/combat/gygax anchored=0
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,133
+  usr: Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human))
+Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=14;icon-y=16;left=1;scr...")
+the girder (/obj/structure/girder): Click(the floor (145,66,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=16;left=1;scr...")
+### VarEdit by Ordukai: /obj/mecha/combat/gygax visibility=0
+### VarEdit by Ordukai: /obj/mecha/combat/gygax anchored=1
+### VarEdit by Ordukai: /mob/living/carbon/human anchored=1
+runtime error: Cannot execute null.add fingerprint().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,793
+  usr: Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+### VarEdit by Ordukai: /mob/living/carbon/human anchored=0
+### VarEdit by Ordukai: /mob/living/carbon/human blindness=0
+### VarEdit by Ordukai: /mob/living/carbon/human can_stand=1
+### VarEdit by Ordukai: /mob/living/silicon/robot emagged=1
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs/core), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the blood (/obj/effect/decal/cleanable/blood/splatter), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs/core), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the blood (/obj/effect/decal/cleanable/blood/splatter), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs/core), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the blood (/obj/effect/decal/cleanable/blood/splatter), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs/core), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the blood (/obj/effect/decal/cleanable/blood/splatter), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs/core), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the gibs (/obj/effect/decal/cleanable/blood/gibs), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: The Rhumba Beat (/datum/disease/rhumba_beat)
+  call stack:
+The Rhumba Beat (/datum/disease/rhumba_beat): spread(the blood (/obj/effect/decal/cleanable/blood/splatter), 2, null)
+The Rhumba Beat (/datum/disease/rhumba_beat): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process diseases()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+Warning: further proc crash messages are being suppressed to prevent overload...
+Thu Sep 24 02:21:35 2015
+### VarEdit by Ordukai: /mob/living/carbon/human layer=3.9
+### VarEdit by Ordukai: /obj/item/projectile/bullet/gyro layer=1
+### VarEdit by Ordukai: /obj/item/projectile/bullet/gyro layer=1
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 18, 19, 20, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Sep 24 05:05:31 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 20, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Sep 24 07:05:59 2015
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Miranda Hunt (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Miranda Hunt (/mob/living/carbon/human))
+Miranda Hunt (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=4;icon-y=22;left=1;scre...")
+the weeds (/obj/effect/alien/weeds): Click(the dirt (98,46,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=4;icon-y=22;left=1;scre...")
+Denied access to 'Guest-1621026927' connecting from 152.249.185.20
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 22 and 25
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Sep 24 09:05:33 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 8, 9, 10, 11, 13, 15, 16, 18, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Sep 24 10:41:27 2015
+runtime error: Cannot modify null.loc.
+proc name: Topic (/obj/machinery/lapvend/Topic)
+  source file: lapvend.dm,177
+  usr: Itzhak Weissman (/mob/living/carbon/human)
+  src: Laptop Vendor (/obj/machinery/lapvend)
+  call stack:
+Laptop Vendor (/obj/machinery/lapvend): Topic("src=\[0x2006795];choice=cancel", /list (/list))
+MrMebelMan (/client): Topic("src=\[0x2006795];choice=cancel", /list (/list), Laptop Vendor (/obj/machinery/lapvend))
+MrMebelMan (/client): Topic("src=\[0x2006795];choice=cancel", /list (/list), Laptop Vendor (/obj/machinery/lapvend))
+Denied access to 'Guest-2781210138' connecting from 179.159.125.177
+Denied access to 'Guest-155278280' connecting from 179.180.210.110
+Denied access to 'Guest-1344027987' connecting from 177.40.85.27
+Thu Sep 24 11:47:20 2015
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Queen oxyloss=1000
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Queen bruteloss=500000
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.fully charged().
+proc name: process (/obj/machinery/recharger/process)
+  source file: recharger.dm,83
+  usr: null
+  src: the recharger (/obj/machinery/recharger)
+  call stack:
+the recharger (/obj/machinery/recharger): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 13, 14, 15, 16, 19, 20, 22, 23, 25 and 26
+BYOND Error: failed to certify Tchernobog
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Sep 24 13:29:28 2015
+Denied access to 'Guest-3831462666' connecting from 187.56.181.170
+Rebooted server.
+Thu Sep 24 14:46:04 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 5, 6, 7, 8, 10, 13, 15, 16, 17, 18, 19, 20, 21, 23 and 24
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by SASoperative: /mob/living/carbon/human real_name=Halkrath Kjhute
+Denied access to 'Guest-2183942325' connecting from 5.35.104.127
+Denied access to 'Guest-4105797674' connecting from 191.32.91.8
+Denied access to 'Guest-1975007113' connecting from 191.32.81.191
+Thu Sep 24 16:05:57 2015
+runtime error: Cannot read .len
+proc name: attacked by (/mob/living/carbon/human/proc/attacked_by)
+  source file: human_defense.dm,220
+  usr: Rusty Echard (/mob/living/carbon/human)
+  src: Garret M. Slams (/mob/living/carbon/human)
+  call stack:
+Garret M. Slams (/mob/living/carbon/human): attacked by(the butterfly knife (/obj/item/weapon/butterfly), Rusty Echard (/mob/living/carbon/human), null)
+the butterfly knife (/obj/item/weapon/butterfly): attack(Garret M. Slams (/mob/living/carbon/human), Rusty Echard (/mob/living/carbon/human), null)
+Garret M. Slams (/mob/living/carbon/human): attackby(the butterfly knife (/obj/item/weapon/butterfly), Rusty Echard (/mob/living/carbon/human))
+Rusty Echard (/mob/living/carbon/human): ClickOn(Garret M. Slams (/mob/living/carbon/human), "icon-x=18;icon-y=15;left=1;scr...")
+Garret M. Slams (/mob/living/carbon/human): Click(the floor (164,165,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=15;left=1;scr...")
+Denied access to 'Guest-3837534152' connecting from 189.15.224.220
+Thu Sep 24 17:06:59 2015
+Denied access to 'Guest-2747159989' connecting from 24.222.245.59
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 18, 21, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2271324718' connecting from 187.182.70.83
+Thu Sep 24 18:18:38 2015
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Walker Fireman
+### VarEdit by Absynth: /mob/living/carbon/human real_name=Whisper Jones
+### VarEdit by Absynth: /mob/living/carbon/human real_name=John Whisper
+Denied access to 'Guest-3382386134' connecting from 138.97.196.88
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Nick Daniels
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: S.A.D (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015b1];option=submi...", /list (/list))
+Crezilin (/client): Topic("src=\[0x210015b1];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Crezilin (/client): Topic("src=\[0x210015b1];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: S.A.D (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015b1];option=submi...", /list (/list))
+Crezilin (/client): Topic("src=\[0x210015b1];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Crezilin (/client): Topic("src=\[0x210015b1];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Denied access to 'Guest-247666074' connecting from 187.102.126.207
+Thu Sep 24 19:26:47 2015
+Denied access to 'Guest-1897002955' connecting from 173.26.39.194
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: null
+  src: S.A.D (/mob/living/silicon/pai)
+  call stack:
+S.A.D (/mob/living/silicon/pai): close up()
+S.A.D (/mob/living/silicon/pai): death(null, "gives one shrill beep before f...")
+S.A.D (/mob/living/silicon/pai): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,530
+  usr: null
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+  call stack:
+M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun): dropped(null)
+### VarEdit by Apophis775: /obj/machinery/nuclearbomb r_code=12345
+runtime error: pick() from empty list
+proc name: Jump to Area (/client/proc/Jump)
+  source file: adminjump.dm,17
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+  call stack:
+Lostmixup (/client): Jump to Area(the Alien Shuttle Mine (/area/shuttle/alien/mine))
+Denied access to 'Sombra3353' connecting from 187.55.39.48
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 9, 12, 14, 15, 16, 18, 19, 20, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Caryl: /mob/living/carbon/human name=Andy &#39;Flopeye&#39; Morrison
+### VarEdit by Caryl: /mob/living/carbon/human name=James Rocketmon
+Thu Sep 24 20:35:14 2015
+Denied access to 'Guest-1265097526' connecting from 189.73.210.173
+### VarEdit by Apophis775: /datum/organ/internal/kidney damage=5
+### VarEdit by Apophis775: /datum/organ/internal/liver damage=5
+### VarEdit by Apophis775: /obj/item/weapon/handcuffs force=5
+Denied access to 'MrPinaColada69' connecting from 173.183.178.59
+Denied access to 'Yoryro' connecting from 189.81.162.132
+Thu Sep 24 21:41:37 2015
+### VarEdit by Apophis775: /datum/reagent/blood volume=400
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Brayan Osteen (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+### VarEdit by Apophis775: /obj/item/weapon/cell maxcharge=100000
+### VarEdit by Apophis775: /obj/item/weapon/cell charge=100000
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Connor Vulch (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Connor Vulch (/mob/living/carbon/human))
+Connor Vulch (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=12;icon-y=18;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=12;icon-y=18;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Connor Vulch (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Connor Vulch (/mob/living/carbon/human))
+Connor Vulch (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=17;icon-y=18;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=17;icon-y=18;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Connor Vulch (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Connor Vulch (/mob/living/carbon/human))
+Connor Vulch (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=21;icon-y=13;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=21;icon-y=13;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Connor Vulch (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Connor Vulch (/mob/living/carbon/human))
+Connor Vulch (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=21;icon-y=13;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=21;icon-y=13;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Taylor Sauter (/mob/living/carbon/human))
+Taylor Sauter (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=17;icon-y=20;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=17;icon-y=20;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Taylor Sauter (/mob/living/carbon/human))
+Taylor Sauter (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=12;icon-y=20;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=12;icon-y=20;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Taylor Sauter (/mob/living/carbon/human))
+Taylor Sauter (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=17;icon-y=20;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=17;icon-y=20;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Taylor Sauter (/mob/living/carbon/human))
+Taylor Sauter (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=17;icon-y=20;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=17;icon-y=20;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self()
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Toggle Pinpointer Mode()
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Taylor Sauter (/mob/living/carbon/human))
+Taylor Sauter (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=14;icon-y=19;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=14;icon-y=19;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self()
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Toggle Pinpointer Mode()
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Taylor Sauter (/mob/living/carbon/human))
+Taylor Sauter (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=12;icon-y=17;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=12;icon-y=17;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Taylor Sauter (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Taylor Sauter (/mob/living/carbon/human))
+Taylor Sauter (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=14;icon-y=19;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=14;icon-y=19;left=1;scr...")
+Rebooted server.
+Thu Sep 24 23:10:06 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 17, 18, 19, 20, 21 and 23
+BYOND Error: failed to certify Jadedshadow
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Sep 25 01:41:39 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 6, 7, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 24 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Sep 25 03:44:26 2015
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Alan Kowaski (/mob/living/carbon/human)
+  src: Echo (/mob/living/silicon/pai)
+  call stack:
+Echo (/mob/living/silicon/pai): close up()
+Echo (/mob/living/silicon/pai): attack hand(Alan Kowaski (/mob/living/carbon/human))
+Alan Kowaski (/mob/living/carbon/human): UnarmedAttack(Echo (/mob/living/silicon/pai), 1)
+Alan Kowaski (/mob/living/carbon/human): ClickOn(Echo (/mob/living/silicon/pai), "icon-x=15;icon-y=9;left=1;scre...")
+Echo (/mob/living/silicon/pai): Click(the floor (188,165,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=9;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Alan Kowaski (/mob/living/carbon/human)
+  src: Echo (/mob/living/silicon/pai)
+  call stack:
+Echo (/mob/living/silicon/pai): close up()
+Echo (/mob/living/silicon/pai): attack hand(Alan Kowaski (/mob/living/carbon/human))
+Alan Kowaski (/mob/living/carbon/human): UnarmedAttack(Echo (/mob/living/silicon/pai), 1)
+Alan Kowaski (/mob/living/carbon/human): ClickOn(Echo (/mob/living/silicon/pai), "icon-x=17;icon-y=8;left=1;scre...")
+Echo (/mob/living/silicon/pai): Click(the floor (188,165,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=8;left=1;scre...")
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 5, 7, 8, 10, 11, 13, 14, 15, 17, 18, 19, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Sep 25 05:01:21 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 17, 22, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Sep 25 08:26:47 2015
+Denied access to 'Guest-1105517542' connecting from 201.14.146.213
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Sep 25 11:16:52 2015
+Denied access to 'Guest-519363809' connecting from 109.149.164.175
+Denied access to 'Guest-4060760580' connecting from 181.25.150.140
+Denied access to 'Guest-1828664916' connecting from 187.74.135.191
+Denied access to 'Guest-1547055242' connecting from 177.99.8.60
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 7, 8, 9, 10, 11, 13, 14, 15, 18, 20, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1115280373' connecting from 187.58.43.6
+Fri Sep 25 12:39:38 2015
+Denied access to 'Guest-3716557045' connecting from 107.9.137.63
+Denied access to 'Guest-3099090912' connecting from 177.189.53.86
+Denied access to 'Guest-2736296667' connecting from 217.158.253.74
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015c0];option=desc;...", /list (/list))
+Laser243 (/client): Topic("src=\[0x210015c0];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Laser243 (/client): Topic("src=\[0x210015c0];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Denied access to 'Guest-2910479552' connecting from 109.241.141.187
+Fri Sep 25 13:42:44 2015
+Undefined variable /datum/reagent/fuel/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Z .U. E. S (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015c0];option=submi...", /list (/list))
+Laser243 (/client): Topic("src=\[0x210015c0];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Laser243 (/client): Topic("src=\[0x210015c0];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 8, 10, 11, 13, 15, 16, 17, 19, 20, 22, 25 and 26
+BYOND Error: failed to certify MasterDarius
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Sep 25 15:36:13 2015
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Casca \'Legs\' Orivanna (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Casca \'Legs\' Orivanna (/mob/living/carbon/human))
+Casca \'Legs\' Orivanna (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=19;icon-y=16;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...")
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Jace Jaceson (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+  call stack:
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): attack self(Jace Jaceson (/mob/living/carbon/human))
+Jace Jaceson (/mob/living/carbon/human): ClickOn(the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key), "icon-x=20;icon-y=20;left=1;scr...")
+the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key): Click(null, "mapwindow.map", "icon-x=20;icon-y=20;left=1;scr...")
+Denied access to 'Guest-3961054062' connecting from 79.89.126.234
+Fri Sep 25 16:41:34 2015
+Denied access to 'Guest-1363360855' connecting from 187.109.13.162
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: null
+  src: Stivan (/mob/living/silicon/pai)
+  call stack:
+Stivan (/mob/living/silicon/pai): close up()
+Stivan (/mob/living/silicon/pai): death(null, "gives one shrill beep before f...")
+Stivan (/mob/living/silicon/pai): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Denied access to 'Guest-91348594' connecting from 201.26.191.181
+Denied access to 'Guest-3711159851' connecting from 187.67.162.252
+Fri Sep 25 17:47:48 2015
+runtime error: Cannot modify null.loc.
+proc name: Topic (/obj/machinery/lapvend/Topic)
+  source file: lapvend.dm,177
+  usr: Lila Wells (/mob/living/carbon/human)
+  src: Laptop Vendor (/obj/machinery/lapvend)
+  call stack:
+Laptop Vendor (/obj/machinery/lapvend): Topic("src=\[0x20064e5];choice=cancel", /list (/list))
+Dragonflamesrest (/client): Topic("src=\[0x20064e5];choice=cancel", /list (/list), Laptop Vendor (/obj/machinery/lapvend))
+Dragonflamesrest (/client): Topic("src=\[0x20064e5];choice=cancel", /list (/list), Laptop Vendor (/obj/machinery/lapvend))
+### VarEdit by Apophis775: /obj/machinery/door/airlock/maintenance_hatch req_one_access=
+Denied access to 'Guest-1406089006' connecting from 70.50.218.64
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 6, 7, 8, 9, 12, 13, 14, 16, 18, 19, 20, 21, 23 and 26
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'XxDarksiderlx' connecting from 80.111.157.21
+Denied access to 'Guest-4077970653' connecting from 187.112.19.16
+Denied access to 'Guest-988121818' connecting from 146.85.172.48
+Fri Sep 25 19:17:12 2015
+Denied access to 'Guest-2405304879' connecting from 152.250.205.53
+Denied access to 'Guest-609517261' connecting from 189.30.112.247
+Denied access to 'Guest-3937015313' connecting from 75.138.229.13
+Fri Sep 25 20:20:11 2015
+runtime error: Cannot execute null.process().
+proc name: fire shot (/obj/machinery/marine_turret/proc/fire_shot)
+  source file: turrets.dm,785
+  usr: null
+  src: UA 571-C Sentry Gun (/obj/machinery/marine_turret)
+  call stack:
+UA 571-C Sentry Gun (/obj/machinery/marine_turret): fire shot()
+Denied access to 'Guest-323520924' connecting from 179.252.12.94
+Denied access to 'Guest-3642851692' connecting from 177.133.65.116
+Rebooted server.
+Fri Sep 25 21:45:41 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 5, 6, 7, 8, 9, 12, 13, 14, 16, 17, 20, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by SASoperative: /mob/living/carbon/human gender=female
+### VarEdit by SASoperative: /obj/item/weapon/card/id name=Dominick Carpenter&#39;s ID Card (Weyland PMC Commando)
+### VarEdit by SASoperative: /obj/item/weapon/card/id assignment=Weyland PMC Commando
+Denied access to 'Louvega' connecting from 64.237.224.175
