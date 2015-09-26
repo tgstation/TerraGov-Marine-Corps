@@ -58,6 +58,10 @@
 					S.working = 0
 					return
 
+				if(!slayer)
+					user  << "\red You can't shovel beyond this layer, the shovel will break!"
+					return
+
 				user.visible_message("\blue \The [user] clears out \the [src].")
 				slayer -= 1
 				update_icon(1)
@@ -87,6 +91,10 @@
 						S.working = 0
 						return
 
+					if(slayer == 3)
+						user  << "\red You can't add any more snow here!"
+						return
+
 					user.visible_message("\blue \The [user] clears out \the [src].")
 					slayer += 1
 					S.has_snow = 0 //Remove snow from the shovel
@@ -106,6 +114,10 @@
 					if(!do_after(user,50))
 						user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 						S.working = 0
+						return
+
+					if(slayer <= 0)
+						user  << "\red There is no more snow to pick up!"
 						return
 
 					user.visible_message("\blue \The [user] clears out \the [src].")
@@ -135,6 +147,14 @@
 				if(!do_after(user,150))
 					user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
 					S.working = 0
+					return
+
+				if(!slayer)
+					user  << "\red You can't build the barricade here, there must be more snow on that area!"
+					return
+
+				if(locate(/obj/structure/barricade/snow) in get_turf(src))
+					user  << "\red You can't build another barricade on the same spot!"
 					return
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
@@ -226,7 +246,7 @@
 
 
 //ICE WALLS-----------------------------------//
-//Ice
+//Ice Wall
 /turf/simulated/wall/gm/ice
 	name = "thick ice"
 	icon = 'icons/turf/snow.dmi'
@@ -237,6 +257,28 @@
 	New()
 		spawn(1)
 			icon_state = "ice_wall"
+
+//Ice Thin Wall
+/turf/simulated/wall/gm/ice/thin
+	name = "thin ice"
+	icon_state = "ice_wall_thin"
+	desc = "It is very thin."
+	opacity = 0
+
+	//Must override icon
+	New()
+		spawn(1)
+			icon_state = "ice_wall_thin"
+
+//Ice Secret Wall
+/turf/simulated/wall/gm/ice/secret
+	icon_state = "ice_wall_0"
+	desc = "Something is inside..."
+
+	//Must override icon
+	New()
+		spawn(1)
+			icon_state = "ice_wall_0"
 
 //Icy Rock
 /turf/simulated/mineral/ice //wall piece

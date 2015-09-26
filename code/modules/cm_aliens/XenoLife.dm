@@ -140,9 +140,9 @@
 
 		for(var/mob/living/carbon/Xenomorph/Z in range(7,src))
 			if(isnull(Z.current_aura)) continue
-			if(Z.current_aura == "frenzy") frenzy_aura++
-			if(Z.current_aura == "guard") guard_aura++
-			if(Z.current_aura == "recovery") recovery_aura++
+			if(Z.current_aura == "frenzy" && !Z.stat && Z.storedplasma > 5) frenzy_aura++
+			if(Z.current_aura == "guard"&& !Z.stat && Z.storedplasma > 5) guard_aura++
+			if(Z.current_aura == "recovery"&& !Z.stat && Z.storedplasma > 5) recovery_aura++
 
 		update_icons()
 
