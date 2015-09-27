@@ -17,8 +17,8 @@
 		usr.visible_message("\blue \The [usr] lowers \the [src]...")
 
 //Clicking gun will still lower aim for guns that don't overwrite this
-/obj/item/weapon/gun/attack_self()
-	lower_aim()
+///obj/item/weapon/gun/attack_self()
+
 
 //Removing the lock and the buttons.
 /obj/item/weapon/gun/dropped(mob/user as mob)
