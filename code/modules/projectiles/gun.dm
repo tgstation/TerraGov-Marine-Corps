@@ -464,7 +464,8 @@
 
 /obj/item/weapon/gun/attack_self(mob/user as mob)
 	if (target)
-		return ..()
+		lower_aim()
+		return
 
 	if(twohanded)
 		if(wielded) //Trying to unwield it
