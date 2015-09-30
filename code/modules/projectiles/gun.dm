@@ -490,7 +490,7 @@
 			user.put_in_inactive_hand(O)
 			return
 
-	if(!istype(src,/obj/item/weapon/gun/projectile))
+	if(istype(src,/obj/item/weapon/gun/projectile))
 		return src:unload(user)
 
 	return ..()

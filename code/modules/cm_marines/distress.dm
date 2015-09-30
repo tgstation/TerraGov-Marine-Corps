@@ -7,6 +7,7 @@
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/has_called_emergency = 0
 	var/distress_cooldown = 0
+	var/waiting_for_candidates = 0
 
 //The distress call parent. Cannot be called itself due to "name" being a filtered target.
 /datum/emergency_call
@@ -18,7 +19,7 @@
 	var/probability = 0 //Chance of it occuring. Total must equal 100%
 	var/list/datum/mind/members = list() //Currently-joined members.
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
-	var/waiting_for_candidates = 0 //Are we waiting on people to join?
+//	var/waiting_for_candidates = 0 //Are we waiting on people to join?
 	var/role_needed = BE_RESPONDER //Obsolete
 	var/name_of_spawn = "Distress" //If we want to set up different spawn locations
 	var/mob/living/carbon/leader = null //Who's leading these miscreants
@@ -85,9 +86,6 @@
 		if(!C)	continue
 		if(C.name == "name") continue //The default parent, don't add it
 		all_calls += C
-	spawn(0)
-		world << "Emergency distress beacons powering up. Total call types: \b [all_calls.len]."
-
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
@@ -122,10 +120,55 @@
 	picked_call = get_random_call()
 	if(!istype(picked_call,/datum/emergency_call)) //Something went horribly wrong
 		return
-
+	if(ticker && ticker.mode && ticker.mode.waiting_for_candidates) //It's already been activated
+		return
 	picked_call.activate()
-	spawn(0)
-		has_called_emergency = 1
+	return
+
+/client/verb/JoinResponseTeam()
+	set name = "Join Response Team"
+	set category = "IC"
+	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
+
+	if(istype(usr,/mob/dead) || istype(usr,/mob/new_player))
+		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Military Police"))
+			usr << "<font color=red><b>You are jobbanned from the emergency reponse team!"
+			return
+		if(!ticker || !ticker.mode || isnull(ticker.mode.picked_call))
+			usr << "No distress beacons are active. You will be notified if this changes."
+			return
+
+		var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
+		if(!istype(distress) || !distress.mob_max)
+			usr << "The emergency response team is already full!"
+			return
+		var/deathtime = world.time - usr.timeofdeath
+
+		if(deathtime < 600) //Nice try, ghosting right after the announcement
+			usr << "You ghosted too recently."
+			return
+
+		if(!ticker.mode.waiting_for_candidates)
+			usr << "The distress beacon is already active. Better luck next time!"
+			return
+
+		if(isnull(usr.mind)) //How? Give them a new one anyway.
+			usr.mind = new /datum/mind(usr.key)
+			usr.mind.active = 1
+			usr.mind.current = usr
+
+		if(!usr.client || !usr.mind) return //Somehow
+		if(usr.mind in distress.candidates)
+			usr << "You already joined, just be patient."
+			return
+
+		if(distress.add_candidate(usr.mind))
+			usr << "<B>You are enlisted in the emergency response team! If the team is full after 60 seconds you will be transferred in.</b>"
+		else
+			usr << "You did not get enlisted in the response team. Better luck next time!"
+		return
+	else
+		usr << "You need to be an observer or new player to use this."
 	return
 
 /datum/emergency_call/proc/activate()
@@ -136,14 +179,14 @@
 		return
 
 	if(mob_max > 0)
-		waiting_for_candidates = 1
+		ticker.mode.waiting_for_candidates = 1
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[src.name]' activated. Looking for candidates.", 1)
 	command_announcement.Announce("A distress beacon has been launched from the USS Sulaco.", "Priority Alert")
 	spawn(600) //If after 60 seconds we aren't full, abort
 		if(candidates.len < mob_max)
 			message_admins("Aborting distress beacon, not enough candidates: found [candidates.len].", 1)
-			waiting_for_candidates = 0
+			ticker.mode.waiting_for_candidates = 0
 			ticker.mode.has_called_emergency = 0
 			members = null
 			members = list() //Empty the members list.
@@ -173,13 +216,12 @@
 					candidates.Remove(M)
 				spawn(3)//Wait for all the above to be done
 					if(candidates.len)
-						for(var/datum/mind/M in candidates)
-							if(M.current)
-								M.current << "You didn't get selected to join the distress team. Better luck next time!"
+						for(var/datum/mind/I in candidates)
+							if(I.current)
+								I.current << "You didn't get selected to join the distress team. Better luck next time!"
 						spawn(1)
 							candidates = null //Blank out the candidates list for next time.
 							candidates = list()
-
 
 			command_announcement.Announce(dispatch_message, "Distress Beacon")
 			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
@@ -201,12 +243,11 @@
 				shuttle.launch() //Get that fucker back
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
-	if(!waiting_for_candidates) return 0
 	if(!M.client) return 0//Not connected
-	if(M.mind in candidates) return 0//Already there.
+	if(M.mind && M.mind in candidates) return 0//Already there.
 	if(istype(M,/mob/living/carbon/Xenomorph) && !M.stat) return 0//Something went wrong
-
-	candidates += M.mind
+	if(M.mind)
+		candidates += M.mind
 	return 1
 
 /datum/emergency_call/proc/get_spawn_point(var/is_for_items = 0)
@@ -719,52 +760,6 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	M.equip_to_slot_or_del(W, slot_wear_id)
-
-
-
-/client/verb/JoinResponseTeam()
-	set name = "Join Response Team"
-	set category = "IC"
-	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
-
-	if(istype(usr,/mob/dead/observer) || istype(usr,/mob/new_player))
-		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Military Police"))
-			usr << "<font color=red><b>You are jobbanned from the emergency reponse team!"
-			return
-		if(!ticker || !ticker.mode || isnull(ticker.mode.picked_call))
-			usr << "No distress beacons are active. You will be notified if this changes."
-			return
-
-		var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
-		if(!istype(distress) || !distress.mob_max)
-			usr << "The emergency response team is already full!"
-			return
-		var/deathtime = world.time - usr.timeofdeath
-
-		if(deathtime < 600) //Nice try, ghosting right after the announcement
-			usr << "You ghosted too recently."
-			return
-
-		if(!distress.waiting_for_candidates)
-			usr << "The distress beacon is already active. Better luck next time!"
-			return
-
-		if(!usr.mind)
-			usr.mind = new(usr.key)
-			usr.mind.original = usr
-			usr.mind.current = usr
-
-		if(!usr.client || !usr.mind) return //Somehow
-		if(usr.mind in distress.candidates)
-			usr << "You already joined, just be patient."
-			return
-
-		if(distress.add_candidate(usr.mind))
-			usr << "<B>You are enlisted in the emergency response team! If the team is full after 60 seconds you will be transferred in.</b>"
-		return
-	else
-		usr << "You need to be an observer or new player to use this."
-	return
 
 //Spawn various items around the shuttle area thing.
 /datum/emergency_call/proc/spawn_items()
