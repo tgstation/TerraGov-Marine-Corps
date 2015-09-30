@@ -1226,7 +1226,7 @@ var/global/floorIsLava = 0
 		//Reset the distress call
 		ticker.mode.picked_call.members = list()
 		ticker.mode.picked_call.candidates = list()
-		ticker.mode.picked_call.waiting_for_candidates = 0
+		ticker.mode.waiting_for_candidates = 0
 		ticker.mode.has_called_emergency = 0
 		ticker.mode.picked_call = null
 
