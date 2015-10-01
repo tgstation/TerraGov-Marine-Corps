@@ -666,7 +666,7 @@
 
 /obj/item/clothing/under/marine/fluff/roswell
 	name = "Merc Jumpsuit"
-	desc = "Jumpsut from a super shady mercenary company.  DONOR ITEM"
+	desc = "Jumpsuit from a super shady mercenary company.  DONOR ITEM"
 	icon_state = "merc_jumpsuit"
 	item_state = "merc_jumpsuit_s"
 	item_color = "merc_jumpsuit"
