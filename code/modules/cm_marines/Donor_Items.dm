@@ -251,9 +251,17 @@
 
 /obj/item/clothing/suit/storage/marine/fluff/steelpoint
 	name = "M4X Armor"
-	desc = "Armor to the M4X!!!!.  DONOR ITEM"
+	desc = "Armor to the M4X!!!!  DONOR ITEM"
 	icon_state = "steelpoint_armor"
 	item_state = "steelpoint_armor"
+
+
+/obj/item/clothing/suit/storage/marine/fluff/valentine
+	name = "Shocky's Armor"
+	desc = "Shockingly good armor.   DONOR ITEM"
+	icon_state = "ertarmor_sec"
+	item_state = "ertarmor_sec"
+
 
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
@@ -504,7 +512,17 @@
 	icon_state = "steelpoint_helmet"
 	item_state = "steelpoint_helmet"
 
+/obj/item/clothing/head/helmet/marine/fluff/valentine
+	name = "Shocky's Helmet"
+	desc = "Shockingly good helmet.  DONOR ITEM"
+	icon_state = "syndicate-helm-black"
+	item_state = "syndicate-helm-black"
 
+/obj/item/clothing/head/helmet/marine/fluff/Jdobbin49
+	name = "Phillip's Beret"
+	desc = "Beret owned by Phillip Greenwall.  DONOR ITEM"
+	icon_state = "berettan"
+	item_state = "berettan"
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
@@ -648,7 +666,7 @@
 
 /obj/item/clothing/under/marine/fluff/roswell
 	name = "Merc Jumpsuit"
-	desc = "Jumpsut from a super shady mercenary company.  DONOR ITEM"
+	desc = "Jumpsuit from a super shady mercenary company.  DONOR ITEM"
 	icon_state = "merc_jumpsuit"
 	item_state = "merc_jumpsuit_s"
 	item_color = "merc_jumpsuit"
@@ -687,6 +705,20 @@
 	icon_state = "steelpoint_jumpsuit"
 	item_state = "steelpoint_jumpsuit_s"
 	item_color = "steelpoint_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/valentine
+	name = "Shocky's Jumpsuit"
+	desc = "Shockingly good Jumpsuit.  DONOR ITEM"
+	icon_state = "jensen"
+	item_state = "jensen_s"
+	item_color = "jensen"
+
+/obj/item/clothing/under/marine/fluff/arach
+	name = "Zero Suit"
+	desc = "A jumpsut worn under futuristic armor.  DONOR ITEM"
+	icon_state = "samus_jumpsuit"
+	item_state = "samus_jumpsuit_s"
+	item_color = "samus_jumpsuit"
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
