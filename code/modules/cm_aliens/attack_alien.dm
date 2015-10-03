@@ -145,7 +145,7 @@
 				return
 			if(istype(src,/mob/living/silicon) && src.stat == 0) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
 				var/datum/effect/effect/system/spark_spread/spark_system
-				spark_system = new /datum/effect/effect/system/spark_spread() 
+				spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
@@ -384,6 +384,10 @@
 		M << "It's already open!"
 		return
 	if(isXenoLarva(M)) return //Larvae can't do shit
+
+	if(blocked)
+		M << "It's welded shut!"
+		return
 
 	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 50, 1)
 	M.visible_message("<span class='warning'> \The [M] digs into [src.name] and begins to pry it open.</span>", \

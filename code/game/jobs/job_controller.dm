@@ -271,11 +271,9 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 						continue
 
 					if(jobban_isbanned(player, job.title))
-						Debug("DO isbanned failed, Player: [player], Job:[job.title]")
 						continue
 
 					if(!job.player_old_enough(player.client))
-						Debug("DO player not old enough, Player: [player], Job:[job.title]")
 						continue
 
 					// If the player wants that job on this level, then try give it to him.
@@ -283,7 +281,6 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 						// If the job isn't filled
 						if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-							Debug("DO pass, Player: [player], Level:[level], Job:[job.title]")
 							AssignRole(player, job.title)
 							unassigned -= player
 							break
@@ -291,7 +288,12 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		// Hand out random jobs to the people who didn't get any in the last check
 		// Also makes sure that they got their preference correct
 		for(var/mob/new_player/player in unassigned)
-			GiveRandomJob(player)
+			if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
+				GiveRandomJob(player)
+
+		for(var/mob/new_player/player in unassigned)
+			if(player.client.prefs.alternate_option == BE_ASSISTANT) //We're just stealing the define
+				AssignRole(player, "Squad Marine")
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)

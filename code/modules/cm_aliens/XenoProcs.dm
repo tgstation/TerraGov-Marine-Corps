@@ -55,6 +55,9 @@
 	if(recovery_aura)
 		stat(null,"You are affected by a pheromone of RECOVERY.")
 
+	if(hive_orders && hive_orders != "")
+		stat(null,"<b>Hive Orders:</b> [hive_orders]")
+
 	return
 
 //A simple handler for checking your state. Used in pretty much all the procs.
