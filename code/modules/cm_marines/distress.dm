@@ -162,7 +162,7 @@
 			usr << "You already joined, just be patient."
 			return
 
-		if(distress.add_candidate(usr.mind))
+		if(distress.add_candidate(usr))
 			usr << "<B>You are enlisted in the emergency response team! If the team is full after 60 seconds you will be transferred in.</b>"
 		else
 			usr << "You did not get enlisted in the response team. Better luck next time!"
