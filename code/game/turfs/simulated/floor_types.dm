@@ -90,6 +90,13 @@
 	nitrogen = 0.001
 	temperature = TCMB
 
+/turf/simulated/floor/engine/mars/exterior
+	name = "floor"
+	icon_state = "ironsand1"
+	oxygen = 0
+	nitrogen = 95
+	temperature = T20C
+
 /turf/simulated/floor/plating
 	name = "plating"
 	icon_state = "plating"

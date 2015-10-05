@@ -45,3 +45,6 @@
 	name = "shower curtain"
 	color = "#ACD1E9"
 	alpha = 200
+/obj/structure/curtain/open/black
+	name = "black curtain"
+	color = "#222222"

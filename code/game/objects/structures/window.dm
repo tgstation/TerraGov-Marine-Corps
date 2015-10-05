@@ -407,6 +407,14 @@
 	health = 40
 	reinf = 1
 
+/obj/structure/window/reinforced/toughened
+	name = "safety glass"
+	desc = "A very tough looking window, probably bullet proof."
+	icon_state = "rwindow"
+	basestate = "rwindow"
+	health = 100
+	reinf = 1
+
 /obj/structure/window/New(Loc, constructed=0)
 	..()
 
