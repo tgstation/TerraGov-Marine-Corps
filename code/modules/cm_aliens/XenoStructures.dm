@@ -328,7 +328,8 @@
 /obj/effect/alien/egg/New()
 	..()
 	spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-		Grow()
+		if(status == GROWING)
+			Grow()
 
 /obj/effect/alien/egg/ex_act(severity)
 	switch(severity)
@@ -350,6 +351,9 @@
 	switch(status)
 		if(BURST)
 			user << "\red You clear the hatched egg."
+			user:storedplasma += 1
+			if(istype(user,/mob/living/carbon/Xenomorph/Larva))
+				user:amount_grown += 1
 			del(src)
 			return
 		if(GROWING)
@@ -424,7 +428,7 @@
 
 /obj/effect/alien/egg/proc/healthcheck()
 	if(health <= 0)
-		Burst()
+		Burst(1)
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)

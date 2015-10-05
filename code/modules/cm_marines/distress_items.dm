@@ -90,8 +90,8 @@
 
 
 /obj/item/weapon/gun/projectile/automatic/mar20
-	name = "\improper MAR-40"
-	desc = "A cheaply-produced, yet tough assault rifle found far and wide across the United Systems. Uses 12mm rounds in a simple magazine."
+	name = "\improper MAR-40 Pulse Rifle"
+	desc = "A cheaply-produced, yet tough pulse rifle found far and wide across the universe. Uses 12mm rounds in a simple magazine."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "rsprifle"
 	item_state = "c20r"
@@ -133,19 +133,20 @@
 		else
 			icon_state = "rsprifle0"
 		return
-
-/obj/item/weapon/gun/projectile/shotgun/pump/merc
-	name = "custom-built shotgun"
-	desc = "A four-barrel pump action shotgun capable of firing in rapid succession. Dangerous."
+S
+/obj/item/weapon/gun/projectile/shotgun/merc
+	name = "Sawed-off shotgun"
+	desc = "A double-barreled shotgun which can fire two 12 gauge shells in rapid succession. Commonly found in the hands of criminals, mercenaries and in museums. Dangerous."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "rspshotgun"
-	max_shells = 6
+	max_shells = 2
 	w_class = 6
+	caliber = "shotgun"
 	ammo_type = "/obj/item/ammo_casing/shotgun"
-	fire_delay = 4
-	recoil = 1
+	fire_delay = 1
+	recoil = 1.5
 	force = 20.0
-	twohanded = 1
+	twohanded = 0
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 18
 	rail_pixel_x = 13
@@ -163,3 +164,30 @@
 			icon_state = "rspshotgun"
 		else
 			icon_state = "rspshotgun0"
+
+
+/obj/item/clothing/under/marine_jumpsuit/PMC/green
+	name = "Uniform"
+	desc = "A uniform"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "arg_jumpsuit"
+	item_state = "arg_jumpsuit"
+	item_color = "arg_jumpsuit"
+
+/obj/item/clothing/suit/storage/marine/PMCarmor/green
+	name = "Armored Vest"
+	desc = "A protective vest"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "arg_armor"
+	icon_state = "arg_armor"
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/head/helmet/marine/PMC/green
+	name = "Helmet"
+	desc = "A protective helmet"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "arg_helmet"
+	icon_state = "arg_helmet"
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)

@@ -547,17 +547,16 @@ datum/preferences
 		HTML += "</a></td></tr>"
 
 	HTML += "</td'></tr></table>"
-
 	HTML += "</center></table>"
 
-/* 	switch(alternate_option)
-		if(GET_RANDOM_JOB)
+	if(user.client.prefs) //Just makin sure
+		if(user.client.prefs.alternate_option == GET_RANDOM_JOB)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
-		if(BE_ASSISTANT)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be assistant if preference unavailable</font></a></u></center><br>"
-		if(RETURN_TO_LOBBY)
+		if(user.client.prefs.alternate_option == BE_ASSISTANT)
+			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be marine if preference unavailable</font></a></u></center><br>"
+		if(user.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
- */
+
 	HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>\[Reset\]</a></center>"
 	HTML += "</tt>"
 
