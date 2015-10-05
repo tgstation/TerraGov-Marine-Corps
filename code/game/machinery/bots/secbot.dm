@@ -71,7 +71,7 @@
 /obj/machinery/bot/secbot/beepsky
 	name = "Officer Beep O'sky"
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
-	idcheck = 0
+	idcheck = 1
 	auto_patrol = 1
 
 /obj/item/weapon/secbot_assembly
