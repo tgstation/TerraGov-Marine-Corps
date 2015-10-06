@@ -320,3 +320,7 @@
 /turf/simulated/wall/r_wall/research
 	icon_state = "research"
 	walltype = "research"
+
+/turf/simulated/wall/r_wall/dense
+	icon_state = "iron0"
+	walltype = "iron"
