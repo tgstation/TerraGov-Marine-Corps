@@ -234,12 +234,21 @@
 			"You hear a [istype(in_chamber, /obj/item/projectile/beam) ? "laser blast" : "gunshot"]!")
 
 	if(rail)
-		if(rail.ranged_dmg_mod) in_chamber.damage = (in_chamber.damage * rail.ranged_dmg_mod / 100)
+		if(rail.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * rail.ranged_dmg_mod / 100)
 	if(muzzle)
-		if(muzzle.ranged_dmg_mod) in_chamber.damage = (in_chamber.damage * muzzle.ranged_dmg_mod / 100)
+		if(muzzle.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * muzzle.ranged_dmg_mod / 100)
 	if(under)
-		if(under.ranged_dmg_mod) in_chamber.damage = (in_chamber.damage * under.ranged_dmg_mod / 100)
-
+		if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
+		if(istype(under,/obj/item/attachable/bipod))
+			var/found = 0
+			for(var/obj/structure/O in range(user,1)) //This is probably inefficient as fuck
+				if(O.throwpass == 1)
+					found = 1
+					break
+			if(found)
+				in_chamber.damage = round(5 * in_chamber.damage / 4) //Bipod gives a decent damage upgrade
+				if(prob(30))
+					user << "\blue Your bipod keeps the weapon steady!"
 	in_chamber.original = target
 	in_chamber.loc = get_turf(user)
 	in_chamber.starting = get_turf(user)
