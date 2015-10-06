@@ -13,9 +13,9 @@
 	icon_state = "VP78"
 	caliber = "9mms"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
-	fire_delay = 6
+	fire_delay = 3
 	load_method = 2
-	recoil = 1
+	recoil = 0
 	max_shells = 18
 	ammo_type = "/obj/item/ammo_casing/VP78"
 
