@@ -259,8 +259,6 @@
 #include "code\game\supplyshuttle.dm"
 #include "code\game\area\ai_monitored.dm"
 #include "code\game\area\areas.dm"
-#include "code\game\area\BigRed.dm"
-#include "code\game\area\HauntedHouse.dm"
 #include "code\game\area\IceColony.dm"
 #include "code\game\area\LV624.dm"
 #include "code\game\area\Space Station 13 areas.dm"
