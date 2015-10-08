@@ -103,6 +103,8 @@
 	desc = "A box of standard issue high-powered 12 gauge buckshot rounds. Manufactured by Armat Systems for military and civilian use."
 	icon_state = "shells"
 	w_class = 2 //Can fit in belts
+	foldable = /obj/item/weapon/paper/crumpled
+	can_hold = list("/obj/item/ammo_casing/m37")
 	New()
 		..()
 		new /obj/item/ammo_casing/m37(src)
