@@ -375,6 +375,8 @@
 	desc = "A large backpack used by military."
 	icon_state = "marinepack"
 	item_state = "marinepack"
+	max_w_class = 3    //  Largest item that can be placed into the backpack
+	max_combined_w_class = 21   //Capacity of the backpack
 
 //BELT
 
@@ -385,6 +387,8 @@
 	item_state = "security"//Could likely use a better one.
 	w_class = 4
 	storage_slots = 8
+	max_combined_w_class = 9
+	max_w_class = 3
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
 		"/obj/item/weapon/combat_knife",
@@ -402,7 +406,8 @@
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine"
+		"/obj/item/device/mine",
+		"/obj/item/weapon/melee/baton"
 		)
 
 /obj/item/weapon/storage/belt/security/MP
