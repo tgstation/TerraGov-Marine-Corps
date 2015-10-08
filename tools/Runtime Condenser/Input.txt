@@ -18328,3 +18328,1233 @@ Your server failed to establish a connection with the SQL database.
 ### VarEdit by Apophis775: /obj/item/stack/sheet/mineral/uranium amount=500
 Tue Oct 06 01:48:19 2015
 Denied access to 'Guest-937541192' connecting from 121.217.138.170
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 171.954, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 171.954, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 171.954, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 188.515, 15000)
+the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(168.317)
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 112.024, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 112.024, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 112.024, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 187.202, 15000)
+the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(167.144)
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 95.2241, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 95.2241, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 95.2241, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 185.523, 15000)
+the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(165.646)
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 90.4283, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 90.4283, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+pump gas(Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 90.4283, 15000)
+Coolant Injector (/obj/machinery/atmospherics/unary/outlet_injector): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): specific entropy()
+calculate specific power(/datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture))
+pump gas(the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine), /datum/gas_mixture (/datum/gas_mixture), /datum/gas_mixture (/datum/gas_mixture), 183.768, 15000)
+the Engine Chamber Vent Pump #... (/obj/machinery/atmospherics/unary/vent_pump/engine): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,284
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: Division by zero
+proc name: specific entropy gas (/datum/gas_mixture/proc/specific_entropy_gas)
+  source file: _gas_mixture_xgm.dm,176
+Tue Oct 06 04:05:22 2015
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+Denied access to 'Plagueman' connecting from 46.101.8.188
+Denied access to 'Dankmaymaymay' connecting from 46.101.8.188
+Rebooted server.
+Tue Oct 06 05:24:24 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 7, 8, 10, 11, 12, 18, 19, 20, 21, 22, 24, 25 and 26
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2888164454' connecting from 123.2.220.238
+Rebooted server.
+Tue Oct 06 07:55:43 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 17, 18, 19, 21, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.storedplasma
+proc name: Transfer Plasma (/mob/living/carbon/Xenomorph/proc/transfer_plasma)
+  source file: XenoPowers.dm,177
+  usr: Sentinel (952) (/mob/living/carbon/Xenomorph/Sentinel)
+  src: Sentinel (952) (/mob/living/carbon/Xenomorph/Sentinel)
+  call stack:
+Sentinel (952) (/mob/living/carbon/Xenomorph/Sentinel): Transfer Plasma(null)
+Denied access to 'Guest-2966611786' connecting from 89.136.175.98
+Tue Oct 06 08:58:29 2015
+Denied access to 'Guest-4266395361' connecting from 189.6.141.137
+Rebooted server.
+Tue Oct 06 10:36:33 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 8, 9, 10, 11, 15, 16, 17, 19, 20, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Zurugu2013' connecting from 186.209.53.155
+Tue Oct 06 12:54:05 2015
+Denied access to 'Guest-4232222936' connecting from 86.28.158.35
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 5, 6, 8, 9, 10, 11, 12, 14, 15, 17, 18, 19, 21, 22, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-410509069' connecting from 80.101.224.203
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Judie McStark (as Scientist) (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+  call stack:
+the science pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Judie McStark (as Scientist) (/mob/living/carbon/human))
+Judie McStark (as Scientist) (/mob/living/carbon/human): ClickOn(the science pod (/obj/machinery/clonepod), "icon-x=19;icon-y=10;left=1;scr...")
+the science pod (/obj/machinery/clonepod): Click(the floor (119,93,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Judie McStark (as Scientist) (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+  call stack:
+the science pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Judie McStark (as Scientist) (/mob/living/carbon/human))
+Judie McStark (as Scientist) (/mob/living/carbon/human): ClickOn(the science pod (/obj/machinery/clonepod), "icon-x=19;icon-y=10;left=1;scr...")
+the science pod (/obj/machinery/clonepod): Click(the floor (119,93,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Judie McStark (as Scientist) (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+  call stack:
+the science pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Judie McStark (as Scientist) (/mob/living/carbon/human))
+Judie McStark (as Scientist) (/mob/living/carbon/human): ClickOn(the science pod (/obj/machinery/clonepod), "icon-x=19;icon-y=10;left=1;scr...")
+the science pod (/obj/machinery/clonepod): Click(the floor (119,93,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Judie McStark (as Scientist) (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+  call stack:
+the science pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Judie McStark (as Scientist) (/mob/living/carbon/human))
+Judie McStark (as Scientist) (/mob/living/carbon/human): ClickOn(the science pod (/obj/machinery/clonepod), "icon-x=19;icon-y=10;left=1;scr...")
+the science pod (/obj/machinery/clonepod): Click(the floor (119,93,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Judie McStark (as Scientist) (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+  call stack:
+the science pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Judie McStark (as Scientist) (/mob/living/carbon/human))
+Judie McStark (as Scientist) (/mob/living/carbon/human): ClickOn(the science pod (/obj/machinery/clonepod), "icon-x=22;icon-y=9;left=1;scre...")
+the science pod (/obj/machinery/clonepod): Click(the floor (119,93,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=22;icon-y=9;left=1;scre...")
+Tue Oct 06 14:16:27 2015
+Denied access to 'Guest-1283400176' connecting from 68.9.116.211
+Denied access to 'Guest-3218820981' connecting from 95.102.219.8
+Denied access to 'Guest-4176270372' connecting from 73.199.201.189
+Tue Oct 06 15:21:14 2015
+Denied access to 'Guest-750992854' connecting from 184.161.122.40
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Dickgoblin' connecting from 128.171.211.18
+Denied access to 'Guest-1283429533' connecting from 191.190.227.234
+Tue Oct 06 16:25:55 2015
+Denied access to 'Guest-3799264172' connecting from 201.47.207.253
+Denied access to 'Guest-2743477181' connecting from 186.210.47.78
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015cc];option=desc;...", /list (/list))
+Hirumatsu (/client): Topic("src=\[0x210015cc];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Hirumatsu (/client): Topic("src=\[0x210015cc];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Harbinger (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015cc];option=submi...", /list (/list))
+CrusaderofTruth (/client): Topic("src=\[0x210015cc];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+CrusaderofTruth (/client): Topic("src=\[0x210015cc];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Denied access to 'Guest-3493968310' connecting from 68.117.140.44
+Tue Oct 06 17:42:57 2015
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Osalaa Wooki (/mob/living/carbon/human)
+  src: ODIN (/mob/living/silicon/pai)
+  call stack:
+ODIN (/mob/living/silicon/pai): close up()
+ODIN (/mob/living/silicon/pai): attack hand(Osalaa Wooki (/mob/living/carbon/human))
+Osalaa Wooki (/mob/living/carbon/human): UnarmedAttack(ODIN (/mob/living/silicon/pai), 1)
+Osalaa Wooki (/mob/living/carbon/human): ClickOn(ODIN (/mob/living/silicon/pai), "icon-x=7;icon-y=7;left=1;scree...")
+ODIN (/mob/living/silicon/pai): Click(the floor (121,166,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=7;icon-y=7;left=1;scree...")
+Denied access to 'Guest-2771061228' connecting from 177.125.56.10
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: null
+  src: ODIN (/mob/living/silicon/pai)
+  call stack:
+ODIN (/mob/living/silicon/pai): close up()
+ODIN (/mob/living/silicon/pai): death(null, "gives one shrill beep before f...")
+ODIN (/mob/living/silicon/pai): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 5, 7, 8, 9, 11, 12, 14, 15, 17, 18, 19, 20, 21, 22 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Tue Oct 06 20:18:53 2015
+Denied access to 'Guest-2898004801' connecting from 96.20.88.164
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 10, 12, 14, 15, 17, 19, 20, 21, 24, 25 and 26
+BYOND Error: failed to certify Khusa
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2162124693' connecting from 67.190.197.157
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2002013];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2002013];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2002013];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2002013];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2002013];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2002013];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2002013];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2002013];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+### VarEdit by Apophis775: /obj/machinery/power/apc pixel_x=-30
+Tue Oct 06 21:19:49 2015
+Denied access to 'Guest-1126984203' connecting from 69.172.153.251
+### VarEdit by Apophis775: /datum/gas_mixture temperature=400
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=400
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=0
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=0
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=100
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=100
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=100000
+Denied access to 'Guest-310554271' connecting from 76.73.207.9
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=100000
+Denied access to 'Guest-1685278236' connecting from 69.141.22.80
+runtime error: Cannot read null.storedplasma
+proc name: Transfer Plasma (/mob/living/carbon/Xenomorph/proc/transfer_plasma)
+  source file: XenoPowers.dm,177
+  usr: Drone (511) (/mob/living/carbon/Xenomorph/Drone)
+  src: Drone (511) (/mob/living/carbon/Xenomorph/Drone)
+  call stack:
+Drone (511) (/mob/living/carbon/Xenomorph/Drone): Transfer Plasma(null)
+Rebooted server.
+Tue Oct 06 22:56:58 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 7, 8, 9, 11, 12, 13, 14, 17, 18, 19, 20, 21, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 07 00:28:21 2015
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,530
+  usr: null
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+  call stack:
+M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun): dropped(null)
+runtime error: Cannot read null.id
+proc name: start (/datum/effect/effect/system/smoke_spread/chem/start)
+  source file: chemsmoke.dm,117
+  usr: null
+  src: /datum/effect/effect/system/sm... (/datum/effect/effect/system/smoke_spread/chem)
+  call stack:
+/datum/effect/effect/system/sm... (/datum/effect/effect/system/smoke_spread/chem): start()
+Chemsmoke (/datum/chemical_reaction/chemsmoke): on reaction(/datum/reagents (/datum/reagents), 20)
+### VarEdit by Apophis775: /obj/item/weapon/gun/projectile/M56_Smartgun loaded=
+runtime error: type mismatch:  += the bullet casing (/obj/item/ammo_casing/m56)
+proc name: attack self (/obj/item/smartgun_powerpack/attack_self)
+  source file: Marine_Weapons.dm,605
+  usr: Siw Haakonsson (/mob/living/carbon/human)
+  src: M56 powerpack (/obj/item/smartgun_powerpack)
+  call stack:
+M56 powerpack (/obj/item/smartgun_powerpack): attack self(Siw Haakonsson (/mob/living/carbon/human))
+M56 powerpack (/obj/item/smartgun_powerpack): ui action click()
+Use M56 powerpack (/obj/screen/item_action): Click(null, "mapwindow.map", "icon-x=14;icon-y=11;left=1;scr...")
+runtime error: type mismatch:  += the bullet casing (/obj/item/ammo_casing/m56)
+proc name: attack self (/obj/item/smartgun_powerpack/attack_self)
+  source file: Marine_Weapons.dm,605
+  usr: Siw Haakonsson (/mob/living/carbon/human)
+  src: M56 powerpack (/obj/item/smartgun_powerpack)
+  call stack:
+M56 powerpack (/obj/item/smartgun_powerpack): attack self(Siw Haakonsson (/mob/living/carbon/human))
+M56 powerpack (/obj/item/smartgun_powerpack): ui action click()
+Use M56 powerpack (/obj/screen/item_action): Click(null, "mapwindow.map", "icon-x=13;icon-y=17;left=1;scr...")
+runtime error: type mismatch:  += the bullet casing (/obj/item/ammo_casing/m56)
+proc name: attack self (/obj/item/smartgun_powerpack/attack_self)
+  source file: Marine_Weapons.dm,605
+  usr: Charles Styles (/mob/living/carbon/human)
+  src: M56 powerpack (/obj/item/smartgun_powerpack)
+  call stack:
+M56 powerpack (/obj/item/smartgun_powerpack): attack self(Charles Styles (/mob/living/carbon/human))
+M56 powerpack (/obj/item/smartgun_powerpack): ui action click()
+Use M56 powerpack (/obj/screen/item_action): Click(null, "mapwindow.map", "icon-x=16;icon-y=16;left=1;scr...")
+runtime error: Cannot read .len
+proc name: load into chamber (/obj/item/weapon/gun/projectile/load_into_chamber)
+  source file: projectile.dm,55
+  usr: Charles Styles (/mob/living/carbon/human)
+  src: M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun)
+  call stack:
+M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun): load into chamber()
+M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun): Fire(the floor (184,175,3) (/turf/simulated/shuttle/floor), Charles Styles (/mob/living/carbon/human), "icon-x=30;icon-y=1;left=1;scre...", 0)
+M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun): afterattack(the floor (184,175,3) (/turf/simulated/shuttle/floor), Charles Styles (/mob/living/carbon/human), 0, "icon-x=30;icon-y=1;left=1;scre...")
+Charles Styles (/mob/living/carbon/human): ClickOn(the floor (184,175,3) (/turf/simulated/shuttle/floor), "icon-x=30;icon-y=1;left=1;scre...")
+the floor (184,175,3) (/turf/simulated/shuttle/floor): Click(the floor (184,175,3) (/turf/simulated/shuttle/floor), "mapwindow.map", "icon-x=30;icon-y=1;left=1;scre...")
+runtime error: Cannot read .len
+proc name: load into chamber (/obj/item/weapon/gun/projectile/load_into_chamber)
+  source file: projectile.dm,55
+  usr: Charles Styles (/mob/living/carbon/human)
+  src: M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun)
+  call stack:
+M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun): load into chamber()
+M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun): Fire(the floor (185,174,3) (/turf/simulated/shuttle/floor), Charles Styles (/mob/living/carbon/human), "icon-x=6;icon-y=18;left=1;scre...", 0)
+M56 smartgun (Wielded) (/obj/item/weapon/gun/projectile/M56_Smartgun): afterattack(the floor (185,174,3) (/turf/simulated/shuttle/floor), Charles Styles (/mob/living/carbon/human), 0, "icon-x=6;icon-y=18;left=1;scre...")
+Charles Styles (/mob/living/carbon/human): ClickOn(the floor (185,174,3) (/turf/simulated/shuttle/floor), "icon-x=6;icon-y=18;left=1;scre...")
+the floor (185,174,3) (/turf/simulated/shuttle/floor): Click(the floor (185,174,3) (/turf/simulated/shuttle/floor), "mapwindow.map", "icon-x=6;icon-y=18;left=1;scre...")
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 19, 21, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 07 01:58:59 2015
+### VarEdit by Speedybast: /obj/item/alien_embryo stage=4
+runtime error: Cannot modify null.loc.
+proc name: end step (/datum/surgery_step/cavity/implant_removal/end_step)
+  source file: implant.dm,205
+  usr: Vladislav Kovinski (/mob/living/carbon/human)
+  src: /datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal)
+  call stack:
+/datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal): end step(Vladislav Kovinski (/mob/living/carbon/human), Martin Halyeko (/mob/living/carbon/human), "chest", the hemostat (/obj/item/weapon/hemostat))
+do surgery(Martin Halyeko (/mob/living/carbon/human), Vladislav Kovinski (/mob/living/carbon/human), the hemostat (/obj/item/weapon/hemostat))
+the hemostat (/obj/item/weapon/hemostat): attack(Martin Halyeko (/mob/living/carbon/human), Vladislav Kovinski (/mob/living/carbon/human), null)
+Martin Halyeko (/mob/living/carbon/human): attackby(the hemostat (/obj/item/weapon/hemostat), Vladislav Kovinski (/mob/living/carbon/human))
+Vladislav Kovinski (/mob/living/carbon/human): ClickOn(Martin Halyeko (/mob/living/carbon/human), "icon-x=16;icon-y=10;left=1;scr...")
+Martin Halyeko (/mob/living/carbon/human): Click(the floor (106,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=10;left=1;scr...")
+Rebooted server.
+Wed Oct 07 03:53:32 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15, 17, 18, 19, 23 and 26
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Oct 07 05:46:47 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 19, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 07 08:01:05 2015
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Librarian.txt (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158c];option=submi...", /list (/list))
+Chris1vid (/client): Topic("src=\[0x2100158c];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Chris1vid (/client): Topic("src=\[0x2100158c];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 8, 9, 10, 12, 14, 15, 18, 19, 20, 21, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 07 09:06:47 2015
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Siw Haakonsson (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Siw Haakonsson (/mob/living/carbon/human))
+Siw Haakonsson (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=8;icon-y=19;left=1;scre...")
+the girder (/obj/structure/girder): Click(the dirt (122,50,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=8;icon-y=19;left=1;scre...")
+Denied access to 'Guest-3778776662' connecting from 168.216.10.101
+Rebooted server.
+Wed Oct 07 11:26:04 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 8, 9, 10, 11, 13, 14, 16, 18, 19, 20, 22, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 07 12:35:46 2015
+Denied access to 'Guest-3209036289' connecting from 84.115.23.108
+Wed Oct 07 13:42:01 2015
+runtime error: Cannot read .len
+proc name: attack (/obj/item/proc/attack)
+  source file: item_attack.dm,131
+  usr: Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human)
+  src: the butterfly knife (/obj/item/weapon/butterfly)
+  call stack:
+the butterfly knife (/obj/item/weapon/butterfly): attack(Sentinel (69) (/mob/living/carbon/Xenomorph/Sentinel), Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human), null)
+Sentinel (69) (/mob/living/carbon/Xenomorph/Sentinel): attackby(the butterfly knife (/obj/item/weapon/butterfly), Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human))
+Nirvash \'Vash\' Miyamoto (/mob/living/carbon/human): ClickOn(Sentinel (69) (/mob/living/carbon/Xenomorph/Sentinel), "icon-x=19;icon-y=12;left=1;scr...")
+Sentinel (69) (/mob/living/carbon/Xenomorph/Sentinel): Click(the floor (173,81,1) (/turf/simulated/floor/vault), "mapwindow.map", "icon-x=19;icon-y=12;left=1;scr...")
+### VarEdit by Minijar: /datum/gas_mixture temperature=21
+### VarEdit by Minijar: /datum/gas_mixture temperature=294
+runtime error: Cannot read null.client
+proc name: Join As Larva (/mob/dead/verb/join_as_larva)
+  source file: observer.dm,610
+  usr: Alien Larva (441) (/mob/dead/observer)
+  src: Alien Larva (441) (/mob/dead/observer)
+  call stack:
+Alien Larva (441) (/mob/dead/observer): Join As Larva()
+Rebooted server.
+Wed Oct 07 14:51:36 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 8, 11, 12, 14, 15, 16, 17, 18, 19, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+
+
+
+
+
+Wed Oct 07 16:08:16 2015
+Denied access to 'Guest-2676486855' connecting from 189.6.118.179
+Rebooted server.
+Wed Oct 07 17:12:30 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 6, 7, 8, 9, 10, 11, 13, 19, 20, 22, 23, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+
+
+
+
+
+Wed Oct 07 18:27:48 2015
+Denied access to 'Guest-2168018390' connecting from 97.88.10.19
+Denied access to 'Guest-909167124' connecting from 172.1.200.205
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Milliardo Marquise (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Milliardo Marquise (/mob/living/carbon/human))
+Milliardo Marquise (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=12;icon-y=25;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the plating (101,37,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=12;icon-y=25;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Milliardo Marquise (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Milliardo Marquise (/mob/living/carbon/human))
+Milliardo Marquise (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=12;icon-y=25;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the plating (101,37,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=12;icon-y=25;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Milliardo Marquise (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Milliardo Marquise (/mob/living/carbon/human))
+Milliardo Marquise (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=12;icon-y=25;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the plating (101,37,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=12;icon-y=25;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Milliardo Marquise (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Milliardo Marquise (/mob/living/carbon/human))
+Milliardo Marquise (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=30;icon-y=26;left=1")
+the weeds (/obj/effect/alien/weeds): Click("plating", "infowindow.info", "icon-x=30;icon-y=26;left=1")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Milliardo Marquise (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41), Milliardo Marquise (/mob/living/carbon/human))
+Milliardo Marquise (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=13;icon-y=13;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (108,49,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=13;icon-y=13;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Milliardo Marquise (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Milliardo Marquise (/mob/living/carbon/human))
+Milliardo Marquise (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=20;icon-y=9;left=1;scre...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (108,49,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=20;icon-y=9;left=1;scre...")
+Wed Oct 07 19:51:40 2015
+Denied access to 'Guest-3099580284' connecting from 201.27.80.18
+Denied access to 'Guest-385778931' connecting from 67.187.132.71
+Rebooted server.
+Wed Oct 07 21:20:05 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 6, 7, 8, 9, 11, 13, 14, 16, 18, 19, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-4096172360' connecting from 173.180.255.19
+Wed Oct 07 23:16:02 2015
+Denied access to 'Guest-356951115' connecting from 177.8.155.172
+runtime error: Call to /area/Adjacent(), unimplemented proc
+proc name: Adjacent (/area/Adjacent)
+  source file: adjacent.dm,18
+  usr: Charlie Hallway (/mob/living/carbon/human)
+  src: the Showers (/area/sulaco/showers)
+  call stack:
+the Showers (/area/sulaco/showers): Adjacent(Mark IV Powerloader (/obj/mecha/working/ripley))
+Mark IV Powerloader (/obj/mecha/working/ripley): click action(the Showers (/area/sulaco/showers), Charlie Hallway (/mob/living/carbon/human))
+Charlie Hallway (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=26;icon-y=23;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the floor (170,166,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=26;icon-y=23;left=1;scr...")
+Rebooted server.
+Thu Oct 08 00:21:57 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 6, 8, 9, 11, 12, 16, 17, 18, 19, 20, 21, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-3571149695' connecting from 64.202.233.241
+Rebooted server.
+Thu Oct 08 03:55:04 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 6, 8, 9, 10, 11, 12, 16, 18, 19, 20, 21, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: Evildude74 (/mob/new_player)
+  src: Evildude74 (/client)
+  call stack:
+Evildude74 (/client): playtitlemusic()
+Evildude74 (/mob/new_player): Login()
+Thu Oct 08 06:07:15 2015
+runtime error: Cannot execute null.add fingerprint().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,793
+  usr: Alan Kowaski (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 10, 11, 14, 16, 17, 18, 20, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Oct 08 08:15:17 2015
+Denied access to 'Guest-4175831648' connecting from 37.146.77.111
+runtime error: Cannot execute null.on removed().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Fode \'Noise\' Impra (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+Denied access to 'Guest-3607807101' connecting from 217.217.174.132
+runtime error: Cannot read null.name
+proc name: attackby (/obj/machinery/r_n_d/protolathe/attackby)
+  source file: protolathe.dm,145
+  usr: Sophie Jesse (/mob/living/carbon/human)
+  src: Protolathe (/obj/machinery/r_n_d/protolathe)
+  call stack:
+Protolathe (/obj/machinery/r_n_d/protolathe): attackby(null, Sophie Jesse (/mob/living/carbon/human))
+Sophie Jesse (/mob/living/carbon/human): ClickOn(Protolathe (/obj/machinery/r_n_d/protolathe), "icon-x=15;icon-y=15;left=1;scr...")
+Protolathe (/obj/machinery/r_n_d/protolathe): Click(the floor (107,165,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=15;left=1;scr...")
+Thu Oct 08 09:57:03 2015
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Nick Mobius (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+Denied access to 'Guest-2345675587' connecting from 109.252.76.66
+Denied access to 'Guest-3705862256' connecting from 178.184.207.158
+Denied access to 'Ispoved' connecting from 178.184.207.158
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Sam Pines (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(M42C Scoped Rifle (/obj/item/weapon/gun/projectile/M42C), Sam Pines (/mob/living/carbon/human))
+Sam Pines (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=19;icon-y=27;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (133,167,4) (/turf/simulated/shuttle/floor), "mapwindow.map", "icon-x=19;icon-y=27;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Sam Pines (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(M42C Scoped Rifle (/obj/item/weapon/gun/projectile/M42C), Sam Pines (/mob/living/carbon/human))
+Sam Pines (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=12;icon-y=16;left=1;scr...")
+Sam Pines (/mob/living/carbon/human): DblClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=12;icon-y=16;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): DblClick(the floor (133,167,4) (/turf/simulated/shuttle/floor), "mapwindow.map", "icon-x=12;icon-y=16;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): DblClick(the floor (133,167,4) (/turf/simulated/shuttle/floor), "mapwindow.map", "icon-x=12;icon-y=16;left=1;scr...")
+Thu Oct 08 11:03:42 2015
+Denied access to 'Guest-3715045429' connecting from 179.176.19.242
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 7, 8, 9, 10, 11, 13, 15, 16, 17, 20, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-752478176' connecting from 94.70.17.247
+Thu Oct 08 13:13:38 2015
+Denied access to 'Guest-3154304202' connecting from 172.1.238.119
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 7, 9, 10, 11, 12, 13, 14, 15, 17, 20, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+BYOND Error: failed to certify Lykayos
+Thu Oct 08 15:06:04 2015
+runtime error: wrong type of value for list
+verb name: AllowTargetMove (/client/verb/AllowTargetMove)
+  source file: targeting.dm,296
+  usr: Kayto Shields (/mob/living/carbon/human)
+  src: MauroVega (/client)
+  call stack:
+MauroVega (/client): AllowTargetMove()
+Allow Walking (/obj/screen/gun/move): Click(null, "mapwindow.map", "icon-x=16;icon-y=17;left=1;scr...")
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: null
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("thermite")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 60)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 30, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(0)
+timer end()
+process()
+/datum/controller/game_control... (/datum/controller/game_controller): process objects()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Rebooted server.
+Thu Oct 08 16:25:48 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 8, 9, 10, 12, 13, 16, 18, 19, 20, 21, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1373752159' connecting from 184.147.192.236
+Denied access to 'Guest-1129837583' connecting from 177.8.155.160
