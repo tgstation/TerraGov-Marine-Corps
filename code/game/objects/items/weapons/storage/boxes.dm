@@ -24,7 +24,8 @@
 	desc = "It's just an ordinary box."
 	icon_state = "box"
 	item_state = "syringe_kit"
-	foldable = /obj/item/stack/sheet/cardboard	//BubbleWrap
+//	foldable = /obj/item/stack/sheet/cardboard	//Changed because of in-game abuse
+	foldable = /obj/item/weapon/paper/crumpled
 
 /obj/item/weapon/storage/box/survival/
 	New()
