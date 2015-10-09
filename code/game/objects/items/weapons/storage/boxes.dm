@@ -17,7 +17,11 @@
  *		Replacement light boxes.
  *
  *		For syndicate call-ins see uplink_kits.dm
+ *
+ *  EDITED BY APOPHIS 09OCT2015 to prevent in-game abuse of boxes.
  */
+
+
 
 /obj/item/weapon/storage/box
 	name = "box"
@@ -26,6 +30,8 @@
 	item_state = "syringe_kit"
 //	foldable = /obj/item/stack/sheet/cardboard	//Changed because of in-game abuse
 	foldable = /obj/item/weapon/paper/crumpled
+	max_w_class = 2 //Changed because of in-game abuse
+	w_class = 4 //Changed becuase of in-game abuse
 
 /obj/item/weapon/storage/box/survival/
 	New()
@@ -50,6 +56,9 @@
 	name = "box of latex gloves"
 	desc = "Contains white gloves."
 	icon_state = "latex"
+	can_hold = list("/obj/item/clothing/gloves/latex")
+	w_class = 2
+
 
 	New()
 		..()
@@ -65,6 +74,8 @@
 	name = "box of sterile masks"
 	desc = "This box contains masks of sterility."
 	icon_state = "sterile"
+	can_hold = list("/obj/item/clothing/mask/surgical")
+	w_class = 2
 
 	New()
 		..()
@@ -81,7 +92,9 @@
 	name = "box of syringes"
 	desc = "A box full of syringes."
 	desc = "A biohazard alert warning is printed on the box"
+	can_hold = list("/obj/item/weapon/reagent_containers/syringe")
 	icon_state = "syringe"
+	w_class = 2
 
 	New()
 		..()
@@ -96,6 +109,8 @@
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
+	can_hold = list("/obj/item/weapon/reagent_containers/glass/beaker")
+	w_class = 3
 
 	New()
 		..()
@@ -110,6 +125,8 @@
 /obj/item/weapon/storage/box/injectors
 	name = "box of DNA injectors"
 	desc = "This box contains injectors it seems."
+	can_hold = list("/obj/item/weapon/dnainjector")
+	w_class = 3
 
 	New()
 		..()
@@ -138,7 +155,8 @@
 /obj/item/weapon/storage/box/beanbags
 	name = "box of beanbag shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-
+	can_hold = list("/obj/item/ammo_casing/shotgun/beanbag")
+	w_class = 2
 	New()
 		..()
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
@@ -167,7 +185,8 @@
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
 	icon_state = "flashbang"
-
+	can_hold = list("/obj/item/weapon/grenade/flashbang")
+	w_class = 3
 	New()
 		..()
 		new /obj/item/weapon/grenade/flashbang(src)
@@ -228,6 +247,8 @@
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
 	icon_state = "glasses"
+	can_hold = list("/obj/item/clothing/glasses/regular")
+	w_class = 3
 
 	New()
 		..()
@@ -301,6 +322,8 @@
 	name = "box of donk-pockets"
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donk_kit"
+	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks")
+	w_class = 3
 
 	New()
 		..()
@@ -352,6 +375,7 @@
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
 	icon_state = "id"
+	can_hold = list("/obj/item/weapon/card/id")
 
 	New()
 		..()
@@ -384,6 +408,7 @@
 	name = "box of spare handcuffs"
 	desc = "A box full of handcuffs."
 	icon_state = "handcuff"
+	can_hold = list("/obj/item/weapon/handcuffs")
 
 	New()
 		..()
@@ -413,6 +438,7 @@
 /obj/item/weapon/storage/box/pillbottles
 	name = "box of pill bottles"
 	desc = "It has pictures of pill bottles on its front."
+	can_hold = list("/obj/item/weapon/storage/pill_bottle")
 
 	New()
 		..()
@@ -467,6 +493,7 @@
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
 	icon_state = "syringe"
+	can_hold = list("/obj/item/weapon/reagent_containers/hypospray/autoinjector")
 	New()
 		..()
 		for (var/i; i < storage_slots; i++)
