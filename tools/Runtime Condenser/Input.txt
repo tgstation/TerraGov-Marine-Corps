@@ -19791,3 +19791,164 @@ Denied access to 'Dimantin' connecting from 46.0.11.27
 Denied access to 'Guest-3018393508' connecting from 211.30.204.200
 Fri Oct 09 04:07:05 2015
 ### VarEdit by Apophis775: /obj/machinery/nuclearbomb r_code=12345
+## DEBUG: Fri Oct 09 04:22:09 2015 MC restarted. Reports:
+	 processing = 1
+	 fusion_reactions = 
+	 breather_ticks = 2
+	 minimum_ticks = 20
+	 air_cost = 0
+	 sun_cost = 0
+	 mobs_cost = 0.1
+	 diseases_cost = 0
+	 machines_cost = 0
+	 objects_cost = 0
+	 networks_cost = 0
+	 powernets_cost = 0
+	 nano_cost = 0
+	 events_cost = 0
+	 ticker_cost = 0
+	 total_cost = 0
+	 last_thing_processed = /obj/machinery/nuclearbomb
+	 expensive_mobs = /list
+	 rebuild_active_areas = 0
+	 shuttle_list = 
+	 asteroid_ore_map = /datum/ore_distribution
+	 all_animal_genesequences = /list
+	 all_plant_genesequences = /list
+	 genome_prefixes = /list
+	 artifact_spawning_turfs = /list
+	 digsite_spawning_turfs = /list
+	 spawn_types_animal = /list
+	 spawn_types_plant = /list
+
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 5, 7, 8, 10, 11, 13, 14, 15, 17, 18, 19, 20, 23, 25 and 26
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: UnarmedBastard (/mob/new_player)
+  src: UnarmedBastard (/client)
+  call stack:
+UnarmedBastard (/client): playtitlemusic()
+UnarmedBastard (/mob/new_player): Login()
+runtime error: Cannot read null.storedplasma
+proc name: Transfer Plasma (/mob/living/carbon/Xenomorph/proc/transfer_plasma)
+  source file: XenoPowers.dm,177
+  usr: Sentinel (861) (/mob/living/carbon/Xenomorph/Sentinel)
+  src: Sentinel (861) (/mob/living/carbon/Xenomorph/Sentinel)
+  call stack:
+Sentinel (861) (/mob/living/carbon/Xenomorph/Sentinel): Transfer Plasma(null)
+Denied access to 'Guest-2731562402' connecting from 188.235.199.240
+Rebooted server.
+Fri Oct 09 05:17:17 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 6, 8, 9, 10, 11, 12, 14, 18, 19, 20, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Oct 09 07:20:01 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 7, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1783087771' connecting from 91.38.143.65
+Rebooted server.
+Fri Oct 09 09:17:47 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 19, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Oct 09 12:54:26 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 6, 7, 8, 9, 10, 12, 13, 15, 19, 20, 21, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Oct 09 14:17:14 2015
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/computerframe/attackby)
+  source file: buildandrepair.dm,419
+  usr: Julia Easter (/mob/living/carbon/human)
+  src: Computer-frame (/obj/structure/computerframe)
+  call stack:
+Computer-frame (/obj/structure/computerframe): attackby(null, Julia Easter (/mob/living/carbon/human))
+Julia Easter (/mob/living/carbon/human): ClickOn(Computer-frame (/obj/structure/computerframe), "icon-x=20;icon-y=23;left=1;scr...")
+Computer-frame (/obj/structure/computerframe): Click(the floor (182,161,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=20;icon-y=23;left=1;scr...")
+Denied access to 'Darklink3456' connecting from 177.205.215.216
+Fri Oct 09 15:28:07 2015
+Denied access to 'Guest-535486307' connecting from 188.143.54.33
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 17, 19, 20, 22, 23, 24 and 26
+BYOND Error: failed to certify MrGodZilla
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Blackcat140' connecting from 173.30.117.134
+Fri Oct 09 17:11:44 2015
+Denied access to 'Guest-245617315' connecting from 191.32.2.255
+### VarEdit by Apophis775: /datum/data/vending_product amount=1
+### VarEdit by Apophis775: /datum/data/vending_product amount=1
+### VarEdit by Apophis775: /datum/data/vending_product amount=1
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=0
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charging=0
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable emagged=1
+Denied access to 'Guest-34724209' connecting from 69.76.60.205
+### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Spitter jellyGrow=900
+runtime error: bad client
+proc name: Adminhelp (/client/verb/adminhelp)
+  source file: adminhelp.dm,26
+  usr: null
+  src: Wolf888 (/client)
+  call stack:
+Wolf888 (/client): Adminhelp()
