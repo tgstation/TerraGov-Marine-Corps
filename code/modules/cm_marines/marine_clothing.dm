@@ -320,7 +320,7 @@
 	body_parts_covered = FEET
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife
-	flags = NOSLIP
+	//flags = NOSLIP  Removed because it makes them not slip when there are breaches.
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
