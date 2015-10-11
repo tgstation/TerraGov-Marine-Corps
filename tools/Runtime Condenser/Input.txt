@@ -21168,3 +21168,26 @@ proc name: Transfer Plasma (/mob/living/carbon/Xenomorph/proc/transfer_plasma)
   src: Sentinel (318) (/mob/living/carbon/Xenomorph/Sentinel)
   call stack:
 Sentinel (318) (/mob/living/carbon/Xenomorph/Sentinel): Transfer Plasma(null)
+Sun Oct 11 17:41:28 2015
+Denied access to 'Guest-1688159602' connecting from 71.86.96.24
+Denied access to 'Guest-1747338491' connecting from 173.62.182.230
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 5, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1389253768' connecting from 67.80.221.58
+Denied access to 'Guest-485143494' connecting from 201.78.246.252
+Denied access to 'JakeGamer02' connecting from 179.211.107.6
+Sun Oct 11 18:41:48 2015
+Denied access to 'MaxKeeblesBigBowelMovement' connecting from 98.193.61.196
+Denied access to 'Hulias' connecting from 96.227.252.175
+### VarEdit by Apophis775: /obj/item/alien_embryo counter=200
