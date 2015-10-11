@@ -52,7 +52,7 @@
 		else if (stage == 4 && prob(30))  counter++
 
 	if(counter > 400) counter = 400 //somehow
-	if(counter>200)  //THIS IS TEMP.  I will restore this after my testing.
+	if(counter>70)  //THIS IS TEMP.  I will restore this after my testing.
 		counter = 0
 		stage++
 		spawn(0)
