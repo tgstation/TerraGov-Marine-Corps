@@ -38,6 +38,14 @@
 	//height=42
 	icon='icons/fence-ns.dmi'
 
+/obj/structure/grille/fence/healthcheck()
+	if(health <= 0)
+		density = 0
+		destroyed = 1
+		new /obj/item/stack/rods(loc)
+		del(src)
+	return
+
 /obj/structure/grille/ex_act(severity)
 	del(src)
 

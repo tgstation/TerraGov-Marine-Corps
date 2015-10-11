@@ -458,6 +458,8 @@
 	name = "Weyland-Yutani Brand MRE"
 	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
+	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks")
+	w_class = 2
 
 	New()
 		..()
