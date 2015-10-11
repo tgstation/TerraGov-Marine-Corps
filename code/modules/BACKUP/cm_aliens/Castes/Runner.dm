@@ -12,7 +12,7 @@
 	storedplasma = 50
 	plasma_gain = 1
 	maxplasma = 100
-	jellyMax = 400
+	jellyMax = 600
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -2
 	evolves_to = list("Hunter")

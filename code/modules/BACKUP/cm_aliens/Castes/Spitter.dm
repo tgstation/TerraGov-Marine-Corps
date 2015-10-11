@@ -1,21 +1,22 @@
 
-/mob/living/carbon/Xenomorph/Sentinel
-	caste = "Sentinel"
-	name = "Sentinel"
-	desc = "A slithery, spitting kind of alien."
-	icon_state = "Sentinel Walking"
+/mob/living/carbon/Xenomorph/Spitter
+	caste = "Spitter"
+	name = "Spitter"
+	desc = "A gross, oozing alien of some kind."
+	icon_state = "Spitter Walking"
 	melee_damage_lower = 10
-	melee_damage_upper = 20
-	health = 140
-	maxHealth = 140
-	storedplasma = 75
-	plasma_gain = 10
-	maxplasma = 300
-	jellyMax = 400
-	spit_delay = 90
-	caste_desc = ""
-	evolves_to = list("Spitter")
-	spit_projectile = /obj/item/projectile/energy/neuro
+	melee_damage_upper = 22
+	health = 180
+	maxHealth = 180
+	storedplasma = 150
+	plasma_gain = 24
+	maxplasma = 600
+	jellyMax = 900
+	spit_delay = 80
+	speed = 0.8
+	caste_desc = "Ptui!"
+	evolves_to = list("Praetorian", "Boiler")
+	spit_projectile = /obj/item/projectile/energy/neuro/strong
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -23,10 +24,11 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
-		/mob/living/carbon/Xenomorph/proc/neurotoxin //Weakest version
+		/mob/living/carbon/Xenomorph/proc/shift_spits,
+		/mob/living/carbon/Xenomorph/proc/neurotoxin //Stronger version
 		)
 
-/mob/living/carbon/Xenomorph/Sentinel/ClickOn(var/atom/A, params)
+/mob/living/carbon/Xenomorph/Spitter/ClickOn(var/atom/A, params)
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && middle_mouse_toggle)
@@ -37,72 +39,84 @@
 		return
 	..()
 
-// OLD CODE FOR REFERENCE
 
-/*
-/mob/living/carbon/alien/humanoid/sentinel
-	name = "alien sentinel"
-	caste = "Sentinel"
-	maxHealth = 200
-	health = 200
-	storedPlasma = 75
-	max_plasma = 300
-	icon_state = "Sentinal Walking"
-	plasma_rate = 7
-	damagemin = 18
-	damagemax = 24
+
+
+
+
+/* OLD BAYCODE FOR REFERENCE
+
+
+//ALIEN SPITTER - UPDATED 30MAY2015 - APOPHIS
+/mob/living/carbon/alien/humanoid/spitter
+	name = "alien spitter"
+	caste = "Spitter"
+	maxHealth = 300
+	health = 300
+	storedPlasma = 150
+	max_plasma = 600
+	icon_state = "Spitter Walking"
+	plasma_rate = 30
+	var/progress = 0
+	var/hasJelly = 1
+	var/progressmax = 900
+	damagemin = 20
+	damagemax = 26
 	tacklemin = 2
-	tacklemax = 4
-	tackle_chance = 50 //Should not be above 100%
-	heal_rate = 6
-	var/hasJelly = 0
-	var/jellyProgress = 0
-	var/jellyProgressMax = 750
+	tacklemax = 3
+	tackle_chance = 75 //Should not be above 100% old was 65
+	heal_rate = 3
 	psychiccost = 25
-	class = 1
+	class = 2
 	//TEMP VARIABLES
 	var/SPITCOOLDOWN = 10
 	var/usedspit = 0
 	//END TEMP VARIABLES
 	Stat()
 		..()
-		stat(null, "Jelly Progress: [jellyProgress]/[jellyProgressMax]")
+		stat(null, "Jelly Progress: [progress]/[progressmax]")
 	proc/growJelly()
 		spawn while(1)
 			if(hasJelly)
-				if(jellyProgress < jellyProgressMax)
-					jellyProgress = min(jellyProgress + 1, jellyProgressMax)
+				if(progress < progressmax)
+					progress = min(progress + 1, progressmax)
 			sleep(10)
 	proc/canEvolve()
 		if(!hasJelly)
 			return 0
-		if(jellyProgress < jellyProgressMax)
+		if(progress < progressmax)
 			return 0
 		return 1
 
 
-/mob/living/carbon/alien/humanoid/sentinel/New()
+/mob/living/carbon/alien/humanoid/spitter/New()
 	var/datum/reagents/R = new/datum/reagents(100)
 	src.frozen = 1
-	spawn (25)
+	spawn (50)
 		src.frozen = 0
 	reagents = R
 	R.my_atom = src
-	if(name == "alien sentinel")
-		name = text("alien sentinel ([rand(1, 1000)])")
+	if(name == "alien spitter")
+		name = text("alien spitter ([rand(1, 1000)])")
 	real_name = name
-	verbs.Add(/mob/living/carbon/alien/humanoid/proc/weak_acid,
-	/mob/living/carbon/alien/humanoid/proc/weak_neurotoxin,
-	/mob/living/carbon/alien/humanoid/proc/quickspit
-	)
+	verbs.Add(/mob/living/carbon/alien/humanoid/proc/weak_neurotoxin,
+	/mob/living/carbon/alien/humanoid/proc/neurotoxin,
+	/mob/living/carbon/alien/humanoid/proc/weak_acid,
+	/mob/living/carbon/alien/humanoid/proc/corrosive_acid,
+	/mob/living/carbon/alien/humanoid/proc/quickspit)
 	verbs -= /mob/living/carbon/alien/humanoid/verb/plant
+	//var/matrix/M = matrix()
+	//M.Scale(1.15,1.1)
+	//src.transform = M
+	//pixel_y = 3
 	growJelly()
 	..()
 
 
-/mob/living/carbon/alien/humanoid/sentinel/verb/evolve2() // -- TLE
+
+/mob/living/carbon/alien/humanoid/spitter/verb/evolve() // -- TLE
 	set name = "Evolve (Jelly)"
-	set desc = "Evolve into a Spitter"
+	set desc = "Evolve into a Praetorian"
 	set category = "Alien"
 	if(!hivemind_check(psychiccost))
 		src << "\red Your queen's psychic strength is not powerful enough for you to evolve further."
@@ -116,14 +130,11 @@
 	if(src.stat != CONSCIOUS)
 		src << "You are unable to do that now."
 		return
-	if(health<maxHealth)
-		src << "\red You are too hurt to Evolve."
-		return
-	src << "\blue <b>You are growing into a Spitter!</b>"
+	src << "\blue <b>You are growing into a Praetorian!</b>"
 
 	var/mob/living/carbon/alien/humanoid/new_xeno
 
-	new_xeno = new /mob/living/carbon/alien/humanoid/spitter(loc)
+	new_xeno = new /mob/living/carbon/alien/humanoid/praetorian(loc)
 	src << "\green You begin to evolve!"
 
 	for(var/mob/O in viewers(src, null))
@@ -139,7 +150,7 @@
 
 //Aimable Spit *********************************************************
 
-/mob/living/carbon/alien/humanoid/sentinel/ClickOn(var/atom/A, params)
+/mob/living/carbon/alien/humanoid/spitter/ClickOn(var/atom/A, params)
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
@@ -150,7 +161,7 @@
 
 
 
-/mob/living/carbon/alien/humanoid/sentinel/verb/spit_neuro(var/atom/T)
+/mob/living/carbon/alien/humanoid/spitter/verb/spit_neuro(var/atom/T)
 
 	set name = "Spit Neurotoxin (75)"
 	set desc = "Spit Weak Neurotoxin."

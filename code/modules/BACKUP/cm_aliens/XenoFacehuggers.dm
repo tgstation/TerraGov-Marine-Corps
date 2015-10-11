@@ -2,8 +2,8 @@
 
 //TODO: Make these simple_animals
 
-var/const/MIN_IMPREGNATION_TIME = 200 //time it takes to impregnate someone
-var/const/MAX_IMPREGNATION_TIME = 250
+var/const/MIN_IMPREGNATION_TIME = 400 //time it takes to impregnate someone
+var/const/MAX_IMPREGNATION_TIME = 500
 
 var/const/MIN_ACTIVE_TIME = 150 //time between being dropped and going idle
 var/const/MAX_ACTIVE_TIME = 200

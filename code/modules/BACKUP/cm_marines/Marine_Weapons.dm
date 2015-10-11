@@ -3,23 +3,23 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 30
+	damage = 22
 	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
-	damage = 70
+	damage = 35
 	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 35
+	damage = 18
 	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 50
+	damage = 30
 	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
-	damage = 80
+	damage = 55
 	range_falloff_at = 4 //4 turfs
 	name = "shotgun slug"
 

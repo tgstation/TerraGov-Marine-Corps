@@ -11,7 +11,7 @@
 	storedplasma = 150
 	plasma_gain = 24
 	maxplasma = 600
-	jellyMax = 900
+	jellyMax = 500
 	spit_delay = 80
 	speed = 0.8
 	caste_desc = "Ptui!"
