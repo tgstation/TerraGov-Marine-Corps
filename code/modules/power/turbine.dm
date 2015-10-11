@@ -146,10 +146,10 @@
 
 	for(var/mob/M in viewers(1, src))
 		if ((M.client && M.machine == src))
-			src.interact(M)
+			attack_hand(M)
 	AutoUpdateAI(src)
 
-/obj/machinery/power/turbine/interact(mob/user)
+/obj/machinery/power/turbine/attack_hand(mob/user)
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
 		user.machine = null
@@ -261,7 +261,6 @@
 		src.attack_hand(user)
 	return
 */
-
 /obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
 	user.machine = src
 	var/dat
