@@ -11,7 +11,7 @@
 	maxHealth = 170
 	storedplasma = 350
 	maxplasma = 750
-	jellyMax = 700
+	jellyMax = 750
 	plasma_gain = 12
 
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas

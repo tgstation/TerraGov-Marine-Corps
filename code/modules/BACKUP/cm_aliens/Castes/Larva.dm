@@ -9,7 +9,7 @@
 	icon_state = "Bloody Larva"
 	language = "Hivemind"
 	amount_grown = 0
-	max_grown = 100
+	max_grown = 200
 	maxHealth = 25
 	health = 25
 	plasma_gain = 1

@@ -11,7 +11,7 @@
 	storedplasma = 75
 	plasma_gain = 10
 	maxplasma = 300
-	jellyMax = 400
+	jellyMax = 750
 	spit_delay = 90
 	caste_desc = ""
 	evolves_to = list("Spitter")
