@@ -21191,3 +21191,82 @@ Sun Oct 11 18:41:48 2015
 Denied access to 'MaxKeeblesBigBowelMovement' connecting from 98.193.61.196
 Denied access to 'Hulias' connecting from 96.227.252.175
 ### VarEdit by Apophis775: /obj/item/alien_embryo counter=200
+Denied access to 'Lucastroka' connecting from 189.58.126.84
+Denied access to 'SamsonadzesBiggestFan' connecting from 98.193.61.196
+Rebooted server.
+Sun Oct 11 20:38:47 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 6, 7, 8, 9, 10, 13, 15, 16, 18, 19, 21, 22, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1822820305' connecting from 200.96.2.246
+Sun Oct 11 21:48:30 2015
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Tina Russuel (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Tina Russuel (/mob/living/carbon/human))
+Tina Russuel (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=22;icon-y=27;left=1;scr...")
+the girder (/obj/structure/girder): Click(the dirt (99,82,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=22;icon-y=27;left=1;scr...")
+Denied access to 'Guest-1422362829' connecting from 73.128.78.119
+### VarEdit by Lostmixup: /obj/item/weapon/card/id/gold assignment=Commander
+runtime error: undefined variable /turf/unsimulated/floor/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,972
+  usr: Ashe White (/mob/dead/observer)
+  src: Adjective (/client)
+  call stack:
+Adjective (/client): Edit Zone Air(the floor (101,20,1) (/turf/unsimulated/floor))
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 8, 9, 10, 11, 12, 14, 16, 18, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sun Oct 11 23:12:41 2015
+Denied access to 'Guest-842270479' connecting from 24.34.2.11
+Mon Oct 12 01:08:36 2015
+Denied access to 'Crackshot69' connecting from 173.183.163.213
+Denied access to 'Jellycog' connecting from 101.186.11.29
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Louis Loftcraft (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Louis Loftcraft (/mob/living/carbon/human))
+Louis Loftcraft (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=10;icon-y=21;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (132,158,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=10;icon-y=21;left=1;scr...")
+Mon Oct 12 02:58:22 2015
+### VarEdit by Apophis775: /obj/structure/grille health=1
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 5, 6, 8, 9, 10, 11, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Trustscience44' connecting from 71.231.98.236
