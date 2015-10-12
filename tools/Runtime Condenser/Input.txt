@@ -21270,3 +21270,270 @@ Your server failed to establish a connection with the SQL database.
 ## TESTING: DNA2: 17 blocks are unused: 5, 6, 8, 9, 10, 11, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24 and 26
 ## ERROR: File not found (maps/RandomZLevels/fileList.txt)
 Denied access to 'Trustscience44' connecting from 71.231.98.236
+Mon Oct 12 04:07:14 2015
+### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Drone jellyGrow=500
+Denied access to 'Guest-2571533444' connecting from 37.115.203.149
+### VarEdit by Apophis775: /obj/machinery/power/port_gen/pacman sheets=0
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=60000
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=90000
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 7, 8, 9, 12, 14, 15, 16, 17, 20, 21, 22, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Oct 12 06:56:35 2015
+Denied access to 'Guest-1944415223' connecting from 70.80.149.187
+Mon Oct 12 08:28:49 2015
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: null
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("potassium")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 200)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 100, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(0)
+sense()
+process()
+/datum/controller/game_control... (/datum/controller/game_controller): process objects()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Denied access to 'Guest-1734872318' connecting from 91.232.140.202
+Denied access to 'Guest-2669499149' connecting from 94.250.162.193
+Rebooted server.
+Mon Oct 12 09:35:50 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 10, 14, 15, 16, 17, 18, 19, 22, 23, 24 and 26
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Oct 12 11:06:51 2015
+Denied access to 'Guest-1674911362' connecting from 189.49.115.100
+Denied access to 'Guest-3075019682' connecting from 213.243.171.200
+Mon Oct 12 12:25:30 2015
+Denied access to 'Guest-1897474454' connecting from 35.2.80.170
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 17, 18, 20, 23 and 25
+BYOND Error: failed to certify Sperky7933
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=role;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=role;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=role;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=name;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=desc;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Mon Oct 12 13:25:34 2015
+runtime error: undefined variable /zone/var/role
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,67
+  usr: Dickbutt (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=role;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=role;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=role;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: undefined variable /zone/var/role
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,67
+  usr: Dickbutt (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100158a];option=role;...", /list (/list))
+Jeke (/client): Topic("src=\[0x2100158a];option=role;...", /list (/list), /datum/paiController (/datum/paiController))
+Jeke (/client): Topic("src=\[0x2100158a];option=role;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Atticus Quinn (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Atticus Quinn (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+Denied access to 'Pigoita' connecting from 95.94.9.160
+Rebooted server.
+Mon Oct 12 14:45:45 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 16, 17, 19, 21, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
