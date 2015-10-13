@@ -21537,3 +21537,157 @@ Your server failed to establish a connection with the SQL database.
 ## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
 ## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 16, 17, 19, 21, 23, 24 and 25
 ## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Oct 12 15:59:50 2015
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Didi Mun (/mob/living/carbon/human)
+  src: Thomas Langsford (/mob/living/carbon/human)
+  call stack:
+Thomas Langsford (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Thomas Langsford (/mob/living/carbon/human))
+Thomas Langsford (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Thomas Langsford (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Thomas Langsford (/mob/living/carbon/human), Didi Mun (/mob/living/carbon/human), "icon-x=14;icon-y=19;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Thomas Langsford (/mob/living/carbon/human), Didi Mun (/mob/living/carbon/human), 0, "icon-x=14;icon-y=19;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Thomas Langsford (/mob/living/carbon/human), Didi Mun (/mob/living/carbon/human), 0, "icon-x=14;icon-y=19;left=1;scr...")
+Didi Mun (/mob/living/carbon/human): ClickOn(Thomas Langsford (/mob/living/carbon/human), "icon-x=14;icon-y=19;left=1;scr...")
+Thomas Langsford (/mob/living/carbon/human): Click(the floor (160,159,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=19;left=1;scr...")
+Denied access to 'Guest-2606803640' connecting from 75.164.144.85
+Denied access to 'Guest-1645108161' connecting from 108.41.211.61
+Mon Oct 12 18:10:02 2015
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/egg/attackby)
+  source file: XenoStructures.dm,413
+  usr: Alberto Hall (/mob/living/carbon/human)
+  src: the egg (/obj/effect/alien/egg)
+  call stack:
+the egg (/obj/effect/alien/egg): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Alberto Hall (/mob/living/carbon/human))
+Alberto Hall (/mob/living/carbon/human): ClickOn(the egg (/obj/effect/alien/egg), "icon-x=14;icon-y=11;left=1;scr...")
+the egg (/obj/effect/alien/egg): Click(the dirt (101,47,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=14;icon-y=11;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Curtis \'Phantom\' Kerthany (/mob/living/carbon/human)
+  src: R.A.Y. (/mob/living/silicon/pai)
+  call stack:
+R.A.Y. (/mob/living/silicon/pai): close up()
+R.A.Y. (/mob/living/silicon/pai): attackby(the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37), Curtis \'Phantom\' Kerthany (/mob/living/carbon/human))
+Denied access to 'Guest-3570977188' connecting from 24.56.227.139
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 6, 8, 9, 11, 12, 13, 14, 16, 17, 20, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Oct 12 23:03:57 2015
+runtime error: wrong type of value for list
+verb name: AllowTargetMove (/client/verb/AllowTargetMove)
+  source file: targeting.dm,296
+  usr: Zion \'Deadweight\' Williams (... (/mob/living/carbon/human)
+  src: Walmartcheapo (/client)
+  call stack:
+Walmartcheapo (/client): AllowTargetMove()
+Allow Walking (/obj/screen/gun/move): Click(null, "mapwindow.map", "icon-x=3;icon-y=20;left=1;scre...")
+runtime error: wrong type of value for list
+proc name: add gun icons (/client/proc/add_gun_icons)
+  source file: targeting.dm,263
+  usr: Zion \'Deadweight\' Williams (... (/mob/living/carbon/human)
+  src: Walmartcheapo (/client)
+  call stack:
+Walmartcheapo (/client): add gun icons()
+Praetorian (301) (/mob/living/carbon/Xenomorph/Praetorian): Targeted(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): Aim(Praetorian (301) (/mob/living/carbon/Xenomorph/Praetorian))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): PreFire(Praetorian (301) (/mob/living/carbon/Xenomorph/Praetorian), Zion \'Deadweight\' Williams (... (/mob/living/carbon/human), "icon-x=47;icon-y=34;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(Praetorian (301) (/mob/living/carbon/Xenomorph/Praetorian), Zion \'Deadweight\' Williams (... (/mob/living/carbon/human), 0, "icon-x=47;icon-y=34;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(Praetorian (301) (/mob/living/carbon/Xenomorph/Praetorian), Zion \'Deadweight\' Williams (... (/mob/living/carbon/human), 0, "icon-x=47;icon-y=34;left=1;scr...")
+Zion \'Deadweight\' Williams (... (/mob/living/carbon/human): ClickOn(Praetorian (301) (/mob/living/carbon/Xenomorph/Praetorian), "icon-x=47;icon-y=34;left=1;scr...")
+Praetorian (301) (/mob/living/carbon/Xenomorph/Praetorian): Click(the plating (173,166,3) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=47;icon-y=34;left=1;scr...")
+Denied access to 'Guest-1252579466' connecting from 68.234.237.170
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 7, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Tue Oct 13 00:09:25 2015
+Denied access to 'Guest-3440431753' connecting from 78.30.245.176
+Denied access to 'Hax280' connecting from 78.30.245.176
+runtime error: Cannot modify null.dir.
+proc name: attackby (/obj/machinery/light/attackby)
+  source file: lighting.dm,414
+  usr: Wayne Hellkat (/mob/living/carbon/human)
+  src: the spotlight (/obj/machinery/light/spot)
+  call stack:
+the spotlight (/obj/machinery/light/spot): attackby(the screwdriver (/obj/item/weapon/screwdriver), Wayne Hellkat (/mob/living/carbon/human))
+Wayne Hellkat (/mob/living/carbon/human): ClickOn(the spotlight (/obj/machinery/light/spot), "icon-x=31;icon-y=5;left=1;scre...")
+the spotlight (/obj/machinery/light/spot): Click(the floor (157,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=31;icon-y=5;left=1;scre...")
+runtime error: Cannot modify null.dir.
+proc name: attackby (/obj/machinery/light/attackby)
+  source file: lighting.dm,414
+  usr: Wayne Hellkat (/mob/living/carbon/human)
+  src: the spotlight (/obj/machinery/light/spot)
+  call stack:
+the spotlight (/obj/machinery/light/spot): attackby(the screwdriver (/obj/item/weapon/screwdriver), Wayne Hellkat (/mob/living/carbon/human))
+Wayne Hellkat (/mob/living/carbon/human): ClickOn(the spotlight (/obj/machinery/light/spot), "icon-x=30;icon-y=7;left=1;scre...")
+the spotlight (/obj/machinery/light/spot): Click(the floor (157,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=30;icon-y=7;left=1;scre...")
+### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Drone jellyGrow=750
+runtime error: Cannot modify null.dir.
+proc name: attackby (/obj/machinery/light/attackby)
+  source file: lighting.dm,414
+  usr: Wayne Hellkat (/mob/living/carbon/human)
+  src: the spotlight (/obj/machinery/light/spot)
+  call stack:
+the spotlight (/obj/machinery/light/spot): attackby(the screwdriver (/obj/item/weapon/screwdriver), Wayne Hellkat (/mob/living/carbon/human))
+Wayne Hellkat (/mob/living/carbon/human): ClickOn(the spotlight (/obj/machinery/light/spot), "icon-x=31;icon-y=7;left=1;scre...")
+the spotlight (/obj/machinery/light/spot): Click(the floor (157,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=31;icon-y=7;left=1;scre...")
+runtime error: Cannot modify null.dir.
+proc name: attackby (/obj/machinery/light/attackby)
+  source file: lighting.dm,414
+  usr: Wayne Hellkat (/mob/living/carbon/human)
+  src: the spotlight (/obj/machinery/light/spot)
+  call stack:
+the spotlight (/obj/machinery/light/spot): attackby(the screwdriver (/obj/item/weapon/screwdriver), Wayne Hellkat (/mob/living/carbon/human))
+Wayne Hellkat (/mob/living/carbon/human): ClickOn(the spotlight (/obj/machinery/light/spot), "icon-x=30;icon-y=5;left=1;scre...")
+the spotlight (/obj/machinery/light/spot): Click(the floor (157,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=30;icon-y=5;left=1;scre...")
+runtime error: Cannot modify null.dir.
+proc name: attackby (/obj/machinery/light/attackby)
+  source file: lighting.dm,414
+  usr: Wayne Hellkat (/mob/living/carbon/human)
+  src: the spotlight (/obj/machinery/light/spot)
+  call stack:
+the spotlight (/obj/machinery/light/spot): attackby(the screwdriver (/obj/item/weapon/screwdriver), Wayne Hellkat (/mob/living/carbon/human))
+Wayne Hellkat (/mob/living/carbon/human): ClickOn(the spotlight (/obj/machinery/light/spot), "icon-x=30;icon-y=5;left=1;scre...")
+the spotlight (/obj/machinery/light/spot): Click(the floor (157,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=30;icon-y=5;left=1;scre...")
+runtime error: Cannot modify null.dir.
+proc name: attackby (/obj/machinery/light/attackby)
+  source file: lighting.dm,414
+  usr: Wayne Hellkat (/mob/living/carbon/human)
+  src: the spotlight (/obj/machinery/light/spot)
+  call stack:
+the spotlight (/obj/machinery/light/spot): attackby(the screwdriver (/obj/item/weapon/screwdriver), Wayne Hellkat (/mob/living/carbon/human))
+Wayne Hellkat (/mob/living/carbon/human): ClickOn(the spotlight (/obj/machinery/light/spot), "icon-x=30;icon-y=5;left=1;scre...")
+the spotlight (/obj/machinery/light/spot): Click(the floor (157,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=30;icon-y=5;left=1;scre...")
+runtime error: Cannot modify null.dir.
+proc name: attackby (/obj/machinery/light/attackby)
+  source file: lighting.dm,414
+  usr: Wayne Hellkat (/mob/living/carbon/human)
+  src: the spotlight (/obj/machinery/light/spot)
+  call stack:
+the spotlight (/obj/machinery/light/spot): attackby(the screwdriver (/obj/item/weapon/screwdriver), Wayne Hellkat (/mob/living/carbon/human))
+Wayne Hellkat (/mob/living/carbon/human): ClickOn(the spotlight (/obj/machinery/light/spot), "icon-x=30;icon-y=5;left=1;scre...")
+the spotlight (/obj/machinery/light/spot): Click(the floor (157,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=30;icon-y=5;left=1;scre...")
