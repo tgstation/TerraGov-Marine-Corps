@@ -9,6 +9,7 @@
 	health = 5
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
 	anti_hug = 1
+	w_class = 5
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
