@@ -1,24 +1,25 @@
 ///**************COLONIAL MARINES WEAPON/VENDING/FLASHLIGHT LAST EDIT: 06FEB2015 BY APOPHIS7755**************///
 
+
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 22
+	damage = 30
 	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
-	damage = 35
+	damage = 70
 	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 18
+	damage = 35
 	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 30
+	damage = 50
 	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
-	damage = 55
+	damage = 80
 	range_falloff_at = 4 //4 turfs
 	name = "shotgun slug"
 

@@ -1,5 +1,6 @@
 // This is to replace the previous datum/disease/alien_embryo for slightly improved handling and maintainability
 // It functions almost identically (see code/datums/diseases/alien_embryo.dm)
+
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yuck."
@@ -51,7 +52,7 @@
 		else if (stage == 4 && prob(30))  counter++
 
 	if(counter > 400) counter = 400 //somehow
-	if(stage < 5 && prob(1 + round(counter / 120))) //Adds 1% probability to change stages for each 70 cycles.
+	if(counter>70)  //THIS IS TEMP.  I will restore this after my testing.
 		counter = 0
 		stage++
 		spawn(0)
