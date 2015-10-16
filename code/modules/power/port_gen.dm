@@ -48,7 +48,7 @@ display round(lastgen) and phorontank amount
 	icon_state = "portgen0"
 	density = 1
 	anchored = 0
-	directwired = 0
+//	directwired = 0
 	use_power = 0
 
 	var/active = 0
@@ -79,6 +79,9 @@ display round(lastgen) and phorontank amount
 		active = 0
 		icon_state = initial(icon_state)
 		handleInactive()
+
+/obj/machinery/power/powered()
+	return 1 //doesn't require an external power source
 
 /obj/machinery/power/port_gen/attack_hand(mob/user as mob)
 	if(..())

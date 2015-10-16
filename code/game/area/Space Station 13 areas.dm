@@ -628,7 +628,7 @@ var/list/ghostteleportlocs = list()
  	icon_state = "atmos"
 */
 //Maintenance
-
+/*
 /area/maintenance/aft
 	name = "Aft Maintenance"
 	icon_state = "amaint"
@@ -752,7 +752,7 @@ var/list/ghostteleportlocs = list()
 /area/maintenance/storage
 	name = "Atmospherics"
 	icon_state = "green"
-
+*/
 // SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
 /*
 
