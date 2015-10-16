@@ -28,7 +28,7 @@
 
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")
 			L.anchored = 1
-			L.icon_state = "lightstick[L.anchored]"
+			L.icon_state = "lightstick_[L.s_color][L.anchored]"
 			L.SetLuminosity(2)
 			user.drop_item()
 			L.x = x
@@ -224,9 +224,23 @@
 				T = get_step(src, SOUTHEAST)
 				if (T && slayer > T.slayer)
 					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
-
-
-
+/*
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				if(src.s_layer)
+					src.s_layer = 0
+					src.update_icon(1)
+			if(2.0)
+				if(prob(60) && src.s_layer)
+					src.s_layer -= 1
+					src.update_icon(1)
+			if(3.0)
+				if(prob(20) && src.s_layer)
+					src.s_layer -= 1
+					src.update_icon(1)
+		return
+*/
 //SNOW LAYERS-----------------------------------//
 /turf/simulated/floor/gm/snow/layer0
 	icon_state = "snow0_0"
@@ -306,9 +320,8 @@
 		new /obj/item/lightstick(src)
 
 /obj/item/weapon/storage/box/lightstick/red
-	name = "box of lightsticks"
 	desc = "Contains red lightsticks."
-	icon_state = "lightstick"
+	icon_state = "lightstick2"
 
 	New()
 		..()
@@ -347,6 +360,11 @@
 		pixel_x = 0
 		pixel_y = 0
 		playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+
+	//Remove lightsource
+	Del()
+		SetLuminosity(0)
+		..()
 
 //Red
 /obj/item/lightstick/red
@@ -445,9 +463,9 @@
 		else
 			switch(W.damtype)
 				if("fire")
-					src.health -= W.force
+					src.health -= W.force * 0.6
 				if("brute")
-					src.health -= W.force
+					src.health -= W.force * 0.3
 				else
 			if (src.health <= 0)
 				visible_message("\red <B>The [src] falls apart!</B>")

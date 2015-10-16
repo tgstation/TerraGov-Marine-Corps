@@ -12,7 +12,7 @@
 		return
 	if (istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/under) || istype(target,/obj/item))
 		return
-	if(istype(target,/obj/structure/ladder) || istype(target,/turf/simulated/floor))
+	if (istype(target, /obj/structure/ladder) || istype(target, /turf/simulated/floor) || istype(target, /obj/machinery/telecomms) || istype(target, /obj/machinery/computer/shuttle_control))
 		return ..()
 
 	user << "Planting explosives..."
