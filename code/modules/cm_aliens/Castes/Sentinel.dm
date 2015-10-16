@@ -1,4 +1,3 @@
-
 /mob/living/carbon/Xenomorph/Sentinel
 	caste = "Sentinel"
 	name = "Sentinel"

@@ -1,4 +1,3 @@
-
 /mob/living/carbon/Xenomorph/Hunter
 	caste = "Hunter"
 	name = "Hunter"

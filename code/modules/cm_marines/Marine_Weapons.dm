@@ -1,6 +1,5 @@
 ///**************COLONIAL MARINES WEAPON/VENDING/FLASHLIGHT LAST EDIT: 06FEB2015 BY APOPHIS7755**************///
 
-
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
 	damage = 22
@@ -51,6 +50,7 @@
 	icon_state = "gshell"
 	caliber = "shotgun"
 	projectile_type = "/obj/item/projectile/bullet/m37"
+	w_class = 1
 
 ///***Ammo Boxes***///
 
@@ -61,6 +61,7 @@
 	icon_state = ".45a"
 	ammo_type = "/obj/item/ammo_casing/m4a3"
 	max_ammo = 12
+	w_class = 1
 
 /obj/item/ammo_magazine/m4a3/empty //45 Pistol
 	icon_state = ".45a0"
@@ -73,6 +74,7 @@
 	ammo_type = "/obj/item/ammo_casing/m44m"
 	max_ammo = 6
 	multiple_sprites = 1
+	w_class = 1
 
 /obj/item/ammo_magazine/m39 // M39 SMG
 	name = "M39 SMG Mag (9mm)"
@@ -80,6 +82,7 @@
 	icon_state = "9x19p-8"
 	ammo_type = "/obj/item/ammo_casing/m39"
 	max_ammo = 35
+	w_class = 1
 
 /obj/item/ammo_magazine/m39/empty // M39 SMG
 	icon_state = "9x19p-0"
@@ -92,6 +95,7 @@
 	icon_state = "m309a"
 	ammo_type = "/obj/item/ammo_casing/m41"
 	max_ammo = 30
+	w_class = 1
 
 /obj/item/ammo_magazine/m41/empty //Assault Rifle
 	max_ammo = 0
@@ -103,8 +107,18 @@
 	desc = "A box of standard issue high-powered 12 gauge buckshot rounds. Manufactured by Armat Systems for military and civilian use."
 	icon_state = "shells"
 	w_class = 2 //Can fit in belts
+	storage_slots = 14
+	foldable = /obj/item/weapon/paper/crumpled
+	can_hold = list("/obj/item/ammo_casing/m37")
 	New()
 		..()
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
 		new /obj/item/ammo_casing/m37(src)
 		new /obj/item/ammo_casing/m37(src)
 		new /obj/item/ammo_casing/m37(src)
@@ -136,6 +150,7 @@
 	rail_pixel_y = 21
 	under_pixel_x = 20
 	under_pixel_y = 17
+	w_class = 3
 
 	New()
 		..()
@@ -166,6 +181,7 @@
 	rail_pixel_y = 21
 	under_pixel_x = 23
 	under_pixel_y = 17
+	w_class = 3
 
 ///***SMGS***///
 
@@ -190,6 +206,7 @@
 	rail_pixel_y = 22
 	under_pixel_x = 24
 	under_pixel_y = 16
+	w_class = 4
 
 	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 		..()
@@ -314,6 +331,7 @@
 	rail_pixel_y = 19
 	under_pixel_x = 22
 	under_pixel_y = 15
+	w_class = 4
 
 
 ///***MELEE/THROWABLES***///
@@ -840,7 +858,7 @@
 		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
 		M.primed = 1
 		M.throw_at(target, missile_range, missile_speed,user)
-		message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).")
+		msg_admin_attack(("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"))
 		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")
 		rockets -= I
 		del(I)

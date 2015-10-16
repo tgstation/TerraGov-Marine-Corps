@@ -1,5 +1,4 @@
 //Xenomorph Runner - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
-
 /mob/living/carbon/Xenomorph/Runner
 	caste = "Runner"
 	name = "Runner"

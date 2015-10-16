@@ -9,6 +9,7 @@
 	health = 5
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
 	anti_hug = 1
+	w_class = 5
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
@@ -320,7 +321,7 @@
 	body_parts_covered = FEET
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife
-	flags = NOSLIP
+	//flags = NOSLIP  Removed because it makes them not slip when there are breaches.
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
@@ -375,6 +376,8 @@
 	desc = "A large backpack used by military."
 	icon_state = "marinepack"
 	item_state = "marinepack"
+	max_w_class = 3    //  Largest item that can be placed into the backpack
+	max_combined_w_class = 21   //Capacity of the backpack
 
 //BELT
 
@@ -385,6 +388,8 @@
 	item_state = "security"//Could likely use a better one.
 	w_class = 4
 	storage_slots = 8
+	max_combined_w_class = 9
+	max_w_class = 3
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
 		"/obj/item/weapon/combat_knife",
@@ -402,7 +407,8 @@
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine"
+		"/obj/item/device/mine",
+		"/obj/item/weapon/melee/baton"
 		)
 
 /obj/item/weapon/storage/belt/security/MP

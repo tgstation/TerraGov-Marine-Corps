@@ -6,7 +6,7 @@
 	item_state = "candle1"
 	w_class = 1
 
-	var/wax = 200
+	var/wax = 800
 
 /obj/item/weapon/flame/candle/update_icon()
 	var/i
