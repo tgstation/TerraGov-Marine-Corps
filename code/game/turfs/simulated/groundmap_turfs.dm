@@ -45,7 +45,7 @@
 	desc = "Some thick jungle."
 	density = 1
 	opacity = 1
-	var/unacidable = 1
+
 	//Not yet
 	ex_act(severity)
 		switch(severity)
