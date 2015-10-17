@@ -319,6 +319,9 @@
 			user << "It's already damaged."
 			return 0
 		else
+			if(isXenoLarva(user))
+				user.visible_message("[user.name] starts biting the [src.name]!","In a rage, you start biting the bright light, but with no effect!")
+				return //Larvae can't do shit
 			user.visible_message("[user.name] starts to slash away at [src.name]!","In a rage, you start to slash and claw at the bright light!")
 			if(do_after(user,50))
 				if(!src) return 0
