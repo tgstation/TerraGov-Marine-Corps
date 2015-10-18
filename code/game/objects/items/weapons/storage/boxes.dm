@@ -170,7 +170,7 @@
 /obj/item/weapon/storage/box/shotgunammo
 	name = "box of shotgun shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-
+	icon_state = "shells"
 	New()
 		..()
 		new /obj/item/ammo_casing/shotgun(src)
