@@ -59,6 +59,7 @@
 #define FILE_DIR "maps/overmap/bearcat"
 #define FILE_DIR "nano"
 #define FILE_DIR "nano/images"
+#define FILE_DIR "SEASONAL SOUNDS"
 #define FILE_DIR "sound"
 #define FILE_DIR "sound/AI"
 #define FILE_DIR "sound/ambience"
