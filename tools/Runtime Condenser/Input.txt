@@ -21841,3 +21841,2439 @@ Your server failed to establish a connection with the SQL database.
 Tue Oct 13 17:10:55 2015
 Denied access to 'Guest-1075516153' connecting from 24.126.81.239
 Denied access to 'Guest-667912251' connecting from 179.111.55.120
+Denied access to 'Guest-2964440351' connecting from 109.153.186.17
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-564789507' connecting from 187.19.160.2
+Tue Oct 13 20:23:33 2015
+### VarEdit by Allan1234: /obj/item/weapon/card/id name=John Granger&#39;s ID Card (Major)
+Denied access to 'Guest-278060212' connecting from 69.119.104.132
+Denied access to 'Guest-390193602' connecting from 189.106.56.40
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 9, 11, 13, 17, 18, 21, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Allan1234: /mob/living/carbon/human gender=female
+Tue Oct 13 21:31:33 2015
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Meya Mun
+### VarEdit by Lostmixup: /obj/item/weapon/card/id name=Meya Mun&#39;s ID Card (Delta Squad Marine)
+### VarEdit by Lostmixup: /obj/item/weapon/card/id registered_name=Meya Mun
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Besk Joe
+### VarEdit by Lostmixup: /obj/item/weapon/card/id registered_name=Besk Joe
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Almondo Waldo
+Denied access to 'Guest-3598440934' connecting from 68.3.145.163
+Denied access to 'Guest-2457246123' connecting from 198.84.195.138
+Rebooted server.
+Tue Oct 13 23:27:55 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 7, 9, 10, 13, 15, 16, 19, 20, 21, 22, 24 and 26
+BYOND Error: failed to certify Feweh
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Leonardo Mull (/mob/living/carbon/human)
+  call stack:
+Leonardo Mull (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Leonardo Mull (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Admin (/mob/living/carbon/human/machine)
+  call stack:
+Admin (/mob/living/carbon/human/machine): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Admin (/mob/living/carbon/human/machine): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+### VarEdit by Rovernic: /datum/gas_mixture gas=
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check tile graphic(/list (/list), /list (/list))
+Zone 1769 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check tile graphic(/list (/list), /list (/list))
+Zone 1769 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check tile graphic(/list (/list), /list (/list))
+Zone 1769 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,94
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,289
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,289
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+runtime error: Cannot execute null.Copy().
+proc name: copy from (/datum/gas_mixture/proc/copy_from)
+  source file: _gas_mixture_xgm.dm,267
+Warning: further proc crash messages are being suppressed to prevent overload...
+Wed Oct 14 00:32:05 2015
+Denied access to 'Guest-298948397' connecting from 46.8.179.97
+Denied access to 'Guest-52982253' connecting from 121.208.69.230
+### VarEdit by Speedybast: /obj/item/weapon/cell charge=0
+Denied access to 'Guest-2682566606' connecting from 201.93.31.144
+Rebooted server.
+Wed Oct 14 01:46:36 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 5, 8, 9, 10, 12, 15, 16, 18, 19, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/dead/observer name=
+### VarEdit by Ordukai: /mob/dead/observer real_name=Victor Holding
+### VarEdit by Ordukai: /obj/item/weapon/reagent_containers/food/snacks/cookie anchored=1
+Wed Oct 14 04:34:05 2015
+Denied access to 'Greenspider' connecting from 68.46.160.100
+Rebooted server.
+Wed Oct 14 06:23:44 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19, 20 and 22
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Oct 14 07:56:09 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21 and 22
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 9, 10, 13, 14, 15, 17, 18, 20, 21, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Oct 14 11:16:13 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 18, 19, 21, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-4144151402' connecting from 87.112.32.217
+Rebooted server.
+Wed Oct 14 14:06:00 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 8, 9, 10, 12, 15, 16, 17, 19, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot modify null.loc.
+proc name: attackby (/obj/structure/safe/attackby)
+  source file: safe.dm,179
+  usr: Quincy Bincy (as Corporate Sto... (/mob/living/carbon/human)
+  src: the safe (/obj/structure/safe)
+  call stack:
+the safe (/obj/structure/safe): attackby(null, Quincy Bincy (as Corporate Sto... (/mob/living/carbon/human))
+Quincy Bincy (as Corporate Sto... (/mob/living/carbon/human): ClickOn(the safe (/obj/structure/safe), "icon-x=9;icon-y=12;left=1;scre...")
+the safe (/obj/structure/safe): Click(the floor (89,64,1) (/turf/simulated/floor/bluegrid), "mapwindow.map", "icon-x=9;icon-y=12;left=1;scre...")
+runtime error: Cannot modify null.loc.
+proc name: attackby (/obj/structure/safe/attackby)
+  source file: safe.dm,179
+  usr: Quincy Bincy (as Corporate Sto... (/mob/living/carbon/human)
+  src: the safe (/obj/structure/safe)
+  call stack:
+the safe (/obj/structure/safe): attackby(null, Quincy Bincy (as Corporate Sto... (/mob/living/carbon/human))
+Quincy Bincy (as Corporate Sto... (/mob/living/carbon/human): ClickOn(the safe (/obj/structure/safe), "icon-x=10;icon-y=10;left=1;scr...")
+the safe (/obj/structure/safe): Click(the floor (89,64,1) (/turf/simulated/floor/bluegrid), "mapwindow.map", "icon-x=10;icon-y=10;left=1;scr...")
+Wed Oct 14 15:25:54 2015
+runtime error: undefined variable /datum/file/program/secure_data/var/loc
+proc name: get turf (/proc/get_turf)
+  source file: unsorted.dm,1167
+  usr: Atticus Quinn (/mob/living/carbon/human)
+  src: null
+  call stack:
+get turf(Security Records (/datum/file/program/secure_data))
+Security Records (/datum/file/program/secure_data): Topic("src=\[0x2100e99e];choice=Confi...", /list (/list))
+CptDapper (/client): Topic("src=\[0x2100e99e];choice=Confi...", /list (/list), Security Records (/datum/file/program/secure_data))
+CptDapper (/client): Topic("src=\[0x2100e99e];choice=Confi...", /list (/list), Security Records (/datum/file/program/secure_data))
+Denied access to 'Guest-3042960619' connecting from 162.218.182.2
+Denied access to 'Guest-2390855967' connecting from 187.73.222.187
+Wed Oct 14 16:41:16 2015
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001595];option=name;...", /list (/list))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001595];option=name;...", /list (/list))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001595];option=name;...", /list (/list))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001595];option=name;...", /list (/list))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001595];option=name;...", /list (/list))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+RedsPro (/client): Topic("src=\[0x21001595];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Denied access to 'XXROBOKILLERXx' connecting from 68.10.196.124
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 5, 6, 9, 10, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2160039451' connecting from 74.140.55.172
+Denied access to 'Guest-2725529388' connecting from 84.120.9.190
+Wed Oct 14 17:53:33 2015
+BYOND Error: failed to certify Chadtheman18
+Wed Oct 14 19:01:52 2015
+Denied access to 'Supermitch82' connecting from 73.37.163.111
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Laura Linton (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Laura Linton (/mob/living/carbon/human))
+Laura Linton (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=21;icon-y=15;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the dirt (161,93,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=21;icon-y=15;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Laura Linton (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Laura Linton (/mob/living/carbon/human))
+Laura Linton (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=16;icon-y=21;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the dirt (161,93,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=21;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Laura Linton (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Laura Linton (/mob/living/carbon/human))
+Laura Linton (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=16;icon-y=21;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the dirt (161,93,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=21;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Laura Linton (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Laura Linton (/mob/living/carbon/human))
+Laura Linton (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=20;icon-y=19;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the dirt (161,93,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=20;icon-y=19;left=1;scr...")
+Denied access to 'Celtics8820' connecting from 24.183.190.42
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Xerxeas Minori (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Xerxeas Minori (/mob/living/carbon/human))
+Xerxeas Minori (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=14;icon-y=18;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the dirt (127,98,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=14;icon-y=18;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Xerxeas Minori (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Xerxeas Minori (/mob/living/carbon/human))
+Xerxeas Minori (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=15;icon-y=18;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the dirt (127,98,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=15;icon-y=18;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Xerxeas Minori (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41), Xerxeas Minori (/mob/living/carbon/human))
+Xerxeas Minori (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=27;icon-y=26;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the dirt (109,148,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=27;icon-y=26;left=1;scr...")
+Wed Oct 14 20:29:40 2015
+Denied access to 'Guest-659188903' connecting from 24.113.173.132
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 14 23:29:26 2015
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Alicia Harrington (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Alicia Harrington (/mob/living/carbon/human))
+Alicia Harrington (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=8;icon-y=24;left=1;scre...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (42,167,2) (/turf/simulated/shuttle/floor), "mapwindow.map", "icon-x=8;icon-y=24;left=1;scre...")
+Rebooted server.
+Thu Oct 15 00:42:01 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 5, 6, 7, 8, 10, 12, 15, 16, 18, 19, 20, 21, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /obj/item/clothing/head/cakehat layer=4
+### VarEdit by Ordukai: /obj/item/clothing/head/cakehat layer=4.1
+runtime error: Cannot execute null.update all synd icons().
+proc name: Login (/mob/living/carbon/human/Login)
+  source file: login.dm,4
+  usr: the unknown (/mob/living/carbon/human)
+  src: the unknown (/mob/living/carbon/human)
+  call stack:
+the unknown (/mob/living/carbon/human): Login()
+Ordukai (/client): Change CKey(the unknown (/mob/living/carbon/human))
+### VarEdit by Ordukai: /mob/living/carbon/human prev_gender=female
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 7, 8, 11, 13, 15, 16, 17, 19, 20, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Oct 15 02:27:57 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 9, 10, 12, 13, 14, 15, 16, 17, 19, 22 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Oct 15 04:36:56 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/living/simple_animal/hostile/carp anchored=1
+Thu Oct 15 06:42:11 2015
+### VarEdit by Ordukai: /mob/living/carbon/human gender=female
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 7, 8, 9, 11, 12, 15, 18, 19, 20, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 7, 9, 10, 11, 12, 13, 14, 15, 19, 20, 22, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Oct 15 10:07:37 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 6, 7, 8, 9, 10, 11, 12, 15, 17, 18, 19, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+BYOND Error: failed to certify Coolbc2000
+Thu Oct 15 11:43:01 2015
+Denied access to 'Howarden' connecting from 99.17.9.134
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Mark \'Beep\' Hill (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Mark \'Beep\' Hill (/mob/living/carbon/human))
+Mark \'Beep\' Hill (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=18;icon-y=21;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the dirt (163,146,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=18;icon-y=21;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Mark \'Beep\' Hill (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Mark \'Beep\' Hill (/mob/living/carbon/human))
+Mark \'Beep\' Hill (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=17;icon-y=21;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the dirt (163,146,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=17;icon-y=21;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Mark \'Beep\' Hill (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Mark \'Beep\' Hill (/mob/living/carbon/human))
+Mark \'Beep\' Hill (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=17;icon-y=21;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the dirt (163,146,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=17;icon-y=21;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Mark \'Beep\' Hill (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Mark \'Beep\' Hill (/mob/living/carbon/human))
+Mark \'Beep\' Hill (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=10;icon-y=24;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the dirt (171,155,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=10;icon-y=24;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attacked by (/mob/living/carbon/human/proc/attacked_by)
+  source file: human_defense.dm,220
+  usr: Hepsie Bould (/mob/living/carbon/human)
+  src: Tyjebany Skurwysynie (/mob/living/carbon/human)
+  call stack:
+Tyjebany Skurwysynie (/mob/living/carbon/human): attacked by(the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37), Hepsie Bould (/mob/living/carbon/human), null)
+the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Tyjebany Skurwysynie (/mob/living/carbon/human), Hepsie Bould (/mob/living/carbon/human), null)
+the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Tyjebany Skurwysynie (/mob/living/carbon/human), Hepsie Bould (/mob/living/carbon/human), null)
+Tyjebany Skurwysynie (/mob/living/carbon/human): attackby(the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37), Hepsie Bould (/mob/living/carbon/human))
+Hepsie Bould (/mob/living/carbon/human): ClickOn(Tyjebany Skurwysynie (/mob/living/carbon/human), "icon-x=17;icon-y=17;left=1;scr...")
+Tyjebany Skurwysynie (/mob/living/carbon/human): Click(the floor (169,150,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=17;left=1;scr...")
+### VarEdit by Infernus44: /mob/living/carbon/human x=107
+### VarEdit by Infernus44: /mob/living/carbon/human y=166
+### VarEdit by Infernus44: /obj/item/weapon/organ/head x=107
+### VarEdit by Infernus44: /obj/item/weapon/organ/head y=166
+Thu Oct 15 12:57:12 2015
+Denied access to 'Tiestosplit' connecting from 50.67.15.177
+Denied access to 'Guest-1244469086' connecting from 87.177.106.219
+Denied access to 'Guest-3410814084' connecting from 79.178.104.204
+Rebooted server.
+Thu Oct 15 14:29:45 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16, 19, 21, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-575658901' connecting from 186.207.142.171
+Denied access to 'Guest-3094747741' connecting from 177.34.116.15
+Thu Oct 15 15:37:21 2015
+Denied access to 'Guest-1915464049' connecting from 97.90.226.36
+Denied access to 'Guest-2757297513' connecting from 65.184.94.114
+Denied access to 'Guest-1800705443' connecting from 188.242.184.225
+Thu Oct 15 17:01:21 2015
+### VarEdit by Infernus44: /mob/living/carbon/human brainloss=0
+Thu Oct 15 18:52:02 2015
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: null
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("water")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 80)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 40, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(0)
+timer end()
+process()
+/datum/controller/game_control... (/datum/controller/game_controller): process objects()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Denied access to 'Guest-2164308869' connecting from 73.207.59.144
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 9, 10, 12, 13, 14, 15, 16, 19, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by SASoperative: /obj/item/clothing/suit/armor/vest/ert/command desc=A set of Tactical Armor
+### VarEdit by SASoperative: /obj/item/weapon/card/id/centcom assignment=Mercenary
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/mar20 icon_state=rsplmg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/mar20 name=Compact LMG
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/mar20 desc=A compact LMG for large ammounts of firepower in close quarters situations.
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/mar20 fire_sound=Assault Rifle.wav
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/c20r icon_state=rsplmg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/c20r icon_state=
+Thu Oct 15 19:52:34 2015
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/c20r fire_sound=Assault Rifle.wav
+### VarEdit by SASoperative: /obj/item/device/radio/headset/mcom name=Mercenary Radio
+### VarEdit by SASoperative: /obj/screen visibility=0
+### VarEdit by SASoperative: /obj/screen visibility=1
+### VarEdit by SASoperative: /obj/item/clothing/glasses/night/yautja icon_state=night
+Denied access to 'BobbyHill420' connecting from 72.107.93.200
+### VarEdit by SASoperative: /obj/item/clothing/glasses/fluff/uzenwa_sissra_1 desc=A very oddly shaped pair of goggles. A soft humming sound emanates from it.
+Thu Oct 15 20:52:55 2015
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/c20r desc=A lightweight, fast firing gun, for when you REALLY need someone dead. Uses 12mm rounds.
+runtime error: Cannot read .len
+proc name: attack (/obj/item/proc/attack)
+  source file: item_attack.dm,131
+  usr: Mike Hernandez (/mob/living/carbon/human)
+  src: the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+  call stack:
+the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Hunter (755) (/mob/living/carbon/Xenomorph/Hunter), Mike Hernandez (/mob/living/carbon/human), null)
+the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Hunter (755) (/mob/living/carbon/Xenomorph/Hunter), Mike Hernandez (/mob/living/carbon/human), null)
+Hunter (755) (/mob/living/carbon/Xenomorph/Hunter): attackby(the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37), Mike Hernandez (/mob/living/carbon/human))
+Mike Hernandez (/mob/living/carbon/human): ClickOn(Hunter (755) (/mob/living/carbon/Xenomorph/Hunter), "icon-x=22;icon-y=17;left=1;scr...")
+Mike Hernandez (/mob/living/carbon/human): DblClickOn(Hunter (755) (/mob/living/carbon/Xenomorph/Hunter), "icon-x=22;icon-y=17;left=1;scr...")
+Hunter (755) (/mob/living/carbon/Xenomorph/Hunter): DblClick(the dirt (92,198,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=22;icon-y=17;left=1;scr...")
+Hunter (755) (/mob/living/carbon/Xenomorph/Hunter): DblClick(the dirt (92,198,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=22;icon-y=17;left=1;scr...")
+Thu Oct 15 21:54:27 2015
+### VarEdit by SASoperative: /obj/item/weapon/card/id/centcom assignment=Mercenary Infiltrator.
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 11, 12, 14, 17, 18, 19, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Oct 15 23:00:26 2015
+Denied access to 'Stroop' connecting from 191.102.204.3
+Rebooted server.
+Fri Oct 16 00:55:54 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 10, 12, 13, 14, 16, 19, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Jim \'Twitch\' Sanders (/mob/living/carbon/human)
+  src: Odin (/mob/living/silicon/pai)
+  call stack:
+Odin (/mob/living/silicon/pai): close up()
+Odin (/mob/living/silicon/pai): attack hand(Jim \'Twitch\' Sanders (/mob/living/carbon/human))
+Jim \'Twitch\' Sanders (/mob/living/carbon/human): UnarmedAttack(Odin (/mob/living/silicon/pai), 1)
+Jim \'Twitch\' Sanders (/mob/living/carbon/human): ClickOn(Odin (/mob/living/silicon/pai), "icon-x=18;icon-y=5;left=1;scre...")
+Odin (/mob/living/silicon/pai): Click(the floor (124,48,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=5;left=1;scre...")
+Fri Oct 16 02:11:29 2015
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: null
+  src: Odin (/mob/living/silicon/pai)
+  call stack:
+Odin (/mob/living/silicon/pai): close up()
+Odin (/mob/living/silicon/pai): death(null, "gives one shrill beep before f...")
+Odin (/mob/living/silicon/pai): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Rebooted server.
+Fri Oct 16 04:16:42 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 7, 8, 9, 10, 12, 13, 17, 19, 20, 23, 24, 25 and 26
+BYOND Error: failed to certify LordZalgo
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/living/carbon/human real_name=Mysterious Presence
+### VarEdit by Ordukai: /mob/living/carbon/human sleeping=0
+### VarEdit by Ordukai: /obj/structure/stool/bed/nest buckled_mob=Benjamin Dvorik (as Scientist)
+runtime error: Cannot read null.vars
+proc name: modify variables (/client/proc/modify_variables)
+  source file: modifyvariables.dm,343
+  usr: Unknown (/mob/living/carbon/human)
+  src: Ordukai (/client)
+  call stack:
+Ordukai (/client): modify variables(null, null, 0)
+Ordukai (/client): modify variables(Sergei Malikov (as Clown) (/mob/living/carbon/human), "buckled", null)
+Ordukai (/client): view var Topic("_src_=vars;datumedit=\[0x30000...", /list (/list), null)
+Ordukai (/client): Topic("_src_=vars;datumedit=\[0x30000...", /list (/list), null)
+Fri Oct 16 05:27:19 2015
+Denied access to 'Guest-4063498850' connecting from 80.161.133.85
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 11, 14, 15, 16, 17, 18, 20, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Oct 16 06:40:04 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 14, 16, 18, 19, 20, 21 and 23
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 7, 9, 10, 16, 17, 18, 19, 20, 21, 23, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Oct 16 08:51:53 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 7, 8, 9, 11, 12, 14, 16, 18, 19, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1300942594' connecting from 174.115.153.92
+runtime error: Cannot execute null.check fire().
+proc name: can hit (/obj/item/weapon/gun/proc/can_hit)
+  source file: gun.dm,294
+  usr: May-June \'Salt\' Unk (/mob/living/carbon/human)
+  src: M83 rocket launcher (/obj/item/weapon/gun/rocketlauncher)
+  call stack:
+M83 rocket launcher (/obj/item/weapon/gun/rocketlauncher): can hit(Axel Strife (/mob/living/carbon/human), May-June \'Salt\' Unk (/mob/living/carbon/human))
+M83 rocket launcher (/obj/item/weapon/gun/rocketlauncher): TargetActed(Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): Targeted(M83 rocket launcher (/obj/item/weapon/gun/rocketlauncher))
+M83 rocket launcher (/obj/item/weapon/gun/rocketlauncher): Aim(Axel Strife (/mob/living/carbon/human))
+M83 rocket launcher (/obj/item/weapon/gun/rocketlauncher): PreFire(Axel Strife (/mob/living/carbon/human), May-June \'Salt\' Unk (/mob/living/carbon/human), "icon-x=15;icon-y=22;left=1;scr...")
+M83 rocket launcher (/obj/item/weapon/gun/rocketlauncher): afterattack(Axel Strife (/mob/living/carbon/human), May-June \'Salt\' Unk (/mob/living/carbon/human), 0, "icon-x=15;icon-y=22;left=1;scr...")
+May-June \'Salt\' Unk (/mob/living/carbon/human): ClickOn(Axel Strife (/mob/living/carbon/human), "icon-x=15;icon-y=22;left=1;scr...")
+Axel Strife (/mob/living/carbon/human): Click(the floor (152,63,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=22;left=1;scr...")
+Fri Oct 16 10:11:01 2015
+### VarEdit by Minijar: /obj/item/weapon/weldingtool/largetank max_fuel=100
+### VarEdit by Minijar: /obj/item/weapon/weldingtool/largetank max_fuel=40
+### VarEdit by Minijar: /obj/machinery/power/smes/buildable charge=1e+007
+Denied access to 'Guest-1012295368' connecting from 76.3.15.209
+Rebooted server.
+Fri Oct 16 11:44:21 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 9, 10, 11, 12, 13, 14, 18, 20, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1975285554' connecting from 177.206.140.30
+Fri Oct 16 14:17:17 2015
+### VarEdit by Coroneljones: /mob/living/carbon/human recently_unbuckled=0
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Eddetott Winters (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Eddetott Winters (/mob/living/carbon/human))
+Eddetott Winters (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=23;icon-y=18;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (146,65,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=23;icon-y=18;left=1;scr...")
+runtime error: Cannot read null.x
+proc name: Delete (/client/proc/cmd_admin_delete)
+  source file: randomverbs.dm,603
+  usr: Joseph Skinner (/mob/dead/observer)
+  src: SASoperative (/client)
+  call stack:
+SASoperative (/client): Delete(null)
+Denied access to 'Leronx2' connecting from 184.171.214.145
+Denied access to 'Leronx3' connecting from 184.171.214.145
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 6, 8, 9, 10, 12, 14, 16, 17, 18, 20, 21, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: Lurkingandmercing (/mob/new_player)
+  src: Lurkingandmercing (/client)
+  call stack:
+Lurkingandmercing (/client): playtitlemusic()
+Lurkingandmercing (/mob/new_player): Login()
+Denied access to 'Guest-1597214547' connecting from 89.105.248.181
+Fri Oct 16 17:06:38 2015
+Denied access to 'Guest-3524790753' connecting from 140.184.50.191
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 7, 8, 10, 11, 12, 14, 15, 16, 19, 20, 21, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1801030666' connecting from 189.84.212.186
+Fri Oct 16 18:13:51 2015
+### VarEdit by SASoperative: /obj/item/weapon/card/id/centcom assignment=Mercenary
+Denied access to 'Guest-3172751608' connecting from 177.102.59.188
+### VarEdit by SASoperative: /obj/item/device/radio/headset/mcom name=Mercenary Headset
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: A.L.F.E v1.02 (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001560];option=submi...", /list (/list))
+HeavyRocker1995 (/client): Topic("src=\[0x21001560];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+HeavyRocker1995 (/client): Topic("src=\[0x21001560];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot execute null.use().
+proc name: attackby (/turf/simulated/floor/attackby)
+  source file: floor.dm,507
+  usr: Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human)
+  src: the floor (167,164,4) (/turf/simulated/floor)
+  call stack:
+the floor (167,164,4) (/turf/simulated/floor): attackby(null, Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human))
+Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human): ClickOn(the floor (167,164,4) (/turf/simulated/floor), "icon-x=19;icon-y=9;left=1;scre...")
+the floor (167,164,4) (/turf/simulated/floor): Click(the floor (167,164,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=9;left=1;scre...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/turf/simulated/floor/attackby)
+  source file: floor.dm,507
+  usr: Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human)
+  src: the floor (167,163,4) (/turf/simulated/floor)
+  call stack:
+the floor (167,163,4) (/turf/simulated/floor): attackby(null, Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human))
+Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human): ClickOn(the floor (167,163,4) (/turf/simulated/floor), "icon-x=21;icon-y=20;left=1;scr...")
+the floor (167,163,4) (/turf/simulated/floor): Click(the floor (167,163,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=21;icon-y=20;left=1;scr...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/turf/simulated/floor/attackby)
+  source file: floor.dm,507
+  usr: Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human)
+  src: the floor (169,167,4) (/turf/simulated/floor)
+  call stack:
+the floor (169,167,4) (/turf/simulated/floor): attackby(null, Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human))
+Bigby \'\'Pyro\'\' Farkas (/mob/living/carbon/human): ClickOn(the floor (169,167,4) (/turf/simulated/floor), "icon-x=17;icon-y=11;left=1;scr...")
+the floor (169,167,4) (/turf/simulated/floor): Click(the floor (169,167,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=11;left=1;scr...")
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=12;icon-y=25;left=1;scr...")
+Wyatt Hoopengarner (/mob/living/carbon/human): DblClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=12;icon-y=25;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): DblClick(the dirt (92,47,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=12;icon-y=25;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): DblClick(the dirt (92,47,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=12;icon-y=25;left=1;scr...")
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=12;icon-y=25;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the dirt (92,47,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=12;icon-y=25;left=1;scr...")
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: null
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("sulfur")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 80)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 120, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(0)
+timer end()
+process()
+/datum/controller/game_control... (/datum/controller/game_controller): process objects()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: null
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("aluminum")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 80)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 120, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(0)
+timer end()
+process()
+/datum/controller/game_control... (/datum/controller/game_controller): process objects()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: null
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("potassium")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 80)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 120, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(0)
+timer end()
+process()
+/datum/controller/game_control... (/datum/controller/game_controller): process objects()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Rebooted server.
+Fri Oct 16 20:57:07 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 14, 17, 18, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato? attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+Fri Oct 16 22:04:40 2015
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: The killer-tomato attempted to add a reagent called 'slimetoxin' which doesn't exist. (Bill Carson)
+## WARNING: RnD console has errored during protolathe operation. Resetting.
+Rebooted server.
+Fri Oct 16 23:06:07 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+Denied access to 'Guest-298672107' connecting from 187.56.160.22
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 6, 7, 8, 9, 11, 12, 14, 15, 16, 19, 20, 22, 24, 25 and 26
+BYOND Error: failed to certify TortoiseGaming
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 14, 17, 18, 21, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.key
+proc name: Show Player Info (/datum/admins/proc/show_player_info)
+  source file: admin.dm,285
+  usr: null
+  src: /datum/admins (/datum/admins)
+  call stack:
+/datum/admins (/datum/admins): Show Player Info("colecole37")
+/datum/admins (/datum/admins): Topic("src=\[0x2100155e];add_player_i...", /list (/list))
+Feweh (/client): Topic("src=\[0x2100155e];add_player_i...", /list (/list), /datum/admins (/datum/admins))
+Feweh (/client): Topic("src=\[0x2100155e];add_player_i...", /list (/list), /datum/admins (/datum/admins))
+Denied access to 'Colecole37' connecting from 99.68.40.239
+Denied access to 'Guest-121251075' connecting from 184.206.55.223
+runtime error: pick() from empty list
+proc name: Jump to Area (/client/proc/Jump)
+  source file: adminjump.dm,17
+  usr: Heinrick Archsider (/mob/dead/observer)
+  src: Allan1234 (/client)
+  call stack:
+Allan1234 (/client): Jump to Area(the Elevator II (/area/shuttle/elevator2/transit))
+Sat Oct 17 00:55:24 2015
+runtime error: Cannot read null.damtype
+proc name: attacked by (/mob/living/carbon/human/proc/attacked_by)
+  source file: human_defense.dm,285
+  usr: Halkrath Dteinou (/mob/living/carbon/human)
+  src: Halkrath Dteinou (/mob/living/carbon/human)
+  call stack:
+Halkrath Dteinou (/mob/living/carbon/human): attacked by(null, Halkrath Dteinou (/mob/living/carbon/human), null)
+attack(Halkrath Dteinou (/mob/living/carbon/human), Halkrath Dteinou (/mob/living/carbon/human), null)
+Halkrath Dteinou (/mob/living/carbon/human): attackby(null, Halkrath Dteinou (/mob/living/carbon/human))
+Halkrath Dteinou (/mob/living/carbon/human): ClickOn(Halkrath Dteinou (/mob/living/carbon/human), "icon-x=20;icon-y=4;left=1;scre...")
+Halkrath Dteinou (/mob/living/carbon/human): Click(the grass (131,101,1) (/turf/simulated/floor/gm/grass), "mapwindow.map", "icon-x=20;icon-y=4;left=1;scre...")
+Rebooted server.
+Sat Oct 17 01:56:15 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 8, 11, 12, 15, 16, 18, 20, 21, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'NoahGoldFox' connecting from 66.227.132.213
+Sat Oct 17 03:22:49 2015
+runtime error: Cannot create objects of type null.
+proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
+  source file: rdconsole.dm,376
+  usr: Felix \'Tank\' Woodward (/mob/living/carbon/human)
+  src: R&D Console (/obj/machinery/computer/rdconsole)
+  call stack:
+R&D Console (/obj/machinery/computer/rdconsole): Topic("src=\[0x2007d22];build=cart_sc...", /list (/list))
+## WARNING: RnD console has errored during protolathe operation. Resetting.
+runtime error: Cannot create objects of type null.
+proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
+  source file: rdconsole.dm,376
+  usr: Felix \'Tank\' Woodward (/mob/living/carbon/human)
+  src: R&D Console (/obj/machinery/computer/rdconsole)
+  call stack:
+R&D Console (/obj/machinery/computer/rdconsole): Topic("src=\[0x2007d22];build=cart_sc...", /list (/list))
+## WARNING: RnD console has errored during protolathe operation. Resetting.
+## WARNING: RnD console has errored during protolathe operation. Resetting.
+runtime error: Cannot create objects of type null.
+proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
+  source file: rdconsole.dm,376
+  usr: Felix \'Tank\' Woodward (/mob/living/carbon/human)
+  src: R&D Console (/obj/machinery/computer/rdconsole)
+  call stack:
+R&D Console (/obj/machinery/computer/rdconsole): Topic("src=\[0x2007d22];build=cart_sc...", /list (/list))
+## WARNING: RnD console has errored during protolathe operation. Resetting.
+runtime error: Cannot create objects of type null.
+proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
+  source file: rdconsole.dm,376
+  usr: Felix \'Tank\' Woodward (/mob/living/carbon/human)
+  src: R&D Console (/obj/machinery/computer/rdconsole)
+  call stack:
+R&D Console (/obj/machinery/computer/rdconsole): Topic("src=\[0x2007d22];build=cart_sc...", /list (/list))
+## WARNING: RnD console has errored during protolathe operation. Resetting.
+Denied access to 'Guest-1288236009' connecting from 46.249.161.173
+Denied access to 'Guest-3292734124' connecting from 172.1.200.205
+Denied access to 'Guest-144450429' connecting from 217.44.0.129
+### VarEdit by Ordukai: /mob/dead/observer name=Joel Joey
+### VarEdit by Ordukai: /mob/dead/observer name=Carl Caryl
+Sat Oct 17 04:44:36 2015
+Denied access to 'Guest-3289279268' connecting from 187.35.4.212
+Denied access to 'Eroxthe2ndpower' connecting from 41.129.198.48
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 5, 6, 8, 9, 12, 13, 14, 16, 17, 18, 19, 20, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Oct 17 06:58:25 2015
+Denied access to 'Guest-3434613610' connecting from 49.144.234.8
+Sat Oct 17 08:09:01 2015
+Denied access to 'Guest-187931146' connecting from 142.197.74.94
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 5, 6, 7, 10, 11, 12, 16, 17, 18, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Alicia Harrington (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Alicia Harrington (/mob/living/carbon/human))
+Alicia Harrington (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=14;icon-y=22;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (146,159,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=22;left=1;scr...")
+Sat Oct 17 09:33:16 2015
+Denied access to 'Guest-3609125656' connecting from 201.47.23.157
+Denied access to 'Guest-2064239218' connecting from 37.0.21.220
+### VarEdit by Minijar: /obj/machinery/computer/security/wooden_tv crit_fail=1
+### VarEdit by Minijar: /obj/machinery/computer/security/wooden_tv crit_fail=0
+### VarEdit by Minijar: /obj/machinery/computer/security/wooden_tv stat=1
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001577];option=desc;...", /list (/list))
+Funkynuggets (/client): Topic("src=\[0x21001577];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Funkynuggets (/client): Topic("src=\[0x21001577];option=desc;...", /list (/list), /datum/paiController (/datum/paiController))
+Denied access to 'Guest-775069709' connecting from 139.193.10.78
+Sat Oct 17 10:49:50 2015
+Denied access to 'Guest-630384769' connecting from 177.159.252.176
+Denied access to 'Guest-2130976005' connecting from 86.133.128.120
+Sat Oct 17 12:17:29 2015
+Denied access to 'Guest-4032077120' connecting from 216.165.202.95
+Denied access to 'Mndc' connecting from 37.201.4.117
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 11, 12, 16, 17, 19, 20, 21, 22, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Oct 17 13:21:57 2015
+Denied access to 'Guest-516533924' connecting from 139.153.64.212
+Denied access to 'Kaze99' connecting from 104.12.88.128
+Denied access to 'Guest-3621975391' connecting from 186.223.181.123
+Denied access to 'Guest-1208395244' connecting from 94.78.179.4
+Denied access to 'Guest-4193706866' connecting from 151.55.154.215
+Denied access to 'Guest-3716557045' connecting from 107.9.137.63
+Sat Oct 17 15:12:05 2015
+Denied access to 'Guest-1971336378' connecting from 142.197.74.94
+runtime error: bad client
+proc name: Adminhelp (/client/verb/adminhelp)
+  source file: adminhelp.dm,26
+  usr: Damon Kelly (/mob/living/carbon/human)
+  src: Guilleibco (/client)
+  call stack:
+Guilleibco (/client): Adminhelp()
+Denied access to 'Guest-2106137755' connecting from 189.40.82.77
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 7, 8, 9, 10, 11, 14, 16, 18, 19, 20, 21, 22, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Oct 17 16:13:35 2015
+Undefined variable /datum/organ/external/head/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Pi (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015a0];option=submi...", /list (/list))
+Piday84 (/client): Topic("src=\[0x210015a0];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Piday84 (/client): Topic("src=\[0x210015a0];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+### VarEdit by SASoperative: /mob/living/silicon/robot/drone maxHealth=100
+### VarEdit by SASoperative: /mob/living/silicon/robot/drone health=100
+### VarEdit by SASoperative: /obj/item/weapon/cell maxcharge=1e+009
+### VarEdit by SASoperative: /obj/item/weapon/cell charge=1e+009
+### VarEdit by SASoperative: /mob/living/silicon/robot/drone luminosity=5
+### VarEdit by SASoperative: /mob/living/silicon/robot/drone health=100
+Denied access to 'Guest-3187277584' connecting from 96.89.5.91
+Denied access to 'Guest-2861386350' connecting from 189.91.155.179
+Denied access to 'Guest-1903068664' connecting from 195.225.246.119
+Sat Oct 17 17:45:41 2015
+Denied access to 'Guest-1240766953' connecting from 178.140.59.148
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\b\bruschev\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+  usr: null
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): load preferences()
+/datum/preferences (/datum/preferences): New(Bruschev (/client))
+Bruschev (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\memo.sav
+proc name: admin memo show (/client/proc/admin_memo_show)
+  source file: admin_memo.dm,35
+  usr: Engineering Drone (/mob/living/silicon/robot/drone)
+  src: SASoperative (/client)
+  call stack:
+SASoperative (/client): admin memo show()
+SASoperative (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\memo.sav
+proc name: admin memo show (/client/proc/admin_memo_show)
+  source file: admin_memo.dm,35
+  usr: M-di H\'dlak (/mob/dead/observer)
+  src: OgardTheViking (/client)
+  call stack:
+OgardTheViking (/client): admin memo show()
+OgardTheViking (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\b\bobbyhill420\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+  usr: null
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): load preferences()
+/datum/preferences (/datum/preferences): New(BobbyHill420 (/client))
+BobbyHill420 (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\m\magiccarp\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+  usr: Hayley Rader (/mob/dead/observer)
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): save preferences()
+Magic Carp (/client): Toggle SpecialRole Candidacy("Responder")
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\gersmoff\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+  usr: null
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): load preferences()
+/datum/preferences (/datum/preferences): New(GersmOFF (/client))
+GersmOFF (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\gersmoff\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+  usr: GersmOFF (/mob/new_player)
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): save preferences()
+GersmOFF (/client): Changelog()
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\f\fogo101\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+  usr: Alien Larva (168) (/mob/living/carbon/Xenomorph/Larva)
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): save preferences()
+Fogo101 (/client): Changelog()
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\l\lorenzolol\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+  usr: null
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): load preferences()
+/datum/preferences (/datum/preferences): New(Lorenzo_lol (/client))
+Lorenzo_lol (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\guffrey\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+  usr: null
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): load preferences()
+/datum/preferences (/datum/preferences): New(Guffrey (/client))
+Guffrey (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\guffrey\preferences.sav
+proc name: open load dialog (/datum/preferences/proc/open_load_dialog)
+  source file: preferences.dm,1664
+  usr: Guffrey (/mob/new_player)
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): open load dialog(Guffrey (/mob/new_player))
+/datum/preferences (/datum/preferences): process link(Guffrey (/mob/new_player), /list (/list))
+Guffrey (/mob/new_player): Topic("src=\[0x3000014];preference=op...", /list (/list))
+Guffrey (/client): Topic("src=\[0x3000014];preference=op...", /list (/list), Guffrey (/mob/new_player))
+Guffrey (/client): Topic("src=\[0x3000014];preference=op...", /list (/list), Guffrey (/mob/new_player))
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\d\dominicthemafiaso\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+  usr: null
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): load preferences()
+/datum/preferences (/datum/preferences): New(Dominic the mafiaso (/client))
+Dominic the mafiaso (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\memo.sav
+proc name: admin memo show (/client/proc/admin_memo_show)
+  source file: admin_memo.dm,35
+  usr: Adam \'Apache\' Hunter (/mob/dead/observer)
+  src: Jack McIntyre (/client)
+  call stack:
+Jack McIntyre (/client): admin memo show()
+Jack McIntyre (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\p\prototype1696\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+  usr: null
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): load preferences()
+/datum/preferences (/datum/preferences): New(Prototype1696 (/client))
+Prototype1696 (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\memo.sav
+proc name: admin memo show (/client/proc/admin_memo_show)
+  source file: admin_memo.dm,35
+  usr: Philip Greenwall (/mob/dead/observer)
+  src: Jdobbin49 (/client)
+  call stack:
+Jdobbin49 (/client): admin memo show()
+Jdobbin49 (/client): New(null)
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\j\jakeramsay007\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+  usr: Caelan \'Doc\' McRoberts (/mob/living/carbon/human)
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): save preferences()
+Jakeramsay007 (/client): Toggle SpecialRole Candidacy("Responder")
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\k\kkira555\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+  usr: Kyra Fischer (/mob/living/carbon/brain)
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): save preferences()
+Kkira555 (/client): Toggle SpecialRole Candidacy("Xenomorph")
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\guffrey\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+  usr: Guffrey (/mob/new_player)
+  src: /datum/preferences (/datum/preferences)
+  call stack:
+/datum/preferences (/datum/preferences): save preferences()
+/datum/preferences (/datum/preferences): process link(Guffrey (/mob/new_player), /list (/list))
+Guffrey (/mob/new_player): Topic("src=\[0x3000014];preference=sa...", /list (/list))
+Guffrey (/client): Topic("src=\[0x3000014];preference=sa...", /list (/list), Guffrey (/mob/new_player))
+Guffrey (/client): Topic("src=\[0x3000014];preference=sa...", /list (/list), Guffrey (/mob/new_player))
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\guffrey\preferences.sav
+proc name: save character (/datum/preferences/proc/save_character)
+  source file: preferences_savefile.dm,251
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\p\prototype1696\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\guffrey\preferences.sav
+proc name: save preferences (/datum/preferences/proc/save_preferences)
+  source file: preferences_savefile.dm,74
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\g\guffrey\preferences.sav
+proc name: save character (/datum/preferences/proc/save_character)
+  source file: preferences_savefile.dm,251
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\player_saves\n\ninjabox\preferences.sav
+proc name: load preferences (/datum/preferences/proc/load_preferences)
+  source file: preferences_savefile.dm,37
+BYOND Error:(Sfile.cpp,1138) failed to open file:
+BYOND Error:(Sfile.cpp,1138) C:\Users\Administrator\Desktop\CMALPHA\data\memo.sav
+proc name: admin memo show (/client/proc/admin_memo_show)
+  source file: admin_memo.dm,35
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 7, 8, 9, 10, 13, 14, 16, 19, 20, 21, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Oct 17 18:56:49 2015
+Denied access to 'Guest-3948317064' connecting from 131.0.39.159
+runtime error: pick() from empty list
+proc name: Jump to Area (/client/proc/Jump)
+  source file: adminjump.dm,17
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+  call stack:
+Lostmixup (/client): Jump to Area(the Alien Shuttle Mine (/area/shuttle/alien/mine))
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/multi_tile/medical p_open=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/multi_tile/medical closed_layer=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/multi_tile/medical autoclose=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/multi_tile/medical autoclose=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/multi_tile/medical in_use=0
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC icon_state=rsplmg
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external active_power_usage=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external active_power_usage=0
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC name=Compact LMG
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC fire_sound=Assault Rifle.wav
+### VarEdit by SASoperative: /obj/item/clothing/suit/bomb_suit/security name=Juggernaut armor
+### VarEdit by SASoperative: /obj/item/clothing/head/bomb_hood/security name=Juggernaut Helmet
+### VarEdit by SASoperative: /obj/item/clothing/under/ert name=Tactical Uniform
+### VarEdit by SASoperative: /obj/item/weapon/card/id assignment=Juggernaut
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external autoclose=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external autoclose=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external in_use=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external in_use=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external locked=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external manual=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/external p_open=1
+Sat Oct 17 19:56:51 2015
+Denied access to 'Guest-2215358970' connecting from 179.176.175.178
+runtime error: Cannot read null.assignment
+proc name: Topic (/obj/machinery/computer/squad_changer/Topic)
+  source file: marines_consoles.dm,442
+  usr: Reid Mcmullen (/mob/living/carbon/human)
+  src: Squad Distribution Computer (/obj/machinery/computer/squad_changer)
+  call stack:
+Squad Distribution Computer (/obj/machinery/computer/squad_changer): Topic("src=\[0x200686b];squad=1", /list (/list))
+Monoloti (/client): Topic("src=\[0x200686b];squad=1", /list (/list), Squad Distribution Computer (/obj/machinery/computer/squad_changer))
+Monoloti (/client): Topic("src=\[0x200686b];squad=1", /list (/list), Squad Distribution Computer (/obj/machinery/computer/squad_changer))
+Denied access to 'Guest-440406176' connecting from 118.93.205.115
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/unsimulated (/connection_edge/unsimulated): recheck()
+Zone 18793 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+Gage Carter (/mob/living/carbon/brain): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Gage Carter (/mob/living/carbon/brain): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): copy from(/datum/gas_mixture (/datum/gas_mixture))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (116,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+equalize gases(/list (/list))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (116,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+  usr: null
+  src: null
+  call stack:
+equalize gases(/list (/list))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (116,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): subtract(/datum/gas_mixture (/datum/gas_mixture))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (116,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (116,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): copy from(/datum/gas_mixture (/datum/gas_mixture))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (114,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+equalize gases(/list (/list))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (114,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+  usr: null
+  src: null
+  call stack:
+equalize gases(/list (/list))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (114,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): subtract(/datum/gas_mixture (/datum/gas_mixture))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (114,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+/datum/pipeline (/datum/pipeline): mingle with turf(the floor (114,70,2) (/turf/simulated/floor/bluegrid), 250)
+Vent (/obj/machinery/atmospherics/pipe/vent): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check combustability(null)
+the floor (122,67,2) (/turf/simulated/floor): hotspot expose(1000, 500, 1)
+the igniter (/obj/machinery/igniter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check combustability(null)
+the floor (108,74,2) (/turf/simulated/floor): hotspot expose(1000, 500, 1)
+the igniter (/obj/machinery/igniter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check combustability(null)
+the floor (122,74,2) (/turf/simulated/floor): hotspot expose(1000, 500, 1)
+the igniter (/obj/machinery/igniter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check combustability(null)
+the floor (108,67,2) (/turf/simulated/floor): hotspot expose(1000, 500, 1)
+the igniter (/obj/machinery/igniter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 4, 127, 1)
+/datum/gas_mixture (/datum/gas_mixture): share space(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/unsimulated (/connection_edge/unsimulated): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,272
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: equalize gases (/proc/equalize_gases)
+  source file: _gas_mixture_xgm.dm,436
+runtime error: list index out of bounds
+proc name: subtract (/datum/gas_mixture/proc/subtract)
+  source file: _gas_mixture_xgm.dm,346
+runtime error: list index out of bounds
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,91
+Warning: further proc crash messages are being suppressed to prevent overload...
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=200
+Denied access to 'Guest-2948195474' connecting from 73.234.195.2
+### VarEdit by Apophis775: /datum/gas_mixture temperature=500
+Denied access to 'Guest-906177438' connecting from 152.236.24.156
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=200
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=5
+### VarEdit by Apophis775: /obj/structure/window/reinforced health=1
+### VarEdit by Apophis775: /obj/structure/window/reinforced health=50000
+### VarEdit by Apophis775: /obj/structure/window/reinforced health=50000
+### VarEdit by Apophis775: /obj/structure/window/reinforced health=50000
+### VarEdit by Apophis775: /obj/item/alien_embryo stage=4
+### VarEdit by Apophis775: /obj/item/alien_embryo counter=400
+### VarEdit by Apophis775: /obj/machinery/power/supermatter damage=1500
+Rebooted server.
+Sat Oct 17 21:02:20 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 20, 21, 22 and 24
+BYOND Error: failed to certify Lazerpanda
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2669021018' connecting from 76.167.243.254
+Denied access to 'Guest-1324687208' connecting from 31.54.187.168
+Denied access to 'Guest-970281572' connecting from 184.89.105.209
+Denied access to 'Guest-3878929416' connecting from 50.82.23.223
+runtime error: Cannot read null.sbeacon
+proc name: handle supplydrop (/obj/machinery/computer/overwatch/proc/handle_supplydrop)
+  source file: overwatch.dm,505
+  usr: Kaden Clarke (/mob/living/carbon/human)
+  src: Overwatch Console (/obj/machinery/computer/overwatch)
+  call stack:
+Overwatch Console (/obj/machinery/computer/overwatch): handle supplydrop()
+Rebooted server.
+Sat Oct 17 22:47:35 2015
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 9, 11, 14, 15, 16, 18, 20, 21, 22 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-744859894' connecting from 112.215.64.182
+Denied access to 'Guest-264752375' connecting from 68.0.179.115
+Sun Oct 18 00:03:16 2015
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Brandon K. Lopez (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Brandon K. Lopez (/mob/living/carbon/human))
+Brandon K. Lopez (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=19;icon-y=19;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (152,134,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=19;left=1;scr...")
+Denied access to 'Guest-1185298983' connecting from 173.55.23.138
+Rebooted server.
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
