@@ -782,7 +782,7 @@ var/list/ghostteleportlocs = list()
 
 
 //Hallway
-
+/*
 /area/hallway/primary/fore
 	name = "\improper Fore Primary Hallway"
 	icon_state = "hallF"
@@ -823,14 +823,14 @@ var/list/ghostteleportlocs = list()
 /area/hallway/secondary/entry
 	name = "\improper Arrival Shuttle Hallway"
 	icon_state = "entry"
-
+*/
 //Command
-
+/*
 /area/bridge
 	name = "\improper Bridge"
 	icon_state = "bridge"
 	music = "signal"
-/*
+
 /area/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
 	icon_state = "bridge"
@@ -1116,7 +1116,7 @@ var/list/ghostteleportlocs = list()
 */
 
 //Solars
-
+/*
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
@@ -1185,7 +1185,7 @@ var/list/ghostteleportlocs = list()
 	power_equip = 0
 	power_light = 0
 	power_environ = 0
-
+*/
 //Teleporter
 
 /area/teleporter
@@ -2095,9 +2095,9 @@ var/list/the_station_areas = list (
 	/area/shuttle/administration/station,		//To be removed
 	/area/shuttle/specops/station,				//To be removed
 //	/area/atmos,
-	/area/maintenance,							//To be removed
-	/area/hallway,								//To be removed
-	/area/bridge,								//To be removed
+	///area/maintenance,							//To be removed
+	///area/hallway,								//To be removed
+	///area/bridge,								//To be removed
 //	/area/crew_quarters,
 	/area/holodeck,								//To be removed
 	/area/mint,									//To be removed
@@ -2105,8 +2105,8 @@ var/list/the_station_areas = list (
 //	/area/chapel,
 //	/area/lawoffice,
 	/area/engine,								//To be removed
-	/area/solar,								//To be removed
-	/area/assembly,								//To be removed
+	///area/solar,								//To be removed
+	///area/assembly,								//To be removed
 	/area/teleporter,							//To be removed
 //	/area/medical,
 //	/area/security,

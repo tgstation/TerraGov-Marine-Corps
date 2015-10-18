@@ -56,7 +56,7 @@
 	target.apply_damage(force, BRUTE, affecting, armor_block, sharp=0)
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
-	if(affecting == "head" && istype(target, /mob/living/carbon/))
+	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isXeno(target))
 
 		//Display an attack message.
 		for(var/mob/O in viewers(user, null))

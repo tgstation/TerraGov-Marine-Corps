@@ -710,7 +710,7 @@ It can still be worn/put on as normal.
 					can_reach_splints = 0
 
 			if(can_reach_splints)
-				for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
+				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","l_foot","r_foot","l_hand","r_hand"))
 					var/datum/organ/external/o = target.get_organ(organ)
 					if (o && o.status & ORGAN_SPLINTED)
 						var/obj/item/W = new /obj/item/stack/medical/splint(amount=1)
