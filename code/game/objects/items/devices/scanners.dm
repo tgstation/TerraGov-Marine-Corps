@@ -63,6 +63,7 @@ REAGENT SCANNER
 				if(M)
 					M.invisibility = INVISIBILITY_LEVEL_TWO
 
+
 /obj/item/device/healthanalyzer
 	name = "Health Analyzer"
 	icon_state = "health"
@@ -180,7 +181,7 @@ REAGENT SCANNER
 			var/limb = e.display_name
 			var/can_amputate = ""
 			if(e.status & ORGAN_BROKEN)
-				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg")) && (!(e.status & ORGAN_SPLINTED)))
+				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")) && (!(e.status & ORGAN_SPLINTED)))
 					user << "\red *Unsecured fracture in subject [limb]. Splinting recommended for transport."
 			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
 				can_amputate = "or amputation"
@@ -222,6 +223,7 @@ REAGENT SCANNER
 			usr << "The scanner now shows specific limb damage."
 		if(0)
 			usr << "The scanner no longer shows limb damage."
+
 
 
 /obj/item/device/analyzer
