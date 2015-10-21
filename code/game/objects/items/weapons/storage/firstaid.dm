@@ -111,6 +111,23 @@
 	new /obj/item/stack/medical/splint(src)
 	return
 
+/obj/item/weapon/storage/firstaid/rad
+	name = "radiation first-aid kit"
+	desc = "Contains treatment for radiation exposure"
+	icon_state = "purplefirstaid"
+
+/obj/item/weapon/storage/firstaid/rad/New()
+	..()
+	if (empty) return
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+	new /obj/item/weapon/reagent_containers/pill/russianRed(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	return
 
 	/*
  * Syringe Case
