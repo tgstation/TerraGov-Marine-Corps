@@ -232,6 +232,6 @@
 
 /turf/simulated/floor/plating/airless/catwalk
 	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "Floor3"
+	icon_state = "catwalk0"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
