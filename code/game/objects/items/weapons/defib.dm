@@ -90,8 +90,6 @@
 			overlays -= I
 
 /obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	var/tobehealed
-	var/threshhold = -config.health_threshold_dead
 	var/mob/living/carbon/human/H = M
 	if(!ishuman(M))
 		..()
@@ -129,7 +127,12 @@
 			if(H.stat == 2 || H.stat == DEAD)
 				var/uni = 0
 				var/armor = 0
-				var/health = H.health
+				//We want to heal these
+				var/brute = H.getBruteLoss()
+				var/burn = H.getFireLoss()
+				var/oxygen = H.getOxyLoss()
+				var/toxin = H.getToxLoss()
+
 				for(var/obj/item/carried_item in H.contents)
 					if(istype(carried_item, /obj/item/clothing/under))
 						uni = 1
@@ -139,39 +142,55 @@
 					if(prob(30))
 						spark_system.attach(M)
 						spark_system.start()
-					if(prob(30))
-						tobehealed = health + threshhold
-						tobehealed -= 5 //They get 5 health in crit to heal the person or inject stabilizers
-						H.adjustOxyLoss(tobehealed)
+					if(prob(25))
+						if(oxygen)
+							H.adjustOxyLoss(-8)
+						else if(toxin)
+							H.adjustToxLoss(-8)
+						else if(brute)
+							H.adjustBruteLoss(-8)
+						else if(burn)
+							H.adjustFireLoss(-8)
 				else if((uni || armor) && toolate(M))
 					if(prob(30))
 						spark_system.attach(M)
 						spark_system.start()
-					if(prob(60))
-						tobehealed = health + threshhold
-						tobehealed -= 5 //They get 5 health in crit to heal the person or inject stabilizers
-						H.adjustOxyLoss(tobehealed)
+					if(prob(40))
+						if(oxygen)
+							H.adjustOxyLoss(-8)
+						else if(toxin)
+							H.adjustToxLoss(-8)
+						else if(brute)
+							H.adjustBruteLoss(-8)
+						else if(burn)
+							H.adjustFireLoss(-8)
 				else
-					if(prob(90) && toolate(M))
-						tobehealed = health + threshhold
-						tobehealed -= 5 //They get 5 health in crit to heal the person or inject stabilizers
-						H.adjustOxyLoss(tobehealed)
-				H.updatehealth() //forces a health update, otherwise the oxyloss adjustment wouldnt do anything
+					if(prob(75) && toolate(M))
+						if(oxygen)
+							H.adjustOxyLoss(-8)
+						else if(toxin)
+							H.adjustToxLoss(-8)
+						else if(brute)
+							H.adjustBruteLoss(-8)
+						else if(burn)
+							H.adjustFireLoss(-8)
+				H.updatehealth() //forces a health update
 				M.visible_message("\red [M]'s body convulses a bit.")
+				playsound(get_turf(src), 'sound/weapons/Egloves.ogg', 50, 1, -1)
 				var/datum/organ/external/temp = H.get_organ("head")
-				if(H.health >= -100 && !(temp.status & ORGAN_DESTROYED) && !H.suiciding && toolate(M)) //!(M_NOCLONE in H.mutations) && We don't have this.
-					viewers(M) << "\blue [src] beeps: Resuscitation successful."
+				if(H.health > -100 && !(temp.status & ORGAN_DESTROYED) && !H.suiciding && toolate(M)) //!(M_NOCLONE in H.mutations) && We don't have this.
+					viewers(M) << "\blue \icon[src] beeps: Resuscitation successful."
 					spawn(0)
 						H.stat = 1
 						dead_mob_list -= H
 						living_mob_list |= list(H)
 						H.emote("gasp")
 				else
-					viewers(M) << "\red [src] beeps: Resuscitation failed."
+					viewers(M) << "\red \icon[src] beeps: Resuscitation failed."
 				dcell.use(charge_cost)
 				if(dcell.charge < charge_cost)
 					dcell.charge = 0
 					status = 0
 				update_icon()
 			else
-				user.visible_message("\red [src] beeps: Patient is not in a valid state.")
+				user.visible_message("\red \icon[src] beeps: Patient is not in a valid state.")
