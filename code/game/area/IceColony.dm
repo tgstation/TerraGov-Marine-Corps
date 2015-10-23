@@ -107,6 +107,22 @@
 	name = "\improper Storage Unit"
 	icon_state = "storage"
 
+/area/ice_colony/ground/storage_five
+	name = "\improper Storage Unit"
+	icon_state = "storage"
+
+/area/ice_colony/ground/storage_six
+	name = "\improper Storage Unit"
+	icon_state = "storage"
+
+/area/ice_colony/ground/dig_site_canteen
+	name = "\improper Dig Site Canteen"
+	icon_state = "cafeteria"
+
+/area/ice_colony/ground/dig_site_preparation
+	name = "\improper Dig Site Preparation Area"
+	icon_state = "purple"
+
 //Research-------
 /area/ice_colony/underground/research
 	name = "\improper Research"
