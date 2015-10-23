@@ -479,7 +479,7 @@
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
 	M.visible_message("<span class='warning'>[M] smashes the [src.name]!</span>", \
-		 "<span class='warning'>You smash trough the barricade!</span>")
+		 "<span class='warning'>You smash at the barricade!</span>")
 	if(src.health <= 0)
 		visible_message("\red The [src.name] falls apart!")
 		del(src)
@@ -498,3 +498,25 @@
 /obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	return attack_hand(M)
 
+//Digging snow
+/turf/simulated/floor/gm/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(M.a_intent == "grab")
+		if(isXenoLarva(M))
+			return
+
+		if(!slayer)
+			M  << "\red There is nothing to clear out!"
+			return
+
+		M.visible_message("[M] starts clearing out the [src].","You start removing some of the [src].")
+		playsound(M, 'sound/weapons/Genhit.ogg', 25, 1)
+		if(!do_after(M,25))
+			return
+
+		if(!slayer)
+			M  << "\red There is nothing to clear out!"
+			return
+
+		M.visible_message("\blue \The [M] clears out \the [src].")
+		slayer -= 1
+		update_icon(1)
