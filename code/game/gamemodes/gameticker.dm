@@ -177,6 +177,13 @@ var/global/datum/controller/gameticker/ticker
 	if(config.sql_enabled)
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
+		/*This will track for multiple maps/modes*/
+		var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Dropship 1"]
+		var/datum/shuttle/ferry/shuttle2 = shuttle_controller.shuttles["Dropship 2"]
+		if(mode.name == "Colonial Marines Halloween")
+			shuttle.area_offsite = locate(/area/shuttle/drop1/Haunted)
+			shuttle2.area_offsite = locate(/area/shuttle/drop2/Haunted)
+
 
 	return 1
 
