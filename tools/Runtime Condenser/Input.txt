@@ -1340,3 +1340,3620 @@ Your server failed to establish a connection with the SQL database.
 
 ## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
 ## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Oct 19 05:59:56 2015
+Denied access to 'Darkmech1' connecting from 173.30.64.23
+Mon Oct 19 07:40:49 2015
+runtime error: bad client
+proc name: Adminhelp (/client/verb/adminhelp)
+  source file: adminhelp.dm,26
+  usr: null
+  src: MilesWolfe (/client)
+  call stack:
+MilesWolfe (/client): Adminhelp()
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 8, 10, 12, 13, 14, 15, 17, 18, 21, 22, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Oct 19 09:42:51 2015
+Denied access to 'Guest-1801541298' connecting from 112.202.0.113
+Mon Oct 19 11:01:51 2015
+### VarEdit by Minijar: /mob/living/carbon/human health=100
+### VarEdit by Minijar: /mob/living/carbon/human health=100
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 7, 9, 11, 14, 15, 17, 18, 19, 20, 21, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+BYOND Error: failed to certify BeefDrake
+Mon Oct 19 13:00:48 2015
+Denied access to 'Hulias' connecting from 68.81.23.61
+Denied access to 'Guest-994179521' connecting from 66.244.123.98
+Denied access to 'Jhonceana456' connecting from 41.224.132.45
+Rebooted server.
+Mon Oct 19 14:49:08 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 8, 9, 10, 11, 13, 15, 17, 18, 21, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Allan1234: /obj/mecha/working/ripley name=Mark IV Powerloader
+Mon Oct 19 18:11:49 2015
+runtime error: undefined variable /icon/var/name
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,59
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=name;...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: undefined variable /icon/var/name
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,59
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=name;...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /icon/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=submi...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /icon/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=submi...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: undefined proc or verb /icon/savefile save().
+
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,75
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=save;...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=save;...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=save;...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /icon/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=submi...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /icon/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=submi...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /icon/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: Walker (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x2100157d];option=submi...", /list (/list))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Dubszor (/client): Topic("src=\[0x2100157d];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 8, 9, 13, 15, 18, 19, 20, 21, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Lostmixup: /mob/living/carbon/human name=Joe Beto
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Joe Beto
+### VarEdit by Lostmixup: /obj/item/weapon/card/id registered_name=Joe Beto
+### VarEdit by Lostmixup: /obj/item/weapon/card/id name=Joe Beto&#39;s ID Card (Military Police)
+Mon Oct 19 20:19:54 2015
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+  usr: null
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): recruitWindow(null, 1)
+/datum/paiController (/datum/paiController): Topic("src=\[0x210015c4];option=name;...", /list (/list))
+Introzado (/client): Topic("src=\[0x210015c4];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+Introzado (/client): Topic("src=\[0x210015c4];option=name;...", /list (/list), /datum/paiController (/datum/paiController))
+runtime error: Cannot execute null.add fingerprint().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,793
+  usr: Artyrial Loudain (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+Denied access to 'Guest-3522210286' connecting from 71.74.133.52
+Denied access to 'Freeders' connecting from 104.231.160.46
+runtime error: Cannot execute null.use().
+proc name: attackby (/turf/simulated/floor/attackby)
+  source file: floor.dm,507
+  usr: Sam Graham (/mob/living/carbon/human)
+  src: the floor (143,160,3) (/turf/simulated/floor)
+  call stack:
+the floor (143,160,3) (/turf/simulated/floor): attackby(null, Sam Graham (/mob/living/carbon/human))
+Sam Graham (/mob/living/carbon/human): ClickOn(the floor (143,160,3) (/turf/simulated/floor), "icon-x=5;icon-y=5;left=1;scree...")
+the floor (143,160,3) (/turf/simulated/floor): Click(the floor (143,160,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=5;icon-y=5;left=1;scree...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/turf/simulated/floor/attackby)
+  source file: floor.dm,507
+  usr: Sam Graham (/mob/living/carbon/human)
+  src: the floor (143,159,3) (/turf/simulated/floor)
+  call stack:
+the floor (143,159,3) (/turf/simulated/floor): attackby(null, Sam Graham (/mob/living/carbon/human))
+Sam Graham (/mob/living/carbon/human): ClickOn(the floor (143,159,3) (/turf/simulated/floor), "icon-x=3;icon-y=29;left=1;scre...")
+the floor (143,159,3) (/turf/simulated/floor): Click(the floor (143,159,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=3;icon-y=29;left=1;scre...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 17, 18, 19, 21 and 23
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Oct 19 21:42:18 2015
+Denied access to 'Guest-4040381664' connecting from 5.12.178.79
+runtime error: wrong type of value for list
+verb name: AllowTargetMove (/client/verb/AllowTargetMove)
+  source file: targeting.dm,296
+  usr: Eddetott Winters (/mob/living/carbon/human)
+  src: Naruto Uzomaky (/client)
+  call stack:
+Naruto Uzomaky (/client): AllowTargetMove()
+Allow Walking (/obj/screen/gun/move): Click(null, "mapwindow.map", "icon-x=21;icon-y=10;left=1;scr...")
+runtime error: wrong type of value for list
+proc name: add gun icons (/client/proc/add_gun_icons)
+  source file: targeting.dm,263
+  usr: Eddetott Winters (/mob/living/carbon/human)
+  src: Naruto Uzomaky (/client)
+  call stack:
+Naruto Uzomaky (/client): add gun icons()
+Marco Lewis (/mob/living/carbon/human): Targeted(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): Aim(Marco Lewis (/mob/living/carbon/human))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): PreFire(Marco Lewis (/mob/living/carbon/human), Eddetott Winters (/mob/living/carbon/human), "icon-x=19;icon-y=17;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(Marco Lewis (/mob/living/carbon/human), Eddetott Winters (/mob/living/carbon/human), 0, "icon-x=19;icon-y=17;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(Marco Lewis (/mob/living/carbon/human), Eddetott Winters (/mob/living/carbon/human), 0, "icon-x=19;icon-y=17;left=1;scr...")
+Eddetott Winters (/mob/living/carbon/human): ClickOn(Marco Lewis (/mob/living/carbon/human), "icon-x=19;icon-y=17;left=1;scr...")
+Marco Lewis (/mob/living/carbon/human): Click(the floor (127,154,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=17;left=1;scr...")
+Rebooted server.
+Mon Oct 19 23:30:17 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 8, 9, 10, 11, 12, 14, 16, 17, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Tue Oct 20 01:18:47 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 10, 11, 13, 14, 15, 16, 18, 19, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+BYOND Error: failed to certify KeyWii
+Tue Oct 20 03:13:08 2015
+### VarEdit by Ordukai: /mob/living/carbon/human buckled=
+### VarEdit by Ordukai: /turf/simulated/floor/plating air=/datum/gas_mixture
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 7, 8, 9, 10, 13, 15, 16, 20, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 6, 8, 9, 10, 11, 13, 14, 16, 19, 21, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Tue Oct 20 06:37:37 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 5, 7, 9, 11, 12, 14, 15, 16, 17, 19, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 9, 11, 13, 16, 19, 20, 21, 22, 23, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 9, 10, 13, 16, 17, 18, 20, 21, 23, 24 and 25
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 6, 7, 8, 9, 12, 15, 16, 17, 19, 20, 21, 23, 24 and 26
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 6, 8, 10, 12, 14, 16, 19, 20, 21, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Tue Oct 20 08:18:28 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 5, 7, 8, 9, 10, 11, 12, 16, 17, 18, 20, 21, 23, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Tue Oct 20 10:29:24 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 6, 7, 8, 9, 10, 13, 15, 16, 17, 18, 19, 20, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Tue Oct 20 11:59:13 2015
+runtime error: Cannot execute null.use().
+proc name: attackby (/turf/simulated/floor/attackby)
+  source file: floor.dm,507
+  usr: Khusa Gnomish (/mob/living/carbon/human)
+  src: the floor (130,151,4) (/turf/simulated/floor)
+  call stack:
+the floor (130,151,4) (/turf/simulated/floor): attackby(null, Khusa Gnomish (/mob/living/carbon/human))
+Khusa Gnomish (/mob/living/carbon/human): ClickOn(the floor (130,151,4) (/turf/simulated/floor), "icon-x=24;icon-y=29;left=1;scr...")
+the floor (130,151,4) (/turf/simulated/floor): Click(the floor (130,151,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=24;icon-y=29;left=1;scr...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/turf/simulated/floor/attackby)
+  source file: floor.dm,507
+  usr: Khusa Gnomish (/mob/living/carbon/human)
+  src: the floor (128,155,4) (/turf/simulated/floor)
+  call stack:
+the floor (128,155,4) (/turf/simulated/floor): attackby(null, Khusa Gnomish (/mob/living/carbon/human))
+Khusa Gnomish (/mob/living/carbon/human): ClickOn(the floor (128,155,4) (/turf/simulated/floor), "icon-x=26;icon-y=5;left=1;scre...")
+the floor (128,155,4) (/turf/simulated/floor): Click(the floor (128,155,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=26;icon-y=5;left=1;scre...")
+Tue Oct 20 13:20:16 2015
+runtime error: Cannot read null.prefs
+proc name: emote dead (/mob/proc/emote_dead)
+  source file: emote.dm,106
+  usr: Alien Larva (650) (/mob/dead/observer)
+  src: Alien Larva (650) (/mob/dead/observer)
+  call stack:
+Alien Larva (650) (/mob/dead/observer): emote dead("<span class=\'game deadsay\'><...")
+Alien Larva (650) (/mob/dead/observer): emote("me", 1, "stares.")
+Alien Larva (650) (/mob/dead/observer): Me("stares.")
+runtime error: Cannot read null.prefs
+proc name: emote dead (/mob/proc/emote_dead)
+  source file: emote.dm,106
+  usr: Axel Strife (/mob/dead/observer)
+  src: Axel Strife (/mob/dead/observer)
+  call stack:
+Axel Strife (/mob/dead/observer): emote dead("<span class=\'game deadsay\'><...")
+Axel Strife (/mob/dead/observer): emote("me", 1, "stares back at alien larva (65...")
+Axel Strife (/mob/dead/observer): Me("stares back at alien larva (65...")
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: May-June \'Salt\' Unk (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2008149];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2008149];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2008149];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.pai_laws
+proc name: Topic (/obj/item/device/paicard/Topic)
+  source file: paicard.dm,262
+  usr: May-June \'Salt\' Unk (/mob/living/carbon/human)
+  src: the personal AI device (/obj/item/device/paicard)
+  call stack:
+the personal AI device (/obj/item/device/paicard): Topic("src=\[0x2008149];setlaws=1", /list (/list))
+Windows 7 (/client): Topic("src=\[0x2008149];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+Windows 7 (/client): Topic("src=\[0x2008149];setlaws=1", /list (/list), the personal AI device (/obj/item/device/paicard))
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: Pick a category.,47
+  usr: Joseph Skinner (/mob/dead/observer)
+  src: SASoperative (/client)
+  call stack:
+SASoperative (/client): Dsay("NOPE")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: Pick a category.,47
+  usr: Joseph Skinner (/mob/dead/observer)
+  src: SASoperative (/client)
+  call stack:
+SASoperative (/client): Dsay("DENIED")
+Tue Oct 20 14:21:37 2015
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: Pick a category.,47
+  usr: Joseph Skinner (/mob/dead/observer)
+  src: SASoperative (/client)
+  call stack:
+SASoperative (/client): Dsay("Dick move by stopping extensio...")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: Pick a category.,47
+  usr: Drone (136) (/mob/dead/observer)
+  src: Minijar (/client)
+  call stack:
+Minijar (/client): Dsay("Test")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: Pick a category.,47
+  usr: Drone (136) (/mob/dead/observer)
+  src: Minijar (/client)
+  call stack:
+Minijar (/client): Dsay("Teeest")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 10, 11, 12, 15, 17, 19, 20, 22, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Tue Oct 20 15:40:03 2015
+Denied access to 'Guest-1621388661' connecting from 82.59.175.44
+Denied access to 'Guest-221717891' connecting from 186.79.17.178
+Denied access to 'Guest-720351793' connecting from 71.194.179.186
+### VarEdit by Infernus44: /datum/gas_mixture temperature=190
+### VarEdit by Infernus44: /datum/gas_mixture temperature=120
+Tue Oct 20 16:50:07 2015
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+Denied access to 'Guest-738614836' connecting from 76.3.44.166
+Tue Oct 20 18:11:05 2015
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: null
+  src: Wache (/mob/living/silicon/pai)
+  call stack:
+Wache (/mob/living/silicon/pai): close up()
+Wache (/mob/living/silicon/pai): death(null, "gives one shrill beep before f...")
+Wache (/mob/living/silicon/pai): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+### VarEdit by Apophis775: /mob/living/silicon/pai health=-50
+### VarEdit by Apophis775: /obj/mecha/working/ripley health=-20
+Denied access to 'Guest-2510971100' connecting from 108.217.157.105
+runtime error: Cannot read null.drill_verb
+proc name: attackby (/turf/simulated/mineral/attackby)
+  source file: mine_turfs.dm,150
+  usr: Casca \'Legs\' Orivanna (/mob/living/carbon/human)
+  src: Rock (45,149,1) (/turf/simulated/mineral)
+  call stack:
+Rock (45,149,1) (/turf/simulated/mineral): attackby(null, Casca \'Legs\' Orivanna (/mob/living/carbon/human))
+Casca \'Legs\' Orivanna (/mob/living/carbon/human): ClickOn(Rock (45,149,1) (/turf/simulated/mineral), "icon-x=20;icon-y=15;left=1;scr...")
+Rock (45,149,1) (/turf/simulated/mineral): Click(Rock (45,149,1) (/turf/simulated/mineral), "mapwindow.map", "icon-x=20;icon-y=15;left=1;scr...")
+Denied access to 'Guest-3509991165' connecting from 73.16.210.144
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 17, 19, 20, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Uristmcbigbeard' connecting from 108.75.140.54
+Tue Oct 20 19:27:58 2015
+Denied access to 'Guest-769979506' connecting from 73.8.184.171
+Tue Oct 20 20:34:53 2015
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=17;icon-y=8;left=1;scre...")
+the girder (/obj/structure/girder): Click(the floor (154,68,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=8;left=1;scre...")
+Denied access to 'Guest-19106387' connecting from 69.130.237.121
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 6, 7, 9, 12, 13, 14, 16, 17, 18, 19, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Tiestosplit' connecting from 50.67.15.177
+Tue Oct 20 22:25:39 2015
+Denied access to 'Ripplyauto33477' connecting from 173.183.163.213
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 19, 21, 22, 24 and 25
+BYOND Error: failed to certify ElectricCloud
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 21 00:35:24 2015
+### VarEdit by Caryl: /mob/living/carbon/human anchored=0
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+Denied access to 'Dmitry Galkovsky' connecting from 87.255.31.108
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 8, 10, 12, 13, 15, 18, 20, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Oct 21 02:26:53 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 6, 8, 9, 10, 11, 12, 13, 15, 16, 18, 19, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 6, 7, 8, 9, 11, 12, 16, 17, 18, 19, 20, 21, 22, 23 and 26
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Oct 21 03:41:28 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 7, 9, 11, 13, 15, 16, 18, 20, 22, 23, 24, 25 and 26
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 8, 9, 12, 13, 14, 15, 17, 19, 21, 22, 23 and 25
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 6, 7, 9, 11, 12, 13, 14, 16, 18, 19, 21, 23, 24 and 25
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Oct 21 04:45:39 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 10, 11, 15, 16, 17, 19, 20, 23, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 20 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 7, 9, 10, 12, 14, 15, 17, 18, 19, 20, 21, 22 and 23
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+
+Rebooted server.
+Wed Oct 21 06:34:07 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 6, 8, 11, 12, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24 and 25
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 20, 21, 22, 23, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Oct 21 08:37:20 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 7, 8, 9, 10, 12, 14, 17, 18, 20, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 7, 9, 11, 13, 14, 15, 17, 19, 20, 21, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 21 09:44:28 2015
+Denied access to 'Guest-3743226558' connecting from 178.184.200.211
+Denied access to 'Guest-3702926048' connecting from 128.74.191.232
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 86, 18299, 1)
+/datum/gas_mixture (/datum/gas_mixture): share space(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/unsimulated (/connection_edge/unsimulated): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 86, 18299, 1)
+/datum/gas_mixture (/datum/gas_mixture): share space(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/unsimulated (/connection_edge/unsimulated): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 2, 18215, 1)
+/datum/gas_mixture (/datum/gas_mixture): share space(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/unsimulated (/connection_edge/unsimulated): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 2, 18215, 1)
+/datum/gas_mixture (/datum/gas_mixture): share space(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/unsimulated (/connection_edge/unsimulated): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 3389 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 3389 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 3389 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 3389 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 3389 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 3389 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0128239)
+the grass (173,38,1) (/turf/simulated/floor/gm/grass): remove air(0.0128239)
+the neaera (409) (/mob/living/carbon/monkey/skrell): breathe()
+the neaera (409) (/mob/living/carbon/monkey/skrell): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0128239)
+the grass (201,59,1) (/turf/simulated/floor/gm/grass): remove air(0.0128239)
+the neaera (495) (/mob/living/carbon/monkey/skrell): breathe()
+the neaera (495) (/mob/living/carbon/monkey/skrell): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0128239)
+the grass (180,43,1) (/turf/simulated/floor/gm/grass): remove air(0.0128239)
+the neaera (557) (/mob/living/carbon/monkey/skrell): breathe()
+the neaera (557) (/mob/living/carbon/monkey/skrell): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0128239)
+the dirt (105,50,1) (/turf/simulated/floor/gm/dirt): remove air(0.0128239)
+the monkey (411) (/mob/living/carbon/monkey): breathe()
+the monkey (411) (/mob/living/carbon/monkey): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0128239)
+the grass (183,54,1) (/turf/simulated/floor/gm/grass): remove air(0.0128239)
+the neaera (537) (/mob/living/carbon/monkey/skrell): breathe()
+the neaera (537) (/mob/living/carbon/monkey/skrell): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0128239)
+the grass (56,47,1) (/turf/simulated/floor/gm/grass): remove air(0.0128239)
+the monkey (862) (/mob/living/carbon/monkey): breathe()
+the monkey (862) (/mob/living/carbon/monkey): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0128239)
+the grass (57,54,1) (/turf/simulated/floor/gm/grass): remove air(0.0128239)
+the monkey (968) (/mob/living/carbon/monkey): breathe()
+the monkey (968) (/mob/living/carbon/monkey): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,284
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,284
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,284
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,284
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,284
+runtime error: list index out of bounds
+proc name: check combustability (/datum/gas_mixture/proc/check_combustability)
+  source file: Fire.dm,284
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: Entered (/turf/Entered)
+  source file: Phoron.dm,167
+runtime error: list index out of bounds
+proc name: Entered (/turf/Entered)
+  source file: Phoron.dm,167
+runtime error: list index out of bounds
+proc name: Entered (/turf/Entered)
+  source file: Phoron.dm,167
+Warning: further proc crash messages are being suppressed to prevent overload...
+### VarEdit by Minijar: /datum/gas_mixture total_moles=101
+Wed Oct 21 11:30:32 2015
+### VarEdit by Minijar: /mob/living/carbon/human x=90
+### VarEdit by Minijar: /mob/living/carbon/human y=156
+### VarEdit by Minijar: /mob/living/carbon/human z=3
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 8, 9, 13, 15, 16, 17, 18, 19, 20, 21, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-4251157638' connecting from 205.209.241.6
+Denied access to 'Guest-516533924' connecting from 139.153.76.188
+Wed Oct 21 12:49:45 2015
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Wyatt Negus (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Wyatt Negus (/mob/living/carbon/human))
+Wyatt Negus (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=27;icon-y=14;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (116,85,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=27;icon-y=14;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Wyatt Negus (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Wyatt Negus (/mob/living/carbon/human))
+Wyatt Negus (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=19;icon-y=22;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the floor (126,90,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=22;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Wyatt Negus (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Wyatt Negus (/mob/living/carbon/human))
+Wyatt Negus (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=8;icon-y=24;left=1;scre...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (145,64,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=8;icon-y=24;left=1;scre...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Wyatt Negus (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Wyatt Negus (/mob/living/carbon/human))
+Wyatt Negus (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=13;icon-y=22;left=1;scr...")
+Wyatt Negus (/mob/living/carbon/human): DblClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=13;icon-y=22;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): DblClick(the floor (145,64,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=13;icon-y=22;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): DblClick(the floor (145,64,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=13;icon-y=22;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Wyatt Negus (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Wyatt Negus (/mob/living/carbon/human))
+Wyatt Negus (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=13;icon-y=21;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (145,64,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=13;icon-y=21;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Wyatt Negus (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Wyatt Negus (/mob/living/carbon/human))
+Wyatt Negus (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=14;icon-y=21;left=1;scr...")
+Wyatt Negus (/mob/living/carbon/human): DblClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=14;icon-y=21;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): DblClick(the floor (145,64,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=21;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): DblClick(the floor (145,64,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=21;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Connor Cox (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Connor Cox (/mob/living/carbon/human))
+Connor Cox (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=16;icon-y=15;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (184,79,1) (/turf/simulated/floor/vault), "mapwindow.map", "icon-x=16;icon-y=15;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Connor Cox (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Connor Cox (/mob/living/carbon/human))
+Connor Cox (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=16;icon-y=15;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(the floor (184,79,1) (/turf/simulated/floor/vault), "mapwindow.map", "icon-x=16;icon-y=15;left=1;scr...")
+Wed Oct 21 14:23:11 2015
+Denied access to 'Guest-4133689027' connecting from 46.188.123.121
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0145294)
+the floor (139,159,4) (/turf/simulated/floor): remove air(0.0145294)
+Jennifer \'Nun\' Rowley (/mob/living/carbon/human): breathe()
+Jennifer \'Nun\' Rowley (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Jennifer \'Nun\' Rowley (/mob/living/carbon/human)
+  call stack:
+Jennifer \'Nun\' Rowley (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Jennifer \'Nun\' Rowley (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0145294)
+the floor (137,156,4) (/turf/simulated/floor): remove air(0.0145294)
+Connor Cox (/mob/living/carbon/human): breathe()
+Connor Cox (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Connor Cox (/mob/living/carbon/human)
+  call stack:
+Connor Cox (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Connor Cox (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Mark \'Beep\' Hill (/mob/living/carbon/human)
+  call stack:
+Mark \'Beep\' Hill (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Mark \'Beep\' Hill (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0145294)
+the floor (139,159,4) (/turf/simulated/floor): remove air(0.0145294)
+Michael \'Messiah\' King (/mob/living/carbon/human): breathe()
+Michael \'Messiah\' King (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Michael \'Messiah\' King (/mob/living/carbon/human)
+  call stack:
+Michael \'Messiah\' King (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Michael \'Messiah\' King (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(0.0145294)
+the floor (136,156,4) (/turf/simulated/floor): remove air(0.0145294)
+Werner Diels (/mob/living/carbon/human): breathe()
+Werner Diels (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Werner Diels (/mob/living/carbon/human)
+  call stack:
+Werner Diels (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Werner Diels (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+Warning: further proc crash messages are being suppressed to prevent overload...
+### VarEdit by Minijar: /datum/gas_mixture total_moles=101
+### VarEdit by Minijar: /datum/gas_mixture total_moles=101
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 6, 7, 8, 9, 10, 12, 13, 16, 17, 19, 20, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1383141434' connecting from 70.139.212.132
+Wed Oct 21 16:22:13 2015
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Alan Fiscina (/mob/living/carbon/human)
+  src: Saul Greene (/mob/living/carbon/human)
+  call stack:
+Saul Greene (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Saul Greene (/mob/living/carbon/human))
+Saul Greene (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Saul Greene (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Saul Greene (/mob/living/carbon/human), Alan Fiscina (/mob/living/carbon/human), "icon-x=19;icon-y=12;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Saul Greene (/mob/living/carbon/human), Alan Fiscina (/mob/living/carbon/human), 0, "icon-x=19;icon-y=12;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Saul Greene (/mob/living/carbon/human), Alan Fiscina (/mob/living/carbon/human), 0, "icon-x=19;icon-y=12;left=1;scr...")
+Alan Fiscina (/mob/living/carbon/human): ClickOn(Saul Greene (/mob/living/carbon/human), "icon-x=19;icon-y=12;left=1;scr...")
+Saul Greene (/mob/living/carbon/human): Click(the floor (149,162,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=12;left=1;scr...")
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Alan Fiscina (/mob/living/carbon/human)
+  src: Saul Greene (/mob/living/carbon/human)
+  call stack:
+Saul Greene (/mob/living/carbon/human): NotTargeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): TargetActed(Saul Greene (/mob/living/carbon/human))
+Saul Greene (/mob/living/carbon/human): Targeted(the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): Aim(Saul Greene (/mob/living/carbon/human))
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): PreFire(Saul Greene (/mob/living/carbon/human), Alan Fiscina (/mob/living/carbon/human), "icon-x=19;icon-y=12;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Saul Greene (/mob/living/carbon/human), Alan Fiscina (/mob/living/carbon/human), 0, "icon-x=19;icon-y=12;left=1;scr...")
+the M4A3 Service Pistol (/obj/item/weapon/gun/projectile/m4a3): afterattack(Saul Greene (/mob/living/carbon/human), Alan Fiscina (/mob/living/carbon/human), 0, "icon-x=19;icon-y=12;left=1;scr...")
+Alan Fiscina (/mob/living/carbon/human): ClickOn(Saul Greene (/mob/living/carbon/human), "icon-x=19;icon-y=12;left=1;scr...")
+Saul Greene (/mob/living/carbon/human): Click(the floor (149,162,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=12;left=1;scr...")
+Denied access to 'Guest-2845142667' connecting from 131.161.45.182
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Queen oxyloss=1000
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Queen oxyloss=10000
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Queen bruteloss=60000
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Hivelord z=1
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Hivelord x=150
+### VarEdit by Infernus44: /mob/living/carbon/Xenomorph/Hivelord y=120
+Rebooted server.
+Wed Oct 21 17:31:54 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 16, 21, 22, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Infernus44: /mob/living/carbon/human x=155
+Denied access to 'The Cheese Burgalar' connecting from 174.113.38.107
+Denied access to 'Guest-146239417' connecting from 207.192.203.153
+runtime error: Cannot read null.ckey
+proc name: Topic (/datum/admins/Topic)
+  source file: tox0,782
+  usr: null
+  src: /datum/admins (/datum/admins)
+  call stack:
+/datum/admins (/datum/admins): Topic("src=\[0x2100156d];newban=\[0x3...", /list (/list))
+Allan1234 (/client): Topic("src=\[0x2100156d];newban=\[0x3...", /list (/list), /datum/admins (/datum/admins))
+Allan1234 (/client): Topic("src=\[0x2100156d];newban=\[0x3...", /list (/list), /datum/admins (/datum/admins))
+Denied access to 'Guest-3865955786' connecting from 190.55.239.219
+Wed Oct 21 18:58:52 2015
+Denied access to 'Guest-3243246773' connecting from 73.19.207.148
+Denied access to 'Guest-3910805088' connecting from 189.75.112.137
+Denied access to 'Guest-2649049090' connecting from 185.23.83.178
+Denied access to 'Celtics8820' connecting from 24.183.190.42
+Wed Oct 21 20:01:35 2015
+runtime error: Cannot execute null.on mob jump().
+proc name: Send Mob (/client/proc/sendmob)
+  source file: adminjump.dm,164
+  usr: the unknown (/mob/dead/observer)
+  src: Allan1234 (/client)
+  call stack:
+Allan1234 (/client): Send Mob(null)
+/datum/admins (/datum/admins): Topic("src=\[0x2100156d];sendmob=\[0x...", /list (/list))
+Allan1234 (/client): Topic("src=\[0x2100156d];sendmob=\[0x...", /list (/list), /datum/admins (/datum/admins))
+Allan1234 (/client): Topic("src=\[0x2100156d];sendmob=\[0x...", /list (/list), /datum/admins (/datum/admins))
+Denied access to 'Guest-1668609771' connecting from 76.225.49.106
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 17, 20, 21, 22, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Oct 21 22:19:29 2015
+Denied access to 'Guest-3640942042' connecting from 216.197.169.104
+Rebooted server.
+Wed Oct 21 23:46:40 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 9, 10, 11, 12, 14, 15, 17, 21, 23, 24 and 26
+BYOND Error: failed to certify Siserith
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Oct 22 00:57:06 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 8, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 22, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2741985099' connecting from 73.2.111.11
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 7, 9, 13, 14, 16, 18, 19, 20, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Oct 22 02:48:15 2015
+Denied access to 'Guest-895953685' connecting from 46.223.254.66
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 7, 9, 11, 12, 14, 17, 18, 20, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Oct 22 04:50:38 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 11, 12, 13, 14, 16, 17, 18, 19, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Oct 22 06:55:26 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 23 and 25
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Oct 22 09:55:33 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 10, 11, 14, 15, 16, 18, 20, 21, 22, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-993677182' connecting from 79.79.230.215
+Rebooted server.
+Thu Oct 22 12:38:41 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 9, 10, 12, 14, 15, 18, 21, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: pick() from empty list
+proc name: Jump to Area (/client/proc/Jump)
+  source file: adminjump.dm,17
+  usr: Caryl \'Alpha\' Bernhaben (/mob/dead/observer)
+  src: Caryl (/client)
+  call stack:
+Caryl (/client): Jump to Area(the Elevator II (/area/shuttle/elevator2/transit))
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: F.O.G. (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001585];option=submi...", /list (/list))
+Desolane900 (/client): Topic("src=\[0x21001585];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Desolane900 (/client): Topic("src=\[0x21001585];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: F.O.G. (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x21001585];option=submi...", /list (/list))
+Desolane900 (/client): Topic("src=\[0x21001585];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Desolane900 (/client): Topic("src=\[0x21001585];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Thu Oct 22 14:50:50 2015
+runtime error: Cannot read null.speak_emote
+proc name: talk into (/obj/item/device/radio/talk_into)
+  source file: radio.dm,410
+  usr: null
+  src: the station bounced radio (/obj/item/device/radio)
+  call stack:
+the station bounced radio (/obj/item/device/radio): talk into(null, "I see you..", null, "beeps", null)
+say("I see you..")
+say("; I see you..")
+Say("; I see you..")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 7, 9, 11, 12, 14, 15, 16, 17, 19, 21, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Oct 22 16:27:08 2015
+runtime error: Cannot read null.head_position
+proc name: EquipRank (/datum/controller/occupations/proc/EquipRank)
+  source file: job_controller.dm,385
+  usr: the mouse (/mob/dead/observer)
+  src: /datum/controller/occupations (/datum/controller/occupations)
+  call stack:
+/datum/controller/occupations (/datum/controller/occupations): EquipRank(the mouse (/mob/living/carbon/human), "Animal", 1)
+TR-Blackdragon (/client): Respawn Character()
+Denied access to 'Guest-3518831368' connecting from 73.214.235.40
+runtime error: Cannot modify null.loc.
+proc name: Topic (/obj/machinery/lapvend/Topic)
+  source file: lapvend.dm,177
+  usr: Sam Pines (/mob/living/carbon/human)
+  src: Laptop Vendor (/obj/machinery/lapvend)
+  call stack:
+Laptop Vendor (/obj/machinery/lapvend): Topic("src=\[0x20068f6];choice=cancel", /list (/list))
+Foxygamerbr (/client): Topic("src=\[0x20068f6];choice=cancel", /list (/list), Laptop Vendor (/obj/machinery/lapvend))
+Foxygamerbr (/client): Topic("src=\[0x20068f6];choice=cancel", /list (/list), Laptop Vendor (/obj/machinery/lapvend))
+Thu Oct 22 17:36:24 2015
+### VarEdit by Lostmixup: /mob/living/simple_animal/corgi/puppy universal_understand=1
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 8, 9, 10, 11, 13, 14, 16, 17, 18, 21, 22, 23 and 26
+BYOND Error: failed to certify SPAMboat
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-140502653' connecting from 97.95.254.144
+Thu Oct 22 18:39:52 2015
+### VarEdit by Lostmixup: /mob/living/carbon/human buckled=
+Denied access to 'Guest-4216591216' connecting from 64.175.40.216
+Denied access to 'Guest-1121259605' connecting from 73.201.11.2
+Thu Oct 22 20:02:55 2015
+Denied access to 'Guest-2327747836' connecting from 91.45.69.93
+Denied access to 'Crackshot69' connecting from 173.183.163.213
+Rebooted server.
+Thu Oct 22 21:42:21 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 9, 10, 12, 15, 17, 19, 20, 21, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Oct 22 23:35:16 2015
+Denied access to 'Hyperndr' connecting from 45.21.232.195
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 8, 10, 11, 14, 16, 17, 18, 19, 20, 21, 22 and 23
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Oct 23 04:21:27 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 9, 10, 12, 13, 14, 16, 19, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Oct 23 06:04:13 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 10, 11, 13, 14, 15, 17, 18, 21, 23, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Oct 23 07:19:20 2015
+Denied access to 'Guest-4000153669' connecting from 82.139.127.200
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 16, 18, 19, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Oct 23 08:57:10 2015
+Denied access to 'Guest-937128193' connecting from 169.53.164.124
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Darren Murray (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Darren Murray (/mob/living/carbon/human))
+Darren Murray (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=12;icon-y=26;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(Carpet (102,154,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=12;icon-y=26;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Darren Murray (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Darren Murray (/mob/living/carbon/human))
+Darren Murray (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=11;icon-y=25;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(Carpet (102,154,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=11;icon-y=25;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Darren Murray (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Darren Murray (/mob/living/carbon/human))
+Darren Murray (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=15;icon-y=24;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(Carpet (102,154,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=15;icon-y=24;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Darren Murray (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Darren Murray (/mob/living/carbon/human))
+Darren Murray (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=18;icon-y=28;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(Carpet (102,154,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=18;icon-y=28;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Darren Murray (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Darren Murray (/mob/living/carbon/human))
+Darren Murray (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=13;icon-y=13;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(Carpet (102,154,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=13;icon-y=13;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Darren Murray (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Darren Murray (/mob/living/carbon/human))
+Darren Murray (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=19;icon-y=28;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(Carpet (102,154,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=19;icon-y=28;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Darren Murray (/mob/living/carbon/human)
+  src: the purple sac (/obj/effect/alien/weeds/node)
+  call stack:
+the purple sac (/obj/effect/alien/weeds/node): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Darren Murray (/mob/living/carbon/human))
+Darren Murray (/mob/living/carbon/human): ClickOn(the purple sac (/obj/effect/alien/weeds/node), "icon-x=19;icon-y=28;left=1;scr...")
+the purple sac (/obj/effect/alien/weeds/node): Click(Carpet (102,154,3) (/turf/simulated/floor/carpet), "mapwindow.map", "icon-x=19;icon-y=28;left=1;scr...")
+Fri Oct 23 10:04:27 2015
+Denied access to 'DjSmail1' connecting from 87.252.225.84
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 7, 8, 11, 14, 16, 17, 18, 20, 21, 22, 23, 25 and 26
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Oct 23 12:00:36 2015
+Denied access to 'Ricky101' connecting from 184.3.96.137
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Lockie \'Red\' Hughes (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Milliardo Marquise (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Milliardo Marquise (/mob/living/carbon/human))
+Milliardo Marquise (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=12;icon-y=17;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (123,173,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=12;icon-y=17;left=1;scr...")
+Fri Oct 23 13:04:48 2015
+Denied access to 'Guest-2901166762' connecting from 23.228.140.73
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 5, 7, 9, 10, 12, 15, 16, 17, 18, 19, 20, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Oct 23 14:32:32 2015
+runtime error: Cannot read null.storedplasma
+proc name: Transfer Plasma (/mob/living/carbon/Xenomorph/proc/transfer_plasma)
+  source file: XenoPowers.dm,177
+  usr: Hivelord (402) (/mob/living/carbon/Xenomorph/Hivelord)
+  src: Hivelord (402) (/mob/living/carbon/Xenomorph/Hivelord)
+  call stack:
+Hivelord (402) (/mob/living/carbon/Xenomorph/Hivelord): Transfer Plasma(null)
+Denied access to 'Guest-639432909' connecting from 201.78.219.188
+Denied access to 'Guest-4250040446' connecting from 176.36.231.44
+Fri Oct 23 15:44:00 2015
+runtime error: Cannot execute null.Adjacent().
+proc name: handle ventcrawl (/mob/living/proc/handle_ventcrawl)
+  source file: living.dm,781
+  usr: Drone (567) (/mob/living/carbon/Xenomorph/Drone)
+  src: Drone (567) (/mob/living/carbon/Xenomorph/Drone)
+  call stack:
+Drone (567) (/mob/living/carbon/Xenomorph/Drone): handle ventcrawl(null, 0)
+Drone (567) (/mob/living/carbon/Xenomorph/Drone): ClickOn(null, "icon-x=53;icon-y=21;left=1;alt...")
+Click("floor", "infowindow.info", "icon-x=53;icon-y=21;left=1;alt...")
+Denied access to 'Guest-916869256' connecting from 178.121.212.66
+Rebooted server.
+Fri Oct 23 17:11:02 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 10, 13, 16, 17, 19, 21, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2749652724' connecting from 78.151.56.66
+Fri Oct 23 19:39:08 2015
+runtime error: Maximum recursion level reached (perhaps there is an infinite loop)
+To avoid this safety check, set world.loop_checks=0.
+proc name: Move (/atom/movable/Move)
+  usr: 0
+  src: the reinforced window (/obj/structure/window/reinforced)
+  call stack:
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): throw impact(the reinforced window (/obj/structure/window/reinforced), null)
+the reinforced window (/obj/structure/window/reinforced): Bump(the reinforced window (/obj/structure/window/reinforced), 1)
+the reinforced window (/obj/structure/window/reinforced): Bump(the reinforced window (/obj/structure/window/reinforced), 1)
+the floor (136,157,3) (/turf/simulated/floor): Enter(the reinforced window (/obj/structure/window/reinforced), the floor (136,158,3) (/turf/simulated/floor))
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+...
+the floor (136,157,3) (/turf/simulated/floor): Enter(the reinforced window (/obj/structure/window/reinforced), the floor (136,158,3) (/turf/simulated/floor))
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): Bump(the reinforced window (/obj/structure/window/reinforced), 1)
+the floor (136,157,3) (/turf/simulated/floor): Enter(the reinforced window (/obj/structure/window/reinforced), the floor (136,158,3) (/turf/simulated/floor))
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): Move(the floor (136,157,3) (/turf/simulated/floor), 2)
+the reinforced window (/obj/structure/window/reinforced): hit check(1)
+the table (/obj/structure/table): flip(1)
+Denied access to 'Guest-631331033' connecting from 76.94.3.93
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: the the killer (/mob/living/silicon/pai)
+  call stack:
+the the killer (/mob/living/silicon/pai): close up()
+the the killer (/mob/living/silicon/pai): attack hand(Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): UnarmedAttack(the the killer (/mob/living/silicon/pai), 1)
+Axel Strife (/mob/living/carbon/human): ClickOn(the the killer (/mob/living/silicon/pai), "icon-x=13;icon-y=9;left=1;scre...")
+the the killer (/mob/living/silicon/pai): Click(the floor (131,157,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=13;icon-y=9;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: the the killer (/mob/living/silicon/pai)
+  call stack:
+the the killer (/mob/living/silicon/pai): close up()
+the the killer (/mob/living/silicon/pai): attack hand(Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): UnarmedAttack(the the killer (/mob/living/silicon/pai), 1)
+Axel Strife (/mob/living/carbon/human): ClickOn(the the killer (/mob/living/silicon/pai), "icon-x=17;icon-y=9;left=1;scre...")
+the the killer (/mob/living/silicon/pai): Click(the floor (131,157,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=9;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: the the killer (/mob/living/silicon/pai)
+  call stack:
+the the killer (/mob/living/silicon/pai): close up()
+the the killer (/mob/living/silicon/pai): attack hand(Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): UnarmedAttack(the the killer (/mob/living/silicon/pai), 1)
+Axel Strife (/mob/living/carbon/human): ClickOn(the the killer (/mob/living/silicon/pai), "icon-x=15;icon-y=10;left=1;scr...")
+the the killer (/mob/living/silicon/pai): Click(the floor (131,157,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: the the killer (/mob/living/silicon/pai)
+  call stack:
+the the killer (/mob/living/silicon/pai): close up()
+the the killer (/mob/living/silicon/pai): attack hand(Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): UnarmedAttack(the the killer (/mob/living/silicon/pai), 1)
+Axel Strife (/mob/living/carbon/human): ClickOn(the the killer (/mob/living/silicon/pai), "icon-x=15;icon-y=12;left=1;scr...")
+the the killer (/mob/living/silicon/pai): Click(the floor (129,159,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=12;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: the the killer (/mob/living/silicon/pai)
+  call stack:
+the the killer (/mob/living/silicon/pai): close up()
+the the killer (/mob/living/silicon/pai): attack hand(Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): UnarmedAttack(the the killer (/mob/living/silicon/pai), 1)
+Axel Strife (/mob/living/carbon/human): ClickOn(the the killer (/mob/living/silicon/pai), "icon-x=17;icon-y=10;left=1;scr...")
+the the killer (/mob/living/silicon/pai): Click(the floor (151,158,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=10;left=1;scr...")
+Rebooted server.
+Fri Oct 23 20:40:45 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 17, 18, 19, 20, 21 and 23
+BYOND Error: failed to certify Hyperndr
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-3732939995' connecting from 76.17.51.128
+Denied access to 'JonBilly' connecting from 107.130.149.86
+Denied access to 'FTLrunner' connecting from 107.130.149.86
+Denied access to 'Wolverine2015' connecting from 173.218.55.49
+Fri Oct 23 22:09:27 2015
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command p_open=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command p_open=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command anchored=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command anchored=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command density=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command density=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command manual=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command manual=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command moved_recently=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command moved_recently=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command operating=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command operating=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command override=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command override=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command p_open=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command p_open=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command safe=0
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command safe=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command active_power_usage=1
+### VarEdit by Lostmixup: /obj/machinery/door/airlock/command active_power_usage=0
+Denied access to 'PowerReactor' connecting from 198.143.1.163
+### VarEdit by Ordukai: /mob/dead/observer name=Alien Larva (119)
+### VarEdit by Ordukai: /mob/dead/observer name=Alien Larva (116)
+### VarEdit by Lostmixup: /mob/dead/observer move_speed=5
+### VarEdit by Lostmixup: /mob/living/carbon/human invisibility=60
+### VarEdit by Lostmixup: /mob/living/carbon/human visibility=0
+### VarEdit by Lostmixup: /mob/living/carbon/human invisibility=60
+### VarEdit by Lostmixup: /mob/living/carbon/human layer=3.9
+### VarEdit by Lostmixup: /mob/living/carbon/human layer=4
+### VarEdit by Lostmixup: /mob/living/carbon/human status_flags=4096
+### VarEdit by Lostmixup: /mob/living/carbon/human universal_understand=1
+### VarEdit by Lostmixup: /mob/living/carbon/human incorporeal_move=1
+Fri Oct 23 23:10:26 2015
+### VarEdit by Lostmixup: /mob/living/carbon/human real_name=Ronald Shaffer
+### VarEdit by Lostmixup: /obj/item/weapon/card/id/centcom name=Weyland Yutani ID
+### VarEdit by Lostmixup: /obj/item/weapon/card/id/centcom registered_name=Ronald Shaffer
+runtime error: list index out of bounds
+proc name: mod list add (/client/proc/mod_list_add)
+  source file: modifyvariables.dm,124
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+  call stack:
+Lostmixup (/client): mod list add(/list (/list))
+Lostmixup (/client): mod list(/list (/list))
+Lostmixup (/client): modify variables(Weyland Yutani ID (/obj/item/weapon/card/id/centcom), "access", 0)
+Lostmixup (/client): view var Topic("_src_=vars;datumchange=\[0x201...", /list (/list), null)
+Lostmixup (/client): Topic("_src_=vars;datumchange=\[0x201...", /list (/list), null)
+Denied access to 'Guest-2431263169' connecting from 68.195.111.223
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/egg/attackby)
+  source file: XenoStructures.dm,413
+  usr: Tina Russuel (/mob/living/carbon/human)
+  src: the egg (/obj/effect/alien/egg)
+  call stack:
+the egg (/obj/effect/alien/egg): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Tina Russuel (/mob/living/carbon/human))
+Tina Russuel (/mob/living/carbon/human): ClickOn(the egg (/obj/effect/alien/egg), "icon-x=17;icon-y=14;left=1;scr...")
+the egg (/obj/effect/alien/egg): Click(the floor (112,47,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=14;left=1;scr...")
+### VarEdit by Lostmixup: /obj/item/weapon/card/id/captains_spare name=Weyland Yutani Security
+### VarEdit by Lostmixup: /obj/item/weapon/card/id/captains_spare registered_name=Adam Striker
+Denied access to 'Guest-299415622' connecting from 98.24.23.43
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Tina Russuel (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Tina Russuel (/mob/living/carbon/human))
+Tina Russuel (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=17;icon-y=9;left=1;scre...")
+the weeds (/obj/effect/alien/weeds): Click(the grass (102,80,1) (/turf/simulated/floor/gm/dirtgrassborder), "mapwindow.map", "icon-x=17;icon-y=9;left=1;scre...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Tina Russuel (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Tina Russuel (/mob/living/carbon/human))
+Tina Russuel (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=18;icon-y=3;left=1;scre...")
+the weeds (/obj/effect/alien/weeds): Click(the plating (91,90,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=18;icon-y=3;left=1;scre...")
+Sat Oct 24 00:26:51 2015
+### VarEdit by Lostmixup: /mob/living/carbon/human invisibility=60
+### VarEdit by Lostmixup: /mob/living/carbon/human visibility=0
+Rebooted server.
+Sat Oct 24 01:48:26 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 16, 17, 18, 19, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Sat Oct 24 03:19:56 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 9, 10, 11, 13, 14, 15, 16, 19, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Sat Oct 24 04:44:00 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 7, 9, 10, 12, 13, 17, 18, 19, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Oct 24 06:21:29 2015
+Denied access to 'Guest-3289279268' connecting from 152.249.97.178
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 7, 11, 12, 13, 14, 15, 16, 18, 21, 22, 23, 24 and 26
+BYOND Error: failed to certify Boltersam
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-234087890' connecting from 5.18.60.97
+Sat Oct 24 08:27:52 2015
+Denied access to 'Guest-620747497' connecting from 122.148.192.52
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 6, 8, 9, 11, 13, 14, 15, 16, 17, 19, 20, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Oct 24 09:49:29 2015
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: Claire Sunray (/mob/living/carbon/human)
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("sugar")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 30)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): copy to(the obj (/obj), 140, 1, 1, 0)
+/datum/effect/effect/system/sm... (/datum/effect/effect/system/smoke_spread/chem): set up(/datum/reagents (/datum/reagents), 2, 0, the plating (143,138,4) (/turf/simulated/floor/plating), null)
+Chemsmoke (/datum/chemical_reaction/chemsmoke): on reaction(/datum/reagents (/datum/reagents), 2)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 60, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(1)
+receive signal(/datum/signal (/datum/signal), 1, 1457)
+/datum/radio_frequency (/datum/radio_frequency): send to filter(the remote signaling device (/obj/item/device/assembly/signaler), /datum/signal (/datum/signal), "radio_telecoms", null, null)
+/datum/radio_frequency (/datum/radio_frequency): post signal(the remote signaling device (/obj/item/device/assembly/signaler), /datum/signal (/datum/signal), null, null)
+the remote signaling device (/obj/item/device/assembly/signaler): signal()
+the remote signaling device (/obj/item/device/assembly/signaler): Topic("src=\[0x200ec1e];send=1", /list (/list))
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: Claire Sunray (/mob/living/carbon/human)
+  src: /datum/reagents (/datum/reagents)
+  call stack:
+/datum/reagents (/datum/reagents): del reagent("water")
+/datum/reagents (/datum/reagents): clear reagents()
+Explosion (/datum/chemical_reaction/explosion_potassium): on reaction(/datum/reagents (/datum/reagents), 30)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): copy to(the obj (/obj), 140, 1, 1, 0)
+/datum/effect/effect/system/sm... (/datum/effect/effect/system/smoke_spread/chem): set up(/datum/reagents (/datum/reagents), 2, 0, the plating (143,138,4) (/turf/simulated/floor/plating), null)
+Chemsmoke (/datum/chemical_reaction/chemsmoke): on reaction(/datum/reagents (/datum/reagents), 2)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 60, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(1)
+receive signal(/datum/signal (/datum/signal), 1, 1457)
+/datum/radio_frequency (/datum/radio_frequency): send to filter(the remote signaling device (/obj/item/device/assembly/signaler), /datum/signal (/datum/signal), "radio_telecoms", null, null)
+/datum/radio_frequency (/datum/radio_frequency): post signal(the remote signaling device (/obj/item/device/assembly/signaler), /datum/signal (/datum/signal), null, null)
+the remote signaling device (/obj/item/device/assembly/signaler): signal()
+the remote signaling device (/obj/item/device/assembly/signaler): Topic("src=\[0x200ec1e];send=1", /list (/list))
+runtime error: Cannot read null.fingerprintslast
+proc name: set up (/datum/effect/effect/system/smoke_spread/chem/set_up)
+  source file: chemsmoke.dm,81
+  usr: Claire Sunray (/mob/living/carbon/human)
+  src: /datum/effect/effect/system/sm... (/datum/effect/effect/system/smoke_spread/chem)
+  call stack:
+/datum/effect/effect/system/sm... (/datum/effect/effect/system/smoke_spread/chem): set up(/datum/reagents (/datum/reagents), 2, 0, the plating (143,138,4) (/turf/simulated/floor/plating), null)
+Chemsmoke (/datum/chemical_reaction/chemsmoke): on reaction(/datum/reagents (/datum/reagents), 2)
+/datum/reagents (/datum/reagents): handle reactions()
+/datum/reagents (/datum/reagents): trans to(null, 60, 1, 1)
+prime()
+activate()
+pulsed(0)
+process activation(null, 1, 0)
+pulse(1)
+receive signal(/datum/signal (/datum/signal), 1, 1457)
+/datum/radio_frequency (/datum/radio_frequency): send to filter(the remote signaling device (/obj/item/device/assembly/signaler), /datum/signal (/datum/signal), "radio_telecoms", null, null)
+/datum/radio_frequency (/datum/radio_frequency): post signal(the remote signaling device (/obj/item/device/assembly/signaler), /datum/signal (/datum/signal), null, null)
+the remote signaling device (/obj/item/device/assembly/signaler): signal()
+the remote signaling device (/obj/item/device/assembly/signaler): Topic("src=\[0x200ec1e];send=1", /list (/list))
+Denied access to 'Wolfgabe22443' connecting from 173.218.55.49
+Denied access to 'Guest-3286110793' connecting from 172.56.27.168
+Sat Oct 24 11:37:35 2015
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Garius Tarren (/mob/living/carbon/human)
+  src: Silver (/mob/living/silicon/pai)
+  call stack:
+Silver (/mob/living/silicon/pai): close up()
+Silver (/mob/living/silicon/pai): attack hand(Garius Tarren (/mob/living/carbon/human))
+Garius Tarren (/mob/living/carbon/human): UnarmedAttack(Silver (/mob/living/silicon/pai), 1)
+Garius Tarren (/mob/living/carbon/human): ClickOn(Silver (/mob/living/silicon/pai), "icon-x=17;icon-y=11;left=1;scr...")
+Silver (/mob/living/silicon/pai): Click(the floor (133,46,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=11;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Garius Tarren (/mob/living/carbon/human)
+  src: Silver (/mob/living/silicon/pai)
+  call stack:
+Silver (/mob/living/silicon/pai): close up()
+Silver (/mob/living/silicon/pai): attack hand(Garius Tarren (/mob/living/carbon/human))
+Garius Tarren (/mob/living/carbon/human): UnarmedAttack(Silver (/mob/living/silicon/pai), 1)
+Garius Tarren (/mob/living/carbon/human): ClickOn(Silver (/mob/living/silicon/pai), "icon-x=18;icon-y=11;left=1;scr...")
+Silver (/mob/living/silicon/pai): Click(the floor (133,46,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=11;left=1;scr...")
+Denied access to 'SkepticalNerd' connecting from 188.83.25.249
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Serdykov \'Mercy\' Antoz (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Serdykov \'Mercy\' Antoz (/mob/living/carbon/human))
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=20;icon-y=4;left=1;scre...")
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): DblClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=20;icon-y=4;left=1;scre...")
+Fortune.exe (/mob/living/silicon/pai): DblClick(the dirt (139,153,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=20;icon-y=4;left=1;scre...")
+Fortune.exe (/mob/living/silicon/pai): DblClick(the dirt (139,153,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=20;icon-y=4;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Serdykov \'Mercy\' Antoz (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Serdykov \'Mercy\' Antoz (/mob/living/carbon/human))
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=20;icon-y=5;left=1;scre...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,153,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=20;icon-y=5;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Serdykov \'Mercy\' Antoz (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Serdykov \'Mercy\' Antoz (/mob/living/carbon/human))
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=13;icon-y=7;left=1;scre...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,153,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=13;icon-y=7;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Serdykov \'Mercy\' Antoz (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Serdykov \'Mercy\' Antoz (/mob/living/carbon/human))
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=13;icon-y=7;left=1;scre...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,153,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=13;icon-y=7;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Serdykov \'Mercy\' Antoz (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Serdykov \'Mercy\' Antoz (/mob/living/carbon/human))
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=20;icon-y=10;left=1;scr...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,154,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=20;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Serdykov \'Mercy\' Antoz (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Serdykov \'Mercy\' Antoz (/mob/living/carbon/human))
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Serdykov \'Mercy\' Antoz (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=20;icon-y=10;left=1;scr...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,154,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=20;icon-y=10;left=1;scr...")
+Denied access to 'Guest-1138853465' connecting from 177.75.167.87
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Keeli Rieze (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Keeli Rieze (/mob/living/carbon/human))
+Keeli Rieze (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Keeli Rieze (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=13;icon-y=10;left=1;scr...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,154,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=13;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Keeli Rieze (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Keeli Rieze (/mob/living/carbon/human))
+Keeli Rieze (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Keeli Rieze (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=14;icon-y=11;left=1;scr...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,154,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=14;icon-y=11;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Keeli Rieze (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Keeli Rieze (/mob/living/carbon/human))
+Keeli Rieze (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Keeli Rieze (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=15;icon-y=13;left=1;scr...")
+Fortune.exe (/mob/living/silicon/pai): Click(the dirt (139,154,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=15;icon-y=13;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Keeli Rieze (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Keeli Rieze (/mob/living/carbon/human))
+Keeli Rieze (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Keeli Rieze (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=18;icon-y=8;left=1;scre...")
+Fortune.exe (/mob/living/silicon/pai): Click(the plating (134,149,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=18;icon-y=8;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Keeli Rieze (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Keeli Rieze (/mob/living/carbon/human))
+Keeli Rieze (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Keeli Rieze (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=17;icon-y=12;left=1;scr...")
+Fortune.exe (/mob/living/silicon/pai): Click(the plating (131,148,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=17;icon-y=12;left=1;scr...")
+Denied access to 'Guest-2162317678' connecting from 82.1.214.104
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Mark \'Beep\' Hill (/mob/living/carbon/human)
+  src: Fortune.exe (/mob/living/silicon/pai)
+  call stack:
+Fortune.exe (/mob/living/silicon/pai): close up()
+Fortune.exe (/mob/living/silicon/pai): attack hand(Mark \'Beep\' Hill (/mob/living/carbon/human))
+Mark \'Beep\' Hill (/mob/living/carbon/human): UnarmedAttack(Fortune.exe (/mob/living/silicon/pai), 1)
+Mark \'Beep\' Hill (/mob/living/carbon/human): ClickOn(Fortune.exe (/mob/living/silicon/pai), "icon-x=17;icon-y=12;left=1;scr...")
+Fortune.exe (/mob/living/silicon/pai): Click(the plating (133,146,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=17;icon-y=12;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+Sat Oct 24 12:37:53 2015
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+Denied access to 'Guest-144883709' connecting from 178.148.146.41
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 19, 20, 23, 24 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Oct 24 15:03:49 2015
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Osalaa Wooki (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Osalaa Wooki (/mob/living/carbon/human))
+Osalaa Wooki (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=15;icon-y=20;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the dirt (200,197,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=15;icon-y=20;left=1;scr...")
+Denied access to 'Guest-347877823' connecting from 90.227.3.41
+### VarEdit by Apophis775: /obj/machinery/nuclearbomb r_code=56767
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=0
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=0
+Rebooted server.
+Sat Oct 24 16:14:29 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 19, 21, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-41613777' connecting from 97.122.227.239
+Sat Oct 24 17:16:28 2015
+Denied access to 'Guest-2660005895' connecting from 70.120.211.231
+Sat Oct 24 18:31:19 2015
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Jamari Paulson (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()

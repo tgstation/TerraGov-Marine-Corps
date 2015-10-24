@@ -80,7 +80,7 @@ var/diaryofmeanpeople = null
 var/round_stats = null
 var/href_logfile = null
 var/station_name = "NMV Sulaco"
-var/game_version = "Custom Baystation12"
+var/game_version = "Colonial Marines"
 var/changelog_hash = ""
 var/game_year = (text2num(time2text(world.realtime, "YYYY")) + 144)
 
