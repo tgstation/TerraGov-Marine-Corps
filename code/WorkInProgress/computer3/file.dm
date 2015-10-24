@@ -75,10 +75,10 @@
 		return null
 
 /*
-	A file that contains information
+	Infernus: /data now falls under /program, since it contains most procs needed to finish them.
 */
-
-/datum/file/data
+/*
+/datum/file/program/data
 
 	var/content			= "content goes here"
 	var/file_increment	= 1
@@ -91,7 +91,7 @@
 			volume = round(file_increment * length(text))
 
 	copy(var/obj/O)
-		var/datum/file/data/D = ..(O)
+		var/datum/file/program/data/D = ..(O)
 		if(D)
 			D.content = content
 			D.readonly = readonly
@@ -104,29 +104,28 @@
 /*
 	A generic file that contains text
 */
-
-/datum/file/data/text
+*/
+/datum/file/program/data/text
 	name = "Text File"
 	extension = "txt"
 	image = 'icons/ntos/file.png'
-	content = ""
-	file_increment = 0.002 // 0.002 kilobytes per character (1024 characters per KB)
+	var/dat = "text files go here"
+	//file_increment = 0.002 // 0.002 kilobytes per character (1024 characters per KB)
+	active_state = "power"
 
-/datum/file/data/text/researchlog
-	name = "Log 01"
-	image = 'icons/ntos/file.png'
-	content = "Secret"
+/datum/file/program/data/text/interact()
+	if(!interactable())
+		return
 
-/datum/file/data/text/ClownProphecy
-	name = "Clown Prophecy"
-	content = "HONKhHONKeHONKlHONKpHONKHONmKHONKeHONKHONKpHONKlHONKeHONKaHONKsHONKe"
+	popup.set_content(dat)
+	popup.open()
 
-
+/*
 /*
 	A file that contains research
 */
 
-/datum/file/data/research
+/datum/file/program/data/research
 	name = "Untitled Research"
 	binary = 1
 	content = "Untitled Tier X Research"
@@ -137,17 +136,17 @@
 	A file that contains genetic information
 */
 
-/datum/file/data/genome
+/datum/file/program/data/genome
 	name = "Genetic Buffer"
 	binary = 1
 	var/real_name = "Poop"
 
 
-/datum/file/data/genome/SE
+/datum/file/program/data/genome/SE
 	name = "Structural Enzymes"
 	var/mutantrace = null
 
-/datum/file/data/genome/UE
+/datum/file/program/data/genome/UE
 	name = "Unique Enzymes"
 
 /*
@@ -160,12 +159,13 @@ for now put it on a disk
 	content = "066000033000000000AF00330660FF4DB002690"
 	label = "God Emperor of Mankind"
 */
-/datum/file/data/genome/UI
+/datum/file/program/data/genome/UI
 	name = "Unique Identifier"
 
-/datum/file/data/genome/UI/UE
+/datum/file/program/data/genome/UI/UE
 	name = "Unique Identifier + Unique Enzymes"
 
-/datum/file/data/genome/cloning
+/datum/file/program/data/genome/cloning
 	name = "Cloning Data"
 	var/datum/data/record/record
+*/

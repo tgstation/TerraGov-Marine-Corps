@@ -1,4 +1,7 @@
 //Areas for BigRed - Minijar
+/area/bigred/ground/ship
+	name = "\improper crashed vessel"
+	icon_state = "syndie-ship"
 
 /area/bigred/ground/nexus
 	name = "\improper central nexus"
@@ -136,6 +139,10 @@
 	name = "\improper facility exterior"
 	icon_state = "blue-red"
 
+/area/bigred/ground/cargo
+	name = "\improper cargo bay"
+	icon_state = "primarystorage"
+
 /area/bigred/uground/lobby
 	name = "\improper research lobby"
 	icon_state = "research"
@@ -179,3 +186,7 @@
 /area/bigred/uground/quarantine
 	name = "\improper quarantine zone"
 	icon_state = "red2"
+
+/area/bigred/uground/cargo_elevator
+	name = "\improper cargo elevator"
+	icon_state = "primarystorage"

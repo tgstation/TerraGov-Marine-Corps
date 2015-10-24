@@ -78,8 +78,6 @@ REAGENT SCANNER
 	matter = list("metal" = 200)
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1;
-
-
 /obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if (( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
@@ -94,7 +92,6 @@ REAGENT SCANNER
 		usr << "\red You don't have the dexterity to do this!"
 		return
 	user.visible_message("<span class='notice'> [user] has analyzed [M]'s vitals.","<span class='notice'> You have analyzed [M]'s vitals.")
-
 	if (!istype(M, /mob/living/carbon) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		//these sensors are designed for organic life
 		user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
@@ -104,7 +101,6 @@ REAGENT SCANNER
 		user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
 		user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
 		return
-
 	var/fake_oxy = max(rand(1,40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
 	var/OX = M.getOxyLoss() > 50 	? 	"<b>[M.getOxyLoss()]</b>" 		: M.getOxyLoss()
 	var/TX = M.getToxLoss() > 50 	? 	"<b>[M.getToxLoss()]</b>" 		: M.getToxLoss()
@@ -133,7 +129,6 @@ REAGENT SCANNER
 				(org.burn_dam > 0)	?	"<font color='#FFA500'>[org.burn_dam]</font>"	:0),1)
 		else
 			user.show_message("\blue \t Limbs are OK.",1)
-
 	OX = M.getOxyLoss() > 50 ? 	"<font color='blue'><b>Severe oxygen deprivation detected</b></font>" 		: 	"Subject bloodstream oxygen level normal"
 	TX = M.getToxLoss() > 50 ? 	"<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
 	BU = M.getFireLoss() > 50 ? 	"<font color='#FFA500'><b>Severe burn damage detected</b></font>" 			:	"Subject burn injury status O.K"
@@ -188,7 +183,6 @@ REAGENT SCANNER
 			if(e.status & ORGAN_BROKEN)
 				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")) && (!(e.status & ORGAN_SPLINTED)))
 					user << "\red *Unsecured fracture in subject [limb]. Splinting recommended for transport."
-
 			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
 				can_amputate = "or amputation"
 			if(e.germ_level >= INFECTION_LEVEL_THREE)
@@ -197,7 +191,6 @@ REAGENT SCANNER
 				user << "\red *Subject's [limb] is fighting off with an infection. Antibiotics recommended."
 			if(e.has_infected_wound())
 				user << "\red *Infected wound detected in subject [limb]. Disinfection of wounds recommended"
-
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/e = H.organs_by_name[name]
 			if(e.status & ORGAN_BROKEN)
@@ -221,17 +214,16 @@ REAGENT SCANNER
 		user.show_message("\blue Subject's pulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>")
 	src.add_fingerprint(user)
 	return
-
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
 	set category = "Object"
-
 	mode = !mode
 	switch (mode)
 		if(1)
 			usr << "The scanner now shows specific limb damage."
 		if(0)
 			usr << "The scanner no longer shows limb damage."
+
 
 
 /obj/item/device/analyzer
@@ -348,6 +340,7 @@ REAGENT SCANNER
 		user << "[dat]"
 		reagents.clear_reagents()
 	return
+
 
 /obj/item/device/mass_spectrometer/adv
 	name = "advanced mass-spectrometer"
