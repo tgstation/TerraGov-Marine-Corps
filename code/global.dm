@@ -136,6 +136,7 @@ var/list/latejoin_cryo = list()
 var/list/prisonwarp = list()	//prisoners go to these
 var/list/holdingfacility = list()	//captured people go here
 var/list/xeno_spawn = list()//Aliens spawn at these.
+var/list/xeno_spawn_HH = list()//Haunted House Alien Spawn
 var/list/surv_spawn = list()//Survivors spawn at these
 //	list/mazewarp = list()
 var/list/tdome1 = list()

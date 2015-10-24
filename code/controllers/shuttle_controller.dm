@@ -138,6 +138,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 //	shuttle.dock_target_offsite = "admin_shuttle_bay"
 	shuttles["Administration"] = shuttle
 	process_shuttles += shuttle
+
+
 /*
 	shuttle = new()
 	shuttle.area_offsite = locate(/area/shuttle/alien/base)
@@ -145,11 +147,13 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Alien"] = shuttle
 	//process_shuttles += shuttle	//don't need to process this. It can only be moved using admin magic anyways.
 */
-	// NMV SULACO
+
+
+	// NMV SULACO - Shuttle
 	shuttle = new()
 	shuttle.location = 0
 	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/drop1/ground)
+	shuttle.area_offsite = locate(/area/shuttle/drop1/LV624)
 	shuttle.area_station = locate(/area/shuttle/drop1/sulaco)
 	shuttle.area_transition = locate(/area/shuttle/drop1/transit)
 //	shuttle.docking_controller_tag = "escape_shuttle"
@@ -160,11 +164,11 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Dropship 1"] = shuttle
 	process_shuttles += shuttle
 
-	// NMV SULACO
+	// NMV SULACO - DropPod
 	shuttle = new()
 	shuttle.location = 0
 	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/drop2/ground)
+	shuttle.area_offsite = locate(/area/shuttle/drop2/LV624)
 	shuttle.area_station = locate(/area/shuttle/drop2/sulaco)
 	shuttle.area_transition = locate(/area/shuttle/drop2/transit)
 	shuttle.transit_direction = NORTH

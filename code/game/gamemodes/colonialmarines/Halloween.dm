@@ -1,11 +1,8 @@
-/datum/game_mode
-	var/list/datum/mind/aliens = list()
-	var/list/datum/mind/survivors = list()
-	var/queen_death_timer = 0
+//CM HALLOWEEN GAME MODE
 
-/datum/game_mode/colonialmarines
-	name = "colonial marines"
-	config_tag = "colonialmarines"
+/datum/game_mode/Halloween
+	name = "Colonial Marines Halloween"
+	config_tag = "Colonial Marines Halloween"
 	required_players = 1
 	var/checkwin_counter = 0
 	var/finished = 0
@@ -16,11 +13,10 @@
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 
 
-
 /* Pre-pre-startup */
 //We have to be really careful that we don't pick() from null lists.
 //So use list.len as much as possible before a pick() for logic checks.
-/datum/game_mode/colonialmarines/can_start()
+/datum/game_mode/Halloween/can_start()
 
 	// Alien number scales to player number (preferred). Swap these to test solo.
 	var/readyplayers = num_players()
@@ -83,15 +79,15 @@
 
 	return 1
 
-/datum/game_mode/colonialmarines/announce()
-	world << "<B>The current game mode is - Colonial Marines! Hoooah!</B>"
+/datum/game_mode/Halloween/announce()
+	world << "<B>The current game mode is - Colonial Marines Halloween! SpooOOOoooky!!!</B>"
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Pre-setup */
 //We can ignore this for now, we don't want to do anything before characters are set up.
-/datum/game_mode/colonialmarines/pre_setup()
+/datum/game_mode/Halloween/pre_setup()
 	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +97,7 @@
 //This happens after create_character, so our mob SHOULD be valid and built by now, but without job data.
 //We move it later with transform_survivor but they might flicker at any start_loc spawn landmark effects then disappear.
 //Xenos and survivors should not spawn anywhere until we transform them.
-/datum/game_mode/colonialmarines/post_setup()
+/datum/game_mode/Halloween/post_setup()
 
 	for(var/datum/mind/alien in aliens) //Build and move the xenos.
 		transform_xeno(alien)
@@ -112,12 +108,12 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the USS Sulaco will be dispatched shortly to investigate.", "USS Sulaco")
+		command_announcement.Announce("An admiral at Centcom has inherited an old manor from his great uncle.  There hasn't been any contact for some time, so the marines have been deployed to investigate...", "USS Sulaco")
 
 
-/datum/game_mode/colonialmarines/proc/transform_xeno(var/datum/mind/ghost)
+/datum/game_mode/Halloween/proc/transform_xeno(var/datum/mind/ghost)
 
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn))
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn_HH))
 	new_xeno.amount_grown = 200
 	var/mob/original = ghost.current
 
@@ -133,7 +129,7 @@
 		del(original)
 
 //Start the Survivor players. This must go post-setup so we already have a body.
-/datum/game_mode/colonialmarines/proc/transform_survivor(var/datum/mind/ghost)
+/datum/game_mode/Halloween/proc/transform_survivor(var/datum/mind/ghost)
 
 	var/mob/living/carbon/human/H = ghost.current
 
@@ -184,46 +180,8 @@
 		H << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
 	return 1
 
-//Deferred for now, this can wait.
-/*
-var/list/survivorstory = list("You watched your friend {name}'s chest burst and an alien larva come out. You tried to capture it but it escaped through the vents. ", "{name} was attacked by a facehugging alien, which impregnated them with an alien lifeform. {name}'s chest burst and a larva emerged and escaped through the vents", "You watched {name} get the alien lifeform's acid on them, melting away their flesh. You can still hear the screams... ", "The Head of Security, {name}, made an announcement that the aliens killed the Captain and Head of Personnel, and that all crew should hide and wait for rescue." )
-var/list/survivorstorymulti = list("You were separated from your friend, {surv}. You hope they're still alive. ", "You were having some drinks at the bar with {surv} and {name} when an alien crawled out of the vent and dragged {name} away. You and {surv} split up to find help. ")
-var/list/toldstory = list()
-/datum/game_mode/colonialmarines/proc/tell_story()
-	for(var/datum/mind/surv in survivors)
-		if(!(surv.name in toldstory))
-			var/story
-			var/mob/living/carbon/human/OH
-			var/mob/living/carbon/human/H = surv.current
-			var/list/otherplayers = survivors
-			for(var/datum/mind/surv2 in otherplayers)
-				if(surv == surv2)
-					otherplayers.Remove(surv2)
-			var/randomname = random_name(FEMALE)
-			if(prob(50))
-				randomname = random_name(MALE)
-			if(length(survivors) > 1)
-				if(length(toldstory) == length(survivors) - 1 || length(otherplayers) == 0)
-					story = pick(survivorstory)
-					survivorstory.Remove(story)
-				else
-					story = pick(survivorstorymulti)
-					survivorstorymulti.Remove(story)
-					OH = pick(otherplayers)
-			else
-				story = pick(survivorstory)
-				survivorstory.Remove(story)
-			story = replacetext(story, "{name}", "[randomname]")
-			if(istype(OH))
-				toldstory.Add(OH.name)
-				OH << replacetext(story, "{surv}", "[H.name]")
-				H << replacetext(story, "{surv}", "[OH.name]")
-
-			toldstory.Add(H.name)
-*/
-
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
-/datum/game_mode/colonialmarines/process()
+/datum/game_mode/Halloween/process()
 
 	if(queen_death_timer && !finished)
 		queen_death_timer--
@@ -246,7 +204,7 @@ var/list/toldstory = list()
 //This checks for humans that are:
 //Played by a person, is not dead, is not infected, is not in a closet/mech, and is not in space.
 //It does NOT check for valid species or marines. vs. survivors.
-/datum/game_mode/colonialmarines/proc/count_humans()
+/datum/game_mode/Halloween/proc/count_humans()
 	var/human_count = 0
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H) //Prevent any runtime errors
@@ -261,7 +219,7 @@ var/list/toldstory = list()
 //Count up surviving xenos.
 //This checks xenos that are:
 //Played by a person, is not dead, is not in a closet, is not in space.
-/datum/game_mode/colonialmarines/proc/count_xenos()
+/datum/game_mode/Halloween/proc/count_xenos()
 	var/xeno_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
 		if(X) //Prevent any runtime errors
@@ -277,7 +235,7 @@ var/list/toldstory = list()
 ///////////////////////////
 //Checks to see who won///
 //////////////////////////
-/datum/game_mode/colonialmarines/check_win()
+/datum/game_mode/Halloween/check_win()
 	if(has_started_timer) //Let's hold off on checking win conditions till everyone has spawned.
 		finished = 0
 		return
@@ -305,7 +263,7 @@ var/list/toldstory = list()
 ///////////////////////////////
 //Checks if the round is over//
 ///////////////////////////////
-/datum/game_mode/colonialmarines/check_finished()
+/datum/game_mode/Halloween/check_finished()
 	if(finished != 0)
 		return 1
 
@@ -315,7 +273,7 @@ var/list/toldstory = list()
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relevant information stated//
 //////////////////////////////////////////////////////////////////////
-/datum/game_mode/colonialmarines/declare_completion()
+/datum/game_mode/Halloween/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
 		world << "\red <FONT size = 4><B>Alien major victory!</B></FONT>"
@@ -406,6 +364,5 @@ var/list/toldstory = list()
 //	..()
 	return 1
 
-/datum/game_mode/proc/auto_declare_completion_colonialmarines()
+/datum/game_mode/proc/auto_declare_completion_Halloween()
 	return
-
