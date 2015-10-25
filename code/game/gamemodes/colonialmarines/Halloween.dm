@@ -23,7 +23,6 @@
 
 	numaliens = Clamp((readyplayers/5), 1, 14) //(n, minimum, maximum)
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
-	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
@@ -49,26 +48,7 @@
 		A.assigned_role = "MODE"
 		A.special_role = "Alien"
 
-	// Handle Survivors
-	//First make sure we have ANY candidates. There might be none.
-	if(possible_survivors.len)
-		for(var/datum/mind/X in possible_survivors) //Strip out any xenos first so we don't double-dip.
-			if(X.assigned_role == "MODE")
-				possible_survivors -= X
 
-		numsurvivors = Clamp((readyplayers/7), 0, 3) //(n, minimum, maximum)
-		if(possible_survivors.len) //We may have stripped out all the contendors, so check again.
-			while(numsurvivors > 0)
-				if(!possible_survivors.len) //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
-					numsurvivors = 0
-				else
-					var/datum/mind/new_survivor = pick(possible_survivors)
-					if(numsurvivors > 0 && !new_survivor) //We ran out of survivors!
-						numsurvivors = 0
-					else
-						survivors += new_survivor
-						possible_survivors -= new_survivor
-						numsurvivors--
 
 	//Unlike the alien list, survivor lists CAN be empty. It's really unlikely though
 	if(survivors.len)

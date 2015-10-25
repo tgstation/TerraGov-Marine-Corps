@@ -784,7 +784,7 @@
 "pd" = (/obj/machinery/light,/obj/item/ammo_casing/c9mm,/turf/simulated/floor{tag = "icon-bcarpet08 (NORTHWEST)"; icon_state = "bcarpet08"; dir = 9},/area/haunted_house/underground/panic_room)
 "pe" = (/obj/structure/stool/bed/chair/comfy/brown{tag = "icon-comfychair (EAST)"; icon_state = "comfychair"; dir = 4},/turf/simulated/floor{tag = "icon-bcarpet08 (NORTHWEST)"; icon_state = "bcarpet08"; dir = 9},/area/haunted_house/underground/panic_room)
 "pf" = (/obj/structure/table/woodentable,/obj/item/weapon/paper/crumpled/bloody,/turf/simulated/floor{tag = "icon-bcarpet09"; icon_state = "bcarpet09"; dir = 2},/area/haunted_house/underground/panic_room)
-"pg" = (/obj/machinery/computer/shuttle_control/marine1{active_power_usage = 0; idle_power_usage = 0; req_one_access_txt = "1;2;4;12;19;21;200"; use_power = 0},/turf/simulated/floor/gm/grass,/area/haunted_house/ground/grounds)
+"pg" = (/obj/machinery/computer/shuttle_control/marine1{active_power_usage = 0; idle_power_usage = 0; req_one_access_txt = "1;2;4;12;19;21;200"; use_power = 1},/turf/simulated/floor/gm/grass,/area/lv624/lazarus/relay)
 "ph" = (/obj/machinery/floodlight{anchored = 1; dir = 1; icon_state = "flood01"; in_use = 1; luminosity = 5; name = "Grounds light"; on = 1; unacidable = 1; use_power = 0},/turf/simulated/floor/gm/grass,/area/haunted_house/ground/grounds)
 "pi" = (/obj/structure/cultgirder,/turf/simulated/floor{icon_state = "cult"; dir = 2},/area/haunted_house/underground/basement)
 "pj" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/toolbox/electrical,/turf/simulated/floor{icon_state = "cult"; dir = 2},/area/haunted_house/underground/basement)
