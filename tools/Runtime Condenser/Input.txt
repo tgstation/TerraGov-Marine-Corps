@@ -4957,3 +4957,111 @@ proc name: done (/obj/effect/equip_e/human/done)
   call stack:
 the human (/obj/effect/equip_e/human): done()
 the human (/obj/effect/equip_e/human): process()
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 3, 5, 6, 7, 10, 11, 12, 13, 15, 16, 20, 21, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Runner (908) (/mob/living/carbon/Xenomorph/Runner)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Runner (908) (/mob/living/carbon/Xenomorph/Runner))
+the photo (/obj/item/weapon/photo): Examine()
+Denied access to 'Guest-4266696451' connecting from 80.219.116.218
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Drone (275) (/mob/living/carbon/Xenomorph/Drone)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Drone (275) (/mob/living/carbon/Xenomorph/Drone))
+the photo (/obj/item/weapon/photo): Examine()
+Denied access to 'Guest-1481744058' connecting from 62.113.163.93
+Denied access to 'Guest-348011749' connecting from 24.72.49.251
+### VarEdit by Apophis775: /obj/item/device/flashlight/lamp luminosity=127
+### VarEdit by Minijar: /obj/machinery/computer/security/wooden_tv name=Old television
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Simeon Wells (/mob/living/carbon/human)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Simeon Wells (/mob/living/carbon/human))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack self(Simeon Wells (/mob/living/carbon/human))
+Simeon Wells (/mob/living/carbon/human): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=14;icon-y=14;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(null, "mapwindow.map", "icon-x=14;icon-y=14;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Simeon Wells (/mob/living/carbon/human)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Simeon Wells (/mob/living/carbon/human))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack self(Simeon Wells (/mob/living/carbon/human))
+Simeon Wells (/mob/living/carbon/human): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=13;icon-y=14;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(null, "mapwindow.map", "icon-x=13;icon-y=14;left=1;scr...")
+### VarEdit by Apophis775: /obj/machinery/telecomms/relay/preset/station listening_level=1
+### VarEdit by Apophis775: /obj/machinery/telecomms/relay/preset/station listening_level=2
+### VarEdit by Apophis775: /obj/machinery/telecomms/relay/preset/station listening_level=5
+### VarEdit by Apophis775: /obj/machinery/telecomms/relay/preset/station listening_level=4
+Sat Oct 24 19:32:24 2015
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Geraldine Overstreet (/mob/living/carbon/human)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Geraldine Overstreet (/mob/living/carbon/human))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack self(Geraldine Overstreet (/mob/living/carbon/human))
+Geraldine Overstreet (/mob/living/carbon/human): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=15;icon-y=18;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(null, "mapwindow.map", "icon-x=15;icon-y=18;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Geraldine Overstreet (/mob/living/carbon/human)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Geraldine Overstreet (/mob/living/carbon/human))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack self(Geraldine Overstreet (/mob/living/carbon/human))
+Geraldine Overstreet (/mob/living/carbon/human): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=13;icon-y=18;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(null, "mapwindow.map", "icon-x=13;icon-y=18;left=1;scr...")
+runtime error: Cannot read null.client
+proc name: shake camera (/proc/shake_camera)
+  source file: mob_helpers.dm,354
+  usr: Queen (/mob/living/carbon/Xenomorph/Queen)
+  src: null
+  call stack:
+shake camera(null, 30, 1)
+### VarEdit by Apophis775: /obj/machinery/computer/shuttle_control/marine1 use_power=1
+### VarEdit by Apophis775: /obj/machinery/computer/shuttle_control/marine1 icon_state=shuttle1
+### VarEdit by Apophis775: /obj/machinery/computer/shuttle_control/marine1 icon_state=shuttle2
+### VarEdit by Apophis775: /obj/machinery/computer/shuttle_control/marine1 icon_state=shuttle
