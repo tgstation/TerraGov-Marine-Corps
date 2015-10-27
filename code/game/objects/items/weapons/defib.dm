@@ -21,7 +21,7 @@
 		return (OXYLOSS)
 
 	proc/toolate(mob/living/carbon/human/M as mob)
-		if(world.time <= M.worldtod + graceperiod)
+		if(world.time <= M.timeofdeath + graceperiod)
 			return 1
 		else
 			return 0
@@ -165,7 +165,7 @@
 						else if(burn)
 							H.adjustFireLoss(-8)
 				else
-					if(prob(75) && toolate(M))
+					if(toolate(M))
 						if(oxygen)
 							H.adjustOxyLoss(-8)
 						else if(toxin)
@@ -183,8 +183,12 @@
 					spawn(0)
 						H.stat = 1
 						dead_mob_list -= H
-						living_mob_list |= list(H)
+						living_mob_list += H
 						H.emote("gasp")
+						H.hud_updateflag |= 1 << HEALTH_HUD
+						H.hud_updateflag |= 1 << STATUS_HUD
+						H.tod = null
+						H.timeofdeath = 0
 				else
 					viewers(M) << "\red \icon[src] beeps: Resuscitation failed."
 				dcell.use(charge_cost)
