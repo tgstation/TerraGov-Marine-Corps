@@ -51,7 +51,6 @@
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
 
 	var/is_being_hugged = 0 //Is there a hugger humping our face?
-	var/worldtod = null //World time of death.  Used for defibs.
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
 	var/acid_damage = 0 //Counter for stomach acid damage. At ~60 ticks, dissolved
 	var/in_stasis = 0 //Is the mob in stasis bag?
