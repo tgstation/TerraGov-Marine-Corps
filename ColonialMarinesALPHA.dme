@@ -747,6 +747,7 @@
 #include "code\game\turfs\simulated.dm"
 #include "code\game\turfs\turf.dm"
 #include "code\game\turfs\unsimulated.dm"
+#include "code\game\turfs\simulated\BigRed.dm"
 #include "code\game\turfs\simulated\floor.dm"
 #include "code\game\turfs\simulated\floor_types.dm"
 #include "code\game\turfs\simulated\groundmap_turfs.dm"
@@ -1590,12 +1591,12 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.1.HauntedHouse-Minijar.dmm"
-#include "maps\Z.1.LV624.dmm"
+#include "maps\Z.1.BigRed-Ground-Minijar.dmm"
 #include "maps\Z.2.Centcomm.dmm"
 #include "maps\Z.3.PlaceholderSulaco.dmm"
 #include "maps\Z.4.SulacoBottom.dmm"
 #include "maps\Z.5.Space.dmm"
+#include "maps\Z.6.BigRed-UGround-Minijar.dmm"
 // END_INCLUDE
 
 
