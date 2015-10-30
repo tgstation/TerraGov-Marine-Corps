@@ -1,0 +1,154 @@
+/mob/living/carbon/hellhound/Life()
+	set invisibility = 0
+	set background = 1
+
+	..()
+
+	if (stat != DEAD)
+
+		//Chemicals in the body
+		handle_chemicals_in_body()
+
+	blinded = null
+
+	//Check if we're on fire
+	handle_fire()
+
+	//Status updates, death etc.
+	handle_regular_status_updates()
+	update_canmove()
+
+	if(client)
+		handle_regular_hud_updates()
+
+	// Grabbing
+	for(var/obj/item/weapon/grab/G in src)
+		G.process()
+
+	if(!client && stat == CONSCIOUS)
+		if(prob(33) && canmove && isturf(loc) && !pulledby) //won't move if being pulled
+			step(src, pick(cardinal))
+	updatehealth()
+
+/mob/living/carbon/hellhound/proc/handle_chemicals_in_body()
+	if(reagents && reagents.reagent_list.len)
+		reagents.metabolize(src)
+
+	if (drowsyness)
+		drowsyness--
+		eye_blurry = max(2, eye_blurry)
+		if (prob(5))
+			sleeping += 1
+			Paralyse(5)
+
+	if(confused)
+		confused = max(0, confused - 1)
+
+	if(resting)
+		dizziness = max(0, dizziness - 5)
+	else
+		dizziness = max(0, dizziness - 1)
+
+	return
+
+/mob/living/carbon/hellhound/handle_fire()
+	if(..())
+		return
+	adjustFireLoss(5)
+	return
+
+/mob/living/carbon/hellhound/proc/handle_regular_status_updates()
+	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
+		blinded = 1
+		silent = 0
+	else				//ALIVE. LIGHTS ARE ON
+		updatehealth()
+		if(health < config.health_threshold_dead || !has_brain())
+			death()
+			blinded = 1
+			stat = DEAD
+			silent = 0
+			return 1
+
+		//They heal quickly.
+
+		adjustBruteLoss(-5)
+		adjustFireLoss(-5)
+		adjustOxyLoss(-10)
+		adjustToxLoss(-50)
+
+		//UNCONSCIOUS. NO-ONE IS HOME
+		if( (getOxyLoss() > 50) || (config.health_threshold_crit > health) )
+			if( health <= 10 && prob(1) )
+				spawn(0)
+					emote("gasp")
+			if(!reagents.has_reagent("inaprovaline"))
+				adjustOxyLoss(1)
+			Paralyse(3)
+
+		if(paralysis)
+			AdjustParalysis(-1)
+			blinded = 1
+			stat = UNCONSCIOUS
+		else if(sleeping)
+			sleeping = max(sleeping-1, 0)
+			blinded = 1
+			stat = UNCONSCIOUS
+			if( prob(10) && health && !hal_crit )
+				spawn(0)
+					emote("snore")
+		else
+			stat = CONSCIOUS
+
+/mob/living/carbon/hellhound/proc/handle_regular_hud_updates()
+	if (stat == 2 || (XRAY in mutations))
+		sight |= SEE_TURFS
+		sight |= SEE_MOBS
+		sight |= SEE_OBJS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else if (stat != 2)
+		sight &= ~SEE_TURFS
+		sight |= ~SEE_MOBS
+		sight &= ~SEE_OBJS
+		see_in_dark = 7
+		see_invisible = SEE_INVISIBLE_MINIMUM
+	if (healths)
+		if (stat != 2)
+			switch(health)
+				if(100 to INFINITY)
+					healths.icon_state = "health0"
+				if(80 to 100)
+					healths.icon_state = "health1"
+				if(60 to 80)
+					healths.icon_state = "health2"
+				if(40 to 60)
+					healths.icon_state = "health3"
+				if(20 to 40)
+					healths.icon_state = "health4"
+				if(0 to 20)
+					healths.icon_state = "health5"
+				else
+					healths.icon_state = "health6"
+		else
+			healths.icon_state = "health7"
+
+	if(pullin)	pullin.icon_state = "pull[pulling ? 1 : 0]"
+
+	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
+
+	if(blind && stat != DEAD)
+		if(blinded)
+			blind.layer = 18
+		else
+			blind.layer = 0
+
+			if(disabilities & NEARSIGHTED)
+				client.screen += global_hud.vimpaired
+
+			if(eye_blurry)
+				client.screen += global_hud.blurry
+
+			if(druggy)
+				client.screen += global_hud.druggy
+	return 1

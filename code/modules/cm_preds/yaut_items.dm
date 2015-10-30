@@ -682,6 +682,7 @@
 		..()
 		del(keyslot1)
 		keyslot1 = new /obj/item/device/encryptionkey/yautja
+		syndie = 1
 		recalculateChannels()
 
 	talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
