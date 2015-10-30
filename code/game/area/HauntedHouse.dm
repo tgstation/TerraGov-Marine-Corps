@@ -46,6 +46,10 @@
 	name = "\improper lake"
 	icon_state = "HH_Lake"
 
+/area/haunted_house/relay
+	name = "\improper relay"
+	icon_state = "tcomsatcham"
+
 /area/haunted_house/ground/upstairs
 	name = "\improper upstairs floor"
 	icon_state = "HH_Second"

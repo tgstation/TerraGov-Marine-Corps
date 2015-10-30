@@ -300,7 +300,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; <b>USS Sulaco</b> | <b>Planet LV-624</b>"
+		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; <b>USS Sulaco</b> | <b>Planet LV-624/Halloween Map</b>"
 		s += "<br>Hosted by <b>Apophis</b>"
 		s += "<br><img src=\"http://i.imgur.com/VSucCrP.jpg\"></a><br>"
 

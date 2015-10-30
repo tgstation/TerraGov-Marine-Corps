@@ -15,6 +15,8 @@
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 
+
+
 /* Pre-pre-startup */
 //We have to be really careful that we don't pick() from null lists.
 //So use list.len as much as possible before a pick() for logic checks.

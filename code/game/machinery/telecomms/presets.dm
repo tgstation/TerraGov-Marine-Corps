@@ -1,7 +1,6 @@
 // ### Preset machines  ###
 
 //Relay
-
 /obj/machinery/telecomms/relay/preset
 	network = "tcommsat"
 
@@ -19,6 +18,9 @@
 
 	//We dont want anyone to mess with it
 	attackby()
+		return
+
+	ex_act(severity)
 		return
 
 /obj/machinery/telecomms/relay/preset/telecomms

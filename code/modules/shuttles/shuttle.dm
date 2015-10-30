@@ -88,8 +88,11 @@
 	for(var/obj/machinery/door/airlock/D in area)//For elevators
 		if (iselevator)
 			spawn(0)
-				D.close()
-				D.lock()
+				if(!D.density)
+					D.close()
+					D.lock()
+				else
+					D.lock()
 
 /datum/shuttle/proc/open_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
@@ -107,9 +110,12 @@
 
 	for(var/obj/machinery/door/airlock/D in area)//For elevators
 		if (iselevator)
-			spawn(0)
-				D.unlock()
-				D.open()
+			if(D.locked)
+				spawn(0)
+					D.unlock()
+			if(D.density)
+				spawn(0)
+					D.open()
 
 /datum/shuttle/proc/dock()
 	if (!docking_controller)
@@ -166,17 +172,15 @@
 	origin.move_contents_to(destination, direction=direction)
 
 	for(var/mob/M in destination)
-		if(iselevator)
-			return
 		if(M.client)
 			spawn(0)
-				if(M.buckled)
+				if(M.buckled && !iselevator)
 					M << "\red Sudden acceleration presses you into your chair!"
 					shake_camera(M, 3, 1)
-				else
+				else if (!M.buckled)
 					M << "\red The floor lurches beneath you!"
-					shake_camera(M, 10, 1)
-		if(istype(M, /mob/living/carbon))
+					shake_camera(M, iselevator? 2 : 10, 1)
+		if(istype(M, /mob/living/carbon) && !iselevator)
 			if(!M.buckled)
 				M.Weaken(3)
 

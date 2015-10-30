@@ -79,7 +79,7 @@ var/list/ghostteleportlocs = list()
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in world)
 		if(ghostteleportlocs.Find(AR.name)) continue
-		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
+		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
@@ -230,7 +230,7 @@ var/list/ghostteleportlocs = list()
 /area/shuttle/transport1/station
 	icon_state = "shuttle"
 	name = "\improper Transport Shuttle"
-
+/*
 /area/shuttle/alien/base
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Base"
@@ -244,6 +244,8 @@ var/list/ghostteleportlocs = list()
 	requires_power = 1
 	luminosity = 0
 	lighting_use_dynamic = 1
+*/
+
 
 /area/shuttle/prison/
 	name = "\improper Prison Shuttle"
@@ -305,7 +307,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper RED Station"
 	icon_state = "shuttlered2"
 // === Trying to remove these areas:
-
+/*
 /area/shuttle/research
 	name = "\improper Research Shuttle"
 	music = "music/escape.ogg"
@@ -315,7 +317,7 @@ var/list/ghostteleportlocs = list()
 
 /area/shuttle/research/outpost
 	icon_state = "shuttle"
-
+*/
 /area/shuttle/vox/station
 	name = "\improper Vox Skipjack"
 	icon_state = "yellow"
@@ -628,7 +630,7 @@ var/list/ghostteleportlocs = list()
  	icon_state = "atmos"
 */
 //Maintenance
-
+/*
 /area/maintenance/aft
 	name = "Aft Maintenance"
 	icon_state = "amaint"
@@ -752,7 +754,7 @@ var/list/ghostteleportlocs = list()
 /area/maintenance/storage
 	name = "Atmospherics"
 	icon_state = "green"
-
+*/
 // SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
 /*
 
@@ -782,7 +784,7 @@ var/list/ghostteleportlocs = list()
 
 
 //Hallway
-
+/*
 /area/hallway/primary/fore
 	name = "\improper Fore Primary Hallway"
 	icon_state = "hallF"
@@ -823,14 +825,14 @@ var/list/ghostteleportlocs = list()
 /area/hallway/secondary/entry
 	name = "\improper Arrival Shuttle Hallway"
 	icon_state = "entry"
-
+*/
 //Command
-
+/*
 /area/bridge
 	name = "\improper Bridge"
 	icon_state = "bridge"
 	music = "signal"
-/*
+
 /area/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
 	icon_state = "bridge"
@@ -864,9 +866,11 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Courtroom"
 	icon_state = "courtroom"
 */
+/*
 /area/mint
 	name = "\improper Mint"
 	icon_state = "green"
+*/
 /*
 /area/comms
 	name = "\improper Communications Relay"
@@ -1042,13 +1046,13 @@ var/list/ghostteleportlocs = list()
 
 
 //Engineering
-
-/area/engine
 /*
+/area/engine
+
 	drone_fabrication
 		name = "\improper Drone Fabrication"
 		icon_state = "engine"
-*/
+
 	engine_smes
 		name = "Engineering SMES"
 		icon_state = "engine_smes"
@@ -1057,7 +1061,7 @@ var/list/ghostteleportlocs = list()
 	engine_room
 		name = "\improper Engine Room"
 		icon_state = "engine"
-/*
+
 	engine_airlock
 		name = "\improper Engine Room Airlock"
 		icon_state = "engine"
@@ -1116,7 +1120,7 @@ var/list/ghostteleportlocs = list()
 */
 
 //Solars
-
+/*
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
@@ -1185,7 +1189,7 @@ var/list/ghostteleportlocs = list()
 	power_equip = 0
 	power_light = 0
 	power_environ = 0
-
+*/
 //Teleporter
 
 /area/teleporter
@@ -1337,6 +1341,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Security lobby"
 	icon_state = "security"
 */
+/*
 /area/security/brig
 	name = "\improper Brig"
 	icon_state = "brig"
@@ -1344,6 +1349,7 @@ var/list/ghostteleportlocs = list()
 /area/security/prison
 	name = "\improper Prison Wing"
 	icon_state = "sec_prison"
+*/
 /*
 /area/security/warden
 	name = "\improper Warden"
@@ -1468,6 +1474,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "garden"
 */
 //rnd (Research and Development
+/*
 /area/rnd/research
 	name = "\improper Research and Development"
 	icon_state = "research"
@@ -1519,7 +1526,7 @@ var/list/ghostteleportlocs = list()
 /area/toxins/server
 	name = "\improper Server Room"
 	icon_state = "server"
-
+*/
 //Storage
 /*
 /area/storage/tools
@@ -1582,11 +1589,11 @@ var/list/ghostteleportlocs = list()
 	icon_state = "LPS"
 */
 //DERELICT
-
+/*
 /area/derelict
 	name = "\improper Derelict Station"
 	icon_state = "storage"
-/*
+
 /area/derelict/hallway/primary
 	name = "\improper Derelict Primary Hallway"
 	icon_state = "hallP"
@@ -2090,30 +2097,30 @@ var/list/the_station_areas = list (
 	/area/shuttle/escape_pod5/station,			//To be removed
 	/area/shuttle/mining/station,				//To be removed
 	/area/shuttle/transport1/station,			//To be removed
-	// /area/shuttle/transport2/station,
-	/area/shuttle/prison/station,				//To be removed
+//	/area/shuttle/transport2/station,
+//	/area/shuttle/prison/station,				//To be removed
 	/area/shuttle/administration/station,		//To be removed
 	/area/shuttle/specops/station,				//To be removed
 //	/area/atmos,
-	/area/maintenance,							//To be removed
-	/area/hallway,								//To be removed
-	/area/bridge,								//To be removed
+	///area/maintenance,							//To be removed
+	///area/hallway,								//To be removed
+	///area/bridge,								//To be removed
 //	/area/crew_quarters,
 	/area/holodeck,								//To be removed
-	/area/mint,									//To be removed
+//	/area/mint,									//To be removed
 //	/area/library,
 //	/area/chapel,
 //	/area/lawoffice,
-	/area/engine,								//To be removed
-	/area/solar,								//To be removed
-	/area/assembly,								//To be removed
-	/area/teleporter,							//To be removed
+//	/area/engine,								//To be removed
+	///area/solar,								//To be removed
+	///area/assembly,								//To be removed
+//	/area/teleporter,							//To be removed
 //	/area/medical,
 //	/area/security,
 //	/area/quartermaster,
 //	/area/janitor,
 //	/area/hydroponics,
-	/area/rnd,									//To be removed
+//	/area/rnd,									//To be removed
 //	/area/storage,
 //	/area/construction,
 //	/area/ai_monitored/storage/eva, //do not try to simplify to "/area/ai_monitored" --rastaf0

@@ -375,7 +375,7 @@
 	name = "marine backpack"
 	desc = "A large backpack used by military."
 	icon_state = "marinepack"
-	item_state = "marinepack"
+	item_state = "backpack"
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
 

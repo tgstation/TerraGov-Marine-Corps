@@ -412,7 +412,7 @@
 	desc = "A very tough looking window, probably bullet proof."
 	icon_state = "rwindow"
 	basestate = "rwindow"
-	health = 100
+	health = 1000
 	reinf = 1
 
 /obj/structure/window/New(Loc, constructed=0)

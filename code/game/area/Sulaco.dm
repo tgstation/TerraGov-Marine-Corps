@@ -256,7 +256,15 @@
 	name = "\improper Dropship 1"
 	icon_state = "shuttlered"
 
-/area/shuttle/drop1/ground
+/area/shuttle/drop1/LV624
+	name = "\improper Dropship 1"
+	icon_state = "shuttle"
+
+/area/shuttle/drop1/Haunted
+	name = "\improper Dropship 1"
+	icon_state = "shuttle"
+
+/area/shuttle/drop1/BigRed
 	name = "\improper Dropship 1"
 	icon_state = "shuttle"
 
@@ -268,7 +276,15 @@
 	name = "\improper Dropship 2"
 	icon_state = "shuttle"
 
-/area/shuttle/drop2/ground
+/area/shuttle/drop2/LV624
+	name = "\improper Dropship 2"
+	icon_state = "shuttle2"
+
+/area/shuttle/drop2/Haunted
+	name = "\improper Dropship 2"
+	icon_state = "shuttle2"
+
+/area/shuttle/drop2/BigRed
 	name = "\improper Dropship 2"
 	icon_state = "shuttle2"
 

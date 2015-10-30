@@ -135,6 +135,10 @@
 			usr << "\blue Building [R.title] ..."
 			if (!do_after(usr, R.time))
 				return
+		//We want to check this again for girder stacking
+		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
+			usr << "\red There is another [R.title] here!"
+			return
 		if (src.amount < R.req_amount*multiplier)
 			return
 		var/atom/O = new R.result_type( usr.loc )
