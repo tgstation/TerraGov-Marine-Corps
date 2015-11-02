@@ -2045,7 +2045,7 @@
 "Nq" = (/obj/machinery/power/smes/magical{dir = 4},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Nr" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Ns" = (/obj/machinery/power/apc{dir = 8; pixel_x = -30; start_charge = 300},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
-"Nt" = (/obj/machinery/telecomms/relay/preset/station{explosion_resistance = 100; idle_power_usage = 0; unacidable = 1; use_power = 0},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
+"Nt" = (/obj/machinery/telecomms/relay/preset/station{explosion_resistance = 100; idle_power_usage = 0; listening_level = 2; unacidable = 1; use_power = 0},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Nu" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Nv" = (/obj/machinery/telecomms/allinone{freq_listening = list(1214); level = 1; listening_level = 1; name = "Alien Mainframe"; network = "ALIEN"; unacidable = 1},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 
