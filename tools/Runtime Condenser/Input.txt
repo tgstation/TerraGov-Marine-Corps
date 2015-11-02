@@ -2476,3 +2476,640 @@ Mon Nov 02 03:34:56 2015
 ### VarEdit by Apophis775: /obj/machinery/telecomms/relay/preset/telecomms listening_level=1
 ### VarEdit by Apophis775: /obj/machinery/telecomms/relay/preset/station listening_level=4
 ### VarEdit by Apophis775: /mob/living/carbon/human luminosity=127
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Alger Robinson (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Alger Robinson (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Alger Robinson (/mob/dead/observer))
+Alger Robinson (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=12;icon-y=18;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=12;icon-y=18;left=1;scr...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 8, 13, 14, 16, 17, 18, 19, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Nov 02 05:07:14 2015
+### VarEdit by Ordukai: /turf/simulated/floor/plating air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor/plating air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor/plating air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor/gm/dirt air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /datum/gas_mixture gas=/datum/gas_mixture
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,289
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 2344 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,289
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 549 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 16475, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 9, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check tile graphic(/list (/list), /list (/list))
+Zone 546 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 546 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): compare(/datum/gas_mixture (/datum/gas_mixture))
+/connection_edge/zone (/connection_edge/zone): recheck()
+Zone 546 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 16475, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 9, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 15, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 15, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check tile graphic(/list (/list), /list (/list))
+Zone 546 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 16475, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 9, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 15, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 15, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): check tile graphic(/list (/list), /list (/list))
+Zone 546 (/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,403
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
+runtime error: bad index
+proc name: check tile graphic (/datum/gas_mixture/proc/check_tile_graphic)
+  source file: _gas_mixture_xgm.dm,319
+Warning: further proc crash messages are being suppressed to prevent overload...
+### VarEdit by Ordukai: /mob/living/carbon/human internal_organs=
+Rebooted server.
+Mon Nov 02 06:37:35 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 6, 9, 10, 11, 14, 16, 17, 18, 19, 20, 21, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Nov 02 08:10:56 2015
+Denied access to 'BeyondMyLife' connecting from 70.196.3.66
+Denied access to 'Guest-1034499426' connecting from 213.87.249.131
+Rebooted server.
+Mon Nov 02 09:19:26 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 6, 7, 8, 9, 12, 14, 15, 16, 18, 20, 21, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Nov 02 11:09:45 2015
+Denied access to 'Guest-3376778433' connecting from 96.37.57.102
+Denied access to 'Guest-2843562481' connecting from 186.209.62.134
+runtime error: Cannot modify null.icon_state.
+proc name: Click (/obj/screen/Click)
+  source file: screen_objects.dm,356
+  usr: Siserith \'Dragon\' Vassada (/mob/living/carbon/brain)
+  src: the harm (/obj/screen)
+  call stack:
+the harm (/obj/screen): Click(null, "mapwindow.map", "icon-x=2;icon-y=8;left=1;scree...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 6, 7, 9, 10, 11, 14, 16, 18, 19, 20, 21, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: list index out of bounds
+proc name: mod list add (/client/proc/mod_list_add)
+  source file: modifyvariables.dm,124
+  usr: Anna Clifford (/mob/dead/observer)
+  src: Minijar (/client)
+  call stack:
+Minijar (/client): mod list add(/list (/list))
+Minijar (/client): mod list(/list (/list))
+Minijar (/client): modify variables(Scientist\'s ID Card (/obj/item/weapon/card/id), "access", 1)
+Minijar (/client): view var Topic("_src_=vars;datumedit=\[0x200d3...", /list (/list), null)
+Minijar (/client): Topic("_src_=vars;datumedit=\[0x200d3...", /list (/list), null)
+### VarEdit by Minijar: /obj/machinery/power/apc start_charge=99999
+### VarEdit by Minijar: /obj/machinery/power/apc chargecount=9999
+Mon Nov 02 12:58:27 2015
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Malcolm Conway (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Malcolm Conway (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Malcolm Conway (/mob/dead/observer))
+Malcolm Conway (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=17;icon-y=17;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=17;icon-y=17;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Malcolm Conway (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Malcolm Conway (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Malcolm Conway (/mob/dead/observer))
+Malcolm Conway (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=15;icon-y=18;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=15;icon-y=18;left=1;scr...")
+Denied access to 'F0XTAIL' connecting from 67.170.181.137
+Denied access to 'Gabbabab' connecting from 73.157.172.161
+Denied access to 'Mikeche' connecting from 24.254.240.57
+Mon Nov 02 14:19:01 2015
+Denied access to 'Guest-635069540' connecting from 87.207.36.214
+runtime error: undefined variable /turf/unsimulated/wall/splashscreen/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,972
+  usr: Charles \'Shocky\' Fenix (/mob/dead/observer)
+  src: MarkValentine (/client)
+  call stack:
+MarkValentine (/client): Edit Zone Air(Space Station 13 (1,167,3) (/turf/unsimulated/wall/splashscreen))
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 21, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
