@@ -46,11 +46,11 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/traitor.ogg',\
 	'sound/music/title2.ogg',\
 	'sound/music/clouds.s3m'*/
-	/*'sound/music/fortunate_son.ogg',   /HALLOWEEN MUSIC FOR NOW
+	'sound/music/fortunate_son.ogg',
 	'sound/music/buffalo_springfield.ogg',
 	'sound/music/good_day_to_die.ogg', //It's a Good Day to Die
-	'sound/music/warrior_song.ogg',*/   //The Warrior Song
-	'SEASONAL/ColonialHalloween.ogg')  //Halloween Song
+	'sound/music/warrior_song.ogg',  //The Warrior Song
+	/*'SEASONAL/ColonialHalloween.ogg'*/)  //Halloween Song
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
