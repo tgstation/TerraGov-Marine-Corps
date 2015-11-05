@@ -108,6 +108,20 @@
 	siemens_coefficient = 0.9
 	has_sensor = 1
 
+/obj/item/clothing/under/marine/fluff/marinemedic
+	name = "Marine jumpsuit(medic)"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has medical markings. "
+	icon_state = "marine_medic"
+	item_state = "marine_medic_s"
+	item_color = "marine_medic"
+
+/obj/item/clothing/under/marine/fluff/marineengineer
+	name = "Marine jumpsuit(engineer)"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has engineer markings. "
+	icon_state = "marine_engineer"
+	item_state = "marine_engineer_s"
+	item_color = "marine_engineer"
+
 /obj/item/clothing/under/marine/alpha
 	name = "alpha team jumpsuit"
 	icon_state = "red"
