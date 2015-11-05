@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/guncabinet
 	name = "gun cabinet"
-	req_access = list(access_marine_prep)
+	req_access_txt = "101"
 	icon = 'icons/obj/guncabinet.dmi'
 	icon_state = "base"
 	icon_off ="base"
@@ -41,7 +41,7 @@
 					gun.icon_state = "projectile"
 
 				gun.pixel_x = i*4
-				overlays += gun
+//				overlays += gun //Moves the overlay layer and creates a weird sprite bug
 
 		overlays += icon(src.icon,"door")
 
