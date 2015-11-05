@@ -127,7 +127,7 @@
 	req_access = list(access_marine_engprep)
 	products = list(
 						/obj/item/weapon/storage/box/sentry = 1,
-						/obj/item/clothing/under/rank/engineer = 3,
+						/obj/item/clothing/under/marine/fluff/marineengineer = 3,
 						/obj/item/weapon/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
@@ -159,7 +159,7 @@
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,
-						/obj/item/clothing/under/rank/medical = 3,
+						/obj/item/clothing/under/marine/fluff/marinemedic = 3,
 						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/weapon/melee/defibrillator = 3,
