@@ -264,6 +264,7 @@
 #include "code\game\area\HauntedHouse.dm"
 #include "code\game\area\IceColony.dm"
 #include "code\game\area\LV624.dm"
+#include "code\game\area\prison.dm"
 #include "code\game\area\Space Station 13 areas.dm"
 #include "code\game\area\Sulaco.dm"
 #include "code\game\dna\dna2.dm"
@@ -1596,7 +1597,6 @@
 #include "maps\Z.3.PlaceholderSulaco.dmm"
 #include "maps\Z.4.SulacoBottom.dmm"
 #include "maps\Z.5.Space.dmm"
-#include "maps\Z.6.BigRed-UGround-Minijar.dmm"
 // END_INCLUDE
 
 

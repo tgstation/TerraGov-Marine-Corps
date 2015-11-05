@@ -122,6 +122,14 @@
 
 ///////////Civilians//////////////////////
 
+/obj/effect/landmark/corpse/prisoner
+	name = "Prisoner"
+	corpseuniform = /obj/item/clothing/under/color/orange
+	corpseshoes = /obj/item/clothing/shoes/orange
+	corpseid = 1
+	corpseidjob = "Prisoner"
+
+
 /obj/effect/landmark/corpse/chef
 	name = "Chef"
 	corpseuniform = /obj/item/clothing/under/rank/chef
@@ -223,3 +231,7 @@
 	corpseid = 1
 	corpseidjob = "Commander"
 	corpseidaccess = "Captain"
+
+
+
+
