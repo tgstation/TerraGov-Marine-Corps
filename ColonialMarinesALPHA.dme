@@ -1591,12 +1591,12 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.1.HauntedHouse-Minijar.dmm"
-#include "maps\Z.1.LV624.dmm"
-#include "maps\Z.2.Centcomm.dmm"
-#include "maps\Z.3.PlaceholderSulaco.dmm"
-#include "maps\Z.4.SulacoBottom.dmm"
-#include "maps\Z.5.Space.dmm"
+#include "maps\Z.01.LV624.dmm"
+#include "maps\Z.02.Centcomm.dmm"
+#include "maps\Z.03.PlaceholderSulaco.dmm"
+#include "maps\Z.04.SulacoBottom.dmm"
+#include "maps\Z.05.Space.dmm"
+#include "maps\Z.06.HauntedHouse-Minijar.dmm"
 // END_INCLUDE
 
 
