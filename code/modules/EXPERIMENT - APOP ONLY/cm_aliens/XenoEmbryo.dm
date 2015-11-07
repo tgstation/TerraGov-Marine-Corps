@@ -1,6 +1,5 @@
 // This is to replace the previous datum/disease/alien_embryo for slightly improved handling and maintainability
 // It functions almost identically (see code/datums/diseases/alien_embryo.dm)
-
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yuck."
@@ -51,8 +50,8 @@
 		if(stage < 4) counter++
 		else if (stage == 4 && prob(30))  counter++
 
-	if(counter > 400) counter = 400 //somehow
-	if(counter>70)  //THIS IS TEMP.  I will restore this after my testing.
+	if(counter > 200) counter = 200 //somehow
+	if(stage < 5 && counter == 200)
 		counter = 0
 		stage++
 		spawn(0)
@@ -103,8 +102,8 @@
 					O.show_message(text("\red <B>[affected_mob] starts shaking uncontrollably!"), 1)
 				affected_mob.Paralyse(20)
 				affected_mob.make_jittery(100)
-				affected_mob.take_organ_damage(1)
-				affected_mob.adjustToxLoss(5)
+				affected_mob.take_organ_damage(5) //  old 1
+				affected_mob.adjustToxLoss(20)  //old 5
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()
