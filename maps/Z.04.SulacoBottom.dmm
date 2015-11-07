@@ -526,7 +526,7 @@
 "kf" = (/obj/machinery/telecomms/server/presets/medical{produces_heat = 0},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
 "kg" = (/obj/machinery/telecomms/relay/preset/telecomms{listening_level = 6; unacidable = 1},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
 "kh" = (/obj/machinery/telecomms/hub/preset{produces_heat = 0; unacidable = 1},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
-"ki" = (/obj/machinery/telecomms/relay/preset/telecomms{listening_level = 1; unacidable = 1},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
+"ki" = (/obj/machinery/telecomms/relay/preset/telecomms{listening_level = 4; unacidable = 1},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
 "kj" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; health = 80},/obj/machinery/door/poddoor{density = 1; dir = 4; icon_state = "pdoor1"; id = "tcomwind"; name = "Telecomms Emergency Window"; opacity = 0},/turf/simulated/floor{icon_state = "dark"},/area/sulaco/telecomms)
 "kk" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; health = 80},/obj/machinery/door/poddoor{density = 1; dir = 4; icon_state = "pdoor1"; id = "tcomwind"; name = "Telecomms Emergency Window"; opacity = 0},/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/turf/simulated/floor{icon_state = "dark"},/area/sulaco/telecomms)
 "kl" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor{icon_state = "dark"},/area/sulaco/telecomms/office)
