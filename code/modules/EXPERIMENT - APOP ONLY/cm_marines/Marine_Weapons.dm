@@ -3,23 +3,23 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 30
+	damage = 25  //OLD:  30
 	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
-	damage = 70
+	damage = 50  //OLD:  70
 	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 35
+	damage = 30  //OLD:  35
 	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 50
+	damage = 40  //OLD:  50
 	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
-	damage = 80
+	damage = 45  //OLD:  80
 	range_falloff_at = 4 //4 turfs
 	name = "shotgun slug"
 
@@ -152,6 +152,7 @@
 	under_pixel_x = 20
 	under_pixel_y = 17
 	w_class = 3
+	fire_delay = 3
 
 	New()
 		..()
@@ -243,7 +244,7 @@
 	load_method = 2
 	force = 10.0
 	ejectshell = 0 //Caseless
-	fire_delay = 4
+	fire_delay = 2
 	slot_flags = SLOT_BACK
 	recoil = 0
 	twohanded = 1
