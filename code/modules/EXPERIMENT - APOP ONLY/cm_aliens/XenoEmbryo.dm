@@ -48,7 +48,7 @@
 
 	else
 		if(stage < 4) counter++
-		else if (stage == 4 && prob(30))  counter++
+//		else if (stage == 4 && prob(30))  counter++
 
 	if(counter > 200) counter = 200 //somehow
 	if(stage < 5 && counter == 200)
