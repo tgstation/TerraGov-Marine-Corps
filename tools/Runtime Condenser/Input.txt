@@ -3113,3 +3113,2599 @@ Your server failed to establish a connection with the SQL database.
 ## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
 ## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 7, 8, 9, 10, 11, 14, 15, 16, 17, 19, 21, 24, 25 and 26
 ## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Mon Nov 02 17:07:42 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 7, 10, 11, 15, 16, 17, 18, 19, 20, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: TheRedpuff (/mob/new_player)
+  src: TheRedpuff (/client)
+  call stack:
+TheRedpuff (/client): playtitlemusic()
+TheRedpuff (/mob/new_player): Login()
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+BYOND Error: failed to certify Redfield5
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 7, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-901858066' connecting from 94.224.133.145
+Denied access to 'Guest-1632877823' connecting from 71.67.110.144
+Mon Nov 02 18:27:44 2015
+Denied access to 'Guest-1452253274' connecting from 73.137.143.95
+Denied access to 'DukeDuki' connecting from 79.181.3.161
+Mon Nov 02 19:52:56 2015
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=25;icon-y=13;left=1;scr...")
+the girder (/obj/structure/girder): Click(the floor (153,178,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=25;icon-y=13;left=1;scr...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=27;icon-y=27;left=1;scr...")
+the girder (/obj/structure/girder): Click(the floor (153,175,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=27;icon-y=27;left=1;scr...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=27;icon-y=24;left=1;scr...")
+the girder (/obj/structure/girder): Click(the floor (148,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=27;icon-y=24;left=1;scr...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=3;icon-y=8;left=1;scree...")
+the girder (/obj/structure/girder): Click(the floor (172,177,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=3;icon-y=8;left=1;scree...")
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+  call stack:
+the girder (/obj/structure/girder): attackby(null, Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(the girder (/obj/structure/girder), "icon-x=3;icon-y=3;left=1;scree...")
+the girder (/obj/structure/girder): Click(the floor (172,178,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=3;icon-y=3;left=1;scree...")
+Rebooted server.
+Mon Nov 02 20:53:41 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 6, 7, 8, 9, 12, 14, 15, 17, 20, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Doomsday1134' connecting from 24.119.4.187
+Mon Nov 02 22:42:22 2015
+Denied access to 'Kublai' connecting from 66.87.120.53
+runtime error: Cannot read null.head_position
+proc name: EquipRank (/datum/controller/occupations/proc/EquipRank)
+  source file: job_controller.dm,385
+  usr: Ashe White (/mob/dead/observer)
+  src: /datum/controller/occupations (/datum/controller/occupations)
+  call stack:
+/datum/controller/occupations (/datum/controller/occupations): EquipRank(Alien Larva (516) (/mob/living/carbon/human), "MODE", 1)
+Adjective (/client): Respawn Character()
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 6, 9, 10, 11, 12, 14, 15, 16, 17, 18, 20, 21, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Mon Nov 02 23:56:28 2015
+Denied access to 'Lead smurf' connecting from 24.119.4.187
+Rebooted server.
+Tue Nov 03 01:19:22 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 6, 8, 9, 10, 11, 12, 14, 17, 18, 19, 20, 23, 24 and 26
+BYOND Error: failed to certify Archivator
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Antiura' connecting from 128.68.159.220
+Denied access to 'Guest-2670545090' connecting from 73.157.196.124
+Tue Nov 03 02:39:40 2015
+runtime error: Cannot modify null.icon_state.
+proc name: Click (/obj/screen/Click)
+  source file: screen_objects.dm,356
+  usr: Wyatt Hoopengarner (/mob/living/carbon/brain)
+  src: the harm (/obj/screen)
+  call stack:
+the harm (/obj/screen): Click(null, "mapwindow.map", "icon-x=2;icon-y=7;left=1;scree...")
+### VarEdit by Ordukai: /turf/simulated/shuttle/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor/plating air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor/plating air=/datum/gas_mixture
+### VarEdit by Ordukai: /obj/structure/ladder down=The disposal unit
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 7, 9, 10, 12, 13, 14, 16, 18, 20, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Tue Nov 03 06:45:17 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 15, 17, 18, 19, 21, 22 and 25
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-4000153669' connecting from 82.139.127.200
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 5, 6, 7, 8, 9, 11, 13, 15, 18, 19, 20, 21, 22, 23, 24 and 25
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Tue Nov 03 08:30:16 2015
+Denied access to 'Centive' connecting from 112.206.173.40
+runtime error: Cannot modify null.assigned_role.
+proc name: create member (/datum/emergency_call/pizza/create_member)
+  source file: distress.dm,738
+  usr: Kate Braun (as Jack Rook) (/mob/living/carbon/human)
+  src: Pizza Delivery (/datum/emergency_call/pizza)
+  call stack:
+Pizza Delivery (/datum/emergency_call/pizza): create member(Alien Larva (649) (/datum/mind))
+Pizza Delivery (/datum/emergency_call/pizza): activate()
+Tue Nov 03 10:22:07 2015
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: Go to Suggestions forum,47
+  usr: Chandler Hughes (/mob/living/carbon/human)
+  src: Minijar (/client)
+  call stack:
+Minijar (/client): Dsay("I fucking hate aliens being al...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 16, 19, 20, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Tue Nov 03 11:25:38 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Tue Nov 03 12:28:26 2015
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Guillaume Viabon (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+  call stack:
+the science pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Guillaume Viabon (/mob/living/carbon/human))
+Guillaume Viabon (/mob/living/carbon/human): ClickOn(the science pod (/obj/machinery/clonepod), "icon-x=19;icon-y=16;left=1;scr...")
+the science pod (/obj/machinery/clonepod): Click(the floor (119,87,2) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Guillaume Viabon (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+  call stack:
+the science pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Guillaume Viabon (/mob/living/carbon/human))
+Guillaume Viabon (/mob/living/carbon/human): ClickOn(the science pod (/obj/machinery/clonepod), "icon-x=17;icon-y=16;left=1;scr...")
+the science pod (/obj/machinery/clonepod): Click(the floor (119,87,2) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=16;left=1;scr...")
+Denied access to 'Guest-906177438' connecting from 186.247.70.200
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+Denied access to 'Guest-1360490108' connecting from 73.157.172.161
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): turn on()
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+  call stack:
+the cargo train tug (/obj/vehicle/train/cargo/engine): Start engine()
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+Denied access to 'Guest-3020986549' connecting from 81.106.246.101
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: bad client
+proc name: Adminhelp (/client/verb/adminhelp)
+  source file: adminhelp.dm,26
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+  source file: recruit.dm,108
+runtime error: undefined proc or verb /datum/wound/cut/small/savefile load().
+
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,77
+runtime error: undefined proc or verb /datum/wound/cut/small/savefile load().
+
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,77
+Undefined variable /datum/wound/cut/small/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+Undefined variable /datum/wound/cut/small/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+Tue Nov 03 13:35:02 2015
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot read null.charge
+proc name: Start engine (/obj/vehicle/train/cargo/engine/verb/start_engine)
+  source file: cargo_train.dm,205
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+Tue Nov 03 14:38:01 2015
+Denied access to 'Celtics8820' connecting from 24.183.190.42
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 6, 7, 8, 9, 10, 11, 12, 13, 16, 18, 19, 20, 21 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Minijar: /obj/machinery/computer/security stat=1
+### VarEdit by Minijar: /obj/machinery/computer/security stat=0
+### VarEdit by Minijar: /obj/item/stack/sheet/metal amount=50
+### VarEdit by Minijar: /obj/item/stack/sheet/plasteel amount=40
+### VarEdit by Minijar: /obj/machinery/door/airlock/glass_command name=Weyland-Yutani Office 
+### VarEdit by Minijar: /obj/item/weapon/stamp/internalaffairs name=internal affairs rubber stamp
+### VarEdit by Minijar: /obj/machinery/door/airlock/command name=Liason&#39;s Quarters
+### VarEdit by Minijar: /obj/structure/table/woodentable name=wooden table
+### VarEdit by Minijar: /obj/machinery/door_control name=Window Shutters 
+### VarEdit by Minijar: /obj/structure/table/woodentable name=wooden table
+Tue Nov 03 16:16:03 2015
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Scotty Hardy (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Scotty Hardy (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Scotty Hardy (/mob/dead/observer))
+Scotty Hardy (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=16;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=16;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Scotty Hardy (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Scotty Hardy (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Scotty Hardy (/mob/dead/observer))
+Scotty Hardy (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=15;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=15;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Scotty Hardy (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Scotty Hardy (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Scotty Hardy (/mob/dead/observer))
+Scotty Hardy (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=18;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=18;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Scotty Hardy (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Scotty Hardy (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 5, 6, 11, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24 and 25
+BYOND Error: failed to certify Leetarchangel
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Tue Nov 03 17:38:17 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Tue Nov 03 18:42:13 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,548
+  usr: null
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+  call stack:
+M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun): dropped(null)
+Rebooted server.
+Tue Nov 03 21:01:15 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 7, 8, 10, 11, 13, 14, 15, 16, 17, 18, 20, 22 and 23
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Kaeli Hawke (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Kaeli Hawke (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Kaeli Hawke (/mob/dead/observer))
+Kaeli Hawke (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=14;icon-y=17;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=14;icon-y=17;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Kaeli Hawke (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Kaeli Hawke (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Kaeli Hawke (/mob/dead/observer))
+Kaeli Hawke (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=13;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=13;left=1;scr...")
+Denied access to 'Dawson962' connecting from 74.196.0.60
+Rebooted server.
+Tue Nov 03 23:24:49 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 5, 7, 10, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: bad client
+proc name: Adminhelp (/client/verb/adminhelp)
+  source file: adminhelp.dm,26
+  usr: null
+  src: Anubis600 (/client)
+  call stack:
+Anubis600 (/client): Adminhelp()
+Rebooted server.
+Wed Nov 04 01:48:08 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 6, 8, 9, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 and 24
+BYOND Error: failed to certify Mark9013100
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+## TESTING: Deafness has no deactivation message.
+Denied access to 'Guest-895103023' connecting from 176.212.232.192
+### VarEdit by Ordukai: /turf/simulated/floor/gm/dirt air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor/gm/dirt air=/datum/gas_mixture
+Wed Nov 04 02:58:27 2015
+### VarEdit by Ordukai: /turf/simulated/floor/gm/dirt air=/datum/gas_mixture
+### VarEdit by Ordukai: /turf/simulated/floor/gm/dirt air=/datum/gas_mixture
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 6, 7, 8, 9, 10, 11, 12, 15, 18, 19, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Nov 04 04:35:30 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 6, 9, 10, 12, 13, 14, 15, 16, 17, 20, 21, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 8, 9, 10, 12, 15, 17, 18, 19, 20, 21, 22, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Nov 04 06:08:21 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 7, 8, 11, 12, 13, 15, 16, 17, 19, 20, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 7, 8, 9, 10, 11, 15, 16, 18, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Nov 04 07:52:19 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 8, 9, 10, 11, 15, 16, 17, 19, 20, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Nov 04 09:26:42 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 5, 7, 8, 9, 11, 12, 13, 15, 16, 19, 20, 21, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Denied access to 'Guest-109325287' connecting from 94.9.253.25
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Denied access to 'Guest-1683495354' connecting from 84.105.131.228
+Wed Nov 04 11:28:54 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 14, 18, 19, 20, 21, 22, 23, 24 and 25
+BYOND Error: failed to certify FeelTheShock
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: Killaninja12 (/mob/new_player)
+  src: Killaninja12 (/client)
+  call stack:
+Killaninja12 (/client): playtitlemusic()
+Killaninja12 (/mob/new_player): Login()
+Wed Nov 04 12:46:13 2015
+runtime error: Cannot execute null.savefile save().
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,75
+  usr: Cloud (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210017a1];option=save;...", /list (/list))
+GutTC (/client): Topic("src=\[0x210017a1];option=save;...", /list (/list), /datum/paiController (/datum/paiController))
+GutTC (/client): Topic("src=\[0x210017a1];option=save;...", /list (/list), /datum/paiController (/datum/paiController))
+Denied access to 'Guest-3113672834' connecting from 71.228.197.245
+Wed Nov 04 13:52:01 2015
+runtime error: Cannot read null.head_position
+proc name: EquipRank (/datum/controller/occupations/proc/EquipRank)
+  source file: job_controller.dm,385
+  usr: Alien Larva (109) (/mob/dead/observer)
+  src: /datum/controller/occupations (/datum/controller/occupations)
+  call stack:
+/datum/controller/occupations (/datum/controller/occupations): EquipRank(Alien Larva (109) (/mob/living/carbon/human), "MODE", 1)
+Minijar (/client): Respawn Character()
+### VarEdit by Minijar: /mob/living/carbon/human name=Keith Davis
+### VarEdit by Minijar: /mob/living/carbon/human real_name=Keith Davis
+Denied access to 'Guest-3795569416' connecting from 67.234.248.88
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 17, 21, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Kyle Byuman (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Kyle Byuman (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Kyle Byuman (/mob/dead/observer))
+Kyle Byuman (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=14;icon-y=19;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=14;icon-y=19;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Kyle Byuman (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Kyle Byuman (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Kyle Byuman (/mob/dead/observer))
+Kyle Byuman (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=14;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=14;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Kyle Byuman (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Kyle Byuman (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+Wed Nov 04 14:56:47 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Wed Nov 04 16:28:20 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Denied access to 'Guest-2416571240' connecting from 201.14.97.208
+Wed Nov 04 17:40:22 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Denied access to 'Guest-3458743617' connecting from 189.73.29.111
+Rebooted server.
+Wed Nov 04 18:53:19 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 9, 12, 16, 17, 18, 20, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Griffin Hughes (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Griffin Hughes (/mob/living/carbon/human))
+Griffin Hughes (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=17;icon-y=22;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (158,66,2) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=22;left=1;scr...")
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Griffin Hughes (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Griffin Hughes (/mob/living/carbon/human))
+Griffin Hughes (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=17;icon-y=22;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (158,66,2) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=22;left=1;scr...")
+Wed Nov 04 19:56:13 2015
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,107
+  usr: Griffin Hughes (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Griffin Hughes (/mob/living/carbon/human))
+Griffin Hughes (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=19;icon-y=11;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (157,56,2) (/turf/simulated/floor), "mapwindow.map", "icon-x=19;icon-y=11;left=1;scr...")
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Griffin Hughes (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Griffin Hughes (/mob/living/carbon/human))
+Griffin Hughes (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=16;icon-y=21;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (157,56,2) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=21;left=1;scr...")
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Griffin Hughes (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Griffin Hughes (/mob/living/carbon/human))
+Griffin Hughes (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=16;icon-y=21;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (157,56,2) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=21;left=1;scr...")
+Denied access to 'Tulias' connecting from 96.227.252.175
+Denied access to 'Guest-3545012582' connecting from 162.157.14.197
+Denied access to 'Chronx100' connecting from 24.116.90.209
+Undefined variable /datum/gas_mixture/var/ready
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,90
+  usr: H.E.L.P.E.R. (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+  call stack:
+/datum/paiController (/datum/paiController): Topic("src=\[0x210017e2];option=submi...", /list (/list))
+AIIA (/client): Topic("src=\[0x210017e2];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+AIIA (/client): Topic("src=\[0x210017e2];option=submi...", /list (/list), /datum/paiController (/datum/paiController))
+Undefined variable /icon/var/color
+proc name: add blood (/obj/item/add_blood)
+  source file: items.dm,608
+  usr: Casca \'Legs\' Orivanna (/mob/living/carbon/human)
+  src: the telescopic baton (/obj/item/weapon/melee/telebaton)
+  call stack:
+the telescopic baton (/obj/item/weapon/melee/telebaton): add blood(Virgin Hole (/mob/living/carbon/human))
+Virgin Hole (/mob/living/carbon/human): attacked by(the telescopic baton (/obj/item/weapon/melee/telebaton), Casca \'Legs\' Orivanna (/mob/living/carbon/human), null)
+the telescopic baton (/obj/item/weapon/melee/telebaton): attack(Virgin Hole (/mob/living/carbon/human), Casca \'Legs\' Orivanna (/mob/living/carbon/human), null)
+the telescopic baton (/obj/item/weapon/melee/telebaton): attack(Virgin Hole (/mob/living/carbon/human), Casca \'Legs\' Orivanna (/mob/living/carbon/human))
+Virgin Hole (/mob/living/carbon/human): attackby(the telescopic baton (/obj/item/weapon/melee/telebaton), Casca \'Legs\' Orivanna (/mob/living/carbon/human))
+Casca \'Legs\' Orivanna (/mob/living/carbon/human): ClickOn(Virgin Hole (/mob/living/carbon/human), "icon-x=16;icon-y=18;left=1;scr...")
+Virgin Hole (/mob/living/carbon/human): Click(the floor (114,139,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=18;left=1;scr...")
+Rebooted server.
+Wed Nov 04 21:58:01 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 6, 7, 10, 11, 12, 14, 15, 16, 17, 19, 21, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by SASoperative: /mob/dead/observer name=Dominick Carpenter
+Rebooted server.
+Wed Nov 04 23:39:57 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 15, 17, 18, 19, 20, 21 and 24
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Thu Nov 05 00:40:16 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Denied access to 'The flying banana gaming' connecting from 82.171.61.254
+Denied access to 'Guest-1277802511' connecting from 197.161.43.13
+Thu Nov 05 01:56:48 2015
+runtime error: Cannot read null.damtype
+proc name: attacked by (/mob/living/carbon/human/proc/attacked_by)
+  source file: human_defense.dm,285
+  usr: Greater Friend (/mob/living/carbon/human)
+  src: Greater Friend (/mob/living/carbon/human)
+  call stack:
+Greater Friend (/mob/living/carbon/human): attacked by(null, Greater Friend (/mob/living/carbon/human), null)
+attack(Greater Friend (/mob/living/carbon/human), Greater Friend (/mob/living/carbon/human), null)
+Greater Friend (/mob/living/carbon/human): attackby(null, Greater Friend (/mob/living/carbon/human))
+Greater Friend (/mob/living/carbon/human): ClickOn(Greater Friend (/mob/living/carbon/human), "icon-x=15;icon-y=5;left=1;scre...")
+Greater Friend (/mob/living/carbon/human): Click(the floor (111,165,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=5;left=1;scre...")
+Denied access to 'Guest-1518031364' connecting from 84.105.131.228
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Nov 05 04:16:18 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 7, 8, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22 and 23
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 15, 16, 18, 19, 21, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Nov 05 08:16:06 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 7, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 21, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Nov 05 09:46:44 2015
+Denied access to 'Guest-2185523338' connecting from 85.76.47.146
+Rebooted server.
+Thu Nov 05 10:52:57 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 9, 10, 14, 15, 16, 17, 19, 20, 21 and 24
+BYOND Error: failed to certify Ferro07
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Funkylol' connecting from 176.212.232.192
+Rebooted server.
+Thu Nov 05 13:32:32 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 15, 16, 17, 19, 20, 21 and 22
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'LawrenceL' connecting from 179.110.42.36
+Denied access to 'Guest-4034644784' connecting from 50.102.22.220
+Denied access to 'PlayFreitas' connecting from 186.216.44.196
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Denied access to 'Jason god of death' connecting from 74.196.0.60
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Thu Nov 05 14:37:52 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Denied access to 'Guest-62631250' connecting from 104.49.87.91
+Denied access to 'Guest-638144521' connecting from 74.196.0.60
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Thu Nov 05 15:50:46 2015
+runtime error: Cannot execute null.Examine().
+proc name: Topic (/mob/living/carbon/human/Topic)
+  source file: human.dm,725
+  usr: Sybil Fiddler (/mob/living/carbon/human)
+  src: Sybil Fiddler (/mob/living/carbon/human)
+  call stack:
+Sybil Fiddler (/mob/living/carbon/human): Topic("src=\[0x30000a9];lookitem=\[0x...", /list (/list))
+Craftano1 (/client): Topic("src=\[0x30000a9];lookitem=\[0x...", /list (/list), Sybil Fiddler (/mob/living/carbon/human))
+Craftano1 (/client): Topic("src=\[0x30000a9];lookitem=\[0x...", /list (/list), Sybil Fiddler (/mob/living/carbon/human))
+### VarEdit by SASoperative: /datum/gas_mixture temperature=101
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 8, 9, 11, 13, 15, 18, 19, 20, 21, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Nov 05 17:08:18 2015
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+the floor (78,45,2) (/turf/simulated/floor/greengrid): assume air(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): breathe()
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+the floor (78,45,2) (/turf/simulated/floor/greengrid): assume air(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): breathe()
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+the floor (78,45,2) (/turf/simulated/floor/greengrid): assume air(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): breathe()
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+the floor (78,45,2) (/turf/simulated/floor/greengrid): assume air(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): breathe()
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+the floor (78,45,2) (/turf/simulated/floor/greengrid): assume air(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): breathe()
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): update values()
+/datum/gas_mixture (/datum/gas_mixture): merge(/datum/gas_mixture (/datum/gas_mixture))
+the floor (78,45,2) (/turf/simulated/floor/greengrid): assume air(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): breathe()
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,670
+  usr: null
+  src: Unknown (/mob/living/carbon/human)
+  call stack:
+Unknown (/mob/living/carbon/human): handle environment(/datum/gas_mixture (/datum/gas_mixture))
+Unknown (/mob/living/carbon/human): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+### VarEdit by SASoperative: /obj/machinery/door/poddoor name=DO NOT ENTER (SAS)
+### VarEdit by SASoperative: /obj/machinery/door/poddoor name=DO NOT ENTER (SAS)
+### VarEdit by SASoperative: /obj/machinery/door/poddoor name=DO NOT ENTER (SAS)
+### VarEdit by Apophis775: /datum/disease/appendicitis stage=4
+Thu Nov 05 18:09:34 2015
+### VarEdit by Apophis775: /obj/mecha/working/ripley dna=
+### VarEdit by Apophis775: /obj/item/weapon/gun/projectile/automatic/m39 contents=/list
+### VarEdit by Apophis775: /obj/item/weapon/gun/projectile/automatic/m41 loaded=
+runtime error: Cannot read .len
+proc name: attackby (/obj/item/weapon/gun/projectile/attackby)
+  source file: projectile.dm,81
+Denied access to 'Guest-4000037651' connecting from 75.111.76.252
+### VarEdit by Apophis775: /obj/structure/closet/secure_closet/brig locked=0
+runtime error: Cannot read .len
+proc name: afterattack (/obj/item/weapon/gun/projectile/automatic/m41/afterattack)
+  source file: Marine_Weapons.dm,264
+### VarEdit by SASoperative: /obj/item/weapon/card/id name=Dominick Carpenter&#39;s ID Card
+### VarEdit by SASoperative: /obj/item/weapon/card/id assignment=Tactical Operative
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer name=Assault Rifle
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer projectile_type=/obj/item/projectile/bullet
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer fire_sound=Assault Rifle.wav
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer fire_delay=1
+### VarEdit by SASoperative: /obj/item/clothing/suit/armor/vest/ert/command desc=A set of armor. Has blue highlights.
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer name=Plasma Rifle
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer fire_sound=Laser Rifle.wav
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer projectile_type=/obj/item/projectile/beam/pulse
+Thu Nov 05 19:09:41 2015
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer fire_delay=16
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/pulse_rifle/destroyer fire_delay=25
+runtime error: Cannot read .len
+proc name: load into chamber (/obj/item/weapon/gun/projectile/load_into_chamber)
+  source file: projectile.dm,55
+runtime error: Cannot read .len
+proc name: afterattack (/obj/item/weapon/gun/projectile/automatic/m41/afterattack)
+  source file: Marine_Weapons.dm,264
+runtime error: Cannot read .len
+proc name: load into chamber (/obj/item/weapon/gun/projectile/load_into_chamber)
+  source file: projectile.dm,55
+runtime error: Cannot read .len
+proc name: afterattack (/obj/item/weapon/gun/projectile/automatic/m41/afterattack)
+  source file: Marine_Weapons.dm,264
+runtime error: Cannot read .len
+proc name: load into chamber (/obj/item/weapon/gun/projectile/load_into_chamber)
+  source file: projectile.dm,55
+runtime error: Cannot read .len
+proc name: afterattack (/obj/item/weapon/gun/projectile/automatic/m41/afterattack)
+  source file: Marine_Weapons.dm,264
+runtime error: Cannot read .len
+proc name: load into chamber (/obj/item/weapon/gun/projectile/load_into_chamber)
+  source file: projectile.dm,55
+runtime error: Cannot read .len
+proc name: afterattack (/obj/item/weapon/gun/projectile/automatic/m41/afterattack)
+  source file: Marine_Weapons.dm,264
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 7, 9, 10, 11, 14, 16, 17, 18, 20, 21, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-851711481' connecting from 107.134.5.60
+Thu Nov 05 20:20:14 2015
+Denied access to 'Guest-3569910689' connecting from 46.196.75.99
+Thu Nov 05 21:52:10 2015
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Erin Kowalski (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Erin Kowalski (/mob/living/carbon/human))
+Erin Kowalski (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=15;icon-y=12;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (118,170,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=12;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Erin Kowalski (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Erin Kowalski (/mob/living/carbon/human))
+Erin Kowalski (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=15;icon-y=16;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (118,170,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=16;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Erin Kowalski (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Erin Kowalski (/mob/living/carbon/human))
+Erin Kowalski (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=16;icon-y=10;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (118,170,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=10;left=1;scr...")
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Erin Kowalski (/mob/living/carbon/human)
+  src: the cloning pod (/obj/machinery/clonepod)
+  call stack:
+the cloning pod (/obj/machinery/clonepod): attackby(the wrench (/obj/item/weapon/wrench), Erin Kowalski (/mob/living/carbon/human))
+Erin Kowalski (/mob/living/carbon/human): ClickOn(the cloning pod (/obj/machinery/clonepod), "icon-x=17;icon-y=15;left=1;scr...")
+the cloning pod (/obj/machinery/clonepod): Click(the floor (118,170,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=15;left=1;scr...")
+Denied access to 'Guest-2604970631' connecting from 74.130.227.227
+Denied access to 'Guest-276337014' connecting from 108.185.254.145
+Rebooted server.
+Thu Nov 05 23:02:07 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 5, 6, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2243250882' connecting from 50.174.24.70
+Fri Nov 06 00:38:42 2015
+Denied access to 'Guest-3866057029' connecting from 128.73.242.31
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 17, 18, 19, 20, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Nov 06 02:17:09 2015
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Jack Olsen (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 8, 10, 11, 12, 14, 15, 16, 17, 19, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 8, 9, 10, 12, 13, 14, 15, 18, 20, 22, 24 and 25
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Nov 06 04:53:32 2015
+Denied access to 'Guest-796091492' connecting from 95.31.146.229
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Fri Nov 06 06:00:16 2015
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+### VarEdit by Ordukai: /mob/living/carbon/human layer=1
+runtime error: Cannot read null.ckey
+proc name: Topic (/datum/admins/Topic)
+  source file: l_hand_hud_object,782
+  usr: Jim Alliman (/mob/dead/observer)
+  src: /datum/admins (/datum/admins)
+  call stack:
+/datum/admins (/datum/admins): Topic("src=\[0x2100175d];newban=\[0x3...", /list (/list))
+Ordukai (/client): Topic("src=\[0x2100175d];newban=\[0x3...", /list (/list), /datum/admins (/datum/admins))
+Ordukai (/client): Topic("src=\[0x2100175d];newban=\[0x3...", /list (/list), /datum/admins (/datum/admins))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+  call stack:
+/datum/controller/supply (/datum/controller/supply): buy()
+/datum/shuttle/ferry/supply (/datum/shuttle/ferry/supply): short jump(Supply Shuttle (/area/supply/dock), Supply Shuttle (/area/supply/station))
+Rebooted server.
+Fri Nov 06 07:11:07 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 8, 9, 10, 13, 14, 15, 16, 17, 18, 19, 20 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Fri Nov 06 08:34:26 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 8, 9, 10, 11, 13, 15, 17, 19, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Nov 06 09:57:42 2015
+Denied access to 'Guest-2651331682' connecting from 98.249.4.157
+Fri Nov 06 11:50:02 2015
+### VarEdit by SASoperative: /obj/item/weapon/cell charge=0
+### VarEdit by SASoperative: /obj/item/weapon/cell/apc charge=0
+Denied access to 'Guest-28065699' connecting from 187.85.192.73
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 7, 8, 9, 11, 13, 15, 16, 17, 18, 19, 21, 22, 23, 24 and 26
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-3399530215' connecting from 82.38.126.137
+Fri Nov 06 12:59:31 2015
+Denied access to 'Guest-229367105' connecting from 82.25.91.18
+Fri Nov 06 14:15:15 2015
+Denied access to 'Guest-3372916900' connecting from 187.23.231.187
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 5, 7, 8, 9, 12, 13, 15, 16, 17, 19, 21, 23, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Nov 06 16:31:25 2015
+runtime error: Cannot read .len
+proc name: attacked by (/mob/living/carbon/human/proc/attacked_by)
+  source file: human_defense.dm,220
+  usr: Aisha \'Ace\' Erata (/mob/living/carbon/human)
+  src: Aisha \'Ace\' Erata (/mob/living/carbon/human)
+  call stack:
+Aisha \'Ace\' Erata (/mob/living/carbon/human): attacked by(the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37), Aisha \'Ace\' Erata (/mob/living/carbon/human), null)
+the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Aisha \'Ace\' Erata (/mob/living/carbon/human), Aisha \'Ace\' Erata (/mob/living/carbon/human), null)
+the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Aisha \'Ace\' Erata (/mob/living/carbon/human), Aisha \'Ace\' Erata (/mob/living/carbon/human), null)
+Aisha \'Ace\' Erata (/mob/living/carbon/human): attackby(the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37), Aisha \'Ace\' Erata (/mob/living/carbon/human))
+Aisha \'Ace\' Erata (/mob/living/carbon/human): ClickOn(Aisha \'Ace\' Erata (/mob/living/carbon/human), "icon-x=17;icon-y=25;left=1;scr...")
+Aisha \'Ace\' Erata (/mob/living/carbon/human): Click(the floor (169,137,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=25;left=1;scr...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16, 17, 18, 19, 20, 22, 23 and 24
+BYOND Error: failed to certify Aredal
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Nov 06 18:13:24 2015
+Denied access to 'Guest-249422486' connecting from 71.58.4.148
+### VarEdit by SASoperative: /obj/item/weapon/sord name=Strange Sword
+### VarEdit by SASoperative: /obj/item/weapon/sord force=60
+### VarEdit by SASoperative: /obj/item/weapon/sord force=45
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 16, 17, 18, 19, 21, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Nov 06 19:19:43 2015
+Denied access to 'Guest-1862162079' connecting from 186.229.44.118
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/toxgun charge_cost=0
+### VarEdit by SASoperative: /obj/item/weapon/katana name=Curved Sword
+### VarEdit by SASoperative: /obj/item/weapon/card/id assignment=Mercenary
+### VarEdit by SASoperative: /obj/item/weapon/gun/energy/toxgun silenced=1
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/weeds/attackby)
+  source file: XenoStructures.dm,210
+  usr: Maddox Mathews (/mob/living/carbon/human)
+  src: the weeds (/obj/effect/alien/weeds)
+  call stack:
+the weeds (/obj/effect/alien/weeds): attackby(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41), Maddox Mathews (/mob/living/carbon/human))
+Maddox Mathews (/mob/living/carbon/human): ClickOn(the weeds (/obj/effect/alien/weeds), "icon-x=15;icon-y=12;left=1;scr...")
+the weeds (/obj/effect/alien/weeds): Click(the dirt (159,90,2) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=15;icon-y=12;left=1;scr...")
+Fri Nov 06 20:25:40 2015
+runtime error: bad client
+proc name: Change UI (/client/verb/change_ui)
+  source file: grab,164
+  usr: Unknown (as Jonathan Senah) (/mob/living/carbon/human)
+  src: Ignoramus (/client)
+  call stack:
+Ignoramus (/client): Change UI()
+Denied access to 'Wulias' connecting from 96.227.252.175
+### VarEdit by SASoperative: /obj/machinery/power/supermatter damage=500
+### VarEdit by SASoperative: /obj/machinery/power/supermatter damage=6000
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Hunter Holmes (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Hunter Holmes (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Hunter Holmes (/mob/dead/observer))
+Hunter Holmes (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=12;icon-y=16;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=12;icon-y=16;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Hunter Holmes (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Hunter Holmes (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Hunter Holmes (/mob/dead/observer))
+Hunter Holmes (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=14;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=14;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Hunter Holmes (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Hunter Holmes (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Hunter Holmes (/mob/dead/observer))
+Hunter Holmes (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=15;left=1;shi...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,1) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=15;left=1;shi...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Hunter Holmes (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Hunter Holmes (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+Rebooted server.
+Fri Nov 06 21:28:57 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,4) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,4) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 4Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
