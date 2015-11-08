@@ -43,11 +43,11 @@
 
 	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)//Slow down progress if in stasis bag or cryo
 		if(prob(30))
-			if(stage < 4) counter++ //A counter to add to probability over time.
+			if(stage <= 4) counter++ //A counter to add to probability over time.
 			else if (stage == 4 && prob(30))  counter++
 
 	else
-		if(stage < 4) counter++
+		if(stage <= 4) counter++
 //		else if (stage == 4 && prob(30))  counter++
 
 	if(counter > 200) counter = 200 //somehow
