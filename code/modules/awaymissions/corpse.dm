@@ -205,6 +205,10 @@
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/mining
 
+/obj/effect/landmark/corpse/security
+	corpseuniform = /obj/item/clothing/under/marine_jumpsuit/PMC
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 
 /////////////////Officers//////////////////////
 

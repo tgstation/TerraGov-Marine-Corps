@@ -183,7 +183,9 @@ var/global/datum/controller/gameticker/ticker
 		if(mode.name == "Colonial Marines Halloween")
 			shuttle.area_offsite = locate(/area/shuttle/drop1/Haunted)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/Haunted)
-
+		if(mode.name == "Prison rescue")
+			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
+			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
 
 	return 1
 

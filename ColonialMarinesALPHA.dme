@@ -295,6 +295,7 @@
 #include "code\game\gamemodes\changeling\modularchangling.dm"
 #include "code\game\gamemodes\changeling\traitor_chan.dm"
 #include "code\game\gamemodes\colonialmarines\colonialmarines.dm"
+#include "code\game\gamemodes\colonialmarines\daedelus_prison.dm"
 #include "code\game\gamemodes\colonialmarines\Halloween.dm"
 #include "code\game\gamemodes\cult\cult.dm"
 #include "code\game\gamemodes\cult\cult_items.dm"
@@ -1596,6 +1597,7 @@
 #include "maps\Z.04.SulacoBottom.dmm"
 #include "maps\Z.05.Space.dmm"
 #include "maps\Z.06.HauntedHouse-Minijar.dmm"
+#include "maps\Z.13.Prison-Minijar-NOT-LIVE.dmm"
 // END_INCLUDE
 
 
