@@ -43,15 +43,15 @@
 
 	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)//Slow down progress if in stasis bag or cryo
 		if(prob(30))
-			if(stage < 4) counter++ //A counter to add to probability over time.
+			if(stage <= 4) counter++ //A counter to add to probability over time.
 			else if (stage == 4 && prob(30))  counter++
 
 	else
-		if(stage < 4) counter++
-		else if (stage == 4 && prob(30))  counter++
+		if(stage <= 4) counter++
+//		else if (stage == 4 && prob(30))  counter++
 
-	if(counter > 200) counter = 200 //somehow
-	if(stage < 5 && counter == 200)
+	if(counter > 80) counter = 80 //somehow
+	if(stage < 5 && counter == 80)
 		counter = 0
 		stage++
 		spawn(0)
@@ -104,6 +104,7 @@
 				affected_mob.make_jittery(100)
 				affected_mob.take_organ_damage(5) //  old 1
 				affected_mob.adjustToxLoss(20)  //old 5
+				counter == -80
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()
