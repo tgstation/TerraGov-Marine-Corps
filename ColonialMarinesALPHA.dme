@@ -1597,7 +1597,7 @@
 #include "maps\Z.04.SulacoBottom.dmm"
 #include "maps\Z.05.Space.dmm"
 #include "maps\Z.06.HauntedHouse-Minijar.dmm"
-#include "maps\Z.13.Prison-Minijar-NOT-LIVE.dmm"
+#include "maps\Z.07.Prison-Minijar.dmm"
 // END_INCLUDE
 
 

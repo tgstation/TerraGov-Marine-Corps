@@ -104,7 +104,7 @@
 				affected_mob.make_jittery(100)
 				affected_mob.take_organ_damage(5) //  old 1
 				affected_mob.adjustToxLoss(20)  //old 5
-				counter == -80
+				counter = -80
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()

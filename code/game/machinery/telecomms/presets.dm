@@ -1,5 +1,8 @@
 // ### Preset machines  ###
 
+
+//var/list/freq_listening = list()  USE THIS FOR NEW RELAY STUFF WHEN I GET THIS - APOPHIS
+
 //Relay
 /obj/machinery/telecomms/relay/preset
 	network = "tcommsat"

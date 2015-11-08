@@ -103,3 +103,7 @@
 /area/prison/hanger
 	name = "\improper droppod hanger"
 	icon_state = "storage"
+
+/area/prison/relay
+	name = "\improper Communications Relay"
+	icon_state = "tcomsatcham"
