@@ -178,10 +178,7 @@
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
 				if(halloss > 0)
-					if(prob(30))
-						brutedamage += halloss
-					if(prob(30))
-						burndamage += halloss
+					status = "tingling"
 
 				if(brutedamage > 0)
 					status = "bruised"
