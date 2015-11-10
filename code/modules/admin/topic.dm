@@ -1807,12 +1807,12 @@
 				log_admin("[key_name(usr)] spawned a meteor wave", 1)
 				message_admins("\blue [key_name_admin(usr)] spawned a meteor wave.", 1)
 				new /datum/event/meteor_wave
-			if("goblob")
+			/*if("goblob")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Blob")
 				log_admin("[key_name(usr)] spawned a blob", 1)
 				message_admins("\blue [key_name_admin(usr)] spawned a blob.", 1)
-				new /datum/event/blob
+				new /datum/event/blob*/  //Blob Shit
 
 			if("aliens")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -2163,17 +2163,6 @@
 				//can be found in code\game\game_modes\events\wormholes.dm
 				wormhole_event()
 
-			if("goblob")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","BL")
-				mini_blob_event()
-				message_admins("[key_name_admin(usr)] has spawned blob", 1)
-			if("aliens")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","AL")
-				if(aliens_allowed)
-					new /datum/event/alien_infestation
-					message_admins("[key_name_admin(usr)] has spawned aliens", 1)
 			if("spiders")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","SL")
