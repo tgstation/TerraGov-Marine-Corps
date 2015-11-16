@@ -25,15 +25,15 @@
 	icon_state = "hallC1"
 
 /area/prison/hallway/central2
-	name = "\improper central coridoor"
+	name = "\improper central corridor"
 	icon_state = "hallC2"
 
 /area/prison/hallway/central3
-	name = "\improper central coridoor"
+	name = "\improper central corridor"
 	icon_state = "hallC3"
 
 /area/prison/hallway/central4
-	name = "\improper central coridoor"
+	name = "\improper central corridor"
 	icon_state = "hallC1"
 
 /area/prison/north

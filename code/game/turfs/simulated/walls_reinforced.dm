@@ -324,3 +324,7 @@
 /turf/simulated/wall/r_wall/dense
 	icon_state = "iron0"
 	walltype = "iron"
+
+/turf/simulated/wall/r_wall/unmeltable
+	icon_state = "r_wall"
+	walltype = "rwall"
