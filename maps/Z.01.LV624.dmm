@@ -1894,7 +1894,7 @@
 "Kv" = (/obj/mecha/hoverpod/shuttlepod{name = "Corporate Jet Pod"},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "Kw" = (/obj/machinery/power/apc{dir = 1; name = "Secure Vault APC"; pixel_y = 30; start_charge = 200},/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "Kx" = (/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
-"Ky" = (/obj/mecha/working/ripley{name = "Mark IV Powerloader"},/obj/machinery/light{dir = 1},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
+"Ky" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "Kz" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/wall/r_wall,/area/lv624/lazarus/secure_storage)
 "KA" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"; layer = 1.9},/obj/structure/jungle/plantbot1,/turf/simulated/floor/gm/grass,/area/lv624/ground/compound)
 "KB" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"; layer = 1.9},/turf/simulated/floor/gm/dirtgrassborder{dir = 4},/area/lv624/ground/compound)
