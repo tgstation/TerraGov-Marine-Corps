@@ -8594,3 +8594,41 @@ General Ballisic Weapon (/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/
 Michael Jackson (/obj/mecha/combat/durand): click action(the plating (182,171,3) (/turf/simulated/floor/plating), Michael Jackson (/mob/living/carbon/human))
 Michael Jackson (/mob/living/carbon/human): ClickOn(the plating (182,171,3) (/turf/simulated/floor/plating), "icon-x=3;icon-y=17;left=1;scre...")
 the plating (182,171,3) (/turf/simulated/floor/plating): Click(the plating (182,171,3) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=3;icon-y=17;left=1;scre...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+BYOND Error: failed to certify GoldenAndSilver
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 19, 21, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Lostmixup: /obj/item/weapon/card/id/silver registered_name=Joshuu &#39;Josh&#39; Joshua
+runtime error: undefined variable /turf/space/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,972
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+  call stack:
+Lostmixup (/client): Edit Zone Air(space (102,56,7) (/turf/space))
+Tue Nov 17 21:57:43 2015
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/cheeseburger force=1000
