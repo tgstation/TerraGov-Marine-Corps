@@ -263,6 +263,12 @@
 	item_state = "ertarmor_sec"
 
 
+/obj/item/clothing/suit/storage/marine/fluff/nickiscool
+	name = "Starlord's Jacket"
+	desc = "Who?  DONOR ITEM"
+	icon_state = "star_jacket"
+	item_state = "star_jacker"
+
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
 //HEAD TEMPLATE (for Helmets/Hats/Berets)  ONLY TAKE NAME, DESC, ICON_STATE, AND ITEM_STATE.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -525,6 +531,29 @@
 	icon_state = "berettan"
 	item_state = "berettan"
 
+/obj/item/clothing/head/helmet/marine/fluff/nickiscool
+	name = "Starlord Mask"
+	desc = "Just in case someone might recognize you...  DONOR ITEM"
+	icon_state = "star_mask"
+	item_state = "star_mask"
+
+/obj/item/clothing/head/helmet/marine/fluff/Bibblesless
+	name = "Yellow ERT Helmet"
+	desc = "Standard Emergency Helmet, yellow variety....  DONOR ITEM"
+	icon_state = "rig0-ert_engineer"
+	item_state = "rig0-ert_engineer"
+
+/obj/item/clothing/head/helmet/marine/fluff/FernKiller
+	name = "White ERT Helmet"
+	desc = "Standard Emergency Helmet, white variety....  DONOR ITEM"
+	icon_state = "rig0-ert_medical"
+	item_state = "rig0-ert_medical"
+
+
+
+
+
+
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
 //UNIFORM TEMPLATE (for uniforms/jumpsuits)  ONLY TAKE NAME, DESC, ICON_STATE, ITEM_STATE,  AND ITEM_COLOR.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -720,6 +749,13 @@
 	icon_state = "samus_jumpsuit"
 	item_state = "samus_jumpsuit_s"
 	item_color = "samus_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/nickiscool
+	name = "Starlords Jumpsuit"
+	desc = "Designed to show off your manly muscles for all the ladies.  DONOR ITEM"
+	icon_state = "star_jumpsuit"
+	item_state = "star_jumpsuit_s"
+	item_color = "star_jumpsuit"
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
