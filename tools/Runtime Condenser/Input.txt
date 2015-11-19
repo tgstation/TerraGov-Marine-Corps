@@ -8632,3 +8632,1074 @@ proc name: Edit Zone Air (/client/proc/editzoneair)
 Lostmixup (/client): Edit Zone Air(space (102,56,7) (/turf/space))
 Tue Nov 17 21:57:43 2015
 ### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/cheeseburger force=1000
+runtime error: Cannot read null.fields
+proc name: Topic (/obj/machinery/computer/skills/Topic)
+  source file: skills.dm,282
+  usr: Nelson Finlay (/mob/living/carbon/human)
+  src: Employment Records (/obj/machinery/computer/skills)
+  call stack:
+Employment Records (/obj/machinery/computer/skills): Topic("src=\[0x20094df];choice=Print%...", /list (/list))
+Doughnut_Smuggler (/client): Topic("src=\[0x20094df];choice=Print%...", /list (/list), Employment Records (/obj/machinery/computer/skills))
+Doughnut_Smuggler (/client): Topic("src=\[0x20094df];choice=Print%...", /list (/list), Employment Records (/obj/machinery/computer/skills))
+Denied access to 'EliteBlizzard' connecting from 72.79.169.221
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the engineering radio headset (/obj/item/device/radio/headset/headset_eng), "Hello?", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", null, 0, /list (/list), 1461, "asks", Galactic Common (/datum/language/common))
+Subspace Broadcaster (/obj/machinery/telecomms/broadcaster/preset_left): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/broad...", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Telecommunication Server (/obj/machinery/telecomms/server/presets/common))
+Telecommunication Server (/obj/machinery/telecomms/server/presets/common): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Telecommunication Server (/obj/machinery/telecomms/server/presets/common): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/serve...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): receive information(/datum/signal (/datum/signal), Processor Unit (/obj/machinery/telecomms/processor/preset_four))
+Processor Unit (/obj/machinery/telecomms/processor/preset_four): relay direct information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Processor Unit (/obj/machinery/telecomms/processor/preset_four): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/proce...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/bus", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Subspace Receiver (/obj/machinery/telecomms/receiver/preset))
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset): receive signal(/datum/signal (/datum/signal))
+the engineering radio headset (/obj/item/device/radio/headset/headset_eng): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Hello?", null, "asks", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Hello?")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say("; hello?")
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the engineering radio headset (/obj/item/device/radio/headset/headset_eng), "Hello?", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", 3, 0, /list (/list), 1461, "asks", Galactic Common (/datum/language/common))
+Telecommunications Mainframe (/obj/machinery/telecomms/allinone): receive signal(/datum/signal (/datum/signal))
+the engineering radio headset (/obj/item/device/radio/headset/headset_eng): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Hello?", null, "asks", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Hello?")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say("; hello?")
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the marine delta radio headset (/obj/item/device/radio/headset/mdelta), "Found prisoners", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", null, 0, /list (/list), 1367, "says", Galactic Common (/datum/language/common))
+Subspace Broadcaster (/obj/machinery/telecomms/broadcaster/preset_left): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/broad...", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Telecommunication Server (/obj/machinery/telecomms/server/presets/squads))
+Telecommunication Server (/obj/machinery/telecomms/server/presets/squads): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Telecommunication Server (/obj/machinery/telecomms/server/presets/squads): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/serve...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): receive information(/datum/signal (/datum/signal), Processor Unit (/obj/machinery/telecomms/processor/preset_two))
+Processor Unit (/obj/machinery/telecomms/processor/preset_two): relay direct information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Processor Unit (/obj/machinery/telecomms/processor/preset_two): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/proce...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/bus", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left))
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left): receive signal(/datum/signal (/datum/signal))
+the marine delta radio headset (/obj/item/device/radio/headset/mdelta): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Found prisoners", "department", "says", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Found prisoners")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say(":h found prisoners")
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the marine delta radio headset (/obj/item/device/radio/headset/mdelta), "Found prisoners", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", 3, 0, /list (/list), 1367, "says", Galactic Common (/datum/language/common))
+Telecommunications Mainframe (/obj/machinery/telecomms/allinone): receive signal(/datum/signal (/datum/signal))
+the marine delta radio headset (/obj/item/device/radio/headset/mdelta): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Found prisoners", "department", "says", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Found prisoners")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say(":h found prisoners")
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the marine delta radio headset (/obj/item/device/radio/headset/mdelta), "Still alove", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", null, 0, /list (/list), 1367, "says", Galactic Common (/datum/language/common))
+Subspace Broadcaster (/obj/machinery/telecomms/broadcaster/preset_left): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/broad...", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Telecommunication Server (/obj/machinery/telecomms/server/presets/squads))
+Telecommunication Server (/obj/machinery/telecomms/server/presets/squads): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Telecommunication Server (/obj/machinery/telecomms/server/presets/squads): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/serve...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): receive information(/datum/signal (/datum/signal), Processor Unit (/obj/machinery/telecomms/processor/preset_two))
+Processor Unit (/obj/machinery/telecomms/processor/preset_two): relay direct information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Processor Unit (/obj/machinery/telecomms/processor/preset_two): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/proce...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/bus", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left))
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left): receive signal(/datum/signal (/datum/signal))
+the marine delta radio headset (/obj/item/device/radio/headset/mdelta): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Still alove", "department", "says", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Still alove")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say(":h still alove")
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the marine delta radio headset (/obj/item/device/radio/headset/mdelta), "Still alove", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", 3, 0, /list (/list), 1367, "says", Galactic Common (/datum/language/common))
+Telecommunications Mainframe (/obj/machinery/telecomms/allinone): receive signal(/datum/signal (/datum/signal))
+the marine delta radio headset (/obj/item/device/radio/headset/mdelta): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Still alove", "department", "says", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Still alove")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say(":h still alove")
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the marine delta radio headset (/obj/item/device/radio/headset/mdelta), "Still alive", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", null, 0, /list (/list), 1367, "says", Galactic Common (/datum/language/common))
+Subspace Broadcaster (/obj/machinery/telecomms/broadcaster/preset_left): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/broad...", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Telecommunication Server (/obj/machinery/telecomms/server/presets/squads))
+Telecommunication Server (/obj/machinery/telecomms/server/presets/squads): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Telecommunication Server (/obj/machinery/telecomms/server/presets/squads): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/serve...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): receive information(/datum/signal (/datum/signal), Processor Unit (/obj/machinery/telecomms/processor/preset_two))
+Processor Unit (/obj/machinery/telecomms/processor/preset_two): relay direct information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Processor Unit (/obj/machinery/telecomms/processor/preset_two): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_two))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/proce...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_two): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/bus", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left))
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset_left): receive signal(/datum/signal (/datum/signal))
+the marine delta radio headset (/obj/item/device/radio/headset/mdelta): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Still alive", "department", "says", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Still alive")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say(":h still alive")
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+  call stack:
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Lewis \'Wrench\' Archabold (/mob/living/carbon/human), 0, "says", the marine delta radio headset (/obj/item/device/radio/headset/mdelta), "Still alive", "Lewis \'Wrench\' Archabold", "No id", "Lewis \'Wrench\' Archabold", "unknown", 3, 0, /list (/list), 1367, "says", Galactic Common (/datum/language/common))
+Telecommunications Mainframe (/obj/machinery/telecomms/allinone): receive signal(/datum/signal (/datum/signal))
+the marine delta radio headset (/obj/item/device/radio/headset/mdelta): talk into(Lewis \'Wrench\' Archabold (/mob/living/carbon/human), "Still alive", "department", "says", Galactic Common (/datum/language/common))
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): say("Still alive")
+Lewis \'Wrench\' Archabold (/mob/living/carbon/human): Say(":h still alive")
+Denied access to 'Guest-606753943' connecting from 70.130.131.27
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+### VarEdit by SASoperative: /datum/gas_mixture total_moles=101
+Tue Nov 17 23:04:57 2015
+Denied access to 'Guest-12579055' connecting from 220.245.166.237
+Denied access to 'Guest-586243427' connecting from 70.189.220.213
+### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Hunter is_intelligent=1
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 8, 9, 11, 12, 15, 16, 17, 20, 21, 23, 24 and 25
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Nov 18 00:51:17 2015
+runtime error: Cannot modify null.holder_atom.
+proc name: New (/obj/item/weapon/archaeological_find/New)
+  source file: finds.dm,549
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: Strange gun (/obj/item/weapon/archaeological_find)
+  call stack:
+Strange gun (/obj/item/weapon/archaeological_find): New(Rock (39,161,1) (/turf/simulated/mineral), 27)
+Rock (39,161,1) (/turf/simulated/mineral): excavate find(80, /datum/find (/datum/find))
+Rock (39,161,1) (/turf/simulated/mineral): attackby(1/2 pick (/obj/item/weapon/pickaxe/three_pick), Axel Strife (/mob/living/carbon/human))
+Axel Strife (/mob/living/carbon/human): ClickOn(Rock (39,161,1) (/turf/simulated/mineral), "icon-x=27;icon-y=29;left=1;scr...")
+Rock (39,161,1) (/turf/simulated/mineral): Click(Rock (39,161,1) (/turf/simulated/mineral), "mapwindow.map", "icon-x=27;icon-y=29;left=1;scr...")
+Denied access to 'Lmnop78' connecting from 134.88.119.105
+runtime error: Cannot modify null.loc.
+proc name: end step (/datum/surgery_step/cavity/implant_removal/end_step)
+  source file: implant.dm,205
+  usr: Felix \'Tank\' Woodward (/mob/living/carbon/human)
+  src: /datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal)
+  call stack:
+/datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal): end step(Felix \'Tank\' Woodward (/mob/living/carbon/human), John \'Spartan\' Murry (/mob/living/carbon/human), "chest", the hemostat (/obj/item/weapon/hemostat))
+do surgery(John \'Spartan\' Murry (/mob/living/carbon/human), Felix \'Tank\' Woodward (/mob/living/carbon/human), the hemostat (/obj/item/weapon/hemostat))
+the hemostat (/obj/item/weapon/hemostat): attack(John \'Spartan\' Murry (/mob/living/carbon/human), Felix \'Tank\' Woodward (/mob/living/carbon/human), null)
+John \'Spartan\' Murry (/mob/living/carbon/human): attackby(the hemostat (/obj/item/weapon/hemostat), Felix \'Tank\' Woodward (/mob/living/carbon/human))
+Felix \'Tank\' Woodward (/mob/living/carbon/human): ClickOn(John \'Spartan\' Murry (/mob/living/carbon/human), "icon-x=17;icon-y=17;left=1;scr...")
+John \'Spartan\' Murry (/mob/living/carbon/human): Click(the floor (106,172,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=17;icon-y=17;left=1;scr...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 21, 22, 24 and 25
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.fields
+proc name: Topic (/obj/machinery/computer/skills/Topic)
+  source file: skills.dm,282
+  usr: Marion Stone (/mob/living/carbon/human)
+  src: Employment Records (/obj/machinery/computer/skills)
+  call stack:
+Employment Records (/obj/machinery/computer/skills): Topic("src=\[0x2009523];choice=Print%...", /list (/list))
+Doughnut_Smuggler (/client): Topic("src=\[0x2009523];choice=Print%...", /list (/list), Employment Records (/obj/machinery/computer/skills))
+Doughnut_Smuggler (/client): Topic("src=\[0x2009523];choice=Print%...", /list (/list), Employment Records (/obj/machinery/computer/skills))
+Rebooted server.
+Wed Nov 18 03:49:14 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 7, 11, 12, 14, 15, 16, 18, 19, 20, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Nov 18 05:14:08 2015
+### VarEdit by Apophis775: /obj/item/weapon/cell/apc charge=0
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=0
+### VarEdit by Apophis775: /obj/item/weapon/cell/apc charge=20
+### VarEdit by Apophis775: /obj/machinery/power/smes/buildable charge=0
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 17, 18, 19, 22, 23 and 26
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Wed Nov 18 07:10:19 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 6, 7, 8, 9, 10, 11, 12, 14, 17, 20, 21, 22, 23, 24 and 26
+BYOND Error: failed to certify Khargal
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Nov 18 09:22:24 2015
+Denied access to 'Guest-1200277679' connecting from 189.24.253.149
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,550
+  usr: null
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+  call stack:
+M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun): dropped(null)
+Rebooted server.
+Wed Nov 18 10:23:29 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 7, 8, 9, 10, 11, 13, 16, 17, 18, 19, 20, 21, 22, 23 and 26
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Nov 18 13:00:51 2015
+Denied access to 'Guest-1760197560' connecting from 91.122.90.59
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 7, 8, 9, 12, 13, 14, 15, 17, 20, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.fields
+proc name: populate (/obj/structure/filingcabinet/security/proc/populate)
+  source file: filingcabinet.dm,117
+  usr: Harry \'Mac\' McLuskie (/mob/living/carbon/human)
+  src: the filing cabinet (/obj/structure/filingcabinet/security)
+  call stack:
+the filing cabinet (/obj/structure/filingcabinet/security): populate()
+the filing cabinet (/obj/structure/filingcabinet/security): attack hand(Harry \'Mac\' McLuskie (/mob/living/carbon/human))
+Harry \'Mac\' McLuskie (/mob/living/carbon/human): UnarmedAttack(the filing cabinet (/obj/structure/filingcabinet/security), 1)
+Harry \'Mac\' McLuskie (/mob/living/carbon/human): ClickOn(the filing cabinet (/obj/structure/filingcabinet/security), "icon-x=11;icon-y=24;left=1;scr...")
+the filing cabinet (/obj/structure/filingcabinet/security): Click(the floor (116,149,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=11;icon-y=24;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Artyom Wright (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Artyom Wright (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Artyom Wright (/mob/dead/observer))
+Artyom Wright (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=10;icon-y=19;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=10;icon-y=19;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Artyom Wright (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Artyom Wright (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Artyom Wright (/mob/dead/observer))
+Artyom Wright (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=8;icon-y=19;left=1;scre...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=8;icon-y=19;left=1;scre...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Artyom Wright (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Artyom Wright (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Artyom Wright (/mob/dead/observer))
+Artyom Wright (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=13;icon-y=16;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=13;icon-y=16;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Artyom Wright (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Artyom Wright (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Artyom Wright (/mob/dead/observer))
+Artyom Wright (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=16;icon-y=13;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=16;icon-y=13;left=1;scr...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Artyom Wright (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Artyom Wright (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Artyom Wright (/mob/dead/observer))
+Artyom Wright (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=13;icon-y=15;left=1;scr...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=13;icon-y=15;left=1;scr...")
+Wed Nov 18 14:24:01 2015
+Denied access to 'Guest-1101514704' connecting from 68.0.204.217
+Denied access to 'Guest-2522448451' connecting from 217.173.194.32
+Rebooted server.
+Wed Nov 18 15:41:31 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-3380071889' connecting from 98.92.245.212
+Wed Nov 18 16:48:43 2015
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,550
+  usr: null
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+  call stack:
+M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun): dropped(null)
+Denied access to 'Guest-714591840' connecting from 173.30.119.15
+Denied access to 'Guest-3285528384' connecting from 104.229.119.253
+Wed Nov 18 18:25:52 2015
+Denied access to 'Guest-3721085342' connecting from 109.188.125.16
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(31.5506)
+the Engine Chamber Air Alarm (/obj/machinery/alarm): handle heating cooling(/datum/gas_mixture (/datum/gas_mixture))
+the Engine Chamber Air Alarm (/obj/machinery/alarm): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(31.5506)
+the Engine Chamber Air Alarm (/obj/machinery/alarm): handle heating cooling(/datum/gas_mixture (/datum/gas_mixture))
+the Engine Chamber Air Alarm (/obj/machinery/alarm): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(31.5506)
+the Engine Chamber Air Alarm (/obj/machinery/alarm): handle heating cooling(/datum/gas_mixture (/datum/gas_mixture))
+the Engine Chamber Air Alarm (/obj/machinery/alarm): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(31.5506)
+the Engine Chamber Air Alarm (/obj/machinery/alarm): handle heating cooling(/datum/gas_mixture (/datum/gas_mixture))
+the Engine Chamber Air Alarm (/obj/machinery/alarm): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(31.5506)
+the Engine Chamber Air Alarm (/obj/machinery/alarm): handle heating cooling(/datum/gas_mixture (/datum/gas_mixture))
+the Engine Chamber Air Alarm (/obj/machinery/alarm): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): heat capacity()
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): share ratio(/datum/gas_mixture (/datum/gas_mixture), 1, 108, 0)
+/connection_edge/zone (/connection_edge/zone): tick()
+/datum/controller/air_system (/datum/controller/air_system): Tick()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+  call stack:
+/datum/gas_mixture (/datum/gas_mixture): remove(31.5506)
+the Engine Chamber Air Alarm (/obj/machinery/alarm): handle heating cooling(/datum/gas_mixture (/datum/gas_mixture))
+the Engine Chamber Air Alarm (/obj/machinery/alarm): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+runtime error: list index out of bounds
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+runtime error: list index out of bounds
+proc name: specific entropy (/datum/gas_mixture/proc/specific_entropy)
+  source file: _gas_mixture_xgm.dm,154
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+runtime error: list index out of bounds
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+Warning: further proc crash messages are being suppressed to prevent overload...
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 9, 10, 12, 14, 15, 16, 18, 19, 20, 21, 22 and 23
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Wed Nov 18 20:05:04 2015
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=100
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+### VarEdit by TR-Blackdragon: /datum/gas_mixture temperature=293.155
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+BYOND Error: failed to certify Redfield5
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 21, 22, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2188151164' connecting from 58.166.94.171
+Wed Nov 18 21:28:50 2015
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Maximilian Thompson (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Maximilian Thompson (/mob/living/carbon/human))
+Maximilian Thompson (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=23;icon-y=22;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (158,79,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=23;icon-y=22;left=1;scr...")
+### VarEdit by Adjective: /mob/living/simple_animal/corgi/puppy real_name=Paul
+### VarEdit by Adjective: /datum/gas_mixture total_moles=101
+### VarEdit by Adjective: /obj/structure/closet/secure_closet/hos locked=0
+### VarEdit by Adjective: /mob/dead/observer see_infrared=1
+### VarEdit by Adjective: /mob/dead/observer see_in_dark=8
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Shiloh Linton (/mob/living/carbon/human)
+  src: H.E.L.P (/mob/living/silicon/pai)
+  call stack:
+H.E.L.P (/mob/living/silicon/pai): close up()
+H.E.L.P (/mob/living/silicon/pai): attack hand(Shiloh Linton (/mob/living/carbon/human))
+Shiloh Linton (/mob/living/carbon/human): UnarmedAttack(H.E.L.P (/mob/living/silicon/pai), 1)
+Shiloh Linton (/mob/living/carbon/human): ClickOn(H.E.L.P (/mob/living/silicon/pai), "icon-x=20;icon-y=11;left=1;scr...")
+H.E.L.P (/mob/living/silicon/pai): Click(the floor (107,163,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=20;icon-y=11;left=1;scr...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Shiloh Linton (/mob/living/carbon/human)
+  src: H.E.L.P (/mob/living/silicon/pai)
+  call stack:
+H.E.L.P (/mob/living/silicon/pai): close up()
+H.E.L.P (/mob/living/silicon/pai): attack hand(Shiloh Linton (/mob/living/carbon/human))
+Shiloh Linton (/mob/living/carbon/human): UnarmedAttack(H.E.L.P (/mob/living/silicon/pai), 1)
+Shiloh Linton (/mob/living/carbon/human): ClickOn(H.E.L.P (/mob/living/silicon/pai), "icon-x=18;icon-y=6;left=1;scre...")
+H.E.L.P (/mob/living/silicon/pai): Click(the floor (107,163,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=6;left=1;scre...")
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Tyler \'Thanatos\' Borealis (/mob/living/carbon/human)
+  src: H.E.L.P (/mob/living/silicon/pai)
+  call stack:
+H.E.L.P (/mob/living/silicon/pai): close up()
+H.E.L.P (/mob/living/silicon/pai): attackby(the briefcase (/obj/item/weapon/storage/briefcase), Tyler \'Thanatos\' Borealis (/mob/living/carbon/human))
+Wed Nov 18 22:36:34 2015
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Marshall Bowchiew (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+  call stack:
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): attackby(null, Marshall Bowchiew (/mob/living/carbon/human))
+Marshall Bowchiew (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/obj/machinery/marine_turret_frame), "icon-x=14;icon-y=22;left=1;scr...")
+UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (183,61,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=22;left=1;scr...")
+Denied access to 'Tristan63' connecting from 71.122.122.16
+Denied access to 'Guest-2293131383' connecting from 72.19.77.214
