@@ -1894,7 +1894,7 @@
 "Kv" = (/obj/mecha/hoverpod/shuttlepod{name = "Corporate Jet Pod"},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "Kw" = (/obj/machinery/power/apc{dir = 1; name = "Secure Vault APC"; pixel_y = 30; start_charge = 200},/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "Kx" = (/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
-"Ky" = (/obj/mecha/working/ripley{name = "Mark IV Powerloader"},/obj/machinery/light{dir = 1},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
+"Ky" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/greengrid,/area/lv624/lazarus/secure_storage)
 "Kz" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/wall/r_wall,/area/lv624/lazarus/secure_storage)
 "KA" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"; layer = 1.9},/obj/structure/jungle/plantbot1,/turf/simulated/floor/gm/grass,/area/lv624/ground/compound)
 "KB" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"; layer = 1.9},/turf/simulated/floor/gm/dirtgrassborder{dir = 4},/area/lv624/ground/compound)
@@ -2045,7 +2045,7 @@
 "Nq" = (/obj/machinery/power/smes/magical{dir = 4},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Nr" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Ns" = (/obj/machinery/power/apc{dir = 8; pixel_x = -30; start_charge = 300},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
-"Nt" = (/obj/machinery/telecomms/relay/preset/station{explosion_resistance = 100; idle_power_usage = 0; listening_level = 4; unacidable = 1; use_power = 0},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
+"Nt" = (/obj/machinery/telecomms/relay/preset/station{explosion_resistance = 100; idle_power_usage = 0; listening_level = 1; unacidable = 1; use_power = 0},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Nu" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 "Nv" = (/obj/machinery/telecomms/allinone{freq_listening = list(1214); level = 1; listening_level = 1; name = "Alien Mainframe"; network = "ALIEN"; unacidable = 1},/turf/unsimulated/floor,/area/lv624/lazarus/relay)
 

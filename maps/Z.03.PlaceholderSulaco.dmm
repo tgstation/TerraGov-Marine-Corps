@@ -383,7 +383,7 @@
 "hs" = (/turf/simulated/floor/engine,/area/sulaco/engineering/atmos)
 "ht" = (/obj/machinery/door/airlock/medical{name = "Freezer room"; req_access_txt = "0"; req_one_access_txt = "2;8;19"},/turf/simulated/floor{icon_state = "white"},/area/sulaco/medbay/surgery_two)
 "hu" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/obj/structure/closet/hydrant{pixel_y = 30},/turf/simulated/floor{icon_state = "white"},/area/sulaco/medbay/surgery_two)
-"hv" = (/obj/machinery/light{dir = 1},/obj/item/device/radio/intercom{anyai = 1; freerange = 1; name = "General Listening Channel"; pixel_x = 0; pixel_y = -30},/obj/machinery/alarm{pixel_y = 30},/obj/machinery/camera/autoname,/turf/simulated/floor{icon_state = "white"},/area/sulaco/medbay/surgery_two)
+"hv" = (/obj/machinery/light{dir = 1},/obj/machinery/alarm{pixel_y = 30},/obj/machinery/camera/autoname,/turf/simulated/floor{icon_state = "white"},/area/sulaco/medbay/surgery_two)
 "hw" = (/obj/item/device/radio/intercom{anyai = 1; freerange = 1; name = "General Listening Channel"; pixel_x = 0; pixel_y = 30},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor{icon_state = "white"},/area/sulaco/medbay/surgery_two)
 "hx" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor{icon_state = "white"},/area/sulaco/medbay/surgery_two)
 "hy" = (/obj/machinery/door/airlock/medical{name = "Operating Theatre 2"; req_access_txt = "0"; req_one_access_txt = "2;8;19"},/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/obj/machinery/holosign/surgery{id = "ot2"},/obj/machinery/door/firedoor/border_only{dir = 2},/turf/simulated/floor{icon_state = "white"},/area/sulaco/medbay/surgery_two)

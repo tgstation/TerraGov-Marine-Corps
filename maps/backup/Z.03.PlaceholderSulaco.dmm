@@ -761,7 +761,7 @@
 "oG" = (/turf/space,/turf/simulated/shuttle/wall{dir = 1; icon_state = "diagonalWall3"},/area/sulaco/engineering/engine)
 "oH" = (/obj/structure/sign/prop1,/turf/simulated/wall/sulaco,/area/sulaco/bridge)
 "oI" = (/obj/machinery/telecomms/server{produces_heat = 0; use_power = 0},/turf/simulated/floor{dir = 9; icon_state = "blue"},/area/sulaco/bridge)
-"oJ" = (/obj/machinery/telecomms/relay/preset/station{listening_level = 4},/turf/simulated/floor{dir = 1; icon_state = "blue"},/area/sulaco/bridge)
+"oJ" = (/obj/machinery/telecomms/relay/preset/station{listening_level = 3},/turf/simulated/floor{dir = 1; icon_state = "blue"},/area/sulaco/bridge)
 "oK" = (/obj/structure/closet/secure_closet/marine/marine_lo,/obj/machinery/vending/wallmed1{pixel_y = 32},/turf/simulated/floor{dir = 1; icon_state = "blue"},/area/sulaco/bridge)
 "oL" = (/obj/machinery/power/apc{dir = 1; name = "Bridge"; pixel_y = 30},/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/obj/structure/table/reinforced,/obj/item/weapon/crowbar,/obj/item/weapon/book/manual/lazarus_landing_map,/turf/simulated/floor{dir = 1; icon_state = "blue"},/area/sulaco/bridge)
 "oM" = (/obj/structure/closet/secure_closet/marine/military_officer,/turf/simulated/floor{dir = 1; icon_state = "blue"},/area/sulaco/bridge)
