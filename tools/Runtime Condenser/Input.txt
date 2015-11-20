@@ -9703,3 +9703,507 @@ Marshall Bowchiew (/mob/living/carbon/human): ClickOn(UA 571-C Turret Frame (/ob
 UA 571-C Turret Frame (/obj/machinery/marine_turret_frame): Click(the floor (183,61,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=22;left=1;scr...")
 Denied access to 'Tristan63' connecting from 71.122.122.16
 Denied access to 'Guest-2293131383' connecting from 72.19.77.214
+### VarEdit by Ordukai: /obj/mecha/working/ripley visibility=0
+### VarEdit by Ordukai: /obj/mecha/working/ripley invisibility=60
+### VarEdit by Ordukai: /obj/mecha/working/ripley opacity=0
+Wed Nov 18 23:38:50 2015
+Denied access to 'Guest-2247296478' connecting from 75.170.32.191
+### VarEdit by Adjective: /mob/living/carbon/Xenomorph/Hunter jelly=500
+### VarEdit by Adjective: /mob/living/carbon/Xenomorph/Hunter jellyGrow=500
+### VarEdit by Ordukai: /obj/structure/ladder up=The Space
+Denied access to 'Guest-3392578710' connecting from 75.185.163.117
+### VarEdit by Adjective: /mob/dead/observer name=UNCULTURED SWINE
+### VarEdit by Ordukai: /mob/dead/observer name=BLIND FAITH
+### VarEdit by Ordukai: /mob/living/carbon/human recently_unbuckled=0
+Denied access to 'Guest-3077273054' connecting from 24.160.156.163
+Thu Nov 19 00:49:38 2015
+Denied access to 'Guest-559127005' connecting from 71.170.63.98
+### VarEdit by SASoperative: /mob/living/carbon/human luminosity=8
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 20, 22, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: Ordukai (/mob/new_player)
+  src: Ordukai (/client)
+  call stack:
+Ordukai (/client): playtitlemusic()
+Ordukai (/mob/new_player): Login()
+### VarEdit by Ordukai: /mob/living/carbon/human gender=female
+Denied access to 'Guest-3564926984' connecting from 50.136.137.35
+### VarEdit by Ordukai: /mob/living/carbon/human flavor_text=She has dog tags around her neck stateing 
+BENFORD, PRIVATE
+SMOKE H.
+B POS
+NO RELIGON
+
+
+Thu Nov 19 02:16:06 2015
+### VarEdit by Ordukai: /obj/item/weapon/reagent_containers/syringe/drugs name=Crate
+### VarEdit by Ordukai: /obj/item/weapon/reagent_containers/syringe/drugs name=Crate
+### VarEdit by Ordukai: /obj/item/weapon/reagent_containers/syringe/drugs name=Crate
+### VarEdit by Ordukai: /obj/item/weapon/reagent_containers/syringe/drugs name=Crate
+### VarEdit by Ordukai: /mob/living/carbon/human hallucination=1
+### VarEdit by Ordukai: /mob/living/carbon/human hallucination=1
+### VarEdit by Ordukai: /obj/item/alien_embryo stage=4
+### VarEdit by Ordukai: /obj/item/alien_embryo counter=400
+Denied access to 'Guest-3447338208' connecting from 98.148.128.124
+Denied access to 'AridDecay' connecting from 70.75.86.171
+### VarEdit by Ordukai: /obj/machinery/door/airlock/maintenance_hatch req_one_access_txt=
+### VarEdit by Ordukai: /obj/machinery/door/airlock/maintenance_hatch req_one_access_txt=0
+### VarEdit by Ordukai: /obj/machinery/door/airlock/external locked=1
+### VarEdit by Ordukai: /obj/machinery/door/airlock/external locked=1
+Denied access to 'Guest-261576329' connecting from 176.50.162.144
+Rebooted server.
+Thu Nov 19 03:20:19 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 19, 20, 21, 22, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Maximilian Thompson (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Maximilian Thompson (/mob/dead/observer))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): attack ghost(Maximilian Thompson (/mob/dead/observer))
+Maximilian Thompson (/mob/dead/observer): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=17;icon-y=21;left=1;shi...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=17;icon-y=21;left=1;shi...")
+runtime error: wrong type of value for list
+verb name: AllowTargetMove (/client/verb/AllowTargetMove)
+  source file: targeting.dm,296
+  usr: Jack Olsen (/mob/living/carbon/human)
+  src: Coolsuf6 (/client)
+  call stack:
+Coolsuf6 (/client): AllowTargetMove()
+Allow Walking (/obj/screen/gun/move): Click(null, "mapwindow.map", "icon-x=17;icon-y=21;left=1;scr...")
+runtime error: wrong type of value for list
+proc name: add gun icons (/client/proc/add_gun_icons)
+  source file: targeting.dm,263
+  usr: Jack Olsen (as James Crow) (/mob/living/carbon/human)
+  src: Coolsuf6 (/client)
+  call stack:
+Coolsuf6 (/client): add gun icons()
+James Crow (/mob/living/carbon/human): Targeted(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): Aim(James Crow (/mob/living/carbon/human))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): PreFire(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), "icon-x=18;icon-y=18;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=18;icon-y=18;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=18;icon-y=18;left=1;scr...")
+Jack Olsen (as James Crow) (/mob/living/carbon/human): ClickOn(James Crow (/mob/living/carbon/human), "icon-x=18;icon-y=18;left=1;scr...")
+James Crow (/mob/living/carbon/human): Click(the floor (117,170,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=18;left=1;scr...")
+runtime error: wrong type of value for list
+proc name: add gun icons (/client/proc/add_gun_icons)
+  source file: targeting.dm,263
+  usr: Jack Olsen (as James Crow) (/mob/living/carbon/human)
+  src: Coolsuf6 (/client)
+  call stack:
+Coolsuf6 (/client): add gun icons()
+James Crow (/mob/living/carbon/human): Targeted(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): Aim(James Crow (/mob/living/carbon/human))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): PreFire(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), "icon-x=18;icon-y=15;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=18;icon-y=15;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=18;icon-y=15;left=1;scr...")
+Jack Olsen (as James Crow) (/mob/living/carbon/human): ClickOn(James Crow (/mob/living/carbon/human), "icon-x=18;icon-y=15;left=1;scr...")
+James Crow (/mob/living/carbon/human): Click(the floor (117,170,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=15;left=1;scr...")
+runtime error: wrong type of value for list
+proc name: add gun icons (/client/proc/add_gun_icons)
+  source file: targeting.dm,263
+  usr: Jack Olsen (as James Crow) (/mob/living/carbon/human)
+  src: Coolsuf6 (/client)
+  call stack:
+Coolsuf6 (/client): add gun icons()
+James Crow (/mob/living/carbon/human): Targeted(the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): Aim(James Crow (/mob/living/carbon/human))
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): PreFire(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), "icon-x=16;icon-y=15;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=16;icon-y=15;left=1;scr...")
+the M41A Rifle (Wielded) (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=16;icon-y=15;left=1;scr...")
+Jack Olsen (as James Crow) (/mob/living/carbon/human): ClickOn(James Crow (/mob/living/carbon/human), "icon-x=16;icon-y=15;left=1;scr...")
+James Crow (/mob/living/carbon/human): Click(the floor (117,170,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=15;left=1;scr...")
+Thu Nov 19 04:21:45 2015
+runtime error: wrong type of value for list
+proc name: add gun icons (/client/proc/add_gun_icons)
+  source file: targeting.dm,263
+  usr: Jack Olsen (as James Crow) (/mob/living/carbon/human)
+  src: Coolsuf6 (/client)
+  call stack:
+Coolsuf6 (/client): add gun icons()
+James Crow (/mob/living/carbon/human): Targeted(the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41))
+the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41): Aim(James Crow (/mob/living/carbon/human))
+the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41): PreFire(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), "icon-x=18;icon-y=19;left=1;scr...")
+the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=18;icon-y=19;left=1;scr...")
+the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41): afterattack(James Crow (/mob/living/carbon/human), Jack Olsen (as James Crow) (/mob/living/carbon/human), 0, "icon-x=18;icon-y=19;left=1;scr...")
+Jack Olsen (as James Crow) (/mob/living/carbon/human): ClickOn(James Crow (/mob/living/carbon/human), "icon-x=18;icon-y=19;left=1;scr...")
+James Crow (/mob/living/carbon/human): Click(the floor (121,170,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=19;left=1;scr...")
+runtime error: wrong type of value for list
+verb name: AllowTargetMove (/client/verb/AllowTargetMove)
+  source file: targeting.dm,296
+  usr: Jack Olsen (as James Crow) (/mob/living/carbon/human)
+  src: Coolsuf6 (/client)
+  call stack:
+Coolsuf6 (/client): AllowTargetMove()
+Allow Walking (/obj/screen/gun/move): Click(null, "mapwindow.map", "icon-x=14;icon-y=19;left=1;scr...")
+runtime error: Cannot modify null.loc.
+proc name: attackby (/obj/item/weapon/gun/attackby)
+  source file: gun.dm,377
+  usr: Riayna Drake (/mob/living/carbon/human)
+  src: the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+  call stack:
+the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attackby(null, Riayna Drake (/mob/living/carbon/human))
+the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attackby(null, Riayna Drake (/mob/living/carbon/human))
+the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attackby(null, Riayna Drake (/mob/living/carbon/human))
+Riayna Drake (/mob/living/carbon/human): ClickOn(the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37), "icon-x=15;icon-y=16;left=1;scr...")
+the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37): Click(null, "mapwindow.map", "icon-x=15;icon-y=16;left=1;scr...")
+Thu Nov 19 05:28:56 2015
+### VarEdit by Ordukai: /mob/dead/observer x=68
+### VarEdit by Ordukai: /mob/dead/observer y=53
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 6, 7, 8, 9, 10, 15, 16, 17, 18, 19, 20, 21, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-3833252222' connecting from 218.186.41.134
+Denied access to 'Guest-1572967772' connecting from 83.83.6.122
+Rebooted server.
+Thu Nov 19 06:57:58 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 7, 9, 10, 11, 14, 17, 18, 20, 22, 23, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Rebooted server.
+Thu Nov 19 08:41:19 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 8, 10, 11, 12, 14, 16, 18, 20, 21, 22, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Funkylol' connecting from 176.215.220.106
+Denied access to 'Guest-696388336' connecting from 5.141.88.80
+Thu Nov 19 09:49:07 2015
+Denied access to 'Guest-1117133639' connecting from 80.101.224.203
+Denied access to 'Guest-3842721641' connecting from 200.83.202.99
+Thu Nov 19 10:52:30 2015
+Denied access to 'Guest-3844082324' connecting from 68.15.205.44
+Rebooted server.
+Thu Nov 19 12:00:03 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 5, 6, 7, 8, 9, 10, 13, 15, 18, 21, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by SecretStamos: /mob/living/carbon/Xenomorph/Queen ckey=secretstamos
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: the initial turf cannot merge.,47
+  usr: Lockie \'Red\' Hughes (/mob/dead/observer)
+  src: Derpislav (/client)
+  call stack:
+Derpislav (/client): Dsay("Where is my dsay")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: the initial turf cannot merge.,47
+  usr: Lockie \'Red\' Hughes (/mob/dead/observer)
+  src: Derpislav (/client)
+  call stack:
+Derpislav (/client): Dsay("Where is my daily dose of salt")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: the initial turf cannot merge.,47
+  usr: Lockie \'Red\' Hughes (/mob/dead/observer)
+  src: Derpislav (/client)
+  call stack:
+Derpislav (/client): Dsay("Did you inflict any damage to ...")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: the initial turf cannot merge.,47
+  usr: Lockie \'Red\' Hughes (/mob/dead/observer)
+  src: Derpislav (/client)
+  call stack:
+Derpislav (/client): Dsay("https://gyazo.com/56fdd69f773c...")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: the initial turf cannot merge.,47
+  usr: Lockie \'Red\' Hughes (/mob/dead/observer)
+  src: Derpislav (/client)
+  call stack:
+Derpislav (/client): Dsay("SCARY RAVAGERS.")
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: the initial turf cannot merge.,47
+  usr: Lockie \'Red\' Hughes (/mob/dead/observer)
+  src: Derpislav (/client)
+  call stack:
+Derpislav (/client): Dsay("I can&#39;t see my own dsay te...")
+Thu Nov 19 13:15:10 2015
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: the initial turf cannot merge.,47
+  usr: Lockie \'Red\' Hughes (/mob/dead/observer)
+  src: Derpislav (/client)
+  call stack:
+Derpislav (/client): Dsay("It&#39;s a meme.")
+Thu Nov 19 14:27:24 2015
+Denied access to 'Guest-3100510154' connecting from 79.230.247.66
+### VarEdit by SecretStamos: /mob/living/carbon/Xenomorph/Drone ckey=superman112
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 7, 8, 10, 11, 12, 15, 18, 19, 22, 23, 24, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Nov 19 15:40:35 2015
+Denied access to 'Guest-1902028197' connecting from 213.22.130.219
+### VarEdit by Adjective: /obj/item/clothing/suit/armor/hos/jensen name=Tank&#39;s Trenchcoat
+### VarEdit by Adjective: /mob/living/silicon/robot/drone speed=0.0001
+Denied access to 'Guilherm1515' connecting from 187.182.70.83
+Thu Nov 19 16:41:54 2015
+Denied access to 'Guest-1857603839' connecting from 76.3.3.37
+Denied access to 'Guest-1982953505' connecting from 79.143.123.225
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+BYOND Error: failed to certify Amicat
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 17, 20, 21, 22, 23 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Henri213' connecting from 189.102.128.88
+Thu Nov 19 17:50:32 2015
+runtime error: list index out of bounds
+proc name: shuffle (/proc/shuffle)
+  source file: lists.dm,171
+  usr: null
+  src: null
+  call stack:
+shuffle(/list (/list))
+Experiment 97d (/mob/living/simple_animal/hostile/retaliate/goat): Life()
+/datum/controller/game_control... (/datum/controller/game_controller): process mobs()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+Denied access to 'Guest-3066200322' connecting from 184.161.132.247
+Denied access to 'Jbmalone35' connecting from 162.247.29.32
+Denied access to 'Guest-3547602742' connecting from 69.137.222.96
+Denied access to 'Guest-467981818' connecting from 177.228.100.122
+Denied access to 'Centive' connecting from 49.146.212.236
+Thu Nov 19 18:51:28 2015
+### VarEdit by WestHybrid: /mob/living/carbon/human name=Milly Baylor
+### VarEdit by WestHybrid: /mob/living/carbon/human real_name=Milly Baylor
+### VarEdit by WestHybrid: /mob/living/carbon/human real_name=Milly Baylor
+Denied access to 'Guest-3684380107' connecting from 69.246.253.185
+Denied access to 'Crackshot69' connecting from 173.183.163.213
+runtime error: undefined proc or verb /mob/living/carbon/monkey/get organ().
+
+proc name: can use (/datum/surgery_step/internal/replace_organ/can_use)
+  source file: organs_internal.dm,374
+  usr: Melissa Gardner (/mob/living/carbon/human)
+  src: /datum/surgery_step/internal/r... (/datum/surgery_step/internal/replace_organ)
+  call stack:
+/datum/surgery_step/internal/r... (/datum/surgery_step/internal/replace_organ): can use(Melissa Gardner (/mob/living/carbon/human), the monkey (751) (/mob/living/carbon/monkey), "chest", John \'Spartan\' Murry\'s brai... (/obj/item/organ/brain))
+do surgery(the monkey (751) (/mob/living/carbon/monkey), Melissa Gardner (/mob/living/carbon/human), John \'Spartan\' Murry\'s brai... (/obj/item/organ/brain))
+John \'Spartan\' Murry\'s brai... (/obj/item/organ/brain): attack(the monkey (751) (/mob/living/carbon/monkey), Melissa Gardner (/mob/living/carbon/human), null)
+the monkey (751) (/mob/living/carbon/monkey): attackby(John \'Spartan\' Murry\'s brai... (/obj/item/organ/brain), Melissa Gardner (/mob/living/carbon/human))
+Melissa Gardner (/mob/living/carbon/human): ClickOn(the monkey (751) (/mob/living/carbon/monkey), "icon-x=14;icon-y=20;left=1;scr...")
+the monkey (751) (/mob/living/carbon/monkey): Click(the floor (114,170,3) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=20;left=1;scr...")
+### VarEdit by WestHybrid: /mob/living/carbon/human real_name=Vancha Marche
+Rebooted server.
+Thu Nov 19 20:22:14 2015
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 6, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
