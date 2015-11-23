@@ -13032,3 +13032,33 @@ Sun Nov 22 19:03:52 2015
 ### VarEdit by Apophis775: /mob/living/carbon/human b_eyes=20
 ### VarEdit by Apophis775: /datum/organ/internal/eyes damage=12
 ### VarEdit by Apophis775: /obj/item/stack/sheet/metal amount=50
+Sun Nov 22 20:54:31 2015
+### VarEdit by Adjective: /mob/living/simple_animal/lizard health=250
+### VarEdit by Adjective: /datum/gas_mixture temperature=200
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 5, 7, 9, 10, 11, 12, 13, 16, 17, 19, 20, 21, 23, 24, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
