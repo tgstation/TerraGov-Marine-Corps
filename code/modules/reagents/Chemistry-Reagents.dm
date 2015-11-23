@@ -1101,10 +1101,13 @@ datum
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 			scannable = 1
+			overdose = 30
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
 				if(M.stat == 2.0)
 					return
+				if (volume >= overdose)
+					M.adjustBrainLoss(2)
 				if(!M) M = holder.my_atom
 				if(!alien || alien != IS_DIONA)
 					if(M.getOxyLoss()) M.adjustOxyLoss(-1*REM)
@@ -1121,14 +1124,24 @@ datum
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 			scannable = 1
+			overdose = 30
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
 				if(!M) M = holder.my_atom
+				if (volume >= overdose)
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
+						E.damage += rand(2, 4)
+
+
 				if(!alien || alien != IS_DIONA)
 					M.reagents.remove_all_type(/datum/reagent/toxin, 1*REM, 0, 1)
 					M.drowsyness = max(M.drowsyness-2*REM, 0)
 					M.hallucination = max(0, M.hallucination - 5*REM)
 					M.adjustToxLoss(-2*REM)
+					if (volume >= overdose)
+						M.adjustBrainLoss(2)
 				..()
 				return
 
@@ -1285,6 +1298,28 @@ datum
 				M.adjustToxLoss(-1*REM)
 				if(prob(15))
 					M.take_organ_damage(1, 0)
+				..()
+				return
+
+		russianred
+			name = "Russian Red"
+			id = "russianred"
+			description = "An emergency radiation treatment, however it has extreme side effects."
+			reagent_state = LIQUID
+			color = "#C8A5DC" // rgb: 200, 165, 220
+			custom_metabolism = 0.05
+			overdose = 10
+
+			on_mob_life(var/mob/living/M as mob)
+				if (volume >= overdose)
+					M.adjustBrainLoss(2)
+				if(M.stat == 2.0)
+					return  //See above, down and around. --Agouri
+				if(!M) M = holder.my_atom
+				M.radiation = max(M.radiation-10*REM,0)
+				M.adjustToxLoss(-1*REM)
+				if(prob(50))
+					M.take_organ_damage(3, 0)
 				..()
 				return
 
