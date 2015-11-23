@@ -557,28 +557,13 @@
 		M.equip_to_slot_or_del(new /obj/item/clothing/under/chameleon(M), slot_w_uniform)
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(M), slot_w_uniform)
-	if(prob(50))
-		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof(M), slot_wear_suit)
-	else
-		if(prob(50))
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/bomber(M), slot_wear_suit)
-		else
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof(M), slot_wear_suit)
 	if(prob(50))
 		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(M), slot_head)
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), slot_gloves)
-	if(prob(30))
 		M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
-	else
-		if(prob(30))
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/bowler(M), slot_head)
-		else
-			if(prob(30))
-				M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(M), slot_head)
-			else
-				M.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(M), slot_head)
-
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
@@ -592,20 +577,32 @@
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
 	else if(rand_gun == 1)
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/crossbow(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M), slot_r_store)
 		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
 	else if(rand_gun == 2)
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mini_uzi(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
 	else if(rand_gun == 3)
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/laser(M), slot_r_hand)
 	else
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20, slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 

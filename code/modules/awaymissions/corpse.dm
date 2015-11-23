@@ -122,6 +122,14 @@
 
 ///////////Civilians//////////////////////
 
+/obj/effect/landmark/corpse/prisoner
+	name = "Prisoner"
+	corpseuniform = /obj/item/clothing/under/color/orange
+	corpseshoes = /obj/item/clothing/shoes/orange
+	corpseid = 1
+	corpseidjob = "Prisoner"
+
+
 /obj/effect/landmark/corpse/chef
 	name = "Chef"
 	corpseuniform = /obj/item/clothing/under/rank/chef
@@ -197,6 +205,10 @@
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/mining
 
+/obj/effect/landmark/corpse/security
+	corpseuniform = /obj/item/clothing/under/marine_jumpsuit/PMC
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 
 /////////////////Officers//////////////////////
 
@@ -223,3 +235,7 @@
 	corpseid = 1
 	corpseidjob = "Commander"
 	corpseidaccess = "Captain"
+
+
+
+

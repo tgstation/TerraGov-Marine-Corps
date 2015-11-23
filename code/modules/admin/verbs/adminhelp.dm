@@ -108,9 +108,9 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	if(!mob)	return						//this doesn't happen
 
 	var/ref_mob = "\ref[mob]"
-	var/mentor_msg = "\blue <b><font color=red>[selected_upper]: </font> (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) [get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
+	var/mentor_msg = "\blue <b><font color=red>[selected_upper]: </font> (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) (<A HREF='?_src_=holder;NOPE=[ref_mob]'>Received</A>)[get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
 	// var/dev_msg = "\blue <b><font color=red>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) </font>[get_options_bar(mob, 3, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
-	msg = "\blue <b><font color=red>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) </font>[get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
+	msg = "\blue <b><font color=red>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>) (<A HREF='?_src_=holder;NOPE=[ref_mob]'>Received</A>)</font>[get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
 
 
 

@@ -39,7 +39,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "M10 Pattern Marine Helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	armor = list(melee = 75, bullet = 60, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
-	flags = FPRINT|TABLEPASS
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
 	var/hug_damage = 0
 	anti_hug = 1
 
