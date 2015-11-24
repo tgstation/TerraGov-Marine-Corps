@@ -115,7 +115,7 @@ datum
 							M.contract_disease(D, 1, 0)
 				if(self.data && self.data["virus2"] && istype(M, /mob/living/carbon))//infecting...
 					var/list/vlist = self.data["virus2"]
-					if (vlist.len)
+					if(vlist.len)
 						for (var/ID in vlist)
 							var/datum/disease2/disease/V = vlist[ID]
 
@@ -194,7 +194,7 @@ datum
 			custom_metabolism = 0.01
 
 			reaction_turf(var/turf/simulated/T, var/volume)
-				if (!istype(T)) return
+				if(!istype(T)) return
 				src = null
 				if(volume >= 3)
 					if(T.wet >= 1) return
@@ -206,7 +206,7 @@ datum
 //					T.overlays += T.wet_overlay
 
 					spawn(800)
-						if (!istype(T)) return
+						if(!istype(T)) return
 						if(T.wet >= 2) return
 						T.wet = 0
 						if(T.wet_overlay)
@@ -277,13 +277,13 @@ datum
 			overdose = REAGENTS_OVERDOSE
 
 			reaction_turf(var/turf/simulated/T, var/volume)
-				if (!istype(T)) return
+				if(!istype(T)) return
 				src = null
 				if(volume >= 1)
 					if(T.wet >= 2) return
 					T.wet = 2
 					spawn(800)
-						if (!istype(T)) return
+						if(!istype(T)) return
 						T.wet = 0
 						if(T.wet_overlay)
 							T.overlays -= T.wet_overlay
@@ -548,7 +548,7 @@ datum
 				src = null
 				if(!istype(T, /turf/space))
 					var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
-					if (!dirtoverlay)
+					if(!dirtoverlay)
 						dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
 						dirtoverlay.alpha = volume*30
 					else
@@ -746,7 +746,7 @@ datum
 			custom_metabolism = 0.025 // Lasts 10 minutes for 15 units
 
 			on_mob_life(var/mob/living/M as mob)
-				if (volume > overdose)
+				if(volume > overdose)
 					M.hallucination = max(M.hallucination, 2)
 				..()
 				return
@@ -762,7 +762,7 @@ datum
 			custom_metabolism = 0.025 // Lasts 10 minutes for 15 units
 
 			on_mob_life(var/mob/living/M as mob)
-				if (volume > overdose)
+				if(volume > overdose)
 					M.hallucination = max(M.hallucination, 2)
 				..()
 				return
@@ -777,7 +777,7 @@ datum
 			custom_metabolism = 0.25 // Lasts 10 minutes for 15 units
 
 			on_mob_life(var/mob/living/M as mob)
-				if (volume > overdose)
+				if(volume > overdose)
 					M.druggy = max(M.druggy, 10)
 					M.hallucination = max(M.hallucination, 3)
 				..()
@@ -807,7 +807,7 @@ datum
 
 			//makes you squeaky clean
 			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
-				if (method == TOUCH)
+				if(method == TOUCH)
 					M.germ_level -= min(volume*20, M.germ_level)
 
 			reaction_obj(var/obj/O, var/volume)
@@ -818,11 +818,11 @@ datum
 
 	/*		reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
 				src = null
-				if (method==TOUCH)
+				if(method==TOUCH)
 					if(istype(M, /mob/living/carbon/human))
 						if(M.health >= -100 && M.health <= 0)
 							M.crit_op_stage = 0.0
-				if (method==INGEST)
+				if(method==INGEST)
 					usr << "Well, that was stupid."
 					M.adjustToxLoss(3)
 				return
@@ -1102,11 +1102,12 @@ datum
 			color = "#C8A5DC" // rgb: 200, 165, 220
 			scannable = 1
 			overdose = 30
+			overdose_dam = 0
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
 				if(M.stat == 2.0)
 					return
-				if (volume > overdose)
+				if(volume > overdose)
 					M.adjustBrainLoss(2)
 				if(!M) M = holder.my_atom
 				if(!alien || alien != IS_DIONA)
@@ -1125,10 +1126,11 @@ datum
 			color = "#C8A5DC" // rgb: 200, 165, 220
 			scannable = 1
 			overdose = 30
+			overdose_dam = 0
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
 				if(!M) M = holder.my_atom
-				if (volume > overdose)
+				if(volume > overdose)
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
 						var/datum/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
@@ -1307,7 +1309,7 @@ datum
 			overdose = 10
 
 			on_mob_life(var/mob/living/M as mob)
-				if (volume >= overdose)
+				if(volume >= overdose)
 					M.adjustBrainLoss(2)
 				if(!M) M = holder.my_atom
 				M.radiation = max(M.radiation-10*REM,0)
@@ -1655,7 +1657,7 @@ datum
 				src = null
 				/*if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg/slime))
 					var/obj/item/weapon/reagent_containers/food/snacks/egg/slime/egg = O
-					if (egg.grown)
+					if(egg.grown)
 						egg.Hatch()*/
 				if((!O) || (!volume))	return 0
 				var/turf/the_turf = get_turf(O)
@@ -1728,7 +1730,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				if (FAT in M.mutations)
+				if(FAT in M.mutations)
 					M.gib()
 				..()
 				return
@@ -1923,7 +1925,7 @@ datum
 			on_mob_life(var/mob/living/carbon/M as mob)
 				var/mob/living/carbon/human/H = M
 				if(H.stat != 1)
-					if (volume >= overdose)
+					if(volume >= overdose)
 						if(H.losebreath >= 10)
 							H.losebreath = max(10, H.losebreath-10)
 						H.adjustOxyLoss(2)
@@ -2043,7 +2045,7 @@ datum
 								if(affecting.take_damage(4*toxpwr, 2*toxpwr))
 									H.UpdateDamageIcon()
 								if(prob(meltprob)) //Applies disfigurement
-									if (!(H.species && (H.species.flags & NO_PAIN)))
+									if(!(H.species && (H.species.flags & NO_PAIN)))
 										H.emote("scream")
 									H.status_flags |= DISFIGURED
 						else
@@ -2089,7 +2091,7 @@ datum
 				// If overeaten - vomit and fall down
 				// Makes you feel bad but removes reagents and some effect
 				// from your body
-				if (M.nutrition > 650)
+				if(M.nutrition > 650)
 					M.nutrition = rand (250, 400)
 					M.weakened += rand(2, 10)
 					M.jitteriness += rand(0, 5)
@@ -2186,27 +2188,27 @@ datum
 						var/eyes_covered = 0
 						var/obj/item/safe_thing = null
 						if( victim.wear_mask )
-							if ( victim.wear_mask.flags & MASKCOVERSEYES )
+							if( victim.wear_mask.flags & MASKCOVERSEYES )
 								eyes_covered = 1
 								safe_thing = victim.wear_mask
-							if ( victim.wear_mask.flags & MASKCOVERSMOUTH )
+							if( victim.wear_mask.flags & MASKCOVERSMOUTH )
 								mouth_covered = 1
 								safe_thing = victim.wear_mask
 						if( victim.head )
-							if ( victim.head.flags & MASKCOVERSEYES )
+							if( victim.head.flags & MASKCOVERSEYES )
 								eyes_covered = 1
 								safe_thing = victim.head
-							if ( victim.head.flags & MASKCOVERSMOUTH )
+							if( victim.head.flags & MASKCOVERSMOUTH )
 								mouth_covered = 1
 								safe_thing = victim.head
 						if(victim.glasses)
 							eyes_covered = 1
-							if ( !safe_thing )
+							if( !safe_thing )
 								safe_thing = victim.glasses
-						if ( eyes_covered && mouth_covered )
+						if( eyes_covered && mouth_covered )
 							victim << "\red Your [safe_thing] protects you from the pepperspray!"
 							return
-						else if ( eyes_covered )	// Reduced effects if partially protected
+						else if( eyes_covered )	// Reduced effects if partially protected
 							victim << "\red Your [safe_thing] protect you from most of the pepperspray!"
 							victim.eye_blurry = max(M.eye_blurry, 15)
 							victim.eye_blind = max(M.eye_blind, 5)
@@ -2215,14 +2217,14 @@ datum
 							//victim.Paralyse(10)
 							//victim.drop_item()
 							return
-						else if ( mouth_covered ) // Mouth cover is better than eye cover
+						else if( mouth_covered ) // Mouth cover is better than eye cover
 							victim << "\red Your [safe_thing] protects your face from the pepperspray!"
-							if (!(victim.species && (victim.species.flags & NO_PAIN)))
+							if(!(victim.species && (victim.species.flags & NO_PAIN)))
 								victim.emote("scream")
 							victim.eye_blurry = max(M.eye_blurry, 5)
 							return
 						else // Oh dear :D
-							if (!(victim.species && (victim.species.flags & NO_PAIN)))
+							if(!(victim.species && (victim.species.flags & NO_PAIN)))
 								victim.emote("scream")
 							victim << "\red You're sprayed directly in the eyes with pepperspray!"
 							victim.eye_blurry = max(M.eye_blurry, 25)
@@ -2317,7 +2319,7 @@ datum
 			color = "#403010" // rgb: 64, 48, 16
 
 			on_mob_life(var/mob/living/M as mob)
-				if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+				if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
 					M.bodytemperature = min(310, M.bodytemperature + (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
 				M.nutrition += nutriment_factor
 				..()
@@ -2336,17 +2338,17 @@ datum
 				if(!data) data = 1
 				switch(data)
 					if(1 to 5)
-						if (!M.stuttering) M.stuttering = 1
+						if(!M.stuttering) M.stuttering = 1
 						M.make_dizzy(5)
 						if(prob(10)) M.emote(pick("twitch","giggle"))
 					if(5 to 10)
-						if (!M.stuttering) M.stuttering = 1
+						if(!M.stuttering) M.stuttering = 1
 						M.make_jittery(10)
 						M.make_dizzy(10)
 						M.druggy = max(M.druggy, 35)
 						if(prob(20)) M.emote(pick("twitch","giggle"))
-					if (10 to INFINITY)
-						if (!M.stuttering) M.stuttering = 1
+					if(10 to INFINITY)
+						if(!M.stuttering) M.stuttering = 1
 						M.make_jittery(20)
 						M.make_dizzy(20)
 						M.druggy = max(M.druggy, 40)
@@ -2406,7 +2408,7 @@ datum
 				..()
 				return
 			reaction_turf(var/turf/simulated/T, var/volume)
-				if (!istype(T)) return
+				if(!istype(T)) return
 				src = null
 				if(volume >= 3)
 					if(T.wet >= 1) return
@@ -2418,7 +2420,7 @@ datum
 					T.overlays += T.wet_overlay
 
 					spawn(800)
-						if (!istype(T)) return
+						if(!istype(T)) return
 						if(T.wet >= 2) return
 						T.wet = 0
 						if(T.wet_overlay)
@@ -2463,7 +2465,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				M.nutrition += nutriment_factor
-				if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+				if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
 					M.bodytemperature = min(310, M.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
 				..()
 				return
@@ -2550,11 +2552,11 @@ datum
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
 				// Drinks should be used up faster than other reagents.
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
-				if (adj_dizzy) M.dizziness = max(0,M.dizziness + adj_dizzy)
-				if (adj_drowsy)	M.drowsyness = max(0,M.drowsyness + adj_drowsy)
-				if (adj_sleepy) M.sleeping = max(0,M.sleeping + adj_sleepy)
-				if (adj_temp)
-					if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+				if(adj_dizzy) M.dizziness = max(0,M.dizziness + adj_dizzy)
+				if(adj_drowsy)	M.drowsyness = max(0,M.drowsyness + adj_drowsy)
+				if(adj_sleepy) M.sleeping = max(0,M.sleeping + adj_sleepy)
+				if(adj_temp)
+					if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
 						M.bodytemperature = min(310, M.bodytemperature + (25 * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 				..()
@@ -2607,7 +2609,7 @@ datum
 					if(1 to 20)
 						//nothing
 					if(21 to INFINITY)
-						if (prob(data-10))
+						if(prob(data-10))
 							M.disabilities &= ~NEARSIGHTED
 				data++
 				return
@@ -2951,7 +2953,7 @@ datum
 				M.druggy = max(M.druggy, 50)
 				M.confused = max(M.confused+2,0)
 				M.make_dizzy(10)
-				if (!M.stuttering) M.stuttering = 1
+				if(!M.stuttering) M.stuttering = 1
 				M.stuttering += 3
 				if(!data) data = 1
 				data++
@@ -2976,7 +2978,7 @@ datum
 				data++
 				M.dizziness +=6
 				if(data >= 15 && data <45)
-					if (!M.stuttering) M.stuttering = 1
+					if(!M.stuttering) M.stuttering = 1
 					M.stuttering += 3
 				else if(data >= 45 && prob(50) && data <55)
 					M.confused = max(M.confused+3,0)
@@ -3001,7 +3003,7 @@ datum
 				data++
 				M.dizziness +=6
 				if(data >= 15 && data <45)
-					if (!M.stuttering) M.stuttering = 1
+					if(!M.stuttering) M.stuttering = 1
 					M.stuttering += 3
 				else if(data >= 45 && prob(50) && data <55)
 					M.confused = max(M.confused+3,0)
@@ -3026,23 +3028,23 @@ datum
 				data++
 				switch(data)
 					if(1 to 5)
-						if (!M.stuttering) M.stuttering = 1
+						if(!M.stuttering) M.stuttering = 1
 						M.make_dizzy(10)
 						if(prob(10)) M.emote(pick("twitch","giggle"))
 					if(5 to 10)
-						if (!M.stuttering) M.stuttering = 1
+						if(!M.stuttering) M.stuttering = 1
 						M.make_jittery(20)
 						M.make_dizzy(20)
 						M.druggy = max(M.druggy, 45)
 						if(prob(20)) M.emote(pick("twitch","giggle"))
-					if (10 to 200)
-						if (!M.stuttering) M.stuttering = 1
+					if(10 to 200)
+						if(!M.stuttering) M.stuttering = 1
 						M.make_jittery(40)
 						M.make_dizzy(40)
 						M.druggy = max(M.druggy, 60)
 						if(prob(30)) M.emote(pick("twitch","giggle"))
 					if(200 to INFINITY)
-						if (!M.stuttering) M.stuttering = 1
+						if(!M.stuttering) M.stuttering = 1
 						M.make_jittery(60)
 						M.make_dizzy(60)
 						M.druggy = max(M.druggy, 75)
@@ -3082,8 +3084,8 @@ datum
 				M:nutrition += nutriment_factor
 				holder.remove_reagent(src.id, (alien ? FOOD_METABOLISM : ALCOHOL_METABOLISM)) // Catch-all for creatures without livers.
 
-				if (adj_drowsy)	M.drowsyness = max(0,M.drowsyness + adj_drowsy)
-				if (adj_sleepy) M.sleeping = max(0,M.sleeping + adj_sleepy)
+				if(adj_drowsy)	M.drowsyness = max(0,M.drowsyness + adj_drowsy)
+				if(adj_sleepy) M.sleeping = max(0,M.sleeping + adj_sleepy)
 
 				if(!src.data || (!isnum(src.data)  && src.data.len)) data = 1   //if it doesn't exist we set it.  if it's a list we're going to set it to 1 as well.  This is to
 				src.data += boozepwr						//avoid a runtime error associated with drinking blood mixed in drinks (demon's blood).
@@ -3099,10 +3101,10 @@ datum
 
 				M.dizziness += dizzy_adj.
 				if(d >= slur_start && d < pass_out)
-					if (!M:slurring) M:slurring = 1
+					if(!M:slurring) M:slurring = 1
 					M:slurring += slurr_adj
 				if(d >= confused_start && prob(33))
-					if (!M:confused) M:confused = 1
+					if(!M:confused) M:confused = 1
 					M.confused = max(M:confused+confused_adj,0)
 				if(d >= blur_start)
 					M.eye_blurry = max(M.eye_blurry, 10)
@@ -3113,7 +3115,7 @@ datum
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
 						var/datum/organ/internal/liver/L = H.internal_organs_by_name["liver"]
-						if (!L)
+						if(!L)
 							H.adjustToxLoss(5)
 						else if(istype(L))
 							L.take_damage(0.1, 1)
@@ -3199,7 +3201,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				M:drowsyness = max(0,M:drowsyness-7)
-				if (M.bodytemperature > 310)
+				if(M.bodytemperature > 310)
 					M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
 				M.make_jittery(5)
 				..()
@@ -3331,27 +3333,27 @@ datum
 				data++
 				switch(data)
 					if(1 to 25)
-						if (!M.stuttering) M.stuttering = 1
+						if(!M.stuttering) M.stuttering = 1
 						M.make_dizzy(1)
 						M.hallucination = max(M.hallucination, 3)
 						if(prob(1)) M.emote(pick("twitch","giggle"))
 					if(25 to 75)
-						if (!M.stuttering) M.stuttering = 1
+						if(!M.stuttering) M.stuttering = 1
 						M.hallucination = max(M.hallucination, 10)
 						M.make_jittery(2)
 						M.make_dizzy(2)
 						M.druggy = max(M.druggy, 45)
 						if(prob(5)) M.emote(pick("twitch","giggle"))
-					if (75 to 150)
-						if (!M.stuttering) M.stuttering = 1
+					if(75 to 150)
+						if(!M.stuttering) M.stuttering = 1
 						M.hallucination = max(M.hallucination, 60)
 						M.make_jittery(4)
 						M.make_dizzy(4)
 						M.druggy = max(M.druggy, 60)
 						if(prob(10)) M.emote(pick("twitch","giggle"))
 						if(prob(30)) M.adjustToxLoss(2)
-					if (150 to 300)
-						if (!M.stuttering) M.stuttering = 1
+					if(150 to 300)
+						if(!M.stuttering) M.stuttering = 1
 						M.hallucination = max(M.hallucination, 60)
 						M.make_jittery(4)
 						M.make_dizzy(4)
@@ -3361,13 +3363,13 @@ datum
 						if(prob(5)) if(ishuman(M))
 							var/mob/living/carbon/human/H = M
 							var/datum/organ/internal/heart/L = H.internal_organs_by_name["heart"]
-							if (L && istype(L))
+							if(L && istype(L))
 								L.take_damage(5, 0)
-					if (300 to INFINITY)
+					if(300 to INFINITY)
 						if(ishuman(M))
 							var/mob/living/carbon/human/H = M
 							var/datum/organ/internal/heart/L = H.internal_organs_by_name["heart"]
-							if (L && istype(L))
+							if(L && istype(L))
 								L.take_damage(100, 0)
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
 
@@ -3494,7 +3496,7 @@ datum
 			boozepwr = 5
 
 			on_mob_life(var/mob/living/M as mob)
-				if (M.bodytemperature < 330)
+				if(M.bodytemperature < 330)
 					M.bodytemperature = min(330, M.bodytemperature + (15 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 				..()
 				return
@@ -3602,7 +3604,7 @@ datum
 			boozepwr = 4
 
 			on_mob_life(var/mob/living/M as mob)
-				if (M.bodytemperature < 330)
+				if(M.bodytemperature < 330)
 					M.bodytemperature = min(330, M.bodytemperature + (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 				..()
 				return
@@ -3690,7 +3692,7 @@ datum
 			boozepwr = 3
 
 			on_mob_life(var/mob/living/M as mob)
-				if (M.bodytemperature < 360)
+				if(M.bodytemperature < 360)
 					M.bodytemperature = min(360, M.bodytemperature + (50 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 				..()
 				return
@@ -3834,7 +3836,7 @@ datum
 				data++
 				M.dizziness +=10
 				if(data >= 55 && data <115)
-					if (!M.stuttering) M.stuttering = 1
+					if(!M.stuttering) M.stuttering = 1
 					M.stuttering += 10
 				else if(data >= 115 && prob(33))
 					M.confused = max(M.confused+15,15)
