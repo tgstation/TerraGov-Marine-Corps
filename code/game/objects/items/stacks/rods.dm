@@ -42,9 +42,6 @@
 
 	if(!istype(user.loc,/turf)) return 0
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel. ((If you are building defenses, you may be in violation of 'Building Defenses on the Sulaco' in our <a href='http://colonial-marines.com/viewtopic.php?f=57&t=1363'>Marine-Specific Rules</a>))</span>"
-		return
 
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
@@ -58,12 +55,12 @@
 				return 1
 
 	else if(!in_use)
-		if(amount < 2)
-			user << "\blue You need at least two rods to do this."
+		if(amount < 4)
+			user << "\blue You need at least four rods to do this."
 			return
 		usr << "\blue Assembling grille..."
 		in_use = 1
-		if (!do_after(usr, 10))
+		if (!do_after(usr, 20))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
