@@ -1786,3 +1786,61 @@ Your server failed to establish a connection with the SQL database.
 ## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
 ## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 5, 7, 8, 10, 12, 14, 15, 16, 18, 19, 21, 22, 25 and 26
 ## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Thu Nov 26 01:43:12 2015
+Denied access to 'Guest-1498484774' connecting from 99.39.88.11
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 6, 8, 9, 11, 13, 17, 19, 20, 21, 22, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Tawheed15' connecting from 68.196.69.11
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): ShiftClick(Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian))
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ShiftClickOn(the photo (/obj/item/weapon/photo))
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=12;icon-y=15;left=1;shi...")
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=12;icon-y=15;left=1;shi...")
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=12;icon-y=15;left=1;shi...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=12;icon-y=15;left=1;shi...")
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian)
+  src: the photo (/obj/item/weapon/photo)
+  call stack:
+the photo (/obj/item/weapon/photo): show(Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian))
+the photo (/obj/item/weapon/photo): Examine()
+the photo (/obj/item/weapon/photo): ShiftClick(Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian))
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ShiftClickOn(the photo (/obj/item/weapon/photo))
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=13;icon-y=17;left=1;shi...")
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=13;icon-y=17;left=1;shi...")
+Praetorian (110) (/mob/living/carbon/Xenomorph/Praetorian): ClickOn(the photo (/obj/item/weapon/photo), "icon-x=13;icon-y=17;left=1;shi...")
+the photo (/obj/item/weapon/photo): Click(the dirt (225,63,6) (/turf/simulated/floor/gm/dirt), "mapwindow.map", "icon-x=13;icon-y=17;left=1;shi...")
