@@ -1585,7 +1585,7 @@
 #include "interface\skin.dmf"
 #include "maps\Z.01.LV624.dmm"
 #include "maps\Z.02.Centcomm.dmm"
-#include "maps\Z.03.PlaceholderSulaco.dmm"
+#include "maps\Z.03.PlaceholderSulaco - Thanksgiving Feast.dmm"
 #include "maps\Z.04.SulacoBottom.dmm"
 #include "maps\Z.05.Space.dmm"
 #include "maps\Z.06.HauntedHouse-Minijar.dmm"
