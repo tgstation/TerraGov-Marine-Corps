@@ -99,14 +99,15 @@
 //JUMPSUITS
 /obj/item/clothing/under/marine
 	name = "Marine jumpsuit"
-	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts."
+	desc = "An advanced Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts.  Also contains a full array of sensors."
 	icon_state = "grey"
 	item_state = "gy_suit"
 	item_color = "grey"
 	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
-	has_sensor = 1
+	has_sensor = 3
+	sensor_mode = 3
 
 /obj/item/clothing/under/marine/fluff/marinemedic
 	name = "Marine jumpsuit(medic)"
