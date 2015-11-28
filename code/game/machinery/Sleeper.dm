@@ -10,7 +10,7 @@
 	anchored = 1 //About time someone fixed this.
 	density = 1
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
-	
+
 	use_power = 1
 	idle_power_usage = 40
 
@@ -88,13 +88,17 @@
 					dat += "[connected.available_chemicals[chemical]]: [occupant.reagents.get_reagent_amount(chemical)] units<br>"
 			dat += "<A href='?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
 			if(src.connected.beaker)
-				dat += "<HR><A href='?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
-				if(src.connected.filtering)
-					dat += "<A href='?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
-					dat += text("Output Beaker has [] units of free space remaining<BR><HR>", src.connected.beaker.reagents.maximum_volume - src.connected.beaker.reagents.total_volume)
+				if(ishuman(occupant))
+					dat += "<HR><A href='?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
+					if(src.connected.filtering)
+						dat += "<A href='?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
+						dat += text("Output Beaker has [] units of free space remaining<BR><HR>", src.connected.beaker.reagents.maximum_volume - src.connected.beaker.reagents.total_volume)
+					else
+						dat += "<HR><A href='?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
+						dat += text("Output Beaker has [] units of free space remaining<BR><HR>", src.connected.beaker.reagents.maximum_volume - src.connected.beaker.reagents.total_volume)
 				else
-					dat += "<HR><A href='?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
-					dat += text("Output Beaker has [] units of free space remaining<BR><HR>", src.connected.beaker.reagents.maximum_volume - src.connected.beaker.reagents.total_volume)
+					dat += "<HR>Dialysis Disabled - Non-human present.<BR><HR>"
+
 			else
 				dat += "<HR>No Dialysis Output Beaker is present.<BR><HR>"
 
@@ -166,7 +170,7 @@
 	var/amounts = list(5, 10)
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
-	
+
 	use_power = 1
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
@@ -188,7 +192,7 @@
 	process()
 		if (stat & (NOPOWER|BROKEN))
 			return
-	
+
 		if(filtering > 0)
 			if(beaker)
 				if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
