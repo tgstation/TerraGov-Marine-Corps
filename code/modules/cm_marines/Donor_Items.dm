@@ -269,6 +269,26 @@
 	icon_state = "star_jacket"
 	item_state = "star_jacker"
 
+/obj/item/clothing/suit/storage/marine/fluff/Sado2
+	name = "Tanya's Armor"
+	desc = "Armor worn by one of the most famous MPs in the history of the USCM.  DONOR ITEM"
+	icon_state = "sadokist_armor"
+	item_state = "sadokist_armor"
+
+/obj/item/clothing/suit/storage/marine/fluff/Fairedan
+	name = "Freighter Crew Flight Jacket"
+	desc = "Standard Issue Jacket for crew that serve on Lockmart CM-88B Bison starfreighters.  It has the number 1809246 on the inside tag...  DONOR ITEM"
+	icon_state = "Fairedan_vest"
+	item_state = "Fairedan_vest"
+
+/obj/item/clothing/suit/storage/marine/fluff/Jack
+	name = "Exo-Suit Jackert"
+	desc = "Some sort of strange Exo-suit jacket.  It has the letters USCM stamped over a faded word that appears to be ATLAS...  UNIQUE DONOR ITEM"
+	icon_state = "Adam_jacket_u"
+	item_state = "Adam_jacket_u"
+
+
+
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
 //HEAD TEMPLATE (for Helmets/Hats/Berets)  ONLY TAKE NAME, DESC, ICON_STATE, AND ITEM_STATE.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -550,7 +570,11 @@
 	item_state = "rig0-ert_medical"
 
 
-
+/obj/item/clothing/head/helmet/marine/fluff/Jack
+	name = "USCM Ball Cap"
+	desc = "USCM Cold Weather Ball Cap...  DONOR ITEM"
+	icon_state = "Adam_hat"
+	item_state = "Adam_hat"
 
 
 
@@ -757,6 +781,20 @@
 	item_state = "star_jumpsuit_s"
 	item_color = "star_jumpsuit"
 
+/obj/item/clothing/under/marine/fluff/Jack
+	name = "White shit and black Pants"
+	desc = "Perfect for formal dress, or going to a combat zone in Style.  UNIQUE DONOR ITEM"
+	icon_state = "Adam_jumpsuit_u"
+	item_state = "Adam_jumpsuit_u_s"
+	item_color = "Adam_jumpsuit_u"
+
+/obj/item/clothing/under/marine/fluff/Fairedan
+	name = "Starfreighter Jumpsuit"
+	desc = "Standard Issue Jumpsuit for crew that serve on Lockmart CM-88B Bison starfreighters.  It has the number 1809246 on the inside tag....  DONOR ITEM"
+	icon_state = "Fairedan_jumpsuit"
+	item_state = "Fairedan_jumpsuit_s"
+	item_color = "Fairedan_jumpsuit"
+
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
 //MASK TEMPLATE (for masks)  ONLY TAKE NAME, DESC, ICON_STATE, ITEM_STATE,  AND ITEM_COLOR.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -837,6 +875,12 @@
 	desc = "Slightly worn and torn.  DONOR ITEM"
 	icon_state = "merc_mask"
 	item_state = "merc_mask"
+
+/obj/item/clothing/mask/fluff/lostmix
+	name = "Phantom Cigar"
+	desc = "It's a g-g-g-g-g-ghost cigar.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "cigaron"
+	item_state = "cigaron"
 
 //	BOOTS/SHOES COSMETICS  ////////////////////////////////////////////////
 

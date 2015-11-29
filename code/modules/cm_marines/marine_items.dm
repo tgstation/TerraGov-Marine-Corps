@@ -334,7 +334,6 @@
 								/obj/item/device/flashlight,
 								/obj/item/weapon/reagent_containers/food/snacks/donkpocket,
 								/obj/item/weapon/grenade/smokebomb,
-								/obj/item/device/paicard,
 								/obj/item/weapon/airlock_electronics,
 								/obj/item/device/assembly/igniter,
 								/obj/item/weapon/weldingtool,
