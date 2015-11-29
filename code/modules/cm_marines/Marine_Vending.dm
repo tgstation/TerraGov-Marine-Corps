@@ -235,7 +235,6 @@
 						/obj/item/weapon/plastique = 1,
 						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
-						/obj/item/device/paicard = 1
 					)
 	contraband = list()
 	premium = list()
