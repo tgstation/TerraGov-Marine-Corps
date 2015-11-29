@@ -38,6 +38,7 @@
 	density = 1
 	anchored = 0
 	luminosity = 4
+	unacidable = 1
 
 	var/gasefficency = 0.25
 
@@ -103,6 +104,7 @@
 
 /obj/machinery/power/supermatter/Del()
 	del radio
+	SetLuminosity(0)
 	. = ..()
 
 /obj/machinery/power/supermatter/proc/explode()

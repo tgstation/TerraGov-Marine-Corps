@@ -214,6 +214,9 @@
 		var/obj/item/weapon/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
+		if(!CH || isnull(CH) || !istype(CH))
+			usr << "\red This card has no account data!"
+			return
 		if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
 			if(vendor_account)
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num

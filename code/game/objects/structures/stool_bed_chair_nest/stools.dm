@@ -49,42 +49,38 @@
 	desc = "Uh-hoh, bar is heating up."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "stool"
-	force = 10
-	throwforce = 10
+	force = 15
+	throwforce = 12
 	w_class = 5.0
 	var/obj/structure/stool/origin = null
 
 /obj/item/weapon/stool/proc/deploy(var/mob/user)
 
 	if(!origin)
-		del src
-
-	origin.loc = get_turf(src)
+		user.drop_from_inventory(src)
+		del (src)
+		return
 
 	if(user)
+		origin.loc = get_turf(user)
 		user.drop_from_inventory(src)
 		user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
-
-	del src
-
-/obj/item/weapon/stool/dropped(mob/user as mob)
-	..()
-	if(istype(loc,/turf/))
-		deploy(user)
+		del(src)
 
 /obj/item/weapon/stool/attack_self(mob/user as mob)
 	..()
 	deploy(user)
 
 /obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
-	if (prob(5) && istype(M,/mob/living))
+	if (prob(25) && istype(M,/mob/living))
 		user.visible_message("\red [user] breaks [src] over [M]'s back!")
 		user.drop_from_inventory(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)
-		del src
 		var/mob/living/T = M
-		T.Weaken(10)
+		if(istype(T) && !isXeno(T))
+			T.Weaken(10)
 		T.apply_damage(20)
+		del src
 		return
 	..()

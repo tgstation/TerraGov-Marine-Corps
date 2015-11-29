@@ -90,7 +90,7 @@ proc/cardinalrange(var/center)
 	return 0
 
 
-/obj/machinery/am_shielding/blob_act()
+/*/obj/machinery/am_shielding/blob_act()
 	stability -= 20
 	if(prob(100-stability))
 		if(prob(10))//Might create a node
@@ -101,7 +101,7 @@ proc/cardinalrange(var/center)
 			del(src)
 		return
 	check_stability()
-	return
+	return*/  //Blob Shit
 
 
 /obj/machinery/am_shielding/ex_act(severity)

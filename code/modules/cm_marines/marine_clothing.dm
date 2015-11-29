@@ -9,6 +9,7 @@
 	health = 5
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
 	anti_hug = 1
+	w_class = 5
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
@@ -98,14 +99,29 @@
 //JUMPSUITS
 /obj/item/clothing/under/marine
 	name = "Marine jumpsuit"
-	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts."
+	desc = "An advanced Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts.  Also contains a full array of sensors."
 	icon_state = "grey"
 	item_state = "gy_suit"
 	item_color = "grey"
 	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
-	has_sensor = 1
+	has_sensor = 3
+	sensor_mode = 3
+
+/obj/item/clothing/under/marine/fluff/marinemedic
+	name = "Marine jumpsuit(medic)"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has medical markings. "
+	icon_state = "marine_medic"
+	item_state = "marine_medic_s"
+	item_color = "marine_medic"
+
+/obj/item/clothing/under/marine/fluff/marineengineer
+	name = "Marine jumpsuit(engineer)"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has engineer markings. "
+	icon_state = "marine_engineer"
+	item_state = "marine_engineer_s"
+	item_color = "marine_engineer"
 
 /obj/item/clothing/under/marine/alpha
 	name = "alpha team jumpsuit"
@@ -193,20 +209,6 @@
 
 
 //ARMOR
-/obj/item/clothing/suit/storage/marine
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	name = "marine armor"
-	desc = "A standard issue marine combat vest designed to protect them from their worst enemies: themselves."
-	icon_state = "bulletproof"
-	item_state = "armor"
-	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 80, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-	siemens_coefficient = 0.7
-	allowed = list(/obj/item/weapon/gun/, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/weapon/grenade)
 
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
@@ -333,7 +335,8 @@
 	armor = list(melee = 10, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	body_parts_covered = FEET
 	siemens_coefficient = 0.7
-	var/obj/item/weapon/combat_knife/knife //Thank you Apo and LLA~~
+	var/obj/item/weapon/combat_knife/knife
+	//flags = NOSLIP  Removed because it makes them not slip when there are breaches.
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
@@ -387,7 +390,9 @@
 	name = "marine backpack"
 	desc = "A large backpack used by military."
 	icon_state = "marinepack"
-	item_state = "marinepack"
+	item_state = "backpack"
+	max_w_class = 3    //  Largest item that can be placed into the backpack
+	max_combined_w_class = 21   //Capacity of the backpack
 
 //BELT
 
@@ -398,6 +403,8 @@
 	item_state = "security"//Could likely use a better one.
 	w_class = 4
 	storage_slots = 8
+	max_combined_w_class = 9
+	max_w_class = 3
 	can_hold = list(
 		"/obj/item/weapon/gun/projectile/m4a3",
 		"/obj/item/weapon/combat_knife",
@@ -415,7 +422,8 @@
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine"
+		"/obj/item/device/mine",
+		"/obj/item/weapon/melee/baton"
 		)
 
 /obj/item/weapon/storage/belt/security/MP

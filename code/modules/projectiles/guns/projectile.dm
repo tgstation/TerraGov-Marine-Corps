@@ -25,6 +25,28 @@
 	update_icon()
 	return
 
+/obj/item/weapon/gun/projectile/proc/unload(var/mob/user)
+	if (loaded.len)
+		if (load_method == SPEEDLOADER)
+			var/obj/item/ammo_casing/AC = loaded[1]
+			loaded -= AC
+			AC.loc = get_turf(src) //Eject casing onto ground.
+			user << "\blue You unload shell from \the [src]!"
+		if (load_method == MAGAZINE)
+			if(empty_mag)
+				var/obj/item/ammo_magazine/AM = empty_mag
+				for (var/obj/item/ammo_casing/AC in loaded)
+					AM.stored_ammo += AC
+					loaded -= AC
+				AM.loc = get_turf(src)
+				empty_mag = null
+				update_icon()
+				AM.update_icon()
+				user << "\blue You unload magazine from \the [src]!"
+			else
+				user << "\red Nothing loaded in \the [src]!"
+	else
+		user << "\red Nothing loaded in \the [src]!"
 
 /obj/item/weapon/gun/projectile/load_into_chamber()
 	if(in_chamber)
@@ -119,53 +141,6 @@
 				under.attackby(A,user)
 				return 1
 	return 0
-
-/obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
-	if (target)
-		return ..()
-
-	if(twohanded)
-		if(wielded) //Trying to unwield it
-			unwield()
-			user << "<span class='notice'>You are now carrying the [name] with one hand.</span>"
-
-			var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
-			if(O && istype(O))
-				O.unwield()
-			return
-
-		else //Trying to wield it
-			if(user.get_inactive_hand())
-				user << "<span class='warning'>You need your other hand to be empty.</span>"
-				return
-			wield()
-			user << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
-
-			var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
-			O.name = "[initial(name)] - offhand"
-			O.desc = "Your second grip on the [initial(name)]"
-			user.put_in_inactive_hand(O)
-			return
-
-	if (loaded.len)
-		if (load_method == SPEEDLOADER)
-			var/obj/item/ammo_casing/AC = loaded[1]
-			loaded -= AC
-			AC.loc = get_turf(src) //Eject casing onto ground.
-			user << "\blue You unload shell from \the [src]!"
-		if (load_method == MAGAZINE)
-			var/obj/item/ammo_magazine/AM = empty_mag
-			for (var/obj/item/ammo_casing/AC in loaded)
-				AM.stored_ammo += AC
-				loaded -= AC
-			AM.loc = get_turf(src)
-			empty_mag = null
-			update_icon()
-			AM.update_icon()
-			user << "\blue You unload magazine from \the [src]!"
-	else
-		user << "\red Nothing loaded in \the [src]!"
-
 
 
 /obj/item/weapon/gun/projectile/examine()

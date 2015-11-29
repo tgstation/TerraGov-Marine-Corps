@@ -19,6 +19,10 @@
 	spawn(1)
 		cell = new /obj/item/weapon/cell(src)
 
+/obj/machinery/floodlight/Del()
+	SetLuminosity(0)
+	..()
+
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 /*
@@ -71,6 +75,14 @@
 /obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!ishuman(user))
 		return
+
+	if (istype(W, /obj/item/weapon/wrench))
+		if (!anchored)
+			anchored = 1
+			user << "You anchor the [src] in place."
+		else
+			anchored = 0
+			user << "You remove the bolts from the [src]."
 
 	if (istype(W, /obj/item/weapon/screwdriver))
 		if (!open)

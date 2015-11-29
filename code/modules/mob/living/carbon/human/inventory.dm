@@ -135,7 +135,7 @@
 	else if (W == wear_mask)
 		if(istype(W,/obj/item/clothing/mask/facehugger))
 			var/obj/item/clothing/mask/facehugger/F = W
-			if(!F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
+			if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
 				visible_message("\red [F] frantically claws at [src]'s face!","\red [F] frantically crawls at your face! Auugh!")
 				adjustBruteLossByPart(25,"head")
 		wear_mask = null
@@ -710,7 +710,7 @@ It can still be worn/put on as normal.
 					can_reach_splints = 0
 
 			if(can_reach_splints)
-				for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
+				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","l_foot","r_foot","l_hand","r_hand"))
 					var/datum/organ/external/o = target.get_organ(organ)
 					if (o && o.status & ORGAN_SPLINTED)
 						var/obj/item/W = new /obj/item/stack/medical/splint(amount=1)
@@ -799,8 +799,9 @@ It can still be worn/put on as normal.
 			if(item && target.has_organ_for_slot(slot_to_process)) //Placing an item on the mob
 				if(item.mob_can_equip(target, slot_to_process, 0))
 					source.u_equip(item)
-					target.equip_to_slot_if_possible(item, slot_to_process, 0, 1, 1)
-					item.dropped(source)
+					if(item) //Might be self-deleted?
+						target.equip_to_slot_if_possible(item, slot_to_process, 0, 1, 1)
+						item.dropped(source)
 					source.update_icons()
 					target.update_icons()
 

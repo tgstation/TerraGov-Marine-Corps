@@ -1,7 +1,5 @@
 <h3>Elevator Console</h3>
 <div class="item" style="padding-top: 10px">
-</div>
-<div class="item" style="padding-top: 10px">
 	<div class="item">
 		{{:data.shuttle_status}}
 	</div>
@@ -13,11 +11,11 @@
 		</div>
 		<div class="itemContent">
 			{{if data.shuttle_state == "idle"}}
-				<span class="idle">IDLE</span>
+				<span class="idle">Idle</span>
 			{{else data.shuttle_state == "warmup"}}
-				<span style="font-weight: bold;color: #336699">SPINNING UP</span>
+				<span style="font-weight: bold;color: #336699">Starting</span>
 			{{else data.shuttle_state == "in_transit"}}
-				<span style="font-weight: bold;color: #336699">ENGAGED</span>
+				<span style="font-weight: bold;color: #336699">In Transit</span>
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
@@ -28,7 +26,7 @@
 	<div class="item" style="padding-top: 10px">
 		<div class="item">
 			<div class="itemLabel">
-				Location Status:
+				Docking Status:
 			</div>
 			<div class="itemContent">
 				{{if data.docking_status == "docked"}}

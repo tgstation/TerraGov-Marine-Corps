@@ -10,7 +10,8 @@
 	if(!Adjacent(usr) || !over.Adjacent(usr)) return // should stop you from dragging through windows
 
 	spawn(0)
-		over.MouseDrop_T(src,usr)
+		if(over)
+			over.MouseDrop_T(src,usr)
 	return
 
 // recieve a mousedrop

@@ -16,11 +16,15 @@ var/list/beam_master = list()
 	damage_type = BURN
 	flag = "laser"
 	eyeblur = 4
+	var/range = 100 //set to 100 so it only effects the emitter (which will have a range of 6)
 	var/frequency = 1
 	process()
 		var/reference = "\ref[src]" //So we do not have to recalculate it a ton
 		var/first = 1 //So we don't make the overlay in the same tile as the firer
 		spawn while(src) //Move until we hit something
+			range-- //For EMITTER ONLY
+			if(range <=0)
+				del(src)
 
 			if((!( current ) || loc == current)) //If we pass our target
 				current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
@@ -110,6 +114,7 @@ var/list/beam_master = list()
 	name = "emitter beam"
 	icon_state = "emitter"
 	damage = 30
+	range = 6
 
 
 /obj/item/projectile/beam/lastertag/blue
@@ -160,7 +165,7 @@ var/list/beam_master = list()
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"
-	damage = 60
+	damage = 100
 	stun = 5
 	weaken = 5
 	stutter = 5
@@ -169,6 +174,7 @@ var/list/beam_master = list()
 	name = "stun beam"
 	icon_state = "stun"
 	nodamage = 1
+	agony = 95
 	stun = 5
-	weaken = 5
+	weaken = 10
 	damage_type = HALLOSS

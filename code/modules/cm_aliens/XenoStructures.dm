@@ -135,7 +135,7 @@
 	density = 0
 	layer = 2
 	unacidable = 1
-	var/health = 15
+	var/health = 1
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
 
@@ -146,6 +146,7 @@
 	layer = 2.7
 //	luminosity = NODERANGE
 	var/node_range = NODERANGE
+	health = 15
 
 
 /obj/effect/alien/weeds/node/New()
@@ -328,7 +329,8 @@
 /obj/effect/alien/egg/New()
 	..()
 	spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-		Grow()
+		if(status == GROWING)
+			Grow()
 
 /obj/effect/alien/egg/ex_act(severity)
 	switch(severity)
@@ -350,6 +352,9 @@
 	switch(status)
 		if(BURST)
 			user << "\red You clear the hatched egg."
+			user:storedplasma += 1
+			if(istype(user,/mob/living/carbon/Xenomorph/Larva))
+				user:amount_grown += 1
 			del(src)
 			return
 		if(GROWING)
@@ -424,7 +429,7 @@
 
 /obj/effect/alien/egg/proc/healthcheck()
 	if(health <= 0)
-		Burst()
+		Burst(1)
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)
@@ -626,6 +631,13 @@
 
 	if(M == usr)
 		return
+
+	if(istype(M,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(!H.weakened)  //Don't ask me why is has to be
+			user << "[M] is resisting, tackle them first"
+			return
+
 	else
 		M.visible_message(\
 			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\

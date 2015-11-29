@@ -1,7 +1,9 @@
 // ### Preset machines  ###
 
-//Relay
 
+//var/list/freq_listening = list()  USE THIS FOR NEW RELAY STUFF WHEN I GET THIS - APOPHIS
+
+//Relay
 /obj/machinery/telecomms/relay/preset
 	network = "tcommsat"
 
@@ -9,6 +11,20 @@
 	id = "Station Relay"
 	listening_level = 1
 	autolinkers = list("s_relay")
+
+/obj/machinery/telecomms/relay/preset/ice_colony
+	icon = 'icons/obj/comm_tower.dmi'
+	icon_state = "comm_tower"
+	id = "Station Relay"
+	listening_level = 1
+	autolinkers = list("s_relay")
+
+	//We dont want anyone to mess with it
+	attackby()
+		return
+
+	ex_act(severity)
+		return
 
 /obj/machinery/telecomms/relay/preset/telecomms
 	id = "Telecomms Relay"

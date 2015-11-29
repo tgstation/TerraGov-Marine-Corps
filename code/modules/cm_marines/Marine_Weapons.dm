@@ -1,6 +1,5 @@
 ///**************COLONIAL MARINES WEAPON/VENDING/FLASHLIGHT LAST EDIT: 06FEB2015 BY APOPHIS7755**************///
 
-
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
 	damage = 22
@@ -51,6 +50,7 @@
 	icon_state = "gshell"
 	caliber = "shotgun"
 	projectile_type = "/obj/item/projectile/bullet/m37"
+	w_class = 1
 
 ///***Ammo Boxes***///
 
@@ -61,6 +61,7 @@
 	icon_state = ".45a"
 	ammo_type = "/obj/item/ammo_casing/m4a3"
 	max_ammo = 12
+	w_class = 1
 
 /obj/item/ammo_magazine/m4a3/empty //45 Pistol
 	icon_state = ".45a0"
@@ -73,6 +74,7 @@
 	ammo_type = "/obj/item/ammo_casing/m44m"
 	max_ammo = 6
 	multiple_sprites = 1
+	w_class = 1
 
 /obj/item/ammo_magazine/m39 // M39 SMG
 	name = "M39 SMG Mag (9mm)"
@@ -80,6 +82,7 @@
 	icon_state = "9x19p-8"
 	ammo_type = "/obj/item/ammo_casing/m39"
 	max_ammo = 35
+	w_class = 1
 
 /obj/item/ammo_magazine/m39/empty // M39 SMG
 	icon_state = "9x19p-0"
@@ -92,6 +95,7 @@
 	icon_state = "m309a"
 	ammo_type = "/obj/item/ammo_casing/m41"
 	max_ammo = 30
+	w_class = 1
 
 /obj/item/ammo_magazine/m41/empty //Assault Rifle
 	max_ammo = 0
@@ -103,8 +107,18 @@
 	desc = "A box of standard issue high-powered 12 gauge buckshot rounds. Manufactured by Armat Systems for military and civilian use."
 	icon_state = "shells"
 	w_class = 2 //Can fit in belts
+	storage_slots = 14
+	foldable = /obj/item/weapon/paper/crumpled
+	can_hold = list("/obj/item/ammo_casing/m37")
 	New()
 		..()
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
+		new /obj/item/ammo_casing/m37(src)
 		new /obj/item/ammo_casing/m37(src)
 		new /obj/item/ammo_casing/m37(src)
 		new /obj/item/ammo_casing/m37(src)
@@ -136,6 +150,7 @@
 	rail_pixel_y = 21
 	under_pixel_x = 20
 	under_pixel_y = 17
+	w_class = 3
 
 	New()
 		..()
@@ -166,6 +181,7 @@
 	rail_pixel_y = 21
 	under_pixel_x = 23
 	under_pixel_y = 17
+	w_class = 3
 
 ///***SMGS***///
 
@@ -190,6 +206,7 @@
 	rail_pixel_y = 22
 	under_pixel_x = 24
 	under_pixel_y = 16
+	w_class = 4
 
 	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 		..()
@@ -308,12 +325,13 @@
 	force = 10.0
 	twohanded = 1
 	fire_delay = 30
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 16
+	muzzle_pixel_x = 31
+	muzzle_pixel_y = 18
 	rail_pixel_x = 16
 	rail_pixel_y = 19
 	under_pixel_x = 22
 	under_pixel_y = 15
+	w_class = 4
 
 
 ///***MELEE/THROWABLES***///
@@ -345,7 +363,7 @@
 					user.drop_from_inventory(src)
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-					F.loc = src.loc
+					F.loc = get_turf(src)
 				del(src) //Delete da old knife
 			else
 				user << "<span class='notice'>This cable coil appears to be empty.</span>"
@@ -636,7 +654,7 @@
 				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 200."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 28
+	damage = 30
 	iff = 1
 	armor_pierce = 5
 	accuracy = 30
@@ -704,6 +722,16 @@
 	force = 5.0
 	var/list/grenades = new/list()
 	var/max_grenades = 5
+	twohanded = 1
+
+	New()
+		..()
+		spawn(1) //Load er up!
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/incendiary(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
 
 	examine()
 		set src in view()
@@ -729,6 +757,10 @@
 			usr << "\red The grenade launcher beeps a warning noise. You are too close!"
 			return
 
+		if(!wielded)
+			user << "\red You need two hands to fire this!"
+			return
+
 		if(grenades.len)
 			spawn(0) fire_grenade(target,user)
 			playsound(user.loc, 'sound/weapons/grenadelaunch.ogg', 50, 1)
@@ -742,6 +774,7 @@
 		var/obj/item/weapon/grenade/F = grenades[1]
 		grenades -= F
 		F.loc = user.loc
+		F.throw_range = 30
 		F.throw_at(target, 30, 2, user)
 		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
 		log_game("[key_name_admin(user)] used a grenade ([src.name]).")
@@ -749,7 +782,8 @@
 		F.icon_state = initial(icon_state) + "_active"
 		playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
 		spawn(15)
-			F.prime()
+			if(F) //If somehow got deleted since then
+				F.prime()
 
 /obj/item/weapon/storage/box/grenade_system
 	name = "M92 Grenade Launcher case"
@@ -783,6 +817,7 @@
 	slot_flags = 0
 	origin_tech = "combat=8;materials=5"
 	projectile = /obj/item/missile
+	twohanded = 1
 	var/missile_speed = 2
 	var/missile_range = 30
 	var/max_rockets = 1
@@ -813,13 +848,17 @@
 	return rockets.len
 
 /obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+	if(!wielded)
+		usr << "\red You require two hands to fire this!"
+		return
+
 	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new projectile(user.loc)
 		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
 		M.primed = 1
 		M.throw_at(target, missile_range, missile_speed,user)
-		message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).")
+		msg_admin_attack(("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"))
 		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")
 		rockets -= I
 		del(I)
@@ -847,12 +886,12 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "missile"
 	var/primed = null
-	throwforce = 10
+	throwforce = 30
 	pass_flags = PASSTABLE
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, -1, -1, 3, 1)
+			explosion(hit_atom, -1, 2, 2, 1)
 			del(src)
 		else
 			..()
@@ -864,7 +903,7 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, -1, 0, 1, 1)
+			explosion(hit_atom, -1, 1, 1, 1)
 			del(src)
 		else
 			..()
@@ -876,7 +915,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	w_class = 5
-	storage_slots = 6
+	storage_slots = 7
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
@@ -887,6 +926,7 @@
 			new /obj/item/ammo_casing/rocket(src)
 			new /obj/item/ammo_casing/rocket(src)
 			new /obj/item/ammo_casing/rocket(src)
+			new /obj/item/ammo_casing/rocket/ap(src)
 			new /obj/item/ammo_casing/rocket/ap(src)
 			new /obj/item/ammo_casing/rocket/ap(src)
 

@@ -50,7 +50,9 @@
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = (G.force * melee_mod / 100)
-			if(melee_mod > 100) G.attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+			if(melee_mod > 100)
+				G.attack_verb = null
+				G.attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		if(w_class_mod != 0) G.w_class += w_class_mod
 		if(istype(G,/obj/item/weapon/gun/projectile))
 			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
@@ -157,6 +159,7 @@
 					/obj/item/weapon/gun/projectile/automatic/m39,
 					/obj/item/weapon/gun/projectile/shotgun/pump/m37)
 	accuracy_mod = 15
+	ranged_dmg_mod = 105
 	twohanded_mod = 1
 	w_class_mod = 1
 	recoil_mod = -1
@@ -285,13 +288,12 @@
 	icon_state = "hbarrel"
 	accuracy_mod = -40
 	ranged_dmg_mod = 140
-	delay_mod = 2
+	delay_mod = 4
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 					/obj/item/weapon/gun/projectile/m4a3,
 					/obj/item/weapon/gun/projectile/automatic/m39,
 					/obj/item/weapon/gun/projectile/m44m,
-					/obj/item/weapon/gun/projectile/M42C,
 					/obj/item/weapon/gun/projectile/M56_Smartgun
 					)
 
@@ -301,12 +303,13 @@
 	slot = "rail"
 	icon_state = "autoloader"
 	accuracy_mod = -35
-	delay_mod = -2
+	delay_mod = -4
 	recoil_mod = 1
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/m4a3,
 					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/m44m
+					/obj/item/weapon/gun/projectile/m44m,
+					/obj/item/weapon/gun/projectile/M42C
 					)
 
 /obj/item/attachable/compensator

@@ -226,7 +226,6 @@ obj/item/weapon/gun/energy/staff/focus
 	fire_delay = 35
 	w_class = 4.0
 	zoomdevicename = "scope"
-	twohanded = 1
 
 /obj/item/weapon/gun/energy/sniperrifle/verb/scope()
 	set category = "Weapons"

@@ -1,21 +1,708 @@
 Note: The proc name, source file, src and usr are all from the FIRST of the identical runtimes. Everything else is cropped.
 
-Total unique runtimes: 2
-Total runtimes: 2
+Total unique runtimes: 100
+Total runtimes: 1344
+
+Warning: The maximum number of unique runtimes has been hit. If there were more, they have been cropped out.
 
 ** Runtimes **
 
-The following runtime has occured 1 time(s).
-runtime error: type mismatch: the plating (107,70,1) (/turf/simulated/floor/plating) += the plating (108,70,1) (/turf/simulated/floor/plating)
-proc name: IsolateContents (/zone/proc/IsolateContents)
-  source file: ZAS_Zones.dm,747
+The following runtime has occured 257 time(s).
+runtime error: bad index
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,405
   usr: null
-  src: /zone (/zone)
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 242 time(s).
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+
+
+The following runtime has occured 212 time(s).
+runtime error: list index out of bounds
+proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
+  source file: _gas_mixture_xgm.dm,120
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 146 time(s).
+runtime error: Cannot read .len
+proc name: attack (/obj/item/proc/attack)
+  source file: item_attack.dm,131
+  usr: Jack Rustle (/mob/living/carbon/human)
+  src: the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+
+
+The following runtime has occured 78 time(s).
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Sentinel (846) (/mob/living/carbon/Xenomorph/Sentinel)
+  src: the photo (/obj/item/weapon/photo)
+
+
+The following runtime has occured 74 time(s).
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+
+
+The following runtime has occured 65 time(s).
+runtime error: Cannot read null.flags
+proc name: handle mutations and radiation (/mob/living/carbon/human/proc/handle_mutations_and_radiation)
+  source file: life.dm,270
+  usr: null
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 24 time(s).
+runtime error: Cannot read null.prefs
+proc name: Dsay (/client/proc/dsay)
+  source file: Go to Bugs forum,47
+  usr: PMC Gregory Logue (/mob/living/carbon/human)
+  src: Coroneljones (/client)
+
+
+The following runtime has occured 24 time(s).
+runtime error: Cannot read null.charge
+proc name: turn on (/obj/vehicle/proc/turn_on)
+  source file: vehicle.dm,175
+  usr: Hesus Alejandro (/mob/living/carbon/human)
+  src: the cargo train tug (/obj/vehicle/train/cargo/engine)
+
+
+The following runtime has occured 14 time(s).
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Michael \'Messiah\' King (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+
+
+The following runtime has occured 11 time(s).
+runtime error: type mismatch: cannot compare "202020202020" to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
+
+
+The following runtime has occured 10 time(s).
+runtime error: Cannot modify null.loc.
+proc name: attackby (/obj/item/weapon/gun/attackby)
+  source file: gun.dm,377
+  usr: Nathaniel Hunter (/mob/living/carbon/human)
+  src: the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+
+
+The following runtime has occured 9 time(s).
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Mateo Garret (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+
+
+The following runtime has occured 9 time(s).
+runtime error: Undefined operation: "202020202020" * 7
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+
+
+The following runtime has occured 8 time(s).
+runtime error: Cannot read null.has_organ
+proc name: handle breath (/mob/living/carbon/human/proc/handle_breath)
+  source file: life.dm,466
+  usr: null
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 8 time(s).
+runtime error: wrong type of value for list
+proc name: mod list add (/client/proc/mod_list_add)
+  source file: modifyvariables.dm,123
+  usr: the alien empress (/mob/living/simple_animal/hostile/alien/queen/large)
+  src: Adjective (/client)
+
+
+The following runtime has occured 8 time(s).
+runtime error: undefined variable /obj/item/weapon/storage/wallet/random/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Lewis \'Wrench\' Archabold (/mob/living/carbon/human)
+  src: null
+
+
+The following runtime has occured 8 time(s).
+runtime error: type mismatch: cannot compare "20" to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 6 time(s).
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Guillaume Viabon (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+
+
+The following runtime has occured 6 time(s).
+runtime error: Cannot execute null.handle environment special().
+proc name: handle environment (/mob/living/carbon/human/proc/handle_environment)
+  source file: life.dm,662
+  usr: null
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 5 time(s).
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,548
+  usr: null
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+
+
+The following runtime has occured 5 time(s).
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: Ghostboy1217 (/mob/new_player)
+  src: Ghostboy1217 (/client)
+
+
+The following runtime has occured 5 time(s).
+runtime error: Cannot read null.darksight
+proc name: handle regular hud updates (/mob/living/carbon/human/proc/handle_regular_hud_updates)
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot read null.BB
+proc name: pump (/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump)
+  source file: shotgun.dm,51
+  usr: Riley Blyant (/mob/living/carbon/human)
+  src: the M37 Pump Shotgun (/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+
+
+The following runtime has occured 4 time(s).
+runtime error: undefined proc or verb /mob/living/carbon/monkey/get organ().
+
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot read null.fields
+proc name: Topic (/obj/machinery/computer/secure_data/Topic)
+  source file: security.dm,435
+  usr: Bruce Howard (/mob/living/carbon/human)
+  src: Security Records (/obj/machinery/computer/secure_data)
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot read null.name
+proc name: update hair (/mob/living/carbon/human/proc/update_hair)
+  source file: update_icons.dm,432
+  usr: Gage Carter (/mob/living/carbon/human)
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 3 time(s).
+runtime error: pick() from empty list
+proc name: launch mauraders (/proc/launch_mauraders)
+  source file: shuttle_specops.dm,170
+  usr: null
+  src: null
+
+
+The following runtime has occured 3 time(s).
+runtime error: bad client
+proc name: Adminhelp (/client/verb/adminhelp)
+
+
+The following runtime has occured 3 time(s).
+runtime error: Cannot read null.key
+proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
+
+
+The following runtime has occured 3 time(s).
+runtime error: Cannot read null.slowdown
+proc name: movement delay (/mob/living/carbon/human/movement_delay)
+
+
+The following runtime has occured 3 time(s).
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: Shiloh Linton (/mob/living/carbon/human)
+  src: H.E.L.P (/mob/living/silicon/pai)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Alex Graves (/mob/living/carbon/human)
+  src: Shane Kadel (/mob/living/carbon/human)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot execute null.Examine().
+proc name: Topic (/mob/living/carbon/human/Topic)
+  source file: human.dm,725
+  usr: Danny White (/mob/living/carbon/human)
+  src: Danny White (/mob/living/carbon/human)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot execute null.GetID().
+proc name: Topic (/datum/file/program/communications/Topic)
+  source file: communications.dm,88
+  usr: Yakov Rogachyov (/mob/living/carbon/human)
+  src: Centcom communications relay (/datum/file/program/communications)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot modify null.icon_state.
+proc name: Click (/obj/screen/Click)
+  source file: screen_objects.dm,356
+  usr: Siserith \'Dragon\' Vassada (/mob/living/carbon/brain)
+  src: the harm (/obj/screen)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.head_position
+proc name: EquipRank (/datum/controller/occupations/proc/EquipRank)
+  source file: job_controller.dm,385
+  usr: Ashe White (/mob/dead/observer)
+  src: /datum/controller/occupations (/datum/controller/occupations)
+
+
+The following runtime has occured 2 time(s).
+runtime error: undefined proc or verb /datum/wound/cut/small/savefile load().
+
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.icon_template
+proc name: update body (/mob/living/carbon/human/proc/update_body)
+  source file: update_icons.dm,254
+  usr: Gage Carter (/mob/living/carbon/human)
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.tail
+proc name: update tail showing (/mob/living/carbon/human/proc/update_tail_showing)
+  source file: update_icons.dm,936
+  usr: Gage Carter (/mob/living/carbon/human)
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.client
+proc name: shake camera (/proc/shake_camera)
+  source file: mob_helpers.dm,375
+  usr: Queen (/mob/living/carbon/Xenomorph/Queen)
+  src: null
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read 'icons/xeno/Colonial_Queen.dmi'.vars
+proc name: modify variables (/client/proc/modify_variables)
+  source file: modifyvariables.dm,343
+  usr: Erin Kowalski (/mob/dead/observer)
+  src: Apophis775 (/client)
+
+
+The following runtime has occured 2 time(s).
+runtime error: type mismatch: cannot compare "202020202020202020202020202020..." to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
 
 
 The following runtime has occured 1 time(s).
-runtime error: Cannot read null.len
-proc name: Rebuild (/zone/proc/Rebuild)
-  source file: ZAS_Zones.dm,669
+runtime error: Cannot execute null.savefile load().
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,77
+  usr: Windows 97 (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.storedplasma
+proc name: Transfer Plasma (/mob/living/carbon/Xenomorph/proc/transfer_plasma)
+  source file: XenoPowers.dm,177
+  usr: Runner (501) (/mob/living/carbon/Xenomorph/Runner)
+  src: Runner (501) (/mob/living/carbon/Xenomorph/Runner)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.type
+proc name: attackby (/obj/item/solar_assembly/attackby)
+  source file: solar.dm,236
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: the solar panel assembly (/obj/item/solar_assembly)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined variable /turf/unsimulated/wall/splashscreen/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,972
+  usr: Charles \'Shocky\' Fenix (/mob/dead/observer)
+  src: MarkValentine (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot modify null.assigned_role.
+proc name: create member (/datum/emergency_call/pizza/create_member)
+  source file: distress.dm,738
+  usr: Kate Braun (as Jack Rook) (/mob/living/carbon/human)
+  src: Pizza Delivery (/datum/emergency_call/pizza)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.savefile save().
+proc name: Topic (/datum/paiController/Topic)
+  source file: recruit.dm,75
+  usr: Cloud (/mob/living/silicon/pai)
+  src: /datum/paiController (/datum/paiController)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.damtype
+proc name: attacked by (/mob/living/carbon/human/proc/attacked_by)
+  source file: human_defense.dm,285
+  usr: Greater Friend (/mob/living/carbon/human)
+  src: Greater Friend (/mob/living/carbon/human)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Jack Olsen (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.ckey
+proc name: Topic (/datum/admins/Topic)
+  source file: l_hand_hud_object,782
+  usr: Jim Alliman (/mob/dead/observer)
+  src: /datum/admins (/datum/admins)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.assignment
+proc name: Topic (/obj/machinery/computer/squad_changer/Topic)
+  source file: marines_consoles.dm,442
+  usr: Alexander Castor (/mob/living/carbon/human)
+  src: Squad Distribution Computer (/obj/machinery/computer/squad_changer)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.add fingerprint().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,793
+  usr: Declan Fryer (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Call to /area/Adjacent(), unimplemented proc
+proc name: Adjacent (/area/Adjacent)
+  source file: adjacent.dm,18
+  usr: Alisya Franks (/mob/living/carbon/human)
+  src: the Dropship Hangar (/area/sulaco/hangar)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.get organ().
+proc name: take damage (/datum/organ/internal/proc/take_damage)
+  source file: organ_internal.dm,100
+  usr: Kameron Singh (/mob/living/carbon/human)
+  src: organ (/datum/organ/internal)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined variable /mob/living/carbon/monkey/var/internal_organs_by_name
+proc name: can use (/datum/surgery_step/cavity/implant_removal/can_use)
+  source file: implant.dm,163
+  usr: Alan White (/mob/living/carbon/human)
+  src: /datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.create organs().
+proc name: set species (/mob/living/carbon/human/proc/set_species)
+  source file: human.dm,1196
+  usr: Erin Kowalski (/mob/dead/observer)
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.hud
+proc name: human hud (/datum/hud/proc/human_hud)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.on removed().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Ty Russell (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.dd SortValue().
+proc name: dd sortedObjectList (/proc/dd_sortedObjectList)
+  source file: lists.dm,434
   usr: null
-  src: /zone (/zone)
+  src: null
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: null -= UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+proc name: Del (/obj/machinery/Del)
+  source file: machinery.dm,120
+  usr: Praetorian (742) (/mob/living/carbon/Xenomorph/Praetorian)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined variable /turf/space/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,972
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot modify null.holder_atom.
+proc name: New (/obj/item/weapon/archaeological_find/New)
+  source file: finds.dm,549
+  usr: Axel Strife (/mob/living/carbon/human)
+  src: Strange gun (/obj/item/weapon/archaeological_find)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: 17.8725 - "20"
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20" * 6
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,388
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20" / 101
+proc name: remove (/datum/gas_mixture/proc/remove)
+  source file: _gas_mixture_xgm.dm,209
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20" *= 6
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+  source file: _gas_mixture_xgm.dm,355
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: "20" += 14.1509
+proc name: merge (/datum/gas_mixture/proc/merge)
+  source file: _gas_mixture_xgm.dm,94
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20" /= 7
+proc name: divide (/datum/gas_mixture/proc/divide)
+  source file: _gas_mixture_xgm.dm,364
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: "20" - 18.3849
+proc name: compare (/datum/gas_mixture/proc/compare)
+  source file: _gas_mixture_xgm.dm,281
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20" * 7
+proc name: share ratio (/datum/gas_mixture/proc/share_ratio)
+  source file: _gas_mixture_xgm.dm,385
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20" /= 1
+proc name: divide (/datum/gas_mixture/proc/divide)
+  source file: _gas_mixture_xgm.dm,364
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20" *= 1
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+  source file: _gas_mixture_xgm.dm,355
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: cannot compare "2020" to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
+  source file: _gas_mixture_xgm.dm,187
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "2020" /= 2
+proc name: divide (/datum/gas_mixture/proc/divide)
+  source file: _gas_mixture_xgm.dm,364
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "2020" *= 2
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+  source file: _gas_mixture_xgm.dm,355
+  usr: null
+  src: /datum/gas_mixture (/datum/gas_mixture)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: cannot compare "202020" to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020" /= 3
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020" *= 3
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: cannot compare "20202020" to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20202020" /= 4
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "20202020" *= 4
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: cannot compare "2020202020" to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "2020202020" /= 5
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "2020202020" *= 5
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020" /= 6
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020" *= 6
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: "202020202020" += 17.8968
+proc name: merge (/datum/gas_mixture/proc/merge)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020" /= 7
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: "202020202020" - 19.2653
+proc name: compare (/datum/gas_mixture/proc/compare)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020" /= 1
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020" *= 1
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+
+
+The following runtime has occured 1 time(s).
+runtime error: type mismatch: cannot compare "202020202020202020202020" to 0
+proc name: update values (/datum/gas_mixture/proc/update_values)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020202020202020" /= 2
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020202020202020" *= 2
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020202020202020202020..." /= 3
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020202020202020202020..." *= 3
+proc name: multiply (/datum/gas_mixture/proc/multiply)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020202020202020202020..." /= 4
+proc name: divide (/datum/gas_mixture/proc/divide)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Undefined operation: "202020202020202020202020202020..." *= 4
+proc name: multiply (/datum/gas_mixture/proc/multiply)

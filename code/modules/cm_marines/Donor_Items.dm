@@ -237,6 +237,58 @@
 	icon_state = "boba_armor"
 	item_state = "boba_armor"
 
+/obj/item/clothing/suit/storage/marine/fluff/stobarico
+	name = "British Admiral Uniform"
+	desc = "An ancient uniform of an Admiral.  DONOR ITEM"
+	icon_state = "lordadmiral"
+	item_state = "lordadmiral"
+
+/obj/item/clothing/suit/storage/marine/fluff/starscream
+	name = "Kardar Hussein's Armor"
+	desc = "Slightly worn and torn.  DONOR ITEM"
+	icon_state = "merc_armor"
+	item_state = "merc_armor"
+
+/obj/item/clothing/suit/storage/marine/fluff/steelpoint
+	name = "M4X Armor"
+	desc = "Armor to the M4X!!!!  DONOR ITEM"
+	icon_state = "steelpoint_armor"
+	item_state = "steelpoint_armor"
+
+
+/obj/item/clothing/suit/storage/marine/fluff/valentine
+	name = "Shocky's Armor"
+	desc = "Shockingly good armor.   DONOR ITEM"
+	icon_state = "ertarmor_sec"
+	item_state = "ertarmor_sec"
+
+
+/obj/item/clothing/suit/storage/marine/fluff/nickiscool
+	name = "Starlord's Jacket"
+	desc = "Who?  DONOR ITEM"
+	icon_state = "star_jacket"
+	item_state = "star_jacker"
+
+/obj/item/clothing/suit/storage/marine/fluff/Sado2
+	name = "Tanya's Armor"
+	desc = "Armor worn by one of the most famous MPs in the history of the USCM.  DONOR ITEM"
+	icon_state = "sadokist_armor"
+	item_state = "sadokist_armor"
+
+/obj/item/clothing/suit/storage/marine/fluff/Fairedan
+	name = "Freighter Crew Flight Jacket"
+	desc = "Standard Issue Jacket for crew that serve on Lockmart CM-88B Bison starfreighters.  It has the number 1809246 on the inside tag...  DONOR ITEM"
+	icon_state = "Fairedan_vest"
+	item_state = "Fairedan_vest"
+
+/obj/item/clothing/suit/storage/marine/fluff/Jack
+	name = "Exo-Suit Jackert"
+	desc = "Some sort of strange Exo-suit jacket.  It has the letters USCM stamped over a faded word that appears to be ATLAS...  UNIQUE DONOR ITEM"
+	icon_state = "Adam_jacket_u"
+	item_state = "Adam_jacket_u"
+
+
+
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
 //HEAD TEMPLATE (for Helmets/Hats/Berets)  ONLY TAKE NAME, DESC, ICON_STATE, AND ITEM_STATE.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -419,6 +471,7 @@
 	desc = "Disclaimer: Probably doesn't provide infinite ammo.  UNIQUE DONOR ITEM"
 	icon_state = "headband_u"
 	item_state = "headband_u"
+	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 
 /obj/item/clothing/head/helmet/marine/fluff/LEO
 	name = "Leo's Helm"
@@ -458,15 +511,71 @@
 
 /obj/item/clothing/head/helmet/marine/fluff/radical
 	name = "Bounty Hunter Helmet"
-	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
+	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM"
 	icon_state = "boba_helmet"
 	item_state = "boba_helmet"
 
 /obj/item/clothing/head/helmet/marine/fluff/leondark
-	name = "Daniel's USCM Cap"
-	desc = "A well worn cap with the name 'Barrientos' written on the inside.  DONOR ITEM" //Add UNIQUE if Unique
+	name = "Hunter's USCM Cap"
+	desc = "A well worn cap with the name 'Barrientos' written on the inside.  DONOR ITEM"
 	icon_state = "USCM_cap"
 	item_state = "USCM_cap"
+
+/obj/item/clothing/head/helmet/marine/fluff/starscream
+	name = "Kardar Hussein's Helmet"
+	desc = "Slightly worn and torn.  DONOR ITEM"
+	icon_state = "asset_protect"
+	item_state = "asset_protect"
+
+/obj/item/clothing/head/helmet/marine/fluff/blackdragon
+	name = "Spartan Helmet"
+	desc = "SPARTANS, WHAT IS YOUR PROFESSION?  DONOR ITEM"
+	icon_state = "blackdragon_helmet_u" //UNIQUE
+	item_state = "blackdragon_helmet_u"
+
+/obj/item/clothing/head/helmet/marine/fluff/steelpoint
+	name = "M4X Helmet"
+	desc = "Helmets to the M4X!!!  DONOR ITEM"
+	icon_state = "steelpoint_helmet"
+	item_state = "steelpoint_helmet"
+
+/obj/item/clothing/head/helmet/marine/fluff/valentine
+	name = "Shocky's Helmet"
+	desc = "Shockingly good helmet.  DONOR ITEM"
+	icon_state = "syndicate-helm-black"
+	item_state = "syndicate-helm-black"
+
+/obj/item/clothing/head/helmet/marine/fluff/Jdobbin49
+	name = "Phillip's Beret"
+	desc = "Beret owned by Phillip Greenwall.  DONOR ITEM"
+	icon_state = "berettan"
+	item_state = "berettan"
+
+/obj/item/clothing/head/helmet/marine/fluff/nickiscool
+	name = "Starlord Mask"
+	desc = "Just in case someone might recognize you...  DONOR ITEM"
+	icon_state = "star_mask"
+	item_state = "star_mask"
+
+/obj/item/clothing/head/helmet/marine/fluff/Bibblesless
+	name = "Yellow ERT Helmet"
+	desc = "Standard Emergency Helmet, yellow variety....  DONOR ITEM"
+	icon_state = "rig0-ert_engineer"
+	item_state = "rig0-ert_engineer"
+
+/obj/item/clothing/head/helmet/marine/fluff/FernKiller
+	name = "White ERT Helmet"
+	desc = "Standard Emergency Helmet, white variety....  DONOR ITEM"
+	icon_state = "rig0-ert_medical"
+	item_state = "rig0-ert_medical"
+
+
+/obj/item/clothing/head/helmet/marine/fluff/Jack
+	name = "USCM Ball Cap"
+	desc = "USCM Cold Weather Ball Cap...  DONOR ITEM"
+	icon_state = "Adam_hat"
+	item_state = "Adam_hat"
+
 
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
@@ -611,17 +720,80 @@
 
 /obj/item/clothing/under/marine/fluff/roswell
 	name = "Merc Jumpsuit"
-	desc = "Jumpsut from a super shady mercenary company.  DONOR ITEM"
+	desc = "Jumpsuit from a super shady mercenary company.  DONOR ITEM"
 	icon_state = "merc_jumpsuit"
 	item_state = "merc_jumpsuit_s"
 	item_color = "merc_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/radical
 	name = "Bounty Hunter Jumpsuit"
-	desc = "Undergarmants of an ancient bounty hunter.  DONOR ITEM" //Add UNIQUE if Unique
-	icon_state = "boba_suit"
-	item_state = "boba_suit_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
-	item_color = "boba_suit" //color must always be the same as item_state
+	desc = "Undergarmants of an ancient bounty hunter.  DONOR ITEM"
+	icon_state = "boba_jumpsuit"
+	item_state = "boba_jumpsuit_s"
+	item_color = "boba_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/jackmcintyre
+	name = "Dress Uniform"
+	desc = "A Dress uniform, worn by standard marines. DONOR ITEM"
+	icon_state = "BO_jumpsuit"
+	item_state = "BO_jumpsuit_s"
+	item_color = "BO_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/starscream
+	name = "Kardar Hussein's Jumpsuit"
+	desc = "Slightly worn and torn.  DONOR ITEM"
+	icon_state = "merc_jumpsuit2"
+	item_state = "merc_jumpsuit2_s"
+	item_color = "merc_jumpsuit2"
+
+/obj/item/clothing/under/marine/fluff/allan
+	name = "Commander Jumpsuit"
+	desc = "Jumpsuit worn by a space commander...  DONOR ITEM"
+	icon_state = "henrick_jumpsuit"
+	item_state = "henrick_jumpsuit_s"
+	item_color = "henrick_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/steelpoint
+	name = "M4X Jumpsuit"
+	desc = "Jumpsuit to the M4X!!!  DONOR ITEM"
+	icon_state = "steelpoint_jumpsuit"
+	item_state = "steelpoint_jumpsuit_s"
+	item_color = "steelpoint_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/valentine
+	name = "Shocky's Jumpsuit"
+	desc = "Shockingly good Jumpsuit.  DONOR ITEM"
+	icon_state = "jensen"
+	item_state = "jensen_s"
+	item_color = "jensen"
+
+/obj/item/clothing/under/marine/fluff/arach
+	name = "Zero Suit"
+	desc = "A jumpsut worn under futuristic armor.  DONOR ITEM"
+	icon_state = "samus_jumpsuit"
+	item_state = "samus_jumpsuit_s"
+	item_color = "samus_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/nickiscool
+	name = "Starlords Jumpsuit"
+	desc = "Designed to show off your manly muscles for all the ladies.  DONOR ITEM"
+	icon_state = "star_jumpsuit"
+	item_state = "star_jumpsuit_s"
+	item_color = "star_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/Jack
+	name = "White shit and black Pants"
+	desc = "Perfect for formal dress, or going to a combat zone in Style.  UNIQUE DONOR ITEM"
+	icon_state = "Adam_jumpsuit_u"
+	item_state = "Adam_jumpsuit_u_s"
+	item_color = "Adam_jumpsuit_u"
+
+/obj/item/clothing/under/marine/fluff/Fairedan
+	name = "Starfreighter Jumpsuit"
+	desc = "Standard Issue Jumpsuit for crew that serve on Lockmart CM-88B Bison starfreighters.  It has the number 1809246 on the inside tag....  DONOR ITEM"
+	icon_state = "Fairedan_jumpsuit"
+	item_state = "Fairedan_jumpsuit_s"
+	item_color = "Fairedan_jumpsuit"
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
@@ -694,9 +866,21 @@
 
 /obj/item/clothing/mask/fluff/fick2
 	name = "Corporal Hart's Mask"
-	desc = "A robotic looking Armored mask.  DONOR ITEM" //Add UNIQUE if Unique
+	desc = "A robotic looking Armored mask.  DONOR ITEM"
 	icon_state = "hartmask"
 	item_state = "hartmask"
+
+/obj/item/clothing/mask/fluff/starscream
+	name = "Kardar Hussein's mask"
+	desc = "Slightly worn and torn.  DONOR ITEM"
+	icon_state = "merc_mask"
+	item_state = "merc_mask"
+
+/obj/item/clothing/mask/fluff/lostmix
+	name = "Phantom Cigar"
+	desc = "It's a g-g-g-g-g-ghost cigar.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "cigaron"
+	item_state = "cigaron"
 
 //	BOOTS/SHOES COSMETICS  ////////////////////////////////////////////////
 
@@ -719,6 +903,12 @@
 	desc = "A uniform, of a famous Earth warrior... Donor Item"
 	icon_state = "doom_boots"
 	item_state = "doom_boots"
+
+/obj/item/clothing/shoes/marine/fluff/steelpoint
+	name = "M4X Boot"
+	desc = "Boots to the M4X.  DONOR ITEM"
+	icon_state = "jackboots"
+	item_state = "jackboots"
 
 //GENERIC GLASSES, GLOVES, AND MISC ////////////////////
 

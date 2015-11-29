@@ -86,6 +86,13 @@
 	else
 		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i>"
 
+	var/track = ""
+	var/ghostrend
 	for (var/mob/S in player_list)
 		if(!isnull(S) && (istype(S,/mob/living/carbon/Xenomorph) || S.stat == DEAD) && !istype(S,/mob/new_player))
-			S.show_message(rendered, 2)
+			if(istype(S,/mob/dead/observer))
+				track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
+				ghostrend= "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
+				S.show_message(ghostrend,2)
+			else
+				S.show_message(rendered, 2)

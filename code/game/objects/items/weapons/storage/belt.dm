@@ -7,6 +7,7 @@
 	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
+	w_class = 4
 
 /obj/item/weapon/storage/belt/utility
 	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.

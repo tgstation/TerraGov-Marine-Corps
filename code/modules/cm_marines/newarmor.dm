@@ -39,7 +39,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "M10 Pattern Marine Helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	armor = list(melee = 75, bullet = 60, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
-	flags = FPRINT|TABLEPASS
+	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
 	var/hug_damage = 0
 	anti_hug = 1
 
@@ -233,6 +233,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		if(on && src.loc != user)
 			user.SetLuminosity(-brightness_on)
 			SetLuminosity(brightness_on)
+
+	Del()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		..()
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))

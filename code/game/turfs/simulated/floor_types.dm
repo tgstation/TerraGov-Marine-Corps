@@ -90,6 +90,13 @@
 	nitrogen = 0.001
 	temperature = TCMB
 
+/turf/simulated/floor/engine/mars/exterior
+	name = "floor"
+	icon_state = "ironsand1"
+	oxygen = 0
+	nitrogen = 95
+	temperature = T20C
+
 /turf/simulated/floor/plating
 	name = "plating"
 	icon_state = "plating"
@@ -225,6 +232,6 @@
 
 /turf/simulated/floor/plating/airless/catwalk
 	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "Floor3"
+	icon_state = "catwalk0"
 	name = "catwalk"
 	desc = "Cats really don't like these things."

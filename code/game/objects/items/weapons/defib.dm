@@ -9,10 +9,11 @@
 	throwforce = 5
 	w_class = 3
 	var/emagged = 1 //Because defibs that only save people are boring.  Let's have it start dangerous.  Everything should be a potential weapon.
-	var/charges = 15
 	var/status = 0
 	var/graceperiod = 400
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
+	var/charge_cost = 100 //How much energy is used.
+	var/obj/item/weapon/cell/dcell = null
 	origin_tech = "biotech=3"
 
 	suicide_act(mob/user)
@@ -20,28 +21,38 @@
 		return (OXYLOSS)
 
 	proc/toolate(mob/living/carbon/human/M as mob)
-		if(world.time <= M.worldtod + graceperiod)
+		if(world.time <= M.timeofdeath + graceperiod)
 			return 1
 		else
 			return 0
 
+/obj/item/weapon/melee/defibrillator/New()
+	dcell = new/obj/item/weapon/cell(src)
+	update_icon()
+
 /obj/item/weapon/melee/defibrillator/update_icon()
-	if(!status)
-		if(charges >= 7)
-			icon_state = "defib_full"
-		if(charges <= 6 && charges >= 4)
-			icon_state = "defib_half"
-		if(charges <= 3 && charges >= 1)
-			icon_state = "defib_low"
-		if(charges <= 0)
+	if(dcell)
+		if(dcell.charge)
+			if(!status)
+				switch(round(dcell.charge * 100 / dcell.maxcharge))
+					if(66 to INFINITY)
+						icon_state = "defib_full"
+					if(36 to 65)
+						icon_state = "defib_half"
+					if(1 to 35)
+						icon_state = "defib_low"
+			else
+				switch(round(dcell.charge * 100 / dcell.maxcharge))
+					if(66 to INFINITY)
+						icon_state = "defibpaddleout_full"
+					if(36 to 65)
+						icon_state = "defibpaddleout_half"
+					if(1 to 35)
+						icon_state = "defibpaddleout_low"
+		else
 			icon_state = "defib_empty"
 	else
-		if(charges >= 7)
-			icon_state = "defibpaddleout_full"
-		if(charges <= 6 && charges >= 4)
-			icon_state = "defibpaddleout_half"
-		if(charges <= 3 && charges >= 1)
-			icon_state = "defibpaddleout_low"
+		icon_state = "defib_empty"
 
 /obj/item/weapon/melee/defibrillator/attack_self(mob/user as mob)
 /*	if(status && (M_CLUMSY in user.mutations) && prob(50))
@@ -55,7 +66,7 @@
 			status = 0
 			update_icon()
 		return*/
-	if(charges > 0)
+	if(dcell.charge >= charge_cost)
 		status = !status
 		user << "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>"
 		playsound(get_turf(src), "sparks", 75, 1, -1)
@@ -79,8 +90,6 @@
 			overlays -= I
 
 /obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	var/tobehealed
-	var/threshhold = -config.health_threshold_dead
 	var/mob/living/carbon/human/H = M
 	if(!ishuman(M))
 		..()
@@ -88,7 +97,7 @@
 	if(status)
 		if(user.a_intent == "hurt" && emagged)
 			H.visible_message("<span class='danger'>[M.name] has been touched by the defibrillator paddles by [user]!</span>")
-			if(charges >= 2)
+			if(dcell.charge >= charge_cost*2)
 				H.Weaken(10)
 				H.adjustOxyLoss(10)
 				H.apply_damage(10, BURN, "chest")
@@ -100,10 +109,8 @@
 			spark_system.attach(M)
 			spark_system.set_up(5, 0, M)
 			spark_system.start()
-			charges -= 2
-			if(charges < 0)
-				charges = 0
-			if(!charges)
+			dcell.use(charge_cost*2)
+			if(!dcell.charge)
 				status = 0
 			update_icon()
 			playsound(get_turf(src), 'sound/weapons/Egloves.ogg', 50, 1, -1)
@@ -120,7 +127,12 @@
 			if(H.stat == 2 || H.stat == DEAD)
 				var/uni = 0
 				var/armor = 0
-				var/health = H.health
+				//We want to heal these
+				var/brute = H.getBruteLoss()
+				var/burn = H.getFireLoss()
+				var/oxygen = H.getOxyLoss()
+				var/toxin = H.getToxLoss()
+
 				for(var/obj/item/carried_item in H.contents)
 					if(istype(carried_item, /obj/item/clothing/under))
 						uni = 1
@@ -130,39 +142,59 @@
 					if(prob(30))
 						spark_system.attach(M)
 						spark_system.start()
-					if(prob(30))
-						tobehealed = health + threshhold
-						tobehealed -= 5 //They get 5 health in crit to heal the person or inject stabilizers
-						H.adjustOxyLoss(tobehealed)
+					if(prob(25))
+						if(oxygen)
+							H.adjustOxyLoss(-8)
+						else if(toxin)
+							H.adjustToxLoss(-8)
+						else if(brute)
+							H.adjustBruteLoss(-8)
+						else if(burn)
+							H.adjustFireLoss(-8)
 				else if((uni || armor) && toolate(M))
 					if(prob(30))
 						spark_system.attach(M)
 						spark_system.start()
-					if(prob(60))
-						tobehealed = health + threshhold
-						tobehealed -= 5 //They get 5 health in crit to heal the person or inject stabilizers
-						H.adjustOxyLoss(tobehealed)
+					if(prob(40))
+						if(oxygen)
+							H.adjustOxyLoss(-8)
+						else if(toxin)
+							H.adjustToxLoss(-8)
+						else if(brute)
+							H.adjustBruteLoss(-8)
+						else if(burn)
+							H.adjustFireLoss(-8)
 				else
-					if(prob(90) && toolate(M))
-						tobehealed = health + threshhold
-						tobehealed -= 5 //They get 5 health in crit to heal the person or inject stabilizers
-						H.adjustOxyLoss(tobehealed)
-				H.updatehealth() //forces a health update, otherwise the oxyloss adjustment wouldnt do anything
+					if(toolate(M))
+						if(oxygen)
+							H.adjustOxyLoss(-8)
+						else if(toxin)
+							H.adjustToxLoss(-8)
+						else if(brute)
+							H.adjustBruteLoss(-8)
+						else if(burn)
+							H.adjustFireLoss(-8)
+				H.updatehealth() //forces a health update
 				M.visible_message("\red [M]'s body convulses a bit.")
+				playsound(get_turf(src), 'sound/weapons/Egloves.ogg', 50, 1, -1)
 				var/datum/organ/external/temp = H.get_organ("head")
-				if(H.health >= -100 && !(temp.status & ORGAN_DESTROYED) && !H.suiciding && toolate(M)) //!(M_NOCLONE in H.mutations) && We don't have this.
-					viewers(M) << "\blue [src] beeps: Resuscitation successful."
+				if(H.health > -100 && !(temp.status & ORGAN_DESTROYED) && !H.suiciding && toolate(M)) //!(M_NOCLONE in H.mutations) && We don't have this.
+					viewers(M) << "\blue \icon[src] beeps: Resuscitation successful."
 					spawn(0)
 						H.stat = 1
 						dead_mob_list -= H
-						living_mob_list |= list(H)
+						living_mob_list += H
 						H.emote("gasp")
+						H.hud_updateflag |= 1 << HEALTH_HUD
+						H.hud_updateflag |= 1 << STATUS_HUD
+						H.tod = null
+						H.timeofdeath = 0
 				else
-					viewers(M) << "\blue [src] beeps: Resuscitation failed."
-				charges--
-				if(charges < 1)
-					charges = 0
+					viewers(M) << "\red \icon[src] beeps: Resuscitation failed."
+				dcell.use(charge_cost)
+				if(dcell.charge < charge_cost)
+					dcell.charge = 0
 					status = 0
 				update_icon()
 			else
-				user.visible_message("\blue [src] beeps: Patient is not in a valid state.")
+				user.visible_message("\red \icon[src] beeps: Patient is not in a valid state.")

@@ -258,6 +258,7 @@
 	if(A)
 		on = 0
 //		A.update_lights()
+	SetLuminosity(0)
 	..()
 
 /obj/machinery/light/update_icon()

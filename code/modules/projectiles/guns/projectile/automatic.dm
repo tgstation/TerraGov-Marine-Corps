@@ -81,10 +81,9 @@
 	ammo_type = "/obj/item/ammo_casing/a762"
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 	load_method = 2
+	fire_delay = 0
 	var/cover_open = 0
 	var/mag_inserted = 1
-	twohanded = 1
-
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
 	cover_open = !cover_open

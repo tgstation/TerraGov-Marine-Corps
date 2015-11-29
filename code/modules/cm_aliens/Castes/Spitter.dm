@@ -1,4 +1,3 @@
-
 /mob/living/carbon/Xenomorph/Spitter
 	caste = "Spitter"
 	name = "Spitter"

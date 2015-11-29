@@ -8,8 +8,9 @@
 
 
 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-var/slashing_allowed = 0
-var/queen_time = 300 //5 minutes between queen deaths
+var/global/slashing_allowed = 0
+var/global/queen_time = 300 //5 minutes between queen deaths
+var/global/hive_orders = "" //What orders should the hive have
 
 /mob/living/carbon/Xenomorph
 	var/caste = ""

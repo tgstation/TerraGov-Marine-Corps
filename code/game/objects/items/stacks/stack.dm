@@ -36,9 +36,6 @@
 
 /obj/item/stack/attack_self(mob/user as mob)
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel. ((If you are building defenses, you may be in violation of 'Building Defenses on the Sulaco' in our <a href='http://colonial-marines.com/viewtopic.php?f=57&t=1363'>Marine-Specific Rules</a>))</span>"
-		return
 
 	list_recipes(user)
 
@@ -135,6 +132,10 @@
 			usr << "\blue Building [R.title] ..."
 			if (!do_after(usr, R.time))
 				return
+		//We want to check this again for girder stacking
+		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
+			usr << "\red There is another [R.title] here!"
+			return
 		if (src.amount < R.req_amount*multiplier)
 			return
 		var/atom/O = new R.result_type( usr.loc )

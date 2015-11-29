@@ -48,6 +48,7 @@
 	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	armor = list(melee = 60, bullet = 90, laser = 60, energy = 20, bomb = 25, bio = 10, rad = 10)
 
 
 /obj/item/clothing/suit/cyborg_suit

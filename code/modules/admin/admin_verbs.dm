@@ -43,7 +43,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
-	/client/proc/cmd_admin_create_centcom_report,
+	/client/proc/cmd_admin_create_centcom_report, //Messages from USCM command.
+	/client/proc/cmd_admin_create_MOTHER_report,  //Allows creation of IC reports by the ships AI
 	/client/proc/check_words,			/*displays cult-words*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/client/proc/check_antagonists,
@@ -273,7 +274,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_changekey,
 	/client/proc/admin_call_shuttle,	/*allows us to call the emergency shuttle*/
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
-	/client/proc/cmd_admin_subtle_message 	/*send an message to somebody as a 'voice in their head'*/
+	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
+	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
 )
 
 var/list/admin_verbs_mentor = list(

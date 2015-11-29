@@ -45,7 +45,7 @@
 			if(S && istype(S) && S.slayer > 0)
 				tally += 1.25 * S.slayer
 				if(S.slayer && prob(2))
-					src << "\red Moving trough [S] slows you down"
+					src << "\red Moving trough [S] slows you down."
 				if(S.slayer == 3 && prob(5))
 					src << "\red You got stuck in [S] for a moment!"
 					tally += 15

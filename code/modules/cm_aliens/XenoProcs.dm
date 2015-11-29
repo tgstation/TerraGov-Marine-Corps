@@ -55,6 +55,9 @@
 	if(recovery_aura)
 		stat(null,"You are affected by a pheromone of RECOVERY.")
 
+	if(hive_orders && hive_orders != "")
+		stat(null,"<b>Hive Orders:</b> [hive_orders]")
+
 	return
 
 //A simple handler for checking your state. Used in pretty much all the procs.
@@ -145,6 +148,16 @@
 			tally -= 0.5
 		else
 			tally += 1.3
+
+	if(istype(loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
+		var/turf/simulated/floor/gm/snow/S = src.loc
+		if(S && istype(S) && S.slayer > 0)
+			tally += 1 * S.slayer
+			if(S.slayer && prob(2))
+				src << "\red Moving trough [S] slows you down"
+			if(S.slayer == 3 && prob(5))
+				src << "\red You got stuck in [S] for a moment!"
+				tally += 10
 
 	if(frenzy_aura)
 		tally -= 0.5
@@ -352,11 +365,15 @@
 	tick()
 
 /obj/effect/xenomorph/acid/proc/tick()
-	if(!target)
+	if(!target || isnull(target))
 		del(src)
+		return
 
 	if(!src) //Woops, abort
 		return
+
+	if(isturf(target.loc) && src.loc != target.loc)
+		src.loc = target.loc
 
 	var/tick_timer = rand(200,300) * acid_strength / 100 //Acid strength is just a percentage of time between ticks
 
@@ -446,7 +463,7 @@
 
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)
-				V.Weaken(1)
+				V.Weaken(2)
 				src.throwing = 0
 
 			if(charge_type == 1) //Runner/hunter pounce.
