@@ -782,7 +782,7 @@
 	item_color = "star_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/Jack
-	name = "White shit and black Pants"
+	name = "White shirt and black Pants"
 	desc = "Perfect for formal dress, or going to a combat zone in Style.  UNIQUE DONOR ITEM"
 	icon_state = "Adam_jumpsuit_u"
 	item_state = "Adam_jumpsuit_u_s"
