@@ -619,7 +619,7 @@
 
 /obj/item/clothing/head/cmcap
 	name = "USCM Cap"
-	desc = "A casual cap occansionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	desc = "A casual cap occasionally  worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "cap"
 	item_state = "cap"

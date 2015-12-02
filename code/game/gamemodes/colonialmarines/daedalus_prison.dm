@@ -80,7 +80,7 @@
 	return 1
 
 /datum/game_mode/prison_rescue/announce()
-	world << "<B>The current game map is - Daedelus prison!</B>"
+	world << "<B>The current game map is - Daedalus prison!</B>"
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedelus Prison Facility after  communications were lost recently. USS Sulaco has been dispatched to imvestigate.", "USS Sulaco")
+		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedalus Prison Facility after  communications were lost recently. USS Sulaco has been dispatched to imvestigate.", "USS Sulaco")
 
 
 /datum/game_mode/prison_rescue/proc/transform_xeno(var/datum/mind/ghost)
@@ -184,7 +184,7 @@
 	//Give them some information
 	spawn(4)
 		H << "<h2>You are a survivor!</h2>"
-		H << "\blue You are a survivor of the attack on the Daedelus Prison facility. You worked or lived in the prison, and managed to avoid the alien attacks.. until now."
+		H << "\blue You are a survivor of the attack on the Daedalus Prison facility. You worked or lived in the prison, and managed to avoid the alien attacks.. until now."
 		H << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
 		H << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
 	return 1

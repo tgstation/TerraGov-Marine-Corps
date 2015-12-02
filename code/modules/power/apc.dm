@@ -853,6 +853,8 @@
 			if (src.aidisabled == 0)
 				src.aidisabled = 1
 			src.updateDialog()
+	src.interact(usr)
+	updateUsrDialog()
 //		if(APC_WIRE_IDSCAN)		nothing happens when you cut this wire, add in something if you want whatever
 
 /obj/machinery/power/apc/proc/mend(var/wireColor)
@@ -875,7 +877,9 @@
 			//aidisabledDisabled: If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 			if (src.aidisabled == 1)
 				src.aidisabled = 0
-			src.updateDialog()
+			updateUsrDialog()
+	updateUsrDialog()
+	src.interact(usr)
 //		if(APC_WIRE_IDSCAN)		nothing happens when you cut this wire, add in something if you want whatever
 
 /obj/machinery/power/apc/proc/pulse(var/wireColor)
