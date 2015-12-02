@@ -112,7 +112,7 @@
 
 /area/prison/atmos
 	name = "\improper air control"
-	icon_state = "dkyellow"
+	icon_state = "atmos"
 
 /area/prison/laundry
 	name = "\improper laundry room"
