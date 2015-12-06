@@ -20,6 +20,7 @@
 	caste_desc = "D'awwwww, so cute!"
 	pass_flags = PASSTABLE
 	speed = -1 //Zoom!
+	away_timer = 600
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
