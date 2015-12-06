@@ -31,6 +31,7 @@
 			var/obj/item/ammo_casing/AC = loaded[1]
 			loaded -= AC
 			AC.loc = get_turf(src) //Eject casing onto ground.
+			playsound(usr, 'sound/weapons/flipblade.ogg', 20, 1)
 			user << "\blue You unload shell from \the [src]!"
 		if (load_method == MAGAZINE)
 			if(empty_mag)
@@ -43,6 +44,7 @@
 				update_icon()
 				AM.update_icon()
 				user << "\blue You unload magazine from \the [src]!"
+				playsound(usr, 'sound/weapons/unload.ogg', 20, 1)
 			else
 				user << "\red Nothing loaded in \the [src]!"
 	else
@@ -117,7 +119,7 @@
 
 	if(num_loaded)
 		user << "\blue You load [num_loaded] shell\s into \the [src]!"
-		playsound(user, 'sound/weapons/unload.ogg', 20, 1)
+		playsound(user, 'sound/weapons/reload.ogg', 20, 1)
 		A.update_icon()
 		update_icon()
 	return
