@@ -30,7 +30,7 @@
 	mob_max = 6
 	arrival_message = "USS Sulaco, this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
 	objectives = "Secure the Corporate Liason and the Sulaco Commander, and eliminate any hostile threats. Do not damage W-Y property."
-	probability = 40
+	probability = 30
 
 //Supply drop. Just docks and has a crapload of stuff inside.
 /datum/emergency_call/supplies
@@ -45,7 +45,7 @@
 	mob_max = 5
 	arrival_message = "USS Sulaco, this is mercenary vessel MC-98 responding to your distress call. Prepare for boarding."
 	objectives = "Help or hinder the crew of the Sulaco. Take what you want as payment. Do what your Captain says. Ensure your survival at all costs."
-	probability = 20
+	probability = 15
 
 //Xeeenoooooossss
 /datum/emergency_call/xenos
@@ -59,7 +59,7 @@
 //Russian 'iron bear' mercenaries. Hostile to everyone.
 /datum/emergency_call/bears
 	name = "Iron Bears"
-	mob_max = 1
+	mob_max = 5
 	arrival_message = "Incoming Transmission: 'Vrag korabl'! Podgotovka k posadke i smerti!'"
 	objectives = "Kill everything that moves. Blow up everything that doesn't. Listen to your superior officers. Help or hinder the Sulaco crew at your officer's discretion."
 	probability = 15
@@ -83,15 +83,15 @@
 //Dutch's Dozen
 /datum/emergency_call/dutch
 	name = "Dutch's Team"
-	mob_max = 1
+	mob_max = 5
 	arrival_message = "Incoming Transmission: 'Get to the shuttle! This is Major Dutch and my team of mercenaries. Responding to your distress call.'"
 	objectives = "Follow the orders of Dutch and assist the marines. If there are any Yajuta on the field, you are to give it your full attention. If the shuttle is called, you need to get to it."
-	probability = 0
+	probability = 15
 
 //Deathsquad Commandos
 /datum/emergency_call/death
 	name = "Weyland Deathsquad"
-	mob_max = 1
+	mob_max = 5
 	arrival_message = "Intercepted Transmission: '!`2*%slau#*jer t*h$em a!l%. le&*ve n(o^ w&*nes%6es.*v$e %#d ou^'"
 	objectives = "Wipe out everything. Ensure there are no traces of the infestation or any witnesses."
 	probability = 0
@@ -177,7 +177,7 @@
 			return
 		var/deathtime = world.time - usr.timeofdeath
 
-		if(deathtime < 6) //Nice try, ghosting right after the announcement
+		if(deathtime < 600) //Nice try, ghosting right after the announcement
 			usr << "You ghosted too recently."
 			return
 
