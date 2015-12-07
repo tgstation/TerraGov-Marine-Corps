@@ -199,7 +199,7 @@
 	item_state = "commando_armor"
 	icon_state = "commando_armor"
 	icon_override = 'icons/PMC/PMC.dmi'
-	armor = list(melee = 85, bullet = 85, laser = 50,energy = 80, bomb = 70, bio = 100, rad = 100)
+	armor = list(melee = 90, bullet = 90, laser = 70,energy = 90, bomb = 90, bio = 100, rad = 100)
 
 /obj/item/clothing/head/helmet/marine/PMC/commando
 	name = "PMC Commando Helmet"
@@ -208,7 +208,7 @@
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_helmet"
 	icon_override = 'icons/PMC/PMC.dmi'
-	armor = list(melee = 85, bullet = 85, laser = 50,energy = 80, bomb = 70, bio = 100, rad = 100)
+	armor = list(melee = 90, bullet = 90, laser = 70,energy = 90, bomb = 90, bio = 100, rad = 100)
 	anti_hug = 6
 
 /obj/item/clothing/shoes/PMC
@@ -220,7 +220,7 @@
 	permeability_coefficient = 0.01
 	flags = NOSLIP
 	body_parts_covered = FEET|LEGS
-	armor = list(melee = 80, bullet = 90, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
+	armor = list(melee = 90, bullet = 90, laser = 50,energy = 15, bomb = 50, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 	cold_protection = FEET
 	heat_protection = FEET

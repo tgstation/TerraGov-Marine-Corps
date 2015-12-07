@@ -26,7 +26,7 @@
 
 //Weyland Yutani commandos. Friendly to USCM, hostile to xenos.
 /datum/emergency_call/pmc
-	name = "Commandos"
+	name = "Weyland-Yutani PMC"
 	mob_max = 6
 	arrival_message = "USS Sulaco, this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
 	objectives = "Secure the Corporate Liason and the Sulaco Commander, and eliminate any hostile threats. Do not damage W-Y property."
@@ -59,7 +59,7 @@
 //Russian 'iron bear' mercenaries. Hostile to everyone.
 /datum/emergency_call/bears
 	name = "Iron Bears"
-	mob_max = 4
+	mob_max = 1
 	arrival_message = "Incoming Transmission: 'Vrag korabl'! Podgotovka k posadke i smerti!'"
 	objectives = "Kill everything that moves. Blow up everything that doesn't. Listen to your superior officers. Help or hinder the Sulaco crew at your officer's discretion."
 	probability = 15
@@ -79,6 +79,24 @@
 	arrival_message = "Incoming Transmission: 'Under Weyland-Yutani Contract order 34-12 clause B we have dispatched a highly trained squad from Weyland Yutani Research Division to assist you. Standby for boarding.'"
 	objectives = "Do whatever Weyland Yutani needs you to do."
 	probability = 0
+
+//Dutch's Dozen
+/datum/emergency_call/dutch
+	name = "Dutch's Team"
+	mob_max = 1
+	arrival_message = "Incoming Transmission: 'Get to the shuttle! This is Major Dutch and my team of mercenaries. Responding to your distress call.'"
+	objectives = "Follow the orders of Dutch and assist the marines. If there are any Yajuta on the field, you are to give it your full attention. If the shuttle is called, you need to get to it."
+	probability = 0
+
+//Deathsquad Commandos
+/datum/emergency_call/death
+	name = "Weyland Deathsquad"
+	mob_max = 1
+	arrival_message = "Intercepted Transmission: '!`2*%slau#*jer t*h$em a!l%. le&*ve n(o^ w&*nes%6es.*v$e %#d ou^'"
+	objectives = "Wipe out everything. Ensure there are no traces of the infestation or any witnesses."
+	probability = 0
+
+
 
 /*
 /datum/emergency_call/xenoborgs
@@ -159,7 +177,7 @@
 			return
 		var/deathtime = world.time - usr.timeofdeath
 
-		if(deathtime < 600) //Nice try, ghosting right after the announcement
+		if(deathtime < 6) //Nice try, ghosting right after the announcement
 			usr << "You ghosted too recently."
 			return
 
@@ -351,7 +369,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup, slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m39/PMC(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -402,18 +420,23 @@
 	if(!M || !istype(M)) return
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/sniper(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/sniper(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/vp70(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup, slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M42C(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/VP78 (M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
+	/*
 	if(prob(30))
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39(M), slot_r_store)
@@ -424,10 +447,10 @@
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m42c(M), slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M42C(M), slot_r_hand)
 		else
-
+*/
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Elite"
+	W.assignment = "PMC Sniper"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -440,19 +463,23 @@
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/heavypmc(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/VP78(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/VP78 (M), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M56_Smartgun(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/vp70(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	//M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Gunner"
+	W.assignment = "PMC Specialist"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -572,9 +599,9 @@
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 
-	var/rand_gun = rand(0,5)
+	var/rand_gun = rand(0,7)
 	if(rand_gun == 0)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/combat(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/m37(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
@@ -590,14 +617,27 @@
 		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
 	else if(rand_gun == 2)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mini_uzi(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M), slot_l_store)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/c45m(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/merc(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
 	else if(rand_gun == 3)
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/laser(M), slot_r_hand)
+	else if(rand_gun == 4)
+		M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/vp70(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
+	else if(rand_gun == 5)
+		M.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/vp70(M), slot_belt)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	else
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20, slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
@@ -657,7 +697,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/Bear(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -665,12 +705,13 @@
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new  /obj/item/weapon/gun/projectile/automatic/mar20(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m41(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
 
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(M), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
@@ -689,21 +730,23 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/Bear(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/m92(M), slot_r_hand)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/gun/m92(M), slot_r_hand)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/cell/super(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M.back), slot_in_backpack)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/cell/super(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(M), slot_r_store)
+
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/mateba(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Iron Bears Sergeant"
@@ -781,7 +824,7 @@
 	var/turf/drop_spawn
 	var/choice
 
-	for(var/i = 1 to 6) //Spawns up to 6 random things.
+	for(var/i = 1 to 3) //Spawns up to 3 random things.
 		if(prob(20)) continue
 		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
 		if(choice < 0) choice = 0
@@ -796,7 +839,7 @@
 					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
 					continue
 				if(2)
-					new /obj/item/weapon/storage/box/m56_system(drop_spawn)
+					//new /obj/item/weapon/storage/box/m56_system(drop_spawn)
 					continue
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
@@ -806,7 +849,7 @@
 				if(4)
 					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
 					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
-					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					//new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
 					continue
 				if(5)
 					new /obj/item/weapon/gun/m92(drop_spawn)
@@ -815,10 +858,12 @@
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					continue
 				if(6)
-					new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					//new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
 					continue
 				if(7)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return
 
@@ -876,7 +921,7 @@
 	var/turf/drop_spawn
 	var/choice
 
-	for(var/i = 1 to 8) //Spawns up to 8 random things.
+	for(var/i = 1 to 3) //Spawns up to 3 random things.
 		if(prob(10)) continue
 		choice = (rand(1,8) - round(i/2)) //Decreasing values, rarer stuff goes at the end.
 		if(choice < 0) choice = 0
@@ -891,7 +936,7 @@
 					continue
 				if(1)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					//new /obj/item/weapon/flamethrower/full(drop_spawn)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					continue
 				if(2)
@@ -905,9 +950,10 @@
 					new /obj/item/weapon/plastique(drop_spawn)
 					continue
 				if(4)
-					new /obj/item/weapon/shield/riot(drop_spawn)
-					new /obj/item/weapon/shield/riot(drop_spawn)
-					new /obj/item/weapon/gun/projectile/automatic/l6_saw(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+				//	new /obj/item/weapon/shield/riot(drop_spawn)
+				//	new /obj/item/weapon/shield/riot(drop_spawn)
+				//	new /obj/item/weapon/gun/projectile/automatic/l6_saw(drop_spawn)
 					continue
 				if(5)
 					new /obj/item/weapon/gun/m92(drop_spawn)
@@ -916,12 +962,14 @@
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					continue
 				if(6)
-					new /obj/item/weapon/storage/box/grenade_system(drop_spawn)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+				//	new /obj/item/weapon/storage/box/grenade_system(drop_spawn)
+				//	new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 				if(7)
+					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+				//	new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return
 
@@ -1033,3 +1081,261 @@
 					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return
+
+
+
+
+/datum/emergency_call/dutch/create_member(var/datum/mind/M)
+	var/turf/spawn_loc = get_spawn_point()
+	var/mob/original = M.current
+
+	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+
+	var/mob/living/carbon/human/mob = new(spawn_loc)
+	mob.gender = pick(MALE)
+	var/datum/preferences/A = new()
+	var/list/first_names_mr = list("Alan","Rick","Billy","Blain","Al","Mac","Jorge","Jim","Poncho")
+	var/list/last_names_r = list("Hawkins","Sole","Elliot","Dillon","Cooper","Ramirez")
+	if(mob.gender == MALE)
+		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
+	else
+		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
+	A.randomize_appearance_for(mob)
+	mob.name = mob.real_name
+	mob.age = rand(17,45)
+	mob.dna.ready_dna(mob)
+	mob.key = M.key
+	mob.mind.assigned_role = "MODE"
+	mob.mind.special_role = "DUTCH'S DOZEN"
+	ticker.mode.traitors += mob.mind
+	spawn(0)
+		if(!leader)       //First one spawned is always the leader.
+		/*
+			mob.name = "Dutch Schaefer"
+			mob.age = 38
+			mob.s_tone = 35
+			mob.h_style = "pompadour"
+			mob.f_style = "shaved"
+			mob.r_hair = 125
+			mob.g_hair = 95
+			mob.b_hair = 75
+		*/
+			leader = mob
+			spawn_officer(mob)
+			mob << "<font size='3'>\red You are in charge of the mercenary team!</font>"
+			mob << "<B> Lead your mercenary team to assist the Colonial Marines. You have been paid advance.</b>"
+			mob << "<B> Should you encounter a Yautja, you are to hunt it down at all costs. If the shuttle is called, you must get to it.</b>"
+			mob << "<B> You have prior knowledge of existance of the Yautja, but you are not to tell anyone about them!</b>"
+		else
+			spawn_standard(mob)
+			mob << "<font size='3'>\red You are a member of Dutch's Mercenary team!</font>"
+
+	spawn(10)
+		M << "<B>Objectives:</b> [objectives]"
+
+	if(original)
+		del(original)
+	return
+
+
+/datum/emergency_call/dutch/proc/spawn_standard(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), slot_l_ear)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/dutch(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/dutch(M), slot_wear_suit)
+	//M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/dutch/cap(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
+
+	//M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20(M), slot_r_hand)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M), slot_l_store)
+
+	//M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+	//M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+	//M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+
+	var/rand_weapon = rand(0,5)
+	if(rand_weapon == 0)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/m37(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/dutch/cap(M), slot_head)
+
+	else if(rand_weapon == 1)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/merc(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/dutch/band(M), slot_head)
+		M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/dutch2(M), slot_w_uniform)
+
+	else if(rand_weapon == 2)
+		M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m4a3(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m4a3(M), slot_r_store)
+		M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/dutch(M), slot_head)
+
+	else
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20, slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+
+	var/obj/item/weapon/card/id/W = new(src)
+	W.assignment = "Mercenary Soldier"
+	W.registered_name = M.real_name
+	W.name = "[M.real_name]'s ID Card ([W.assignment])"
+	W.icon_state = "centcom"
+	W.access = get_all_accesses()
+	M.equip_to_slot_or_del(W, slot_wear_id)
+
+/datum/emergency_call/dutch/proc/spawn_officer(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), slot_l_ear)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/dutch2(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/dutch(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/dutch/band(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
+
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M), slot_l_store)
+
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
+
+	var/obj/item/weapon/card/id/W = new(src)
+	W.assignment = "Mercenary Commander"
+	W.registered_name = M.real_name
+	W.name = "[M.real_name]'s ID Card ([W.assignment])"
+	W.icon_state = "centcom"
+	W.access = get_all_accesses()
+	W.access += get_all_centcom_access()
+	M.equip_to_slot_or_del(W, slot_wear_id)
+
+
+// DEATH SQUAD--------------------------------------------------------------------------------
+/datum/emergency_call/death/create_member(var/datum/mind/M)
+	var/turf/spawn_loc = get_spawn_point()
+	var/mob/original = M.current
+
+	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+
+	var/mob/living/carbon/human/mob = new(spawn_loc)
+	mob.gender = pick(MALE)
+	//var/datum/preferences/A = new()
+	//A.randomize_appearance_for(mob)
+	var/list/first_names_mr = list("Alpha","Beta","Delta","Gamma","Epsilon","Omega","Zeta","Theta","Lambda","Sigma")
+	if(mob.gender == MALE)
+		mob.real_name = "[pick(first_names_mr)]"
+	else
+		mob.real_name = "[pick(first_names_mr)]"
+	mob.name = mob.real_name
+	mob.age = rand(17,45)
+	mob.dna.ready_dna(mob)
+	mob.key = M.key
+	mob.mind.assigned_role = "MODE"
+	mob.mind.special_role = "DEATH SQUAD"
+	ticker.mode.traitors += mob.mind
+	spawn(0)
+		if(!leader)       //First one spawned is always the leader.
+			leader = mob
+			spawn_officer(mob)
+			mob << "<font size='3'>\red You are the Death Squad Leader!</font>"
+			mob << "<B> You must clear out any traces of the infestation and it's survivors..</b>"
+			mob << "<B> Follow any orders directly from Weyland-Yutani!</b>"
+		else
+			spawn_standard(mob)
+			mob << "<font size='3'>\red You are an Weyland-Yutani Commando!!</font>"
+
+	spawn(10)
+		M << "<B>Objectives:</b> [objectives]"
+
+	if(original)
+		del(original)
+	return
+
+
+/datum/emergency_call/death/proc/spawn_standard(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
+
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m41/commando(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_l_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+
+	var/obj/item/weapon/card/id/W = new(src)
+	W.assignment = "Commando"
+	W.registered_name = M.real_name
+	W.name = "[M.real_name]'s ID Card ([W.assignment])"
+	W.icon_state = "centcom"
+	W.access = get_all_accesses()
+	W.access += get_all_centcom_access()
+	M.equip_to_slot_or_del(W, slot_wear_id)
+
+/datum/emergency_call/death/proc/spawn_officer(var/mob/M)
+	if(!M || !istype(M)) return
+
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
+
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/m41/commando(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_l_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+
+	var/obj/item/weapon/card/id/W = new(src)
+	W.assignment = "Commando Leader"
+	W.registered_name = M.real_name
+	W.name = "[M.real_name]'s ID Card ([W.assignment])"
+	W.icon_state = "centcom"
+	W.access = get_all_accesses()
+	W.access += get_all_centcom_access()
+	M.equip_to_slot_or_del(W, slot_wear_id)
