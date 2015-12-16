@@ -78,14 +78,17 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/bible,
 		/obj/item/weapon/flamethrower/full,
 		/obj/item/weapon/combat_knife)
-
+	var/ArmorVariation
 	New()
 		..()
 		if(src.name == "M3 Pattern Marine Armor") //This is to stop subtypes from icon changing. There's prolly a better way
 			spawn(5)
 				icon_state = "[rand(1,6)]"
+				ArmorVariation = icon_state
+		else
+			ArmorVariation = icon_state
 
-	var/brightness_on = 7
+	var/brightness_on = 5
 	var/on = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
@@ -116,7 +119,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				user.SetLuminosity(-brightness_on)
 			else //Shouldn't be possible, but whatever
 				SetLuminosity(0)
-			icon_state = "[initial(icon_state)]"
+			icon_state = "[ArmorVariation]"
 			on = 0
 		else //Turn it on!
 			on = 1
@@ -124,7 +127,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				user.SetLuminosity(brightness_on)
 			else //Somehow
 				SetLuminosity(brightness_on)
-			icon_state = "[initial(icon_state)]-on"
+			icon_state = "[ArmorVariation]-on"
 
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		update_clothing_icon()
@@ -198,9 +201,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 /obj/item/clothing/gloves/specialist
 	name = "B18 Defensive Gauntlets"
 	desc = "A pair of heavily armored gloves."
-	icon_state = "gray"
-	item_state = "graygloves"
-	item_color="grey"
+	icon_state = "brown"
+	item_state = "browngloves"
+	item_color="brown"
 	armor = list(melee = 95, bullet = 90, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
 	unacidable = 1
 
