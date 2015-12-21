@@ -446,6 +446,38 @@
 		reagents.add_reagent("nutriment", 2)
 		bitesize = 1
 
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1
+	name = "Xmas MRE:Sugar cookies"
+	desc = "Delicious Sugar Cookies"
+	icon_state = "mreCookies"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 10)
+		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2
+	name = "Xmas MRE:Gingerbread cookie"
+	desc = "A cookie without a soul."
+	icon_state = "mreGingerbread"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 10)
+		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3
+	name = "Xmas MRE:Fruitcake"
+	desc = "Also known as ''the Commander''."
+	icon_state = "mreFruitcase"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 10)
+		bitesize = 2
+
+
+
 /obj/item/weapon/paper/janitor
 	name = "Crumbled paper"
 	icon_state = "pamphlet"
