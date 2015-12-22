@@ -12608,3 +12608,34 @@ the bed (/obj/structure/stool/bed): DblClick(the floor (120,139,3) (/turf/simula
 Denied access to 'Guest-539272000' connecting from 88.110.230.217
 Mon Dec 21 17:31:19 2015
 Denied access to 'Bamerang' connecting from 97.91.9.56
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 5, 6, 7, 8, 9, 10, 13, 14, 18, 19, 20, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-3238087506' connecting from 81.155.218.200
+Denied access to 'Guest-3537873021' connecting from 24.76.4.205
