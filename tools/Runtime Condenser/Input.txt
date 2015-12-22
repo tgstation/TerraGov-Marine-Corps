@@ -13942,3 +13942,6 @@ the space cleaner (/obj/item/weapon/reagent_containers/spray/cleaner/drone): Spr
 ### VarEdit by Ordukai: /mob/dead/observer invisibility=70
 ### VarEdit by Ordukai: /obj/machinery/computer/shuttle_control/marine2 contents=/list
 Denied access to 'Guest-1911139859' connecting from 222.152.174.63
+Tue Dec 22 05:00:55 2015
+### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Queen chatWarn=0
+### VarEdit by Apophis775: /mob/living/silicon/pai health=0
