@@ -469,7 +469,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3
 	name = "Xmas MRE:Fruitcake"
 	desc = "Also known as ''the Commander''."
-	icon_state = "mreFruitcase"
+	icon_state = "mreFruitcake"
 
 	New()
 		..()

@@ -16163,3 +16163,58 @@ proc name: LOOC (/client/verb/looc)
   source file: ooc.dm,211
 ### VarEdit by Apophis775: /mob/living/carbon/Xenomorph/Queen has_screeched=0
 Denied access to 'Kevjo35' connecting from 68.84.238.147
+Stopped server.
+World opened on network port 1400.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+Stopped server.
+World opened on network port 1400.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 5, 6, 7, 9, 11, 12, 13, 14, 15, 16, 17, 18, 22, 23 and 24
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1370649870' connecting from 75.176.155.201
+### VarEdit by Apophis775: /obj/item/toy/spinningtoy layer=1
+### VarEdit by Apophis775: /obj/item/toy/spinningtoy layer=100
