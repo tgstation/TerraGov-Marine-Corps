@@ -44,14 +44,14 @@
 				)
 	prices = list()
 
-//MARINE FOOD VENDOR APOPHIS775 10JAN2014
+//MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
 	name = "Marine Food Vendor"
 	desc = "Standard Issue Food Vendor, containing standard military food"
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 25,
-	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 25)/*(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
+	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25)/*(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
@@ -73,7 +73,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access_txt = "0"
+	req_access_txt = "8"
 	products = list(/obj/item/weapon/storage/syringe_case = 2,
 					/obj/item/bodybag/cryobag = 2,
 					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
@@ -110,7 +110,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "The best blood on the market!"
-	req_access_txt = "0"
+	req_access_txt = "8"
 	products = list(/obj/item/weapon/reagent_containers/blood/APlus = 5, /obj/item/weapon/reagent_containers/blood/AMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/BPlus = 5, /obj/item/weapon/reagent_containers/blood/BMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/OPlus = 5, /obj/item/weapon/reagent_containers/blood/OMinus = 5,
