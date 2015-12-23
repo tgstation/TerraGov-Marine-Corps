@@ -110,14 +110,14 @@
 	sensor_mode = 3
 
 /obj/item/clothing/under/marine/fluff/marinemedic
-	name = "Marine jumpsuit(medic)"
+	name = "Marine Medic jumpsuit"
 	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has medical markings. "
 	icon_state = "marine_medic"
 	item_state = "marine_medic_s"
 	item_color = "marine_medic"
 
 /obj/item/clothing/under/marine/fluff/marineengineer
-	name = "Marine jumpsuit(engineer)"
+	name = "Marine Technician jumpsuit"
 	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has engineer markings. "
 	icon_state = "marine_engineer"
 	item_state = "marine_engineer_s"
@@ -399,8 +399,8 @@
 /obj/item/weapon/storage/belt/marine
 	name = "marine belt"
 	desc = "A standard issue toolbelt for USCM military forces. Put your ammo in here."
-	icon_state = "securitybelt"
-	item_state = "security"//Could likely use a better one.
+	icon_state = "marinebelt"
+	item_state = "marine"//Could likely use a better one.
 	w_class = 4
 	storage_slots = 8
 	max_combined_w_class = 9
@@ -619,7 +619,7 @@
 
 /obj/item/clothing/head/cmcap
 	name = "USCM Cap"
-	desc = "A casual cap occansionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	desc = "A casual cap occasionally  worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "cap"
 	item_state = "cap"

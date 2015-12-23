@@ -41,21 +41,21 @@ var/global/datum/controller/gameticker/ticker
 	var/datum/mind/liason = null
 
 /datum/controller/gameticker/proc/pregame()
-	login_music = pick(\
-	/*'sound/music/space.ogg',\
-	'sound/music/traitor.ogg',\
-	'sound/music/title2.ogg',\
-	'sound/music/clouds.s3m'*/
+	login_music = pick(/*'sound/music/space.ogg',
+	'sound/music/traitor.ogg',
+	'sound/music/title2.ogg',
+	'sound/music/clouds.s3m'
 	'sound/music/fortunate_son.ogg',
 	'sound/music/buffalo_springfield.ogg',
 	'sound/music/good_day_to_die.ogg', //It's a Good Day to Die
 	'sound/music/warrior_song.ogg',  //The Warrior Song
-	/*'SEASONAL/ColonialHalloween.ogg'*/)  //Halloween Song
+	'SEASONAL/ColonialHalloween.ogg'*/
+	'SEASONAL/CMxmas.ogg')
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
-		world << "HAPPY THANKSGIVING 2015!!!! - There's a special treat in the Sulaco Cafeteria!!!"
+	//	world << "HAPPY THANKSGIVING 2015!!!! - There's a special treat in the Sulaco Cafeteria!!!"
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i=0, i<10, i++)
 				sleep(1)

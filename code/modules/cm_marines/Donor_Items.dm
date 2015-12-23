@@ -287,6 +287,23 @@
 	icon_state = "Adam_jacket_u"
 	item_state = "Adam_jacket_u"
 
+/obj/item/clothing/suit/storage/marine/fluff/commisar_armor
+	name = "Omega Commissar Armor"
+	desc = "Armor worn by the feared and respected Comissars of Omega Team.  UNIQUE DONOR ITEM"
+	icon_state = "commisar_armor_u"
+	item_state = "commisar_armor_u"
+
+/obj/item/clothing/suit/storage/marine/fluff/medicae_armor
+	name = "Omega Medicae Armor"
+	desc = "Armor worn by the Omega Team Medical Corps.  UNIQUE DONOR ITEM"
+	icon_state = "medicae_armor_u"
+	item_state = "medicae_armor_u"
+
+/obj/item/clothing/suit/storage/marine/fluff/standard_armor
+	name = "Omega Team Armor"
+	desc = "Armor worn by the Omega Team.  DONOR ITEM"
+	icon_state = "standard_armor"
+	item_state = "standard_armor"
 
 
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
@@ -576,6 +593,23 @@
 	icon_state = "Adam_hat"
 	item_state = "Adam_hat"
 
+/obj/item/clothing/head/helmet/marine/fluff/commissar_helmet
+	name = "Omega Commissar Helmet"
+	desc = "Helmet worn by the Comissars of Omega Team.  UNIQUE DONOR ITEM"
+	icon_state = "commissar_helmet_u"
+	item_state = "commissar_helmet_u"
+
+/obj/item/clothing/head/helmet/marine/fluff/medicae_helmet
+	name = "Omega Medicae Helmet"
+	desc = "Helmet worn by the Medical Corps of Omega Team.  UNIQUE DONOR ITEM"
+	icon_state = "medicae_helmet_u"
+	item_state = "medicae_helmett_u"
+
+/obj/item/clothing/head/helmet/marine/fluff/standard_helmet
+	name = "Omega Team Helmet"
+	desc = "Helmet worn by Omega Team.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "standard_helmet"
+	item_state = "standard_helmet"
 
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
@@ -782,7 +816,7 @@
 	item_color = "star_jumpsuit"
 
 /obj/item/clothing/under/marine/fluff/Jack
-	name = "White shit and black Pants"
+	name = "White shirt and black Pants"
 	desc = "Perfect for formal dress, or going to a combat zone in Style.  UNIQUE DONOR ITEM"
 	icon_state = "Adam_jumpsuit_u"
 	item_state = "Adam_jumpsuit_u_s"
@@ -794,6 +828,27 @@
 	icon_state = "Fairedan_jumpsuit"
 	item_state = "Fairedan_jumpsuit_s"
 	item_color = "Fairedan_jumpsuit"
+
+/obj/item/clothing/under/marine/fluff/commisar_jumpsuit
+	name = "Omega Commissar Uniform"
+	desc = "Uniform worn by the Comissars of Omega Team.  UNIQUE DONOR ITEM"
+	icon_state = "commisar_jumpsuit_u"
+	item_state = "commisar_jumpsuit_u_s"
+	item_color = "commisar_jumpsuit_u"
+
+/obj/item/clothing/under/marine/fluff/medicae_jumpsuit
+	name = "Omega Medicae Uniform"
+	desc = "Uniform work by the Medical Corps of Omega Team.  UNIQUE DONOR ITEM"
+	icon_state = "medicae_jumpsuit_u"
+	item_state = "medicae_jumpsuit_u_s"
+	item_color = "medicae_jumpsuit_u"
+
+/obj/item/clothing/under/marine/fluff/standard_jumpsuit
+	name = "Omega Team Uniform"
+	desc = "Uniform worn by Omega Team.  DONOR ITEM"
+	icon_state = "standard_jumpsuit"
+	item_state = "standard_jumpsuit_s"
+	item_color = "standard_jumpsuit"
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
@@ -971,6 +1026,12 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 	icon_state = "marine-white"
 	item_state = "marine-wgloves"
 
+/obj/item/weapon/storage/belt/marine/fluff/swordbelt
+	name = "Omega Sword Belt"
+	desc = "Belt worn by the dreaded Commissars of Omega Team.  UNIQUE DONOR ITEM"
+	icon_state = "swordbelt_u"
+	item_state = "swordbelt_u"
+
 //CUSTOM ITEMS - NO TEMPLATES - ALL UNIQUE ////////////////////////
 /obj/item/weapon/lighter/zippo/fluff/ghost
 	name = "Gold zippo lighter"
@@ -994,3 +1055,4 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 		..()
 	else
 		user << "<span class='notice'>\The [src] straight out REFUSES to be lit by anything other than a purple zippo.</span>"
+

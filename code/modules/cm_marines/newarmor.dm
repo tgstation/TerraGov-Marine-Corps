@@ -78,12 +78,60 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/bible,
 		/obj/item/weapon/flamethrower/full,
 		/obj/item/weapon/combat_knife)
-
+	var/ArmorVariation
 	New()
 		..()
 		if(src.name == "M3 Pattern Marine Armor") //This is to stop subtypes from icon changing. There's prolly a better way
 			spawn(5)
 				icon_state = "[rand(1,6)]"
+				ArmorVariation = icon_state
+		else
+			ArmorVariation = icon_state
+
+	var/brightness_on = 5
+	var/on = 0
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+
+	pickup(mob/user)
+		if(on && src.loc != user)
+			user.SetLuminosity(brightness_on)
+			SetLuminosity(0)
+
+	dropped(mob/user)
+		if(on && src.loc != user)
+			user.SetLuminosity(-brightness_on)
+			SetLuminosity(brightness_on)
+
+	Del()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		..()
+
+	attack_self(mob/user)
+		if(!isturf(user.loc))
+			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+			return 0
+
+		if(on) //Turn it off.
+			if(user)
+				user.SetLuminosity(-brightness_on)
+			else //Shouldn't be possible, but whatever
+				SetLuminosity(0)
+			icon_state = "[ArmorVariation]"
+			on = 0
+		else //Turn it on!
+			on = 1
+			if(user)
+				user.SetLuminosity(brightness_on)
+			else //Somehow
+				SetLuminosity(brightness_on)
+			icon_state = "[ArmorVariation]-on"
+
+		playsound(src,'sound/machines/click.ogg', 20, 1)
+		update_clothing_icon()
+		return 1
 
 
 /obj/item/clothing/suit/storage/marine/marine_spec_armor
@@ -153,9 +201,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 /obj/item/clothing/gloves/specialist
 	name = "B18 Defensive Gauntlets"
 	desc = "A pair of heavily armored gloves."
-	icon_state = "gray"
-	item_state = "graygloves"
-	item_color="grey"
+	icon_state = "brown"
+	item_state = "browngloves"
+	item_color="brown"
 	armor = list(melee = 95, bullet = 90, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
 	unacidable = 1
 
@@ -220,7 +268,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/weapon/grenade,
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/storage/bible)
-	var/brightness_on = 7
+	/*var/brightness_on = 7   //All Marine armor now has this function, moved it to the standard marine armor area.
 	var/on = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
@@ -263,7 +311,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		update_clothing_icon()
-		return 1
+		return 1*/
 
 /obj/item/clothing/suit/storage/marine/MP
 	icon_state = "mp"
