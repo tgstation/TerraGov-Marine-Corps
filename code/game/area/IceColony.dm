@@ -140,6 +140,18 @@
 	name = "\improper Anomaly Research Lab"
 	icon_state = "purple"
 
+/area/ice_colony/underground/research/aces
+	name = "\improper Advanced Combat Energy Systems Lab"
+	icon_state = "green"
+
+/area/ice_colony/underground/research/aces_storage
+	name = "\improper ACES Secure Storage"
+	icon_state = "purple"
+
+/area/ice_colony/underground/research/anomaly_research
+	name = "\improper Anomaly Research Lab"
+	icon_state = "purple"
+
 /area/ice_colony/underground/research/rd_private
 	name = "\improper Research Director's Private Office"
 	icon_state = "captain"
@@ -255,6 +267,14 @@
 /area/ice_colony/underground/research/disposal
 	name = "\improper Disposal"
 	icon_state = "disposal"
+
+/area/ice_colony/underground/research/r_and_d
+	name = "\improper Research and Development"
+	icon_state = "purple"
+
+/area/ice_colony/underground/research/amonaly_hallway_entrance
+	name = "\improper Anomaly Hallway Entrance"
+	icon_state = "green"
 
 //Elevator-------
 /area/shuttle/elevator1/ground

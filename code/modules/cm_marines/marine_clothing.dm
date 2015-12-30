@@ -103,6 +103,9 @@
 	icon_state = "grey"
 	item_state = "gy_suit"
 	item_color = "grey"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
@@ -194,7 +197,6 @@
 
 
 //ARMOR
-
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
 	desc = "Festive!"
@@ -311,7 +313,6 @@
 	item_state = "egloves"
 
 //SHOES
-
 /obj/item/clothing/shoes/marine
 	name = "marine combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
@@ -319,6 +320,10 @@
 	item_state = "jackboots"
 	armor = list(melee = 10, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	body_parts_covered = FEET
+	cold_protection = FEET
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = FEET
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife
 	//flags = NOSLIP  Removed because it makes them not slip when there are breaches.
@@ -499,6 +504,9 @@
 	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "marine_jumpsuit"

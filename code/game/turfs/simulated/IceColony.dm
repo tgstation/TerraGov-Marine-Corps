@@ -1,3 +1,4 @@
+#define ICE_TEMPERATURE 205
 //ELEVATOR SHAFT-----------------------------------//
 /turf/simulated/floor/gm/empty
 	name = "empty space"
@@ -5,14 +6,19 @@
 	icon_state = "black"
 	density = 1
 
-//SNOW-----------------------------------//
-/turf/simulated/floor/gm/snow
+//FLOORS-----------------------------------//
+//Snow Floor
+/turf/unsimulated/floor/snow
 	name = "snow layer"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow0_0"
 	slayer = 0 //Snow layer, Defined in /turf
+	temperature = ICE_TEMPERATURE
+	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	oxygen = MOLES_O2STANDARD*1.25
+	nitrogen = MOLES_N2STANDARD*1.25
 
-	//PLACING/REMOVING/BUILDING-----------------------------------//
+	//PLACING/REMOVING/BUILDING
 	attackby(var/obj/item/I, var/mob/user)
 
 		//Light Stick
@@ -29,12 +35,12 @@
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")
 			L.anchored = 1
 			L.icon_state = "lightstick_[L.s_color][L.anchored]"
-			L.SetLuminosity(2)
 			user.drop_item()
 			L.x = x
 			L.y = y
 			L.pixel_x += rand(-5,5)
 			L.pixel_y += rand(-5,5)
+			L.SetLuminosity(2)
 			playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 
 		//Snow Shovel
@@ -64,7 +70,7 @@
 
 				user.visible_message("\blue \The [user] clears out \the [src].")
 				slayer -= 1
-				update_icon(1)
+				update_icon(1,0)
 				S.working = 0
 
 			//Mode 1 -Taking/Placing snow
@@ -99,7 +105,7 @@
 					slayer += 1
 					S.has_snow = 0 //Remove snow from the shovel
 					S.update_icon()
-					update_icon(1)
+					update_icon(1,0)
 					S.working = 0
 
 				//Placing
@@ -124,7 +130,7 @@
 					slayer -= 1
 					S.has_snow = 1
 					S.update_icon()
-					update_icon(1)
+					update_icon(1,0)
 					S.working = 0
 
 			//Mode 2 -Making barricades
@@ -161,19 +167,17 @@
 				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "descent"] [B].")
 				B.health = slayer * 25
 				slayer = 0
-				update_icon(1)
+				update_icon(1,0)
 				S.working = 0
 
 
-	//Update icon on start
+	//Update icon and sides on start, but skip nearby check for turfs.
 	New()
 		..()
-		update_icon(1)
+		update_icon(1,1)
 
 	//Update icon
-	//This code is so bad, it makes me wanna cry ;_;
-	//Needs to re recoded in total
-	update_icon(var/update_sides)
+	proc/update_icon(var/update_full, var/skip_sides)
 		icon_state = "snow[slayer]_[pick("1","2","3")]"
 		switch(slayer)
 			if(0)
@@ -185,123 +189,257 @@
 			if(3)
 				name = "very deep [initial(name)]"
 
-		if(update_sides)
-			var/turf/simulated/floor/gm/snow/T
-			//turf/simulated/floor/gm/snow
-			for(var/dirn in cardinal)
-				var/turf/simulated/floor/gm/snow/D = get_step(src,dirn)
-				if(istype(D))
-					D.overlays.Cut()
-			if(istype(get_step(src, NORTH), /turf/simulated/floor/gm/snow))
+
+		//Update the side overlays
+		if(update_full)
+			var/turf/unsimulated/floor/snow/T
+			if(!skip_sides)
+				for(var/dirn in cardinal)
+					var/turf/unsimulated/floor/snow/D = get_step(src,dirn)
+					if(istype(D))
+						//Update turfs that are near us
+						D.update_sides()
+
+			overlays.Cut()
+			if(istype(get_step(src, NORTH),/turf/unsimulated/floor/snow))
 				T = get_step(src, NORTH)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_n")
-			if(istype(get_step(src, SOUTH), /turf/simulated/floor/gm/snow))
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_n")
+					//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_n"
+					I.pixel_y = src.pixel_y + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, SOUTH), /turf/unsimulated/floor/snow))
 				T = get_step(src, SOUTH)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_s")
-			if(istype(get_step(src, EAST), /turf/simulated/floor/gm/snow))
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_s")
+					//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_s"
+					I.pixel_y = src.pixel_y - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, EAST), /turf/unsimulated/floor/snow))
 				T = get_step(src, EAST)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_e")
-			if(istype(get_step(src, WEST), /turf/simulated/floor/gm/snow))
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_e")
+				//	I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_e"
+					I.pixel_x = src.pixel_x + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, WEST), /turf/unsimulated/floor/snow))
 				T = get_step(src, WEST)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_w")
-			if(istype(get_step(src, NORTHWEST), /turf/simulated/floor/gm/snow))
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_w")
+					//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_w"
+					I.pixel_x = src.pixel_x - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, NORTHWEST), /turf/unsimulated/floor/snow))
 				T = get_step(src, NORTHWEST)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_nw")
-			if(istype(get_step(src, NORTHEAST), /turf/simulated/floor/gm/snow))
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_nw")
+					//I.icon_state = "snow_overlay_[slayer]_0_nw"
+					I.pixel_x = src.pixel_x - 32
+					I.pixel_y = src.pixel_y + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, NORTHEAST), /turf/unsimulated/floor/snow))
 				T = get_step(src, NORTHEAST)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_ne")
-			if(istype(get_step(src, SOUTHWEST), /turf/simulated/floor/gm/snow))
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_ne")
+					I.icon_state = "snow_overlay_[slayer]_0_ne"
+					I.pixel_x = src.pixel_x + 32
+					I.pixel_y = src.pixel_y + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, SOUTHWEST), /turf/unsimulated/floor/snow))
 				T = get_step(src, SOUTHWEST)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_sw")
-			if(istype(get_step(src, SOUTHEAST), /turf/simulated/floor/gm/snow))
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_sw")
+					//I.icon_state = "snow_overlay_[slayer]_0_sw"
+					I.pixel_x = src.pixel_x - 32
+					I.pixel_y = src.pixel_y - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, SOUTHEAST), /turf/unsimulated/floor/snow))
 				T = get_step(src, SOUTHEAST)
 				if (T && slayer > T.slayer)
-					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
-/*
+					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
+					//I.icon_state = "snow_overlay_[slayer]_0_se"
+					I.pixel_x = src.pixel_x + 32
+					I.pixel_y = src.pixel_y - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+	//Update side turf overlays
+	proc/update_sides()
+		var/turf/unsimulated/floor/snow/T
+		overlays.Cut()
+
+		if(istype(get_step(src, NORTH),/turf/unsimulated/floor/snow))
+			T = get_step(src, NORTH)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_n")
+				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_n"
+				I.pixel_y = src.pixel_y + 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+		if(istype(get_step(src, SOUTH), /turf/unsimulated/floor/snow))
+			T = get_step(src, SOUTH)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_s")
+				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_s"
+				I.pixel_y = src.pixel_y - 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+		if(istype(get_step(src, EAST), /turf/unsimulated/floor/snow))
+			T = get_step(src, EAST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_e")
+				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_e"
+				I.pixel_x = src.pixel_x + 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+		if(istype(get_step(src, WEST), /turf/unsimulated/floor/snow))
+			T = get_step(src, WEST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_w")
+				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_w"
+				I.pixel_x = src.pixel_x - 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+		if(istype(get_step(src, NORTHWEST), /turf/unsimulated/floor/snow))
+			T = get_step(src, NORTHWEST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_nw")
+				//I.icon_state = "snow_overlay_[slayer]_0_nw"
+				I.pixel_x = src.pixel_x - 32
+				I.pixel_y = src.pixel_y + 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+		if(istype(get_step(src, NORTHEAST), /turf/unsimulated/floor/snow))
+			T = get_step(src, NORTHEAST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_ne")
+				//I.icon_state = "snow_overlay_[slayer]_0_ne"
+				I.pixel_x = src.pixel_x + 32
+				I.pixel_y = src.pixel_y + 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+		if(istype(get_step(src, SOUTHWEST), /turf/unsimulated/floor/snow))
+			T = get_step(src, SOUTHWEST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_sw")
+			//	I.icon_state = "snow_overlay_[slayer]_0_sw"
+				I.pixel_x = src.pixel_x - 32
+				I.pixel_y = src.pixel_y - 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+		if(istype(get_step(src, SOUTHEAST), /turf/unsimulated/floor/snow))
+			T = get_step(src, SOUTHEAST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
+				//I.icon_state = "snow_overlay_[slayer]_0_se"
+				I.pixel_x = src.pixel_x + 32
+				I.pixel_y = src.pixel_y - 32
+				I.layer = src.layer + 0.001 + slayer * 0.0001
+				overlays += I
+
+	//Explosion act
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				if(src.s_layer)
-					src.s_layer = 0
-					src.update_icon(1)
+				if(src.slayer)
+					src.slayer = 0
+					src.update_icon(1,0)
 			if(2.0)
-				if(prob(60) && src.s_layer)
-					src.s_layer -= 1
-					src.update_icon(1)
+				if(prob(60) && src.slayer)
+					src.slayer -= 1
+					src.update_icon(1,0)
 			if(3.0)
-				if(prob(20) && src.s_layer)
-					src.s_layer -= 1
-					src.update_icon(1)
+				if(prob(20) && src.slayer)
+					src.slayer -= 1
+					src.update_icon(1,0)
 		return
-*/
+
 //SNOW LAYERS-----------------------------------//
-/turf/simulated/floor/gm/snow/layer0
+/turf/unsimulated/floor/snow/layer0
 	icon_state = "snow0_0"
 	slayer = 0
 
-/turf/simulated/floor/gm/snow/layer1
+/turf/unsimulated/floor/snow/layer1
 	icon_state = "snow1_0"
 	slayer = 1
 
-/turf/simulated/floor/gm/snow/layer2
+/turf/unsimulated/floor/snow/layer2
 	icon_state = "snow2_0"
 	slayer = 2
 
-/turf/simulated/floor/gm/snow/layer3
+/turf/unsimulated/floor/snow/layer3
 	icon_state = "snow3_0"
 	slayer = 3
 
+//Ice Floor
+/turf/unsimulated/floor/ice
+	name = "ice floor"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "ice_floor"
+	temperature = ICE_TEMPERATURE
+	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	oxygen = MOLES_O2STANDARD*1.25
+	nitrogen = MOLES_N2STANDARD*1.25
 
 //ICE WALLS-----------------------------------//
 //Ice Wall
-/turf/simulated/wall/gm/ice
-	name = "thick ice"
+/turf/unsimulated/wall/ice
+	name = "thick ice wall"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "ice_wall"
 	desc = "It is very thick."
-
-	//Must override icon
-	New()
-		spawn(1)
-			icon_state = "ice_wall"
+	temperature = ICE_TEMPERATURE
+	oxygen = MOLES_O2STANDARD*1.25
+	nitrogen = MOLES_N2STANDARD*1.25
 
 //Ice Thin Wall
-/turf/simulated/wall/gm/ice/thin
-	name = "thin ice"
+/turf/unsimulated/wall/ice2
+	name = "thin ice wall"
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "ice_wall_thin"
 	desc = "It is very thin."
 	opacity = 0
-
-	//Must override icon
-	New()
-		spawn(1)
-			icon_state = "ice_wall_thin"
+	temperature = ICE_TEMPERATURE
+	oxygen = MOLES_O2STANDARD*1.25
+	nitrogen = MOLES_N2STANDARD*1.25
 
 //Ice Secret Wall
-/turf/simulated/wall/gm/ice/secret
+/turf/unsimulated/wall/ice/secret
 	icon_state = "ice_wall_0"
 	desc = "Something is inside..."
-
-	//Must override icon
-	New()
-		spawn(1)
-			icon_state = "ice_wall_0"
+	temperature = ICE_TEMPERATURE
+	oxygen = MOLES_O2STANDARD*1.25
+	nitrogen = MOLES_N2STANDARD*1.25
 
 //Icy Rock
-/turf/simulated/mineral/ice //wall piece
+/turf/unsimulated/wall/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock_ice"
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
-	temperature = T20C
+	temperature = ICE_TEMPERATURE
+	oxygen = MOLES_O2STANDARD*1.25
+	nitrogen = MOLES_N2STANDARD*1.25
 
 //ITEMS-----------------------------------//
 /obj/item/weapon/storage/box/lightstick
@@ -434,12 +572,13 @@
 	name = "snow barricade"
 	desc = "It could be worse..."
 	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow_barricade"
+	icon_state = "snow_barricade_0"
 	var/health = 50 //Actual health depends on snow layer
 	climbable = 1
 	density = 1
 	anchored = 1
 
+	//Item Attack
 	attackby(obj/item/W as obj, mob/user as mob)
 		//Removing the barricades
 		if(istype(W, /obj/item/snow_shovel))
@@ -456,7 +595,7 @@
 					return
 				user.visible_message("\blue \The [user] clears out \the [src].")
 				S.working = 0
-				del(src)
+				health_check(1)
 				return
 
 		//Attacking
@@ -467,57 +606,112 @@
 				if("brute")
 					src.health -= W.force * 0.3
 				else
-			if (src.health <= 0)
-				visible_message("\red <B>The [src] falls apart!</B>")
-				del(src)
+			health_check()
 			..()
 
+	//Constructed
+	New()
+		update_nearby_icons()
+
+	//Check Health
+	proc/health_check(var/die)
+		if(health < 1 || die)
+			update_nearby_icons()
+			visible_message("\red <B>The [src] falls apart!</B>")
+			del(src)
+
+	//Explosion Act
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
 				visible_message("\red <B>The [src] is blown apart!</B>")
+				src.update_nearby_icons()
 				del(src)
 				return
 			if(2.0)
 				src.health -= rand(30,60)
 				if (src.health <= 0)
 					visible_message("\red <B>The [src] is blown apart!</B>")
+					src.update_nearby_icons()
 					del(src)
 				return
 			if(3.0)
 				src.health -= rand(10,30)
 				if (src.health <= 0)
 					visible_message("\red <B>The [src] is blown apart!</B>")
+					src.update_nearby_icons()
 					del(src)
 				return
 
 	meteorhit()
 		visible_message("\red <B>The [src] is blown apart!</B>")
-		del(src)
+		health_check(1)
 		return
 
 	blob_act()
 		src.health -= 25
-		if (src.health <= 0)
-			visible_message("\red <B>The blob eats through the [src]!</B>")
-			del(src)
+		visible_message("\red <B>The blob eats through the [src]!</B>")
+		src.health_check()
 		return
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-		if(air_group || (height==0))
-			return 1
+	//Bullet Passable
+	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+		if(air_group || (height==0)) return 1
+		if(istype(mover,/obj/item/projectile))
+			return (check_cover(mover,target))
 		if(istype(mover) && mover.checkpass(PASSTABLE))
 			return 1
-		else
-			return 0
+		if(locate(/obj/structure/barricade/snow) in get_turf(mover))
+			return 1
 
+
+	//checks if projectile 'P' from turf 'from' can hit whatever is behind the barricade. Returns 1 if it can, 0 if bullet stops.
+	proc/check_cover(obj/item/projectile/P, turf/from)
+		var/turf/cover = get_step(loc, get_dir(from, loc))
+		if (get_dist(P.starting, loc) <= 1) //Barricades won't help you if people are THIS close
+			return 1
+		if (get_turf(P.original) == cover)
+			var/chance = 40
+			if (ismob(P.original))
+				var/mob/M = P.original
+				if (M.lying)
+					chance += 20				//Lying down lets you catch less bullets
+			if(prob(chance))
+				health -= P.damage/4
+				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
+				health_check()
+				return 0
+		return 1
+
+	//Crusher
 	Crossed(atom/movable/O)
 		..()
 		if(istype(O,/mob/living/carbon/Xenomorph/Crusher))
 			var/mob/living/carbon/Xenomorph/M = O
 			if(!M.stat) //No dead xenos jumpin on the bed~
 				visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
-				del(src)
+				health_check(1)
+
+	//Update Sides
+	proc/update_nearby_icons()
+		update_icon()
+		for(var/direction in cardinal)
+			for(var/obj/structure/barricade/snow/B in get_step(src,direction))
+				B.update_icon()
+
+	//Update Icons
+	update_icon()
+		spawn(2)
+			if(!src)
+				return
+			var/junction = 0 //will be used to determine from which side the barricade is connected to other barricades
+			for(var/obj/structure/barricade/snow/B in orange(src,1))
+				if(abs(x-B.x)-abs(y-B.y) ) 		//doesn't count barricades, placed diagonally to src
+					junction |= get_dir(src,B)
+
+			icon_state = "snow_barricade_[junction]"
+			return
+
 
 /obj/machinery/computer/shuttle_control/elevator1
 	name = "Elevator Console"
@@ -594,22 +788,23 @@ obj/item/alienjar
 		pixel_x += rand(-3,3)
 		pixel_y += rand(-3,3)
 
+//CLOTHING-----------------------//
+//MASK-----------------------//
+//Rebreather
+/obj/item/clothing/mask/rebreather
+	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
+	name = "rebreather"
+	icon_state = "rebreather"
+	item_state = "rebreather"
+	flags = FPRINT | TABLEPASS | MASKCOVERSMOUTH
+	body_parts_covered = 0
+	w_class = 2
 
 //TESTING
-/obj/machinery/computer3/door_control
-	default_prog = /datum/file/program/door_control
-	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/prox)
-	icon_state = "frame-med"
-
-	New()
-		..()
-		spawn_files += (/datum/file/program/data/text)
-		update_spawn_files()
-
 /datum/file/program/door_control
-	name = "door control"
-	desc = "Monitors patient status during surgery."
-	active_state = "operating"
+	name = "Door control"
+	desc = "This program can control doors on range."
+	active_state = "comm_log"
 	var/id = null
 	var/range = 10
 	var/normaldoorcontrol = CONTROL_POD_DOORS
@@ -619,6 +814,7 @@ obj/item/alienjar
 	var/desiredstate = 0
 		//0 = Closed
 		//1 = Open
+		//2 = Toggle
 	var/specialfunctions = 1
 		//Bitflag, 	1 = Open
 		//			2 = IDscan
@@ -626,7 +822,7 @@ obj/item/alienjar
 		//			8 = Shock
 		//			16 = Door safties
 	var/door_name = "" // Used for data only
-	var/action_name = "" // Used for data only
+	var/action_name = "" // Used for button name
 
 /datum/file/program/door_control/interact()
 	if(!interactable())
@@ -651,25 +847,46 @@ obj/item/alienjar
 					spawn(0)
 						D.close()
 						return
-			if(desiredstate == 1)
-				if(specialfunctions & IDSCAN)
-					D.aiDisabledIdScanner = 1
-				if(specialfunctions & BOLTS)
-					D.lock()
-				if(specialfunctions & SHOCK)
-					D.secondsElectrified = -1
-				if(specialfunctions & SAFE)
-					D.safe = 0
-			else
-				if(specialfunctions & IDSCAN)
-					D.aiDisabledIdScanner = 0
-				if(specialfunctions & BOLTS)
-					if(!D.isWireCut(4) && D.arePowerSystemsOn())
+			switch(desiredstate)
+				//Close
+				if(0)
+					if(specialfunctions & IDSCAN)
+						D.aiDisabledIdScanner = 0
+					if(specialfunctions & BOLTS)
+						if(!D.isWireCut(4) && D.arePowerSystemsOn())
+							D.unlock()
+					if(specialfunctions & SHOCK)
+						D.secondsElectrified = 0
+					if(specialfunctions & SAFE)
+						D.safe = 1
+				//Open
+				if(1)
+					if(specialfunctions & IDSCAN)
+						D.aiDisabledIdScanner = 1
+					if(specialfunctions & BOLTS)
+						D.lock()
+					if(specialfunctions & SHOCK)
+						D.secondsElectrified = -1
+					if(specialfunctions & SAFE)
+						D.safe = 0
+				//Toggle
+				if(2)
+					if(specialfunctions & IDSCAN && D.aiDisabledIdScanner == 0)
+						D.aiDisabledIdScanner = 1
+					else
+						D.aiDisabledIdScanner = 0
+					if(specialfunctions & BOLTS && D.locked == 0)
+						D.lock()
+					else
 						D.unlock()
-				if(specialfunctions & SHOCK)
-					D.secondsElectrified = 0
-				if(specialfunctions & SAFE)
-					D.safe = 1
+					if(specialfunctions & SHOCK && D.secondsElectrified == 0)
+						D.secondsElectrified = -1
+					else
+						D.secondsElectrified = 0
+					if(specialfunctions & SAFE && D.safe == 1)
+						D.safe = 0
+					else
+						D.safe = 1
 
 /datum/file/program/door_control/proc/handle_pod()
 	for(var/obj/machinery/door/poddoor/M in world)
@@ -702,3 +919,21 @@ obj/item/alienjar
 				handle_pod()
 			//if(CONTROL_EMITTERS)
 				//handle_emitters()
+
+
+
+//ICE LAPTOPS
+//General Ice planet laptop
+/obj/machinery/computer3/laptop/ice_planet
+	spawn_parts = list(/obj/item/part/computer/storage/hdd, /obj/item/part/computer/storage/removable)
+
+//Test Laptop
+/obj/machinery/computer3/laptop/ice_planet/test
+
+	New()
+		..()
+		spawn_files += (/datum/file/program/data/text)
+		update_spawn_files()
+
+/obj/item/weapon/disk/file/test
+	spawn_files = list(/datum/file/program/data/text)

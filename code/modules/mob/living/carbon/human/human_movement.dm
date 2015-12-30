@@ -40,15 +40,15 @@
 		if(locate(/obj/effect/alien/weeds) in src.loc) //Weeds slow you down
 			tally += 2
 
-		if(istype(src.loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
-			var/turf/simulated/floor/gm/snow/S = src.loc
+		if(istype(src.loc,/turf/unsimulated/floor/snow)) //Snow slows you down
+			var/turf/unsimulated/floor/snow/S = src.loc
 			if(S && istype(S) && S.slayer > 0)
 				tally += 1.25 * S.slayer
 				if(S.slayer && prob(2))
-					src << "\red Moving trough [S] slows you down."
-				if(S.slayer == 3 && prob(5))
+					src << "\red Moving through [S] slows you down."
+				if(S.slayer == 3 && prob(2))
 					src << "\red You got stuck in [S] for a moment!"
-					tally += 15
+					tally += 12
 
 		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75
