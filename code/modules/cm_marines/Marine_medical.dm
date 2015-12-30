@@ -197,14 +197,12 @@
 
 
 /obj/item/weapon/reagent_containers/pill/russianRed
-	name = "Russian Red (30u)"
+	name = "Russian Red (10u)"
 	desc = "An EXTREME radiation countering pill.  VERY dangerous"
 	icon_state = "pill4"
 	New()
 		..()
-		reagents.add_reagent("arithrazine", 15)
-		reagents.add_reagent("synaptizine", 5)
-		reagents.add_reagent("ryetalyn", 10)
+		reagents.add_reagent("russianred", 10)
 
 
 

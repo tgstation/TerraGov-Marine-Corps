@@ -135,7 +135,7 @@
 	density = 0
 	layer = 2
 	unacidable = 1
-	var/health = 15
+	var/health = 1
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
 
@@ -146,6 +146,7 @@
 	layer = 2.7
 //	luminosity = NODERANGE
 	var/node_range = NODERANGE
+	health = 15
 
 
 /obj/effect/alien/weeds/node/New()

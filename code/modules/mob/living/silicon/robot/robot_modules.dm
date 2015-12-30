@@ -190,8 +190,8 @@
 		/obj/item/stack/sheet/glass = 50,
 		/obj/item/stack/sheet/glass/reinforced = 50,
 		/obj/item/stack/cable_coil = 50,
-		/obj/item/stack/rods = 15,
-		/obj/item/stack/tile/plasteel = 15
+		/obj/item/stack/rods = 50,
+		/obj/item/stack/tile/plasteel = 20,
 		)
 
 	New()
@@ -214,21 +214,10 @@
 
 		src.emag = new /obj/item/borg/stun(src)
 
-		var/obj/item/stack/sheet/metal/cyborg/M = new /obj/item/stack/sheet/metal/cyborg(src)
-		M.amount = 50
-		src.modules += M
-
-		var/obj/item/stack/sheet/glass/reinforced/cyborg/R = new (src)
-		R.amount = 50
-		src.modules += R
-
-		var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass(src)
-		G.amount = 50
-		src.modules += G
-
-		var/obj/item/stack/cable_coil/W = new /obj/item/stack/cable_coil(src)
-		W.amount = 50
-		src.modules += W
+		for(var/T in stacktypes)
+			var/obj/item/stack/sheet/W = new T(src)
+			W.amount = stacktypes[T]
+			src.modules += W
 
 		return
 

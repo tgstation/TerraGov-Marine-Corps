@@ -12,6 +12,7 @@
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
 	var/obj/item/device/encryptionkey/keyslot2 = null
+	var/obj/item/device/encryptionkey/keyslot3 = null
 	maxf = 1489
 
 /obj/item/device/radio/headset/New()
@@ -210,7 +211,7 @@
 		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
-		if(keyslot1 || keyslot2)
+		if(keyslot1 || keyslot2 || keyslot3)
 
 
 			for(var/ch_name in channels)
@@ -232,6 +233,12 @@
 					keyslot2.loc = T
 					keyslot2 = null
 
+			if(keyslot3)
+				var/turf/T = get_turf(user)
+				if(T)
+					keyslot3.loc = T
+					keyslot3 = null
+
 			recalculateChannels()
 			user << "You pop out the encryption keys in the headset!"
 
@@ -239,7 +246,7 @@
 			user << "This headset doesn't have any encryption keys!  How useless..."
 
 	if(istype(W, /obj/item/device/encryptionkey/))
-		if(keyslot1 && keyslot2)
+		if(keyslot1 && keyslot2 && keyslot3)
 			user << "The headset can't hold another key!"
 			return
 
@@ -248,10 +255,15 @@
 			W.loc = src
 			keyslot1 = W
 
-		else
+
+		if(!keyslot2)
 			user.drop_item()
 			W.loc = src
 			keyslot2 = W
+		else
+			user.drop_item()
+			W.loc = src
+			keyslot3 = W
 
 
 		recalculateChannels()
@@ -295,6 +307,22 @@
 			src.translate_hive = 1
 
 		if(keyslot2.syndie)
+			src.syndie = 1
+
+	if(keyslot3)
+		for(var/ch_name in keyslot3.channels)
+			if(ch_name in src.channels)
+				continue
+			src.channels += ch_name
+			src.channels[ch_name] = keyslot3.channels[ch_name]
+
+		if(keyslot3.translate_binary)
+			src.translate_binary = 1
+
+		if(keyslot3.translate_hive)
+			src.translate_hive = 1
+
+		if(keyslot3.syndie)
 			src.syndie = 1
 
 

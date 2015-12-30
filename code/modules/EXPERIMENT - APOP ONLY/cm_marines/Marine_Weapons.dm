@@ -3,23 +3,23 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 30
+	damage = 25  //OLD:  30
 	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
-	damage = 70
+	damage = 50  //OLD:  70
 	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 35
+	damage = 30  //OLD:  35
 	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 50
+	damage = 40  //OLD:  50
 	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
-	damage = 80
+	damage = 45  //OLD:  80
 	range_falloff_at = 4 //4 turfs
 	name = "shotgun slug"
 
@@ -152,6 +152,7 @@
 	under_pixel_x = 20
 	under_pixel_y = 17
 	w_class = 3
+	fire_delay = 3
 
 	New()
 		..()
@@ -243,7 +244,7 @@
 	load_method = 2
 	force = 10.0
 	ejectshell = 0 //Caseless
-	fire_delay = 4
+	fire_delay = 2
 	slot_flags = SLOT_BACK
 	recoil = 0
 	twohanded = 1
@@ -314,7 +315,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/m37 //M37 Pump Shotgun
 	name = "\improper M37 Pump Shotgun"
-	desc = "An M37 Pump Shotgun, a weapon commonly carried by Colonial Marines pointmen, law enforcement, and civilians. Shift click to pump it or use the verb.\nGood to keep handy for close encounters."
+	desc = "An M37 Pump Shotgun, a weapon commonly carried by Colonial Marines pointmen, law enforcement, and civilians. Alt click to pump it or use the verb.\nGood to keep handy for close encounters."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m37"
 	item_state = "m37"
@@ -849,6 +850,11 @@
 	return rockets.len
 
 /obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+	if(usr.z != 1)
+		usr << "\red The safety refuses to release!"
+		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) has attempted to fire a rocket in a restricted area. ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)")
+		log_game("[key_name(user)] attempted to fire a rocket in a restricted area at ([target.x],[target.y],[target.z])")
+		return
 	if(!wielded)
 		usr << "\red You require two hands to fire this!"
 		return

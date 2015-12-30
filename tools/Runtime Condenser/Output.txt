@@ -1,19 +1,23 @@
 Note: The proc name, source file, src and usr are all from the FIRST of the identical runtimes. Everything else is cropped.
 
-Total unique runtimes: 17
-Total runtimes: 308
+Total unique infinite loops: 1
+Total infinite loops: 1
+Total unique runtimes: 81
+Total runtimes: 1458
+
+** Infinite loops **
+
+The following infinite loop has occured 1 time(s).
+Infinite loop suspected--switching proc to background.
+proc name: Del-All (/client/proc/cmd_debug_del_all)
+  source file: debug.dm,352
+  usr: Alien Larva (730) (/mob/dead/observer)
+  src: Caryl (/client)
+
 
 ** Runtimes **
 
-The following runtime has occured 186 time(s).
-runtime error: list index out of bounds
-proc name: heat capacity (/datum/gas_mixture/proc/heat_capacity)
-  source file: _gas_mixture_xgm.dm,120
-  usr: null
-  src: /datum/gas_mixture (/datum/gas_mixture)
-
-
-The following runtime has occured 86 time(s).
+The following runtime has occured 288 time(s).
 runtime error: Cannot read "3".len
 proc name: New (/obj/machinery/door/window/New)
   source file: windowdoor.dm,19
@@ -21,60 +25,542 @@ proc name: New (/obj/machinery/door/window/New)
   src: the interior door (/obj/machinery/door/window/eastright)
 
 
-The following runtime has occured 8 time(s).
+The following runtime has occured 264 time(s).
 runtime error: Cannot read .len
-proc name: attackby (/obj/effect/alien/weeds/attackby)
-  source file: XenoStructures.dm,210
-  usr: Wyatt Negus (/mob/living/carbon/human)
-  src: the purple sac (/obj/effect/alien/weeds/node)
+proc name: breathe (/mob/living/carbon/human/proc/breathe)
+  source file: life.dm,421
+  usr: null
+  src: Oliver Seelig (/mob/living/carbon/human)
+
+
+The following runtime has occured 205 time(s).
+runtime error: list index out of bounds
+proc name: flow (/connection_edge/proc/flow)
+  source file: ConnectionGroup.dm,114
+  usr: null
+  src: /connection_edge/zone (/connection_edge/zone)
+
+
+The following runtime has occured 97 time(s).
+runtime error: Cannot read null.damage
+proc name: on mob life (/datum/reagent/anti_toxin/on_mob_life)
+  source file: Chemistry-Reagents.dm,1137
+  usr: null
+  src: Dylovene (/datum/reagent/anti_toxin)
+
+
+The following runtime has occured 96 time(s).
+runtime error: Cannot read null.reagents
+proc name: spread (/datum/disease/proc/spread)
+  source file: disease.dm,130
+  usr: null
+  src: GBS (/datum/disease/gbs)
+
+
+The following runtime has occured 89 time(s).
+runtime error: Cannot read null.has_gravity
+proc name: Check Dense Object (/mob/proc/Check_Dense_Object)
+  source file: mob_movement.dm,471
+  usr: Ashe White (/mob/dead/observer)
+  src: Scientist (/mob/living/carbon/human)
+
+
+The following runtime has occured 60 time(s).
+runtime error: Cannot execute null.DiamondZGM().
+runtime error: Cannot execute null.shorttemperedleprechaun().
+
+
+The following runtime has occured 44 time(s).
+runtime error: Cannot read null.z
+proc name: process (/obj/machinery/power/supermatter/process)
+
+
+The following runtime has occured 19 time(s).
+runtime error: bad resource file
+proc name: show (/obj/item/weapon/photo/proc/show)
+  source file: photography.dm,55
+  usr: Raro \'Quickfix\' Meteoro (/mob/dead/observer)
+  src: the photo (/obj/item/weapon/photo)
+
+
+The following runtime has occured 18 time(s).
+runtime error: Cannot modify null.pod1.
+proc name: attackby (/obj/machinery/clonepod/attackby)
+  source file: cloning.dm,313
+  usr: Derajo Perri (/mob/living/carbon/human)
+  src: the science pod (/obj/machinery/clonepod)
+
+
+The following runtime has occured 18 time(s).
+runtime error: undefined variable /obj/item/weapon/storage/wallet/var/assignment
+proc name: Broadcast Message (/proc/Broadcast_Message)
+  source file: broadcaster.dm,299
+  usr: Adolph Hammerstein (/mob/living/carbon/human)
+  src: null
+
+
+The following runtime has occured 17 time(s).
+runtime error: bad index
+proc name: infect virus2 (/proc/infect_virus2)
+  source file: helpers.dm,96
+  usr: null
+  src: null
+
+
+The following runtime has occured 17 time(s).
+runtime error: type mismatch: Gage Carter (/mob/living/carbon/human) & 2
+proc name: handle disabilities (/mob/living/carbon/human/proc/handle_disabilities)
+  source file: life.dm,191
+  usr: null
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 17 time(s).
+runtime error: type mismatch: Gage Carter (/mob/living/carbon/human) & 1
+proc name: handle regular hud updates (/mob/living/carbon/human/proc/handle_regular_hud_updates)
+  source file: life.dm,1510
+  usr: null
+  src: Gage Carter (/mob/living/carbon/human)
+
+
+The following runtime has occured 12 time(s).
+runtime error: Cannot create objects of type null.
+proc name: buy (/datum/controller/supply/proc/buy)
+  source file: supplyshuttle.dm,253
+  usr: null
+  src: /datum/controller/supply (/datum/controller/supply)
+
+
+The following runtime has occured 12 time(s).
+runtime error: Cannot modify null.loc.
+proc name: end step (/datum/surgery_step/cavity/implant_removal/end_step)
+  source file: implant.dm,205
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: /datum/surgery_step/cavity/imp... (/datum/surgery_step/cavity/implant_removal)
+
+
+The following runtime has occured 11 time(s).
+runtime error: cannot append to list
+proc name: mod list add (/client/proc/mod_list_add)
+  source file: modifyvariables.dm,123
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+
+
+The following runtime has occured 10 time(s).
+runtime error: Cannot execute null.2845868624().
+runtime error: Cannot execute null.DiamondZGM().
+
+
+The following runtime has occured 10 time(s).
+runtime error: Cannot execute null.67.168.82.216().
+runtime error: Cannot execute null.2845868624().
 
 
 The following runtime has occured 7 time(s).
-runtime error: Cannot read null.prefs
-proc name: emote dead (/mob/proc/emote_dead)
-  source file: emote.dm,106
-  usr: Alien Larva (650) (/mob/dead/observer)
-  src: Alien Larva (650) (/mob/dead/observer)
+runtime error: Cannot execute null.use().
+proc name: attackby (/obj/structure/girder/attackby)
+  source file: girders.dm,98
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: the girder (/obj/structure/girder)
+
+
+The following runtime has occured 7 time(s).
+runtime error: Cannot read null.toggles
+proc name: playtitlemusic (/client/proc/playtitlemusic)
+  source file: sound.dm,97
+  usr: Alien Bite (/mob/new_player)
+  src: Alien Bite (/client)
+
+
+The following runtime has occured 6 time(s).
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Zano Riv (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+
+
+The following runtime has occured 6 time(s).
+runtime error: Cannot execute null.equip to slot if possible().
+proc name: dropped (/obj/item/weapon/gun/projectile/M56_Smartgun/dropped)
+  source file: Marine_Weapons.dm,550
+  usr: Stephanie Pritchard (/mob/living/carbon/human)
+  src: M56 smartgun (/obj/item/weapon/gun/projectile/M56_Smartgun)
+
+
+The following runtime has occured 6 time(s).
+runtime error: Cannot read null.id
+proc name: add reagent (/datum/reagents/proc/add_reagent)
+  source file: Chemistry-Holder.dm,466
+  usr: Danny Burkett (/mob/living/carbon/human)
+  src: /datum/reagents (/datum/reagents)
 
 
 The following runtime has occured 5 time(s).
-runtime error: Cannot execute null.use().
-proc name: attackby (/turf/simulated/floor/attackby)
-  source file: floor.dm,507
-  usr: Sam Graham (/mob/living/carbon/human)
-  src: the floor (143,160,3) (/turf/simulated/floor)
+runtime error: Cannot read null.master_air_alarm
+proc name: master is operating (/obj/machinery/alarm/proc/master_is_operating)
+  source file: alarm.dm,306
+  usr: Marshall Bowchiew (/mob/living/carbon/human)
+  src: the alarm (/obj/machinery/alarm)
+
+
+The following runtime has occured 5 time(s).
+runtime error: Cannot read null.amount
+proc name: attackby (/obj/machinery/marine_turret_frame/attackby)
+  source file: turrets.dm,163
+  usr: Talon Focell (/mob/living/carbon/human)
+  src: UA 571-C Turret Frame (/obj/machinery/marine_turret_frame)
+
+
+The following runtime has occured 5 time(s).
+runtime error: Division by zero
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,241
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+
+
+The following runtime has occured 5 time(s).
+runtime error: Cannot execute null.update all synd icons().
+proc name: Login (/mob/living/carbon/human/Login)
+  source file: login.dm,4
+  usr: the unknown (/mob/living/carbon/human)
+  src: the unknown (/mob/living/carbon/human)
+
+
+The following runtime has occured 5 time(s).
+runtime error: Cannot execute null.0x0().
+runtime error: Cannot execute null.67.168.82.216().
+
+
+The following runtime has occured 5 time(s).
+runtime error: Cannot execute null.on reagent change().
+proc name: del reagent (/datum/reagents/proc/del_reagent)
+  source file: Chemistry-Holder.dm,398
+  usr: Kaylin Dimeling (/mob/living/carbon/human)
+  src: /datum/reagents (/datum/reagents)
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot read null.fields
+proc name: Topic (/obj/machinery/computer/skills/Topic)
+  source file: skills.dm,282
+  usr: Ace \'Dandy\' Ali (/mob/living/carbon/human)
+  src: Employment Records (/obj/machinery/computer/skills)
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot execute null.().
+runtime error: Cannot execute null.().
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot execute null.shorttemperedleprechaun().
+runtime error: Cannot execute null.0x0().
+
+
+The following runtime has occured 4 time(s).
+runtime error: Cannot read null.vars
+proc name: modify variables (/client/proc/modify_variables)
+  source file: modifyvariables.dm,343
+  usr: Erin Kowalski (/mob/dead/observer)
+  src: Apophis775 (/client)
+
+
+The following runtime has occured 4 time(s).
+runtime error: pick() from empty list
+proc name: launch mauraders (/proc/launch_mauraders)
+  source file: shuttle_specops.dm,170
+  usr: null
+  src: null
+
+
+The following runtime has occured 3 time(s).
+runtime error: Cannot read null.sbeacon
+proc name: handle supplydrop (/obj/machinery/computer/overwatch/proc/handle_supplydrop)
+  source file: overwatch.dm,505
+  usr: Roger \'Sam\' Lyla (/mob/living/carbon/human)
+  src: Overwatch Console (/obj/machinery/computer/overwatch)
+
+
+The following runtime has occured 3 time(s).
+runtime error: Cannot modify null.assigned_role.
+proc name: create member (/datum/emergency_call/pmc/create_member)
+  source file: distress.dm,313
+  usr: Don&#39;t Kill Me (/mob/dead/observer)
+  src: Commandos (/datum/emergency_call/pmc)
+
+
+The following runtime has occured 3 time(s).
+runtime error: Cannot execute null.Remove().
+proc name: NotTargeted (/mob/living/proc/NotTargeted)
+  source file: targeting.dm,228
+  usr: Colton Jones (/mob/living/carbon/human)
+  src: Jet \'Cyclone\' Havelock (/mob/living/carbon/human)
+
+
+The following runtime has occured 3 time(s).
+runtime error: Call to /area/Adjacent(), unimplemented proc
+proc name: Adjacent (/area/Adjacent)
+  source file: adjacent.dm,18
+  usr: Maya Roberts (/mob/living/carbon/human)
+  src: the Dropship Hangar (/area/sulaco/hangar)
+
+
+The following runtime has occured 3 time(s).
+runtime error: wrong type of value for list
+verb name: AllowTargetMove (/client/verb/AllowTargetMove)
+  source file: targeting.dm,296
+  usr: Graham Shick (/mob/living/carbon/human)
+  src: DylanTheNewgen (/client)
 
 
 The following runtime has occured 2 time(s).
-runtime error: undefined variable /icon/var/name
+runtime error: Cannot modify null.perspective.
+proc name: close up (/mob/living/silicon/pai/proc/close_up)
+  source file: pai.dm,374
+  usr: null
+  src: S.H.I.N.E (/mob/living/silicon/pai)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.related
+proc name: elect master (/obj/machinery/alarm/proc/elect_master)
+  source file: alarm.dm,310
+  usr: Marshall Bowchiew (/mob/living/carbon/human)
+  src: the alarm (/obj/machinery/alarm)
+
+
+The following runtime has occured 2 time(s).
+runtime error: undefined proc or verb /zone/savefile load().
+
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.assignment
+proc name: Topic (/obj/machinery/computer/squad_changer/Topic)
+  source file: marines_consoles.dm,442
+  usr: Whiskey Newman (/mob/living/carbon/human)
+  src: Squad Distribution Computer (/obj/machinery/computer/squad_changer)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot modify null.icon_state.
+proc name: Click (/obj/screen/Click)
+  source file: screen_objects.dm,356
+  usr: Alan Fiscina (/mob/living/carbon/brain)
+  src: the harm (/obj/screen)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot execute null.savefile load().
 proc name: Topic (/datum/paiController/Topic)
-  source file: recruit.dm,59
-  usr: Walker (/mob/living/silicon/pai)
+  source file: recruit.dm,77
+  usr: S.H.I.N.E (/mob/living/silicon/pai)
   src: /datum/paiController (/datum/paiController)
 
 
 The following runtime has occured 2 time(s).
-runtime error: wrong type of value for list
-verb name: AllowTargetMove (/client/verb/AllowTargetMove)
-  source file: targeting.dm,296
-  usr: Eddetott Winters (/mob/living/carbon/human)
-  src: Naruto Uzomaky (/client)
+runtime error: Cannot execute null.SetLuminosity().
+proc name: dropped (/obj/item/weapon/gun/dropped)
+  source file: gun.dm,126
+  usr: Jada Brown (as Bruce Bullard) (/mob/living/carbon/human)
+  src: the 44 Magnum (/obj/item/weapon/gun/projectile/m44m)
 
 
 The following runtime has occured 2 time(s).
-runtime error: Cannot read null.pai_laws
-proc name: Topic (/obj/item/device/paicard/Topic)
-  source file: paicard.dm,262
-  usr: May-June \'Salt\' Unk (/mob/living/carbon/human)
-  src: the personal AI device (/obj/item/device/paicard)
+runtime error: Cannot execute null.on removed().
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Mark \'Beep\' Hill (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
 
 
 The following runtime has occured 2 time(s).
-runtime error: Cannot execute null.Remove().
-proc name: NotTargeted (/mob/living/proc/NotTargeted)
-  source file: targeting.dm,228
-  usr: Alan Fiscina (/mob/living/carbon/human)
-  src: Saul Greene (/mob/living/carbon/human)
+runtime error: bad client
+proc name: Adminhelp (/client/verb/adminhelp)
+  source file: adminhelp.dm,26
+  usr: null
+  src: Unseenbeast (/client)
+
+
+The following runtime has occured 2 time(s).
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/captains_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,15
+  usr: Kaelyn Hawker (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+
+
+The following runtime has occured 2 time(s).
+runtime error: undefined variable /datum/game_mode/colonialmarines/var/secondary_key
+proc name: attack self (/obj/item/weapon/pinpointer/advpinpointer/auth_key/attack_self)
+  source file: key_pinpointer.dm,20
+  usr: Kaelyn Hawker (/mob/living/carbon/human)
+  src: the Authentication Key Pinpoin... (/obj/item/weapon/pinpointer/advpinpointer/auth_key)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.mind
+proc name: end step (/datum/surgery_step/head/attach/end_step)
+  source file: headreattach.dm,188
+  usr: PMC Isabelle Baum (/mob/living/carbon/human)
+  src: /datum/surgery_step/head/attac... (/datum/surgery_step/head/attach)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.storedplasma
+proc name: Transfer Plasma (/mob/living/carbon/Xenomorph/proc/transfer_plasma)
+  source file: XenoPowers.dm,177
+  usr: Sentinel (765) (/mob/living/carbon/Xenomorph/Sentinel)
+  src: Sentinel (765) (/mob/living/carbon/Xenomorph/Sentinel)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot execute null.rebuild().
+proc name: update air properties (/turf/simulated/update_air_properties)
+  source file: Turf.dm,147
+  usr: null
+  src: the dirt (115,144,1) (/turf/simulated/floor/gm/dirt)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot execute null.on mob jump().
+proc name: Get Mob (/client/proc/Getmob)
+  source file: adminjump.dm,120
+  usr: Gage Carter (/mob/dead/observer)
+  src: Lostmixup (/client)
+
+
+The following runtime has occured 2 time(s).
+runtime error: Cannot read null.current
+proc name: update cult icons removed (/datum/game_mode/proc/update_cult_icons_removed)
+  source file: cult.dm,241
+  usr: Reese Tedrow (/mob/living/carbon/human)
+  src: colonial marines (/datum/game_mode/colonialmarines)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined variable /turf/simulated/floor/carpet/var/radio
+proc name: New (/mob/living/silicon/pai/New)
+  source file: pai.dm,79
+  usr: the pAI (/mob/living/silicon/pai)
+  src: the pAI (/mob/living/silicon/pai)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined proc or verb /turf/simulated/floor/carpet/removePersonality().
+
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.set content().
+proc name: interact (/datum/file/program/atmos_alert/interact)
+  source file: atmos_alert.dm,56
+  usr: Saigon Sam (/mob/living/carbon/human)
+  src: atmospheric alert monitor (/datum/file/program/atmos_alert)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.set frequency().
+proc name: execute (/datum/file/program/atmos_alert/execute)
+  source file: atmos_alert.dm,21
+  usr: Saigon Sam (/mob/living/carbon/human)
+  src: atmospheric alert monitor (/datum/file/program/atmos_alert)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read 1.vars
+proc name: modify variables (/client/proc/modify_variables)
+  source file: modifyvariables.dm,343
+  usr: Anna Clifford (/mob/dead/observer)
+  src: Minijar (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.type
+proc name: view var Topic (/client/proc/view_var_Topic)
+  source file: datumvars.dm,606
+  usr: Erin Kowalski (/mob/dead/observer)
+  src: Apophis775 (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.Adjacent().
+proc name: handle ventcrawl (/mob/living/proc/handle_ventcrawl)
+  source file: living.dm,781
+  usr: Spitter (747) (/mob/living/carbon/Xenomorph/Spitter)
+  src: Spitter (747) (/mob/living/carbon/Xenomorph/Spitter)
+
+
+The following runtime has occured 1 time(s).
+runtime error: cannot write to indexed value in this type of list
+proc name: mod list (/client/proc/mod_list)
+  source file: modifyvariables.dm,255
+  usr: Eric Smith (/mob/living/silicon/robot)
+  src: Minijar (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.name
+proc name: Topic (/obj/machinery/computer/overwatch/Topic)
+  source file: overwatch.dm,234
+  usr: Tomek Roadman (/mob/living/carbon/human)
+  src: Overwatch Console (/obj/machinery/computer/overwatch)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.Jump to Mob().
+proc name: Topic (/datum/admins/Topic)
+  source file: blank,1286
+  usr: Osalaa Wooki (/mob/dead/observer)
+  src: /datum/admins (/datum/admins)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.process().
+proc name: Spit Neurotoxin (50/100) (/mob/living/carbon/Xenomorph/proc/neurotoxin)
+  source file: XenoPowers.dm,310
+  usr: Sentinel (65) (/mob/living/carbon/Xenomorph/Sentinel)
+  src: Sentinel (65) (/mob/living/carbon/Xenomorph/Sentinel)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined proc or verb /zone/savefile save().
+
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.x
+proc name: Delete (/client/proc/cmd_admin_delete)
+  source file: randomverbs.dm,633
+  usr: Victor Holding (/mob/dead/observer)
+  src: Ordukai (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined variable /zone/var/stage
+proc name: modify variables (/client/proc/modify_variables)
+  source file: modifyvariables.dm,299
+  usr: Caryl \'Alpha\' Bernhaben (/mob/living/carbon/human)
+  src: Caryl (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: undefined variable /turf/unsimulated/floor/var/zone
+proc name: Edit Zone Air (/client/proc/editzoneair)
+  source file: randomverbs.dm,1002
+  usr: Erin Kowalski (/mob/dead/observer)
+  src: Apophis775 (/client)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot execute null.prime().
+proc name: bomb turf (/mob/living/carbon/Xenomorph/Boiler/proc/bomb_turf)
+  source file: Boiler.dm,228
+  usr: Boiler (280) (/mob/living/carbon/Xenomorph/Boiler)
+  src: Boiler (280) (/mob/living/carbon/Xenomorph/Boiler)
 
 
 The following runtime has occured 1 time(s).
@@ -83,53 +569,61 @@ runtime error: undefined proc or verb /datum/gas_mixture/savefile load().
 
 
 The following runtime has occured 1 time(s).
-runtime error: bad client
-proc name: Adminhelp (/client/verb/adminhelp)
-  source file: adminhelp.dm,26
-  usr: null
-  src: MilesWolfe (/client)
+runtime error: Cannot modify null.holder_atom.
+proc name: New (/obj/item/weapon/archaeological_find/New)
+  source file: finds.dm,549
+  usr: Boris Kamerer (/mob/living/carbon/human)
+  src: the dangerous looking thing (/obj/item/weapon/archaeological_find)
 
 
 The following runtime has occured 1 time(s).
-runtime error: undefined proc or verb /icon/savefile save().
+runtime error: Cannot read null.loc
+proc name: Spawn (/datum/admins/proc/spawn_atom)
+  source file: admin.dm,1026
+  usr: null
+  src: Lostmixup (/client)
 
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot create objects of type /mob/living/simple_animal/hostile/retaliate/goat.
+proc name: prime (/obj/item/weapon/grenade/spawnergrenade/prime)
+  source file: spawnergrenade.dm,23
+  usr: Victor Holding (/mob/living/carbon/human)
+  src: the delivery grenade (/obj/item/weapon/grenade/spawnergrenade)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot read null.len
+proc name: sortList (/proc/sortList)
+  source file: lists.dm,273
+  usr: Victor Holding (/mob/living/carbon/human)
+  src: null
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot create objects of type /mob/living/carbon/human.
+proc name: prime (/obj/item/weapon/grenade/spawnergrenade/prime)
+  source file: spawnergrenade.dm,23
+  usr: Victor Holding (/mob/living/carbon/human)
+  src: the manhack delivery grenade (/obj/item/weapon/grenade/spawnergrenade/manhacks)
+
+
+The following runtime has occured 1 time(s).
+runtime error: Cannot write to atom.z.
+proc name: modify variables (/client/proc/modify_variables)
 
 
 The following runtime has occured 1 time(s).
 runtime error: Cannot read null.key
-proc name: recruitWindow (/datum/paiController/proc/recruitWindow)
-  source file: recruit.dm,108
+proc name: Change Custom Event (/client/proc/cmd_admin_change_custom_event)
+  source file: custom_event.dm,17
   usr: null
-  src: /datum/paiController (/datum/paiController)
+  src: Adjective (/client)
 
 
 The following runtime has occured 1 time(s).
-runtime error: Cannot execute null.add fingerprint().
-proc name: done (/obj/effect/equip_e/human/done)
-  source file: inventory.dm,793
-  usr: Artyrial Loudain (/mob/living/carbon/human)
-  src: the human (/obj/effect/equip_e/human)
-
-
-The following runtime has occured 1 time(s).
-runtime error: Cannot read null.hastie
-proc name: done (/obj/effect/equip_e/human/done)
-  source file: inventory.dm,674
-  usr: Axel Strife (/mob/living/carbon/human)
-  src: the human (/obj/effect/equip_e/human)
-
-
-The following runtime has occured 1 time(s).
-runtime error: Cannot modify null.perspective.
-proc name: close up (/mob/living/silicon/pai/proc/close_up)
-  source file: pai.dm,374
-  usr: null
-  src: Wache (/mob/living/silicon/pai)
-
-
-The following runtime has occured 1 time(s).
-runtime error: Cannot read null.drill_verb
-proc name: attackby (/turf/simulated/mineral/attackby)
-  source file: mine_turfs.dm,150
-  usr: Casca \'Legs\' Orivanna (/mob/living/carbon/human)
-  src: Rock (45,149,1) (/turf/simulated/mineral)
+runtime error: Cannot read null.head_position
+proc name: EquipRank (/datum/controller/occupations/proc/EquipRank)
+  source file: job_controller.dm,385
+  usr: Hunter (11) (/mob/dead/observer)
+  src: /datum/controller/occupations (/datum/controller/occupations)

@@ -54,8 +54,8 @@
 	name = "Tactical Balaclava"
 	desc = "A superior balaclava worn by the Iron Bears."
 	icon = 'icons/PMC/PMC.dmi'
-	item_state = "bear_head"
-	icon_state = "bear_head"
+	item_state = "bear_mask"
+	icon_state = "bear_mask"
 	icon_override = 'icons/PMC/PMC.dmi'
 	anti_hug = 2
 
@@ -94,7 +94,7 @@
 	desc = "A cheaply-produced, yet tough pulse rifle found far and wide across the universe. Uses 12mm rounds in a simple magazine."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "rsprifle"
-	item_state = "c20r"
+	item_state = "mar40"
 	w_class = 4
 	max_shells = 40
 	caliber = "12mm"
@@ -139,6 +139,7 @@ S
 	desc = "A double-barreled shotgun which can fire two 12 gauge shells in rapid succession. Commonly found in the hands of criminals, mercenaries and in museums. Dangerous."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "rspshotgun"
+	item_state = "sawed"
 	max_shells = 2
 	w_class = 6
 	caliber = "shotgun"
@@ -191,3 +192,97 @@ S
 	item_state = "arg_helmet"
 	icon_state = "arg_helmet"
 	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/under/marine_jumpsuit/PMC/dutch
+	name = "Dutch's Dozen Uniform"
+	desc = "A uniform worn by the mercenaries"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit"
+	item_state = "dutch_jumpsuit"
+	item_color = "dutch_jumpsuit"
+
+/obj/item/clothing/under/marine_jumpsuit/PMC/dutch2
+	name = "Dutch's Dozen Uniform"
+	desc = "A uniform worn by the mercenaries"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit2"
+	item_state = "dutch_jumpsuit2"
+	item_color = "dutch_jumpsuit2"
+
+/obj/item/clothing/head/helmet/marine/PMC/dutch
+	name = "Dutch's Dozen Helmet"
+	desc = "A protective helmet"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "dutch_helmet"
+	icon_state = "dutch_helmet"
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/PMC/bearmask
+	name = "Iron Bear Mask"
+	desc = "A protective mask"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "dutch_helmet"
+	icon_state = "dutch_helmet"
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/PMC/dutch/cap
+	item_state = "dutch_cap"
+	icon_state = "dutch_cap"
+
+/obj/item/clothing/head/helmet/marine/PMC/dutch/band
+	item_state = "dutch_band"
+	icon_state = "dutch_band"
+
+
+/obj/item/clothing/suit/storage/marine/PMCarmor/dutch
+	name = "Armored Vest"
+	desc = "A protective vest"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "dutch_armor"
+	icon_state = "dutch_armor"
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/weapon/gun/projectile/vp70
+	name = "VP70 Combat Pistol"
+	desc = "A semi-automatic combat pistol produced by Weyland-Yutani. Commonly found in the hands of mercenaries and soldiers around the galaxy."
+	icon_state = "vp70"
+	w_class = 2
+	max_shells = 18
+	caliber = "9mm"
+	silenced = 0
+	ammo_type = "/obj/item/ammo_casing/c9mm"
+	load_method = 2
+	recoil = 0
+	fire_delay = 0
+
+
+/obj/item/clothing/suit/storage/marine/PMCarmor/sniper
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "pmc_sniper"
+	icon_state = "pmc_sniper"
+	armor = list(melee = 60, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/head/helmet/marine/PMC/sniper
+	name = "PMC Sniper Helmet"
+	desc = "A helmet worn by PMC Marksmen"
+	item_state = "pmc_sniper_hat"
+	icon_state = "pmc_sniper_hat"
+
+/obj/item/weapon/gun/projectile/automatic/m41/commando
+	name = "\improper M41C Rifle"
+	desc = "A modified M41A Pulse Rifle, the M41C. A modification of the standard Armat systems model adjusted to be fired with one hand, and at quicker firing rates. Painted in a brown color scheme and carried by corporate Black Ops kill-teams.."
+	icon = 'icons/PMC/PMC.dmi'
+	twohanded = 0
+	fire_delay = 2
+	item_state = "m41c"
+
+/obj/item/weapon/claymore/mercsword
+	name = "Combat Sword"
+	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharped to deal massive damage."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "sword"
+	force = 75

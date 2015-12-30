@@ -609,7 +609,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Solar pack crate"
 	group = "Engineering"
 
-/datum/supply_packs/engine
+/*/datum/supply_packs/engine
 	name = "Emitter crate"
 	contains = list(/obj/machinery/power/emitter,
 					/obj/machinery/power/emitter)
@@ -617,7 +617,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Emitter crate"
 	access = access_sulaco_CE
-	group = "Engineering"
+	group = "Engineering"*/
 
 /datum/supply_packs/engine/field_gen
 	name = "Field Generator crate"

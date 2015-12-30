@@ -18,8 +18,8 @@
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 
-		if(amount < 2)
-			user << "\red You need at least two rods to do this."
+		if(amount < 4)
+			user << "\red You need at least four rods to do this."
 			return
 
 		if(WT.remove_fuel(0,user))
@@ -30,7 +30,7 @@
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_hand()==R)
-			R.use(2)
+			R.use(4)
 			if (!R && replace)
 				user.put_in_hands(new_item)
 		return
@@ -42,9 +42,6 @@
 
 	if(!istype(user.loc,/turf)) return 0
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel. ((If you are building defenses, you may be in violation of 'Building Defenses on the Sulaco' in our <a href='http://colonial-marines.com/viewtopic.php?f=57&t=1363'>Marine-Specific Rules</a>))</span>"
-		return
 
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
@@ -58,17 +55,17 @@
 				return 1
 
 	else if(!in_use)
-		if(amount < 2)
-			user << "\blue You need at least two rods to do this."
+		if(amount < 4)
+			user << "\blue You need at least four rods to do this."
 			return
 		usr << "\blue Assembling grille..."
 		in_use = 1
-		if (!do_after(usr, 10))
+		if (!do_after(usr, 20))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
 		usr << "\blue You assemble a grille"
 		in_use = 0
 		F.add_fingerprint(usr)
-		use(2)
+		use(4)
 	return

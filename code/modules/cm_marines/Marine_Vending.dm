@@ -44,7 +44,7 @@
 				)
 	prices = list()
 
-//MARINE FOOD VENDOR APOPHIS775 10JAN2014
+//MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
 	name = "Marine Food Vendor"
 	desc = "Standard Issue Food Vendor, containing standard military food"
@@ -56,8 +56,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15	)
-
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15)
+					/*(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
+	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25) */
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
 	product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
@@ -72,7 +73,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access_txt = "0"
+	req_access_txt = "8"
 	products = list(/obj/item/weapon/storage/syringe_case = 2,
 					/obj/item/bodybag/cryobag = 2,
 					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
@@ -109,7 +110,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "The best blood on the market!"
-	req_access_txt = "0"
+	req_access_txt = "8"
 	products = list(/obj/item/weapon/reagent_containers/blood/APlus = 5, /obj/item/weapon/reagent_containers/blood/AMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/BPlus = 5, /obj/item/weapon/reagent_containers/blood/BMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/OPlus = 5, /obj/item/weapon/reagent_containers/blood/OMinus = 5,
@@ -126,8 +127,10 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
 	products = list(
+						/obj/item/clothing/tie/storage/webbing = 3,
+						/obj/item/device/encryptionkey/headset_eng = 3,
 						/obj/item/weapon/storage/box/sentry = 1,
-						/obj/item/clothing/under/rank/engineer = 3,
+						/obj/item/clothing/under/marine/fluff/marineengineer = 3,
 						/obj/item/weapon/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
@@ -156,10 +159,11 @@
 	icon_deny = "med-deny"
 	products = list(
 					//	/obj/item/clothing/tie/storage/webbing = 2,  Replaced with the fancy new COMBAT LIFESAVER KIT
+						/obj/item/device/encryptionkey/headset_med = 3,
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,
-						/obj/item/clothing/under/rank/medical = 3,
+						/obj/item/clothing/under/marine/fluff/marinemedic = 3,
 						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/weapon/melee/defibrillator = 3,
@@ -235,7 +239,6 @@
 						/obj/item/weapon/plastique = 1,
 						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
-						/obj/item/device/paicard = 1
 					)
 	contraband = list()
 	premium = list()

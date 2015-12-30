@@ -1,6 +1,5 @@
 // This is to replace the previous datum/disease/alien_embryo for slightly improved handling and maintainability
 // It functions almost identically (see code/datums/diseases/alien_embryo.dm)
-
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yuck."
@@ -44,15 +43,15 @@
 
 	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)//Slow down progress if in stasis bag or cryo
 		if(prob(30))
-			if(stage < 4) counter++ //A counter to add to probability over time.
+			if(stage <= 4) counter++ //A counter to add to probability over time.
 			else if (stage == 4 && prob(30))  counter++
 
 	else
-		if(stage < 4) counter++
-		else if (stage == 4 && prob(30))  counter++
+		if(stage <= 4) counter++
+//		else if (stage == 4 && prob(30))  counter++
 
-	if(counter > 400) counter = 400 //somehow
-	if(counter>70)  //THIS IS TEMP.  I will restore this after my testing.
+	if(counter > 80) counter = 80 //somehow
+	if(stage < 5 && counter == 80)
 		counter = 0
 		stage++
 		spawn(0)
@@ -103,8 +102,9 @@
 					O.show_message(text("\red <B>[affected_mob] starts shaking uncontrollably!"), 1)
 				affected_mob.Paralyse(20)
 				affected_mob.make_jittery(100)
-				affected_mob.take_organ_damage(1)
-				affected_mob.adjustToxLoss(5)
+				affected_mob.take_organ_damage(5) //  old 1
+				affected_mob.adjustToxLoss(20)  //old 5
+				counter = -80
 			affected_mob.updatehealth()
 //			if(prob(50))
 			AttemptGrow()
@@ -153,9 +153,9 @@
 	else if(candidates.len) // The player doesn't want it or they're gone, let's find someone else
 		picked = pick(candidates)
 */
-	if(!picked)
+	/*if(!picked)
 		stage = 4
-		return 0
+		return 0*/
 
 	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
 	affected_mob.update_burst()

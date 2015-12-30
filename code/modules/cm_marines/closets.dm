@@ -90,6 +90,7 @@
 
 	New()
 		spawn(3)
+			new /obj/item/clothing/tie/holster/armpit(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine/mp(src)
 			new /obj/item/clothing/suit/armor/riot/marine(src)
@@ -117,6 +118,7 @@
 
 	New()
 		spawn(3)
+			new /obj/item/clothing/tie/holster/armpit(src)
 			new /obj/item/weapon/storage/backpack/security(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine/mp(src)

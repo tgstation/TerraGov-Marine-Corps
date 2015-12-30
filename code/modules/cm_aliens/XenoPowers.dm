@@ -341,7 +341,7 @@
 	else if(istype(O, /turf/simulated))
 		var/turf/T = O
 		// R WALL
-		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall/gm))
+		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
 			src << "\green You cannot dissolve this."
 			return
 		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))
