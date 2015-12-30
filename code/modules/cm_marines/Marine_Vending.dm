@@ -50,14 +50,15 @@
 	desc = "Standard Issue Food Vendor, containing standard military food"
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
-	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25)/*(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15	)*/
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15	)
+					/*(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
+	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/  //XMAS ONLY
 
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
