@@ -127,6 +127,8 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
 	products = list(
+						/obj/item/clothing/tie/storage/webbing = 3,
+						/obj/item/device/encryptionkey/headset_eng = 3,
 						/obj/item/weapon/storage/box/sentry = 1,
 						/obj/item/clothing/under/marine/fluff/marineengineer = 3,
 						/obj/item/weapon/storage/belt/utility/full = 3,
@@ -157,6 +159,7 @@
 	icon_deny = "med-deny"
 	products = list(
 					//	/obj/item/clothing/tie/storage/webbing = 2,  Replaced with the fancy new COMBAT LIFESAVER KIT
+						/obj/item/device/encryptionkey/headset_med = 3,
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,

@@ -20,7 +20,7 @@
 #define FILE_DIR "icons/DONOR"
 #define FILE_DIR "icons/effects"
 #define FILE_DIR "icons/Marine"
-#define FILE_DIR "icons/Marine/Backups"
+#define FILE_DIR "icons/Marine/SEASONS"
 #define FILE_DIR "icons/mecha"
 #define FILE_DIR "icons/misc"
 #define FILE_DIR "icons/mob"
