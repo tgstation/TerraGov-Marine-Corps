@@ -56,10 +56,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15	)
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15)
 					/*(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
-	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/  //XMAS ONLY
-
+	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25) */
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
 	product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
