@@ -154,8 +154,8 @@
 		has_screeched = 0
 		src << "You feel your throat muscles vibrate. You are ready to screech again."
 
-	//playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)  /TEMP FIX AFTER XMAS
-	playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)
+	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
+	//playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)  - Special Times Only
 	visible_message("\red <B> \The [src] emits an ear-splitting guttural roar!</B>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 
