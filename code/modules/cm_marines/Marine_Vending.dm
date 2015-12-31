@@ -50,15 +50,15 @@
 	desc = "Standard Issue Food Vendor, containing standard military food"
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
-	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25)/*(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15	)*/
-
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15)
+					/*(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
+	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25) */
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
 	vend_delay = 15
 	product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
@@ -127,6 +127,8 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
 	products = list(
+						/obj/item/clothing/tie/storage/webbing = 3,
+						/obj/item/device/encryptionkey/headset_eng = 3,
 						/obj/item/weapon/storage/box/sentry = 1,
 						/obj/item/clothing/under/marine/fluff/marineengineer = 3,
 						/obj/item/weapon/storage/belt/utility/full = 3,
@@ -157,6 +159,7 @@
 	icon_deny = "med-deny"
 	products = list(
 					//	/obj/item/clothing/tie/storage/webbing = 2,  Replaced with the fancy new COMBAT LIFESAVER KIT
+						/obj/item/device/encryptionkey/headset_med = 3,
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
 						/obj/item/weapon/storage/backpack/medic = 3,
 						/obj/item/weapon/storage/backpack/satchel_med = 3,
