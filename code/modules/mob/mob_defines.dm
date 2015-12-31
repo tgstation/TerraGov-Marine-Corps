@@ -6,6 +6,8 @@
 	var/datum/mind/mind
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
+	var/chatWarn = 0 //Tracks how many times someone has spammed and gives them a no-no timer
+	var/talked = 0 //Won't let someone say something again in under a second.
 
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null

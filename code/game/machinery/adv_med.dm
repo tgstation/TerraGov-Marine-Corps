@@ -263,7 +263,7 @@
 			usr << "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>"
 			return
 		var/obj/item/weapon/paper/R = new(src.loc)
-		R.name = "Body scan report"
+		R.name = "Body scan report -[src.connected.occupant.real_name]-"
 		R.info = format_occupant_data(src.connected.get_occupant_data())
 
 

@@ -129,8 +129,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define R_HAND_LAYER			22
 #define TARGETED_LAYER			23
 #define FIRE_LAYER				24		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
-//#define CLAW_LAYER				25 	//Flicks a claw attack. Stored permanently as a blank overlay until it's required.
-#define TOTAL_LAYERS			24
+#define BURST_LAYER				25 	//Chestburst overlay
+#define TOTAL_LAYERS			25
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -1004,7 +1004,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 	else
 		standing = null
 
-	overlays_standing[MUTATIONS_LAYER]	= standing
+	overlays_standing[BURST_LAYER]	= standing
 
 	if(update_icons)   update_icons()
 
@@ -1033,5 +1033,5 @@ proc/get_damage_icon_part(damage_state, body_part)
 #undef R_HAND_LAYER
 #undef TARGETED_LAYER
 #undef FIRE_LAYER
-//#undef BURST_LAYER
+#undef BURST_LAYER
 #undef TOTAL_LAYERS

@@ -125,8 +125,6 @@
 					new /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap(src.loc)
 				else if(prob(50))
 					new /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris(src.loc)
-			if("blob")
-				new /obj/effect/blob/core(src.loc)
 			if("clothes")
 				var/obj/structure/closet/C = new(src.loc)
 				C.icon_state = "blue"

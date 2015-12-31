@@ -8,23 +8,23 @@
 
 /datum/event/radiation_storm/start()
 	spawn()
-		command_announcement.Announce("High levels of radiation detected near the station. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+		command_announcement.Announce("High levels of radiation detected near the [station_name()]. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 		make_maint_all_access()
 
 
 		sleep(600)
 
 
-		command_announcement.Announce("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
+		command_announcement.Announce("The [station_name()] has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 
 		for(var/i = 0, i < 10, i++)
 			for(var/mob/living/carbon/human/H in living_mob_list)
 				var/turf/T = get_turf(H)
 				if(!T)
 					continue
-				if(T.z != 1)
+				if(T.z != 3 || T.z != 4)
 					continue
-				if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
+				if(istype(T.loc, /area/sulaco/maintenance))
 					continue
 
 				if(istype(H,/mob/living/carbon/human))
@@ -43,13 +43,13 @@
 				var/turf/T = get_turf(M)
 				if(!T)
 					continue
-				if(T.z != 1)
+				if(T.z != 3 || T.z != 4)
 					continue
 				M.apply_effect((rand(5,25)),IRRADIATE,0)
 			sleep(100)
 
 
-		command_announcement.Announce("The station has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
+		command_announcement.Announce("The [station_name()] has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 
 		sleep(600) // Want to give them time to get out of maintenance.

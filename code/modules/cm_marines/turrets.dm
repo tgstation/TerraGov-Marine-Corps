@@ -271,6 +271,7 @@
 			operator = null
 		if(pai)
 			pai = null
+		SetLuminosity(0)
 		processing_objects.Remove(src)
 		..()
 
@@ -802,6 +803,9 @@
 			var/mob/living/carbon/human/H = C
 			if(!isnull(H.wear_id) && !isYautja(C))//Just do a blanket ID check for now..
 				continue
+			if(istype(H.get_active_hand(),/obj/item/weapon/card))
+				continue
+
 		if(C.stat) continue //No unconscious/deads.
 
 		if(dir_locked) //We're dir locked and facing the right way.
@@ -918,3 +922,5 @@
 		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0
+			processing_objects.Add(src)
+

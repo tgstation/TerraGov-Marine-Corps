@@ -8,6 +8,24 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
 		return
+	if(usr.talked == 2)
+		usr << "\red Your spam has been consumed for it's nutritional value."
+		return
+	if((usr.talked == 1) && (usr.chatWarn >= 5))
+		usr.talked = 2
+		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
+		if(usr.chatWarn >10)
+			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn].  Mute them and find out whats going on.")
+		spawn(usr.chatWarn*10)
+			usr.talked = 0
+			usr << "\blue You may now speak again."
+			usr.chatWarn++
+		return
+	else if(usr.talked == 1)
+		usr << "\blue You just said something, take a breath."
+		usr.chatWarn++
+		return
+
 
 	if(!mob)	return
 	if(IsGuestKey(key))
@@ -66,7 +84,6 @@ var/global/normal_ooc_colour = "#002eb8"
 					else
 						display_name = holder.fakekey
 			C << "<font color='[display_colour]'><span class='ooc'>[src.donator ? "\[D\] " : ""]<span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
-
 			/*
 			if(holder)
 				if(!holder.fakekey || C.holder)
@@ -82,6 +99,11 @@ var/global/normal_ooc_colour = "#002eb8"
 			else
 				C << "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[src.key]:</EM> <span class='message'>[msg]</span></span></font>"
 			*/
+	usr.talked = 1
+	spawn (5)
+		if (usr.talked ==2)
+			return
+		usr.talked = 0
 
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Colour"
@@ -98,6 +120,24 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
 		return
+	if(usr.talked == 2)
+		usr << "\red Your spam has been consumed for it's nutritional value."
+		return
+	if((usr.talked == 1) && (usr.chatWarn >= 5))
+		usr.talked = 2
+		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
+		if(usr.chatWarn >10)
+			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn].  Mute them and find out whats going on.")
+		spawn(usr.chatWarn*10)
+			usr.talked = 0
+			usr << "\blue You may now speak again."
+			usr.chatWarn++
+		return
+	else if(usr.talked == 1)
+		usr << "\blue You just said something, take a breath."
+		usr.chatWarn++
+		return
+
 
 	if(!mob)	return
 	if(IsGuestKey(key))
@@ -166,3 +206,8 @@ var/global/normal_ooc_colour = "#002eb8"
 			if (C.mob in heard)
 				prefix = "LOOC"
 			C << "<font color='#6699CC'><span class='ooc'><span class='prefix'>[prefix]:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
+	usr.talked = 1
+	spawn (5)
+		if (usr.talked ==2)
+			return
+		usr.talked = 0

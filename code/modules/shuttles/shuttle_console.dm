@@ -75,6 +75,8 @@
 	if (!istype(shuttle))
 		return
 
+
+
 	if(href_list["move"])
 		if(shuttle.recharging) // Prevent the shuttle from moving again until it finishes recharging. This could be made to look better by using the shuttle computer's visual UI.
 			usr << "The [shuttle.iselevator? "elevator" : "shuttle"] requires 2 minutes to recharge."

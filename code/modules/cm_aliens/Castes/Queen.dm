@@ -47,7 +47,8 @@
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
 		// /mob/living/carbon/Xenomorph/proc/bestial_roar,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/toggle_auras
+		/mob/living/carbon/Xenomorph/proc/toggle_auras,
+		/mob/living/carbon/Xenomorph/Queen/proc/set_orders,
 		)
 
 
@@ -223,6 +224,24 @@
 		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>was gibbed by [src.name] ([src.ckey])</font>")
 		victim.gib() //Splut
 
+/mob/living/carbon/Xenomorph/Queen/proc/set_orders()
+	set category = "Alien"
+	set name = "Set Hive Orders (50)"
+	set desc = "Give some specific orders to the hive. They can see this on the status pane."
+
+	if(!check_state()) return
+	if(!check_plasma(50)) return
+	if(last_special > world.time) return
+
+	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.","Hive Orders","")),1,MAX_MESSAGE_LEN)
+
+	if(txt)
+		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</b>")
+		hive_orders = txt
+	else
+		hive_orders = ""
+
+	last_special = world.time + 150
 
 /* Old queen code and Notes from CM - REFERENCE ONLY
 

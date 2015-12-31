@@ -275,14 +275,14 @@ datum/controller/game_controller/proc/process_machines()
 	process_machines_sort()
 	process_machines_process()
 	process_machines_power()
-	process_machines_rebuild()
+//	process_machines_rebuild()
 
 /var/global/machinery_sort_required = 0
 datum/controller/game_controller/proc/process_machines_sort()
 	if(machinery_sort_required)
 		machinery_sort_required = 0
 		machines = dd_sortedObjectList(machines)
-
+/*
 datum/controller/game_controller/proc/process_machines_process()
 	var/i = 1
 	while(i<=machines.len)
@@ -294,6 +294,15 @@ datum/controller/game_controller/proc/process_machines_process()
 					i++
 					continue
 		machines.Cut(i,i+1)
+*/
+datum/controller/game_controller/proc/process_machines_process()
+	for(var/obj/machinery/M in machines)
+		if(istype(M))
+			last_thing_processed = M.type
+			if(M.process() != PROCESS_KILL) //Doesn't actually have a process, just remove it.
+				continue
+		machines.Remove(M)
+
 
 datum/controller/game_controller/proc/process_machines_power()
 	var/i=1
@@ -319,7 +328,7 @@ datum/controller/game_controller/proc/process_machines_power()
 
 		A.powerupdate = 0
 		active_areas.Cut(i,i+1)
-
+/*
 datum/controller/game_controller/proc/process_machines_rebuild()
 	if(controller_iteration % 150 == 0 || rebuild_active_areas)	//Every 300 seconds we retest every area/machine
 		for(var/area/A in all_areas)
@@ -327,7 +336,7 @@ datum/controller/game_controller/proc/process_machines_rebuild()
 				A.powerupdate += 1
 				active_areas |= A
 		rebuild_active_areas = 0
-
+*/
 
 datum/controller/game_controller/proc/process_objects()
 	var/i = 1

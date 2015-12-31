@@ -1,5 +1,4 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 //TODO: Make these simple_animals
 
 var/const/MIN_IMPREGNATION_TIME = 400 //time it takes to impregnate someone
@@ -79,7 +78,9 @@ var/const/MAX_ACTIVE_TIME = 200
 		usr << "\red \b It looks like the proboscis has been removed."
 	return
 
-/obj/item/clothing/mask/facehugger/attackby()
+/obj/item/clothing/mask/facehugger/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/clothing/mask/facehugger))
+		return
 	Die()
 	return
 
@@ -300,8 +301,15 @@ var/const/MAX_ACTIVE_TIME = 200
 	icon_state = "[initial(icon_state)]_dead"
 	stat = DEAD
 
-	src.visible_message("\red \b[src] curls up into a ball!")
-
+	src.visible_message("\icon[src] \red <B>The [src] curls up into a ball!</b>")
+	spawn(1200) //2 minute timer for it to decay
+		src.visible_message("\icon[src] \red <B>The dead [src] decays into a mass of acid and chitin.</b>")
+		if(ismob(src.loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
+			var/mob/M = src.loc
+			M.drop_from_inventory(src)
+			M.update_icons()
+		spawn(0)
+			del(src)
 	return
 
 /proc/CanHug(var/mob/living/M)

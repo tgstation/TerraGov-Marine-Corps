@@ -5,8 +5,8 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade"
 	item_state = "flashbang"
-	throw_speed = 4
-	throw_range = 20
+	throw_speed = 3
+	throw_range = 7
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
 	var/active = 0

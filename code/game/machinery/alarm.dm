@@ -188,7 +188,7 @@
 
 	if (old_pressurelevel != pressure_dangerlevel)
 		if (breach_detected())
-			mode = AALARM_MODE_OFF
+		//	mode = AALARM_MODE_OFF
 			apply_mode()
 
 	if (mode==AALARM_MODE_CYCLE && environment.return_pressure()<ONE_ATMOSPHERE*0.05)

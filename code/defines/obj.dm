@@ -1,3 +1,4 @@
+/*
 /obj/structure/signpost
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "signpost"
@@ -15,6 +16,7 @@
 				user.loc = pick(latejoin)
 			if("No")
 				return
+*/
 
 /obj/effect/mark
 		var/mark = ""

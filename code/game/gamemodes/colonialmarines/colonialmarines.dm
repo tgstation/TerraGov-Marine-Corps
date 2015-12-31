@@ -15,6 +15,8 @@
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 
+
+
 /* Pre-pre-startup */
 //We have to be really careful that we don't pick() from null lists.
 //So use list.len as much as possible before a pick() for logic checks.
@@ -141,7 +143,7 @@
 	H.take_organ_damage(rand(0,15), rand(0,15))
 
 //Give them proper jobs and stuff here later
-	var/randjob = rand(0,8)
+	var/randjob = rand(0,9)
 	switch(randjob)
 		if(0) //assistant
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
@@ -165,6 +167,10 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
 		if(8) //Miner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
+		if(9) //Corporate guy
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
+
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
 	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
@@ -385,16 +391,17 @@ var/list/toldstory = list()
 					if(!M)
 						M = A.original
 
-					text += "<br>[M.key] was "
 					if(M)
+						text += "<br>[M.key] was "
 						text += "[M.name] ("
 						if(M.stat == DEAD)
 							text += "died"
 						else
 							text += "survived"
+						text += ")"
 					else
-						text += "GIBBED! (body destroyed)"
-					text += ")"
+						text += "<BR>[A.key] was Unknown! (body destroyed)"
+
 			world << text
 //	..()
 	return 1

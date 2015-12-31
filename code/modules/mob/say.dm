@@ -12,9 +12,39 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
 		return
+	if(message == "*dance")
+		set_typing_indicator(0)
+		usr.say(message)
+		return
+	if(usr.talked == 2)
+		usr << "\red Your spam has been consumed for it's nutritional value."
+		return
+	if((usr.talked == 1) && (usr.chatWarn >= 5))
+		usr.talked = 2
+		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
+		if(usr.chatWarn >10)
+			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn].  Mute them and find out whats going on.")
+		spawn(usr.chatWarn*10)
+			usr.talked = 0
+			usr << "\blue You may now speak again."
+			usr.chatWarn++
+		return
+	else if(usr.talked == 1)
+		usr << "\blue You just said something, take a breath."
+		usr.chatWarn++
+		return
+
+
+
 
 	set_typing_indicator(0)
 	usr.say(message)
+	usr.talked = 1
+	spawn (5)
+		if (usr.talked ==2)
+			return
+		usr.talked = 0
+
 
 /mob/verb/me_verb(message as text)
 	set name = "Me"
@@ -24,6 +54,24 @@
 		usr << "\red Speech is currently admin-disabled."
 		return
 
+	if(usr.talked == 2)
+		usr << "\red Your spam has been consumed for it's nutritional value."
+		return
+	if((usr.talked == 1) && (usr.chatWarn >= 5))
+		usr.talked = 2
+		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
+		if(usr.chatWarn >10)
+			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn].  Mute them and find out whats going on.")
+		spawn(usr.chatWarn*10)
+			usr.talked = 0
+			usr << "\blue You may now speak again."
+			usr.chatWarn++
+		return
+	else if(usr.talked == 1)
+		usr << "\blue You just said something, take a breath."
+		usr.chatWarn++
+		return
+
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	set_typing_indicator(0)
@@ -31,13 +79,39 @@
 		usr.emote("me",usr.emote_type,message)
 	else
 		usr.emote(message)
+	usr.talked = 1
+	spawn (5)
+		if (usr.talked ==2)
+			return
+		usr.talked = 0
 
 /mob/proc/say_dead(var/message)
 	var/name = src.real_name
-	var/alt_name = ""
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
+		return
+	if(usr.talked == 2)
+		usr << "\red Your spam has been consumed for it's nutritional value."
+		return
+	if((usr.talked == 1) && (usr.chatWarn >= 5))
+		usr.talked = 2
+		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
+		if(usr.chatWarn >10)
+			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn].  Mute them and find out whats going on.")
+		spawn(usr.chatWarn*10)
+			usr.talked = 0
+			usr << "\blue You may now speak again."
+			usr.chatWarn++
+		return
+	else if(usr.talked == 1)
+		usr << "\blue You just said something, take a breath."
+		usr.chatWarn++
+		return
+
+
+
+	if(!src.client) //Somehow
 		return
 
 	if(!src.client.holder)
@@ -45,18 +119,19 @@
 			src << "\red Deadchat is globally muted"
 			return
 
-	if(client && !(client.prefs.toggles & CHAT_DEAD))
+	if(client && client.prefs && !(client.prefs.toggles & CHAT_DEAD))
 		usr << "\red You have deadchat muted."
 		return
-
+/*
 	if(mind && mind.name)
 		name = "[mind.name]"
 	else
 		name = real_name
+
 	if(name != real_name)
 		alt_name = " (died as [real_name])"
-
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] says, <span class='message'>\"[message]\"</span></span>"
+*/
+	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 
 	for(var/mob/M in player_list)
 		if(istype(M, /mob/new_player))
@@ -68,8 +143,11 @@
 		if(M.client && M.client.holder && !is_mentor(M.client) && (M.client.prefs.toggles & CHAT_DEAD) ) // Show the message to admins/mods with deadchat toggled on
 			M << rendered	//Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
 
-
-	return
+	usr.talked = 1
+	spawn (5)
+		if (usr.talked ==2)
+			return
+		usr.talked = 0
 
 /mob/proc/say_understands(var/mob/other,var/datum/language/speaking = null)
 

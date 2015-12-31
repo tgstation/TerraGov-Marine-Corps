@@ -26,6 +26,7 @@
 	siemens_coefficient = 0.9
 	w_class = 3
 	anti_hug = 2
+	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self()
 	toggle()
@@ -43,13 +44,14 @@
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = initial(icon_state)
 			usr << "You flip the [src] down to protect your eyes."
-			anti_hug = 2 //This will reset the hugged var, but ehh. More efficient than making a new var for it.
+			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
 			src.up = !src.up
 			src.flags &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push the [src] up out of your face."
+			hug_memory = anti_hug
 			anti_hug = 0
 
 		update_clothing_icon()	//so our mob-overlays update
@@ -99,26 +101,6 @@
 
 
 /*
- * Ushanka
- */
-/obj/item/clothing/head/ushanka
-	name = "ushanka"
-	desc = "Perfect for winter in Siberia, da?"
-	icon_state = "ushankadown"
-	item_state = "ushankadown"
-	flags_inv = HIDEEARS
-
-/obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
-	if(src.icon_state == "ushankadown")
-		src.icon_state = "ushankaup"
-		src.item_state = "ushankaup"
-		user << "You raise the ear flaps on the ushanka."
-	else
-		src.icon_state = "ushankadown"
-		src.item_state = "ushankadown"
-		user << "You lower the ear flaps on the ushanka."
-
-/*
  * Pumpkin head
  */
 /obj/item/clothing/head/pumpkinhead
@@ -157,7 +139,12 @@
 			user.SetLuminosity(-brightness_on)
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
-
+	Del()
+		if(ismob(src.loc))
+			src.loc.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
+		..()
 /*
  * Kitty ears
  */

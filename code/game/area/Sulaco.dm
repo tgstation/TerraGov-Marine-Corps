@@ -1,6 +1,7 @@
 //SULACO AREAS--------------------------------------//
 /area/sulaco
 	ambience = list('sound/ambience/shipambience.ogg')
+	icon_state = "sulaco"
 
 /area/sulaco/bridge
 	name = "\improper Bridge"
@@ -60,10 +61,6 @@
 	name = "\improper Disposal"
 	icon_state = "disposal"
 
-/area/sulaco/eva
-	name = "\improper EVA Storage"
-	icon_state = "eva"
-
 /area/sulaco/brig
 	name = "\improper Sulaco Brig"
 	icon_state = "brig"
@@ -81,19 +78,23 @@
 /area/sulaco/solar/north
 	icon_state = "panelsP"
 
-/area/sulaco/central_hall
+/area/sulaco/hallway
+	name = "\improper Hallway"
+	icon_state = "hallC1"
+
+/area/sulaco/hallway/central_hall
 	name = "\improper Central Hallway"
 	icon_state = "hallC1"
 
-/area/sulaco/central_hall2
+/area/sulaco/hallway/central_hall2
 	name = "\improper Central Hallway"
 	icon_state = "hallC2"
 
-/area/sulaco/central_hall3
+/area/sulaco/hallway/central_hall3
 	name = "\improper Central Hallway"
 	icon_state = "hallC3"
 
-/area/sulaco/lower_main_hall
+/area/sulaco/hallway/lower_main_hall
 	name = "\improper Main Hallway"
 	icon_state = "hallF"
 
@@ -174,7 +175,7 @@
 	name = "\improper Delta Marine Prep"
 	icon_state = "bluenew"
 
-/area/sulaco/armory
+/area/sulaco/command/armory
 	name = "\improper Secure Armory"
 	icon_state = "red"
 
@@ -190,7 +191,7 @@
 	name = "\improper Telecomms Monitoring"
 	icon_state = "tcomsatstore"
 
-/area/sulaco/ai
+/area/sulaco/command/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 
@@ -206,7 +207,7 @@
 	name = "\improper Sulaco Rec Room"
 	icon_state = "red"
 
-/area/sulaco/lower_maint
+/area/sulaco/maintenance/lower_maint
 	name = "\improper Maintenance"
 	icon_state = "maintcentral"
 
@@ -226,19 +227,23 @@
 	name = "\improper Atmospherics"
 	icon_state = "blue-red2"
 
-/area/sulaco/rear_maintenance
+/area/sulaco/command/eva
+	name = "\improper EVA Storage"
+	icon_state = "storage"
+
+/area/sulaco/maintenance/rear_maintenance
 	name = "\improper Lower Maintenance Deck"
 	icon_state = "hallP"
 
-/area/sulaco/north_solar_maint
+/area/sulaco/maintenance/north_solar_maint
 	name = "\improper Solar Maintenance Deck"
 	icon_state = "maintcentral"
 
-/area/sulaco/south_solar_maint
+/area/sulaco/maintenance/south_solar_maint
 	name = "\improper Solar Maintenance Deck"
 	icon_state = "maintcentral"
 
-/area/sulaco/lower_maint2
+/area/sulaco/maintenance/lower_maint2
 	name = "\improper Maintenance"
 	icon_state = "maintcentral"
 
@@ -251,7 +256,19 @@
 	name = "\improper Dropship 1"
 	icon_state = "shuttlered"
 
-/area/shuttle/drop1/ground
+/area/shuttle/drop1/LV624
+	name = "\improper Dropship 1"
+	icon_state = "shuttle"
+
+/area/shuttle/drop1/Haunted
+	name = "\improper Dropship 1"
+	icon_state = "shuttle"
+
+/area/shuttle/drop1/prison
+	name = "\improper Dropship 1"
+	icon_state = "shuttle"
+
+/area/shuttle/drop1/BigRed
 	name = "\improper Dropship 1"
 	icon_state = "shuttle"
 
@@ -263,7 +280,19 @@
 	name = "\improper Dropship 2"
 	icon_state = "shuttle"
 
-/area/shuttle/drop2/ground
+/area/shuttle/drop2/LV624
+	name = "\improper Dropship 2"
+	icon_state = "shuttle2"
+
+/area/shuttle/drop2/Haunted
+	name = "\improper Dropship 2"
+	icon_state = "shuttle2"
+
+/area/shuttle/drop2/prison
+	name = "\improper Dropship 2"
+	icon_state = "shuttle2"
+
+/area/shuttle/drop2/BigRed
 	name = "\improper Dropship 2"
 	icon_state = "shuttle2"
 

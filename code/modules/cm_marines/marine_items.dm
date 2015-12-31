@@ -334,7 +334,6 @@
 								/obj/item/device/flashlight,
 								/obj/item/weapon/reagent_containers/food/snacks/donkpocket,
 								/obj/item/weapon/grenade/smokebomb,
-								/obj/item/device/paicard,
 								/obj/item/weapon/airlock_electronics,
 								/obj/item/device/assembly/igniter,
 								/obj/item/weapon/weldingtool,
@@ -447,6 +446,38 @@
 		reagents.add_reagent("nutriment", 2)
 		bitesize = 1
 
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1
+	name = "Xmas MRE:Sugar cookies"
+	desc = "Delicious Sugar Cookies"
+	icon_state = "mreCookies"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 10)
+		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2
+	name = "Xmas MRE:Gingerbread cookie"
+	desc = "A cookie without a soul."
+	icon_state = "mreGingerbread"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 10)
+		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3
+	name = "Xmas MRE:Fruitcake"
+	desc = "Also known as ''the Commander''."
+	icon_state = "mreFruitcake"
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 10)
+		bitesize = 2
+
+
+
 /obj/item/weapon/paper/janitor
 	name = "Crumbled paper"
 	icon_state = "pamphlet"
@@ -458,6 +489,8 @@
 	name = "Weyland-Yutani Brand MRE"
 	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
+	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks")
+	w_class = 2
 
 	New()
 		..()

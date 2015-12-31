@@ -46,6 +46,9 @@
 		return
 
 	flash_recharge()
+	if(isXeno(M))
+		user << "You can't find any eyes!"
+		return
 
 	//spamming the flash before it's fully charged (60seconds) increases the chance of it  breaking
 	//It will never break on the first use.
@@ -157,7 +160,7 @@
 			sleep(5)
 			del(animation)
 
-	for(var/mob/living/carbon/M in oviewers(3, null))
+	for(var/mob/living/carbon/human/M in oviewers(3, null))
 		if(prob(50))
 			if (locate(/obj/item/weapon/cloaking_device, M))
 				for(var/obj/item/weapon/cloaking_device/S in M)

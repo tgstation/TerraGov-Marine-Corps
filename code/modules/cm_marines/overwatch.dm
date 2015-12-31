@@ -15,7 +15,7 @@
 	var/y_offset_s = 0
 	var/x_offset_b = 0
 	var/y_offset_b = 0
-	var/console_locked = 0
+//	var/console_locked = 0
 
 
 /obj/machinery/computer/overwatch/attackby(var/obj/I as obj, var/mob/user as mob)  //Can't break or disassemble.
@@ -35,10 +35,6 @@
 	if(..())  //Checks for power outages
 		return
 
-	if(operator && console_locked && operator != usr)
-		usr << "\icon[src] This console is currently <b>LOCKED</b> by [operator.name]. You are unable to access the controls."
-		return
-
 	user.set_machine(src)
 	var/dat = "<head><title>Overwatch Console</title></head><body>"
 
@@ -47,12 +43,6 @@
 	else
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>[operator.name]</A><BR>"
 		dat += "   <A href='?src=\ref[src];operation=logout'>{Stop Overwatch}</A><BR>"
-		dat += "<BR><B>Console Lock:</b> "
-		if(console_locked)
-			dat += "ON "
-		else
-			dat += "OFF "
-		dat += "<A href='?src=\ref[src];operation=toggle_lock'>\[Toggle\]</A><BR>"
 		dat += "----------------------<br>"
 
 		switch(src.state)
@@ -207,15 +197,14 @@
 			src.state = 2
 		if("bombs")
 			src.state = 3
-		if("toggle_lock")
-			src.console_locked = !src.console_locked
 		if("change_operator")
 			if(current_squad)
 				current_squad.overwatch_officer = usr
 			operator = usr
 			send_to_squad("Attention - your Overwatch officer is now [operator.name].") //This checks for squad, so we don't need to.
 		if("logout")
-			send_to_squad("Attention - [operator.name] is no longer your Overwatch officer. Overwatch functions deactivated.")
+			if(operator)
+				send_to_squad("Attention - [operator.name] is no longer your Overwatch officer. Overwatch functions deactivated.")
 			if(current_squad)
 				current_squad.overwatch_officer = null //Reset the squad's officer.
 			operator = null

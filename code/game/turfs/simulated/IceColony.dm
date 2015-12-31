@@ -28,7 +28,7 @@
 
 			user.visible_message("\blue[user.name] planted \the [L] into [src].")
 			L.anchored = 1
-			L.icon_state = "lightstick[L.anchored]"
+			L.icon_state = "lightstick_[L.s_color][L.anchored]"
 			L.SetLuminosity(2)
 			user.drop_item()
 			L.x = x
@@ -56,6 +56,10 @@
 				if(!do_after(user,50))
 					user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 					S.working = 0
+					return
+
+				if(!slayer)
+					user  << "\red You can't shovel beyond this layer, the shovel will break!"
 					return
 
 				user.visible_message("\blue \The [user] clears out \the [src].")
@@ -87,6 +91,10 @@
 						S.working = 0
 						return
 
+					if(slayer == 3)
+						user  << "\red You can't add any more snow here!"
+						return
+
 					user.visible_message("\blue \The [user] clears out \the [src].")
 					slayer += 1
 					S.has_snow = 0 //Remove snow from the shovel
@@ -106,6 +114,10 @@
 					if(!do_after(user,50))
 						user.visible_message("\red \The [user] decides not to clear out \the [src] anymore.")
 						S.working = 0
+						return
+
+					if(slayer <= 0)
+						user  << "\red There is no more snow to pick up!"
 						return
 
 					user.visible_message("\blue \The [user] clears out \the [src].")
@@ -135,6 +147,14 @@
 				if(!do_after(user,150))
 					user.visible_message("\red \The [user] decides not to dump \the [S] anymore.")
 					S.working = 0
+					return
+
+				if(!slayer)
+					user  << "\red You can't build the barricade here, there must be more snow on that area!"
+					return
+
+				if(locate(/obj/structure/barricade/snow) in get_turf(src))
+					user  << "\red You can't build another barricade on the same spot!"
 					return
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
@@ -204,9 +224,23 @@
 				T = get_step(src, SOUTHEAST)
 				if (T && slayer > T.slayer)
 					T.overlays += image('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
-
-
-
+/*
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				if(src.s_layer)
+					src.s_layer = 0
+					src.update_icon(1)
+			if(2.0)
+				if(prob(60) && src.s_layer)
+					src.s_layer -= 1
+					src.update_icon(1)
+			if(3.0)
+				if(prob(20) && src.s_layer)
+					src.s_layer -= 1
+					src.update_icon(1)
+		return
+*/
 //SNOW LAYERS-----------------------------------//
 /turf/simulated/floor/gm/snow/layer0
 	icon_state = "snow0_0"
@@ -226,7 +260,7 @@
 
 
 //ICE WALLS-----------------------------------//
-//Ice
+//Ice Wall
 /turf/simulated/wall/gm/ice
 	name = "thick ice"
 	icon = 'icons/turf/snow.dmi'
@@ -237,6 +271,28 @@
 	New()
 		spawn(1)
 			icon_state = "ice_wall"
+
+//Ice Thin Wall
+/turf/simulated/wall/gm/ice/thin
+	name = "thin ice"
+	icon_state = "ice_wall_thin"
+	desc = "It is very thin."
+	opacity = 0
+
+	//Must override icon
+	New()
+		spawn(1)
+			icon_state = "ice_wall_thin"
+
+//Ice Secret Wall
+/turf/simulated/wall/gm/ice/secret
+	icon_state = "ice_wall_0"
+	desc = "Something is inside..."
+
+	//Must override icon
+	New()
+		spawn(1)
+			icon_state = "ice_wall_0"
 
 //Icy Rock
 /turf/simulated/mineral/ice //wall piece
@@ -264,9 +320,8 @@
 		new /obj/item/lightstick(src)
 
 /obj/item/weapon/storage/box/lightstick/red
-	name = "box of lightsticks"
 	desc = "Contains red lightsticks."
-	icon_state = "lightstick"
+	icon_state = "lightstick2"
 
 	New()
 		..()
@@ -284,8 +339,9 @@
 	name = "blue lightstick"
 	desc = "You can stick them in the ground"
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "lightstick0"
+	icon_state = "lightstick_blue0"
 	l_color = "#47A3FF" //Blue
+	var/s_color = "blue"
 
 	//Removing from turf
 	attack_hand(mob/user)
@@ -299,17 +355,23 @@
 
 		anchored = 0
 		user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
-		icon_state = "lightstick[anchored]"
+		icon_state = "lightstick_[s_color][anchored]"
 		SetLuminosity(0)
 		pixel_x = 0
 		pixel_y = 0
 		playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 
+	//Remove lightsource
+	Del()
+		SetLuminosity(0)
+		..()
+
 //Red
 /obj/item/lightstick/red
 	name = "red lightstick"
 	l_color = "#CC3300"
-	icon_state = "lightstick0"
+	icon_state = "lightstick_red0"
+	s_color = "red"
 
 //Snow Shovel----------
 /obj/item/snow_shovel
@@ -401,9 +463,9 @@
 		else
 			switch(W.damtype)
 				if("fire")
-					src.health -= W.force
+					src.health -= W.force * 0.6
 				if("brute")
-					src.health -= W.force
+					src.health -= W.force * 0.3
 				else
 			if (src.health <= 0)
 				visible_message("\red <B>The [src] falls apart!</B>")
@@ -457,14 +519,6 @@
 				visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
 				del(src)
 
-
-
-/obj/machinery/computer3/ice_colony
-	New()
-		..()
-		spawn_files += (/datum/file/data/text/researchlog)
-		update_spawn_files()
-
 /obj/machinery/computer/shuttle_control/elevator1
 	name = "Elevator Console"
 	icon = 'icons/obj/computer.dmi'
@@ -473,6 +527,7 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
+	alerted = 0
 
 /obj/machinery/computer/shuttle_control/elevator2
 	name = "Elevator Console"
@@ -482,6 +537,7 @@
 	unacidable = 1
 	exproof = 1
 	density = 0
+	alerted = 0
 
 //RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn
@@ -537,3 +593,112 @@ obj/item/alienjar
 		overlays += I
 		pixel_x += rand(-3,3)
 		pixel_y += rand(-3,3)
+
+
+//TESTING
+/obj/machinery/computer3/door_control
+	default_prog = /datum/file/program/door_control
+	spawn_parts = list(/obj/item/part/computer/storage/hdd,/obj/item/part/computer/networking/prox)
+	icon_state = "frame-med"
+
+	New()
+		..()
+		spawn_files += (/datum/file/program/data/text)
+		update_spawn_files()
+
+/datum/file/program/door_control
+	name = "door control"
+	desc = "Monitors patient status during surgery."
+	active_state = "operating"
+	var/id = null
+	var/range = 10
+	var/normaldoorcontrol = CONTROL_POD_DOORS
+		//0 = Pod Doors
+		//1 = Normal Doors
+		//2 = Emmiters
+	var/desiredstate = 0
+		//0 = Closed
+		//1 = Open
+	var/specialfunctions = 1
+		//Bitflag, 	1 = Open
+		//			2 = IDscan
+		//			4 = Bolts
+		//			8 = Shock
+		//			16 = Door safties
+	var/door_name = "" // Used for data only
+	var/action_name = "" // Used for data only
+
+/datum/file/program/door_control/interact()
+	if(!interactable())
+		return
+
+	var/dat = ""
+	dat += "<b>[door_name]</b> access control"
+	dat += "<br><b>Status: </b>"
+	dat += "<br><b>[topic_link(src,"doorcontrol","[action_name]")]"
+	popup.set_content(dat)
+	popup.open()
+
+/datum/file/program/door_control/proc/handle_door()
+	for(var/obj/machinery/door/airlock/D in range(range))
+		if(D.id_tag == src.id)
+			if(specialfunctions & OPEN)
+				if (D.density)
+					spawn(0)
+						D.open()
+						return
+				else
+					spawn(0)
+						D.close()
+						return
+			if(desiredstate == 1)
+				if(specialfunctions & IDSCAN)
+					D.aiDisabledIdScanner = 1
+				if(specialfunctions & BOLTS)
+					D.lock()
+				if(specialfunctions & SHOCK)
+					D.secondsElectrified = -1
+				if(specialfunctions & SAFE)
+					D.safe = 0
+			else
+				if(specialfunctions & IDSCAN)
+					D.aiDisabledIdScanner = 0
+				if(specialfunctions & BOLTS)
+					if(!D.isWireCut(4) && D.arePowerSystemsOn())
+						D.unlock()
+				if(specialfunctions & SHOCK)
+					D.secondsElectrified = 0
+				if(specialfunctions & SAFE)
+					D.safe = 1
+
+/datum/file/program/door_control/proc/handle_pod()
+	for(var/obj/machinery/door/poddoor/M in world)
+		if(M.id == src.id)
+			if(M.density)
+				spawn(0)
+					M.open()
+					return
+			else
+				spawn(0)
+					M.close()
+					return
+
+/datum/file/program/door_control/proc/handle_emitters()
+	for(var/obj/machinery/power/emitter/E in range(range))
+		if(E.id == src.id)
+			spawn(0)
+				E.activate()
+				return
+
+/datum/file/program/door_control/Topic(href, list/href_list)
+	if(!interactable() || ..(href,href_list))
+		return
+	..()
+	if ("doorcontrol" in href_list)
+		switch(normaldoorcontrol)
+			if(CONTROL_NORMAL_DOORS)
+				handle_door()
+			if(CONTROL_POD_DOORS)
+				handle_pod()
+			//if(CONTROL_EMITTERS)
+				//handle_emitters()

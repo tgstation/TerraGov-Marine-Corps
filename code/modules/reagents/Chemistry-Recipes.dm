@@ -397,6 +397,7 @@ datum
 							flick("e_flash", M.flash)
 							M.Stun(5)
 
+		/*  NOPE CHUCK TESTA.
 		napalm
 			name = "Napalm"
 			id = "napalm"
@@ -409,7 +410,7 @@ datum
 					target_tile.assume_gas("volatile_fuel", created_volume, 400+T0C)
 					spawn (0) target_tile.hotspot_expose(700, 400)
 				holder.del_reagent("napalm")
-				return
+				return*/
 
 		/*
 		smoke

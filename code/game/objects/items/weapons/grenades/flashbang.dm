@@ -17,10 +17,7 @@
 			if(!istype(M,/mob/living/carbon/Xenomorph))
 				bang(get_turf(src), M)
 
-		for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
-			var/damage = round(30/(get_dist(B,get_turf(src))+1))
-			B.health -= damage
-			B.update_icon()
+
 
 		new/obj/effect/effect/smoke/flashbang(src.loc)
 		del(src)
@@ -109,7 +106,7 @@
 
 /obj/effect/effect/smoke/flashbang/New()
 	..()
-	SetLuminosity(15)
+//	SetLuminosity(15)
 
 /obj/item/weapon/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
 	desc = "Use of this weapon may constiute a war crime in your area, consult your local captain."

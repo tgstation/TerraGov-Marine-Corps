@@ -290,10 +290,9 @@
 				M.client.screen -= W
 
 	if(new_location)
-		if(ismob(loc))
-			W.pickup(loc)
 		if(ismob(new_location))
 			W.layer = 20
+			W.pickup(new_location)
 		else
 			W.layer = initial(W.layer)
 		W.loc = new_location

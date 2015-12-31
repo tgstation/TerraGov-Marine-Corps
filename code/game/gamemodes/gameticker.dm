@@ -41,19 +41,22 @@ var/global/datum/controller/gameticker/ticker
 	var/datum/mind/liason = null
 
 /datum/controller/gameticker/proc/pregame()
-	login_music = pick(\
-	/*'sound/music/halloween/skeletons.ogg',\
-	'sound/music/halloween/halloween.ogg',\
-	'sound/music/halloween/ghosts.ogg',\
-	'sound/music/space.ogg',\
-	'sound/music/traitor.ogg',\
-	'sound/music/title2.ogg',\
+	login_music = pick(/*'sound/music/space.ogg',
+	'sound/music/traitor.ogg',
+	'sound/music/title2.ogg',
 	'sound/music/clouds.s3m'*/
-	'sound/music/warrior_song.ogg') //The Warrior Song
+	'sound/music/fortunate_son.ogg',
+	'sound/music/buffalo_springfield.ogg',
+	'sound/music/good_day_to_die.ogg', //It's a Good Day to Die
+	'sound/music/warrior_song.ogg')  //The Warrior Song
+
+	/*'SEASONAL/ColonialHalloween.ogg'
+	'SEASONAL/CMxmas.ogg')*/
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+	//	world << "HAPPY THANKSGIVING 2015!!!! - There's a special treat in the Sulaco Cafeteria!!!"
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i=0, i<10, i++)
 				sleep(1)
@@ -168,13 +171,22 @@ var/global/datum/controller/gameticker/ticker
 
 	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE
 	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
+//	lighting_controller.process()	//Start processing DynamicAreaLighting updates
 
 	for(var/obj/multiz/ladder/L in world) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
 	if(config.sql_enabled)
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
+		/*This will track for multiple maps/modes*/
+		var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Dropship 1"]
+		var/datum/shuttle/ferry/shuttle2 = shuttle_controller.shuttles["Dropship 2"]
+		if(mode.name == "Colonial Marines Halloween")
+			shuttle.area_offsite = locate(/area/shuttle/drop1/Haunted)
+			shuttle2.area_offsite = locate(/area/shuttle/drop2/Haunted)
+		if(mode.name == "Prison rescue")
+			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
+			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
 
 	return 1
 

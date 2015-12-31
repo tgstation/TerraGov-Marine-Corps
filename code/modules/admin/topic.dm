@@ -493,7 +493,7 @@
 				jobs += "</tr><tr align='center'>"
 				counter = 0
 		jobs += "</tr></table>"
-		
+
 		if(jobban_isbanned(M, "pAI")) //pAI isn't technically a job, but it goes in here.
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=pAI;jobban4=\ref[M]'><font color=red>pAI</font></a></td>"
 		else
@@ -1807,12 +1807,12 @@
 				log_admin("[key_name(usr)] spawned a meteor wave", 1)
 				message_admins("\blue [key_name_admin(usr)] spawned a meteor wave.", 1)
 				new /datum/event/meteor_wave
-			if("goblob")
+			/*if("goblob")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Blob")
 				log_admin("[key_name(usr)] spawned a blob", 1)
 				message_admins("\blue [key_name_admin(usr)] spawned a blob.", 1)
-				new /datum/event/blob
+				new /datum/event/blob*/  //Blob Shit
 
 			if("aliens")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -2163,17 +2163,6 @@
 				//can be found in code\game\game_modes\events\wormholes.dm
 				wormhole_event()
 
-			if("goblob")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","BL")
-				mini_blob_event()
-				message_admins("[key_name_admin(usr)] has spawned blob", 1)
-			if("aliens")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","AL")
-				if(aliens_allowed)
-					new /datum/event/alien_infestation
-					message_admins("[key_name_admin(usr)] has spawned aliens", 1)
 			if("spiders")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","SL")
@@ -2340,7 +2329,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
 				for(var/obj/machinery/door/airlock/W in world)
-					if(W.z == 1 && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
+					if((W.z == 3 || W.z == 4) && !istype(get_area(W), /area/sulaco/bridge) && !istype(get_area(W), /area/sulaco/brig) && !istype(get_area(W), /area/sulaco/cargo/office) && !istype(get_area(W), /area/sulaco/engineering) && !istype(get_area(W), /area/sulaco/telecomms) && !istype(get_area(W), /area/sulaco/liason) && !istype(get_area(W), /area/sulaco/marine))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
 				command_announcement.Announce("Centcomm airlock control override activated. Please take this time to get acquainted with your coworkers.", new_sound = 'sound/AI/commandreport.ogg')
@@ -2741,6 +2730,9 @@
 	if(href_list["dibs"])
 		var/mob/ref_person = locate(href_list["dibs"])
 //		var/adminckey = href_list["ckey"]
+		if(!istype(ref_person))
+			usr << "\blue Looks like that person stopped existing!"
+			return
 		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person]). The player has been notified.</font></b>"
 		var/msgplayer = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key] has marked your request and is preparing to respond...</font></b>"
 
@@ -2750,6 +2742,22 @@
 				X << msg
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+
+	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
+		var/mob/ref_person = locate(href_list["NOPE"])
+		if(!istype(ref_person))
+			usr << "\blue Looks like that person stopped existing!"
+			return
+		var/msg = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key]</font> has marked the ahelp from  <font color=red>[ref_person.ckey]/([ref_person]) as no response necessary. The player has been notified.</font></b>"
+		var/msgplayer = "\blue <b><font color=red>NOTICE: </font><font color=black>[usr.key] has recieved and read your ahelp.  There may or may not be a reply as the staff is busy (possibly handing this report).  Thanks for your concern.</font></b>"
+
+		//send this msg to all admins
+		for(var/client/X in admins)
+			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
+				X << msg
+
+		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+
 
 	if(href_list["ccdibs"]) // CentComm-Dibs. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
 		var/mob/ref_person = locate(href_list["ccdibs"])

@@ -145,7 +145,7 @@
 				return
 			if(istype(src,/mob/living/silicon) && src.stat == 0) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
 				var/datum/effect/effect/system/spark_spread/spark_system
-				spark_system = new /datum/effect/effect/system/spark_spread() 
+				spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
@@ -385,6 +385,10 @@
 		return
 	if(isXenoLarva(M)) return //Larvae can't do shit
 
+	if(blocked)
+		M << "It's welded shut!"
+		return
+
 	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 50, 1)
 	M.visible_message("<span class='warning'> \The [M] digs into [src.name] and begins to pry it open.</span>", \
 		 			"<span class='warning'>You begin to pry open [src.name].</span>")
@@ -434,6 +438,9 @@
 /obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(M.is_intelligent)
 		attack_hand(M)
+		if(alerted >0)
+			command_announcement.Announce("Unknown Biological Entity has access the Shuttle Console.", "RED ALERT:", new_sound = 'sound/misc/ALARM.ogg')
+			alerted--
 	else
 		..()
 	return
@@ -472,7 +479,7 @@
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
 	M.visible_message("<span class='warning'>[M] smashes the [src.name]!</span>", \
-		 "<span class='warning'>You smash trough the barricade!</span>")
+		 "<span class='warning'>You smash at the barricade!</span>")
 	if(src.health <= 0)
 		visible_message("\red The [src.name] falls apart!")
 		del(src)
@@ -491,3 +498,25 @@
 /obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	return attack_hand(M)
 
+//Digging snow
+/turf/simulated/floor/gm/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(M.a_intent == "grab")
+		if(isXenoLarva(M))
+			return
+
+		if(!slayer)
+			M  << "\red There is nothing to clear out!"
+			return
+
+		M.visible_message("[M] starts clearing out the [src].","You start removing some of the [src].")
+		playsound(M, 'sound/weapons/Genhit.ogg', 25, 1)
+		if(!do_after(M,25))
+			return
+
+		if(!slayer)
+			M  << "\red There is nothing to clear out!"
+			return
+
+		M.visible_message("\blue \The [M] clears out \the [src].")
+		slayer -= 1
+		update_icon(1)
