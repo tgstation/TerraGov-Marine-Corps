@@ -164,7 +164,7 @@
 					return
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
-				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "descent"] [B].")
+				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B].")
 				B.health = slayer * 25
 				slayer = 0
 				update_icon(1,0)
@@ -427,7 +427,7 @@
 //Ice Secret Wall
 /turf/unsimulated/wall/ice/secret
 	icon_state = "ice_wall_0"
-	desc = "Something is inside..."
+	desc = "There is something inside..."
 	temperature = ICE_TEMPERATURE
 	oxygen = MOLES_O2STANDARD*1.25
 	nitrogen = MOLES_N2STANDARD*1.25
@@ -830,7 +830,7 @@ obj/item/alienjar
 
 	var/dat = ""
 	dat += "<b>[door_name]</b> access control"
-	dat += "<br><b>Status: </b>"
+	dat += "<br><b>Controls: </b>"
 	dat += "<br><b>[topic_link(src,"doorcontrol","[action_name]")]"
 	popup.set_content(dat)
 	popup.open()
@@ -883,10 +883,10 @@ obj/item/alienjar
 						D.secondsElectrified = -1
 					else
 						D.secondsElectrified = 0
-					if(specialfunctions & SAFE && D.safe == 1)
-						D.safe = 0
-					else
+					if(specialfunctions & SAFE && D.safe == 0)
 						D.safe = 1
+					else
+						D.safe = 0
 
 /datum/file/program/door_control/proc/handle_pod()
 	for(var/obj/machinery/door/poddoor/M in world)
@@ -923,17 +923,114 @@ obj/item/alienjar
 
 
 //ICE LAPTOPS
-//General Ice planet laptop
+//Generic Ice planet laptop
 /obj/machinery/computer3/laptop/ice_planet
 	spawn_parts = list(/obj/item/part/computer/storage/hdd, /obj/item/part/computer/storage/removable)
 
-//Test Laptop
-/obj/machinery/computer3/laptop/ice_planet/test
+
+//XENOBIO LAB-----
+//-----Laptop-----
+/obj/machinery/computer3/laptop/ice_planet/xenobio_lab
 
 	New()
 		..()
-		spawn_files += (/datum/file/program/data/text)
+		spawn_files += (/datum/file/program/data/text/xenobio_log)
+		update_spawn_files()
+
+//-----Xenobio Lab Research Reports
+/datum/file/program/data/text/xenobio_log
+	name = "Xenobio Research Report"
+	extension = "txt"
+	image = 'icons/ntos/file.png'
+	dat = "text goes here!"
+	active_state = "text"
+
+
+
+//ANOMALY LAB-----
+//-----Laptop-----
+/obj/machinery/computer3/laptop/ice_planet/anomaly_lab
+
+	New()
+		..()
+		spawn_files += (/datum/file/program/data/text/anomaly_log)
+		update_spawn_files()
+
+//-----Anomaly Lab Research Reports
+/datum/file/program/data/text/anomaly_log
+	name = "Anomaly Research Report"
+	extension = "txt"
+	image = 'icons/ntos/file.png'
+	dat = "text goes here!"
+	active_state = "text"
+
+//ACES LAB-----
+//-----Laptop-----
+/obj/machinery/computer3/laptop/ice_planet/aces_lab
+
+	New()
+		..()
+		spawn_files += (/datum/file/program/data/text/aces_log)
 		update_spawn_files()
 
 /obj/item/weapon/disk/file/test
-	spawn_files = list(/datum/file/program/data/text)
+	spawn_files = list(/datum/file/program/door_control/aces_storage)
+
+//-----ACES Research Reports
+/datum/file/program/data/text/aces_log
+	name = "ACES Research Report"
+	extension = "txt"
+	image = 'icons/ntos/file.png'
+	dat = ""
+	active_state = "text"
+	var/list/logs = list(
+	"<b>Research Log I</b><br><br>This log is very nice looking!",
+	"<b>Research Log II</b><br><br>This log is very nice looking!",
+	"<b>Research Log III</b><br><br>This log is very nice looking!",
+	"<b>Research Log IV</b><br><br>This log is very nice looking!",
+	"<b>Research Log V</b><br><br>This log is very nice looking!")
+
+	New()
+		..()
+		dat = "[topic_link(src,"log_1","Log I")]<br>[topic_link(src,"log_2","Log II")]<br>[topic_link(src,"log_3","Log III")]<br>[topic_link(src,"log_4","Log IV")]<br>[topic_link(src,"log_5","Log V")]"
+
+
+/datum/file/program/data/text/aces_log/Topic(href, list/href_list)
+	if(!interactable() || ..(href,href_list))
+		return
+	..()
+	if ("log_1" in href_list)
+		dat = "<b>Research Log I</b><br><br>This log is very nice looking!"
+		dat += "<br><br>[topic_link(src,"return","Return")]"
+	if ("log_2" in href_list)
+		dat = "<b>Research Log II</b><br><br>This log is very nice looking!"
+		dat += "<br><br>[topic_link(src,"return","Return")]"
+	if ("log_3" in href_list)
+		dat = "<b>Research Log III</b><br><br>This log is very nice looking!"
+		dat += "<br><br>[topic_link(src,"return","Return")]"
+	if ("log_4" in href_list)
+		dat = "<b>Research Log IV</b><br><br>This log is very nice looking!"
+		dat += "<br><br>[topic_link(src,"return","Return")]"
+	if ("log_5" in href_list)
+		dat = "<b>Research Log V</b><br><br>This log is very nice looking!"
+		dat += "<br><br>[topic_link(src,"return","Return")]"
+	if ("return" in href_list)
+		dat = "[initial(dat)]"
+
+
+
+
+//-----ACES Storage Access Program
+/datum/file/program/door_control/aces_storage
+	name = "ACES Storage Access"
+	desc = "This program can control doors on range."
+	active_state = "comm_log"
+	id = "aces_storage"
+	range = 20
+	normaldoorcontrol = 1
+	desiredstate = 2
+	specialfunctions = 5
+	door_name = "ACES Lab Storage Door"
+	action_name = "Toggle Door"
+
+//-----PaperWork-----

@@ -1448,7 +1448,7 @@
 "BR" = (/turf/unsimulated/floor/snow/layer0,/area/ice_colony/ground/relay)
 "BS" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/unsimulated/floor/snow/layer1,/area/ice_colony/ground/relay)
 "BT" = (/turf/simulated/wall/r_wall,/area/ice_colony/ground/relay)
-"BU" = (/obj/machinery/telecomms/relay/preset/ice_colony{name = "Telecommunication Relay Tower"},/turf/unsimulated/floor/snow/layer0,/area/ice_colony/ground/relay)
+"BU" = (/obj/machinery/telecomms/relay/preset/ice_colony{listening_level = 10; name = "Telecommunication Relay Tower"},/turf/unsimulated/floor/snow/layer0,/area/ice_colony/ground/relay)
 "BV" = (/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc{beenhit = -10000; dir = 1; name = "Telecomms APC"; pixel_x = 0; pixel_y = 30; start_charge = 0},/turf/unsimulated/floor/snow/layer0,/area/ice_colony/ground/relay)
 "BW" = (/turf/simulated/wall/r_wall,/area/ice_colony/ground/storage_four)
 "BX" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/unsimulated/floor/snow/layer2,/area/ice_colony/outside)
