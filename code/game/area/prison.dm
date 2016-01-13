@@ -1,12 +1,42 @@
 //Areas for prison - Minijar
 
+//SECURITY
 /area/prison/security
 	name = "\improper security department"
 	icon_state = "security"
 
+/area/prison/security/port/entrance
+	name = "\improper security port entrance"
+	icon_state = "brig"
+
+/area/prison/security/starboard/entrance
+	name = "\improper security starboard entrance"
+	icon_state = "brig"
+
+/area/prison/security/port/armoury
+	name = "\improper security armoury"
+	icon_state = "armory"
+
+/area/prison/security/port/equipment
+	name = "\improper equipment room"
+	icon_state = "brig"
+
+/area/prison/security/port/checkpoint
+	name = "\improper port security checkpoint"
+	icon_state = "checkpoint1"
+//MEDICAL
+
 /area/prison/medbay
 	name = "\improper infirmary"
 	icon_state = "medbay"
+
+/area/prison/medbay/theatre
+	name = "\improper surgical theatre"
+	icon_state = "medbay3"
+
+/area/prison/medbay/equipment
+	name = "\improper medical storage"
+	icon_state = "medbay2"
 
 /area/prison/offices
 	name = "\improper office block"
@@ -82,7 +112,7 @@
 
 /area/prison/atmos
 	name = "\improper air control"
-	icon_state = "dkyellow"
+	icon_state = "atmos"
 
 /area/prison/laundry
 	name = "\improper laundry room"

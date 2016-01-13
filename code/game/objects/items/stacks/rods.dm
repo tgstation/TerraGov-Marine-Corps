@@ -18,8 +18,8 @@
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 
-		if(amount < 2)
-			user << "\red You need at least two rods to do this."
+		if(amount < 4)
+			user << "\red You need at least four rods to do this."
 			return
 
 		if(WT.remove_fuel(0,user))
@@ -30,7 +30,7 @@
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_hand()==R)
-			R.use(2)
+			R.use(4)
 			if (!R && replace)
 				user.put_in_hands(new_item)
 		return
@@ -67,5 +67,5 @@
 		usr << "\blue You assemble a grille"
 		in_use = 0
 		F.add_fingerprint(usr)
-		use(2)
+		use(4)
 	return

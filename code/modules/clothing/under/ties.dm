@@ -365,6 +365,8 @@
 	desc = "Strudy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
 	item_color = "webbing"
+	w_class = 3
+
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -372,6 +374,7 @@
 	icon_state = "vest_black"
 	item_color = "vest_black"
 	slots = 5
+	w_class = 3
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"
@@ -379,6 +382,7 @@
 	icon_state = "vest_brown"
 	item_color = "vest_brown"
 	slots = 5
+	w_class = 3
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
 	Security agent - the user details can be imprinted on the badge with a Security-access ID card,

@@ -598,7 +598,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if (deathtime < 6000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Larva - Ignored for Admins, cause we're special
 		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "\red You must wait 10 minutes to spawn as a Larva!"
+		usr << "\red You must wait 10 minutes to spawn as a Larva! (otherwise, you will burst when one is ready)"
 		return
 
 	if(L.away_timer < 600) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.

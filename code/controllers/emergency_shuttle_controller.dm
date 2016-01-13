@@ -46,7 +46,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
 
 			if (evac)
-				emergency_shuttle_docked.Announce("The escape pods have successfully completed fueling procedures, you have approximately [round(estimate_launch_time()/60,1)] to board the escape pods before they depart. ")
+				emergency_shuttle_docked.Announce("The escape pods have successfully completed fuelling procedures. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the escape pods before they depart. ")
 			else
 				priority_announcement.Announce("The scheduled Crew Transfer Shuttle has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
 

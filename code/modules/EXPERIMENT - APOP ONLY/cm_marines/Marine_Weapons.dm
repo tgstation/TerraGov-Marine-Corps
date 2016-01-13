@@ -315,7 +315,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/m37 //M37 Pump Shotgun
 	name = "\improper M37 Pump Shotgun"
-	desc = "An M37 Pump Shotgun, a weapon commonly carried by Colonial Marines pointmen, law enforcement, and civilians. Shift click to pump it or use the verb.\nGood to keep handy for close encounters."
+	desc = "An M37 Pump Shotgun, a weapon commonly carried by Colonial Marines pointmen, law enforcement, and civilians. Alt click to pump it or use the verb.\nGood to keep handy for close encounters."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m37"
 	item_state = "m37"
@@ -850,6 +850,11 @@
 	return rockets.len
 
 /obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+	if(usr.z != 1)
+		usr << "\red The safety refuses to release!"
+		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) has attempted to fire a rocket in a restricted area. ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)")
+		log_game("[key_name(user)] attempted to fire a rocket in a restricted area at ([target.x],[target.y],[target.z])")
+		return
 	if(!wielded)
 		usr << "\red You require two hands to fire this!"
 		return

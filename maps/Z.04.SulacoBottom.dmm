@@ -687,7 +687,7 @@
 "nk" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/yellow{dir = 9},/turf/simulated/wall/sulaco,/area/sulaco/hangar)
 "nl" = (/obj/structure/bookcase{density = 0},/obj/item/weapon/book/manual/engineering_hacking,/obj/item/weapon/book/manual/nuclear,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason/quarters)
 "nm" = (/obj/structure/rack,/obj/item/weapon/storage/briefcase,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason/quarters)
-"nn" = (/obj/structure/rack,/obj/item/weapon/storage/lockbox/loyalty{req_access = list(200)},/obj/item/device/paicard,/obj/item/device/radio,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason/quarters)
+"nn" = (/obj/structure/rack,/obj/item/weapon/storage/lockbox/loyalty{req_access = list(200)},/obj/item/device/radio,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason/quarters)
 "no" = (/obj/structure/stool/bed/psych{desc = "For prime comfort."; name = "fancy bed"},/obj/item/weapon/bedsheet/hos,/obj/item/clothing/mask/balaclava,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason/quarters)
 "np" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liason/quarters)
 "nq" = (/obj/machinery/door/airlock/maintenance_hatch{req_access_txt = "0"; req_one_access_txt = "7;200"},/turf/simulated/floor/plating,/area/sulaco/hallway/lower_main_hall)

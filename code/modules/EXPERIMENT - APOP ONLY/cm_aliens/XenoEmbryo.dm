@@ -153,9 +153,9 @@
 	else if(candidates.len) // The player doesn't want it or they're gone, let's find someone else
 		picked = pick(candidates)
 */
-	if(!picked)
+	/*if(!picked)
 		stage = 4
-		return 0
+		return 0*/
 
 	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
 	affected_mob.update_burst()

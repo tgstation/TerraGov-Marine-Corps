@@ -39,7 +39,7 @@
 	var/master				// Name of the one who commands us
 	var/master_dna			// DNA string for owner verification
 							// Keeping this separate from the laws var, it should be much more difficult to modify
-	var/pai_law0 = "Serve your master."
+	var/pai_law0 = "Serve your master and the USCM."
 	var/pai_laws				// String for additional operating instructions our master might give us
 
 	var/silence_time			// Timestamp when we were silenced (normally via EMP burst), set to null after silence has faded
