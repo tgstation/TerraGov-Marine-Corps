@@ -386,10 +386,10 @@
 	name = ""
 	icon_state = ""
 
-/obj/machinery/door/poddoor/four_tile_hor_secure
+/obj/machinery/door/poddoor/four_tile_hor/four_tile_hor_secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
 	openspeed = 17
 
-/obj/machinery/door/poddoor/four_tile_ver_secure
+/obj/machinery/door/poddoor/four_tile_ver/four_tile_ver_secure
 	icon = 'icons/obj/doors/1x4blast_vert_secure.dmi'
 	openspeed = 17

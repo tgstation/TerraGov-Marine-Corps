@@ -104,8 +104,6 @@
 	item_state = "gy_suit"
 	item_color = "grey"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
@@ -277,7 +275,7 @@
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 	cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = 200
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	body_parts_covered = HANDS
@@ -336,7 +334,7 @@
 	armor = list(melee = 10, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	body_parts_covered = FEET
 	cold_protection = FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = 200
 	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
@@ -345,7 +343,7 @@
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
-		if(knife && src.loc == M) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
+		if(knife && src.loc == M && M.stat == 2) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
@@ -520,8 +518,6 @@
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "marine_jumpsuit"

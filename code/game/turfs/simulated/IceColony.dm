@@ -1,4 +1,4 @@
-#define ICE_TEMPERATURE 205
+#define ICE_TEMPERATURE 223
 //ELEVATOR SHAFT-----------------------------------//
 /turf/simulated/floor/gm/empty
 	name = "empty space"
@@ -15,8 +15,8 @@
 	slayer = 0 //Snow layer, Defined in /turf
 	temperature = ICE_TEMPERATURE
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
-	oxygen = MOLES_O2STANDARD*1.25
-	nitrogen = MOLES_N2STANDARD*1.25
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
 
 	//PLACING/REMOVING/BUILDING
 	attackby(var/obj/item/I, var/mob/user)
@@ -189,174 +189,84 @@
 			if(3)
 				name = "very deep [initial(name)]"
 
-
 		//Update the side overlays
 		if(update_full)
-			var/turf/unsimulated/floor/snow/T
+			var/turf/T
 			if(!skip_sides)
-				for(var/dirn in cardinal)
+				for(var/dirn in alldirs)
 					var/turf/unsimulated/floor/snow/D = get_step(src,dirn)
 					if(istype(D))
-						//Update turfs that are near us
-						D.update_sides()
+						//Update turfs that are near us, but only once
+						D.update_icon(1,1)
 
 			overlays.Cut()
-			if(istype(get_step(src, NORTH),/turf/unsimulated/floor/snow))
+			if(istype(get_step(src, NORTH),/turf/unsimulated/floor) || istype(get_step(src, NORTH),/turf/simulated/floor))
 				T = get_step(src, NORTH)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_n")
-					//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_n"
 					I.pixel_y = src.pixel_y + 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
 
-			if(istype(get_step(src, SOUTH), /turf/unsimulated/floor/snow))
+			if(istype(get_step(src, SOUTH),/turf/unsimulated/floor) || istype(get_step(src, SOUTH),/turf/simulated/floor))
 				T = get_step(src, SOUTH)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_s")
-					//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_s"
 					I.pixel_y = src.pixel_y - 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
 
-			if(istype(get_step(src, EAST), /turf/unsimulated/floor/snow))
+			if(istype(get_step(src, EAST),/turf/unsimulated/floor) || istype(get_step(src, EAST),/turf/simulated/floor))
 				T = get_step(src, EAST)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_e")
-				//	I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_e"
 					I.pixel_x = src.pixel_x + 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
 
-			if(istype(get_step(src, WEST), /turf/unsimulated/floor/snow))
+			if(istype(get_step(src, WEST),/turf/unsimulated/floor) || istype(get_step(src, WEST),/turf/simulated/floor))
 				T = get_step(src, WEST)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_w")
-					//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_w"
 					I.pixel_x = src.pixel_x - 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
 
-			if(istype(get_step(src, NORTHWEST), /turf/unsimulated/floor/snow))
+			if(istype(get_step(src, NORTHWEST),/turf/unsimulated/floor) || istype(get_step(src, NORTHWEST),/turf/simulated/floor))
 				T = get_step(src, NORTHWEST)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_nw")
-					//I.icon_state = "snow_overlay_[slayer]_0_nw"
 					I.pixel_x = src.pixel_x - 32
 					I.pixel_y = src.pixel_y + 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
 
-			if(istype(get_step(src, NORTHEAST), /turf/unsimulated/floor/snow))
+			if(istype(get_step(src, NORTHEAST),/turf/unsimulated/floor) || istype(get_step(src, NORTHEAST),/turf/simulated/floor))
 				T = get_step(src, NORTHEAST)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_ne")
-					I.icon_state = "snow_overlay_[slayer]_0_ne"
 					I.pixel_x = src.pixel_x + 32
 					I.pixel_y = src.pixel_y + 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
 
-			if(istype(get_step(src, SOUTHWEST), /turf/unsimulated/floor/snow))
+			if(istype(get_step(src, SOUTHWEST),/turf/unsimulated/floor) || istype(get_step(src, SOUTHWEST),/turf/simulated/floor))
 				T = get_step(src, SOUTHWEST)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_sw")
-					//I.icon_state = "snow_overlay_[slayer]_0_sw"
 					I.pixel_x = src.pixel_x - 32
 					I.pixel_y = src.pixel_y - 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
 
-			if(istype(get_step(src, SOUTHEAST), /turf/unsimulated/floor/snow))
+			if(istype(get_step(src, SOUTHEAST),/turf/unsimulated/floor) || istype(get_step(src, SOUTHEAST),/turf/simulated/floor))
 				T = get_step(src, SOUTHEAST)
 				if (T && slayer > T.slayer)
 					var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
-					//I.icon_state = "snow_overlay_[slayer]_0_se"
 					I.pixel_x = src.pixel_x + 32
 					I.pixel_y = src.pixel_y - 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
-
-	//Update side turf overlays
-	proc/update_sides()
-		var/turf/unsimulated/floor/snow/T
-		overlays.Cut()
-
-		if(istype(get_step(src, NORTH),/turf/unsimulated/floor/snow))
-			T = get_step(src, NORTH)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_n")
-				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_n"
-				I.pixel_y = src.pixel_y + 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
-
-		if(istype(get_step(src, SOUTH), /turf/unsimulated/floor/snow))
-			T = get_step(src, SOUTH)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_s")
-				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_s"
-				I.pixel_y = src.pixel_y - 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
-
-		if(istype(get_step(src, EAST), /turf/unsimulated/floor/snow))
-			T = get_step(src, EAST)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_e")
-				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_e"
-				I.pixel_x = src.pixel_x + 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
-
-		if(istype(get_step(src, WEST), /turf/unsimulated/floor/snow))
-			T = get_step(src, WEST)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_[pick("0", "1", "2")]_w")
-				//I.icon_state = "snow_overlay_[slayer]_[pick("0", "1", "2")]_w"
-				I.pixel_x = src.pixel_x - 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
-
-		if(istype(get_step(src, NORTHWEST), /turf/unsimulated/floor/snow))
-			T = get_step(src, NORTHWEST)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_nw")
-				//I.icon_state = "snow_overlay_[slayer]_0_nw"
-				I.pixel_x = src.pixel_x - 32
-				I.pixel_y = src.pixel_y + 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
-
-		if(istype(get_step(src, NORTHEAST), /turf/unsimulated/floor/snow))
-			T = get_step(src, NORTHEAST)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_ne")
-				//I.icon_state = "snow_overlay_[slayer]_0_ne"
-				I.pixel_x = src.pixel_x + 32
-				I.pixel_y = src.pixel_y + 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
-
-		if(istype(get_step(src, SOUTHWEST), /turf/unsimulated/floor/snow))
-			T = get_step(src, SOUTHWEST)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_sw")
-			//	I.icon_state = "snow_overlay_[slayer]_0_sw"
-				I.pixel_x = src.pixel_x - 32
-				I.pixel_y = src.pixel_y - 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
-
-		if(istype(get_step(src, SOUTHEAST), /turf/unsimulated/floor/snow))
-			T = get_step(src, SOUTHEAST)
-			if (T && slayer > T.slayer)
-				var/image/I = new('icons/turf/snow.dmi', "snow_overlay_[slayer]_0_se")
-				//I.icon_state = "snow_overlay_[slayer]_0_se"
-				I.pixel_x = src.pixel_x + 32
-				I.pixel_y = src.pixel_y - 32
-				I.layer = src.layer + 0.001 + slayer * 0.0001
-				overlays += I
 
 	//Explosion act
 	ex_act(severity)
@@ -392,6 +302,47 @@
 	icon_state = "snow3_0"
 	slayer = 3
 
+
+//Simple weather object. Every 5-10 seconds, it selects a snow turf at random coords and adds 1 layer of snow to it if possible.
+
+/obj/structure/snow_weather_effect
+	name = "This should not show"
+	density = 0
+	opacity = 0
+	unacidable = 1
+	var/layers_added = 0//****
+	var/intensity = 600
+
+/obj/structure/snow_weather_effect/New()
+	spawn(1800)//Wait till the game ticker is done
+		if(istype(ticker.mode,/datum/game_mode/ice_colony))
+			intensity = rand(50, 100)
+			start_weather()
+
+/obj/structure/snow_weather_effect/proc/start_weather()
+	x = rand(10,246)
+	y = rand(18,246)
+//	world << "X = [x] <br> Y = [y]"//****
+	var/turf/unsimulated/floor/snow/T
+	if(istype(src.loc,/turf/unsimulated/floor/snow)) //Find the snow turf at random coords
+		T = src.loc
+		if(T && T.slayer < 3)
+			T.slayer++
+			T.update_icon(1,0)
+			layers_added++
+//			world << "Layers Added: [layers_added]"//****
+//		else
+//			world << "\red Snow Layer Full!!"//*****
+//	else
+//		world << "\red Not Snow Turf!!"//*****
+//	message_admins("Layer generated at: (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+	//Repeat 4eva
+	sleep(intensity)
+	start_weather()
+
+/obj/structure/snow_weather_effect/ex_act(severity)
+	return
+
 //Ice Floor
 /turf/unsimulated/floor/ice
 	name = "ice floor"
@@ -399,8 +350,8 @@
 	icon_state = "ice_floor"
 	temperature = ICE_TEMPERATURE
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
-	oxygen = MOLES_O2STANDARD*1.25
-	nitrogen = MOLES_N2STANDARD*1.25
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
 
 //ICE WALLS-----------------------------------//
 //Ice Wall
@@ -410,8 +361,8 @@
 	icon_state = "ice_wall"
 	desc = "It is very thick."
 	temperature = ICE_TEMPERATURE
-	oxygen = MOLES_O2STANDARD*1.25
-	nitrogen = MOLES_N2STANDARD*1.25
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
 
 //Ice Thin Wall
 /turf/unsimulated/wall/ice2
@@ -421,16 +372,16 @@
 	desc = "It is very thin."
 	opacity = 0
 	temperature = ICE_TEMPERATURE
-	oxygen = MOLES_O2STANDARD*1.25
-	nitrogen = MOLES_N2STANDARD*1.25
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
 
 //Ice Secret Wall
 /turf/unsimulated/wall/ice/secret
 	icon_state = "ice_wall_0"
 	desc = "There is something inside..."
 	temperature = ICE_TEMPERATURE
-	oxygen = MOLES_O2STANDARD*1.25
-	nitrogen = MOLES_N2STANDARD*1.25
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
 
 //Icy Rock
 /turf/unsimulated/wall/ice_rock
@@ -438,8 +389,8 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock_ice"
 	temperature = ICE_TEMPERATURE
-	oxygen = MOLES_O2STANDARD*1.25
-	nitrogen = MOLES_N2STANDARD*1.25
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
 
 //ITEMS-----------------------------------//
 /obj/item/weapon/storage/box/lightstick
@@ -553,11 +504,9 @@
 
 	//Update overlay
 	update_icon()
+		overlays.Cut()
 		if(has_snow)
-			overlays.Cut()
 			overlays += image('icons/turf/snow.dmi', "snow_shovel_overlay")
-		else
-			overlays.Cut()
 
 	//Examine
 	examine()
@@ -565,7 +514,7 @@
 		if(mode == 0)
 			usr << "\blue Selected mode: Removing snow."
 		else
-			usr << "\blue Selected mode: [mode ? "Collecting/Throwing snow" : "Building/Removing barricades"]."
+			usr << "\blue Selected mode: [mode == 1 ? "Collecting/Throwing snow" : "Building/Removing barricades"]."
 
 //Snow barricade----------
 /obj/structure/barricade/snow
@@ -800,6 +749,73 @@ obj/item/alienjar
 	body_parts_covered = 0
 	w_class = 2
 
+//SUITS-----------------------//
+//Snow Suit
+/obj/item/clothing/suit/storage/snow_suit
+	name = "Armored Snow Suit"
+	desc = "A standard Colonial Marines snow suit. It is reinforced with several kevlar plates to protect the wearer. It is not as strong as M3 Pattern armor, but with it's extremely thick insulation, it can protect the wearer from extreme temperatures down to 220K (-53°C)."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "snowsuit_alpha"
+	item_state = "snowsuit_alpha"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = 220
+	blood_overlay_type = "armor"
+	armor = list(melee = 45, bullet = 65, laser = 65, energy = 20, bomb = 20, bio = 0, rad = 0)
+	siemens_coefficient = 0.7
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/ammo_casing/,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/flamethrower/full,
+		/obj/item/weapon/combat_knife)
+
+/obj/item/clothing/suit/storage/snow_suit/bravo
+	icon_state = "snowsuit_bravo"
+	item_state = "snowsuit_bravo"
+
+/obj/item/clothing/suit/storage/snow_suit/charlie
+	icon_state = "snowsuit_charlie"
+	item_state = "snowsuit_charlie"
+
+/obj/item/clothing/suit/storage/snow_suit/delta
+	icon_state = "snowsuit_delta"
+	item_state = "snowsuit_delta"
+
+/obj/item/clothing/suit/storage/snow_suit/doctor
+	icon_state = "snowsuit_doctor"
+	item_state = "snowsuit_doctor"
+	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
+	name = "Doctor' Snow Suit"
+
+/obj/item/clothing/suit/storage/snow_suit/engineer
+	icon_state = "snowsuit_engineer"
+	item_state = "snowsuit_engineer"
+	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
+	name = "Engineer's Snow Suit"
+
+//HELMET-----------------------//
+//Snow helmet
+/obj/item/clothing/head/helmet/marine/snow
+	icon_state = "helmet_snow"
+	item_state = "helmet_snow"
+
+
+//UNIFORM-----------------------//
+//Snow Uniform
+/obj/item/clothing/under/marine_jumpsuit/snow
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	icon_state = "marine_jumpsuit_snow"
+	item_state = "marine_jumpsuit_snow"
+	item_color = "marine_jumpsuit_snow"
+
 //TESTING
 /datum/file/program/door_control
 	name = "Door control"
@@ -984,15 +1000,21 @@ obj/item/alienjar
 	dat = ""
 	active_state = "text"
 	var/list/logs = list(
-	"<b>Research Log I</b><br><br>This log is very nice looking!",
-	"<b>Research Log II</b><br><br>This log is very nice looking!",
-	"<b>Research Log III</b><br><br>This log is very nice looking!",
-	"<b>Research Log IV</b><br><br>This log is very nice looking!",
-	"<b>Research Log V</b><br><br>This log is very nice looking!")
+	1 = list(name = "Research Log I",  dat = "<b>Research Log I</b><br><br>This log is very nice looking!"),
+	2 = list(name = "Research Log II",  dat =  "<b>Research Log II</b><br><br>This log is very nice looking!"),
+	3 = list(name = "Research Log III",  dat = "<b>Research Log III</b><br><br>This log is very nice looking!"),
+	4 = list(name = "Research Log IV",  dat =  "<b>Research Log IV</b><br><br>This log is very nice looking!"),
+	5 = list(name = "Research Log V",  dat =   "<b>Research Log V</b><br><br>This log is very nice looking!")
+	)
+
+
 
 	New()
 		..()
-		dat = "[topic_link(src,"log_1","Log I")]<br>[topic_link(src,"log_2","Log II")]<br>[topic_link(src,"log_3","Log III")]<br>[topic_link(src,"log_4","Log IV")]<br>[topic_link(src,"log_5","Log V")]"
+		for(var/i = 1 to logs.len)
+			dat += "[topic_link(src,"log_[i]","[logs][i][name]")]<br>"
+
+			//"[topic_link(src,"log_1","Log I")]<br>[topic_link(src,"log_2","Log II")]<br>[topic_link(src,"log_3","Log III")]<br>[topic_link(src,"log_4","Log IV")]<br>[topic_link(src,"log_5","Log V")]"
 
 
 /datum/file/program/data/text/aces_log/Topic(href, list/href_list)
