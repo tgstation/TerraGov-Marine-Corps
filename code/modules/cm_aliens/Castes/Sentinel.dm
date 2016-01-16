@@ -1,3 +1,4 @@
+
 /mob/living/carbon/Xenomorph/Sentinel
 	caste = "Sentinel"
 	name = "Sentinel"
@@ -10,7 +11,7 @@
 	storedplasma = 75
 	plasma_gain = 10
 	maxplasma = 300
-	jellyMax = 750
+	jellyMax = 400
 	spit_delay = 90
 	caste_desc = ""
 	evolves_to = list("Spitter")

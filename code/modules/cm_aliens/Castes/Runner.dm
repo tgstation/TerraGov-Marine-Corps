@@ -1,4 +1,5 @@
 //Xenomorph Runner - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
+
 /mob/living/carbon/Xenomorph/Runner
 	caste = "Runner"
 	name = "Runner"
@@ -11,7 +12,7 @@
 	storedplasma = 50
 	plasma_gain = 1
 	maxplasma = 100
-	jellyMax = 600
+	jellyMax = 400
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -2
 	evolves_to = list("Hunter")
