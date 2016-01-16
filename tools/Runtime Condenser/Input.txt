@@ -33895,3 +33895,949 @@ the solar panel assembly (/obj/item/solar_assembly): Click(the plating (141,149,
 
 *** End Log: Tue Jan 05 20:53:30 2016 ***
 
+*** Begin Log: Thu Jan 14 22:48:07 2016 ***
+Thu Jan 14 22:48:07 2016
+World opened on network port 1400.
+Welcome BYOND! (5.0 Public Version 509.1317)
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+## TESTING: DNA2: 17 blocks are unused: 2, 3, 4, 5, 6, 10, 11, 12, 13, 16, 19, 20, 21, 22, 23, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Apophis775: /obj/item/weapon/cell charge=0
+Thu Jan 14 23:58:40 2016
+runtime error: Cannot read null.type
+proc name: view var Topic (/client/proc/view_var_Topic)
+  source file: datumvars.dm,600
+  usr: Javon Young (/mob/dead/observer)
+  src: Apophis775 (/client)
+  usr.loc: Grass patch (158,74,1) (/turf/simulated/floor/grass)
+  call stack:
+Apophis775 (/client): view var Topic("_src_=vars;delall=\[0x200425e]", /list (/list), null)
+Apophis775 (/client): Topic("_src_=vars;delall=\[0x200425e]", /list (/list), null)
+Denied access to 'Guest-2863415786' connecting from 75.27.100.150
+Stopped server.
+
+*** End Log: Fri Jan 15 00:53:53 2016 ***
+
+*** Begin Log: Fri Jan 15 00:57:16 2016 ***
+Fri Jan 15 00:57:16 2016
+World opened on network port 1400.
+Welcome BYOND! (5.0 Public Version 509.1319)
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 5, 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 21, 22, 25 and 26
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+
+Denied access to 'Guest-3800594247' connecting from 189.68.233.151
+### VarEdit by Rahlzel: /mob/living/silicon/robot emagged=1
+runtime error: Cannot modify null.primary_objective.
+proc name: Topic (/obj/machinery/computer/overwatch/Topic)
+  source file: overwatch.dm,264
+  usr: Xur \'Ghost\' Dergens (/mob/living/carbon/human)
+  src: Overwatch Console (/obj/machinery/computer/overwatch)
+  usr.loc: the floor (90,156,3) (/turf/simulated/floor)
+  src.loc: the floor (89,155,3) (/turf/simulated/floor)
+  call stack:
+Overwatch Console (/obj/machinery/computer/overwatch): Topic("src=\[0x200822d];operation=set...", /list (/list))
+Xurphorus (/client): Topic("src=\[0x200822d];operation=set...", /list (/list), Overwatch Console (/obj/machinery/computer/overwatch))
+Xurphorus (/client): Topic("src=\[0x200822d];operation=set...", /list (/list), Overwatch Console (/obj/machinery/computer/overwatch))
+runtime error: Cannot modify null.loc.
+proc name: attackby (/obj/structure/safe/attackby)
+  source file: safe.dm,179
+  usr: Carl Beckett (as Corporate Sto... (/mob/living/carbon/human)
+  src: the safe (/obj/structure/safe)
+  usr.loc: the floor (88,64,1) (/turf/simulated/floor/bluegrid)
+  src.loc: the floor (89,64,1) (/turf/simulated/floor/bluegrid)
+  call stack:
+the safe (/obj/structure/safe): attackby(null, Carl Beckett (as Corporate Sto... (/mob/living/carbon/human))
+Carl Beckett (as Corporate Sto... (/mob/living/carbon/human): ClickOn(the safe (/obj/structure/safe), "icon-x=11;icon-y=15;left=1;scr...")
+the safe (/obj/structure/safe): Click(the floor (89,64,1) (/turf/simulated/floor/bluegrid), "mapwindow.map", "icon-x=11;icon-y=15;left=1;scr...")
+runtime error: Cannot modify null.loc.
+proc name: attackby (/obj/structure/safe/attackby)
+  source file: safe.dm,179
+  usr: Carl Beckett (as Corporate Sto... (/mob/living/carbon/human)
+  src: the safe (/obj/structure/safe)
+  usr.loc: the floor (88,64,1) (/turf/simulated/floor/bluegrid)
+  src.loc: the floor (89,64,1) (/turf/simulated/floor/bluegrid)
+  call stack:
+the safe (/obj/structure/safe): attackby(null, Carl Beckett (as Corporate Sto... (/mob/living/carbon/human))
+Carl Beckett (as Corporate Sto... (/mob/living/carbon/human): ClickOn(the safe (/obj/structure/safe), "icon-x=20;icon-y=12;left=1;scr...")
+the safe (/obj/structure/safe): Click(the floor (89,64,1) (/turf/simulated/floor/bluegrid), "mapwindow.map", "icon-x=20;icon-y=12;left=1;scr...")
+### VarEdit by Lostmixup: /mob/living/simple_animal/parrot health=20
+runtime error: pick() from empty list
+proc name: hear radio (/mob/living/simple_animal/parrot/hear_radio)
+  source file: parrot.dm,745
+  usr: Unknown (/mob/living/carbon/human)
+  src: the Parrot (/mob/living/simple_animal/parrot)
+  usr.loc: the floor (154,63,1) (/turf/simulated/floor)
+  src.loc: the floor (151,66,1) (/turf/simulated/floor)
+  call stack:
+the Parrot (/mob/living/simple_animal/parrot): hear radio("Yo.", "says", Galactic Common (/datum/language/common), "<span class=\'radio\'><span cl...", "</span><b> <IMG CLASS=icon SRC...", Unknown (/mob/living/carbon/human), 0, "Barnabus Jones", 0)
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Unknown (/mob/living/carbon/human), 0, "says", the station bounced radio (/obj/item/device/radio), "Yo.", "Unknown", "No id", "Barnabus Jones", "unknown", null, 0, /list (/list), 1461, "says", Galactic Common (/datum/language/common))
+Subspace Broadcaster (/obj/machinery/telecomms/broadcaster/preset_left): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/broad...", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Telecommunication Server (/obj/machinery/telecomms/server/presets/common))
+Telecommunication Server (/obj/machinery/telecomms/server/presets/common): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Telecommunication Server (/obj/machinery/telecomms/server/presets/common): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/serve...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): receive information(/datum/signal (/datum/signal), Processor Unit (/obj/machinery/telecomms/processor/preset_four))
+Processor Unit (/obj/machinery/telecomms/processor/preset_four): relay direct information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Processor Unit (/obj/machinery/telecomms/processor/preset_four): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/proce...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/bus", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Subspace Receiver (/obj/machinery/telecomms/receiver/preset))
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset): receive signal(/datum/signal (/datum/signal))
+the station bounced radio (/obj/item/device/radio): talk into(Unknown (/mob/living/carbon/human), "Yo.", null, "says", Galactic Common (/datum/language/common))
+the station bounced radio (/obj/item/device/radio): hear talk(Unknown (/mob/living/carbon/human), "Yo.", "says", Galactic Common (/datum/language/common))
+Unknown (/mob/living/carbon/human): say("Yo.", Galactic Common (/datum/language/common), "says", "(as Unknown)", 0, 7, null, null)
+runtime error: pick() from empty list
+proc name: hear radio (/mob/living/simple_animal/parrot/hear_radio)
+  source file: parrot.dm,745
+  usr: Rin Fukuimoto (/mob/living/carbon/human)
+  src: the Parrot (/mob/living/simple_animal/parrot)
+  usr.loc: the floor (131,45,1) (/turf/simulated/floor)
+  src.loc: the floor (143,66,1) (/turf/simulated/floor)
+  call stack:
+the Parrot (/mob/living/simple_animal/parrot): hear radio("Yo.", "says", Galactic Common (/datum/language/common), "<span class=\'radio\'><span cl...", "</span><b> <IMG CLASS=icon SRC...", Rin Fukuimoto (/mob/living/carbon/human), 0, "Rin Fukuimoto", 0)
+Broadcast Message(/datum/radio_frequency (/datum/radio_frequency), Rin Fukuimoto (/mob/living/carbon/human), 0, "says", the station bounced radio (/obj/item/device/radio), "Yo.", "Rin Fukuimoto", "Bravo Squad Specialist", "Rin Fukuimoto", "unknown", null, 0, /list (/list), 1461, "says", Galactic Common (/datum/language/common))
+Subspace Broadcaster (/obj/machinery/telecomms/broadcaster/preset_left): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/broad...", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Telecommunication Server (/obj/machinery/telecomms/server/presets/common))
+Telecommunication Server (/obj/machinery/telecomms/server/presets/common): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Telecommunication Server (/obj/machinery/telecomms/server/presets/common): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/serve...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): receive information(/datum/signal (/datum/signal), Processor Unit (/obj/machinery/telecomms/processor/preset_four))
+Processor Unit (/obj/machinery/telecomms/processor/preset_four): relay direct information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Processor Unit (/obj/machinery/telecomms/processor/preset_four): receive information(/datum/signal (/datum/signal), Bus Mainframe (/obj/machinery/telecomms/bus/preset_four))
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/proce...", null, 20)
+Bus Mainframe (/obj/machinery/telecomms/bus/preset_four): receive information(/datum/signal (/datum/signal), Telecommunication Hub (/obj/machinery/telecomms/hub/preset))
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/bus", 1, 20)
+Telecommunication Hub (/obj/machinery/telecomms/hub/preset): receive information(/datum/signal (/datum/signal), Subspace Receiver (/obj/machinery/telecomms/receiver/preset))
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset): relay information(/datum/signal (/datum/signal), "/obj/machinery/telecomms/hub", null, 20)
+Subspace Receiver (/obj/machinery/telecomms/receiver/preset): receive signal(/datum/signal (/datum/signal))
+the station bounced radio (/obj/item/device/radio): talk into(Rin Fukuimoto (/mob/living/carbon/human), "Yo.", null, "says", Galactic Common (/datum/language/common))
+the station bounced radio (/obj/item/device/radio): hear talk(Rin Fukuimoto (/mob/living/carbon/human), "Yo.", "says", Galactic Common (/datum/language/common))
+Rin Fukuimoto (/mob/living/carbon/human): say("Yo.", Galactic Common (/datum/language/common), "says", "", 0, 7, null, null)
+### VarEdit by Apophis775: /obj/item/weapon/reagent_containers/food/snacks/badrecipe name=Parrot Poop
+### VarEdit by Rahlzel: /mob/living/silicon/robot emagged=1
+### VarEdit by Apophis775: /obj/item/weapon/light/tube/large icon_state=toddler
+### VarEdit by Apophis775: /obj/item/weapon/light/tube/large icon_state=ltube-broken
+### VarEdit by Absynth: /obj/item/weapon/twohanded/spear icon_state=toddler
+### VarEdit by Apophis775: /obj/item/weapon/crowbar icon_state=toddler
+### VarEdit by Apophis775: /obj/item/weapon/crowbar icon_state=crowbar
+### VarEdit by Apophis775: /obj/item/weapon/gun/energy/taser icon_state=toddler
+runtime error: list index out of bounds
+proc name: Topic (/obj/item/weapon/paper_bundle/Topic)
+  source file: paper_bundle.dm,175
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle)
+  usr.loc: the floor (189,165,3) (/turf/simulated/floor)
+  src.loc: Wyatt Hoopengarner (/mob/living/carbon/human)
+  call stack:
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): Topic("src=\[0x20130dd];remove=1", /list (/list))
+Gunso (/client): Topic("src=\[0x20130dd];remove=1", /list (/list), Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle))
+Gunso (/client): Topic("src=\[0x20130dd];remove=1", /list (/list), Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle))
+runtime error: list index out of bounds
+proc name: attack self (/obj/item/weapon/paper_bundle/attack_self)
+  source file: paper_bundle.dm,112
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle)
+  usr.loc: the floor (189,165,3) (/turf/simulated/floor)
+  src.loc: Wyatt Hoopengarner (/mob/living/carbon/human)
+  call stack:
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): attack self(Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle), "icon-x=15;icon-y=19;left=1;scr...")
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): Click(null, "mapwindow.map", "icon-x=15;icon-y=19;left=1;scr...")
+runtime error: list index out of bounds
+proc name: attack self (/obj/item/weapon/paper_bundle/attack_self)
+  source file: paper_bundle.dm,112
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle)
+  usr.loc: the floor (189,165,3) (/turf/simulated/floor)
+  src.loc: Wyatt Hoopengarner (/mob/living/carbon/human)
+  call stack:
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): attack self(Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle), "icon-x=15;icon-y=19;left=1;scr...")
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): Click(null, "mapwindow.map", "icon-x=15;icon-y=19;left=1;scr...")
+runtime error: list index out of bounds
+proc name: attack self (/obj/item/weapon/paper_bundle/attack_self)
+  source file: paper_bundle.dm,112
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle)
+  usr.loc: the floor (189,165,3) (/turf/simulated/floor)
+  src.loc: Wyatt Hoopengarner (/mob/living/carbon/human)
+  call stack:
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): attack self(Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle), "icon-x=17;icon-y=15;left=1;scr...")
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): Click(null, "mapwindow.map", "icon-x=17;icon-y=15;left=1;scr...")
+runtime error: list index out of bounds
+proc name: attack self (/obj/item/weapon/paper_bundle/attack_self)
+  source file: paper_bundle.dm,112
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle)
+  usr.loc: the floor (189,165,3) (/turf/simulated/floor)
+  src.loc: Wyatt Hoopengarner (/mob/living/carbon/human)
+  call stack:
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): attack self(Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle), "icon-x=19;icon-y=16;left=1;scr...")
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): Click(null, "mapwindow.map", "icon-x=19;icon-y=16;left=1;scr...")
+runtime error: list index out of bounds
+proc name: attack self (/obj/item/weapon/paper_bundle/attack_self)
+  source file: paper_bundle.dm,112
+  usr: Wyatt Hoopengarner (/mob/living/carbon/human)
+  src: Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle)
+  usr.loc: the floor (189,165,3) (/turf/simulated/floor)
+  src.loc: Wyatt Hoopengarner (/mob/living/carbon/human)
+  call stack:
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): attack self(Wyatt Hoopengarner (/mob/living/carbon/human))
+Wyatt Hoopengarner (/mob/living/carbon/human): ClickOn(Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle), "icon-x=19;icon-y=17;left=1;scr...")
+Requisition Form - Surgery cra... (/obj/item/weapon/paper_bundle): Click(null, "mapwindow.map", "icon-x=19;icon-y=17;left=1;scr...")
+### VarEdit by Lostmixup: /mob/living/carbon/human disabilities=2
+### VarEdit by Absynth: /obj/item/weapon/melee/chainofcommand icon_state=toddler
+### VarEdit by Absynth: /datum/species/yautja brute_mod=0.4
+### VarEdit by Absynth: /datum/species/yautja slowdown=-1
+### VarEdit by Absynth: /obj/item/weapon/twohanded/glaive force_wielded=50
+### VarEdit by Absynth: /obj/item/weapon/twohanded/glaive force_unwielded=12
+### VarEdit by Absynth: /obj/item/weapon/twohanded/glaive force=12
+### VarEdit by Absynth: /obj/item/clothing/head/helmet/space/yautja anti_hug=15
+### VarEdit by Absynth: /obj/item/weapon/gun/launcher/crossbow name=alien speargun
+Fri Jan 15 02:04:49 2016
+### VarEdit by Absynth: /mob/living/carbon/human drowsyness=0
+### VarEdit by Rahlzel: /obj/machinery/vending/medical anchored=0
+### VarEdit by Rahlzel: /obj/machinery/vending/boozeomat anchored=0
+### VarEdit by Rahlzel: /obj/machinery/vending/engineering anchored=0
+### VarEdit by Absynth: /mob/living/carbon/human nutrition=1000
+### VarEdit by Apophis775: /obj/machinery/floodlight anchored=1
+### VarEdit by Ordukai: /mob/dead/observer invisibility=70
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway position=1
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway position=0
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway position=1
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway operated=1
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway operated=0
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway position=0
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway operated=1
+### VarEdit by Rahlzel: /obj/machinery/conveyor_switch/oneway operated=0
+Fri Jan 15 03:22:18 2016
+### VarEdit by Apophis775: /mob/living/simple_animal/parrot health=20
+### VarEdit by Absynth: /obj/item/device/flashlight/flare luminosity=7
+### VarEdit by Absynth: /obj/item/device/flashlight/flare item_state=flare1
+### VarEdit by Absynth: /obj/item/device/flashlight/flare item_state=flare
+### VarEdit by Absynth: /obj/item/device/flashlight/flare icon_state=flare1
+### VarEdit by Absynth: /obj/item/device/flashlight/flare icon_state=flare-on
+Infinite loop suspected--switching proc to background.
+If it is not an infinite loop, either do 'set background=1' or set world.loop_checks=0.
+proc name: Del-All (/client/proc/cmd_debug_del_all)
+  source file: debug.dm,352
+  usr: the unknown (/mob/dead/observer)
+  src: Absynth (/client)
+  usr.loc: the floor (151,64,1) (/turf/simulated/floor)
+  call stack:
+Absynth (/client): Del-All()
+Infinite loop suspected--switching proc to background.
+If it is not an infinite loop, either do 'set background=1' or set world.loop_checks=0.
+proc name: Del-All (/client/proc/cmd_debug_del_all)
+  source file: debug.dm,352
+  usr: Victor Holding (/mob/dead/observer)
+  src: Ordukai (/client)
+  usr.loc: the floor (153,63,1) (/turf/simulated/floor)
+  call stack:
+Ordukai (/client): Del-All()
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen maxHealth=600
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen maxHealth=600
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen health=600
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen speed=1
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen melee_damage_lower=90
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen melee_damage_upper=200
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen armor_deflection=140
+### VarEdit by Absynth: /mob/living/carbon/Xenomorph/Queen plasma_gain=100
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 7, 9, 10, 11, 12, 13, 14, 16, 17, 18, 21, 23, 24, 25 and 26
+BYOND Error: failed to certify Jefreyfromspace
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/dead/observer invisibility=70
+### VarEdit by Absynth: /obj/machinery/door/airlock/highsecurity locked=1
+### VarEdit by Absynth: /obj/machinery/door/airlock/highsecurity icon_state=door_locked
+### VarEdit by Absynth: /mob/living/carbon/human/machine ckey=absynth
+### VarEdit by Absynth: /obj/item/clothing/mask/gas item_state=
+### VarEdit by Absynth: /obj/item/clothing/mask/fakemoustache name=android faceplate
+### VarEdit by Absynth: /obj/item/clothing/mask/fakemoustache anti_hug=99
+### VarEdit by Absynth: /obj/item/clothing/head/helmet icon_state=
+### VarEdit by Absynth: /obj/item/clothing/head/helmet name=android faceplate
+### VarEdit by Absynth: /obj/item/clothing/head/helmet anti_hug=99
+### VarEdit by Absynth: /datum/species/machine blood_color=#FFFFDD
+### VarEdit by Absynth: /datum/species/machine brute_mod=0.1
+### VarEdit by Absynth: /obj/machinery/door/airlock/highsecurity unacidable=1
+Fri Jan 15 04:27:28 2016
+Denied access to 'Guest-1588922988' connecting from 203.215.117.185
+runtime error: Cannot execute null.update hair().
+proc name: handle death (/datum/species/proc/handle_death)
+  source file: species.dm,178
+  usr: Android 359 (/mob/dead/observer)
+  src: Machine (/datum/species/machine)
+  usr.loc: the floor (146,159,4) (/turf/simulated/shuttle/floor)
+  call stack:
+Machine (/datum/species/machine): handle death(null)
+Fri Jan 15 05:31:17 2016
+### VarEdit by Absynth: /obj/item/weapon/cell/high charge=5000
+### VarEdit by Absynth: /obj/item/weapon/cell/high charge=2.5e+006
+### VarEdit by Absynth: /obj/machinery/power/smes/buildable charge=2.5e+007
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 20, 21 and 23
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/dead/observer invisibility=70
+Fri Jan 15 08:22:43 2016
+runtime error: Cannot read null.hastie
+proc name: done (/obj/effect/equip_e/human/done)
+  source file: inventory.dm,674
+  usr: Audrius Potato (/mob/living/carbon/human)
+  src: the human (/obj/effect/equip_e/human)
+  usr.loc: the floor (116,161,4) (/turf/simulated/floor)
+  src.loc: null
+  call stack:
+the human (/obj/effect/equip_e/human): done()
+the human (/obj/effect/equip_e/human): process()
+runtime error: Cannot read .len
+proc name: attack (/obj/item/proc/attack)
+  source file: item_attack.dm,131
+  usr: Vasiliy Chapaev (/mob/living/carbon/human)
+  src: the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+  usr.loc: the floor (197,62,1) (/turf/simulated/floor)
+  src.loc: Vasiliy Chapaev (/mob/living/carbon/human)
+  call stack:
+the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Runner (668) (/mob/living/carbon/Xenomorph/Runner), Vasiliy Chapaev (/mob/living/carbon/human), null)
+the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37): attack(Runner (668) (/mob/living/carbon/Xenomorph/Runner), Vasiliy Chapaev (/mob/living/carbon/human), null)
+Runner (668) (/mob/living/carbon/Xenomorph/Runner): attackby(the M37 Pump Shotgun (Wielded) (/obj/item/weapon/gun/projectile/shotgun/pump/m37), Vasiliy Chapaev (/mob/living/carbon/human))
+Vasiliy Chapaev (/mob/living/carbon/human): ClickOn(Runner (668) (/mob/living/carbon/Xenomorph/Runner), "icon-x=6;icon-y=23;left=1;scre...")
+Runner (668) (/mob/living/carbon/Xenomorph/Runner): Click(the plating (196,62,1) (/turf/simulated/floor/plating), "mapwindow.map", "icon-x=6;icon-y=23;left=1;scre...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 17, 20, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Jan 15 09:57:15 2016
+Denied access to 'Guest-1068418795' connecting from 68.16.8.198
+Rebooted server.
+Fri Jan 15 11:09:24 2016
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 5, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 21, 22, 23, 25 and 26
+
+
+
+
+
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Zervan' connecting from 46.119.228.241
+Denied access to 'DevilzHand' connecting from 97.90.226.36
+Fri Jan 15 12:34:23 2016
+Denied access to 'Ralphsrewardscard' connecting from 76.174.177.128
+Denied access to 'The_Lieutenant' connecting from 73.167.61.144
+Fri Jan 15 13:56:40 2016
+Denied access to 'Kalibran' connecting from 73.167.61.144
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/egg/attackby)
+  source file: XenoStructures.dm,414
+  usr: Jeser \'Jes\' Aushwitz (/mob/living/carbon/human)
+  src: the egg (/obj/effect/alien/egg)
+  usr.loc: the floor (137,159,4) (/turf/simulated/floor)
+  src.loc: the floor (136,160,4) (/turf/simulated/floor)
+  call stack:
+the egg (/obj/effect/alien/egg): attackby(the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41), Jeser \'Jes\' Aushwitz (/mob/living/carbon/human))
+Jeser \'Jes\' Aushwitz (/mob/living/carbon/human): ClickOn(the egg (/obj/effect/alien/egg), "icon-x=15;icon-y=23;left=1;scr...")
+the egg (/obj/effect/alien/egg): Click(the floor (136,160,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=15;icon-y=23;left=1;scr...")
+runtime error: Cannot read .len
+proc name: attackby (/obj/effect/alien/egg/attackby)
+  source file: XenoStructures.dm,414
+  usr: Jeser \'Jes\' Aushwitz (/mob/living/carbon/human)
+  src: the egg (/obj/effect/alien/egg)
+  usr.loc: the floor (137,159,4) (/turf/simulated/floor)
+  src.loc: the floor (136,160,4) (/turf/simulated/floor)
+  call stack:
+the egg (/obj/effect/alien/egg): attackby(the M41A Rifle (/obj/item/weapon/gun/projectile/automatic/m41), Jeser \'Jes\' Aushwitz (/mob/living/carbon/human))
+Jeser \'Jes\' Aushwitz (/mob/living/carbon/human): ClickOn(the egg (/obj/effect/alien/egg), "icon-x=16;icon-y=20;left=1;scr...")
+Jeser \'Jes\' Aushwitz (/mob/living/carbon/human): DblClickOn(the egg (/obj/effect/alien/egg), "icon-x=16;icon-y=20;left=1;scr...")
+the egg (/obj/effect/alien/egg): DblClick(the floor (136,160,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=20;left=1;scr...")
+the egg (/obj/effect/alien/egg): DblClick(the floor (136,160,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=20;left=1;scr...")
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 16, 17, 18, 20, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Jan 15 15:16:47 2016
+Denied access to 'Guest-296072406' connecting from 71.196.193.246
+runtime error: Cannot read null.client
+proc name: Announce (/datum/admins/proc/announce)
+  source file: admin.dm,719
+  usr: null
+  src: Apophis775 (/client)
+  call stack:
+Apophis775 (/client): Announce()
+Denied access to 'KcyamNoscin' connecting from 201.3.31.133
+### VarEdit by SASoperative: /obj/item/weapon/throwing_knife name=Marine Combat Toddler
+### VarEdit by SASoperative: /obj/item/weapon/throwing_knife icon_state=toddler
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 4, 6, 7, 8, 9, 10, 12, 13, 16, 19, 20, 21, 22, 23, 24 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-2924769074' connecting from 179.111.183.118
+### VarEdit by Lostmixup: /mob/living/carbon/human disabilities=2
+### VarEdit by Lostmixup: /mob/living/carbon/human disabilities=4
+### VarEdit by SASoperative: /datum/species/machine blood_color=FFFDD
+### VarEdit by SASoperative: /datum/species/machine blood_color=FFFFDD
+### VarEdit by SASoperative: /obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc blood_color=FFFFDD
+Fri Jan 15 16:17:37 2016
+### VarEdit by SASoperative: /obj/item/clothing/head/helmet/marine/PMC/heavypmc throwforce=1000
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger name=Legendary 2000 Force Burger
+### VarEdit by SASoperative: /obj/item/clothing/head/helmet/marine/PMC/heavypmc throwforce=1
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger force=2000
+### VarEdit by SASoperative: /obj/item/clothing/head/helmet/marine/PMC/heavypmc force=500
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger throwforce=2000
+### VarEdit by SASoperative: /obj/item/clothing/head/helmet/marine/PMC/heavypmc sharp=1
+Denied access to 'Guest-748965290' connecting from 161.23.162.13
+### VarEdit by SASoperative: /obj/item/weapon/combat_knife force=80
+### VarEdit by SASoperative: /obj/item/weapon/combat_knife force=999
+### VarEdit by SASoperative: /mob/living/carbon/human/machine move_speed=-1
+### VarEdit by SASoperative: /mob/living/carbon/human/machine move_speed=8
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/gyropistol fire_sound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC fire_sound=Oh my goodness.ogg
+### VarEdit by Lostmixup: /obj/item/weapon/combat_knife hitsound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC fire_sound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by Lostmixup: /obj/item/weapon/combat_knife hitsound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by Lostmixup: /obj/item/weapon/melee/baton hitsound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC fire_sound=Im at soup.ogg
+### VarEdit by SASoperative: /obj/item/weapon/combat_knife name=Baby Macho Man
+### VarEdit by SASoperative: /obj/item/weapon/combat_knife icon_state=toddler
+### VarEdit by SASoperative: /obj/item/clothing/head/helmet/marine/PMC/heavypmc blood_color=FFFFDD
+### VarEdit by SASoperative: /obj/item/weapon/combat_knife name=JAWN CENAAA
+### VarEdit by Lostmixup: /mob/living/carbon/human/machine attack_sound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by SASoperative: /obj/item/weapon/combat_knife hitsound=JC 2.ogg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/m44m fire_sound=FUCK YOU.ogg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC fire_sound=FUCK YOU.ogg
+### VarEdit by Lostmixup: /obj/item/weapon/gun/projectile/gyropistol fire_sound=And_His_Name_Is_John_Cena_Sound_Effect_[Free_Downl.ogg
+### VarEdit by Lostmixup: /obj/item/weapon/gun/projectile/gyropistol hitsound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m39/PMC fire_sound=Oh my goodness.ogg
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger hitsound=And_His_Name_Is_John_Cena_Sound_Effect_[Free_Downl.ogg
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger throwforce=1000
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger force=1000
+### VarEdit by SASoperative: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger sharp=1
+### VarEdit by Lostmixup: /obj/item/weapon/combat_knife hitsound=And_His_Name_Is_John_Cena_Sound_Effect_[Free_Downl.ogg
+### VarEdit by SASoperative: /obj/item/clothing/head/helmet/marine/PMC/heavypmc throwforce=50
+### VarEdit by Lostmixup: /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger hitsound=And_His_Name_Is_John_Cena_Sound_Effect_[Free_Downl.ogg
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/M42C name=Modified M42C Scoped Rifle
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/M42C recoil=5
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/M42C desc=A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.
+This one has a bolt mecanism rather than a being semi automatic 
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/M42C fire_sound=Sniper.wav
+### VarEdit by Lostmixup: /obj/item/weapon/gun/projectile/automatic/m41/commando fire_sound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+### VarEdit by SASoperative: /obj/item/weapon/card/id assignment=Weyland Combat Android
+### VarEdit by SASoperative: /obj/item/weapon/card/id name=Damaged Combat Android&#39;s ID Card
+runtime error: Cannot read null.type
+proc name: cast (/obj/effect/proc_holder/spell/targeted/horsemask/cast)
+  source file: horsemask.dm,23
+  usr: TEST (/mob/living/carbon/human/machine)
+  src: Curse of the Horseman (/obj/effect/proc_holder/spell/targeted/horsemask)
+  usr.loc: the floor (112,71,2) (/turf/simulated/floor)
+  src.loc: null
+  call stack:
+Curse of the Horseman (/obj/effect/proc_holder/spell/targeted/horsemask): cast(/list (/list), TEST (/mob/living/carbon/human/machine))
+Curse of the Horseman (/obj/effect/proc_holder/spell/targeted/horsemask): perform(/list (/list), 1)
+Curse of the Horseman (/obj/effect/proc_holder/spell/targeted/horsemask): choose targets(TEST (/mob/living/carbon/human/machine))
+Curse of the Horseman (/obj/effect/proc_holder/spell/targeted/horsemask): Click("Spells", "infowindow.info", "left=1")
+### VarEdit by Lostmixup: /obj/item/weapon/gun/projectile/deagle/gold fire_sound=Macho_Man_Randy_Savage_Oh_Yeah.ogg
+Fri Jan 15 17:25:44 2016
+Denied access to 'Guest-2227235953' connecting from 151.224.140.199
+### VarEdit by Apophis775: /obj/machinery/power/emitter active=1
+### VarEdit by Apophis775: /obj/machinery/power/emitter active=1
+### VarEdit by Apophis775: /obj/machinery/power/emitter active=1
+Denied access to 'Guest-2899821408' connecting from 73.213.29.183
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 2, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19, 20, 23, 24 and 25
+BYOND Error: failed to certify TincanHitman
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Fri Jan 15 19:07:32 2016
+### VarEdit by Apophis775: /mob/living/carbon/alien/humanoid/hunter icon=
+### VarEdit by Apophis775: /mob/living/carbon/alien/humanoid/hunter icon=icons/obj/alien_autopsy.dmi
+### VarEdit by Apophis775: /mob/living/carbon/alien/humanoid/hunter icon_state=jar_sample
+### VarEdit by Apophis775: /obj/machinery/computer/rdconsole icon=mainframe.dmi
+### VarEdit by Apophis775: /obj/machinery/computer/rdconsole icon_state=aimainframe
+### VarEdit by Apophis775: /obj/machinery/computer/rdconsole icon_state=aimainframe
+Rebooted server.
+Fri Jan 15 20:42:52 2016
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 4, 5, 7, 10, 11, 12, 16, 17, 19, 20, 21, 22, 23 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Supermitch82' connecting from 73.37.163.111
+### VarEdit by Absynth: /obj/machinery/portable_atmospherics/hydroponics/soil health=1000
+### VarEdit by Absynth: /obj/machinery/portable_atmospherics/hydroponics/soil age=-1
+### VarEdit by Absynth: /obj/machinery/portable_atmospherics/hydroponics/soil age=7
+Fri Jan 15 22:21:43 2016
+Denied access to 'Guest-3150022540' connecting from 100.15.25.112
+Denied access to 'Guest-3334987595' connecting from 209.197.6.165
+### VarEdit by Absynth: /obj/item/toy/katana name=katana
+### VarEdit by Absynth: /obj/item/toy/katana force=40
+runtime error: Cannot read null.loc
+proc name: Spawn (/datum/admins/proc/spawn_atom)
+  source file: admin.dm,1026
+  usr: null
+  src: Apophis775 (/client)
+  call stack:
+Apophis775 (/client): Spawn("syringe")
+Rebooted server.
+Fri Jan 15 23:33:35 2016
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 4, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 21, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Denied access to 'Guest-1555342111' connecting from 189.122.136.30
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 2, 3, 6, 7, 8, 10, 11, 12, 13, 17, 18, 19, 20, 23, 25 and 26
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+Sat Jan 16 00:33:36 2016
+runtime error: Cannot read null.talked
+proc name: OOC (/client/verb/ooc)
+  source file: ooc.dm,104
+  usr: null
+  src: Chargonian (/client)
+  call stack:
+Chargonian (/client): OOC("xur&#39;s evil twin")
+### VarEdit by Rahlzel: /mob/living/simple_animal/mushroom luminosity=3
+Sat Jan 16 01:58:02 2016
+### VarEdit by Ordukai: /mob/dead/observer invisibility=70
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 1, 3, 4, 5, 6, 7, 8, 9, 14, 16, 17, 18, 20, 21, 22, 24 and 26
+BYOND Error: failed to certify Skycave1
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by Ordukai: /mob/dead/observer invisibility=70
+Sat Jan 16 03:14:31 2016
+### VarEdit by Apophis775: /obj/item/weapon/cell/apc charge=5
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,162,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=11;icon-y=22;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): Click(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=11;icon-y=22;left=1;scr...")
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,162,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=11;icon-y=22;left=1;scr...")
+Ray \'Zero\' Robinson (/mob/living/carbon/human): DblClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=11;icon-y=22;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): DblClick(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=11;icon-y=22;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): DblClick(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=11;icon-y=22;left=1;scr...")
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,163,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=18;icon-y=26;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): Click(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=18;icon-y=26;left=1;scr...")
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,162,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=16;icon-y=9;left=1;scre...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): Click(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=16;icon-y=9;left=1;scre...")
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,162,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=14;icon-y=16;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): Click(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=16;left=1;scr...")
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,162,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=14;icon-y=16;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): Click(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=16;left=1;scr...")
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,162,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=14;icon-y=22;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): Click(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=22;left=1;scr...")
+runtime error: Cannot read null.occupant
+proc name: ui interact (/obj/machinery/computer/scan_consolenew/ui_interact)
+  source file: dna_modifier.dm,351
+  usr: Ray \'Zero\' Robinson (/mob/living/carbon/human)
+  src: DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew)
+  usr.loc: the floor (112,162,4) (/turf/simulated/floor)
+  src.loc: the floor (113,162,4) (/turf/simulated/floor)
+  call stack:
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): ui interact(Ray \'Zero\' Robinson (/mob/living/carbon/human), "main", null, 1)
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): attack hand(Ray \'Zero\' Robinson (/mob/living/carbon/human))
+Ray \'Zero\' Robinson (/mob/living/carbon/human): UnarmedAttack(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), 1)
+Ray \'Zero\' Robinson (/mob/living/carbon/human): ClickOn(DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew), "icon-x=14;icon-y=22;left=1;scr...")
+DNA Modifier Access Console (/obj/machinery/computer/scan_consolenew): Click(the floor (113,162,4) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=22;left=1;scr...")
+### VarEdit by Apophis775: /mob/living/carbon/human deafness=0
+### VarEdit by Apophis775: /mob/living/carbon/human ear_deaf=0
+Sat Jan 16 05:05:27 2016
+### VarEdit by Apophis775: /obj/item/weapon/cell charge=5e+006
+### VarEdit by Apophis775: /obj/item/weapon/cell maxcharge=5e+006
