@@ -11,7 +11,7 @@
 	climbable = 1
 	flags = ON_BORDER
 	var/health = 500 //Pretty tough. Changes sprites at 300 and 150.
-	unacidable = 1
+	unacidable = 0 //Who the fuck though unacidable barricades with 500 health was a good idea?
 
 
 /obj/structure/m_barricade/update_icon()

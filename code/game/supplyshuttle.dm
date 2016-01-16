@@ -135,10 +135,10 @@ var/list/mechtoys = list(
 	//supply points
 	var/points = 150
 	var/points_per_process = 2
-	var/points_per_slip = 5
-	var/points_per_crate = 10
+	var/points_per_slip = 2
+	var/points_per_crate = 5
 	var/points_per_platinum = 10
-	var/points_per_phoron = -100
+	var/points_per_phoron = -200
 	//control
 	var/ordernum
 	var/list/shoppinglist = list()
