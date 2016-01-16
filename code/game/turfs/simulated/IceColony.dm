@@ -363,25 +363,71 @@
 	temperature = ICE_TEMPERATURE
 	oxygen = MOLES_O2STANDARD*1.15
 	nitrogen = MOLES_N2STANDARD*1.15
+	slayer = 10 //To check where to put the overlay
+
+	New()
+		..()
+		update_icon(1)
+
+	proc/update_icon(var/skip_sides)
+		//Update the side overlays
+		var/turf/T
+		if(!skip_sides)
+			for(var/dirn in cardinal)
+				var/turf/unsimulated/wall/ice/D = get_step(src,dirn)
+				if(istype(D))
+					//Update turfs that are near us, but only once
+					D.update_icon(1)
+
+		overlays.Cut()
+		if(istype(get_step(src, NORTH),/turf))
+			T = get_step(src, NORTH)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_n")
+				I.pixel_y = src.pixel_y + 32
+				I.layer = src.layer + 0.001
+				overlays += I
+
+
+		if(istype(get_step(src, SOUTH),/turf))
+			T = get_step(src, SOUTH)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_s")
+				I.pixel_y = src.pixel_y + 32
+				I.layer = src.layer + 0.001
+				overlays += I
+
+
+		if(istype(get_step(src, EAST),/turf))
+			T = get_step(src, EAST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_e")
+				I.pixel_y = src.pixel_y + 32
+				I.layer = src.layer + 0.001
+				overlays += I
+
+
+		if(istype(get_step(src, WEST),/turf))
+			T = get_step(src, WEST)
+			if (T && slayer > T.slayer)
+				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_w")
+				I.pixel_y = src.pixel_y + 32
+				I.layer = src.layer + 0.001
+				overlays += I
+
 
 //Ice Thin Wall
-/turf/unsimulated/wall/ice2
+/turf/unsimulated/wall/ice/thin
 	name = "thin ice wall"
-	icon = 'icons/turf/snow.dmi'
 	icon_state = "ice_wall_thin"
 	desc = "It is very thin."
 	opacity = 0
-	temperature = ICE_TEMPERATURE
-	oxygen = MOLES_O2STANDARD*1.15
-	nitrogen = MOLES_N2STANDARD*1.15
+	slayer = 9
 
 //Ice Secret Wall
 /turf/unsimulated/wall/ice/secret
 	icon_state = "ice_wall_0"
 	desc = "There is something inside..."
-	temperature = ICE_TEMPERATURE
-	oxygen = MOLES_O2STANDARD*1.15
-	nitrogen = MOLES_N2STANDARD*1.15
 
 //Icy Rock
 /turf/unsimulated/wall/ice_rock
@@ -987,6 +1033,7 @@ obj/item/alienjar
 	New()
 		..()
 		spawn_files += (/datum/file/program/data/text/aces_log)
+		spawn_files += (/datum/file/program/door_control/aces_storage)
 		update_spawn_files()
 
 /obj/item/weapon/disk/file/test
@@ -1049,10 +1096,44 @@ obj/item/alienjar
 	active_state = "comm_log"
 	id = "aces_storage"
 	range = 20
-	normaldoorcontrol = 1
+	normaldoorcontrol = 0
 	desiredstate = 2
-	specialfunctions = 5
-	door_name = "ACES Lab Storage Door"
+	specialfunctions = 1
+	door_name = "ACES Lab Storage Secure Door"
 	action_name = "Toggle Door"
 
 //-----PaperWork-----
+
+
+
+
+//RD OFFICE-----
+//-----Laptop-----
+/obj/machinery/computer3/laptop/ice_planet/rd
+
+	New()
+		..()
+		spawn_files += (/datum/file/program/data/text/rd_log)
+		spawn_files += (/datum/file/program/door_control/armory)
+		update_spawn_files()
+
+//-----Research Director Reports
+/datum/file/program/data/text/rd_log
+	name = "Research Director's Report"
+	extension = "txt"
+	image = 'icons/ntos/file.png'
+	dat = "text goes here!"
+	active_state = "text"
+
+//-----Armory Access Program
+/datum/file/program/door_control/armory
+	name = "Armory Access"
+	desc = "This program can control doors on range."
+	active_state = "comm_log"
+	id = "armory_secure"
+	range = 20
+	normaldoorcontrol = 0
+	desiredstate = 2
+	specialfunctions = 1
+	door_name = "Armory Secure Door"
+	action_name = "Toggle Door"
