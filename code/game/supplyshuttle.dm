@@ -138,7 +138,7 @@ var/list/mechtoys = list(
 	var/points_per_slip = 2
 	var/points_per_crate = 5
 	var/points_per_platinum = 10
-	var/points_per_phoron = 10
+	var/points_per_phoron = -200
 	//control
 	var/ordernum
 	var/list/shoppinglist = list()
@@ -176,6 +176,8 @@ var/list/mechtoys = list(
 			return 1
 		if(istype(A,/obj/item/device/radio/beacon))
 			return 1
+		if(istype(A,/obj/item/stack/sheet/mineral/phoron))
+			return 1
 
 		for(var/i=1, i<=A.contents.len, i++)
 			var/atom/B = A.contents[i]
@@ -211,9 +213,9 @@ var/list/mechtoys = list(
 						continue
 
 					// Sell phoron
-					if(istype(A, /obj/item/stack/sheet/mineral/phoron))
+				/*	if(istype(A, /obj/item/stack/sheet/mineral/phoron))
 						var/obj/item/stack/sheet/mineral/phoron/P = A
-						phoron_count += P.get_amount()
+						phoron_count += P.get_amount()*/
 
 					// Sell platinum
 					if(istype(A, /obj/item/stack/sheet/mineral/platinum))
