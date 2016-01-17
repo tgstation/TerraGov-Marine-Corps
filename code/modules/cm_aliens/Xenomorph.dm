@@ -85,6 +85,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/big_xeno = 0 //Toggles pushing
+	var/autopsied = 0
 
 	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
