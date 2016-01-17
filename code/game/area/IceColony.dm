@@ -252,10 +252,6 @@
 	name = "\improper Doorms"
 	icon_state = "crew_quarters"
 
-/area/ice_colony/underground/research/cooling
-	name = "\improper Anomaly Storage Cooling Unit"
-	icon_state = "yellow"
-
 /area/ice_colony/underground/research/anomaly_storage_two
 	name = "\improper Anomaly Storage II"
 	icon_state = "south"

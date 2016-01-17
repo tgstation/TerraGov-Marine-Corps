@@ -837,7 +837,7 @@
 		//Handle normal clothing
 
 		if(head)
-			if(head.max_heat_protection_temperature)
+			if(head.max_heat_protection_temperature && head.max_heat_protection_temperature >= temperature)
 				thermal_protection_flags |= head.heat_protection
 		if(wear_suit)
 			if(wear_suit.max_heat_protection_temperature && wear_suit.max_heat_protection_temperature >= temperature)
@@ -926,7 +926,7 @@
 					thermal_deficit += wear_mask.min_cold_protection_temperature - temperature
 
 		if(deficit)
-			world << "Deficit = [thermal_deficit]. (Get Cold Flags)"
+			//world << "Deficit = [thermal_deficit]. (Get Cold Flags)"
 			return thermal_deficit
 		else
 			return thermal_protection_flags
@@ -966,7 +966,7 @@
 				thermal_protection += THERMAL_PROTECTION_HAND_RIGHT
 
 		if(thermal_deficit)
-			world << "Deficit = [thermal_deficit], Protection = [thermal_protection], Total Protection = [min(1,thermal_protection - (thermal_protection * (thermal_deficit/260)))] (Get Cold Protection)"
+			//world << "Deficit = [thermal_deficit], Protection = [thermal_protection], Total Protection = [min(1,thermal_protection - (thermal_protection * (thermal_deficit/260)))] (Get Cold Protection)"
 			return min(1,thermal_protection - (thermal_protection * (thermal_deficit/260)))
 		else
 			return min(1,thermal_protection)

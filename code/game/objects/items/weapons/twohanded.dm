@@ -116,8 +116,6 @@
 	wield()
 		del(src)
 
-	throw_at(atom/target, range, speed, thrower)
-		return
 /*
  * Fireaxe
  */

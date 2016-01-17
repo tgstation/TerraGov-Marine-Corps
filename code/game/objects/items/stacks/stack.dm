@@ -114,7 +114,6 @@
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		var/turf/T = src.loc
 		if (!multiplier || (multiplier <= 0)) //href exploit protection
 			return
 		if (src.amount < R.req_amount*multiplier)
@@ -128,9 +127,6 @@
 			return
 		if (R.on_floor && !istype(usr.loc, /turf/simulated/floor))
 			usr << "\red \The [R.title] must be constructed on the floor!"
-			return
-		if (T && !T.slayer > 0)
-			usr << "\red \The [R.title] must be constructed on the solid ground! Clear it up!"
 			return
 		if (R.time)
 			usr << "\blue Building [R.title] ..."

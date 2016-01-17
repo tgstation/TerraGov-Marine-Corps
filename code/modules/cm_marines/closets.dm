@@ -153,7 +153,7 @@
 			new /obj/item/device/radio/headset/malpha(src)
 			new /obj/item/clothing/suit/storage/marine(src)
 
-			spawn(1800)//Wait till the game ticker is done
+			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
@@ -184,7 +184,7 @@
 			new /obj/item/weapon/storage/backpack/marine(src)
 			new /obj/item/clothing/suit/storage/marine(src)
 
-			spawn(1800)//Wait till the game ticker is done
+			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
@@ -216,7 +216,7 @@
 			new /obj/item/weapon/storage/backpack/marine(src)
 			new /obj/item/clothing/suit/storage/marine(src)
 
-			spawn(1800)//Wait till the game ticker is done
+			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
@@ -247,7 +247,7 @@
 			new /obj/item/weapon/storage/backpack/marine(src)
 			new /obj/item/clothing/suit/storage/marine(src)
 
-			spawn(1800)//Wait till the game ticker is done
+			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
@@ -308,7 +308,7 @@
 			new /obj/item/weapon/storage/belt/medical(src)
 			new /obj/item/clothing/glasses/hud/health(src)
 
-			spawn(1800)//Wait till the game ticker is done
+			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)

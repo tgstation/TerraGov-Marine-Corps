@@ -393,7 +393,7 @@
 			T = get_step(src, SOUTH)
 			if (T && slayer > T.slayer)
 				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_s")
-				I.pixel_y = src.pixel_y + 32
+				I.pixel_y = src.pixel_y - 32
 				I.layer = src.layer + 0.001
 				overlays += I
 
@@ -402,7 +402,7 @@
 			T = get_step(src, EAST)
 			if (T && slayer > T.slayer)
 				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_e")
-				I.pixel_y = src.pixel_y + 32
+				I.pixel_y = src.pixel_x + 32
 				I.layer = src.layer + 0.001
 				overlays += I
 
@@ -411,7 +411,7 @@
 			T = get_step(src, WEST)
 			if (T && slayer > T.slayer)
 				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_w")
-				I.pixel_y = src.pixel_y + 32
+				I.pixel_y = src.pixel_x - 32
 				I.layer = src.layer + 0.001
 				overlays += I
 
@@ -847,6 +847,12 @@ obj/item/alienjar
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 	name = "Engineer's Snow Suit"
 
+/obj/item/clothing/suit/storage/snow_suit/civilian
+	icon_state = "snowsuit_engineer"
+	item_state = "snowsuit_engineer"
+	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	name = "Snow Suit"
+
 //HELMET-----------------------//
 //Snow helmet
 /obj/item/clothing/head/helmet/marine/snow
@@ -1059,7 +1065,7 @@ obj/item/alienjar
 	New()
 		..()
 		for(var/i = 1 to logs.len)
-			dat += "[topic_link(src,"log_[i]","[logs][i][name]")]<br>"
+			dat += "Test"
 
 			//"[topic_link(src,"log_1","Log I")]<br>[topic_link(src,"log_2","Log II")]<br>[topic_link(src,"log_3","Log III")]<br>[topic_link(src,"log_4","Log IV")]<br>[topic_link(src,"log_5","Log V")]"
 
@@ -1094,7 +1100,7 @@ obj/item/alienjar
 	name = "ACES Storage Access"
 	desc = "This program can control doors on range."
 	active_state = "comm_log"
-	id = "aces_storage"
+	id = "aces_secure"
 	range = 20
 	normaldoorcontrol = 0
 	desiredstate = 2

@@ -124,7 +124,7 @@
 		new /obj/item/weapon/cartridge/engineering(src)
 		new /obj/item/taperoll/engineering(src)
 
-		spawn(1800)//Wait till the game ticker is done
+		spawn(2200)//Wait till the game ticker is done
 			if(istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/suit/storage/snow_suit(src)
 				new /obj/item/clothing/mask/rebreather(src)

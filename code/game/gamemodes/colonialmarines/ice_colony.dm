@@ -108,7 +108,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedalus Prison Facility after  communications were lost recently. USS Sulaco has been dispatched to imvestigate.", "USS Sulaco")
+		command_announcement.Announce(">>>TODO: Starting Story<<<", "USS Sulaco")
 
 
 /datum/game_mode/ice_colony/proc/transform_xeno(var/datum/mind/ghost)
@@ -147,16 +147,12 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
 		if(2) //Scientist
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
 		if(3) //Doctor
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
 		if(4) //Chef!
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), slot_wear_suit)
 		if(5) //Botanist
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
 		if(6)//Atmos
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), slot_w_uniform)
 		if(7) //Chaplain
@@ -165,20 +161,18 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
 		if(9) //Corporate guy
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
 		if(10) //Prisoner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)
-
 		if(11) //Security
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/security(H), slot_wear_suit)
 
 
-
-
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit/civilian(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), slot_wear_mask)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
 	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+
 	H.update_icons()
 
 	//Give them some information

@@ -53,6 +53,7 @@
 			bound_height = width * world.icon_size
 			filler = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
 			filler.SetOpacity(opacity)
+			filler.density = 0 //We dont want to bump it. Double door density works fine.
 
 	update_nearby_tiles(need_rebuild=1)
 	return

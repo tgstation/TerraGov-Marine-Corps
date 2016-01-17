@@ -166,8 +166,6 @@
 		target.update_body()
 		target.updatehealth()
 		target.UpdateDamageIcon()
-		user.update_inv_l_hand()
-		user.update_inv_r_hand()
 		del(tool)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
