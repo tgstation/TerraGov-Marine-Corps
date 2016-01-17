@@ -1,4 +1,5 @@
 //Xenomorph - Drone - Colonial Marines - Apophis775 - Last Edit: 24JAN2015
+
 /mob/living/carbon/Xenomorph/Drone
 	caste = "Drone"
 	name = "Drone"
@@ -10,7 +11,7 @@
 	maxHealth = 170
 	storedplasma = 350
 	maxplasma = 750
-	jellyMax = 750
+	jellyMax = 500
 	plasma_gain = 12
 
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
