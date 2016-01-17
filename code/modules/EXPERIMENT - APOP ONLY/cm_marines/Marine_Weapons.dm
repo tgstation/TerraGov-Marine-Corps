@@ -873,6 +873,10 @@
 	else
 		usr << "\red [src] is empty."
 
+//This should not fit in a combat belt or holster.
+/obj/item/weapon/gun/rocketlauncher/isHandgun()
+	return 0
+
 /obj/item/ammo_casing/rocket
 	name = "high explosive rocket shell"
 	desc = "A high explosive designed to be fired from a launcher."

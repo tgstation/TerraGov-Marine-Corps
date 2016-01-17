@@ -199,7 +199,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			for(var/level = 1 to 3)
 				var/list/candidates = list()
 				if(ticker.mode.name == "AI malfunction")//Make sure they want to malf if its malf
-					candidates = FindOccupationCandidates(job, level, BE_MALF)
+//					candidates = FindOccupationCandidates(job, level, BE_MALF)
 				else
 					candidates = FindOccupationCandidates(job, level)
 				if(candidates.len)

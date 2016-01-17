@@ -134,3 +134,44 @@
 			src << "You pause your butchering for later."
 
 	return
+
+/area/yautja
+	name = "\improper Yautja Ship"
+	icon_state = "teleporter"
+	music = "signal"
+	requires_power = 0
+
+
+/mob/living/carbon/human/proc/pred_buy()
+	set category = "Yautja"
+	set name = "Claim Equipment"
+	set desc = "When you're on the Predator ship, claim some gear."
+
+	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+		src << "You're not able to do that right now."
+		return
+
+	if(!isYautja(src))
+		src << "How did you get this verb?"
+		return
+
+	if(pred_bought)
+		return
+
+	var/sure = alert("Are you sure you want to claim your equipment? You can only do this once.","Sure?","Yes","No")
+	if(sure == "Yes")
+		pred_bought = 1
+		var/list/melee = list("/obj/item/weapon/twohanded/glaive", \
+			"/obj/item/weapon/melee/yautja_chain", \
+			"/obj/item/weapon/melee/yautja_sword", \
+			"/obj/item/weapon/melee/yautja_scythe")
+		var/list/other = list("/obj/item/clothing/suit/armor/yautja/full", \
+			"/obj/item/weapon/gun/launcher/speargun", \
+			"/obj/item/weapon/gun/launcher/spikethrower", \
+			"/obj/item/weapon/grenade/spawnergrenade/smartdisc", \
+
+
+
+	else
+		return
+

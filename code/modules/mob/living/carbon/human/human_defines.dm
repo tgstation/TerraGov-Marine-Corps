@@ -84,3 +84,5 @@
 	var/recently_unbuckled = 0
 	var/image/slashed_icon = null
 	var/obj/machinery/marine_turret/turret_control = null
+
+	var/pred_bought = 0

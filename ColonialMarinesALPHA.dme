@@ -922,6 +922,7 @@
 #include "code\modules\cm_marines\shuttles.dm"
 #include "code\modules\cm_marines\structures.dm"
 #include "code\modules\cm_marines\turrets.dm"
+#include "code\modules\cm_preds\smartdisc.dm"
 #include "code\modules\cm_preds\yaut_items.dm"
 #include "code\modules\cm_preds\yaut_procs.dm"
 #include "code\modules\cm_preds\hellhounds\emote.dm"

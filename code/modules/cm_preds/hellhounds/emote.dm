@@ -19,20 +19,35 @@
 				message = "<B>The [src.name]</B> scratches."
 				m_type = 1
 		if("roar")
-			message = "<B>The [src.name]</B> roars."
+			message = "<B>The [src.name] roars!</b>"
 			m_type = 2
+			playsound(src.loc, 'sound/voice/ed209_20sec.ogg', 100, 1, 1)
 		if("tail")
-			message = "<B>The [src.name]</B> waves his tail."
+			message = "<B>The [src.name]</B> waves its tail."
 			m_type = 1
 		if("paw")
 			if (!src.restrained())
-				message = "<B>The [src.name]</B> flails his paw."
+				message = "<B>The [src.name]</B> flails its paw."
 				m_type = 1
 		if("sway")
 			message = "<B>The [src.name]</B> sways around dizzily."
 			m_type = 1
+		if("snore")
+			message = "<B>The [src.name]</B> snores."
+			m_type = 1
+		if("whimper")
+			message = "<B>The [src.name]</B> whimpers."
+			m_type = 1
+		if("dance")
+			if (!src.restrained())
+				message = "<B>The [src.name]</B> dances around!"
+				m_type = 1
+				spawn(0)
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+						dir = i
+						sleep(1)
 		if("help")
-			text += "scratch, whimper, roar, tail, paw, sway"
+			text += "scratch, whimper, roar, tail, paw, sway, snore, dance"
 			src << text
 			return
 		else

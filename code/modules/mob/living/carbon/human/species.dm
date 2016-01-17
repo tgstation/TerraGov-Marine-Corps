@@ -447,10 +447,10 @@
 	rarity_value = 2
 
 	eyes = "blank_eyes"
-	brute_mod = 0.5
+	brute_mod = 0.1
 	burn_mod = 1
 
-	warning_low_pressure = 50
+	warning_low_pressure = 0
 	hazard_low_pressure = 0
 
 	cold_level_1 = 50
@@ -478,7 +478,7 @@
 	name_plural = "Yautja"
 	icobase = 'icons/mob/human_races/r_predator.dmi'
 	deform = 'icons/mob/human_races/r_predator.dmi'
-	brute_mod = 0.5 //Beefy!
+	brute_mod = 0.3 //Beefy!
 	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
@@ -490,23 +490,19 @@
 	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
 	speech_chance = 100
 	hud_type = /datum/hud_data/yautja
-	darksight = 3
+	darksight = 5
+	slowdown = -1
 
 	inherent_verbs = list(
-//		/mob/living/carbon/human/proc/leap
+		/mob/living/carbon/human/proc/leap,
 		/mob/living/carbon/human/proc/butcher
 		)
 
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/yautja(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), slot_gloves)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(H), slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(H), slot_belt)
 
 	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
 	H.hud_used = new /datum/hud(H)

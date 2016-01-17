@@ -3,8 +3,8 @@
 	desc = "A ferocious monster!"
 	voice_name = "hellhound"
 	speak_emote = list("roars","grunts","rumbles")
-	icon_state = "hellhound"
-//	icon = 'icons/mob/hellhound.dmi'
+	icon_state = "guard"
+	icon = 'icons/mob/critter.dmi'
 	gender = NEUTER
 	update_icon = 0		///no need to call regenerate_icon
 	health = 160 //Kinda tough. They heal quickly.
@@ -99,7 +99,7 @@
 	else if(a_intent == "disarm")
 		if (!(X.paralysis ) && !(X.big_xeno) && !(X.adjust_pixel_x))
 			if(prob(40))
-				X.Paralyse(3)
+				X.Paralyse(4)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				visible_message("\red [src] knocks down [X]!","\red You knock down [X]!")
 				return
@@ -113,7 +113,7 @@
 		if(X.stat == DEAD)
 			src << "You tear up the body a little."
 			return
-		var/dmg = rand(6,18)
+		var/dmg = rand(12,32)
 		X.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
 		visible_message("\red <B>[src] mauls [X]!</b>","\red <B>You maul [X]!</b>")
 	return
@@ -279,6 +279,7 @@
 	..("dust-m")
 
 /mob/living/carbon/hellhound/death(gibbed)
+	emote("roar")
 	..(gibbed,"lets out a horrible roar as it collapses and stops moving...")
 
 /mob/living/carbon/hellhound/say(var/message)
@@ -317,9 +318,7 @@
 			C << "\blue [src.name] [verb_used]."
 	return
 
-
 /mob/living/carbon/hellhound/movement_delay()
-
 	if(stat)
 		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
 
