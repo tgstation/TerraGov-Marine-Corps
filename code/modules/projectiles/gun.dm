@@ -232,7 +232,7 @@
 	in_chamber.firer = user
 	in_chamber.def_zone = user.zone_sel.selecting
 	if(targloc == curloc)
-		user.bullet_act(in_chamber)
+		target.bullet_act(in_chamber)
 		del(in_chamber)
 		update_icon()
 		return

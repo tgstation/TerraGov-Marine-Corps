@@ -351,7 +351,7 @@
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
-		if(knife && src.loc == M) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
+		if(knife && src.loc == M && M.stat == 2) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
