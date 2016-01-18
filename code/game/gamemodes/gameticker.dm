@@ -187,6 +187,9 @@ var/global/datum/controller/gameticker/ticker
 		if(mode.name == "Prison rescue")
 			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
+		if(mode.name == "Ice colony")
+			shuttle.area_offsite = locate(/area/shuttle/drop1/ice_colony)
+			shuttle2.area_offsite = locate(/area/shuttle/drop2/ice_colony)
 
 	return 1
 

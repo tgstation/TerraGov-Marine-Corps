@@ -123,7 +123,13 @@
 		new /obj/item/clothing/glasses/meson(src)
 		new /obj/item/weapon/cartridge/engineering(src)
 		new /obj/item/taperoll/engineering(src)
+
+		spawn(2200)//Wait till the game ticker is done
+			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+				new /obj/item/clothing/suit/storage/snow_suit(src)
+				new /obj/item/clothing/mask/rebreather(src)
 		return
+
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "Technician's Locker"
 	req_access = list(access_sulaco_engineering)

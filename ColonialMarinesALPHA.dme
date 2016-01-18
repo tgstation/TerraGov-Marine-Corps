@@ -295,6 +295,7 @@
 #include "code\game\gamemodes\colonialmarines\colonialmarines.dm"
 #include "code\game\gamemodes\colonialmarines\daedalus_prison.dm"
 #include "code\game\gamemodes\colonialmarines\Halloween.dm"
+#include "code\game\gamemodes\colonialmarines\ice_colony.dm"
 #include "code\game\gamemodes\cult\cult.dm"
 #include "code\game\gamemodes\cult\cult_items.dm"
 #include "code\game\gamemodes\cult\cult_structures.dm"
@@ -1599,6 +1600,8 @@
 #include "maps\Z.05.Space.dmm"
 #include "maps\Z.06.HauntedHouse-Minijar.dmm"
 #include "maps\Z.07.Prison-Minijar.dmm"
+#include "maps\Z.X10.IceColony-Ground-Infernus-NOT-LIVE.dmm"
+#include "maps\Z.X11.IceColony-Underground-Infernus-NOT-LIVE.dmm"
 // END_INCLUDE
 
 

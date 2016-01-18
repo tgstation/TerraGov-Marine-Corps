@@ -140,6 +140,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "xarmor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = 220
 	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	slowdown = 1
 	armor = list(melee = 95, bullet = 95, laser = 80, energy = 90, bomb = 75, bio = 20, rad = 10)

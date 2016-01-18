@@ -24,6 +24,8 @@
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
+	var/obj/machinery/door/poddoor/filler_object/filler //Fixes double door opacity issue
+
 
 	//Multi-tile doors
 	dir = EAST
@@ -39,20 +41,27 @@
 		layer = open_layer
 		explosion_resistance = 0
 
-
+	//Does not seem to be working correctly. We will spawn a new object inside the double door to make it opaque or not.
 	if(width > 1)
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size
 			bound_height = world.icon_size
+			filler = new/obj/machinery/door/poddoor/filler_object (get_step(src,EAST))
+			filler.SetOpacity(opacity)
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
+			filler = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
+			filler.SetOpacity(opacity)
+			filler.density = 0 //We dont want to bump it. Double door density works fine.
 
 	update_nearby_tiles(need_rebuild=1)
 	return
 
 
 /obj/machinery/door/Del()
+	if(width > 1)
+		del filler
 	density = 0
 	update_nearby_tiles()
 	..()
@@ -236,6 +245,7 @@
 	explosion_resistance = 0
 	update_icon()
 	SetOpacity(0)
+	filler.SetOpacity(0)
 	update_nearby_tiles()
 
 	if(operating)	operating = 0
@@ -263,6 +273,7 @@
 	update_icon()
 	if(visible && !glass)
 		SetOpacity(1)	//caaaaarn!
+		filler.SetOpacity(1)
 	operating = 0
 	update_nearby_tiles()
 
@@ -305,9 +316,11 @@
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size
 			bound_height = world.icon_size
+			filler.loc = (get_step(src,EAST))
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
+			filler.loc = (get_step(src,NORTH))
 
 	update_nearby_tiles()
 

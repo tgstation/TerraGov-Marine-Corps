@@ -80,10 +80,13 @@
 			xeno_spawn_prison += loc
 			del(src)
 
+		if ("xeno_spawn_ice_colony")
+			xeno_spawn_ice_colony += loc
+			del(src)
+
 		if ("xeno_spawn_bigred")
 			xeno_spawn_bigred += loc
 			del(src)
-
 
 		if("xeno_spawn_HH")
 			xeno_spawn_HH += loc
@@ -95,6 +98,10 @@
 
 		if("surv_spawn_prison")
 			surv_spawn_prison += loc
+			del(src)
+
+		if("surv_spawn_ice_colony")
+			surv_spawn_ice_colony += loc
 			del(src)
 
 		if("ninjastart")

@@ -180,7 +180,7 @@
 		for(var/dirn in cardinal)
 			var/turf/T = get_step(src, dirn)
 
-			if (!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space))
+			if (!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space) || T.slayer > 0)
 				continue
 
 	//		if (locate(/obj/movable, T)) // don't propogate into movables
