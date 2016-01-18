@@ -216,8 +216,8 @@
 
 		if("tater")
 			possible_antags = get_players_for_role(BE_TRAITOR)
-		if("wiz")
-			possible_antags = get_players_for_role(BE_WIZARD)
+//		if("wiz")
+//			possible_antags = get_players_for_role(BE_WIZARD)
 		if("ninja")
 			possible_antags = get_players_for_role(BE_NINJA)
 		if("vox")

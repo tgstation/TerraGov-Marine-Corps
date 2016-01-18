@@ -89,7 +89,7 @@
 	armor = list(melee = 90, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 
-/obj/item/weapon/gun/projectile/automatic/mar20
+/obj/item/weapon/gun/projectile/automatic/mar40
 	name = "\improper MAR-40 Pulse Rifle"
 	desc = "A cheaply-produced, yet tough pulse rifle found far and wide across the universe. Uses 12mm rounds in a simple magazine."
 	icon = 'icons/PMC/PMC.dmi'
@@ -98,7 +98,7 @@
 	w_class = 4
 	max_shells = 40
 	caliber = "12mm"
-	ammo_type = "/obj/item/ammo_casing/a12mm"
+	ammo_type = "/obj/item/ammo_casing/mar20"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	load_method = 2
 	twohanded = 1
@@ -110,6 +110,7 @@
 	rail_pixel_y = 19
 	under_pixel_x = 21
 	under_pixel_y = 15
+	burst_amount = 4
 
 	New()
 		..()
@@ -133,10 +134,33 @@
 		else
 			icon_state = "rsprifle0"
 		return
-S
-/obj/item/weapon/gun/projectile/shotgun/merc
-	name = "Sawed-off shotgun"
-	desc = "A double-barreled shotgun which can fire two 12 gauge shells in rapid succession. Commonly found in the hands of criminals, mercenaries and in museums. Dangerous."
+
+/obj/item/projectile/bullet/mar40
+	damage = 28
+	name = "autorifle bullet"
+	accuracy = -15
+
+/obj/item/ammo_casing/mar40
+	desc = "A 12mm bullet casing."
+	caliber = "12mm"
+	projectile_type = "/obj/item/projectile/bullet/mar40"
+
+/obj/item/ammo_magazine/mar40
+	name = "MAR-40 12mm magazine"
+	desc = "A magazine with MAR-40 12mm ammo."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = ".45a"
+	ammo_type = "/obj/item/ammo_casing/mar40"
+	max_ammo = 40
+	w_class = 1
+
+/obj/item/ammo_magazine/mar40/empty
+	max_ammo = 0
+	icon_state = ".45a0"
+
+/obj/item/weapon/gun/projectile/merc
+	name = "sawn-off shotgun"
+	desc = "A short-barreled shotgun which can fire two 12 gauge shells in rapid succession. Commonly found in the hands of criminals, mercenaries and in museums. Dangerous."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "rspshotgun"
 	item_state = "sawed"
@@ -144,8 +168,10 @@ S
 	w_class = 6
 	caliber = "shotgun"
 	ammo_type = "/obj/item/ammo_casing/shotgun"
-	fire_delay = 1
-	recoil = 1.5
+	fire_sound = 'sound/weapons/shotgun.ogg'
+	fire_delay = 20
+	burst_amount = 2
+	recoil = 2.5
 	force = 20.0
 	twohanded = 0
 	muzzle_pixel_x = 30
@@ -256,7 +282,8 @@ S
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	load_method = 2
 	recoil = 0
-	fire_delay = 0
+	fire_delay = 2
+	burst_amount = 2
 
 
 /obj/item/clothing/suit/storage/marine/PMCarmor/sniper
@@ -285,4 +312,4 @@ S
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharped to deal massive damage."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "sword"
-	force = 75
+	force = 32

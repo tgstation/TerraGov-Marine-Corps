@@ -11,12 +11,12 @@
 	tackle_chance = 60
 	health = 190
 	maxHealth = 190
-	storedplasma = 350
+	storedplasma = 450
 	plasma_gain = 15
-	maxplasma = 700
+	maxplasma = 800
 	jellyMax = 0
 	spit_delay = 40
-	speed = 2.5
+	speed = 1
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9

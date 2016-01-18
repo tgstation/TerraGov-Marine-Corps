@@ -202,12 +202,12 @@
 	icon_state = "spearglass0"
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
-	force = 14
+	force = 24
 	w_class = 4.0
 	slot_flags = SLOT_BACK
 	force_unwielded = 14
 	force_wielded = 22 // Was 13, Buffed - RR
-	throwforce = 20
+	throwforce = 30
 	throw_speed = 3
 	edge = 1
 	sharp = 1
