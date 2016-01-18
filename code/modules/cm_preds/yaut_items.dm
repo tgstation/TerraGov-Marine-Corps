@@ -490,6 +490,16 @@
 			usr << "Your active hand must be empty."
 			return 0
 
+		for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
+			usr << "\blue The [S] skips back towards you!"
+			new /obj/item/weapon/grenade/spawnergrenade/smartdisc(S.loc)
+			del(S)
+
+		for(var/obj/item/weapon/grenade/spawnergrenade/smartdisc/D in range(10))
+			D.throw_at(usr,10,1,usr)
+
+
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
 	name = "alien injector"
 	desc = "A strange, thin alien needle."
@@ -537,8 +547,8 @@
 				fire_delay = 5
 			if(1)
 				mode = 2
-				charge_cost = 300
-				fire_delay = 10
+				charge_cost = 500
+				fire_delay = 20
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma bolts."
 				projectile_type = "/obj/item/projectile/beam/yautja3"
@@ -590,7 +600,7 @@
 
 	on_hit(var/atom/target, var/blocked = 0)
 		if(!istype(target, /turf/simulated/wall))
-			explosion(target,-1,-1,2)
+			explosion(target,-1,-1,2,0)
 		return 1
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
@@ -601,15 +611,9 @@
 	icon_state = "beltbag"
 	item_state = "beltbag"
 	slot_flags = SLOT_BELT
-
-	New() //Spawn some items inside
-		..()
-		spawn(2)
-			new /obj/item/weapon/harpoon/yautja(src)
-			new /obj/item/weapon/harpoon/yautja(src)
-			new /obj/item/weapon/legcuffs/yautja(src)
-			new /obj/item/weapon/legcuffs/yautja(src)
-
+	max_w_class = 3
+	storage_slots = 8
+	max_combined_w_class = 24
 
 /obj/item/clothing/glasses/night/yautja
 	name = "alien nightvision visor"
@@ -688,7 +692,7 @@
 					H.update_inv_legcuffed()
 					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
 					H << "\icon[src] \red <B>You step on \the [src]!</B>"
-					H.Weaken(3)
+					H.Weaken(4)
 					if(ishuman(H))
 						H.emote("scream")
 					feedback_add_details("handcuffs","B")
@@ -891,7 +895,7 @@
 				return
 		..()
 		if(ishuman(target)) //Slicey dicey!
-			if(prob(10))
+			if(prob(9))
 				var/datum/organ/external/affecting
 				affecting = target:get_organ(ran_zone(user.zone_sel.selecting,60))
 				if(!affecting)
@@ -971,7 +975,7 @@
 	if(..()) update_icon()
 
 /obj/item/weapon/grenade/spawnergrenade/hellhound
-	name = "hellhound beacon"
+	name = "hellhound caller"
 	spawner_type = /mob/living/carbon/hellhound
 	deliveryamt = 1
 	desc = "A strange piece of alien technology. It seems to call forth a hellhound."
@@ -1019,3 +1023,71 @@
 
 		del(src)
 		return
+
+//Telescopic baton
+/obj/item/weapon/melee/combistick
+	name = "combi-stick"
+	desc = "A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "combi"
+	item_state = "spearglass0"
+	flags = FPRINT | TABLEPASS
+	slot_flags = SLOT_BACK
+	w_class = 4
+	force = 28
+	throwforce = 70
+	unacidable = 1
+	sharp = 1
+	attack_verb = list("speared", "stabbed", "impaled")
+	var/on = 0
+	var/timer = 0
+
+	IsShield()
+		return on
+
+/obj/item/weapon/melee/combistick/attack_self(mob/user as mob)
+	if(timer) return
+	on = !on
+	if(on)
+		user.visible_message("\red With a flick of their wrist, [user] extends their [src].",\
+		"\red You extend the combi-stick.",\
+		"You hear an ominous click.")
+		icon_state = "combi"
+		item_state = "spearglass0"
+		w_class = 4
+		force = 28
+		attack_verb = list("speared", "stabbed", "impaled")
+		timer = 1
+		spawn(10)
+			timer = 0
+	else
+		user << "\blue You collapse the combi-stick for storage."
+		icon_state = "combi_sheathed"
+		item_state = "switchblade_open"
+		w_class = 1
+		force = 0
+		attack_verb = list("thwacked", "smacked")
+		timer = 1
+		spawn(10)
+			timer = 0
+
+	if(istype(user,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		H.update_inv_l_hand(0)
+		H.update_inv_r_hand()
+
+	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+	add_fingerprint(user)
+
+	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
+		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
+
+		var/icon/I = new /icon(src.icon, src.icon_state)
+		I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
+		I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY)
+		blood_overlay = I
+
+		overlays += blood_overlay
+
+	return
+

@@ -159,6 +159,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/toggledebuglogs,
+	/client/proc/spawn_predators
 	// /client/proc/SDQL_query,
 	// /client/proc/SDQL2_query,
 	)

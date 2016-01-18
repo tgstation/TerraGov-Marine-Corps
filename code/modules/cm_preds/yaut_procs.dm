@@ -139,13 +139,11 @@
 	name = "\improper Yautja Ship"
 	icon_state = "teleporter"
 	music = "signal"
-	requires_power = 0
-
 
 /mob/living/carbon/human/proc/pred_buy()
 	set category = "Yautja"
 	set name = "Claim Equipment"
-	set desc = "When you're on the Predator ship, claim some gear."
+	set desc = "When you're on the Predator ship, claim some gear. You can only do this ONCE."
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		src << "You're not able to do that right now."
@@ -155,23 +153,54 @@
 		src << "How did you get this verb?"
 		return
 
+	if(!istype(get_area(src),/area/yautja))
+		src << "Not here. Only on the ship."
+		return
+
 	if(pred_bought)
 		return
 
 	var/sure = alert("Are you sure you want to claim your equipment? You can only do this once.","Sure?","Yes","No")
 	if(sure == "Yes")
-		pred_bought = 1
-		var/list/melee = list("/obj/item/weapon/twohanded/glaive", \
-			"/obj/item/weapon/melee/yautja_chain", \
-			"/obj/item/weapon/melee/yautja_sword", \
-			"/obj/item/weapon/melee/yautja_scythe")
-		var/list/other = list("/obj/item/clothing/suit/armor/yautja/full", \
-			"/obj/item/weapon/gun/launcher/speargun", \
-			"/obj/item/weapon/gun/launcher/spikethrower", \
-			"/obj/item/weapon/grenade/spawnergrenade/smartdisc", \
+		var/list/melee = list("glaive", "chainwhip","clan sword","war scythe", "combi-stick")
+		var/list/other = list("speargun", "spike thrower", "smart-disc","hellhound")
 
+		var/msel = input("Select a heavy weapon:","Melee Weapon") as null|anything in melee
+		var/mother_0 = input("Select a secondary item:","Item 1 (of 2)") as null|anything in other
+		var/mother_1 = input("Select a third item:","Item 2 (of 2)") as null|anything in other
 
-
+		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry
+		switch(msel)
+			if("glaive")
+				new /obj/item/weapon/twohanded/glaive(src.loc)
+			if("chainwhip")
+				new /obj/item/weapon/melee/yautja_chain(src.loc)
+			if("clan sword")
+				new /obj/item/weapon/melee/yautja_sword(src.loc)
+			if("war scythe")
+				new /obj/item/weapon/melee/yautja_scythe(src.loc)
+			if("combi-stick")
+				new /obj/item/weapon/melee/combistick(src.loc)
+		switch(mother_0)
+//				if("heavy armor")
+//					new /obj/item/clothing/suit/armor/yautja/full(src.loc)
+			if("speargun")
+				new /obj/item/weapon/gun/launcher/speargun(src.loc)
+			if("spike thrower")
+				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
+			if("smart-disc")
+				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
+			if("hellhound")
+				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
+		switch(mother_1)
+			if("speargun")
+				new /obj/item/weapon/gun/launcher/speargun(src.loc)
+			if("spike thrower")
+				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
+			if("smart-disc")
+				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
+			if("hellhound")
+				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
 	else
 		return
 

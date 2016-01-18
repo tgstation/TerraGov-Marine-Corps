@@ -478,7 +478,7 @@
 	name_plural = "Yautja"
 	icobase = 'icons/mob/human_races/r_predator.dmi'
 	deform = 'icons/mob/human_races/r_predator.dmi'
-	brute_mod = 0.3 //Beefy!
+	brute_mod = 0.33 //Beefy!
 	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
@@ -491,10 +491,11 @@
 	speech_chance = 100
 	hud_type = /datum/hud_data/yautja
 	darksight = 5
-	slowdown = -1
+	slowdown = -0.8
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/leap,
+		/mob/living/carbon/human/proc/pred_buy,
 		/mob/living/carbon/human/proc/butcher
 		)
 
@@ -503,7 +504,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), slot_l_ear)
-
+	H.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(H), slot_l_hand)
 	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
 	H.hud_used = new /datum/hud(H)
 	H.universal_understand = 1

@@ -617,7 +617,7 @@
 		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/weapon/arrow(M.back), slot_in_backpack)
 	else if(rand_gun == 2)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/merc(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/merc(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun(M.back), slot_in_backpack)
@@ -639,7 +639,7 @@
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	else
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20, slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar40, slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
@@ -1058,8 +1058,8 @@
 					new /obj/item/ammo_magazine/a762(drop_spawn)
 					continue
 				if(1)
-					new /obj/item/weapon/gun/projectile/automatic/mar20(drop_spawn)
-					new /obj/item/weapon/gun/projectile/automatic/mar20(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/mar40(drop_spawn)
+					new /obj/item/weapon/gun/projectile/automatic/mar40(drop_spawn)
 					continue
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
@@ -1168,7 +1168,7 @@
 		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/dutch/cap(M), slot_head)
 
 	else if(rand_weapon == 1)
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/merc(M), slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/merc(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
 		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m37(M.back), slot_in_backpack)
@@ -1188,7 +1188,7 @@
 		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/dutch(M), slot_head)
 
 	else
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20, slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar40, slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
@@ -1217,7 +1217,7 @@
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar20(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar40(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M), slot_l_store)
 
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)

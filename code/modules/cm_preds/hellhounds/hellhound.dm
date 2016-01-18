@@ -3,11 +3,12 @@
 	desc = "A ferocious monster!"
 	voice_name = "hellhound"
 	speak_emote = list("roars","grunts","rumbles")
-	icon_state = "guard"
-	icon = 'icons/mob/critter.dmi'
+	icon = 'icons/Predator/hellhound.dmi'
+	icon_state = "hellhound"
 	gender = NEUTER
 	update_icon = 0		///no need to call regenerate_icon
 	health = 160 //Kinda tough. They heal quickly.
+	maxHealth = 160
 
 	var/obj/item/device/radio/headset/yautja/radio
 	var/obj/machinery/camera/camera
@@ -30,6 +31,12 @@
 	camera.network = list("PRED")
 	camera.c_tag = src.real_name
 	..()
+
+	for(var/mob/dead/observer/M in player_list)
+		M << "\red <B>A hellhound is now available to play!</b> Please be sure you can follow the rules."
+		M << "\red Click 'Join as hellhound' in the ghost panel to become one. First come first serve!"
+		M << "\red If you need help during play, click adminhelp and ask."
+
 
 /mob/living/carbon/hellhound/ClickOn(atom/A, params)
 	if(world.time <= next_click)
@@ -80,13 +87,11 @@
 		if(isYautja(H))
 			src << "Your loyalty to the Yautja forbids you from harming them."
 			return
-		if(H.stat == DEAD)
-			src << "You tear up the body a little."
-			return
 
-		var/dmg = rand(5,12)
+		var/dmg = rand(10,25)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
 		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
+		playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 	return
 
 /mob/living/carbon/hellhound/proc/bite_xeno(var/mob/living/carbon/Xenomorph/X)
@@ -110,12 +115,10 @@
 		visible_message("\red <B>[src] grabs [X] in their jaws!</B>","\red <B>You grab [X] in your jaws!</b>")
 		src.start_pulling(X)
 	else
-		if(X.stat == DEAD)
-			src << "You tear up the body a little."
-			return
-		var/dmg = rand(12,32)
+		var/dmg = rand(20,32)
 		X.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
 		visible_message("\red <B>[src] mauls [X]!</b>","\red <B>You maul [X]!</b>")
+		playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 	return
 
 /mob/living/carbon/hellhound/proc/bite_animal(var/mob/living/H)
@@ -145,15 +148,12 @@
 		if(istype(H,/mob/living/simple_animal/corgi)) //Kek
 			src << "Awww.. it's so harmless. Better leave it alone."
 			return
-		if(istype(H,/mob/living/carbon/hellhound))
+		if(isYautja(H))
 			return
-		if(H.stat == DEAD)
-			src << "You tear up the body a little."
-			return
-
 		var/dmg = rand(3,8)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
 		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
+		playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 	return
 
 /mob/living/carbon/hellhound/attack_paw(mob/M as mob)
@@ -302,14 +302,14 @@
 			message = trim(copytext(message,2))
 			if(!message) return
 			for(var/mob/living/carbon/hellhound/M in living_mob_list)
-				M << "\blue <B>\[RADIO\]</b>: [src.name] [verb_used], '[message]'."
+				M << "\blue <B>\[RADIO\]</b>: [src.name] [verb_used], '<B>[message]<B>'."
 			return
 
 	message = capitalize(trim_left(message))
 	if(!message || stat)
 		return
 
-	src << "\blue You say, '[message]'."
+	src << "\blue You say, '<B>[message]</b>'."
 	for(var/mob/living/carbon/hellhound/H in orange(9))
 		H << "\blue [src.name] [verb_used], '[message]'."
 
@@ -335,3 +335,23 @@
 		tally += 1.5
 
 	return (tally)
+
+/mob/living/carbon/hellhound/update_icons()
+	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
+	update_hud()		//TODO: remove the need for this to be here
+	overlays.Cut()
+
+	if(stat == DEAD)
+		icon_state = "hellhound_dead"
+	else
+		if(lying)
+			if(resting)
+				icon_state = "hellhound_sleeping"
+			else
+				icon_state = "hellhound_ko"
+		else
+			icon_state = "hellhound"
+
+		if(src.health < 30)
+			var/image/bloody = image("icon" = src.icon, "icon_state" = "bloodsmear")
+			overlays += bloody

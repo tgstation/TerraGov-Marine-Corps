@@ -111,14 +111,23 @@
 
 	return 1
 
-/datum/game_mode/colonialmarines/proc/get_whitelisted_predators()
+/proc/get_whitelisted_predators(var/readied = 1)
 	// Assemble a list of active players who are whitelisted.
 	var/list/players = list()
-	for(var/mob/new_player/player in player_list)
-		if(player.client && player.ready && (is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder")) ) //Are they whitelisted?
-			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
-				players += player
+	for(var/mob/player in player_list)
+		if(!player.client) continue
+		if(isYautja(player)) continue
+		if(readied)
+			if(!istype(player,/mob/new_player)) continue
+			if(!player:ready) continue
 
+		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
+			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
+				if(player.mind)
+					players += player.mind
+				else if(player.key)
+					player.mind = new /datum/mind()
+					players += player.mind
 	return players
 
 
@@ -175,7 +184,7 @@
 		del(original)
 
 //Start the Survivor players. This must go post-setup so we already have a body.
-/datum/game_mode/colonialmarines/proc/transform_predator(var/datum/mind/ghost)
+/proc/transform_predator(var/datum/mind/ghost)
 
 	var/mob/living/carbon/human/H = ghost.current
 	if(!H)
@@ -197,7 +206,7 @@
 
 		if(is_alien_whitelisted(H,"Yautja Elder"))
 			H.real_name = "Elder [H.real_name]"
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
 			spawn(10)
 				H << "\red <B> Welcome Elder!</B>"

@@ -842,10 +842,10 @@ datum/preferences
 
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
-	HTML += "<a href='byond://?src=\ref[user];preference=predator_prefs;task=name'>Name: [user.client.prefs.predator_name]</a><BR>"
-	HTML += "<a href='byond://?src=\ref[user];preference=predator_prefs;task=gender'>Gender: [user.client.prefs.predator_gender]</a><BR> "
-	HTML += "<a href='byond://?src=\ref[user];preference=predator_prefs;task=save'>Save!</a><BR>"
-	HTML += "<a href='byond://?src=\ref[user];preference=predator_prefs;task=cancel'>Close</a>"
+	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=name'>Name:</a> [user.client.prefs.predator_name]<BR>"
+	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=gender'>Gender:</a> [user.client.prefs.predator_gender]<BR> "
+	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=save'>Save!</a><BR>"
+	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=cancel'>Close</a>"
 
 	HTML += "</tt></center>"
 //	user << browse(null, "window=preferences")
@@ -936,7 +936,6 @@ datum/preferences
 							predator_name = new_name
 						else
 							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
-
 				else if("gender")
 					if(predator_gender == "male")
 						predator_gender = "female"
@@ -945,7 +944,7 @@ datum/preferences
 				else if("save")
 					save_preferences()
 					user << "<b>Predator</b> data saved!"
-		ShowPredator(user)
+			ShowPredator(user)
 		return 1
 
 	else if (href_list["preference"] == "loadout")

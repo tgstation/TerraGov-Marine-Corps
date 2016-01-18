@@ -127,9 +127,9 @@ var/const/MAX_ACTIVE_TIME = 200
 			if(isYautja(hit_atom))
 				var/mob/living/carbon/M = hit_atom
 				var/catch_chance = 75
-				if(M.dir == reverse_dir[src.dir]) chance += 10
-				if(M.lying) chance -= 50
-				catch_chance -= ((M.max_health - M.health) / 3)
+				if(M.dir == reverse_dir[src.dir]) catch_chance += 10
+				if(M.lying) catch_chance -= 50
+				catch_chance -= ((M.maxHealth - M.health) / 3)
 				if(!M.stat && M.dir != src.dir && prob(catch_chance)) //Not facing away
 					M.visible_message("\blue [M] snatches the facehugger out of the air and squashes it!")
 					src.Die()

@@ -25,27 +25,18 @@
 	for(var/obj/item/weapon/grab/G in src)
 		G.process()
 
-	if(!client && stat == CONSCIOUS)
-		if(prob(33) && canmove && isturf(loc) && !pulledby) //won't move if being pulled
-			step(src, pick(cardinal))
 	updatehealth()
+	update_icons()
 
 /mob/living/carbon/hellhound/proc/handle_chemicals_in_body()
 	if(reagents && reagents.reagent_list.len)
 		reagents.metabolize(src)
 
-	if (drowsyness)
-		drowsyness--
-		eye_blurry = max(2, eye_blurry)
-		if (prob(5))
-			sleeping += 1
-			Paralyse(5)
-
 	if(confused)
-		confused = max(0, confused - 1)
+		confused = 0
 
 	if(resting)
-		dizziness = max(0, dizziness - 5)
+		dizziness = 0
 	else
 		dizziness = max(0, dizziness - 1)
 
@@ -54,7 +45,7 @@
 /mob/living/carbon/hellhound/handle_fire()
 	if(..())
 		return
-	adjustFireLoss(5)
+//	adjustFireLoss(5)
 	return
 
 /mob/living/carbon/hellhound/proc/handle_regular_status_updates()
