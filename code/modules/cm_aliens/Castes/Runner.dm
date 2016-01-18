@@ -14,7 +14,7 @@
 	maxplasma = 100
 	jellyMax = 400
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-	speed = -2
+	speed = -1.6
 	evolves_to = list("Hunter")
 	charge_type = 1 //Pounce
 	pass_flags = PASSTABLE

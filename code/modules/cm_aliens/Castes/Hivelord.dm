@@ -21,6 +21,7 @@
 	adjust_size_x = 0.8
 	adjust_size_y = 0.75
 	speed = 1.8
+	big_xeno = 1
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/build_resin,

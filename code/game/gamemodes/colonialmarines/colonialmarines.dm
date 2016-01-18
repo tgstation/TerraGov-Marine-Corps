@@ -2,6 +2,8 @@
 	var/list/datum/mind/aliens = list()
 	var/list/datum/mind/survivors = list()
 	var/queen_death_timer = 0
+	var/list/datum/mind/predators = list()
+	var/list/datum/mind/hellhounds = list()
 
 /datum/game_mode/colonialmarines
 	name = "colonial marines"
@@ -14,7 +16,8 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-
+	var/pred_chance = 5 //1 in <x>
+	var/is_pred_round = 0
 
 
 /* Pre-pre-startup */
@@ -28,10 +31,35 @@
 	numaliens = Clamp((readyplayers/5), 1, 14) //(n, minimum, maximum)
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
+	var/list/datum/mind/possible_predators = get_whitelisted_predators()
+	var/numpreds = 3
 
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
+
+	if(rand(1,pred_chance) == 1) //Just make sure we have enough.
+		is_pred_round = 1
+		if(!possible_predators.len)
+			is_pred_round = 0
+		else
+			while(numpreds > 0)
+				if(!possible_predators.len)
+					numpreds = 0
+				else
+					var/datum/mind/new_pred = pick(possible_predators)
+					possible_predators -= new_pred
+					predators += new_pred
+					numpreds--
+					new_pred.assigned_role = "MODE"
+					new_pred.special_role = "Predator"
+	else
+		is_pred_round = 0
+
+
+	for(var/datum/mind/A in possible_aliens) //We have to clean out the predators who've been picked already.
+		if(A.assigned_role == "MODE")
+			possible_aliens -= A
 
 	while(numaliens > 0)
 		if(!possible_aliens.len) //Ran out of aliens! Abort!
@@ -83,6 +111,26 @@
 
 	return 1
 
+/proc/get_whitelisted_predators(var/readied = 1)
+	// Assemble a list of active players who are whitelisted.
+	var/list/players = list()
+	for(var/mob/player in player_list)
+		if(!player.client) continue
+		if(isYautja(player)) continue
+		if(readied)
+			if(!istype(player,/mob/new_player)) continue
+			if(!player:ready) continue
+
+		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
+			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
+				if(player.mind)
+					players += player.mind
+				else if(player.key)
+					player.mind = new /datum/mind()
+					players += player.mind
+	return players
+
+
 /datum/game_mode/colonialmarines/announce()
 	world << "<B>The current game mode is - Colonial Marines! Hoooah!</B>"
 
@@ -109,6 +157,9 @@
 	for(var/datum/mind/survivor in survivors) //Build and move to the survivors.
 		transform_survivor(survivor)
 
+	for(var/datum/mind/pred in predators) //Build and move to the survivors.
+		transform_predator(pred)
+
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
@@ -131,6 +182,46 @@
 
 	if(original) //Just to be sure.
 		del(original)
+
+//Start the Survivor players. This must go post-setup so we already have a body.
+/proc/transform_predator(var/datum/mind/ghost)
+
+	var/mob/living/carbon/human/H = ghost.current
+	if(!H)
+		H = new (pick(pred_spawn))
+		H.key = ghost.key
+	else
+		H.loc = pick(pred_spawn)
+
+	H.set_species("Yautja")
+	spawn(0)
+		if(H.client.prefs)
+			H.real_name = H.client.prefs.predator_name
+			H.gender = H.client.prefs.predator_gender
+		else
+			H.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
+			H.gender = "male"
+
+		H.update_icons()
+
+		if(is_alien_whitelisted(H,"Yautja Elder"))
+			H.real_name = "Elder [H.real_name]"
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
+			spawn(10)
+				H << "\red <B> Welcome Elder!</B>"
+				H << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
+				H << "That does not mean you can't go out and show the youngsters how it's done, though.."
+
+	spawn(12)
+		H << "You are <B>Yautja</b>, a great and noble predator!"
+		H << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
+		H << "Use your hellhounds to scout and test your opponents."
+		H << "Hunt at your discretion, yet be observant rather than violent."
+		H << "And above all, listen to your elders!"
+
+	return 1
+
 
 //Start the Survivor players. This must go post-setup so we already have a body.
 /datum/game_mode/colonialmarines/proc/transform_survivor(var/datum/mind/ghost)
