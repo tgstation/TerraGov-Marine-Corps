@@ -103,11 +103,11 @@
 		user.visible_message(msg, self_msg)
 
 		affected.open = 3
-/* Why?
+
 		// Whoops!
 		if(prob(10))
 			affected.fracture()
-*/
+
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
