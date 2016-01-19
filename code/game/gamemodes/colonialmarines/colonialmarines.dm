@@ -114,14 +114,23 @@
 /proc/get_whitelisted_predators(var/readied = 1)
 	// Assemble a list of active players who are whitelisted.
 	var/list/players = list()
+
 	for(var/mob/player in player_list)
 		if(!player.client) continue
 		if(isYautja(player)) continue
 		if(readied)
 			if(!istype(player,/mob/new_player)) continue
 			if(!player:ready) continue
+		else
+			if(!istype(player,/mob/dead/observer)) continue
 
 		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
+			if(!player.client) //Just to be safe.
+				continue
+
+			if(!player.client.prefs)
+				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
+
 			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
 				if(player.mind)
 					players += player.mind

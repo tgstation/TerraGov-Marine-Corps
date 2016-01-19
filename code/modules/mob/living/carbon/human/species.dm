@@ -494,7 +494,6 @@
 	slowdown = -0.8
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/leap,
 		/mob/living/carbon/human/proc/pred_buy,
 		/mob/living/carbon/human/proc/butcher
 		)
