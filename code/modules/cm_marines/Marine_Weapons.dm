@@ -196,7 +196,7 @@
 	max_shells = 35
 	caliber = "9mms"
 	ammo_type = "/obj/item/ammo_casing/m39"
-	fire_delay = 1
+	fire_delay = 3
 	force = 9.0
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	ejectshell = 0 //Caseless

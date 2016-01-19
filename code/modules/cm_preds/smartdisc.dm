@@ -208,6 +208,7 @@
 
 				if(HOSTILE_STANCE_ATTACKING)
 					AttackTarget()
+					target_mob = FindTarget() //Now find a new one, fast!
 
 	AttackingTarget()
 		. =..()

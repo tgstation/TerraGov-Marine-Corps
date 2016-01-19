@@ -98,7 +98,7 @@
 	w_class = 4
 	max_shells = 40
 	caliber = "12mm"
-	ammo_type = "/obj/item/ammo_casing/mar20"
+	ammo_type = "/obj/item/ammo_casing/mar40"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	load_method = 2
 	twohanded = 1
@@ -114,7 +114,7 @@
 
 	New()
 		..()
-		empty_mag = new /obj/item/ammo_magazine/a12mm/empty(src)
+		empty_mag = new /obj/item/ammo_magazine/mar40/empty(src)
 		update_icon()
 		return
 

@@ -79,6 +79,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flamethrower/full,
 		/obj/item/weapon/combat_knife)
 	var/ArmorVariation
+	var/brightness_on = 5
+	var/on = 0
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+
 	New()
 		..()
 		if(src.name == "M3 Pattern Marine Armor") //This is to stop subtypes from icon changing. There's prolly a better way
@@ -88,9 +92,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		else
 			ArmorVariation = icon_state
 
-	var/brightness_on = 5
-	var/on = 0
-	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+
 
 	pickup(mob/user)
 		if(on && src.loc != user)
