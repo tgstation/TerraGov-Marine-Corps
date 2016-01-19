@@ -73,7 +73,7 @@
 
 		if(burst_mod)
 			G.burst_amount += burst_mod
-			if(G.burst_amount < 0) G.burst_amount = 0
+			if(G.burst_amount < 2) G.burst_amount = 0
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
@@ -337,20 +337,20 @@
 /obj/item/attachable/burstfire_assembly
 	name = "burst fire assembly"
 	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability."
-	icon_state = ""
+	icon_state = "rapidfire"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/m4a3,
 					/obj/item/weapon/gun/projectile/automatic/m39,
 					/obj/item/weapon/gun/projectile/M42C
 						)
-	accuracy_mod = -50
-	slot = "rail"
+	accuracy_mod = -40
+	slot = "under"
 	burst_mod = 2
 
 /obj/item/attachable/magnetic_harness
 	name = "magnetic harness"
 	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a USCM armor."
-	icon_state = ""
+	icon_state = "magnetic"
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/m4a3,
 					/obj/item/weapon/gun/projectile/automatic/m39,

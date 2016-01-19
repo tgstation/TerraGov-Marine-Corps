@@ -35,7 +35,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "clan mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 60, bullet = 70, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
+	armor = list(melee = 60, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
@@ -112,7 +112,7 @@
 	armor = list(melee = 40, bullet = 50, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/harpoon, /obj/item/weapon/twohanded/glaive)
+	allowed = list(/obj/item/weapon/harpoon, /obj/item/weapon/twohanded)
 	unacidable = 1
 
 /obj/item/clothing/suit/armor/yautja/full
@@ -120,14 +120,14 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 55, bullet = 80, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 65, bullet = 88, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
 	name = "alien harpoon"
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
 	force = 15
-	throwforce = 75
+	throwforce = 66
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
 	unacidable = 1
 	sharp = 1
@@ -503,8 +503,8 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
 	name = "alien injector"
 	desc = "A strange, thin alien needle."
-	amount_per_transfer_from_this = 15
-	volume = 15
+	amount_per_transfer_from_this = 35
+	volume = 35
 
 	New()
 		..()
@@ -600,7 +600,7 @@
 
 	on_hit(var/atom/target, var/blocked = 0)
 		if(!istype(target, /turf/simulated/wall))
-			explosion(target,-1,-1,2,0)
+			explosion(target,-1,-1,2,4)
 		return 1
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
@@ -726,6 +726,11 @@
 		if(!isYautja(M)) //Nope.
 			M << "You try to talk into the headset, but just get a horrible shrieking in your ears."
 			return
+
+		for(var/mob/living/carbon/hellhound/H in player_list)
+			if(istype(H) && !H.stat)
+				H << "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'."
+
 		..()
 		return
 
@@ -745,8 +750,8 @@
 	ejectshell = 0                          // No spent shells.
 	mouthshoot = 1                          // No suiciding with this weapon, causes runtimes.
 	fire_sound_text = "a solid thunk"
-	fire_delay = 12
-	release_force = 20
+	fire_delay = 26
+	release_force = 15
 
 	slot_flags = SLOT_BELT
 	var/slots = 3
@@ -759,6 +764,8 @@
 
 		if (istype(W,/obj/item/weapon/arrow) || istype(W,/obj/item/weapon/twohanded/spear) || istype(W,/obj/item/weapon/harpoon))
 			user.drop_item()
+			if(W.throwforce > 15)
+				W.throwforce = initial(W.throwforce) - 15 //Reel this sucker back a bit.
 			W.loc = src
 			slots_filled++
 			user.visible_message("[user] slides [W] into [src].","You slide [W] into [src].")
@@ -802,17 +809,17 @@
 	item_state = "chain"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
-	force = 36
+	force = 26
 	throwforce = 12
 	w_class = 3
 	unacidable = 1
-	sharp = 0
+	sharp = 1
 	edge = 0
 	attack_verb = list("whipped", "slashed","sliced","diced","shredded")
 
 	attack(mob/target as mob, mob/living/user as mob)
 		if(user.zone_sel.selecting == "r_leg" || user.zone_sel.selecting == "l_leg" || user.zone_sel.selecting == "l_foot" || user.zone_sel.selecting == "r_foot")
-			if(prob(50) && !target.lying)
+			if(prob(30) && !target.lying)
 				if(isXeno(target))
 					if(target:big_xeno) //Can't trip the big ones.
 						return ..()
@@ -830,7 +837,7 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_POCKET
 	sharp = 1
-	force = 28
+	force = 18
 	w_class = 1.0
 	throwforce = 28
 	throw_speed = 3
@@ -838,16 +845,18 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
+
+
 /obj/item/weapon/melee/yautja_sword
 	name = "clan sword"
 	desc = "A huge, incredibly sharp blade. It looks extremely old, but still dangerous."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predsword"
-	item_state = "claymore"
+	item_state = "swordchain"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 48
+	force = 38
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -877,11 +886,11 @@
 	desc = "A huge, incredibly sharp double blade. It looks like it could easily lop off limbs."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predscythe"
-	item_state = "scythe"
+	item_state = "scythe0"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 48
+	force = 42
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -895,17 +904,17 @@
 				return
 		..()
 		if(ishuman(target)) //Slicey dicey!
-			if(prob(9))
+			if(prob(14))
 				var/datum/organ/external/affecting
 				affecting = target:get_organ(ran_zone(user.zone_sel.selecting,60))
 				if(!affecting)
 					affecting = target:get_organ(ran_zone(user.zone_sel.selecting,90)) //No luck? Try again.
 				if(affecting)
 					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
-						user.visible_message("\red \The [affecting] is sliced clean off!","You slice off \the [affecting]!")
+						user.visible_message("\red \The <B>[affecting.name]</b> is sliced clean off!","\red You slice off \the <B>[affecting.name]</b>!")
 						affecting.droplimb(1,0,1) //the 0,1 is explode, and amputation. This amputates.
 		else //Probably an alien
-			if(prob(10))
+			if(prob(14))
 				..() //Do it again! CRIT!
 
 		return
@@ -917,9 +926,9 @@
 
 	var/last_regen = 0
 	var/spike_gen_time = 100
-	var/max_spikes = 3
-	var/spikes = 3
-	release_force = 30
+	var/max_spikes = 5
+	var/spikes = 5
+	release_force = 12
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
@@ -980,11 +989,14 @@
 	deliveryamt = 1
 	desc = "A strange piece of alien technology. It seems to call forth a hellhound."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "disk"
+	icon_state = "hellnade"
 	force = 25
 	throwforce = 55
 	w_class = 1.0
 	det_time = 30
+	var/used = 0
+	var/obj/machinery/camera/current = null
+	var/turf/activated_turf = null
 
 	attack_self(mob/user as mob)
 		if(!active)
@@ -1000,12 +1012,15 @@
 		return
 
 	activate(mob/user as mob)
-		if(active)
+		if(active || used)
+			if(!isYautja(user)) return
+			activated_turf = get_turf(user)
+			display_camera(user)
+			check_eye(user)
 			return
 
 		if(user)
 			msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
 		icon_state = initial(icon_state) + "_active"
 		active = 1
 		if(dangerous)
@@ -1018,11 +1033,39 @@
 		if(spawner_type && deliveryamt)
 			// Make a quick flash
 			var/turf/T = get_turf(src)
-			var/atom/movable/x = new spawner_type
-			x.loc = T
-
-		del(src)
+			if(ispath(spawner_type))
+				new spawner_type(T)
+			used = 1
+//		del(src)
 		return
+
+	check_eye(var/mob/user as mob)
+		if (user.stat || (get_dist(user, src) > 1 || user.blinded) )
+			return null
+		if ( !current || !current.can_use() || get_turf(user) != activated_turf ) //camera doesn't work, or we moved.
+			current = null
+		user.reset_view(current)
+		return 1
+
+	proc/display_camera(var/mob/user as mob)
+		var/list/L = list()
+		for(var/mob/living/carbon/hellhound/H in mob_list)
+			L += H.real_name
+		L["Cancel"] = "Cancel"
+
+		var/choice = input(user,"Which hellhound would you like to observe? (moving will drop the feed)","Camera View") as null|anything in L
+		if(!choice || choice == "Cancel" || isnull(choice))
+			current = null
+			user.reset_view(null)
+			return
+
+		for(var/mob/living/carbon/hellhound/Q in mob_list)
+			if(Q.real_name == choice)
+				current = Q.camera
+				break
+		user << "Switching feed.."
+		return
+
 
 //Telescopic baton
 /obj/item/weapon/melee/combistick
