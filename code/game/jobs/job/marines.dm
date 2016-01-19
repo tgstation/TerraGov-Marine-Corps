@@ -22,7 +22,7 @@
 		return 1
 
 /datum/job/squadengineer
-	title = "Squad Technician"
+	title = "Squad Engineer"
 	comm_title = "Eng"
 	flag = SQUADEN
 	department_flag = MARINES

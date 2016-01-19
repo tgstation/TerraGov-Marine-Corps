@@ -5,8 +5,8 @@
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
-	melee_damage_lower = 10
-	melee_damage_upper = 12
+	melee_damage_lower = 12
+	melee_damage_upper = 22
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 95
@@ -17,7 +17,7 @@
 	maxplasma = 200
 	jellyMax = 0
 	caste_desc = "A huge tanky xenomorph."
-	speed = 0.5
+	speed = 0.2
 	evolves_to = list()
 	armor_deflection = 70
 	var/charge_dir = 0

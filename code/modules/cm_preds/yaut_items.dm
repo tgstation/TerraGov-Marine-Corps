@@ -1134,3 +1134,34 @@
 
 	return
 
+/obj/item/device/yautja_teleporter
+	name = "quantum-plasma relay"
+	desc = "A device covered in writing. It makes fun beeping noises."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "teleporter"
+	flags = FPRINT | TABLEPASS
+	w_class = 2
+	force = 1
+	throwforce = 1
+	unacidable = 1
+	var/timer = 0
+
+	attack_self(mob/user as mob)
+		if(istype(get_area(user),/area/yautja))
+			user << "Nothing happens."
+			return
+
+		if(!timer)
+			var/sure = alert("Really trigger it?","Sure?","Yes","No")
+			if(sure == "No" || !sure) return
+			playsound(src,'sound/ambience/signal.ogg', 100, 1)
+			timer = 1
+			user.visible_message("[user] starts becoming shimmery and indistinct..")
+			if(do_after(user,100))
+				var/mob/living/holding = user.pulling
+				user.visible_message("\icon[user] [user] disappears!")
+				user.loc = pick(pred_spawn)
+				timer = 0
+				if(holding)
+					holding.visible_message("\icon[holding] \The [holding] disappears!")
+					holding.loc = pick(pred_spawn)

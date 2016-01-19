@@ -1319,6 +1319,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			numpreds = 0
 		else
 			var/datum/mind/new_pred = pick(possible_predators)
+			if(!new_pred) break
+			if(new_pred.current)
+				del(new_pred.current)
+
 			possible_predators -= new_pred
 //			predators += new_pred
 			numpreds--

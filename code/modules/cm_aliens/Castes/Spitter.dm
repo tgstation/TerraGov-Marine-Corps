@@ -4,7 +4,7 @@
 	name = "Spitter"
 	desc = "A gross, oozing alien of some kind."
 	icon_state = "Spitter Walking"
-	melee_damage_lower = 10
+	melee_damage_lower = 12
 	melee_damage_upper = 22
 	health = 180
 	maxHealth = 180
@@ -13,7 +13,7 @@
 	maxplasma = 600
 	jellyMax = 500
 	spit_delay = 80
-	speed = 0.8
+	speed = 0.3
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
 	spit_projectile = /obj/item/projectile/energy/neuro/strong

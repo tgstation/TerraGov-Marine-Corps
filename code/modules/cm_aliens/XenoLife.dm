@@ -278,6 +278,13 @@
 					storedplasma += round(recovery_aura + 1)
 					updatehealth()
 
+			if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
+				if(src:speed_activated)
+					storedplasma -= 50
+					if(storedplasma < 0)
+						src:speed_activated = 0
+						src << "\red You feel dizzy as the world slows down."
+
 			if(readying_tail) storedplasma -= 3
 			if(current_aura)
 				storedplasma -= 5
