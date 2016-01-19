@@ -3,23 +3,23 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 25  //OLD:  30
+	damage = 20  //OLD:  30
 	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
-	damage = 50  //OLD:  70
+	damage = 40  //OLD:  70
 	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 30  //OLD:  35
+	damage = 26  //OLD:  35
 	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 40  //OLD:  50
+	damage = 32  //OLD:  50
 	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
-	damage = 45  //OLD:  80
+	damage = 65  //OLD:  80
 	range_falloff_at = 4 //4 turfs
 	name = "shotgun slug"
 
@@ -102,7 +102,6 @@
 	max_ammo = 0
 	icon_state = "m309a0"
 
-
 /obj/item/weapon/storage/box/m37 //M37 Shotgun
 	name = "M37 Shotgun shells (box)"
 	desc = "A box of standard issue high-powered 12 gauge buckshot rounds. Manufactured by Armat Systems for military and civilian use."
@@ -184,6 +183,7 @@
 	under_pixel_x = 23
 	under_pixel_y = 17
 	w_class = 3
+	fire_delay = 7
 
 ///***SMGS***///
 
@@ -196,7 +196,7 @@
 	max_shells = 35
 	caliber = "9mms"
 	ammo_type = "/obj/item/ammo_casing/m39"
-	fire_delay = 0
+	fire_delay = 1
 	force = 9.0
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	ejectshell = 0 //Caseless
@@ -209,6 +209,7 @@
 	under_pixel_x = 24
 	under_pixel_y = 16
 	w_class = 4
+	burst_amount = 3
 
 	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 		..()
@@ -254,6 +255,7 @@
 	rail_pixel_x = 26
 	under_pixel_y = 12
 	under_pixel_x = 21
+	burst_amount = 2
 
 	New()
 		..()
@@ -421,6 +423,9 @@
 	under_pixel_x = 25
 	under_pixel_y = 12
 
+	isHandgun()
+		return 0
+
 	New()
 		..()
 		empty_mag = new /obj/item/ammo_magazine/m42c/empty(src)
@@ -469,7 +474,7 @@
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "M42 Scout Sight"
-	desc = "A headset and goggles system for the M42 Scout Rifle. Allows thermal imaging of surroundings. Click it to toggle."
+	desc = "A headset and goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
@@ -477,6 +482,9 @@
 	toggleable = 1
 	icon_action_button = "action_meson"
 
+	New()
+		..()
+		overlay = null  //Stops the overlay.
 
 /obj/item/weapon/storage/box/m42c_system
 	name = "M42C Scoped Rifle system"
@@ -513,13 +521,17 @@
 	twohanded = 1
 	ejectshell = 0
 	recoil = 0
-	fire_delay = 2
+	fire_delay = 1
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 17
 	rail_pixel_x = 18
 	rail_pixel_y = 18
 	under_pixel_x = 23
 	under_pixel_y = 14
+	burst_amount = 3
+
+	isHandgun()
+		return 0
 
 	special_check(user)
 		if(istype(user,/mob/living/carbon/human))
@@ -585,7 +597,7 @@
 	slot_flags = SLOT_BACK
 	w_class = 5.0
 	var/obj/item/weapon/cell/pcell = null
-	var/rounds_remaining = 200
+	var/rounds_remaining = 250
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/reloading = 0
 
@@ -656,9 +668,9 @@
 				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 200."
 
 /obj/item/projectile/bullet/m56 //M56 Smartgun bullet, 28mm
-	damage = 30
+	damage = 35
 	iff = 1
-	armor_pierce = 5
+	armor_pierce = 10
 	accuracy = 30
 	name = "smartgun bullet"
 
@@ -667,16 +679,16 @@
 	caliber = "28mm"
 	projectile_type = "/obj/item/projectile/bullet/m56"
 
-/obj/item/clothing/glasses/m56_goggles
+/obj/item/clothing/glasses/night/m56_goggles
 	name = "M56 head mounted sight"
-	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range omnithermal imager, allowing for view of terrain."
+	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range imager, allowing for view of terrain."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
 	item_state = "m56_goggles"
-	darkness_view = 5
+	darkness_view = 3
 	toggleable = 1
 	icon_action_button = "action_meson"
-
+	vision_flags = SEE_TURFS
 
 	mob_can_equip(mob/user, slot)
 		if(slot == slot_glasses)
@@ -723,8 +735,11 @@
 	throw_range = 10
 	force = 5.0
 	var/list/grenades = new/list()
-	var/max_grenades = 5
+	var/max_grenades = 6
 	twohanded = 1
+
+	isHandgun()
+		return 0
 
 	New()
 		..()
@@ -825,6 +840,9 @@
 	var/max_rockets = 1
 	var/list/rockets = new/list()
 
+	isHandgun()
+		return 0
+
 /obj/item/weapon/gun/rocketlauncher/examine()
 	set src in view()
 	..()
@@ -898,7 +916,7 @@
 
 	throw_impact(atom/hit_atom)
 		if(primed)
-			explosion(hit_atom, -1, 2, 2, 1)
+			explosion(hit_atom, -1, 1, 3, 4)
 			del(src)
 		else
 			..()

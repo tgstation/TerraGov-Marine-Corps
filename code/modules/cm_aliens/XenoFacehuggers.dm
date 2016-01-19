@@ -123,6 +123,20 @@ var/const/MAX_ACTIVE_TIME = 200
 	..()
 	if(stat == CONSCIOUS)
 		icon_state = "[initial(icon_state)]"
+		if(istype(hit_atom,/mob/living/carbon/human))
+			if(isYautja(hit_atom))
+				var/mob/living/carbon/M = hit_atom
+				var/catch_chance = 75
+				if(M.dir == reverse_dir[src.dir]) catch_chance += 10
+				if(M.lying) catch_chance -= 50
+				catch_chance -= ((M.maxHealth - M.health) / 3)
+				if(!M.stat && M.dir != src.dir && prob(catch_chance)) //Not facing away
+					M.visible_message("\blue [M] snatches the facehugger out of the air and squashes it!")
+					src.Die()
+					src.throwing = 0
+					src.loc = M.loc
+					return 0
+
 		if(CanHug(hit_atom))
 			Attach(hit_atom)
 		throwing = 0

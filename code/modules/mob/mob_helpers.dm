@@ -127,6 +127,7 @@ proc/isXenoLarva(A) //Xenomorph Larva Hud Test APOPHIS 22MAY2015
 	return 0
 
 proc/isYautja(A)
+	if(istype(A,/mob/living/carbon/hellhound)) return 1 //They are always considered Yautja.
 	if(!ishuman(A) || !ismob(A)) return 0
 	if(!A:species) return 0
 	if(A:species.name != "Yautja") return 0

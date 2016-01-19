@@ -109,7 +109,7 @@
 		stop_momentum(charge_dir)
 		return
 
-	if(momentum <= 2)
+	if(momentum <= 1)
 		charge_dir = dir
 
 	//Some flavor text.
@@ -138,7 +138,7 @@
 		if(M && M.client && get_dist(M,src) <= round(momentum / 10) && src != M && momentum > 5)
 			if(!isXeno(M))
 				shake_camera(M, 1, 1)
-		if(M && M.lying && M.loc == src.loc && !isXeno(M) && M.stat != DEAD && momentum > 3)
+		if(M && M.lying && M.loc == src.loc && !isXeno(M) && M.stat != DEAD && momentum > 6)
 			visible_message("<span class ='warning'>[src] runs over [M]!","\red <B>You run over [M]!</b>")
 			M.take_overall_damage(momentum * 2)
 
@@ -195,7 +195,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				else
 					if (istype(AM,/obj/structure/window) && momentum > 5)
 						AM:hit((momentum * 4) + 10) //Should generally smash it unless not moving very fast.
-						momentum -= 5
+						momentum -= 2
 						now_pushing = 0
 						return //Might be destroyed.
 
@@ -315,9 +315,8 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 			else if (momentum >= 20)
 				H.Weaken(8)
 				H.take_overall_damage(momentum * 2)
-			diagonal_step(H,dir, 50)//Occasionally fling it diagonally.
+			diagonal_step(H,dir, 70)//Occasionally fling it diagonally.
 			step_away(H,src,round(momentum / 10))
-			momentum -= 3
 			visible_message("<B>[src] knocks over [H]!</b>","<B>You knock over [H]!</B>")
 			now_pushing = 0
 			return
@@ -369,7 +368,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 		var/dist = get_dist(src,M)
 		if(M && M.client && dist < 7)
 			shake_camera(M, 5, 1)
-		if (dist < 3 && !M.lying && !M.stat)
+		if (dist < 4 && !M.lying && !M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
 			M.Weaken(rand(2,3))
 	return
