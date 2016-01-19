@@ -28,6 +28,23 @@ var/const/MAX_ACTIVE_TIME = 200
 		Die()
 		return
 
+	New()
+		..()
+		spawn(5)
+			for(var/mob/living/carbon/human/F in range(1))
+				if(CanHug(F))
+					F.visible_message("<span class='warning'>\The scuttling [src] leaps at [F]!</span>","<span class='warning'>The scuttling [src] leaps at [F]!</span>")
+					HasProximity(F)
+					break
+		return
+
+	Del()
+		if(istype(src.loc,/mob/living/carbon))
+			var/mob/living/carbon/M = src.loc
+			M.drop_from_inventory(src)
+		return ..()
+
+
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob) //can be picked up by aliens
 	attack_hand(user)
 	return

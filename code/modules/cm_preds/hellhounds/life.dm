@@ -93,17 +93,15 @@
 
 /mob/living/carbon/hellhound/proc/handle_regular_hud_updates()
 	if (stat == 2 || (XRAY in mutations))
-		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	else if (stat != 2)
-		sight &= ~SEE_TURFS
-		sight |= ~SEE_MOBS
-		sight &= ~SEE_OBJS
-		see_in_dark = 7
-		see_invisible = SEE_INVISIBLE_MINIMUM
+		sight |= SEE_MOBS
+		sight |= SEE_OBJS
+		see_in_dark = 6
+		see_invisible = SEE_INVISIBLE_LEVEL_ONE
 	if (healths)
 		if (stat != 2)
 			switch(health)
@@ -126,20 +124,4 @@
 
 	if(pullin)	pullin.icon_state = "pull[pulling ? 1 : 0]"
 
-	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
-
-	if(blind && stat != DEAD)
-		if(blinded)
-			blind.layer = 18
-		else
-			blind.layer = 0
-
-			if(disabilities & NEARSIGHTED)
-				client.screen += global_hud.vimpaired
-
-			if(eye_blurry)
-				client.screen += global_hud.blurry
-
-			if(druggy)
-				client.screen += global_hud.druggy
 	return 1

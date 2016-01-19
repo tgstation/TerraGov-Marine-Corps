@@ -50,6 +50,7 @@
 
 	var/burst_amount = 0
 	var/burst_toggled = 0
+	icon_action_button = null //Adds it to the quick-icon list
 
 	proc/ready_to_fire()
 		if(world.time >= last_fired + fire_delay)
@@ -170,10 +171,12 @@
 		if(!burst_toggled)
 			Fire(A,user,params) //Otherwise, fire normally.
 		else
+			if(burst_amount < 2) burst_amount = 2
+
 			for(var/i = 1 to burst_amount)
 				if(A)
 					Fire(A,user,params)
-					sleep(fire_delay/2)
+					sleep((fire_delay/2))
 
 /obj/item/weapon/gun/proc/isHandgun()
 	return 1
