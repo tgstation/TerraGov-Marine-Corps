@@ -590,7 +590,7 @@ datum/design/intellicard
 	materials = list("$glass" = 1000, "$gold" = 200)
 	build_path = "/obj/item/device/aicard"
 
-datum/design/paicard
+/*datum/design/paicard
 	name = "Personal Artificial Intelligence Card"
 	desc = "Allows for the construction of a pAI Card"
 	id = "paicard"
@@ -598,7 +598,7 @@ datum/design/paicard
 	build_type = PROTOLATHE
 	materials = list("$glass" = 500, "$metal" = 500)
 	build_path = "/obj/item/device/paicard"
-/*
+
 datum/design/posibrain
 	name = "Positronic Brain"
 	desc = "Allows for the construction of a positronic brain"
