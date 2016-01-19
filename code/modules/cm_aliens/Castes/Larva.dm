@@ -19,7 +19,7 @@
 	see_in_dark = 8
 	caste_desc = "D'awwwww, so cute!"
 	pass_flags = PASSTABLE
-	speed = -1 //Zoom!
+	speed = -1.2 //Zoom!
 	away_timer = 600
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,

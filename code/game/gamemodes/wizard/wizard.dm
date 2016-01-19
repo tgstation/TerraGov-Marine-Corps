@@ -25,8 +25,9 @@
 
 
 /datum/game_mode/wizard/can_start()//This could be better, will likely have to recode it later
-	if(!..())
-		return 0
+//	if(!..())
+	return 0
+/*
 	var/list/datum/mind/possible_wizards = get_players_for_role(BE_WIZARD)
 	if(possible_wizards.len==0)
 		return 0
@@ -40,7 +41,7 @@
 		wizard.current << "<B>\red A starting location for you could not be found, please report this bug!</B>"
 		return 0
 	return 1
-
+*/
 
 /datum/game_mode/wizard/pre_setup()
 	for(var/datum/mind/wizard in wizards)

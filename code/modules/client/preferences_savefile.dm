@@ -57,6 +57,9 @@
 	S["UI_style_color"]		>> UI_style_color
 	S["UI_style_alpha"]		>> UI_style_alpha
 
+	S["pred_name"]			>> predator_name
+	S["pred_gender"]		>> predator_gender
+
 	//Sanitize
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -84,6 +87,9 @@
 	S["be_special"]			<< be_special
 	S["default_slot"]		<< default_slot
 	S["toggles"]			<< toggles
+
+	S["pred_name"] 			<< predator_name
+	S["pred_gender"] 		<< predator_gender
 
 	return 1
 

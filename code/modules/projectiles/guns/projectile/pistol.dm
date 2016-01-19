@@ -90,7 +90,7 @@
 	icon_state = "pistol"
 	w_class = 2
 	max_shells = 8
-	caliber = "9mm"
+	caliber = "75"
 	silenced = 0
 	origin_tech = "combat=2;materials=2;syndicate=2"
 	ammo_type = "/obj/item/ammo_casing/c9mm"
