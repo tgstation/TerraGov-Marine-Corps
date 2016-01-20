@@ -1184,7 +1184,10 @@
 				H.mind.transfer_to(M)
 			else
 				M.key = H.key
-
+			if(is_alien_whitelisted(M,"Yautja Elder"))
+				H.real_name = "Elder [M.real_name]"
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
+				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
 
 			if(H) del(H) //May have to clear up round-end vars and such....
 

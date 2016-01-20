@@ -111,7 +111,9 @@
 	name = "offhand"
 
 	unwield()
-		if(!usr) return
+		if(!usr)
+			del(src)
+			return
 		var/mob/living/carbon/user = usr
 
 		if(src == user.get_active_hand()) //Are we holding the offhand?
@@ -124,7 +126,9 @@
 		del(src)
 
 	wield()
-		if(!usr) return
+		if(!usr)
+			del(src)
+			return
 		var/mob/living/carbon/user = usr
 
 		if(src == user.get_active_hand()) //Are we holding the offhand?
