@@ -314,8 +314,9 @@
 		if(cloaked) //Turn it off.
 			decloak(usr)
 		else //Turn it on!
-			if(cloak_timer && prob(50))
-				usr << "\blue Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks."
+			if(cloak_timer)
+				if(prob(50))
+					usr << "\blue Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks."
 				return 0
 			if(!drain_power(usr,50)) return
 			cloaked = 1
@@ -334,7 +335,7 @@
 		user << "Your cloaking device deactivates."
 		cloaked = 0
 		for(var/mob/O in oviewers(user))
-			O.show_message("[user.name] wavers into existence!",1)
+			O.show_message("[user.name] shimmers into existence!",1)
 		playsound(user.loc,'sound/effects/cloakoff.ogg', 50, 1)
 		user.update_icons()
 		cloak_timer = 10
@@ -489,6 +490,15 @@
 		if(usr.get_active_hand())
 			usr << "Your active hand must be empty."
 			return 0
+
+		if(inject_timer)
+			usr << "Your bracers need some time to recuperate first."
+			return 0
+
+		if(!drain_power(usr,70)) return
+		inject_timer = 1
+		spawn(100)
+			inject_timer = 0
 
 		for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
 			usr << "\blue The [S] skips back towards you!"
@@ -1151,17 +1161,19 @@
 			user << "Nothing happens."
 			return
 
-		if(!timer)
-			var/sure = alert("Really trigger it?","Sure?","Yes","No")
-			if(sure == "No" || !sure) return
-			playsound(src,'sound/ambience/signal.ogg', 100, 1)
-			timer = 1
-			user.visible_message("[user] starts becoming shimmery and indistinct..")
-			if(do_after(user,100))
-				var/mob/living/holding = user.pulling
-				user.visible_message("\icon[user] [user] disappears!")
-				user.loc = pick(pred_spawn)
+		var/sure = alert("Really trigger it?","Sure?","Yes","No")
+		if(sure == "No" || !sure) return
+		playsound(src,'sound/ambience/signal.ogg', 100, 1)
+		timer = 1
+		user.visible_message("[user] starts becoming shimmery and indistinct..")
+		if(do_after(user,100))
+			var/mob/living/holding = user.pulling
+			user.visible_message("\icon[user] [user] disappears!")
+			user.loc = pick(pred_spawn)
+			timer = 0
+			if(holding)
+				holding.visible_message("\icon[holding] \The [holding] disappears!")
+				holding.loc = pick(pred_spawn)
+		else
+			spawn(10)
 				timer = 0
-				if(holding)
-					holding.visible_message("\icon[holding] \The [holding] disappears!")
-					holding.loc = pick(pred_spawn)

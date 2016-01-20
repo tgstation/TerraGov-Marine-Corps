@@ -211,6 +211,12 @@
 			user << "\red Your metal fingers don't fit in the trigger guard!"
 			return
 
+	if(isYautja(user))
+		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+			var/obj/item/clothing/gloves/yautja/G = user.hands
+			if(G.cloaked)
+				G.decloak(user)
+
 	add_fingerprint(user)
 
 	var/turf/curloc = get_turf(user)
