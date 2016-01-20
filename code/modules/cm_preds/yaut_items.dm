@@ -127,7 +127,7 @@
 	name = "Yautja Harpoon"
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "spike1"
+	icon_state = "spike"
 	item_state = "spike1"
 	icon_override = 'icons/Predator/items.dmi'
 	force = 15
