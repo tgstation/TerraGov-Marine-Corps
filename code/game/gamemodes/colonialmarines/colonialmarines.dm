@@ -200,7 +200,9 @@
 		H = new (pick(pred_spawn))
 		H.key = ghost.key
 	else
-		H.loc = pick(pred_spawn)
+		del(H)
+		H = new (pick(pred_spawn))
+		H.key = ghost.key
 
 	H.set_species("Yautja")
 	spawn(0)

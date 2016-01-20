@@ -503,7 +503,9 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(H), slot_l_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(H), slot_r_store)
+	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),slot_l_store)
+
 	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
 	H.hud_used = new /datum/hud(H)
 	H.universal_understand = 1
