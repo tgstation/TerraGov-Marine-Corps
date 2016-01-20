@@ -161,7 +161,7 @@
 		return
 
 	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. Would you like to proceed, Yautja?","Sure?","Begin the Hunt","No, not now")
-	if(sure == "Yes")
+	if(sure == "Begin the Hunt")
 		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
 		var/list/other = list("The Fleeting Speargun", "The Brutal Spike-Cannon", "The Purifying Smart-Disc","The Savage Hellhound")
 
