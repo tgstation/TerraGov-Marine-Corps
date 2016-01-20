@@ -176,7 +176,10 @@
 			for(var/i = 1 to burst_amount)
 				if(A)
 					Fire(A,user,params)
-					sleep((fire_delay/2))
+					if(fire_delay <= 0)
+						sleep(1)
+					else
+						sleep((fire_delay/2))
 
 /obj/item/weapon/gun/proc/isHandgun()
 	return 1

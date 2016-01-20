@@ -127,11 +127,10 @@
 	name = "alien harpoon"
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
 	force = 15
-	throwforce = 66
+	throwforce = 24
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
 	unacidable = 1
 	sharp = 1
-	edge = 1
 
 /obj/item/weapon/wristblades
 	name = "wrist blades"
@@ -558,7 +557,7 @@
 			if(1)
 				mode = 2
 				charge_cost = 500
-				fire_delay = 20
+				fire_delay = 30
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma bolts."
 				projectile_type = "/obj/item/projectile/beam/yautja3"
@@ -606,11 +605,11 @@
 /obj/item/projectile/beam/yautja3
 	name = "heavy plasma"
 	icon_state = "pulse1_bl"
-	damage = 85
+	damage = 65
 
 	on_hit(var/atom/target, var/blocked = 0)
 		if(!istype(target, /turf/simulated/wall))
-			explosion(target,-1,-1,2,4)
+			explosion(target,-1,-1,1,2)
 		return 1
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)

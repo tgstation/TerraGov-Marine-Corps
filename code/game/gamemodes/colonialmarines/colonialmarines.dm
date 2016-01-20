@@ -135,7 +135,7 @@
 				if(player.mind)
 					players += player.mind
 				else if(player.key)
-					player.mind = new /datum/mind()
+					player.mind = new /datum/mind(player.key)
 					players += player.mind
 	return players
 
@@ -195,41 +195,42 @@
 //Start the Survivor players. This must go post-setup so we already have a body.
 /proc/transform_predator(var/datum/mind/ghost)
 
-	var/mob/living/carbon/human/H = ghost.current
-	if(!H)
-		H = new (pick(pred_spawn))
-		H.key = ghost.key
+	var/mob/H = ghost.current
+	var/mob/living/carbon/human/newmob
+
+	newmob = new /mob/living/carbon/human(pick(pred_spawn))
+
+	if(H.mind)
+		H.mind.transfer_to(newmob)
 	else
-		del(H)
-		H = new (pick(pred_spawn))
-		H.key = ghost.key
+		newmob.key = ghost.key
 
-	H.set_species("Yautja")
-	spawn(0)
-		if(H.client.prefs)
-			H.real_name = H.client.prefs.predator_name
-			H.gender = H.client.prefs.predator_gender
-		else
-			H.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
-			H.gender = "male"
+	newmob.set_species("Yautja")
 
-		H.update_icons()
+	if(newmob.client.prefs)
+		newmob.real_name = newmob.client.prefs.predator_name
+		newmob.gender = newmob.client.prefs.predator_gender
+	else
+		newmob.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
+		newmob.gender = "male"
 
-		if(is_alien_whitelisted(H,"Yautja Elder"))
-			H.real_name = "Elder [H.real_name]"
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
-			H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
-			spawn(10)
-				H << "\red <B> Welcome Elder!</B>"
-				H << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
-				H << "That does not mean you can't go out and show the youngsters how it's done, though.."
+	newmob.update_icons()
+	if(is_alien_whitelisted(newmob,"Yautja Elder"))
+		newmob.real_name = "Elder [newmob.real_name]"
+		newmob.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
+		newmob.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
+		spawn(10)
+			newmob << "\red <B> Welcome Elder!</B>"
+			newmob << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
+			newmob << "That does not mean you can't go out and show the youngsters how it's done, though.."
+
 
 	spawn(12)
-		H << "You are <B>Yautja</b>, a great and noble predator!"
-		H << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
-		H << "Use your hellhounds to scout and test your opponents."
-		H << "Hunt at your discretion, yet be observant rather than violent."
-		H << "And above all, listen to your elders!"
+		newmob << "You are <B>Yautja</b>, a great and noble predator!"
+		newmob << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
+		newmob << "Use your hellhounds to scout and test your opponents."
+		newmob << "Hunt at your discretion, yet be observant rather than violent."
+		newmob << "And above all, listen to your elders!"
 
 	return 1
 
