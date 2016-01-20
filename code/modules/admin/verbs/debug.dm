@@ -1299,3 +1299,35 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
 		alert("Invalid mob")
+
+/client/proc/spawn_predators()
+	set category = "Debug"
+	set name = "Spawn Preds"
+	set desc = "Do it!"
+
+	if(!ticker)
+		alert("Wait until the game starts.")
+		return
+
+	var/sure = alert("Are you sure you want to force-spawn predators into the game?","Sure?","Yes","No")
+	if(sure == "No") return
+
+	var/list/datum/mind/possible_predators = get_whitelisted_predators(0) //0 = not care about ready state
+	var/numpreds = 3
+	while(numpreds > 0)
+		if(!possible_predators.len)
+			numpreds = 0
+		else
+			var/datum/mind/new_pred = pick(possible_predators)
+			if(!new_pred) break
+			if(new_pred.current)
+				del(new_pred.current)
+
+			possible_predators -= new_pred
+//			predators += new_pred
+			numpreds--
+			new_pred.assigned_role = "MODE"
+			new_pred.special_role = "Predator"
+			transform_predator(new_pred)
+	message_admins("[key_name_admin(src)] used spawn predators!")
+	return

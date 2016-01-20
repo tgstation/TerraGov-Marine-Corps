@@ -34,8 +34,8 @@
 	circuit = /obj/item/weapon/circuitboard/turbine_control
 	anchored = 1
 	density = 1
-	var/obj/machinery/compressor/compressor
-	var/list/obj/machinery/door/poddoor/doors
+	var/list/obj/machinery/compressor/compressors = list()
+	var/list/obj/machinery/door/poddoor/doors = list()
 	var/id = 0
 	var/door_status = 0
 
@@ -48,7 +48,11 @@
 	inturf = get_step(src, dir)
 
 	spawn(5)
-		turbine = locate() in get_step(src, get_dir(inturf, src))
+		for(var/dr in cardinal)
+			turbine = locate() in get_step(src,dr)
+			if(turbine)
+				break
+
 		if(!turbine)
 			stat |= BROKEN
 		else
@@ -104,8 +108,11 @@
 	outturf = get_step(src, dir)
 
 	spawn(5)
+		for(var/dr in cardinal)
+			compressor = locate() in get_step(src,dr)
+			if(compressor)
+				break
 
-		compressor = locate() in get_step(src, get_dir(outturf, src))
 		if(!compressor)
 			stat |= BROKEN
 		else
@@ -214,15 +221,12 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 /obj/machinery/computer/turbine_computer/New()
 	..()
 	spawn(5)
 		for(var/obj/machinery/compressor/C in machines)
 			if(id == C.comp_id)
-				compressor = C
-		doors = new /list()
+				compressors += C
 		for(var/obj/machinery/door/poddoor/P in machines)
 			if(P.id == id)
 				doors += P
@@ -261,16 +265,46 @@
 		src.attack_hand(user)
 	return
 */
-/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
+
+/obj/machinery/computer/turbine_computer/attack_ai(mob/user as mob)
+	return src.attack_hand(user)
+
+/obj/machinery/computer/turbine_computer/attack_paw(mob/user as mob)
+	return src.attack_hand(user)
+
+/obj/machinery/computer/turbine_computer/attack_hand(mob/user as mob)
 	user.machine = src
 	var/dat
-	if(src.compressor)
+	var/turbineav = 0
+	var/gastempav = 0
+	var/rpmav = 0
+	var/i = 1
+	var/started = 0
+
+	if(compressors.len)
+		for(var/obj/machinery/compressor/C in compressors)
+			if(!istype(C)) //What the
+				compressors.Remove(C)
+				continue
+
+			if(C.turbine)
+				turbineav += C.turbine.lastgen
+			if(C.gas_contained)
+				gastempav += C.gas_contained.temperature
+			rpmav += C.rpm
+			i++
+			started = C.starter
+
+		if(!i) i = 1 //i cannot ever be 0
+		gastempav = gastempav / i
+		rpmav = rpmav / i
+
 		dat += {"<BR><B>Gas turbine remote control system</B><HR>
-		\nTurbine status: [ src.compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]
+		\nTurbine status: [started ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]
 		\n<BR>
-		\nTurbine speed: [src.compressor.rpm]rpm<BR>
-		\nPower currently being generated: [src.compressor.turbine.lastgen]W<BR>
-		\nInternal gas temperature: [src.compressor.gas_contained.temperature]K<BR>
+		\nTurbine average: [rpmav]rpm<BR>
+		\nPower currently being generated: [turbineav]W<BR>
+		\nInternal gas temperature: [gastempav]K<BR>
 		\nVent doors: [ src.door_status ? "<A href='?src=\ref[src];doors=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='?src=\ref[src];doors=1'>Open</A>"]
 		\n</PRE><HR><A href='?src=\ref[src];view=1'>View</A>
 		\n</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>
@@ -292,9 +326,14 @@
 		usr.machine = src
 
 		if( href_list["view"] )
-			usr.client.eye = src.compressor
+			if(compressors.len)
+				for(var/obj/machinery/compressor/C in compressors)
+					usr.client.eye = C
+					break
 		else if( href_list["str"] )
-			src.compressor.starter = !src.compressor.starter
+			if(compressors.len)
+				for(var/obj/machinery/compressor/C in compressors)
+					C.starter = !C.starter
 		else if (href_list["doors"])
 			for(var/obj/machinery/door/poddoor/D in src.doors)
 				if (door_status == 0)

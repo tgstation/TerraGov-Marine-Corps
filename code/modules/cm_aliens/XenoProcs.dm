@@ -149,6 +149,11 @@
 		else
 			tally += 1.3
 
+	if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
+		if(src:speed_activated)
+			if(locate(/obj/effect/alien/weeds) in src.loc)
+				tally -= 1.5
+
 	if(istype(loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
 		var/turf/simulated/floor/gm/snow/S = src.loc
 		if(S && istype(S) && S.slayer > 0)
@@ -160,10 +165,10 @@
 				tally += 10
 
 	if(frenzy_aura)
-		tally -= 0.5
+		tally = tally - (frenzy_aura * 0.1) - 0.4
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.9
+		tally += 2
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src

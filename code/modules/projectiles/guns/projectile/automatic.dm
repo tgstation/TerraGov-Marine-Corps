@@ -8,6 +8,7 @@
 	origin_tech = "combat=4;materials=2"
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	automatic = 1
+	burst_amount = 3
 
 	fire_delay = 0
 

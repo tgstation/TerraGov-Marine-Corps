@@ -569,10 +569,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "Not a valid mob!"
 		return
 
-/*	if(world.time < 36000) //None of this can happen after 1 hour into the round -- But why not? Marines can still spawn in and players are still ghosting out of Larva. Commenting out for now.
-		usr <<"\red Too late. 1 hour has passed. You can no longer join as a larva."
-		return*/
-
 	if(!istype(L, /mob/living/carbon/Xenomorph/Larva))
 		usr << "\red That's not an Alien Larva."
 		return
@@ -596,9 +592,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		pluralcheck = " [deathtimeminutes] minutes and"
 	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 
-	if (deathtime < 6000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Larva - Ignored for Admins, cause we're special
+	if (deathtime < 3000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Larva - Ignored for Admins, cause we're special
 		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "\red You must wait 10 minutes to spawn as a Larva! (otherwise, you will burst when one is ready)"
+		usr << "\red You must wait 5 minutes to spawn as a Larva! (otherwise, you will burst when one is ready)"
 		return
 
 	if(L.away_timer < 600) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
@@ -619,4 +615,179 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if( isobserver(ghostmob) )
 			del(ghostmob)
 
+	return
+
+
+/mob/dead/verb/join_as_alien()
+	set category = "Ghost"
+	set name = "Join As Alien"
+	set desc = "Select an alive but logged-out Alien Larva to re-join the game."
+
+	var/mob/living/carbon/Xenomorph/L = src
+
+	if(ticker.current_state < GAME_STATE_PLAYING)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	if (!usr.stat) // Make sure we're an observer
+		// usr << "!usr.stat"
+		return
+
+	if (usr != src)
+		// usr << "usr != src"
+		return 0 // Something is terribly wrong
+
+	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
+		usr << "\red You are banned from playing Aliens and cannot spawn as a beautiful alium."
+		return
+
+	var/list/alien_list = list()
+
+	for(var/mob/living/carbon/Xenomorph/A in living_mob_list)
+		if(isXeno(A) && !A.client && !isXenoLarva(A))
+			alien_list += A.name
+
+	if(alien_list.len == 0)
+		usr << "\red There aren't any available Aliens (maybe try a larva?)."
+
+	var/choice = input("Pick an Alium:") as null|anything in alien_list
+	if (isnull(choice) || choice == "Cancel")
+		return
+
+	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+		if(choice == X.name)
+			L = X
+			break
+
+	if(!L || isnull( L ))
+		usr << "Not a valid mob!"
+		return
+
+	if(!istype(L, /mob/living/carbon/Xenomorph))
+		usr << "\red That's not an Alien...."
+		return
+
+	if(L.stat == DEAD)  // Alium is dead. Dead.
+		usr << "\red It's dead Jim."
+		return
+
+	if(L.client) // Alium player is still online
+		usr << "\red That player is still connected."
+		return
+
+	var/deathtime = world.time - usr.timeofdeath
+	var/deathtimeminutes = round(deathtime / 600)
+	var/pluralcheck = "minute"
+	if(deathtimeminutes == 0)
+		pluralcheck = ""
+	else if(deathtimeminutes == 1)
+		pluralcheck = " [deathtimeminutes] minute and"
+	else if(deathtimeminutes > 1)
+		pluralcheck = " [deathtimeminutes] minutes and"
+	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
+
+	if (deathtime < 6000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming an alium - Ignored for Admins, cause we're special
+		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
+		usr << "\red You must wait 10 minutes to spawn as an alien! (otherwise, you will burst when one is ready)"
+		return
+
+	if(L.away_timer < 600) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
+		usr << "\red That player hasn't been away long enough. Please wait [600 - L.away_timer] more seconds."
+		return
+
+	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this Alien?", "Confirmation", "Yes", "No") == "Yes")
+
+		if(L.client || L.stat == DEAD) // Do it again, just in case
+			usr << "\red Oops. That mob can no longer be controlled. Sorry."
+			return
+
+		var/mob/ghostmob = usr.client.mob
+		message_admins("[usr.ckey] has joined as an Alien.")
+		log_admin("[usr.ckey] has joined as an Alien.")
+		L.ckey = usr.ckey
+		// L.client = usr.client
+		if( isobserver(ghostmob) )
+			del(ghostmob)
+
+	return
+
+/mob/dead/verb/join_as_hellhound()
+	set category = "Ghost"
+	set name = "Join As Hellhound"
+	set desc = "Select an alive but logged-out Hellhound. THIS COMES WITH STRICT RULES. READ THEM OR GET BANNED."
+
+	var/mob/living/carbon/Xenomorph/Larva/L = src
+
+	if(ticker.current_state < GAME_STATE_PLAYING)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	if (!usr.stat) // Make sure we're an observer
+		// usr << "!usr.stat"
+		return
+
+	if (usr != src)
+		// usr << "usr != src"
+		return 0 // Something is terribly wrong
+
+	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
+		usr << "\red You are banned from playing aliens and cannot spawn as a hellhound."
+		return
+
+	var/list/hellhound_list = list()
+
+	for(var/mob/living/carbon/hellhound/A in living_mob_list)
+		if(istype(A) && !A.client)
+			hellhound_list += A.name
+
+	if(hellhound_list.len == 0)
+		usr << "\red There aren't any available hellhounds. What's a hellhound? Who are all these strange people?"
+		return
+
+	var/choice = input("Pick a hellhound:") as null|anything in hellhound_list
+	if (isnull(choice) || choice == "Cancel")
+		return
+
+	for(var/mob/living/carbon/hellhound/X in living_mob_list)
+		if(choice == X.name)
+			L = X
+			break
+
+	if(!L || isnull( L ))
+		usr << "Not a valid mob!"
+		return
+
+	if(!istype(L, /mob/living/carbon/hellhound))
+		usr << "\red That's not a hellhound. What are you smoking?"
+		return
+
+	if(L.stat == DEAD)  // DEAD
+		usr << "\red It's dead."
+		return
+
+	if(L.client) // Larva player is still online
+		usr << "\red That player is still connected."
+		return
+
+	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this hellhound?", "Confirmation", "Yes", "No") == "Yes")
+
+		if(L.client || L.stat == DEAD) // Do it again, just in case
+			usr << "\red Oops. That mob can no longer be controlled. Sorry."
+			return
+
+		var/mob/ghostmob = usr.client.mob
+		message_admins("[usr.ckey] has joined as a hellhound.")
+		log_admin("[usr.ckey] has joined as a hellhound.")
+		L.ckey = usr.ckey
+
+		if( isobserver(ghostmob) )
+			del(ghostmob)
+		spawn(15)
+			L << "\red <B>Attention!! You are playing as a hellhound. You can get server banned if you are shitty so listen up!</b>"
+			L << "\red You MUST listen to and obey the Predator's commands at all times. Die if they demand it. Not following them is unthinkable to a hellhound."
+			L << "\red You are not here to go hog wild rambo. You're here to be part of something rare, a Predator hunt."
+			L << "\red The Predator players must follow a strict code of role-play and you are expected to as well."
+			L << "\red The Predators cannot understand your speech. They can only give you orders and expect you to follow them. They have a camera that allows them to see you remotely, so you are excellent for scouting missions."
+			L << "\red Hellhounds are fiercely protective of their masters and will never leave their side if under attack."
+			L << "\red Note that ANY Predator can give you orders. If they conflict, follow the latest one. If they dislike your performance they can ask for another ghost and everyone will mock you. So do a good job!"
 	return

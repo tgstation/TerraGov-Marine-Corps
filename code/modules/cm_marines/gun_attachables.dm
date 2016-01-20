@@ -32,6 +32,7 @@
 	var/tank_size = 0 //Determines amount of flamethrower tiles it can spray, total.
 	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
 	var/delay_mod = 0 //Changes firing delay. Cannot go below 0.
+	var/burst_mod = 0 //Changes burst rate. 1 == 0.
 
 	New()
 		if(ammo_type)
@@ -66,13 +67,22 @@
 			G.flash_lum = light_mod
 		if(delay_mod)
 			G.fire_delay += delay_mod
-			if(G.fire_delay < 0) G.fire_delay = 0
+			if(G.fire_delay < 0)
+				G.fire_delay = 1
+				G.burst_amount++
+
+		if(burst_mod)
+			G.burst_amount += burst_mod
+			if(G.burst_amount < 2) G.burst_amount = 0
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
 		if(slot == "rail") G.rail = null
 		if(slot == "muzzle") G.muzzle = null
 		if(slot == "under") G.under = null
+
+		if(G.wielded)
+			G.unwield()
 
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
@@ -86,7 +96,9 @@
 		if(recoil_mod) G.recoil = initial(G.recoil)
 		if(twohanded_mod) G.twohanded = initial(G.twohanded)
 		if(silence_mod) G.silenced = initial(G.silenced)
-		if(delay_mod) G.fire_delay = initial(G.fire_delay)
+		if(delay_mod)
+			G.fire_delay = initial(G.fire_delay)
+			G.burst_amount = initial(G.burst_amount)
 		if(light_mod)  //Remember to turn the lights off
 			if(G.flashlight_on && G.flash_lum)
 				if(!ismob(G.loc))
@@ -96,6 +108,7 @@
 					M.SetLuminosity(-light_mod) //Lights are on and we removed the flashlight, so turn it off
 			G.flash_lum = initial(G.flash_lum)
 			G.flashlight_on = 0
+		if(burst_mod) G.burst_amount = initial(G.burst_amount)
 
 
 /obj/item/attachable/suppressor
@@ -302,8 +315,8 @@
 	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. However, greatly reduces accuracy and increases weapon recoil."
 	slot = "rail"
 	icon_state = "autoloader"
-	accuracy_mod = -35
-	delay_mod = -4
+	accuracy_mod = -25
+	delay_mod = -3
 	recoil_mod = 1
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/m4a3,
@@ -317,9 +330,35 @@
 	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. Increases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
 	slot = "muzzle"
 	icon_state = "comp"
-	accuracy_mod = 15
+	accuracy_mod = 20
 	ranged_dmg_mod = 90
-	recoil_mod = -2
+	recoil_mod = -3
 	guns_allowed = list(/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 					/obj/item/weapon/gun/projectile/M42C
 					)
+
+/obj/item/attachable/burstfire_assembly
+	name = "burst fire assembly"
+	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability."
+	icon_state = "rapidfire"
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/M42C
+						)
+	accuracy_mod = -40
+	slot = "under"
+	burst_mod = 2
+
+/obj/item/attachable/magnetic_harness
+	name = "magnetic harness"
+	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a USCM armor."
+	icon_state = "magnetic"
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/M42C,
+					/obj/item/weapon/gun/projectile
+						)
+	accuracy_mod = -15
+	slot = "rail"

@@ -87,7 +87,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/big_xeno = 0 //Toggles pushing
 	var/autopsied = 0
 
-	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
+	var/speed = -0.8 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves

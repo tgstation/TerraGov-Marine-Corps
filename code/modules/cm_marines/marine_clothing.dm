@@ -11,6 +11,17 @@
 	anti_hug = 1
 	w_class = 5
 
+/obj/item/clothing/head/helmet/marine/tech
+	name = "M10 Technician Helmet"
+	icon_state = "helmet-tech"
+	item_color = "helmet-tech"
+
+/obj/item/clothing/head/helmet/marine/medic
+	name = "M10 Medic Helmet"
+	icon_state = "helmet-medic"
+	item_color = "helmet-medic"
+
+
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
 	desc = "COG helmet owned by Anthony Carmine"
@@ -340,11 +351,11 @@
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
-		if(knife && src.loc == M) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
+		if(knife && src.loc == M && M.stat == 2) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
-				playsound(M, 'shotgun_shell_insert.ogg', 40, 1)
+				playsound(M, 'sound/weapons/shotgun_shell_insert.ogg', 40, 1)
 				knife = 0
 				update_icon()
 			return
@@ -357,7 +368,7 @@
 			knife = I
 			I.loc = src
 			M << "<div class='notice'>You slide the [I] into [src].</div>"
-			playsound(M, 'shotgun_shell_insert.ogg', 40, 1)
+			playsound(M, 'sound/weapons/shotgun_shell_insert.ogg', 40, 1)
 			update_icon()
 
 	update_icon()
@@ -387,12 +398,46 @@
 	item_state = "marinepack" //Placeholder
 
 /obj/item/weapon/storage/backpack/marine
-	name = "marine backpack"
-	desc = "A large backpack used by military."
+	name = "USCM Infantry Backpack"
+	desc = "The standard-issue backpack of the USCM forces."
 	icon_state = "marinepack"
 	item_state = "backpack"
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
+
+/obj/item/weapon/storage/backpack/marine/medic
+	name = "USCM Medic Backpack"
+	desc = "The standard-issue backpack worn by USCM Medics."
+	icon_state = "marinepack-medic"
+	item_state = "marinepack-medic"
+
+/obj/item/weapon/storage/backpack/marine/tech
+	name = "USCM Technician Backpack"
+	desc = "The standard-issue backpack worn by USCM Technicians."
+	icon_state = "marinepack-tech"
+	item_state = "marinepack-tech"
+
+
+
+/obj/item/weapon/storage/backpack/marinesatchel
+	name = "USCM Infantry Satchel"
+	desc = "A heavy-duty satchel carried by some USCM soldiers."
+	icon_state = "marinepack2"
+	item_state = "marinepack2"
+	max_w_class = 3    //  Largest item that can be placed into the backpack
+	max_combined_w_class = 21   //Capacity of the backpack
+
+/obj/item/weapon/storage/backpack/marinesatchel/medic
+	name = "USCM Medic Satchel"
+	desc = "A heavy-duty satchel carried by some USCM Medics."
+	icon_state = "marinepack-medic2"
+	item_state = "marinepack-medic"
+
+/obj/item/weapon/storage/backpack/marinesatchel/tech
+	name = "USCM Technician Satchel"
+	desc = "A heavy-duty satchel carried by some USCM Technicians."
+	icon_state = "marinepack-tech2"
+	item_state = "marinepack-tech2"
 
 //BELT
 
