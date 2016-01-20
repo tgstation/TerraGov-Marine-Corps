@@ -95,11 +95,13 @@
 	if (stat == 2 || (XRAY in mutations))
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
+		sight |= SEE_TURFS
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	else if (stat != 2)
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
+		sight |= SEE_TURFS
 		see_in_dark = 6
 		see_invisible = SEE_INVISIBLE_LEVEL_ONE
 	if (healths)
