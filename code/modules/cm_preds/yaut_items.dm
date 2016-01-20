@@ -5,7 +5,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "glaive"
 	item_state = "glaive"
-	name = "glaive"
+	name = "Yautja War Glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
 	w_class = 4.0
@@ -33,7 +33,7 @@
 	icon_state = "pred_mask1"
 	item_state = "helmet"
 	icon_override = 'icons/Predator/items.dmi'
-	name = "clan mask"
+	name = "Yautja Clan Mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
 	armor = list(melee = 60, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
@@ -102,7 +102,7 @@
 				mob.update_inv_glasses()
 
 /obj/item/clothing/suit/armor/yautja
-	name = "clan armor"
+	name = "Yautja Clan Armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "halfarmor"
@@ -116,7 +116,7 @@
 	unacidable = 1
 
 /obj/item/clothing/suit/armor/yautja/full
-	name = "heavy clan armor"
+	name = "Yautja Heavy Clan Armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
@@ -124,8 +124,12 @@
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
-	name = "alien harpoon"
+	name = "Yautja Harpoon"
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "spike1"
+	item_state = "spike1"
+	icon_override = 'icons/Predator/items.dmi'
 	force = 15
 	throwforce = 24
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
@@ -133,7 +137,7 @@
 	sharp = 1
 
 /obj/item/weapon/wristblades
-	name = "wrist blades"
+	name = "Yautja Wrist Blades"
 	desc = "A pair of huge, serrated blades extending from a metal gauntlet."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
@@ -173,7 +177,7 @@
 				D.open(1)
 
 /obj/item/clothing/shoes/yautja
-	name = "armored boots"
+	name = "Yautja Armored Boots"
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "y-boots"
 	icon_override = 'icons/Predator/items.dmi'
@@ -197,7 +201,7 @@
 			icon_state = "y-boots2"
 
 /obj/item/clothing/under/chainshirt
-	name = "chain-mesh shirt"
+	name = "Yautja Mesh"
 	icon = 'icons/Predator/items.dmi'
 	desc = "A set of very fine chainlink in a meshwork for comfort and utility."
 	icon_state = "mesh_shirt"
@@ -209,12 +213,15 @@
 	species_restricted = null
 
 /obj/item/clothing/gloves/yautja
-	name = "alien bracers"
-//	icon = 'icons/Predator/items.dmi'
-//	icon_state = "bracers"
+	name = "Yautja Bracers"
 	desc = "An extremely complex, yet simple-to-operate set of armored bracers worn by the Yautja. It has many functions, activate them to use some."
-	icon_state = "s-ninja"//placeholder
-	item_state = "s-ninja"
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "bracer"
+	icon_override = 'icons/Predator/items.dmi'
+	item_color = "bracer"
+	item_state = "bracera"
+	//icon_state = "bracer"//placeholder
+	//item_state = "bracer"
 	species_restricted = null
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
@@ -510,8 +517,12 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
-	name = "alien injector"
-	desc = "A strange, thin alien needle."
+	name = "Yautja Crystal"
+	desc = "A strange glowing crystal with a spike at one end."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "crystal"
+	item_state = "crystal"
+	icon_override = 'icons/Predator/items.dmi'
 	amount_per_transfer_from_this = 35
 	volume = 35
 
@@ -526,7 +537,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "plasma"
 	item_state = "plasma_wear"
-	name = "plasma caster"
+	name = "Yautja Plasma Caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	canremove = 0
@@ -750,7 +761,7 @@
 	channels = list("Yautja" = 1)
 
 /obj/item/weapon/gun/launcher/speargun
-	name = "alien speargun"
+	name = "Yautja speargun"
 	desc = "A strange device that seems to hold compact spears and fires them at high velocity."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "speargun"
@@ -857,7 +868,7 @@
 
 
 /obj/item/weapon/melee/yautja_sword
-	name = "clan sword"
+	name = "Yautja Clan Sword"
 	desc = "A huge, incredibly sharp blade. It looks extremely old, but still dangerous."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predsword"
@@ -930,7 +941,7 @@
 
 /obj/item/weapon/gun/launcher/spikethrower
 
-	name = "spike thrower"
+	name = "Yautja Spike Thrower"
 	desc = "A vicious weapon that fires out sharp spikes. It seems to ooze and shift about by itself."
 
 	var/last_regen = 0
