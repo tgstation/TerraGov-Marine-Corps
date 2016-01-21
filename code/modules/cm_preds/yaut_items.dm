@@ -604,19 +604,19 @@
 /obj/item/projectile/beam/yautja1
 	name = "plasma bolt"
 	icon_state = "bluelaser"
-	damage = 25
+	damage = 22
 	stun = 5
 	weaken = 2
 
 /obj/item/projectile/beam/yautja2
 	name = "plasma"
 	icon_state = "pulse1"
-	damage = 45
+	damage = 35
 
 /obj/item/projectile/beam/yautja3
 	name = "heavy plasma"
 	icon_state = "pulse1_bl"
-	damage = 65
+	damage = 55
 
 	on_hit(var/atom/target, var/blocked = 0)
 		if(!istype(target, /turf/simulated/wall))

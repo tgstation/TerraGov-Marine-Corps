@@ -10,8 +10,8 @@
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 95
-	health = 270
-	maxHealth = 270
+	health = 340
+	maxHealth = 340
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
@@ -56,9 +56,9 @@
 		momentum = 0
 		return
 
-	if(momentum > 24)
-		Weaken(2)
-		src.visible_message("<b>[src] skids to a halt!</b>","<b>You skid to a halt.</B>")
+//	if(momentum > 24)
+//		Weaken(2)
+//		src.visible_message("<b>[src] skids to a halt!</b>","<b>You skid to a halt.</B>")
 	pass_flags = 0
 	momentum = 0
 	speed = initial(speed)
@@ -134,7 +134,7 @@
 	if(noise_timer == 3 && momentum > 10)
 		playsound(loc, 'sound/mecha/mechstep.ogg', 50 + (momentum), 0)
 
-	for(var/mob/living/carbon/M in view(4))
+	for(var/mob/living/carbon/M in view(8))
 		if(M && M.client && get_dist(M,src) <= round(momentum / 10) && src != M && momentum > 5)
 			if(!isXeno(M))
 				shake_camera(M, 1, 1)
@@ -289,7 +289,6 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				playsound(loc, "punch", 25, 1, -1)
 				diagonal_step(AM,dir)//Occasionally fling it diagonally.
 				step_away(AM,src,round(momentum/10) +1)
-				momentum -= 5
 				now_pushing = 0
 				return
 
@@ -306,7 +305,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 
 		if(istype(AM,/mob/living/carbon) && momentum > 7)
 			var/mob/living/carbon/H = AM
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(loc, "punch", 25, 1, 1)
 			if(momentum < 12 && momentum > 7)
 				H.Weaken(2)
 			else if(momentum < 20)
@@ -315,9 +314,9 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 			else if (momentum >= 20)
 				H.Weaken(8)
 				H.take_overall_damage(momentum * 2)
-			diagonal_step(H,dir, 70)//Occasionally fling it diagonally.
+			diagonal_step(H,dir, 100)//Occasionally fling it diagonally.
 			step_away(H,src,round(momentum / 10))
-			visible_message("<B>[src] knocks over [H]!</b>","<B>You knock over [H]!</B>")
+			visible_message("<B>[src] rams into [H]!</b>","<B>You ram into [H]!</B>")
 			now_pushing = 0
 			return
 

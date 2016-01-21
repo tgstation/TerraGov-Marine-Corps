@@ -99,7 +99,7 @@
 	destroy_surroundings = 0
 
 	faction = "yautja"
-	var/lifetime = 16 //About 20 seconds.
+	var/lifetime = 12 //About 15 seconds.
 	var/time_idle = 0
 
 	Process_Spacemove(var/check_drift = 0)
@@ -129,14 +129,9 @@
 		var/atom/T = null
 		stop_automated_movement = 0
 
-		for(var/atom/A in ListTargets(5))
+		for(var/atom/A in ListTargets(7))
 			if(A == src)
 				continue
-
-			var/atom/F = Found(A)
-			if(F)
-				T = F
-				break
 
 			if(isliving(A))
 				var/mob/living/L = A
@@ -191,7 +186,7 @@
 			del(src)
 			return
 
-		for(var/mob/living/carbon/C in range(12))
+		for(var/mob/living/carbon/C in range(10))
 			if(C.target_locked)
 				var/image/I = C.target_locked
 				if(I.icon_state == "locked-y" && !isYautja(C) && C.stat != DEAD)
@@ -208,7 +203,6 @@
 
 				if(HOSTILE_STANCE_ATTACKING)
 					AttackTarget()
-					target_mob = FindTarget() //Now find a new one, fast!
 
 	AttackingTarget()
 		. =..()
@@ -217,4 +211,3 @@
 			if(prob(5))
 				L.Weaken(3)
 				L.visible_message("<span class='danger'>\the [src] viciously slashes at \the [L]!</span>")
-				L.attack_animal(src)

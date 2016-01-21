@@ -153,7 +153,7 @@ datum/preferences
 	var/slot_name = ""
 
 	var/predator_name = ""
-	var/predator_gender = ""
+	var/predator_gender = "male"
 	var/is_pred_elder = 0
 
 /datum/preferences/New(client/C)
@@ -1149,7 +1149,7 @@ datum/preferences
 					if(predator_gender == "male")
 						predator_gender = "female"
 					else
-						gender = "male"
+						predator_gender = "male"
 
 				if("age")
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null

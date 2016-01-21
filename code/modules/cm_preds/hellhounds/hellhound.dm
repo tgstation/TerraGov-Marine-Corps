@@ -50,6 +50,9 @@
 	if(attack_timer)
 		return
 
+
+	if(get_dist(src,A) > 1) return
+
 	if(istype(A,/mob/living/carbon/human))
 		bite_human(A)
 	else if(istype(A,/mob/living/carbon/Xenomorph))
