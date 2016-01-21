@@ -58,7 +58,7 @@
 	var/charge = 1
 
 /obj/item/device/lightreplacer/New()
-	uses = max_uses / 2
+	uses = max_uses
 	failmsg = "The [name]'s refill light blinks red."
 	..()
 
