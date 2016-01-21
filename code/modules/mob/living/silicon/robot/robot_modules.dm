@@ -211,8 +211,13 @@
 		src.modules += new /obj/item/taperoll/engineering(src)
 		src.modules += new /obj/item/weapon/gripper(src)
 		src.modules += new /obj/item/weapon/matter_decompiler(src)
+		src.modules += new /obj/item/device/lightreplacer(src)
 
 		src.emag = new /obj/item/borg/stun(src)
+
+	/obj/item/weapon/robot_module/engineering/respawn_consumable(var/mob/living/silicon/robot/R)
+		var/obj/item/device/lightreplacer/LR = locate() in src.modules
+		LR.Charge(R)
 
 		for(var/T in stacktypes)
 			var/obj/item/stack/sheet/W = new T(src)
