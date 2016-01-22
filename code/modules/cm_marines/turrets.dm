@@ -678,12 +678,12 @@
 	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
-	if(istype(Proj,/obj/item/projectile/energy))
+	if(istype(Proj,/obj/item/projectile/energy) || istype(Proj,/obj/item/projectile/beam))
 		visible_message("\red [src] is hit by the [Proj]!")
 		update_health(Proj.damage / 2)
 		return
 
-	if(!istype(Proj,/obj/item/projectile/bullet/m30))
+	if(istype(Proj,/obj/item/projectile/bullet))
 		visible_message("\blue [Proj] bounces harmlessly off the [src]'s armor plating.")
 	return
 

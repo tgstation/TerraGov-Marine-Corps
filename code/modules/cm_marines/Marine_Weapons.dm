@@ -719,7 +719,7 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/clothing/glasses/m56_goggles(src)
+			new /obj/item/clothing/glasses/night/m56_goggles(src)
 			new /obj/item/smartgun_powerpack(src)
 			new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
 			new /obj/item/weapon/gun/projectile/M56_Smartgun(src)

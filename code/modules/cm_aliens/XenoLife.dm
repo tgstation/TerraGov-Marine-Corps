@@ -23,7 +23,7 @@
 	if(isXenoLarva(src) && src.a_intent != "help")
 		src.a_intent = "help"
 
-	if(jelly && jellyGrow < jellyMax)
+	if(jelly && jellyGrow < jellyMax && client)
 		jellyGrow++
 		if(jellyGrow == jellyMax-1)
 			src << "\green You feel the royal jelly swirl in your veins.."

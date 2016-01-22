@@ -161,7 +161,7 @@
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
-			var/damage = rand(5,20) //Who cares, it's just Ian and the Monkeys (that would make a great band name)
+			var/damage = (rand(M.melee_damage_lower,M.melee_damage_upper) + 3)
 			visible_message("\red \The [M] bites at \the [src]!")
 			apply_damage(damage, BRUTE)
 
