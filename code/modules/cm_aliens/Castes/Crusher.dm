@@ -44,7 +44,7 @@
 	stat(null, "Momentum: [momentum]")
 
 
-/mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction)
+/mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction, var/stunned = 0)
 	if(momentum < 0) //Somehow. Could happen if you slam into multiple things
 		momentum = 0
 
@@ -56,9 +56,9 @@
 		momentum = 0
 		return
 
-//	if(momentum > 24)
-//		Weaken(2)
-//		src.visible_message("<b>[src] skids to a halt!</b>","<b>You skid to a halt.</B>")
+	if(stunned && momentum > 24)
+		Weaken(2)
+		src.visible_message("<b>[src] skids to a halt!</b>","<b>You skid to a halt.</B>")
 	pass_flags = 0
 	momentum = 0
 	speed = initial(speed)
@@ -94,10 +94,13 @@
 	if(speed > -2.6)
 		speed -= 0.2 //Speed increases each step taken. At 30 tiles, maximum speed is reached.
 
-	if(momentum < 20)	 //Maximum 30 momentum.
-		momentum += 2 //2 per turf. Max speed in 15.
+	if(momentum <= 18)	 //Maximum 30 momentum.
+		momentum += 3 //2 per turf. Max speed in 15.
 
-	if(momentum > 19 && momentum < 30)
+	else if(momentum > 18 && momentum < 25)
+		momentum += 2
+
+	else if(momentum >= 25 && momentum < 30)
 		momentum++ //Increases slower at high speeds so we don't go LAZERFAST
 
 	if(momentum < 0)
@@ -111,6 +114,9 @@
 
 	if(momentum <= 1)
 		charge_dir = dir
+
+	if(charge_dir != dir) //Still not facing? What the heck!
+		return
 
 	//Some flavor text.
 	if(momentum == 10)
@@ -235,7 +241,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						visible_message("\red The [src] smashes straight into [M]!")
 						M.update_health()
 						src << "\red Bonk!"
-						stop_momentum()
+						stop_momentum(charge_dir,1)
 						now_pushing = 0
 						return
 
@@ -248,7 +254,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 							diagonal_step(mech,dir,50)//Occasionally fling it diagonally.
 							step_away(mech,src)
 						Weaken(2)
-						stop_momentum(charge_dir)
+						stop_momentum(charge_dir,1)
 						now_pushing = 0
 						return
 					if(istype(AM,/obj/machinery/marine_turret))
@@ -264,7 +270,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						if(!isnull(turret))
 							src << "\red Bonk!"
 							Weaken(3)
-							stop_momentum(charge_dir)
+							stop_momentum(charge_dir,1)
 							now_pushing = 0
 						return
 					if(AM:unacidable)
@@ -323,13 +329,13 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 		if(isturf(AM) && AM.density) //We were called by turf bump.
 			if(momentum <= 25 && momentum > 14)
 				src << "\red Bonk!"
-				stop_momentum(charge_dir)
+				stop_momentum(charge_dir,1)
 				src.Weaken(3)
 			if(momentum > 26)
 				AM:ex_act(2) //Should dismantle, or at least heavily damage it.
 
-			if(!isnull(AM) && momentum > 18)
-				stop_momentum(charge_dir)
+			if(!isnull(AM) && momentum > 20)
+				stop_momentum(charge_dir,1)
 			now_pushing = 0
 			return
 

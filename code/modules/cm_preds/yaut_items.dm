@@ -764,14 +764,14 @@
 	name = "Yautja Speargun"
 	desc = "A compact Yautja device in the shape of a shell. Capable of being loaded with spears to be launched at prey. Commonly carried by cautious hunters."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "speargun"
+	icon_state = "speargun-0"
 	item_state = "predspeargun"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ejectshell = 0                          // No spent shells.
 	mouthshoot = 1                          // No suiciding with this weapon, causes runtimes.
 	fire_sound_text = "a solid thunk"
 	fire_delay = 26
-	release_force = 15
+	release_force = 16
 
 	slot_flags = SLOT_BELT
 	var/slots = 3
@@ -789,7 +789,7 @@
 			W.loc = src
 			slots_filled++
 			user.visible_message("[user] slides [W] into [src].","You slide [W] into [src].")
-			icon_state = "[initial(icon_state)]-1"
+			icon_state = "speargun-[slots_filled]"
 			return
 		else
 			return ..()
@@ -800,7 +800,6 @@
 		for(var/obj/item/I in contents)
 			if(istype(I))
 				in_chamber = I
-				slots_filled--
 				return 1
 		return 0
 
@@ -817,10 +816,15 @@
 
 	Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 		if(!..()) return //Only do this on a successful shot.
-		if(!slots_filled)
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-[slots_filled]"
+		if(isYautja(user))
+			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+				var/obj/item/clothing/gloves/yautja/G = user.hands
+				if(G.cloaked)
+					G.decloak(user)
+
+		if(slots_filled) slots_filled--
+		if(slots_filled >= 0)
+			icon_state = "speargun-[slots_filled]"
 
 /obj/item/weapon/melee/yautja_chain
 	name = "Yautja Chainwhip"
@@ -876,30 +880,33 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 38
+	force = 46
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	sharp = 1
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
-		if(ishuman(user))
+		if(!isYautja(user))
 			user << "\blue You aren't strong enough to swing the sword properly!"
 			force = initial(force) - 24
 			if(prob(50))
-				user.make_dizzy(20)
+				user.make_dizzy(80)
 		else
 			force = initial(force)
 
-		if(isYautja(user) && prob(10) && !target.lying)
+		if(isYautja(user) && prob(15) && !target.lying)
 			user.visible_message("[user] slashes \the [target] so hard they go flying!")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 			target.Weaken(3)
+			step_away(target,user,1)
 		return ..()
 
 	pickup(mob/living/user as mob)
-		if(ishuman(user))
+		if(!isYautja(user))
 			user << "You struggle to pick up the huge, unwieldy sword. It makes you dizzy just trying to hold it."
-			user.make_dizzy(30)
+			user.make_dizzy(50)
 
 /obj/item/weapon/melee/yautja_scythe
 	name = "Yautja Double War Scythe"
@@ -941,19 +948,27 @@
 
 /obj/item/weapon/gun/launcher/spikethrower
 
-	name = "Yautja Spike Thrower"
+	name = "Yautja Spike Rifle"
 	desc = "A long-barreled spike thrower, fashioned in the manner of a long harpoon rifle. Carried by Yautja who wish to maim their prey from a distance."
 
 	var/last_regen = 0
-	var/spike_gen_time = 100
-	var/max_spikes = 5
-	var/spikes = 5
-	release_force = 12
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "spikethrower3"
+	var/spike_gen_time = 200
+	var/max_spikes = 3
+	var/spikes = 3
+	release_force = 20
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "spike-0"
 	item_state = "spikelauncher"
 	fire_sound_text = "a strange noise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
+	zoomdevicename = "scope"
+
+	verb/scope()
+		set category = "Yautja"
+		set name = "Use Scope"
+		set popup_menu = 1
+
+		zoom()
 
 /obj/item/weapon/gun/launcher/spikethrower/New()
 	..()
@@ -976,7 +991,7 @@
 	usr << "It has [spikes] [spikes == 1 ? "spike" : "spikes"] remaining."
 
 /obj/item/weapon/gun/launcher/spikethrower/update_icon()
-	icon_state = "spikethrower[spikes]"
+	icon_state = "spike-[spikes]"
 
 /obj/item/weapon/gun/launcher/spikethrower/emp_act(severity)
 	return
@@ -996,12 +1011,38 @@
 	if(in_chamber) return 1
 	if(spikes < 1) return 0
 
-	spikes--
 	in_chamber = new /obj/item/weapon/spike(src)
 	return 1
 
 /obj/item/weapon/gun/launcher/spikethrower/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-	if(..()) update_icon()
+	if(..())
+		if(isYautja(user))
+			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+				var/obj/item/clothing/gloves/yautja/G = user.hands
+				if(G.cloaked)
+					G.decloak(user)
+
+		spikes--
+		update_icon()
+
+/obj/item/weapon/spike/yautja
+	name = "spike"
+	desc = "It's about a foot of weird silver metal with a wicked point. It begins to melt as soon as you examine it."
+	sharp = 1
+	edge = 0
+	throwforce = 8
+	w_class = 2
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "spike"
+	item_state = "bolt"
+
+	New()
+		spawn(50)
+			if(istype(src.loc,/mob/living))
+				var/mob/living/L = src.loc
+				L.drop_from_inventory(src) //Clean out the inventory properly
+				if(L.anchored) L.anchored = 0
+			del(src)
 
 /obj/item/weapon/grenade/spawnergrenade/hellhound
 	name = "hellhound caller"
@@ -1014,9 +1055,12 @@
 	throwforce = 55
 	w_class = 1.0
 	det_time = 30
-	var/used = 0
 	var/obj/machinery/camera/current = null
 	var/turf/activated_turf = null
+
+	dropped()
+		check_eye()
+		return ..()
 
 	attack_self(mob/user as mob)
 		if(!active)
@@ -1029,14 +1073,15 @@
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
-		return
-
-	activate(mob/user as mob)
-		if(active || used)
+		else
+			if(!isYautja(user)) return
 			if(!isYautja(user)) return
 			activated_turf = get_turf(user)
 			display_camera(user)
-			check_eye(user)
+		return
+
+	activate(mob/user as mob)
+		if(active)
 			return
 
 		if(user)
@@ -1055,7 +1100,6 @@
 			var/turf/T = get_turf(src)
 			if(ispath(spawner_type))
 				new spawner_type(T)
-			used = 1
 //		del(src)
 		return
 
@@ -1102,7 +1146,7 @@
 	unacidable = 1
 	sharp = 1
 	attack_verb = list("speared", "stabbed", "impaled")
-	var/on = 0
+	var/on = 1
 	var/timer = 0
 
 	IsShield()
@@ -1119,6 +1163,7 @@
 		item_state = "combilong"
 		w_class = 4
 		force = 28
+		throwforce = initial(throwforce)
 		attack_verb = list("speared", "stabbed", "impaled")
 		timer = 1
 		spawn(10)
@@ -1129,6 +1174,7 @@
 		item_state = "combishort"
 		w_class = 1
 		force = 0
+		throwforce = initial(throwforce) - 50
 		attack_verb = list("thwacked", "smacked")
 		timer = 1
 		spawn(10)

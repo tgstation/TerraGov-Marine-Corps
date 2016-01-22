@@ -27,13 +27,6 @@
 	icon_state = "spike"
 	item_state = "bolt"
 
-	New()
-		spawn(150)
-			if(istype(src.loc,/mob/living))
-				var/mob/living/L = src.loc
-				L.drop_from_inventory(src) //Clean out the inventory properly
-			del(src)
-
 /obj/item/weapon/arrow/quill
 
 	name = "vox quill"
