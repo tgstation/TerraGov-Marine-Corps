@@ -1176,6 +1176,8 @@
 			//Predator bracers, plus icon updating.
 			if(gloves && species && species.name == "Yautja")
 				var/obj/item/clothing/gloves/yautja/Y = gloves
+				if(Y.cloak_timer)
+					Y.cloak_timer--
 				if(Y && istype(Y))
 					if(Y.cloaked)
 						Y.charge -= 10

@@ -81,6 +81,9 @@
 		if(slot == "muzzle") G.muzzle = null
 		if(slot == "under") G.under = null
 
+		if(G.wielded)
+			G.unwield()
+
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = initial(G.force)

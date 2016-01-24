@@ -5,7 +5,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "glaive"
 	item_state = "glaive"
-	name = "glaive"
+	name = "Yautja War Glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
 	w_class = 4.0
@@ -33,7 +33,7 @@
 	icon_state = "pred_mask1"
 	item_state = "helmet"
 	icon_override = 'icons/Predator/items.dmi'
-	name = "clan mask"
+	name = "Yautja Clan Mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
 	armor = list(melee = 60, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
@@ -102,7 +102,7 @@
 				mob.update_inv_glasses()
 
 /obj/item/clothing/suit/armor/yautja
-	name = "clan armor"
+	name = "Yautja Clan Armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "halfarmor"
@@ -116,7 +116,7 @@
 	unacidable = 1
 
 /obj/item/clothing/suit/armor/yautja/full
-	name = "heavy clan armor"
+	name = "Yautja Heavy Clan Armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
@@ -124,17 +124,20 @@
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
-	name = "alien harpoon"
+	name = "Yautja Harpoon"
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "spike"
+	item_state = "spike1"
+	icon_override = 'icons/Predator/items.dmi'
 	force = 15
-	throwforce = 66
+	throwforce = 24
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
 	unacidable = 1
 	sharp = 1
-	edge = 1
 
 /obj/item/weapon/wristblades
-	name = "wrist blades"
+	name = "Yautja Wrist Blades"
 	desc = "A pair of huge, serrated blades extending from a metal gauntlet."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
@@ -174,7 +177,7 @@
 				D.open(1)
 
 /obj/item/clothing/shoes/yautja
-	name = "armored boots"
+	name = "Yautja Armored Boots"
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "y-boots"
 	icon_override = 'icons/Predator/items.dmi'
@@ -198,7 +201,7 @@
 			icon_state = "y-boots2"
 
 /obj/item/clothing/under/chainshirt
-	name = "chain-mesh shirt"
+	name = "Yautja Mesh"
 	icon = 'icons/Predator/items.dmi'
 	desc = "A set of very fine chainlink in a meshwork for comfort and utility."
 	icon_state = "mesh_shirt"
@@ -210,12 +213,15 @@
 	species_restricted = null
 
 /obj/item/clothing/gloves/yautja
-	name = "alien bracers"
-//	icon = 'icons/Predator/items.dmi'
-//	icon_state = "bracers"
+	name = "Yautja Bracers"
 	desc = "An extremely complex, yet simple-to-operate set of armored bracers worn by the Yautja. It has many functions, activate them to use some."
-	icon_state = "s-ninja"//placeholder
-	item_state = "s-ninja"
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "bracer"
+	icon_override = 'icons/Predator/items.dmi'
+	item_color = "bracer"
+	item_state = "bracera"
+	//icon_state = "bracer"//placeholder
+	//item_state = "bracer"
 	species_restricted = null
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
@@ -314,8 +320,9 @@
 		if(cloaked) //Turn it off.
 			decloak(usr)
 		else //Turn it on!
-			if(cloak_timer && prob(50))
-				usr << "\blue Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks."
+			if(cloak_timer)
+				if(prob(50))
+					usr << "\blue Your cloaking device is still recharging! Time left: <B>[cloak_timer]</b> ticks."
 				return 0
 			if(!drain_power(usr,50)) return
 			cloaked = 1
@@ -334,7 +341,7 @@
 		user << "Your cloaking device deactivates."
 		cloaked = 0
 		for(var/mob/O in oviewers(user))
-			O.show_message("[user.name] wavers into existence!",1)
+			O.show_message("[user.name] shimmers into existence!",1)
 		playsound(user.loc,'sound/effects/cloakoff.ogg', 50, 1)
 		user.update_icons()
 		cloak_timer = 10
@@ -490,6 +497,15 @@
 			usr << "Your active hand must be empty."
 			return 0
 
+		if(inject_timer)
+			usr << "Your bracers need some time to recuperate first."
+			return 0
+
+		if(!drain_power(usr,70)) return
+		inject_timer = 1
+		spawn(100)
+			inject_timer = 0
+
 		for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
 			usr << "\blue The [S] skips back towards you!"
 			new /obj/item/weapon/grenade/spawnergrenade/smartdisc(S.loc)
@@ -501,8 +517,12 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
-	name = "alien injector"
-	desc = "A strange, thin alien needle."
+	name = "Yautja Crystal"
+	desc = "A strange glowing crystal with a spike at one end."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "crystal"
+	item_state = "crystal"
+	icon_override = 'icons/Predator/items.dmi'
 	amount_per_transfer_from_this = 35
 	volume = 35
 
@@ -517,7 +537,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "plasma"
 	item_state = "plasma_wear"
-	name = "plasma caster"
+	name = "Yautja Plasma Caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	canremove = 0
@@ -548,7 +568,7 @@
 			if(1)
 				mode = 2
 				charge_cost = 500
-				fire_delay = 20
+				fire_delay = 30
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma bolts."
 				projectile_type = "/obj/item/projectile/beam/yautja3"
@@ -582,31 +602,31 @@
 		..()
 
 /obj/item/projectile/beam/yautja1
-	name = "plasma bolt"
+	name = "Plasma Caster Spark"
 	icon_state = "bluelaser"
-	damage = 25
+	damage = 22
 	stun = 5
 	weaken = 2
 
 /obj/item/projectile/beam/yautja2
-	name = "plasma"
+	name = "Plasma Caster Bolt"
 	icon_state = "pulse1"
-	damage = 45
+	damage = 35
 
 /obj/item/projectile/beam/yautja3
-	name = "heavy plasma"
+	name = "Plasma Caster Blast"
 	icon_state = "pulse1_bl"
-	damage = 85
+	damage = 55
 
 	on_hit(var/atom/target, var/blocked = 0)
 		if(!istype(target, /turf/simulated/wall))
-			explosion(target,-1,-1,2,4)
+			explosion(target,-1,-1,1,2)
 		return 1
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
 /obj/item/weapon/storage/backpack/yautja
-	name = "leather bag"
-	desc = "A huge leather pouch worn around the waist, made from the hide of some unknown beast."
+	name = "Yautja Hunting Pouch"
+	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "beltbag"
 	item_state = "beltbag"
@@ -616,8 +636,8 @@
 	max_combined_w_class = 24
 
 /obj/item/clothing/glasses/night/yautja
-	name = "alien nightvision visor"
-	desc = "Strange alien technology"
+	name = "Bio-mask Nightvision"
+	desc = "A vision overlay generated by the Bio-Mask. Used for low-light conditions."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "visor_nvg"
 	item_state = "securityhud"
@@ -629,8 +649,8 @@
 		overlay = null  //Stops the green overlay.
 
 /obj/item/clothing/glasses/thermal/yautja
-	name = "alien thermal visor"
-	desc = "Strange alien technology"
+	name = "Bio-mask Thermal"
+	desc = "A vision overlay generated by the Bio-Mask. Used to sense the heat of prey."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "visor_thermal"
 	item_state = "securityhud"
@@ -639,8 +659,8 @@
 	canremove = 0
 
 /obj/item/clothing/glasses/meson/yautja
-	name = "alien X-ray visor"
-	desc = "Strange alien technology"
+	name = "Bio-mask X-ray"
+	desc = "A vision overlay generated by the Bio-Mask. Used to see through objects."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "visor_meson"
 	item_state = "securityhud"
@@ -648,12 +668,12 @@
 	canremove = 0
 
 /obj/item/weapon/legcuffs/yautja
-	name = "alien trap"
+	name = "Yautja Mine"
 	throw_speed = 2
 	throw_range = 2
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "yauttrap0"
-	desc = "A trap used to catch prey."
+	desc = "A bizarre Yautja device used for trapping and killing prey."
 	var/armed = 0
 	breakouttime = 600 // 1 minute
 	layer = 2.8 //Goes under weeds.
@@ -708,8 +728,8 @@
 
 //Yautja channel. Has to delete stock encryption key so we don't receive sulaco channel.
 /obj/item/device/radio/headset/yautja
-	name = "alien earpiece"
-	desc = "A strange headset that fits in a bizarrely-shaped ear."
+	name = "Yautja vox caster"
+	desc = "A strange Yautja device used for projecting the Yautja's voice to the others in its pack. Similar in function to a standard human radio."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = 1214
@@ -741,17 +761,17 @@
 	channels = list("Yautja" = 1)
 
 /obj/item/weapon/gun/launcher/speargun
-	name = "alien speargun"
-	desc = "A strange device that seems to hold compact spears and fires them at high velocity."
+	name = "Yautja Speargun"
+	desc = "A compact Yautja device in the shape of a shell. Capable of being loaded with spears to be launched at prey. Commonly carried by cautious hunters."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "speargun"
-	item_state = "speargun"
+	icon_state = "speargun-0"
+	item_state = "predspeargun"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ejectshell = 0                          // No spent shells.
 	mouthshoot = 1                          // No suiciding with this weapon, causes runtimes.
 	fire_sound_text = "a solid thunk"
 	fire_delay = 26
-	release_force = 15
+	release_force = 16
 
 	slot_flags = SLOT_BELT
 	var/slots = 3
@@ -769,7 +789,7 @@
 			W.loc = src
 			slots_filled++
 			user.visible_message("[user] slides [W] into [src].","You slide [W] into [src].")
-			icon_state = "[initial(icon_state)]-1"
+			icon_state = "speargun-[slots_filled]"
 			return
 		else
 			return ..()
@@ -780,7 +800,6 @@
 		for(var/obj/item/I in contents)
 			if(istype(I))
 				in_chamber = I
-				slots_filled--
 				return 1
 		return 0
 
@@ -797,15 +816,20 @@
 
 	Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 		if(!..()) return //Only do this on a successful shot.
-		if(!slots_filled)
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-[slots_filled]"
+		if(isYautja(user))
+			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+				var/obj/item/clothing/gloves/yautja/G = user.hands
+				if(G.cloaked)
+					G.decloak(user)
+
+		if(slots_filled) slots_filled--
+		if(slots_filled >= 0)
+			icon_state = "speargun-[slots_filled]"
 
 /obj/item/weapon/melee/yautja_chain
-	name = "serrated chainwhip"
-	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. It looks lethal."
-	icon_state = "chain"
+	name = "Yautja Chainwhip"
+	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
+	icon_state = "whip"
 	item_state = "chain"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
@@ -829,8 +853,8 @@
 		return ..()
 
 /obj/item/weapon/melee/yautja_knife
-	name = "ceremonial dagger"
-	desc = "A viciously sharp dagger enscribed with ancient writing."
+	name = "Yautja Ceremonial Dagger"
+	desc = "A viciously sharp dagger enscribed with ancient Yautja markings. Smells thickly of blood. Carried by some hunters."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predknife"
 	item_state = "knife"
@@ -848,42 +872,45 @@
 
 
 /obj/item/weapon/melee/yautja_sword
-	name = "clan sword"
-	desc = "A huge, incredibly sharp blade. It looks extremely old, but still dangerous."
+	name = "Yautja Hunting Blade"
+	desc = "An expertly crafted Yautja blade carried by hunters who wish to fight up close. Razor sharp, and capable of cutting flesh into ribbons. Commonly carried by aggresive and lethal hunters."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predsword"
-	item_state = "swordchain"
+	item_state = "clansword"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 38
+	force = 46
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	sharp = 1
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
-		if(ishuman(user))
+		if(!isYautja(user))
 			user << "\blue You aren't strong enough to swing the sword properly!"
 			force = initial(force) - 24
 			if(prob(50))
-				user.make_dizzy(20)
+				user.make_dizzy(80)
 		else
 			force = initial(force)
 
-		if(isYautja(user) && prob(10) && !target.lying)
+		if(isYautja(user) && prob(15) && !target.lying)
 			user.visible_message("[user] slashes \the [target] so hard they go flying!")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 			target.Weaken(3)
+			step_away(target,user,1)
 		return ..()
 
 	pickup(mob/living/user as mob)
-		if(ishuman(user))
+		if(!isYautja(user))
 			user << "You struggle to pick up the huge, unwieldy sword. It makes you dizzy just trying to hold it."
-			user.make_dizzy(30)
+			user.make_dizzy(50)
 
 /obj/item/weapon/melee/yautja_scythe
-	name = "double-bladed war scythe"
-	desc = "A huge, incredibly sharp double blade. It looks like it could easily lop off limbs."
+	name = "Yautja Double War Scythe"
+	desc = "A huge, incredibly sharp double blade used for hunting dangerous prey. This weapon is commonly carried by Yautja who wish to disable and slice apart their foes.."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predscythe"
 	item_state = "scythe0"
@@ -921,19 +948,27 @@
 
 /obj/item/weapon/gun/launcher/spikethrower
 
-	name = "spike thrower"
-	desc = "A vicious weapon that fires out sharp spikes. It seems to ooze and shift about by itself."
+	name = "Yautja Spike Rifle"
+	desc = "A long-barreled spike thrower, fashioned in the manner of a long harpoon rifle. Carried by Yautja who wish to maim their prey from a distance."
 
 	var/last_regen = 0
-	var/spike_gen_time = 100
-	var/max_spikes = 5
-	var/spikes = 5
-	release_force = 12
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "spikethrower3"
-	item_state = "spikethrower"
+	var/spike_gen_time = 200
+	var/max_spikes = 3
+	var/spikes = 3
+	release_force = 20
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "spike-0"
+	item_state = "spikelauncher"
 	fire_sound_text = "a strange noise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
+	zoomdevicename = "scope"
+
+	verb/scope()
+		set category = "Yautja"
+		set name = "Use Scope"
+		set popup_menu = 1
+
+		zoom()
 
 /obj/item/weapon/gun/launcher/spikethrower/New()
 	..()
@@ -956,7 +991,7 @@
 	usr << "It has [spikes] [spikes == 1 ? "spike" : "spikes"] remaining."
 
 /obj/item/weapon/gun/launcher/spikethrower/update_icon()
-	icon_state = "spikethrower[spikes]"
+	icon_state = "spike-[spikes]"
 
 /obj/item/weapon/gun/launcher/spikethrower/emp_act(severity)
 	return
@@ -976,12 +1011,38 @@
 	if(in_chamber) return 1
 	if(spikes < 1) return 0
 
-	spikes--
 	in_chamber = new /obj/item/weapon/spike(src)
 	return 1
 
 /obj/item/weapon/gun/launcher/spikethrower/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-	if(..()) update_icon()
+	if(..())
+		if(isYautja(user))
+			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+				var/obj/item/clothing/gloves/yautja/G = user.hands
+				if(G.cloaked)
+					G.decloak(user)
+
+		spikes--
+		update_icon()
+
+/obj/item/weapon/spike/yautja
+	name = "spike"
+	desc = "It's about a foot of weird silver metal with a wicked point. It begins to melt as soon as you examine it."
+	sharp = 1
+	edge = 0
+	throwforce = 8
+	w_class = 2
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "spike"
+	item_state = "bolt"
+
+	New()
+		spawn(50)
+			if(istype(src.loc,/mob/living))
+				var/mob/living/L = src.loc
+				L.drop_from_inventory(src) //Clean out the inventory properly
+				if(L.anchored) L.anchored = 0
+			del(src)
 
 /obj/item/weapon/grenade/spawnergrenade/hellhound
 	name = "hellhound caller"
@@ -994,9 +1055,12 @@
 	throwforce = 55
 	w_class = 1.0
 	det_time = 30
-	var/used = 0
 	var/obj/machinery/camera/current = null
 	var/turf/activated_turf = null
+
+	dropped()
+		check_eye()
+		return ..()
 
 	attack_self(mob/user as mob)
 		if(!active)
@@ -1009,14 +1073,15 @@
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
-		return
-
-	activate(mob/user as mob)
-		if(active || used)
+		else
+			if(!isYautja(user)) return
 			if(!isYautja(user)) return
 			activated_turf = get_turf(user)
 			display_camera(user)
-			check_eye(user)
+		return
+
+	activate(mob/user as mob)
+		if(active)
 			return
 
 		if(user)
@@ -1035,7 +1100,6 @@
 			var/turf/T = get_turf(src)
 			if(ispath(spawner_type))
 				new spawner_type(T)
-			used = 1
 //		del(src)
 		return
 
@@ -1069,11 +1133,11 @@
 
 //Telescopic baton
 /obj/item/weapon/melee/combistick
-	name = "combi-stick"
-	desc = "A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool."
+	name = "Yautja Combi-Stick"
+	desc = "A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool. A common sight in Yautja packs due to its versatility."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "combi"
-	item_state = "spearglass0"
+	item_state = "combilong"
 	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BACK
 	w_class = 4
@@ -1082,7 +1146,7 @@
 	unacidable = 1
 	sharp = 1
 	attack_verb = list("speared", "stabbed", "impaled")
-	var/on = 0
+	var/on = 1
 	var/timer = 0
 
 	IsShield()
@@ -1096,9 +1160,10 @@
 		"\red You extend the combi-stick.",\
 		"You hear an ominous click.")
 		icon_state = "combi"
-		item_state = "spearglass0"
+		item_state = "combilong"
 		w_class = 4
 		force = 28
+		throwforce = initial(throwforce)
 		attack_verb = list("speared", "stabbed", "impaled")
 		timer = 1
 		spawn(10)
@@ -1106,9 +1171,10 @@
 	else
 		user << "\blue You collapse the combi-stick for storage."
 		icon_state = "combi_sheathed"
-		item_state = "switchblade_open"
+		item_state = "combishort"
 		w_class = 1
 		force = 0
+		throwforce = initial(throwforce) - 50
 		attack_verb = list("thwacked", "smacked")
 		timer = 1
 		spawn(10)
@@ -1134,3 +1200,36 @@
 
 	return
 
+/obj/item/device/yautja_teleporter
+	name = "Yautja relay"
+	desc = "A device covered in Yautja writing. It whirrs and beeps every couple of seconds."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "teleporter"
+	flags = FPRINT | TABLEPASS
+	w_class = 2
+	force = 1
+	throwforce = 1
+	unacidable = 1
+	var/timer = 0
+
+	attack_self(mob/user as mob)
+		if(istype(get_area(user),/area/yautja))
+			user << "Nothing happens."
+			return
+
+		var/sure = alert("Really trigger it?","Sure?","Yes","No")
+		if(sure == "No" || !sure) return
+		playsound(src,'sound/ambience/signal.ogg', 100, 1)
+		timer = 1
+		user.visible_message("[user] starts becoming shimmery and indistinct..")
+		if(do_after(user,100))
+			var/mob/living/holding = user.pulling
+			user.visible_message("\icon[user] [user] disappears!")
+			user.loc = pick(pred_spawn)
+			timer = 0
+			if(holding)
+				holding.visible_message("\icon[holding] \The [holding] disappears!")
+				holding.loc = pick(pred_spawn)
+		else
+			spawn(10)
+				timer = 0

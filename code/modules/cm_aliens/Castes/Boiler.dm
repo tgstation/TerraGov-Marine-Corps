@@ -226,7 +226,7 @@
 			playsound(target, 'sound/effects/blobattack.ogg', 60, 1)
 			spawn(10)
 				G.prime()
-		spawn(300) //30 seconds cooldown.
+		spawn(200) //20 seconds cooldown.
 			bomb_cooldown = 0
 			src << "You feel your toxin glands swell. You are able to bombard an area again."
 		return
@@ -271,6 +271,7 @@
 /obj/effect/effect/smoke/xeno_burn
 	time_to_live = 180
 	color = "#86B028" //Mostly green?
+	anchored = 1
 
 /obj/effect/effect/smoke/xeno_burn/Move()
 	..()
@@ -327,7 +328,7 @@
 	prime()
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
 		icon_state = "splatter"
-		src.smoke.set_up(6, 0, usr.loc)
+		src.smoke.set_up(7, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
 			sleep(10)
@@ -367,13 +368,13 @@
 		if (M.coughedtime != 1)
 			M.coughedtime = 1
 			M.emote("gasp")
-			M.adjustOxyLoss(15)
+			M.adjustOxyLoss(1)
 			spawn (15)
 				M.coughedtime = 0
 		if(!M.weakened)
-			spawn(5)
+			spawn(2)
 				if(M)
-					M.Weaken(6)
+					M.Weaken(8)
 					M << "<B>You feel woozy from the gas.</B>"
 	return
 
@@ -422,7 +423,7 @@
 		visible_message("\green <B>[src] spews forth a virulent spray of acid!</B>")
 		var/turflist = getline(src, target)
 		spray_turfs(turflist)
-		spawn(160) //16 second cooldown.
+		spawn(120) //12 second cooldown.
 			acid_cooldown = 0
 			src << "You feel your acid glands refill. You can spray acid again."
 	else
@@ -479,13 +480,13 @@
 		processing_objects.Add(S)
 		for(var/mob/living/carbon/M in target)
 			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey))
-				M.adjustFireLoss(rand(5,18))
+				M.adjustFireLoss(rand(15,35))
 				M.show_message(text("\green [src] showers you in corrosive acid!"),1)
-				M.radiation += rand(5,20)
+				M.radiation += rand(5,50)
 				if(!isYautja(M))
 					if(prob(70))
 						M.emote("scream")
 					if(prob(40))
-						M.Weaken(rand(3,4))
+						M.Weaken(rand(3,8))
 
 	return

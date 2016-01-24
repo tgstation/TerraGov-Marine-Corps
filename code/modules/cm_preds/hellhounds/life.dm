@@ -54,7 +54,7 @@
 		silent = 0
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()
-		if(health < config.health_threshold_dead || !has_brain())
+		if(health < -50 || !has_brain())
 			death()
 			blinded = 1
 			stat = DEAD
@@ -62,11 +62,12 @@
 			return 1
 
 		//They heal quickly.
-
+		see_in_dark = 8
 		adjustBruteLoss(-5)
 		adjustFireLoss(-5)
 		adjustOxyLoss(-10)
 		adjustToxLoss(-50)
+		if(weakened) weakened--
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if( (getOxyLoss() > 50) || (config.health_threshold_crit > health) )
@@ -74,7 +75,7 @@
 				spawn(0)
 					emote("gasp")
 			if(!reagents.has_reagent("inaprovaline"))
-				adjustOxyLoss(1)
+				adjustOxyLoss(11)
 			Paralyse(3)
 
 		if(paralysis)
@@ -95,13 +96,15 @@
 	if (stat == 2 || (XRAY in mutations))
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
+		sight |= SEE_TURFS
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	else if (stat != 2)
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
-		see_in_dark = 6
-		see_invisible = SEE_INVISIBLE_LEVEL_ONE
+		sight |= SEE_TURFS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	if (healths)
 		if (stat != 2)
 			switch(health)

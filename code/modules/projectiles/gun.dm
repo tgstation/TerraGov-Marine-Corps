@@ -176,7 +176,10 @@
 			for(var/i = 1 to burst_amount)
 				if(A)
 					Fire(A,user,params)
-					sleep((fire_delay/2))
+					if(fire_delay <= 0)
+						sleep(1)
+					else
+						sleep((fire_delay/2))
 
 /obj/item/weapon/gun/proc/isHandgun()
 	return 1
@@ -210,6 +213,12 @@
 		if(user.dna && user.dna.mutantrace == "adamantine")
 			user << "\red Your metal fingers don't fit in the trigger guard!"
 			return
+
+	if(isYautja(user))
+		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+			var/obj/item/clothing/gloves/yautja/G = user.hands
+			if(G.cloaked)
+				G.decloak(user)
 
 	add_fingerprint(user)
 
@@ -523,6 +532,7 @@
 			user << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
 
 			var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+			O.wielded = 1
 			O.name = "[initial(name)] - offhand"
 			O.desc = "Your second grip on the [initial(name)]"
 			user.put_in_inactive_hand(O)

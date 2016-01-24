@@ -14,6 +14,7 @@
 	var/obj/machinery/camera/camera
 	var/mob/living/carbon/human/master
 	var/speed = -1.8
+	var/attack_timer = 0
 
 /mob/living/carbon/hellhound/New()
 	var/datum/reagents/R = new/datum/reagents(1000)
@@ -43,18 +44,25 @@
 		return
 	next_click = world.time + 2
 
-	if(stat)
+	if(stat > 0)
 		return //Can't click on shit buster!
+
+	if(attack_timer)
+		return
+
+
+	if(get_dist(src,A) > 1) return
 
 	if(istype(A,/mob/living/carbon/human))
 		bite_human(A)
-		return
 	else if(istype(A,/mob/living/carbon/Xenomorph))
 		bite_xeno(A)
-		return
 	else if(istype(A,/mob/living))
 		bite_animal(A)
-		return
+
+	attack_timer = 1
+	spawn(8)
+		attack_timer = 0
 
 /mob/living/carbon/hellhound/proc/bite_human(var/mob/living/carbon/human/H)
 	if(!istype(H))

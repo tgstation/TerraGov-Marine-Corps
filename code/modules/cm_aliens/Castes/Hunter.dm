@@ -13,7 +13,7 @@
 	maxplasma = 100
 	jellyMax = 500
 	caste_desc = "A fast, powerful front line combatant."
-	speed = -1 //Not as fast as runners, but faster than other xenos
+	speed = -1.6 //Not as fast as runners, but faster than other xenos
 	evolves_to = list("Ravager", "Crusher")
 	charge_type = 1 //Pounce
 	armor_deflection = 32

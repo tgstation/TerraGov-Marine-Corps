@@ -23,7 +23,7 @@
 	if(isXenoLarva(src) && src.a_intent != "help")
 		src.a_intent = "help"
 
-	if(jelly && jellyGrow < jellyMax)
+	if(jelly && jellyGrow < jellyMax && client)
 		jellyGrow++
 		if(jellyGrow == jellyMax-1)
 			src << "\green You feel the royal jelly swirl in your veins.."
@@ -277,6 +277,13 @@
 					adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
 					storedplasma += round(recovery_aura + 1)
 					updatehealth()
+
+			if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
+				if(src:speed_activated)
+					storedplasma -= 50
+					if(storedplasma < 0)
+						src:speed_activated = 0
+						src << "\red You feel dizzy as the world slows down."
 
 			if(readying_tail) storedplasma -= 3
 			if(current_aura)
