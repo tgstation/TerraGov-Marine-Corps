@@ -109,6 +109,7 @@
 	w_class = 5.0
 	icon_state = "offhand"
 	name = "offhand"
+	destroy_on_drop = 1
 
 	unwield()
 		if(!usr)

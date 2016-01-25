@@ -107,8 +107,14 @@
 			if(!disable_warning)
 				src << "\red You are unable to equip that." //Only print if del_on_fail is false
 		return 0
-
+	var/start_loc = W.loc
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+	if(W.loc == start_loc && src.get_active_hand() != W)
+		//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
+		if(W.zoom)
+			W.zoom()
+		if(istype(W,/obj/item/weapon/gun) || istype(W,/obj/item/weapon/twohanded))
+			W:unwield()
 	return 1
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.

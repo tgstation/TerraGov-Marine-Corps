@@ -9,11 +9,11 @@
 	health = 180
 	maxHealth = 180
 	storedplasma = 150
-	plasma_gain = 24
+	plasma_gain = 20
 	maxplasma = 600
 	jellyMax = 500
 	spit_delay = 80
-	speed = 0.3
+	speed = 0
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
 	spit_projectile = /obj/item/projectile/energy/neuro/strong

@@ -13,7 +13,7 @@
 	storedplasma = 200
 	maxplasma = 800
 	jellyMax = 0 //Final evolution anyway
-	plasma_gain = 28
+	plasma_gain = 35
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	adjust_pixel_x = -16
