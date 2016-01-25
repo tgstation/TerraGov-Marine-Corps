@@ -93,18 +93,6 @@
 			stat = CONSCIOUS
 
 /mob/living/carbon/hellhound/proc/handle_regular_hud_updates()
-	if (stat == 2 || (XRAY in mutations))
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		sight |= SEE_TURFS
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (stat != 2)
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		sight |= SEE_TURFS
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	if (healths)
 		if (stat != 2)
 			switch(health)

@@ -264,16 +264,22 @@
 	products = list(
 						/obj/item/attachable/suppressor = 8,
 						/obj/item/attachable/bayonet = 15,
-						/obj/item/attachable/reddot = 10,
-						/obj/item/attachable/foregrip = 10,
-						/obj/item/attachable/gyro = 4,
-						/obj/item/attachable/flashlight = 20,
-						/obj/item/attachable/bipod = 4,
+						/obj/item/attachable/compensator = 4,
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
+
+						/obj/item/attachable/flashlight = 20,
+						/obj/item/attachable/reddot = 10,
+						/obj/item/attachable/magnetic_harness = 8,
 						/obj/item/attachable/quickfire = 2,
-						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/attachable/compensator = 4
+
+						/obj/item/attachable/foregrip = 10,
+						/obj/item/attachable/gyro = 4,
+						/obj/item/attachable/bipod = 4,
+						/obj/item/attachable/burstfire_assembly = 2,
+
+						/obj/item/clothing/tie/storage/webbing = 3,
+
 					)
 	contraband = list()
 	premium = list()

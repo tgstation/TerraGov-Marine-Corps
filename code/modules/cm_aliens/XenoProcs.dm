@@ -56,7 +56,7 @@
 		stat(null,"You are affected by a pheromone of RECOVERY.")
 
 	if(hive_orders && hive_orders != "")
-		stat(null,"<b>Hive Orders:</b> [hive_orders]")
+		stat(null,"Hive Orders: [hive_orders]")
 
 	return
 

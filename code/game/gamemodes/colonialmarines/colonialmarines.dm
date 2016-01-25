@@ -16,8 +16,9 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/pred_chance = 5 //1 in <x>
+	var/pred_chance = 4 //1 in <x>
 	var/is_pred_round = 0
+	var/numpreds = 3
 
 
 /* Pre-pre-startup */
@@ -32,7 +33,7 @@
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 	var/list/datum/mind/possible_predators = get_whitelisted_predators()
-	var/numpreds = 3
+
 
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
@@ -45,7 +46,7 @@
 		else
 			while(numpreds > 0)
 				if(!possible_predators.len)
-					numpreds = 0
+					break
 				else
 					var/datum/mind/new_pred = pick(possible_predators)
 					possible_predators -= new_pred
@@ -122,7 +123,7 @@
 			if(!istype(player,/mob/new_player)) continue
 			if(!player:ready) continue
 		else
-			if(!istype(player,/mob/dead/observer)) continue
+			if(!istype(player,/mob/dead)) continue
 
 		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
 			if(!player.client) //Just to be safe.
@@ -198,12 +199,20 @@
 	var/mob/H = ghost.current
 	var/mob/living/carbon/human/newmob
 
-	newmob = new /mob/living/carbon/human(pick(pred_spawn))
+	newmob = new (pick(pred_spawn))
 
 	if(H.mind)
 		H.mind.transfer_to(newmob)
-	else
-		newmob.key = ghost.key
+	else //?? Should never happen
+		H.mind = new(H.key)
+		H.mind.transfer_to(newmob)
+
+	if(!newmob.client)
+		newmob.key = H.key
+
+	if(!newmob.client)
+		message_admins("Warning: null client in transform_predator [H.key]")
+		return
 
 	newmob.set_species("Yautja")
 
@@ -232,6 +241,7 @@
 		newmob << "Hunt at your discretion, yet be observant rather than violent."
 		newmob << "And above all, listen to your elders!"
 
+	if(H) del(H)
 	return 1
 
 
