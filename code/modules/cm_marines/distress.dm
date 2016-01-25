@@ -252,9 +252,6 @@
 						for(var/datum/mind/I in candidates)
 							if(I.current)
 								I.current << "You didn't get selected to join the distress team. Better luck next time!"
-						spawn(1)
-							candidates = null //Blank out the candidates list for next time.
-							candidates = list()
 
 			command_announcement.Announce(dispatch_message, "Distress Beacon")
 			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
@@ -268,11 +265,12 @@
 				for(var/datum/mind/M in picked_candidates)
 					members += M
 					create_member(M)
-
+			candidates = null //Blank out the candidates list for next time.
+			candidates = list()
 			spawn(1000) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
 				command_announcement.Announce(arrival_message, "Docked")
 
-			spawn(2400)
+			spawn(4800)
 				shuttle.launch() //Get that fucker back
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
@@ -281,6 +279,10 @@
 	if(istype(M,/mob/living/carbon/Xenomorph) && !M.stat) return 0//Something went wrong
 	if(M.mind)
 		candidates += M.mind
+	else
+		if(M.key)
+			M.mind = new /datum/mind(M.key)
+			candidates += M.mind
 	return 1
 
 /datum/emergency_call/proc/get_spawn_point(var/is_for_items = 0)
@@ -833,13 +835,17 @@
 			switch(choice)
 				if(0)
 					new /obj/item/weapon/gun/projectile/VP78(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					continue
 				if(1)
 					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
 					new /obj/item/weapon/gun/projectile/automatic/m39/PMC(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					continue
 				if(2)
-					//new /obj/item/weapon/storage/box/m56_system(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					continue
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
@@ -849,7 +855,7 @@
 				if(4)
 					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
 					new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
-					//new /obj/item/weapon/gun/projectile/automatic/m41(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					continue
 				if(5)
 					new /obj/item/weapon/gun/m92(drop_spawn)
@@ -859,11 +865,11 @@
 					continue
 				if(6)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					//new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					continue
 				if(7)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					continue
 	return
 
@@ -936,13 +942,14 @@
 					continue
 				if(1)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					//new /obj/item/weapon/flamethrower/full(drop_spawn)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					continue
 				if(2)
 					new /obj/item/weapon/reagent_containers/hypospray/tricordrazine(drop_spawn)
 					new /obj/item/weapon/shield/riot(drop_spawn)
-					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
 					continue
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
@@ -951,9 +958,7 @@
 					continue
 				if(4)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-				//	new /obj/item/weapon/shield/riot(drop_spawn)
-				//	new /obj/item/weapon/shield/riot(drop_spawn)
-				//	new /obj/item/weapon/gun/projectile/automatic/l6_saw(drop_spawn)
+					new /obj/item/weapon/shield/riot(drop_spawn)
 					continue
 				if(5)
 					new /obj/item/weapon/gun/m92(drop_spawn)
@@ -963,13 +968,13 @@
 					continue
 				if(6)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-				//	new /obj/item/weapon/storage/box/grenade_system(drop_spawn)
-				//	new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					new /obj/item/weapon/flamethrower/full(drop_spawn)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
+					new /obj/item/ammo_magazine/a762(drop_spawn)
 					continue
 				if(7)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
-				//	new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return
 
