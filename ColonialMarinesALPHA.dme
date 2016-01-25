@@ -1602,6 +1602,7 @@
 #include "maps\Z.03.PlaceholderSulaco.dmm"
 #include "maps\Z.04.SulacoBottom.dmm"
 #include "maps\Z.05.Space.dmm"
+#include "maps\Z.06.Space2.dmm"
 #include "maps\Z.07.Prison-Minijar.dmm"
 // END_INCLUDE
 
