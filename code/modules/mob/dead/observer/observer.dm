@@ -817,12 +817,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "\red You are banned from playing aliens and cannot spawn as a predator."
 		return
 
-	if(!client.holder && ticker.mode:is_pred_round == 0)
-		usr << "There's no hunts going on."
-		return
-
 	if(!is_alien_whitelisted(usr,"Yautja") && !is_alien_whitelisted(usr,"Yautja Elder"))
 		usr << "Honk."
+		return
+
+	if(!client.holder && ticker.mode:is_pred_round == 0)
+		usr << "You are whitelisted, but there's no hunts going on. Maybe if you prayed real hard an admin could spawn you in."
 		return
 
 	var/mob/old = src
