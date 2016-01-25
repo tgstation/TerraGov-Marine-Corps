@@ -84,6 +84,8 @@
 		stop_momentum(charge_dir)
 		return
 
+	charge_dir = dir
+
 	if(!is_charging)
 		stop_momentum(charge_dir)
 		return
@@ -112,9 +114,6 @@
 		stop_momentum(charge_dir)
 		return
 
-	if(momentum <= 1)
-		charge_dir = dir
-
 	if(charge_dir != dir) //Still not facing? What the heck!
 		return
 
@@ -141,7 +140,7 @@
 		playsound(loc, 'sound/mecha/mechstep.ogg', 50 + (momentum), 0)
 
 	for(var/mob/living/carbon/M in view(8))
-		if(M && M.client && get_dist(M,src) <= round(momentum / 10) && src != M && momentum > 5)
+		if(M && M.client && get_dist(M,src) <= round(momentum / 5) && src != M && momentum > 5)
 			if(!isXeno(M))
 				shake_camera(M, 1, 1)
 		if(M && M.lying && M.loc == src.loc && !isXeno(M) && M.stat != DEAD && momentum > 6)

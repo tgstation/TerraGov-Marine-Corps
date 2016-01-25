@@ -12,10 +12,10 @@
 	health = 200
 	maxHealth = 200
 	storedplasma = 150
-	plasma_gain = 24
+	plasma_gain = 25
 	maxplasma = 400
 	jellyMax = 0
-	spit_delay = 80
+	spit_delay = 75
 	speed = 2.2
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6

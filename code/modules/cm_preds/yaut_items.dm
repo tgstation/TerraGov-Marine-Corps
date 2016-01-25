@@ -947,10 +947,8 @@
 		return
 
 /obj/item/weapon/gun/launcher/spikethrower
-
 	name = "Yautja Spike Rifle"
 	desc = "A long-barreled spike thrower, fashioned in the manner of a long harpoon rifle. Carried by Yautja who wish to maim their prey from a distance."
-
 	var/last_regen = 0
 	var/spike_gen_time = 200
 	var/max_spikes = 3

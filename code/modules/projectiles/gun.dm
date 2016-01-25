@@ -99,7 +99,9 @@
 	if(!twohanded) return
 	wielded = 1
 	name = "[initial(name)] (Wielded)"
-	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) || istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37)|| istype(src,/obj/item/weapon/gun/projectile/automatic/mar40)) //Ugh
+	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) \
+			|| istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37) \
+			|| istype(src,/obj/item/weapon/gun/projectile/automatic/mar40)) //Ugh
 		item_state = "[initial(item_state)]-w"
 		if(usr && ishuman(usr))
 			usr:update_inv_l_hand(0)
@@ -149,7 +151,7 @@
 			var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
 			if(istype(O))
 				O.unwield()
-		return	unwield()
+		unwield()
 
 
 /obj/item/weapon/gun/pickup(mob/user)
@@ -176,7 +178,7 @@
 			for(var/i = 1 to burst_amount)
 				if(A)
 					Fire(A,user,params)
-					if(fire_delay <= 0)
+					if(fire_delay <= 1)
 						sleep(1)
 					else
 						sleep((fire_delay/2))
@@ -199,8 +201,8 @@
 	if (!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
 		return
-
-	if(twohanded && !wielded)
+	var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
+	if(twohanded && !istype(O))
 		user << "\red You need a more secure grip to fire this weapon!"
 		return
 
@@ -275,8 +277,8 @@
 		if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
 		if(istype(under,/obj/item/attachable/bipod) && prob(30))
 			var/found = 0
-			for(var/obj/structure/O in range(user,1)) //This is probably inefficient as fuck
-				if(O.throwpass == 1)
+			for(var/obj/structure/Q in range(user,1)) //This is probably inefficient as fuck
+				if(Q.throwpass == 1)
 					found = 1
 					break
 			if(found)
@@ -300,10 +302,20 @@
 			in_chamber.yo += rand(-1,1)
 			in_chamber.xo += rand(-1,1)
 
-		if(burst_toggled && prob(50 + (burst_amount * 10)))
-			in_chamber.yo += rand(-1,1)
-			in_chamber.xo += rand(-1,1)
-
+		if(burst_toggled)
+			var/scatter_chance = 50 // Base chance of scatter on burst fire.
+			scatter_chance -= in_chamber.accuracy
+			if(rail)
+				if(rail.accuracy_mod) scatter_chance -= rail.accuracy_mod
+			if(muzzle)
+				if(muzzle.accuracy_mod) scatter_chance -= muzzle.accuracy_mod
+			if(under)
+				if(under.accuracy_mod) scatter_chance -= under.accuracy_mod
+			if(scatter_chance < 5) scatter_chance = 5
+			scatter_chance += (burst_amount * 5)
+			if(prob(scatter_chance))
+				in_chamber.yo += rand(-1,1)
+				in_chamber.xo += rand(-1,1)
 
 	if(params)
 		var/list/mouse_control = params2list(params)

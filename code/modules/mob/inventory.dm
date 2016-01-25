@@ -102,7 +102,7 @@
 		if(isturf(Target) && !isnull(Target))
 			W.loc = Target
 		else
-			W.loc = get_turf(Target)
+			W.loc = get_turf(src)
 
 //		if(isturf(T))
 //			T.Entered(W)

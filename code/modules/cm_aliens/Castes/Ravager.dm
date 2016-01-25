@@ -10,14 +10,14 @@
 	tacklemin = 3
 	tacklemax = 6
 	tackle_chance = 80
-	health = 250
-	maxHealth = 250
+	health = 220
+	maxHealth = 220
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
 	jellyMax = 0
 	caste_desc = "A brutal, devastating front-line attacker."
-	speed = -1.1 //Not as fast as runners, but faster than other xenos.
+	speed = -1 //Not as fast as runners, but faster than other xenos.
 	evolves_to = list()
 	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
 	var/CHARGESPEED = 2
