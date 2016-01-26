@@ -244,7 +244,7 @@
 		if(usr)
 			usr.visible_message("\red You hear a hiss and crackle!","\red Your bracers hiss and spark!")
 			if(cloaked)
-				decloak()
+				decloak(usr)
 
 	//This is the main proc for checking AND draining the bracer energy. It must have M passed as an argument.
 	//It can take a negative value in amount to restore energy.
@@ -1040,7 +1040,11 @@
 				var/mob/living/L = src.loc
 				L.drop_from_inventory(src) //Clean out the inventory properly
 				if(L.anchored) L.anchored = 0
-			del(src)
+				if(src in L.pinned)	L.pinned.Remove(src)
+				del(src)
+			else
+				del(src)
+
 
 /obj/item/weapon/grenade/spawnergrenade/hellhound
 	name = "hellhound caller"
@@ -1073,7 +1077,6 @@
 				C.throw_mode_on()
 		else
 			if(!isYautja(user)) return
-			if(!isYautja(user)) return
 			activated_turf = get_turf(user)
 			display_camera(user)
 		return
@@ -1104,7 +1107,7 @@
 	check_eye(var/mob/user as mob)
 		if (user.stat || (get_dist(user, src) > 1 || user.blinded) )
 			return null
-		if ( !current || !current.can_use() || get_turf(user) != activated_turf ) //camera doesn't work, or we moved.
+		if ( !current || !current.can_use() || get_turf(user) != activated_turf || src.loc != user ) //camera doesn't work, or we moved.
 			current = null
 		user.reset_view(current)
 		return 1
@@ -1119,13 +1122,19 @@
 		if(!choice || choice == "Cancel" || isnull(choice))
 			current = null
 			user.reset_view(null)
+			user << "Stopping camera feed."
 			return
 
 		for(var/mob/living/carbon/hellhound/Q in mob_list)
 			if(Q.real_name == choice)
 				current = Q.camera
 				break
-		user << "Switching feed.."
+
+		if(current)
+			user << "Switching feed.."
+			user.reset_view(current)
+		else
+			user << "Something went wrong with the camera feed."
 		return
 
 
@@ -1139,7 +1148,7 @@
 	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BACK
 	w_class = 4
-	force = 28
+	force = 32
 	throwforce = 70
 	unacidable = 1
 	sharp = 1

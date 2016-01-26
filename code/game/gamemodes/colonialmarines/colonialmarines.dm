@@ -516,6 +516,26 @@ var/list/toldstory = list()
 						text += "<BR>[A.key] was Unknown! (body destroyed)"
 
 			world << text
+		if(predators.len)
+			var/text = "<br><FONT size = 3><B>The Predators were:</B></FONT>"
+			for(var/datum/mind/A in predators)
+				if(A)
+					var/mob/M = A.current
+					if(!M)
+						M = A.original
+
+					if(M)
+						text += "<br>[M.key] was "
+						text += "[M.name] ("
+						if(M.stat == DEAD)
+							text += "died"
+						else
+							text += "survived"
+						text += ")"
+					else
+						text += "<BR>[A.key] was Unknown! (body destroyed)"
+
+			world << text
 //	..()
 	return 1
 

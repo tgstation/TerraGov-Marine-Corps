@@ -76,9 +76,9 @@
 
 			if(isYautja(src) && check_zone(M.zone_sel.selecting) == "head")
 				if(istype(src.head,/obj/item/clothing/head/helmet/space/yautja))
-					var/knock_chance = 3
+					var/knock_chance = 2
 					if(M.frenzy_aura) knock_chance += 3
-					if(M.is_intelligent) knock_chance += 5
+					if(M.is_intelligent) knock_chance += 3
 					knock_chance += round(damage / 4)
 					if(prob(knock_chance))
 						playsound(loc, 'sound/effects/metalhit.ogg', 100, 1, 1)

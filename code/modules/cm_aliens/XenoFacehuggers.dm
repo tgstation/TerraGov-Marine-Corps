@@ -350,18 +350,20 @@ var/const/MAX_ACTIVE_TIME = 200
 
 	if(M.stat == DEAD) return 0 //No deads.
 
-	if(!iscarbon(M) && !iscorgi(M)) return 0 //No simple animals but Ian.
+	if(!iscarbon(M)) return 0 //No simple animals at all. Including Mr. Wiggles. His cuteness is his helmet.
 
 	if(istype(M,/mob/living/carbon/Xenomorph)) return 0 //No xenos, hurr
 
 	if(M.status_flags & XENO_HOST) return 0 //No hosts.
+
+	if(istype(M,/mob/living/carbon/hellhound)) return 0
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,
 	//or an unremovable mask.
 	if(iscarbon(M))
 		if(M.wear_mask)
-			var/obj/item/clothing/W = M.wear_mask
+			var/obj/item/W = M.wear_mask
 			if(!W.canremove)
 				return 0
 			if(istype(W,/obj/item/clothing/mask/facehugger))
