@@ -68,6 +68,15 @@
 		if(src:turret_control)
 			if(src:turret_control.handle_manual_fire(src,A,params))
 				return
+		if(isYautja(src) && istype(src:get_active_hand(),/obj/item/device/yautja_holoemitter))
+			if(istype(A,/mob/living/carbon))
+				var/obj/item/device/yautja_holoemitter/Y = src:get_active_hand()
+				if(istype(Y))
+					if(Y.scan_target(A))
+						src << "You successfully scan [A] into your holoemitter frequencies."
+
+
+
 
 	face_atom(A)
 
