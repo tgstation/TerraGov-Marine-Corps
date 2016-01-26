@@ -67,6 +67,11 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	..()
+	if(is_alien_whitelisted(src,"Yautja") && ticker && ticker.mode && istype(ticker.mode,/datum/game_mode/colonialmarines))
+		if(ticker.mode:is_pred_round)
+			spawn(20)
+				src << "\red It is a PREDATOR ROUND! Use Join The Hunt to enlist!"
+				return
 
 
 
@@ -821,32 +826,46 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "Honk."
 		return
 
-	if(!client.holder && ticker.mode:is_pred_round == 0)
+	if(ticker.mode:is_pred_round == 0)
 		usr << "You are whitelisted, but there's no hunts going on. Maybe if you prayed real hard an admin could spawn you in."
+		return
+
+	if(ticker.mode:numpreds <= 0)
+		usr << "Already full up. There can only be 3 per round."
+		return
+
+	if(src.mind && src.mind in ticker.mode:predators)
+		usr << "You already were a Predator! Give someone else a chance."
 		return
 
 	var/mob/old = src
 	var/mob/living/carbon/human/M = new(pick(pred_spawn))
+	M.mind = src.mind
+	M.key = src.key
+
+	if(!M.mind)
+		M.mind = new /datum/mind(M.key)
+
+	M.mind.assigned_role = "MODE"
+	M.mind.special_role = "Predator"
+
 	M.set_species("Yautja")
 	if(src.client.prefs)
 		M.real_name = src.client.prefs.predator_name
 		M.gender = src.client.prefs.predator_gender
-	if(!M.real_name) M.real_name = "Unknown Alien"
+	if(!M.real_name || M.real_name == "") M.real_name = "Unknown Yautja"
 	if(!M.gender) M.gender = "male"
 	M.update_icons()
 	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
-	message_admins("[src] ([src.key] into a Yautja, [M.real_name].")
-	if(src.mind)
-		src.mind.transfer_to(M)
-	else
-		src.mind = new(src.key)
-		src.mind.transfer_to(M)
-		if(!M.key) M.key = src.key
+	message_admins("[src] ([src.key]) joined as Yautja, [M.real_name].")
 
 	if(is_alien_whitelisted(M,"Yautja Elder"))
 		M.real_name = "Elder [M.real_name]"
 		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
 		M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
 
+
+	ticker.mode:numpreds--
+	ticker.mode.predators += M.mind
 	if(old) del(old) //Wipe the old ghost.
 	return

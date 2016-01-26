@@ -538,6 +538,14 @@
 				L.buckled.manual_unbuckle(L)
 		else
 			L.buckled.manual_unbuckle(L)
+	else if(src.pinned.len)
+		src << "<B>You attempt to rip yourself free.. This will be painful!</b>"
+		if(do_after(src,80))
+			if(src.anchored && src.pinned.len)
+				src.visible_message("[src] rips themself free!","<span class='warning'>You rip free from the wall!</span>")
+				src.pinned = null
+				src.anchored = 0
+				src.apply_damage(20,BRUTE)
 
 	//Breaking out of a locker?
 	else if( src.loc && (istype(src.loc, /obj/structure/closet)) )
