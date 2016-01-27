@@ -197,21 +197,16 @@
 /proc/transform_predator(var/datum/mind/ghost)
 
 	var/mob/H = ghost.current
+
 	var/mob/living/carbon/human/newmob
 
 	newmob = new (pick(pred_spawn))
 
-	if(H.mind)
-		H.mind.transfer_to(newmob)
-	else //?? Should never happen
-		H.mind = new(H.key)
-		H.mind.transfer_to(newmob)
+	newmob.key = ghost.key
 
-	if(!newmob.client)
-		newmob.key = H.key
-
-	if(!newmob.client)
-		message_admins("Warning: null client in transform_predator [H.key]")
+	if(!newmob.key)
+		message_admins("Warning: null client in transform_predator, key: [H.key]")
+		del(newmob)
 		return
 
 	newmob.set_species("Yautja")

@@ -840,14 +840,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/mob/old = src
 	var/mob/living/carbon/human/M = new(pick(pred_spawn))
-	M.mind = src.mind
 	M.key = src.key
 
-	if(!M.mind)
-		M.mind = new /datum/mind(M.key)
-
-	M.mind.assigned_role = "MODE"
-	M.mind.special_role = "Predator"
+	if(M.mind)
+		M.mind.assigned_role = "MODE"
+		M.mind.special_role = "Predator"
+	else
+		M.mind = new(M.key)
+		M.mind.assigned_role = "MODE"
+		M.mind.special_role = "Predator"
 
 	M.set_species("Yautja")
 	if(src.client.prefs)

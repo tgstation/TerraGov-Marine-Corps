@@ -1240,3 +1240,231 @@
 		else
 			spawn(10)
 				timer = 0
+
+/obj/item/y_hologram
+	name = "hologram"
+	desc = "A hologram."
+	//icon = 'icons/Predator/items.dmi' //Doesn't really matter
+	//icon_state = "" //Nothing!
+	anchored = 1
+	density = 0
+	unacidable = 1
+	var/shock_cooldown = 0
+	var/deleting = 0
+	var/obj/item/device/yautja_holoemitter/controller
+	var/image/image1
+	var/list/i_overlays = list()
+	var/holo_type = "human"
+	var/list/phrases_human =list("Help me!","Oh god, help!","I'm injured!","MEDIC!!","HELP!","HEEEEELP!","MAN DOWN!","Oh god it hurts!","I can't feel my legs!","I can't feel my ass!","H..help.. me..","H..help..!")
+	var/list/emotes_human =list("gasps","gasps","gasps","screams","chokes","groans","moans","collapses")
+	var/list/phrases_xeno =list("HELP!","I'M STUCK!","PULL ME!","I need weeds!!","HELP FAST!", "I'm down!!","Help a sister out!","FUCK! HELP!")
+	var/chatter_cooldown = 5
+	var/chat_timer = 0
+
+	New()
+		..()
+		processing_objects.Add(src)
+
+	Click(location,control,params)
+		if(!usr) return //somehow
+		var/mob/living/carbon/M = usr
+		if(!istype(M)) return ..()
+		if(!Adjacent(M)) return ..()
+
+		if(isYautja(M))
+			Die()
+			return
+
+		if(!shock_cooldown) //Just to stop people somehow multi clicking on it.
+			M.electrocute_act(rand(8,20),src) //Dmg, src. This already checks insulated gloves.
+			shock_cooldown = 1
+		Die()
+		return
+
+	proc/Die()
+		if(controller)
+			controller.start_cooldown()
+			controller.hologram_active = 0
+		if(!deleting) deleting = 1
+		visible_message("\The [src] begins to fade and become indistinct..")
+		visible_message("\The [src] disappears!")
+		del(src)
+
+	Del() //If it gets deleted in other ways besides dying, it needs to fix all this shit up too.
+		if(!deleting)
+			deleting = 1
+			Die()
+		processing_objects.Remove(src)
+		return ..()
+
+	process()
+		chat_timer++
+		if(chat_timer == chatter_cooldown && isturf(src.loc))
+			chat_timer = 0
+			if(holo_type == "human")
+				if(prob(75))
+					visible_message("[src.name] says, \"[pick(phrases_human)]\"")
+				else
+					visible_message("[src.name] [pick(emotes_human)][pick(".","!")]")
+			else
+				visible_message("[src.name] hisses, \"[pick(phrases_xeno)]\"")
+
+
+
+/obj/item/device/yautja_holoemitter
+	name = "Yautja holoemitter"
+	desc = "A controller device for holographic decoys. Use it in hand to activate it."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "emitter-notarget"
+	flags = FPRINT | TABLEPASS
+	w_class = 2
+	force = 1
+	throwforce = 1
+	unacidable = 1
+
+	var/i_icon
+	var/i_icon_state
+	var/list/i_overlays = list()
+	var/holo_type = "human"
+	var/mobname = ""
+	var/mobdesc = ""
+	var/hologram_active = 0
+	var/laying_down = 1
+	var/talk_timer = 5
+	var/cooldown = 3000 //~3 minutes
+	var/cooldown_timer = 0
+	var/obj/item/y_hologram/hologram = null
+
+	attack_self(mob/user as mob)
+		if(!isYautja(user))
+			user << "You fiddle with some buttons, but nothing happens."
+			return
+
+		user.set_machine(src)
+		var/dat = "<B>Holo-Emitter Settings</b><BR><BR>"
+		dat += "Hologram is currently: "
+		if(hologram_active)
+			dat += "<B>ACTIVE</B> <A href='?src=\ref[src];inactivate=1'>(Inactivate)</A><BR>"
+		else
+			dat += "<B>INACTIVE</B> <A href='?src=\ref[src];activate=1'>(Activate)</A><BR>"
+
+		if(laying_down)
+			dat += "Toggle laying state: <A href='?src=\ref[src];standing=1'>Currently Laying</A><BR>"
+		else
+			dat += "Toggle laying state: <A href='?src=\ref[src];laying=1'>Currently Standing</A><BR>"
+
+		dat += "Chatterbox Timer: Every <A href='?src=\ref[src];timer=1'>[round(talk_timer / 10)]</A> Seconds<BR>"
+		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
+		user << browse(dat, "window=hemitter")
+		onclose(user, "hemitter")
+		return
+
+	Topic(href,href_list)
+		if(usr.stat || usr.restrained())
+			return
+		if(Adjacent(usr) || src.loc == usr)
+			usr.set_machine(src)
+			if(href_list["inactivate"])
+				if(!hologram_active)
+					usr << "There's no hologram up."
+					return
+				cooldown_timer = cooldown
+				hologram_active = 0
+				usr << "Current hologram: [mobname] wiped."
+				mobname = ""
+				update_icon()
+				if(hologram)
+					hologram.Die()
+			else if(href_list["activate"])
+				if(hologram_active)
+					usr << "There's already one active."
+					return
+				if(!mobname || isnull(mobname) || mobname == "" )
+					usr << "You have to scan a target with it first."
+					return
+				if(!isturf(usr.loc))
+					usr << "Stand on the floor, you locker jockey."
+					return
+
+				if(cooldown_timer)
+					usr << "It's still on cooldown since the last time you used it."
+					return
+
+				hologram_active = 1
+				hologram = new(usr.loc)
+				hologram.visible_message("An image of [mobname] springs to life!")
+				hologram.name = mobname
+				hologram.desc = mobdesc
+				hologram.icon = i_icon
+				hologram.icon_state = i_icon_state
+				hologram.overlays.Cut()
+				hologram.overlays = i_overlays.Copy()
+				hologram.controller = src
+				cooldown_timer = 1
+				spawn(cooldown)
+					cooldown_timer = 0
+
+				if(laying_down && holo_type != "xeno")
+					var/matrix/M = matrix()
+					M.Turn(90)
+					M.Translate(1,-6)
+					hologram.transform = M
+
+			else if (href_list["standing"])
+				laying_down = 0
+				usr << "Image is now standing. This will not come into effect until the next hologram."
+			else if (href_list["laying"])
+				laying_down = 1
+				usr << "Image is now laying down."
+			else if (href_list["timer"])
+				var/choice = input("Set the chatter timer to how many seconds?","Timer",5)
+				if(!isnum(choice))
+					talk_timer = initial(talk_timer)
+				else
+					if(choice > 60) choice = 60
+					if(choice < 5) choice = 5
+					talk_timer = choice
+			else
+				usr << browse(null, "window=hemitter")
+				return
+
+			add_fingerprint(usr)
+			updateUsrDialog()
+		else
+			usr << browse(null, "window=hemitter")
+			return
+		return
+
+	proc/scan_target(var/mob/living/carbon/M)
+		if(!M || !istype(M)) return 0
+		if(!ishuman(M) && !isXeno(M)) return 0
+
+		i_overlays.Cut()
+		if(isXeno(M))
+			holo_type = "xeno"
+		else
+			holo_type = "human"
+
+		if(holo_type == "xeno" && laying_down)
+			i_icon_state = "[M:caste] Knocked Down"
+			for(var/image/I in M:overlays_lying)
+				i_overlays += I
+		else//We'll just rotate it later.
+			for(var/image/I in M:overlays_standing)
+				i_overlays += I
+			i_icon = M.icon
+			i_icon_state = M.icon_state
+		mobname = M.real_name
+		mobdesc = "This is totally a real creature named [mobname]. Honest. Ignore the electrical crackles and weird glowing."
+		update_icon()
+
+	update_icon()
+		if(mobname == "")
+			icon_state = initial(icon_state)
+		else
+			icon_state = "emitter-[holo_type]"
+
+	proc/start_cooldown()
+		cooldown_timer = 1
+		spawn(cooldown)
+			cooldown_timer = 0
