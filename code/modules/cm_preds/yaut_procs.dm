@@ -163,7 +163,7 @@
 	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. Would you like to proceed, Yautja?","Sure?","Begin the Hunt","No, not now")
 	if(sure == "Begin the Hunt")
 		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
-		var/list/other = list("The Fleeting Speargun", "The Brutal Spike-Cannon", "The Purifying Smart-Disc","The Savage Hellhound")
+		var/list/other = list("The Fleeting Speargun", "The Brutal Spike-Cannon", "The Purifying Smart-Disc","The Savage Hellhound", "The Clever Hologram")
 
 		var/msel = input("Which weapon shall you use on your hunt?:","Melee Weapon") as null|anything in melee
 		var/mother_0 = input("Which secondary gear shall you take?","Item 1 (of 2)") as null|anything in other
@@ -192,15 +192,20 @@
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 			if("The Savage Hellhound")
 				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
+			if("The Clever Hologram")
+				new /obj/item/device/yautja_holoemitter(src.loc)
 		switch(mother_1)
 			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("The Brutal Spike-canon")
+			if("The Brutal Spike-Cannon")
 				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
 			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 			if("The Savage Hellhound")
 				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
+			if("The Clever Hologram")
+				new /obj/item/device/yautja_holoemitter(src.loc)
+
 	else
 		return
 
