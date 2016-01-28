@@ -1335,7 +1335,7 @@
 	var/hologram_active = 0
 	var/laying_down = 1
 	var/talk_timer = 5
-	var/cooldown = 3000 //~3 minutes
+	var/cooldown = 1000 //~1 minute
 	var/cooldown_timer = 0
 	var/obj/item/y_hologram/hologram = null
 
@@ -1399,12 +1399,7 @@
 				hologram.visible_message("<B>An image of [mobname] springs to life!</B>")
 				hologram.name = mobname
 				hologram.desc = mobdesc
-				if(isfile(file(i_icon)))
-					hologram.icon = file(i_icon)
-				else
-					hologram.icon = i_icon
-					if(!hologram.icon)
-						hologram.icon = 'icons/mob/human.dmi' //Whatever!
+				hologram.icon = file(i_icon)
 				hologram.icon_state = i_icon_state
 				hologram.overlays.Cut()
 				hologram.overlays = i_overlays.Copy()
@@ -1453,14 +1448,14 @@
 		if(isXeno(M))
 			holo_type = "xeno"
 			if(M:big_xeno)
-				i_icon = 'icons/Xeno/2x2_Xenos.dmi'
+				i_icon = "icons/Xeno/2x2_Xenos.dmi"
 			else
-				i_icon = 'icons/Xeno/1x1_Xenos.dmi'
+				i_icon = "icons/Xeno/1x1_Xenos.dmi"
 		else
 			holo_type = "human"
 			i_icon = M:stand_icon
 			if(!i_icon)
-				i_icon = 'icons/mob/human.dmi'
+				i_icon = "icons/mob/human.dmi"
 
 		if(holo_type == "xeno" && laying_down)
 			i_icon_state = "[M:caste] Knocked Down"
