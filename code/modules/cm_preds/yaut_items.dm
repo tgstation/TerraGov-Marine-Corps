@@ -953,7 +953,7 @@
 	var/spike_gen_time = 200
 	var/max_spikes = 3
 	var/spikes = 3
-	release_force = 20
+	release_force = 10
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
@@ -1028,7 +1028,7 @@
 	desc = "It's about a foot of weird silver metal with a wicked point. It begins to melt as soon as you examine it."
 	sharp = 1
 	edge = 0
-	throwforce = 8
+	throwforce = 25
 	w_class = 2
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "spike"
