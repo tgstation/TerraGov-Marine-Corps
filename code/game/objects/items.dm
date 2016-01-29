@@ -624,9 +624,9 @@
 	I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
 
 	//not sure if this is worth it. It attaches the blood_overlay to every item of the same type if they don't have one already made.
-//	for(var/obj/item/A in world)
-//		if(A.type == type && !A.blood_overlay)
-//			A.blood_overlay = image(I)
+	for(var/obj/item/A in world)
+		if(A.type == type && !A.blood_overlay)
+			A.blood_overlay = image(I)
 
 /obj/item/proc/showoff(mob/user)
 	for (var/mob/M in view(user))
