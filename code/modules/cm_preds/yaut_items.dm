@@ -1299,17 +1299,21 @@
 
 	process()
 		chat_timer++
-		if(chat_timer == chatter_cooldown && isturf(src.loc))
+		if(chat_timer == chatter_cooldown && isturf(src.loc) && prob(80))
 			chat_timer = 0
 			if(holo_type == "human")
-				if(prob(75))
+				if(prob(70))
 					visible_message("[src.name] says, \"[pick(phrases_human)]\"")
 				else
 					visible_message("[src.name] [pick(emotes_human)][pick(".","!")]")
 			else
 				visible_message("[src.name] hisses, \"[pick(phrases_xeno)]\"")
 
-
+	bullet_act(var/obj/item/projectile/Proj)
+		if(prob(50)) //if it actually hits, 50% chance of it just disappearing.
+			Die()
+		else
+			return //Nothing happens!
 
 /obj/item/device/yautja_holoemitter
 	name = "Yautja holoemitter"
@@ -1353,7 +1357,7 @@
 		else
 			dat += "Toggle laying state: <A href='?src=\ref[src];laying=1'>Currently Standing</A><BR>"
 
-		dat += "Chatterbox Timer: Every <A href='?src=\ref[src];timer=1'>[round(talk_timer / 10)]</A> Seconds<BR>"
+		dat += "Chatterbox Timer: Every <A href='?src=\ref[src];timer=1'>[talk_timer]</A> Seconds<BR>"
 		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
 		user << browse(dat, "window=hemitter")
 		onclose(user, "hemitter")
@@ -1392,14 +1396,20 @@
 
 				hologram_active = 1
 				hologram = new(usr.loc)
-				hologram.visible_message("An image of [mobname] springs to life!")
+				hologram.visible_message("<B>An image of [mobname] springs to life!</B>")
 				hologram.name = mobname
 				hologram.desc = mobdesc
-				hologram.icon = i_icon
+				if(isfile(file(i_icon)))
+					hologram.icon = file(i_icon)
+				else
+					hologram.icon = i_icon
+					if(!hologram.icon)
+						hologram.icon = 'icons/mob/human.dmi' //Whatever!
 				hologram.icon_state = i_icon_state
 				hologram.overlays.Cut()
 				hologram.overlays = i_overlays.Copy()
 				hologram.controller = src
+				hologram.holo_type = holo_type
 				cooldown_timer = 1
 				spawn(cooldown)
 					cooldown_timer = 0
@@ -1442,8 +1452,15 @@
 		i_overlays.Cut()
 		if(isXeno(M))
 			holo_type = "xeno"
+			if(M:big_xeno)
+				i_icon = 'icons/Xeno/2x2_Xenos.dmi'
+			else
+				i_icon = 'icons/Xeno/1x1_Xenos.dmi'
 		else
 			holo_type = "human"
+			i_icon = M:stand_icon
+			if(!i_icon)
+				i_icon = 'icons/mob/human.dmi'
 
 		if(holo_type == "xeno" && laying_down)
 			i_icon_state = "[M:caste] Knocked Down"
@@ -1452,11 +1469,12 @@
 		else//We'll just rotate it later.
 			for(var/image/I in M:overlays_standing)
 				i_overlays += I
-			i_icon = M.icon
+
 			i_icon_state = M.icon_state
 		mobname = M.real_name
 		mobdesc = "This is totally a real creature named [mobname]. Honest. Ignore the electrical crackles and weird glowing."
 		update_icon()
+		return 1
 
 	update_icon()
 		if(mobname == "")
