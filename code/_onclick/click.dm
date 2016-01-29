@@ -74,7 +74,10 @@
 				if(istype(Y))
 					if(Y.scan_target(A))
 						src << "You successfully scan [A] into your holoemitter frequencies."
-						return
+
+
+
+
 	face_atom(A)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
