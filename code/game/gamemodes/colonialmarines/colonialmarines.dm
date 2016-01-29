@@ -39,7 +39,7 @@
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
 
-	if(rand(1,pred_chance) == 1) //Just make sure we have enough.
+	if(round(rand(1,pred_chance)) == 1) //Just make sure we have enough.
 		is_pred_round = 1
 		if(!possible_predators.len)
 			is_pred_round = 0
