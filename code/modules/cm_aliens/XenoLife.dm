@@ -160,7 +160,7 @@
 					if(M.acid_damage > 240)
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
-						del(M)
+						M.loc = locate(138,136,2)
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
