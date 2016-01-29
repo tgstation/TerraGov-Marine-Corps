@@ -1573,7 +1573,7 @@
 "Em" = (/obj/structure/largecrate/random,/turf/simulated/floor/plating,/area/sulaco/bridge/maint)
 "En" = (/obj/machinery/light{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/sulaco/brig)
 "Eo" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/sulaco/brig)
-"Ep" = (/obj/structure/table/reinforced,/obj/machinery/door/window/eastright{req_access = "3"},/obj/machinery/door/window/westright,/obj/item/weapon/folder/red,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/sulaco/brig)
+"Ep" = (/obj/structure/table/reinforced,/obj/machinery/door/window/westright,/obj/item/weapon/folder/red,/obj/machinery/door/window/eastright{req_access = "3"},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/sulaco/brig)
 "Eq" = (/obj/structure/stool/bed/chair/office/dark{dir = 8},/obj/effect/landmark/start{name = "Military Police"},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/sulaco/brig)
 "Er" = (/obj/machinery/computer/security,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/sulaco/brig)
 "Es" = (/obj/machinery/recharger/wallcharger{pixel_x = -30; pixel_y = -10},/obj/machinery/recharger/wallcharger{pixel_x = -30},/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/sulaco/brig)
