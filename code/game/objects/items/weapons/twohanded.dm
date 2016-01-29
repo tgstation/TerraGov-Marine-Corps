@@ -109,11 +109,36 @@
 	w_class = 5.0
 	icon_state = "offhand"
 	name = "offhand"
+	destroy_on_drop = 1
 
 	unwield()
+		if(!usr)
+			del(src)
+			return
+		var/mob/living/carbon/user = usr
+
+		if(src == user.get_active_hand()) //Are we holding the offhand?
+			var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
+			if(istype(O))
+				O.unwield()
+			var/obj/item/weapon/gun/G = user.get_inactive_hand()
+			if(istype(G))
+				G.unwield()
 		del(src)
 
 	wield()
+		if(!usr)
+			del(src)
+			return
+		var/mob/living/carbon/user = usr
+
+		if(src == user.get_active_hand()) //Are we holding the offhand?
+			var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
+			if(istype(O))
+				O.unwield()
+			var/obj/item/weapon/gun/G = user.get_inactive_hand()
+			if(istype(G))
+				G.unwield()
 		del(src)
 
 /*
@@ -140,16 +165,7 @@
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
-	if(A && wielded && (istype(A,/obj/structure/window) || istype(A,/obj/structure/grille))) //destroys windows and grilles in one hit
-		if(istype(A,/obj/structure/window)) //should just make a window.Break() proc but couldn't bother with it
-			var/obj/structure/window/W = A
-
-			new /obj/item/weapon/shard( W.loc )
-			if(W.reinf) new /obj/item/stack/rods( W.loc)
-
-			if (W.dir == SOUTHWEST)
-				new /obj/item/weapon/shard( W.loc )
-				if(W.reinf) new /obj/item/stack/rods( W.loc)
+	if(A && wielded && istype(A,/obj/structure/grille)) //destroys grilles in one hit
 		del(A)
 
 

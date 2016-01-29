@@ -1176,6 +1176,8 @@
 			//Predator bracers, plus icon updating.
 			if(gloves && species && species.name == "Yautja")
 				var/obj/item/clothing/gloves/yautja/Y = gloves
+				if(Y.cloak_timer)
+					Y.cloak_timer--
 				if(Y && istype(Y))
 					if(Y.cloaked)
 						Y.charge -= 10
@@ -1555,7 +1557,7 @@
 				sight |= G.vision_flags
 				if(!druggy && !seer)
 					see_invisible = SEE_INVISIBLE_MINIMUM
-			if((istype(G,/obj/item/clothing/glasses/m56_goggles) || istype(G,/obj/item/clothing/glasses/night) ) && !seer)
+			if(istype(G,/obj/item/clothing/glasses/night ) && !seer)
 				see_invisible = SEE_INVISIBLE_MINIMUM
 	/* HUD shit goes here, as long as it doesn't modify sight flags */
 	// The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl

@@ -24,15 +24,8 @@
 	throwforce = 5
 	w_class = 2
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "metal-rod"
+	icon_state = "spike"
 	item_state = "bolt"
-
-	New()
-		spawn(150)
-			if(istype(src.loc,/mob/living))
-				var/mob/living/L = src.loc
-				L.drop_from_inventory(src) //Clean out the inventory properly
-			del(src)
 
 /obj/item/weapon/arrow/quill
 

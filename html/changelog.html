@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="changelog.css">
   <base target="_blank" />
   <script type='text/javascript'>
-  
+
 	function changeText(tagID, newText, linkTagID){
 		var tag = document.getElementById(tagID);
 		tag.innerHTML = newText;
@@ -14,7 +14,7 @@
 		linkTag.removeAttribute("onclick");
 	}
 
-  </script>  
+  </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
@@ -47,18 +47,64 @@
 	</tr>
 </table>
 
-<!-- 
-Changelog Section 
+<!--
+Changelog Section
 -->
 
-<!-- NOTE TO UPDATERS!! Please only list things which are important to players. 
-Stuff which is in development and not yet visible to players or just code related 
-(ie. code improvements for expandability, etc.) should not be listed here. They 
+<!-- NOTE TO UPDATERS!! Please only list things which are important to players.
+Stuff which is in development and not yet visible to players or just code related
+(ie. code improvements for expandability, etc.) should not be listed here. They
 should be listed in the changelog upon commit though. Thanks. -->
 
 <!-- You can simply add changelogs using AddToChangelog.exe -->
 
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
+
+<div class='commit sansserif'>
+	<h2 class='date'>24 January 2016</h2>
+	<h3 class='author'>Absynth updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Hopefully most if not all of the Predator bugs have been fixed. If the game has rolled a Predator round, currently you can click Join the Hunt, and if you are whitelisted you can join even if you observe after round start (previously it would only enlist you when readied up). Good way of knowing if you are whitelisted! Most weapons and items have been tweaked or rebalanced.</li>
+		<li class='bugfix'>M56 goggles hopefully re-added to smartgun pack</li>
+		<li class='bugfix'>You will no longer accumulate royal jelly when SSD.</li>
+		<li class='bugfix'>Xenos now damage animals using proper damage based on caste.</li>
+		<li class='bugfix'>Beam attacks now damage sentry turrets (I'm looking at you, yautja caster & spitter spit)</li>
+		<li class='bugfix'>Hopefully a bunch of bugs with hellhounds & smart-discs fixed. Stop asking about them!</li>
+		<li class='rscadd'>Supply packs from cargo a bit different. Some contain different and new attachables. Ditto for attachables vendor. The new attachables are the Burst Fire Assembly and Magnetic Harness. Yay!</li>
+		<li class='tweak'>Boilers buffed->neurotoxin smoke has more effect, plasma regen increased, acid spit cooldown lowered.</li>
+		<li class='bugfix'>Hopefully Crusher momentum issues are fixed. You'll see different effects on slamming into things now. Not as much skidding around.</li>
+		<li class='tweak'>Some xeno plasma regen rates increased. Spitter movement speed increased but plasma regen decreased.</li>
+		<li class='bugfix'>Hopefully fixed a few issues with throwing and dropping guns, and some item duplication glitches. If you abuse these kinds of bugged you will be perma banned guys. Don't risk it, just PM us.</li>
+
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>24 January 2016</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>In the interest of balance and variety, The Nexus building has been reworked to be much easier for Xenos to infiltrate. More breaches, a simple vent system, etc. But, it's still close to the LZ.</li>
+    <li class='tweak'>The Lv-624 Medbay has been made more appealing as a FOB with a more open area, closed off potential breaches, surgery room, supplies, and metal/plasteel nearby. But, it's further away from the LZ than the Nexus. Which will you choose?</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>19 January 2016</h2>
+	<h3 class='author'>Absynth updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Tons of Predator changes! Yay! If you are whitelisted you will get a special couple of buttons in your preferences page. Lots of Predator rebalances and tweaks.      XENOS: HERE IS WHAT YOU KNOW ABOUT PREDATORS: You usually call them the HEAD TAKERS, or the invisible ones, or something along those lines. Yautja is also acceptable. You know they are dangerous but you aren't mindlessly attracted to killing them -- ask the Queen what to do when you see one. MARINES: HERE IS WHAT YOU KNOW ABOUT PREDATORS: NOTHING. Probably hostile!</li>
+		<li class='rscadd'>Many automatic weapons now have a BURST FIRE feature! Massive risk of friendly fire ahoy! Use your weapon pane to activate it and watch as bullets spray wildly everywhere forever. I love this game.</li>
+		<li class='bugfix'>Many guns are no longer holsterable. This includes the M92, SADAR, M42C, etc.</li>
+		<li class='bugfix'>Can no longer drop/throw the wielded symbol. Hopefully. Stop duping weapons, you shits!</li>
+		<li class='tweak'>Facehuggers now do an initial target scan when born</li>
+		<li class='rscadd'>Hivelords now get a new toggleable self-buff: "Resin Walker". This allows them to use weeds as a quick pathway to various places. When active it drains plasma quickly, but allows the hivelord to move very fast on weeds.</li>
+		<li class='tweak'>Many xeno caste speeds tweaked slightly. Most obvious is Boiler and Queen buffed.</li>
+		<li class='tweak'>Some xeno claw damages tweaked. Crusher claw damage increased a bit.</li>
+		<li class='bugfix'>Several mercenary team weapons altered. MAR-40 significantly buffed.</li>
+		<li class='rscadd'>Two new attachables! Sorry, they aren't available for use JUST yet. Expect them soon. They are: the magnetic harness, a rail-mounted accessory that snaps a weapon to your armor when dropped, and the burst fire assembly, an upgrade to your weapon's burst fire ability (or MAKES it burst fire if it wasn't)</li>
+		<li class='bugfix'>Probably some other minor stuff I'm forgetting.</li>
+	</ul>
+</div>
 
 <div class='commit sansserif'>
 	<h2 class='date'>18 January 2016</h2>

@@ -108,7 +108,7 @@
 		var/hasaxe = 0
 		if(fireaxe)
 			hasaxe = 1
-
+		if(!ishuman(user)) return
 		if(src.locked)
 			user <<"\red The cabinet won't budge!"
 			return

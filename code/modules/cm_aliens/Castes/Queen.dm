@@ -22,7 +22,7 @@
 	max_grown = 10
 	storedplasma = 300
 	maxplasma = 700
-	plasma_gain = 20
+	plasma_gain = 30
 	is_intelligent = 1
 	speed = 2
 	jellyMax = 0

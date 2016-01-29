@@ -81,6 +81,9 @@
 		if(slot == "muzzle") G.muzzle = null
 		if(slot == "under") G.under = null
 
+		if(G.wielded)
+			G.unwield()
+
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = initial(G.force)
@@ -298,7 +301,7 @@
 	icon_state = "hbarrel"
 	accuracy_mod = -40
 	ranged_dmg_mod = 140
-	delay_mod = 4
+	delay_mod = 3
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 					/obj/item/weapon/gun/projectile/m4a3,
@@ -343,7 +346,7 @@
 					/obj/item/weapon/gun/projectile/automatic/m39,
 					/obj/item/weapon/gun/projectile/M42C
 						)
-	accuracy_mod = -40
+	accuracy_mod = -25
 	slot = "under"
 	burst_mod = 2
 

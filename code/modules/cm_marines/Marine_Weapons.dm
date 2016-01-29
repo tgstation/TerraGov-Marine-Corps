@@ -684,8 +684,8 @@
 	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range imager, allowing for view of terrain."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
-	item_state = "m56_goggles"
-	darkness_view = 3
+	item_state = "glasses"
+	darkness_view = 5
 	toggleable = 1
 	icon_action_button = "action_meson"
 	vision_flags = SEE_TURFS
@@ -694,14 +694,15 @@
 		if(slot == slot_glasses)
 			if(!ishuman(user)) return ..() //Doesn't matter, just pass it to the main proc
 			var/mob/living/carbon/human/H = user
-			var/obj/item/smartgun_powerpack/P = H.back
-			if(!P || !istype(P))
-				user << "You must be wearing an M56 Powerpack on your back to wear these."
-				return 0
+			if(istype(H))
+				var/obj/item/smartgun_powerpack/P = H.back
+				if(!P || !istype(P))
+					user << "You must be wearing an M56 Powerpack on your back to wear these."
+					return 0
 		return ..(user, slot)
 
 
-/obj/item/clothing/glasses/m56_goggles/New()
+/obj/item/clothing/glasses/night/m56_goggles/New()
 	..()
 	overlay = global_hud.thermal
 
@@ -719,7 +720,7 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/clothing/glasses/m56_goggles(src)
+			new /obj/item/clothing/glasses/night/m56_goggles(src)
 			new /obj/item/smartgun_powerpack(src)
 			new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
 			new /obj/item/weapon/gun/projectile/M56_Smartgun(src)
@@ -873,6 +874,7 @@
 		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) has attempted to fire a rocket in a restricted area. ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)")
 		log_game("[key_name(user)] attempted to fire a rocket in a restricted area at ([target.x],[target.y],[target.z])")
 		return
+
 	if(!wielded)
 		usr << "\red You require two hands to fire this!"
 		return

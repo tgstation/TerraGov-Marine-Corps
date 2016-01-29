@@ -160,47 +160,52 @@
 	if(pred_bought)
 		return
 
-	var/sure = alert("Are you sure you want to claim your equipment? You can only do this once.","Sure?","Yes","No")
-	if(sure == "Yes")
-		var/list/melee = list("glaive", "chainwhip","clan sword","war scythe", "combi-stick")
-		var/list/other = list("speargun", "spike thrower", "smart-disc","hellhound")
+	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. Would you like to proceed, Yautja?","Sure?","Begin the Hunt","No, not now")
+	if(sure == "Begin the Hunt")
+		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
+		var/list/other = list("The Fleeting Speargun", "The Brutal Spike-Cannon", "The Purifying Smart-Disc","The Savage Hellhound", "The Clever Hologram")
 
-		var/msel = input("Select a heavy weapon:","Melee Weapon") as null|anything in melee
-		var/mother_0 = input("Select a secondary item:","Item 1 (of 2)") as null|anything in other
-		var/mother_1 = input("Select a third item:","Item 2 (of 2)") as null|anything in other
+		var/msel = input("Which weapon shall you use on your hunt?:","Melee Weapon") as null|anything in melee
+		var/mother_0 = input("Which secondary gear shall you take?","Item 1 (of 2)") as null|anything in other
+		var/mother_1 = input("And the last piece of equipment?:","Item 2 (of 2)") as null|anything in other
 
-		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry
+		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry (it's okai abbi)
 		switch(msel)
-			if("glaive")
+			if("The Lumbering Glaive")
 				new /obj/item/weapon/twohanded/glaive(src.loc)
-			if("chainwhip")
+			if("The Rending Chain-Whip")
 				new /obj/item/weapon/melee/yautja_chain(src.loc)
-			if("clan sword")
+			if("The Piercing Hunting Sword")
 				new /obj/item/weapon/melee/yautja_sword(src.loc)
-			if("war scythe")
+			if("The Cleaving War-Scythe")
 				new /obj/item/weapon/melee/yautja_scythe(src.loc)
-			if("combi-stick")
+			if("The Adaptive Combi-Stick")
 				new /obj/item/weapon/melee/combistick(src.loc)
 		switch(mother_0)
 //				if("heavy armor")
 //					new /obj/item/clothing/suit/armor/yautja/full(src.loc)
-			if("speargun")
+			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("spike thrower")
+			if("The Brutal Spike-Cannon")
 				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
-			if("smart-disc")
+			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
-			if("hellhound")
+			if("The Savage Hellhound")
 				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
+			if("The Clever Hologram")
+				new /obj/item/device/yautja_holoemitter(src.loc)
 		switch(mother_1)
-			if("speargun")
+			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("spike thrower")
+			if("The Brutal Spike-Cannon")
 				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
-			if("smart-disc")
+			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
-			if("hellhound")
+			if("The Savage Hellhound")
 				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
+			if("The Clever Hologram")
+				new /obj/item/device/yautja_holoemitter(src.loc)
+
 	else
 		return
 

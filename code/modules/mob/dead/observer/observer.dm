@@ -67,6 +67,11 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	..()
+	if(is_alien_whitelisted(src,"Yautja") && ticker && ticker.mode && istype(ticker.mode,/datum/game_mode/colonialmarines))
+		if(ticker.mode:is_pred_round)
+			spawn(20)
+				src << "\red It is a PREDATOR ROUND! Use Join The Hunt to enlist!"
+				return
 
 
 
@@ -790,4 +795,78 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			L << "\red The Predators cannot understand your speech. They can only give you orders and expect you to follow them. They have a camera that allows them to see you remotely, so you are excellent for scouting missions."
 			L << "\red Hellhounds are fiercely protective of their masters and will never leave their side if under attack."
 			L << "\red Note that ANY Predator can give you orders. If they conflict, follow the latest one. If they dislike your performance they can ask for another ghost and everyone will mock you. So do a good job!"
+	return
+
+/mob/dead/verb/join_as_yautja()
+	set category = "Ghost"
+	set name = "Join the Hunt"
+	set desc = "If you are whitelisted, and it is the right type of round, join in."
+
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	if(!istype(ticker.mode,/datum/game_mode/colonialmarines))
+		usr << "Just ask an admin to spawn you."
+		return
+
+	if (!usr.stat || !client) // Make sure we're an observer
+		// usr << "!usr.stat"
+		return
+
+	if (usr != src)
+		// usr << "usr != src"
+		return 0 // Something is terribly wrong
+
+	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
+		usr << "\red You are banned from playing aliens and cannot spawn as a predator."
+		return
+
+	if(!is_alien_whitelisted(usr,"Yautja") && !is_alien_whitelisted(usr,"Yautja Elder"))
+		usr << "Honk."
+		return
+
+	if(ticker.mode:is_pred_round == 0)
+		usr << "You are whitelisted, but there's no hunts going on. Maybe if you prayed real hard an admin could spawn you in."
+		return
+
+	if(ticker.mode:numpreds <= 0)
+		usr << "Already full up. There can only be 3 per round."
+		return
+
+	if(src.mind && src.mind in ticker.mode:predators)
+		usr << "You already were a Predator! Give someone else a chance."
+		return
+
+	var/mob/old = src
+	var/mob/living/carbon/human/M = new(pick(pred_spawn))
+	M.key = src.key
+
+	if(M.mind)
+		M.mind.assigned_role = "MODE"
+		M.mind.special_role = "Predator"
+	else
+		M.mind = new(M.key)
+		M.mind.assigned_role = "MODE"
+		M.mind.special_role = "Predator"
+
+	M.set_species("Yautja")
+	if(src.client.prefs)
+		M.real_name = src.client.prefs.predator_name
+		M.gender = src.client.prefs.predator_gender
+	if(!M.real_name || M.real_name == "") M.real_name = "Unknown Yautja"
+	if(!M.gender) M.gender = "male"
+	M.update_icons()
+	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
+	message_admins("[src] ([src.key]) joined as Yautja, [M.real_name].")
+
+	if(is_alien_whitelisted(M,"Yautja Elder"))
+		M.real_name = "Elder [M.real_name]"
+		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
+		M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
+
+
+	ticker.mode:numpreds--
+	ticker.mode.predators += M.mind
+	if(old) del(old) //Wipe the old ghost.
 	return

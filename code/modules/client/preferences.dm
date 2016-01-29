@@ -2,29 +2,13 @@
 
 var/list/preferences_datums = list()
 
-var/global/list/special_roles = list( //keep synced with the defines BE_* in setup.dm --rastaf
-//some autodetection here.
-/* 	"traitor" = IS_MODE_COMPILED("traitor"),             // 0
-	"operative" = IS_MODE_COMPILED("nuclear"),           // 1
-	"changeling" = IS_MODE_COMPILED("changeling"),       // 2
-	"wizard" = IS_MODE_COMPILED("wizard"),               // 3
-	"malf AI" = IS_MODE_COMPILED("malfunction"),         // 4
-	"revolutionary" = IS_MODE_COMPILED("revolution"),    // 5
-	"alien" = 1, //always show                 // 6
-	"pAI" = 1, // -- TLE                       // 7
-	"cultist" = IS_MODE_COMPILED("cult"),                // 8
-	"infested monkey" = IS_MODE_COMPILED("monkey"),      // 9
-	"ninja" = "true",                                    // 10
-	"vox raider" = IS_MODE_COMPILED("heist"),            // 11
-	"diona" = 1,                                         // 12
-	"mutineer" = IS_MODE_COMPILED("mutiny"),             // 13
-	"survivor" = 1,										 // 14
-)*/
-
-	"alien" = 1, //always show                 // 6
-	"pAI" = 1, // -- TLE                       // 7
+var/global/list/special_roles = list(
+	"alien" = 1,
+	"pAI" = 1,
 	"survivor" = 1,
-	"predator" = 1											 // 14
+	"responder" = 1,
+	"predator" = 1
+
 	// "wizard" = IS_MODE_COMPILED("wizard"),               // 3
 	// "malf AI" = IS_MODE_COMPILED("malfunction"),         // 4
 	// "revolutionary" = IS_MODE_COMPILED("revolution"),    // 5
@@ -153,7 +137,7 @@ datum/preferences
 	var/slot_name = ""
 
 	var/predator_name = ""
-	var/predator_gender = ""
+	var/predator_gender = "male"
 	var/is_pred_elder = 0
 
 /datum/preferences/New(client/C)
@@ -275,8 +259,9 @@ datum/preferences
 		dat += "Please create an account to save your preferences."
 
 	dat += "</center><hr><table><tr><td width='340px' height='320px'>"
-	if(is_alien_whitelisted(user,"Yautja"))
-		dat += "<a href='?_src_=prefs;preference=predator_prefs'><b>Edit Predator Preferences</b></a><br>"
+	if(is_alien_whitelisted(user,"Yautja") || is_alien_whitelisted(user,"Yautja Elder"))
+		dat += "<BR><a href='?_src_=prefs;preference=pred_name;task=input'><b>Edit Predator Name:</b> [predator_name]</a><br>"
+		dat += "<a href='?_src_=prefs;preference=pred_gender;task=input'><b>Edit Predator Gender:</b> ([predator_gender])</a><br><BR>"
 
 	dat += "<b>Name:</b> "
 	dat += "<a href='?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a><br>"
@@ -835,24 +820,6 @@ datum/preferences
 					job_marines_low |= job.flag
 	return 1
 
-/datum/preferences/proc/ShowPredator(mob/user)
-	if(!user.client.prefs)
-		user << "Need a client pref!!"
-		return //Somehow?
-
-	var/HTML = "<body>"
-	HTML += "<tt><center>"
-	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=name'>Name:</a> [user.client.prefs.predator_name]<BR>"
-	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=gender'>Gender:</a> [user.client.prefs.predator_gender]<BR> "
-	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=save'>Save!</a><BR>"
-	HTML += "<a href='?src=\ref[user];preference=predator_prefs;task=cancel'>Close</a>"
-
-	HTML += "</tt></center>"
-//	user << browse(null, "window=preferences")
-	user << browse(HTML,"window=show_predator")
-// 	user << browse(HTML, "window=show_predator;size=160x300")
-	return
-
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
 
@@ -920,33 +887,6 @@ datum/preferences
 		else
 			SetSkills(user)
 		return 1
-
-	else if(href_list["preference"] == "predator_prefs")
-		if(href_list["cancel"])
-			user << browse(null, "window=show_predator")
-			ShowChoices(user)
-			return 1
-		else
-			switch(href_list["task"])
-				if("name")
-					var/raw_name = input(user, "Choose your character's name:", "Character Preference")  as text|null
-					if (!isnull(raw_name)) // Check to ensure that the user entered text (rather than cancel.)
-						var/new_name = reject_bad_name(raw_name)
-						if(new_name)
-							predator_name = new_name
-						else
-							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
-				else if("gender")
-					if(predator_gender == "male")
-						predator_gender = "female"
-					else
-						predator_gender = "male"
-				else if("save")
-					save_preferences()
-					user << "<b>Predator</b> data saved!"
-			ShowPredator(user)
-		return 1
-
 	else if (href_list["preference"] == "loadout")
 
 		if(href_list["task"] == "input")
@@ -1180,6 +1120,20 @@ datum/preferences
 							real_name = new_name
 						else
 							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
+
+				if("pred_name")
+					var/raw_name = input(user, "Choose your Predator's name:", "Character Preference")  as text|null
+					if (!isnull(raw_name)) // Check to ensure that the user entered text (rather than cancel.)
+						var/new_name = reject_bad_name(raw_name)
+						if(new_name)
+							predator_name = new_name
+						else
+							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
+				if("pred_gender")
+					if(predator_gender == "male")
+						predator_gender = "female"
+					else
+						predator_gender = "male"
 
 				if("age")
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null

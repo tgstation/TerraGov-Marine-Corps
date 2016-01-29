@@ -76,9 +76,9 @@
 
 			if(isYautja(src) && check_zone(M.zone_sel.selecting) == "head")
 				if(istype(src.head,/obj/item/clothing/head/helmet/space/yautja))
-					var/knock_chance = 3
+					var/knock_chance = 2
 					if(M.frenzy_aura) knock_chance += 3
-					if(M.is_intelligent) knock_chance += 5
+					if(M.is_intelligent) knock_chance += 3
 					knock_chance += round(damage / 4)
 					if(prob(knock_chance))
 						playsound(loc, 'sound/effects/metalhit.ogg', 100, 1, 1)
@@ -161,7 +161,7 @@
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
-			var/damage = rand(5,20) //Who cares, it's just Ian and the Monkeys (that would make a great band name)
+			var/damage = (rand(M.melee_damage_lower,M.melee_damage_upper) + 3)
 			visible_message("\red \The [M] bites at \the [src]!")
 			apply_damage(damage, BRUTE)
 

@@ -5,19 +5,19 @@
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
-	melee_damage_lower = 10
-	melee_damage_upper = 12
+	melee_damage_lower = 12
+	melee_damage_upper = 22
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 95
-	health = 270
-	maxHealth = 270
+	health = 340
+	maxHealth = 340
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
 	jellyMax = 0
 	caste_desc = "A huge tanky xenomorph."
-	speed = 0.5
+	speed = 0.2
 	evolves_to = list()
 	armor_deflection = 70
 	var/charge_dir = 0
@@ -44,7 +44,7 @@
 	stat(null, "Momentum: [momentum]")
 
 
-/mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction)
+/mob/living/carbon/Xenomorph/Crusher/proc/stop_momentum(var/direction, var/stunned = 0)
 	if(momentum < 0) //Somehow. Could happen if you slam into multiple things
 		momentum = 0
 
@@ -56,7 +56,7 @@
 		momentum = 0
 		return
 
-	if(momentum > 24)
+	if(stunned && momentum > 24)
 		Weaken(2)
 		src.visible_message("<b>[src] skids to a halt!</b>","<b>You skid to a halt.</B>")
 	pass_flags = 0
@@ -84,6 +84,8 @@
 		stop_momentum(charge_dir)
 		return
 
+	charge_dir = dir
+
 	if(!is_charging)
 		stop_momentum(charge_dir)
 		return
@@ -94,10 +96,13 @@
 	if(speed > -2.6)
 		speed -= 0.2 //Speed increases each step taken. At 30 tiles, maximum speed is reached.
 
-	if(momentum < 20)	 //Maximum 30 momentum.
-		momentum += 2 //2 per turf. Max speed in 15.
+	if(momentum <= 18)	 //Maximum 30 momentum.
+		momentum += 3 //2 per turf. Max speed in 15.
 
-	if(momentum > 19 && momentum < 30)
+	else if(momentum > 18 && momentum < 25)
+		momentum += 2
+
+	else if(momentum >= 25 && momentum < 30)
 		momentum++ //Increases slower at high speeds so we don't go LAZERFAST
 
 	if(momentum < 0)
@@ -109,8 +114,8 @@
 		stop_momentum(charge_dir)
 		return
 
-	if(momentum <= 1)
-		charge_dir = dir
+	if(charge_dir != dir) //Still not facing? What the heck!
+		return
 
 	//Some flavor text.
 	if(momentum == 10)
@@ -134,8 +139,8 @@
 	if(noise_timer == 3 && momentum > 10)
 		playsound(loc, 'sound/mecha/mechstep.ogg', 50 + (momentum), 0)
 
-	for(var/mob/living/carbon/M in view(4))
-		if(M && M.client && get_dist(M,src) <= round(momentum / 10) && src != M && momentum > 5)
+	for(var/mob/living/carbon/M in view(8))
+		if(M && M.client && get_dist(M,src) <= round(momentum / 5) && src != M && momentum > 5)
 			if(!isXeno(M))
 				shake_camera(M, 1, 1)
 		if(M && M.lying && M.loc == src.loc && !isXeno(M) && M.stat != DEAD && momentum > 6)
@@ -235,7 +240,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						visible_message("\red The [src] smashes straight into [M]!")
 						M.update_health()
 						src << "\red Bonk!"
-						stop_momentum()
+						stop_momentum(charge_dir,1)
 						now_pushing = 0
 						return
 
@@ -248,7 +253,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 							diagonal_step(mech,dir,50)//Occasionally fling it diagonally.
 							step_away(mech,src)
 						Weaken(2)
-						stop_momentum(charge_dir)
+						stop_momentum(charge_dir,1)
 						now_pushing = 0
 						return
 					if(istype(AM,/obj/machinery/marine_turret))
@@ -264,7 +269,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						if(!isnull(turret))
 							src << "\red Bonk!"
 							Weaken(3)
-							stop_momentum(charge_dir)
+							stop_momentum(charge_dir,1)
 							now_pushing = 0
 						return
 					if(AM:unacidable)
@@ -289,7 +294,6 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				playsound(loc, "punch", 25, 1, -1)
 				diagonal_step(AM,dir)//Occasionally fling it diagonally.
 				step_away(AM,src,round(momentum/10) +1)
-				momentum -= 5
 				now_pushing = 0
 				return
 
@@ -306,7 +310,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 
 		if(istype(AM,/mob/living/carbon) && momentum > 7)
 			var/mob/living/carbon/H = AM
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(loc, "punch", 25, 1, 1)
 			if(momentum < 12 && momentum > 7)
 				H.Weaken(2)
 			else if(momentum < 20)
@@ -315,22 +319,22 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 			else if (momentum >= 20)
 				H.Weaken(8)
 				H.take_overall_damage(momentum * 2)
-			diagonal_step(H,dir, 70)//Occasionally fling it diagonally.
+			diagonal_step(H,dir, 100)//Occasionally fling it diagonally.
 			step_away(H,src,round(momentum / 10))
-			visible_message("<B>[src] knocks over [H]!</b>","<B>You knock over [H]!</B>")
+			visible_message("<B>[src] rams into [H]!</b>","<B>You ram into [H]!</B>")
 			now_pushing = 0
 			return
 
 		if(isturf(AM) && AM.density) //We were called by turf bump.
 			if(momentum <= 25 && momentum > 14)
 				src << "\red Bonk!"
-				stop_momentum(charge_dir)
+				stop_momentum(charge_dir,1)
 				src.Weaken(3)
 			if(momentum > 26)
 				AM:ex_act(2) //Should dismantle, or at least heavily damage it.
 
-			if(!isnull(AM) && momentum > 18)
-				stop_momentum(charge_dir)
+			if(!isnull(AM) && momentum > 20)
+				stop_momentum(charge_dir,1)
 			now_pushing = 0
 			return
 

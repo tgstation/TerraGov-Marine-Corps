@@ -16,8 +16,9 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/pred_chance = 5 //1 in <x>
+	var/pred_chance = 4 //1 in <x>
 	var/is_pred_round = 0
+	var/numpreds = 3
 
 
 /* Pre-pre-startup */
@@ -32,20 +33,20 @@
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 	var/list/datum/mind/possible_predators = get_whitelisted_predators()
-	var/numpreds = 3
+
 
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
 
-	if(rand(1,pred_chance) == 1) //Just make sure we have enough.
+	if(round(rand(1,pred_chance)) == 1) //Just make sure we have enough.
 		is_pred_round = 1
 		if(!possible_predators.len)
 			is_pred_round = 0
 		else
 			while(numpreds > 0)
 				if(!possible_predators.len)
-					numpreds = 0
+					break
 				else
 					var/datum/mind/new_pred = pick(possible_predators)
 					possible_predators -= new_pred
@@ -114,19 +115,28 @@
 /proc/get_whitelisted_predators(var/readied = 1)
 	// Assemble a list of active players who are whitelisted.
 	var/list/players = list()
+
 	for(var/mob/player in player_list)
 		if(!player.client) continue
 		if(isYautja(player)) continue
 		if(readied)
 			if(!istype(player,/mob/new_player)) continue
 			if(!player:ready) continue
+		else
+			if(!istype(player,/mob/dead)) continue
 
 		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
+			if(!player.client) //Just to be safe.
+				continue
+
+			if(!player.client.prefs)
+				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
+
 			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
 				if(player.mind)
 					players += player.mind
 				else if(player.key)
-					player.mind = new /datum/mind()
+					player.mind = new /datum/mind(player.key)
 					players += player.mind
 	return players
 
@@ -186,40 +196,47 @@
 //Start the Survivor players. This must go post-setup so we already have a body.
 /proc/transform_predator(var/datum/mind/ghost)
 
-	var/mob/living/carbon/human/H = ghost.current
-	if(!H)
-		H = new (pick(pred_spawn))
-		H.key = ghost.key
+	var/mob/H = ghost.current
+
+	var/mob/living/carbon/human/newmob
+
+	newmob = new (pick(pred_spawn))
+
+	newmob.key = ghost.key
+
+	if(!newmob.key)
+		message_admins("Warning: null client in transform_predator, key: [H.key]")
+		del(newmob)
+		return
+
+	newmob.set_species("Yautja")
+
+	if(newmob.client.prefs)
+		newmob.real_name = newmob.client.prefs.predator_name
+		newmob.gender = newmob.client.prefs.predator_gender
 	else
-		H.loc = pick(pred_spawn)
+		newmob.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
+		newmob.gender = "male"
 
-	H.set_species("Yautja")
-	spawn(0)
-		if(H.client.prefs)
-			H.real_name = H.client.prefs.predator_name
-			H.gender = H.client.prefs.predator_gender
-		else
-			H.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
-			H.gender = "male"
+	newmob.update_icons()
+	if(is_alien_whitelisted(newmob,"Yautja Elder"))
+		newmob.real_name = "Elder [newmob.real_name]"
+		newmob.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
+		newmob.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
+		spawn(10)
+			newmob << "\red <B> Welcome Elder!</B>"
+			newmob << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
+			newmob << "That does not mean you can't go out and show the youngsters how it's done, though.."
 
-		H.update_icons()
-
-		if(is_alien_whitelisted(H,"Yautja Elder"))
-			H.real_name = "Elder [H.real_name]"
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
-			H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
-			spawn(10)
-				H << "\red <B> Welcome Elder!</B>"
-				H << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
-				H << "That does not mean you can't go out and show the youngsters how it's done, though.."
 
 	spawn(12)
-		H << "You are <B>Yautja</b>, a great and noble predator!"
-		H << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
-		H << "Use your hellhounds to scout and test your opponents."
-		H << "Hunt at your discretion, yet be observant rather than violent."
-		H << "And above all, listen to your elders!"
+		newmob << "You are <B>Yautja</b>, a great and noble predator!"
+		newmob << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
+		newmob << "Use your hellhounds to scout and test your opponents."
+		newmob << "Hunt at your discretion, yet be observant rather than violent."
+		newmob << "And above all, listen to your elders!"
 
+	if(H) del(H)
 	return 1
 
 
@@ -477,6 +494,26 @@ var/list/toldstory = list()
 		if(survivors.len)
 			var/text = "<br><FONT size = 3><B>The survivors were:</B></FONT>"
 			for(var/datum/mind/A in survivors)
+				if(A)
+					var/mob/M = A.current
+					if(!M)
+						M = A.original
+
+					if(M)
+						text += "<br>[M.key] was "
+						text += "[M.name] ("
+						if(M.stat == DEAD)
+							text += "died"
+						else
+							text += "survived"
+						text += ")"
+					else
+						text += "<BR>[A.key] was Unknown! (body destroyed)"
+
+			world << text
+		if(predators.len)
+			var/text = "<br><FONT size = 3><B>The Predators were:</B></FONT>"
+			for(var/datum/mind/A in predators)
 				if(A)
 					var/mob/M = A.current
 					if(!M)

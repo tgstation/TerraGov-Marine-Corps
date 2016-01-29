@@ -5,8 +5,8 @@
 	desc = "A strange piece of alien technology. It has many jagged, whirring blades and bizarre writing."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "disk"
-	force = 25
-	throwforce = 55
+	force = 15
+	throwforce = 35
 	w_class = 1.0
 	det_time = 30
 
@@ -61,7 +61,7 @@
 		..()
 
 /mob/living/simple_animal/hostile/smartdisc
-	name = "Smart-Disc"
+	name = "smart-disc"
 	desc = "A furious, whirling array of blades and alien technology."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "disk_active"
@@ -73,10 +73,12 @@
 	response_help = "stares at the"
 	response_disarm = "bats aside the"
 	response_harm = "hits the"
-	speed = 2
-	maxHealth = 80
-	health = 80
+	speed = -1
+	maxHealth = 60
+	health = 60
 	attack_same = 0
+	density = 0
+	small = 1
 
 	harm_intent_damage = 10
 	melee_damage_lower = 15
@@ -99,7 +101,7 @@
 	destroy_surroundings = 0
 
 	faction = "yautja"
-	var/lifetime = 16 //About 20 seconds.
+	var/lifetime = 10 //About 15 seconds.
 	var/time_idle = 0
 
 	Process_Spacemove(var/check_drift = 0)
@@ -109,7 +111,7 @@
 		return
 
 	bullet_act(var/obj/item/projectile/Proj)
-		if(prob(100 - Proj.damage))
+		if(prob(60 - Proj.damage))
 			return 0
 
 		if(!Proj || Proj.nodamage)
@@ -117,6 +119,13 @@
 
 		adjustBruteLoss(Proj.damage)
 		return 0
+
+	death()
+		visible_message("\The [src] stops whirring and spins out onto the floor.")
+		new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
+		..()
+		spawn(1)
+			if(src) del(src)
 
 	gib()
 		visible_message("\The [src] explodes!")
@@ -129,14 +138,9 @@
 		var/atom/T = null
 		stop_automated_movement = 0
 
-		for(var/atom/A in ListTargets(5))
+		for(var/atom/A in ListTargets(4))
 			if(A == src)
 				continue
-
-			var/atom/F = Found(A)
-			if(F)
-				T = F
-				break
 
 			if(isliving(A))
 				var/mob/living/L = A
@@ -145,6 +149,8 @@
 				else if(L in friends)
 					continue
 				else if(isYautja(L))
+					continue
+				else if (L.stat == DEAD)
 					continue
 				else
 					if(!L.stat)
@@ -185,18 +191,19 @@
 			time_idle = 0
 
 		lifetime--
-		if(lifetime <= 0 || time_idle > 5)
+		if(lifetime <= 0 || time_idle > 3)
 			visible_message("\The [src] stops whirring and spins out onto the floor.")
 			new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 			del(src)
 			return
 
-		for(var/mob/living/carbon/C in range(12))
+		for(var/mob/living/carbon/C in range(8))
 			if(C.target_locked)
 				var/image/I = C.target_locked
 				if(I.icon_state == "locked-y" && !isYautja(C) && C.stat != DEAD)
 					stance = HOSTILE_STANCE_ATTACK
 					target_mob = C
+					break
 
 		if(!stat)
 			switch(stance)
@@ -208,13 +215,35 @@
 
 				if(HOSTILE_STANCE_ATTACKING)
 					AttackTarget()
-					target_mob = FindTarget() //Now find a new one, fast!
+
+	AttackTarget()
+		stop_automated_movement = 1
+		if(!target_mob || SA_attackable(target_mob))
+			LoseTarget()
+			return 0
+		if(!(target_mob in ListTargets(5)) || prob(20) || target_mob.stat)
+			sleep(2)
+			stance = HOSTILE_STANCE_IDLE
+			target_mob = FindTarget()
+			return 0
+		if(get_dist(src, target_mob) <= 1)	//Attacking
+			AttackingTarget()
+			return 1
 
 	AttackingTarget()
-		. =..()
-		var/mob/living/L = .
-		if(istype(L))
+		if(isnull(target_mob) || !target_mob)  return
+		if(!Adjacent(target_mob))  return
+		if(isliving(target_mob))
+			var/mob/living/L = target_mob
+			L.attack_animal(src)
 			if(prob(5))
 				L.Weaken(3)
-				L.visible_message("<span class='danger'>\the [src] viciously slashes at \the [L]!</span>")
-				L.attack_animal(src)
+				L.visible_message("<span class='danger'>\The [src] viciously slashes at \the [L]!</span>")
+			return L
+		if(istype(target_mob,/obj/mecha))
+			var/obj/mecha/M = target_mob
+			M.attack_animal(src)
+			return M
+		if(istype(target_mob,/obj/machinery/bot))
+			var/obj/machinery/bot/B = target_mob
+			B.attack_animal(src)
