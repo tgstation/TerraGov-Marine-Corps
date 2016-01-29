@@ -79,7 +79,7 @@
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
 		var/mob/living/carbon/Xenomorph/Crusher/X = src
-		if(X.momentum > 1 && dir != X.charge_dir )
+		if(X.momentum > 1)
 			X.stop_momentum(X.charge_dir)
 
 	if(next_move > world.time) // in the year 2000...
