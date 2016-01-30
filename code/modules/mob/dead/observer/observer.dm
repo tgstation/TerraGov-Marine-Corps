@@ -172,7 +172,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(stat == DEAD)
 		ghostize(1)
 	else
-		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)","Are you sure you want to ghost?","Ghost","Stay in body")
+		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for at least 5 minutes. You can't change your mind so choose wisely!)","Are you sure you want to ghost?","Ghost","Stay in body")
 		if(response != "Ghost")	return	//didn't want to ghost after-all
 		resting = 1
 		var/turf/location = get_turf(src)
@@ -293,7 +293,37 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Follow and haunt a mob."
 
 	var/list/mobs = getmobs()
-	var/input = input("Please, select a mob!", "Haunt", null, null) as null|anything in mobs
+	var/input = input("Please select a mob:", "Haunt", null, null) as null|anything in mobs
+	var/mob/target = mobs[input]
+	ManualFollow(target)
+
+/mob/dead/observer/verb/follow_xeno()
+	set category = "Ghost"
+	set name = "Follow Xeno" // "Haunt"
+	set desc = "Follow a living Xeno."
+
+	var/list/mobs = getxenos()
+	var/input = input("Please select a living Xeno:", "Haunt", null, null) as null|anything in mobs
+
+	if(mobs.len == 0)
+		usr << "\red There aren't any living Xenos."
+		return
+
+	var/mob/target = mobs[input]
+	ManualFollow(target)
+
+/mob/dead/observer/verb/follow_pred()
+	set category = "Ghost"
+	set name = "Follow Predator" // "Haunt"
+	set desc = "Follow a living Predator."
+
+	var/list/mobs = getpreds()
+	var/input = input("Please select a living Predator:", "Haunt", null, null) as null|anything in mobs
+
+	if(mobs.len == 0)
+		usr << "\red There aren't any living Predators."
+		return
+
 	var/mob/target = mobs[input]
 	ManualFollow(target)
 
@@ -529,106 +559,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.add_hiddenprint(src)
 		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")*/
 
-/mob/dead/verb/join_as_larva()
-	set category = "Ghost"
-	set name = "Join As Larva"
-	set desc = "Select an alive but logged-out Alien Larva to re-join the game."
-
-	var/mob/living/carbon/Xenomorph/Larva/L = src
-
-	if(ticker.current_state < GAME_STATE_PLAYING)
-		usr << "\red The game hasn't started yet!"
-		return
-
-	if (!usr.stat) // Make sure we're an observer
-		// usr << "!usr.stat"
-		return
-
-	if (usr != src)
-		// usr << "usr != src"
-		return 0 // Something is terribly wrong
-
-	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing Aliens and cannot spawn as a larva."
-		return
-
-	var/list/larva_list = list()
-
-	for(var/mob/living/carbon/Xenomorph/Larva/A in living_mob_list)
-		if(isXenoLarva(A) && !A.client)
-			larva_list += A.name
-
-	if(larva_list.len == 0)
-		usr << "\red There aren't any available Alien Larva."
-
-	var/choice = input("Pick a Larva:") as null|anything in larva_list
-	if (isnull(choice) || choice == "Cancel")
-		return
-
-	for(var/mob/living/carbon/Xenomorph/Larva/X in living_mob_list)
-		if(choice == X.name)
-			L = X
-			break
-
-	if(!L || isnull( L ))
-		usr << "Not a valid mob!"
-		return
-
-	if(!istype(L, /mob/living/carbon/Xenomorph/Larva))
-		usr << "\red That's not an Alien Larva."
-		return
-
-	if(L.stat == DEAD)  // Larva is dead. Dead.
-		usr << "\red It's dead."
-		return
-
-	if(L.client) // Larva player is still online
-		usr << "\red That player is still connected."
-		return
-
-	var/deathtime = world.time - usr.timeofdeath
-	var/deathtimeminutes = round(deathtime / 600)
-	var/pluralcheck = "minute"
-	if(deathtimeminutes == 0)
-		pluralcheck = ""
-	else if(deathtimeminutes == 1)
-		pluralcheck = " [deathtimeminutes] minute and"
-	else if(deathtimeminutes > 1)
-		pluralcheck = " [deathtimeminutes] minutes and"
-	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-
-	if (deathtime < 3000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Larva - Ignored for Admins, cause we're special
-		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "\red You must wait 5 minutes to spawn as a Larva! (otherwise, you will burst when one is ready)"
-		return
-
-	if(L.away_timer < 600) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
-		usr << "\red That player hasn't been away long enough. Please wait [600 - L.away_timer] more seconds."
-		return
-
-	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this Alien Larva?", "Confirmation", "Yes", "No") == "Yes")
-
-		if(L.client || L.stat == DEAD) // Do it again, just in case
-			usr << "\red Oops. That mob can no longer be controlled. Sorry."
-			return
-
-		var/mob/ghostmob = usr.client.mob
-		message_admins("[usr.ckey] has joined as an Alien Larva.")
-		log_admin("[usr.ckey] has joined as an Alien Larva.")
-		L.ckey = usr.ckey
-		// L.client = usr.client
-		if( isobserver(ghostmob) )
-			del(ghostmob)
-
-	return
-
-
 /mob/dead/verb/join_as_alien()
 	set category = "Ghost"
-	set name = "Join As Alien"
-	set desc = "Select an alive but logged-out Alien Larva to re-join the game."
+	set name = "Join as Xeno"
+	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
 
-	var/mob/living/carbon/Xenomorph/L = src
+	var/mob/L = src
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
 		usr << "\red The game hasn't started yet!"
@@ -643,19 +579,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0 // Something is terribly wrong
 
 	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing Aliens and cannot spawn as a beautiful alium."
+		usr << "\red You are banned from playing aliens and cannot spawn as a Xeno."
 		return
 
 	var/list/alien_list = list()
 
 	for(var/mob/living/carbon/Xenomorph/A in living_mob_list)
-		if(isXeno(A) && !A.client && !isXenoLarva(A))
+		if(isXeno(A) && !A.client)
 			alien_list += A.name
 
 	if(alien_list.len == 0)
-		usr << "\red There aren't any available Aliens (maybe try a larva?)."
+		usr << "\red There aren't any available Xenomorphs."
 
-	var/choice = input("Pick an Alium:") as null|anything in alien_list
+	var/choice = input("Pick a Xeno:") as null|anything in alien_list
 	if (isnull(choice) || choice == "Cancel")
 		return
 
@@ -669,19 +605,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(!istype(L, /mob/living/carbon/Xenomorph))
-		usr << "\red That's not an Alien...."
+		usr << "\red That's not a Xeno."
 		return
 
-	if(L.stat == DEAD)  // Alium is dead. Dead.
-		usr << "\red It's dead Jim."
+	if(L.stat == DEAD)  // Xeno is dead. Dead.
+		usr << "\red It's dead."
 		return
 
-	if(L.client) // Alium player is still online
-		usr << "\red That player is still connected."
+	if(L.client) // Xeno player is still online
+		usr << "\red That player has reconnected."
 		return
 
 	var/deathtime = world.time - usr.timeofdeath
-	var/deathtimeminutes = round(deathtime / 600)
+	var/deathtimeminutes = round(deathtime / 300)
 	var/pluralcheck = "minute"
 	if(deathtimeminutes == 0)
 		pluralcheck = ""
@@ -689,26 +625,26 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		pluralcheck = " [deathtimeminutes] minute and"
 	else if(deathtimeminutes > 1)
 		pluralcheck = " [deathtimeminutes] minutes and"
-	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
+	var/deathtimeseconds = round((deathtime - deathtimeminutes * 300) / 10,1)
 
-	if (deathtime < 6000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming an alium - Ignored for Admins, cause we're special
+	if (deathtime < 3000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Xeno - Ignored for Admins, cause we're special
 		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "\red You must wait 10 minutes to spawn as an alien! (otherwise, you will burst when one is ready)"
+		usr << "\red You must wait 5 minutes before rejoining the game!"
 		return
 
-	if(L.away_timer < 600) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
-		usr << "\red That player hasn't been away long enough. Please wait [600 - L.away_timer] more seconds."
+	if(L.away_timer < 300) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
+		usr << "\red That player hasn't been away long enough. Please wait [300 - L.away_timer] more seconds."
 		return
 
-	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this Alien?", "Confirmation", "Yes", "No") == "Yes")
+	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this [L]?", "Confirmation", "Yes", "No") == "Yes")
 
 		if(L.client || L.stat == DEAD) // Do it again, just in case
 			usr << "\red Oops. That mob can no longer be controlled. Sorry."
 			return
 
 		var/mob/ghostmob = usr.client.mob
-		message_admins("[usr.ckey] has joined as an Alien.")
-		log_admin("[usr.ckey] has joined as an Alien.")
+		message_admins("[usr.ckey] has joined as [L].")
+		log_admin("[usr.ckey] has joined as [L].")
 		L.ckey = usr.ckey
 		// L.client = usr.client
 		if( isobserver(ghostmob) )
@@ -718,10 +654,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/join_as_hellhound()
 	set category = "Ghost"
-	set name = "Join As Hellhound"
-	set desc = "Select an alive but logged-out Hellhound. THIS COMES WITH STRICT RULES. READ THEM OR GET BANNED."
+	set name = "Join as Hellhound"
+	set desc = "Select an alive and available Hellhound. THIS COMES WITH STRICT RULES. READ THEM OR GET BANNED."
 
-	var/mob/living/carbon/Xenomorph/Larva/L = src
+	var/mob/L = src
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
 		usr << "\red The game hasn't started yet!"
@@ -736,7 +672,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0 // Something is terribly wrong
 
 	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing aliens and cannot spawn as a hellhound."
+		usr << "\red You are banned from playing aliens and cannot spawn as a Hellhound."
 		return
 
 	var/list/hellhound_list = list()
@@ -746,10 +682,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			hellhound_list += A.name
 
 	if(hellhound_list.len == 0)
-		usr << "\red There aren't any available hellhounds. What's a hellhound? Who are all these strange people?"
+		usr << "\red There aren't any available Hellhounds."
 		return
 
-	var/choice = input("Pick a hellhound:") as null|anything in hellhound_list
+	var/choice = input("Pick a Hellhound:") as null|anything in hellhound_list
 	if (isnull(choice) || choice == "Cancel")
 		return
 
@@ -763,7 +699,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(!istype(L, /mob/living/carbon/hellhound))
-		usr << "\red That's not a hellhound. What are you smoking?"
+		usr << "\red That's not a Hellhound."
 		return
 
 	if(L.stat == DEAD)  // DEAD
@@ -781,8 +717,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return
 
 		var/mob/ghostmob = usr.client.mob
-		message_admins("[usr.ckey] has joined as a hellhound.")
-		log_admin("[usr.ckey] has joined as a hellhound.")
+		message_admins("[usr.ckey] has joined as a [L].")
+		log_admin("[usr.ckey] has joined as a [L].")
 		L.ckey = usr.ckey
 
 		if( isobserver(ghostmob) )
@@ -799,7 +735,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/join_as_yautja()
 	set category = "Ghost"
-	set name = "Join the Hunt"
+	set name = "Join as Predator"
 	set desc = "If you are whitelisted, and it is the right type of round, join in."
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
@@ -807,7 +743,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(!istype(ticker.mode,/datum/game_mode/colonialmarines))
-		usr << "Just ask an admin to spawn you."
+		usr << "Gamemode mismatch. Consider asking an Admin to spawn you."
 		return
 
 	if (!usr.stat || !client) // Make sure we're an observer
@@ -819,15 +755,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0 // Something is terribly wrong
 
 	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing aliens and cannot spawn as a predator."
+		usr << "\red You are banned from playing aliens and cannot spawn as a Predator."
 		return
 
 	if(!is_alien_whitelisted(usr,"Yautja") && !is_alien_whitelisted(usr,"Yautja Elder"))
-		usr << "Honk."
+		usr << "You are not whitelisted."
 		return
 
 	if(ticker.mode:is_pred_round == 0)
-		usr << "You are whitelisted, but there's no hunts going on. Maybe if you prayed real hard an admin could spawn you in."
+		usr << "You are whitelisted, but there are no hunts this round. Maybe if you prayed real hard an Admin could spawn you in."
 		return
 
 	if(ticker.mode:numpreds <= 0)
