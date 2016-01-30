@@ -867,12 +867,12 @@
 	item_state = "standard_jumpsuit_s"
 	item_color = "standard_jumpsuit"
 
-/obj/item/clothing/under/marine/fluff/sanctum
+/obj/item/clothing/under/marine/fluff/Sanctum_uniform
 	name = "Sanctum Fatigues"
 	desc = "Fatigues with Kevlar fibers for a bit more protection than most clothing.  UNIQUE DONOR ITEM"
-	icon_state = "sanctum_u"
-	item_state = "sanctum_u_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
-	item_color = "sanctum_u" //color must always be the same as item_state
+	icon_state = "Sanctum_u"
+	item_state = "Sanctum_u_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
+	item_color = "Sanctum_u" //color must always be the same as item_state
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
