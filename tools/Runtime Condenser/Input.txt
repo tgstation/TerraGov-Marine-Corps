@@ -1363,3 +1363,433 @@ Denied access to 'Guest-2577728246' connecting from 101.176.153.140
 Fri Jan 29 16:31:59 2016
 Denied access to 'Guest-1939990703' connecting from 186.226.172.198
 Denied access to 'Guest-4250792782' connecting from 93.182.19.174
+### VarEdit by Apophis775: /obj/item/device/flashlight force=200
+### VarEdit by SASoperative: /obj/item/weapon/gun/projectile/automatic/m41 recoil=3
+Fri Jan 29 17:38:47 2016
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the plating (209,158,3) (/turf/simulated/floor/plating/airless)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the plating (209,158,3) (/turf/simulated/floor/plating/airless)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the plating (209,158,3) (/turf/simulated/floor/plating/airless)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the plating (210,157,3) (/turf/simulated/floor/plating/airless)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+  usr: null
+  src: Supermatter (/obj/machinery/power/supermatter)
+  src.loc: the floor (197,154,3) (/turf/simulated/floor)
+  call stack:
+Supermatter (/obj/machinery/power/supermatter): process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines process()
+/datum/controller/game_control... (/datum/controller/game_controller): process machines()
+/datum/controller/game_control... (/datum/controller/game_controller): process()
+runtime error: Cannot execute null.autosay().
+proc name: process (/obj/machinery/power/supermatter/process)
+  source file: supermatter.dm,155
+### VarEdit by Apophis775: /obj/item/weapon/tank/jetpack/oxygen air_contents=
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+### VarEdit by Apophis775: /obj/item/weapon/tank/emergency_oxygen air_contents=
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+runtime error: Cannot execute null.react().
+proc name: process (/obj/item/weapon/tank/process)
+  source file: tanks.dm,218
+Warning: further proc crash messages are being suppressed to prevent overload...
+Rebooted server.
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastright)
+  src.loc: the floor (120,150,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastright): New(the floor (120,150,3) (/turf/simulated/floor))
+runtime error: Cannot read "3".len
+proc name: New (/obj/machinery/door/window/New)
+  source file: windowdoor.dm,19
+  usr: null
+  src: the interior door (/obj/machinery/door/window/eastleft)
+  src.loc: the floor (120,151,3) (/turf/simulated/floor)
+  call stack:
+the interior door (/obj/machinery/door/window/eastleft): New(the floor (120,151,3) (/turf/simulated/floor))
+
+Your server failed to establish a connection with the feedback database.
+
+Your server failed to establish a connection with the SQL database.
+
+
+
+
+
+## WARNING: Non-buildable or Non-magical SMES at 96X 154Y 3Z
+## TESTING: DNA2: 17 blocks are unused: 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 16, 17, 20, 22, 23, 24 and 25
+## ERROR: File not found (maps/RandomZLevels/fileList.txt)
+### VarEdit by SASoperative: /obj/item/clothing/under/marine/fluff/sanctum icon_state=Sanctum_u
