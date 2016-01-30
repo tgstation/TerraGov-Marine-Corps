@@ -440,6 +440,56 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return creatures
 
+/proc/getxenos()
+
+	var/list/mobs = sortxenos()
+	var/list/names = list()
+	var/list/creatures = list()
+	var/list/namecounts = list()
+	for(var/mob/M in mobs)
+		var/name = M.name
+		if (name in names)
+			namecounts[name]++
+			name = "[name] ([namecounts[name]])"
+		else
+			names.Add(name)
+			namecounts[name] = 1
+		if (M.real_name && M.real_name != M.name)
+			name += " \[[M.real_name]\]"
+		if (M.stat == 2)
+			if(istype(M, /mob/dead/observer/))
+				name += " \[ghost\]"
+			else
+				name += " \[dead\]"
+		creatures[name] = M
+
+	return creatures
+
+/proc/getpreds()
+
+	var/list/mobs = sortpreds()
+	var/list/names = list()
+	var/list/creatures = list()
+	var/list/namecounts = list()
+	for(var/mob/M in mobs)
+		var/name = M.name
+		if (name in names)
+			namecounts[name]++
+			name = "[name] ([namecounts[name]])"
+		else
+			names.Add(name)
+			namecounts[name] = 1
+		if (M.real_name && M.real_name != M.name)
+			name += " \[[M.real_name]\]"
+		if (M.stat == 2)
+			if(istype(M, /mob/dead/observer/))
+				name += " \[ghost\]"
+			else
+				name += " \[dead\]"
+		creatures[name] = M
+
+	return creatures
+
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
@@ -473,6 +523,24 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //	for(var/mob/living/silicon/hive_mainframe/M in world)
 //		mob_list.Add(M)
 	return moblist
+
+/proc/sortxenos()
+	var/list/xenolist = list()
+	var/list/sortmob = sortAtom(mob_list)
+	for(var/mob/living/carbon/Xenomorph/M in sortmob)
+		if(!M.client)
+			continue
+		xenolist.Add(M)
+	return xenolist
+
+/proc/sortpreds()
+	var/list/predlist = list()
+	var/list/sortmob = sortAtom(mob_list)
+	for(var/mob/living/carbon/human/M in sortmob)
+		if(!M.client || !M.species.name == "Yautja")
+			continue
+		predlist.Add(M)
+	return predlist
 
 //E = MC^2
 /proc/convert2energy(var/M)
