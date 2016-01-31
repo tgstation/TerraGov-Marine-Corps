@@ -68,6 +68,7 @@
 		adjustOxyLoss(-10)
 		adjustToxLoss(-50)
 		if(weakened) weakened--
+		if(stunned) stunned = 0
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if( (getOxyLoss() > 50) || (config.health_threshold_crit > health) )
