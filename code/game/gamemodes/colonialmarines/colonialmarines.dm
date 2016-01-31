@@ -16,7 +16,7 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/pred_chance = 4 //1 in <x>
+	var/pred_chance = 1 //1 in <x>
 	var/is_pred_round = 0
 	var/numpreds = 3
 
@@ -536,4 +536,3 @@ var/list/toldstory = list()
 
 /datum/game_mode/proc/auto_declare_completion_colonialmarines()
 	return
-
