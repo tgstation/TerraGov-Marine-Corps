@@ -126,7 +126,6 @@
 	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
-
 	icon_state = "marine_jumpsuit"
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
@@ -139,19 +138,39 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
-
 	icon_state = "marine_underpants"
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
 	has_sensor = 1
 
 /obj/item/clothing/under/liason_suit
-	desc = "A very fancy suit for a liason from Weyland Yutani."
-	name = "liason's suit"
-	icon_state = "blacksuit"
-	item_state = "blacksuit"
-	item_color = "blacksuit"
+	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Specically crafted to make you look like a prick."
+	name = "Liason's Tan Suit"
+	icon_state = "liason_regular"
+	item_state = "liason_regular"
+	item_color = "liason_regular"
 	has_sensor = 1
+
+/obj/item/clothing/under/liason_suit/outing
+	desc = "A casual outfit consisting of a collared shirt and a vest. Looks like something you might wear on the weekends, or on a visit to a derelict colony."
+	name = "Liason's Outfit"
+	icon_state = "liason_outing"
+	item_state = "liason_outing"
+	item_color = "liason_outing"
+
+/obj/item/clothing/under/liason_suit/formal
+	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Weyland-Yutani corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
+	name = "Liason's White Suit"
+	icon_state = "liason_formal"
+	item_state = "liason_formal"
+	item_color = "liason_formal"
+
+/obj/item/clothing/under/liason_suit/suspenders
+	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
+	name = "Liason's Attire"
+	icon_state = "liason_suspenders"
+	item_state = "liason_suspenders"
+	item_color = "liason_suspenders"
 
 /obj/item/clothing/under/rank/ro_suit
 	name = "Requisition officer suit."
@@ -569,6 +588,7 @@
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 
+
 /obj/item/clothing/head/cmbandana
 	name = "USCM Bandana (Green)"
 	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
@@ -601,7 +621,6 @@
 	icon_state = "berettan"
 	item_state = "berettan"
 	item_color = "berettan"
-
 
 /obj/item/clothing/head/headband
 	name = "USCM Headband"

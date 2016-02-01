@@ -68,12 +68,18 @@
 		if(src:turret_control)
 			if(src:turret_control.handle_manual_fire(src,A,params))
 				return
-
+		if(isYautja(src) && istype(src:get_active_hand(),/obj/item/device/yautja_holoemitter))
+			if(istype(A,/mob/living/carbon))
+				var/obj/item/device/yautja_holoemitter/Y = src:get_active_hand()
+				if(istype(Y))
+					if(Y.scan_target(A))
+						src << "You successfully scan [A] into your holoemitter frequencies."
+						return
 	face_atom(A)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
 		var/mob/living/carbon/Xenomorph/Crusher/X = src
-		if(X.momentum > 1 && dir != X.charge_dir )
+		if(X.momentum > 1)
 			X.stop_momentum(X.charge_dir)
 
 	if(next_move > world.time) // in the year 2000...

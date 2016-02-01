@@ -391,7 +391,7 @@ emp_act
 
 				if(T)
 					src.loc = T
-					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
+					visible_message("<span class='warning'>[src] is <B>pinned to the wall</b> by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
 					src.anchored = 1
 					src.pinned += O
 

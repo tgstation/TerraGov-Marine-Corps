@@ -39,7 +39,7 @@
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
 
-	if(rand(1,pred_chance) == 1) //Just make sure we have enough.
+	if(round(rand(1,pred_chance)) == 1) //Just make sure we have enough.
 		is_pred_round = 1
 		if(!possible_predators.len)
 			is_pred_round = 0
@@ -197,21 +197,16 @@
 /proc/transform_predator(var/datum/mind/ghost)
 
 	var/mob/H = ghost.current
+
 	var/mob/living/carbon/human/newmob
 
 	newmob = new (pick(pred_spawn))
 
-	if(H.mind)
-		H.mind.transfer_to(newmob)
-	else //?? Should never happen
-		H.mind = new(H.key)
-		H.mind.transfer_to(newmob)
+	newmob.key = ghost.key
 
-	if(!newmob.client)
-		newmob.key = H.key
-
-	if(!newmob.client)
-		message_admins("Warning: null client in transform_predator [H.key]")
+	if(!newmob.key)
+		message_admins("Warning: null client in transform_predator, key: [H.key]")
+		del(newmob)
 		return
 
 	newmob.set_species("Yautja")
@@ -499,6 +494,26 @@ var/list/toldstory = list()
 		if(survivors.len)
 			var/text = "<br><FONT size = 3><B>The survivors were:</B></FONT>"
 			for(var/datum/mind/A in survivors)
+				if(A)
+					var/mob/M = A.current
+					if(!M)
+						M = A.original
+
+					if(M)
+						text += "<br>[M.key] was "
+						text += "[M.name] ("
+						if(M.stat == DEAD)
+							text += "died"
+						else
+							text += "survived"
+						text += ")"
+					else
+						text += "<BR>[A.key] was Unknown! (body destroyed)"
+
+			world << text
+		if(predators.len)
+			var/text = "<br><FONT size = 3><B>The Predators were:</B></FONT>"
+			for(var/datum/mind/A in predators)
 				if(A)
 					var/mob/M = A.current
 					if(!M)
