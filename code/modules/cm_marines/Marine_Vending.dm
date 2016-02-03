@@ -170,7 +170,7 @@
 						/obj/item/device/encryptionkey/headset_med = 3,
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
 						//obj/item/weapon/storage/backpack/medic = 3,
-						//obj/item/weapon/storage/backpack/satchel_med = 3,,
+						//obj/item/weapon/storage/backpack/satchel_med = 3,
 						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/weapon/melee/defibrillator = 3,
@@ -184,6 +184,7 @@
 						/obj/item/weapon/storage/pill_bottle/inaprovaline = 2,
 						/obj/item/weapon/storage/pill_bottle/tramadol = 4,
 						/obj/item/weapon/storage/pill_bottle/antitox = 4,
+						/obj/item/weapon/storage/pill_bottle/russianRed = 3,
 						/obj/item/device/healthanalyzer = 3,
 						/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 3,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 6,
@@ -193,10 +194,9 @@
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 3,
-						/obj/item/weapon/storage/pill_bottle/russianRed = 3,
 						/obj/item/clothing/glasses/hud/health = 3,
 						/obj/item/weapon/storage/firstaid/regular = 4,
-						/obj/item/weapon/storage/firstaid/adv = 3,
+						/obj/item/weapon/storage/firstaid/adv = 3
 					)
 	contraband = list(
 					/obj/item/clothing/head/helmet/marine/medic = 2
