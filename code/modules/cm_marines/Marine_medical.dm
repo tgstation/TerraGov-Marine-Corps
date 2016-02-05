@@ -86,7 +86,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone
-	name = "Oxycodone Auto-Injector"
+	name = "Oxycodone (EXTREME PAINKILLER) Auto-Injector"
 	desc = "An auto-injector loaded with 5u of Oxycodone."
 	amount_per_transfer_from_this = 5
 	volume = 5
