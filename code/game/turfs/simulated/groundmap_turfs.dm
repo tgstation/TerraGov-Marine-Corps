@@ -1,7 +1,7 @@
 
 /turf/simulated/floor/gm //Basic groundmap turf parent
 	name = "ground dirt"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
 	floor_tile = null
 	heat_capacity = 500000 //Shouldn't be possible, but you never know...
@@ -40,7 +40,7 @@
 //Ground map walls
 /turf/simulated/wall/gm
 	name = "dense jungle"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 	desc = "Some thick jungle."
 	density = 1
@@ -67,7 +67,7 @@
 
 /turf/simulated/wall/gm/dense
 	name = "dense jungle wall"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 
 	New()
@@ -90,7 +90,7 @@
 
 /turf/simulated/floor/gm/river/New()
 	..()
-	overlays += image("icon"='icons/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
+	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
 
 /turf/simulated/floor/gm/river/proc/cleanup(var/mob/living/carbon/human/M)
 	if(!M || !istype(M)) return
@@ -122,7 +122,7 @@
 
 /turf/simulated/floor/gm/riverdeep/New()
 	..()
-	overlays += image("icon"='icons/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
 
 //*********************//
 // Generic undergrowth //
@@ -130,7 +130,7 @@
 
 /obj/structure/jungle
 	name = "jungle foliage"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	density = 0
 	anchored = 1
 	unacidable = 1 // can toggle it off anyway
@@ -152,7 +152,7 @@
 	icon_state = "planttop1"
 
 /obj/structure/jungle/tree
-	icon = 'icons/ground_map64.dmi'
+	icon = 'icons/obj/flora/ground_map64.dmi'
 	desc = "What an enormous tree!"
 
 /obj/structure/jungle/tree/bigtreeTR

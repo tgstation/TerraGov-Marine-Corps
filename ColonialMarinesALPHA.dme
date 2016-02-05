@@ -36,7 +36,7 @@
 #define FILE_DIR "icons/NTOS/battery_icons"
 #define FILE_DIR "icons/obj"
 #define FILE_DIR "icons/obj/assemblies"
-#define FILE_DIR "icons/obj/atmospherics"
+#define FILE_DIR "icons/obj/atmospherics-UNUSED"
 #define FILE_DIR "icons/obj/clothing"
 #define FILE_DIR "icons/obj/clothing/species"
 #define FILE_DIR "icons/obj/clothing/species/skrell"

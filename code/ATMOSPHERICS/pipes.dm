@@ -386,7 +386,7 @@
 	color = PIPE_COLOR_PURPLE
 
 /obj/machinery/atmospherics/pipe/simple/insulated
-	icon = 'icons/obj/atmospherics/red_pipe.dmi'
+	icon = 'icons/atmos/red_pipe.dmi'
 	icon_state = "intact"
 
 	minimum_temperature_difference = 10000
@@ -1210,7 +1210,7 @@
 	icon_state = "n2o"
 
 /obj/machinery/atmospherics/pipe/vent
-	icon = 'icons/obj/atmospherics/pipe_vent.dmi'
+	icon = 'icons/atmos/pipe_vent.dmi'
 	icon_state = "intact"
 
 	name = "Vent"
