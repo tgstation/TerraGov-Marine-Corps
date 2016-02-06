@@ -280,6 +280,7 @@
 	caliber = "9mm"
 	silenced = 0
 	ammo_type = "/obj/item/ammo_casing/c9mm"
+	fire_sound = 'sound/weapons/vp70.ogg'
 	load_method = 2
 	recoil = 0
 	fire_delay = 2
@@ -313,3 +314,4 @@
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "sword"
 	force = 32
+

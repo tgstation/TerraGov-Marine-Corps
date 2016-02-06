@@ -101,7 +101,8 @@
 	name = "[initial(name)] (Wielded)"
 	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) \
 			|| istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37) \
-			|| istype(src,/obj/item/weapon/gun/projectile/automatic/mar40)) //Ugh
+			|| istype(src,/obj/item/weapon/gun/projectile/automatic/mar40) \
+			|| istype(src,/obj/item/weapon/gun/projectile/M56_Smartgun)) //Ugh
 		item_state = "[initial(item_state)]-w"
 		if(usr && ishuman(usr))
 			usr:update_inv_l_hand(0)

@@ -175,6 +175,7 @@
 	item_state = "44"
 	caliber = "38s"
 	ammo_type = "/obj/item/ammo_casing/m44m"
+	fire_sound = 'sound/weapons/44mag.ogg'
 	max_shells = 6
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 19
