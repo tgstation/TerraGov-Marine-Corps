@@ -32,7 +32,7 @@
 	if(src.analgesic)
 		src.traumatic_shock = 0
 
-	// broken or ripped off organs will add quite a bit of pain
+	//Broken or ripped off organs will add quite a bit of pain
 	if(istype(src,/mob/living/carbon/human))
 		var/mob/living/carbon/human/M = src
 		for(var/datum/organ/external/organ in M.organs)
@@ -45,7 +45,16 @@
 				if(organ.status & ORGAN_SPLINTED)
 					src.traumatic_shock -= 25
 			if(organ.status && (organ.germ_level >= INFECTION_LEVEL_ONE))
-				src.traumatic_shock += organ.germ_level*0.05
+				src.traumatic_shock += organ.germ_level * 0.05
+
+		//Internal organs hurt too
+		for(var/datum/organ/internal/organ in M.internal_organs)
+			if (!organ)
+				continue
+			if(organ.damage)
+				src.traumatic_shock += organ.damage * 1.5
+			if(organ.germ_level >= INFECTION_LEVEL_ONE)
+				src.traumatic_shock += organ.germ_level * 0.05
 	if(src.traumatic_shock < 0)
 		src.traumatic_shock = 0
 
