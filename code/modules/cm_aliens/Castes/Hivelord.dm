@@ -65,11 +65,11 @@
 		src << "You can only do this on a turf."
 		return
 
-	if(istype(T,/turf/simulated/floor/gm/river))
+	if(istype(T,/turf/unsimulated/floor/gm/river))
 		src << "What, you want to flood your fellow xenos?"
 		return
 
-	if(!istype(T,/turf/simulated/floor/gm))
+	if(!istype(T,/turf/unsimulated/floor/gm))
 		src << "You scrape around, but nothing happens. You can only place these on open ground."
 		return
 

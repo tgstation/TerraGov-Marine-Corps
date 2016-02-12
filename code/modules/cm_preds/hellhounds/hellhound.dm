@@ -341,7 +341,7 @@
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
-	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
+	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		tally += 1.3
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
