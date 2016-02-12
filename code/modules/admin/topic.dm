@@ -2736,8 +2736,8 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> is responding to <font color=blue>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
-		var/msgplayer = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has marked your request and is preparing to respond...</b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked your request and is preparing to respond...</b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
@@ -2751,8 +2751,8 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has marked the Adminhelp from <font color=blue>[ref_person.ckey]/([ref_person])</font> as 'No response necessary'. The player has been notified.</b>"
-		var/msgplayer = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font> as 'No response necessary'. The player has been notified.</b>"
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
@@ -2761,25 +2761,25 @@
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
-	if(href_list["retarded"]) // new verb on the Ahelp.  Will tell the person their message is fucking stupid
+	if(href_list["retarded"]) // Their message is fucking stupid
 		var/mob/ref_person = locate(href_list["retarded"])
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has marked the Adminhelp from <font color=blue>[ref_person.ckey]/([ref_person])</font> as 'Completely fucking retarded' - this Ahelp was written by someone whom, if they were any less intelligent, would need to be watered twice a day. This button doesn't actually notify the player of this, but maybe it should.</b>"
-		// var/msgplayer = ""
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font> as 'Completely fucking retarded' - this Ahelp was written by someone whom, if they were any less intelligent, would need to be watered twice a day. The player has been nicely notified of this as 'No response necessary'.</b>"
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
 				X << msg
 
-		// ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+		ref_person << msgplayer //send a message to the player
 
 
 	if(href_list["ccdibs"]) // CentComm-Dibs. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
 		var/mob/ref_person = locate(href_list["ccdibs"])
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> is responding to <font color=blue>[ref_person.ckey]/([ref_person])</font>.</b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>.</b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
