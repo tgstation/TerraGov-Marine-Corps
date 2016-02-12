@@ -69,11 +69,11 @@
 	icon_dead = "disk"
 	icon_gib = "disk"
 	speak_chance = 0
-	turns_per_move = 3
+	turns_per_move = 1
 	response_help = "stares at the"
 	response_disarm = "bats aside the"
 	response_harm = "hits the"
-	speed = -1
+	speed = -2
 	maxHealth = 60
 	health = 60
 	attack_same = 0
@@ -82,7 +82,7 @@
 
 	harm_intent_damage = 10
 	melee_damage_lower = 15
-	melee_damage_upper = 50
+	melee_damage_upper = 30
 	attacktext = "slices"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
@@ -101,7 +101,7 @@
 	destroy_surroundings = 0
 
 	faction = "yautja"
-	var/lifetime = 10 //About 15 seconds.
+	var/lifetime = 8 //About 15 seconds.
 	var/time_idle = 0
 
 	Process_Spacemove(var/check_drift = 0)
@@ -118,7 +118,7 @@
 			return 0
 
 		adjustBruteLoss(Proj.damage)
-		return 0
+		return 1
 
 	death()
 		visible_message("\The [src] stops whirring and spins out onto the floor.")
@@ -138,7 +138,7 @@
 		var/atom/T = null
 		stop_automated_movement = 0
 
-		for(var/atom/A in ListTargets(4))
+		for(var/atom/A in ListTargets(5))
 			if(A == src)
 				continue
 
@@ -157,20 +157,6 @@
 						stance = HOSTILE_STANCE_ATTACK
 						T = L
 						break
-
-			else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
-				var/obj/mecha/M = A
-				if (M.occupant)
-					stance = HOSTILE_STANCE_ATTACK
-					T = M
-					break
-
-			if(istype(A, /obj/machinery/bot))
-				var/obj/machinery/bot/B = A
-				if (B.health > 0)
-					stance = HOSTILE_STANCE_ATTACK
-					T = B
-					break
 		return T
 
 	ListTargets(var/dist = 7)
@@ -197,7 +183,7 @@
 			del(src)
 			return
 
-		for(var/mob/living/carbon/C in range(8))
+		for(var/mob/living/carbon/C in range(6))
 			if(C.target_locked)
 				var/image/I = C.target_locked
 				if(I.icon_state == "locked-y" && !isYautja(C) && C.stat != DEAD)
@@ -222,9 +208,8 @@
 			LoseTarget()
 			return 0
 		if(!(target_mob in ListTargets(5)) || prob(20) || target_mob.stat)
-			sleep(2)
 			stance = HOSTILE_STANCE_IDLE
-			target_mob = FindTarget()
+			sleep(1)
 			return 0
 		if(get_dist(src, target_mob) <= 1)	//Attacking
 			AttackingTarget()
@@ -240,10 +225,3 @@
 				L.Weaken(3)
 				L.visible_message("<span class='danger'>\The [src] viciously slashes at \the [L]!</span>")
 			return L
-		if(istype(target_mob,/obj/mecha))
-			var/obj/mecha/M = target_mob
-			M.attack_animal(src)
-			return M
-		if(istype(target_mob,/obj/machinery/bot))
-			var/obj/machinery/bot/B = target_mob
-			B.attack_animal(src)
