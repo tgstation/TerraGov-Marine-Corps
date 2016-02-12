@@ -38,6 +38,24 @@
 		if("whimper")
 			message = "<B>The [src.name]</B> whimpers."
 			m_type = 1
+		if("grunt")
+			message = "<B>The [src.name]</B> grunts."
+			m_type = 1
+		if("rumble")
+			message = "<B>The [src.name]</B> rumbles deeply."
+			m_type = 1
+		if("howl")
+			message = "<B>The [src.name]</B> howls!"
+			m_type = 1
+		if("growl")
+			message = "<B>The [src.name]</B> emits a strange, menacing growl."
+			m_type = 1
+		if("stare")
+			message = "<B>The [src.name]</B> stares."
+			m_type = 1
+		if("sniff")
+			message = "<B>The [src.name]</B> sniffs about."
+			m_type = 1
 		if("dance")
 			if (!src.restrained())
 				message = "<B>The [src.name]</B> dances around!"
@@ -47,7 +65,7 @@
 						dir = i
 						sleep(1)
 		if("help")
-			text += "scratch, whimper, roar, tail, paw, sway, snore, dance"
+			text += "scratch, whimper, roar, tail, paw, sway, snore, grunt, rumble, howl, growl, stare, sniff, dance"
 			src << text
 			return
 		else

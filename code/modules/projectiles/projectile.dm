@@ -113,7 +113,7 @@
 				return 0
 
 			var/distance = get_dist(starting,loc)
-			var/miss_modifier = -10 //NEGATIVE IS BETTER HERE.
+			var/miss_modifier = -20 //NEGATIVE IS BETTER HERE.
 
 			if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 				var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim

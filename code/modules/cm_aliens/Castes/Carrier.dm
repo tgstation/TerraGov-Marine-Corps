@@ -2,15 +2,15 @@
 /mob/living/carbon/Xenomorph/Carrier
 	caste = "Carrier"
 	name = "Carrier"
-	desc = "An Alien Carrier. It carries huggers."
+	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
 	icon_state = "Carrier Walking"
 	melee_damage_lower = 20
 	melee_damage_upper = 30
-	tacklemin = 1
+	tacklemin = 2
 	tacklemax = 3
 	tackle_chance = 60
-	health = 200
-	maxHealth = 200
+	health = 185
+	maxHealth = 185
 	storedplasma = 50
 	maxplasma = 250
 	jellyMax = 0
@@ -22,7 +22,7 @@
 	var/huggers_max = 6
 	adjust_pixel_y = 3
 	var/huggers_cur = 0
-	var/throwspeed = 2
+	var/throwspeed = 1
 	var/threw_a_hugger = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,

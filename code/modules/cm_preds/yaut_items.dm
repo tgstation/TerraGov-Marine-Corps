@@ -109,7 +109,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 40, bullet = 50, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 50, bullet = 55, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/harpoon, /obj/item/weapon/twohanded)
@@ -120,7 +120,7 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 65, bullet = 88, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 65, bullet = 80, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
@@ -131,7 +131,7 @@
 	item_state = "spike1"
 	icon_override = 'icons/Predator/items.dmi'
 	force = 15
-	throwforce = 24
+	throwforce = 38
 	attack_verb = list("jabbed","stabbed","ripped", "skewered")
 	unacidable = 1
 	sharp = 1
@@ -616,7 +616,7 @@
 /obj/item/projectile/beam/yautja3
 	name = "Plasma Caster Blast"
 	icon_state = "pulse1_bl"
-	damage = 55
+	damage = 45
 
 	on_hit(var/atom/target, var/blocked = 0)
 		if(!istype(target, /turf/simulated/wall))
@@ -632,8 +632,8 @@
 	item_state = "beltbag"
 	slot_flags = SLOT_BELT
 	max_w_class = 3
-	storage_slots = 8
-	max_combined_w_class = 24
+	storage_slots = 10
+	max_combined_w_class = 30
 
 /obj/item/clothing/glasses/night/yautja
 	name = "Bio-mask Nightvision"
@@ -833,11 +833,11 @@
 	item_state = "chain"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
-	force = 26
+	force = 28
 	throwforce = 12
 	w_class = 3
 	unacidable = 1
-	sharp = 1
+	sharp = 0
 	edge = 0
 	attack_verb = list("whipped", "slashed","sliced","diced","shredded")
 
@@ -861,7 +861,7 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_POCKET
 	sharp = 1
-	force = 18
+	force = 24
 	w_class = 1.0
 	throwforce = 28
 	throw_speed = 3
@@ -880,7 +880,7 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 46
+	force = 36
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -917,7 +917,7 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 42
+	force = 32
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -953,7 +953,7 @@
 	var/spike_gen_time = 200
 	var/max_spikes = 3
 	var/spikes = 3
-	release_force = 10
+	release_force = 12
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
@@ -1012,16 +1012,13 @@
 	in_chamber = new /obj/item/weapon/spike(src)
 	return 1
 
-/obj/item/weapon/gun/launcher/spikethrower/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-	if(..())
-		if(isYautja(user))
-			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-				var/obj/item/clothing/gloves/yautja/G = user.hands
-				if(G.cloaked)
-					G.decloak(user)
-
-		spikes--
-		update_icon()
+/obj/item/weapon/gun/launcher/spikethrower/afterattack(atom/target, mob/user , flag)
+	if(isYautja(user))
+		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+			var/obj/item/clothing/gloves/yautja/G = user.hands
+			if(G.cloaked)
+				G.decloak(user)
+	return ..()
 
 /obj/item/weapon/spike/yautja
 	name = "spike"
@@ -1035,6 +1032,7 @@
 	item_state = "bolt"
 
 	New()
+		..()
 		spawn(50)
 			if(istype(src.loc,/mob/living))
 				var/mob/living/L = src.loc
@@ -1105,9 +1103,9 @@
 		return
 
 	check_eye(var/mob/user as mob)
-		if (user.stat || (get_dist(user, src) > 1 || user.blinded) )
-			return null
-		if ( !current || !current.can_use() || get_turf(user) != activated_turf || src.loc != user ) //camera doesn't work, or we moved.
+		if (user.stat || user.blinded )
+			current = null
+		if ( !current || get_turf(user) != activated_turf || src.loc != user ) //camera doesn't work, or we moved.
 			current = null
 		user.reset_view(current)
 		return 1
@@ -1122,6 +1120,7 @@
 		if(!choice || choice == "Cancel" || isnull(choice))
 			current = null
 			user.reset_view(null)
+			user.unset_machine()
 			user << "Stopping camera feed."
 			return
 
@@ -1130,8 +1129,9 @@
 				current = Q.camera
 				break
 
-		if(current)
+		if(istype(current))
 			user << "Switching feed.."
+			user.set_machine(current)
 			user.reset_view(current)
 		else
 			user << "Something went wrong with the camera feed."
@@ -1347,10 +1347,13 @@
 		user.set_machine(src)
 		var/dat = "<B>Holo-Emitter Settings</b><BR><BR>"
 		dat += "Hologram is currently: "
-		if(hologram_active)
-			dat += "<B>ACTIVE</B> <A href='?src=\ref[src];inactivate=1'>(Inactivate)</A><BR>"
+		if(!mobname || isnull(mobname) || mobname == "" )
+			dat += "-- NO HOLOGRAM DATA --<BR>"
 		else
-			dat += "<B>INACTIVE</B> <A href='?src=\ref[src];activate=1'>(Activate)</A><BR>"
+			if(hologram_active)
+				dat += "<B>ACTIVE</B> <A href='?src=\ref[src];inactivate=1'>(Inactivate)</A><BR>"
+			else
+				dat += "<B>INACTIVE</B> <A href='?src=\ref[src];activate=1'>(Activate)</A><BR>"
 
 		if(laying_down)
 			dat += "Toggle laying state: <A href='?src=\ref[src];standing=1'>Currently Laying</A><BR>"
@@ -1453,16 +1456,16 @@
 				i_icon = "icons/Xeno/1x1_Xenos.dmi"
 		else
 			holo_type = "human"
-			i_icon = M:stand_icon
+			i_icon = M.icon_state
 			if(!i_icon)
 				i_icon = "icons/mob/human.dmi"
 
 		if(holo_type == "xeno" && laying_down)
 			i_icon_state = "[M:caste] Knocked Down"
-			for(var/image/I in M:overlays_lying)
+			for(var/I in M:overlays_lying)
 				i_overlays += I
 		else//We'll just rotate it later.
-			for(var/image/I in M:overlays_standing)
+			for(var/I in M:overlays_standing)
 				i_overlays += I
 
 			i_icon_state = M.icon_state
@@ -1481,3 +1484,97 @@
 		cooldown_timer = 1
 		spawn(cooldown)
 			cooldown_timer = 0
+
+/obj/item/weapon/gun/launcher/netgun
+	name = "Yautja Net Gun"
+	desc = "A short, wide-barreled weapon that fires weighted, difficult-to-remove nets or a grappling rope to snap back unwary enemies."
+	var/max_nets = 1
+	var/nets = 1
+	var/fire_mode = 1 //1 is net. 0 is retrieve.
+	release_force = 5
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "netgun-empty"
+	item_state = "predspeargun"
+	fire_sound_text = "a strange noise"
+	fire_sound = 'sound/weapons/Laser2.ogg' //Vyoooo!
+
+
+/obj/item/weapon/gun/launcher/netgun/examine()
+	..()
+	usr << "It has [nets] [nets == 1 ? "net" : "nets"] remaining."
+
+/obj/item/weapon/gun/launcher/netgun/update_icon()
+	if(!nets)
+		icon_state = "netgun-empty"
+	else
+		if(fire_mode)
+			icon_state = "netgun-ready"
+		else
+			icon_state = "netgun-retrieve"
+
+/obj/item/weapon/gun/launcher/netgun/emp_act(severity)
+	return
+
+/obj/item/weapon/gun/launcher/spikethrower/special_check(user)
+	if(istype(user,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		if(!isYautja(H))
+			user << "\red \The [src] does not respond to you!"
+			return 0
+	return 1
+
+/obj/item/weapon/gun/launcher/netgun/update_release_force()
+	return
+
+/obj/item/weapon/gun/launcher/netgun/load_into_chamber()
+	if(in_chamber) return 1
+	if(nets < 1) return 0
+
+	in_chamber = new /obj/item/weapon/net(src)
+	nets--
+	return 1
+
+/obj/item/weapon/gun/launcher/netgun/afterattack(atom/target, mob/user , flag)
+	if(isYautja(user))
+		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+			var/obj/item/clothing/gloves/yautja/G = user.hands
+			if(G.cloaked)
+				G.decloak(user)
+	return ..()
+
+//The "projectile".
+/obj/item/weapon/net
+	name = "flying net"
+	anchored = 0
+	density = 0
+	unacidable = 1
+	w_class = 1
+	layer = MOB_LAYER + 1.1
+	desc = "A strange, self-winding net. It constricts automatically around its prey, immobilizing them."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "net1"
+	flags = TABLEPASS
+	pass_flags = PASSTABLE
+	var/state = 1 //"bunched up" state
+
+	attack_hand(user as mob)
+		return
+
+	update_icon()
+		icon_state = "net[state]"
+
+	proc/wrap_person(var/mob/living/carbon/victim)
+		if(isnull(victim) || !istype(victim)) return 0
+
+	throw_at(atom/target, range, speed)
+		..()
+		spawn(3)
+			icon_state = "net2"
+			state = 2
+			spawn(3)
+				icon_state = "net3"
+				state = 3
+
+	throw_impact(atom/hit_atom)
+		..()
+		if(!istype(hit_atom,/mob/living/carbon)) return 0

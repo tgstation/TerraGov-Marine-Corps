@@ -31,7 +31,8 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/toggle_auras
+		/mob/living/carbon/Xenomorph/proc/toggle_auras,
+		/mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed
 		)
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed()
@@ -49,7 +50,7 @@
 	if(!check_plasma(50)) return
 
 	speed_activated = 1
-	src << "\red You become one with the resin. Run!"
+	src << "You become one with the resin. You feel the urge to run!"
 	return
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel() // -- TLE
