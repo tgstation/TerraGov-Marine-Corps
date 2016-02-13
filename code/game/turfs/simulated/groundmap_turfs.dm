@@ -189,14 +189,16 @@
 	desc = "A huge chunk of metal used to seperate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
+	hull = 1 //Can't be deconstructed
 
 	damage_cap = 6000 //As tough as R_walls.
 	max_temperature = 18000 //K, walls will take damage if they're next to a fire hotter than this
 	walltype = "sulaco" //Changes all the sprites and icons.
-
+/*
 	attackby(obj/item/W as obj, mob/user as mob) //Can't be dismantled, thermited, etc. Can be xeno-acided still.
 		user << "This wall is much too tough for you to do anything to with [W]."
 		return
+*/
 
 /turf/simulated/wall/sulaco/ex_act(severity)
 	switch(severity)
