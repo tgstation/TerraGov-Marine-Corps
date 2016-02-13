@@ -237,7 +237,7 @@
 				for(var/i = 1 to mob_max)
 					if(!candidates.len) break//We ran out of candidates, maybe they alienized. Use what we have.
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-					if(istype(M.current,/mob/living/carbon/Xenomorph) && !M.current.stat)
+					if(istype(M.current,/mob/living/carbon/Xenomorph))
 						candidates.Remove(M) //Strip them from the list, they aren't dead anymore.
 						if(!candidates.len) break //NO picking from empty lists
 						M = pick(candidates)
@@ -260,17 +260,21 @@
 				message_admins("Warning: Distress shuttle not found. Aborting.")
 				return
 			spawn_items()
+			sleep(-1)
 			shuttle.launch()
+			sleep(-1)
 			if(picked_candidates.len)
+				var/i = 0
 				for(var/datum/mind/M in picked_candidates)
 					members += M
-					create_member(M)
+					spawn(4 + i)
+						create_member(M)
 			candidates = null //Blank out the candidates list for next time.
 			candidates = list()
-			spawn(1000) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
+			spawn(1100) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
 				command_announcement.Announce(arrival_message, "Docked")
 
-			spawn(4800)
+			spawn(5200)
 				shuttle.launch() //Get that fucker back
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)

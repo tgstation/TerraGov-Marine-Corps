@@ -334,6 +334,7 @@
 	weldtool.status = 0
 	igniter = new /obj/item/device/assembly/igniter(src)
 	igniter.secured = 0
+	ptank = new /obj/item/weapon/tank/phoron/m240(src)
 	status = 1
 	update_icon()
 	return
