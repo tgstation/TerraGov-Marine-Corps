@@ -519,6 +519,7 @@
 /obj/item/weapon/storage/box/lights/tubes
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
+	w_class = 3
 
 /obj/item/weapon/storage/box/lights/tubes/New()
 	..()
