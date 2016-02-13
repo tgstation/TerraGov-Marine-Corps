@@ -231,9 +231,9 @@
 	var/firelevel = 12 //Track how "hot" the fire is, flames die down eventually
 
 /obj/flamer_fire/process()
-	var/turf/simulated/T = loc
+	var/turf/T = loc
 
-	if (!istype(T)) //Is it a valid turf? Has to be simulated and on a floor
+	if (!istype(T)) //Is it a valid turf? Has to be on a floor
 		processing_objects.Remove(src)
 		del(src)
 		return
