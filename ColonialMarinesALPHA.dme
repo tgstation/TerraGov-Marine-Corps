@@ -1605,8 +1605,6 @@
 #include "maps\Z.05.Space.dmm"
 #include "maps\Z.06.Space2.dmm"
 #include "maps\Z.07.Prison-Minijar.dmm"
-#include "maps\Z.X10.IceColony-Ground-Infernus-NOT-LIVE.dmm"
-#include "maps\Z.X11.IceColony-Underground-Infernus-NOT-LIVE.dmm"
 // END_INCLUDE
 
 
