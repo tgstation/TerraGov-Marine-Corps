@@ -24,7 +24,7 @@
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
-	var/obj/machinery/door/poddoor/filler_object/filler //Fixes double door opacity issue
+	var/turf/filler //Fixes double door opacity issue
 
 
 	//Multi-tile doors
@@ -46,14 +46,13 @@
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size
 			bound_height = world.icon_size
-			filler = new/obj/machinery/door/poddoor/filler_object (get_step(src,EAST))
+			filler = get_step(src,EAST)
 			filler.SetOpacity(opacity)
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
-			filler = new/obj/machinery/door/poddoor/filler_object (get_step(src,NORTH))
+			filler = get_step(src,NORTH)
 			filler.SetOpacity(opacity)
-			filler.density = 0 //We dont want to bump it. Double door density works fine.
 
 	update_nearby_tiles(need_rebuild=1)
 	return
@@ -61,7 +60,7 @@
 
 /obj/machinery/door/Del()
 	if(width > 1)
-		del filler
+		filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this
 	density = 0
 	update_nearby_tiles()
 	..()
@@ -316,11 +315,13 @@
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size
 			bound_height = world.icon_size
-			filler.loc = (get_step(src,EAST))
+			filler.SetOpacity(0)
+			filler = (get_step(src,EAST)) //Find new turf
 		else
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
-			filler.loc = (get_step(src,NORTH))
+			filler.SetOpacity(0)
+			filler = (get_step(src,NORTH)) //Find new turf
 
 	update_nearby_tiles()
 

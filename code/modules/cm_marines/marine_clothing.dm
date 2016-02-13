@@ -11,6 +11,16 @@
 	anti_hug = 1
 	w_class = 5
 
+/obj/item/clothing/head/helmet/marine/tech
+	name = "M10 Technician Helmet"
+	icon_state = "helmet-tech"
+	item_color = "helmet-tech"
+
+/obj/item/clothing/head/helmet/marine/medic
+	name = "M10 Medic Helmet"
+	icon_state = "helmet-medic"
+	item_color = "helmet-medic"
+
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
 	desc = "COG helmet owned by Anthony Carmine"
@@ -98,17 +108,76 @@
 
 //JUMPSUITS
 /obj/item/clothing/under/marine
-	name = "Marine jumpsuit"
+	name = "Marine jumpsuit" //<<<<<<<<<<<<<UNUSED
 	desc = "An advanced Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts.  Also contains a full array of sensors."
 	icon_state = "grey"
 	item_state = "gy_suit"
 	item_color = "grey"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	armor = list(melee = 20, bullet = 20, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 	has_sensor = 3
 	sensor_mode = 3
+
+/obj/item/clothing/under/marine_jumpsuit
+	name = "USCM Uniform" //<<<<<<<<<<<<<USED BY MARINES
+	desc = "The issue uniform for the USCM forces. It is weaved with light kevlar plates that protect against light impacts and light-caliber rounds."
+	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	flags = FPRINT | TABLEPASS
+	siemens_coefficient = 0.9
+	icon_state = "marine_jumpsuit"
+	item_state = "marine_jumpsuit"
+	item_color = "marine_jumpsuit"
+	has_sensor = 3
+	sensor_mode = 3
+
+/obj/item/clothing/under/marine_underoos
+	name = "marine underpants"
+	desc = "A simple outfit worn by USCM operators during cyrosleep. Wear this into battle if you have no self-respect."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	flags = FPRINT | TABLEPASS
+	siemens_coefficient = 0.9
+	icon_state = "marine_underpants"
+	item_state = "marine_underpants"
+	item_color = "marine_underpants"
+	has_sensor = 1
+
+/obj/item/clothing/under/liason_suit
+	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Specically crafted to make you look like a prick."
+	name = "Liason's Tan Suit"
+	icon_state = "liason_regular"
+	item_state = "liason_regular"
+	item_color = "liason_regular"
+	has_sensor = 1
+
+/obj/item/clothing/under/liason_suit/outing
+	desc = "A casual outfit consisting of a collared shirt and a vest. Looks like something you might wear on the weekends, or on a visit to a derelict colony."
+	name = "Liason's Outfit"
+	icon_state = "liason_outing"
+	item_state = "liason_outing"
+	item_color = "liason_outing"
+
+/obj/item/clothing/under/liason_suit/formal
+	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Weyland-Yutani corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
+	name = "Liason's White Suit"
+	icon_state = "liason_formal"
+	item_state = "liason_formal"
+	item_color = "liason_formal"
+
+/obj/item/clothing/under/liason_suit/suspenders
+	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
+	name = "Liason's Attire"
+	icon_state = "liason_suspenders"
+	item_state = "liason_suspenders"
+	item_color = "liason_suspenders"
+
+/obj/item/clothing/under/rank/ro_suit
+	name = "Requisition officer suit."
+	desc = "A nicely-fitting military suit for a requisition officer."
+	icon_state = "RO_jumpsuit"
+	item_state = "RO_jumpsuit"
+	item_color = "RO_jumpsuit"
+	has_sensor = 1
 
 /obj/item/clothing/under/marine/fluff/marinemedic
 	name = "Marine Medic jumpsuit"
@@ -123,29 +192,6 @@
 	icon_state = "marine_engineer"
 	item_state = "marine_engineer_s"
 	item_color = "marine_engineer"
-
-/obj/item/clothing/under/marine/alpha
-	name = "alpha team jumpsuit"
-	icon_state = "red"
-	item_state = "r_suit"
-	item_color = "red"
-
-/obj/item/clothing/under/marine/bravo
-	name = "bravo team jumpsuit"
-	icon_state = "yellow"
-	item_state = "y_suit"
-	item_color = "yellow"
-
-/obj/item/clothing/under/marine/charlie
-	name = "charlie team jumpsuit"
-	icon_state = "purple"
-	item_state = "p_suit"
-	item_color = "purple"
-
-/obj/item/clothing/under/marine/delta
-	name = "delta team jumpsuit"
-	icon_state = "darkblue"
-	item_color = "darkblue"
 
 /obj/item/clothing/under/marine/mp
 	name = "military police jumpsuit"
@@ -343,11 +389,11 @@
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
-		if(knife && src.loc == M) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
+		if(knife && src.loc == M && !M.stat) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 			knife.loc = get_turf(src)
 			if(M.put_in_active_hand(knife))
 				M << "<div class='notice'>You slide the [knife] out of [src].</div>"
-				playsound(M, 'shotgun_shell_insert.ogg', 40, 1)
+				playsound(M, 'sound/weapons/shotgun_shell_insert.ogg', 40, 1)
 				knife = 0
 				update_icon()
 			return
@@ -360,7 +406,7 @@
 			knife = I
 			I.loc = src
 			M << "<div class='notice'>You slide the [I] into [src].</div>"
-			playsound(M, 'shotgun_shell_insert.ogg', 40, 1)
+			playsound(M, 'sound/weapons/shotgun_shell_insert.ogg', 40, 1)
 			update_icon()
 
 	update_icon()
@@ -390,12 +436,44 @@
 	item_state = "marinepack" //Placeholder
 
 /obj/item/weapon/storage/backpack/marine
-	name = "marine backpack"
-	desc = "A large backpack used by military."
+	name = "USCM Infantry Backpack"
+	desc = "The standard-issue backpack of the USCM forces."
 	icon_state = "marinepack"
 	item_state = "backpack"
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
+
+/obj/item/weapon/storage/backpack/marine/medic
+	name = "USCM Medic Backpack"
+	desc = "The standard-issue backpack worn by USCM Medics."
+	icon_state = "marinepack-medic"
+	item_state = "marinepack-medic"
+
+/obj/item/weapon/storage/backpack/marine/tech
+	name = "USCM Technician Backpack"
+	desc = "The standard-issue backpack worn by USCM Technicians."
+	icon_state = "marinepack-tech"
+	item_state = "marinepack-tech"
+
+/obj/item/weapon/storage/backpack/marinesatchel
+	name = "USCM Infantry Satchel"
+	desc = "A heavy-duty satchel carried by some USCM soldiers."
+	icon_state = "marinepack2"
+	item_state = "marinepack2"
+	max_w_class = 3    //  Largest item that can be placed into the backpack
+	max_combined_w_class = 21   //Capacity of the backpack
+
+/obj/item/weapon/storage/backpack/marinesatchel/medic
+	name = "USCM Medic Satchel"
+	desc = "A heavy-duty satchel carried by some USCM Medics."
+	icon_state = "marinepack-medic2"
+	item_state = "marinepack-medic"
+
+/obj/item/weapon/storage/backpack/marinesatchel/tech
+	name = "USCM Technician Satchel"
+	desc = "A heavy-duty satchel carried by some USCM Technicians."
+	icon_state = "marinepack-tech2"
+	item_state = "marinepack-tech2"
 
 //BELT
 
@@ -511,56 +589,6 @@
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 
-/obj/item/clothing/under/marine_jumpsuit
-	name = "USCM Uniform"
-	desc = "The issue uniform for the USCM forces. It is weaved with light kevlar plates that protect against light impacts and light-caliber rounds."
-	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
-	flags = FPRINT | TABLEPASS
-	siemens_coefficient = 0.9
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "marine_jumpsuit"
-	item_state = "marine_jumpsuit"
-	item_color = "marine_jumpsuit"
-	has_sensor = 1
-
-
-/obj/item/clothing/under/marine_underoos
-	name = "marine underpants"
-	desc = "A simple outfit worn by USCM operators during cyrosleep. Wear this into battle if you have no self-respect."
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	flags = FPRINT | TABLEPASS
-	siemens_coefficient = 0.9
-
-	icon = 'icons/Marine/marine_armor.dmi'
-	icon_state = "marine_underpants"
-	item_state = "marine_underpants"
-	item_color = "marine_underpants"
-	has_sensor = 1
-
-/obj/item/clothing/under/liason_suit
-	desc = "A very fancy suit for a liason from Weyland Yutani."
-	name = "liason's suit"
-	icon_state = "blacksuit"
-	item_state = "blacksuit"
-	item_color = "blacksuit"
-	has_sensor = 1
-
-/obj/item/clothing/head/soft/ro_cap
-	name = "Requisition officer cap"
-	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
-	icon_state = "corpsoft"
-	item_color = "corp"
-
-/obj/item/clothing/under/rank/ro_suit
-	name = "Requisition officer suit."
-	desc = "A nicely-fitting military suit for a requisition officer."
-	icon_state = "RO_jumpsuit"
-	item_state = "RO_jumpsuit"
-	item_color = "RO_jumpsuit"
-	has_sensor = 1
-
 
 /obj/item/clothing/head/cmbandana
 	name = "USCM Bandana (Green)"
@@ -594,7 +622,6 @@
 	icon_state = "berettan"
 	item_state = "berettan"
 	item_color = "berettan"
-
 
 /obj/item/clothing/head/headband
 	name = "USCM Headband"
@@ -637,3 +664,9 @@
 	icon_state = "rocap"
 	item_state = "rocap"
 	item_color = "rocap"
+
+/obj/item/clothing/head/soft/ro_cap
+	name = "Requisition officer cap"
+	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
+	icon_state = "corpsoft"
+	item_color = "corp"

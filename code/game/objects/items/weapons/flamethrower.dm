@@ -160,7 +160,7 @@
 			processing_objects.Add(src)
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
-		throw_amount = max(50, min(5000, throw_amount))
+		throw_amount = max(50, min(1000, throw_amount))
 	if(href_list["remove"])
 		if(!ptank)	return
 		usr.put_in_hands(ptank)
@@ -231,9 +231,9 @@
 	var/firelevel = 12 //Track how "hot" the fire is, flames die down eventually
 
 /obj/flamer_fire/process()
-	var/turf/simulated/T = loc
+	var/turf/T = loc
 
-	if (!istype(T)) //Is it a valid turf? Has to be simulated and on a floor
+	if (!istype(T)) //Is it a valid turf? Has to be on a floor
 		processing_objects.Remove(src)
 		del(src)
 		return
@@ -269,7 +269,7 @@
 			if(rand(1,100) < 70)
 				M.emote("roar")
 			continue
-		M.adjustFireLoss(rand(12,15) + firelevel)  //fwoom!
+		M.adjustFireLoss(rand(15,35) + firelevel)  //fwoom!
 		M.show_message(text("\red You are burned!"),1)
 
 	//This is shitty and inefficient, but the /alien/ parent obj doesn't have health.. sigh.
@@ -306,10 +306,10 @@
 	if(!ptank)
 		return //Shouldn't be possible, just to be safe though
 
-	if(ptank.air_contents.gas["phoron"] <= 0.5 || ptank.air_contents.gas["oxygen"] > 0 || ptank.air_contents.gas["nitrogen"] > 0 ) //The heck, did you attach an air tank to this thing??
+	if(ptank.air_contents.gas["phoron"] <= 0.3 || ptank.air_contents.gas["oxygen"] > 0 || ptank.air_contents.gas["nitrogen"] > 0 ) //The heck, did you attach an air tank to this thing??
 		return
 
-	ptank.air_contents.remove_ratio(0.1*(throw_amount/100)) //This should just strip out the gas
+	ptank.air_contents.remove_ratio(0.07*(throw_amount/100)) //This should just strip out the gas
 	if(!locate(/obj/flamer_fire) in target) // No stacking flames!
 		var/obj/flamer_fire/F =  new/obj/flamer_fire(target)
 		processing_objects.Add(F)
@@ -324,7 +324,7 @@
 		if(istype(M,/mob/living/carbon/human))
 			if(istype(M:wear_suit, /obj/item/clothing/suit/fire) || istype(M:wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue
-		M.adjustFireLoss(rand(15,25))  //fwoom!
+		M.adjustFireLoss(rand(18,32) + round(throw_amount / 50))  //fwoom!
 		M.show_message(text("\red Auuugh! You are roasted by the flamethrower!"), 1)
 	return
 

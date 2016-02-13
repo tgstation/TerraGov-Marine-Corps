@@ -100,8 +100,15 @@
 	healthcheck()
 	return
 
+/obj/effect/alien/resin/attack_animal(mob/living/M as mob)
+	M.visible_message("\red [M] tears at the [name]!", "\blue You tear at the [name].")
+	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+	health -= 40
+	healthcheck()
+	return
+
 /obj/effect/alien/resin/attack_hand()
-	usr << "\blue You scrape ineffectually at the [name]."
+	usr << "\blue You scrape ineffectively at the [name]."
 	return
 
 /obj/effect/alien/resin/attack_paw()
@@ -185,7 +192,7 @@
 
 	//		if (locate(/obj/movable, T)) // don't propogate into movables
 	//			continue
-			if(istype(T,/turf/simulated/floor/gm/grass) || istype(T,/turf/simulated/floor/gm/river) || istype(T,/turf/simulated/floor/gm/coast) || T.slayer > 0)
+			if(istype(T,/turf/unsimulated/floor/gm/grass) || istype(T,/turf/unsimulated/floor/gm/river) || istype(T,/turf/unsimulated/floor/gm/coast))
 				continue
 
 			for(var/obj/O in T)
@@ -208,6 +215,8 @@
 	return
 
 /obj/effect/alien/weeds/attackby(var/obj/item/weapon/W, var/mob/user)
+	if(!W || !user)	return 0
+
 	if(W.attack_verb.len)
 		visible_message("\red <B>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
 	else
@@ -389,6 +398,13 @@
 				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
 				if(kill && istype(child)) //Make sure it's still there
 					child.Die()
+				else
+					if(istype(child))
+						for(var/mob/living/carbon/human/F in range(1))
+							if(CanHug(F) && !isYautja(F))
+								F.visible_message("<span class='warning'>\The scuttling [src] leaps at [F]!</span>","<span class='warning'>The scuttling [src] leaps at [F]!</span>")
+								HasProximity(F)
+								break
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage

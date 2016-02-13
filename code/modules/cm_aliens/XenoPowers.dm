@@ -173,6 +173,11 @@
 		return
 
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
+
+	if (get_dist(src,M) >= 3)//Double Check
+		src << "\green You need to be closer."
+		return
+
 	if (amount)
 		amount = abs(round(amount))
 		if(storedplasma < amount)
@@ -345,7 +350,7 @@
 	else if(istype(O, /turf/simulated))
 		var/turf/T = O
 		// R WALL
-		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
+		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
 			src << "\green You cannot dissolve this."
 			return
 		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))

@@ -863,7 +863,6 @@ obj/item/alienjar
 //UNIFORM-----------------------//
 //Snow Uniform
 /obj/item/clothing/under/marine_jumpsuit/snow
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	icon_state = "marine_jumpsuit_snow"
 	item_state = "marine_jumpsuit_snow"
 	item_color = "marine_jumpsuit_snow"

@@ -39,7 +39,7 @@
 				var/turf/simulated/floor/plating/airless/asteroid/T = turf_to_check
 				T.updateMineralOverlays()
 
-			else if(istype(turf_to_check,/turf/space) || istype(turf_to_check,/turf/simulated/floor))
+			else if(istype(turf_to_check,/turf/space) || istype(turf_to_check,/turf/simulated/floor) || istype(turf_to_check,/turf/unsimulated/floor))
 				turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side_[direction]")
 
 /turf/simulated/mineral/ex_act(severity)

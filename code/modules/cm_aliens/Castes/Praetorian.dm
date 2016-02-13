@@ -12,11 +12,11 @@
 	health = 200
 	maxHealth = 200
 	storedplasma = 150
-	plasma_gain = 24
-	maxplasma = 600
+	plasma_gain = 25
+	maxplasma = 400
 	jellyMax = 0
 	spit_delay = 75
-	speed = 2.5
+	speed = 2.2
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
@@ -24,6 +24,7 @@
 	caste_desc = "Ptui!"
 	evolves_to = list()
 	armor_deflection = 82
+	big_xeno = 1
 	spit_projectile = /obj/item/projectile/energy/neuro/strongest
 
 	inherent_verbs = list(

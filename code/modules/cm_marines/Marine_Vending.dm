@@ -27,6 +27,7 @@
 					/obj/item/weapon/throwing_knife = 10,
 					/obj/item/device/flashlight/flare = 30,
 					/obj/item/weapon/storage/backpack/marine = 20,
+					///obj/item/weapon/storage/backpack/marinesatchel = 5,
 					/obj/item/device/radio/headset/msulaco = 5,
 					/obj/item/device/flashlight/flare = 10,
 					/obj/item/clothing/suit/storage/marine = 5,
@@ -127,17 +128,19 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
 	products = list(
+						/obj/item/clothing/under/marine/fluff/marineengineer = 3,
+						/obj/item/weapon/storage/backpack/marine/tech = 4,
+						/obj/item/weapon/storage/backpack/marinesatchel/tech = 2,
 						/obj/item/clothing/tie/storage/webbing = 3,
 						/obj/item/device/encryptionkey/headset_eng = 3,
 						/obj/item/weapon/storage/box/sentry = 1,
-						/obj/item/clothing/under/marine/fluff/marineengineer = 3,
 						/obj/item/weapon/storage/belt/utility/full = 3,
 						/obj/item/clothing/gloves/yellow = 3,
 						/obj/item/clothing/glasses/meson = 3,
 						/obj/item/device/multitool = 4,
 						/obj/item/weapon/grenade/incendiary = 2,
 						/obj/item/weapon/storage/box/explosive_mines = 1,
-						/obj/item/weapon/storage/backpack/industrial = 3,
+						//obj/item/weapon/storage/backpack/industrial = 3,
 						/obj/item/clothing/glasses/welding = 3,
 						/obj/item/weapon/plastique = 4,
 						/obj/item/device/lightreplacer = 2,
@@ -146,7 +149,9 @@
 						/obj/item/weapon/airalarm_electronics = 10,
 						/obj/item/weapon/cell/high = 10
 					)
-	contraband = list()
+	contraband = list(
+					/obj/item/clothing/head/helmet/marine/tech = 2
+			)
 	premium = list()
 	prices = list()
 
@@ -159,11 +164,13 @@
 	icon_deny = "med-deny"
 	products = list(
 					//	/obj/item/clothing/tie/storage/webbing = 2,  Replaced with the fancy new COMBAT LIFESAVER KIT
+						/obj/item/clothing/under/marine/fluff/marinemedic = 3,
+						/obj/item/weapon/storage/backpack/marine/medic = 4,
+						/obj/item/weapon/storage/backpack/marinesatchel/medic = 2,
 						/obj/item/device/encryptionkey/headset_med = 3,
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
-						/obj/item/weapon/storage/backpack/medic = 3,
-						/obj/item/weapon/storage/backpack/satchel_med = 3,
-						/obj/item/clothing/under/marine/fluff/marinemedic = 3,
+						//obj/item/weapon/storage/backpack/medic = 3,
+						//obj/item/weapon/storage/backpack/satchel_med = 3,
 						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/weapon/melee/defibrillator = 3,
@@ -177,6 +184,7 @@
 						/obj/item/weapon/storage/pill_bottle/inaprovaline = 2,
 						/obj/item/weapon/storage/pill_bottle/tramadol = 4,
 						/obj/item/weapon/storage/pill_bottle/antitox = 4,
+						/obj/item/weapon/storage/pill_bottle/russianRed = 3,
 						/obj/item/device/healthanalyzer = 3,
 						/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 3,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 6,
@@ -186,12 +194,13 @@
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 6,
 						/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 3,
-						/obj/item/weapon/storage/pill_bottle/russianRed = 3,
 						/obj/item/clothing/glasses/hud/health = 3,
 						/obj/item/weapon/storage/firstaid/regular = 4,
-						/obj/item/weapon/storage/firstaid/adv = 3,
+						/obj/item/weapon/storage/firstaid/adv = 3
 					)
-	contraband = list()
+	contraband = list(
+					/obj/item/clothing/head/helmet/marine/medic = 2
+			)
 	premium = list()
 	prices = list()
 
@@ -239,6 +248,7 @@
 						/obj/item/weapon/plastique = 1,
 						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
+						/obj/item/weapon/storage/backpack/marinesatchel = 2,
 					)
 	contraband = list()
 	premium = list()
@@ -254,16 +264,22 @@
 	products = list(
 						/obj/item/attachable/suppressor = 8,
 						/obj/item/attachable/bayonet = 15,
-						/obj/item/attachable/reddot = 10,
-						/obj/item/attachable/foregrip = 10,
-						/obj/item/attachable/gyro = 4,
-						/obj/item/attachable/flashlight = 20,
-						/obj/item/attachable/bipod = 4,
+						/obj/item/attachable/compensator = 4,
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
+
+						/obj/item/attachable/flashlight = 20,
+						/obj/item/attachable/reddot = 10,
+						/obj/item/attachable/magnetic_harness = 8,
 						/obj/item/attachable/quickfire = 2,
-						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/attachable/compensator = 4
+
+						/obj/item/attachable/foregrip = 10,
+						/obj/item/attachable/gyro = 4,
+						/obj/item/attachable/bipod = 4,
+						/obj/item/attachable/burstfire_assembly = 2,
+
+						/obj/item/clothing/tie/storage/webbing = 3,
+
 					)
 	contraband = list()
 	premium = list()

@@ -56,7 +56,7 @@
 		stat(null,"You are affected by a pheromone of RECOVERY.")
 
 	if(hive_orders && hive_orders != "")
-		stat(null,"<b>Hive Orders:</b> [hive_orders]")
+		stat(null,"Hive Orders: [hive_orders]")
 
 	return
 
@@ -95,7 +95,7 @@
 /mob/living/carbon/Xenomorph/proc/is_weedable(turf/T)
 	if(isnull(T) || !isturf(T)) return 0
 	if(istype(T,/turf/space)) return 0
-	if(istype(T,/turf/simulated/floor/gm/grass) || istype(T,/turf/simulated/floor/gm/dirtgrassborder) || istype(T,/turf/simulated/floor/gm/river) || istype(T,/turf/simulated/floor/gm/coast)) return 0
+	if(istype(T,/turf/unsimulated/floor/gm/grass) || istype(T,/turf/unsimulated/floor/gm/dirtgrassborder) || istype(T,/turf/unsimulated/floor/gm/river) || istype(T,/turf/unsimulated/floor/gm/coast)) return 0
 	return 1
 
 //Strip all inherent xeno verbs from your caste. Used in evolution.
@@ -143,11 +143,16 @@
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
-	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
+	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
 			tally -= 0.5
 		else
 			tally += 1.3
+
+	if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
+		if(src:speed_activated)
+			if(locate(/obj/effect/alien/weeds) in src.loc)
+				tally -= 1.5
 
 	if(istype(loc,/turf/unsimulated/floor/snow)) //Snow slows you down
 		var/turf/unsimulated/floor/snow/S = src.loc
@@ -160,10 +165,10 @@
 				tally += 5
 
 	if(frenzy_aura)
-		tally -= 0.5
+		tally = tally - (frenzy_aura * 0.1) - 0.4
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 1.9
+		tally += 2
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src
