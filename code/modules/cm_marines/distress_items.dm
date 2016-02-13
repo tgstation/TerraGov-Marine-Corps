@@ -275,6 +275,7 @@
 	name = "VP70 Combat Pistol"
 	desc = "A semi-automatic combat pistol produced by Weyland-Yutani. Commonly found in the hands of mercenaries and soldiers around the galaxy."
 	icon_state = "vp70"
+	item_state = "vp70"
 	w_class = 2
 	max_shells = 18
 	caliber = "9mm"

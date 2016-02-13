@@ -770,8 +770,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "Already full up. There can only be 3 per round."
 		return
 
-	if(src.mind && src.mind in ticker.mode:predators)
-		usr << "You already were a Predator! Give someone else a chance."
+	if(src.client && src.client.was_a_predator)
+		usr << "You already were a Yautja! Give someone else a chance."
 		return
 
 	var/mob/old = src
@@ -781,15 +781,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(M.mind)
 		M.mind.assigned_role = "MODE"
 		M.mind.special_role = "Predator"
-	else
+	else //This should never happen. EVER.
 		M.mind = new(M.key)
 		M.mind.assigned_role = "MODE"
 		M.mind.special_role = "Predator"
 
 	M.set_species("Yautja")
-	if(src.client.prefs)
-		M.real_name = src.client.prefs.predator_name
-		M.gender = src.client.prefs.predator_gender
+	if(M.client.prefs)
+		M.real_name = M.client.prefs.predator_name
+		M.gender = M.client.prefs.predator_gender
 	if(!M.real_name || M.real_name == "") M.real_name = "Unknown Yautja"
 	if(!M.gender) M.gender = "male"
 	M.update_icons()
@@ -801,8 +801,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
 		M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
 
-
-	ticker.mode:numpreds--
 	ticker.mode.predators += M.mind
 	if(old) del(old) //Wipe the old ghost.
 	return

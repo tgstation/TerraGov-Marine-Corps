@@ -1319,15 +1319,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			numpreds = 0
 		else
 			var/datum/mind/new_pred = pick(possible_predators)
-			if(!new_pred) break
-			if(new_pred.current)
-				del(new_pred.current)
-
+			if(!istype(new_pred)) continue
 			possible_predators -= new_pred
-//			predators += new_pred
 			numpreds--
-			new_pred.assigned_role = "MODE"
-			new_pred.special_role = "Predator"
 			transform_predator(new_pred)
+
 	message_admins("[key_name_admin(src)] used spawn predators!")
 	return

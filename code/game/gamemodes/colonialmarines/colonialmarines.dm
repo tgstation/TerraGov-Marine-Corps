@@ -16,7 +16,7 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/pred_chance = 4 //1 in <x>
+	var/pred_chance = 5 //1 in <x>
 	var/is_pred_round = 0
 	var/numpreds = 3
 
@@ -112,35 +112,6 @@
 
 	return 1
 
-/proc/get_whitelisted_predators(var/readied = 1)
-	// Assemble a list of active players who are whitelisted.
-	var/list/players = list()
-
-	for(var/mob/player in player_list)
-		if(!player.client) continue
-		if(isYautja(player)) continue
-		if(readied)
-			if(!istype(player,/mob/new_player)) continue
-			if(!player:ready) continue
-		else
-			if(!istype(player,/mob/dead)) continue
-
-		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
-			if(!player.client) //Just to be safe.
-				continue
-
-			if(!player.client.prefs)
-				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
-
-			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
-				if(player.mind)
-					players += player.mind
-				else if(player.key)
-					player.mind = new /datum/mind(player.key)
-					players += player.mind
-	return players
-
-
 /datum/game_mode/colonialmarines/announce()
 	world << "<B>The current game mode is - Colonial Marines! Hoooah!</B>"
 
@@ -192,53 +163,6 @@
 
 	if(original) //Just to be sure.
 		del(original)
-
-//Start the Survivor players. This must go post-setup so we already have a body.
-/proc/transform_predator(var/datum/mind/ghost)
-
-	var/mob/H = ghost.current
-
-	var/mob/living/carbon/human/newmob
-
-	newmob = new (pick(pred_spawn))
-
-	newmob.key = ghost.key
-
-	if(!newmob.key)
-		message_admins("Warning: null client in transform_predator, key: [H.key]")
-		del(newmob)
-		return
-
-	newmob.set_species("Yautja")
-
-	if(newmob.client.prefs)
-		newmob.real_name = newmob.client.prefs.predator_name
-		newmob.gender = newmob.client.prefs.predator_gender
-	else
-		newmob.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
-		newmob.gender = "male"
-
-	newmob.update_icons()
-	if(is_alien_whitelisted(newmob,"Yautja Elder"))
-		newmob.real_name = "Elder [newmob.real_name]"
-		newmob.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
-		newmob.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
-		spawn(10)
-			newmob << "\red <B> Welcome Elder!</B>"
-			newmob << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
-			newmob << "That does not mean you can't go out and show the youngsters how it's done, though.."
-
-
-	spawn(12)
-		newmob << "You are <B>Yautja</b>, a great and noble predator!"
-		newmob << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
-		newmob << "Use your hellhounds to scout and test your opponents."
-		newmob << "Hunt at your discretion, yet be observant rather than violent."
-		newmob << "And above all, listen to your elders!"
-
-	if(H) del(H)
-	return 1
-
 
 //Start the Survivor players. This must go post-setup so we already have a body.
 /datum/game_mode/colonialmarines/proc/transform_survivor(var/datum/mind/ghost)

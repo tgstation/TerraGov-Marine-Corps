@@ -28,16 +28,6 @@ var/const/MAX_ACTIVE_TIME = 200
 		Die()
 		return
 
-	New()
-		..()
-		spawn(5)
-			for(var/mob/living/carbon/human/F in range(1))
-				if(CanHug(F))
-					F.visible_message("<span class='warning'>\The scuttling [src] leaps at [F]!</span>","<span class='warning'>The scuttling [src] leaps at [F]!</span>")
-					HasProximity(F)
-					break
-		return
-
 	Del()
 		if(istype(src.loc,/mob/living/carbon))
 			var/mob/living/carbon/M = src.loc
@@ -140,20 +130,6 @@ var/const/MAX_ACTIVE_TIME = 200
 	..()
 	if(stat == CONSCIOUS)
 		icon_state = "[initial(icon_state)]"
-		if(istype(hit_atom,/mob/living/carbon/human))
-			if(isYautja(hit_atom))
-				var/mob/living/carbon/M = hit_atom
-				var/catch_chance = 75
-				if(M.dir == reverse_dir[src.dir]) catch_chance += 10
-				if(M.lying) catch_chance -= 50
-				catch_chance -= ((M.maxHealth - M.health) / 3)
-				if(!M.stat && M.dir != src.dir && prob(catch_chance)) //Not facing away
-					M.visible_message("\blue [M] snatches the facehugger out of the air and squashes it!")
-					src.Die()
-					src.throwing = 0
-					src.loc = M.loc
-					return 0
-
 		if(CanHug(hit_atom))
 			Attach(hit_atom)
 		throwing = 0
@@ -190,6 +166,22 @@ var/const/MAX_ACTIVE_TIME = 200
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
 	if(throwing)
 		throwing = 0
+
+	if(isYautja(M))
+		var/mob/living/carbon/human/Y = M
+		var/catch_chance = 50
+		if(Y.dir == reverse_dir[src.dir]) catch_chance += 20
+		if(Y.lying) catch_chance -= 50
+		catch_chance -= ((Y.maxHealth - Y.health) / 3)
+		if(!isnull(Y.get_active_hand())) catch_chance  -= 25
+		if(!isnull(Y.get_inactive_hand())) catch_chance  -= 25
+
+		if(!Y.stat && Y.dir != src.dir && prob(catch_chance)) //Not facing away
+			Y.visible_message("\blue [Y] snatches \the [src.name] out of the air and squashes it!")
+			src.Die()
+			src.throwing = 0
+			src.loc = Y.loc
+			return 0
 
 	if(istype(src.loc,/mob/living/carbon/Xenomorph)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = src.loc
