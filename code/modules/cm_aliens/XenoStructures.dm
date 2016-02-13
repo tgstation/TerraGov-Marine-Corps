@@ -400,8 +400,8 @@
 					child.Die()
 				else
 					if(istype(child))
-						for(var/mob/living/carbon/human/F in range(1))
-							if(CanHug(F) && !isYautja(F))
+						for(var/mob/living/carbon/human/F in range("3x3",src))
+							if(CanHug(F) && !isYautja(F) && Adjacent(F))
 								F.visible_message("<span class='warning'>\The scuttling [src] leaps at [F]!</span>","<span class='warning'>The scuttling [src] leaps at [F]!</span>")
 								HasProximity(F)
 								break
