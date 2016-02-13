@@ -112,7 +112,7 @@ var/global/hive_orders = "" //What orders should the hive have
 
 	if(caste != "Queen")
 		nicknumber = rand(1,999)
-		name = "[initial(name)] ([nicknumber])"
+		name = "[caste] ([nicknumber])"
 	real_name = name
 	regenerate_icons()
 
