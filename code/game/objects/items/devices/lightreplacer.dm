@@ -51,14 +51,14 @@
 	slot_flags = SLOT_BELT
 	origin_tech = "magnets=3;materials=2"
 
-	var/max_uses = 20
+	var/max_uses = 50
 	var/uses = 0
 	var/emagged = 0
 	var/failmsg = ""
 	var/charge = 1
 
 /obj/item/device/lightreplacer/New()
-	uses = max_uses / 2
+	uses = max_uses
 	failmsg = "The [name]'s refill light blinks red."
 	..()
 

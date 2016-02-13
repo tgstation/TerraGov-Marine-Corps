@@ -2,6 +2,8 @@
 	var/list/datum/mind/aliens = list()
 	var/list/datum/mind/survivors = list()
 	var/queen_death_timer = 0
+	var/list/datum/mind/predators = list()
+	var/list/datum/mind/hellhounds = list()
 
 /datum/game_mode/colonialmarines
 	name = "colonial marines"
@@ -14,7 +16,9 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-
+	var/pred_chance = 5 //1 in <x>
+	var/is_pred_round = 0
+	var/numpreds = 3
 
 
 /* Pre-pre-startup */
@@ -28,10 +32,35 @@
 	numaliens = Clamp((readyplayers/5), 1, 14) //(n, minimum, maximum)
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
+	var/list/datum/mind/possible_predators = get_whitelisted_predators()
+
 
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
+
+	if(round(rand(1,pred_chance)) == 1) //Just make sure we have enough.
+		is_pred_round = 1
+		if(!possible_predators.len)
+			is_pred_round = 0
+		else
+			while(numpreds > 0)
+				if(!possible_predators.len)
+					break
+				else
+					var/datum/mind/new_pred = pick(possible_predators)
+					possible_predators -= new_pred
+					predators += new_pred
+					numpreds--
+					new_pred.assigned_role = "MODE"
+					new_pred.special_role = "Predator"
+	else
+		is_pred_round = 0
+
+
+	for(var/datum/mind/A in possible_aliens) //We have to clean out the predators who've been picked already.
+		if(A.assigned_role == "MODE")
+			possible_aliens -= A
 
 	while(numaliens > 0)
 		if(!possible_aliens.len) //Ran out of aliens! Abort!
@@ -109,6 +138,9 @@
 	for(var/datum/mind/survivor in survivors) //Build and move to the survivors.
 		transform_survivor(survivor)
 
+	for(var/datum/mind/pred in predators) //Build and move to the survivors.
+		transform_predator(pred)
+
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
@@ -118,7 +150,7 @@
 /datum/game_mode/colonialmarines/proc/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn))
-	new_xeno.amount_grown = 200
+	new_xeno.amount_grown = 100
 	var/mob/original = ghost.current
 
 	ghost.transfer_to(new_xeno)
@@ -386,6 +418,26 @@ var/list/toldstory = list()
 		if(survivors.len)
 			var/text = "<br><FONT size = 3><B>The survivors were:</B></FONT>"
 			for(var/datum/mind/A in survivors)
+				if(A)
+					var/mob/M = A.current
+					if(!M)
+						M = A.original
+
+					if(M)
+						text += "<br>[M.key] was "
+						text += "[M.name] ("
+						if(M.stat == DEAD)
+							text += "died"
+						else
+							text += "survived"
+						text += ")"
+					else
+						text += "<BR>[A.key] was Unknown! (body destroyed)"
+
+			world << text
+		if(predators.len)
+			var/text = "<br><FONT size = 3><B>The Predators were:</B></FONT>"
+			for(var/datum/mind/A in predators)
 				if(A)
 					var/mob/M = A.current
 					if(!M)

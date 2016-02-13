@@ -217,6 +217,8 @@ datum/hud/New(mob/owner)
 		robot_hud()
 	else if(isobserver(mymob))
 		ghost_hud()
+	else if(istype(mymob,/mob/living/carbon/hellhound))
+		hellhound_hud()
 
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)

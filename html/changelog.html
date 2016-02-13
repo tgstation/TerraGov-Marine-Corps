@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="changelog.css">
   <base target="_blank" />
   <script type='text/javascript'>
-  
+
 	function changeText(tagID, newText, linkTagID){
 		var tag = document.getElementById(tagID);
 		tag.innerHTML = newText;
@@ -14,7 +14,7 @@
 		linkTag.removeAttribute("onclick");
 	}
 
-  </script>  
+  </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
@@ -40,25 +40,199 @@
 			<font size='2'><b>Hosts:</b> Apophis (founder), Rahlzel<br></font>
 			<font size='2'><b>Coders:</b> Apophis, Rahlzel, Abbysynth, Infernus<br></font>
 			<font size='2'><b>Mappers:</b> Abbysynth, Apophis, Heinrick Archsider, Infernus, Rahlzel, Minijar<br></font>
-			<font size='2'><b>Spriters:</b> Secretstamos (Joshuu), Abbysynth<br></font>
+			<font size='2'><b>Spriters:</b> Secretstamos (Joshuu), Abbysynth, Arefridgerator, Monkeysfist, Infernus<br></font>
 			<font size='2'><b>Sounds:</b> Rahlzel<br></font>
 			<font size='2'><b>Thanks to:</b> Baystation 12, /tg/station 13, and the original SpaceStation developers</font>
 		</td>
 	</tr>
 </table>
 
-<!-- 
-Changelog Section 
+<!--
+Changelog Section
 -->
 
-<!-- NOTE TO UPDATERS!! Please only list things which are important to players. 
-Stuff which is in development and not yet visible to players or just code related 
-(ie. code improvements for expandability, etc.) should not be listed here. They 
+<!-- NOTE TO UPDATERS!! Please only list things which are important to players.
+Stuff which is in development and not yet visible to players or just code related
+(ie. code improvements for expandability, etc.) should not be listed here. They
 should be listed in the changelog upon commit though. Thanks. -->
 
 <!-- You can simply add changelogs using AddToChangelog.exe -->
 
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
+
+<div class='commit sansserif'>
+	<h2 class='date'>13 February 2016</h2>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed gas mixer icon</li>
+		<li class='bugfix'>Fixed larvas starting with 200 progress instead of maximum 100</li>
+		<li class='bugfix'>Fixed Alien interaction with buttons</li>
+		<li class='bugfix'>Fixed/Removed vendor restock exploit</li>
+		<li class='bugfix'>Fixed resin doors closing themselves when someone is standing on them</li>
+		<li class='bugfix'>Fixed sulaco hull wall not being interactable with</li>
+		<li class='bugfix'>Fixed combat knife not cutting pizzas</li>
+		<li class='rscdel'>Removed sparks spawning from lights when busted (Minor optimisation)</li>
+		<li class='rscdel'>Removed sparks spawning from emmiters when firing (Minor optimisation)</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>13 February 2016</h2>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed blood splatters and tracks not working on unsimulated turfs</li>
+		<li class='bugfix'>Fixed flamethrower not working on unsimulated turfs</li>
+		<li class='bugfix'>Fixed metal stacks not allowing construction on unsimulated turfs</li>
+		<li class='bugfix'>Fixed mineral rock not updating overlays on unsimulated turfs</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>12 February 2016</h2>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Replaced simulated turfs on LV-624 with unsimulated turfs. This is a massive optimization as unsimulated turfs do not proccess anything related to atmosphere. It also prevents atmos grief as unsimulated turfs can quickly fix plasma fires. <br><br><b>NOTE:</b> If any issues rise up (massive pressure, hot air, etc...), make a bug report and we will revert this change.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>6 February 2016</h2>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Internal organs now give pain if damaged</li>
+		<li class='rscadd'>Intact liver now very slowly heals toxin damage</li>
+		<li class='rscadd'>Liver and kidneys gives toxin damage when damaged</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>6 February 2016</h2>
+	<h3 class='author'>SecretStamis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>New icons for the M41a, M39 and VP70</li>
+		<li class='imageadd'>New magazine icons for the M41a and the M39</li>
+		<li class='soundadd'>New sounds for the 44 Magnum and VP70</li>
+		<li class='imageadd'>Added Monkeyfist's Smartgun hold sprites</li>
+		<li class='wip'>Attachable stocks being tested for the M37, M41a and the 44 Magnum. Not available yet.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>3 February 2016</h2>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed typo with stasis bag crate</li>
+		<li class='bugfix'>Webbings can no longer fit in another webbings</li>
+		<li class='bugfix'>Transfer plasma verb now correctly checks for distance</li>
+		<li class='tweak'>Moved Russian Red pill bottle in vendors to be under pill bottle section</li>
+		<li class='tweak'>Human heads are no longer acidable</li>
+		<li class='bugfix'>Fixed piping in medbay</li>
+		<li class='bugfix'>Fixed runtime errors with brig windoors</li>
+		<li class='tweak'>Replaced floor under grilles with plating</li>
+		<li class='rscadd'>Added many O2 wall lockers to Sulaco Top</li>
+		<li class='rscadd'>Added flares to cryo room</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>29 January 2016</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li>Observer improvements in "Ghost" tab:</li>
+        <li class='rscadd'>New verb: Follow Xeno. Shows a list of living Xenos that are playing.</li>
+        <li class='tweak'>Combined "Join as Larva" and "Join as Alien" into one verb: "Join as Xeno".</li>
+        <li class='tweak'>Reduced maximum rejoin time from from 20 minutes to 10 minutes and reduced the minimum from 10 to 5 minutes.</li>
+        <li>Explanation: If you die in any form (or join as an Observer), you must wait for a 5 minute "death timer" (reduced from 10) before respawning as a Xeno. If a Xeno player leaves a living body (disconnect, ghost, etc), that body will begin an "away timer" for 5 minutes (also reduced from 10) before it is available for observers to join (they might reconnect). Therefore, the minimum and maximum time needed to wait before rejoining as an available Xeno is 5-10 minutes.
+        <li class='rscadd'>Reminder for Admins: Spawned Larva using the Game Panel will immediately be ready for any observer to enter them (so long as their death timer is 5+ minutes). This can be useful for events and rewards for the Xeno team.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 January 2016</h2>
+	<h3 class='author'>SecretStamos (Joshuu) updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>New backpack and satchel icons for squad medics, engineers and standards</li>
+		<li class='imageadd'>New icon for fuel and water tank</li>
+		<li class='tweak'>Squad engineers and medics now spawn with their own backpacks, rather than the standard ones</li>
+		<li class='tweak'>Updated the medic and engineer jumpsuits to be more clear in designation</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 January 2016</h2>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='wip'><b>Icon folder cleanup.</b> Removing many, many duplicates and moving some icons to the correct .dmi group. If some objects turn out invisible, please make a bug report and state the object's exact name so I can find it easier. This will be continiued for few days.</li>
+</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 January 2016</h2>
+	<h3 class='author'>Absynth updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Hopefully most if not all of the Predator bugs have been fixed. If the game has rolled a Predator round, currently you can click Join the Hunt, and if you are whitelisted you can join even if you observe after round start (previously it would only enlist you when readied up). Good way of knowing if you are whitelisted! Most weapons and items have been tweaked or rebalanced.</li>
+		<li class='bugfix'>M56 goggles hopefully re-added to smartgun pack</li>
+		<li class='bugfix'>You will no longer accumulate royal jelly when SSD.</li>
+		<li class='bugfix'>Xenos now damage animals using proper damage based on caste.</li>
+		<li class='bugfix'>Beam attacks now damage sentry turrets (I'm looking at you, yautja caster & spitter spit)</li>
+		<li class='bugfix'>Hopefully a bunch of bugs with hellhounds & smart-discs fixed. Stop asking about them!</li>
+		<li class='rscadd'>Supply packs from cargo a bit different. Some contain different and new attachables. Ditto for attachables vendor. The new attachables are the Burst Fire Assembly and Magnetic Harness. Yay!</li>
+		<li class='tweak'>Boilers buffed->neurotoxin smoke has more effect, plasma regen increased, acid spit cooldown lowered.</li>
+		<li class='bugfix'>Hopefully Crusher momentum issues are fixed. You'll see different effects on slamming into things now. Not as much skidding around.</li>
+		<li class='tweak'>Some xeno plasma regen rates increased. Spitter movement speed increased but plasma regen decreased.</li>
+		<li class='bugfix'>Hopefully fixed a few issues with throwing and dropping guns, and some item duplication glitches. If you abuse these kinds of bugged you will be perma banned guys. Don't risk it, just PM us.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>24 January 2016</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>In the interest of balance and variety, The Nexus building has been reworked to be much easier for Xenos to infiltrate. More breaches, a simple vent system, etc. But, it's still close to the LZ.</li>
+        <li class='tweak'>The Lv-624 Medbay has been made more appealing as a FOB with a more open area, closed off potential breaches, surgery room, supplies, and metal/plasteel nearby. But, it's further away from the LZ than the Nexus. Which will you choose?</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>19 January 2016</h2>
+	<h3 class='author'>Absynth updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Tons of Predator changes! Yay! If you are whitelisted you will get a special couple of buttons in your preferences page. Lots of Predator rebalances and tweaks.      XENOS: HERE IS WHAT YOU KNOW ABOUT PREDATORS: You usually call them the HEAD TAKERS, or the invisible ones, or something along those lines. Yautja is also acceptable. You know they are dangerous but you aren't mindlessly attracted to killing them -- ask the Queen what to do when you see one. MARINES: HERE IS WHAT YOU KNOW ABOUT PREDATORS: NOTHING. Probably hostile!</li>
+		<li class='rscadd'>Many automatic weapons now have a BURST FIRE feature! Massive risk of friendly fire ahoy! Use your weapon pane to activate it and watch as bullets spray wildly everywhere forever. I love this game.</li>
+		<li class='bugfix'>Many guns are no longer holsterable. This includes the M92, SADAR, M42C, etc.</li>
+		<li class='bugfix'>Can no longer drop/throw the wielded symbol. Hopefully. Stop duping weapons, you shits!</li>
+		<li class='tweak'>Facehuggers now do an initial target scan when born</li>
+		<li class='rscadd'>Hivelords now get a new toggleable self-buff: "Resin Walker". This allows them to use weeds as a quick pathway to various places. When active it drains plasma quickly, but allows the hivelord to move very fast on weeds.</li>
+		<li class='tweak'>Many xeno caste speeds tweaked slightly. Most obvious is Boiler and Queen buffed.</li>
+		<li class='tweak'>Some xeno claw damages tweaked. Crusher claw damage increased a bit.</li>
+		<li class='bugfix'>Several mercenary team weapons altered. MAR-40 significantly buffed.</li>
+		<li class='rscadd'>Two new attachables! Sorry, they aren't available for use JUST yet. Expect them soon. They are: the magnetic harness, a rail-mounted accessory that snaps a weapon to your armor when dropped, and the burst fire assembly, an upgrade to your weapon's burst fire ability (or MAKES it burst fire if it wasn't)</li>
+		<li class='bugfix'>Probably some other minor stuff I'm forgetting.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>18 January 2016</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>New Verb: Join as Alien.  Lets you join as any SSD alien that's been gone 10 minutes</li>
+		<li class='tweak'>Join as larva is now 5 minutes</li>
+	</ul>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>You will no longer shoot yourself if you shoot at the target on the same tile as you are</li>
+		<li class='bugfix'>You can no longer use binoculars if you are blind</li>
+		<li class='bugfix'>Hand overlays now update properly when you finish installing a new robotic limb</li>
+		<li class='bugfix'>You can no longer perform surgeries inside the head or chest without opening it first</li>
+	</ul>
+</div>
+
 
 <div class='commit sansserif'>
 	<h2 class='date'>15 January 2016</h2>

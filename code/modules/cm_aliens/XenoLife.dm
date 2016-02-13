@@ -23,7 +23,7 @@
 	if(isXenoLarva(src) && src.a_intent != "help")
 		src.a_intent = "help"
 
-	if(jelly && jellyGrow < jellyMax)
+	if(jelly && jellyGrow < jellyMax && client)
 		jellyGrow++
 		if(jellyGrow == jellyMax-1)
 			src << "\green You feel the royal jelly swirl in your veins.."
@@ -160,7 +160,7 @@
 					if(M.acid_damage > 240)
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
-						del(M)
+						M.loc = locate(138,136,2)
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
@@ -264,7 +264,7 @@
 						if(recovery_aura)
 							storedplasma += (recovery_aura * 2)
 				else
-					adjustBruteLoss(-(maxHealth / 50) - 2) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+					adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 					if(recovery_aura)
 						adjustBruteLoss(-(recovery_aura))
 					adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
@@ -274,7 +274,16 @@
 			else //Xenos restore plasma VERY slowly off weeds, regardless of health
 				if(rand(0,1) == 0) storedplasma += 1
 				if(recovery_aura)
-					storedplasma += round(recovery_aura / 2)
+					adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
+					storedplasma += round(recovery_aura + 1)
+					updatehealth()
+
+			if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
+				if(src:speed_activated)
+					storedplasma -= 30
+					if(storedplasma < 0)
+						src:speed_activated = 0
+						src << "\red You feel dizzy as the world slows down."
 
 			if(readying_tail) storedplasma -= 3
 			if(current_aura)

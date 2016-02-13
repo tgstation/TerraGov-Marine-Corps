@@ -693,9 +693,8 @@ var/list/be_special_flags = list(
 #define BE_PAI		  2
 #define BE_SURVIVOR	  4
 #define BE_RESPONDER  8
+#define BE_PREDATOR   16
 
-#define BE_WIZARD     8
-#define BE_MALF       16
 #define BE_REV        32
 #define BE_TRAITOR    64
 #define BE_OPERATIVE  128
@@ -711,7 +710,9 @@ var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"pAI" = BE_PAI,
 	"Survivor" = BE_SURVIVOR,
-	"Responder" = BE_RESPONDER
+	"Responder" = BE_RESPONDER,
+	"Predator" = BE_PREDATOR
+
 /*
 	"Malf AI" = BE_MALF,
 	"Revolutionary" = BE_REV,

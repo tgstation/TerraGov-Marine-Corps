@@ -32,6 +32,8 @@
 	var/tank_size = 0 //Determines amount of flamethrower tiles it can spray, total.
 	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
 	var/delay_mod = 0 //Changes firing delay. Cannot go below 0.
+	var/burst_mod = 0 //Changes burst rate. 1 == 0.
+	var/size_mod = 0 //Increases the weight class
 
 	New()
 		if(ammo_type)
@@ -50,9 +52,12 @@
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = (G.force * melee_mod / 100)
-			if(melee_mod > 100)
+			if(melee_mod >= 200)
 				G.attack_verb = null
-				G.attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+				G.attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
+			if(melee_mod > 100 && melee_mod < 200 )
+				G.attack_verb = null
+				G.attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
 		if(w_class_mod != 0) G.w_class += w_class_mod
 		if(istype(G,/obj/item/weapon/gun/projectile))
 			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
@@ -66,13 +71,25 @@
 			G.flash_lum = light_mod
 		if(delay_mod)
 			G.fire_delay += delay_mod
-			if(G.fire_delay < 0) G.fire_delay = 0
+			if(G.fire_delay < 0)
+				G.fire_delay = 1
+				G.burst_amount++
+
+		if(burst_mod)
+			G.burst_amount += burst_mod
+			if(G.burst_amount < 2) G.burst_amount = 0
+
+		if(size_mod)
+			G.w_class += size_mod
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
 		if(slot == "rail") G.rail = null
 		if(slot == "muzzle") G.muzzle = null
 		if(slot == "under") G.under = null
+
+		if(G.wielded)
+			G.unwield()
 
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
@@ -86,7 +103,9 @@
 		if(recoil_mod) G.recoil = initial(G.recoil)
 		if(twohanded_mod) G.twohanded = initial(G.twohanded)
 		if(silence_mod) G.silenced = initial(G.silenced)
-		if(delay_mod) G.fire_delay = initial(G.fire_delay)
+		if(delay_mod)
+			G.fire_delay = initial(G.fire_delay)
+			G.burst_amount = initial(G.burst_amount)
 		if(light_mod)  //Remember to turn the lights off
 			if(G.flashlight_on && G.flash_lum)
 				if(!ismob(G.loc))
@@ -96,6 +115,7 @@
 					M.SetLuminosity(-light_mod) //Lights are on and we removed the flashlight, so turn it off
 			G.flash_lum = initial(G.flash_lum)
 			G.flashlight_on = 0
+		if(burst_mod) G.burst_amount = initial(G.burst_amount)
 
 
 /obj/item/attachable/suppressor
@@ -288,7 +308,7 @@
 	icon_state = "hbarrel"
 	accuracy_mod = -40
 	ranged_dmg_mod = 140
-	delay_mod = 4
+	delay_mod = 3
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 					/obj/item/weapon/gun/projectile/m4a3,
@@ -302,8 +322,8 @@
 	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. However, greatly reduces accuracy and increases weapon recoil."
 	slot = "rail"
 	icon_state = "autoloader"
-	accuracy_mod = -35
-	delay_mod = -4
+	accuracy_mod = -25
+	delay_mod = -3
 	recoil_mod = 1
 	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
 					/obj/item/weapon/gun/projectile/m4a3,
@@ -317,9 +337,78 @@
 	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. Increases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
 	slot = "muzzle"
 	icon_state = "comp"
-	accuracy_mod = 15
+	accuracy_mod = 20
 	ranged_dmg_mod = 90
-	recoil_mod = -2
+	recoil_mod = -3
 	guns_allowed = list(/obj/item/weapon/gun/projectile/shotgun/pump/m37,
 					/obj/item/weapon/gun/projectile/M42C
 					)
+
+/obj/item/attachable/burstfire_assembly
+	name = "burst fire assembly"
+	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability."
+	icon_state = "rapidfire"
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/M42C
+						)
+	accuracy_mod = -25
+	slot = "under"
+	burst_mod = 2
+
+/obj/item/attachable/magnetic_harness
+	name = "magnetic harness"
+	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a USCM armor."
+	icon_state = "magnetic"
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41,
+					/obj/item/weapon/gun/projectile/m4a3,
+					/obj/item/weapon/gun/projectile/automatic/m39,
+					/obj/item/weapon/gun/projectile/M42C,
+					/obj/item/weapon/gun/projectile
+						)
+	accuracy_mod = -15
+	slot = "rail"
+
+/obj/item/attachable/compensator/stock
+	name = "M37 Wooden Stock"
+	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
+	slot = "under"
+	icon_state = "stock"
+	recoil_mod = -1
+	accuracy_mod = 20
+	melee_mod = 170
+	size_mod = 2
+	delay_mod = 2
+	pixel_shift_x = 33 //Determines the amount of pixels to move the icon state for the overlay.
+	pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	guns_allowed = list(/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+
+/obj/item/attachable/compensator/riflestock
+	name = "M41A Marksman Stock"
+	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	slot = "under"
+	recoil_mod = -1
+	accuracy_mod = 20
+	melee_mod = 120
+	size_mod = 1
+	delay_mod = 2
+	icon_state = "riflestock"
+	pixel_shift_x = 35 //Determines the amount of pixels to move the icon state for the overlay.
+	pixel_shift_y = 12 //Uses the bottom left corner of the item.
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41)
+
+/obj/item/attachable/compensator/revolverstock
+	name = "44 Magnum Sharpshooter Stock"
+	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
+	slot = "under"
+	recoil_mod = -1
+	accuracy_mod = 25
+	melee_mod = 80
+	size_mod = 1
+	delay_mod = 2
+	w_class_mod = 2
+	icon_state = "44stock"
+	pixel_shift_x = 36 //Determines the amount of pixels to move the icon state for the overlay.
+	pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	guns_allowed = list(/obj/item/weapon/gun/projectile/m44m)

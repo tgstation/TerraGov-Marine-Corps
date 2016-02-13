@@ -45,9 +45,12 @@
 	var/rail_pixel_x = 28  //These defaults are all for the m41a, and should be changed according to the weapon.
 	var/under_pixel_y = 13
 	var/under_pixel_x = 21
-
 	var/flashlight_on = 0 //Mounted flashlight stuff.
 	var/flash_lum = 0
+
+	var/burst_amount = 0
+	var/burst_toggled = 0
+	icon_action_button = null //Adds it to the quick-icon list
 
 	proc/ready_to_fire()
 		if(world.time >= last_fired + fire_delay)
@@ -75,7 +78,7 @@
 		if(under)
 			usr << "It has \icon[under] [under.name] mounted underneath."
 
-	proc/has_attachment(var/obj/item/attachable/A)
+	proc/has_attachment(var/A)
 		if(!A)
 			return 0
 		if(istype(muzzle,A)) return 1
@@ -96,7 +99,10 @@
 	if(!twohanded) return
 	wielded = 1
 	name = "[initial(name)] (Wielded)"
-	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) || istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37)|| istype(src,/obj/item/weapon/gun/projectile/automatic/mar20)) //Ugh
+	if(istype(src,/obj/item/weapon/gun/projectile/automatic/m41) \
+			|| istype(src,/obj/item/weapon/gun/projectile/shotgun/pump/m37) \
+			|| istype(src,/obj/item/weapon/gun/projectile/automatic/mar40) \
+			|| istype(src,/obj/item/weapon/gun/projectile/M56_Smartgun)) //Ugh
 		item_state = "[initial(item_state)]-w"
 		if(usr && ishuman(usr))
 			usr:update_inv_l_hand(0)
@@ -115,6 +121,8 @@
 		src.loc.SetLuminosity(-flash_lum)
 	else
 		SetLuminosity(0)
+
+	src.contents = null
 	..()
 
 //Note: pickup and dropped on weapons must have both the ..() to update zoom, AND twohanded,
@@ -126,13 +134,25 @@
 		user.SetLuminosity(-flash_lum)
 		SetLuminosity(flash_lum)
 
+	if(ishuman(user))
+		if(user:wear_suit && istype(user:wear_suit,/obj/item/clothing/suit/storage/marine) && !istype(src,/obj/item/weapon/gun/projectile/M56_Smartgun))
+			if(has_attachment(/obj/item/attachable/magnetic_harness))
+				var/obj/item/clothing/suit/storage/marine/I = user:wear_suit
+				if(isnull(user:s_store))
+					if(wielded)	unwield()
+					spawn(0)
+						user:equip_to_slot_if_possible(src,slot_s_store)
+						if(user:s_store == src) user << "\red The [src] snaps into place on [I]."
+						user.update_inv_s_store()
+
+
 	//handles unwielding a twohanded weapon when dropped as well as clearing up the offhand
 	if(twohanded)
 		if(user)
 			var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
 			if(istype(O))
 				O.unwield()
-		return	unwield()
+		unwield()
 
 
 /obj/item/weapon/gun/pickup(mob/user)
@@ -151,7 +171,18 @@
 	if(user && user.client && user.client.gun_mode && !(A in target))
 		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 	else
-		Fire(A,user,params) //Otherwise, fire normally.
+		if(!burst_toggled)
+			Fire(A,user,params) //Otherwise, fire normally.
+		else
+			if(burst_amount < 2) burst_amount = 2
+
+			for(var/i = 1 to burst_amount)
+				if(A)
+					Fire(A,user,params)
+					if(fire_delay <= 1)
+						sleep(1)
+					else
+						sleep((fire_delay/2))
 
 /obj/item/weapon/gun/proc/isHandgun()
 	return 1
@@ -171,8 +202,8 @@
 	if (!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
 		return
-
-	if(twohanded && !wielded)
+	var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
+	if(twohanded && !istype(O))
 		user << "\red You need a more secure grip to fire this weapon!"
 		return
 
@@ -185,6 +216,12 @@
 		if(user.dna && user.dna.mutantrace == "adamantine")
 			user << "\red Your metal fingers don't fit in the trigger guard!"
 			return
+
+	if(isYautja(user))
+		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+			var/obj/item/clothing/gloves/yautja/G = user.hands
+			if(G.cloaked)
+				G.decloak(user)
 
 	add_fingerprint(user)
 
@@ -210,7 +247,7 @@
 	in_chamber.firer = user
 	in_chamber.def_zone = user.zone_sel.selecting
 	if(targloc == curloc)
-		user.bullet_act(in_chamber)
+		target.bullet_act(in_chamber)
 		del(in_chamber)
 		update_icon()
 		return
@@ -239,16 +276,15 @@
 		if(muzzle.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * muzzle.ranged_dmg_mod / 100)
 	if(under)
 		if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
-		if(istype(under,/obj/item/attachable/bipod))
+		if(istype(under,/obj/item/attachable/bipod) && prob(30))
 			var/found = 0
-			for(var/obj/structure/O in range(user,1)) //This is probably inefficient as fuck
-				if(O.throwpass == 1)
+			for(var/obj/structure/Q in range(user,1)) //This is probably inefficient as fuck
+				if(Q.throwpass == 1)
 					found = 1
 					break
 			if(found)
+				user << "\blue Your bipod keeps the weapon steady!"
 				in_chamber.damage = round(5 * in_chamber.damage / 4) //Bipod gives a decent damage upgrade
-				if(prob(30))
-					user << "\blue Your bipod keeps the weapon steady!"
 	in_chamber.original = target
 	in_chamber.loc = get_turf(user)
 	in_chamber.starting = get_turf(user)
@@ -266,6 +302,21 @@
 		else if(mob.shock_stage > 70)
 			in_chamber.yo += rand(-1,1)
 			in_chamber.xo += rand(-1,1)
+
+		if(burst_toggled)
+			var/scatter_chance = 50 // Base chance of scatter on burst fire.
+			scatter_chance -= in_chamber.accuracy
+			if(rail)
+				if(rail.accuracy_mod) scatter_chance -= rail.accuracy_mod
+			if(muzzle)
+				if(muzzle.accuracy_mod) scatter_chance -= muzzle.accuracy_mod
+			if(under)
+				if(under.accuracy_mod) scatter_chance -= under.accuracy_mod
+			if(scatter_chance < 5) scatter_chance = 5
+			scatter_chance += (burst_amount * 5)
+			if(prob(scatter_chance))
+				in_chamber.yo += rand(-1,1)
+				in_chamber.xo += rand(-1,1)
 
 	if(params)
 		var/list/mouse_control = params2list(params)
@@ -494,6 +545,7 @@
 			user << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
 
 			var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+			O.wielded = 1
 			O.name = "[initial(name)] - offhand"
 			O.desc = "Your second grip on the [initial(name)]"
 			user.put_in_inactive_hand(O)
@@ -503,3 +555,26 @@
 		return src:unload(user)
 
 	return ..()
+
+/obj/item/weapon/gun/projectile/verb/toggle_burst()
+	set category = "Weapons"
+	set name = "Toggle Burst Fire Mode"
+	set desc = "Toggle on or off your weapon burst mode, if it has one. Greatly reduces accuracy."
+	set src in usr
+
+	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
+		usr << "Not right now."
+		return
+
+	if(!burst_amount)
+		usr << "This weapon does not have a burst fire mode."
+		return
+
+	playsound(src.loc,'sound/machines/click.ogg', 50, 1)
+	burst_toggled = !burst_toggled
+	if(burst_toggled)
+		usr << "\icon[src] You <B>enable</b> the [src]'s burst fire mode."
+	else
+		usr << "\icon[src] You <B>disable</b> the [src]'s burst fire mode."
+
+	return

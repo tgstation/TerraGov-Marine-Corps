@@ -63,7 +63,7 @@
 
 //Constant high generator. This will continue to send a signal of LOGIC_HIGH as long as it exists.
 /obj/machinery/logic/sensor/constant_high
-	icon = 'icons/obj/atmospherics/outlet_injector.dmi'
+	icon = 'icons/atmos/outlet_injector.dmi'
 	icon_state = "off"
 
 /obj/machinery/logic/sensor/constant_high/process()
@@ -148,7 +148,7 @@
 	var/obj/structure/cable/input1
 	var/obj/structure/cable/input2
 	var/obj/structure/cable/output
-	icon = 'icons/obj/atmospherics/mixer.dmi'
+	icon = 'icons/atmos/mixer.dmi'
 	icon_state = "intact_off"
 
 /obj/machinery/logic/twoinput/process()

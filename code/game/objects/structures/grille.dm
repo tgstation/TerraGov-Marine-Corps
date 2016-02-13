@@ -30,13 +30,15 @@
 /obj/structure/grille/fence/east_west
 	//width=80
 	//height=42
-	icon='icons/fence-ew.dmi'
+	icon='icons/obj/fence-ew.dmi'
+	icon_state = "fence-ew"
 	dir = 4
 
 /obj/structure/grille/fence/north_south
 	//width=80
 	//height=42
-	icon='icons/fence-ns.dmi'
+	icon='icons/obj/fence-ns.dmi'
+	icon_state = "fence-ns"
 
 /obj/structure/grille/fence/healthcheck()
 	if(health <= 0)

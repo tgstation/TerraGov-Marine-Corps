@@ -96,6 +96,10 @@
 			surv_spawn += loc
 			del(src)
 
+		if("pred_spawn")
+			pred_spawn += loc
+			del(src)
+
 		if("surv_spawn_prison")
 			surv_spawn_prison += loc
 			del(src)

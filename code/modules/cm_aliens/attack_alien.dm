@@ -40,7 +40,7 @@
 				return
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
-			if(M.frenzy_aura) damage += (M.frenzy_aura * 2)
+			if(M.frenzy_aura > 0) damage += (M.frenzy_aura * 2)
 
 			if(slashing_allowed == 2 && !M.is_intelligent)
 				if(src.status_flags & XENO_HOST)
@@ -74,19 +74,31 @@
 
 			var/armor_block = run_armor_check(affecting, "melee")
 
+			if(isYautja(src) && check_zone(M.zone_sel.selecting) == "head")
+				if(istype(src.head,/obj/item/clothing/head/helmet/space/yautja))
+					var/knock_chance = 2
+					if(M.frenzy_aura) knock_chance += 3
+					if(M.is_intelligent) knock_chance += 3
+					knock_chance += round(damage / 4)
+					if(prob(knock_chance))
+						playsound(loc, 'sound/effects/metalhit.ogg', 100, 1, 1)
+						visible_message("\blue <B>The [M] smashes off [src]'s [src.head]!</B>")
+						src.drop_from_inventory(src.head)
+						src.emote("roar")
+						return
+
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 			visible_message("\red <B>\The [M] has slashed at [src]!</B>")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 //			if (src.stat != 2)
 //				score_slashes_made++
-
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
 //			slash_flick()
 			updatehealth()
 
 		if("disarm")
-			if(check_shields(0, M.name) && rand(0,7) != 0) //Bit of a bonus
+			if(check_shields(0, M.name) && rand(0,5) != 0) //Bit of a bonus
 				visible_message("\red <B> \The [M]'s tackle is blocked by [src]'s shield!</B>")
 				return 0
 			if(weakened)
@@ -149,7 +161,7 @@
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
-			var/damage = rand(5,20) //Who cares, it's just Ian and the Monkeys (that would make a great band name)
+			var/damage = (rand(M.melee_damage_lower,M.melee_damage_upper) + 3)
 			visible_message("\red \The [M] bites at \the [src]!")
 			apply_damage(damage, BRUTE)
 

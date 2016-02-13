@@ -50,9 +50,9 @@
 					src << "\red You got stuck in [S] for a moment!"
 					tally += 12
 
-		if(istype(src.loc,/turf/simulated/floor/gm/river)) //Ditto walking through a river
+		if(istype(src.loc,/turf/unsimulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75
-			var/turf/simulated/floor/gm/river/T = src.loc
+			var/turf/unsimulated/floor/gm/river/T = src.loc
 			T.cleanup(src)
 			if(gloves && rand(0,100) < 60)
 				if(istype(src.gloves,/obj/item/clothing/gloves/yautja))

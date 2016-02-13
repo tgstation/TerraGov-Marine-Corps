@@ -37,8 +37,9 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/attachable/reddot,
 					/obj/item/weapon/grenade/smokebomb,
 					/obj/item/weapon/grenade/smokebomb,
-					/obj/item/weapon/grenade/smokebomb)
-	cost = 20
+					/obj/item/clothing/mask/gas/swat,
+					/obj/item/clothing/mask/gas/swat)
+	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "Special Ops crate"
 	group = "Operations"
@@ -48,12 +49,11 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(
 					/obj/item/attachable/reddot,
 					/obj/item/attachable/reddot,
-					/obj/item/attachable/reddot,
-					/obj/item/attachable/reddot,
-					/obj/item/attachable/quickfire,
+					/obj/item/attachable/magnetic_harness,
+					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/quickfire
 					)
-	cost = 30
+	cost = 40
 	containertype = /obj/structure/closet/crate
 	containername = "Attachables crate"
 	group = "Operations"
@@ -62,10 +62,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	name = "Muzzle Attachments"
 	contains = list(
 					/obj/item/attachable/suppressor,
-					/obj/item/attachable/suppressor,
 					/obj/item/attachable/bayonet,
-					/obj/item/attachable/bayonet,
-					/obj/item/attachable/extended_barrel,
 					/obj/item/attachable/extended_barrel,
 					/obj/item/attachable/heavy_barrel,
 					/obj/item/attachable/compensator
@@ -80,14 +77,11 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(
 					/obj/item/attachable/foregrip,
 					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
-					/obj/item/attachable/gyro,
 					/obj/item/attachable/gyro,
 					/obj/item/attachable/bipod,
-					/obj/item/attachable/bipod
+					/obj/item/attachable/burstfire_assembly
 					)
-	cost = 35
+	cost = 40
 	containertype = /obj/structure/closet/crate
 	containername = "Attachables crate"
 	group = "Operations"
@@ -485,7 +479,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Medical"
 
 /datum/supply_packs/cryobag
-	name = "Statis bag crate"
+	name = "Stasis bag crate"
 	contains = list(/obj/item/bodybag/cryobag,
 				    /obj/item/bodybag/cryobag,
 	    			/obj/item/bodybag/cryobag)

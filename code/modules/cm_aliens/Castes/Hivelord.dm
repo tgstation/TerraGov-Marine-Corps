@@ -13,14 +13,17 @@
 	storedplasma = 200
 	maxplasma = 800
 	jellyMax = 0 //Final evolution anyway
-	plasma_gain = 28
+	plasma_gain = 35
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
 	adjust_size_x = 0.8
 	adjust_size_y = 0.75
-	speed = 1.8
+	speed = 1.3
+	big_xeno = 1
+	var/speed_activated = 0
+
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/build_resin,
@@ -28,8 +31,27 @@
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,
 		/mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
-		/mob/living/carbon/Xenomorph/proc/toggle_auras
+		/mob/living/carbon/Xenomorph/proc/toggle_auras,
+		/mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed
 		)
+
+/mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed()
+	set name = "Resin Walker"
+	set desc = "Become one with the weeds. This is a toggleable ability that drains plasma until deactivated, but GREATLY increases your movement speed on weeds."
+	set category = "Alien"
+
+	if(!check_state()) return
+
+	if(speed_activated)
+		src << "You feel less in tune with the resin."
+		speed_activated = 0
+		return
+
+	if(!check_plasma(50)) return
+
+	speed_activated = 1
+	src << "You become one with the resin. You feel the urge to run!"
+	return
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel() // -- TLE
 	set name = "Dig Tunnel (200)"
@@ -43,11 +65,11 @@
 		src << "You can only do this on a turf."
 		return
 
-	if(istype(T,/turf/simulated/floor/gm/river))
+	if(istype(T,/turf/unsimulated/floor/gm/river))
 		src << "What, you want to flood your fellow xenos?"
 		return
 
-	if(!istype(T,/turf/simulated/floor/gm))
+	if(!istype(T,/turf/unsimulated/floor/gm))
 		src << "You scrape around, but nothing happens. You can only place these on open ground."
 		return
 

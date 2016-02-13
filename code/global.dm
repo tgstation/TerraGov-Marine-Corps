@@ -141,6 +141,7 @@ var/list/xeno_spawn_prison = list()//Prison alien spawn
 var/list/xeno_spawn_ice_colony = list()//Ice Colony alien spawn
 var/list/xeno_spawn_bigred = list()//bigredalienspawn
 var/list/surv_spawn = list()//Survivors spawn at these
+var/list/pred_spawn = list()//Predators spawn at these
 var/list/surv_spawn_prison = list()//prison survivor spawn
 var/list/surv_spawn_ice_colony = list()//Ice Colony survivor spawn
 //	list/mazewarp = list()

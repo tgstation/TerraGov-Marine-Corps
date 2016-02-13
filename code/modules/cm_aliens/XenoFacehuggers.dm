@@ -28,6 +28,13 @@ var/const/MAX_ACTIVE_TIME = 200
 		Die()
 		return
 
+	Del()
+		if(istype(src.loc,/mob/living/carbon))
+			var/mob/living/carbon/M = src.loc
+			M.drop_from_inventory(src)
+		return ..()
+
+
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob) //can be picked up by aliens
 	attack_hand(user)
 	return
@@ -159,6 +166,22 @@ var/const/MAX_ACTIVE_TIME = 200
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
 	if(throwing)
 		throwing = 0
+
+	if(isYautja(M))
+		var/mob/living/carbon/human/Y = M
+		var/catch_chance = 50
+		if(Y.dir == reverse_dir[src.dir]) catch_chance += 20
+		if(Y.lying) catch_chance -= 50
+		catch_chance -= ((Y.maxHealth - Y.health) / 3)
+		if(!isnull(Y.get_active_hand())) catch_chance  -= 25
+		if(!isnull(Y.get_inactive_hand())) catch_chance  -= 25
+
+		if(!Y.stat && Y.dir != src.dir && prob(catch_chance)) //Not facing away
+			Y.visible_message("\blue [Y] snatches \the [src.name] out of the air and squashes it!")
+			src.Die()
+			src.throwing = 0
+			src.loc = Y.loc
+			return 0
 
 	if(istype(src.loc,/mob/living/carbon/Xenomorph)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = src.loc
@@ -303,7 +326,7 @@ var/const/MAX_ACTIVE_TIME = 200
 	stat = DEAD
 
 	src.visible_message("\icon[src] \red <B>The [src] curls up into a ball!</b>")
-	spawn(1200) //2 minute timer for it to decay
+	spawn(1800) //2 minute timer for it to decay
 		src.visible_message("\icon[src] \red <B>The dead [src] decays into a mass of acid and chitin.</b>")
 		if(ismob(src.loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 			var/mob/M = src.loc
@@ -319,18 +342,20 @@ var/const/MAX_ACTIVE_TIME = 200
 
 	if(M.stat == DEAD) return 0 //No deads.
 
-	if(!iscarbon(M) && !iscorgi(M)) return 0 //No simple animals but Ian.
+	if(!iscarbon(M)) return 0 //No simple animals at all. Including Mr. Wiggles. His cuteness is his helmet.
 
 	if(istype(M,/mob/living/carbon/Xenomorph)) return 0 //No xenos, hurr
 
 	if(M.status_flags & XENO_HOST) return 0 //No hosts.
+
+	if(istype(M,/mob/living/carbon/hellhound)) return 0
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,
 	//or an unremovable mask.
 	if(iscarbon(M))
 		if(M.wear_mask)
-			var/obj/item/clothing/W = M.wear_mask
+			var/obj/item/W = M.wear_mask
 			if(!W.canremove)
 				return 0
 			if(istype(W,/obj/item/clothing/mask/facehugger))

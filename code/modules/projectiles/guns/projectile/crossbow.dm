@@ -24,7 +24,7 @@
 	throwforce = 5
 	w_class = 2
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "metal-rod"
+	icon_state = "spike"
 	item_state = "bolt"
 
 /obj/item/weapon/arrow/quill

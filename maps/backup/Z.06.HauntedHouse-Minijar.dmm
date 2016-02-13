@@ -710,7 +710,7 @@
 "nH" = (/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)
 "nI" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)
 "nJ" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)
-"nK" = (/obj/structure/closet/cabinet,/obj/item/weapon/gun/projectile/VP78,/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)
+"nK" = (/obj/structure/closet/cabinet,/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)
 "nL" = (/obj/structure/closet/cabinet,/obj/item/weapon/harpoon,/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)
 "nM" = (/obj/structure/table/woodentable,/obj/item/weapon/fossil,/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)
 "nN" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/carpet,/area/haunted_house/ground/grounds)

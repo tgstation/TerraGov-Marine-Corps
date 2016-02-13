@@ -191,7 +191,7 @@
 		/obj/item/stack/sheet/glass/reinforced = 50,
 		/obj/item/stack/cable_coil = 50,
 		/obj/item/stack/rods = 50,
-		/obj/item/stack/tile/plasteel = 20,
+		/obj/item/stack/tile/plasteel = 20
 		)
 
 	New()
@@ -211,6 +211,7 @@
 		src.modules += new /obj/item/taperoll/engineering(src)
 		src.modules += new /obj/item/weapon/gripper(src)
 		src.modules += new /obj/item/weapon/matter_decompiler(src)
+		src.modules += new /obj/item/device/lightreplacer(src)
 
 		src.emag = new /obj/item/borg/stun(src)
 
