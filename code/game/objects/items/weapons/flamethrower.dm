@@ -231,7 +231,7 @@
 	var/firelevel = 12 //Track how "hot" the fire is, flames die down eventually
 
 /obj/flamer_fire/process()
-	var/turf/simulated/T = loc
+	var/turf/T = loc
 
 	if (!istype(T)) //Is it a valid turf? Has to be simulated and on a floor
 		processing_objects.Remove(src)
@@ -334,6 +334,7 @@
 	weldtool.status = 0
 	igniter = new /obj/item/device/assembly/igniter(src)
 	igniter.secured = 0
+	ptank = new /obj/item/weapon/tank/phoron/m240(src)
 	status = 1
 	update_icon()
 	return
