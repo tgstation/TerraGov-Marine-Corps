@@ -150,7 +150,7 @@
 /datum/game_mode/colonialmarines/proc/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn))
-	new_xeno.amount_grown = 200
+	new_xeno.amount_grown = 100
 	var/mob/original = ghost.current
 
 	ghost.transfer_to(new_xeno)

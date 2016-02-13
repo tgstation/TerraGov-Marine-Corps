@@ -4,6 +4,7 @@
 	icon = 'icons/turf/walls.dmi'
 	var/mineral = "metal"
 	var/rotting = 0
+	var/hull = 0 //Can it be deconstructed by tools or thermite? Used for Sulaco walls
 
 	var/damage = 0
 	var/damage_cap = 100 //Wall will break down to girders if damage reaches this point
@@ -309,16 +310,25 @@
 	if( thermite )
 		if( istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
+			if(hull)
+				user << "This wall is much too tough for you to do anything to with [W]."
+				return
 			if( WT.remove_fuel(0,user) )
 				thermitemelt(user)
 				return
 
 		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+			if(hull)
+				user << "This wall is much too tough for you to do anything to with it."
+				return
 			thermitemelt(user)
 			return
 
 		else if( istype(W, /obj/item/weapon/melee/energy/blade) )
 			var/obj/item/weapon/melee/energy/blade/EB = W
+			if(hull)
+				user << "This wall is much too tough for you to do anything to with [W]."
+				return
 
 			EB.spark_system.start()
 			user << "<span class='notice'>You slash \the [src] with \the [EB]; the thermite ignites!</span>"
@@ -348,6 +358,9 @@
 					take_damage(-damage)
 
 			else if(response == "Dismantle")
+				if(hull)
+					user << "This wall is much too tough for you to do anything to with [W]."
+					return
 				user << "<span class='notice'>You begin slicing through the outer plating.</span>"
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
@@ -363,7 +376,9 @@
 			return
 
 	else if( istype(W, /obj/item/weapon/pickaxe/plasmacutter) )
-
+		if(hull)
+			user << "This wall is much too tough for you to do anything to with [W]."
+			return
 		user << "<span class='notice'>You begin slicing through the outer plating.</span>"
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
@@ -381,7 +396,9 @@
 
 	//DRILLING
 	else if (istype(W, /obj/item/weapon/pickaxe/diamonddrill))
-
+		if(hull)
+			user << "This wall is much too tough for you to do anything to with [W]."
+			return
 		user << "<span class='notice'>You begin to drill though the wall.</span>"
 
 		sleep(60)
@@ -398,7 +415,9 @@
 
 	else if( istype(W, /obj/item/weapon/melee/energy/blade) )
 		var/obj/item/weapon/melee/energy/blade/EB = W
-
+		if(hull)
+			user << "This wall is much too tough for you to do anything to with [W]."
+			return
 		EB.spark_system.start()
 		user << "<span class='notice'>You stab \the [EB] into the wall and begin to slice it apart.</span>"
 		playsound(src, "sparks", 50, 1)

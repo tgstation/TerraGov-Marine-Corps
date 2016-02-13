@@ -294,6 +294,12 @@
 				Close()
 
 	Close()
+		//Can't close if someone is blocking it
+		for(var/turf/turf in locs)
+			if(locate(/mob/living) in turf)
+				spawn (close_delay)
+					Close()
+				return
 		isSwitchingStates = 1
 		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 		flick("[mineralType]closing",src)

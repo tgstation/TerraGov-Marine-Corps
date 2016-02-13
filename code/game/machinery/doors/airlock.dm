@@ -1311,7 +1311,7 @@ About the new airlock wires panel:
 					if (!(C.species && (C.species.flags & NO_PAIN)))
 						M.emote("scream")
 			var/turf/location = src.loc
-			if(istype(location, /turf/simulated))
+			if(istype(location, /turf))
 				location.add_blood(M)
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people

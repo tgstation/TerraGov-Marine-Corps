@@ -1,5 +1,6 @@
 /turf/simulated
 	name = "station"
+	can_bloody = 1
 	var/wet = 0
 	var/image/wet_overlay = null
 
@@ -13,12 +14,6 @@
 /turf/simulated/New()
 	..()
 	levelupdate()
-
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
-	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
-	if(!tracks)
-		tracks = new typepath(src)
-	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
@@ -148,6 +143,7 @@
 
 	..()
 
+/*Moved to /turf
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)
 
@@ -177,3 +173,4 @@
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 	else if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)
+*/
