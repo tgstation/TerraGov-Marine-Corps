@@ -192,7 +192,7 @@
 
 	//		if (locate(/obj/movable, T)) // don't propogate into movables
 	//			continue
-			if(istype(T,/turf/unsimulated/floor/gm/grass) || istype(T,/turf/unsimulated/floor/gm/river) || istype(T,/turf/unsimulated/floor/gm/coast))
+			if(istype(T,/turf/unsimulated/floor/gm/grass) || istype(T,/turf/unsimulated/floor/gm/river) || istype(T,/turf/unsimulated/floor/gm/coast) || T.slayer > 0)
 				continue
 
 			for(var/obj/O in T)

@@ -64,7 +64,7 @@
 		src << "You can't do that here."
 		return
 
-	if(T.slayer)
+	if(T.slayer > 0)
 		src << "It requires a solid ground. Dig it up!"
 		return
 

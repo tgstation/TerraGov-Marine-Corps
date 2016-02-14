@@ -139,17 +139,17 @@
 	H.take_organ_damage(rand(0,15), rand(0,15))
 
 //Give them proper jobs and stuff here later
-	var/randjob = rand(0,11)
+	var/randjob = rand(0,3)
 	switch(randjob)
-		if(0) //assistant
+/*		if(0) //assistant
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
 		if(1) //civilian in pajamas
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
-		if(2) //Scientist
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)*/
+		if(0) //Scientist
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
-		if(3) //Doctor
+		if(1) //Doctor
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
-		if(4) //Chef!
+	/*	if(4) //Chef!
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
 		if(5) //Botanist
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), slot_w_uniform)
@@ -158,15 +158,15 @@
 		if(7) //Chaplain
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
 		if(8) //Miner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
-		if(9) //Corporate guy
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)*/
+		if(2) //Corporate guy
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
-		if(10) //Prisoner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)
-		if(11) //Security
+		/*if(3) //Prisoner
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)*/
+		if(3) //Security
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(H), slot_w_uniform)
 
-
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit/civilian(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), slot_wear_mask)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)

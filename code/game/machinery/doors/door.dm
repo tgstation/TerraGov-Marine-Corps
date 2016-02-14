@@ -244,7 +244,8 @@
 	explosion_resistance = 0
 	update_icon()
 	SetOpacity(0)
-	filler.SetOpacity(0)
+	if (filler)
+		filler.SetOpacity(0)
 	update_nearby_tiles()
 
 	if(operating)	operating = 0
@@ -272,7 +273,8 @@
 	update_icon()
 	if(visible && !glass)
 		SetOpacity(1)	//caaaaarn!
-		filler.SetOpacity(1)
+		if (filler)
+			filler.SetOpacity(0)
 	operating = 0
 	update_nearby_tiles()
 

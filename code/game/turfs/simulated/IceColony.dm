@@ -402,7 +402,7 @@
 			T = get_step(src, EAST)
 			if (T && slayer > T.slayer)
 				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_e")
-				I.pixel_y = src.pixel_x + 32
+				I.pixel_x = src.pixel_x + 32
 				I.layer = src.layer + 0.001
 				overlays += I
 
@@ -411,7 +411,7 @@
 			T = get_step(src, WEST)
 			if (T && slayer > T.slayer)
 				var/image/I = new('icons/turf/snow.dmi', "ice_wall_[slayer]_w")
-				I.pixel_y = src.pixel_x - 32
+				I.pixel_x = src.pixel_x - 32
 				I.layer = src.layer + 0.001
 				overlays += I
 
@@ -856,6 +856,7 @@ obj/item/alienjar
 //HELMET-----------------------//
 //Snow helmet
 /obj/item/clothing/head/helmet/marine/snow
+	min_cold_protection_temperature = 220
 	icon_state = "helmet_snow"
 	item_state = "helmet_snow"
 
