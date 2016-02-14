@@ -195,12 +195,12 @@
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 
-/area/sulaco/liason
-	name = "\improper Liason's Office"
+/area/sulaco/liaison
+	name = "\improper Liaison's Office"
 	icon_state = "blue2"
 
-/area/sulaco/liason/quarters
-	name = "\improper Liason's Quarters"
+/area/sulaco/liaison/quarters
+	name = "\improper Liaison's Quarters"
 	icon_state = "red"
 
 /area/sulaco/recroom
