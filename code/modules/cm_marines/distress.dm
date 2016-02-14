@@ -29,7 +29,7 @@
 	name = "Weyland-Yutani PMC"
 	mob_max = 6
 	arrival_message = "USS Sulaco, this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
-	objectives = "Secure the Corporate Liason and the Sulaco Commander, and eliminate any hostile threats. Do not damage W-Y property."
+	objectives = "Secure the Corporate Liaison and the Sulaco Commander, and eliminate any hostile threats. Do not damage W-Y property."
 	probability = 30
 
 //Supply drop. Just docks and has a crapload of stuff inside.
