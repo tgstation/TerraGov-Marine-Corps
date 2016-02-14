@@ -142,34 +142,34 @@
 	item_color = "marine_underpants"
 	has_sensor = 1
 
-/obj/item/clothing/under/liason_suit
+/obj/item/clothing/under/liaison_suit
 	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Specically crafted to make you look like a prick."
-	name = "Liason's Tan Suit"
-	icon_state = "liason_regular"
-	item_state = "liason_regular"
-	item_color = "liason_regular"
+	name = "Liaison's Tan Suit"
+	icon_state = "liaison_regular"
+	item_state = "liaison_regular"
+	item_color = "liaison_regular"
 	has_sensor = 1
 
-/obj/item/clothing/under/liason_suit/outing
+/obj/item/clothing/under/liaison_suit/outing
 	desc = "A casual outfit consisting of a collared shirt and a vest. Looks like something you might wear on the weekends, or on a visit to a derelict colony."
-	name = "Liason's Outfit"
-	icon_state = "liason_outing"
-	item_state = "liason_outing"
-	item_color = "liason_outing"
+	name = "Liaison's Outfit"
+	icon_state = "liaison_outing"
+	item_state = "liaison_outing"
+	item_color = "liaison_outing"
 
-/obj/item/clothing/under/liason_suit/formal
+/obj/item/clothing/under/liaison_suit/formal
 	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Weyland-Yutani corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
-	name = "Liason's White Suit"
-	icon_state = "liason_formal"
-	item_state = "liason_formal"
-	item_color = "liason_formal"
+	name = "Liaison's White Suit"
+	icon_state = "liaison_formal"
+	item_state = "liaison_formal"
+	item_color = "liaison_formal"
 
-/obj/item/clothing/under/liason_suit/suspenders
+/obj/item/clothing/under/liaison_suit/suspenders
 	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
-	name = "Liason's Attire"
-	icon_state = "liason_suspenders"
-	item_state = "liason_suspenders"
-	item_color = "liason_suspenders"
+	name = "Liaison's Attire"
+	icon_state = "liaison_suspenders"
+	item_state = "liaison_suspenders"
+	item_color = "liaison_suspenders"
 
 /obj/item/clothing/under/rank/ro_suit
 	name = "Requisition officer suit."

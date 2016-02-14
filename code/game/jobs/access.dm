@@ -513,7 +513,7 @@ proc/get_all_job_icons() //For all existing HUD icons
 		"Commander",
 		"Executive Officer",
 		"Bridge Officer",
-		"Corporate Liason",
+		"Corporate Liaison",
 		"Chief Engineer",
 		"Maintenance Tech",
 		"Requisitions Officer",
