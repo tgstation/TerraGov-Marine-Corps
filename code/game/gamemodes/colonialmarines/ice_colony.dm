@@ -108,7 +108,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce(">>>TODO: Starting Story<<<", "USS Sulaco")
+		command_announcement.Announce("An automated distress signal has been received from archaeology site (Insert name here), on border ice world (Insert name here). A response team from the USS Sulaco will be dispatched shortly to investigate.", "USS Sulaco")
 
 
 /datum/game_mode/ice_colony/proc/transform_xeno(var/datum/mind/ghost)
@@ -160,7 +160,7 @@
 		if(8) //Miner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)*/
 		if(2) //Corporate guy
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
 		/*if(3) //Prisoner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)*/
 		if(3) //Security
