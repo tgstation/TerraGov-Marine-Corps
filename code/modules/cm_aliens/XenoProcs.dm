@@ -154,6 +154,8 @@
 			if(locate(/obj/effect/alien/weeds) in src.loc)
 				tally -= 1.5
 
+	if(istype(loc,/turf/unsimulated/floor/snow)) //Snow slows you down
+		var/turf/unsimulated/floor/snow/S = src.loc
 		if(S && istype(S) && S.slayer > 0)
 			tally += 1 * S.slayer
 			if(S.slayer && prob(2))

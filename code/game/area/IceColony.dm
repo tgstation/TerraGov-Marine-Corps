@@ -71,6 +71,10 @@
 	name = "\improper Relay"
 	icon_state = "tcomsatcham"
 
+/area/ice_colony/ground/relay_secret
+	name = "\improper Communications Relay"
+	icon_state = "tcomsatcham"
+
 /area/ice_colony/ground/disposal
 	name = "\improper Disposal"
 	icon_state = "disposal"

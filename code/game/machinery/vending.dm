@@ -212,10 +212,10 @@
 		return
 */
 
-/*
-//Vending exploit.
-Deletes the old object and creates a new one in the vendor,
-thus fixing broken helmets and replensishing autoinjectors in seconds.
+
+//Vending exploit. - Not exploit, being turned into feature. - Apophis
+//Deletes the old object and creates a new one in the vendor,
+//thus fixing broken helmets and replensishing autoinjectors in seconds.
 
 	else if(src.panel_open)
 
@@ -223,7 +223,7 @@ thus fixing broken helmets and replensishing autoinjectors in seconds.
 			if(istype(W, R.product_path))
 				stock(R, user)
 				del(W)
-*/
+
 	else
 		..()
 

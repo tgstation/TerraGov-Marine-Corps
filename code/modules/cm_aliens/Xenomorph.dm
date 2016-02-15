@@ -110,11 +110,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-	if(caste != "Queen")
-		nicknumber = rand(1,999)
-		name = "[caste] ([nicknumber])"
-	real_name = name
-	regenerate_icons()
+
 
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R
@@ -132,14 +128,24 @@ var/global/hive_orders = "" //What orders should the hive have
 //		M.Translate(0, 16*(adjust_size-1))
 		src.transform = M
 
+
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
+		if(caste != "Queen")//This needed to be moved here because the re-naming was happening faster than the transfer. - Apop
+			nicknumber = rand(1,999)
+			name = "[caste] ([nicknumber])"
+			real_name = name
 		if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
 			src.mind.assigned_role = "MODE"
 			src.mind.special_role = "Alien"
+			src.mind.name  = real_name
 			//Add them to the gametype xeno tracker
 			if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len && !is_robotic) //Robots don't get added.
 				if(!(src.mind in ticker.mode.aliens))
 					ticker.mode.aliens += src.mind
+
+	regenerate_icons()
+
+
 
 /mob/living/carbon/Xenomorph/examine()
 	if(!usr) return //Somehow?

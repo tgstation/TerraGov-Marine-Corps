@@ -146,12 +146,10 @@
 		spawn(5)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/alpha(src)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/malpha(src)
-			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/backpack/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -159,7 +157,10 @@
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/snow_suit(src)
 					new /obj/item/clothing/mask/rebreather(src)
-
+				else
+					new /obj/item/clothing/under/marine_jumpsuit(src)
+					new /obj/item/clothing/head/helmet/marine(src)
+					new /obj/item/clothing/suit/storage/marine(src)
 
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment
@@ -176,13 +177,10 @@
 		spawn(6)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/bravo(src)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mbravo(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
-			new /obj/item/clothing/suit/storage/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -190,6 +188,10 @@
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/snow_suit/bravo(src)
 					new /obj/item/clothing/mask/rebreather(src)
+				else
+					new /obj/item/clothing/under/marine_jumpsuit(src)
+					new /obj/item/clothing/head/helmet/marine(src)
+					new /obj/item/clothing/suit/storage/marine(src)
 
 
 //CHARLIE EQUIPMENT CLOSET
@@ -207,14 +209,10 @@
 		spawn(7)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/charlie(src)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
-			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mcharlie(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
-			new /obj/item/clothing/suit/storage/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -222,6 +220,11 @@
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/snow_suit/charlie(src)
 					new /obj/item/clothing/mask/rebreather(src)
+				else
+					new /obj/item/clothing/under/marine_jumpsuit(src)
+					new /obj/item/clothing/head/helmet/marine(src)
+					new /obj/item/clothing/suit/storage/marine(src)
+
 
 
 //Delta EQUIPMENT CLOSET
@@ -239,13 +242,10 @@
 		spawn(8)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/delta(src)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mdelta(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
-			new /obj/item/clothing/suit/storage/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -253,6 +253,10 @@
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/snow_suit/delta(src)
 					new /obj/item/clothing/mask/rebreather(src)
+				else
+					new /obj/item/clothing/under/marine_jumpsuit(src)
+					new /obj/item/clothing/head/helmet/marine(src)
+					new /obj/item/clothing/suit/storage/marine(src)
 
 
 

@@ -198,6 +198,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "The B18 Helmet that goes along with the B18 Defensive armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 90, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
+	min_cold_protection_temperature = 220
 	anti_hug = 3
 	unacidable = 1
 
@@ -232,6 +233,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 60, laser = 70,energy = 50, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 2
+	min_cold_protection_temperature = 220
 	var/obj/machinery/camera/camera
 
 	New()
@@ -254,7 +256,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
 	icon_state = "7"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = 220
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 45, bullet = 75, laser = 70, energy = 40, bomb = 15, bio = 0, rad = 0)
 	allowed = list(
