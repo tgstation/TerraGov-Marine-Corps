@@ -797,61 +797,35 @@ obj/item/alienjar
 
 //SUITS-----------------------//
 //Snow Suit
-/obj/item/clothing/suit/storage/snow_suit
-	name = "Armored Snow Suit"
-	desc = "A standard Colonial Marines snow suit. It is reinforced with several kevlar plates to protect the wearer. It is not as strong as M3 Pattern armor, but with it's extremely thick insulation, it can protect the wearer from extreme temperatures down to 220K (-53°C)."
-	icon = 'icons/obj/clothing/suits.dmi'
-	icon_state = "snowsuit_alpha"
-	item_state = "snowsuit_alpha"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+/obj/item/clothing/suit/storage/marine/snow
+	name = "M3 Pattern Marine Snow Armor"
+	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage. It's extremely thick insulation can protect the wearer from extreme temperatures down to 220K (-53°C)."
+	icon_state = "s_1"
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = 220
-	blood_overlay_type = "armor"
 	armor = list(melee = 45, bullet = 65, laser = 65, energy = 20, bomb = 20, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/snow_suit
+	name = "Snow Suit"
+	desc = "A standard snow suit. It can protect the wearer from extreme temperatures down to 220K (-53°C)."
+	icon = 'icons/obj/clothing/suits.dmi'
+	icon_state = "snowsuit_alpha"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	min_cold_protection_temperature = 220
+	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
-	allowed = list(/obj/item/weapon/gun/,
-		/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
-		/obj/item/ammo_magazine/,
-		/obj/item/ammo_casing/,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/weapon/grenade,
-		/obj/item/weapon/storage/bible,
-		/obj/item/weapon/flamethrower/full,
-		/obj/item/weapon/combat_knife)
-
-/obj/item/clothing/suit/storage/snow_suit/bravo
-	icon_state = "snowsuit_bravo"
-	item_state = "snowsuit_bravo"
-
-/obj/item/clothing/suit/storage/snow_suit/charlie
-	icon_state = "snowsuit_charlie"
-	item_state = "snowsuit_charlie"
-
-/obj/item/clothing/suit/storage/snow_suit/delta
-	icon_state = "snowsuit_delta"
-	item_state = "snowsuit_delta"
 
 /obj/item/clothing/suit/storage/snow_suit/doctor
+	name = "Doctor's Snow Suit"
 	icon_state = "snowsuit_doctor"
-	item_state = "snowsuit_doctor"
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
-	name = "Doctor' Snow Suit"
 
 /obj/item/clothing/suit/storage/snow_suit/engineer
-	icon_state = "snowsuit_engineer"
-	item_state = "snowsuit_engineer"
-	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 	name = "Engineer's Snow Suit"
-
-/obj/item/clothing/suit/storage/snow_suit/civilian
 	icon_state = "snowsuit_engineer"
-	item_state = "snowsuit_engineer"
-	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	name = "Snow Suit"
+	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 
 //HELMET-----------------------//
 //Snow helmet
