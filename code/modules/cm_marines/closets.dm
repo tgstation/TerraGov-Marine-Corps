@@ -155,7 +155,7 @@
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/snow_suit(src)
+					new /obj/item/clothing/suit/storage/marine/snow(src)
 					new /obj/item/clothing/mask/rebreather(src)
 				else
 					new /obj/item/clothing/under/marine_jumpsuit(src)
@@ -186,7 +186,7 @@
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/snow_suit/bravo(src)
+					new /obj/item/clothing/suit/storage/marine/snow(src)
 					new /obj/item/clothing/mask/rebreather(src)
 				else
 					new /obj/item/clothing/under/marine_jumpsuit(src)
@@ -218,7 +218,7 @@
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/snow_suit/charlie(src)
+					new /obj/item/clothing/suit/storage/marine/snow(src)
 					new /obj/item/clothing/mask/rebreather(src)
 				else
 					new /obj/item/clothing/under/marine_jumpsuit(src)
@@ -251,7 +251,7 @@
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/snow_suit/delta(src)
+					new /obj/item/clothing/suit/storage/marine/snow(src)
 					new /obj/item/clothing/mask/rebreather(src)
 				else
 					new /obj/item/clothing/under/marine_jumpsuit(src)
