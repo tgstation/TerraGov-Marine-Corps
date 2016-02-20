@@ -263,7 +263,8 @@ var/const/MAX_ACTIVE_TIME = 200
 	GoIdle() //so it doesn't jump the people that tear it off
 
 	spawn(rand(MIN_IMPREGNATION_TIME,MAX_IMPREGNATION_TIME))
-		Impregnate(L)
+		if(src.stat != 2)
+			Impregnate(L)
 
 	return 1
 

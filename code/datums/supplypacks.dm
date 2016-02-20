@@ -628,6 +628,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(/obj/machinery/power/rad_collector,
 					/obj/machinery/power/rad_collector,
 					/obj/machinery/power/rad_collector)
+	containertype = /obj/structure/closet/crate
 	containername = "Collector crate"
 	group = "Engineering"
 	cost = 30
