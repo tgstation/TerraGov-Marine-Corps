@@ -81,6 +81,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	var/ArmorVariation
 	var/brightness_on = 5
 	var/on = 0
+	var/reinforced = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
 	New()
