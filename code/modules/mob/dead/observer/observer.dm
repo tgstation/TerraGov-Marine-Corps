@@ -617,7 +617,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/deathtime = world.time - usr.timeofdeath
-	var/deathtimeminutes = round(deathtime / 300)
+	var/deathtimeminutes = round(deathtime / 600)
 	var/pluralcheck = "minute"
 	if(deathtimeminutes == 0)
 		pluralcheck = ""
@@ -625,7 +625,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		pluralcheck = " [deathtimeminutes] minute and"
 	else if(deathtimeminutes > 1)
 		pluralcheck = " [deathtimeminutes] minutes and"
-	var/deathtimeseconds = round((deathtime - deathtimeminutes * 300) / 10,1)
+	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 
 	if (deathtime < 3000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Xeno - Ignored for Admins, cause we're special
 		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."

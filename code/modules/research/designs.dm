@@ -842,14 +842,15 @@ datum/design/mech_repair_droid
 	build_path = "/obj/item/mecha_parts/mecha_equipment/repair_droid"
 	category = "Exosuit Equipment"
 
-datum/design/mech_phoron_generator
-	name = "Exosuit Module Design (Phoron Generator Module)"
-	desc = "Exosuit-mounted phoron generator."
-	id = "mech_phoron_generator"
-	build_type = MECHFAB
-	req_tech = list("phorontech" = 2, "powerstorage"= 2, "engineering" = 2)
-	build_path = "/obj/item/mecha_parts/mecha_equipment/phoron_generator"
-	category = "Exosuit Equipment"
+// Removed to fix a runtime and lag spike - the object in the build_path doesn't even exist
+// datum/design/mech_phoron_generator
+// 	name = "Exosuit Module Design (Phoron Generator Module)"
+// 	desc = "Exosuit-mounted phoron generator."
+// 	id = "mech_phoron_generator"
+// 	build_type = MECHFAB
+// 	req_tech = list("phorontech" = 2, "powerstorage"= 2, "engineering" = 2)
+// 	build_path = "/obj/item/mecha_parts/mecha_equipment/phoron_generator"
+// 	category = "Exosuit Equipment"
 
 datum/design/mech_energy_relay
 	name = "Exosuit Module Design (Tesla Energy Relay)"

@@ -5,8 +5,8 @@
 	name = "Rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	oxygen = 0
-	nitrogen = 0
+	oxygen = 20
+	nitrogen = 80
 	opacity = 1
 	density = 1
 	blocks_air = 1
@@ -379,8 +379,8 @@
 	name = "asteroid"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
-//	oxygen = 0.01
-//	nitrogen = 0.01
+	oxygen = 20
+	nitrogen = 80
 //	temperature = T0C
 	icon_plating = "asteroid"
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug

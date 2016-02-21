@@ -108,8 +108,8 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	if(!mob)	return						//this doesn't happen
 
 	var/ref_mob = "\ref[mob]"
-	var/mentor_msg = "<b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>)(<A HREF='?_src_=holder;retarded=[ref_mob]'>Retarded</A>) [get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]</font><br>"
-	msg = "<b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>)(<A HREF='?_src_=holder;retarded=[ref_mob]'>Retarded</A>) [get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]</font><br>"
+	var/mentor_msg = "<b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>)(<A HREF='?_src_=holder;retarded=[ref_mob]'>Retarded</A>) [get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]: <br><font color='red'>[msg]</font></b><br>"
+	msg = "<b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>)(<A HREF='?_src_=holder;retarded=[ref_mob]'>Retarded</A>) [get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]: <br><font color='red'>[msg]</font></b><br>"
 
 
 

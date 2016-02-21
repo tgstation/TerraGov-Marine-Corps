@@ -295,6 +295,8 @@
 			if("praetorian")		M.change_mob_type( /mob/living/carbon/Xenomorph/Praetorian , null, null, delmob )
 			if("ravager")			M.change_mob_type( /mob/living/carbon/Xenomorph/Ravager , null, null, delmob )
 			if("spitter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Spitter , null, null, delmob )
+			if("boiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Boiler , null, null, delmob )
+			if("crusher")			M.change_mob_type( /mob/living/carbon/Xenomorph/Crusher , null, null, delmob )
 			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen , null, null, delmob )
 //			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
@@ -1461,7 +1463,7 @@
 	else if(href_list["CentcommFaxView"])
 		var/info = locate(href_list["CentcommFaxView"])
 
-		usr << browse("<HTML><HEAD><TITLE>Liason Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
+		usr << browse("<HTML><HEAD><TITLE>Liaison Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
 
 	else if(href_list["CentcommFaxReply"])
 		var/mob/living/carbon/human/H = locate(href_list["CentcommFaxReply"])
@@ -2332,7 +2334,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
 				for(var/obj/machinery/door/airlock/W in world)
-					if((W.z == 3 || W.z == 4) && !istype(get_area(W), /area/sulaco/bridge) && !istype(get_area(W), /area/sulaco/brig) && !istype(get_area(W), /area/sulaco/cargo/office) && !istype(get_area(W), /area/sulaco/engineering) && !istype(get_area(W), /area/sulaco/telecomms) && !istype(get_area(W), /area/sulaco/liason) && !istype(get_area(W), /area/sulaco/marine))
+					if((W.z == 3 || W.z == 4) && !istype(get_area(W), /area/sulaco/bridge) && !istype(get_area(W), /area/sulaco/brig) && !istype(get_area(W), /area/sulaco/cargo/office) && !istype(get_area(W), /area/sulaco/engineering) && !istype(get_area(W), /area/sulaco/telecomms) && !istype(get_area(W), /area/sulaco/liaison) && !istype(get_area(W), /area/sulaco/marine))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
 				command_announcement.Announce("Centcomm airlock control override activated. Please take this time to get acquainted with your coworkers.", new_sound = 'sound/AI/commandreport.ogg')
