@@ -810,6 +810,14 @@ proc/get_damage_icon_part(damage_state, body_part)
 			else if(squad > 0 && squad < 5)
 				standing.overlays += armormarkings[squad]
 
+			//For shoulder lamps
+			var/image/beam = image('icons/Marine/marine_armor.dmi',icon_state = "beam")
+			standing.overlays += image('icons/Marine/marine_armor.dmi',icon_state = "lamp")
+			if(wear_suit:on) //We know this is a good var.
+				standing.overlays += beam
+			else
+				standing.overlays -= beam
+
 		overlays_standing[SUIT_LAYER]	= standing
 
 		update_tail_showing(0)
