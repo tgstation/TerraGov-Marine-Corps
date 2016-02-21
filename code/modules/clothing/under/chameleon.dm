@@ -257,7 +257,7 @@
 		icon_state = A.icon_state
 		item_state = A.item_state
 		item_color = A.item_color
-		
+
 		//so our overlays update.
 		if (ismob(src.loc))
 			var/mob/M = src.loc
@@ -442,7 +442,7 @@
 		update_icon()
 		if (ismob(src.loc))
 			var/mob/M = src.loc
-			M.update_inv_r_hand()
+			M.update_inv_r_hand(0)
 			M.update_inv_l_hand()
 
 	verb/change()
@@ -464,9 +464,9 @@
 		icon_state = A.icon_state
 		item_state = A.item_state
 		flags_inv = A.flags_inv
-		
+
 		//so our overlays update.
 		if (ismob(src.loc))
 			var/mob/M = src.loc
-			M.update_inv_r_hand()
+			M.update_inv_r_hand(0)
 			M.update_inv_l_hand()
