@@ -1,10 +1,14 @@
 /mob/living/verb/succumb()
 	set hidden = 1
+
+	src << "\blue You can't succumb."
+	return
+/*
 	if ((src.health < 0 && src.health > -95.0))
 		src.adjustOxyLoss(src.health + 200)
 		src.health = 100 - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
 		src << "\blue You have given up life and succumbed to death."
-
+*/
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)

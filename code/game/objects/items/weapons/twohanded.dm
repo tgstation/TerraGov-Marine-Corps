@@ -35,7 +35,7 @@
 	name = "[initial(name)] (Wielded)"
 	update_icon()
 	if(usr && ishuman(usr))
-		usr:update_inv_l_hand()
+		usr:update_inv_l_hand(0)
 		usr:update_inv_r_hand()
 
 /obj/item/weapon/twohanded/mob_can_equip(M as mob, slot)
