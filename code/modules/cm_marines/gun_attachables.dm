@@ -59,8 +59,8 @@
 				G.attack_verb = null
 				G.attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
 		if(w_class_mod != 0) G.w_class += w_class_mod
-		if(istype(G,/obj/item/weapon/gun/projectile))
-			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
+//		if(istype(G,/obj/item/weapon/gun/projectile))
+//			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
 		if(recoil_mod)
 			G.recoil += recoil_mod
 			if(G.recoil < 0) G.recoil = 0

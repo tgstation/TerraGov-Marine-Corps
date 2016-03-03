@@ -778,19 +778,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/living/carbon/human/M = new(pick(pred_spawn))
 	M.key = src.key
 
-	if(M.mind)
-		M.mind.assigned_role = "MODE"
-		M.mind.special_role = "Predator"
-	else //This should never happen. EVER.
-		M.mind = new(M.key)
-		M.mind.assigned_role = "MODE"
-		M.mind.special_role = "Predator"
-
 	M.set_species("Yautja")
-	if(M.client.prefs)
+	if(src.client && src.client.prefs) //Fuckit, one of these must be right.
+		M.real_name = src.client.prefs.predator_name
+		M.gender = src.client.prefs.predator_gender
+	else if(M.client && M.client.prefs)
 		M.real_name = M.client.prefs.predator_name
 		M.gender = M.client.prefs.predator_gender
-	if(!M.real_name || M.real_name == "") M.real_name = "Unknown Yautja"
 	if(!M.gender) M.gender = "male"
 	M.update_icons()
 	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
