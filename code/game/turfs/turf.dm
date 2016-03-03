@@ -26,6 +26,7 @@
 	var/has_resources
 	var/list/resources
 	var/slayer = -1 //Can snow make snow layers on top of it?
+	var/can_bloody = 0 //Can blood spawn on this turf?
 
 /turf/New()
 	..()
@@ -369,3 +370,46 @@
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
+
+
+//Blood stuff------------
+/turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
+	if(!tracks)
+		tracks = new typepath(src)
+	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
+
+
+//returns 1 if made bloody, returns 0 otherwise
+/turf/add_blood(mob/living/carbon/human/M as mob)
+	if(!can_bloody)
+		return 0
+
+	if(istype(src,/turf/unsimulated/floor/gm/river)) return 0//Not in the river
+
+	if (!..())
+		return 0
+
+	for(var/obj/effect/decal/cleanable/blood/B in contents)
+		if(!B.blood_DNA[M.dna.unique_enzymes])
+			B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+			B.virus2 = virus_copylist(M.virus2)
+		return 1 //we bloodied the floor
+
+	blood_splatter(src,M.get_blood(M.vessel),1)
+	return 1 //we bloodied the floor
+
+
+// Only adds blood on the floor -- Skie
+/turf/proc/add_blood_floor(mob/living/carbon/M as mob)
+	if(!can_bloody)
+		return 0
+	if(istype(src,/turf/unsimulated/floor/gm/river)) return 0//Not in the river
+
+	if(istype(M, /mob/living/carbon/monkey))
+		blood_splatter(src,M,1)
+	else if( istype(M, /mob/living/carbon/Xenomorph))
+		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
+		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
+	else if( istype(M, /mob/living/silicon/robot ))
+		new /obj/effect/decal/cleanable/blood/oil(src)

@@ -470,9 +470,9 @@
 					dat += "<td><A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A></td></TR>"
 			dat += "</table>"
 
-		if(ticker.liason)
-			dat += "<br><table cellspacing=5><tr><td><B>Corporate Liason</B></td><td></td><td></td></tr>"
-			var/mob/M = ticker.liason.current
+		if(ticker.liaison)
+			dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaison</B></td><td></td><td></td></tr>"
+			var/mob/M = ticker.liaison.current
 			if(M)
 				dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"

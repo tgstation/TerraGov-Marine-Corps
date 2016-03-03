@@ -181,9 +181,12 @@
 		affected.status = 0
 		affected.amputated = 0
 		affected.destspawn = 0
-		target.update_body()
+		target.update_body(0)
 		target.updatehealth()
 		target.UpdateDamageIcon()
+		user.update_inv_l_hand(0)
+		user.update_inv_r_hand()
+
 		var/obj/item/weapon/organ/head/B = tool
 		if (B.brainmob.mind)
 			B.brainmob.mind.transfer_to(target)

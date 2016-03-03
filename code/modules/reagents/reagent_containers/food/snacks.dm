@@ -163,6 +163,7 @@
 
 	var/inaccurate = 0
 	if( \
+			istype(W, /obj/item/weapon/combat_knife) || \
 			istype(W, /obj/item/weapon/kitchenknife) || \
 			istype(W, /obj/item/weapon/butch) || \
 			istype(W, /obj/item/weapon/scalpel) || \

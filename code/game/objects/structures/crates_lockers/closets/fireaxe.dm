@@ -170,6 +170,9 @@
 		if (isrobot(usr))
 			return
 
+		if (istype(usr, /mob/living/carbon/Xenomorph))
+			return
+
 		if (localopened)
 			if(fireaxe)
 				usr.put_in_hands(fireaxe)
@@ -182,7 +185,7 @@
 		update_icon()
 
 	attack_paw(mob/user as mob)
-		attack_hand(user)
+		attack_hand(user) //Nope
 		return
 
 	attack_ai(mob/user as mob)

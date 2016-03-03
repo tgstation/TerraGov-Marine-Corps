@@ -95,7 +95,7 @@
 /mob/living/carbon/Xenomorph/proc/is_weedable(turf/T)
 	if(isnull(T) || !isturf(T)) return 0
 	if(istype(T,/turf/space)) return 0
-	if(istype(T,/turf/simulated/floor/gm/grass) || istype(T,/turf/simulated/floor/gm/dirtgrassborder) || istype(T,/turf/simulated/floor/gm/river) || istype(T,/turf/simulated/floor/gm/coast)) return 0
+	if(istype(T,/turf/unsimulated/floor/gm/grass) || istype(T,/turf/unsimulated/floor/gm/dirtgrassborder) || istype(T,/turf/unsimulated/floor/gm/river) || istype(T,/turf/unsimulated/floor/gm/coast)) return 0
 	return 1
 
 //Strip all inherent xeno verbs from your caste. Used in evolution.
@@ -143,7 +143,7 @@
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
-	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
+	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
 			tally -= 0.5
 		else

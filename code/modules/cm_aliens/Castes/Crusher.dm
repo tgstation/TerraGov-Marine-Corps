@@ -80,7 +80,7 @@
 			stop_momentum(charge_dir)
 			return
 
-	if(dir != charge_dir || src.m_intent == "walk" || istype(src.loc,/turf/simulated/floor/gm/river))
+	if(dir != charge_dir || src.m_intent == "walk" || istype(src.loc,/turf/unsimulated/floor/gm/river))
 		stop_momentum(charge_dir)
 		return
 

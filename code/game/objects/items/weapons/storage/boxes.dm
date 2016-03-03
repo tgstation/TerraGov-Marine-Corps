@@ -40,6 +40,7 @@
 		sleep(1)
 		new /obj/item/clothing/mask/breath( src )
 		new /obj/item/weapon/tank/emergency_oxygen( src )
+		w_class = 3
 		return
 
 /obj/item/weapon/storage/box/engineer/
@@ -519,6 +520,7 @@
 /obj/item/weapon/storage/box/lights/tubes
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
+	w_class = 3
 
 /obj/item/weapon/storage/box/lights/tubes/New()
 	..()

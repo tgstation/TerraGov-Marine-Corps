@@ -805,10 +805,10 @@ steam.start() -- spawns the effect
 
 			// Clamp all values to MAX_EXPLOSION_RANGE
 			if (round(amount/12) > 0)
-				devastation = min (MAX_EXPLOSION_RANGE, devastation + round(amount/12))
+				devastation =0
 
 			if (round(amount/6) > 0)
-				heavy = min (MAX_EXPLOSION_RANGE, heavy + round(amount/6))
+				heavy = 0
 
 			if (round(amount/3) > 0)
 				light = min (MAX_EXPLOSION_RANGE, light + round(amount/3))

@@ -1,10 +1,14 @@
 /mob/living/verb/succumb()
 	set hidden = 1
+
+	src << "\blue You can't succumb."
+	return
+/*
 	if ((src.health < 0 && src.health > -95.0))
 		src.adjustOxyLoss(src.health + 200)
 		src.health = 100 - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
 		src << "\blue You have given up life and succumbed to death."
-
+*/
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -390,7 +394,7 @@
 						//this is the gay blood on floor shit -- Added back -- Skie
 						if (M.lying && (prob(M.getBruteLoss() / 6)) && M.stat != 2)
 							var/turf/location = M.loc
-							if (istype(location, /turf/simulated))
+							if (istype(location, /turf))
 								location.add_blood(M)
 						//pull damage with injured people
 							if(prob(25))
@@ -401,7 +405,7 @@
 								M.adjustBruteLoss(2)
 								visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
 								var/turf/location = M.loc
-								if (istype(location, /turf/simulated))
+								if (istype(location, /turf))
 									location.add_blood(M)
 									if(ishuman(M))
 										var/mob/living/carbon/H = M

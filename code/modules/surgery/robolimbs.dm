@@ -163,10 +163,10 @@
 			affected.sabotaged = 1
 		else
 			affected.sabotaged = 0
-		target.update_body()
+		target.update_body(0)
 		target.updatehealth()
 		target.UpdateDamageIcon()
-		user.update_inv_l_hand()
+		user.update_inv_l_hand(0)
 		user.update_inv_r_hand()
 		del(tool)
 

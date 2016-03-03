@@ -70,7 +70,7 @@
 	if(damtype == BRUTE) chance += 5
 	chance += chancemod
 	chance += (damage / 3) //A fair bonus based on damage. 30 dam : +10% splash, 60 dam(glaive) : +20%
-	var/turf/simulated/T = loc
+	var/turf/T = loc
 	if(!T || !istype(T)) return 0
 	if(src.stat == DEAD) //Well. Maybe a smaller chance.. To stop marines from running around hacking them up I guess.
 		chance -= 20

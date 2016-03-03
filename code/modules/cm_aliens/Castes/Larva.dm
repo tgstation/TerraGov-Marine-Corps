@@ -47,6 +47,10 @@
 		state = "Normal"
 	else if(amount_grown > 50)
 		state = "Normal"
+	if(state == "Normal" && amount_grown < 100)
+		name = "Larva ([nicknumber])"
+	else if(amount_grown >=100)
+		name = "Mature Larva ([nicknumber])"
 
 	if(stat == DEAD)
 		icon_state = "[state] Larva Dead"

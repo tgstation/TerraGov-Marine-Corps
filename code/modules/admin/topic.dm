@@ -295,6 +295,8 @@
 			if("praetorian")		M.change_mob_type( /mob/living/carbon/Xenomorph/Praetorian , null, null, delmob )
 			if("ravager")			M.change_mob_type( /mob/living/carbon/Xenomorph/Ravager , null, null, delmob )
 			if("spitter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Spitter , null, null, delmob )
+			if("boiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Boiler , null, null, delmob )
+			if("crusher")			M.change_mob_type( /mob/living/carbon/Xenomorph/Crusher , null, null, delmob )
 			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen , null, null, delmob )
 //			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
@@ -1461,7 +1463,7 @@
 	else if(href_list["CentcommFaxView"])
 		var/info = locate(href_list["CentcommFaxView"])
 
-		usr << browse("<HTML><HEAD><TITLE>Liason Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
+		usr << browse("<HTML><HEAD><TITLE>Liaison Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
 
 	else if(href_list["CentcommFaxReply"])
 		var/mob/living/carbon/human/H = locate(href_list["CentcommFaxReply"])
@@ -2332,7 +2334,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
 				for(var/obj/machinery/door/airlock/W in world)
-					if((W.z == 3 || W.z == 4) && !istype(get_area(W), /area/sulaco/bridge) && !istype(get_area(W), /area/sulaco/brig) && !istype(get_area(W), /area/sulaco/cargo/office) && !istype(get_area(W), /area/sulaco/engineering) && !istype(get_area(W), /area/sulaco/telecomms) && !istype(get_area(W), /area/sulaco/liason) && !istype(get_area(W), /area/sulaco/marine))
+					if((W.z == 3 || W.z == 4) && !istype(get_area(W), /area/sulaco/bridge) && !istype(get_area(W), /area/sulaco/brig) && !istype(get_area(W), /area/sulaco/cargo/office) && !istype(get_area(W), /area/sulaco/engineering) && !istype(get_area(W), /area/sulaco/telecomms) && !istype(get_area(W), /area/sulaco/liaison) && !istype(get_area(W), /area/sulaco/marine))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
 				command_announcement.Announce("Centcomm airlock control override activated. Please take this time to get acquainted with your coworkers.", new_sound = 'sound/AI/commandreport.ogg')
@@ -2736,8 +2738,8 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> is responding to <font color=blue>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
-		var/msgplayer = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has marked your request and is preparing to respond...</b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'Mark'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked your request and is preparing to respond...</b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
@@ -2751,8 +2753,8 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has marked the Adminhelp from <font color=blue>[ref_person.ckey]/([ref_person])</font> as 'No response necessary'. The player has been notified.</b>"
-		var/msgplayer = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'No response necessary'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.</b>"
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your Adminhelp is being handled, it's fixed, or it's nonsensical.</font></b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
@@ -2761,25 +2763,25 @@
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
-	if(href_list["retarded"]) // new verb on the Ahelp.  Will tell the person their message is fucking stupid
-		var/mob/ref_person = locate(href_list["retarded"])
-		if(!istype(ref_person))
-			usr << "\blue Looks like that person stopped existing!"
-			return
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> has marked the Adminhelp from <font color=blue>[ref_person.ckey]/([ref_person])</font> as 'Completely fucking retarded' - this Ahelp was written by someone whom, if they were any less intelligent, would need to be watered twice a day. This button doesn't actually notify the player of this, but maybe it should.</b>"
-		// var/msgplayer = ""
-
-		//send this msg to all admins
-		for(var/client/X in admins)
-			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
-				X << msg
-
-		// ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+	// if(href_list["retarded"]) // Their message is fucking stupid
+	// 	var/mob/ref_person = locate(href_list["retarded"])
+	// 	if(!istype(ref_person))
+	// 		usr << "\blue Looks like that person stopped existing!"
+	// 		return
+	// 	var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font> as 'Completely fucking retarded' - this Ahelp was written by someone whom, if they were any less intelligent, would need to be watered twice a day. The player has been nicely notified of this as 'No response necessary'.</b>"
+	// 	var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
+	//
+	// 	//send this msg to all admins
+	// 	for(var/client/X in admins)
+	// 		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
+	// 			X << msg
+	//
+	// 	ref_person << msgplayer //send a message to the player
 
 
 	if(href_list["ccdibs"]) // CentComm-Dibs. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
 		var/mob/ref_person = locate(href_list["ccdibs"])
-		var/msg = "\red <b>NOTICE: <font color=blue>[usr.key]</font> is responding to <font color=blue>[ref_person.ckey]/([ref_person])</font>.</b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>.</b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
