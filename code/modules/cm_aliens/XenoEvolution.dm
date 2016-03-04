@@ -9,6 +9,9 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	if(jobban_isbanned(src,"Alien"))
+		src << "\red You are jobbanned from Aliens and cannot evolve. How did you even become an alien?"
+		return
 
 	if(stat)
 		src << "You have to be conscious to evolve."

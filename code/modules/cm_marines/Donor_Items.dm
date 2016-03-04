@@ -915,6 +915,7 @@
 	name = "PMC Mask"
 	desc = "A white colored PMC Mask.  DONOR ITEM."
 	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_mask"
 	icon_state = "pmc_mask"
 
