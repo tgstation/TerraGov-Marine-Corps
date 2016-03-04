@@ -61,7 +61,7 @@
  * Wooden Table Parts
  */
 /obj/item/weapon/table_parts/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
+//	..()
 	if (istype(W, /obj/item/weapon/wrench))
 		new /obj/item/stack/sheet/wood( get_turf(loc) )
 		//SN src = null

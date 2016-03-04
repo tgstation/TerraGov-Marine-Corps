@@ -10,7 +10,7 @@
 	opacity = 1
 	density = 1
 	blocks_air = 1
-	temperature = T0C
+	temperature = T20C
 	var/mineral/mineral
 	var/mined_ore = 0
 	var/last_act = 0
@@ -382,6 +382,7 @@
 	oxygen = 20
 	nitrogen = 80
 //	temperature = T0C
+	temperature = T20C //<---This should be fixed later.
 	icon_plating = "asteroid"
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail
