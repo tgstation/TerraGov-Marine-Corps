@@ -1294,7 +1294,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel/commando(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -1307,6 +1307,9 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_l_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando"
@@ -1326,7 +1329,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel/commando(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -1339,6 +1342,8 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_l_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando Leader"
