@@ -404,7 +404,7 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.\n'Peace Through Superior Firepower'"
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "M42c"
-	item_state = "l6closednomag"  //placeholder
+	item_state = "M42c"  //placeholder
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	ammo_type = "/obj/item/ammo_casing/m42c"
 	fire_delay = 60
@@ -590,7 +590,7 @@
 
 /obj/item/smartgun_powerpack
 	name = "M56 powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
+	desc = "A heavy reinforced charge pack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
 	item_state = "armor"

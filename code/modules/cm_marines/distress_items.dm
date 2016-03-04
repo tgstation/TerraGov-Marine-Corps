@@ -316,3 +316,8 @@
 	icon_state = "sword"
 	force = 32
 
+/obj/item/weapon/storage/backpack/marinesatchel/commando
+	name = "Commando Bag"
+	desc = "A heavy-duty bag carried by Weyland Yutani Commandos."
+	icon_state = "marinepack-tech3"
+	item_state = "marinepack-tech3"
