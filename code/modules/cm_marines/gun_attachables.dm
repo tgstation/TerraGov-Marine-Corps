@@ -354,7 +354,7 @@
 					/obj/item/weapon/gun/projectile/M42C
 						)
 	accuracy_mod = -30
-	delay_mod = -3
+	delay_mod = -2
 	slot = "under"
 	burst_mod = 2
 
