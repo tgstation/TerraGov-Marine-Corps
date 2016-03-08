@@ -45,6 +45,15 @@
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mcom(src)
 
+/obj/structure/closet/secure_closet/securecom
+	name = "Commander's Secure Box"
+	req_access = list(access_sulaco_captain)
+	desc = "You could probably get court-marshaled just by looking at this..."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "largermetal"
+	icon_opened = "largermetalopen"
+	icon_closed = "largermetal"
+	icon_locked = "largermetal"
 
 /obj/structure/closet/secure_closet/marine/marine_lo
 	name = "Bridge Officer's Locker"

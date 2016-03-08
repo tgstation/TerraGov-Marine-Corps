@@ -513,7 +513,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m56"
 	item_state = "m56"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/smartgun.ogg'
 	ammo_type = "/obj/item/ammo_casing/m56"
 	w_class = 5.0
 	max_shells = 50
@@ -586,6 +586,7 @@
 					/obj/item/ammo_casing,
 					/obj/item/device/mine,
 					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/claymore/mercsword/machete,
 					/obj/item/weapon/gun/projectile/M56_Smartgun)
 
 /obj/item/smartgun_powerpack

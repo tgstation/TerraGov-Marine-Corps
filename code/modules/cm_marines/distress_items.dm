@@ -314,14 +314,18 @@
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharped to deal massive damage."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "sword"
-	force = 38
+	force = 40
 
 /obj/item/weapon/claymore/mercsword/machete
 	name = "M2132 Machete"
 	desc = "Latest issue of the USCM Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "machete"
-	force = 28
+	item_state = "machete"
+	item_color = "machete"
+	force = 35
+	slot_flags = SLOT_BACK
+	w_class = 4.0
 
 
 /obj/item/weapon/storage/backpack/marinesatchel/commando
@@ -341,4 +345,14 @@
 /obj/item/weapon/butterfly/katana
 	name = "Katana"
 	desc = "A ancient weapon from Japan."
-	icon_state = "samrai"
+	icon_state = "samurai"
+
+/obj/item/smartgun_powerpack/fancy
+	icon = 'icons/mob/back.dmi'
+	item_state = "powerpackw"
+	icon_state = "powerpackw"
+
+/obj/item/smartgun_powerpack/merc
+	icon = 'icons/mob/back.dmi'
+	item_state = "powerpackp"
+	icon_state = "powerpackp"
