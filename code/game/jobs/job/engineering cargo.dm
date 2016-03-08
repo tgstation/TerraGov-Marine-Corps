@@ -15,7 +15,7 @@
 	minimal_player_age = 3
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/ce(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/ce(H), slot_l_store)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
@@ -45,7 +45,7 @@
 	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/engi(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
@@ -76,14 +76,14 @@
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		var/obj/item/weapon/storage/backpack/BPK = new(H)
-		new /obj/item/weapon/storage/box/survival(BPK)
-		H.equip_to_slot_or_del(BPK, slot_back)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/ro_cap(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/req(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+		//H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/RO(H), slot_wear_suit)
 
 		H.implant_loyalty(src)
 		spawn(10)
@@ -110,12 +110,12 @@
 	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/grey(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmbandana/tan(H), slot_head)
 
 		spawn(10)
 			H << "You are a Sulaco cargo technician! AKA the delivery officer."
