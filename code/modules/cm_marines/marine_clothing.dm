@@ -134,7 +134,7 @@
 
 /obj/item/clothing/under/marine_underoos
 	name = "marine underpants"
-	desc = "A simple outfit worn by USCM operators during cyrosleep. Wear this into battle if you have no self-respect."
+	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Wear this into battle if you have no self-respect."
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
@@ -142,6 +142,7 @@
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
 	has_sensor = 1
+	slowdown = 3
 
 /obj/item/clothing/under/liaison_suit
 	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Specically crafted to make you look like a prick."
@@ -310,11 +311,12 @@
 	item_state = "johnny"
 
 /obj/item/clothing/suit/armor/riot/marine
-	name = "Military Police suit"
-	desc = "A suit of armor with heavy plates and padding. Looks like it might impair movement."
+	name = "M5 Riot Control Armor"
+	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you downa lot."
 	icon_state = "riot"
 	item_state = "swat_suit"
-	armor = list(melee = 80, bullet = 90, laser = 50, energy = 50, bomb = 80, bio = 0, rad = 0)
+	slowdown = 3
+	armor = list(melee = 70, bullet = 80, laser = 60, energy = 30, bomb = 35, bio = 10, rad = 10)
 
 //GLOVES
 /obj/item/clothing/gloves/marine
@@ -693,3 +695,5 @@
 	item_state = "RO_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
+
+
