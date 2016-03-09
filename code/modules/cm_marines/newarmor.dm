@@ -75,6 +75,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/flamethrower/full,
 		/obj/item/weapon/combat_knife)
 	var/ArmorVariation
@@ -158,6 +159,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/ammo_casing,
 					/obj/item/weapon/flamethrower,
 					/obj/item/device/mine,
+					/obj/item/weapon/claymore/mercsword/machete,
 					/obj/item/weapon/combat_knife)
 
 	verb/inject()
@@ -273,6 +275,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/weapon/flame/lighter,
 					/obj/item/weapon/grenade,
 					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/claymore/mercsword/machete,
 					/obj/item/weapon/storage/bible)
 	/*var/brightness_on = 7   //All Marine armor now has this function, moved it to the standard marine armor area.
 	var/on = 0
