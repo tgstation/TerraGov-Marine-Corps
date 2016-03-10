@@ -379,7 +379,7 @@
 	recoil_mod = -1
 	accuracy_mod = 20
 	melee_mod = 170
-	size_mod = 2
+	size_mod = 3
 	delay_mod = 2
 	pixel_shift_x = 33 //Determines the amount of pixels to move the icon state for the overlay.
 	pixel_shift_y = 16 //Uses the bottom left corner of the item.
@@ -392,7 +392,7 @@
 	recoil_mod = -1
 	accuracy_mod = 20
 	melee_mod = 120
-	size_mod = 1
+	size_mod = 2
 	delay_mod = 2
 	icon_state = "riflestock"
 	pixel_shift_x = 35 //Determines the amount of pixels to move the icon state for the overlay.

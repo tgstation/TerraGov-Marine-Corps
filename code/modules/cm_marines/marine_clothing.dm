@@ -134,7 +134,7 @@
 
 /obj/item/clothing/under/marine_underoos
 	name = "marine underpants"
-	desc = "A simple outfit worn by USCM operators during cyrosleep. Wear this into battle if you have no self-respect."
+	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Wear this into battle if you have no self-respect."
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
@@ -142,6 +142,7 @@
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
 	has_sensor = 1
+	slowdown = 3
 
 /obj/item/clothing/under/liaison_suit
 	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Specically crafted to make you look like a prick."
@@ -219,21 +220,21 @@
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/bridge
-	name = "bridge officer uniform"
+	name = "Bridge Officer uniform"
 	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec
-	name = "executive officer uniform"
+	name = "Executive Officer uniform"
 	desc = "A uniform typically worn by a First-lieutenant in the USCM. The Executive Officer is the second in-charge of the USCM forces onboard the USS Sulaco."
 	icon_state = "XO_jumpsuit"
 	item_state = "XO_jumpsuit"
 	item_color = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command
-	name = "commander uniform"
+	name = "Commander Uniform"
 	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled."
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
@@ -241,11 +242,11 @@
 
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief engineer uniform"
-	desc = "A uniform for the engineering crew of the USS Sulaco. Slightly protective against enviromental hazards. Fancy overalls."
+	desc = "A uniform for the engineering crew of the USS Sulaco. Slightly protective against enviromental hazards. Worn by the Chief.."
 	armor = list(melee = 0, bullet = 0, laser = 25,energy = 0, bomb = 0, bio = 0, rad = 25)
-	icon_state = "mechanic"
-	item_state = "mechanic"
-	item_color = "mechanic"
+	icon_state = "EC_jumpsuit"
+	item_state = "EC_jumpsuit"
+	item_color = "EC_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
@@ -254,6 +255,8 @@
 	icon_state = "E_jumpsuit"
 	item_state = "E_jumpsuit"
 	item_color = "E_jumpsuit"
+
+
 
 
 //ARMOR
@@ -308,11 +311,12 @@
 	item_state = "johnny"
 
 /obj/item/clothing/suit/armor/riot/marine
-	name = "Military Police suit"
-	desc = "A suit of armor with heavy plates and padding. Looks like it might impair movement."
+	name = "M5 Riot Control Armor"
+	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you downa lot."
 	icon_state = "riot"
 	item_state = "swat_suit"
-	armor = list(melee = 80, bullet = 90, laser = 50, energy = 50, bomb = 80, bio = 0, rad = 0)
+	slowdown = 3
+	armor = list(melee = 70, bullet = 80, laser = 60, energy = 30, bomb = 35, bio = 10, rad = 10)
 
 //GLOVES
 /obj/item/clothing/gloves/marine
@@ -622,6 +626,11 @@
 	item_state = "berettan"
 	item_color = "berettan"
 
+/obj/item/clothing/head/cmberet/red
+	icon_state = "beretred"
+	item_state = "beretred"
+	item_color = "beretred"
+
 /obj/item/clothing/head/headband
 	name = "USCM Headband"
 	desc = "A rag typically worn by the less-orthodox weapons operators in the USCM. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
@@ -664,8 +673,27 @@
 	item_state = "rocap"
 	item_color = "rocap"
 
+/obj/item/clothing/head/cmcap/req
+	name = "USCM Requisition Cap"
+	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	icon_state = "cargocap"
+	item_state = "cargocap"
+	item_color = "cargocap"
+
 /obj/item/clothing/head/soft/ro_cap
 	name = "Requisition officer cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
-	icon_state = "corpsoft"
-	item_color = "corp"
+	icon_state = "cargocap"
+	item_state = "cargocap"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	item_color = "cargocap"
+
+/obj/item/clothing/suit/storage/RO
+	name = "RO Jacket"
+	desc = "A green jacket worn by crew on the Sulaco. The back has the flag of the United Americas on it."
+	icon_state = "RO_jacket"
+	item_state = "RO_jacket"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|ARMS
+
+

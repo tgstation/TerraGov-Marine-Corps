@@ -296,14 +296,14 @@ datum/design/prisonmanage
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/prisoner"
 
-datum/design/mechacontrol
+/*datum/design/mechacontrol
 	name = "Circuit Design (Exosuit Control Console)"
 	desc = "Allows for the construction of circuit boards used to build an exosuit control console."
 	id = "mechacontrol"
 	req_tech = list("programming" = 3)
 	build_type = IMPRINTER
 	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/mecha_control"
+	build_path = "/obj/item/weapon/circuitboard/mecha_control"*/
 
 datum/design/mechapower
 	name = "Circuit Design (Mech Bay Power Control Console)"
