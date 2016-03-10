@@ -116,6 +116,9 @@
 	/obj/item/weapon/scalpel = 100,		\
 	/obj/item/weapon/kitchenknife = 75,	\
 	/obj/item/weapon/shard = 50, 		\
+	/obj/item/weapon/combat_knife = 25, 		\
+	/obj/item/weapon/throwing_knife = 15, 		\
+	/obj/item/weapon/shard = 5
 	)
 
 	min_duration = 90
