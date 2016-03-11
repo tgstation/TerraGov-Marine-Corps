@@ -16,8 +16,14 @@
 /*	set category = "Autopsy"
 	set name = "Perform Alien Autopsy"
 	set src in usr*/
+	if(!isXeno(T))
+		usr << "What are you, some sort of fucking MONSTER?"
+		return
+	if(T.health > 0)
+		usr << "Nope."
+		return
 	if(active)
-		usr << "Your already performign an autoposy"
+		usr << "Your already performing an autopsy"
 		return
 	active = 1
 	var CHECK = user.loc
