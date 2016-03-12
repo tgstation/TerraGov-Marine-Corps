@@ -256,6 +256,14 @@
 	item_state = "E_jumpsuit"
 	item_color = "E_jumpsuit"
 
+/obj/item/clothing/under/marine/officer/researcher
+	name = "Researcher clothes"
+	desc = "A simple set of civilian clothes worn by researchers. "
+	armor = list(melee = 0, bullet = 0, laser = 15,energy = 10, bomb = 0, bio = 10, rad = 10)
+	icon_state = "research_jumpsuit"
+	item_state = "research_jumpsuit"
+	item_color = "research_jumpsuit"
+
 
 
 
