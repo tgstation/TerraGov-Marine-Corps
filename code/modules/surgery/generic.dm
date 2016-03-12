@@ -118,7 +118,7 @@
 	/obj/item/weapon/shard = 50, 		\
 	/obj/item/weapon/combat_knife = 25, 		\
 	/obj/item/weapon/throwing_knife = 15, 		\
-	/obj/item/weapon/shard = 5
+	/obj/item/weapon/claymore/mercsword = 1
 	)
 
 	min_duration = 90
@@ -288,7 +288,8 @@
 /datum/surgery_step/generic/cut_limb
 	allowed_tools = list(
 	/obj/item/weapon/circular_saw = 100, \
-	/obj/item/weapon/hatchet = 75
+	/obj/item/weapon/hatchet = 75, \
+	/obj/item/weapon/claymore = 75
 	)
 
 	min_duration = 110

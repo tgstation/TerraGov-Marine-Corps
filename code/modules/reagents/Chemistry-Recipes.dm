@@ -404,9 +404,8 @@ datum
 			result = null
 			required_reagents = list("aluminum" = 1, "phoron" = 1, "sacid" = 1 )
 			result_amount = 1
-			on_reaction(var/datum/reagents/holder, var/created_volume,var/radius, var/turf/turf)
-				if(!turf || !isturf(turf) || !created_volume) return
-				radius = round(created_volume/30)
+			on_reaction(var/datum/reagents/holder, var/created_volume, var/radius, var/turf/turf)
+				radius = round(created_volume/15)
 				if(radius < 0) radius = 0
 				if(radius > 3) radius = 3
 

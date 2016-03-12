@@ -1653,7 +1653,8 @@ datum
 				holder.remove_reagent("inaprovaline", 2*REM)
 				..()
 				return
-			reaction_obj(var/obj/O, var/volume)
+		//Fuck you atmos
+		/*	reaction_obj(var/obj/O, var/volume)
 				src = null
 				/*if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg/slime))
 					var/obj/item/weapon/reagent_containers/food/snacks/egg/slime/egg = O
@@ -1665,7 +1666,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				src = null
 				T.assume_gas("volatile_fuel", volume, T20C)
-				return
+				return*/
 
 		toxin/lexorin
 			name = "Lexorin"

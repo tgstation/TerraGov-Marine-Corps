@@ -646,7 +646,7 @@
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	else
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar40, slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar40(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
