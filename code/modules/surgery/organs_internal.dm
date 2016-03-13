@@ -122,12 +122,14 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 
 		for(var/datum/organ/internal/I in affected.internal_organs)
-			if(I && I.damage > 0)
-				if(I.robotic < 2)
+			if(I && I.damage > 0 && I.robotic < 2)
+				if(I.parent_organ == "head")
+					user.visible_message("\blue [user] thinks about treating [target]'s [I.name] with [tool_name], but forgots how stupid he is...", \
+					"\red Are you insane? You can't just place [tool_name] on [target]'s [I.name]!" )
+				else
 					user.visible_message("\blue [user] treats damage to [target]'s [I.name] with [tool_name].", \
 					"\blue You treat damage to [target]'s [I.name] with [tool_name]." )
 					I.damage = 0
-
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
