@@ -397,20 +397,30 @@ datum
 							flick("e_flash", M.flash)
 							M.Stun(5)
 
-		/*  NOPE CHUCK TESTA.
+		//Uses atmos friendly fire now.
 		napalm
 			name = "Napalm"
 			id = "napalm"
 			result = null
 			required_reagents = list("aluminum" = 1, "phoron" = 1, "sacid" = 1 )
 			result_amount = 1
-			on_reaction(var/datum/reagents/holder, var/created_volume)
-				var/turf/location = get_turf(holder.my_atom.loc)
-				for(var/turf/simulated/floor/target_tile in range(0,location))
-					target_tile.assume_gas("volatile_fuel", created_volume, 400+T0C)
-					spawn (0) target_tile.hotspot_expose(700, 400)
+			on_reaction(var/datum/reagents/holder, var/created_volume, var/radius, var/turf/turf)
+				radius = round(created_volume/15)
+				if(radius < 0) radius = 0
+				if(radius > 3) radius = 3
+
+				for(var/turf/T in range(radius,turf))
+					if(T.density) continue
+					if(istype(T,/turf/space)) continue
+					if(locate(/obj/flamer_fire) in T) continue //No stacking
+
+					var/obj/flamer_fire/F = new(T)
+					processing_objects.Add(F)
+					F.firelevel = 5 + rand(0,11)
+					if(F.firelevel < 1) F.firelevel = 1
+					if(F.firelevel > 16) F.firelevel = 16
 				holder.del_reagent("napalm")
-				return*/
+				return
 
 		/*
 		smoke
