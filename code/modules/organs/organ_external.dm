@@ -361,15 +361,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
-		if (owner.germ_level > W.germ_level && W.infection_check())
-			W.germ_level++
+		if (owner.germ_level > W.germ_level && W.infection_check() && W.damage)
+			W.germ_level += min(1,round(W.damage/20)) //The bigger the wound, the more germs will enter
 
-	if (antibiotics < MIN_ANTIBIOTICS)
-		for(var/datum/wound/W in wounds)
-			//Infected wounds raise the organ's germ level
-			if (W.germ_level > germ_level)
-				germ_level++
-				break	//limit increase to a maximum of one per second
+		if (antibiotics < MIN_ANTIBIOTICS)
+			//Infected wounds raise the organ's germ level.
+			if (W.germ_level)
+				germ_level += min(1,round(W.germ_level/35))
+		else if (W.germ_level && prob(80)) //Antibiotics wont be very effective it the wound is still open
+			germ_level++
 
 /datum/organ/external/proc/handle_germ_effects()
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
@@ -387,7 +387,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if (antibiotics < MIN_ANTIBIOTICS)
 				germ_level++
 
-			if (prob(10))	//adjust this to tweak how fast people take toxin damage from infections
+			if (prob(15))	//adjust this to tweak how fast people take toxin damage from infections
 				owner.adjustToxLoss(1)
 			if (prob(1) && (germ_level <= INFECTION_LEVEL_TWO))
 				owner << "<span class='notice'>You have a slight fever...</span>"
@@ -406,7 +406,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if (prob(1) && (germ_level <= INFECTION_LEVEL_THREE))
 			owner << "<span class='notice'>Your infected wound itches and badly hurts!</span>"
 
-		if (prob(10))	//adjust this to tweak how fast people take toxin damage from infections
+		if (prob(25))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
 
 		if (!target_organ)
@@ -477,21 +477,24 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/heal_amt = 0
 
 		// if damage >= 50 AFTER treatment then it's probably too severe to heal within the timeframe of a round.
-		if (W.can_autoheal() && W.wound_damage() < 50)
-			heal_amt += 0.5
+		if (W.can_autoheal() && W.wound_damage() < 50 && prob(35) && owner.health >= 0 && !W.is_treated())
+			heal_amt += 0.3 //They can't autoheal if in critical
+		else if (W.is_treated() && W.wound_damage() < 50 && prob(75))
+			heal_amt += 0.5 //Treated wounds heal faster
 
-		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
-		heal_amt = heal_amt * wound_update_accuracy
-		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-		heal_amt = heal_amt * config.organ_regeneration_multiplier
-		// amount of healing is spread over all the wounds
-		heal_amt = heal_amt / (wounds.len + 1)
-		// making it look prettier on scanners
-		heal_amt = round(heal_amt,0.1)
-		W.heal_damage(heal_amt)
+		if(heal_amt)
+			//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
+			heal_amt = heal_amt * wound_update_accuracy
+			//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
+			heal_amt = heal_amt * config.organ_regeneration_multiplier
+			// amount of healing is spread over all the wounds
+			heal_amt = heal_amt / (wounds.len + 1)
+			// making it look prettier on scanners
+			heal_amt = round(heal_amt,0.1)
+			W.heal_damage(heal_amt)
 
-		// Salving also helps against infection
-		if(W.germ_level > 0 && W.salved && prob(2))
+		// Salving also helps against infection, but only if it is small enoough
+		if((W.germ_level > 0 && W.germ_level < 50) && W.salved && prob(2))
 			W.disinfected = 1
 			W.germ_level = 0
 

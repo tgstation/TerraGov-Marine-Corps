@@ -51,6 +51,9 @@
 		/mob/living/carbon/Xenomorph/Queen/proc/set_orders,
 		)
 
+/mob/living/carbon/Xenomorph/Queen/gib()
+	death(1) //Prevents resetting queen death timer.
+	return
 
 /mob/living/carbon/Xenomorph/Queen/proc/lay_egg()
 
