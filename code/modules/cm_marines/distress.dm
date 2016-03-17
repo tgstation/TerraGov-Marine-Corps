@@ -60,7 +60,7 @@
 /datum/emergency_call/bears
 	name = "Iron Bears"
 	mob_max = 5
-	arrival_message = "Incoming Transmission: 'Vrag korabl'! Podgotovka k posadke i smerti!'"
+	arrival_message = "Incoming Transmission: 'Vrajeskiy korabl', prigotov'tes' k obordaju'" //Russian player said it sounds much better.
 	objectives = "Kill everything that moves. Blow up everything that doesn't. Listen to your superior officers. Help or hinder the Sulaco crew at your officer's discretion."
 	probability = 15
 

@@ -113,7 +113,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
 	name = "Bottled Water"
-	desc = "Introduced to the vending machines by Skrellian request, this water comes straight from the Martian poles."
+	desc = "This water comes straight from the Martian poles. Can you believe that?"
 	icon_state = "waterbottle"
 	center_of_mass = list("x"=15, "y"=8)
 	New()

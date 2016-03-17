@@ -404,12 +404,13 @@ datum
 			result = null
 			required_reagents = list("aluminum" = 1, "phoron" = 1, "sacid" = 1 )
 			result_amount = 1
-			on_reaction(var/datum/reagents/holder, var/created_volume, var/radius, var/turf/turf)
-				radius = round(created_volume/15)
-				if(radius < 0) radius = 0
+			on_reaction(var/datum/reagents/holder, var/created_volume, var/radius)
+				var/location = get_turf(holder.my_atom)
+				radius = round(created_volume/30)
+				if(radius < 1) radius = 1
 				if(radius > 3) radius = 3
 
-				for(var/turf/T in range(radius,turf))
+				for(var/turf/T in range(radius,location))
 					if(T.density) continue
 					if(istype(T,/turf/space)) continue
 					if(locate(/obj/flamer_fire) in T) continue //No stacking

@@ -8,6 +8,7 @@
 	var/obj/structure/ladder/down = null	//the ladder below this one
 	var/obj/structure/ladder/up = null		//the ladder above this one
 	anchored = 1
+	unacidable = 1
 
 /obj/structure/ladder/New()
 	spawn(8)
@@ -92,3 +93,6 @@
 
 /obj/structure/ladder/attack_robot(mob/user as mob)
 	return attack_hand(user)
+
+/obj/structure/ladder/ex_act(severity)
+	return

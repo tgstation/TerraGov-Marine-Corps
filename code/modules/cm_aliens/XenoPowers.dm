@@ -385,6 +385,10 @@
 	set desc = "Allows you to permit the hive to harm."
 	set category = "Alien"
 
+	if(stat)
+		src << "You can't do that now."
+		return
+
 	if(pslash_delay)
 		src << "You must wait a bit before you can toggle this again."
 		return
