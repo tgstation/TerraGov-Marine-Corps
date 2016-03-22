@@ -133,7 +133,7 @@
 
 
 
-		if(istype(temp,/obj/item/weapon/gun) || istype(temp,/obj/item/ammo_magazine) || istype(temp,/obj/item/weapon/grenade) || istype(temp,/obj/item/weapon/flamethrower) )
+		if(istype(temp,/obj/item/weapon/gun) || istype(temp,/obj/item/ammo_magazine) || istype(temp,/obj/item/weapon/grenade) || istype(temp,/obj/item/weapon/flamethrower) || istype(temp,/obj/item/weapon/storage/box/m37) )
 			R.display_color = "red"
 		else if(istype(temp,/obj/item/clothing) || istype(temp,/obj/item/weapon/storage))
 			R.display_color = "green"
@@ -211,6 +211,12 @@
 					anchored = 0
 		return
 */
+
+
+//Vending exploit. - Not exploit, being turned into feature. - Apophis
+//Deletes the old object and creates a new one in the vendor,
+//thus fixing broken helmets and replensishing autoinjectors in seconds.
+
 	else if(src.panel_open)
 
 		for(var/datum/data/vending_product/R in product_records)

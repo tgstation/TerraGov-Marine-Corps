@@ -19,7 +19,7 @@ var/list/alldepartments = list()
 	var/obj/item/weapon/paper/tofax = null // what we're sending
 	var/sendcooldown = 0 // to avoid spamming fax messages
 
-	var/department = "Liason" // our department
+	var/department = "Liaison" // our department
 
 	var/dpt = "Weyland Yutani" // the department we're sending to
 

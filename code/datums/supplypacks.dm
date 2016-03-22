@@ -479,7 +479,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Medical"
 
 /datum/supply_packs/cryobag
-	name = "Statis bag crate"
+	name = "Stasis bag crate"
 	contains = list(/obj/item/bodybag/cryobag,
 				    /obj/item/bodybag/cryobag,
 	    			/obj/item/bodybag/cryobag)
@@ -628,6 +628,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(/obj/machinery/power/rad_collector,
 					/obj/machinery/power/rad_collector,
 					/obj/machinery/power/rad_collector)
+	containertype = /obj/structure/closet/crate
 	containername = "Collector crate"
 	group = "Engineering"
 	cost = 30

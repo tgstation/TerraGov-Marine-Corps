@@ -29,7 +29,7 @@
 	name = "Weyland-Yutani PMC"
 	mob_max = 6
 	arrival_message = "USS Sulaco, this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
-	objectives = "Secure the Corporate Liason and the Sulaco Commander, and eliminate any hostile threats. Do not damage W-Y property."
+	objectives = "Secure the Corporate Liaison and the Sulaco Commander, and eliminate any hostile threats. Do not damage W-Y property."
 	probability = 30
 
 //Supply drop. Just docks and has a crapload of stuff inside.
@@ -60,7 +60,7 @@
 /datum/emergency_call/bears
 	name = "Iron Bears"
 	mob_max = 5
-	arrival_message = "Incoming Transmission: 'Vrag korabl'! Podgotovka k posadke i smerti!'"
+	arrival_message = "Incoming Transmission: 'Vrajeskiy korabl', prigotov'tes' k obordaju'" //Russian player said it sounds much better.
 	objectives = "Kill everything that moves. Blow up everything that doesn't. Listen to your superior officers. Help or hinder the Sulaco crew at your officer's discretion."
 	probability = 15
 
@@ -237,7 +237,7 @@
 				for(var/i = 1 to mob_max)
 					if(!candidates.len) break//We ran out of candidates, maybe they alienized. Use what we have.
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-					if(istype(M.current,/mob/living/carbon/Xenomorph) && !M.current.stat)
+					if(istype(M.current,/mob/living/carbon/Xenomorph))
 						candidates.Remove(M) //Strip them from the list, they aren't dead anymore.
 						if(!candidates.len) break //NO picking from empty lists
 						M = pick(candidates)
@@ -260,17 +260,21 @@
 				message_admins("Warning: Distress shuttle not found. Aborting.")
 				return
 			spawn_items()
+			sleep(-1)
 			shuttle.launch()
+			sleep(-1)
 			if(picked_candidates.len)
+				var/i = 0
 				for(var/datum/mind/M in picked_candidates)
 					members += M
-					create_member(M)
+					spawn(4 + i)
+						create_member(M)
 			candidates = null //Blank out the candidates list for next time.
 			candidates = list()
-			spawn(1000) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
+			spawn(1100) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
 				command_announcement.Announce(arrival_message, "Docked")
 
-			spawn(4800)
+			spawn(5200)
 				shuttle.launch() //Get that fucker back
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
@@ -468,17 +472,18 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/heavypmc(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/vp70(M), slot_l_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
-	//M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/M56_Smartgun(M), slot_r_hand)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_r_hand)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	//M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/merc(M), slot_back)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Specialist"
@@ -641,7 +646,7 @@
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_r_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/mc9mm(M), slot_l_store)
 	else
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar40, slot_r_hand)
+		M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/mar40(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M), slot_l_store)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(M.back), slot_in_backpack)
@@ -1290,7 +1295,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel/commando(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -1303,6 +1308,9 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_l_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando"
@@ -1322,7 +1330,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel/commando(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -1335,6 +1343,8 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_l_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m41(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando Leader"

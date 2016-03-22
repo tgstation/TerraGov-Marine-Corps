@@ -390,7 +390,7 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
+	if( istype(src, /turf) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
 		// Make toxins vomit look different

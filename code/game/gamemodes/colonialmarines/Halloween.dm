@@ -94,7 +94,7 @@
 /datum/game_mode/Halloween/proc/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn_HH))
-	new_xeno.amount_grown = 200
+	new_xeno.amount_grown = 100
 	var/mob/original = ghost.current
 
 	ghost.transfer_to(new_xeno)
@@ -144,7 +144,7 @@
 		if(8) //Miner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
 		if(9) //Corporate guy
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)

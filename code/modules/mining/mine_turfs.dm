@@ -5,12 +5,12 @@
 	name = "Rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	oxygen = 0
-	nitrogen = 0
+	oxygen = 20
+	nitrogen = 80
 	opacity = 1
 	density = 1
 	blocks_air = 1
-	temperature = T0C
+	temperature = T20C
 	var/mineral/mineral
 	var/mined_ore = 0
 	var/last_act = 0
@@ -39,7 +39,7 @@
 				var/turf/simulated/floor/plating/airless/asteroid/T = turf_to_check
 				T.updateMineralOverlays()
 
-			else if(istype(turf_to_check,/turf/space) || istype(turf_to_check,/turf/simulated/floor))
+			else if(istype(turf_to_check,/turf/space) || istype(turf_to_check,/turf/simulated/floor) || istype(turf_to_check,/turf/unsimulated/floor))
 				turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side_[direction]")
 
 /turf/simulated/mineral/ex_act(severity)
@@ -379,9 +379,10 @@
 	name = "asteroid"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
-//	oxygen = 0.01
-//	nitrogen = 0.01
+	oxygen = 20
+	nitrogen = 80
 //	temperature = T0C
+	temperature = T20C //<---This should be fixed later.
 	icon_plating = "asteroid"
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail

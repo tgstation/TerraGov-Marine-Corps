@@ -1,5 +1,5 @@
 /obj/item/ashtray
-	icon = 'icons/ashtray.dmi'
+	icon = 'icons/obj/ashtray.dmi'
 	var/
 		max_butts 	= 0
 		empty_desc 	= ""
@@ -37,7 +37,7 @@
 				user << "You place [cig] in [src] without even smoking it. Why would you do that?"
 
 		src.visible_message("[user] places [W] in [src].")
-		user.update_inv_l_hand()
+		user.update_inv_l_hand(0)
 		user.update_inv_r_hand()
 		add_fingerprint(user)
 		if (contents.len == max_butts)

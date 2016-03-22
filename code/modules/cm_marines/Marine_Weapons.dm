@@ -3,19 +3,19 @@
 
 ///***Bullets***///
 /obj/item/projectile/bullet/m4a3 //Colt 45 Pistol
-	damage = 20  //OLD:  30
+	damage = 22  //OLD:  30
 	name = "pistol bullet"
 
 /obj/item/projectile/bullet/m44m //44 Magnum Peacemaker
-	damage = 40  //OLD:  70
+	damage = 45  //OLD:  70
 	name = "revolver bullet"
 
 /obj/item/projectile/bullet/m39 // M39 SMG
-	damage = 26  //OLD:  35
+	damage = 28  //OLD:  35
 	name = "smg bullet"
 
 /obj/item/projectile/bullet/m41 //M41 Assault Rifle
-	damage = 32  //OLD:  50
+	damage = 36  //OLD:  50
 	name = "rifle bullet"
 
 /obj/item/projectile/bullet/m37 //M37 Pump Shotgun
@@ -175,6 +175,7 @@
 	item_state = "44"
 	caliber = "38s"
 	ammo_type = "/obj/item/ammo_casing/m44m"
+	fire_sound = 'sound/weapons/44mag.ogg'
 	max_shells = 6
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 19
@@ -403,7 +404,7 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.\n'Peace Through Superior Firepower'"
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "M42c"
-	item_state = "l6closednomag"  //placeholder
+	item_state = "M42c"  //placeholder
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	ammo_type = "/obj/item/ammo_casing/m42c"
 	fire_delay = 60
@@ -512,7 +513,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "m56"
 	item_state = "m56"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/smartgun.ogg'
 	ammo_type = "/obj/item/ammo_casing/m56"
 	w_class = 5.0
 	max_shells = 50
@@ -585,11 +586,12 @@
 					/obj/item/ammo_casing,
 					/obj/item/device/mine,
 					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/claymore/mercsword/machete,
 					/obj/item/weapon/gun/projectile/M56_Smartgun)
 
 /obj/item/smartgun_powerpack
 	name = "M56 powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
+	desc = "A heavy reinforced charge pack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
 	item_state = "armor"

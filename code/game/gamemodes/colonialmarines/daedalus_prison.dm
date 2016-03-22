@@ -108,13 +108,13 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedalus Prison Facility after  communications were lost recently. USS Sulaco has been dispatched to imvestigate.", "USS Sulaco")
+		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedalus Prison Facility after  communications were lost recently. USS Sulaco has been dispatched to investigate.", "USS Sulaco")
 
 
 /datum/game_mode/prison_rescue/proc/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn_prison))
-	new_xeno.amount_grown = 200
+	new_xeno.amount_grown = 100
 	var/mob/original = ghost.current
 
 	ghost.transfer_to(new_xeno)
@@ -164,7 +164,7 @@
 		if(8) //Miner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
 		if(9) //Corporate guy
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
 		if(10) //Prisoner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)

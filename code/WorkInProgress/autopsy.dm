@@ -5,8 +5,8 @@
 /obj/item/weapon/autopsy_scanner
 	name = "autopsy scanner"
 	desc = "Extracts information on wounds."
-	icon = 'icons/obj/autopsy_scanner.dmi'
-	icon_state = ""
+	icon = 'icons/obj/device.dmi'
+	icon_state = "autopsy_scanner"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	w_class = 2.0
 	origin_tech = "materials=1;biotech=1"
@@ -172,7 +172,7 @@
 
 	if (ismob(src.loc))
 		var/mob/M = src.loc
-		M.update_inv_l_hand()
+		M.update_inv_l_hand(0)
 		M.update_inv_r_hand()
 
 /obj/item/weapon/autopsy_scanner/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)

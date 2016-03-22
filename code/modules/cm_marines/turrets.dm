@@ -316,6 +316,7 @@
 			user.visible_message("[user] rights the [src].","You put the [src] upright.")
 			stat = 0
 			update_icon()
+			update_health()
 		return
 
 	if(locked)

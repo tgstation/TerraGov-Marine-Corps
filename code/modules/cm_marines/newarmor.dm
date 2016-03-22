@@ -11,7 +11,6 @@ var/list/helmetmarkings = list()
 var/list/helmetmarkings_sql = list()
 var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), rgb(65,72,200))
 
-
 /proc/initialize_marine_armor()
 	var/i
 	for(i=1, i<5, i++)
@@ -76,11 +75,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/flamethrower/full,
 		/obj/item/weapon/combat_knife)
 	var/ArmorVariation
 	var/brightness_on = 5
 	var/on = 0
+	var/reinforced = 0
+	var/lamp = 1 //So we don't stack lamp overlays every time we update the suit icons
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
 	New()
@@ -91,6 +93,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				ArmorVariation = icon_state
 		else
 			ArmorVariation = icon_state
+		overlays += image('icons/Marine/marine_armor.dmi', "lamp")
 
 
 
@@ -121,7 +124,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				user.SetLuminosity(-brightness_on)
 			else //Shouldn't be possible, but whatever
 				SetLuminosity(0)
-			icon_state = "[ArmorVariation]"
+			overlays -= image('icons/Marine/marine_armor.dmi', "beam")
+			user.update_inv_wear_suit()
 			on = 0
 		else //Turn it on!
 			on = 1
@@ -129,7 +133,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				user.SetLuminosity(brightness_on)
 			else //Somehow
 				SetLuminosity(brightness_on)
-			icon_state = "[ArmorVariation]-on"
+			overlays += image('icons/Marine/marine_armor.dmi', "beam")
+			user.update_inv_wear_suit()
 
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		update_clothing_icon()
@@ -154,6 +159,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/ammo_casing,
 					/obj/item/weapon/flamethrower,
 					/obj/item/device/mine,
+					/obj/item/weapon/claymore/mercsword/machete,
 					/obj/item/weapon/combat_knife)
 
 	verb/inject()
@@ -269,6 +275,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/weapon/flame/lighter,
 					/obj/item/weapon/grenade,
 					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/claymore/mercsword/machete,
 					/obj/item/weapon/storage/bible)
 	/*var/brightness_on = 7   //All Marine armor now has this function, moved it to the standard marine armor area.
 	var/on = 0

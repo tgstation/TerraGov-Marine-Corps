@@ -124,7 +124,7 @@
 			return
 		H.visible_message("\blue [user] places the defibrillator paddles on [M.name]'s chest.", "\blue You place the defibrillator paddles on [M.name]'s chest.")
 		if(do_after(user, 10))
-			if(H.stat == 2 || H.stat == DEAD)
+			if((H.stat == 2 || H.stat == DEAD) && H.chestburst == 0)
 				var/uni = 0
 				var/armor = 0
 				//We want to heal these

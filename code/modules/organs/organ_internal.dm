@@ -222,6 +222,16 @@
 						owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 					owner.reagents.remove_reagent(R.id, ALCOHOL_METABOLISM*filter_effect)
 
+			//Heal toxin damage slowly if not damaged
+			if(damage < 5 && prob(25))
+				owner.adjustToxLoss(-0.5)
+
+			//Deal toxin damage if damaged
+			if(is_bruised() && prob(25))
+				owner.adjustToxLoss(0.1 * (damage/2))
+			else if(is_broken() && prob(50))
+				owner.adjustToxLoss(0.3 * (damage/2))
+
 /datum/organ/internal/kidney
 	name = "kidneys"
 	parent_organ = "groin"
@@ -240,6 +250,13 @@
 				owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
 			else if(is_broken())
 				owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
+
+		//Deal toxin damage if damaged
+		if(is_bruised() && prob(25))
+			owner.adjustToxLoss(0.1 * (damage/3))
+		else if(is_broken() && prob(50))
+			owner.adjustToxLoss(0.2 * (damage/3))
+
 
 /datum/organ/internal/brain
 	name = "brain"

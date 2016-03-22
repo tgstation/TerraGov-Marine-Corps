@@ -7,13 +7,13 @@
 	icon_state = "hellhound"
 	gender = NEUTER
 	update_icon = 0		///no need to call regenerate_icon
-	health = 160 //Kinda tough. They heal quickly.
-	maxHealth = 160
+	health = 120 //Kinda tough. They heal quickly.
+	maxHealth = 120
 
 	var/obj/item/device/radio/headset/yautja/radio
 	var/obj/machinery/camera/camera
 	var/mob/living/carbon/human/master
-	var/speed = -1.8
+	var/speed = -1.2
 	var/attack_timer = 0
 
 /mob/living/carbon/hellhound/New()
@@ -54,7 +54,6 @@
 	if(attack_timer)
 		return
 
-
 	if(get_dist(src,A) > 1) return
 
 	if(istype(A,/mob/living/carbon/human))
@@ -63,9 +62,11 @@
 		bite_xeno(A)
 	else if(istype(A,/mob/living))
 		bite_animal(A)
+	else
+		A.attack_animal(src)
 
 	attack_timer = 1
-	spawn(8)
+	spawn(12)
 		attack_timer = 0
 
 /mob/living/carbon/hellhound/proc/bite_human(var/mob/living/carbon/human/H)
@@ -281,7 +282,7 @@
 				Paralyse(5)
 			return
 
-/mob/living/carbon/hellhound/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
+/mob/living/carbon/hellhound/IsAdvancedToolUser()
 	return 0
 
 /mob/living/carbon/hellhound/gib()
@@ -340,7 +341,7 @@
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
-	if(istype(loc,/turf/simulated/floor/gm/river)) //Rivers slow you down
+	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		tally += 1.3
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.

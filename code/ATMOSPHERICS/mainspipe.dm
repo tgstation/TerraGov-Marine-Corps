@@ -33,11 +33,11 @@ obj/machinery/atmospherics/pipe/mains_component
 		parent_pipe.burst()
 
 obj/machinery/atmospherics/mains_pipe
-	icon = 'icons/obj/atmospherics/mainspipe.dmi'
+	icon = 'icons/atmos/mainspipe.dmi'
 	layer = 2.4 //under wires with their 2.5
 
 	force = 20
-	
+
 	var/volume = 0
 
 	var/alert_pressure = 80*ONE_ATMOSPHERE

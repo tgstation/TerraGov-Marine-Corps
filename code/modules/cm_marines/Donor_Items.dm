@@ -305,6 +305,18 @@
 	icon_state = "standard_armor"
 	item_state = "standard_armor"
 
+/obj/item/clothing/suit/storage/marine/fluff/Sanctum_heavy
+	name = "Sanctum Founder Armor"
+	desc = "Personal Armor of the Founder of Sanctum Team. It looks more like a Exosuit.  Unique DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "Sanctum_Heavy_u"
+	item_state = "Sanctum_Heavy_u"
+
+/obj/item/clothing/suit/storage/marine/fluff/Sanctum_medium
+	name = "Sanctum Standard Armor"
+	desc = "The Standard Issue Armor for Sanctum Operatives  Unique DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "Sanctum_Medium_u"
+	item_state = "Sanctum_Medium_u"
+
 
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
 
@@ -611,6 +623,11 @@
 	icon_state = "standard_helmet"
 	item_state = "standard_helmet"
 
+/obj/item/clothing/head/helmet/marine/fluff/Sanctum_helmet
+	name = "Sanctum Combat Helmet"
+	desc = " The Standard Issue helmet of Sanctum Team.  DONOR ITEM" //Add UNIQUE if Unique
+	icon_state = "Sanctum_Helm_u"
+	item_state = "Sanctum_Helm_u"
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
@@ -850,6 +867,13 @@
 	item_state = "standard_jumpsuit_s"
 	item_color = "standard_jumpsuit"
 
+/obj/item/clothing/under/marine/fluff/Sanctum_uniform
+	name = "Sanctum Fatigues"
+	desc = "Fatigues with Kevlar fibers for a bit more protection than most clothing.  UNIQUE DONOR ITEM"
+	icon_state = "Sanctum_u"
+	item_state = "Sanctum_u_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
+	item_color = "Sanctum_u" //color must always be the same as item_state
+
 //	MASK COSMETICS  ////////////////////////////////////////////////
 
 //MASK TEMPLATE (for masks)  ONLY TAKE NAME, DESC, ICON_STATE, ITEM_STATE,  AND ITEM_COLOR.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -891,6 +915,7 @@
 	name = "PMC Mask"
 	desc = "A white colored PMC Mask.  DONOR ITEM."
 	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_mask"
 	icon_state = "pmc_mask"
 

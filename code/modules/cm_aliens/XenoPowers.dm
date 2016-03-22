@@ -169,6 +169,11 @@
 		return
 
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
+
+	if (get_dist(src,M) >= 3)//Double Check
+		src << "\green You need to be closer."
+		return
+
 	if (amount)
 		amount = abs(round(amount))
 		if(storedplasma < amount)
@@ -379,6 +384,10 @@
 	set name = "Permit/Disallow Slashing"
 	set desc = "Allows you to permit the hive to harm."
 	set category = "Alien"
+
+	if(stat)
+		src << "You can't do that now."
+		return
 
 	if(pslash_delay)
 		src << "You must wait a bit before you can toggle this again."

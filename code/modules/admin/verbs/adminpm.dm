@@ -70,13 +70,9 @@
 
 
 	if(holder)
-		//mod PMs are maroon
 		//PMs sent from admins and mods display their rank
 		if(holder)
-			if( holder.rights & R_ADMIN )
-				recieve_color = "red"
-			else
-				recieve_color = "maroon"
+			recieve_color = "#009900"
 			send_pm_type = holder.rank + " "
 			if(!C.holder && holder && holder.fakekey)
 				recieve_pm_type = "Admin"
@@ -90,7 +86,7 @@
 	var/recieve_message = ""
 
 	if(holder && !C.holder)
-		recieve_message = "<font color='[recieve_color]' size='3'><b>-- Click the [recieve_pm_type]'s name to reply --</b></font>\n"
+		recieve_message = "<font color='[recieve_color]'><b>-- Click the [recieve_pm_type]'s name to reply --</b></font>\n"
 		if(C.adminhelped)
 			C << recieve_message
 			C.adminhelped = 0
@@ -108,9 +104,9 @@
 						adminhelp(reply)													//sender has left, adminhelp instead
 				return
 
-	recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[get_options_bar(src, C.holder ? 1 : 0, C.holder ? 1 : 0, 1)]</b>: [msg]</font>"
+	recieve_message = "<br><br><font color='[recieve_color]'><b>[recieve_pm_type] PM from [get_options_bar(src, C.holder ? 1 : 0, C.holder ? 1 : 0, 1)]: <font color='#DA6200'>[msg]</b></font><br>"
 	C << recieve_message
-	src << "<font color='blue'>[send_pm_type]PM to-<b>[get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]</b>: [msg]</font>"
+	src << "<br><br><font color='#009900'><b>[send_pm_type]PM to [get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]: <font color='#DA6200'>[msg]</b></font><br>"
 
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this
@@ -154,4 +150,3 @@
 			continue
 		if((X.holder.rights & R_ADMIN) || (X.holder.rights & R_MOD))
 			X << "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;IRC-Admins:</B> \blue [msg]</font>"
-

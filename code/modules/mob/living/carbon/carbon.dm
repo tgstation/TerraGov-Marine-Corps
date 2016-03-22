@@ -114,8 +114,12 @@
 			"\red <B>You feel a powerful shock course through your body!</B>", \
 			"\red You hear a heavy electrical crack." \
 		)
-		Stun(10)//This should work for now, more is really silly and makes you lay there forever
-		Weaken(10)
+		if(!(istype(src,/mob/living/carbon/Xenomorph/Boiler) || istype(src,/mob/living/carbon/Xenomorph/Crusher) || istype(src,/mob/living/carbon/Xenomorph/Hivelord) || istype(src,/mob/living/carbon/Xenomorph/Praetorian) || istype(src,/mob/living/carbon/Xenomorph/Queen) || istype(src,/mob/living/carbon/Xenomorph/Ravager)))
+			Stun(10)//This should work for now, more is really silly and makes you lay there forever
+			Weaken(10)
+		else
+			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
+			Weaken(1)
 	else
 		src.visible_message(
 			"\red [src] was mildly shocked by the [source].", \

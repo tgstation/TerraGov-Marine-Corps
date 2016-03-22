@@ -35,7 +35,7 @@
 		user.drop_from_inventory(P)
 		P.loc = src
 		if(istype(user,/mob/living/carbon/human))
-			user:update_inv_l_hand()
+			user:update_inv_l_hand(0)
 			user:update_inv_r_hand()
 	else if(istype(W, /obj/item/weapon/photo))
 		amount++

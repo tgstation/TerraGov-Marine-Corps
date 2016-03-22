@@ -9,6 +9,9 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	if(jobban_isbanned(src,"Alien"))
+		src << "\red You are jobbanned from Aliens and cannot evolve. How did you even become an alien?"
+		return
 
 	if(stat)
 		src << "You have to be conscious to evolve."
@@ -108,6 +111,19 @@
 				src << "\red There is already a queen."
 				return
 		var/mob/living/carbon/Xenomorph/new_xeno = new M(get_turf(src))
+		if(!istype(new_xeno))
+			//Something went horribly wrong!
+			usr << "Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!"
+			if(new_xeno)
+				del(new_xeno)
+			return
+
+		//We have to reset the name here after evolving.
+		if(caste != "Queen")
+			new_xeno.nicknumber = nicknumber
+			new_xeno.name = "[initial(name)] ([nicknumber])"
+		new_xeno.real_name = new_xeno.name
+
 		remove_inherent_verbs()
 
 		if(mind)

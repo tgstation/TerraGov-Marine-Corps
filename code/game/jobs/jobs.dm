@@ -90,7 +90,7 @@ var/list/command_positions = list(
 	"Executive Officer",
 	"Bridge Officer",
 	"Military Police",
-	"Corporate Liason",
+	"Corporate Liaison",
 	"Requisitions Officer",
 	"Chief Engineer",
 	"Chief Medical Officer"

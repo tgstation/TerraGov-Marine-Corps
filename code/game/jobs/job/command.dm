@@ -18,9 +18,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_player_age = 14
 	equip(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), slot_gloves)
@@ -58,7 +58,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_access = list() //Meh. See below
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), slot_w_uniform)
@@ -91,7 +91,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_access = list(access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
@@ -104,9 +104,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			H << "You are also in charge of Logistics, including giving new IDs, manning the supply bay and sending dropships."
 		return 1
 
-//Liason
-/datum/job/liason
-	title = "Corporate Liason"
+//Liaison
+/datum/job/liaison
+	title = "Corporate Liaison"
 	comm_title = "CL"
 	flag = LIASON
 	department_flag = COMMAND
@@ -123,11 +123,11 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/liason_suit(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
 		//H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/internalaffairs(H), slot_wear_suit)
 		spawn(10)
-			H << "\red You are the Corporate Liason!"
+			H << "\red You are the Corporate Liaison!"
 			H << "As the representative of Weyland-Yutani Corporation, your job requires you to stay in character at all times."
 			H << "You are not required to follow military orders, however you also cannot give them."
 			H << "Your primary job is to observe and report back your findings to Weyland Yutani. You still must follow normal rules unless told otherwise."

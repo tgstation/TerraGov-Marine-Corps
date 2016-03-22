@@ -133,7 +133,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/soft/sec/corp
 	cost = 2
 	slot = slot_head
-	allowed_roles = list("Corporate Liason", "Requisitions officer")
+	allowed_roles = list("Corporate Liaison", "Requisitions officer")
 
 /datum/gear/gcap
 	display_name = "cap, green"
@@ -350,7 +350,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/under/rank/security/corp
 	cost = 2
 	slot = slot_w_uniform
-	allowed_roles = list("Corporate Liason")
+	allowed_roles = list("Corporate Liaison")
 
 /datum/gear/navysecsuit
 	display_name = "uniform, navyblue (Security)"

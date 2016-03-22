@@ -161,7 +161,9 @@ var/global/floorIsLava = 0
 				<A href='?src=\ref[src];simplemake=spitter;mob=\ref[M]'>Spitter</A> ||
 				<A href='?src=\ref[src];simplemake=ravager;mob=\ref[M]'>Ravager</A> |
 				<A href='?src=\ref[src];simplemake=hivelord;mob=\ref[M]'>Hivelord</A> |
-				<A href='?src=\ref[src];simplemake=praetorian;mob=\ref[M]'>Praetorian</A> ||
+				<A href='?src=\ref[src];simplemake=praetorian;mob=\ref[M]'>Praetorian</A> |
+				<A href='?src=\ref[src];simplemake=boiler;mob=\ref[M]'>Boiler</A> |
+				<A href='?src=\ref[src];simplemake=crusher;mob=\ref[M]'>Crusher</A> ||
 				<A href='?src=\ref[src];simplemake=queen;mob=\ref[M]'>Queen</A> \]
 				<br>\[ Silicon: <A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Cyborg</A> \]
 				<br>\[ Simple Mobs: <A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> |
@@ -1153,7 +1155,7 @@ var/global/floorIsLava = 0
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>)</b>"
 		if(2)
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) (<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
+			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>)(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)(<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>)(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)(<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
 		if(3)
 			var/ref_mob = "\ref[M]"
 			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>)(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)</b>"

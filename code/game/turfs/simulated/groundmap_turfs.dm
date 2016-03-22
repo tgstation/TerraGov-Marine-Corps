@@ -1,9 +1,9 @@
 
-/turf/simulated/floor/gm //Basic groundmap turf parent
+/turf/unsimulated/floor/gm //Basic groundmap turf parent
 	name = "ground dirt"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
-	floor_tile = null
+//	floor_tile = null
 	heat_capacity = 500000 //Shouldn't be possible, but you never know...
 
 	ex_act(severity) //Should make it indestructable
@@ -12,35 +12,26 @@
 	fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		return
 
-	burn_tile() //All these should make the turf completely unmodifiable. Don't want people slapping plating and stuff down
-		return
-
-	break_tile()
-		return
-
-	make_plating()
-		return
-
 	attackby() //This should fix everything else. No cables, etc
 		return
 
-/turf/simulated/floor/gm/dirt
+/turf/unsimulated/floor/gm/dirt
 	name = "dirt"
 	icon_state = "desert"
 
-/turf/simulated/floor/gm/dirt/New()
+/turf/unsimulated/floor/gm/dirt/New()
 	..()
 	if(rand(0,15) == 0)
 		icon_state = "desert[pick("0","1","2","3")]"
 
-/turf/simulated/floor/gm/grass
+/turf/unsimulated/floor/gm/grass
 	name = "grass"
 	icon_state = "grass1"
 
 //Ground map walls
-/turf/simulated/wall/gm
+/turf/unsimulated/wall/gm
 	name = "dense jungle"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 	desc = "Some thick jungle."
 	density = 1
@@ -50,7 +41,7 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				src.ChangeTurf(/turf/simulated/floor/gm/grass)
+				src.ChangeTurf(/turf/unsimulated/floor/gm/grass)
 				return
 			if(2.0)
 				return
@@ -62,12 +53,10 @@
 	attackby() //Put machete-cutting here later
 		return
 
-	dismantle_wall()
-		return
 
-/turf/simulated/wall/gm/dense
+/turf/unsimulated/wall/gm/dense
 	name = "dense jungle wall"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 
 	New()
@@ -80,19 +69,19 @@
 				icon_state = "wall2"
 
 
-/turf/simulated/floor/gm/dirtgrassborder
+/turf/unsimulated/floor/gm/dirtgrassborder
 	name = "grass"
 	icon_state = "grassdirt_edge"
 
-/turf/simulated/floor/gm/river
+/turf/unsimulated/floor/gm/river
 	name = "river"
 	icon_state = "seashallow"
 
-/turf/simulated/floor/gm/river/New()
+/turf/unsimulated/floor/gm/river/New()
 	..()
-	overlays += image("icon"='icons/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
+	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
 
-/turf/simulated/floor/gm/river/proc/cleanup(var/mob/living/carbon/human/M)
+/turf/unsimulated/floor/gm/river/proc/cleanup(var/mob/living/carbon/human/M)
 	if(!M || !istype(M)) return
 
 	if(M.back)
@@ -112,17 +101,17 @@
 			M.update_inv_shoes(0)
 	M.clean_blood()
 
-/turf/simulated/floor/gm/coast
+/turf/unsimulated/floor/gm/coast
 	name = "coastline"
 	icon_state = "beach"
 
-/turf/simulated/floor/gm/riverdeep
+/turf/unsimulated/floor/gm/riverdeep
 	name = "river"
 	icon_state = "seadeep"
 
-/turf/simulated/floor/gm/riverdeep/New()
+/turf/unsimulated/floor/gm/riverdeep/New()
 	..()
-	overlays += image("icon"='icons/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
 
 //*********************//
 // Generic undergrowth //
@@ -130,7 +119,7 @@
 
 /obj/structure/jungle
 	name = "jungle foliage"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	density = 0
 	anchored = 1
 	unacidable = 1 // can toggle it off anyway
@@ -152,7 +141,7 @@
 	icon_state = "planttop1"
 
 /obj/structure/jungle/tree
-	icon = 'icons/ground_map64.dmi'
+	icon = 'icons/obj/flora/ground_map64.dmi'
 	desc = "What an enormous tree!"
 
 /obj/structure/jungle/tree/bigtreeTR
@@ -200,14 +189,16 @@
 	desc = "A huge chunk of metal used to seperate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
+	hull = 1 //Can't be deconstructed
 
 	damage_cap = 6000 //As tough as R_walls.
 	max_temperature = 18000 //K, walls will take damage if they're next to a fire hotter than this
 	walltype = "sulaco" //Changes all the sprites and icons.
-
+/*
 	attackby(obj/item/W as obj, mob/user as mob) //Can't be dismantled, thermited, etc. Can be xeno-acided still.
 		user << "This wall is much too tough for you to do anything to with [W]."
 		return
+*/
 
 /turf/simulated/wall/sulaco/ex_act(severity)
 	switch(severity)

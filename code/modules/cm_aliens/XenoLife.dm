@@ -280,7 +280,7 @@
 
 			if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
 				if(src:speed_activated)
-					storedplasma -= 50
+					storedplasma -= 30
 					if(storedplasma < 0)
 						src:speed_activated = 0
 						src << "\red You feel dizzy as the world slows down."

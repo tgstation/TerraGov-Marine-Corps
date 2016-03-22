@@ -134,7 +134,7 @@
 			stage = 4
 			return 0
 		else
-			if(affected_mob.client.prefs.be_special & BE_ALIEN)
+			if(affected_mob.client.prefs.be_special & BE_ALIEN && !jobban_isbanned(affected_mob,"Alien"))
 				picked = affected_mob.key
 			else
 				if(counter) counter = round(counter/2)

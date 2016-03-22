@@ -1,6 +1,6 @@
 /obj/machinery/power/geothermal
 	name = "geothermal power generator"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "geo_broken"
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a welding tool, wrench, then wirecutters to repair it."
 	anchored = 1
@@ -22,7 +22,7 @@
 	if(!buildstate && is_on)
 		icon_state = "geo_working"
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
-		var/image/over = image('icons/ground_map.dmi', src, "turbine0")
+		var/image/over = image('icons/turf/ground_map.dmi', src, "turbine0")
 		var/changed = 0
 		if(power_gen_percent == 5)
 			over.icon_state = "turbine0"
@@ -187,7 +187,7 @@
 
 /obj/machinery/colony_floodlight_switch
 	name = "Colony Floodlight Switch"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "panelnopower"
 	desc = "This switch controls the floodlights surrounding the archaeology complex. It only functions when there is power."
 	density = 0
@@ -261,7 +261,7 @@
 
 /obj/machinery/colony_floodlight
 	name = "Colony Floodlight"
-	icon = 'icons/ground_map.dmi'
+	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "floodoff"
 	density = 1
 	anchored = 1

@@ -33,6 +33,7 @@
 	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
 	var/delay_mod = 0 //Changes firing delay. Cannot go below 0.
 	var/burst_mod = 0 //Changes burst rate. 1 == 0.
+	var/size_mod = 0 //Increases the weight class
 
 	New()
 		if(ammo_type)
@@ -51,9 +52,12 @@
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = (G.force * melee_mod / 100)
-			if(melee_mod > 100)
+			if(melee_mod >= 200)
 				G.attack_verb = null
-				G.attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+				G.attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
+			if(melee_mod > 100 && melee_mod < 200 )
+				G.attack_verb = null
+				G.attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
 		if(w_class_mod != 0) G.w_class += w_class_mod
 		if(istype(G,/obj/item/weapon/gun/projectile))
 			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
@@ -74,6 +78,9 @@
 		if(burst_mod)
 			G.burst_amount += burst_mod
 			if(G.burst_amount < 2) G.burst_amount = 0
+
+		if(size_mod)
+			G.w_class += size_mod
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
@@ -346,7 +353,8 @@
 					/obj/item/weapon/gun/projectile/automatic/m39,
 					/obj/item/weapon/gun/projectile/M42C
 						)
-	accuracy_mod = -25
+	accuracy_mod = -30
+	delay_mod = -2
 	slot = "under"
 	burst_mod = 2
 
@@ -362,3 +370,46 @@
 						)
 	accuracy_mod = -15
 	slot = "rail"
+
+/obj/item/attachable/compensator/stock
+	name = "M37 Wooden Stock"
+	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
+	slot = "under"
+	icon_state = "stock"
+	recoil_mod = -1
+	accuracy_mod = 20
+	melee_mod = 170
+	size_mod = 3
+	delay_mod = 2
+	pixel_shift_x = 33 //Determines the amount of pixels to move the icon state for the overlay.
+	pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	guns_allowed = list(/obj/item/weapon/gun/projectile/shotgun/pump/m37)
+
+/obj/item/attachable/compensator/riflestock
+	name = "M41A Marksman Stock"
+	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	slot = "under"
+	recoil_mod = -1
+	accuracy_mod = 20
+	melee_mod = 120
+	size_mod = 2
+	delay_mod = 2
+	icon_state = "riflestock"
+	pixel_shift_x = 35 //Determines the amount of pixels to move the icon state for the overlay.
+	pixel_shift_y = 12 //Uses the bottom left corner of the item.
+	guns_allowed = list(/obj/item/weapon/gun/projectile/automatic/m41)
+
+/obj/item/attachable/compensator/revolverstock
+	name = "44 Magnum Sharpshooter Stock"
+	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
+	slot = "under"
+	recoil_mod = -1
+	accuracy_mod = 25
+	melee_mod = 80
+	size_mod = 1
+	delay_mod = 2
+	w_class_mod = 2
+	icon_state = "44stock"
+	pixel_shift_x = 36 //Determines the amount of pixels to move the icon state for the overlay.
+	pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	guns_allowed = list(/obj/item/weapon/gun/projectile/m44m)
