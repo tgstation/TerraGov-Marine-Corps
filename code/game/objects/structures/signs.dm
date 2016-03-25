@@ -199,3 +199,57 @@
 	name = "\improper Escape Arm"
 	desc = "A direction sign, pointing out which way the escape shuttle dock is."
 	icon_state = "direction_evac"
+
+/obj/structure/sign/safety/
+	name = "sign"
+	icon = 'icons/obj/safety_signs.dmi'
+	desc = "A sign warning of a particular hazard"
+	anchored = 1
+	opacity = 0
+	density = 0
+	layer = 3.5
+
+/obj/structure/sign/safety/airlock
+	name = "\improper Airlock"
+	desc = "A sign denoting the presence of an airlock nearby."
+	icon_state = "sign_airlock"
+
+/obj/structure/sign/safety/rad_shield
+	name = "\improper Radiation shielded area"
+	desc = "A sign denoting the presence of a radiation shielded area."
+	icon_state = "sign_rad_shield"
+
+/obj/structure/sign/safety/no_grav
+	name = "\improper Caution: Zero Gravity Area"
+	desc = "A warning sign that warns of a Zero Gravity Area"
+	icon_state = "sign_nograv"
+
+/obj/structure/sign/safety/grav_suit
+	name = "\improper Caution: Artifical Gravity Suit Required"
+	desc = "A warning sign advising the use of an artifical gravity suit"
+	icon_state = "sign_artgrav_suit"
+
+/obj/structure/sign/safety/electronics
+	name = "\improper Caution: Electrical Systems"
+	desc = "A warning sign that warns of electrical systems"
+	icon_state = "sign_electronics"
+
+/obj/structure/sign/safety/autodoc
+	name = "\improper Autodoc"
+	desc = "A sign denoting the presence of a automated doctor nearby"
+	icon_state = "sign_autodoc"
+
+/obj/structure/sign/safety/bridge
+	name = "\improper Bridge"
+	desc = "A sign signifying the bridge"
+	icon_state = "sign_bridge"
+
+/obj/structure/sign/safety/blast_door
+	name = "\improper Caution: Bulkhead"
+	desc = "A sign warning of a bulkhead door nearby"
+	icon_state = "sign_blastdoor"
+
+/obj/structure/sign/safety/breakroom
+	name - "\improper Breakroom"
+	desc = "A sign denoting the presence of a breakroom nearby"
+	icon_state = "sign_coffee"
