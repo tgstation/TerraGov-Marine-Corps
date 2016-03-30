@@ -250,6 +250,6 @@
 	icon_state = "sign_blastdoor"
 
 /obj/structure/sign/safety/breakroom
-	name - "\improper Breakroom"
+	name = "\improper Breakroom"
 	desc = "A sign denoting the presence of a breakroom nearby"
 	icon_state = "sign_coffee"

@@ -704,4 +704,19 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
+/obj/item/clothing/under/CM_uniform
+	name = "Colonial Marshal Uniform"
+	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
+	icon_state = "marshal"
+	item_state = "marshal"
+	item_color = "marshal"
+	armor = list(melee = 15, bullet = 25, laser = 15,energy = 5, bomb = 5, bio = 0, rad = 0)
+
+/obj/item/clothing/under/colonist
+	name = "Colonist Uniform"
+	desc = "A stylish grey-green jumpsuit - standard issue for colonists."
+	icon_state = "colonist"
+	item_state = "colonist"
+	item_color = "colonist"
+
 

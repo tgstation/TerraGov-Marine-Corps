@@ -193,7 +193,7 @@
 		W.loc = src
 		ewallet = W
 		user << "\blue You insert the [W] into the [src]"
-/*
+
 	else if(istype(W, /obj/item/weapon/wrench))
 
 		if (istype(src, /obj/machinery/vending/marine) || istype(src, /obj/machinery/vending/marineFood) || istype(src, /obj/machinery/vending/MarineMed) || istype(src, /obj/machinery/vending/MarineMed/Blood) || istype(src, /obj/machinery/vending/marine_engi) || istype(src, /obj/machinery/vending/marine_medic) || istype(src, /obj/machinery/vending/marine_special) || istype(src, /obj/machinery/vending/marine_leader) || istype(src, /obj/machinery/vending/attachments))
@@ -210,7 +210,7 @@
 					user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
 					anchored = 0
 		return
-*/
+
 
 
 //Vending exploit. - Not exploit, being turned into feature. - Apophis
