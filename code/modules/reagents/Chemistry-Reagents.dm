@@ -2627,6 +2627,30 @@ datum
 			description = "It's grrrrrape!"
 			color = "#863333" // rgb: 134, 51, 51
 
+		drink/suoto
+			name = "Souto Classic"
+			id = "souto_classic"
+			description = "A fruit flavored soda canned in Havana"
+			color = "#802b00"
+
+		drink/suoto/cherry
+			name = "Souto Cherry"
+			id = "souto_cherry"
+			description = "Now with more artificial flavors! Canned in Havanna"
+			color = "#800000"
+
+		drink/davenport
+			name = "Davenport Rye"
+			id = "davenport"
+			description = "An expensive alcohol with a distinct flavor"
+			color = "#ffcc66"
+
+		drink/wy_beer
+			name = "Aspen Beer"
+			id = "aspen"
+			description = "Pretty good when you get past the fact that it tastes like piss. Canned by the Weyland-Yutani Corporation."
+			color = "#ffcc66"
+
 		drink/grapesoda
 			name = "Grape Soda"
 			id = "grapesoda"

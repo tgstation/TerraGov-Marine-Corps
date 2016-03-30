@@ -52,6 +52,25 @@
 	liquidfood
 		name = "\improper \"LiquidFood\" ration"
 		icon_state = "liquidfood"
+	burger
+		name = "Burger wrapper"
+		icon_state = "burger"
+		desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Weyland-Yutani Corporation."
+	buritto
+		name = "Burrito wrapper"
+		icon_state = "burritto"
+		desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Weyland-Yutani Corporation."
+	hotdog
+		name = "Hotdog wrapper"
+		icon_state = "hotdog"
+		desc = "A musty plastic film that once held a microwave burrito. Packaged by the Weyland-Yutani Corporation."
+	kepler
+		name = "Kepler wrapper"
+		icon_state = "kepler"
+	eat
+		name = "EAT bar wrapper"
+		icon_state = "eat"
+
 
 /obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
 	return
