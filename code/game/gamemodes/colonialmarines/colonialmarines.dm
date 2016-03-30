@@ -175,37 +175,84 @@
 	H.take_organ_damage(rand(0,15), rand(0,15))
 
 //Give them proper jobs and stuff here later
-	var/randjob = rand(0,9)
+	var/randjob = rand(0,10)
 	switch(randjob)
 		if(0) //assistant
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
 		if(1) //civilian in pajamas
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		if(2) //Scientist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(H), slot_back)
 		if(3) //Doctor
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(H), slot_belt)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
 		if(4) //Chef!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(H), slot_r_hand)
 		if(5) //Botanist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/hatchet(H), slot_belt)
 		if(6)//Atmos
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech(H), slot_belt)
 		if(7) //Chaplain
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/bible/booze(H), slot_l_hand)
 		if(8) //Miner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/weapon/pickaxe(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		if(9) //Corporate guy
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), slot_r_hand)
+		if(10) //Colonial Marshal
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/detective(H), slot_l_hand)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
-	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+
+	var/randgear = rand(0,20)
+	switch(randgear)
+		if(0)
+			H.equip_to_slot_or_del(new /obj/item/device/camera/fluff/oldcamera(H), slot_r_store)
+			H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+		if(1)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_r_store)
+			H.equip_to_slot_or_del(new /obj/item/weapon/wrench(H), slot_l_store)
+		if(2)
+			H.equip_to_slot_or_del(new /obj/item/weapon/surgicaldrill(H), slot_l_store)
+			H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(H), slot_r_store)
+		if(3)
+			H.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(H), slot_r_hand)
+		if(4)
+			H.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(H), slot_belt)
+			H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice(H), slot_belt)
+		if (5)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(H), slot_head)
+			H.equip_to_slot_or_del(new /obj/item/weapon/weldingtool/largetank(H), slot_r_hand)
+		else
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
+			H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+
 	H.update_icons()
 
 	//Give them some information

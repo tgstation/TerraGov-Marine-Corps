@@ -2999,3 +2999,53 @@
 		..()
 		reagents.add_reagent("nutriment", 3)
 
+/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito
+	name = "Packaged Burrito"
+	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
+	icon_state = "burrito"
+	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("nutriment", 5)
+	trash = /obj/item/trash/buritto
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged_burger
+	name = "Packaged Cheeseburger"
+	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
+	icon_state = "burger"
+	bitesize = 3
+	New()
+		..()
+		reagents.add_reagent("nutriment", 7)
+	trash = /obj/item/trash/burger
+
+/obj/item/weapon/reagent_containers/food/snacks/packaged_hdogs
+	name = "Packaged Hotdogs"
+	desc = "A pair of squishy microwavable hot dogs. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
+	icon_state = "hot_dogs"
+	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("nutriment", 4)
+	trash = /obj/item/trash/hotdog
+
+/obj/item/weapon/reagent_containers/food/snacks/eat_bar
+	name = "EAT Bar"
+	desc = "Packed full of nutrients you can't pronounce."
+	icon_state = "eat_bar"
+	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("nutriment", 3)
+	trash = /obj/item/trash/eat
+
+/obj/item/weapon/reagent_containers/food/snacks/kepler_crisps
+	name = "Kepler Crisps"
+	desc = "'They're disturbingly good!' Now with 0% trans fat."
+	icon_state = "kepler"
+	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("nutriment", 3)
+	trash = /obj/item/trash/kepler
+

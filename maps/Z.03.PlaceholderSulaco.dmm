@@ -1519,7 +1519,7 @@
 "Dk" = (/turf/simulated/wall/sulaco,/area/sulaco/marine)
 "Dl" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/wall/sulaco,/area/sulaco/marine)
 "Dm" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/wall/sulaco,/area/sulaco/marine)
-"Dn" = (/obj/machinery/door/airlock/multi_tile/glass{name = "Marine Armory"},/obj/machinery/door/firedoor/border_only{dir = 2},/turf/simulated/floor{icon_state = "bot"},/area/sulaco/marine)
+"Dn" = (/obj/machinery/door/airlock/multi_tile/glass{name = "Marine Armory"; req_access_txt = "9"},/obj/machinery/door/firedoor/border_only{dir = 2},/turf/simulated/floor{icon_state = "bot"},/area/sulaco/marine)
 "Do" = (/obj/machinery/door/firedoor/border_only{dir = 2},/turf/simulated/floor{icon_state = "bot"},/area/sulaco/marine)
 "Dp" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/sulaco/engineering/storage)
 "Dq" = (/obj/machinery/atmospherics/pipe/simple/heat_exchanging{dir = 6},/turf/space,/area/sulaco/engineering/engine)
