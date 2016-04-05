@@ -400,15 +400,6 @@ proc/get_damage_icon_part(damage_state, body_part)
 	//tail
 	update_tail_showing(0)
 
-/mob/living/carbon/human/update_fire()
-
-	remove_overlay(FIRE_LAYER)
-	if(on_fire)
-		overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=-FIRE_LAYER)
-
-	apply_overlay(FIRE_LAYER)
-
-
 //HAIR OVERLAY
 /mob/living/carbon/human/proc/update_hair(var/update_icons=1)
 	//Reset our hair
@@ -1015,6 +1006,16 @@ proc/get_damage_icon_part(damage_state, body_part)
 	overlays_standing[BURST_LAYER]	= standing
 
 	if(update_icons)   update_icons()
+
+/mob/living/carbon/human/update_fire(var/update_icons = 1)
+	if(on_fire)
+		var/image/fire = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=-FIRE_LAYER)
+		overlays_standing[FIRE_LAYER] = fire
+	else
+		overlays_standing[FIRE_LAYER] = null
+
+	if(update_icons) update_icons()
+
 
 //Human Overlays Indexes/////////
 #undef MUTANTRACE_LAYER

@@ -114,7 +114,8 @@
 			A.fired()
 */
 	proc/Emit()
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
+		/* What the fuck is all this shit
+		var/obj/item/projectileA = new /obj/item/projectile/beam/emitter( src.loc )
 		A.frequency = frequency
 		A.damage = mega_energy * 500
 		//
@@ -147,7 +148,7 @@
 		if(emitting)
 			spawn(rate)
 				Emit()
-
+		*/
 	proc/UpdateIcon()
 		if(on)
 			icon_state = "emitter-on"

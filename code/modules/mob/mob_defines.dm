@@ -37,6 +37,11 @@
 	var/obj/screen/locate_queen = null
 	var/obj/screen/pred_power_icon = null
 
+	var/obj/screen/eject_mag = null
+	var/obj/screen/toggle_burst = null
+	var/obj/screen/use_attachment = null
+
+
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
 	The current method unnecessarily clusters up the variable list, especially for humans (although rearranging won't really clean it up a lot but the difference will be noticable for other mobs).

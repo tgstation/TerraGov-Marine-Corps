@@ -10,17 +10,18 @@
 	icon_vend = "armory-vend"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/weapon/gun/projectile/m4a3 = 10,
-					/obj/item/weapon/gun/projectile/m44m = 10,
-					/obj/item/weapon/gun/projectile/automatic/m39 = 10,
-					/obj/item/weapon/gun/projectile/automatic/m41 = 20,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37 = 10,
+					/obj/item/weapon/gun/pistol/m4a3 = 20,
+					/obj/item/weapon/gun/revolver/m44 = 5,
+					/obj/item/weapon/gun/smg/m39 = 20,
+					/obj/item/weapon/gun/rifle/m41a = 20,
+					/obj/item/weapon/gun/shotgun/pump = 5,
 
-					/obj/item/ammo_magazine/m4a3 = 20,
-					/obj/item/ammo_magazine/m44m = 20,
-					/obj/item/ammo_magazine/m39 =  20,
-					/obj/item/ammo_magazine/m41 =  40,
-					/obj/item/weapon/storage/box/m37 = 20,
+					/obj/item/ammo_magazine/pistol = 20,
+					/obj/item/ammo_magazine/revolver = 15,
+					/obj/item/ammo_magazine/smg = 20,
+					/obj/item/ammo_magazine/rifle = 40,
+					/obj/item/ammo_magazine/shotgun = 10,
+					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 
 					/obj/item/weapon/combat_knife = 10,
 					/obj/item/weapon/storage/belt/knifepouch = 5,
@@ -277,6 +278,14 @@
 						/obj/item/attachable/gyro = 4,
 						/obj/item/attachable/bipod = 4,
 						/obj/item/attachable/burstfire_assembly = 2,
+
+						/obj/item/attachable/compensator/stock = 3,
+						/obj/item/attachable/compensator/riflestock = 3 ,
+						/obj/item/attachable/compensator/revolverstock = 3,
+
+						/obj/item/attachable/grenade = 5,
+						/obj/item/attachable/shotgun = 3,
+						/obj/item/attachable/flamer = 2,
 
 						/obj/item/clothing/tie/storage/webbing = 3,
 

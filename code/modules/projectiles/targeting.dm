@@ -80,16 +80,8 @@
 		stop_aim()
 		return
 	M.last_move_intent = world.time
-	if(can_fire())
-		var/firing_check = can_hit(T,usr) //0 if it cannot hit them, 1 if it is capable of hitting, and 2 if a special check is preventing it from firing.
-		if(firing_check > 0)
-			if(firing_check == 1)
-				Fire(T,usr, reflex = 1)
-		else if(!told_cant_shoot)
-			M << "\red They can't be hit from here!"
-			told_cant_shoot = 1
-			spawn(30)
-				told_cant_shoot = 0
+	if(src.in_chamber && T in view(5,M))
+		Fire(T,usr,reflex = 1)
 	else
 		click_empty(M)
 
@@ -193,9 +185,9 @@ mob/living/proc/Targeted(var/obj/item/weapon/gun/I) //Self explanitory.
 		else
 			I.lower_aim()
 			return
-		if(m_intent == "run" && T.client.target_can_move == 1 && T.client.target_can_run == 0)
-			src << "\red Your move intent is now set to walk, as your targeter permits it."  //Self explanitory.
-			set_m_intent("walk")
+//		if(m_intent == "run" && T.client.target_can_move == 1 && T.client.target_can_run == 0)
+//			src << "\red Your move intent is now set to walk, as your targeter permits it."  //Self explanitory.
+//			set_m_intent("walk")
 
 		//Processing the aiming. Should be probably in separate object with process() but lasy.
 		while(targeted_by && T.client)

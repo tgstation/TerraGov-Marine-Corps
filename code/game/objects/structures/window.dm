@@ -22,11 +22,13 @@
 		return
 
 	health -= Proj.damage
+	playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 	..()
 	if(health <= 0)
 		new /obj/item/weapon/shard(loc)
 		new /obj/item/stack/rods(loc)
-		del(src)
+		spawn(1)
+			del(src)
 	return
 
 

@@ -139,7 +139,7 @@
 	if(Proj.damage_type == HALLOSS)
 		return
 
-	src.health -= Proj.damage*0.2
+	src.health -= Proj.damage*0.3
 	healthcheck()
 	return 0
 

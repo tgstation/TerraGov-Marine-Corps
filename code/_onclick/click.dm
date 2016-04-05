@@ -68,13 +68,13 @@
 		if(src:turret_control)
 			if(src:turret_control.handle_manual_fire(src,A,params))
 				return
-		if(isYautja(src) && istype(src:get_active_hand(),/obj/item/device/yautja_holoemitter))
-			if(istype(A,/mob/living/carbon))
-				var/obj/item/device/yautja_holoemitter/Y = src:get_active_hand()
-				if(istype(Y))
-					if(Y.scan_target(A))
-						src << "You successfully scan [A] into your holoemitter frequencies."
-						return
+//		if(isYautja(src) && istype(src:get_active_hand(),/obj/item/device/yautja_holoemitter))
+//			if(istype(A,/mob/living/carbon))
+//				var/obj/item/device/yautja_holoemitter/Y = src:get_active_hand()
+//				if(istype(Y))
+//					if(Y.scan_target(A))
+//						src << "You successfully scan [A] into your holoemitter frequencies."
+//						return
 	face_atom(A)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !istype(A,/obj/screen))
@@ -154,7 +154,7 @@
 	// Allows you to click on a box's contents, if that box is on the ground, but no deeper than that
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		next_move = world.time + 10
+		next_move = world.time + 3
 
 		if(A.Adjacent(src)) // see adjacent.dm
 			if(W)

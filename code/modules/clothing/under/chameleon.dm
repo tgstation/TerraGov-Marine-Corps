@@ -414,7 +414,7 @@
 
 //*****************
 //**Chameleon Gun**
-//*****************
+/*
 /obj/item/weapon/gun/projectile/chameleon
 	name = "desert eagle"
 	desc = "A fake Desert Eagle with a dial on the side to change the gun's disguise."
@@ -470,3 +470,4 @@
 			var/mob/M = src.loc
 			M.update_inv_r_hand(0)
 			M.update_inv_l_hand()
+*/

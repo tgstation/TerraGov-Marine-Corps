@@ -128,6 +128,10 @@ var/datum/global_hud/global_hud = new()
 	var/obj/screen/pred_power_icon
 	var/obj/screen/tail_intent
 
+	var/obj/screen/eject_mag
+	var/obj/screen/toggle_burst
+	var/obj/screen/use_attachment
+
 	var/list/adding
 	var/list/other
 	var/list/obj/screen/hotkeybuttons

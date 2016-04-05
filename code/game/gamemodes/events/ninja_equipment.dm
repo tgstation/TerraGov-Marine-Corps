@@ -1410,7 +1410,7 @@ It is possible to destroy the net by the occupant or someone else.
 		return
 
 	bullet_act(var/obj/item/projectile/Proj)
-		health -= Proj.damage
+		health -= Proj.ammo.damage
 		healthcheck()
 		return 0
 

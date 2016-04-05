@@ -202,7 +202,8 @@
 
 //subtypes can override this to specify what can be holstered
 /obj/item/clothing/tie/holster/proc/can_holster(obj/item/weapon/gun/W)
-	return W.isHandgun()
+	if(W.w_class <= 3) return 1
+	return 0
 
 /obj/item/clothing/tie/holster/proc/holster(obj/item/I, mob/user as mob)
 	if(holstered)

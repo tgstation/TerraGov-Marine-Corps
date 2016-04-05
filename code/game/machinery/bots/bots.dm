@@ -94,7 +94,7 @@
 			..()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	health -= Proj.ammo.damage
 	..()
 	healthcheck()
 

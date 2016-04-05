@@ -146,6 +146,7 @@ client/proc/one_click_antag()
 	return 0
 
 /datum/admins/proc/makeWizard()
+	/*
 	var/list/mob/dead/observer/candidates = list()
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
@@ -172,11 +173,11 @@ client/proc/one_click_antag()
 
 			theghost = i
 			break
-
-	if(theghost)
-		var/mob/living/carbon/human/new_character=makeBody(theghost)
-		new_character.mind.make_Wizard()
-		return 1
+*/
+//	if(theghost)
+//		var/mob/living/carbon/human/new_character=makeBody(theghost)
+//		new_character.mind.make_Wizard()
+//		return 1
 
 	return 0
 
@@ -309,10 +310,10 @@ client/proc/one_click_antag()
 /datum/admins/proc/makeAliens()
 	alien_infestation(3)
 	return 1
-
-/datum/admins/proc/makeSpaceNinja()
-	space_ninja_arrival()
-	return 1
+//
+///datum/admins/proc/makeSpaceNinja()
+//	space_ninja_arrival()
+//	return 1
 
 /datum/admins/proc/makeDeathsquad()
 	var/list/mob/dead/observer/candidates = list()
@@ -405,6 +406,7 @@ client/proc/one_click_antag()
 	return new_character
 
 /datum/admins/proc/create_syndicate_death_commando(obj/spawn_location, syndicate_leader_selected = 0)
+	/*
 	var/mob/living/carbon/human/new_syndicate_commando = new(spawn_location.loc)
 	var/syndicate_commando_leader_rank = pick("Lieutenant", "Captain", "Major")
 	var/syndicate_commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
@@ -431,9 +433,10 @@ client/proc/one_click_antag()
 	new_syndicate_commando.equip_syndicate_commando(syndicate_leader_selected)
 
 	return new_syndicate_commando
+	*/
 
 /datum/admins/proc/makeVoxRaiders()
-
+/*
 	var/list/mob/dead/observer/candidates = list()
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
@@ -527,3 +530,4 @@ client/proc/one_click_antag()
 	new_vox.equip_vox_raider()
 
 	return new_vox
+	*/

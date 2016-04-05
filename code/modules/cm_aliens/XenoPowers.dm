@@ -36,19 +36,38 @@
 	set desc = "Toggles between a lighter, single-target stun spit or a heavier area acid that burns. The heavy version requires more plasma."
 	set category = "Alien"
 
+	del(spit_projectile) //This sucks, but oh well.
+
 	if(!spit_type)
-		src << "You will now spit heavier globs of acid instead of neurotoxin."
+		src << "You will now spit corrosive acid globs."
 		spit_type = 1
 		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
-		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-			spit_projectile = /obj/item/projectile/energy/neuro/acid/heavy
-		else
-			spit_projectile = /obj/item/projectile/energy/neuro/acid/
-	else
-		src << "You will now spit lighter neurotoxin instead of acid."
 		spit_type = 0
-		spit_projectile = initial(spit_projectile)
-		spit_delay = initial(spit_delay)
+		if(spit_projectile)
+			del(spit_projectile)
+		spit_projectile =  new /datum/ammo/xeno/spit/burny()
+		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
+			//Bigger and badder!
+			spit_projectile.damage += 15
+		else if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			spit_projectile.shell_speed = 2 //Super fast!
+	else
+		src << "You will now spit stunning neurotoxin instead of acid."
+		spit_type = 0
+		if(spit_projectile)
+			del(spit_projectile)
+		spit_projectile = new /datum/ammo/xeno/spit()
+		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
+			//Bigger and badder!
+			spit_projectile.stun += 3
+			spit_projectile.weaken += 3
+		else if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+			spit_projectile.stun += 2
+			spit_projectile.weaken += 2
+			spit_projectile.shell_speed = 2 //Super fast!
+		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
+			spit_projectile.stun += 1 //Meh?
+			spit_projectile.weaken += 1
 	return
 
 /mob/living/carbon/Xenomorph/proc/plant()
@@ -301,18 +320,14 @@
 			src << "Too close!"
 			return
 
-		var/obj/item/projectile/energy/neuro/A = new spit_projectile(Turf)
-		if(is_robotic && isturf(src.loc))
-			playsound(src.loc,'sound/weapons/pulse.ogg',75,1)
-		A.current = Target_Turf
-		A.yo = Target_Turf.y - Turf.y
-		A.xo = Target_Turf.x - Turf.x
+
+		var/obj/item/projectile/A = new(Turf)
+		A.permutated.Add(src)
 		A.def_zone = get_organ_target()
-		A.firer = src
-		A.original= T
-		A.starting = src.loc
+		A.ammo = spit_projectile //This always must be set.
+
 		spawn(1)
-			A.process()
+			A.fire_at(Target_Turf,src,null,A.ammo.max_range,A.ammo.shell_speed) //Ptui!
 
 		has_spat = 1
 		spawn(spit_delay)

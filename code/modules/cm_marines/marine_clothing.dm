@@ -486,19 +486,11 @@
 	max_combined_w_class = 9
 	max_w_class = 3
 	can_hold = list(
-		"/obj/item/weapon/gun/projectile/m4a3",
+		"/obj/item/weapon/gun/pistol",
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
 		"/obj/item/device/flash",
-		"/obj/item/ammo_magazine/m4a3",
-		"/obj/item/ammo_magazine/m38s",
-		"/obj/item/ammo_magazine/m39",
-		"/obj/item/ammo_magazine/m41",
-		"/obj/item/ammo_casing/m44m",
-		"/obj/item/ammo_magazine/m44m",
-		"/obj/item/ammo_magazine/m42c",
-		"/obj/item/weapon/storage/box/m37",
-		"/obj/item/ammo_casing/m37",
+		"/obj/item/ammo_magazine",
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
@@ -520,13 +512,13 @@
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/device/flash",
 		"/obj/item/clothing/glasses",
-		"/obj/item/weapon/gun/projectile/m4a3",
-		"/obj/item/weapon/gun/energy/taser",
+		"/obj/item/weapon/gun/taser",
+		"/obj/item/weapon/gun/pistol",
 		"/obj/item/weapon/melee/baton",
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
-		"/obj/item/ammo_magazine/m4a3",
+		"/obj/item/ammo_magazine",
 		"/obj/item/weapon/reagent_containers/food/snacks/donut/normal",
 		"/obj/item/weapon/reagent_containers/food/snacks/donut/jelly",
 		"/obj/item/clothing/glasses/hud/security",
@@ -535,15 +527,15 @@
 
 /obj/item/weapon/storage/belt/security/MP/full/New()
 	..()
-	new /obj/item/weapon/gun/energy/taser(src)
+	new /obj/item/weapon/gun/taser(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/melee/baton(src)
 	new /obj/item/weapon/handcuffs(src)
 
 /obj/item/weapon/storage/belt/marine/full/New()
 	..()
-	new /obj/item/weapon/gun/projectile/m4a3(src)
-	new /obj/item/ammo_magazine/m4a3(src)
+	new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/weapon/storage/belt/knifepouch
 	name="Knife Rig"

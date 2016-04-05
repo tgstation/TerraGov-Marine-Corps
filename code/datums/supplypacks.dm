@@ -129,15 +129,14 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/weapons_m41
-	name = "M41A crate"
+	name = "M41 crate"
 	contains = list(
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41
+					/obj/item/weapon/gun/rifle/m41a,
+					/obj/item/weapon/gun/rifle/m41a,
+					/obj/item/weapon/gun/rifle/m41a,
+					/obj/item/weapon/gun/rifle/m41a/scoped
 				)
-	cost = 35
+	cost = 40
 	containertype = /obj/structure/closet/crate
 	containername = "M41A crate"
 	group = "Weapons"
@@ -145,11 +144,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/weapons_m39
 	name = "M39 SMG crate"
 	contains = list(
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39
+					/obj/item/weapon/gun/smg
 				)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -159,11 +154,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/weapons_side
 	name = "Sidearm crate"
 	contains = list(
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/m44m,
-					/obj/item/weapon/gun/projectile/m44m
+					/obj/item/weapon/gun/pistol
 				)
 	cost = 25
 	containertype = /obj/structure/closet/crate
@@ -198,12 +189,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/ammo_big
 	name = "Ammo Crate (10x24mm, 12ga)"
 	contains = list(
-					/obj/item/ammo_magazine/m41,
-					/obj/item/ammo_magazine/m41,
-					/obj/item/ammo_magazine/m41,
-					/obj/item/ammo_magazine/m41,
-					/obj/item/weapon/storage/box/m37,
-					/obj/item/weapon/storage/box/m37
+					/obj/item/ammo_magazine/rifle,
 					)
 	cost = 24
 	containertype = /obj/structure/closet/crate
@@ -223,12 +209,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/ammo_small
 	name = "Ammo Crate (9mm, .45, .44)"
 	contains = list(
-					/obj/item/ammo_magazine/m39,
-					/obj/item/ammo_magazine/m39,
-					/obj/item/ammo_magazine/m39,
-					/obj/item/ammo_magazine/m4a3,
-					/obj/item/ammo_magazine/m4a3,
-					/obj/item/ammo_magazine/m44m
+
 				)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -238,10 +219,6 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/ammo_exotic
 	name = "Exotic Ammo crate (M42c, M56)"
 	contains = list(
-					/obj/item/ammo_magazine/m42c,
-					/obj/item/ammo_magazine/m42c,
-					/obj/item/ammo_magazine/m42c,
-					/obj/item/ammo_magazine/m42c,
 					/obj/item/smartgun_powerpack,
 					/obj/item/smartgun_powerpack
 				)
@@ -253,10 +230,10 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/explosive_ammo_crate
 	name = "Explosive Ammo crate (SADAR rockets, Frag Grenades)"
 	contains = list(
-					/obj/item/ammo_casing/rocket,
-					/obj/item/ammo_casing/rocket,
-					/obj/item/ammo_casing/rocket/ap,
-					/obj/item/ammo_casing/rocket/ap,
+//					/obj/item/ammo_casing/rocket,
+//					/obj/item/ammo_casing/rocket,
+//					/obj/item/ammo_casing/rocket/ap,
+//					/obj/item/ammo_casing/rocket/ap,
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/explosive
@@ -876,3 +853,4 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containertype = /obj/structure/closet/crate
 	containername = "Collectable hats crate! Brought to you by Bass.inc!"
 	group = "Clothing"
+

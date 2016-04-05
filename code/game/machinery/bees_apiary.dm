@@ -29,20 +29,6 @@
 	..()
 	overlays += image('icons/obj/apiary_bees_etc.dmi', icon_state="apiary")
 
-/obj/machinery/apiary/bullet_act(var/obj/item/projectile/Proj) //Works with the Somatoray to modify plant variables.
-	if(istype(Proj ,/obj/item/projectile/energy/floramut))
-		mut++
-	else if(istype(Proj ,/obj/item/projectile/energy/florayield))
-		if(!yieldmod)
-			yieldmod += 1
-			//world << "Yield increased by 1, from 0, to a total of [myseed.yield]"
-		else if (prob(1/(yieldmod * yieldmod) *100))//This formula gives you diminishing returns based on yield. 100% with 1 yield, decreasing to 25%, 11%, 6, 4, 2...
-			yieldmod += 1
-			//world << "Yield increased by 1, to a total of [myseed.yield]"
-	else
-		..()
-		return
-
 /obj/machinery/apiary/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/queen_bee))
 		if(health > 0)

@@ -58,7 +58,7 @@
 	name = "Dispense Wizard Justice"
 	desc = "This spell dispenses wizard justice."
 
-	summon_type = list(/obj/item/weapon/secbot_assembly/ed209_assembly)
+	summon_type = list()
 	summon_amt = 10
 	range = 3
 	newVars = list("emagged" = 1,"name" = "Wizard's Justicebot")
@@ -79,9 +79,5 @@
 	unacidable = 1
 
 
-	bullet_act(var/obj/item/projectile/Proj, var/def_zone)
-		var/turf/T = get_turf(src.loc)
-		if(T)
-			for(var/mob/M in T)
-				Proj.on_hit(M,M.bullet_act(Proj, def_zone))
+	bullet_act(var/obj/item/projectile/Proj)
 		return

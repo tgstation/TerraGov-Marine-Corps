@@ -508,7 +508,7 @@ client
 
 		src.give_disease2(M)
 		href_list["datumrefresh"] = href_list["give_spell"]
-
+/*
 	else if(href_list["ninja"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -519,7 +519,7 @@ client
 
 		src.cmd_admin_ninjafy(M)
 		href_list["datumrefresh"] = href_list["ninja"]
-
+*/
 	else if(href_list["godmode"])
 		if(!check_rights(R_REJUVINATE))	return
 

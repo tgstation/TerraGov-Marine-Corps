@@ -133,7 +133,7 @@
 
 
 
-		if(istype(temp,/obj/item/weapon/gun) || istype(temp,/obj/item/ammo_magazine) || istype(temp,/obj/item/weapon/grenade) || istype(temp,/obj/item/weapon/flamethrower) || istype(temp,/obj/item/weapon/storage/box/m37) )
+		if(istype(temp,/obj/item/weapon/gun) || istype(temp,/obj/item/ammo_magazine) || istype(temp,/obj/item/weapon/grenade) || istype(temp,/obj/item/weapon/flamethrower) || istype(temp,/obj/item/weapon/storage) )
 			R.display_color = "red"
 		else if(istype(temp,/obj/item/clothing) || istype(temp,/obj/item/weapon/storage))
 			R.display_color = "green"

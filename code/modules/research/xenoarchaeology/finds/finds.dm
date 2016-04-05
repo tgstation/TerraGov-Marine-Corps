@@ -275,10 +275,10 @@
 			apply_material_decorations = 0
 			if(prob(10))
 				apply_image_decorations = 1
-			if(prob(25))
-				new_item = new /obj/item/device/soulstone(src.loc)
-				new_item.icon = 'icons/obj/xenoarchaeology.dmi'
-				new_item.icon_state = icon_state
+//			if(prob(25))
+//				new_item = new /obj/item/device/soulstone(src.loc)
+//				new_item.icon = 'icons/obj/xenoarchaeology.dmi'
+//				new_item.icon_state = icon_state
 		if(17)
 			//cultblade
 			apply_prefix = 0
@@ -308,10 +308,10 @@
 			new_item = new new_type(src.loc)
 		if(21)
 			//soulstone
-			apply_prefix = 0
-			new_item = new /obj/item/device/soulstone(src.loc)
-			item_type = new_item.name
-			apply_material_decorations = 0
+//			apply_prefix = 0
+//			new_item = new /obj/item/device/soulstone(src.loc)
+//			item_type = new_item.name
+//			apply_material_decorations = 0
 		if(22)
 			if(prob(50))
 				new_item = new /obj/item/weapon/shard(src.loc)
@@ -339,6 +339,7 @@
 			new_item = new /obj/item/weapon/katana(src.loc)
 			new_item.force = 10
 			item_type = new_item.name
+/*
 		if(26)
 			//energy gun
 			var/spawn_type = pick(\
@@ -365,8 +366,10 @@
 					new_gun.power_supply.charge = 0
 
 			item_type = "gun"
+*/
 		if(27)
 			//revolver
+/*
 			var/obj/item/weapon/gun/projectile/new_gun = new /obj/item/weapon/gun/projectile(src.loc)
 			new_item = new_gun
 			new_item.icon_state = "gun[rand(1,4)]"
@@ -400,6 +403,7 @@
 						I.loc = null
 
 			item_type = "gun"
+*/
 		if(28)
 			//completely unknown alien device
 			if(prob(50))

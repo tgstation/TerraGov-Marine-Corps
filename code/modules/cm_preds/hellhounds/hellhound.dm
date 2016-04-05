@@ -13,7 +13,7 @@
 	var/obj/item/device/radio/headset/yautja/radio
 	var/obj/machinery/camera/camera
 	var/mob/living/carbon/human/master
-	var/speed = -1.2
+	var/speed = -0.6
 	var/attack_timer = 0
 
 /mob/living/carbon/hellhound/New()
