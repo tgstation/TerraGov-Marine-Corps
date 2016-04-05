@@ -505,6 +505,7 @@
 			new /obj/item/ammo_magazine/m42c(src)
 			new /obj/item/ammo_magazine/m42c(src)
 			new /obj/item/ammo_magazine/m42c(src)
+			new /obj/item/weapon/facepaint/sniper(src)
 
 /obj/item/weapon/gun/projectile/M56_Smartgun
 	name = "M56 smartgun"

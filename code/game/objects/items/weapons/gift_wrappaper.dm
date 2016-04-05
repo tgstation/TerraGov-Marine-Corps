@@ -70,7 +70,6 @@
 		/obj/item/weapon/soap/deluxe,
 		/obj/item/weapon/pickaxe/silver,
 		/obj/item/weapon/pen/invisible,
-		/obj/item/weapon/lipstick/random,
 		/obj/item/weapon/grenade/smokebomb,
 		/obj/item/weapon/corncob,
 		/obj/item/weapon/contraband/poster,
