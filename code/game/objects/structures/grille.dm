@@ -149,7 +149,7 @@
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			new /obj/item/stack/rods(loc, 2)
 			del(src)
-	else if((isscrewdriver(W)) && (istype(loc, /turf/simulated) || anchored))
+	else if(isscrewdriver(W) && (istype(loc, /turf/simulated) || istype(loc, /turf/unsimulated/floor))) //|| anchored Does this fix it?
 		if(!shock(user, 90))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			anchored = !anchored

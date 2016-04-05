@@ -811,7 +811,7 @@
 		return
 
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("<B>[src] scrambles into the ventillation ducts!</B>"), 1)
+		O.show_message(text("<B>[src] scrambles into the ventilation ducts!</B>"), 1)
 	loc = target_vent
 
 	var/travel_time = round(get_dist(loc, target_vent.loc) / 2)

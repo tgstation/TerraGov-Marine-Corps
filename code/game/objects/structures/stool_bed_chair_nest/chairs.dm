@@ -179,3 +179,30 @@
 /obj/structure/stool/bed/chair/office/dark
 	icon_state = "officechair_dark"
 	anchored = 0
+
+/obj/structure/stool/bed/chair/dropship/pilot
+	icon_state = "pilot_chair"
+	anchored = 1
+	name = "Pilot's Chair"
+	desc = "A specially designed chair for pilots to sit in."
+
+/obj/structure/stool/bed/chair/dropship/passenger
+	name = "Passenger Seat"
+	desc = "Holds you in place during high altitude drops."
+	icon_state = "shuttle_chair"
+	var/image/chairbar = null
+
+/obj/structure/stool/bed/chair/dropship/passenger/New()
+	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
+	chairbar.layer = MOB_LAYER + 0.1
+
+	return ..()
+
+/obj/structure/stool/bed/chair/dropship/passenger/afterbuckle()
+	if(buckled_mob)
+		icon_state = "shuttle_chair_buckled"
+		overlays += chairbar
+	else
+		icon_state = "shuttle_chair"
+		overlays -= chairbar
+

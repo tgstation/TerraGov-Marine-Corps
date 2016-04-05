@@ -39,6 +39,10 @@
 				M.visible_message("<b>\The [M] tries to slash [src], but suddenly hesitates!","Slashing is currently <b>forbidden</b> by the Queen. You hesitate and miss your target.")
 				return
 
+			if(stat == 2)
+				M << "It is dead, why do you want to touch it?"
+				return
+
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			if(M.frenzy_aura > 0) damage += (M.frenzy_aura * 2)
 

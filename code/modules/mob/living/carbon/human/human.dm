@@ -825,6 +825,9 @@
 	if(species.flags & IS_SYNTHETIC)
 		return //Machines don't throw up.
 
+	if(stat == 2) //Corpses don't puke
+		return
+
 	if(!lastpuke)
 		lastpuke = 1
 		src << "<spawn class='warning'>You feel nauseous..."
@@ -1142,7 +1145,7 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat == 1 || usr.restrained() || !isliving(usr)) return
+	if(usr.stat > 0 || usr.restrained() || !isliving(usr)) return
 
 	if(usr == src)
 		self = 1

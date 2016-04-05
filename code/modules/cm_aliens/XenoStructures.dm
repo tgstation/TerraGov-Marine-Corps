@@ -135,7 +135,7 @@
 
 /obj/effect/alien/weeds
 	name = "weeds"
-	desc = "Weird purple weeds."
+	desc = "Weird black weeds..."
 	icon_state = "weeds"
 
 	anchored = 1
@@ -149,7 +149,7 @@
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
 	name = "purple sac"
-	desc = "Weird purple octopus-like thing."
+	desc = "Weird black octopus-like thing."
 	layer = 2.7
 //	luminosity = NODERANGE
 	var/node_range = NODERANGE
@@ -618,7 +618,7 @@
 
 /obj/structure/stool/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
 
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
+	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || user.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
 	unbuckle()
@@ -702,6 +702,22 @@
 	buckled_mob.pixel_y = 0
 	buckled_mob.old_y = 0
 	..()
+
+/obj/structure/stool/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(M.a_intent == "hurt")
+		M.visible_message("\red [M] claws at the [name]!", "\blue You claw at the [name].")
+		playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
+		healthcheck()
+		return
+
+/obj/structure/stool/bed/nest/attack_animal(mob/living/M as mob)
+	M.visible_message("\red [M] tears at the [name]!", "\blue You tear at the [name].")
+	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+	health -= 40
+	healthcheck()
+	return
 
 //Alien blood effects.
 /obj/effect/decal/cleanable/blood/xeno

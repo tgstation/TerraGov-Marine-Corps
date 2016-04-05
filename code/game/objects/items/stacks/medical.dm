@@ -249,10 +249,10 @@
 				return
 			user.visible_message("\red [user] starts to apply \the [src] to their [limb].", "\red You start to apply \the [src] to your [limb].", "\red You hear something being wrapped.")
 		if(do_after(user, 50))
-			if (M != user)
+			if (M != user && !(affecting.status & ORGAN_SPLINTED))
 				user.visible_message("\red [user] finishes applying \the [src] to [M]'s [limb].", "\red You finish applying \the [src] to [M]'s [limb].", "\red You hear something being wrapped.")
 			else
-				if(prob(25))
+				if(prob(25) && !(affecting.status & ORGAN_SPLINTED))
 					user.visible_message("\red [user] successfully applies \the [src] to their [limb].", "\red You successfully apply \the [src] to your [limb].", "\red You hear something being wrapped.")
 				else
 					user.visible_message("\red [user] fumbles \the [src].", "\red You fumble \the [src].", "\red You hear something being wrapped.")
