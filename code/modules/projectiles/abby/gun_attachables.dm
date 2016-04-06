@@ -46,6 +46,7 @@
 		if(slot == "rail") G.rail = src
 		if(slot == "muzzle") G.muzzle = src
 		if(slot == "under") G.under = src
+		if(slot == "stock") G.stock = src
 
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
@@ -85,6 +86,7 @@
 		if(slot == "rail") G.rail = null
 		if(slot == "muzzle") G.muzzle = null
 		if(slot == "under") G.under = null
+		if(slot == "stock") G.stock = null
 
 		if(G.wielded)
 			G.unwield()
