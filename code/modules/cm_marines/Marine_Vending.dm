@@ -288,7 +288,7 @@
 						/obj/item/attachable/flamer = 2,
 
 						/obj/item/clothing/tie/storage/webbing = 3,
-						/obj/item/weapon/claymore/mercsword/machete = 3,
+//						/obj/item/weapon/claymore/mercsword/machete = 3,
 
 					)
 	contraband = list()

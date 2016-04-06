@@ -44,11 +44,18 @@
 	under_pixel_y = 13
 	ammo_counter = 1
 
+	New()
+		..()
+		var/obj/item/attachable/grenade/G = new(src)
+		G.Attach(src)
+		update_attachables()
+
+
 //-------------------------------------------------------
 //M41A MARKSMAN VARIANT
 
 /obj/item/ammo_magazine/rifle/marksman
-	name = "M41A Marksman Magazine (10mm)"
+	name = "M41A/M Marksman Magazine (10mm)"
 	desc = "A 10mm marksman rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/marksman"
 	gun_type = "/obj/item/weapon/gun/rifle/m41a/scoped"
@@ -67,21 +74,26 @@
 	burst_amount = 0
 	accuracy = 15
 
-	verb/scope()
-		set category = "Weapons"
-		set name = "Use Marksman Scope"
-		set popup_menu = 1
+	New()
+		var/obj/item/attachable/scope/S = new(src)
+		S.Attach(src)
+		var/obj/item/attachable/compensator/riflestock/Q = new(src)
+		Q.Attach(src)
+		var/obj/item/attachable/bipod/B = new(src)
+		B.Attach(src)
 
-		zoom()
+		update_attachables()
 
-	//Disable rail attachments.
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(istype(I,/obj/item/attachable))
-			if(I:slot == "rail")
-				user << "The 41A/M has an integrated scope and cannot have rail attachments."
-				return
-		return ..() //Do normal stuff.
-
+		//Have to do all this stuff manually since we don't want the m41 underbarrel grenade launcher installed.
+		var/magpath = text2path(mag_type)
+		if(magpath)
+			current_mag = new magpath(src)
+			current_mag.current_rounds = current_mag.max_rounds //Eh. For now they can always start full.
+			var/ammopath = text2path(current_mag.default_ammo)
+			if(ammopath)
+				ammo = new ammopath()
+		if(burst_delay == 0 && burst_amount > 0) //Okay.
+			burst_delay = fire_delay / 2
 
 //-------------------------------------------------------
 //M41A PMC VARIANT
@@ -165,3 +177,4 @@
 	found_on_russians = 1
 
 //-------------------------------------------------------
+

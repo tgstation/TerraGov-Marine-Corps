@@ -1,6 +1,8 @@
 //Definition for these is in ammunition.dm.
 
 /datum/ammo/bullet
+	name = "bullet"
+	damage = 5
 	damage_type = BRUTE
 	accurate_range = 5
 	shrapnel_chance = 10

@@ -224,7 +224,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/detective(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), slot_l_hand)
 
 
 	var/randgear = rand(0,20)

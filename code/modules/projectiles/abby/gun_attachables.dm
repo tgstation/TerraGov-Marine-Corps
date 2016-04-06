@@ -610,3 +610,17 @@
 			M << "\red Augh! You are roasted by the flames!"
 
 		return 1
+
+/obj/item/attachable/scope
+	name = "rail scope"
+	icon_state = "scope"
+	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment."
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a)
+	slot = "rail"
+	passive = 1
+	can_activate = 1
+
+
+	activate_attachment(atom/target,mob/living/carbon/user)
+		zoom()
+		return 1

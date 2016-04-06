@@ -146,4 +146,41 @@
 
 		return ..()
 
+//-------------------------------------------------------
 
+/obj/item/ammo_magazine/minigun
+	name = "Rotating Ammo Drum (."
+	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+	icon_state = "a762"
+	icon_empty = "a762-0"
+	default_ammo = "/datum/ammo/bullet"
+	max_rounds = 100
+	gun_type = "/obj/item/weapon/gun/minigun"
+
+/obj/item/weapon/gun/minigun
+	name = "\improper Ol' Painless"
+	desc = "An enormous multi-barreled rotating gatling gun. Chambered in 8mm shells."
+	icon_state = "rsplmg" //Replace all these
+	icon_empty = "rsplmg0"
+	item_state = "l6closedmag" //Replace
+	icon_wielded = "l6closedmag"
+	mag_type = "/obj/item/ammo_magazine/minigun"
+	fire_sound = 'sound/weapons/gunshot_glock.ogg' //Change
+	twohanded = 1
+	w_class = 5
+	force = 20
+	burst_amount = 6
+	burst_delay = 2
+	fire_delay = 12
+	recoil = 0
+	muzzle_pixel_x = 32
+	muzzle_pixel_y = 17
+	rail_pixel_x = 11
+	rail_pixel_y = 19
+	under_pixel_x = 20
+	under_pixel_y = 15
+	burst_amount = 5
+	accuracy = -50
+	//Not found on mercs or russians.
+
+//-------------------------------------------------------
