@@ -251,13 +251,14 @@
 							"You hear a tap-tap-tapping sound.")
 
 //Slashing turrets
+/*
 /obj/machinery/turret/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if(!(stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 		visible_message("\red <B>[M] has slashed at [src]!</B>")
 		src.take_damage(15)
-
+*/
 //Slashing bots
 /obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit

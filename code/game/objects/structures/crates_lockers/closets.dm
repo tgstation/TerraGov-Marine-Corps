@@ -165,12 +165,16 @@
 				del(src)
 
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
+	if(health > 999 || health < 0) return
 	health -= Proj.damage
+	playsound(loc, 'sound/effects/metalhit.ogg', 50, 1)
 	..()
 	if(health <= 0)
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = src.loc
-		del(src)
+		spawn(1)
+			playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
+			del(src)
 
 	return
 

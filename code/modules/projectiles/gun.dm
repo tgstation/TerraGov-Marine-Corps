@@ -184,9 +184,6 @@
 					else
 						sleep((fire_delay/2))
 
-/obj/item/weapon/gun/proc/isHandgun()
-	return 1
-
 /obj/item/weapon/gun/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)//TODO: go over this
 	//Exclude lasertag guns from the CLUMSY check.
 	if(clumsy_check)

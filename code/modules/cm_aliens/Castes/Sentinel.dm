@@ -15,7 +15,6 @@
 	spit_delay = 90
 	caste_desc = ""
 	evolves_to = list("Spitter")
-	spit_projectile = /obj/item/projectile/energy/neuro
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

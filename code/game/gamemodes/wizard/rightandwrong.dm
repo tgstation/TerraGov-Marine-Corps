@@ -14,7 +14,7 @@
 			H.mind.objectives += survive
 			H << "<B>You are the survivor! Your own safety matters above all else, trust no one and kill anyone who gets in your way. However, armed as you are, now would be the perfect time to settle that score or grab that pair of yellow gloves you've been eyeing...</B>"
 			show_objectives(H.mind)
-
+/*
 		var/randomize = pick("taser","egun","laser","revolver","detective","smg","nuclear","deagle","gyrojet","pulse","silenced","cannon","doublebarrel","shotgun","combatshotgun","mateba","smg","uzi","crossbow","saw")
 		switch (randomize)
 			if("taser")
@@ -58,3 +58,4 @@
 				new /obj/item/weapon/gun/energy/crossbow(get_turf(H))
 			if("saw")
 				new /obj/item/weapon/gun/projectile/automatic/l6_saw(get_turf(H))
+		*/

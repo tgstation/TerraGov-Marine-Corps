@@ -89,6 +89,107 @@
 	armor = list(melee = 90, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 
+/obj/item/clothing/under/marine_jumpsuit/PMC/green
+	name = "Uniform"
+	desc = "A uniform"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "arg_jumpsuit"
+	item_state = "arg_jumpsuit"
+	item_color = "arg_jumpsuit"
+
+/obj/item/clothing/suit/storage/marine/PMCarmor/green
+	name = "Armored Vest"
+	desc = "A protective vest"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "arg_armor"
+	icon_state = "arg_armor"
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/head/helmet/marine/PMC/green
+	name = "Helmet"
+	desc = "A protective helmet"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "arg_helmet"
+	icon_state = "arg_helmet"
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/under/marine_jumpsuit/PMC/dutch
+	name = "Dutch's Dozen Uniform"
+	desc = "A uniform worn by the mercenaries"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit"
+	item_state = "dutch_jumpsuit"
+	item_color = "dutch_jumpsuit"
+
+/obj/item/clothing/under/marine_jumpsuit/PMC/dutch2
+	name = "Dutch's Dozen Uniform"
+	desc = "A uniform worn by the mercenaries"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit2"
+	item_state = "dutch_jumpsuit2"
+	item_color = "dutch_jumpsuit2"
+
+/obj/item/clothing/head/helmet/marine/PMC/dutch
+	name = "Dutch's Dozen Helmet"
+	desc = "A protective helmet"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "dutch_helmet"
+	icon_state = "dutch_helmet"
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/PMC/bearmask
+	name = "Iron Bear Mask"
+	desc = "A protective mask"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "dutch_helmet"
+	icon_state = "dutch_helmet"
+	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/PMC/dutch/cap
+	item_state = "dutch_cap"
+	icon_state = "dutch_cap"
+
+/obj/item/clothing/head/helmet/marine/PMC/dutch/band
+	item_state = "dutch_band"
+	icon_state = "dutch_band"
+
+
+/obj/item/clothing/suit/storage/marine/PMCarmor/dutch
+	name = "Armored Vest"
+	desc = "A protective vest"
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "dutch_armor"
+	icon_state = "dutch_armor"
+	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/suit/storage/marine/PMCarmor/sniper
+	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
+	item_state = "pmc_sniper"
+	icon_state = "pmc_sniper"
+	armor = list(melee = 60, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/head/helmet/marine/PMC/sniper
+	name = "PMC Sniper Helmet"
+	desc = "A helmet worn by PMC Marksmen"
+	item_state = "pmc_sniper_hat"
+	icon_state = "pmc_sniper_hat"
+
+
+/obj/item/weapon/claymore/mercsword
+	name = "Combat Sword"
+	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharped to deal massive damage."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "sword"
+	force = 32
+
+
+/*
 /obj/item/weapon/gun/projectile/automatic/mar40
 	name = "\improper MAR-40 Pulse Rifle"
 	desc = "A cheaply-produced, yet tough pulse rifle found far and wide across the universe. Uses 12mm rounds in a simple magazine."
@@ -191,116 +292,6 @@
 			icon_state = "rspshotgun"
 		else
 			icon_state = "rspshotgun0"
-
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/green
-	name = "Uniform"
-	desc = "A uniform"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "arg_jumpsuit"
-	item_state = "arg_jumpsuit"
-	item_color = "arg_jumpsuit"
-
-/obj/item/clothing/suit/storage/marine/PMCarmor/green
-	name = "Armored Vest"
-	desc = "A protective vest"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "arg_armor"
-	icon_state = "arg_armor"
-	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
-
-/obj/item/clothing/head/helmet/marine/PMC/green
-	name = "Helmet"
-	desc = "A protective helmet"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "arg_helmet"
-	icon_state = "arg_helmet"
-	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/dutch
-	name = "Dutch's Dozen Uniform"
-	desc = "A uniform worn by the mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "dutch_jumpsuit"
-	item_state = "dutch_jumpsuit"
-	item_color = "dutch_jumpsuit"
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/dutch2
-	name = "Dutch's Dozen Uniform"
-	desc = "A uniform worn by the mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "dutch_jumpsuit2"
-	item_state = "dutch_jumpsuit2"
-	item_color = "dutch_jumpsuit2"
-
-/obj/item/clothing/head/helmet/marine/PMC/dutch
-	name = "Dutch's Dozen Helmet"
-	desc = "A protective helmet"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "dutch_helmet"
-	icon_state = "dutch_helmet"
-	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
-
-/obj/item/clothing/head/helmet/marine/PMC/bearmask
-	name = "Iron Bear Mask"
-	desc = "A protective mask"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "dutch_helmet"
-	icon_state = "dutch_helmet"
-	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
-
-/obj/item/clothing/head/helmet/marine/PMC/dutch/cap
-	item_state = "dutch_cap"
-	icon_state = "dutch_cap"
-
-/obj/item/clothing/head/helmet/marine/PMC/dutch/band
-	item_state = "dutch_band"
-	icon_state = "dutch_band"
-
-
-/obj/item/clothing/suit/storage/marine/PMCarmor/dutch
-	name = "Armored Vest"
-	desc = "A protective vest"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "dutch_armor"
-	icon_state = "dutch_armor"
-	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
-
-/obj/item/weapon/gun/projectile/vp70
-	name = "VP70 Combat Pistol"
-	desc = "A semi-automatic combat pistol produced by Weyland-Yutani. Commonly found in the hands of mercenaries and soldiers around the galaxy."
-	icon_state = "vp70"
-	item_state = "vp70"
-	w_class = 2
-	max_shells = 18
-	caliber = "9mm"
-	silenced = 0
-	ammo_type = "/obj/item/ammo_casing/c9mm"
-	fire_sound = 'sound/weapons/vp70.ogg'
-	load_method = 2
-	recoil = 0
-	fire_delay = 2
-	burst_amount = 2
-
-
-/obj/item/clothing/suit/storage/marine/PMCarmor/sniper
-	icon = 'icons/PMC/PMC.dmi'
-	icon_override = 'icons/PMC/PMC.dmi'
-	item_state = "pmc_sniper"
-	icon_state = "pmc_sniper"
-	armor = list(melee = 60, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
-
-/obj/item/clothing/head/helmet/marine/PMC/sniper
-	name = "PMC Sniper Helmet"
-	desc = "A helmet worn by PMC Marksmen"
-	item_state = "pmc_sniper_hat"
-	icon_state = "pmc_sniper_hat"
-
 /obj/item/weapon/gun/projectile/automatic/m41/commando
 	name = "\improper M41C Rifle"
 	desc = "A modified M41A Pulse Rifle, the M41C. A modification of the standard Armat systems model adjusted to be fired with one hand, and at quicker firing rates. Painted in a brown color scheme and carried by corporate Black Ops kill-teams.."
@@ -308,13 +299,7 @@
 	twohanded = 0
 	fire_delay = 2
 	item_state = "m41c"
-
-/obj/item/weapon/claymore/mercsword
-	name = "Combat Sword"
-	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharped to deal massive damage."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "sword"
-	force = 40
+*/
 
 /obj/item/weapon/claymore/mercsword/machete
 	name = "M2132 Machete"
@@ -343,9 +328,10 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/weapon/butterfly/katana
-	name = "Katana"
+	name = "katana"
 	desc = "A ancient weapon from Japan."
 	icon_state = "samurai"
+	force = 40
 
 /obj/item/smartgun_powerpack/fancy
 	icon = 'icons/mob/back.dmi'

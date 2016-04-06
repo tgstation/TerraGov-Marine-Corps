@@ -25,7 +25,6 @@
 	evolves_to = list()
 	armor_deflection = 82
 	big_xeno = 1
-	spit_projectile = /obj/item/projectile/energy/neuro/strongest
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

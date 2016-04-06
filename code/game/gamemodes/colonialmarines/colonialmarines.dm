@@ -18,7 +18,7 @@
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 	var/pred_chance = 5 //1 in <x>
 	var/is_pred_round = 0
-	var/numpreds = 3
+	var/numpreds = 0
 
 
 /* Pre-pre-startup */
@@ -41,19 +41,16 @@
 
 	if(round(rand(1,pred_chance)) == 1) //Just make sure we have enough.
 		is_pred_round = 1
-		if(!possible_predators.len)
-			is_pred_round = 0
-		else
-			while(numpreds > 0)
-				if(!possible_predators.len)
-					break
-				else
-					var/datum/mind/new_pred = pick(possible_predators)
-					possible_predators -= new_pred
-					predators += new_pred
-					numpreds--
-					new_pred.assigned_role = "MODE"
-					new_pred.special_role = "Predator"
+		while(numpreds < 3)
+			if(!possible_predators.len)
+				break
+			else
+				var/datum/mind/new_pred = pick(possible_predators)
+				possible_predators -= new_pred
+				predators += new_pred
+				numpreds--
+				new_pred.assigned_role = "MODE"
+				new_pred.special_role = "Predator"
 	else
 		is_pred_round = 0
 
@@ -227,7 +224,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/detective(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), slot_l_hand)
 
 
 	var/randgear = rand(0,20)
@@ -502,6 +499,7 @@ var/list/toldstory = list()
 						text += "<BR>[A.key] was Unknown! (body destroyed)"
 
 			world << text
+
 //	..()
 	return 1
 

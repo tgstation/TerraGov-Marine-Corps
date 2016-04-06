@@ -90,6 +90,7 @@
 		if (!istype(M) || !istype(U))
 			return
 		face_atom(T)
+		/*
 		var/obj/item/projectile/bullet/m4a3/B = new(M)
 		B.accuracy = 300 //Never misses.
 		B.armor_pierce = 50
@@ -105,6 +106,7 @@
 
 		spawn( 1 )
 			B.process()
+			*/
 
 		visible_message("\red <B>[src] shoots its autocannon!</B>","\red <b>You shoot your autocannon!</B>" )
 		playsound(src.loc,'sound/weapons/Gunshot_smg.ogg',60,1)

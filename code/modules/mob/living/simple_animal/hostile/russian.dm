@@ -38,11 +38,11 @@
 	icon_state = "russianranged"
 	icon_living = "russianranged"
 	corpse = /obj/effect/landmark/mobcorpse/russian/ranged
-	weapon1 = /obj/item/weapon/gun/projectile/mateba
+	weapon1 = /obj/item/weapon/gun/pistol
 	ranged = 1
-	projectiletype = /obj/item/projectile/bullet
+	projectiletype = /obj/item/projectile
 	projectilesound = 'sound/weapons/Gunshot.ogg'
-	casingtype = /obj/item/ammo_casing/a357
+	casingtype = null
 
 
 /mob/living/simple_animal/hostile/UPP
@@ -84,9 +84,9 @@
 /mob/living/simple_animal/hostile/UPP/ranged
 	//weapon1 = /obj/item/weapon/gun/projectile/mateba
 	ranged = 1
-	projectiletype = /obj/item/projectile/bullet
+	projectiletype = /obj/item/projectile
 	projectilesound = 'sound/weapons/Gunshot.ogg'
-	casingtype = /obj/item/ammo_casing/a357
+	casingtype = null
 
 
 /mob/living/simple_animal/hostile/russian/death()

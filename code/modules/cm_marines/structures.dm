@@ -32,7 +32,7 @@
 	return
 
 /obj/structure/m_barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover,/obj/item/projectile/bullet))
+	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 	if(locate(/obj/structure/table) in get_turf(mover)) //Tables let you climb on barricades.
 		return 1
@@ -67,7 +67,7 @@
 	return 1
 
 /obj/structure/m_barricade/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile/bullet) && !istype(O,/obj/item/missile) && !istype(O,/obj/item/weapon/grenade))
+	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile) && !istype(O,/obj/item/missile) && !istype(O,/obj/item/weapon/grenade))
 		return 0
 	else
 		return 1

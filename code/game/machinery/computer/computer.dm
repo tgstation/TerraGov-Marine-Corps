@@ -63,7 +63,7 @@
 	return
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
-	if(prob(Proj.damage))
+	if(prob(Proj.ammo.damage))
 		set_broken()
 	..()
 

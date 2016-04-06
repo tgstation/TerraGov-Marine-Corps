@@ -63,16 +63,17 @@
 	if(crit_fail)
 		usr << "\red This power cell seems to be faulty."
 
+/*
 /obj/item/weapon/cell/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
-		if(!istype(SNG) || !SNG.candrain || !SNG.draining) return
-
-		SNG.drain("CELL",src,H.wear_suit)
-	return
-
+//	if(ishuman(user))
+//		var/mob/living/carbon/human/H = user
+//		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
+//		if(!istype(SNG) || !SNG.candrain || !SNG.draining) return
+//
+//		SNG.drain("CELL",src,H.wear_suit)
+	return ..()
+*/
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))

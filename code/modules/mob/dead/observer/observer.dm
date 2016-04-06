@@ -766,11 +766,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "You are whitelisted, but there are no hunts this round. Maybe if you prayed real hard an Admin could spawn you in."
 		return
 
-	if(ticker.mode:numpreds <= 0)
+	if(ticker.mode:numpreds >= 3)
 		usr << "Already full up. There can only be 3 per round."
 		return
 
-	if(src.client && src.client.was_a_predator)
+	if((src.client && src.client.was_a_predator) || (ticker && src.mind && src.mind in ticker.mode:predators))
 		usr << "You already were a Yautja! Give someone else a chance."
 		return
 
@@ -778,19 +778,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/living/carbon/human/M = new(pick(pred_spawn))
 	M.key = src.key
 
-	if(M.mind)
-		M.mind.assigned_role = "MODE"
-		M.mind.special_role = "Predator"
-	else //This should never happen. EVER.
-		M.mind = new(M.key)
-		M.mind.assigned_role = "MODE"
-		M.mind.special_role = "Predator"
-
 	M.set_species("Yautja")
-	if(M.client.prefs)
+	if(src.client && src.client.prefs) //Fuckit, one of these must be right.
+		M.real_name = src.client.prefs.predator_name
+		M.gender = src.client.prefs.predator_gender
+	else if(M.client && M.client.prefs)
 		M.real_name = M.client.prefs.predator_name
 		M.gender = M.client.prefs.predator_gender
-	if(!M.real_name || M.real_name == "") M.real_name = "Unknown Yautja"
 	if(!M.gender) M.gender = "male"
 	M.update_icons()
 	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
@@ -800,7 +794,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.real_name = "Elder [M.real_name]"
 		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
 		M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
+		M << "<B>You come equipped as an Elder should, with bonus glaive and heavy armor.</b>"
 
 	ticker.mode.predators += M.mind
+	M.mind.assigned_role = "MODE"
+	M.mind.special_role = "Predator"
+	if(M.client) M.client.was_a_predator = 1
 	if(old) del(old) //Wipe the old ghost.
 	return

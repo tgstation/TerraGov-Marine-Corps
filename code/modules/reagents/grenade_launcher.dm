@@ -1,9 +1,9 @@
 
-
+/*
 /obj/item/weapon/gun/grenadelauncher
 	name = "grenade launcher"
 	icon = 'icons/obj/gun.dmi'
-	icon_state = "riotgun"
+	icon_state = "m92"
 	item_state = "riotgun"
 	w_class = 4.0
 	throw_speed = 2
@@ -64,3 +64,4 @@
 			playsound(user.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 			spawn(15)
 				F.prime()
+*/

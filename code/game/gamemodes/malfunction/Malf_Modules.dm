@@ -41,6 +41,7 @@ rcd light flash thingy on matter drain
 	usr.verbs -= /client/proc/fireproof_core
 	usr << "\red Core fireproofed."
 
+/*
 /datum/AI_Module/large/upgrade_turrets
 	module_name = "AI Turret upgrade"
 	mod_pick_name = "turret"
@@ -52,7 +53,7 @@ rcd light flash thingy on matter drain
 	for(var/obj/machinery/turret/turret in player_list)
 		turret.health += 30
 		turret.shot_delay = 20
-
+*/
 /datum/AI_Module/large/disable_rcd
 	module_name = "RCD disable"
 	mod_pick_name = "rcd"
@@ -186,7 +187,7 @@ rcd light flash thingy on matter drain
 
 /datum/AI_Module/module_picker/New()
 	src.possible_modules += new /datum/AI_Module/large/fireproof_core
-	src.possible_modules += new /datum/AI_Module/large/upgrade_turrets
+//	src.possible_modules += new /datum/AI_Module/large/upgrade_turrets
 	src.possible_modules += new /datum/AI_Module/large/disable_rcd
 	src.possible_modules += new /datum/AI_Module/small/overload_machine
 	src.possible_modules += new /datum/AI_Module/small/interhack
@@ -228,7 +229,7 @@ rcd light flash thingy on matter drain
 			src.temp = "An upgrade to improve core resistance, making it immune to fire and heat. This effect is permanent."
 			src.processing_time -= 50
 		else src.temp = "This module is only needed once."
-
+/*
 	else if (href_list["turret"])
 		var/already
 		for (var/datum/AI_Module/mod in usr:current_modules)
@@ -240,7 +241,7 @@ rcd light flash thingy on matter drain
 			src.temp = "Improves the firing speed and health of all AI turrets. This effect is permanent."
 			src.processing_time -= 50
 		else src.temp = "This module is only needed once."
-
+*/
 	else if (href_list["rcd"])
 		var/already
 		for (var/datum/AI_Module/mod in usr:current_modules)

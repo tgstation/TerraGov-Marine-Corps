@@ -496,7 +496,7 @@
 
 
 /obj/mecha/bullet_act(var/obj/item/projectile/Proj) //wrapper
-	src.log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).",1)
+	src.log_message("Hit by projectile. Type: [Proj.name].",1)
 	call((proc_res["dynbulletdamage"]||src), "dynbulletdamage")(Proj) //calls equipment
 	..()
 	return
@@ -508,17 +508,14 @@
 		src.log_append_to_last("Armor saved.")
 		return
 
-	if(Proj.damage_type == HALLOSS)
-		use_power(Proj.agony * 5)
+	if(Proj.ammo.damage_type == HALLOSS)
+		use_power(Proj.ammo.agony * 5)
 
-	if(!(Proj.nodamage))
-		var/ignore_threshold
-		if(istype(Proj, /obj/item/projectile/beam/pulse))
-			ignore_threshold = 1
-		src.take_damage(Proj.damage,Proj.flag)
-		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
+	if(Proj.ammo.damage > 0)
+		src.take_damage(Proj.ammo.damage)
+		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT))
 
-	Proj.on_hit(src)
+	//Proj.on_hit(src)
 	return
 
 /obj/mecha/proc/destroy()

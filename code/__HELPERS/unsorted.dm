@@ -43,8 +43,9 @@
 	return 1
 
 
-/proc/Get_Angle(atom/movable/start,atom/movable/end)//For beams.
+/proc/Get_Angle(atom/start,atom/end)//For beams.
 	if(!start || !end) return 0
+	if(!start.z || !end.z) return 0 //Atoms are not on turfs.
 	var/dy
 	var/dx
 	dy=(32*end.y+end.pixel_y)-(32*start.y+start.pixel_y)

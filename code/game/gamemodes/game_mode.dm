@@ -33,9 +33,6 @@
 	var/uplink_uses = 10
 	var/list/datum/uplink_item/uplink_items = list(
 		"Highly Visible and Dangerous Weapons" = list(
-			 new/datum/uplink_item(/obj/item/weapon/gun/projectile, 6, "Revolver", "RE"),
-			 new/datum/uplink_item(/obj/item/ammo_magazine/a357, 2, "Ammo-357", "RA"),
-			 new/datum/uplink_item(/obj/item/weapon/gun/energy/crossbow, 5, "Energy Crossbow", "XB"),
 			 new/datum/uplink_item(/obj/item/weapon/melee/energy/sword, 4, "Energy Sword", "ES"),
 			 new/datum/uplink_item(/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser, 6, "Exosuit Rigged Laser", "RL"),
 			 new/datum/uplink_item(/obj/item/weapon/storage/box/syndicate, 10, "Syndicate Bundle", "BU"),
@@ -519,7 +516,14 @@ proc/get_nt_opposed()
 		obj_count++
 
 /datum/game_mode/proc/printplayer(var/datum/mind/ply)
-	var/role = "\improper[ply.assigned_role]"
+	if(!ply) return
+	var/role
+
+	if(ply.special_role)
+		role = ply.special_role
+	else
+		role = ply.assigned_role
+
 	var/text = "<br><b>[ply.name]</b>(<b>[ply.key]</b>) as \a <b>[role]</b> ("
 	if(ply.current)
 		if(ply.current.stat == DEAD)

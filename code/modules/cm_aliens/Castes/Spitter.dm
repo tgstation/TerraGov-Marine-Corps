@@ -16,7 +16,6 @@
 	speed = 0
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
-	spit_projectile = /obj/item/projectile/energy/neuro/strong
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

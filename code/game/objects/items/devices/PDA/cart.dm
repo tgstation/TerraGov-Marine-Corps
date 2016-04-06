@@ -61,8 +61,8 @@
 
 /obj/item/weapon/cartridge/security/New()
 	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/beepsky(src)
+//	spawn(5)
+//		radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/detective
 	name = "D.E.T.E.C.T. Cartridge"
@@ -155,8 +155,8 @@
 
 /obj/item/weapon/cartridge/hos/New()
 	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/beepsky(src)
+//	spawn(5)
+//		radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/ce
 	name = "Power-On DELUXE"
@@ -338,7 +338,7 @@
 		else
 			values["security_exists"] = 0
 
-	/*		Security Bot Control (Mode: 46)		*/
+	/*		Security Bot Control (Mode: 46)
 
 	if(mode==46)
 		var/botsData[0]
@@ -375,7 +375,7 @@
 		values["beepsky"] = beepskyData
 
 
-	/*		MULEBOT Control	(Mode: 48)		*/
+			MULEBOT Control	(Mode: 48)		*/
 
 	if(mode==48)
 		var/muleData[0]

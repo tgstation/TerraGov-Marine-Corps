@@ -207,8 +207,8 @@ update_flag
 	return
 
 /obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damage)
-		src.health -= round(Proj.damage / 2)
+	if(Proj.ammo.damage)
+		src.health -= round(Proj.ammo.damage / 2)
 		healthcheck()
 	..()
 
