@@ -17,6 +17,7 @@
 	evolves_to = list("Ravager", "Crusher")
 	charge_type = 1 //Pounce
 	armor_deflection = 32
+	attack_delay = -2
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

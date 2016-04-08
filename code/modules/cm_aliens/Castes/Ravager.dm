@@ -28,6 +28,7 @@
 	fire_immune = 1
 	armor_deflection = 65
 	big_xeno = 1
+	attack_delay = -2
 
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6

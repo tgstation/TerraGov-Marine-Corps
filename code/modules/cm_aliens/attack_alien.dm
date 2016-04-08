@@ -6,6 +6,7 @@
 
 /mob/living/carbon/Xenomorph/UnarmedAttack(var/atom/A) //The generic CLICK A THING proc
 	A.attack_alien(src)
+	next_move = world.time + (10 + attack_delay) //Adds some lag to the 'attack'
 
 /atom/proc/attack_alien(mob/user as mob) //The initial proc, defaults to mankeys
 	return ..(attack_paw(user))
@@ -15,7 +16,7 @@
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva)) //Larva can't do shit-all
 		visible_message("\red <B>[M] nudges its head against [src].</B>")
 		return 0
-
+//	next_move += (7 + M.attack_delay) //Adds some lag to the 'attack'
 	switch(M.a_intent)
 		if ("help")
 			visible_message(text("\blue \The [M] caresses [src] with its scythe like arm."))
@@ -140,7 +141,7 @@
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva))
 		visible_message("\red <B>[M] nudges its head against [src].</B>")
 		return 0
-
+//	M.next_move += (7 + M.attack_delay) //Adds some lag to the 'attack'
 	switch(M.a_intent)
 		if ("help")
 			visible_message(text("\blue [M] caresses [src] with its scythe like arm. Ooh la la!"))

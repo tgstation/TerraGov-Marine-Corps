@@ -757,7 +757,7 @@
 	if(burst_fire) scatter_chance = 30
 
 	if(prob(scatter_chance))
-		U = locate(U.x + pick(0,-1,1),U.y + pick(0,-1,1),U.z)
+		U = locate(U.x + rand(-2,2),U.y + rand(-2,2),U.z)
 
 	if (!istype(T) || !istype(U))
 		return
@@ -774,10 +774,13 @@
 			if(dx > 0)	dir = EAST
 			else		dir = WEST
 
-	playsound(src.loc, 'sound/weapons/Gunshot.ogg', 80, 1)
 	load_into_chamber()
 	if(isnull(in_chamber) || in_chamber == 0 || !in_chamber) return //bugggggg
-	in_chamber.fire_at(U,src,src,ammo.max_range)
+	in_chamber.original = target
+	in_chamber.dir = src.dir
+	in_chamber.def_zone = pick("chest","chest","chest","head")
+	playsound(src.loc, 'sound/weapons/gunshot_rifle.ogg', 100, 1)
+	in_chamber.fire_at(U,src,src,ammo.max_range,ammo.shell_speed)
 	rounds--
 	if(rounds == 0)
 		visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")

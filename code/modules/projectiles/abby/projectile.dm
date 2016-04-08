@@ -82,11 +82,11 @@
 
 		//These should all be 0 if the bullet is still in the barrel.
 		if(ammo.accurate_range < distance_travelled && (ammo.current_gun && !ammo.current_gun.zoom)) //Determine ranged accuracy
-			acc -= (distance_travelled * 4)
+			acc -= (distance_travelled * 5) //-5% accuracy per turf
 		else if(ammo.current_gun && !ammo.current_gun.zoom && ammo.accurate_range >= distance_travelled) //Close range bonus
-			acc -= (distance_travelled * 3)
-		else if(!ammo.current_gun) //Non-gun firers, aka turrets, just get a flat -2 accuracy per turf.
-			acc -= (distance_travelled * 2)
+			acc -= (distance_travelled * 2) //-2% accuracy per turf
+		else if(!ammo.current_gun) //Non-gun firers, aka turrets, just get a flat -1 accuracy per turf.
+			acc -= (distance_travelled)
 
 		if(acc < 5) acc = 5 //There's always some chance.
 		return acc
@@ -158,7 +158,7 @@
 			del(src)
 			return
 
-		var/dist_since_sleep = 0
+		var/dist_since_sleep = 5 //Just so we always see the bullet.
 		var/turf/current_turf = get_turf(src)
 		var/turf/next_turf
 
@@ -173,6 +173,9 @@
 
 				if(istype(next_turf) && scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
 					sleep(-1) //Make sure everything else is done.
+					if(src) del(src)
+					return
+				else if(!istype(next_turf))  //Something weird
 					if(src) del(src)
 					return
 
@@ -192,6 +195,7 @@
 					return
 
 				if(!path.len) //No more left!
+					sleep(1)
 					current_turf = get_turf(src)
 					next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 					if(current_turf && next_turf)
@@ -270,6 +274,8 @@
 		return 0 //Found nothing.
 
 	proc/bullet_ping(var/atom/target)
+		set waitfor = 0
+
 		if(!target) return
 
 		var/image/ping = image('icons/obj/projectiles.dmi',target,"ping",10) //Layer 10, above most things but not the HUD.
@@ -286,7 +292,9 @@
 		for(var/mob/M in viewers(target))
 			M << ping
 
-		spawn(3) del(ping)
+		sleep(3)
+		if(ping) del(ping)
+		return
 
 /atom/proc/bullet_act(obj/item/projectile/P)
 	return density
@@ -302,7 +310,7 @@
 	if(istype(P.firer, /mob))
 		attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
 		P.firer:attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
-		msg_admin_attack("[P.firer] ([P.firer:ckey]) shot [src] ([src.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>)")
+		msg_admin_attack("[P.firer] ([P.firer:ckey]) shot [src] ([src.ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>)")
 	else if(P.firer)
 		attack_log += "\[[time_stamp()]\] <b>[P.firer]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
 		msg_admin_attack("[P.firer] shot [src] ([src.ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>)")
@@ -358,8 +366,9 @@
 
 	//Run armor check
 	//Shields
-	if(check_shields(P.damage, "the [P.name]"))
+	if(check_shields(30 + P.ammo.accuracy, "the [P.name]"))
 		P.ammo.on_shield_block(src)
+		P.bullet_ping()
 		return 1
 
 	var/armor = 0 //Why are damage types different from armor types? Who the fuck knows. Let's merge them anyway.
@@ -395,7 +404,7 @@
 		apply_effects(P.ammo.stun,P.ammo.weaken,P.ammo.paralyze,P.ammo.irradiate,P.ammo.stutter,P.ammo.eyeblur,P.ammo.drowsy,P.ammo.agony)
 
 	if(src && P && damage > 0)
-		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
+		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, P, 0, P)
 
 	if(!src || !P || !P.ammo) return
 
@@ -454,7 +463,7 @@
 		return 1
 
 	bullet_message(P)
-	P.ammo.on_hit_mob(src)
+	P.ammo.on_hit_mob(src,P)
 
 	if(src && P && damage > 0)
 		apply_damage(damage,P.ammo.damage_type, P.def_zone, 0, P,0,0)	//Deal the damage.
@@ -505,7 +514,7 @@
 		overlays += I
 		bullet_holes++
 
-	P.ammo.on_hit_turf(src)
+	P.ammo.on_hit_turf(src,P)
 
 	return 1
 
@@ -528,7 +537,7 @@
 //Hitting an object. These are too numerous so they're staying in their files.
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P,get_turf(src),src.layer))
-		P.ammo.on_hit_obj(src)
+		P.ammo.on_hit_obj(src,P)
 		P.bullet_ping(src)
 		return 1
 	else
