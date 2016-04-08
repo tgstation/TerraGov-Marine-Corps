@@ -32,17 +32,16 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/shift_spits()
-	set name = "Toggle Spit Type"
+	set name = "Toggle Spit Type (20)"
 	set desc = "Toggles between a lighter, single-target stun spit or a heavier area acid that burns. The heavy version requires more plasma."
 	set category = "Alien"
 
-	del(spit_projectile) //This sucks, but oh well.
+	if(!check_plasma(20)) return
 
 	if(!spit_type)
 		src << "You will now spit corrosive acid globs."
 		spit_type = 1
 		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
-		spit_type = 0
 		if(spit_projectile)
 			del(spit_projectile)
 		spit_projectile =  new /datum/ammo/xeno/spit/burny()
@@ -54,6 +53,7 @@
 	else
 		src << "You will now spit stunning neurotoxin instead of acid."
 		spit_type = 0
+		spit_delay = initial(spit_delay)
 		if(spit_projectile)
 			del(spit_projectile)
 		spit_projectile = new /datum/ammo/xeno/spit()
@@ -308,7 +308,7 @@
 			if(!check_plasma(50))
 				return
 
-		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
+
 
 		var/turf/Turf = get_turf(src)
 		var/turf/Target_Turf = get_turf(T)
@@ -320,15 +320,20 @@
 			src << "Too close!"
 			return
 
+		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
 
 		var/obj/item/projectile/A = new(Turf)
 		A.permutated.Add(src)
 		A.def_zone = get_organ_target()
 		A.ammo = spit_projectile //This always must be set.
+		A.icon = A.ammo.icon
+		A.icon_state = A.ammo.icon_state
+		A.damage = A.ammo.damage
+		A.damage_type = A.ammo.damage_type
 
-		spawn(1)
-			A.fire_at(Target_Turf,src,null,A.ammo.max_range,A.ammo.shell_speed) //Ptui!
-
+		spawn()
+			A.fire_at(T,src,src,A.ammo.max_range,A.ammo.shell_speed) //Ptui!
+//		src.next_move += 2 //Lags you out a bit, spitting.
 		has_spat = 1
 		spawn(spit_delay)
 			has_spat = 0

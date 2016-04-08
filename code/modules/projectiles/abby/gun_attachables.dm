@@ -494,7 +494,7 @@
 	can_activate = 1
 
 	//"Readying" the gun for the grenade launch is not needed. Just point & click
-	activate_attachment(target,user)
+	activate_attachment(atom/target,mob/living/user)
 		user << "\blue Your next shot will fire an explosive grenade."
 		return 1
 
@@ -508,6 +508,7 @@
 			G.icon_state = initial(icon_state) + "_active"
 			G.throw_range = 10
 			G.throw_at(target, 10, 1, user)
+			current_ammo--
 			spawn(12) //~1 second.
 				if(G) //If somehow got deleted since then
 					G.prime()
@@ -562,7 +563,6 @@
 			user << "Too close to fire the attached flamethrower!"
 			return 1
 
-
 		if(current_ammo > 0)
 			var/list/turf/turfs = list()
 			var/distance = 0
@@ -571,7 +571,6 @@
 
 			for(var/turf/T in turfs)
 				distance++
-				current_ammo--
 				if(current_ammo == 0) break
 				if(distance > 3) break
 				if(DirBlocked(T,usr.dir))
@@ -585,6 +584,7 @@
 					if(W.is_full_window()) break
 					if(W.dir == src.dir)
 						break
+				current_ammo--
 				flame_turf(T)
 				continue
 		else
@@ -598,6 +598,8 @@
 		if(!locate(/obj/flamer_fire) in T) // No stacking flames!
 			var/obj/flamer_fire/F =  new/obj/flamer_fire(T)
 			processing_objects.Add(F)
+		else
+			return 0
 
 		for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
 			if(M.stat == DEAD) continue
@@ -624,5 +626,6 @@
 
 
 	activate_attachment(atom/target,mob/living/carbon/user)
-		zoom()
+		if(istype(target,/obj/item/weapon/gun))
+			target:zoom()
 		return 1

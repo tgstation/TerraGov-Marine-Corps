@@ -89,4 +89,10 @@
 			return
 		return ..()
 
+	unload(var/mob/user as mob)
+		if(user) user << "The smartgun has an integrated ammo feed and cannot be unloaded."
+		return
+
+
+
 //-------------------------------------------------------

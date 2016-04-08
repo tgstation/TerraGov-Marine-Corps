@@ -352,7 +352,7 @@
 	item_state = "44"
 	mag_type = "/obj/item/ammo_magazine/pistol/highpower"
 	fire_sound = 'sound/weapons/44mag.ogg'
-	fire_delay = 10
+	fire_delay = 15
 	recoil = 1
 	w_class = 3
 	force = 10
@@ -363,11 +363,7 @@
 	under_pixel_x = 19
 	under_pixel_y = 18
 	found_on_mercs = 1
-
-	load_into_chamber()
-		..()
-		if(in_chamber) in_chamber.damage += 12 //Does slightly more damage per bullet than standard, being 45 caliber
-		return
+	dam_bonus = 20 //She a beefy pistol meng
 
 //-------------------------------------------------------
 //MARSHALS REVOLVER
@@ -417,7 +413,7 @@
 	icon_state = "vp70"
 	item_state = "vp70"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp70"
-	fire_sound = 'sound/weapons/servicepistol.ogg'
+	fire_sound = 'sound/weapons/gunshot_glock.ogg'
 	fire_delay = 6
 	burst_amount = 3
 	burst_delay = 3
@@ -448,7 +444,7 @@
 	icon_state = "VP78"
 	item_state = "vp70"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp78"
-	fire_sound = 'sound/weapons/servicepistol.ogg'
+	fire_sound = 'sound/weapons/gunshot_glock.ogg'
 	fire_delay = 6
 	burst_amount = 3
 	burst_delay = 3
@@ -461,8 +457,3 @@
 	rail_pixel_y = 22
 	under_pixel_x = 21
 	under_pixel_y = 16
-
-	New()
-		..()
-		icon_state = pick("VP78","VP782") //Randomize that shiz
-

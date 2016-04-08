@@ -31,6 +31,8 @@
 	force = 14.0
 	twohanded = 1
 	fire_sound = 'sound/weapons/shotgun.ogg'
+	accuracy = 10
+
 
 //MERC SHOTGUN - DOES NOT REQUIRE PUMPING
 /obj/item/weapon/gun/shotgun/merc
@@ -48,7 +50,7 @@
 	under_pixel_x = 18
 	under_pixel_y = 14
 	burst_amount = 4
-	accuracy = -35
+	accuracy = -20
 	found_on_mercs = 1
 	twohanded = 0
 

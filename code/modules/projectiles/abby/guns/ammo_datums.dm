@@ -121,8 +121,8 @@
 	name = "shotgun slug"
 	damage = 50
 	damage_bleed = 7 //Loses 7 damage every turf.
-	accurate_range = 3
-	max_range = 10
+	accurate_range = 4
+	max_range = 12
 	casing_type = "/obj/item/ammo_casing/shotgun"
 	shell_speed = 1
 
@@ -307,7 +307,7 @@
 	on_hit_turf(turf/T,obj/item/projectile/P)
 		drop_flame(get_turf(P))
 
-	do_at_max_range(P)
+	do_at_max_range(obj/item/projectile/P)
 		drop_flame(get_turf(P))
 
 //all of my keks, i give them to you
@@ -347,7 +347,7 @@
 	on_hit_turf(turf/T,obj/item/projectile/P)
 		drop_nade(get_turf(P))
 
-	do_at_max_range(P)
+	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))
 
 	proc/drop_nade(var/turf/T)
@@ -384,7 +384,7 @@
 	on_hit_turf(turf/T,obj/item/projectile/P)
 		drop_nade(get_turf(P))
 
-	do_at_max_range(P)
+	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))
 
 	proc/drop_nade(var/turf/T)

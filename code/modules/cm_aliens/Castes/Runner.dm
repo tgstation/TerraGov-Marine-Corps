@@ -18,6 +18,7 @@
 	evolves_to = list("Hunter")
 	charge_type = 1 //Pounce
 	pass_flags = PASSTABLE
+	attack_delay = -3
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

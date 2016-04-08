@@ -121,6 +121,14 @@
 		if(under)
 			usr << "It has \icon[under] [under.name] mounted underneath."
 
+	mob_can_equip(M as mob, slot)
+		//Cannot equip wielded items.
+		if(wielded)
+			M << "<span class='warning'>Unwield the [initial(name)] first!</span>"
+			return 0
+
+		return ..()
+
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
@@ -247,6 +255,7 @@
 	P.name = P.ammo.name
 	P.icon_state = P.ammo.icon_state //Make it look fancy.
 	P.damage = P.ammo.damage
+	P.damage += src.dam_bonus
 	P.damage_type = P.damage_type
 	in_chamber = P
 	return 1
@@ -322,6 +331,8 @@
 				var/obj/item/clothing/suit/storage/I = user:wear_suit
 				if(isnull(user:s_store))
 					if(wielded)	unwield()
+					var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
+					if(istype(O)) O.unwield()
 					spawn(0)
 						user:equip_to_slot_if_possible(src,slot_s_store)
 						if(user:s_store == src) user << "\red The [src] snaps into place on [I]."
@@ -387,8 +398,8 @@
 
 	if(targloc == curloc && in_chamber)
 		target.bullet_act(in_chamber)
+		sleep(-1)
 		del(in_chamber)
-		load_into_chamber()
 		update_icon()
 		return
 	else if (targloc == curloc)
@@ -404,7 +415,6 @@
 		if(active_attachable.fire_attachment(target,src,user) == 1)
 			if(!active_attachable.continuous)
 				active_attachable = null
-
 			return
 
 	var/bullets_fired = 1
@@ -472,8 +482,10 @@
 			var/scatter_chance = 50 //Normally some scatter.
 			scatter_chance -= in_chamber.get_accuracy()
 			scatter_chance += (burst_amount * 20)
+			var/scatter_distance = round(get_dist(get_turf(src),get_turf(target)) / 2)
+
 			if(prob(scatter_chance)) //Scattered!
-				targloc = locate(targloc.x + pick(1,-1,ammo.bonus_projectiles),targloc.y + pick(1,-1,ammo.bonus_projectiles),targloc.z) //Locate an adjacent turf.
+				targloc = locate(targloc.x + rand(-1 * scatter_distance,scatter_distance),targloc.y + rand(-1 * scatter_distance,scatter_distance),targloc.z) //Locate an adjacent turf.
 				if(isnull(targloc)) //Went off the map somehow.
 					break
 
@@ -527,10 +539,12 @@
 	return
 
 /obj/item/weapon/gun/proc/muzzle_flash(var/angle)
+	set waitfor = 0
+
 	if(silenced || !muzzle_flash || isnull(angle)) return
 	var/mob/user = src.loc
 	if(!istype(user) || !istype(user.loc,/turf)) return
-	if(prob(75)) //Not all the time.
+	if(prob(65)) //Not all the time.
 		var/image/flash = image('icons/obj/projectiles.dmi',user,"muzzle_flash",MOB_LAYER-0.1)
 
 		var/matrix/rotate = matrix() //Change the flash angle.
@@ -540,7 +554,8 @@
 		for(var/mob/M in viewers(user))
 			M << flash
 
-		spawn(3) del(flash)
+		sleep(3)
+		del(flash)
 
 /obj/item/weapon/gun/proc/click_empty(mob/user = null)
 	if (user)
@@ -584,6 +599,8 @@
 		if(user.a_intent == "hurt")
 			user.visible_message("\red <b> \The [user] fires \the [src] point blank at [M]!</b>")
 			if(istype(in_chamber)) in_chamber.damage *= 1.1
+			burst_toggled = 0 //NOPE.jpg
+			burst_firing = 0
 			Fire(M,user)
 			return
 //		else if(target && M in target)
@@ -772,6 +789,9 @@
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
 		usr << "Not right now."
 		return
+
+	if(active_attachable)
+		active_attachable = null
 
 	if(!rail && !under && !muzzle && !stock )
 		usr << "This weapon does not have any attachments, you dingus."
