@@ -166,6 +166,12 @@
 	under_pixel_y = 14
 	found_on_mercs = 1
 
+	New()
+		..()
+		var/obj/item/attachable/grenade/G = new(src)
+		G.Attach(src)
+		update_attachables()
+
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/shotgun/double
