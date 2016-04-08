@@ -517,7 +517,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		world << "* [areatype]"
 
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
-	set category = "Fun"
+	set category = "Special Verbs"
 	set name = "Select equipment"
 	if(!ishuman(M))
 		alert("Invalid mob")
@@ -536,10 +536,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"USCM Admiral (USCM Command)",
 		"Weyland-Yutani PMC (Standard)",
 		"Weyland-Yutani PMC (Leader)",
+		"Weyland-Yutani Commando",
 		"Iron Bears (Standard)",
 		"Iron Bears (Leader)",
+		"Colonial Marshal",
 		"tournament standard red",
 		"tournament standard green",
+		"Weyland-Yutani representative",
 		"Fleet Admiral",
 		"Standard Space Gear")
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
@@ -997,9 +1000,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("syndicate commando")
 			M.equip_syndicate_commando()
-
-		if("weyland-yutani representative")
-			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/representative(M), slot_w_uniform)
+*/
+		if("Weyland-Yutani representative")
+			M.equip_if_possible(new /obj/item/clothing/under/liaison_suit/formal(M), slot_w_uniform)
 			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
 			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
 //			M.equip_if_possible(new /obj/item/device/radio/headset/heads/hop(M), slot_l_ear)
@@ -1023,6 +1026,80 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.registered_name = M.real_name
 			M.equip_if_possible(W, slot_wear_id)
 
+
+
+
+
+		if("Weyland-Yutani Commando")
+			M.equip_if_possible(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask(M), slot_wear_mask)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(M), slot_gloves)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M), slot_in_backpack)
+			if(rand(0,4) != 0)
+				M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/incendiary(M), slot_l_hand)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/incendiary(M), slot_in_backpack)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/incendiary(M), slot_in_backpack)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(M), slot_in_backpack)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(M), slot_in_backpack)
+			else
+				M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_in_backpack)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_in_backpack)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_in_backpack)
+				M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_in_backpack)
+
+
+			var/obj/item/weapon/card/id/W = new(M)
+			W.name = "[M.real_name]'s ID Card"
+			W.icon_state = "centcom"
+			W.item_state = "id_inv"
+			W.access = get_all_accesses()
+			W.assignment = "Weyland-Yutani Elite Commando"
+			W.registered_name = M.real_name
+			M.equip_if_possible(W, slot_wear_id)
+
+		if("Colonial Marshal")
+			M.equip_if_possible(new /obj/item/clothing/under/CM_uniform(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(M), slot_wear_suit)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/soft/sec/corp(M), slot_head)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(M), slot_shoes)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb, slot_belt)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump/cmb, slot_r_hand)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(M), slot_back)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/cmb(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/cmb(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/cmb(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/cmb(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M), slot_in_backpack)
+
+
+			var/obj/item/weapon/card/id/W = new(M)
+			W.name = "[M.real_name]'s ID Card"
+			W.icon_state = "centcom_old"
+			W.item_state = "id_inv"
+			W.access = get_all_accesses()
+			W.assignment = "Colonial Marshal"
+			W.registered_name = M.real_name
+			M.equip_if_possible(W, slot_wear_id)
+
+
+
+
+
+
+
+
+/*
 
 
 		if("emergency response team")
