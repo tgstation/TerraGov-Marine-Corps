@@ -45,6 +45,7 @@
 	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 9mm rounds and is used by elite troops."
 	icon_state = "smg_pmc"
 	icon_empty = "smg_pmc_empty"
+	item_state = "m39_pmc"
 	burst_amount = 4
 	mag_type = "/obj/item/ammo_magazine/smg/ap"
 	accuracy = 12
@@ -65,7 +66,7 @@
 	desc = "An archaic design going back hundreds of years, the MP7 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
 	icon_state = "mp7"
 	icon_empty = "mp7_empty"
-	item_state = "m39"
+	item_state = "mp7"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	fire_delay = 5
 	mag_type = "/obj/item/ammo_magazine/smg/mp7"
@@ -95,8 +96,8 @@
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32 caliber rounds from a 20 round magazine."
 	icon_state = "skorpion"
 	icon_empty = "skorpion_empty"
-	item_state = "m39"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	item_state = "skorpion"
+	fire_sound = 'sound/weapons/holdout.ogg'
 	fire_delay = 2
 	mag_type = "/obj/item/ammo_magazine/smg/skorpion"
 	muzzle_pixel_x = 33
@@ -126,7 +127,7 @@
 	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere. This one has a 71-round drum magazine."
 	icon_state = "ppsh"
 	icon_empty = "ppsh_empty"
-	item_state = "m39"
+	item_state = "ppsh"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	fire_delay = 3
 	mag_type = "/obj/item/ammo_magazine/smg/ppsh"
@@ -147,8 +148,8 @@
 	desc = "A cheap, reliable Israeli design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower. Uses M39 magazines."
 	icon_state = "mini-uzi"
 	icon_empty = "mini-uzi_empty"
-	item_state = "m39"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	item_state = "mini-uzi"
+	fire_sound = 'sound/weapons/uzi.ogg'
 	fire_delay = 1
 	mag_type = "/obj/item/ammo_magazine/smg"
 	muzzle_pixel_x = 33
@@ -176,7 +177,7 @@
 	desc = "An archaic design, but one that's stood the test of time. Fires fast armor piercing rounds in a 50 round magazine."
 	icon_state = "p90"
 	icon_empty = "p90_empty"
-	item_state = "c20r" //Yep
+	item_state = "p90"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	fire_delay = 2
 	mag_type = "/obj/item/ammo_magazine/smg/p90"
