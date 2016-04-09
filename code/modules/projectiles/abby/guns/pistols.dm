@@ -50,7 +50,7 @@
 	New()
 		..()
 		if(initial(icon_state) == "colt1")
-			icon_state = "colt[rand(1,7)]" //Lets get some variations up in this shit
+			//icon_state = "colt[rand(1,7)]" //Lets get some variations up in this shit
 
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER
