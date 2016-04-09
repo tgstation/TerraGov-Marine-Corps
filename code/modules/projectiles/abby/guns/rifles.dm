@@ -103,7 +103,7 @@
 	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle. Given only to elite units."
 	icon_state = "pmc_m41a"
 	icon_empty = "pmc_m41a0"
-	item_state = "m41a"
+	item_state = "pmc_m41a"
 	fire_delay = 6
 	burst_amount = 3
 	accuracy = 35
@@ -142,6 +142,16 @@
 	found_on_mercs = 1
 	found_on_russians = 1
 
+/obj/item/weapon/gun/rifle/mar40/carbine
+	name = "\improper MAR-40 Battle Carbine"
+	desc = "A cheap, reliable assault rifle chambered in 12mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
+	icon_state = "shortrsprifle"
+	icon_empty = "shortrsprifle0"
+	icon_wielded = "shortrsprifle-w"
+	item_state = "mar40short"
+	fire_delay = 5
+	accuracy = -20
+
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
@@ -156,11 +166,11 @@
 
 /obj/item/weapon/gun/rifle/lmg
 	name = "\improper M41AE2 Heavy Pulse Rifle"
-	desc = "Almost adapted for use by the USCM as a support machinegun, it was instead turned down. The 10mm gun instead found its way to other buyers."
+	desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing among USCM scout platoons and in mercenary companies. Like it's smaller brother, the M41A, the M41AE2 is chambered in 10mm."
 	icon_state = "rsplmg"
 	icon_empty = "rsplmg0"
-	item_state = "l6closedmag" //Replace
-	icon_wielded = "l6closedmag"
+	item_state = "rsplmg"
+	icon_wielded = "rsplmg-w"
 	mag_type = "/obj/item/ammo_magazine/rifle/lmg"
 	fire_sound = 'sound/weapons/gunshot_rifle.ogg' //Change
 	fire_delay = 4
@@ -174,7 +184,7 @@
 	burst_amount = 5
 	accuracy = -35
 	found_on_mercs = 1
-	found_on_russians = 1
+	found_on_russians = 0
 
 //-------------------------------------------------------
 

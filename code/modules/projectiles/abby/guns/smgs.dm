@@ -53,7 +53,7 @@
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/mp7
-	name = "MP7 Magazine (4.6mm)"
+	name = "MP27 Magazine (4.6mm)"
 	desc = "A 9mm special magazine."
 	default_ammo = "/datum/ammo/bullet/smg/ap"
 	icon_state = "9x"
@@ -62,8 +62,8 @@
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 
 /obj/item/weapon/gun/smg/mp7
-	name = "\improper H&K MP7"
-	desc = "An archaic design going back hundreds of years, the MP7 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
+	name = "\improper MP27"
+	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
 	icon_state = "mp7"
 	icon_empty = "mp7_empty"
 	item_state = "mp7"
@@ -144,8 +144,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper Mini-Uzi"
-	desc = "A cheap, reliable Israeli design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower. Uses M39 magazines."
+	name = "\improper MAC-15"
+	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower. Uses M39 magazines."
 	icon_state = "mini-uzi"
 	icon_empty = "mini-uzi_empty"
 	item_state = "mini-uzi"
@@ -173,7 +173,7 @@
 	gun_type = "/obj/item/weapon/gun/smg/p90"
 
 /obj/item/weapon/gun/smg/p90
-	name = "\improper FN P90"
+	name = "\improper FN FP9000"
 	desc = "An archaic design, but one that's stood the test of time. Fires fast armor piercing rounds in a 50 round magazine."
 	icon_state = "p90"
 	icon_empty = "p90_empty"
