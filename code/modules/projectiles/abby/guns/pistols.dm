@@ -326,7 +326,7 @@
 	name = "\improper Holdout Pistol"
 	desc = "A tiny 22-calibre pistol meant for hiding in hard-to-reach areas."
 	icon_state = "holdout_pistol"
-	item_state = ""
+	item_state = "holdout"
 	mag_type = "/obj/item/ammo_magazine/pistol/holdout"
 	fire_sound = 'sound/weapons/holdout.ogg'
 	fire_delay = 1
@@ -387,9 +387,9 @@
 	name = "\improper CMB Spearhead Autorevolver"
 	desc = "A powerful automatic revolver chambered in .357. Commonly issued to Colonial Marshals."
 	icon_state = "CMBpistol"
-	item_state = "CMBpistol"
+	item_state = "cmbpistol"
 	mag_type = "/obj/item/ammo_magazine/revolver/cmb"
-	fire_sound = 'sound/weapons/44mag.ogg'
+	fire_sound = 'sound/weapons/44mag2.ogg'
 	fire_delay = 12
 	burst_amount = 3
 	burst_delay = 6
@@ -420,7 +420,7 @@
 	icon_state = "vp70"
 	item_state = "vp70"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp70"
-	fire_sound = 'sound/weapons/44mag2.ogg'
+	fire_sound = 'sound/weapons/vp70.ogg'
 	fire_delay = 6
 	burst_amount = 3
 	burst_delay = 3

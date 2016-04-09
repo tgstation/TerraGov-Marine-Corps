@@ -64,8 +64,8 @@
 /obj/item/weapon/gun/pistol/chimp
 	name = "\improper CHIMP70 Pistol"
 	desc = "A powerful sidearm issed mainly to highly trained elite assassin necro-cyber-agents."
-	icon_state = "vp70"
-	item_state = "vp70"
+	icon_state = "chimp70"
+	item_state = "chimp70"
 	mag_type = "/obj/item/ammo_magazine/pistol/chimp"
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	fire_delay = 3
@@ -86,8 +86,8 @@
 /obj/item/weapon/gun/flare
 	name = "flare gun"
 	desc = "A gun that fires flares. Replace with flares. Simple!"
-	icon_state = "taser" //REPLACE THIS
-	icon_empty = "taser0"
+	icon_state = "flaregun" //REPLACE THIS
+	icon_empty = "flaregun"
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/Taser.ogg' //REPLACE
 	default_ammo = "/datum/ammo/flare"
@@ -159,11 +159,11 @@
 
 /obj/item/weapon/gun/minigun
 	name = "\improper Ol' Painless"
-	desc = "An enormous multi-barreled rotating gatling gun. Chambered in 8mm shells."
-	icon_state = "rsplmg" //Replace all these
-	icon_empty = "rsplmg0"
-	item_state = "l6closedmag" //Replace
-	icon_wielded = "l6closedmag"
+	desc = "An enormous multi-barreled rotating gatling gun. Chambered in 8mm shells. Seems like it's waiting."
+	icon_state = "painless"
+	icon_empty = "painless0"
+	item_state = "painless"
+	icon_wielded = "painless-w"
 	mag_type = "/obj/item/ammo_magazine/minigun"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg' //Change
 	twohanded = 1

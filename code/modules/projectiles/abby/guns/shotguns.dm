@@ -158,6 +158,7 @@
 	icon_state = "cshotgun"
 	icon_empty = "cshotgun0"
 	item_state = "cshotgun"
+	icon_wielded = "cshotgun-w"
 	fire_delay = 4
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
@@ -194,6 +195,7 @@
 	icon_state = "dshotgun"
 	icon_empty = "dshotgun"
 	item_state = "dshotgun"
+	icon_wielded = "dshotgun-w"
 	mag_type = "/obj/item/ammo_magazine/shotgun/double"
 	fire_delay = 6
 	muzzle_pixel_x = 32
@@ -247,6 +249,7 @@
 	icon_state = "CMBshotgun"
 	icon_empty = "CMBshotgun"
 	item_state = "CMBshotgun"
+	icon_wielded = "CMBshotgun-w"
 	mag_type = "/obj/item/ammo_magazine/shotgun/cmb"
 	fire_delay = 16
 	muzzle_pixel_x = 32
