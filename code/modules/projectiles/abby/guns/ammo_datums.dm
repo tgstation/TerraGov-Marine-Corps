@@ -47,6 +47,10 @@
 	shrapnel_chance = 0
 	incendiary = 1
 
+/datum/ammo/bullet/pistol/incendiary/vp78
+	name = "VP78 round"
+	damage = 25
+
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
 	damage = 18

@@ -50,7 +50,7 @@
 	New()
 		..()
 		if(initial(icon_state) == "colt1")
-			icon_state = "colt[rand(1,7)]" //Lets get some variations up in this shit
+			//icon_state = "colt[rand(1,7)]" //Lets get some variations up in this shit
 
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER
@@ -162,11 +162,11 @@
 	icon_state = "mateba"
 	item_state = "mateba"
 	mag_type = "/obj/item/ammo_magazine/revolver/mateba"
-	fire_sound = 'sound/weapons/gunshot_glock.ogg'
+	fire_sound = 'sound/weapons/mateba.ogg'
 	fire_delay = 8
 	burst_amount = 2
 	burst_delay = 4
-	recoil = 0
+	recoil = 1
 	force = 15
 	muzzle_pixel_x = 29
 	muzzle_pixel_y = 19
@@ -192,7 +192,7 @@
 	name = "\improper Vintage Desert Eagle"
 	desc = "A bulky 50 caliber pistol with a serious kick. This one is engraved, 'Peace through superior firepower.'"
 	icon_state = "deagle"
-	item_state = "44"
+	item_state = "deagle"
 	fire_sound = 'sound/weapons/44mag.ogg'
 	mag_type = "/obj/item/ammo_magazine/pistol/heavy"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
@@ -223,13 +223,13 @@
 	gun_type = "/obj/item/weapon/gun/pistol/c99"
 
 /obj/item/weapon/gun/pistol/c99
-	name = "\improper C99 Pistol"
-	desc = "A modern variant of an old design, dating back to pre-World War II. Commonly found among mercenary companies due to its reliability. Comes pre-loaded with hollowpoint rounds."
+	name = "\improper Korovin PK-9 Pistol"
+	desc = "An updated variant of an russian old design, dating back to from the 19th century. Commonly found among mercenary companies due to its reliability, but also issued to armed forces. Comes pre-loaded with hollowpoint rounds and features an integrated silencer."
 	icon_state = "p08"
-	item_state = "44"
-	fire_sound = 'sound/weapons/44mag.ogg'
+	item_state = "p08"
+	fire_sound = 'sound/weapons/p08.ogg'
 	mag_type = "/obj/item/ammo_magazine/pistol/c99"
-	fire_sound = 'sound/weapons/gunshot_glock.ogg'
+	fire_sound = 'sound/weapons/p08.ogg'
 	fire_delay = 3
 	force = 6
 	recoil = 0
@@ -240,8 +240,14 @@
 	under_pixel_x = 22
 	under_pixel_y = 19
 	found_on_mercs = 1
-	found_on_russians = 1
+	found_on_russians = 0
+	silenced = 1
 
+/obj/item/weapon/gun/pistol/c99/russian
+	found_on_russians = 1
+	found_on_mercs = 0
+	icon_state = "russianp08"
+	item_state = "russianp08"
 //-------------------------------------------------------
 //HIGH TECH PISTOL
 
@@ -258,7 +264,7 @@
 	desc = "A modern variant of an old design, using the same technology found in the M41 series of Pulse Rifles."
 	icon_state = "m1911-p"
 	icon_empty = "m1911-p0"
-	item_state = "44"
+	item_state = "m4a3"
 	fire_sound = 'sound/weapons/44mag.ogg'
 	mag_type = "/obj/item/ammo_magazine/pistol/m1911"
 	fire_sound = 'sound/weapons/gunshot_rifle.ogg'
@@ -286,15 +292,16 @@
 	gun_type = "/obj/item/weapon/gun/pistol/kt42"
 
 /obj/item/weapon/gun/pistol/kt42
-	name = "\improper KT-42 Pistol"
-	desc = "The Kal-Tech 42 is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. It is a simple, rapid firing 32 calibre pistol."
-	icon_state = "automatic_pistol"
-	item_state = "" //Invisible in hand.
+	name = "\improper KT-42 Automag"
+	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. It is a simple, rapid firing 32 calibre pistol."
+	icon_state = "autopistol"
+	item_state = "autopistol" //Invisible in hand.
 	mag_type = "/obj/item/ammo_magazine/pistol/automatic"
+	fire_sound = 'sound/weapons/automag.ogg'
 	fire_delay = 4
 	burst_amount = 2
 	burst_delay = 1
-	recoil = 0
+	recoil = 1
 	force = 5
 	muzzle_pixel_x = 28
 	muzzle_pixel_y = 21
@@ -319,9 +326,9 @@
 	name = "\improper Holdout Pistol"
 	desc = "A tiny 22-calibre pistol meant for hiding in hard-to-reach areas."
 	icon_state = "holdout_pistol"
-	item_state = ""
+	item_state = "holdout"
 	mag_type = "/obj/item/ammo_magazine/pistol/holdout"
-	fire_sound = 'sound/weapons/servicepistol.ogg'
+	fire_sound = 'sound/weapons/holdout.ogg'
 	fire_delay = 1
 	recoil = 0
 	w_class = 1
@@ -338,7 +345,7 @@
 //.45 MARSHALS PISTOL
 
 /obj/item/ammo_magazine/pistol/highpower
-	name = "USM Pistol Magazine (.45)"
+	name = "CMB Pistol Magazine (.45)"
 	default_ammo = "/datum/ammo/bullet/pistol/ap"
 	icon_state = "9x"
 	icon_empty = "9x0"
@@ -346,12 +353,12 @@
 	gun_type = "/obj/item/weapon/gun/pistol/highpower"
 
 /obj/item/weapon/gun/pistol/highpower
-	name = "\improper USM Highpower"
-	desc = "A United Systems Military pistol, a common, powerful semi-automatic pistol chambered in .45 caliber rounds. Used for centuries by law enforcement and criminals alike."
+	name = "\improper .45 Highpower Automag"
+	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in .45 caliber rounds. Used for centuries by law enforcement and criminals alike."
 	icon_state = "highpower"
-	item_state = "44"
+	item_state = "highpower"
 	mag_type = "/obj/item/ammo_magazine/pistol/highpower"
-	fire_sound = 'sound/weapons/44mag.ogg'
+	fire_sound = 'sound/weapons/automag.ogg'
 	fire_delay = 15
 	recoil = 1
 	w_class = 3
@@ -377,12 +384,12 @@
 	gun_type = "/obj/item/weapon/gun/revolver/cmb"
 
 /obj/item/weapon/gun/revolver/cmb
-	name = "\improper Spearhead Autorevolver"
+	name = "\improper CMB Spearhead Autorevolver"
 	desc = "A powerful automatic revolver chambered in .357. Commonly issued to Colonial Marshals."
 	icon_state = "CMBpistol"
-	item_state = "44"
+	item_state = "cmbpistol"
 	mag_type = "/obj/item/ammo_magazine/revolver/cmb"
-	fire_sound = 'sound/weapons/44mag.ogg'
+	fire_sound = 'sound/weapons/44mag2.ogg'
 	fire_delay = 12
 	burst_amount = 3
 	burst_delay = 6
@@ -409,11 +416,11 @@
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper VP70 Pistol"
-	desc = "A powerful sidearm issed mainly to USCM or Weyland Yutani response teams. Fires 9mm armor piercing round and is capable of 3-round burst."
+	desc = "A powerful sidearm issed mainly to Weyland Yutani response teams. Fires 9mm armor piercing round and is capable of 3-round burst."
 	icon_state = "vp70"
 	item_state = "vp70"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp70"
-	fire_sound = 'sound/weapons/gunshot_glock.ogg'
+	fire_sound = 'sound/weapons/vp70.ogg'
 	fire_delay = 6
 	burst_amount = 3
 	burst_delay = 3
@@ -432,7 +439,7 @@
 
 /obj/item/ammo_magazine/pistol/vp78
 	name = "VP78 Magazine (9mm)"
-	default_ammo = "/datum/ammo/bullet/pistol/incendiary"
+	default_ammo = "/datum/ammo/bullet/pistol/incendiary/vp78"
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 18
@@ -440,15 +447,15 @@
 
 /obj/item/weapon/gun/pistol/vp78
 	name = "\improper VP78 Pistol"
-	desc = "An automatic handgun chambered in 9mm Special rounds. These will light targets on fire. Inscribed on the side is, 'Smells like napalm'."
+	desc = "A massive formidable automatic handgun chambered in 9mm Special rounds. These will light targets on fire. Inscribed on the side is, 'Smells like napalm'. Commonly seen in the hands of wealthy Weyland Yutani members."
 	icon_state = "VP78"
-	item_state = "vp70"
+	item_state = "vp78"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp78"
-	fire_sound = 'sound/weapons/gunshot_glock.ogg'
+	fire_sound = 'sound/weapons/44mag2.ogg'
 	fire_delay = 6
 	burst_amount = 3
 	burst_delay = 3
-	recoil = 0
+	recoil = 1
 	w_class = 3
 	force = 8
 	muzzle_pixel_x = 29
