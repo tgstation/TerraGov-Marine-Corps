@@ -66,7 +66,7 @@
 		return
 
 	proc/get_accuracy()
-		var/acc = 80 //Base accuracy.
+		var/acc = 65 //Base accuracy.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 

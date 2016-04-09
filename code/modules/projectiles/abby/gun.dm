@@ -640,6 +640,13 @@
 		I.pixel_x = src.under_pixel_x - under.pixel_shift_x
 		I.pixel_y = src.under_pixel_y - under.pixel_shift_y
 		overlays += I
+	if(stock)
+		var/image/I = new(stock.icon, stock.icon_state)
+		I.icon_state = stock.icon_state
+		I.pixel_x = src.under_pixel_x - stock.pixel_shift_x
+		I.pixel_y = src.under_pixel_y - stock.pixel_shift_y
+		overlays += I
+
 
 /obj/item/weapon/gun/verb/field_strip()
 	set category = "Weapons"
@@ -659,18 +666,22 @@
 	if(!do_after(usr,40))
 		return
 
-	if(rail)
+	if(rail && rail.can_be_removed)
 		usr << "You remove the weapon's [rail]."
 		rail.loc = get_turf(usr)
 		rail.Detach(src)
-	if(muzzle)
+	if(muzzle && muzzle.can_be_removed)
 		usr << "You remove the weapon's [muzzle]."
 		muzzle.loc = get_turf(usr)
 		muzzle.Detach(src)
-	if(under)
+	if(under && under.can_be_removed)
 		usr << "You remove the weapon's [under]."
 		under.loc = get_turf(usr)
 		under.Detach(src)
+	if(stock && stock.can_be_removed)
+		usr << "You remove the weapon's [stock]."
+		stock.loc = get_turf(usr)
+		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)
 	update_attachables()

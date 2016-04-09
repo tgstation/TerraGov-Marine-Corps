@@ -27,7 +27,7 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.\n'Peace Through Superior Firepower'"
 	icon_state = "M42c"
 	icon_empty = "M42c_empty"
-	item_state = "l6closednomag"  //placeholder
+	item_state = "l6closedmag"  //placeholder!!
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	mag_type = "/obj/item/ammo_magazine/sniper"
 	fire_delay = 60
@@ -44,12 +44,14 @@
 	under_pixel_x = 25
 	under_pixel_y = 12
 
-/obj/item/weapon/gun/sniper/verb/scope()
-	set category = "Weapons"
-	set name = "Use Scope"
-	set popup_menu = 1
+	New()
+		..()
+		var/obj/item/attachable/scope/S = new(src)
+		S.icon_state = "" //Let's make it invisible.
+		S.Attach(src)
+		var/obj/item/attachable/sniperbarrel/Q = new(src)
+		Q.Attach(src)
 
-	zoom()
 
 
 //-------------------------------------------------------
