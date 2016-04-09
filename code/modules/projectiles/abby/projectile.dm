@@ -66,14 +66,14 @@
 		return
 
 	proc/get_accuracy()
-		var/acc = 70 //Base accuracy.
+		var/acc = 80 //Base accuracy.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 
 		acc += ammo.accuracy //Add the ammo's accuracy bonus/pens
 
-		if(istype(ammo.current_gun,/obj/item/weapon/gun)) //Does our gun exist? If so, add attachable bonuses.
-			var/obj/item/weapon/gun/gun = ammo.current_gun
+		if(istype(firer,/obj/item/weapon/gun)) //Does our gun exist? If so, add attachable bonuses.
+			var/obj/item/weapon/gun/gun = firer
 			if(gun.rail && gun.rail.accuracy_mod) acc += gun.rail.accuracy_mod
 			if(gun.muzzle && gun.muzzle.accuracy_mod) acc += gun.muzzle.accuracy_mod
 			if(gun.under && gun.under.accuracy_mod) acc += gun.under.accuracy_mod
@@ -121,7 +121,7 @@
 
 			var/hit_roll = rand(0,100) //Our randomly generated roll.
 
-			if(hit_chance < hit_roll - 20) //Mega miss!
+			if(hit_chance < hit_roll - 25) //Mega miss!
 				if (!target:lying) target.visible_message("\blue \The [src] misses \the [target]!","\blue \The [src] narrowly misses you!")
 				return -1
 			else if (hit_chance > hit_roll) //You hit!
@@ -129,7 +129,7 @@
 			else
 				//You got lucky buddy, you got a second try! Pick a random organ instead.
 				if(saved)
-					target.visible_message("\blue \The [src] narrowly misses \the [target]!","\blue \The [src] narrowly misses you!")
+					if(!target:lying) target.visible_message("\blue \The [src] narrowly misses \the [target]!","\blue \The [src] narrowly misses you!")
 					return -1
 				def_zone = pick(base_miss_chance)
 				saved = 1
@@ -280,6 +280,8 @@
 
 		var/image/ping = image('icons/obj/projectiles.dmi',target,"ping",10) //Layer 10, above most things but not the HUD.
 		var/angle = round(rand(1,359))
+		ping.pixel_x += rand(-2,2)
+		ping.pixel_y += rand(-2,2)
 
 		if(src.firer && prob(60))
 			angle = round(Get_Angle(src.firer,target))
@@ -338,7 +340,7 @@
 	bullet_message(P)
 	P.ammo.on_hit_mob(src,P) //Deal with special effects.
 
-	if(P.ammo && damage > 0 && P.ammo.incendiary)
+	if(P && P.ammo && damage > 0 && P.ammo.incendiary)
 		adjust_fire_stacks(rand(6,10))
 		IgniteMob()
 //		emote("scream")
@@ -504,7 +506,10 @@
 			picked_mob.bullet_act(P)
 			return 1
 
-	if(src.can_bullets && src.bullet_holes < 5 ) //Pop a bullet hole on that fucker. 5 max per turf
+	if(P)
+		if(P.damage <= 0) return 0
+
+	if(P && src.can_bullets && src.bullet_holes < 5 ) //Pop a bullet hole on that fucker. 5 max per turf
 		var/image/I = image('icons/effects/effects.dmi',src,"dent")
 		I.pixel_x = P.p_x
 		I.pixel_y = P.p_y
@@ -514,7 +519,7 @@
 		overlays += I
 		bullet_holes++
 
-	P.ammo.on_hit_turf(src,P)
+	if(P && src) P.ammo.on_hit_turf(src,P)
 
 	return 1
 

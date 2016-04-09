@@ -545,7 +545,11 @@
 	var/mob/user = src.loc
 	if(!istype(user) || !istype(user.loc,/turf)) return
 	if(prob(65)) //Not all the time.
-		var/image/flash = image('icons/obj/projectiles.dmi',user,"muzzle_flash",MOB_LAYER-0.1)
+		var/layer = MOB_LAYER-0.1
+		if(usr && usr.dir == SOUTH) //Sigh
+			layer = MOB_LAYER+0.1
+
+		var/image/flash = image('icons/obj/projectiles.dmi',user,"muzzle_flash",layer)
 
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Turn(angle)

@@ -31,7 +31,8 @@
 	under_pixel_x = 24
 	under_pixel_y = 16
 	burst_amount = 3
-	fire_delay = 2
+	fire_delay = 4
+	burst_delay = 2
 
 //-------------------------------------------------------
 

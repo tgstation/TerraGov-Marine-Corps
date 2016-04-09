@@ -551,7 +551,7 @@
 
 	New()
 		projectile_type = new /datum/ammo/energy/yautja/light_plasma()
-		return ..()
+		return
 
 	Del()
 		projectile_type = null
@@ -602,6 +602,9 @@
 		if(!source.drain_power(usr,charge_cost)) return 0
 		in_chamber = new /obj/item/projectile(src)
 		in_chamber.ammo = projectile_type
+		in_chamber.damage = projectile_type.damage
+		in_chamber.damage_type = projectile_type.damage_type
+		in_chamber.icon_state = projectile_type.icon_state
 		return 1
 
 	afterattack(atom/target, mob/user , flag)
@@ -612,7 +615,7 @@
 					var/obj/item/clothing/gloves/yautja/Y = M.gloves
 					var/perc_charge = (Y.charge / Y.charge_max * 100)
 					M.update_power_display(perc_charge)
-		..()
+		return ..()
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
 /obj/item/weapon/storage/backpack/yautja

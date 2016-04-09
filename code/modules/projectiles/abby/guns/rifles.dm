@@ -35,7 +35,8 @@
 	mag_type = "/obj/item/ammo_magazine/rifle"
 	fire_delay = 4
 	recoil = 0
-	burst_amount = 2
+	burst_amount = 3
+	burst_delay = 2
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
 	rail_pixel_x = 13
