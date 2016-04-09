@@ -1,15 +1,22 @@
 /**********************Marine Gear**************************/
+
 //STANDARD MARINE CLOSET
 /obj/structure/closet/secure_closet/marine
 	name = "Marine's Locker"
 	req_access = list(access_marine_prep)
-	icon_state = "standard_locked"
-	icon_closed = "standard_unlocked"
-	icon_locked = "standard_locked"
-	icon_opened = "squad_open"
-	icon_broken = "standard_emmaged"
-	icon_off = "standard_off"
+	icon_state = "locked"
+	icon_closed = "unlocked"
+	icon_locked = "locked"
+	icon_opened = ""
+	icon_broken = "breaking"
+	icon_off = "off"
 	icon = 'icons/Marine/Marine_Lockers.dmi'
+
+	New()
+		..()
+		icon_opened = "[rand(1,15)]"
+
+
 
 	New()
 		spawn(5)
