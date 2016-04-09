@@ -40,6 +40,7 @@
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
 	icon_state = "rspshotgun"
 	icon_empty = "rspshotgun0"
+	item_state = "rspshotgun"
 	fire_delay = 30
 	w_class = 4
 	autoejector = 1
@@ -156,7 +157,8 @@
 	desc = "The Weyland-Yutani MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
 	icon_state = "cshotgun"
 	icon_empty = "cshotgun0"
-	item_state = "m37"
+	item_state = "cshotgun"
+	icon_wielded = "cshotgun-w"
 	fire_delay = 4
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
@@ -165,6 +167,12 @@
 	under_pixel_x = 18
 	under_pixel_y = 14
 	found_on_mercs = 1
+
+	New()
+		..()
+		var/obj/item/attachable/grenade/G = new(src)
+		G.Attach(src)
+		update_attachables()
 
 //-------------------------------------------------------
 
@@ -186,7 +194,8 @@
 	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
 	icon_state = "dshotgun"
 	icon_empty = "dshotgun"
-	item_state = "m37-w"
+	item_state = "dshotgun"
+	icon_wielded = "dshotgun-w"
 	mag_type = "/obj/item/ammo_magazine/shotgun/double"
 	fire_delay = 6
 	muzzle_pixel_x = 32
@@ -202,7 +211,7 @@
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
 	icon_state = "sawnshotgun"
 	icon_empty = "sawnshotgun"
-	item_state = "sawed"
+	item_state = "sawnshotgun"
 	fire_delay = 1
 	muzzle_pixel_x = 27
 	muzzle_pixel_y = 19
@@ -239,7 +248,8 @@
 	desc = "A four-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
 	icon_state = "CMBshotgun"
 	icon_empty = "CMBshotgun"
-	item_state = "m37"
+	item_state = "CMBshotgun"
+	icon_wielded = "CMBshotgun-w"
 	mag_type = "/obj/item/ammo_magazine/shotgun/cmb"
 	fire_delay = 16
 	muzzle_pixel_x = 32
