@@ -421,11 +421,11 @@
 	if(burst_toggled && burst_amount > 0)
 		bullets_fired = burst_amount
 		burst_firing = 1
-
+/*
 	if((ammo && ammo.bonus_projectiles ) || active_attachable )
 		burst_firing = 0
 		bullets_fired = 1 + ammo.bonus_projectiles
-
+*/
 	var/i //Weirdly, this way is supposed to be less laggy. by 500%
 	for(i = 1 to bullets_fired)
 		if(!load_into_chamber()) //This also checks for a null magazine, and loads the chamber with a round.
@@ -530,10 +530,9 @@
 					current_mag = null //Get rid of it. But not till the bullet is fired.
 
 		if(i < bullets_fired)
-			if(!ammo || ammo.bonus_projectiles == 0)
-				sleep(burst_delay)
-			//shotgun bonus projectiles still loop but have no delay.
+			sleep(burst_delay)
 
+	sleep(-1)
 	burst_firing = 0
 	update_icon()
 	return

@@ -273,30 +273,29 @@
 
 		return 0 //Found nothing.
 
-	proc/bullet_ping(var/atom/target)
-		set waitfor = 0
+/atom/proc/bullet_ping(var/obj/item/projectile/P)
+	set waitfor = 0
 
-		if(!target) return
+	if(!P) return
 
-		var/image/ping = image('icons/obj/projectiles.dmi',target,"ping",10) //Layer 10, above most things but not the HUD.
-		var/angle = round(rand(1,359))
-		ping.pixel_x += rand(-2,2)
-		ping.pixel_y += rand(-2,2)
+	var/image/ping = image('icons/obj/projectiles.dmi',src,"ping",10) //Layer 10, above most things but not the HUD.
+	var/angle = round(rand(1,359))
+	ping.pixel_x += rand(-2,2)
+	ping.pixel_y += rand(-2,2)
 
-		if(src.firer && prob(60))
-			angle = round(Get_Angle(src.firer,target))
+	if(P.firer && prob(60))
+		angle = round(Get_Angle(P.firer,src))
 
-		var/matrix/rotate = matrix()
+	var/matrix/rotate = matrix()
 
-		rotate.Turn(angle)
-		ping.transform = rotate
+	rotate.Turn(angle)
+	ping.transform = rotate
 
-		for(var/mob/M in viewers(target))
-			M << ping
+	for(var/mob/M in viewers(src))
+		M << ping
 
-		sleep(3)
-		if(ping) del(ping)
-		return
+	sleep(3)
+	del(ping)
 
 /atom/proc/bullet_act(obj/item/projectile/P)
 	return density
@@ -370,7 +369,7 @@
 	//Shields
 	if(check_shields(30 + P.ammo.accuracy, "the [P.name]"))
 		P.ammo.on_shield_block(src)
-		P.bullet_ping()
+		src.bullet_ping(P)
 		return 1
 
 	var/armor = 0 //Why are damage types different from armor types? Who the fuck knows. Let's merge them anyway.
@@ -460,7 +459,7 @@
 	if(P.ammo.ignores_armor) armor = 0 //Nope
 
 	if(prob(armor - damage))
-		P.bullet_ping(src)
+		src.bullet_ping(P)
 		visible_message("\blue The [src]'s thick exoskeleton deflects \the [P]!","\blue Your thick exoskeleton deflected \the [P]!")
 		return 1
 
@@ -490,7 +489,7 @@
 	if(!src.density || !P || !P.ammo)
 		return 0 //It's just an empty turf
 
-	P.bullet_ping(src)
+	src.bullet_ping(P)
 
 	var/turf/target_turf = P.loc
 	if(!istype(target_turf)) return 0 //The bullet's not on a turf somehow.
@@ -502,13 +501,10 @@
 
 	if(mobs_list.len)
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
-		if(istype(picked_mob))
+		if(istype(picked_mob) && P.firer && P.roll_to_hit(P.firer,picked_mob) == 1)
 			picked_mob.bullet_act(P)
 			return 1
-
-	if(P)
-		if(P.damage <= 0) return 0
-
+/*
 	if(P && src.can_bullets && src.bullet_holes < 5 ) //Pop a bullet hole on that fucker. 5 max per turf
 		var/image/I = image('icons/effects/effects.dmi',src,"dent")
 		I.pixel_x = P.p_x
@@ -518,7 +514,7 @@
 		//I.dir = pick(NORTH,SOUTH,EAST,WEST) // random scorch design
 		overlays += I
 		bullet_holes++
-
+*/
 	if(P && src) P.ammo.on_hit_turf(src,P)
 
 	return 1
@@ -533,7 +529,6 @@
 
 	if(P.damage_type == "BRUTE") D = round(D/2) //Bullets do much less to walls and such.
 	if(P.damage_type == "TOX") return 1
-	P.bullet_ping(src)
 	take_damage(P.damage)
 	if(prob(30 + D))
 		P.visible_message("\The [src] is damaged by [P]!")
@@ -543,7 +538,7 @@
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P,get_turf(src),src.layer))
 		P.ammo.on_hit_obj(src,P)
-		P.bullet_ping(src)
+		src.bullet_ping(P)
 		return 1
 	else
 		return 0
