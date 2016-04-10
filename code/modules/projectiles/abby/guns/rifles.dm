@@ -174,7 +174,7 @@
 
 	New()
 		..()
-		var/obj/item/attachable/slavicscope/S = new(src)
+		var/obj/item/attachable/scope/slavic/S = new(src)
 		S.Attach(src)
 		var/obj/item/attachable/slavicbarrel/Q = new(src)
 		Q.Attach(src)

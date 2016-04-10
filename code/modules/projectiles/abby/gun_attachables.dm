@@ -63,7 +63,6 @@
 //			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
 		if(recoil_mod)
 			G.recoil += recoil_mod
-			if(G.recoil < 0) G.recoil = 0
 		if(twohanded_mod == 1) G.twohanded = 1
 		if(twohanded_mod == 2) G.twohanded = 0
 		if(silence_mod) G.silenced = 1
@@ -71,14 +70,8 @@
 			G.flash_lum = light_mod
 		if(delay_mod)
 			G.fire_delay += delay_mod
-			if(G.fire_delay < 0)
-				G.fire_delay = 1
-				G.burst_amount++
-
 		if(burst_mod)
 			G.burst_amount += burst_mod
-			if(G.burst_amount < 2) G.burst_amount = 0
-
 		if(size_mod)
 			G.w_class += size_mod
 
@@ -626,9 +619,8 @@
 	can_activate = 1
 	can_be_removed = 0
 
-	activate_attachment(atom/target,mob/living/carbon/user)
-		if(istype(target,/obj/item/weapon/gun))
-			target:zoom()
+	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
+		target.zoom(11,12,user)
 		return 1
 
 /obj/item/attachable/slavicbarrel
@@ -651,17 +643,5 @@
 	ranged_dmg_mod = 150
 	can_be_removed = 0
 
-/obj/item/attachable/slavicscope
-	name = "rail scope"
-	icon_state = "scope"
-	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment."
+/obj/item/attachable/scope/slavic
 	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
-	slot = "rail"
-	passive = 0
-	can_activate = 1
-	can_be_removed = 0
-
-	activate_attachment(atom/target,mob/living/carbon/user)
-		if(istype(target,/obj/item/weapon/gun))
-			target:zoom()
-		return 1

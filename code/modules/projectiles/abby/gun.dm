@@ -120,6 +120,8 @@
 			usr << "It has \icon[muzzle] [muzzle.name] mounted on the front."
 		if(under)
 			usr << "It has \icon[under] [under.name] mounted underneath."
+		if(stock)
+			usr << "It has \icon[stock] [stock.name] for a stock."
 
 	mob_can_equip(M as mob, slot)
 		//Cannot equip wielded items.
