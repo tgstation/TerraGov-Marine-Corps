@@ -64,7 +64,7 @@
 //			log_debug("No gloves, [M] is truing to infect [src]")
 			M.spread_disease_to(src, "Contact")
 
-	next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
+	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
 		if("help")
 			if(health >= config.health_threshold_crit)

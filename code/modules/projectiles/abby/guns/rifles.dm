@@ -35,7 +35,8 @@
 	mag_type = "/obj/item/ammo_magazine/rifle"
 	fire_delay = 4
 	recoil = 0
-	burst_amount = 2
+	burst_amount = 3
+	burst_delay = 2
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
 	rail_pixel_x = 13
@@ -151,6 +152,36 @@
 	item_state = "mar40short"
 	fire_delay = 5
 	accuracy = -20
+
+/obj/item/ammo_magazine/rifle/mar40/svd
+	name = "SVD Magazine (12mm)"
+	desc = "A 12mm marksman rifle magazine."
+	icon_state = "a762"
+	icon_empty = "a762-0"
+	default_ammo = "/datum/ammo/bullet/rifle/marksman"
+	max_rounds = 30
+	gun_type = "/obj/item/weapon/gun/rifle/mar40/svd"
+
+/obj/item/weapon/gun/rifle/mar40/svd
+	name = "\improper SVD Dragunov-033"
+	desc = "A marksman variant of the MAR-40 rifle, with a new stock and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
+	icon_state = "shortrsprifle"
+	icon_empty = "shortrsprifle0"
+	icon_wielded = "shortrsprifle-w"
+	item_state = "mar40short"
+	accuracy = 0
+	burst_amount = 0
+
+	New()
+		..()
+		var/obj/item/attachable/scope/slavic/S = new(src)
+		S.Attach(src)
+		var/obj/item/attachable/slavicbarrel/Q = new(src)
+		Q.Attach(src)
+		var/obj/item/attachable/bipod/B = new(src)
+		B.Attach(src)
+
+		update_attachables()
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE

@@ -120,6 +120,8 @@
 			usr << "It has \icon[muzzle] [muzzle.name] mounted on the front."
 		if(under)
 			usr << "It has \icon[under] [under.name] mounted underneath."
+		if(stock)
+			usr << "It has \icon[stock] [stock.name] for a stock."
 
 	mob_can_equip(M as mob, slot)
 		//Cannot equip wielded items.
@@ -421,11 +423,11 @@
 	if(burst_toggled && burst_amount > 0)
 		bullets_fired = burst_amount
 		burst_firing = 1
-
+/*
 	if((ammo && ammo.bonus_projectiles ) || active_attachable )
 		burst_firing = 0
 		bullets_fired = 1 + ammo.bonus_projectiles
-
+*/
 	var/i //Weirdly, this way is supposed to be less laggy. by 500%
 	for(i = 1 to bullets_fired)
 		if(!load_into_chamber()) //This also checks for a null magazine, and loads the chamber with a round.
@@ -530,10 +532,9 @@
 					current_mag = null //Get rid of it. But not till the bullet is fired.
 
 		if(i < bullets_fired)
-			if(!ammo || ammo.bonus_projectiles == 0)
-				sleep(burst_delay)
-			//shotgun bonus projectiles still loop but have no delay.
+			sleep(burst_delay)
 
+	sleep(-1)
 	burst_firing = 0
 	update_icon()
 	return
@@ -545,7 +546,11 @@
 	var/mob/user = src.loc
 	if(!istype(user) || !istype(user.loc,/turf)) return
 	if(prob(65)) //Not all the time.
-		var/image/flash = image('icons/obj/projectiles.dmi',user,"muzzle_flash",MOB_LAYER-0.1)
+		var/layer = MOB_LAYER-0.1
+		if(usr && usr.dir == SOUTH) //Sigh
+			layer = MOB_LAYER+0.1
+
+		var/image/flash = image('icons/obj/projectiles.dmi',user,"muzzle_flash",layer)
 
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Turn(angle)
@@ -637,6 +642,13 @@
 		I.pixel_x = src.under_pixel_x - under.pixel_shift_x
 		I.pixel_y = src.under_pixel_y - under.pixel_shift_y
 		overlays += I
+	if(stock)
+		var/image/I = new(stock.icon, stock.icon_state)
+		I.icon_state = stock.icon_state
+		I.pixel_x = src.under_pixel_x - stock.pixel_shift_x
+		I.pixel_y = src.under_pixel_y - stock.pixel_shift_y
+		overlays += I
+
 
 /obj/item/weapon/gun/verb/field_strip()
 	set category = "Weapons"
@@ -656,18 +668,22 @@
 	if(!do_after(usr,40))
 		return
 
-	if(rail)
+	if(rail && rail.can_be_removed)
 		usr << "You remove the weapon's [rail]."
 		rail.loc = get_turf(usr)
 		rail.Detach(src)
-	if(muzzle)
+	if(muzzle && muzzle.can_be_removed)
 		usr << "You remove the weapon's [muzzle]."
 		muzzle.loc = get_turf(usr)
 		muzzle.Detach(src)
-	if(under)
+	if(under && under.can_be_removed)
 		usr << "You remove the weapon's [under]."
 		under.loc = get_turf(usr)
 		under.Detach(src)
+	if(stock && stock.can_be_removed)
+		usr << "You remove the weapon's [stock]."
+		stock.loc = get_turf(usr)
+		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)
 	update_attachables()

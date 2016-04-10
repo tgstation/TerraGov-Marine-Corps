@@ -47,9 +47,9 @@
 	under_pixel_x = 20
 	under_pixel_y = 17
 
-	New()
-		..()
-		if(initial(icon_state) == "colt1")
+//	New()
+//		..()
+		//if(initial(icon_state) == "colt1")
 			//icon_state = "colt[rand(1,7)]" //Lets get some variations up in this shit
 
 //-------------------------------------------------------

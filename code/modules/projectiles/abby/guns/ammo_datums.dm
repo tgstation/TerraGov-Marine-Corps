@@ -105,6 +105,7 @@
 	accuracy = -5
 	shrapnel_chance = 0
 	armor_pen = 15
+	damage_type = BURN
 
 /datum/ammo/bullet/rifle/marksman
 	name = "marksman rifle bullet"
@@ -138,6 +139,7 @@
 	max_range = 12
 	casing_type = "/obj/item/ammo_casing/shotgun/red"
 	incendiary = 1
+	damage_type = BURN
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "buckshot"
@@ -189,6 +191,7 @@
 	armor_pen = 30
 	accuracy = 0
 	incendiary = 1
+	damage_type = BURN
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak shell"
@@ -327,8 +330,9 @@
 	weaken = 3
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(P && P.loc) P.visible_message("\The [src] chimpers furiously!")
-		new /mob/living/carbon/monkey(P.loc)
+		if(P && P.loc && !istype(M,/mob/living/carbon/monkey))
+			P.visible_message("\The [src] chimpers furiously!")
+			new /mob/living/carbon/monkey(P.loc)
 
 /datum/ammo/boiler_gas
 	name = "glob"
@@ -393,7 +397,10 @@
 
 	proc/drop_nade(var/turf/T)
 		var/obj/item/device/flashlight/flare/G = new (T)
-		G.visible_message("\blue <B>A [G] falls from the sky!</b>")
+		G.visible_message("\blue <B>A [G] bursts into brilliant light nearby!</b>")
 		G.on = 1
 		processing_objects += G
+		icon_state = "flare-on"
+		G.damtype = "fire"
+		G.SetLuminosity(G.brightness_on)
 		return

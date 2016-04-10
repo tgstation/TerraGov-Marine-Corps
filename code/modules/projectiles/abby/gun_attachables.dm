@@ -40,6 +40,7 @@
 	var/can_activate = 0
 	var/continuous = 0 //Shootable attachments normally swap back after 1 shot.
 	var/passive = 1 //Can't actually be an active attachable, but might still be activatible.
+	var/can_be_removed = 1
 
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
@@ -62,7 +63,6 @@
 //			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
 		if(recoil_mod)
 			G.recoil += recoil_mod
-			if(G.recoil < 0) G.recoil = 0
 		if(twohanded_mod == 1) G.twohanded = 1
 		if(twohanded_mod == 2) G.twohanded = 0
 		if(silence_mod) G.silenced = 1
@@ -70,14 +70,8 @@
 			G.flash_lum = light_mod
 		if(delay_mod)
 			G.fire_delay += delay_mod
-			if(G.fire_delay < 0)
-				G.fire_delay = 1
-				G.burst_amount++
-
 		if(burst_mod)
 			G.burst_amount += burst_mod
-			if(G.burst_amount < 2) G.burst_amount = 0
-
 		if(size_mod)
 			G.w_class += size_mod
 
@@ -448,8 +442,8 @@
 	melee_mod = 150
 	size_mod = 2
 	delay_mod = 3
-	pixel_shift_x = 33 //Determines the amount of pixels to move the icon state for the overlay.
-	pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	pixel_shift_x = -26
+	pixel_shift_y = -7
 	guns_allowed = list(/obj/item/weapon/gun/shotgun/pump)
 
 /obj/item/attachable/compensator/riflestock
@@ -462,8 +456,8 @@
 	size_mod = 1
 	delay_mod = 3
 	icon_state = "riflestock"
-	pixel_shift_x = 35 //Determines the amount of pixels to move the icon state for the overlay.
-	pixel_shift_y = 12 //Uses the bottom left corner of the item.
+	pixel_shift_x = -22
+	pixel_shift_y = -7
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/rifle/m41a/elite)
 
 /obj/item/attachable/compensator/revolverstock
@@ -477,8 +471,8 @@
 	delay_mod = 3
 	w_class_mod = 2
 	icon_state = "44stock"
-	pixel_shift_x = 36 //Determines the amount of pixels to move the icon state for the overlay.
-	pixel_shift_y = 16 //Uses the bottom left corner of the item.
+	pixel_shift_x = -22
+	pixel_shift_y = -7
 	guns_allowed = list(/obj/item/weapon/gun/revolver/m44)
 
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
@@ -619,13 +613,35 @@
 	name = "rail scope"
 	icon_state = "scope"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment."
-	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/sniper)
 	slot = "rail"
-	passive = 1
+	passive = 0
 	can_activate = 1
+	can_be_removed = 0
 
-
-	activate_attachment(atom/target,mob/living/carbon/user)
-		if(istype(target,/obj/item/weapon/gun))
-			target:zoom()
+	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
+		target.zoom(11,12,user)
 		return 1
+
+/obj/item/attachable/slavicbarrel
+	name = "sniper barrel"
+	icon_state = "slavicbarrel"
+	desc = "A heavy barrel."
+	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
+	slot = "muzzle"
+	accuracy_mod = 5
+	ranged_dmg_mod = 150
+	can_be_removed = 0
+
+/obj/item/attachable/sniperbarrel
+	name = "sniper barrel"
+	icon_state = "sniperbarrel"
+	desc = "A heavy barrel."
+	guns_allowed = list(/obj/item/weapon/gun/sniper)
+	slot = "muzzle"
+	accuracy_mod = 5
+	ranged_dmg_mod = 150
+	can_be_removed = 0
+
+/obj/item/attachable/scope/slavic
+	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
