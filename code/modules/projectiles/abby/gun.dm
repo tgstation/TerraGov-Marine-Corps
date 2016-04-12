@@ -517,8 +517,10 @@
 			if(dir == NORTH || dir == SOUTH) scatter_x = round(rand(-1*scatter_distance,scatter_distance))
 			if(dir == EAST || dir == WEST) scatter_y = round(rand(-1*scatter_distance,scatter_distance))
 
-			targloc = locate(targloc.x + scatter_x,targloc.y + scatter_y,targloc.z) //Locate an adjacent turf.
-			if(isnull(targloc)) //Went off the map somehow.
+			target = locate(targloc.x + scatter_x,targloc.y + scatter_y,targloc.z) //Locate an adjacent turf.
+			targloc = target
+			in_chamber.original = target
+			if(isnull(target)) //Went off the map somehow.
 				break
 
 		if(params)
