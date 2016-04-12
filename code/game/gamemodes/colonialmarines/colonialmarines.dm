@@ -4,6 +4,7 @@
 	var/queen_death_timer = 0
 	var/list/datum/mind/predators = list()
 	var/list/datum/mind/hellhounds = list()
+	var/pred_keys = list()
 
 /datum/game_mode/colonialmarines
 	name = "colonial marines"

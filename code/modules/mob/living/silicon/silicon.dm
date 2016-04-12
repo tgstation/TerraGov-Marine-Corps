@@ -21,7 +21,7 @@
 
 /mob/living/silicon/New()
 	..()
-	add_language("Galactic Common")
+	add_language("English")
 
 /mob/living/silicon/proc/show_laws()
 	return

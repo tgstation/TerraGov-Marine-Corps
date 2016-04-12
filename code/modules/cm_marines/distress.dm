@@ -666,12 +666,18 @@
 			mob << "<font size='3'>\red You are the Iron Bears leader!</font>"
 			mob << "<B> You must lead the Iron Bears mercenaries to victory against any and all hostile threats.</b>"
 			mob << "<B> To Hell with Weyland Yutani and the USCM! The Iron Bears run the show now!</b>"
+			mob << "<B> ... Or whatever. It's up to you. You're the only one they taught any English..</b>"
 		else
 			spawn_standard(mob)
+			mob.remove_language("Sol Common")
+			mob.remove_language("English")
 			mob << "<font size='3'>\red You are an Iron Bear mercenary!</font>"
+			mob << "<font size='3'>\red Listen to your Leader, you idiot!! Try not to blow yourself up!</font>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
+
+	mob.add_language("Russian")
 
 	if(original)
 		del(original)

@@ -123,9 +123,16 @@
 	icon_state = "suppressor"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/m41a/scoped,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/sniper,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
+						/obj/item/weapon/gun/smg/mp7,
+						/obj/item/weapon/gun/smg/skorpion,
+						/obj/item/weapon/gun/smg/uzi,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/c99,
 						/obj/item/weapon/gun/pistol/m1911,
@@ -151,9 +158,12 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/revolver/m44,
-						/obj/item/weapon/gun/shotgun/pump/combat,
+						/obj/item/weapon/gun/shotgun/combat,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/shotgun/pump,
-						/obj/item/weapon/gun/shotgun/pump/double
+						/obj/item/weapon/gun/shotgun/double
 	)
 	melee_mod = 300 //30 brute for those 3 guns, normally do 10
 	accuracy_mod = -10
@@ -179,7 +189,10 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/c99,
 						/obj/item/weapon/gun/pistol/m1911,
@@ -190,10 +203,13 @@
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy,
+						/obj/item/weapon/gun/smg/mp7,
+						/obj/item/weapon/gun/smg/skorpion,
+						/obj/item/weapon/gun/smg/uzi,
 						/obj/item/weapon/gun/shotgun/pump,
-						/obj/item/weapon/gun/shotgun/pump/combat,
+						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
-						/obj/item/weapon/gun/shotgun/pump/double
+						/obj/item/weapon/gun/shotgun/double
 						)
 	accuracy_mod = 20 //20% accuracy bonus
 	slot = "rail"
@@ -204,9 +220,16 @@
 	icon_state = "sparemag"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
-						/obj/item/weapon/gun/shotgun/pump/combat
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
+						/obj/item/weapon/gun/smg/m39,
+						/obj/item/weapon/gun/smg/mp7,
+						/obj/item/weapon/gun/smg/skorpion,
+						/obj/item/weapon/gun/smg/uzi,
+						/obj/item/weapon/gun/shotgun/combat
 					)
 	accuracy_mod = 15
 	ranged_dmg_mod = 105
@@ -221,12 +244,16 @@
 	icon_state = "gyro"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/shotgun/pump,
-						/obj/item/weapon/gun/shotgun/pump/combat,
+						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
-						/obj/item/weapon/gun/shotgun/pump/double)
+						/obj/item/weapon/gun/shotgun/double)
 	twohanded_mod = 2
 	recoil_mod = 1
 	accuracy_mod = -15
@@ -239,26 +266,33 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
+						/obj/item/weapon/gun/smg/mp7,
+						/obj/item/weapon/gun/smg/skorpion,
+						/obj/item/weapon/gun/smg/uzi,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/c99,
 						/obj/item/weapon/gun/pistol/m1911,
 						/obj/item/weapon/gun/pistol/holdout,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/revolver,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy,
 						/obj/item/weapon/gun/shotgun/pump,
-						/obj/item/weapon/gun/shotgun/pump/combat,
+						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
-						/obj/item/weapon/gun/shotgun/pump/double
+						/obj/item/weapon/gun/shotgun/double
 					)
 	light_mod = 5
 	slot = "rail"
 	var/flashlight_on = 0
 	can_activate = 1 //This is needed on all activateable attachments.
+	passive = 1
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		flashlight_on = !flashlight_on
@@ -292,7 +326,10 @@
 	icon_state = "bipod"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/sniper
 					)
 	recoil_mod = -1
@@ -307,7 +344,7 @@
 	desc = "A lengthened barrel allows for greater accuracy, particularly at long range.\nHowever, natural resistance also slows the bullet, leading to reduced damage."
 	slot = "muzzle"
 	icon_state = "ebarrel"
-	accuracy_mod = 20
+	accuracy_mod = 25
 	ranged_dmg_mod = 95
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
@@ -316,6 +353,9 @@
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/revolver,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/pistol/heavy
@@ -326,8 +366,8 @@
 	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
 	slot = "muzzle"
 	icon_state = "hbarrel"
-	accuracy_mod = -45
-	ranged_dmg_mod = 140
+	accuracy_mod = -40
+	ranged_dmg_mod = 135
 	delay_mod = 3
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
@@ -383,15 +423,18 @@
 	recoil_mod = -3
 	guns_allowed = list(
 						/obj/item/weapon/gun/sniper,
+						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/revolver,
 						/obj/item/weapon/gun/revolver/upp,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/pistol/heavy,
 						/obj/item/weapon/gun/shotgun/pump,
-						/obj/item/weapon/gun/shotgun/pump/combat,
+						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
-						/obj/item/weapon/gun/shotgun/pump/double
+						/obj/item/weapon/gun/shotgun/double
 					)
 
 /obj/item/attachable/burstfire_assembly
@@ -401,7 +444,7 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/smartgun,
 						/obj/item/weapon/gun/pistol/m4a3,
@@ -421,15 +464,20 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
-						/obj/item/weapon/gun/sniper,
-						/obj/item/weapon/gun/revolver/mateba,
+						/obj/item/weapon/gun/smg/m39,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
+						/obj/item/weapon/gun/smg/mp7,
+						/obj/item/weapon/gun/smg/skorpion,
+						/obj/item/weapon/gun/smg/uzi,
 						/obj/item/weapon/gun/shotgun/pump,
-						/obj/item/weapon/gun/shotgun/pump/combat,
+						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
-						/obj/item/weapon/gun/shotgun/pump/double
+						/obj/item/weapon/gun/shotgun/double,
+						/obj/item/weapon/gun/sniper
 						)
-	accuracy_mod = -15
+	accuracy_mod = -5
 	slot = "rail"
 
 /obj/item/attachable/compensator/stock
@@ -442,23 +490,36 @@
 	melee_mod = 150
 	size_mod = 2
 	delay_mod = 3
-	pixel_shift_x = -26
-	pixel_shift_y = -7
+	pixel_shift_x = 34
+	pixel_shift_y = 11
 	guns_allowed = list(/obj/item/weapon/gun/shotgun/pump)
+
+/obj/item/attachable/compensator/stock/slavic
+	name = "Wooden Stock"
+	desc = "A non-standard heavy wooden stock for Slavic firearms."
+	icon_state = "slavicstock"
+	pixel_shift_x = 35
+	pixel_shift_y = 15
+
+	guns_allowed = list(
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine
+						)
 
 /obj/item/attachable/compensator/riflestock
 	name = "M41A Marksman Stock"
 	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
 	recoil_mod = -1
-	accuracy_mod = 10
+	accuracy_mod = 15
 	melee_mod = 120
 	size_mod = 1
 	delay_mod = 3
 	icon_state = "riflestock"
-	pixel_shift_x = -22
-	pixel_shift_y = -7
-	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/rifle/m41a/elite)
+	pixel_shift_x = 40
+	pixel_shift_y = 11
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/rifle/m41a/scoped)
 
 /obj/item/attachable/compensator/revolverstock
 	name = "44 Magnum Sharpshooter Stock"
@@ -471,8 +532,8 @@
 	delay_mod = 3
 	w_class_mod = 2
 	icon_state = "44stock"
-	pixel_shift_x = -22
-	pixel_shift_y = -7
+	pixel_shift_x = 34
+	pixel_shift_y = 11
 	guns_allowed = list(/obj/item/weapon/gun/revolver/m44)
 
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
@@ -480,7 +541,11 @@
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, two-shot grenade launcher. It cannot be reloaded."
 	icon_state = "grenade"
-	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
+						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
+						/obj/item/weapon/gun/shotgun/combat
+						)
 	ammo_capacity = 2
 	current_ammo = 2
 	slot = "under"
@@ -517,7 +582,10 @@
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. It cannot be reloaded."
-	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/rifle/mar40)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
+						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/carbine)
 	ammo_capacity = 4
 	current_ammo = 4
 	ammo_type = /datum/ammo/bullet/shotgun //Slugs.
@@ -535,9 +603,15 @@
 //Ditto here. "ammo/flamethrower" is a bullet.
 /obj/item/attachable/flamer
 	name = "mini flamethrower"
-	icon_state = "grenade" //Placeholder
+	icon_state = "flamethrower"
 	desc = "A weapon-mounted flamethrower attachment.\nIt is designed for short bursts and must be discarded after it is empty."
-	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
+						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
+						/obj/item/weapon/gun/shotgun/pump,
+						/obj/item/weapon/gun/shotgun/combat,
+						/obj/item/weapon/gun/shotgun/pump/cmb)
 	ammo_capacity = 9
 	current_ammo = 9
 	slot = "under"
@@ -550,20 +624,17 @@
 		user << "\blue Your next shot will fire from the [src.name]."
 		return 1
 
-	fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
-		if(!user || !target || !gun) return 0
-
+	fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
 		if(get_dist(user,target) <= 0)
 			user << "Too close to fire the attached flamethrower!"
 			return 1
 
 		if(current_ammo > 0)
-			var/list/turf/turfs = list()
+			var/list/turf/turfs = getline2(user,target)
 			var/distance = 0
-			turfs = getline(user,target)
 			var/obj/structure/window/W
-
-			for(var/turf/T in turfs)
+			var/turf/T
+			for(T in turfs)
 				distance++
 				if(current_ammo == 0) break
 				if(distance > 3) break
@@ -580,14 +651,14 @@
 						break
 				current_ammo--
 				flame_turf(T)
-				continue
+				sleep(1)
 		else
 
 			if(user) user << "\icon[gun] The [src.name] is empty!"
 		return 1
 
 	proc/flame_turf(var/turf/T)
-		if(istype(T)) return 0
+		if(!istype(T)) return 0
 
 		if(!locate(/obj/flamer_fire) in T) // No stacking flames!
 			var/obj/flamer_fire/F =  new/obj/flamer_fire(T)
@@ -611,13 +682,18 @@
 
 /obj/item/attachable/scope
 	name = "rail scope"
-	icon_state = "scope"
-	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment."
-	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/sniper)
+	icon_state = "sniperscope"
+	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
+						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/m41a/scoped,
+						/obj/item/weapon/gun/rifle/lmg,
+						/obj/item/weapon/gun/smg/mp7,
+						/obj/item/weapon/gun/smg/p90,
+						/obj/item/weapon/gun/sniper)
 	slot = "rail"
-	passive = 0
+	passive = 1
 	can_activate = 1
-	can_be_removed = 0
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
 		target.zoom(11,12,user)
@@ -626,22 +702,42 @@
 /obj/item/attachable/slavicbarrel
 	name = "sniper barrel"
 	icon_state = "slavicbarrel"
-	desc = "A heavy barrel."
-	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine)
 	slot = "muzzle"
 	accuracy_mod = 5
 	ranged_dmg_mod = 150
 	can_be_removed = 0
+	pixel_shift_x = 20
+	pixel_shift_y = 16
 
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"
-	desc = "A heavy barrel."
+	desc = "A heavy barrel. CANNOT BE REMOVED."
 	guns_allowed = list(/obj/item/weapon/gun/sniper)
 	slot = "muzzle"
-	accuracy_mod = 5
-	ranged_dmg_mod = 150
+	accuracy_mod = 10
+	ranged_dmg_mod = 110
 	can_be_removed = 0
 
 /obj/item/attachable/scope/slavic
-	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
+	icon_state = "scope"
+	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine)
+	delay_mod = 9
+	accuracy_mod = 50
+	burst_mod = -1
+
+
+/obj/item/attachable/smartbarrel
+	name = "smartgun barrel"
+	icon_state = "smartbarrel"
+	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
+	guns_allowed = list(/obj/item/weapon/gun/smartgun)
+	slot = "muzzle"
+	can_be_removed = 0
+

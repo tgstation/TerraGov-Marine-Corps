@@ -74,12 +74,6 @@
 	recoil = 0
 	w_class = 3
 	force = 8
-	muzzle_pixel_x = 29
-	muzzle_pixel_y = 20
-	rail_pixel_x = 11
-	rail_pixel_y = 22
-	under_pixel_x = 21
-	under_pixel_y = 16
 
 //-------------------------------------------------------
 
@@ -149,12 +143,12 @@
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/minigun
-	name = "Rotating Ammo Drum (."
-	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+	name = "Rotating Ammo Drum (8mm)"
+	desc = "A huge ammo drum for a huge gun."
 	icon_state = "a762"
 	icon_empty = "a762-0"
 	default_ammo = "/datum/ammo/bullet"
-	max_rounds = 100
+	max_rounds = 300
 	gun_type = "/obj/item/weapon/gun/minigun"
 
 /obj/item/weapon/gun/minigun
@@ -180,7 +174,7 @@
 	under_pixel_x = 20
 	under_pixel_y = 15
 	burst_amount = 5
-	accuracy = -50
+	accuracy = -20
 	//Not found on mercs or russians.
 
 //-------------------------------------------------------

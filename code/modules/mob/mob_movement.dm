@@ -414,7 +414,7 @@
 				L.loc = locate(locx,locy,mobloc.z)
 				spawn(0)
 					var/limit = 2//For only two trailing shadows.
-					for(var/turf/T in getline(mobloc, L.loc))
+					for(var/turf/T in getline2(mobloc, L.loc))
 						spawn(0)
 							anim(T,L,'icons/mob/mob.dmi',,"shadow",,L.dir)
 						limit--

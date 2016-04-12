@@ -193,37 +193,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/sign(x)
 	return x!=0?x/abs(x):0
 
-/proc/getline(atom/M,atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
-	var/px=M.x		//starting x
-	var/py=M.y
-	var/line[] = list(locate(px,py,M.z))
-	var/dx=N.x-px	//x distance
-	var/dy=N.y-py
-	var/dxabs=abs(dx)//Absolute value of x distance
-	var/dyabs=abs(dy)
-	var/sdx=sign(dx)	//Sign of x distance (+ or -)
-	var/sdy=sign(dy)
-	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
-	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
-	var/j			//Generic integer for counting
-	if(dxabs>=dyabs)	//x distance is greater than y
-		for(j=0;j<dxabs;j++)//It'll take dxabs steps to get there
-			y+=dyabs
-			if(y>=dxabs)	//Every dyabs steps, step once in y direction
-				y-=dxabs
-				py+=sdy
-			px+=sdx		//Step on in x direction
-			line+=locate(px,py,M.z)//Add the turf to the list
-	else
-		for(j=0;j<dyabs;j++)
-			x+=dxabs
-			if(x>=dyabs)
-				x-=dyabs
-				px+=sdx
-			py+=sdy
-			line+=locate(px,py,M.z)
-	return line
-
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
 	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
@@ -1450,3 +1419,83 @@ var/list/WALLITEMS = list(
 	if(istype(arglist,/list))
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
+
+//Bresenham's algorithm. This one deals efficiently with all 8 octants.
+//Just don't ask me how it works.
+/proc/getline2(atom/from_atom,atom/to_atom)
+	if(!from_atom || !to_atom) return 0
+	var/list/turf/turfs = list()
+
+	var/cur_x = from_atom.x
+	var/cur_y = from_atom.y
+
+	var/w = to_atom.x - from_atom.x
+	var/h = to_atom.y - from_atom.y
+	var/dx1 = 0
+	var/dx2 = 0
+	var/dy1 = 0
+	var/dy2 = 0
+	if(w < 0)
+		dx1 = -1
+		dx2 = -1
+	else if(w > 0)
+		dx1 = 1
+		dx2 = 1
+	if(h < 0) dy1 = -1
+	else if(h > 0) dy1 = 1
+	var/longest = abs(w)
+	var/shortest = abs(h)
+	if(!(longest > shortest))
+		longest = abs(h)
+		shortest = abs(w)
+		if(h < 0) dy2 = -1
+		else if (h > 0) dy2 = 1
+		dx2 = 0
+
+	var/numerator = longest>>1
+	var/i
+	for(i = 0; i <= longest; i++)
+		turfs += locate(cur_x,cur_y,from_atom.z)
+		numerator += shortest
+		if(!(numerator < longest))
+			numerator -= longest
+			cur_x += dx1
+			cur_y += dy1
+		else
+			cur_x += dx2
+			cur_y += dy2
+
+
+	return turfs
+
+
+/proc/getline(atom/M,atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
+	var/px=M.x		//starting x
+	var/py=M.y
+	var/line[] = list(locate(px,py,M.z))
+	var/dx=N.x-px	//x distance
+	var/dy=N.y-py
+	var/dxabs=abs(dx)//Absolute value of x distance
+	var/dyabs=abs(dy)
+	var/sdx=sign(dx)	//Sign of x distance (+ or -)
+	var/sdy=sign(dy)
+	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
+	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
+	var/j			//Generic integer for counting
+	if(dxabs>=dyabs)	//x distance is greater than y
+		for(j=0;j<dxabs;j++)//It'll take dxabs steps to get there
+			y+=dyabs
+			if(y>=dxabs)	//Every dyabs steps, step once in y direction
+				y-=dxabs
+				py+=sdy
+			px+=sdx		//Step on in x direction
+			line+=locate(px,py,M.z)//Add the turf to the list
+	else
+		for(j=0;j<dyabs;j++)
+			x+=dxabs
+			if(x>=dyabs)
+				x-=dyabs
+				px+=sdx
+			py+=sdy
+			line+=locate(px,py,M.z)
+	return line

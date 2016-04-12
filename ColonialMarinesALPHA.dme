@@ -293,7 +293,6 @@
 #include "code\game\gamemodes\changeling\modularchangling.dm"
 #include "code\game\gamemodes\changeling\traitor_chan.dm"
 #include "code\game\gamemodes\colonialmarines\colonialmarines.dm"
-#include "code\game\gamemodes\colonialmarines\daedalus_prison.dm"
 #include "code\game\gamemodes\colonialmarines\Halloween.dm"
 #include "code\game\gamemodes\cult\cult.dm"
 #include "code\game\gamemodes\cult\cult_items.dm"
@@ -1556,7 +1555,6 @@
 #include "maps\Z.04.SulacoBottom.dmm"
 #include "maps\Z.05.Space.dmm"
 #include "maps\Z.06.Space2.dmm"
-#include "maps\Z.07.Prison-Minijar.dmm"
 // END_INCLUDE
 
 
