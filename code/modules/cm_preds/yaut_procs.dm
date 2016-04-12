@@ -285,5 +285,7 @@
 		if(!(ghost in ticker.mode.predators))
 			ticker.mode.predators += ghost
 
+	ticker.mode.pred_keys += newmob.key
+
 	if(H) del(H)
 	return 1

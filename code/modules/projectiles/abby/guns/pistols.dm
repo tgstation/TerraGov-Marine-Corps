@@ -41,10 +41,10 @@
 	w_class = 2
 	force = 6
 	muzzle_pixel_x = 28
-	muzzle_pixel_y = 19
+	muzzle_pixel_y = 20
 	rail_pixel_x = 12
 	rail_pixel_y = 21
-	under_pixel_x = 20
+	under_pixel_x = 21
 	under_pixel_y = 17
 
 //	New()
@@ -80,12 +80,12 @@
 	fire_delay = 8
 	recoil = 1
 	force = 8
-	muzzle_pixel_x = 30
+	muzzle_pixel_x = 31
 	muzzle_pixel_y = 20
-	rail_pixel_x = 15
+	rail_pixel_x = 17
 	rail_pixel_y = 23
-	under_pixel_x = 23
-	under_pixel_y = 18
+	under_pixel_x = 24
+	under_pixel_y = 19
 
 //-------------------------------------------------------
 //375 REVOLVER
@@ -107,12 +107,12 @@
 	fire_delay = 3
 	recoil = 0
 	force = 6
-	muzzle_pixel_x = 29
+	muzzle_pixel_x = 30
 	muzzle_pixel_y = 19
-	rail_pixel_x = 14
+	rail_pixel_x = 12
 	rail_pixel_y = 21
-	under_pixel_x = 22
-	under_pixel_y = 17
+	under_pixel_x = 20
+	under_pixel_y = 15
 	found_on_mercs = 1
 
 //-------------------------------------------------------
@@ -136,12 +136,12 @@
 	fire_delay = 8
 	recoil = 1
 	force = 10
-	muzzle_pixel_x = 29
-	muzzle_pixel_y = 19
-	rail_pixel_x = 13
-	rail_pixel_y = 20
+	muzzle_pixel_x = 28
+	muzzle_pixel_y = 21
+	rail_pixel_x = 14
+	rail_pixel_y = 23
 	under_pixel_x = 24
-	under_pixel_y = 17
+	under_pixel_y = 19
 	found_on_mercs = 1
 	found_on_russians = 1
 
@@ -168,12 +168,12 @@
 	burst_delay = 4
 	recoil = 1
 	force = 15
-	muzzle_pixel_x = 29
+	muzzle_pixel_x = 30
 	muzzle_pixel_y = 19
-	rail_pixel_x = 11
-	rail_pixel_y = 22
-	under_pixel_x = 21
-	under_pixel_y = 16
+	rail_pixel_x = 12
+	rail_pixel_y = 21
+	under_pixel_x = 22
+	under_pixel_y = 15
 	found_on_russians = 1
 
 //-------------------------------------------------------
@@ -199,12 +199,12 @@
 	fire_delay = 9
 	force = 13
 	recoil = 2
-	muzzle_pixel_x = 32
+	muzzle_pixel_x = 31
 	muzzle_pixel_y = 21
 	rail_pixel_x = 9
 	rail_pixel_y = 23
-	under_pixel_x = 21
-	under_pixel_y = 18
+	under_pixel_x = 20
+	under_pixel_y = 17
 	found_on_mercs = 1
 
 	New()
@@ -215,7 +215,7 @@
 //MAUSER MERC PISTOL
 
 /obj/item/ammo_magazine/pistol/c99
-	name = "C99 Pistol Magazine (9mm HP)"
+	name = "PK-9 Pistol Magazine (9mm HP)"
 	default_ammo = "/datum/ammo/bullet/pistol/hollow"
 	icon_state = "45-10"
 	icon_empty = "45-0"
@@ -233,12 +233,12 @@
 	fire_delay = 3
 	force = 6
 	recoil = 0
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 21
-	rail_pixel_x = 9
-	rail_pixel_y = 24
-	under_pixel_x = 22
-	under_pixel_y = 19
+	muzzle_pixel_x = 30
+	muzzle_pixel_y = 19
+	rail_pixel_x = 10
+	rail_pixel_y = 22
+	under_pixel_x = 21
+	under_pixel_y = 18
 	found_on_mercs = 1
 	found_on_russians = 0
 	silenced = 1
@@ -271,12 +271,12 @@
 	fire_delay = 2
 	force = 1
 	recoil = 0
-	muzzle_pixel_x = 31
-	muzzle_pixel_y = 23
+	muzzle_pixel_x = 28
+	muzzle_pixel_y = 20
 	rail_pixel_x = 10
-	rail_pixel_y = 25
-	under_pixel_x = 19
-	under_pixel_y = 18
+	rail_pixel_y = 22
+	under_pixel_x = 21
+	under_pixel_y = 17
 	found_on_mercs = 1
 	found_on_russians = 1
 
@@ -303,11 +303,11 @@
 	burst_delay = 1
 	recoil = 1
 	force = 5
-	muzzle_pixel_x = 28
-	muzzle_pixel_y = 21
-	rail_pixel_x = 11
-	rail_pixel_y = 23
-	under_pixel_x = 23
+	muzzle_pixel_x = 32
+	muzzle_pixel_y = 20
+	rail_pixel_x = 8
+	rail_pixel_y = 22
+	under_pixel_x = 22
 	under_pixel_y = 17
 	found_on_mercs = 1
 
@@ -333,11 +333,11 @@
 	recoil = 0
 	w_class = 1
 	force = 2
-	muzzle_pixel_x = 26
+	muzzle_pixel_x = 25
 	muzzle_pixel_y = 19
 	rail_pixel_x = 12
 	rail_pixel_y = 22
-	under_pixel_x = 21
+	under_pixel_x = 17
 	under_pixel_y = 15
 	found_on_mercs = 1
 
@@ -363,12 +363,12 @@
 	recoil = 1
 	w_class = 3
 	force = 10
-	muzzle_pixel_x = 31
-	muzzle_pixel_y = 23
-	rail_pixel_x = 10
-	rail_pixel_y = 25
-	under_pixel_x = 19
-	under_pixel_y = 18
+	muzzle_pixel_x = 27
+	muzzle_pixel_y = 20
+	rail_pixel_x = 8
+	rail_pixel_y = 22
+	under_pixel_x = 16
+	under_pixel_y = 15
 	found_on_mercs = 1
 	dam_bonus = 20 //She a beefy pistol meng
 
@@ -397,10 +397,10 @@
 	w_class = 3
 	force = 12
 	muzzle_pixel_x = 31
-	muzzle_pixel_y = 21
-	rail_pixel_x = 12
-	rail_pixel_y = 23
-	under_pixel_x = 21
+	muzzle_pixel_y = 22
+	rail_pixel_x = 11
+	rail_pixel_y = 25
+	under_pixel_x = 20
 	under_pixel_y = 18
 
 //-------------------------------------------------------
@@ -427,7 +427,7 @@
 	recoil = 0
 	w_class = 3
 	force = 8
-	muzzle_pixel_x = 29
+	muzzle_pixel_x = 31
 	muzzle_pixel_y = 20
 	rail_pixel_x = 11
 	rail_pixel_y = 22
@@ -458,9 +458,9 @@
 	recoil = 1
 	w_class = 3
 	force = 8
-	muzzle_pixel_x = 29
+	muzzle_pixel_x = 32
 	muzzle_pixel_y = 20
-	rail_pixel_x = 11
-	rail_pixel_y = 22
-	under_pixel_x = 21
-	under_pixel_y = 16
+	rail_pixel_x = 8
+	rail_pixel_y = 24
+	under_pixel_x = 23
+	under_pixel_y = 13

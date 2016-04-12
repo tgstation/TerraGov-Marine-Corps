@@ -750,7 +750,7 @@
 "ov" = (/turf/simulated/floor/wood{icon_state = "wood-broken3"},/area/lv624/ground/jungle6)
 "ow" = (/turf/simulated/floor/wood,/area/lv624/ground/jungle6)
 "ox" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/candle,/obj/item/weapon/flame/match{pixel_x = 6; pixel_y = 3},/turf/simulated/floor/wood,/area/lv624/ground/jungle6)
-"oy" = (/obj/structure/table/woodentable,/obj/item/clothing/mask/cigarette/cigar,/obj/item/weapon/gun/shotgun/pump/double,/turf/simulated/floor/wood,/area/lv624/ground/jungle6)
+"oy" = (/obj/structure/table/woodentable,/obj/item/clothing/mask/cigarette/cigar,/obj/item/weapon/gun/shotgun/double,/turf/simulated/floor/wood,/area/lv624/ground/jungle6)
 "oz" = (/obj/structure/table,/obj/item/alien_embryo{pixel_y = 4},/turf/simulated/floor{dir = 5; icon_state = "whitepurple"},/area/lv624/lazarus/research)
 "oA" = (/obj/structure/stool/bed/chair/office/dark{dir = 8},/obj/effect/landmark/corpse/scientist,/obj/effect/decal/cleanable/blood/splatter/animated,/turf/simulated/floor{dir = 5; icon_state = "whitepurple"},/area/lv624/lazarus/research)
 "oB" = (/obj/item/clothing/mask/facehugger{desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?"; icon_state = "facehugger_impregnated"; name = "????"; stat = 2},/turf/simulated/floor{dir = 5; icon_state = "whitepurple"},/area/lv624/lazarus/research)

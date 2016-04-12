@@ -36,6 +36,7 @@
 	var/casing_type = "/obj/item/ammo_casing"
 	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
 	var/bonus_projectiles = 0
+	var/never_scatters = 0 //Never wanders
 
 	proc/do_at_half_range(var/obj/item/projectile/P)
 		return

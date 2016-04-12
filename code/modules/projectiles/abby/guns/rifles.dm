@@ -39,7 +39,7 @@
 	burst_delay = 2
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
-	rail_pixel_x = 13
+	rail_pixel_x = 12
 	rail_pixel_y = 20
 	under_pixel_x = 24
 	under_pixel_y = 13
@@ -74,14 +74,14 @@
 	recoil = 1
 	burst_amount = 0
 	accuracy = 15
+	under_pixel_x = 22
+	under_pixel_y = 14
 
 	New()
 		var/obj/item/attachable/scope/S = new(src)
 		S.Attach(src)
 		var/obj/item/attachable/compensator/riflestock/Q = new(src)
 		Q.Attach(src)
-		var/obj/item/attachable/bipod/B = new(src)
-		B.Attach(src)
 
 		update_attachables()
 
@@ -99,15 +99,24 @@
 //-------------------------------------------------------
 //M41A PMC VARIANT
 
+/obj/item/ammo_magazine/rifle/elite
+	name = "M41A/2 Magazine (10mm)"
+	desc = "A 10mm marksman rifle magazine."
+	default_ammo = "/datum/ammo/bullet/rifle/ap"
+	gun_type = "/obj/item/weapon/gun/rifle/m41a/elite"
+
 /obj/item/weapon/gun/rifle/m41a/elite
 	name = "\improper M41A/2 Battle Rifle"
 	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle. Given only to elite units."
 	icon_state = "pmc_m41a"
 	icon_empty = "pmc_m41a0"
 	item_state = "pmc_m41a"
+	mag_type = "/obj/item/ammo_magazine/rifle/elite"
 	fire_delay = 6
 	burst_amount = 3
 	accuracy = 35
+	dam_bonus = 10
+
 
 //-------------------------------------------------------
 //MAR-40 AK CLONE
@@ -136,7 +145,7 @@
 	muzzle_pixel_y = 17
 	rail_pixel_x = 11
 	rail_pixel_y = 19
-	under_pixel_x = 20
+	under_pixel_x = 24
 	under_pixel_y = 15
 	burst_amount = 4
 	accuracy = -15
@@ -144,7 +153,7 @@
 	found_on_russians = 1
 
 /obj/item/weapon/gun/rifle/mar40/carbine
-	name = "\improper MAR-40 Battle Carbine"
+	name = "\improper MAR-30 Battle Carbine"
 	desc = "A cheap, reliable assault rifle chambered in 12mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "shortrsprifle"
 	icon_empty = "shortrsprifle0"
@@ -170,7 +179,6 @@
 	icon_wielded = "shortrsprifle-w"
 	item_state = "mar40short"
 	accuracy = 0
-	burst_amount = 0
 
 	New()
 		..()

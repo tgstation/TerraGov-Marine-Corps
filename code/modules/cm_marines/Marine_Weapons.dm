@@ -307,14 +307,14 @@
 		var/obj/item/weapon/grenade/F = grenades[1]
 		grenades -= F
 		F.loc = user.loc
-		F.throw_range = 30
-		F.throw_at(target, 30, 2, user)
+		F.throw_range = 20
+		F.throw_at(target, 20, 2, user)
 		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
 		log_game("[key_name_admin(user)] used a grenade ([src.name]).")
 		F.active = 1
 		F.icon_state = initial(icon_state) + "_active"
 		playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
-		spawn(15)
+		spawn(10)
 			if(F) //If somehow got deleted since then
 				F.prime()
 

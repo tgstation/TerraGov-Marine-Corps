@@ -116,6 +116,12 @@
 	damage_bleed = 0
 	shell_speed = 3
 
+/datum/ammo/bullet/rifle/ap
+	name = "armor-piercing rifle bullet"
+	damage = 35
+	accuracy = 20
+	armor_pen = 30
+
 /datum/ammo/bullet/rifle/mar40
 	damage = 24
 	accuracy = -5
@@ -204,6 +210,15 @@
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P,"flak")
 
+/datum/ammo/bullet/sniper/elite
+	name = "supersonic bullet"
+	damage = 120
+	accurate_range = 30
+	max_range = 30
+	armor_pen = 50
+	accuracy = 55
+	shell_speed = 4
+
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
 	damage = 22
@@ -220,36 +235,29 @@
 	stun = 5
 	weaken = 5
 	damage_type = OXY
+	shell_speed = 1
 
-/datum/ammo/energy/yautja/light_plasma
+/datum/ammo/energy/yautja
 	name = "plasma bolt"
 	icon_state = "ion"
-	damage = 5
+	damage = 10
+	damage_type = BURN
 	ignores_armor = 1
-	damage_type = BURN
-	stun = 3
-	weaken = 3
-
-/datum/ammo/energy/yautja/medium_plasma
-	name = "plasma blast"
-	icon_state = "pulse1"
-	damage = 30
-	damage_type = BURN
-
-/datum/ammo/energy/yautja/heavy_plasma
-	name = "plasma eradication sphere"
-	icon_state = "bluespace"
-	damage = 30
-	damage_type = BURN
+	stun = 2
+	weaken = 2
+	shell_speed = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		explosion(get_turf(P.loc), -1, -1, 2, 2)
+		if(damage > 20)
+			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		explosion(T, -1, -1, 2, 2)
+		if(damage > 20)
+			explosion(T, -1, -1, 2, 2)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
-		explosion(get_turf(P.loc), -1, -1, 2, 2)
+		if(damage > 20)
+			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
@@ -404,3 +412,4 @@
 		G.damtype = "fire"
 		G.SetLuminosity(G.brightness_on)
 		return
+

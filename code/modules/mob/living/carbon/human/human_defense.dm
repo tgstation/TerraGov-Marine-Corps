@@ -267,19 +267,12 @@ OBSOLETE BITCH
 		forcesay(hit_appends)	//forcesay checks stat already
 
 	//Melee weapon embedded object code.
-	if (I.damtype == BRUTE && !I.is_robot_module())
+	if (I.damtype == BRUTE && !I.is_robot_module() && I.canremove)
 		var/damage = I.force
 		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
-		if (armor)
-			damage /= armor+1
-
-		//blunt objects should really not be embedding in things unless a huge amount of force is involved
-		var/embed_chance = weapon_sharp? damage/I.w_class : damage/(I.w_class*3)
-		var/embed_threshold = weapon_sharp? 5*I.w_class : 15*I.w_class
-
-		//Sharp objects will always embed if they do enough damage.
-		if((weapon_sharp && damage > (10*I.w_class)) || (damage > embed_threshold && prob(embed_chance)))
+		if (!armor && weapon_sharp && prob(3))
 			affecting.embed(I)
+
 	return 1
 
 //this proc handles being hit by a thrown atom

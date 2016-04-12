@@ -1,3 +1,4 @@
+
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
@@ -770,9 +771,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "Already full up. There can only be 3 per round."
 		return
 
-	if((src.client && src.client.was_a_predator) || (ticker && src.mind && src.mind in ticker.mode:predators))
+	if((src.client && src.client.was_a_predator))
 		usr << "You already were a Yautja! Give someone else a chance."
 		return
+
+	var/I
+
+	for(I in ticker.mode.pred_keys)
+		if(uppertext(I) == uppertext(usr.key)) //case doesn't matter.
+			usr << "You already were Yautja, you bum."
+			return
 
 	var/mob/old = src
 	var/mob/living/carbon/human/M = new(pick(pred_spawn))

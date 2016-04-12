@@ -780,7 +780,7 @@
 	in_chamber.dir = src.dir
 	in_chamber.def_zone = pick("chest","chest","chest","head")
 	playsound(src.loc, 'sound/weapons/gunshot_rifle.ogg', 100, 1)
-	in_chamber.fire_at(U,src,src,ammo.max_range,ammo.shell_speed)
+	in_chamber.fire_at(U,src,src,in_chamber.ammo.max_range,in_chamber.ammo.shell_speed)
 	rounds--
 	if(rounds == 0)
 		visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")

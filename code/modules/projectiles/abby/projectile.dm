@@ -45,6 +45,7 @@
 	var/in_flight = 0
 	var/saved = 0
 	var/flight_check = 50
+	var/scatter_chance = 20
 
 	Del()
 		path = null
@@ -66,7 +67,7 @@
 		return
 
 	proc/get_accuracy()
-		var/acc = 65 //Base accuracy.
+		var/acc = 70 //Base accuracy.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 
@@ -77,6 +78,7 @@
 			if(gun.rail && gun.rail.accuracy_mod) acc += gun.rail.accuracy_mod
 			if(gun.muzzle && gun.muzzle.accuracy_mod) acc += gun.muzzle.accuracy_mod
 			if(gun.under && gun.under.accuracy_mod) acc += gun.under.accuracy_mod
+			if(gun.stock && gun.stock.accuracy_mod) acc += gun.stock.accuracy_mod
 
 			acc += gun.accuracy
 
@@ -84,9 +86,9 @@
 		if(ammo.accurate_range < distance_travelled && (ammo.current_gun && !ammo.current_gun.zoom)) //Determine ranged accuracy
 			acc -= (distance_travelled * 5) //-5% accuracy per turf
 		else if(ammo.current_gun && !ammo.current_gun.zoom && ammo.accurate_range >= distance_travelled) //Close range bonus
-			acc -= (distance_travelled * 2) //-2% accuracy per turf
+			acc -= (distance_travelled * 3) //-3% accuracy per turf
 		else if(!ammo.current_gun) //Non-gun firers, aka turrets, just get a flat -1 accuracy per turf.
-			acc -= (distance_travelled)
+			acc -= (distance_travelled * 2)
 
 		if(acc < 5) acc = 5 //There's always some chance.
 		return acc
@@ -162,6 +164,10 @@
 		var/turf/current_turf = get_turf(src)
 		var/turf/next_turf
 
+		if(scan_a_turf(current_turf) == 1) //Our first turf had stuff in it. Woops!
+			if(src) del(src)
+			return
+
 		spawn()
 			while(src && loc)
 				if(!path.len) continue //Something weird happened. Where's our flightpath?
@@ -199,7 +205,7 @@
 					current_turf = get_turf(src)
 					next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 					if(current_turf && next_turf)
-						path = getline(current_turf,next_turf) //Build a new flight path.
+						path = getline2(current_turf,next_turf) //Build a new flight path.
 						if(path.len && src)
 							follow_flightpath(speed, change_x, change_y, range) //Onwards!
 							return
@@ -223,7 +229,7 @@
 		shot_from = S
 		in_flight = 1
 
-		path = getline(starting,target_turf)
+		path = getline2(starting,target_turf)
 
 		var/change_x = target_turf.x - starting.x
 		var/change_y = target_turf.y - starting.y
@@ -259,10 +265,6 @@
 			if(ismob(A))
 				if(A:lying) continue //If it's not the target, and is lying down, skip them.
 
-			if(firer && get_adj_simple(firer,A))  //Always skip over adjacents.
-				permutated.Add(A)
-				return 0
-
 			if(firer && hitroll == -1)
 				permutated.Add(A)
 				return 0//Missed!
@@ -280,8 +282,8 @@
 
 	var/image/ping = image('icons/obj/projectiles.dmi',src,"ping",10) //Layer 10, above most things but not the HUD.
 	var/angle = round(rand(1,359))
-	ping.pixel_x += rand(-2,2)
-	ping.pixel_y += rand(-2,2)
+	ping.pixel_x += rand(-6,6)
+	ping.pixel_y += rand(-6,6)
 
 	if(P.firer && prob(60))
 		angle = round(Get_Angle(P.firer,src))

@@ -81,7 +81,7 @@
 			return
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
-			var/turflist = getline(user, target_turf)
+			var/turflist = getline(user, target_turf) //Uses old turf generation.
 			for (var/mob/O in viewers())
 				O << "\red [user] unleashes a blast of flames!"
 			playsound(src.loc, 'sound/weapons/flamethrower_shoot.ogg', 80, 1)

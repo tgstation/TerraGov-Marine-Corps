@@ -9,7 +9,6 @@
 	var/icon_empty = null
 	item_state = "gun"
 	flags =  FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
 	matter = list("metal" = 2000)
 	w_class = 3.0
 	throwforce = 5
@@ -108,6 +107,16 @@
 	emp_act(severity)
 		for(var/obj/O in contents)
 			O.emp_act(severity)
+
+	equipped(mob/user, slot)
+		if (slot != slot_l_hand && slot != slot_r_hand)
+			stop_aim()
+			if (user.client)
+				user.client.remove_gun_icons()
+		if(wielded)
+			unwield()
+
+		return ..()
 
 	examine()
 		..()
@@ -288,6 +297,9 @@
 	if(usr && ishuman(usr))
 		usr:update_inv_l_hand(0) //Updating invs is more efficient than updating the entire icon set.
 		usr:update_inv_r_hand()
+		var/obj/item/weapon/twohanded/O = usr:get_inactive_hand()
+		if(istype(O))
+			O.unwield()
 
 /obj/item/weapon/gun/proc/wield()
 	if(!twohanded) return
@@ -322,6 +334,10 @@
 //As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
 /obj/item/weapon/gun/dropped(mob/user as mob)
 	..()
+
+	stop_aim()
+	if (user && user.client)
+		user.client.remove_gun_icons()
 
 	if(flashlight_on && src.loc != user)
 		user.SetLuminosity(-flash_lum)
@@ -380,6 +396,9 @@
 		user << "\red You don't have the dexterity to do this!"
 		return
 
+	if(user)
+		dir = user.dir
+
 	if(ishuman(user))
 		var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
 		if(twohanded && !istype(O))
@@ -412,7 +431,7 @@
 			user << "<span class='warning'>[src] is not ready to fire again!"
 		return
 
-	if(active_attachable)
+	if(active_attachable  && active_attachable.passive == 0) //This gun does alternate stuff when you shoot.
 		burst_toggled = 0
 		if(active_attachable.fire_attachment(target,src,user) == 1)
 			if(!active_attachable.continuous)
@@ -445,7 +464,9 @@
 			in_chamber.original = target
 		if(user)
 			in_chamber.firer = user
-			in_chamber.def_zone = user.zone_sel.selecting
+			if(istype(user,/mob/living))
+				in_chamber.def_zone = user.zone_sel.selecting
+			in_chamber.dir = user.dir
 			var/actual_sound = fire_sound
 			if(active_attachable && !active_attachable.passive && active_attachable.shoot_sound)
 			 //If we're firing from an attachment, use that noise instead.
@@ -468,6 +489,8 @@
 			if(rail.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * rail.ranged_dmg_mod / 100)
 		if(muzzle)
 			if(muzzle.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * muzzle.ranged_dmg_mod / 100)
+		if(stock)
+			if(stock.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * stock.ranged_dmg_mod / 100)
 		if(under)
 			if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
 			if(istype(under,/obj/item/attachable/bipod) && prob(30))
@@ -480,16 +503,23 @@
 					user << "\blue Your bipod keeps the weapon steady!"
 					in_chamber.damage = round(5 * in_chamber.damage / 4) //Bipod gives a decent damage upgrade
 
-		if(((burst_amount > 1 && burst_toggled) || (ammo && ammo.bonus_projectiles))  && get_dist(curloc,targloc) > 1)
-			var/scatter_chance = 50 //Normally some scatter.
-			scatter_chance -= in_chamber.get_accuracy()
-			scatter_chance += (burst_amount * 20)
-			var/scatter_distance = round(get_dist(get_turf(src),get_turf(target)) / 2)
+		//Scatter chance is 20% by default.
+		in_chamber.scatter_chance -= round(in_chamber.get_accuracy() / 10) //More accurate bullet = less scatter.
+		if(burst_amount > 1)
+			in_chamber.scatter_chance += (burst_amount * 15) //Much higher chance on a burst.
+		if(istype(user,/mob/living)) //Lower accuracy based on firer's health.
+			in_chamber.scatter_chance += round((user:maxHealth - user:health) / 4)
+		if(prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
+			var/scatter_distance = (round(get_dist(get_turf(src),get_turf(target)) / 3) + round(in_chamber.scatter_chance / 50))
+			if(scatter_distance < 1) scatter_distance = 1
+			var/scatter_x = 0
+			var/scatter_y = 0
+			if(dir == NORTH || dir == SOUTH) scatter_x = round(rand(-1*scatter_distance,scatter_distance))
+			if(dir == EAST || dir == WEST) scatter_y = round(rand(-1*scatter_distance,scatter_distance))
 
-			if(prob(scatter_chance)) //Scattered!
-				targloc = locate(targloc.x + rand(-1 * scatter_distance,scatter_distance),targloc.y + rand(-1 * scatter_distance,scatter_distance),targloc.z) //Locate an adjacent turf.
-				if(isnull(targloc)) //Went off the map somehow.
-					break
+			targloc = locate(targloc.x + scatter_x,targloc.y + scatter_y,targloc.z) //Locate an adjacent turf.
+			if(isnull(targloc)) //Went off the map somehow.
+				break
 
 		if(params)
 			var/list/mouse_control = params2list(params)
@@ -502,7 +532,7 @@
 			shake_camera(user, recoil + 1, recoil)
 
 		if(burst_firing)
-			accuracy = initial(src.accuracy) - (burst_amount * 5)//Too many booolets!
+			accuracy = initial(src.accuracy) - (burst_amount * 8)//Too many booolets!
 		else
 			accuracy = initial(accuracy)
 		//Finally, make with the pew pew!
@@ -660,7 +690,7 @@
 		usr << "Not right now."
 		return
 
-	if(!rail && !muzzle && !under)
+	if(!rail && !muzzle && !under && !stock)
 		usr << "This weapon has no attachables. You can only field strip enhanced weapons."
 		return
 
@@ -824,10 +854,10 @@
 	var/choice = input("Which attachment to activate?") as null|anything in usable_atts
 	if(!choice || choice == "Cancel") return
 
-	if(rail && choice == rail.name && !rail.passive) active_attachable  = rail
-	if(under && choice == under.name && !under.passive) active_attachable  = under
-	if(stock && choice == stock.name && !stock.passive) active_attachable  = stock
-	if(muzzle && choice == muzzle.name && !muzzle.passive) active_attachable  = muzzle
+	if(rail && choice == rail.name) active_attachable  = rail
+	if(under && choice == under.name) active_attachable  = under
+	if(stock && choice == stock.name) active_attachable  = stock
+	if(muzzle && choice == muzzle.name) active_attachable  = muzzle
 
 	if(!active_attachable)
 		usr << "Nothing happened!"

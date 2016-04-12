@@ -36,7 +36,7 @@
 
 	New()
 		..()
-		add_language("Galactic Common")
+		add_language("English")
 		add_language("Sol Common")
 		add_language("Tradeband")
 

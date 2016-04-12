@@ -542,19 +542,19 @@
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	canremove = 0
 	w_class = 5
-	fire_delay = 5
+	fire_delay = 3
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
-	var/datum/ammo/energy/projectile_type
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
 	New()
-		projectile_type = new /datum/ammo/energy/yautja/light_plasma()
-		return
+		ammo = new /datum/ammo/energy/yautja()
+		..()
 
 	Del()
-		projectile_type = null
+		del(ammo)
+		ammo = null
 		source = null
 		return ..()
 
@@ -562,28 +562,40 @@
 		switch(mode)
 			if(2)
 				mode = 0
-				charge_cost = 70
+				charge_cost = 50
 				fire_sound = 'sound/weapons/lasercannonfire.ogg'
 				user << "\red \The [src.name] is now set to fire light plasma bolts."
-				if(projectile_type) del(projectile_type)
-				projectile_type = new /datum/ammo/energy/yautja/light_plasma()
-				fire_delay = 4
+				ammo.name = "plasma bolt"
+				ammo.icon_state = "ion"
+				ammo.damage = 10
+				ammo.ignores_armor = 1
+				ammo.stun = 2
+				ammo.weaken = 2
+				fire_delay = 3
 			if(0)
 				mode = 1
-				charge_cost = 120
+				charge_cost = 100
 				fire_sound = 'sound/weapons/emitter2.ogg'
 				user << "\red \The [src.name] is now set to fire medium plasma blasts."
-				if(projectile_type) del(projectile_type)
-				projectile_type = new /datum/ammo/energy/yautja/medium_plasma()
-				fire_delay = 5
+				fire_delay = 8
+				ammo.name = "plasma blast"
+				ammo.icon_state = "pulse1"
+				ammo.damage = 24
+				ammo.ignores_armor = 0
+				ammo.stun = 0
+				ammo.weaken = 0
 			if(1)
 				mode = 2
-				charge_cost = 500
+				charge_cost = 300
 				fire_delay = 30
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma spheres."
-				if(projectile_type) del(projectile_type)
-				projectile_type = new /datum/ammo/energy/yautja/heavy_plasma()
+				ammo.name = "plasma eradication sphere"
+				ammo.icon_state = "bluespace"
+				ammo.damage = 30
+				ammo.ignores_armor = 0
+				ammo.stun = 1
+				ammo.weaken = 1
 		return
 
 	dropped(var/mob/living/carbon/human/mob)
@@ -593,18 +605,18 @@
 		del(src)
 		return
 
-
 	load_into_chamber()
 		if(in_chamber)	return 1
 		if(!source)	return 0
-		if(!projectile_type)	return 0
+		if(!ammo)	return 0
 		if(!usr) return 0 //somehow
 		if(!source.drain_power(usr,charge_cost)) return 0
 		in_chamber = new /obj/item/projectile(src)
-		in_chamber.ammo = projectile_type
-		in_chamber.damage = projectile_type.damage
-		in_chamber.damage_type = projectile_type.damage_type
-		in_chamber.icon_state = projectile_type.icon_state
+		in_chamber.ammo = ammo
+		in_chamber.damage = ammo.damage
+		in_chamber.damage_type = ammo.damage_type
+		in_chamber.icon_state = ammo.icon_state
+		in_chamber.dir = usr.dir
 		return 1
 
 	afterattack(atom/target, mob/user , flag)
