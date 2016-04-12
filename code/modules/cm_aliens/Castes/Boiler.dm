@@ -428,7 +428,7 @@
 		acid_cooldown = 1
 		playsound(src.loc, 'sound/effects/refill.ogg', 100, 1)
 		visible_message("\green <B>[src] spews forth a virulent spray of acid!</B>")
-		var/turflist = getline2(src, target)
+		var/turflist = getline(src, target)
 		spray_turfs(turflist)
 		spawn(90) //12 second cooldown.
 			acid_cooldown = 0
