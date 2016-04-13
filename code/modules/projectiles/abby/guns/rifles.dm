@@ -111,11 +111,12 @@
 	icon_state = "pmc_m41a"
 	icon_empty = "pmc_m41a0"
 	item_state = "pmc_m41a"
+	icon_wielded = "pmc_m41a-w"
 	mag_type = "/obj/item/ammo_magazine/rifle/elite"
 	fire_delay = 6
 	burst_amount = 3
 	accuracy = 35
-	dam_bonus = 10
+	dam_bonus = 15
 
 
 //-------------------------------------------------------
@@ -174,10 +175,10 @@
 /obj/item/weapon/gun/rifle/mar40/svd
 	name = "\improper SVD Dragunov-033"
 	desc = "A marksman variant of the MAR-40 rifle, with a new stock and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
-	icon_state = "shortrsprifle"
-	icon_empty = "shortrsprifle0"
-	icon_wielded = "shortrsprifle-w"
-	item_state = "mar40short"
+	icon_state = "VSS"
+	icon_empty = "VSS_empty"
+	icon_wielded = "SVD-w"
+	item_state = "mar40"
 	accuracy = 0
 
 	New()
