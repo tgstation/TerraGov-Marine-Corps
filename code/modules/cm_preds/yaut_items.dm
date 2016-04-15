@@ -580,7 +580,7 @@
 				fire_delay = 8
 				ammo.name = "plasma blast"
 				ammo.icon_state = "pulse1"
-				ammo.damage = 24
+				ammo.damage = 25
 				ammo.ignores_armor = 0
 				ammo.stun = 0
 				ammo.weaken = 0

@@ -16,7 +16,7 @@
 	maxplasma = 400
 	jellyMax = 0
 	spit_delay = 75
-	speed = 2.2
+	speed = 1.6
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9

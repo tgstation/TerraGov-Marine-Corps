@@ -20,7 +20,7 @@
 	adjust_pixel_y = -6
 	adjust_size_x = 0.8
 	adjust_size_y = 0.75
-	speed = 1.3
+	speed = 1.1
 	big_xeno = 1
 	var/speed_activated = 0
 

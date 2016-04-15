@@ -128,39 +128,6 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Explosives crate (WARNING)"
 	group = "Operations"
 
-/datum/supply_packs/weapons_m41
-	name = "M41 crate"
-	contains = list(
-					/obj/item/weapon/gun/rifle/m41a,
-					/obj/item/weapon/gun/rifle/m41a,
-					/obj/item/weapon/gun/rifle/m41a,
-					/obj/item/weapon/gun/rifle/m41a/scoped
-				)
-	cost = 40
-	containertype = /obj/structure/closet/crate
-	containername = "M41A crate"
-	group = "Weapons"
-
-/datum/supply_packs/weapons_m39
-	name = "M39 SMG crate"
-	contains = list(
-					/obj/item/weapon/gun/smg
-				)
-	cost = 30
-	containertype = /obj/structure/closet/crate
-	containername = "M39 SMG crate"
-	group = "Weapons"
-
-/datum/supply_packs/weapons_side
-	name = "Sidearm crate"
-	contains = list(
-					/obj/item/weapon/gun/pistol
-				)
-	cost = 25
-	containertype = /obj/structure/closet/crate
-	containername = "Sidearm crate"
-	group = "Weapons"
-
 /datum/supply_packs/weapons_inc
 	name = "M240 Incinerator crate"
 	contains = list(
@@ -854,3 +821,26 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Collectable hats crate! Brought to you by Bass.inc!"
 	group = "Clothing"
 
+/datum/supply_packs/randomised/guns
+	contains = list()
+	name = "Weyland-Yutani firearms (x3)"
+	cost = 25
+	containertype = /obj/structure/largecrate/guns
+	containername = "Weyland-Armat firearms crate"
+	group = "Weapons"
+
+/datum/supply_packs/randomised/guns/merc
+	contains = list()
+	name = "Black Market firearm (x1)"
+	cost = 40
+	containertype = /obj/structure/largecrate/guns/merc
+	containername = "Black market firearms crate"
+	group = "Weapons"
+
+/datum/supply_packs/randomised/guns/slavic
+	contains = list()
+	name = "Nagant-Yamasaki firearm (x1)"
+	cost = 120
+	containertype = /obj/structure/largecrate/guns/russian
+	containername = "Nagant-Yamasaki firearms crate"
+	group = "Weapons"

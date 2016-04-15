@@ -66,7 +66,7 @@
 	icon_empty = "pmcM42c_empty"
 	item_state = "l6closedmag"  //placeholder!!
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
-	mag_type = "/obj/item/ammo_magazine/sniper"
+	mag_type = "/obj/item/ammo_magazine/sniper/elite"
 	fire_delay = 90
 	w_class = 5.0
 	force = 17
