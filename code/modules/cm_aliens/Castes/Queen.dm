@@ -24,7 +24,7 @@
 	maxplasma = 700
 	plasma_gain = 30
 	is_intelligent = 1
-	speed = 2
+	speed = 1
 	jellyMax = 0
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6

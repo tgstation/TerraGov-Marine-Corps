@@ -248,20 +248,20 @@
 	shell_speed = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(damage > 20)
+		if(damage > 25)
 			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(damage > 20)
+		if(damage > 25)
 			explosion(T, -1, -1, 2, 2)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(damage > 20)
+		if(damage > 25)
 			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	damage = 45
+	damage = 40
 	skips_marines = 1
 	armor_pen = 15
 	accuracy = 50
@@ -408,7 +408,7 @@
 		G.visible_message("\blue <B>A [G] bursts into brilliant light nearby!</b>")
 		G.on = 1
 		processing_objects += G
-		icon_state = "flare-on"
+		G.icon_state = "flare-on"
 		G.damtype = "fire"
 		G.SetLuminosity(G.brightness_on)
 		return
