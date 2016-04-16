@@ -261,13 +261,17 @@
 			if(ismob(A) && A == original && hitroll == 1) //Oh hey our original target's here. Shoot them. Could be someone lying down, etc.
 				A.bullet_act(src)
 				return 1
-			if(!A.density) continue //Nondense stuff aren't even checked.
+			if(!A.density && !istype(A,/obj/item/clothing/mask/facehugger)) continue //Nondense stuff aren't even checked.
 			if(ismob(A))
 				if(A:lying) continue //If it's not the target, and is lying down, skip them.
 
 			if(firer && hitroll == -1)
 				permutated.Add(A)
 				return 0//Missed!
+
+			if(istype(A,/obj/structure/window) && ammo && istype(ammo,/datum/ammo/energy)) //this is bad
+				permutated.Add(A)
+				return 0
 
 			if (A.bullet_act(src) != 0)
 				bumped = 1

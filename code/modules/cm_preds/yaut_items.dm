@@ -237,6 +237,7 @@
 	var/exploding = 0
 	var/inject_timer = 0
 	var/cloak_timer = 0
+	var/upgrades = 0
 
 	emp_act(severity)
 		charge -= (severity * 500)
@@ -258,6 +259,30 @@
 		var/perc = (charge / charge_max * 100)
 		M.update_power_display(perc)
 		return 1
+
+	proc/translate()
+		set name = "Translator"
+		set desc = "Emit a message from your bracer to those nearby."
+		set category = "Yautja"
+
+		if(!usr || usr.stat) return
+		var/mob/living/carbon/human/M = usr
+		if(!istype(M)) return
+		if(!isYautja(usr))
+			usr << "You have no idea how to work these things."
+			return
+
+		var/msg = input(usr,"Your clan bracer beeps and waits patiently for you to input your message.","Translator","") as text
+		msg = sanitize(msg)
+		if (msg != "")
+			spawn(10)
+				if(!drain_power(usr,50)) return //At this point they've upgraded.
+				var/mob/Q
+				for(Q in hearers(usr))
+					if(Q.stat == 1) continue
+					if(isXeno(Q) && upgrades != 2) continue
+					Q << "A strange voice says, '[msg]'."
+//DEFER
 
 	//Should put a cool menu here, like ninjas.
 	verb/wristblades()

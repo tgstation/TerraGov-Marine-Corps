@@ -252,6 +252,9 @@
 				if(usr) usr << "\blue \The [active_attachable.name] is empty!"
 				return 0
 			bammo = new active_attachable.ammo_type()
+		else
+			if(active_attachable.current_ammo <= 0)
+				active_attachable = null
 	else
 		if(!current_mag || isnull(current_mag)) return 0
 		if(current_mag.current_rounds <= 0) return 0 //Nope
@@ -506,16 +509,14 @@
 		//Scatter chance is 20% by default.
 		in_chamber.scatter_chance -= round(in_chamber.get_accuracy() / 10) //More accurate bullet = less scatter.
 		if(burst_amount > 1)
-			in_chamber.scatter_chance += (burst_amount * 15) //Much higher chance on a burst.
+			in_chamber.scatter_chance += (burst_amount * 5) //Much higher chance on a burst.
 		if(istype(user,/mob/living)) //Lower accuracy based on firer's health.
 			in_chamber.scatter_chance += round((user:maxHealth - user:health) / 4)
-		if(prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
-			var/scatter_distance = (round(get_dist(get_turf(src),get_turf(target)) / 3) + round(in_chamber.scatter_chance / 50))
+		if((prob(15) || (burst_amount > 1 && burst_toggled)) && prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
+			var/scatter_distance = round(get_dist(get_turf(src),get_turf(target)) / 3)
 			if(scatter_distance < 1) scatter_distance = 1
-			var/scatter_x = 0
-			var/scatter_y = 0
-			if(dir == NORTH || dir == SOUTH) scatter_x = round(rand(-1*scatter_distance,scatter_distance))
-			if(dir == EAST || dir == WEST) scatter_y = round(rand(-1*scatter_distance,scatter_distance))
+			var/scatter_x = round(rand(-1*scatter_distance,scatter_distance))
+			var/scatter_y = round(rand(-1*scatter_distance,scatter_distance))
 
 			target = locate(targloc.x + scatter_x,targloc.y + scatter_y,targloc.z) //Locate an adjacent turf.
 			targloc = target
@@ -533,10 +534,6 @@
 		if(recoil > 0 && ishuman(user))
 			shake_camera(user, recoil + 1, recoil)
 
-		if(burst_firing)
-			accuracy = initial(src.accuracy) - (burst_amount * 8)//Too many booolets!
-		else
-			accuracy = initial(accuracy)
 		//Finally, make with the pew pew!
 //vvvvvvvvvvvvvvvvvvvvvv
 		in_chamber.fire_at(target,user,src,ammo.max_range,ammo.shell_speed)
