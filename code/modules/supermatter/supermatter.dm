@@ -252,13 +252,8 @@
 		return 0	// This stops people from being able to really power up the supermatter
 				// Then bring it inside to explode instantly upon landing on a valid turf.
 
-
-	if(istype(Proj, /obj/item/projectile/beam))
-		power += Proj.damage * config_bullet_energy	* CHARGING_FACTOR / POWER_FACTOR
-	else
-		damage += Proj.damage * config_bullet_energy
-	return 0
-
+	power += Proj.damage * config_bullet_energy	* CHARGING_FACTOR / POWER_FACTOR
+	return 1
 
 /obj/machinery/power/supermatter/attack_paw(mob/user as mob)
 	return attack_hand(user)
