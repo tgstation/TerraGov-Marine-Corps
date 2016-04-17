@@ -89,18 +89,25 @@
 			current_mag = new magpath(src)
 			current_mag.current_rounds = current_mag.max_rounds //Eh. For now they can always start full.
 			var/ammopath = text2path(current_mag.default_ammo)
-			if(ammopath)
+			if(ispath(ammopath))
 				ammo = new ammopath()
+			else
+				ammo = new default_ammo() //Just force it.
+
 		if(burst_delay == 0 && burst_amount > 0) //Okay.
-			burst_delay = fire_delay / 2
+			burst_delay = round(2 * fire_delay / 3) //2/3rds of single shot firing rate.
 	Del()
 		if(current_mag) del(current_mag)
 		current_mag = null
+		if(muzzle) del(muzzle)
 		muzzle = null
+		if(rail) del(rail)
 		rail = null
+		if(under) del(under)
 		under = null
 		if(in_chamber) del(in_chamber)
 		in_chamber = null
+		if(ammo) del(ammo)
 		ammo = null
 		..()
 
@@ -213,6 +220,7 @@
 			magazine.loc = src //Jam that sucker in there.
 			update_icon()
 			if(!ammo || !istype(ammo,ammopath))
+				if(ammo) del(ammo)
 				ammo = new ammopath()
 				ammo.current_gun = src
 
@@ -222,6 +230,7 @@
 	else
 		current_mag = magazine
 		if(!ammo || !istype(ammo,ammopath))
+			if(ammo) del(ammo)
 			ammo = new ammopath()
 			ammo.current_gun = src
 
@@ -242,30 +251,29 @@
 
 /obj/item/weapon/gun/proc/load_into_chamber()
 
-	var/datum/ammo/bammo = null
-
 	if(in_chamber) return 1 //Already set!
 
 	if(active_attachable)
 		if(active_attachable.ammo_type)
 			if(active_attachable.current_ammo <= 0)
 				if(usr) usr << "\blue \The [active_attachable.name] is empty!"
+				active_attachable = null
 				return 0
-			bammo = new active_attachable.ammo_type()
+			if(ammo) del(ammo)
+			ammo = new active_attachable.ammo_type()
+			ammo.current_gun = src
 		else
 			if(active_attachable.current_ammo <= 0)
 				active_attachable = null
-	else
+
+	if(isnull(active_attachable)) //After all that, if we're not using an attachable, check for the magazine.
 		if(!current_mag || isnull(current_mag)) return 0
 		if(current_mag.current_rounds <= 0) return 0 //Nope
 
-	if(!ammo && !bammo) return 0 //Our ammo datum is missing. We need one, and it should have set when we reloaded, so, abort.
+	if(!ammo || isnull(ammo)) return 0 //Our ammo datum is missing. We need one, and it should have set when we reloaded, so, abort.
 
 	var/obj/item/projectile/P = new(src) //New bullet!
 	P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
-	if(bammo) //hold on! A usurper!
-		P.ammo = bammo
-		bammo = null
 	P.name = P.ammo.name
 	P.icon_state = P.ammo.icon_state //Make it look fancy.
 	P.damage = P.ammo.damage
@@ -434,11 +442,15 @@
 			user << "<span class='warning'>[src] is not ready to fire again!"
 		return
 
-	if(active_attachable  && active_attachable.passive == 0) //This gun does alternate stuff when you shoot.
+	if(active_attachable && active_attachable.passive == 0) //This gun does alternate stuff when you shoot.
 		burst_toggled = 0
 		if(active_attachable.fire_attachment(target,src,user) == 1)
-			if(!active_attachable.continuous)
+			if(active_attachable.continuous == 0 )
 				active_attachable = null
+				click_empty(user)
+			else
+				if(active_attachable.current_ammo <= 0)
+					active_attachable = null
 			return
 
 	var/bullets_fired = 1
@@ -451,126 +463,131 @@
 		bullets_fired = 1 + ammo.bonus_projectiles
 */
 	var/i //Weirdly, this way is supposed to be less laggy. by 500%
-	for(i = 1 to bullets_fired)
-		if(!load_into_chamber()) //This also checks for a null magazine, and loads the chamber with a round.
-			click_empty(user)
-			break
-
-		if(!in_chamber) //Guns must have something in the chamber. It doesn't necessarily have to be a bullet.
-			click_empty(user)
-			break
-
-		in_chamber.shot_from = src
-		if(!isnull(original_target) && target != original_target) //Save the original thing that we shot at.
-			in_chamber.original = original_target
-		else
-			in_chamber.original = target
-		if(user)
-			in_chamber.firer = user
-			if(istype(user,/mob/living))
-				in_chamber.def_zone = user.zone_sel.selecting
-			in_chamber.dir = user.dir
-			var/actual_sound = fire_sound
-			if(active_attachable && !active_attachable.passive && active_attachable.shoot_sound)
-			 //If we're firing from an attachment, use that noise instead.
-				actual_sound = active_attachable.shoot_sound
-
-			if(silenced)
-				if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 8, 1)
-			else
-				if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 50, 1)
-				if(i == 1)
-					if(ammo_counter && current_mag)
-						user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-						"<span class='warning'>You fire [src][reflex ? "by reflex":""]! \[<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]\]</span>", \
-						"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
-					else
-						user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-						"<span class='warning'>You fire [src][reflex ? "by reflex":""]!</span>", \
-						"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
-		if(rail)
-			if(rail.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * rail.ranged_dmg_mod / 100)
-		if(muzzle)
-			if(muzzle.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * muzzle.ranged_dmg_mod / 100)
-		if(stock)
-			if(stock.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * stock.ranged_dmg_mod / 100)
-		if(under)
-			if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
-			if(istype(under,/obj/item/attachable/bipod) && prob(30))
-				var/found = 0
-				for(var/obj/structure/Q in range(1,user)) //This is probably inefficient as fuck
-					if(Q.throwpass == 1)
-						found = 1
-						break
-				if(found)
-					user << "\blue Your bipod keeps the weapon steady!"
-					in_chamber.damage = round(5 * in_chamber.damage / 4) //Bipod gives a decent damage upgrade
-
-		//Scatter chance is 20% by default.
-		in_chamber.scatter_chance -= round(in_chamber.get_accuracy() / 10) //More accurate bullet = less scatter.
-		if(burst_amount > 1)
-			in_chamber.scatter_chance += (burst_amount * 5) //Much higher chance on a burst.
-		if(istype(user,/mob/living)) //Lower accuracy based on firer's health.
-			in_chamber.scatter_chance += round((user:maxHealth - user:health) / 4)
-		if((prob(15) || (burst_amount > 1 && burst_toggled)) && prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
-			var/scatter_distance = round(get_dist(get_turf(src),get_turf(target)) / 3)
-			if(scatter_distance < 1) scatter_distance = 1
-			var/scatter_x = round(rand(-1*scatter_distance,scatter_distance))
-			var/scatter_y = round(rand(-1*scatter_distance,scatter_distance))
-
-			target = locate(targloc.x + scatter_x,targloc.y + scatter_y,targloc.z) //Locate an adjacent turf.
-			targloc = target
-			in_chamber.original = target
-			if(isnull(target)) //Went off the map somehow.
+	spawn()
+		for(i = 1 to bullets_fired)
+			if(isnull(src) || isnull(target)) //Something disappeared/dropped in between.
+				click_empty(user)
 				break
 
-		if(params)
-			var/list/mouse_control = params2list(params)
-			if(mouse_control["icon-x"])
-				in_chamber.p_x = text2num(mouse_control["icon-x"])
-			if(mouse_control["icon-y"])
-				in_chamber.p_y = text2num(mouse_control["icon-y"])
+			if(istype(user,/mob/living/carbon/human) && src.loc != user) //Had a human, lost em. dont need em anyway really
+				click_empty(user)
+				break
 
-		if(recoil > 0 && ishuman(user))
-			shake_camera(user, recoil + 1, recoil)
+			if(!load_into_chamber()) //This also checks for a null magazine, and loads the chamber with a round.
+				click_empty(user)
+				break
 
-		//Finally, make with the pew pew!
-//vvvvvvvvvvvvvvvvvvvvvv
-		in_chamber.fire_at(target,user,src,ammo.max_range,ammo.shell_speed)
-//^^^^^^^^^^^^^^^^^^^^^^
-		in_chamber = null //Now we absolve all knowledge of it. Its the targets problem now
-		if(target)
-			var/angle = round(Get_Angle(user,target))
-			muzzle_flash(angle)
+			if(!in_chamber) //Guns must have something in the chamber. It doesn't necessarily have to be a bullet.
+				click_empty(user)
+				break
 
-		if(active_attachable && active_attachable.current_ammo > 0)
-			active_attachable.current_ammo--
-			if(!active_attachable.continuous)
-				active_attachable = null
+			in_chamber.shot_from = src
+			if(!isnull(original_target) && target != original_target) //Save the original thing that we shot at.
+				in_chamber.original = original_target
+			else
+				in_chamber.original = target
+			if(user)
+				in_chamber.firer = user
+				if(istype(user,/mob/living))
+					in_chamber.def_zone = user.zone_sel.selecting
+				in_chamber.dir = user.dir
+				var/actual_sound = fire_sound
+				if(active_attachable && !active_attachable.passive && active_attachable.shoot_sound)
+				 //If we're firing from an attachment, use that noise instead.
+					actual_sound = active_attachable.shoot_sound
 
-		else
-			if(current_mag)  //Reduce ammo.
-				current_mag.current_rounds--
-				current_mag.update_icon()
-				if(current_mag.current_rounds == 0 && autoejector)
-					if(user)
-						playsound(user, current_mag.sound_empty, 50, 1)
-					else
-						playsound(src.loc, current_mag.sound_empty, 50, 1)
-					current_mag.loc = get_turf(src)
-					current_mag = null //Get rid of it. But not till the bullet is fired.
+				if(silenced)
+					if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 8, 1)
+				else
+					if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 50, 1)
+					if(i == 1)
+						if(ammo_counter && current_mag)
+							user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
+							"<span class='warning'>You fire [src][reflex ? "by reflex":""]! \[<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]\]</span>", \
+							"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
+						else
+							user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
+							"<span class='warning'>You fire [src][reflex ? "by reflex":""]!</span>", \
+							"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
+			if(rail)
+				if(rail.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * rail.ranged_dmg_mod / 100)
+			if(muzzle)
+				if(muzzle.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * muzzle.ranged_dmg_mod / 100)
+			if(stock)
+				if(stock.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * stock.ranged_dmg_mod / 100)
+			if(under)
+				if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
+				if(istype(under,/obj/item/attachable/bipod) && prob(30))
+					var/found = 0
+					for(var/obj/structure/Q in range(1,user)) //This is probably inefficient as fuck
+						if(Q.throwpass == 1)
+							found = 1
+							break
+					if(found)
+						user << "\blue Your bipod keeps the weapon steady!"
+						in_chamber.damage = round(5 * in_chamber.damage / 4) //Bipod gives a decent damage upgrade
 
-		if(i < bullets_fired)
-			sleep(burst_delay)
+			//Scatter chance is 20% by default, 10% flat with single shot.
+			if(ammo && ammo.never_scatters == 0 && (prob(5) || (burst_amount > 1 && burst_toggled)))
+				in_chamber.scatter_chance += (burst_amount * 5) //Much higher chance on a burst.
 
-	sleep(-1)
-	burst_firing = 0
-	update_icon()
+				if(prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
+					var/scatter_x = rand(-1,1)
+					var/scatter_y = rand(-1,1)
+					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
+					if(istype(new_target) && !isnull(new_target))
+						target = new_target
+						targloc = target
+						in_chamber.original = target
+
+			if(params)
+				var/list/mouse_control = params2list(params)
+				if(mouse_control["icon-x"])
+					in_chamber.p_x = text2num(mouse_control["icon-x"])
+				if(mouse_control["icon-y"])
+					in_chamber.p_y = text2num(mouse_control["icon-y"])
+
+			if(recoil > 0 && ishuman(user))
+				shake_camera(user, recoil + 1, recoil)
+
+			//Finally, make with the pew pew!
+			if(!in_chamber || !istype(in_chamber,/obj) || isnull(in_chamber))
+				usr << "Your gun is malfunctioning. Tell a coder! (don't forget to say exactly how you got this message)"
+				burst_firing = 0
+				return
+	//vvvvvvvvvvvvvvvvvvvvvv
+			in_chamber.fire_at(target,user,src,ammo.max_range,ammo.shell_speed)
+	//^^^^^^^^^^^^^^^^^^^^^^
+			in_chamber = null //Now we absolve all knowledge of it. Its the targets problem now
+			if(target)
+				var/angle = round(Get_Angle(user,target))
+				muzzle_flash(angle)
+
+			if(active_attachable && active_attachable.current_ammo > 0)
+				active_attachable.current_ammo--
+				if(!active_attachable.continuous)
+					active_attachable = null
+
+			else
+				if(current_mag)  //Reduce ammo.
+					current_mag.current_rounds--
+					current_mag.update_icon()
+					if(current_mag.current_rounds == 0 && autoejector)
+						if(user)
+							playsound(user, current_mag.sound_empty, 50, 1)
+						else
+							playsound(src.loc, current_mag.sound_empty, 50, 1)
+						current_mag.loc = get_turf(src)
+						current_mag = null //Get rid of it. But not till the bullet is fired.
+
+			if(i < bullets_fired)
+				sleep(burst_delay)
+			else if(i == bullets_fired) //We're on our last bullet.
+				burst_firing = 0
+				update_icon()
 	return
 
 /obj/item/weapon/gun/proc/muzzle_flash(var/angle)
-	set waitfor = 0
-
 	if(silenced || !muzzle_flash || isnull(angle)) return
 	var/mob/user = src.loc
 	if(!istype(user) || !istype(user.loc,/turf)) return
@@ -851,7 +868,9 @@
 	usable_atts += "Cancel"
 
 	var/choice = input("Which attachment to activate?") as null|anything in usable_atts
-	if(!choice || choice == "Cancel") return
+	if(!choice || choice == "Cancel")
+		active_attachable = null
+		return
 
 	if(rail && choice == rail.name) active_attachable  = rail
 	if(under && choice == under.name) active_attachable  = under

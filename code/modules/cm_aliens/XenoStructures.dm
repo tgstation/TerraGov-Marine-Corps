@@ -114,9 +114,8 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/aforce = W.force
-	health = max(0, health - aforce)
+/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
+	health = health - W.force
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 	healthcheck()
 	return ..(W,user)
@@ -214,8 +213,8 @@
 				del(src)
 	return
 
-/obj/effect/alien/weeds/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(!W || !user)	return 0
+/obj/effect/alien/weeds/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!W || !user || isnull(W))	return 0
 
 	if(W.attack_verb.len)
 		visible_message("\red <B>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
@@ -392,7 +391,7 @@
 		icon_state = "Egg Opened"
 		flick("Egg Opening", src)
 		status = BURSTING
-		spawn(15)
+		spawn(10)
 			status = BURST
 			if(src.loc)
 				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
@@ -400,8 +399,8 @@
 					child.Die()
 				else
 					if(istype(child))
-						for(var/mob/living/carbon/human/F in range("3x3",src))
-							if(CanHug(F) && !isYautja(F) && Adjacent(F))
+						for(var/mob/living/carbon/human/F in view(2,src))
+							if(CanHug(F) && !isYautja(F) && get_dist(src,F) <= 1)
 								F.visible_message("<span class='warning'>\The scuttling [src] leaps at [F]!</span>","<span class='warning'>The scuttling [src] leaps at [F]!</span>")
 								HasProximity(F)
 								break
@@ -424,7 +423,7 @@
 		spawn(rand(125,200))
 			del(src)
 
-/obj/effect/alien/egg/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/alien/egg/attackby(obj/item/W as obj, mob/user as mob)
 	if(health <= 0)
 		return
 	if(W.attack_verb.len)
@@ -449,7 +448,7 @@
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)
-		if(!CanHug(AM))
+		if(!CanHug(AM) || isYautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
 		Burst(0)
 

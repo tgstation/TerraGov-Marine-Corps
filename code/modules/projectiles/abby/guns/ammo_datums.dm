@@ -62,9 +62,9 @@
 
 /datum/ammo/bullet/smg/ludicrous
 	name = "submachinegun bullet"
-	damage = 25
+	damage = 18
 	armor_pen = 30
-	accuracy = 12
+	accuracy = 15
 	shell_speed = 3 //Faster!
 
 /datum/ammo/bullet/revolver

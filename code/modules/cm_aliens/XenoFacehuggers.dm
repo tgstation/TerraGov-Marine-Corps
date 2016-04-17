@@ -327,7 +327,7 @@ var/const/MAX_ACTIVE_TIME = 200
 	stat = DEAD
 
 	src.visible_message("\icon[src] \red <B>The [src] curls up into a ball!</b>")
-	spawn(1800) //2 minute timer for it to decay
+	spawn(3000) //3 minute timer for it to decay
 		src.visible_message("\icon[src] \red <B>The dead [src] decays into a mass of acid and chitin.</b>")
 		if(ismob(src.loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 			var/mob/M = src.loc

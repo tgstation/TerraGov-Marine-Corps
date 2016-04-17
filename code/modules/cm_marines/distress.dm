@@ -1,6 +1,37 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
 
+var/global/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
+									/obj/item/weapon/gun/pistol/heavy,
+									/obj/item/weapon/gun/pistol/m1911,
+									/obj/item/weapon/gun/pistol/kt42,
+									/obj/item/weapon/gun/pistol/holdout,
+									/obj/item/weapon/gun/pistol/highpower,
+									/obj/item/weapon/gun/pistol/vp70
+									)
+var/global/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
+									/obj/item/weapon/gun/revolver/upp,
+									/obj/item/weapon/gun/revolver/mateba,
+									/obj/item/weapon/gun/pistol/c99,
+									/obj/item/weapon/gun/pistol/c99/russian,
+									/obj/item/weapon/gun/pistol/kt42
+									)
+var/global/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
+									/obj/item/weapon/gun/shotgun/merc,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/weapon/gun/shotgun/double,
+									/obj/item/weapon/gun/shotgun/pump/cmb,
+									/obj/item/weapon/gun/smg/mp7,
+									/obj/item/weapon/gun/smg/skorpion,
+									/obj/item/weapon/gun/smg/ppsh,
+									/obj/item/weapon/gun/smg/uzi,
+									/obj/item/weapon/gun/smg/p90
+									)
+var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
+									/obj/item/weapon/gun/rifle/mar40/carbine,
+									/obj/item/weapon/gun/rifle/m41a,
+									/obj/item/weapon/gun/rifle/mar40/svd)
+
 //basic persistent gamemode stuff.
 /datum/game_mode
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -8,10 +39,6 @@
 	var/has_called_emergency = 0
 	var/distress_cooldown = 0
 	var/waiting_for_candidates = 0
-	var/list/merc_sidearms
-	var/list/rus_sidearms  //We're just storing this shit here.
-	var/list/merc_firearms
-	var/list/rus_firearms
 
 //The distress call parent. Cannot be called itself due to "name" being a filtered target.
 /datum/emergency_call
@@ -123,17 +150,6 @@
 		if(!C)	continue
 		if(C.name == "name") continue //The default parent, don't add it
 		all_calls += C
-
-	var/list/all_guns = list() //Set up random guns list.
-
-	all_guns = typesof(/obj/item/weapon/gun)
-	for(var/obj/item/weapon/gun/G in all_guns)
-		if(istype(G,/obj/item/weapon/gun/pistol) || istype(G,/obj/item/weapon/gun/smg))
-			if(G.found_on_mercs) merc_sidearms += G
-			if(G.found_on_russians) rus_sidearms += G
-		else
-			if(G.found_on_mercs) merc_firearms += G
-			if(G.found_on_russians) rus_firearms += G
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
@@ -619,16 +635,16 @@
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 
-	if(ticker.mode.merc_sidearms.len)
-		var/gunpath = pick(ticker.mode.merc_sidearms)
+	if(merc_sidearms.len)
+		var/gunpath = pick(merc_sidearms)
 		if(gunpath)
 			var/obj/item/weapon/gun/G = new gunpath(M.back)
 			M.equip_to_slot_or_del(G, slot_in_backpack)
 			var/ammopath = text2path(G.mag_type)
 			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
 
-	if(ticker.mode.merc_firearms.len)
-		var/gunpath2 = pick(ticker.mode.merc_firearms)
+	if(merc_firearms.len)
+		var/gunpath2 = pick(merc_firearms)
 		if(gunpath2)
 			var/obj/item/weapon/gun/H = new gunpath2(M.back)
 			M.equip_to_slot_or_del(H, slot_in_backpack)
@@ -700,16 +716,16 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
 
-	if(ticker.mode.rus_sidearms.len)
-		var/gunpath = pick(ticker.mode.rus_sidearms)
+	if(rus_sidearms.len)
+		var/gunpath = pick(rus_sidearms)
 		if(gunpath)
 			var/obj/item/weapon/gun/G = new gunpath(M.back)
 			M.equip_to_slot_or_del(G, slot_in_backpack)
 			var/ammopath = text2path(G.mag_type)
 			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
 
-	if(ticker.mode.rus_firearms.len)
-		var/gunpath2 = pick(ticker.mode.rus_firearms)
+	if(rus_firearms.len)
+		var/gunpath2 = pick(rus_firearms)
 		if(gunpath2)
 			var/obj/item/weapon/gun/H = new gunpath2(M.back)
 			M.equip_to_slot_or_del(H, slot_in_backpack)
@@ -740,16 +756,16 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 
-	if(ticker.mode.rus_sidearms.len)
-		var/gunpath = pick(ticker.mode.rus_sidearms)
+	if(rus_sidearms.len)
+		var/gunpath = pick(rus_sidearms)
 		if(gunpath)
 			var/obj/item/weapon/gun/G = new gunpath(M.back)
 			M.equip_to_slot_or_del(G, slot_in_backpack)
 			var/ammopath = text2path(G.mag_type)
 			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
 
-	if(ticker.mode.rus_firearms.len)
-		var/gunpath2 = pick(ticker.mode.rus_firearms)
+	if(rus_firearms.len)
+		var/gunpath2 = pick(rus_firearms)
 		if(gunpath2)
 			var/obj/item/weapon/gun/H = new gunpath2(M.back)
 			M.equip_to_slot_or_del(H, slot_in_backpack)
@@ -1161,16 +1177,16 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 
-	if(ticker.mode.merc_sidearms.len)
-		var/gunpath = pick(ticker.mode.merc_sidearms)
+	if(merc_sidearms.len)
+		var/gunpath = pick(merc_sidearms)
 		if(gunpath)
 			var/obj/item/weapon/gun/G = new gunpath(M.back)
 			M.equip_to_slot_or_del(G, slot_in_backpack)
 			var/ammopath = text2path(G.mag_type)
 			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
 
-	if(ticker.mode.merc_firearms.len)
-		var/gunpath2 = pick(ticker.mode.merc_firearms)
+	if(merc_firearms.len)
+		var/gunpath2 = pick(merc_firearms)
 		if(gunpath2)
 			var/obj/item/weapon/gun/H = new gunpath2(M.back)
 			M.equip_to_slot_or_del(H, slot_in_backpack)
@@ -1199,16 +1215,16 @@
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
 
-	if(ticker.mode.merc_sidearms.len)
-		var/gunpath = pick(ticker.mode.merc_sidearms)
+	if(merc_sidearms.len)
+		var/gunpath = pick(merc_sidearms)
 		if(gunpath)
 			var/obj/item/weapon/gun/G = new gunpath(M.back)
 			M.equip_to_slot_or_del(G, slot_in_backpack)
 			var/ammopath = text2path(G.mag_type)
 			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
 
-	if(ticker.mode.merc_firearms.len)
-		var/gunpath2 = pick(ticker.mode.merc_firearms)
+	if(merc_firearms.len)
+		var/gunpath2 = pick(merc_firearms)
 		if(gunpath2)
 			var/obj/item/weapon/gun/H = new gunpath2(M.back)
 			M.equip_to_slot_or_del(H, slot_in_backpack)

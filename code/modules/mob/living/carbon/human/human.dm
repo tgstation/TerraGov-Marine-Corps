@@ -49,16 +49,13 @@
 
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
-	if(ticker && ticker.mode && ticker.mode.name == "AI malfunction")
-		if(ticker.mode:malf_mode_declared)
-			stat(null, "Time left: [max(ticker.mode:AI_win_timeleft/(ticker.mode:apcs/3), 0)]")
+
 	if(emergency_shuttle)
 		var/eta_status = emergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			stat(null, eta_status)
 
 	if (client.statpanel == "Status")
-
 		if (internal)
 			if (!internal.air_contents)
 				del(internal)
@@ -66,7 +63,7 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
-
+/*
 		var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 		if(P)
 			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
@@ -77,14 +74,13 @@
 
 		if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
 			stat("Energy Charge", round(wear_suit:cell:charge/100))
-
+*/
 	if(mind)
 		if(mind.assigned_squad)
-			var/datum/squad/S = mind.assigned_squad
-			if(S.primary_objective)
-				stat(null,"Primary Objective: [S.primary_objective]")
-			if(S.secondary_objective)
-				stat(null,"Secondary Objective: [S.secondary_objective]")
+			if(mind.assigned_squad.primary_objective)
+				stat("Primary Objective: ", mind.assigned_squad.primary_objective)
+			if(mind.assigned_squad.secondary_objective)
+				stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
