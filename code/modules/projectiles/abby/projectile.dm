@@ -249,7 +249,8 @@
 				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad
 					permutated.Add(A)
 				else
-					if(A.bullet_act(src) > 0)
+					var/response = A.bullet_act(src)
+					if(response > 0 || response == null)
 						return 1
 
 		return 0 //Found nothing.
