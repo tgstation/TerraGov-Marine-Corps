@@ -310,32 +310,25 @@
 	density = 0
 	opacity = 0
 	unacidable = 1
-	var/layers_added = 0//****
 	var/intensity = 600
 
 /obj/structure/snow_weather_effect/New()
-	spawn(1800)//Wait till the game ticker is done
-		if(istype(ticker.mode,/datum/game_mode/ice_colony))
-			intensity = rand(50, 100)
+	spawn(2800)//Wait till the game ticker is done
+		if (istype(ticker.mode,/datum/game_mode/ice_colony))
+			intensity = rand(50, 200)
 			start_weather()
 
 /obj/structure/snow_weather_effect/proc/start_weather()
-	x = rand(10,246)
-	y = rand(18,246)
-//	world << "X = [x] <br> Y = [y]"//****
+	x = rand(90,245)
+	y = rand(10,245)
 	var/turf/unsimulated/floor/snow/T
-	if(istype(src.loc,/turf/unsimulated/floor/snow)) //Find the snow turf at random coords
+	if (istype(src.loc,/turf/unsimulated/floor/snow)) //Find the snow turf at random coords
 		T = src.loc
-		if(T && T.slayer < 3)
+		if (T && T.slayer < 3)
 			T.slayer++
 			T.update_icon(1,0)
-			layers_added++
-//			world << "Layers Added: [layers_added]"//****
-//		else
-//			world << "\red Snow Layer Full!!"//*****
-//	else
-//		world << "\red Not Snow Turf!!"//*****
-//	message_admins("Layer generated at: (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+			if (prob(2))
+				intensity = rand(50, 200) //Change Speed
 	//Repeat 4eva
 	sleep(intensity)
 	start_weather()
