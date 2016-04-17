@@ -53,11 +53,12 @@
 		if(melee_mod != 100)
 			G.force = (G.force * melee_mod / 100)
 			if(melee_mod >= 200)
-				G.attack_verb = null
 				G.attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
 			if(melee_mod > 100 && melee_mod < 200 )
-				G.attack_verb = null
 				G.attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+			else if (melee_mod <= 100)
+				G.attack_verb = list("struck", "hit", "bashed")
+
 		if(w_class_mod != 0) G.w_class += w_class_mod
 //		if(istype(G,/obj/item/weapon/gun/projectile))
 //			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
@@ -88,7 +89,7 @@
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = initial(G.force)
-			G.attack_verb = initial(G.attack_verb)
+			G.attack_verb = list("struck", "hit", "bashed")
 		if(w_class_mod != 0) G.w_class -= w_class_mod
 //		if(istype(G,/obj/item/weapon/gun/projectile))
 //			if(capacity_mod != 100)
@@ -229,7 +230,8 @@
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/skorpion,
 						/obj/item/weapon/gun/smg/uzi,
-						/obj/item/weapon/gun/shotgun/combat
+						/obj/item/weapon/gun/shotgun/combat,
+						/obj/item/weapon/gun/shotgun/pump
 					)
 	accuracy_mod = 15
 	ranged_dmg_mod = 105
@@ -358,7 +360,8 @@
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/revolver,
 						/obj/item/weapon/gun/revolver/cmb,
-						/obj/item/weapon/gun/pistol/heavy
+						/obj/item/weapon/gun/pistol/heavy,
+						/obj/item/weapon/gun/shotgun/pump
 					)
 
 /obj/item/attachable/heavy_barrel
@@ -384,7 +387,8 @@
 						/obj/item/weapon/gun/revolver,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
-						/obj/item/weapon/gun/pistol/heavy
+						/obj/item/weapon/gun/pistol/heavy,
+						/obj/item/weapon/gun/shotgun/pump
 					)
 
 /obj/item/attachable/quickfire
@@ -544,7 +548,8 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/shotgun/combat
+						/obj/item/weapon/gun/shotgun/combat,
+						/obj/item/weapon/gun/shotgun/pump
 						)
 	ammo_capacity = 2
 	current_ammo = 2
@@ -565,8 +570,8 @@
 			log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 			G.active = 1
 			G.icon_state = initial(icon_state) + "_active"
-			G.throw_range = 10
-			G.throw_at(target, 10, 1, user)
+			G.throw_range = 20
+			G.throw_at(target, 20, 2, user)
 			current_ammo--
 			spawn(12) //~1 second.
 				if(G) //If somehow got deleted since then
@@ -575,6 +580,8 @@
 		else
 
 			if(user) user << "\icon[gun] The [src.name] is empty!"
+			if(gun.active_attachable == src)
+				gun.active_attachable = null
 			return 1
 
 
@@ -653,8 +660,9 @@
 				flame_turf(T)
 				sleep(1)
 		else
-
 			if(user) user << "\icon[gun] The [src.name] is empty!"
+			if(gun.active_attachable == src)
+				gun.active_attachable = null
 		return 1
 
 	proc/flame_turf(var/turf/T)
@@ -722,6 +730,7 @@
 	accuracy_mod = 10
 	ranged_dmg_mod = 110
 	can_be_removed = 0
+	silence_mod = 1
 
 /obj/item/attachable/scope/slavic
 	icon_state = "scope"

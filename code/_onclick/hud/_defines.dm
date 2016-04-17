@@ -66,9 +66,9 @@
 #define ui_gun3 "13:26,4:7"
 #define ui_gun_select "14:28,3:7"
 
-#define ui_gun_eject 		"14:38,4:7"
-#define ui_gun_attachment 	"13:38,4:7"
-#define ui_gun_burst 		"12:38,4:7"
+#define ui_gun_eject 		"15:12,4:7"
+#define ui_gun_attachment 	"14:12,4:7"
+#define ui_gun_burst 		"13:12,4:7"
 
 
 //Upper-middle right (damage indicators)

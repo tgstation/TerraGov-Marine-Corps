@@ -31,7 +31,7 @@
 	under_pixel_x = 24
 	under_pixel_y = 16
 	burst_amount = 3
-	fire_delay = 4
+	fire_delay = 3
 	burst_delay = 2
 
 //-------------------------------------------------------
@@ -69,7 +69,7 @@
 	icon_empty = "mp7_empty"
 	item_state = "mp7"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
-	fire_delay = 5
+	fire_delay = 4
 	mag_type = "/obj/item/ammo_magazine/smg/mp7"
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 18
@@ -78,6 +78,7 @@
 	under_pixel_x = 28
 	under_pixel_y = 17
 	burst_amount = 4
+	burst_delay = 2
 	accuracy = 5
 	found_on_mercs = 1
 
@@ -99,7 +100,7 @@
 	icon_empty = "skorpion_empty"
 	item_state = "skorpion"
 	fire_sound = 'sound/weapons/holdout.ogg'
-	fire_delay = 2
+	fire_delay = 3
 	mag_type = "/obj/item/ammo_magazine/smg/skorpion"
 	muzzle_pixel_x = 29
 	muzzle_pixel_y = 18
@@ -108,6 +109,7 @@
 	under_pixel_x = 23
 	under_pixel_y = 15
 	burst_amount = 3
+	burst_delay = 2
 	accuracy = 8
 	found_on_mercs = 1
 	found_on_russians = 1
@@ -139,8 +141,8 @@
 	under_pixel_x = 26
 	under_pixel_y = 15
 	burst_amount = 3
-	burst_delay = 3
-	accuracy = 8
+	burst_delay = 2
+	accuracy = -8
 	found_on_russians = 1
 
 //-------------------------------------------------------
@@ -152,7 +154,7 @@
 	icon_empty = "mini-uzi_empty"
 	item_state = "mini-uzi"
 	fire_sound = 'sound/weapons/uzi.ogg'
-	fire_delay = 1
+	fire_delay = 3
 	mag_type = "/obj/item/ammo_magazine/smg"
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 19
@@ -161,6 +163,7 @@
 	under_pixel_x = 22
 	under_pixel_y = 16
 	burst_amount = 2
+	burst_delay = 1
 	found_on_mercs = 1
 
 //-------------------------------------------------------
@@ -181,7 +184,7 @@
 	icon_empty = "p90_empty"
 	item_state = "p90"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
-	fire_delay = 2
+	fire_delay = 5
 	mag_type = "/obj/item/ammo_magazine/smg/p90"
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 18
@@ -190,6 +193,7 @@
 	under_pixel_x = 22
 	under_pixel_y = 16
 	burst_amount = 3
+	burst_delay = 3
 	accuracy = 12
 	found_on_mercs = 1
 

@@ -56,11 +56,6 @@
 
 	proc/each_turf()
 		distance_travelled++
-		flight_check--
-		if(!flight_check) //This is to make sure there's no infinitely-hanging bullets just sitting around looping. Default is 50.
-			del(src)
-			return
-
 		if(ammo)
 			if(distance_travelled == round(ammo.max_range / 2) && loc)
 				ammo.do_at_half_range(src)
@@ -96,7 +91,7 @@
 	//The attack roll. Returns -1 for an IFF-based miss (smartgun), 0 on a regular miss, 1 on a hit.
 	proc/roll_to_hit(var/atom/firer,var/atom/target)
 		var/hit_chance = get_accuracy() //Get the bullet's pure accuracy.
-		if(target == firer) return 1
+		if(target == firer) return -1
 
 		if(istype(target,/mob/living))
 			var/mob/living/T = target
@@ -156,61 +151,42 @@
 	proc/follow_flightpath(var/speed = 1, var/change_x, var/change_y, var/range) //Everytime we reach the end of the turf list, we slap a new one and keep going.
 		set waitfor = 0
 
-		if(!path) //Our path isn't set.
-			del(src)
-			return
-
 		var/dist_since_sleep = 5 //Just so we always see the bullet.
 		var/turf/current_turf = get_turf(src)
 		var/turf/next_turf
-
-		if(scan_a_turf(current_turf) == 1) //Our first turf had stuff in it. Woops!
-			if(src) del(src)
-			return
-
+		in_flight = 1
 		spawn()
-			while(src && loc)
-				if(!path.len) continue //Something weird happened. Where's our flightpath?
-
-				next_turf = path[1]
-				if(next_turf == current_turf) //We've already here?
-					path -= next_turf
-					continue
-
-				if(istype(next_turf) && scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
-					sleep(-1) //Make sure everything else is done.
+			for(next_turf in path)
+				if(distance_travelled >= range)
+					ammo.do_at_max_range(src)
+					sleep(1)
 					if(src) del(src)
 					return
-				else if(!istype(next_turf))  //Something weird
+
+				if(scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
+					sleep(1)
 					if(src) del(src)
 					return
 
 				src.loc = next_turf
 				each_turf()
-				if(!src) return //It might have been deleted.
-
 				path -= next_turf //Remove it!
 
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
+					dist_since_sleep = 0
 					sleep(1)
-
-				if(distance_travelled >= range)
-					if(ammo) ammo.do_at_max_range(src)
-					if(src) del(src)
-					return
 
 				if(!path.len) //No more left!
-					sleep(1)
 					current_turf = get_turf(src)
 					next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 					if(current_turf && next_turf)
 						path = getline2(current_turf,next_turf) //Build a new flight path.
 						if(path.len && src)
 							follow_flightpath(speed, change_x, change_y, range) //Onwards!
-							return
-					del(src)
-					return
+							in_flight = 1
+							return 1
+
 
 //Target, firer, shot from. Ie the gun
 	proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -221,9 +197,11 @@
 		if(!original || isnull(original)) original = target
 
 		starting = get_turf(src)
-		if(!starting) return //Horribly wrong
-		src.loc = starting //Put us on the turf.
+		if(starting != src.loc) src.loc = starting //Put us on the turf, if we're not.
 		target_turf = get_turf(target)
+		if(starting == target_turf) //What? We can't fire at our own turf.
+			del(src)
+			return 0
 		firer = F
 		if(F) permutated.Add(F) //Don't hit the shooter (firer)
 		shot_from = S
@@ -253,36 +231,31 @@
 			return 1
 		if(firer && T == firer.loc) return 0 //Never.
 		if(!T.contents.len) return 0 //Nothing here.
-
+		if(isnull(src)) return 1 //??
 		for(var/atom/A in T)
-			if(!A || A == src || A == firer || A in permutated || !A.density ) continue
-			if(A == firer) continue
-			var/hitroll = roll_to_hit(firer,A)
-			if(ismob(A) && A == original && hitroll == 1) //Oh hey our original target's here. Shoot them. Could be someone lying down, etc.
+			if(!A || A == src || A == firer || A in permutated) continue
+
+			if(A == original && istype(A,/obj/item/clothing/mask/facehugger)) //Shoot that fucker!
 				A.bullet_act(src)
 				return 1
-			if(!A.density && !istype(A,/obj/item/clothing/mask/facehugger)) continue //Nondense stuff aren't even checked.
+
 			if(ismob(A))
-				if(A:lying) continue //If it's not the target, and is lying down, skip them.
-
-			if(firer && hitroll == -1)
-				permutated.Add(A)
-				return 0//Missed!
-
-			if(istype(A,/obj/structure/window) && ammo && istype(ammo,/datum/ammo/energy)) //this is bad
-				permutated.Add(A)
-				return 0
-
-			if (A.bullet_act(src) != 0)
-				bumped = 1
-				return 1
+				if(roll_to_hit(firer,A) == 1 && (!A:lying || A == original))
+					A.bullet_act(src)
+					return 1
+				else
+					permutated.Add(A)
+			else
+				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad
+					permutated.Add(A)
+				else
+					if(A.bullet_act(src) > 0)
+						return 1
 
 		return 0 //Found nothing.
 
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
-	set waitfor = 0
-
-	if(!P) return
+	if(!P || isnull(P)) return
 
 	var/image/ping = image('icons/obj/projectiles.dmi',src,"ping",10) //Layer 10, above most things but not the HUD.
 	var/angle = round(rand(1,359))
@@ -340,7 +313,7 @@
 	if(src && P && damage > 0)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
 
-	if(!src || !P || !P.ammo) return
+	if(!src || !P || !P.ammo) return 0
 
 	bullet_message(P)
 	P.ammo.on_hit_mob(src,P) //Deal with special effects.
@@ -350,7 +323,7 @@
 		IgniteMob()
 //		emote("scream")
 		src << "\red <B>You burst into flames!! Stop drop and roll!</b>"
-
+	return 1
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P)
 	if(!P || !istype(P) || !P.ammo) return 0 //Somehow. Just some logic.
@@ -413,7 +386,7 @@
 	if(src && P && damage > 0)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, P, 0, P)
 
-	if(!src || !P || !P.ammo) return
+	if(!src || !P || !P.ammo) return 1
 
 	bullet_message(P)
 	P.ammo.on_hit_mob(src,P) //Deal with special effects.
@@ -442,7 +415,7 @@
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	if(!istype(P) || !P.ammo) return 0
+	if(!istype(P) || isnull(P.ammo) || !P) return 0
 
 	flash_weak_pain()
 
@@ -450,7 +423,6 @@
 	if(damage < 0) damage = 0 //NO HEALING
 
 	var/armor = armor_deflection - P.ammo.armor_pen
-
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances - more depending on facing.
 		armor += (src:momentum / 3) //Up to +15% armor deflection all-around when charging.
@@ -470,10 +442,11 @@
 		return 1
 
 	bullet_message(P)
-	P.ammo.on_hit_mob(src,P)
+	if(P.ammo)
+		P.ammo.on_hit_mob(src,P)
 
 	if(src && P && damage > 0)
-		apply_damage(damage,P.ammo.damage_type, P.def_zone, 0, P,0,0)	//Deal the damage.
+		apply_damage(damage,P.damage_type, P.def_zone, 0, P,0,0)	//Deal the damage.
 		if(prob(10 + round(damage / 4)) && !stat)
 			if(prob(70))
 				emote("hiss")
@@ -528,10 +501,10 @@
 //Simulated walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/simulated/wall/bullet_act(obj/item/projectile/P)
 	..()
-	if(!P.ammo) return
+	if(!P.ammo) return 0
 
 	var/D = P.damage
-	if(D < 1) return
+	if(D < 1) return 0
 
 	if(P.damage_type == "BRUTE") D = round(D/2) //Bullets do much less to walls and such.
 	if(P.damage_type == "TOX") return 1

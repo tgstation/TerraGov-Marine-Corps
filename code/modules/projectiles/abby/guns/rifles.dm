@@ -149,6 +149,7 @@
 	under_pixel_x = 24
 	under_pixel_y = 15
 	burst_amount = 4
+	burst_delay = 3
 	accuracy = -15
 	found_on_mercs = 1
 	found_on_russians = 1
@@ -183,13 +184,12 @@
 
 	New()
 		..()
-		var/obj/item/attachable/scope/slavic/S = new(src)
+		var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
 		S.Attach(src)
-		var/obj/item/attachable/slavicbarrel/Q = new(src)
-		Q.Attach(src)
-		var/obj/item/attachable/bipod/B = new(src)
-		B.Attach(src)
-
+		S = new /obj/item/attachable/slavicbarrel(src)
+		S.Attach(src)
+		S = new /obj/item/attachable/compensator/stock/slavic(src)
+		S.Attach(src)
 		update_attachables()
 
 //-------------------------------------------------------
