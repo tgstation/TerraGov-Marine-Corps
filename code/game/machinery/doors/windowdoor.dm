@@ -144,7 +144,7 @@
 /obj/machinery/door/window/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.ammo.damage)
 		take_damage(round(Proj.ammo.damage / 2))
-	..()
+	return 1
 
 //When an object is thrown at the window
 /obj/machinery/door/window/hitby(AM as mob|obj)

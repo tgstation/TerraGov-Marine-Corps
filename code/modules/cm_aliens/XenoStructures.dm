@@ -53,7 +53,7 @@
 	health -= Proj.damage
 	..()
 	healthcheck()
-	return
+	return 1
 
 /obj/effect/alien/resin/ex_act(severity)
 	switch(severity)
@@ -407,9 +407,11 @@
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
+	if(Proj.damage_type == BURN)
+		health -= round(Proj.damage * 0.3)
 	..()
 	healthcheck()
-	return
+	return 1
 
 /obj/effect/alien/egg/update_icon()
 	overlays.Cut()
@@ -496,7 +498,7 @@
 	return
 
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
-	return
+	return 0
 
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)

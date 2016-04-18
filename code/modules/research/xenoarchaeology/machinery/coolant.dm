@@ -28,6 +28,7 @@ datum/chemical_reaction/coolant
 /obj/structure/reagent_dispensers/coolanttank/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.damage > 30)
 		explode()
+	return 1
 
 /obj/structure/reagent_dispensers/coolanttank/blob_act()
 	explode()

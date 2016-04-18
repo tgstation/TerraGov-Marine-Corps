@@ -805,6 +805,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M << "<B>You come equipped as an Elder should, with bonus glaive and heavy armor.</b>"
 
 	ticker.mode.predators += M.mind
+	ticker.mode.pred_keys += usr.key
+	ticker.mode:numpreds++
 	M.mind.assigned_role = "MODE"
 	M.mind.special_role = "Predator"
 	if(M.client) M.client.was_a_predator = 1

@@ -248,7 +248,11 @@
 			else
 				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad
 					permutated.Add(A)
+
 				else
+					if(isobj(A) && !A.density) //We're scanning a non dense object.
+						continue
+
 					var/response = A.bullet_act(src)
 					if(response > 0 || response == null)
 						return 1
@@ -502,7 +506,6 @@
 //Simulated walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/simulated/wall/bullet_act(obj/item/projectile/P)
 	..()
-	if(!P.ammo) return 0
 
 	var/D = P.damage
 	if(D < 1) return 0

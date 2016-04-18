@@ -143,9 +143,9 @@
 
 		icon = virtualIcon // apply bulletholes over decals
 
-		return
+		return 1
 
-	return -1 // the bullet/projectile goes through the target! Ie, you missed
+	return 0 // the bullet/projectile goes through the target! Ie, you missed
 
 
 // Small memory holder entity for transparent bullet holes

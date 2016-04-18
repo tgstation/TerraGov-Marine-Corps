@@ -7,11 +7,11 @@
 	item_state = "glaive"
 	name = "Yautja War Glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
-	force = 28
+	force = 38
 	w_class = 4.0
 	slot_flags = SLOT_BACK
 	force_unwielded = 28
-	force_wielded = 50
+	force_wielded = 60
 	throwforce = 50
 	throw_speed = 3
 	edge = 1
@@ -20,6 +20,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1
+	attack_speed = 12 //Default is 7.
 
 /obj/item/weapon/twohanded/glaive/update_icon()
 	if(wielded)
@@ -35,7 +36,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "Yautja Clan Mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 60, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
+	armor = list(melee = 70, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
@@ -142,7 +143,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
 	item_state = "wristblades"
-	force = 30
+	force = 22
 	w_class = 5.0
 	edge = 1
 	sharp = 0
@@ -150,9 +151,10 @@
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
+	attack_speed = 5 //Default is 7.
 
 	dropped(var/mob/living/carbon/human/mob)
-		playsound(mob,'sound/weapons/wristblades_off.ogg', 40, 1)
+		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
 		mob << "The wrist blades retract back into your armband."
 		del(src)
 
@@ -171,10 +173,20 @@
 				user << "It's welded shut. You won't be able to rip it open."
 				return
 
-			user << "\blue You jam a wristblade into [O] and strain to rip it open."
-			playsound(user,'sound/weapons/wristblades_hit.ogg', 40, 1)
+			user << "\blue You jam \the [src] into [O] and strain to rip it open."
+			playsound(user,'sound/weapons/wristblades_hit.ogg', 60, 1)
 			if(do_after(user,40))
 				D.open(1)
+
+/obj/item/weapon/wristblades/scimitar
+	name = "Yautja Wrist Scimitar"
+	desc = "An enormous serrated blade that extends from the gauntlet."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "scim"
+	item_state = "scim"
+	force = 52
+	attack_speed = 12 //slow!
+
 
 /obj/item/clothing/shoes/yautja
 	name = "Yautja Armored Boots"
@@ -260,28 +272,7 @@
 		M.update_power_display(perc)
 		return 1
 
-	proc/translate()
-		set name = "Translator"
-		set desc = "Emit a message from your bracer to those nearby."
-		set category = "Yautja"
 
-		if(!usr || usr.stat) return
-		var/mob/living/carbon/human/M = usr
-		if(!istype(M)) return
-		if(!isYautja(usr))
-			usr << "You have no idea how to work these things."
-			return
-
-		var/msg = input(usr,"Your clan bracer beeps and waits patiently for you to input your message.","Translator","") as text
-		msg = sanitize(msg)
-		if (msg != "")
-			spawn(10)
-				if(!drain_power(usr,50)) return //At this point they've upgraded.
-				var/mob/Q
-				for(Q in hearers(usr))
-					if(Q.stat == 1) continue
-					if(isXeno(Q) && upgrades != 2) continue
-					Q << "A strange voice says, '[msg]'."
 //DEFER
 
 	//Should put a cool menu here, like ninjas.
@@ -539,6 +530,35 @@
 		for(var/obj/item/weapon/grenade/spawnergrenade/smartdisc/D in range(10))
 			D.throw_at(usr,10,1,usr)
 
+/obj/item/clothing/gloves/yautja/proc/translate()
+	set name = "Translator"
+	set desc = "Emit a message from your bracer to those nearby."
+	set category = "Yautja"
+
+	if(!usr || usr.stat) return
+
+	if(!isYautja(usr))
+		usr << "You have no idea how to work these things."
+		return
+
+	var/msg = input(usr,"Your bracer beeps and waits patiently for you to input your message.","Translator","") as text
+	if(!msg || msg == "" || isnull(msg)) return
+
+	msg = sanitize(msg)
+	msg = replacetext(msg, "o", "¤")
+	msg = replacetext(msg, "p", "þ")
+	msg = replacetext(msg, "l", "£")
+	msg = replacetext(msg, "s", "§")
+	msg = replacetext(msg, "u", "µ")
+	msg = replacetext(msg, "b", "ß") //We're ninjas now? .. fine
+
+	spawn(10)
+		if(!drain_power(usr,50)) return //At this point they've upgraded.
+		var/mob/Q
+		for(Q in hearers(usr))
+			if(Q.stat == 1) continue //Unconscious
+			if(isXeno(Q) && upgrades != 2) continue
+			Q << "A strange voice says, '[msg]'."
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
@@ -596,31 +616,34 @@
 				ammo.ignores_armor = 1
 				ammo.stun = 2
 				ammo.weaken = 2
-				fire_delay = 3
+				fire_delay = 8
+				ammo.shell_speed = 1
 			if(0)
 				mode = 1
 				charge_cost = 100
 				fire_sound = 'sound/weapons/emitter2.ogg'
 				user << "\red \The [src.name] is now set to fire medium plasma blasts."
-				fire_delay = 8
+				fire_delay = 20
 				ammo.name = "plasma blast"
 				ammo.icon_state = "pulse1"
 				ammo.damage = 25
-				ammo.ignores_armor = 0
+				ammo.ignores_armor = 1
 				ammo.stun = 0
 				ammo.weaken = 0
+				ammo.shell_speed = 2 //Lil faster
 			if(1)
 				mode = 2
 				charge_cost = 300
-				fire_delay = 30
+				fire_delay = 100
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma spheres."
 				ammo.name = "plasma eradication sphere"
 				ammo.icon_state = "bluespace"
 				ammo.damage = 30
-				ammo.ignores_armor = 0
-				ammo.stun = 1
-				ammo.weaken = 1
+				ammo.ignores_armor = 1
+				ammo.stun = 0
+				ammo.weaken = 0
+				ammo.shell_speed = 1
 		return
 
 	dropped(var/mob/living/carbon/human/mob)

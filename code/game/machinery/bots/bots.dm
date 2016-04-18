@@ -97,6 +97,7 @@
 	health -= Proj.ammo.damage
 	..()
 	healthcheck()
+	return 1
 
 /obj/machinery/bot/meteorhit()
 	src.explode()

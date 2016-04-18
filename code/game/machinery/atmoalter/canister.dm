@@ -211,6 +211,7 @@ update_flag
 		src.health -= round(Proj.ammo.damage / 2)
 		healthcheck()
 	..()
+	return 1
 
 /obj/machinery/portable_atmospherics/canister/meteorhit(var/obj/O as obj)
 	src.health = 0

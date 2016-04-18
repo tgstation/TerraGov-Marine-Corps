@@ -94,7 +94,7 @@ var/const/MAX_ACTIVE_TIME = 200
 
 /obj/item/clothing/mask/facehugger/bullet_act()
 	Die()
-	return
+	return 1
 
 /obj/item/clothing/mask/facehugger/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)

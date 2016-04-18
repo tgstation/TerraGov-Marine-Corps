@@ -724,6 +724,7 @@ steam.start() -- spawns the effect
 	bullet_act()
 		if(metal==1 || prob(50))
 			del(src)
+		return 1
 
 	attack_paw(var/mob/user)
 		attack_hand(user)

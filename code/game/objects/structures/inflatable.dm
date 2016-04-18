@@ -44,7 +44,7 @@
 		..()
 		if(health <= 0)
 			deflate(1)
-		return
+		return 1
 
 
 	ex_act(severity)

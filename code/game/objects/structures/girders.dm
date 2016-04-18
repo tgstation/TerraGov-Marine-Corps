@@ -9,21 +9,21 @@
 
 	bullet_act(var/obj/item/projectile/Proj)
 		//Tasers and the like should not damage girders.
-		if(Proj.ammo.damage_type == HALLOSS || Proj.ammo.damage_type == TOX || Proj.ammo.damage_type == CLONE || Proj.ammo.damage == 0)
-			return
-		if(Proj.ammo.damage_type == BURN)
-			health -= Proj.ammo.damage
+		if(Proj.damage_type == HALLOSS || Proj.damage_type == TOX || Proj.damage_type == CLONE || Proj.damage == 0)
+			return 0
+
+		if(Proj.damage_type == BURN)
+			health -= Proj.damage
 			if(health <= 0)
 				new /obj/item/stack/sheet/metal(get_turf(src))
 				del(src)
-				return
 		else
-			if(prob(30))
+			if(prob(50))
 				health -= round(Proj.ammo.damage / 2)
 				if(health <= 0)
 					new /obj/item/stack/sheet/metal(get_turf(src))
 					del(src)
-					return
+		return 1
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -269,7 +269,7 @@
 			new /obj/item/stack/sheet/metal(get_turf(src))
 			del(src)
 
-		return
+		return 1
 
 	ex_act(severity)
 		switch(severity)

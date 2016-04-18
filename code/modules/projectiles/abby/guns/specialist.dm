@@ -27,7 +27,7 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.\n'Peace Through Superior Firepower'"
 	icon_state = "M42c"
 	icon_empty = "M42c_empty"
-	item_state = "l6closedmag"  //placeholder!!
+	item_state = "m42a"  //placeholder!!
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	mag_type = "/obj/item/ammo_magazine/sniper"
 	fire_delay = 60
@@ -64,7 +64,7 @@
 	desc = "A high end mag-rail heavy sniper rifle from Weyland-Armat chambered in the heaviest ammo available, .75 AP."
 	icon_state = "pmcM42c"
 	icon_empty = "pmcM42c_empty"
-	item_state = "l6closedmag"  //placeholder!!
+	item_state = "m42a"  //placeholder!!
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	mag_type = "/obj/item/ammo_magazine/sniper/elite"
 	fire_delay = 90
