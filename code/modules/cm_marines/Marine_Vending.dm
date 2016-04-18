@@ -285,10 +285,10 @@
 
 						/obj/item/attachable/grenade = 5,
 						/obj/item/attachable/shotgun = 3,
-						/obj/item/attachable/flamer = 2,
+						/obj/item/attachable/flamer = 3,
 
 						/obj/item/clothing/tie/storage/webbing = 3,
-//						/obj/item/weapon/claymore/mercsword/machete = 3,
+						/obj/item/weapon/claymore/mercsword/machete = 5
 
 					)
 	contraband = list()

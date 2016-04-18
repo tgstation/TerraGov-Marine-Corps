@@ -187,7 +187,6 @@
 							in_flight = 1
 							return 1
 
-
 //Target, firer, shot from. Ie the gun
 	proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
 		if(!target)
@@ -240,7 +239,7 @@
 				return 1
 
 			if(ismob(A))
-				if(roll_to_hit(firer,A) == 1 && (!A:lying || A == original))
+				if(istype(A,/mob/living) && roll_to_hit(firer,A) == 1 && (!A:lying || A == original))
 					A.bullet_act(src)
 					return 1
 				else
@@ -258,6 +257,11 @@
 						return 1
 
 		return 0 //Found nothing.
+
+	Crossed(AM as mob|obj)
+		if(!AM in permutated)
+			if(AM:bullet_act(src) != 0)
+				if(src) del(src)
 
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
 	if(!P || isnull(P)) return
