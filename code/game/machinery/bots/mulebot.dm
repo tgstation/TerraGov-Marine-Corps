@@ -190,6 +190,7 @@
 		else
 			wires |= index
 	..()
+	return 1
 
 
 /obj/machinery/bot/mulebot/attack_ai(var/mob/user)

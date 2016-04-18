@@ -153,7 +153,7 @@
 			 health -= (Proj.ammo.damage/fire_resist)
 
 		update_icon()
-		return 0
+		return 1
 
 
 	attackby(var/obj/item/weapon/W, var/mob/user)

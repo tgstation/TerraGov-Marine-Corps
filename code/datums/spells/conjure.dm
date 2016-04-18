@@ -80,4 +80,4 @@
 
 
 	bullet_act(var/obj/item/projectile/Proj)
-		return
+		return 1

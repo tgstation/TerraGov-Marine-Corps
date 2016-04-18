@@ -677,7 +677,7 @@
 		return 0
 
 	visible_message("\red [src] is hit by the [Proj]!")
-	update_health(Proj.damage / 2)
+	update_health(round(Proj.damage / 3))
 	return 1
 
 /obj/machinery/marine_turret/process()

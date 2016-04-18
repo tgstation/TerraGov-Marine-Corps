@@ -31,7 +31,7 @@
 	health -= Proj.ammo.damage
 	..()
 	src.healthcheck()
-	return
+	return 1
 
 
 /obj/structure/displaycase/blob_act()

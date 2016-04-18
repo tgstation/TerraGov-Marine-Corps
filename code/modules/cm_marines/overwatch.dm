@@ -22,7 +22,7 @@
 	return
 
 /obj/machinery/computer/overwatch/bullet_act(var/obj/item/projectile/Proj) //Can't shoot it
-	return
+	return 0
 
 /obj/machinery/computer/overwatch/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
