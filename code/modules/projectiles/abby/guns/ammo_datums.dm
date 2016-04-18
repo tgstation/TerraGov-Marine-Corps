@@ -2,7 +2,7 @@
 
 /datum/ammo/bullet
 	name = "bullet"
-	damage = 5
+	damage = 10
 	damage_type = BRUTE
 	accurate_range = 5
 	shrapnel_chance = 10
@@ -11,37 +11,37 @@
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
-	damage = 15
+	damage = 22
 	accuracy = -5 //Not very accurate.
 
 /datum/ammo/bullet/pistol/tiny
 	name = ".22 bullet"
-	damage = 10
+	damage = 15
 	accuracy = -5 //Not very accurate.
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
-	damage = 12
+	damage = 17
 	accuracy = -10
 	shrapnel_chance = 50 //50% likely to generate shrapnel on impact.
 
 /datum/ammo/bullet/pistol/ap
 	name = "AP pistol bullet"
-	damage = 12
+	damage = 17
 	accuracy = 8
 	armor_pen = 30
 	shrapnel_chance = 0
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
-	damage = 22
+	damage = 35
 	accuracy = -10
 	armor_pen = 5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
-	damage = 10
+	damage = 20
 	damage_type = BURN
 	accuracy = 10
 	shrapnel_chance = 0
@@ -49,34 +49,34 @@
 
 /datum/ammo/bullet/pistol/incendiary/vp78
 	name = "VP78 round"
-	damage = 25
+	damage = 30
 
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
-	damage = 18
+	damage = 25
 
 /datum/ammo/bullet/smg/ap
 	name = "AP submachinegun bullet"
-	damage = 15
+	damage = 22
 	armor_pen = 30
 
 /datum/ammo/bullet/smg/ludicrous
 	name = "submachinegun bullet"
-	damage = 18
+	damage = 30
 	armor_pen = 30
 	accuracy = 15
 	shell_speed = 3 //Faster!
 
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
-	damage = 26
+	damage = 35
 	armor_pen = 3
 	accuracy = -15
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
-	damage = 20
+	damage = 30
 	accuracy = 15
 	stun = 1
 	armor_pen = -10
@@ -85,22 +85,22 @@
 
 /datum/ammo/bullet/revolver/small
 	name = "revolver bullet"
-	damage = 15
+	damage = 25
 	armor_pen = 1
 
 /datum/ammo/bullet/revolver/heavy
-	damage = 25
+	damage = 45
 	armor_pen = 10
 	accuracy = -10
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
 /datum/ammo/bullet/rifle
 	name = "rifle bullet"
-	damage = 20
+	damage = 30
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
-	damage = 18
+	damage = 25
 	incendiary = 1
 	accuracy = -5
 	shrapnel_chance = 0
@@ -109,7 +109,7 @@
 
 /datum/ammo/bullet/rifle/marksman
 	name = "marksman rifle bullet"
-	damage = 22
+	damage = 34
 	accuracy = 20
 	armor_pen = 10
 	shrapnel_chance = 0
@@ -123,14 +123,14 @@
 	armor_pen = 30
 
 /datum/ammo/bullet/rifle/mar40
-	damage = 24
+	damage = 40
 	accuracy = -5
 	armor_pen = -5
 
 //Slugs.
 /datum/ammo/bullet/shotgun
 	name = "shotgun slug"
-	damage = 50
+	damage = 60
 	damage_bleed = 7 //Loses 7 damage every turf.
 	accurate_range = 4
 	max_range = 12
@@ -139,7 +139,7 @@
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
-	damage = 30
+	damage = 50
 	damage_bleed = 5 //Loses 7 damage every turf.
 	accurate_range = 4
 	max_range = 12
@@ -149,7 +149,7 @@
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "buckshot"
-	damage = 15
+	damage = 25
 	damage_bleed = 5 //Loses 5 damage every turf.
 	accurate_range = 4
 	max_range = 4
@@ -212,7 +212,7 @@
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic bullet"
-	damage = 120
+	damage = 250
 	accurate_range = 30
 	max_range = 30
 	armor_pen = 50
@@ -221,7 +221,7 @@
 
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
-	damage = 22
+	damage = 28
 	skips_marines = 1
 	armor_pen = 5
 	accuracy = 50
@@ -271,7 +271,7 @@
 /datum/ammo/energy/emitter
 	name = "emitter bolt"
 	icon_state = "emitter"
-	damage = 40
+	damage = 50
 	ignores_armor = 1
 	damage_type = BURN
 
@@ -290,7 +290,7 @@
 /datum/ammo/xeno/spit/burny
 	name = "corrosive spit"
 	icon_state = "neurotoxin"
-	damage = 25
+	damage = 15
 	ignores_armor = 0
 	damage_type = BURN
 	skips_xenos = 1

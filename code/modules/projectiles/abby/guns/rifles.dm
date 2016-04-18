@@ -140,7 +140,7 @@
 	item_state = "mar40"
 	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
 	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
-	fire_delay = 8
+	fire_delay = 6
 	recoil = 0
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
