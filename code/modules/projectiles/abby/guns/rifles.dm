@@ -177,8 +177,8 @@
 	desc = "A marksman variant of the MAR-40 rifle, with a new stock and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
 	icon_state = "shortrsprifle"
 	icon_empty = "shortrsprifle0"
-	icon_wielded = "shortrsprifle-w"
-	item_state = "mar40short"
+	icon_wielded = "SVD-w"
+	item_state = "SVD"
 	accuracy = 0
 
 	New()

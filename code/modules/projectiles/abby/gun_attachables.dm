@@ -730,7 +730,6 @@
 	accuracy_mod = 10
 	ranged_dmg_mod = 110
 	can_be_removed = 0
-	silence_mod = 1
 
 /obj/item/attachable/scope/slavic
 	icon_state = "scope"
