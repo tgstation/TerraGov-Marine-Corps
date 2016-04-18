@@ -175,6 +175,7 @@
 	under_pixel_x = 22
 	under_pixel_y = 15
 	found_on_russians = 1
+	slot_flags = SLOT_BELT
 
 //-------------------------------------------------------
 //DEAGLE
