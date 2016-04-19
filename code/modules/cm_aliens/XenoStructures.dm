@@ -711,7 +711,8 @@
 		playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
 		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
-		return
+	else
+		src.attack_hand(M)
 
 /obj/structure/stool/bed/nest/attack_animal(mob/living/M as mob)
 	M.visible_message("\red [M] tears at the [name]!", "\blue You tear at the [name].")
