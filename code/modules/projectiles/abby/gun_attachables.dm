@@ -643,6 +643,7 @@
 			var/turf/T
 			for(T in turfs)
 				distance++
+				if(T == user.loc) continue
 				if(current_ammo == 0) break
 				if(distance > 3) break
 				if(DirBlocked(T,usr.dir))
@@ -657,7 +658,7 @@
 					if(W.dir == src.dir)
 						break
 				current_ammo--
-				flame_turf(T)
+				flame_turf(T,user)
 				sleep(1)
 		else
 			if(user) user << "\icon[gun] The [src.name] is empty!"
@@ -665,7 +666,7 @@
 				gun.active_attachable = null
 		return 1
 
-	proc/flame_turf(var/turf/T)
+	proc/flame_turf(var/turf/T,var/mob/user)
 		if(!istype(T)) return 0
 
 		if(!locate(/obj/flamer_fire) in T) // No stacking flames!
@@ -676,7 +677,7 @@
 
 		for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
 			if(M.stat == DEAD) continue
-			if(T == usr) continue
+			if(M == user) continue
 
 			if(istype(M,/mob/living/carbon/Xenomorph))
 				if(M:fire_immune) continue
