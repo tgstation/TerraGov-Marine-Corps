@@ -96,11 +96,11 @@
 
 /datum/ammo/bullet/rifle
 	name = "rifle bullet"
-	damage = 30
+	damage = 40
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
-	damage = 25
+	damage = 35
 	incendiary = 1
 	accuracy = -5
 	shrapnel_chance = 0
@@ -109,7 +109,7 @@
 
 /datum/ammo/bullet/rifle/marksman
 	name = "marksman rifle bullet"
-	damage = 34
+	damage = 54
 	accuracy = 20
 	armor_pen = 10
 	shrapnel_chance = 0
@@ -123,14 +123,14 @@
 	armor_pen = 30
 
 /datum/ammo/bullet/rifle/mar40
-	damage = 40
+	damage = 50
 	accuracy = -5
 	armor_pen = -5
 
 //Slugs.
 /datum/ammo/bullet/shotgun
 	name = "shotgun slug"
-	damage = 60
+	damage = 70
 	damage_bleed = 7 //Loses 7 damage every turf.
 	accurate_range = 4
 	max_range = 12

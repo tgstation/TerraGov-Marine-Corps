@@ -88,7 +88,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/autopsied = 0
 	var/nicknumber = -1 //The number after the name. Saved right here so it transfers between castes.
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
-	var/speed = -1 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
+	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
