@@ -1,22 +1,21 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
 
-var/global/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
+
+
+/proc/spawn_merc_gun(var/mob/living/M,var/sidearm = 0)
+	var/obj/item/weapon/storage/backpack = M.back
+	if(!istype(backpack)) return
+
+	var/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
 									/obj/item/weapon/gun/pistol/heavy,
 									/obj/item/weapon/gun/pistol/m1911,
 									/obj/item/weapon/gun/pistol/kt42,
 									/obj/item/weapon/gun/pistol/holdout,
 									/obj/item/weapon/gun/pistol/highpower,
-									/obj/item/weapon/gun/pistol/vp70
-									)
-var/global/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/revolver/upp,
-									/obj/item/weapon/gun/revolver/mateba,
-									/obj/item/weapon/gun/pistol/c99,
-									/obj/item/weapon/gun/pistol/c99/russian,
-									/obj/item/weapon/gun/pistol/kt42
-									)
-var/global/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
+									/obj/item/weapon/gun/pistol/vp70)
+
+	var/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
 									/obj/item/weapon/gun/shotgun/merc,
 									/obj/item/weapon/gun/shotgun/combat,
 									/obj/item/weapon/gun/shotgun/double,
@@ -25,12 +24,50 @@ var/global/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
 									/obj/item/weapon/gun/smg/skorpion,
 									/obj/item/weapon/gun/smg/ppsh,
 									/obj/item/weapon/gun/smg/uzi,
-									/obj/item/weapon/gun/smg/p90
+									/obj/item/weapon/gun/smg/p90)
+	var/gunpath = pick(merc_firearms)
+	var/obj/item/weapon/gun/gun
+	if(sidearm)
+		gunpath = pick(merc_sidearms)
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_r_hand)
+	else
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_l_hand)
+
+	var/ammopath = text2path(gun.default_ammo)
+	new ammopath(M.back)
+	new ammopath(M.back) //Twice the fun just to be sure
+
+/proc/spawn_slavic_gun(var/mob/living/M,var/sidearm = 0)
+	var/obj/item/weapon/storage/backpack = M.back
+	if(!istype(backpack)) return
+
+	var/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
+									/obj/item/weapon/gun/revolver/upp,
+									/obj/item/weapon/gun/revolver/mateba,
+									/obj/item/weapon/gun/pistol/c99,
+									/obj/item/weapon/gun/pistol/c99/russian,
+									/obj/item/weapon/gun/pistol/kt42
 									)
-var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
+
+	var/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
 									/obj/item/weapon/gun/rifle/mar40/carbine,
 									/obj/item/weapon/gun/rifle/m41a,
 									/obj/item/weapon/gun/rifle/mar40/svd)
+	var/gunpath = pick(rus_firearms)
+	var/obj/item/weapon/gun/gun
+	if(sidearm)
+		gunpath = pick(rus_sidearms)
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_r_hand)
+	else
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_l_hand)
+
+	var/ammopath = text2path(gun.default_ammo)
+	new ammopath(M.back)
+	new ammopath(M.back) //Twice the fun just to be sure
 
 //basic persistent gamemode stuff.
 /datum/game_mode
@@ -627,29 +664,16 @@ var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), slot_gloves)
 		M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
+
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	if(prob(75))
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(M), slot_shoes)
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 
-	if(merc_sidearms.len)
-		var/gunpath = pick(merc_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(merc_firearms.len)
-		var/gunpath2 = pick(merc_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
 
 /datum/emergency_call/bears/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
@@ -716,21 +740,8 @@ var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
 	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
 
-	if(rus_sidearms.len)
-		var/gunpath = pick(rus_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(rus_firearms.len)
-		var/gunpath2 = pick(rus_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_slavic_gun(M)
+	spawn_slavic_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Iron Bear"
@@ -751,26 +762,12 @@ var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/Bear(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 
-	if(rus_sidearms.len)
-		var/gunpath = pick(rus_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(rus_firearms.len)
-		var/gunpath2 = pick(rus_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_slavic_gun(M)
+	spawn_slavic_gun(M,1)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Iron Bears Sergeant"
@@ -1043,20 +1040,17 @@ var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
 	M.equip_to_slot(new /obj/item/clothing/mask/gas/swat/monkey(M), slot_wear_mask)
 	M.equip_to_slot(new /obj/item/weapon/storage/backpack/holding(M), slot_back)
 	M.equip_to_slot(new /obj/item/weapon/shield/riot(M), slot_r_hand)
-//	M.equip_to_slot(new /obj/item/weapon/gun/projectile/automatic/m39/PMC(M), slot_l_hand)
-
-//	M.equip_to_slot(new /obj/item/ammo_magazine/VP78(M.back), slot_in_backpack)
-//	M.equip_to_slot(new /obj/item/ammo_magazine/m39/toxic(M.back), slot_in_backpack)
-//	M.equip_to_slot(new /obj/item/ammo_magazine/m39(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/plastique(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1)
+
 	var/obj/item/weapon/card/id/W = new()
 	M.equip_to_slot(W, slot_in_backpack)
-
 	W.assignment = "W-Y Emergency Response Chimp"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
@@ -1177,21 +1171,8 @@ var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 
-	if(merc_sidearms.len)
-		var/gunpath = pick(merc_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(merc_firearms.len)
-		var/gunpath2 = pick(merc_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Mercenary Soldier"
@@ -1215,21 +1196,8 @@ var/global/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
 
-	if(merc_sidearms.len)
-		var/gunpath = pick(merc_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(merc_firearms.len)
-		var/gunpath2 = pick(merc_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Mercenary Commander"

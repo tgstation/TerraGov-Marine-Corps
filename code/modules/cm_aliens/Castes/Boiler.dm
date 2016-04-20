@@ -112,7 +112,7 @@
 
 	if(!check_state()) return
 
-	if(istype(bomb_ammo,/datum/ammo/boiler_gas))
+	if(!istype(bomb_ammo,/datum/ammo/boiler_gas/corrosive))
 		src << "\blue You will now fire corrosive gas. This is lethal!"
 		if(bomb_ammo) del(bomb_ammo)
 		bomb_ammo = new /datum/ammo/boiler_gas/corrosive()

@@ -24,6 +24,11 @@
 	desc = "A 10mm assault rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/incendiary"
 
+/obj/item/ammo_magazine/rifle/ap
+	name = "M41A AP Magazine (10mm)"
+	desc = "A 10mm armor piercing magazine."
+	default_ammo = "/datum/ammo/bullet/rifle/ap"
+
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A Pulse Rifle"
 	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10mm special ammunition."
@@ -40,7 +45,7 @@
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
 	rail_pixel_x = 12
-	rail_pixel_y = 20
+	rail_pixel_y = 21
 	under_pixel_x = 24
 	under_pixel_y = 13
 	ammo_counter = 1
@@ -221,8 +226,8 @@
 	rail_pixel_y = 19
 	under_pixel_x = 20
 	under_pixel_y = 15
-	burst_amount = 5
-	accuracy = -35
+	burst_amount = 4
+	accuracy = -25
 	found_on_mercs = 1
 	found_on_russians = 0
 

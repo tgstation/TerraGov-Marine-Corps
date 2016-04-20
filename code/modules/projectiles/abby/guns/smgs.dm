@@ -40,6 +40,7 @@
 	name = "AP SMG Magazine (9mm)"
 	desc = "A 9mm special magazine."
 	default_ammo = "/datum/ammo/bullet/smg/ap"
+	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 SMG"
@@ -60,7 +61,7 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 40
-	gun_type = "/obj/item/weapon/gun/smg/m39"
+	gun_type = "/obj/item/weapon/gun/smg/mp7"
 
 /obj/item/weapon/gun/smg/mp7
 	name = "\improper MP27"
@@ -91,7 +92,7 @@
 	icon_state = "12mm"
 	icon_empty = "12mm0"
 	max_rounds = 20
-	gun_type = "/obj/item/weapon/gun/smg/m39"
+	gun_type = "/obj/item/weapon/gun/smg/skorpion"
 
 /obj/item/weapon/gun/smg/skorpion
 	name = "\improper Skorpion"

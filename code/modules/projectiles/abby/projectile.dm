@@ -251,6 +251,8 @@
 				else
 					if(isobj(A) && !A.density) //We're scanning a non dense object.
 						continue
+					else if(isobj(A) && ammo)
+						ammo.on_hit_obj(A,src)
 
 					var/response = A.bullet_act(src)
 					if(response > 0 || response == null)
@@ -524,7 +526,6 @@
 //Hitting an object. These are too numerous so they're staying in their files.
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P,get_turf(src),src.layer))
-		P.ammo.on_hit_obj(src,P)
 		src.bullet_ping(P)
 		return 1
 	else
