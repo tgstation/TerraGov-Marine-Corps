@@ -573,6 +573,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -590,6 +591,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -608,6 +610,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"

@@ -300,12 +300,13 @@
 	return
 
 /mob/living/carbon/Xenomorph/gib()
-	death(1)
+	if (stat != 2) //Prevents double deaths and whatnot when gibbed
+		death(1)
 	monkeyizing = 1
+	dead_mob_list -= src
 	canmove = 0
 	icon = null
 	update_canmove()
-	dead_mob_list -= src
 	if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
 		visible_message("<B>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</b>")
 		src:smoke.set_up(6, 0, get_turf(src))
