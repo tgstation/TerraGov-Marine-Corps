@@ -186,7 +186,7 @@
 //Sulaco walls. They use wall instead of shuttle code so they overlap and we can do fun stuff to them without using unsimulated shuttle things.
 /turf/simulated/wall/sulaco
 	name = "spaceship hull"
-	desc = "A huge chunk of metal used to seperate rooms on spaceships from the cold void of space."
+	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
 	hull = 1 //Can't be deconstructed
