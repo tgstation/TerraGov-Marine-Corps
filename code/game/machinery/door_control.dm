@@ -123,6 +123,8 @@
 
 /obj/machinery/door_control/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
+	if(istype(user,/mob/living/carbon/Xenomorph))
+		return
 	if(stat & (NOPOWER|BROKEN))
 		return
 
