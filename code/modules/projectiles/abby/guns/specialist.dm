@@ -92,7 +92,7 @@
 	afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 		..()
 		if(istype(user,/mob/living/carbon/human))
-			if(user.lying == 0 && !istype(user:w_uniform,/obj/item/clothing/suit/storage/marine/PMCarmor))
+			if(user.lying == 0 && !istype(user:wear_suit,/obj/item/clothing/suit/storage/marine/PMCarmor/commando) && !istype(user:wear_suit,/obj/item/clothing/suit/storage/marine/))
 				user.visible_message("[user] is blown backwards from the recoil of the [src]!")
 				user.Weaken(5)
 

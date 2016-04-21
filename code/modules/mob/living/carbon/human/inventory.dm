@@ -782,6 +782,10 @@ It can still be worn/put on as normal.
 							target.internals.icon_state = "internal1"
 	if(slot_to_process)
 		if(strip_item) //Stripping an item from the mob
+			if(istype(strip_item,/obj/item/weapon/gun/smartgun)) //NOPE
+				del(src)
+				return 0
+
 			target.drop_from_inventory(strip_item)
 			if(slot_to_process == slot_l_store) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
 				//Psst. You were wrong. - Abby

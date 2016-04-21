@@ -111,7 +111,10 @@
 	return 1
 
 /datum/game_mode/colonialmarines/announce()
-	world << "<B>The current game mode is - Colonial Marines! Hoooah!</B>"
+	world << "<B>The current game mode is - Colonial Marines!/B>"
+
+/datum/game_mode/colonialmarines/send_intercept()
+	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

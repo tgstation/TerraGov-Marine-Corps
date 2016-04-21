@@ -1,3 +1,5 @@
+/mob/dead
+	var/voted_this_drop = 0
 
 /mob/dead/observer
 	name = "ghost"
@@ -812,3 +814,39 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(M.client) M.client.was_a_predator = 1
 	if(old) del(old) //Wipe the old ghost.
 	return
+
+/mob/dead/verb/drop_vote()
+	set category = "Ghost"
+	set name = "Spectator Vote"
+	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
+
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	if(!istype(ticker.mode,/datum/game_mode/huntergames))
+		usr << "Wrong game mode. You have to be observing a Hunter Games round."
+		return
+
+	if(!waiting_for_drop_votes)
+		usr << "There's no drop vote currently in progress. Wait for a supply drop to be announced!"
+		return
+
+	if(voted_this_drop)
+		usr << "You voted for this one already. Only one please!"
+		return
+
+	var/list/mobs = living_mob_list
+	var/target = null
+
+	target = input("Please, select a contestant!", "Cake Time", null, null) as null|anything in mobs
+
+	if (!target)//Make sure we actually have a target
+		return
+	else
+		usr << "Your vote for [target] has been counted!"
+		ticker.mode:supply_votes += target
+		voted_this_drop = 1
+		spawn(200)
+			voted_this_drop = 0
+		return

@@ -210,6 +210,7 @@
 		if(user) user << "Something went horribly wrong. Tell a coder."
 		return 0
 
+	active_attachable = null
 	if(user)
 		user << "You begin reloading \the [src.name]. Hold still!"
 		if(do_after(user,magazine.reload_delay))
@@ -223,7 +224,6 @@
 				if(ammo) del(ammo)
 				ammo = new ammopath()
 				ammo.current_gun = src
-
 		else
 			user << "Your reload was interrupted."
 			return 0
@@ -232,7 +232,6 @@
 		if(ammo) del(ammo)
 		ammo = new ammopath()
 		ammo.current_gun = src
-
 	return
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
@@ -354,18 +353,17 @@
 		SetLuminosity(flash_lum)
 
 	if(ishuman(user))
-		if(user:wear_suit && (istype(user:wear_suit,/obj/item/clothing/suit/storage/marine) || istype(user:wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor)))
-			if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
-				var/obj/item/clothing/suit/storage/I = user:wear_suit
-				if(isnull(user:s_store))
-					if(wielded)	unwield()
-					var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
-					if(istype(O)) O.unwield()
-					spawn(0)
+		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
+			var/obj/item/I = user:wear_suit
+			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+				spawn(5)
+					if(isnull(user:s_store) && isturf(src.loc))
+						if(wielded)	unwield()
+						var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
+						if(istype(O)) O.unwield()
 						user:equip_to_slot_if_possible(src,slot_s_store)
 						if(user:s_store == src) user << "\red The [src] snaps into place on [I]."
 						user.update_inv_s_store()
-
 
 	//handles unwielding a twohanded weapon when dropped as well as clearing up the offhand
 	if(twohanded && wielded)
@@ -851,8 +849,7 @@
 		usr << "Not right now."
 		return
 
-	if(active_attachable)
-		active_attachable = null
+
 
 	if(!rail && !under && !muzzle && !stock )
 		usr << "This weapon does not have any attachments, you dingus."
@@ -864,10 +861,13 @@
 	if(under && under.can_activate) usable_atts += under.name
 	if(stock  && stock.can_activate) usable_atts += stock.name
 	if(muzzle && muzzle.can_activate) usable_atts += muzzle.name
-	usable_atts += "Cancel"
+	if(active_attachable)
+		usable_atts += "Cancel Active"
+	else
+		usable_atts += "Cancel"
 
 	var/choice = input("Which attachment to activate?") as null|anything in usable_atts
-	if(!choice || choice == "Cancel")
+	if(!choice || choice == "Cancel" || choice == "Cancel Active")
 		active_attachable = null
 		return
 

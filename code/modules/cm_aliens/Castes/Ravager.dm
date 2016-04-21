@@ -17,7 +17,7 @@
 	maxplasma = 100
 	jellyMax = 0
 	caste_desc = "A brutal, devastating front-line attacker."
-	speed = -1.5 //Not as fast as runners, but faster than other xenos.
+	speed = -1.2 //Not as fast as runners, but faster than other xenos.
 	evolves_to = list()
 	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
 	var/CHARGESPEED = 2

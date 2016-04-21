@@ -344,6 +344,7 @@
 	w_class = 4.0
 	throw_speed = 2
 	throw_range = 10
+	fire_delay = 30
 	force = 5.0
 	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY
 	slot_flags = 0
@@ -380,8 +381,8 @@
 ///obj/item/weapon/gun/rocketlauncher/can_fire()
 //	return rockets.len
 
-/obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-	if(usr.z != 1)
+/obj/item/weapon/gun/rocketlauncher/afterattack(atom/target, mob/user , flag)
+	if(user.z != 1)
 		usr << "\red The safety refuses to release!"
 		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) has attempted to fire a rocket in a restricted area. ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)")
 		log_game("[key_name(user)] attempted to fire a rocket in a restricted area at ([target.x],[target.y],[target.z])")
@@ -391,11 +392,22 @@
 		usr << "\red You require two hands to fire this!"
 		return
 
+	if(get_dist(user,target) <= 1)
+		user << "Too close!"
+		return
+
 	if(rockets.len)
 		var/obj/item/rocket_shell/I = rockets[1]
 		var/obj/item/missile/M = new I.projectile_type(user.loc)
 		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
 		M.primed = 1
+
+		var/angle = round(Get_Angle(user.loc,target.loc))
+
+		var/matrix/rotate = matrix() //Change the missile angle.
+		rotate.Turn(angle)
+		M.transform = rotate
+
 		M.throw_at(target, missile_range, missile_speed,user)
 		msg_admin_attack(("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"))
 		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")

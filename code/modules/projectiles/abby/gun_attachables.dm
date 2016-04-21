@@ -166,7 +166,7 @@
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/double
 	)
-	melee_mod = 300 //30 brute for those 3 guns, normally do 10
+	melee_mod = 250 //30 brute for those 3 guns, normally do 10
 	accuracy_mod = -10
 	slot = "muzzle"
 
@@ -369,9 +369,9 @@
 	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
 	slot = "muzzle"
 	icon_state = "hbarrel"
-	accuracy_mod = -40
-	ranged_dmg_mod = 135
-	delay_mod = 3
+	accuracy_mod = -30
+	ranged_dmg_mod = 130
+	delay_mod = 4
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
@@ -491,11 +491,11 @@
 	icon_state = "stock"
 	recoil_mod = -1
 	accuracy_mod = 10
-	melee_mod = 150
+	melee_mod = 115
 	size_mod = 2
 	delay_mod = 3
 	pixel_shift_x = 34
-	pixel_shift_y = 11
+	pixel_shift_y = 15
 	guns_allowed = list(/obj/item/weapon/gun/shotgun/pump)
 
 /obj/item/attachable/compensator/stock/slavic
@@ -517,12 +517,12 @@
 	slot = "stock"
 	recoil_mod = -1
 	accuracy_mod = 15
-	melee_mod = 120
+	melee_mod = 110
 	size_mod = 1
 	delay_mod = 3
 	icon_state = "riflestock"
-	pixel_shift_x = 40
-	pixel_shift_y = 11
+	pixel_shift_x = 41
+	pixel_shift_y = 10
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/rifle/m41a/scoped)
 
 /obj/item/attachable/compensator/revolverstock
@@ -531,13 +531,13 @@
 	slot = "stock"
 	recoil_mod = -1
 	accuracy_mod = 20
-	melee_mod = 80
+	melee_mod = 90
 	size_mod = 1
 	delay_mod = 3
 	w_class_mod = 2
 	icon_state = "44stock"
-	pixel_shift_x = 33
-	pixel_shift_y = 14
+	pixel_shift_x = 38
+	pixel_shift_y = 16
 	guns_allowed = list(/obj/item/weapon/gun/revolver/m44)
 
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
@@ -643,6 +643,7 @@
 			var/turf/T
 			for(T in turfs)
 				distance++
+				if(T == user.loc) continue
 				if(current_ammo == 0) break
 				if(distance > 3) break
 				if(DirBlocked(T,usr.dir))
@@ -657,7 +658,7 @@
 					if(W.dir == src.dir)
 						break
 				current_ammo--
-				flame_turf(T)
+				flame_turf(T,user)
 				sleep(1)
 		else
 			if(user) user << "\icon[gun] The [src.name] is empty!"
@@ -665,7 +666,7 @@
 				gun.active_attachable = null
 		return 1
 
-	proc/flame_turf(var/turf/T)
+	proc/flame_turf(var/turf/T,var/mob/user)
 		if(!istype(T)) return 0
 
 		if(!locate(/obj/flamer_fire) in T) // No stacking flames!
@@ -676,7 +677,7 @@
 
 		for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
 			if(M.stat == DEAD) continue
-			if(T == usr) continue
+			if(M == user) continue
 
 			if(istype(M,/mob/living/carbon/Xenomorph))
 				if(M:fire_immune) continue
