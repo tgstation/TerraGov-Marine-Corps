@@ -73,6 +73,8 @@
 			blinded = 1
 			see_in_dark = 5
 			Paralyse(4)
+			if(istype(src,/mob/living/carbon/Xenomorph/Runner) && src.layer != initial(src.layer))//Unhide
+				layer = MOB_LAYER
 			var/turf/T = loc
 			if(istype(T))
 				if(!locate(/obj/effect/alien/weeds) in T) //In crit, only take damage when not on weeds.

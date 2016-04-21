@@ -49,6 +49,8 @@
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src)
 			return 0
+	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
+		return 0
 	return 1
 
 /obj/structure/closet/proc/dump_contents()
