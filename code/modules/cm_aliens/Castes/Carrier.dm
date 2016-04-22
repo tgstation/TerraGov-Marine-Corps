@@ -9,8 +9,8 @@
 	tacklemin = 2
 	tacklemax = 3
 	tackle_chance = 60
-	health = 185
-	maxHealth = 185
+	health = 175
+	maxHealth = 175
 	storedplasma = 50
 	maxplasma = 250
 	jellyMax = 0

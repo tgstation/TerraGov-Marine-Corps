@@ -7,8 +7,8 @@
 	icon_state = "Drone Walking"
 	melee_damage_lower = 12
 	melee_damage_upper = 16
-	health = 170
-	maxHealth = 170
+	health = 120
+	maxHealth = 120
 	storedplasma = 350
 	maxplasma = 750
 	jellyMax = 500
