@@ -7,13 +7,16 @@
 	twohanded = 0
 
 //-------------------------------------------------------
-
 /obj/item/ammo_magazine/smg
+	name = "default SMG magazine"
+	default_ammo = "/datum/ammo/bullet/smg"
+	max_rounds = 1
+
+/obj/item/ammo_magazine/smg/m39
 	name = "M39 SMG Mag (9mm)"
 	desc = "A 9mm submachinegun magazine."
 	icon_state = "9x"
 	icon_empty = "9x0"
-	default_ammo = "/datum/ammo/bullet/smg"
 	max_rounds = 35
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 
@@ -23,7 +26,7 @@
 	icon_state = "smg"
 	icon_empty = "smg_empty"
 	item_state = "m39"
-	mag_type = "/obj/item/ammo_magazine/smg"
+	mag_type = "/obj/item/ammo_magazine/smg/m39"
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 20
 	rail_pixel_x = 11
@@ -142,28 +145,37 @@
 	under_pixel_x = 26
 	under_pixel_y = 15
 	burst_amount = 3
-	burst_delay = 2
+	burst_delay = 1
 	accuracy = -8
 	found_on_russians = 1
 
 //-------------------------------------------------------
 
+/obj/item/ammo_magazine/smg/uzi
+	name = "Mac-15 Magazine (9mm)"
+	desc = "A magazine for the P90 SMG."
+	default_ammo = "/datum/ammo/bullet/smg"
+	icon_state = "darts"
+	icon_empty = "darts-0"
+	max_rounds = 50
+	gun_type = "/obj/item/weapon/gun/smg/p90"
+
 /obj/item/weapon/gun/smg/uzi
 	name = "\improper MAC-15"
-	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower. Uses M39 magazines."
+	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower."
 	icon_state = "mini-uzi"
 	icon_empty = "mini-uzi_empty"
 	item_state = "mini-uzi"
 	fire_sound = 'sound/weapons/uzi.ogg'
-	fire_delay = 3
-	mag_type = "/obj/item/ammo_magazine/smg"
+	fire_delay = 6
+	mag_type = "/obj/item/ammo_magazine/smg/uzi"
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 19
 	rail_pixel_x = 11
 	rail_pixel_y = 22
 	under_pixel_x = 22
 	under_pixel_y = 16
-	burst_amount = 2
+	burst_amount = 3
 	burst_delay = 1
 	found_on_mercs = 1
 
@@ -194,7 +206,7 @@
 	under_pixel_x = 22
 	under_pixel_y = 16
 	burst_amount = 3
-	burst_delay = 3
+	burst_delay = 2
 	accuracy = 12
 	found_on_mercs = 1
 
