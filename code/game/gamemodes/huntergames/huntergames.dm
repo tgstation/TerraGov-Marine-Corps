@@ -112,7 +112,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/checkwin_counter = 0
 	var/finished = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/dropoff_timer = 600 //10 minutes.
+	var/dropoff_timer = 1200 //10 minutes.
 	var/last_drop = 0
 	var/last_death = 0
 	var/death_timer = 300 // 3 minutes.
@@ -211,8 +211,9 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	if(!H.mind)
 		H.mind = new(H.key)
 
-	H.Weaken(25)
-	H.SetLuminosity(2)
+	H.Weaken(15)
+	H.SetLuminosity(1)
+	H.nutrition = 300
 
 	//Damage them for realism purposes
 
@@ -299,10 +300,14 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 				if(istype(winner) && !winner.stat)
 					world << "<B>The spectator and Predator votes have been talled, and the supply drop recipient is </B>[winner.name]<B>! Congrats!</b>"
 					world << sound('sound/effects/alert.ogg')
+					world << "The package will shortly be dropped off at: [get_area(winner)]."
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
 					if(istype(drop_zone))
 						playsound(drop_zone,'sound/effects/bamf.ogg',100,1)
-						place_drop(drop_zone,"good")
+						if(prob(50))
+							place_drop(drop_zone,"good")
+						else
+							place_drop(drop_zone,"god")
 				else
 					world << "<B>The spectator and Predator votes have been talled, and the supply drop recipient is </B>dead or dying<B>. Bummer.</b>"
 					world << sound('sound/misc/sadtrombone.ogg')
@@ -312,6 +317,8 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 
 	checkwin_counter++
 	ticks_passed++
+	if(prob(2)) dropoff_timer += ticks_passed //Increase the timer the longer the round goes on.
+
 	if(has_started_timer > 0) //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 		has_started_timer--
 
