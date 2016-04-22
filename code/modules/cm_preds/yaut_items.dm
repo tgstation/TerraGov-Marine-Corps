@@ -121,7 +121,7 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 65, bullet = 80, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 65, bullet = 75, laser = 45, energy = 50, bomb = 40, bio = 50, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
@@ -143,7 +143,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
 	item_state = "wristblades"
-	force = 22
+	force = 30
 	w_class = 5.0
 	edge = 1
 	sharp = 0
@@ -151,15 +151,35 @@
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
-	attack_speed = 5 //Default is 7.
+
+	New()
+		..()
+		if(usr)
+			var/obj/item/weapon/wristblades/get_other_hand = usr.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				attack_speed = round(initial(attack_speed) / 2) //Much faster if a second wristblade is equipped.
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
 
 	dropped(var/mob/living/carbon/human/mob)
 		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
 		mob << "The wrist blades retract back into your armband."
+		if(mob)
+			var/obj/item/weapon/wristblades/get_other_hand = mob.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+
 		del(src)
 
 	afterattack(obj/O as obj, mob/user as mob, proximity)
 		if(!proximity || !user) return
+		if(user)
+			var/obj/item/weapon/wristblades/get_other_hand = user.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				attack_speed = round(initial(attack_speed) / 2)
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+			else
+				attack_speed = initial(attack_speed)
+
 		if (istype(O, /obj/machinery/door/airlock) && get_dist(src,O) <= 1)
 			var/obj/machinery/door/airlock/D = O
 			if(!D.density)
@@ -175,7 +195,7 @@
 
 			user << "\blue You jam \the [src] into [O] and strain to rip it open."
 			playsound(user,'sound/weapons/wristblades_hit.ogg', 60, 1)
-			if(do_after(user,40))
+			if(do_after(user,30))
 				D.open(1)
 
 /obj/item/weapon/wristblades/scimitar
@@ -184,8 +204,9 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "scim"
 	item_state = "scim"
-	force = 52
-	attack_speed = 12 //slow!
+	force = 62
+	attack_speed = 20 //slow!
+	hitsound = 'sound/weapons/pierce.ogg'
 
 
 /obj/item/clothing/shoes/yautja
@@ -284,42 +305,33 @@
 		if(!usr || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
-		if(!isYautja(usr))
+		if(!isYautja(M))
 			usr << "You have no idea how to work these things."
 			return
-		var/obj/item/weapon/wristblades/R = usr.r_hand
-		var/obj/item/weapon/wristblades/L = usr.l_hand
-		if(!istype(R) && !istype(L))
+		var/obj/item/weapon/wristblades/R = M.get_active_hand()
+		if(R && istype(R)) //Turn it off.
+			M << "You retract your wrist blade."
+			playsound(M.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
-
-		if(blades_active) //Turn it off.
-			var/found = 0
-			if(R && istype(R))
-				found = 1
-				usr.r_hand = null
-				if(R) del(R)
-				usr.update_inv_r_hand()
-			if(L && istype(L))
-				found = 1
-				usr.l_hand = null
-				if(L) del(L)
-				usr.update_inv_l_hand()
-			if(found)
-				usr << "You retract your wrist blades."
-				playsound(src.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
-				blades_active = 0
+			M.drop_item(R)
+			if(R) del(R) //Just to make sure. The drop should take care of it though.
 			return
-		else //Turn it on!
-			if(usr.get_active_hand())
-				usr << "Your hand must be free to activate your wrist blades."
+		else
+			if(R)
+				M << "Your hand must be free to activate your wrist blade."
 				return
 			if(!drain_power(usr,50)) return
-			var/obj/item/weapon/wristblades/W = new(usr)
-			usr.put_in_active_hand(W)
+
+			var/obj/item/weapon/wristblades/W
+			if(upgrades > 1)
+				W = new /obj/item/weapon/wristblades/scimitar(M)
+
+			M.put_in_active_hand(W)
 			blades_active = 1
 			usr << "You activate your wrist blades."
 			playsound(src,'sound/weapons/wristblades_on.ogg', 40, 1)
 			usr.update_icons()
+
 		return 1
 
 	verb/cloaker()

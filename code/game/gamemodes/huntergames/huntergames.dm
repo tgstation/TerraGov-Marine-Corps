@@ -5,13 +5,10 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/device/flash,\
 								/obj/item/weapon/flamethrower,\
 								/obj/item/weapon/shield/riot,\
-								/obj/item/weapon/shield/energy,\
 								/obj/item/weapon/storage/backpack/yautja,\
 								/obj/item/weapon/gun/rifle/m41a,\
 								/obj/item/weapon/gun/shotgun/pump,\
 								/obj/structure/largecrate/guns/merc,\
-								/obj/structure/largecrate/guns/merc,\
-								/obj/structure/largecrate/guns/russian,\
 								/obj/structure/largecrate/guns/russian,\
 								/obj/item/weapon/storage/belt/knifepouch,\
 								/obj/item/clothing/head/helmet/marine,\
@@ -99,19 +96,12 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 								/obj/item/weapon/grenade/incendiary,\
 								/obj/item/device/flashlight/combat,\
 								/obj/structure/largecrate/guns/merc,\
-								/obj/structure/largecrate/guns/russian,\
 								/obj/item/weapon/legcuffs/yautja,\
 								/obj/item/weapon/storage/box/wy_mre,\
-								/obj/item/weapon/gun/pistol/m4a3,\
-								/obj/item/weapon/gun/revolver/m44,\
-								/obj/item/weapon/gun/smg/m39,\
 								/obj/item/weapon/combat_knife,\
 								/obj/item/stack/medical/ointment,\
 								/obj/item/stack/medical/bruise_pack,\
-								/obj/item/ammo_magazine/rifle/incendiary,\
-								/obj/item/weapon/gun/smg/mp7,\
-								/obj/item/weapon/gun/smg/skorpion,\
-								/obj/item/weapon/gun/smg/ppsh)
+								/obj/item/ammo_magazine/rifle/incendiary)
 
 
 /datum/game_mode/huntergames
@@ -122,10 +112,10 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/checkwin_counter = 0
 	var/finished = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/dropoff_timer = 6000 //10 minutes.
+	var/dropoff_timer = 600 //10 minutes.
 	var/last_drop = 0
 	var/last_death = 0
-	var/death_timer = 1500 // 3 minutes.
+	var/death_timer = 300 // 3 minutes.
 	var/last_tally
 	var/list/turf/primary_spawns = list()
 	var/list/turf/secondary_spawns = list()
@@ -293,7 +283,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 
 /datum/game_mode/huntergames/process()
 
-	if(dropoff_timer + last_drop >= world.time && ticks_passed > 500 && !drops_disabled)
+	if(dropoff_timer + last_drop >= world.time && ticks_passed > 50 && !drops_disabled)
 		world << "<B>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</b>"
 		world << "<B>One lucky contestant should prepare for a supply drop in 60 seconds.</b>"
 		for(var/mob/dead in world)
@@ -325,7 +315,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	if(has_started_timer > 0) //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 		has_started_timer--
 
-	if(checkwin_counter >= 5) //Only check win conditions every 5 ticks.
+	if(checkwin_counter >= 10) //Only check win conditions every 5 ticks.
 		if(!finished)
 			check_win()
 		checkwin_counter = 0
@@ -335,16 +325,15 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/C = count_humans()
 	if(C < last_tally)
 		if(last_tally - C == 1)
-			world << "<B>A contestant has died!</b>"
+			world << "<B>A contestant has died! There are now [C] contestants remaining!</b>"
 			world << sound('sound/effects/explosionfar.ogg')
 		else
 			var/diff = last_tally - C
-			world << "<B>Multiple contestants have died! [diff] in fact.</b>"
+			world << "<B>Multiple contestants have died! [diff] in fact. [C] are left!</b>"
 			spawn(7)
 				world << sound('sound/effects/explosionfar.ogg')
-		world << sound('sound/effects/explosionfar.ogg')
 
-	last_tally = count_humans()
+	last_tally = C
 	if(last_tally == 1 || ismob(last_tally))
 		finished = 1
 	else if (last_tally < 1)
@@ -357,7 +346,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/human_count = 0
 
 	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(istype(H) && H.stat != DEAD && H.z != 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
+		if(istype(H) && H.stat == 0 && H.z != 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 			if(H.species != "Yautja") // Preds don't count in round end.
 				human_count += 1 //Add them to the amount of people who're alive.
 
@@ -380,21 +369,21 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/mob/living/carbon/winner = null
 
 	for(var/mob/living/carbon/human/Q in living_mob_list)
-		if(istype(Q,/mob/living/carbon) && Q.stat != DEAD && !isYautja(Q) && !istype(get_area(Q.loc),/area/centcom) && !istype(get_area(Q.loc),/area/tdome))
+		if(istype(Q) && Q.stat == 0 && Q.z != 0 && !isYautja(Q) && !istype(get_area(Q.loc),/area/centcom) && !istype(get_area(Q.loc),/area/tdome))
 			winner = Q
 			break
 
-	if(finished == 1 && !isnull(winner))
+	if(finished == 1 && !isnull(winner) && istype(winner))
 		feedback_set_details("round_end_result","single winner")
-		world << "\red <FONT size = 4><B>We have a winner! >> [winner.name] ([winner.key]) << defeated all enemies!</B></FONT>"
+		world << "\red <FONT size = 4><B>We have a winner! >> [winner.real_name] ([winner.key]) << defeated all enemies!</B></FONT>"
 		world << "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]\nBig Ass Winner: [winner.name]"
+			round_stats << "Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]\nBig Winner: [winner.real_name] ([winner.key])"
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","no winners")
-		world << "\red <FONT size = 4><B>NOBODY WON!</B></FONT>"
+		world << "\red <FONT size = 4><B>NOBODY WON!?</B></FONT>"
 		world << "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>"
 		world << 'sound/misc/sadtrombone.ogg'
 

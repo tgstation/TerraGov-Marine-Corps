@@ -113,7 +113,10 @@
 
 	examine()
 		..()
-		usr << "The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
+		if(current_rounds < 0)
+			usr << "The [src] has <b>[max_rounds]</b> rounds out of <b>[max_rounds]</b>."
+		else
+			usr << "The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 //Doesn't do anything or hold anything anymore.
 /obj/item/ammo_casing

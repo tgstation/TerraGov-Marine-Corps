@@ -120,7 +120,7 @@
 	name = "armor-piercing rifle bullet"
 	damage = 35
 	accuracy = 20
-	armor_pen = 30
+	armor_pen = 15
 
 /datum/ammo/bullet/rifle/mar40
 	damage = 50

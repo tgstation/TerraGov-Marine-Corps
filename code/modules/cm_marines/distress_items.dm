@@ -311,6 +311,7 @@
 	force = 35
 	slot_flags = SLOT_BACK
 	w_class = 4.0
+	flags = NOSHIELD
 
 
 /obj/item/weapon/storage/backpack/marinesatchel/commando
@@ -331,7 +332,7 @@
 	name = "katana"
 	desc = "A ancient weapon from Japan."
 	icon_state = "samurai"
-	force = 40
+	force = 50
 
 /obj/item/smartgun_powerpack/fancy
 	icon = 'icons/mob/back.dmi'
