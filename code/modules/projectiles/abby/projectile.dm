@@ -62,7 +62,7 @@
 		return
 
 	proc/get_accuracy()
-		var/acc = 90 //Base accuracy.
+		var/acc = 80 //Base accuracy.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 
@@ -84,6 +84,8 @@
 			acc -= (distance_travelled * 3) //-3% accuracy per turf
 		else if(!ammo.current_gun) //Non-gun firers, aka turrets, just get a flat -1 accuracy per turf.
 			acc -= (distance_travelled * 2)
+		else if (distance_travelled <= 2)
+			acc += 25 //Big bonus for point blanks.
 
 		if(acc < 5) acc = 5 //There's always some chance.
 		return acc
@@ -98,9 +100,9 @@
 			if(T.lying && T.stat) hit_chance += 15 //Bonus hit against unconscious people.
 			if(istype(T,/mob/living/carbon/Xenomorph))
 				if(T:big_xeno)
-					hit_chance += 5
+					hit_chance += 10
 				else
-					hit_chance -= 5
+					hit_chance -= 10
 
 			if(ammo.skips_marines && ishuman(target))
 				var/mob/living/carbon/human/H = target
@@ -253,6 +255,8 @@
 						continue
 					else if(isobj(A) && ammo)
 						ammo.on_hit_obj(A,src)
+						if(A) A.bullet_act(src)
+						return 1
 
 					var/response = A.bullet_act(src)
 					if(response > 0 || response == null)
