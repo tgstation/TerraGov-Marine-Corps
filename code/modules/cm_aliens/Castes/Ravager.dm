@@ -10,8 +10,8 @@
 	tacklemin = 3
 	tacklemax = 6
 	tackle_chance = 80
-	health = 220
-	maxHealth = 220
+	health = 180
+	maxHealth = 180
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
@@ -26,7 +26,7 @@
 	var/CHARGECOOLDOWN = 120
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
-	armor_deflection = 65
+	armor_deflection = 75
 	big_xeno = 1
 	attack_delay = -2
 

@@ -8,8 +8,8 @@
 	icon_state = "Hivelord Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
-	health = 260
-	maxHealth = 260
+	health = 220
+	maxHealth = 220
 	storedplasma = 200
 	maxplasma = 800
 	jellyMax = 0 //Final evolution anyway
