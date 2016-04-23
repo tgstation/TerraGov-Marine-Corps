@@ -251,11 +251,12 @@
 					permutated.Add(A)
 
 				else
-					if(isobj(A) && !A.density) //We're scanning a non dense object.
+					if(isobj(A) && (A.density == 0 || layer < 3)) //We're scanning a non dense object.
+						permutated.Add(A)
 						continue
 					else if(isobj(A) && ammo)
 						ammo.on_hit_obj(A,src)
-						if(A) A.bullet_act(src)
+						if(!isnull(A)) A.bullet_act(src)
 						return 1
 
 					var/response = A.bullet_act(src)
@@ -517,10 +518,9 @@
 /turf/simulated/wall/bullet_act(obj/item/projectile/P)
 	..()
 
-	var/D = P.damage
 	if(D < 1) return 0
 
-	if(P.damage_type == "BRUTE") D = round(D/2) //Bullets do much less to walls and such.
+	if(P.damage_type == "BRUTE") D = round(D/3) //Bullets do much less to walls and such.
 	if(P.damage_type == "TOX") return 1
 	take_damage(P.damage)
 	if(prob(30 + D))
@@ -536,7 +536,27 @@
 		return 0
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
-	return !(check_cover(P,get_turf(P)))
+	if(flipped)
+		var/chance = 0
+		if(P.dir == reverse_direction(dir))
+			chance = 95
+		else if (P.dir == dir)
+			chance = 3
+		else
+			chance = 50
+
+		if(prob(chance))
+			src.bullet_ping(P)
+			health -= round(P.damage/2)
+			if (health > 0)
+				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
+				return 0
+			else
+				visible_message("<span class='warning'>[src] breaks down!</span>")
+				destroy()
+				return 1
+		return 1
+	return 0
 
 
 //Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals

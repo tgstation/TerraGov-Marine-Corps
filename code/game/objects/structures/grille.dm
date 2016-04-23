@@ -7,7 +7,7 @@
 	anchored = 1
 	flags = FPRINT | CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	layer = 2.9
+	layer = 3
 	explosion_resistance = 5
 	var/health = 10
 	var/destroyed = 0
