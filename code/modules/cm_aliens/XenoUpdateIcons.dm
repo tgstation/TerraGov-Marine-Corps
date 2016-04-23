@@ -150,7 +150,7 @@
 		var/t_state = l_hand.item_state
 		if(!t_state)	t_state = l_hand.icon_state
 		l_hand.screen_loc = ui_lhand
-		overlays_standing[X_L_HAND_LAYER]	= image("icon" = r_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = t_state)
+		overlays_standing[X_L_HAND_LAYER]	= image("icon" = l_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = t_state)
 	else
 		overlays_standing[X_L_HAND_LAYER]	= null
 	if(update_icons)	update_icons()
