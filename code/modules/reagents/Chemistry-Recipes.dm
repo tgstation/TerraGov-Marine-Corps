@@ -406,8 +406,8 @@ datum
 			result_amount = 1
 			on_reaction(var/datum/reagents/holder, var/created_volume, var/radius)
 				var/location = get_turf(holder.my_atom)
-				radius = round(created_volume/30)
-				if(radius < 1) radius = 1
+				radius = round(created_volume/45)
+				if(radius < 0) radius = 0
 				if(radius > 3) radius = 3
 
 				for(var/turf/T in range(radius,location))

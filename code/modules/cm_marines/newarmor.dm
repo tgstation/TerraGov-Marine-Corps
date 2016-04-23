@@ -332,3 +332,86 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "officer"
 	name = "M3 Pattern Officer Armor"
 	desc = "A well-crafted suit of M3 Pattern armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
+
+//Helmet Attachables
+/obj/item/clothing/head/helmet/marine/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/flame/lighter) || istype(W, /obj/item/weapon/storage/fancy/cigarettes) || istype(W, /obj/item/weapon/storage/box/matches) || istype(W, /obj/item/weapon/deck) || istype(W, /obj/item/weapon/hand) || istype(W,/obj/item/weapon/reagent_containers/food/drinks/flask) || istype(W,/obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(W,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito) || istype(W,/obj/item/fluff/val_mcneil_1))
+		if(contents.len < 3)
+			user.drop_item()
+			W.loc = src
+			user.visible_message("[src] puts \the [W] on the [src].","\blue You put \the [W] on the [src].")
+			update_icon()
+		else
+			user << "\red There is no more space for [W]."
+	else if(istype(W, /obj/item/weapon/claymore/mercsword/machete))
+			user.visible_message("[src] tries to put \the [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b>","\red You try to put \the [W] on the [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b>")
+	else
+		user << "\red \the [W] does not fit on [src]."
+
+/obj/item/clothing/head/helmet/marine/update_icon()
+	overlays.Cut()
+	if(contents.len)
+		for(var/obj/I in contents)
+			if(!isnull(I) && I in contents)
+				//Cigar Packs
+				if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
+				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_ls")
+				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
+
+				//Cards
+				else if(istype(I,/obj/item/weapon/deck) || istype(I,/obj/item/weapon/hand))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_card_card")
+
+				//Matches
+				else if(istype(I,/obj/item/weapon/storage/box/matches))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_matches")
+
+				//Rosary
+				else if(istype(I,/obj/item/fluff/val_mcneil_1))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_rosary")
+
+				//Flasks
+				else if(istype(I,/obj/item/weapon/reagent_containers/food/drinks/flask))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_flask")
+
+				//Lighters
+				else if(istype(I,/obj/item/weapon/flame/lighter/zippo))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_lighter_zippo")
+
+				else if(istype(I,/obj/item/weapon/flame/lighter) && !istype(I,/obj/item/weapon/flame/lighter/zippo))
+					var/obj/item/weapon/flame/lighter/L = I
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_lighter_[L.clr]")
+
+				//Snacks
+				else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_burrito")
+				else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/eat_bar))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_eat")
+
+		overlays += image('icons/mob/helmet_garb.dmi', "helmet_band")
+	usr.update_inv_head()
+
+
+/obj/item/clothing/head/helmet/marine/MouseDrop(over_object, src_location, over_location)
+	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
+		if(!ishuman(usr))
+			return
+		if(contents.len)
+			var/obj/item/choice = input("What item would you like to remove from the [src]?") as null|obj in contents
+			if(!isnull(choice) && choice)
+				if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+					return
+				if(!istype(choice, /obj/item))
+					usr << "\red You can't remove \the [choice] from your [src]."
+					return
+				if(!usr.get_active_hand())
+					usr.put_in_hands(choice)
+				else
+					choice.loc = get_turf(src)
+				update_icon()
+				usr.visible_message("\blue [usr] removes \the [choice] off \the [src].","\blue You remove \the [choice] off \the [src].")
+		else
+			usr << "\red There is nothing on [src]."

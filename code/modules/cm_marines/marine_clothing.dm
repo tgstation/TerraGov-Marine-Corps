@@ -11,6 +11,18 @@
 	anti_hug = 1
 	w_class = 5
 
+	//Helmet attachables are in newarmor.dm
+
+	examine()
+		if(contents.len)
+			var/dat = "<br><br>There is something attached to the [src]:<br><br>"
+			for(var/obj/O in src)
+				dat += "\blue *\icon[O] - [O]<br>"
+			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""][dat]"
+		else
+			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""]"
+		..()
+
 /obj/item/clothing/head/helmet/marine/tech
 	name = "M10 Technician Helmet"
 	icon_state = "helmet-tech"
@@ -20,7 +32,6 @@
 	name = "M10 Medic Helmet"
 	icon_state = "helmet-medic"
 	item_color = "helmet-medic"
-
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"

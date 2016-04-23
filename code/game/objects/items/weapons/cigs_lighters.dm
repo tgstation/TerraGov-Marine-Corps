@@ -386,6 +386,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "lighter-g"
 	var/icon_on = "lighter-g-on"
 	var/icon_off = "lighter-g"
+	var/clr = "g"
 	w_class = 1
 	throwforce = 4
 	flags = TABLEPASS | CONDUCT
@@ -402,9 +403,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/weapon/flame/lighter/random
 	New()
-		var/color = pick("r","c","y","g")
-		icon_on = "lighter-[color]-on"
-		icon_off = "lighter-[color]"
+		clr = pick("r","c","y","g")
+		icon_on = "lighter-[clr]-on"
+		icon_off = "lighter-[clr]"
 		icon_state = icon_off
 
 /obj/item/weapon/flame/lighter/Del()
