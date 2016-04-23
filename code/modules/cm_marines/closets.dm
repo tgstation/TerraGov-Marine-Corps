@@ -12,21 +12,16 @@
 	icon_off = "off"
 	icon = 'icons/Marine/Marine_Lockers.dmi'
 
-	New()
-		..()
-		icon_opened = "[rand(1,15)]"
-
-
-
-	New()
-		spawn(5)
-			new /obj/item/clothing/suit/storage/marine(src)
-			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/device/flashlight(src)
-			new /obj/item/clothing/shoes/marine(src)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
-		return
+New()
+    icon_opened = "[rand(1,15)]"
+    spawn(5)
+        new /obj/item/clothing/suit/storage/marine(src)
+        new /obj/item/weapon/storage/belt/marine(src)
+        new /obj/item/clothing/head/helmet/marine(src)
+        new /obj/item/device/flashlight(src)
+        new /obj/item/clothing/shoes/marine(src)
+        new /obj/item/clothing/under/marine_jumpsuit(src)
+    return
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander

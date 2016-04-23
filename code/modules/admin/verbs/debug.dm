@@ -517,7 +517,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		world << "* [areatype]"
 
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
-	set category = "Special Verbs"
+	set category = "Fun"
 	set name = "Select equipment"
 	if(!ishuman(M))
 		alert("Invalid mob")

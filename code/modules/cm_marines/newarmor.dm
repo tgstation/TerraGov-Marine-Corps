@@ -336,7 +336,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "M3 Pattern Sniper Armor"
-	desc = "A custom modified set of M3 armor favoring firing from a crouched position."
+	desc = "A custom modified set of M3 armor designed for recon missions."
 	icon_override = 'icons/mob/suit.dmi'
 	icon_state = "marine_sniper"
 	item_state = "marine_sniper"
