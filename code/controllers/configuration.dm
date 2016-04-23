@@ -93,12 +93,12 @@
 	var/rulesurl
 
 	//Alert level description
-	var/alert_desc_green = "All security alerts have passed."
-	var/alert_desc_blue_upto = "Intelligence suggests the presence of a moderate threat to the Sulaco. All personnel are to be on alert."
-	var/alert_desc_blue_downto = "The current emergency has passed, however all personnel should remain on alert."
-	var/alert_desc_red_upto = "Warning: There is an immediate threat to the Sulaco. Personnel should secure their departments and await further instructions from command staff."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated. All personnel should remain on high alert."
-	var/alert_desc_delta = "Warning: The Sulaco Self-Destruct-Mechanism has been activated. All personnel must obey orders from superior officers."
+	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	var/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
 
 	var/forbid_singulo_possession = 0
 
@@ -397,7 +397,7 @@
 
 				if("kick_inactive")
 					config.kick_inactive = 1
-
+					
 				if("show_mods")
 					config.show_mods = 1
 

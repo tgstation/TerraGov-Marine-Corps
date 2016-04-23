@@ -1,27 +1,25 @@
 /**********************Marine Gear**************************/
-
 //STANDARD MARINE CLOSET
 /obj/structure/closet/secure_closet/marine
 	name = "Marine's Locker"
 	req_access = list(access_marine_prep)
-	icon_state = "locked"
-	icon_closed = "unlocked"
-	icon_locked = "locked"
-	icon_opened = ""
-	icon_broken = "breaking"
-	icon_off = "off"
+	icon_state = "standard_locked"
+	icon_closed = "standard_unlocked"
+	icon_locked = "standard_locked"
+	icon_opened = "squad_open"
+	icon_broken = "standard_emmaged"
+	icon_off = "standard_off"
 	icon = 'icons/Marine/Marine_Lockers.dmi'
 
-New()
-    icon_opened = "[rand(1,15)]"
-    spawn(5)
-        new /obj/item/clothing/suit/storage/marine(src)
-        new /obj/item/weapon/storage/belt/marine(src)
-        new /obj/item/clothing/head/helmet/marine(src)
-        new /obj/item/device/flashlight(src)
-        new /obj/item/clothing/shoes/marine(src)
-        new /obj/item/clothing/under/marine_jumpsuit(src)
-    return
+	New()
+		spawn(5)
+			new /obj/item/clothing/suit/storage/marine(src)
+			new /obj/item/weapon/storage/belt/marine(src)
+			new /obj/item/clothing/head/helmet/marine(src)
+			new /obj/item/device/flashlight(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/under/marine_jumpsuit(src)
+		return
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
