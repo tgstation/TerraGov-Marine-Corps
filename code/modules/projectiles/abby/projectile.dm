@@ -517,6 +517,7 @@
 //Simulated walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/simulated/wall/bullet_act(obj/item/projectile/P)
 	..()
+	var/D = P.damage
 
 	if(D < 1) return 0
 
