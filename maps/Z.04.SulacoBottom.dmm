@@ -470,7 +470,7 @@
 "jb" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/turf/simulated/floor{icon_state = "dark"},/area/sulaco/telecomms/office)
 "jc" = (/turf/simulated/floor/plating{dir = 9; icon_state = "warnplate"},/area/sulaco/command/ai)
 "jd" = (/turf/simulated/floor/plating{icon_state = "warnplate"; dir = 5},/area/sulaco/command/ai)
-"je" = (/obj/structure/rack,/obj/item/weapon/cane,/obj/item/weapon/storage/backpack/satchel,/obj/structure/closet/hydrant{pixel_y = 30},/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liaison)
+"je" = (/obj/structure/rack,/obj/item/weapon/lipstick/jade,/obj/item/weapon/cane,/obj/item/weapon/storage/backpack/satchel,/obj/structure/closet/hydrant{pixel_y = 30},/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liaison)
 "jf" = (/obj/structure/stool/bed/chair,/obj/machinery/status_display{pixel_y = 30},/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liaison)
 "jg" = (/obj/structure/stool/bed/chair,/obj/machinery/alarm{pixel_y = 30},/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liaison)
 "jh" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/turf/simulated/floor{icon_state = "wood"},/area/sulaco/liaison)
