@@ -1,6 +1,74 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
 
+
+
+/proc/spawn_merc_gun(var/mob/living/M,var/sidearm = 0)
+	var/obj/item/weapon/storage/backpack = M.back
+	if(!istype(backpack)) return
+
+	var/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
+									/obj/item/weapon/gun/pistol/heavy,
+									/obj/item/weapon/gun/pistol/m1911,
+									/obj/item/weapon/gun/pistol/kt42,
+									/obj/item/weapon/gun/pistol/holdout,
+									/obj/item/weapon/gun/pistol/highpower,
+									/obj/item/weapon/gun/pistol/vp70)
+
+	var/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
+									/obj/item/weapon/gun/shotgun/merc,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/weapon/gun/shotgun/double,
+									/obj/item/weapon/gun/shotgun/pump/cmb,
+									/obj/item/weapon/gun/smg/mp7,
+									/obj/item/weapon/gun/smg/skorpion,
+									/obj/item/weapon/gun/smg/ppsh,
+									/obj/item/weapon/gun/smg/uzi,
+									/obj/item/weapon/gun/smg/p90)
+	var/gunpath = pick(merc_firearms)
+	var/obj/item/weapon/gun/gun
+	if(sidearm)
+		gunpath = pick(merc_sidearms)
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_r_hand)
+	else
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_l_hand)
+
+	var/ammopath = text2path(gun.default_ammo)
+	new ammopath(M.back)
+	new ammopath(M.back) //Twice the fun just to be sure
+
+/proc/spawn_slavic_gun(var/mob/living/M,var/sidearm = 0)
+	var/obj/item/weapon/storage/backpack = M.back
+	if(!istype(backpack)) return
+
+	var/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
+									/obj/item/weapon/gun/revolver/upp,
+									/obj/item/weapon/gun/revolver/mateba,
+									/obj/item/weapon/gun/pistol/c99,
+									/obj/item/weapon/gun/pistol/c99/russian,
+									/obj/item/weapon/gun/pistol/kt42
+									)
+
+	var/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
+									/obj/item/weapon/gun/rifle/mar40/carbine,
+									/obj/item/weapon/gun/rifle/m41a,
+									/obj/item/weapon/gun/rifle/mar40/svd)
+	var/gunpath = pick(rus_firearms)
+	var/obj/item/weapon/gun/gun
+	if(sidearm)
+		gunpath = pick(rus_sidearms)
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_r_hand)
+	else
+		gun = new gunpath(M)
+		M.equip_to_slot_or_del(gun, slot_l_hand)
+
+	var/ammopath = text2path(gun.default_ammo)
+	new ammopath(M.back)
+	new ammopath(M.back) //Twice the fun just to be sure
+
 //basic persistent gamemode stuff.
 /datum/game_mode
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -8,10 +76,6 @@
 	var/has_called_emergency = 0
 	var/distress_cooldown = 0
 	var/waiting_for_candidates = 0
-	var/list/merc_sidearms
-	var/list/rus_sidearms  //We're just storing this shit here.
-	var/list/merc_firearms
-	var/list/rus_firearms
 
 //The distress call parent. Cannot be called itself due to "name" being a filtered target.
 /datum/emergency_call
@@ -123,17 +187,6 @@
 		if(!C)	continue
 		if(C.name == "name") continue //The default parent, don't add it
 		all_calls += C
-
-	var/list/all_guns = list() //Set up random guns list.
-
-	all_guns = typesof(/obj/item/weapon/gun)
-	for(var/obj/item/weapon/gun/G in all_guns)
-		if(istype(G,/obj/item/weapon/gun/pistol) || istype(G,/obj/item/weapon/gun/smg))
-			if(G.found_on_mercs) merc_sidearms += G
-			if(G.found_on_russians) rus_sidearms += G
-		else
-			if(G.found_on_mercs) merc_firearms += G
-			if(G.found_on_russians) rus_firearms += G
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
@@ -611,29 +664,16 @@
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), slot_gloves)
 		M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
+
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	if(prob(75))
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(M), slot_shoes)
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 
-	if(ticker.mode.merc_sidearms.len)
-		var/gunpath = pick(ticker.mode.merc_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(ticker.mode.merc_firearms.len)
-		var/gunpath2 = pick(ticker.mode.merc_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
 
 /datum/emergency_call/bears/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
@@ -666,12 +706,18 @@
 			mob << "<font size='3'>\red You are the Iron Bears leader!</font>"
 			mob << "<B> You must lead the Iron Bears mercenaries to victory against any and all hostile threats.</b>"
 			mob << "<B> To Hell with Weyland Yutani and the USCM! The Iron Bears run the show now!</b>"
+			mob << "<B> ... Or whatever. It's up to you. You're the only one they taught any English..</b>"
 		else
 			spawn_standard(mob)
+			mob.remove_language("Sol Common")
+			mob.remove_language("English")
 			mob << "<font size='3'>\red You are an Iron Bear mercenary!</font>"
+			mob << "<font size='3'>\red Listen to your Leader, you idiot!! Try not to blow yourself up!</font>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
+
+	mob.add_language("Russian")
 
 	if(original)
 		del(original)
@@ -694,21 +740,8 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
 
-	if(ticker.mode.rus_sidearms.len)
-		var/gunpath = pick(ticker.mode.rus_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(ticker.mode.rus_firearms.len)
-		var/gunpath2 = pick(ticker.mode.rus_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_slavic_gun(M)
+	spawn_slavic_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Iron Bear"
@@ -729,26 +762,12 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/Bear(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
 
-	if(ticker.mode.rus_sidearms.len)
-		var/gunpath = pick(ticker.mode.rus_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(ticker.mode.rus_firearms.len)
-		var/gunpath2 = pick(ticker.mode.rus_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_slavic_gun(M)
+	spawn_slavic_gun(M,1)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Iron Bears Sergeant"
@@ -1021,20 +1040,17 @@
 	M.equip_to_slot(new /obj/item/clothing/mask/gas/swat/monkey(M), slot_wear_mask)
 	M.equip_to_slot(new /obj/item/weapon/storage/backpack/holding(M), slot_back)
 	M.equip_to_slot(new /obj/item/weapon/shield/riot(M), slot_r_hand)
-//	M.equip_to_slot(new /obj/item/weapon/gun/projectile/automatic/m39/PMC(M), slot_l_hand)
-
-//	M.equip_to_slot(new /obj/item/ammo_magazine/VP78(M.back), slot_in_backpack)
-//	M.equip_to_slot(new /obj/item/ammo_magazine/m39/toxic(M.back), slot_in_backpack)
-//	M.equip_to_slot(new /obj/item/ammo_magazine/m39(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/plastique(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1)
+
 	var/obj/item/weapon/card/id/W = new()
 	M.equip_to_slot(W, slot_in_backpack)
-
 	W.assignment = "W-Y Emergency Response Chimp"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
@@ -1155,21 +1171,8 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 
-	if(ticker.mode.merc_sidearms.len)
-		var/gunpath = pick(ticker.mode.merc_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(ticker.mode.merc_firearms.len)
-		var/gunpath2 = pick(ticker.mode.merc_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Mercenary Soldier"
@@ -1193,21 +1196,8 @@
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
 
-	if(ticker.mode.merc_sidearms.len)
-		var/gunpath = pick(ticker.mode.merc_sidearms)
-		if(gunpath)
-			var/obj/item/weapon/gun/G = new gunpath(M.back)
-			M.equip_to_slot_or_del(G, slot_in_backpack)
-			var/ammopath = text2path(G.mag_type)
-			if(ammopath) M.equip_to_slot_or_del(new ammopath(M.back), slot_in_backpack)
-
-	if(ticker.mode.merc_firearms.len)
-		var/gunpath2 = pick(ticker.mode.merc_firearms)
-		if(gunpath2)
-			var/obj/item/weapon/gun/H = new gunpath2(M.back)
-			M.equip_to_slot_or_del(H, slot_in_backpack)
-			var/ammopath2 = text2path(H.mag_type)
-			if(ammopath2) M.equip_to_slot_or_del(new ammopath2(M.back), slot_in_backpack)
+	spawn_merc_gun(M)
+	spawn_merc_gun(M,1)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Mercenary Commander"
@@ -1263,29 +1253,26 @@
 
 /datum/emergency_call/death/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
-
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(M), slot_l_hand)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/shield/riot(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), slot_in_backpack)
-	if(prob(50))
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_s_store)
-	else
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando"
@@ -1303,17 +1290,22 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/commando(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_l_hand)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando Leader"

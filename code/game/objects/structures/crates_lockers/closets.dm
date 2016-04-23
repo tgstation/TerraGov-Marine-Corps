@@ -49,6 +49,8 @@
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src)
 			return 0
+	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
+		return 0
 	return 1
 
 /obj/structure/closet/proc/dump_contents()
@@ -165,10 +167,9 @@
 				del(src)
 
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
-	if(health > 999 || health < 0) return
-	health -= Proj.damage
-	playsound(loc, 'sound/effects/metalhit.ogg', 50, 1)
-	..()
+	if(health > 999) return 1
+	health -= round(Proj.damage*0.3)
+	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 50, 1)
 	if(health <= 0)
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = src.loc
@@ -176,7 +177,7 @@
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
 			del(src)
 
-	return
+	return 1
 
 /obj/structure/closet/attack_animal(mob/living/user as mob)
 	if(user.wall_smash)

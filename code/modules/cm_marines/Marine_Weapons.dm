@@ -308,14 +308,14 @@
 		var/obj/item/weapon/grenade/F = grenades[1]
 		grenades -= F
 		F.loc = user.loc
-		F.throw_range = 30
-		F.throw_at(target, 30, 2, user)
+		F.throw_range = 20
+		F.throw_at(target, 20, 2, user)
 		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
 		log_game("[key_name_admin(user)] used a grenade ([src.name]).")
 		F.active = 1
 		F.icon_state = initial(icon_state) + "_active"
 		playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
-		spawn(15)
+		spawn(10)
 			if(F) //If somehow got deleted since then
 				F.prime()
 
@@ -345,6 +345,7 @@
 	w_class = 4.0
 	throw_speed = 2
 	throw_range = 10
+	fire_delay = 30
 	force = 5.0
 	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY
 	slot_flags = 0
@@ -381,8 +382,8 @@
 ///obj/item/weapon/gun/rocketlauncher/can_fire()
 //	return rockets.len
 
-/obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-	if(usr.z != 1)
+/obj/item/weapon/gun/rocketlauncher/afterattack(atom/target, mob/user , flag)
+	if(user.z != 1)
 		usr << "\red The safety refuses to release!"
 		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) has attempted to fire a rocket in a restricted area. ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)")
 		log_game("[key_name(user)] attempted to fire a rocket in a restricted area at ([target.x],[target.y],[target.z])")
@@ -392,11 +393,22 @@
 		usr << "\red You require two hands to fire this!"
 		return
 
+	if(get_dist(user,target) <= 1)
+		user << "Too close!"
+		return
+
 	if(rockets.len)
 		var/obj/item/rocket_shell/I = rockets[1]
 		var/obj/item/missile/M = new I.projectile_type(user.loc)
 		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
 		M.primed = 1
+
+		var/angle = round(Get_Angle(user.loc,target.loc))
+
+		var/matrix/rotate = matrix() //Change the missile angle.
+		rotate.Turn(angle)
+		M.transform = rotate
+
 		M.throw_at(target, missile_range, missile_speed,user)
 		msg_admin_attack(("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"))
 		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")
@@ -411,20 +423,21 @@
 /obj/item/rocket_shell
 	name = "high explosive rocket shell"
 	desc = "A high explosive designed to be fired from a launcher."
-	icon_state = "rocketshell"
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "rocket"
 	var/projectile_type = "/obj/item/missile"
 	w_class = 3
 
 /obj/item/rocket_shell/ap
 	name = "armor piercing rocket shell"
 	desc = "A dense explosive designed to be fired from a launcher. Serious damage, but not much fragmentation."
-	icon_state = "rocketshell"
+	icon_state = "ap_rocket"
 	projectile_type = "/obj/item/missile/ap"
 
 /obj/item/missile
 	name = "high explosive rocket"
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "missile"
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "rocket"
 	var/primed = null
 	throwforce = 30
 	pass_flags = PASSTABLE
@@ -442,7 +455,8 @@
 
 /obj/item/missile/ap
 	name = "armor piercing rocket"
-	throwforce = 300
+	icon_state = "ap_rocket"
+	throwforce = 200
 
 	throw_impact(atom/hit_atom)
 		if(primed)

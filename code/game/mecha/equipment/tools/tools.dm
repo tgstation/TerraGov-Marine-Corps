@@ -54,6 +54,8 @@
 				M.updatehealth()
 				occupant_message("\red You squeeze [target] with [src.name]. Something cracks.")
 				chassis.visible_message("\red [chassis] squeezes [target].")
+				chassis.occupant.attack_log += text("\[[time_stamp()]\] <font color='red'>squeezed [M.name] with the Hydraulic Clamp</font>")
+				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>was squeezed by [chassis.occupant.name] with the Hydraulic Clamp</font>")
 			else
 				step_away(M,chassis)
 				occupant_message("You push [target] out of the way.")

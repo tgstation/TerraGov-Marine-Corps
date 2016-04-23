@@ -32,7 +32,7 @@
 	twohanded = 1
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	accuracy = 10
-
+	slot_flags = SLOT_BACK
 
 //MERC SHOTGUN - DOES NOT REQUIRE PUMPING
 /obj/item/weapon/gun/shotgun/merc
@@ -41,19 +41,98 @@
 	icon_state = "rspshotgun"
 	icon_empty = "rspshotgun0"
 	item_state = "rspshotgun"
-	fire_delay = 30
+	fire_delay = 10
 	w_class = 4
 	autoejector = 1
 	muzzle_pixel_x = 31
-	muzzle_pixel_y = 18
-	rail_pixel_x = 12
-	rail_pixel_y = 20
-	under_pixel_x = 18
+	muzzle_pixel_y = 19
+	rail_pixel_x = 10
+	rail_pixel_y = 21
+	under_pixel_x = 17
 	under_pixel_y = 14
 	burst_amount = 4
-	accuracy = -20
+	burst_delay = 2
+	accuracy = -10
 	found_on_mercs = 1
 	twohanded = 0
+
+//-------------------------------------------------------
+
+/obj/item/weapon/gun/shotgun/combat
+	name = "\improper MK221 Tactical Shotgun"
+	desc = "The Weyland-Yutani MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
+	icon_state = "cshotgun"
+	icon_empty = "cshotgun"
+	item_state = "cshotgun"
+	icon_wielded = "cshotgun-w"
+	fire_delay = 12
+	muzzle_pixel_x = 33
+	muzzle_pixel_y = 19
+	rail_pixel_x = 10
+	rail_pixel_y = 21
+	under_pixel_x = 14
+	under_pixel_y = 16
+
+	New()
+		..()
+		var/obj/item/attachable/grenade/G = new(src)
+		G.can_be_removed = 0
+		G.icon_state = "" //Gun already has a better one
+		G.Attach(src)
+		update_attachables()
+
+//-------------------------------------------------------
+
+/obj/item/ammo_magazine/shotgun/double
+	name = "12 Gauge Slugs"
+	desc = "2 heavy shotgun shells designed for the double barrel shotgun. Just click to load them in."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "twoshells"
+	icon_empty = "twoshells0"
+	default_ammo = "/datum/ammo/bullet/shotgun"
+	max_rounds = 2
+	gun_type = "/obj/item/weapon/gun/shotgun/double"
+	reload_delay = 6
+
+//-------------------------------------------------------
+
+/obj/item/weapon/gun/shotgun/double
+	name = "\improper Double Barrel Shotgun"
+	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
+	icon_state = "dshotgun"
+	icon_empty = "dshotgun"
+	item_state = "dshotgun"
+	icon_wielded = "dshotgun-w"
+	mag_type = "/obj/item/ammo_magazine/shotgun/double"
+	fire_delay = 6
+	muzzle_pixel_x = 33
+	muzzle_pixel_y = 21
+	rail_pixel_x = 15
+	rail_pixel_y = 22
+	under_pixel_x = 21
+	under_pixel_y = 16
+	found_on_mercs = 1
+
+/obj/item/weapon/gun/shotgun/double/sawn
+	name = "\improper Sawn-Off Shotgun"
+	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
+	icon_state = "sawnshotgun"
+	icon_empty = "sawnshotgun"
+	item_state = "sawnshotgun"
+	fire_delay = 3
+	muzzle_pixel_x = 30
+	muzzle_pixel_y = 20
+	rail_pixel_x = 11
+	rail_pixel_y = 22
+	under_pixel_x = 18
+	under_pixel_y = 16
+	accuracy = -20
+	twohanded = 0
+	slot_flags = SLOT_BELT
+
+	load_into_chamber()
+		..()
+		if(in_chamber) in_chamber.damage += 15
 
 //-------------------------------------------------------
 //Shotguns not in this category will not need to be pumped on each shot.
@@ -66,11 +145,11 @@
 	icon_wielded = "m37-w"
 	item_state = "m37"
 	fire_delay = 32
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 18
-	rail_pixel_x = 8
-	rail_pixel_y = 19
-	under_pixel_x = 10
+	muzzle_pixel_x = 33
+	muzzle_pixel_y = 19
+	rail_pixel_x = 10
+	rail_pixel_y = 21
+	under_pixel_x = 14
 	under_pixel_y = 15
 	w_class = 4
 	var/recentpump = 0
@@ -152,82 +231,6 @@
 
 //-------------------------------------------------------
 
-/obj/item/weapon/gun/shotgun/pump/combat
-	name = "\improper MK221 Tactical Shotgun"
-	desc = "The Weyland-Yutani MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
-	icon_state = "cshotgun"
-	icon_empty = "cshotgun0"
-	item_state = "cshotgun"
-	icon_wielded = "cshotgun-w"
-	fire_delay = 4
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 17
-	rail_pixel_x = 12
-	rail_pixel_y = 20
-	under_pixel_x = 18
-	under_pixel_y = 14
-	found_on_mercs = 1
-
-	New()
-		..()
-		var/obj/item/attachable/grenade/G = new(src)
-		G.Attach(src)
-		update_attachables()
-
-//-------------------------------------------------------
-
-/obj/item/ammo_magazine/shotgun/double
-	name = "12 Gauge Slugs"
-	desc = "2 heavy shotgun shells designed for the double barrel shotgun. Just click to load them in."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "twoshells"
-	icon_empty = "twoshells0"
-	default_ammo = "/datum/ammo/bullet/shotgun"
-	max_rounds = 2
-	gun_type = "/obj/item/weapon/gun/shotgun/pump/double"
-	reload_delay = 6
-
-//-------------------------------------------------------
-
-/obj/item/weapon/gun/shotgun/pump/double
-	name = "\improper Double Barrel Shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
-	icon_state = "dshotgun"
-	icon_empty = "dshotgun"
-	item_state = "dshotgun"
-	icon_wielded = "dshotgun-w"
-	mag_type = "/obj/item/ammo_magazine/shotgun/double"
-	fire_delay = 6
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 18
-	rail_pixel_x = 12
-	rail_pixel_y = 20
-	under_pixel_x = 24
-	under_pixel_y = 16
-	//found_on_mercs = 1 //Is this worth giving to them?
-
-/obj/item/weapon/gun/shotgun/pump/double/sawn
-	name = "\improper Sawn-Off Shotgun"
-	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
-	icon_state = "sawnshotgun"
-	icon_empty = "sawnshotgun"
-	item_state = "sawnshotgun"
-	fire_delay = 1
-	muzzle_pixel_x = 27
-	muzzle_pixel_y = 19
-	rail_pixel_x = 12
-	rail_pixel_y = 20
-	under_pixel_x = 24
-	under_pixel_y = 17
-	accuracy = -20
-	twohanded = 0
-
-	ready_bullet()
-		..()
-		if(in_chamber) in_chamber.damage += 15
-
-//-------------------------------------------------------
-
 /obj/item/ammo_magazine/shotgun/cmb
 	gun_type = "/obj/item/weapon/gun/shotgun/pump/cmb"
 	reload_delay = 10
@@ -252,11 +255,11 @@
 	icon_wielded = "CMBshotgun-w"
 	mag_type = "/obj/item/ammo_magazine/shotgun/cmb"
 	fire_delay = 16
-	muzzle_pixel_x = 32
+	muzzle_pixel_x = 33
 	muzzle_pixel_y = 20
 	rail_pixel_x = 10
 	rail_pixel_y = 23
-	under_pixel_x = 17
+	under_pixel_x = 19
 	under_pixel_y = 17
 
 //-------------------------------------------------------

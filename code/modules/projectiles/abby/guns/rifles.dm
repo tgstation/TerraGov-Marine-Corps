@@ -24,6 +24,11 @@
 	desc = "A 10mm assault rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/incendiary"
 
+/obj/item/ammo_magazine/rifle/ap
+	name = "M41A AP Magazine (10mm)"
+	desc = "A 10mm armor piercing magazine."
+	default_ammo = "/datum/ammo/bullet/rifle/ap"
+
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A Pulse Rifle"
 	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10mm special ammunition."
@@ -35,11 +40,12 @@
 	mag_type = "/obj/item/ammo_magazine/rifle"
 	fire_delay = 4
 	recoil = 0
-	burst_amount = 2
+	burst_amount = 3
+	burst_delay = 2
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
-	rail_pixel_x = 13
-	rail_pixel_y = 20
+	rail_pixel_x = 12
+	rail_pixel_y = 21
 	under_pixel_x = 24
 	under_pixel_y = 13
 	ammo_counter = 1
@@ -73,14 +79,14 @@
 	recoil = 1
 	burst_amount = 0
 	accuracy = 15
+	under_pixel_x = 22
+	under_pixel_y = 14
 
 	New()
 		var/obj/item/attachable/scope/S = new(src)
 		S.Attach(src)
 		var/obj/item/attachable/compensator/riflestock/Q = new(src)
 		Q.Attach(src)
-		var/obj/item/attachable/bipod/B = new(src)
-		B.Attach(src)
 
 		update_attachables()
 
@@ -98,15 +104,25 @@
 //-------------------------------------------------------
 //M41A PMC VARIANT
 
+/obj/item/ammo_magazine/rifle/elite
+	name = "M41A/2 Magazine (10mm)"
+	desc = "A 10mm marksman rifle magazine."
+	default_ammo = "/datum/ammo/bullet/rifle/ap"
+	gun_type = "/obj/item/weapon/gun/rifle/m41a/elite"
+
 /obj/item/weapon/gun/rifle/m41a/elite
 	name = "\improper M41A/2 Battle Rifle"
 	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle. Given only to elite units."
 	icon_state = "pmc_m41a"
 	icon_empty = "pmc_m41a0"
 	item_state = "pmc_m41a"
+	icon_wielded = "pmc_m41a-w"
+	mag_type = "/obj/item/ammo_magazine/rifle/elite"
 	fire_delay = 6
 	burst_amount = 3
 	accuracy = 35
+	dam_bonus = 15
+
 
 //-------------------------------------------------------
 //MAR-40 AK CLONE
@@ -129,21 +145,22 @@
 	item_state = "mar40"
 	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
 	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
-	fire_delay = 8
+	fire_delay = 6
 	recoil = 0
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
 	rail_pixel_x = 11
 	rail_pixel_y = 19
-	under_pixel_x = 20
+	under_pixel_x = 24
 	under_pixel_y = 15
 	burst_amount = 4
+	burst_delay = 3
 	accuracy = -15
 	found_on_mercs = 1
 	found_on_russians = 1
 
 /obj/item/weapon/gun/rifle/mar40/carbine
-	name = "\improper MAR-40 Battle Carbine"
+	name = "\improper MAR-30 Battle Carbine"
 	desc = "A cheap, reliable assault rifle chambered in 12mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "shortrsprifle"
 	icon_empty = "shortrsprifle0"
@@ -151,6 +168,34 @@
 	item_state = "mar40short"
 	fire_delay = 5
 	accuracy = -20
+
+/obj/item/ammo_magazine/rifle/mar40/svd
+	name = "SVD Magazine (12mm)"
+	desc = "A 12mm marksman rifle magazine."
+	icon_state = "a762"
+	icon_empty = "a762-0"
+	default_ammo = "/datum/ammo/bullet/rifle/marksman"
+	max_rounds = 30
+	gun_type = "/obj/item/weapon/gun/rifle/mar40/svd"
+
+/obj/item/weapon/gun/rifle/mar40/svd
+	name = "\improper SVD Dragunov-033"
+	desc = "A marksman variant of the MAR-40 rifle, with a new stock and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
+	icon_state = "VSS"
+	icon_empty = "VSS_empty"
+	icon_wielded = "SVD-w"
+	item_state = "mar40"
+	accuracy = 0
+
+	New()
+		..()
+		var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
+		S.Attach(src)
+		S = new /obj/item/attachable/slavicbarrel(src)
+		S.Attach(src)
+		S = new /obj/item/attachable/compensator/stock/slavic(src)
+		S.Attach(src)
+		update_attachables()
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -181,8 +226,8 @@
 	rail_pixel_y = 19
 	under_pixel_x = 20
 	under_pixel_y = 15
-	burst_amount = 5
-	accuracy = -35
+	burst_amount = 4
+	accuracy = -25
 	found_on_mercs = 1
 	found_on_russians = 0
 

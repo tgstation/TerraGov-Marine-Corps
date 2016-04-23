@@ -10,27 +10,26 @@
 	icon_vend = "armory-vend"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/weapon/gun/pistol/m4a3 = 20,
+					/obj/item/weapon/gun/pistol/m4a3 = 25,
 					/obj/item/weapon/gun/revolver/m44 = 5,
 					/obj/item/weapon/gun/smg/m39 = 20,
-					/obj/item/weapon/gun/rifle/m41a = 20,
-					/obj/item/weapon/gun/shotgun/pump = 5,
+					/obj/item/weapon/gun/rifle/m41a = 25,
+					/obj/item/weapon/gun/shotgun/pump = 10,
 
-					/obj/item/ammo_magazine/pistol = 20,
-					/obj/item/ammo_magazine/revolver = 15,
-					/obj/item/ammo_magazine/smg = 20,
+					/obj/item/ammo_magazine/pistol = 30,
+					/obj/item/ammo_magazine/revolver = 25,
+					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 40,
-					/obj/item/ammo_magazine/shotgun = 10,
-					/obj/item/ammo_magazine/shotgun/buckshot = 10,
+					/obj/item/ammo_magazine/rifle/ap = 20,
+					/obj/item/ammo_magazine/shotgun = 20,
+					/obj/item/ammo_magazine/shotgun/buckshot = 20,
 
-					/obj/item/weapon/combat_knife = 10,
+					/obj/item/weapon/combat_knife = 20,
 					/obj/item/weapon/storage/belt/knifepouch = 5,
-					/obj/item/weapon/throwing_knife = 10,
+					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/device/flashlight/flare = 30,
 					/obj/item/weapon/storage/backpack/marine = 20,
-					///obj/item/weapon/storage/backpack/marinesatchel = 5,
 					/obj/item/device/radio/headset/msulaco = 5,
-					/obj/item/device/flashlight/flare = 10,
 					/obj/item/clothing/suit/storage/marine = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
 					/obj/item/clothing/head/helmet/marine = 5,
@@ -285,10 +284,10 @@
 
 						/obj/item/attachable/grenade = 5,
 						/obj/item/attachable/shotgun = 3,
-						/obj/item/attachable/flamer = 2,
+						/obj/item/attachable/flamer = 3,
 
 						/obj/item/clothing/tie/storage/webbing = 3,
-//						/obj/item/weapon/claymore/mercsword/machete = 3,
+						/obj/item/weapon/claymore/mercsword/machete = 5
 
 					)
 	contraband = list()

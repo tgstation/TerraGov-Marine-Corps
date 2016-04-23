@@ -313,21 +313,21 @@
 
 	mymob.use_attachment = new /obj/screen()
 	mymob.use_attachment.icon = ui_style
-	mymob.use_attachment.icon_state = "use_attachment"
+	mymob.use_attachment.icon_state = "gun_attach"
 	mymob.use_attachment.name = "Activate weapon attachment"
 	mymob.use_attachment.screen_loc = ui_gun_attachment
 	hud_elements |= mymob.use_attachment
 
 	mymob.eject_mag = new /obj/screen()
 	mymob.eject_mag.icon = ui_style
-	mymob.eject_mag.icon_state = "eject_mag"
+	mymob.eject_mag.icon_state = "gun_loaded"
 	mymob.eject_mag.name = "Eject magazine"
 	mymob.eject_mag.screen_loc = ui_gun_eject
 	hud_elements |= mymob.eject_mag
 
 	mymob.toggle_burst = new /obj/screen()
 	mymob.toggle_burst.icon = ui_style
-	mymob.toggle_burst.icon_state = "toggle_burst"
+	mymob.toggle_burst.icon_state = "gun_burst"
 	mymob.toggle_burst.name = "Toggle burst fire"
 	mymob.toggle_burst.screen_loc = ui_gun_burst
 	hud_elements |= mymob.toggle_burst

@@ -42,6 +42,7 @@
 	..()
 	health -= Proj.ammo.damage
 	healthcheck()
+	return 1
 
 /obj/effect/spider/proc/healthcheck()
 	if(health <= 0)

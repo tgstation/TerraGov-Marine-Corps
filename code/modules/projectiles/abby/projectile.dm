@@ -45,6 +45,7 @@
 	var/in_flight = 0
 	var/saved = 0
 	var/flight_check = 50
+	var/scatter_chance = 20
 
 	Del()
 		path = null
@@ -55,28 +56,24 @@
 
 	proc/each_turf()
 		distance_travelled++
-		flight_check--
-		if(!flight_check) //This is to make sure there's no infinitely-hanging bullets just sitting around looping. Default is 50.
-			del(src)
-			return
-
 		if(ammo)
 			if(distance_travelled == round(ammo.max_range / 2) && loc)
 				ammo.do_at_half_range(src)
 		return
 
 	proc/get_accuracy()
-		var/acc = 70 //Base accuracy.
+		var/acc = 80 //Base accuracy.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 
 		acc += ammo.accuracy //Add the ammo's accuracy bonus/pens
 
-		if(istype(ammo.current_gun,/obj/item/weapon/gun)) //Does our gun exist? If so, add attachable bonuses.
-			var/obj/item/weapon/gun/gun = ammo.current_gun
+		if(istype(firer,/obj/item/weapon/gun)) //Does our gun exist? If so, add attachable bonuses.
+			var/obj/item/weapon/gun/gun = firer
 			if(gun.rail && gun.rail.accuracy_mod) acc += gun.rail.accuracy_mod
 			if(gun.muzzle && gun.muzzle.accuracy_mod) acc += gun.muzzle.accuracy_mod
 			if(gun.under && gun.under.accuracy_mod) acc += gun.under.accuracy_mod
+			if(gun.stock && gun.stock.accuracy_mod) acc += gun.stock.accuracy_mod
 
 			acc += gun.accuracy
 
@@ -84,9 +81,11 @@
 		if(ammo.accurate_range < distance_travelled && (ammo.current_gun && !ammo.current_gun.zoom)) //Determine ranged accuracy
 			acc -= (distance_travelled * 5) //-5% accuracy per turf
 		else if(ammo.current_gun && !ammo.current_gun.zoom && ammo.accurate_range >= distance_travelled) //Close range bonus
-			acc -= (distance_travelled * 2) //-2% accuracy per turf
+			acc -= (distance_travelled * 3) //-3% accuracy per turf
 		else if(!ammo.current_gun) //Non-gun firers, aka turrets, just get a flat -1 accuracy per turf.
-			acc -= (distance_travelled)
+			acc -= (distance_travelled * 2)
+		else if (distance_travelled <= 2)
+			acc += 25 //Big bonus for point blanks.
 
 		if(acc < 5) acc = 5 //There's always some chance.
 		return acc
@@ -94,16 +93,16 @@
 	//The attack roll. Returns -1 for an IFF-based miss (smartgun), 0 on a regular miss, 1 on a hit.
 	proc/roll_to_hit(var/atom/firer,var/atom/target)
 		var/hit_chance = get_accuracy() //Get the bullet's pure accuracy.
-		if(target == firer) return 1
+		if(target == firer) return -1
 
 		if(istype(target,/mob/living))
 			var/mob/living/T = target
 			if(T.lying && T.stat) hit_chance += 15 //Bonus hit against unconscious people.
 			if(istype(T,/mob/living/carbon/Xenomorph))
 				if(T:big_xeno)
-					hit_chance += 5
+					hit_chance += 10
 				else
-					hit_chance -= 5
+					hit_chance -= 10
 
 			if(ammo.skips_marines && ishuman(target))
 				var/mob/living/carbon/human/H = target
@@ -121,7 +120,7 @@
 
 			var/hit_roll = rand(0,100) //Our randomly generated roll.
 
-			if(hit_chance < hit_roll - 20) //Mega miss!
+			if(hit_chance < hit_roll - 25) //Mega miss!
 				if (!target:lying) target.visible_message("\blue \The [src] misses \the [target]!","\blue \The [src] narrowly misses you!")
 				return -1
 			else if (hit_chance > hit_roll) //You hit!
@@ -129,7 +128,7 @@
 			else
 				//You got lucky buddy, you got a second try! Pick a random organ instead.
 				if(saved)
-					target.visible_message("\blue \The [src] narrowly misses \the [target]!","\blue \The [src] narrowly misses you!")
+					if(!target:lying) target.visible_message("\blue \The [src] narrowly misses \the [target]!","\blue \The [src] narrowly misses you!")
 					return -1
 				def_zone = pick(base_miss_chance)
 				saved = 1
@@ -154,57 +153,41 @@
 	proc/follow_flightpath(var/speed = 1, var/change_x, var/change_y, var/range) //Everytime we reach the end of the turf list, we slap a new one and keep going.
 		set waitfor = 0
 
-		if(!path) //Our path isn't set.
-			del(src)
-			return
-
 		var/dist_since_sleep = 5 //Just so we always see the bullet.
 		var/turf/current_turf = get_turf(src)
 		var/turf/next_turf
-
+		in_flight = 1
 		spawn()
-			while(src && loc)
-				if(!path.len) continue //Something weird happened. Where's our flightpath?
-
-				next_turf = path[1]
-				if(next_turf == current_turf) //We've already here?
-					path -= next_turf
-					continue
-
-				if(istype(next_turf) && scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
-					sleep(-1) //Make sure everything else is done.
+			for(next_turf in path)
+				if(distance_travelled >= range)
+					ammo.do_at_max_range(src)
+					sleep(1)
 					if(src) del(src)
 					return
-				else if(!istype(next_turf))  //Something weird
+
+				if(scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
+					sleep(1)
 					if(src) del(src)
 					return
 
 				src.loc = next_turf
 				each_turf()
-				if(!src) return //It might have been deleted.
-
 				path -= next_turf //Remove it!
 
 				dist_since_sleep++
 				if(dist_since_sleep >= speed)
+					dist_since_sleep = 0
 					sleep(1)
-
-				if(distance_travelled >= range)
-					if(ammo) ammo.do_at_max_range(src)
-					if(src) del(src)
-					return
 
 				if(!path.len) //No more left!
-					sleep(1)
 					current_turf = get_turf(src)
 					next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 					if(current_turf && next_turf)
-						path = getline(current_turf,next_turf) //Build a new flight path.
+						path = getline2(current_turf,next_turf) //Build a new flight path.
 						if(path.len && src)
 							follow_flightpath(speed, change_x, change_y, range) //Onwards!
-							return
-					del(src)
-					return
+							in_flight = 1
+							return 1
 
 //Target, firer, shot from. Ie the gun
 	proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -215,15 +198,17 @@
 		if(!original || isnull(original)) original = target
 
 		starting = get_turf(src)
-		if(!starting) return //Horribly wrong
-		src.loc = starting //Put us on the turf.
+		if(starting != src.loc) src.loc = starting //Put us on the turf, if we're not.
 		target_turf = get_turf(target)
+		if(starting == target_turf) //What? We can't fire at our own turf.
+			del(src)
+			return 0
 		firer = F
 		if(F) permutated.Add(F) //Don't hit the shooter (firer)
 		shot_from = S
 		in_flight = 1
 
-		path = getline(starting,target_turf)
+		path = getline2(starting,target_turf)
 
 		var/change_x = target_turf.x - starting.x
 		var/change_y = target_turf.y - starting.y
@@ -247,54 +232,65 @@
 			return 1
 		if(firer && T == firer.loc) return 0 //Never.
 		if(!T.contents.len) return 0 //Nothing here.
-
+		if(isnull(src)) return 1 //??
 		for(var/atom/A in T)
-			if(!A || A == src || A == firer || A in permutated || !A.density ) continue
-			if(A == firer) continue
-			var/hitroll = roll_to_hit(firer,A)
-			if(ismob(A) && A == original && hitroll == 1) //Oh hey our original target's here. Shoot them. Could be someone lying down, etc.
+			if(!A || A == src || A == firer || A in permutated) continue
+
+			if(A == original && istype(A,/obj/item/clothing/mask/facehugger)) //Shoot that fucker!
 				A.bullet_act(src)
 				return 1
-			if(!A.density) continue //Nondense stuff aren't even checked.
+
 			if(ismob(A))
-				if(A:lying) continue //If it's not the target, and is lying down, skip them.
+				if(istype(A,/mob/living) && roll_to_hit(firer,A) == 1 && (!A:lying || A == original))
+					A.bullet_act(src)
+					return 1
+				else
+					permutated.Add(A)
+			else
+				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad
+					permutated.Add(A)
 
-			if(firer && get_adj_simple(firer,A))  //Always skip over adjacents.
-				permutated.Add(A)
-				return 0
+				else
+					if(isobj(A) && (A.density == 0 || layer < 3)) //We're scanning a non dense object.
+						permutated.Add(A)
+						continue
+					else if(isobj(A) && ammo)
+						ammo.on_hit_obj(A,src)
+						if(!isnull(A)) A.bullet_act(src)
+						return 1
 
-			if(firer && hitroll == -1)
-				permutated.Add(A)
-				return 0//Missed!
-
-			if (A.bullet_act(src) != 0)
-				bumped = 1
-				return 1
+					var/response = A.bullet_act(src)
+					if(response > 0 || response == null)
+						return 1
 
 		return 0 //Found nothing.
 
-	proc/bullet_ping(var/atom/target)
-		set waitfor = 0
+	Crossed(AM as mob|obj)
+		if(!AM in permutated)
+			if(AM:bullet_act(src) != 0)
+				if(src) del(src)
 
-		if(!target) return
+/atom/proc/bullet_ping(var/obj/item/projectile/P)
+	if(!P || isnull(P)) return
 
-		var/image/ping = image('icons/obj/projectiles.dmi',target,"ping",10) //Layer 10, above most things but not the HUD.
-		var/angle = round(rand(1,359))
+	var/image/ping = image('icons/obj/projectiles.dmi',src,"ping",10) //Layer 10, above most things but not the HUD.
+	var/angle = round(rand(1,359))
+	ping.pixel_x += rand(-6,6)
+	ping.pixel_y += rand(-6,6)
 
-		if(src.firer && prob(60))
-			angle = round(Get_Angle(src.firer,target))
+	if(P.firer && prob(60))
+		angle = round(Get_Angle(P.firer,src))
 
-		var/matrix/rotate = matrix()
+	var/matrix/rotate = matrix()
 
-		rotate.Turn(angle)
-		ping.transform = rotate
+	rotate.Turn(angle)
+	ping.transform = rotate
 
-		for(var/mob/M in viewers(target))
-			M << ping
+	for(var/mob/M in viewers(src))
+		M << ping
 
-		sleep(3)
-		if(ping) del(ping)
-		return
+	sleep(3)
+	del(ping)
 
 /atom/proc/bullet_act(obj/item/projectile/P)
 	return density
@@ -333,17 +329,17 @@
 	if(src && P && damage > 0)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
 
-	if(!src || !P || !P.ammo) return
+	if(!src || !P || !P.ammo) return 0
 
 	bullet_message(P)
 	P.ammo.on_hit_mob(src,P) //Deal with special effects.
 
-	if(P.ammo && damage > 0 && P.ammo.incendiary)
+	if(P && P.ammo && damage > 0 && P.ammo.incendiary)
 		adjust_fire_stacks(rand(6,10))
 		IgniteMob()
 //		emote("scream")
 		src << "\red <B>You burst into flames!! Stop drop and roll!</b>"
-
+	return 1
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P)
 	if(!P || !istype(P) || !P.ammo) return 0 //Somehow. Just some logic.
@@ -368,7 +364,7 @@
 	//Shields
 	if(check_shields(30 + P.ammo.accuracy, "the [P.name]"))
 		P.ammo.on_shield_block(src)
-		P.bullet_ping()
+		src.bullet_ping(P)
 		return 1
 
 	var/armor = 0 //Why are damage types different from armor types? Who the fuck knows. Let's merge them anyway.
@@ -406,7 +402,7 @@
 	if(src && P && damage > 0)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, P, 0, P)
 
-	if(!src || !P || !P.ammo) return
+	if(!src || !P || !P.ammo) return 1
 
 	bullet_message(P)
 	P.ammo.on_hit_mob(src,P) //Deal with special effects.
@@ -435,7 +431,7 @@
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	if(!istype(P) || !P.ammo) return 0
+	if(!istype(P) || isnull(P.ammo) || !P) return 0
 
 	flash_weak_pain()
 
@@ -443,7 +439,6 @@
 	if(damage < 0) damage = 0 //NO HEALING
 
 	var/armor = armor_deflection - P.ammo.armor_pen
-
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances - more depending on facing.
 		armor += (src:momentum / 3) //Up to +15% armor deflection all-around when charging.
@@ -458,15 +453,16 @@
 	if(P.ammo.ignores_armor) armor = 0 //Nope
 
 	if(prob(armor - damage))
-		P.bullet_ping(src)
+		src.bullet_ping(P)
 		visible_message("\blue The [src]'s thick exoskeleton deflects \the [P]!","\blue Your thick exoskeleton deflected \the [P]!")
 		return 1
 
 	bullet_message(P)
-	P.ammo.on_hit_mob(src,P)
+	if(P.ammo)
+		P.ammo.on_hit_mob(src,P)
 
 	if(src && P && damage > 0)
-		apply_damage(damage,P.ammo.damage_type, P.def_zone, 0, P,0,0)	//Deal the damage.
+		apply_damage(damage,P.damage_type, P.def_zone, 0, P,0,0)	//Deal the damage.
 		if(prob(10 + round(damage / 4)) && !stat)
 			if(prob(70))
 				emote("hiss")
@@ -488,7 +484,7 @@
 	if(!src.density || !P || !P.ammo)
 		return 0 //It's just an empty turf
 
-	P.bullet_ping(src)
+	src.bullet_ping(P)
 
 	var/turf/target_turf = P.loc
 	if(!istype(target_turf)) return 0 //The bullet's not on a turf somehow.
@@ -500,11 +496,11 @@
 
 	if(mobs_list.len)
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
-		if(istype(picked_mob))
+		if(istype(picked_mob) && P.firer && P.roll_to_hit(P.firer,picked_mob) == 1)
 			picked_mob.bullet_act(P)
 			return 1
-
-	if(src.can_bullets && src.bullet_holes < 5 ) //Pop a bullet hole on that fucker. 5 max per turf
+/*
+	if(P && src.can_bullets && src.bullet_holes < 5 ) //Pop a bullet hole on that fucker. 5 max per turf
 		var/image/I = image('icons/effects/effects.dmi',src,"dent")
 		I.pixel_x = P.p_x
 		I.pixel_y = P.p_y
@@ -513,22 +509,20 @@
 		//I.dir = pick(NORTH,SOUTH,EAST,WEST) // random scorch design
 		overlays += I
 		bullet_holes++
-
-	P.ammo.on_hit_turf(src,P)
+*/
+	if(P && src) P.ammo.on_hit_turf(src,P)
 
 	return 1
 
 //Simulated walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/simulated/wall/bullet_act(obj/item/projectile/P)
 	..()
-	if(!P.ammo) return
-
 	var/D = P.damage
-	if(D < 1) return
 
-	if(P.damage_type == "BRUTE") D = round(D/2) //Bullets do much less to walls and such.
+	if(D < 1) return 0
+
+	if(P.damage_type == "BRUTE") D = round(D/3) //Bullets do much less to walls and such.
 	if(P.damage_type == "TOX") return 1
-	P.bullet_ping(src)
 	take_damage(P.damage)
 	if(prob(30 + D))
 		P.visible_message("\The [src] is damaged by [P]!")
@@ -537,14 +531,33 @@
 //Hitting an object. These are too numerous so they're staying in their files.
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P,get_turf(src),src.layer))
-		P.ammo.on_hit_obj(src,P)
-		P.bullet_ping(src)
+		src.bullet_ping(P)
 		return 1
 	else
 		return 0
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
-	return !(check_cover(P,get_turf(P)))
+	if(flipped)
+		var/chance = 0
+		if(P.dir == reverse_direction(dir))
+			chance = 95
+		else if (P.dir == dir)
+			chance = 3
+		else
+			chance = 50
+
+		if(prob(chance))
+			src.bullet_ping(P)
+			health -= round(P.damage/2)
+			if (health > 0)
+				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
+				return 0
+			else
+				visible_message("<span class='warning'>[src] breaks down!</span>")
+				destroy()
+				return 1
+		return 1
+	return 0
 
 
 //Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals

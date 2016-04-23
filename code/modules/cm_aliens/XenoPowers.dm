@@ -48,7 +48,7 @@
 		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
 			//Bigger and badder!
 			spit_projectile.damage += 15
-		else if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+		else if(istype(src,/mob/living/carbon/Xenomorph/Queen))
 			spit_projectile.shell_speed = 2 //Super fast!
 	else
 		src << "You will now spit stunning neurotoxin instead of acid."
@@ -61,7 +61,7 @@
 			//Bigger and badder!
 			spit_projectile.stun += 3
 			spit_projectile.weaken += 3
-		else if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+		else if(istype(src,/mob/living/carbon/Xenomorph/Queen))
 			spit_projectile.stun += 2
 			spit_projectile.weaken += 2
 			spit_projectile.shell_speed = 2 //Super fast!

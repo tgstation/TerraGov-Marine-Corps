@@ -576,6 +576,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -593,6 +594,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -611,6 +613,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -677,16 +680,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask(M), slot_wear_mask)
 			M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg(M.back), slot_in_backpack)
-			//M.equip_to_slot_or_del(new /obj/item/ammo_magazine/m39/toxic(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M.back), slot_in_backpack)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
 			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
 			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_r_store)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"

@@ -18,8 +18,8 @@
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
 	//Tasers and the like should not damage windows.
-	if(Proj.damage_type == HALLOSS)
-		return
+	if(Proj.damage_type == HALLOSS || Proj.damage <= 0 || istype(Proj.ammo,/datum/ammo/energy))
+		return 0
 
 	health -= Proj.damage
 	playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
@@ -29,7 +29,7 @@
 		new /obj/item/stack/rods(loc)
 		spawn(1)
 			del(src)
-	return
+	return 1
 
 
 /obj/structure/window/ex_act(severity)

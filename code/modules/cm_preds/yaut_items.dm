@@ -7,11 +7,11 @@
 	item_state = "glaive"
 	name = "Yautja War Glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
-	force = 28
+	force = 38
 	w_class = 4.0
 	slot_flags = SLOT_BACK
 	force_unwielded = 28
-	force_wielded = 50
+	force_wielded = 60
 	throwforce = 50
 	throw_speed = 3
 	edge = 1
@@ -20,6 +20,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1
+	attack_speed = 12 //Default is 7.
 
 /obj/item/weapon/twohanded/glaive/update_icon()
 	if(wielded)
@@ -35,7 +36,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "Yautja Clan Mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 60, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
+	armor = list(melee = 70, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
@@ -120,7 +121,7 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 65, bullet = 80, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 65, bullet = 75, laser = 45, energy = 50, bomb = 40, bio = 50, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
@@ -151,13 +152,34 @@
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
 
+	New()
+		..()
+		if(usr)
+			var/obj/item/weapon/wristblades/get_other_hand = usr.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				attack_speed = round(initial(attack_speed) / 2) //Much faster if a second wristblade is equipped.
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+
 	dropped(var/mob/living/carbon/human/mob)
-		playsound(mob,'sound/weapons/wristblades_off.ogg', 40, 1)
+		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
 		mob << "The wrist blades retract back into your armband."
+		if(mob)
+			var/obj/item/weapon/wristblades/get_other_hand = mob.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+
 		del(src)
 
 	afterattack(obj/O as obj, mob/user as mob, proximity)
 		if(!proximity || !user) return
+		if(user)
+			var/obj/item/weapon/wristblades/get_other_hand = user.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				attack_speed = round(initial(attack_speed) / 2)
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+			else
+				attack_speed = initial(attack_speed)
+
 		if (istype(O, /obj/machinery/door/airlock) && get_dist(src,O) <= 1)
 			var/obj/machinery/door/airlock/D = O
 			if(!D.density)
@@ -171,10 +193,21 @@
 				user << "It's welded shut. You won't be able to rip it open."
 				return
 
-			user << "\blue You jam a wristblade into [O] and strain to rip it open."
-			playsound(user,'sound/weapons/wristblades_hit.ogg', 40, 1)
-			if(do_after(user,40))
+			user << "\blue You jam \the [src] into [O] and strain to rip it open."
+			playsound(user,'sound/weapons/wristblades_hit.ogg', 60, 1)
+			if(do_after(user,30))
 				D.open(1)
+
+/obj/item/weapon/wristblades/scimitar
+	name = "Yautja Wrist Scimitar"
+	desc = "An enormous serrated blade that extends from the gauntlet."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "scim"
+	item_state = "scim"
+	force = 62
+	attack_speed = 20 //slow!
+	hitsound = 'sound/weapons/pierce.ogg'
+
 
 /obj/item/clothing/shoes/yautja
 	name = "Yautja Armored Boots"
@@ -237,6 +270,7 @@
 	var/exploding = 0
 	var/inject_timer = 0
 	var/cloak_timer = 0
+	var/upgrades = 0
 
 	emp_act(severity)
 		charge -= (severity * 500)
@@ -259,6 +293,9 @@
 		M.update_power_display(perc)
 		return 1
 
+
+//DEFER
+
 	//Should put a cool menu here, like ninjas.
 	verb/wristblades()
 		set name = "Use Wrist Blades"
@@ -268,42 +305,33 @@
 		if(!usr || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
-		if(!isYautja(usr))
+		if(!isYautja(M))
 			usr << "You have no idea how to work these things."
 			return
-		var/obj/item/weapon/wristblades/R = usr.r_hand
-		var/obj/item/weapon/wristblades/L = usr.l_hand
-		if(!istype(R) && !istype(L))
+		var/obj/item/weapon/wristblades/R = M.get_active_hand()
+		if(R && istype(R)) //Turn it off.
+			M << "You retract your wrist blade."
+			playsound(M.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
-
-		if(blades_active) //Turn it off.
-			var/found = 0
-			if(R && istype(R))
-				found = 1
-				usr.r_hand = null
-				if(R) del(R)
-				usr.update_inv_r_hand()
-			if(L && istype(L))
-				found = 1
-				usr.l_hand = null
-				if(L) del(L)
-				usr.update_inv_l_hand()
-			if(found)
-				usr << "You retract your wrist blades."
-				playsound(src.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
-				blades_active = 0
+			M.drop_item(R)
+			if(R) del(R) //Just to make sure. The drop should take care of it though.
 			return
-		else //Turn it on!
-			if(usr.get_active_hand())
-				usr << "Your hand must be free to activate your wrist blades."
+		else
+			if(R)
+				M << "Your hand must be free to activate your wrist blade."
 				return
 			if(!drain_power(usr,50)) return
-			var/obj/item/weapon/wristblades/W = new(usr)
-			usr.put_in_active_hand(W)
+
+			var/obj/item/weapon/wristblades/W
+			if(upgrades > 1)
+				W = new /obj/item/weapon/wristblades/scimitar(M)
+
+			M.put_in_active_hand(W)
 			blades_active = 1
 			usr << "You activate your wrist blades."
 			playsound(src,'sound/weapons/wristblades_on.ogg', 40, 1)
 			usr.update_icons()
+
 		return 1
 
 	verb/cloaker()
@@ -514,6 +542,35 @@
 		for(var/obj/item/weapon/grenade/spawnergrenade/smartdisc/D in range(10))
 			D.throw_at(usr,10,1,usr)
 
+/obj/item/clothing/gloves/yautja/proc/translate()
+	set name = "Translator"
+	set desc = "Emit a message from your bracer to those nearby."
+	set category = "Yautja"
+
+	if(!usr || usr.stat) return
+
+	if(!isYautja(usr))
+		usr << "You have no idea how to work these things."
+		return
+
+	var/msg = input(usr,"Your bracer beeps and waits patiently for you to input your message.","Translator","") as text
+	if(!msg || msg == "" || isnull(msg)) return
+
+	msg = sanitize(msg)
+	msg = replacetext(msg, "o", "¤")
+	msg = replacetext(msg, "p", "þ")
+	msg = replacetext(msg, "l", "£")
+	msg = replacetext(msg, "s", "§")
+	msg = replacetext(msg, "u", "µ")
+	msg = replacetext(msg, "b", "ß") //We're ninjas now? .. fine
+
+	spawn(10)
+		if(!drain_power(usr,50)) return //At this point they've upgraded.
+		var/mob/Q
+		for(Q in hearers(usr))
+			if(Q.stat == 1) continue //Unconscious
+			if(isXeno(Q) && upgrades != 2) continue
+			Q << "A strange voice says, '[msg]'."
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
@@ -542,19 +599,19 @@
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	canremove = 0
 	w_class = 5
-	fire_delay = 5
+	fire_delay = 3
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
-	var/datum/ammo/energy/projectile_type
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
 	New()
-		projectile_type = new /datum/ammo/energy/yautja/light_plasma()
-		return ..()
+		ammo = new /datum/ammo/energy/yautja()
+		..()
 
 	Del()
-		projectile_type = null
+		del(ammo)
+		ammo = null
 		source = null
 		return ..()
 
@@ -562,28 +619,43 @@
 		switch(mode)
 			if(2)
 				mode = 0
-				charge_cost = 70
+				charge_cost = 50
 				fire_sound = 'sound/weapons/lasercannonfire.ogg'
 				user << "\red \The [src.name] is now set to fire light plasma bolts."
-				if(projectile_type) del(projectile_type)
-				projectile_type = new /datum/ammo/energy/yautja/light_plasma()
-				fire_delay = 4
+				ammo.name = "plasma bolt"
+				ammo.icon_state = "ion"
+				ammo.damage = 10
+				ammo.ignores_armor = 1
+				ammo.stun = 2
+				ammo.weaken = 2
+				fire_delay = 8
+				ammo.shell_speed = 1
 			if(0)
 				mode = 1
-				charge_cost = 120
+				charge_cost = 100
 				fire_sound = 'sound/weapons/emitter2.ogg'
 				user << "\red \The [src.name] is now set to fire medium plasma blasts."
-				if(projectile_type) del(projectile_type)
-				projectile_type = new /datum/ammo/energy/yautja/medium_plasma()
-				fire_delay = 5
+				fire_delay = 20
+				ammo.name = "plasma blast"
+				ammo.icon_state = "pulse1"
+				ammo.damage = 25
+				ammo.ignores_armor = 1
+				ammo.stun = 0
+				ammo.weaken = 0
+				ammo.shell_speed = 2 //Lil faster
 			if(1)
 				mode = 2
-				charge_cost = 500
-				fire_delay = 30
+				charge_cost = 300
+				fire_delay = 100
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src.name] is now set to fire heavy plasma spheres."
-				if(projectile_type) del(projectile_type)
-				projectile_type = new /datum/ammo/energy/yautja/heavy_plasma()
+				ammo.name = "plasma eradication sphere"
+				ammo.icon_state = "bluespace"
+				ammo.damage = 30
+				ammo.ignores_armor = 1
+				ammo.stun = 0
+				ammo.weaken = 0
+				ammo.shell_speed = 1
 		return
 
 	dropped(var/mob/living/carbon/human/mob)
@@ -593,15 +665,18 @@
 		del(src)
 		return
 
-
 	load_into_chamber()
 		if(in_chamber)	return 1
 		if(!source)	return 0
-		if(!projectile_type)	return 0
+		if(!ammo)	return 0
 		if(!usr) return 0 //somehow
 		if(!source.drain_power(usr,charge_cost)) return 0
 		in_chamber = new /obj/item/projectile(src)
-		in_chamber.ammo = projectile_type
+		in_chamber.ammo = ammo
+		in_chamber.damage = ammo.damage
+		in_chamber.damage_type = ammo.damage_type
+		in_chamber.icon_state = ammo.icon_state
+		in_chamber.dir = usr.dir
 		return 1
 
 	afterattack(atom/target, mob/user , flag)
@@ -612,7 +687,7 @@
 					var/obj/item/clothing/gloves/yautja/Y = M.gloves
 					var/perc_charge = (Y.charge / Y.charge_max * 100)
 					M.update_power_display(perc_charge)
-		..()
+		return ..()
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
 /obj/item/weapon/storage/backpack/yautja

@@ -113,6 +113,7 @@
 	health -= Proj.damage
 	..()
 	healthcheck()
+	return 1
 
 /obj/vehicle/meteorhit()
 	explode()

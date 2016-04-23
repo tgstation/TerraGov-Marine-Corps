@@ -7,7 +7,7 @@
 	anchored = 1
 	flags = FPRINT | CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	layer = 2.9
+	layer = 3
 	explosion_resistance = 5
 	var/health = 10
 	var/destroyed = 0
@@ -133,15 +133,13 @@
 
 /obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
 
-	if(!Proj)	return
-
 	//Tasers and the like should not damage grilles.
 	if(Proj.damage_type == HALLOSS)
-		return
+		return 0
 
-	src.health -= Proj.damage*0.3
+	src.health -= round(Proj.damage*0.3)
 	healthcheck()
-	return 0
+	return 1
 
 /obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(iswirecutter(W))

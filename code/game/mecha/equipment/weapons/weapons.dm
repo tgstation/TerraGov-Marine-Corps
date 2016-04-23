@@ -103,7 +103,7 @@
 	origin_tech = "materials=3;combat=6;powerstorage=4"
 	projectile = /obj/item/projectile
 	fire_sound = 'sound/weapons/marauder.ogg'
-
+/*
 /obj/item/projectile/beam/pulse/heavy
 	name = "heavy pulse laser"
 	icon_state = "pulse1_bl"
@@ -115,7 +115,7 @@
 		if(life <= 0)
 			del(src)
 		return
-
+*/
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
 	name = "PBT \"Pacifier\" Mounted Taser"
 	icon_state = "mecha_taser"

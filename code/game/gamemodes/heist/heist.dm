@@ -107,7 +107,7 @@ var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' 
 	vox.languages = list() // Removing language from chargen.
 	vox.flavor_text = ""
 	vox.add_language("Vox-pidgin")
-	vox.add_language("Galactic Common")
+	vox.add_language("English")
 	vox.add_language("Tradeband")
 	vox.h_style = "Short Vox Quills"
 	vox.f_style = "Shaved"

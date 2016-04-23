@@ -16,22 +16,8 @@
 		stop_aim()
 		usr.visible_message("\blue \The [usr] lowers \the [src]...")
 
-//Clicking gun will still lower aim for guns that don't overwrite this
-///obj/item/weapon/gun/attack_self()
-
-
-//Removing the lock and the buttons.
-/obj/item/weapon/gun/dropped(mob/user as mob)
-	stop_aim()
-	if (user && user.client)
-		user.client.remove_gun_icons()
-	return ..()
-
 /obj/item/weapon/gun/equipped(var/mob/user, var/slot)
-	if (slot != slot_l_hand && slot != slot_r_hand)
-		stop_aim()
-		if (user.client)
-			user.client.remove_gun_icons()
+
 	return ..()
 
 //Removes lock fro mall targets

@@ -77,6 +77,8 @@
 		spawn(2)
 			new /obj/item/clothing/head/cmberet(src)
 			new /obj/item/clothing/head/cmberet(src)
+			new /obj/item/clothing/head/cmberet/tan(src)
+			new /obj/item/clothing/head/cmberet/tan(src)
 			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/clothing/head/cmcap/ro(src)

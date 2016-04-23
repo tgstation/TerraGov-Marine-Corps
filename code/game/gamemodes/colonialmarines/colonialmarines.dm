@@ -4,6 +4,7 @@
 	var/queen_death_timer = 0
 	var/list/datum/mind/predators = list()
 	var/list/datum/mind/hellhounds = list()
+	var/pred_keys = list()
 
 /datum/game_mode/colonialmarines
 	name = "colonial marines"
@@ -110,7 +111,10 @@
 	return 1
 
 /datum/game_mode/colonialmarines/announce()
-	world << "<B>The current game mode is - Colonial Marines! Hoooah!</B>"
+	world << "<B>The current game mode is - Colonial Marines!/B>"
+
+/datum/game_mode/colonialmarines/send_intercept()
+	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

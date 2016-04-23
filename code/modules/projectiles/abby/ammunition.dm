@@ -36,6 +36,7 @@
 	var/casing_type = "/obj/item/ammo_casing"
 	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
 	var/bonus_projectiles = 0
+	var/never_scatters = 0 //Never wanders
 
 	proc/do_at_half_range(var/obj/item/projectile/P)
 		return
@@ -109,6 +110,13 @@
 			icon_state = icon_empty
 		else
 			icon_state = initial(icon_state)
+
+	examine()
+		..()
+		if(current_rounds < 0)
+			usr << "The [src] has <b>[max_rounds]</b> rounds out of <b>[max_rounds]</b>."
+		else
+			usr << "The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 //Doesn't do anything or hold anything anymore.
 /obj/item/ammo_casing

@@ -646,7 +646,13 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 
-/obj/item/proc/zoom(var/tileoffset = 11,var/viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/zoom(var/tileoffset = 11,var/viewsize = 12, var/mob/living/user) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+
+	if(usr && !user)
+		user = usr
+
+	if(!user)
+		return
 
 	var/devicename
 
@@ -655,26 +661,26 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		devicename = src.name
 
-	var/cannotzoom
+	var/cannotzoom = 0
 
-	if(usr.stat || !(istype(usr,/mob/living/carbon/human)))
-		usr << "You are unable to focus through the [devicename]"
+	if(user.stat || !(istype(user,/mob/living/carbon/human)))
+		user << "You are unable to focus through the [devicename]"
 		cannotzoom = 1
-	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)
-		usr << "Your welding equipment gets in the way of you looking through the [devicename]"
+	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
+		user << "Your welding equipment gets in the way of you looking through the [devicename]"
 		cannotzoom = 1
-	else if (usr.eye_blind)
-		usr << "You are a little way too blind to see anything..."
+	else if (user.eye_blind)
+		user << "You are a little way too blind to see anything..."
 		cannotzoom = 1
-	else if(!zoom && usr.get_active_hand() != src)
-		usr << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
+	else if(!zoom && user.get_active_hand() != src)
+		user << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
 		cannotzoom = 1
 
 	if(!zoom && !cannotzoom)
-		if(!usr.hud_used.hud_shown)
-			usr.button_pressed_F12(1)	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		usr.button_pressed_F12(1)
-		usr.client.view = viewsize
+		if(!user.hud_used.hud_shown)
+			user.button_pressed_F12(1)	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+		user.button_pressed_F12(1)
+		user.client.view = viewsize
 		zoom = 1
 
 		var/tilesize = 32
@@ -682,38 +688,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		switch(usr.dir)
 			if (NORTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
+				user.client.pixel_x = 0
+				user.client.pixel_y = viewoffset
 			if (SOUTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
+				user.client.pixel_x = 0
+				user.client.pixel_y = -viewoffset
 			if (EAST)
-				usr.client.pixel_x = viewoffset
-				usr.client.pixel_y = 0
+				user.client.pixel_x = viewoffset
+				user.client.pixel_y = 0
 			if (WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
 
-		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
-
-		/*
-		if(istype(usr,/mob/living/carbon/human/))
-			var/mob/living/carbon/human/H = usr
-			usr.visible_message("[usr] holds [devicename] up to [H.get_visible_gender() == MALE ? "his" : H.get_visible_gender() == FEMALE ? "her" : "their"] eyes.")
-		else
-			usr.visible_message("[usr] holds [devicename] up to its eyes.")
-		*/
-
+		user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
 	else
-		usr.client.view = world.view
-		if(!usr.hud_used.hud_shown)
-			usr.button_pressed_F12(1)
+		user.client.view = world.view
+		if(!user.hud_used.hud_shown)
+			user.button_pressed_F12(1)
 		zoom = 0
 
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
+		user.client.pixel_x = 0
+		user.client.pixel_y = 0
 
 		if(!cannotzoom)
-			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [src.name]" : "[usr] lowers the [src.name]"].")
+			user.visible_message("[zoomdevicename ? "[user] looks up from the [src.name]" : "[user] lowers the [src.name]"].")
 
 	return

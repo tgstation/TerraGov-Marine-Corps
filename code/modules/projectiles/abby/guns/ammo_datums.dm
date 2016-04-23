@@ -2,7 +2,7 @@
 
 /datum/ammo/bullet
 	name = "bullet"
-	damage = 5
+	damage = 10
 	damage_type = BRUTE
 	accurate_range = 5
 	shrapnel_chance = 10
@@ -11,37 +11,37 @@
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
-	damage = 15
+	damage = 22
 	accuracy = -5 //Not very accurate.
 
 /datum/ammo/bullet/pistol/tiny
 	name = ".22 bullet"
-	damage = 10
+	damage = 15
 	accuracy = -5 //Not very accurate.
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
-	damage = 12
+	damage = 17
 	accuracy = -10
 	shrapnel_chance = 50 //50% likely to generate shrapnel on impact.
 
 /datum/ammo/bullet/pistol/ap
 	name = "AP pistol bullet"
-	damage = 12
+	damage = 17
 	accuracy = 8
 	armor_pen = 30
 	shrapnel_chance = 0
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
-	damage = 22
+	damage = 35
 	accuracy = -10
 	armor_pen = 5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
-	damage = 10
+	damage = 20
 	damage_type = BURN
 	accuracy = 10
 	shrapnel_chance = 0
@@ -49,34 +49,34 @@
 
 /datum/ammo/bullet/pistol/incendiary/vp78
 	name = "VP78 round"
-	damage = 25
+	damage = 30
 
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
-	damage = 18
+	damage = 25
 
 /datum/ammo/bullet/smg/ap
 	name = "AP submachinegun bullet"
-	damage = 15
+	damage = 22
 	armor_pen = 30
 
 /datum/ammo/bullet/smg/ludicrous
 	name = "submachinegun bullet"
-	damage = 25
+	damage = 30
 	armor_pen = 30
-	accuracy = 12
+	accuracy = 15
 	shell_speed = 3 //Faster!
 
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
-	damage = 26
+	damage = 35
 	armor_pen = 3
 	accuracy = -15
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
-	damage = 20
+	damage = 30
 	accuracy = 15
 	stun = 1
 	armor_pen = -10
@@ -85,45 +85,52 @@
 
 /datum/ammo/bullet/revolver/small
 	name = "revolver bullet"
-	damage = 15
+	damage = 25
 	armor_pen = 1
 
 /datum/ammo/bullet/revolver/heavy
-	damage = 25
+	damage = 45
 	armor_pen = 10
 	accuracy = -10
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
 /datum/ammo/bullet/rifle
 	name = "rifle bullet"
-	damage = 20
+	damage = 40
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
-	damage = 18
+	damage = 35
 	incendiary = 1
 	accuracy = -5
 	shrapnel_chance = 0
 	armor_pen = 15
+	damage_type = BURN
 
 /datum/ammo/bullet/rifle/marksman
 	name = "marksman rifle bullet"
-	damage = 22
+	damage = 54
 	accuracy = 20
 	armor_pen = 10
 	shrapnel_chance = 0
 	damage_bleed = 0
 	shell_speed = 3
 
+/datum/ammo/bullet/rifle/ap
+	name = "armor-piercing rifle bullet"
+	damage = 35
+	accuracy = 20
+	armor_pen = 15
+
 /datum/ammo/bullet/rifle/mar40
-	damage = 24
+	damage = 50
 	accuracy = -5
 	armor_pen = -5
 
 //Slugs.
 /datum/ammo/bullet/shotgun
 	name = "shotgun slug"
-	damage = 50
+	damage = 70
 	damage_bleed = 7 //Loses 7 damage every turf.
 	accurate_range = 4
 	max_range = 12
@@ -132,16 +139,17 @@
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
-	damage = 30
+	damage = 50
 	damage_bleed = 5 //Loses 7 damage every turf.
 	accurate_range = 4
 	max_range = 12
 	casing_type = "/obj/item/ammo_casing/shotgun/red"
 	incendiary = 1
+	damage_type = BURN
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "buckshot"
-	damage = 15
+	damage = 25
 	damage_bleed = 5 //Loses 5 damage every turf.
 	accurate_range = 4
 	max_range = 4
@@ -189,6 +197,7 @@
 	armor_pen = 30
 	accuracy = 0
 	incendiary = 1
+	damage_type = BURN
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak shell"
@@ -201,9 +210,18 @@
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P,"flak")
 
+/datum/ammo/bullet/sniper/elite
+	name = "supersonic bullet"
+	damage = 250
+	accurate_range = 30
+	max_range = 30
+	armor_pen = 50
+	accuracy = 55
+	shell_speed = 4
+
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
-	damage = 22
+	damage = 28
 	skips_marines = 1
 	armor_pen = 5
 	accuracy = 50
@@ -217,40 +235,33 @@
 	stun = 5
 	weaken = 5
 	damage_type = OXY
+	shell_speed = 1
 
-/datum/ammo/energy/yautja/light_plasma
+/datum/ammo/energy/yautja
 	name = "plasma bolt"
 	icon_state = "ion"
-	damage = 5
+	damage = 10
+	damage_type = BURN
 	ignores_armor = 1
-	damage_type = BURN
-	stun = 3
-	weaken = 3
-
-/datum/ammo/energy/yautja/medium_plasma
-	name = "plasma blast"
-	icon_state = "pulse1"
-	damage = 30
-	damage_type = BURN
-
-/datum/ammo/energy/yautja/heavy_plasma
-	name = "plasma eradication sphere"
-	icon_state = "bluespace"
-	damage = 30
-	damage_type = BURN
+	stun = 2
+	weaken = 2
+	shell_speed = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		explosion(get_turf(P.loc), -1, -1, 2, 2)
+		if(damage > 25)
+			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		explosion(T, -1, -1, 2, 2)
+		if(damage > 25)
+			explosion(T, -1, -1, 2, 2)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
-		explosion(get_turf(P.loc), -1, -1, 2, 2)
+		if(damage > 25)
+			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	damage = 45
+	damage = 40
 	skips_marines = 1
 	armor_pen = 15
 	accuracy = 50
@@ -260,7 +271,7 @@
 /datum/ammo/energy/emitter
 	name = "emitter bolt"
 	icon_state = "emitter"
-	damage = 40
+	damage = 50
 	ignores_armor = 1
 	damage_type = BURN
 
@@ -279,7 +290,7 @@
 /datum/ammo/xeno/spit/burny
 	name = "corrosive spit"
 	icon_state = "neurotoxin"
-	damage = 25
+	damage = 15
 	ignores_armor = 0
 	damage_type = BURN
 	skips_xenos = 1
@@ -327,8 +338,9 @@
 	weaken = 3
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(P && P.loc) P.visible_message("\The [src] chimpers furiously!")
-		new /mob/living/carbon/monkey(P.loc)
+		if(P && P.loc && !istype(M,/mob/living/carbon/monkey))
+			P.visible_message("\The [src] chimpers furiously!")
+			new /mob/living/carbon/monkey(P.loc)
 
 /datum/ammo/boiler_gas
 	name = "glob"
@@ -393,7 +405,11 @@
 
 	proc/drop_nade(var/turf/T)
 		var/obj/item/device/flashlight/flare/G = new (T)
-		G.visible_message("\blue <B>A [G] falls from the sky!</b>")
+		G.visible_message("\blue <B>A [G] bursts into brilliant light nearby!</b>")
 		G.on = 1
 		processing_objects += G
+		G.icon_state = "flare-on"
+		G.damtype = "fire"
+		G.SetLuminosity(G.brightness_on)
 		return
+
