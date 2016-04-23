@@ -51,6 +51,7 @@
 	under_pixel_x = 17
 	under_pixel_y = 14
 	burst_amount = 4
+	burst_delay = 2
 	accuracy = -10
 	found_on_mercs = 1
 	twohanded = 0

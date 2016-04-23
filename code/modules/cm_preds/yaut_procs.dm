@@ -206,11 +206,11 @@
 					Y.upgrades++
 
 		if(istype(Y))
-			if(Y.upgrades == 1)
+			if(Y.upgrades >= 1)
 				src << "\green <B>Your [Y.name] hums as it receives a battery and translator upgrade.</b>"
 				var/newverb = /obj/item/clothing/gloves/yautja/proc/translate
 				Y.verbs |= newverb
-			else if (Y.upgrades == 2)
+			if (Y.upgrades == 2)
 				src << "\green <B>Your [Y.name] can now translate to xenomorph hives as well.</b>"
 				src << "\green <B>Your [Y.name] has been upgraded to carry a scimitar instead of blades.</b>"
 	return

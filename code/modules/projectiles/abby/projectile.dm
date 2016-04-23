@@ -62,7 +62,7 @@
 		return
 
 	proc/get_accuracy()
-		var/acc = 90 //Base accuracy.
+		var/acc = 80 //Base accuracy.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 
@@ -84,6 +84,8 @@
 			acc -= (distance_travelled * 3) //-3% accuracy per turf
 		else if(!ammo.current_gun) //Non-gun firers, aka turrets, just get a flat -1 accuracy per turf.
 			acc -= (distance_travelled * 2)
+		else if (distance_travelled <= 2)
+			acc += 25 //Big bonus for point blanks.
 
 		if(acc < 5) acc = 5 //There's always some chance.
 		return acc
@@ -98,9 +100,9 @@
 			if(T.lying && T.stat) hit_chance += 15 //Bonus hit against unconscious people.
 			if(istype(T,/mob/living/carbon/Xenomorph))
 				if(T:big_xeno)
-					hit_chance += 5
+					hit_chance += 10
 				else
-					hit_chance -= 5
+					hit_chance -= 10
 
 			if(ammo.skips_marines && ishuman(target))
 				var/mob/living/carbon/human/H = target
@@ -249,10 +251,13 @@
 					permutated.Add(A)
 
 				else
-					if(isobj(A) && !A.density) //We're scanning a non dense object.
+					if(isobj(A) && (A.density == 0 || layer < 3)) //We're scanning a non dense object.
+						permutated.Add(A)
 						continue
 					else if(isobj(A) && ammo)
 						ammo.on_hit_obj(A,src)
+						if(!isnull(A)) A.bullet_act(src)
+						return 1
 
 					var/response = A.bullet_act(src)
 					if(response > 0 || response == null)
@@ -512,11 +517,11 @@
 //Simulated walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/simulated/wall/bullet_act(obj/item/projectile/P)
 	..()
-
 	var/D = P.damage
+
 	if(D < 1) return 0
 
-	if(P.damage_type == "BRUTE") D = round(D/2) //Bullets do much less to walls and such.
+	if(P.damage_type == "BRUTE") D = round(D/3) //Bullets do much less to walls and such.
 	if(P.damage_type == "TOX") return 1
 	take_damage(P.damage)
 	if(prob(30 + D))
@@ -532,7 +537,27 @@
 		return 0
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
-	return !(check_cover(P,get_turf(P)))
+	if(flipped)
+		var/chance = 0
+		if(P.dir == reverse_direction(dir))
+			chance = 95
+		else if (P.dir == dir)
+			chance = 3
+		else
+			chance = 50
+
+		if(prob(chance))
+			src.bullet_ping(P)
+			health -= round(P.damage/2)
+			if (health > 0)
+				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
+				return 0
+			else
+				visible_message("<span class='warning'>[src] breaks down!</span>")
+				destroy()
+				return 1
+		return 1
+	return 0
 
 
 //Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals

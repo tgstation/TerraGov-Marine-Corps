@@ -18,7 +18,7 @@
 
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
-					/obj/item/ammo_magazine/smg = 30,
+					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 40,
 					/obj/item/ammo_magazine/rifle/ap = 20,
 					/obj/item/ammo_magazine/shotgun = 20,
