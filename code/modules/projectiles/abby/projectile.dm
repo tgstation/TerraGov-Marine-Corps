@@ -244,7 +244,7 @@
 				if(A.density == 0) //We're scanning a non dense object.
 					continue
 
-				if(isobj(A) && A.throwpass == 0)
+				if(isobj(A) && A.throwpass == 0 && layer >= 3)
 					A.bullet_act(src)
 					return 1
 
