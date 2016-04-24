@@ -186,6 +186,7 @@
 //This sets all the initial datum's stuff. The bullet does the rest.
 //User can be passed as null, (a gun reloading itself for instance), so we need to watch for that constantly.
 /obj/item/weapon/gun/proc/reload(var/mob/user = null, var/obj/item/ammo_magazine/magazine)
+
 	if(!magazine || !istype(magazine))
 		if(user) user << "That's not a magazine!"
 		return 0
@@ -210,7 +211,11 @@
 		if(user) user << "Something went horribly wrong. Tell a coder."
 		return 0
 
+	burst_firing = 0
+	burst_toggled = 0
+	is_bursting = 0
 	active_attachable = null
+
 	if(user)
 		user << "You begin reloading \the [src.name]. Hold still!"
 		if(do_after(user,magazine.reload_delay))

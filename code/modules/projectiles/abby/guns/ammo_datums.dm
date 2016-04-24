@@ -279,9 +279,9 @@
 	name = "acid spit"
 	icon_state = "toxin"
 	damage = 0
-	ignores_armor = 1
+	ignores_armor = 0
 	damage_type = TOX
-	accuracy = 50
+	accuracy = 10
 	skips_xenos = 1
 	stun = 2
 	weaken = 2
@@ -290,8 +290,7 @@
 /datum/ammo/xeno/spit/burny
 	name = "corrosive spit"
 	icon_state = "neurotoxin"
-	damage = 15
-	ignores_armor = 0
+	damage = 10
 	damage_type = BURN
 	skips_xenos = 1
 	shell_speed = 1
