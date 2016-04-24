@@ -316,6 +316,9 @@
 		msg_admin_attack("SOMETHING?? shot [src] ([src.ckey]) with a [P])")
 	return
 
+/mob/dead/bullet_act(/obj/item/projectile/P)
+	return 0
+
 /mob/living/bullet_act(obj/item/projectile/P)
 	if(!P || !istype(P) || !P.ammo) return 0 //Somehow. Just some logic.
 
