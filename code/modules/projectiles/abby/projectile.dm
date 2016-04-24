@@ -135,20 +135,13 @@
 				return roll_to_hit(firer,target) //Let's try this again.
 		return 1 //Pretty hard to miss an object or turf.
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(air_group || (height==0)) return 1
-
-		if(istype(mover, /obj/item/projectile))
-			return prob(95)
-		else
-			return 1
-
-	Bump(atom/A as mob|obj|turf|area)
+	Bumped(atom/A as mob|obj|turf|area)
 		if(!A in permutated)
-			if(A.bullet_act(src))
-				spawn(-1)
-					del(src)
+			scan_a_turf(A.loc)
 
+	Crossed(AM as mob|obj)
+		if(!AM in permutated)
+			scan_a_turf(AM:loc)
 
 	proc/follow_flightpath(var/speed = 1, var/change_x, var/change_y, var/range) //Everytime we reach the end of the turf list, we slap a new one and keep going.
 		set waitfor = 0
@@ -159,14 +152,18 @@
 		in_flight = 1
 		spawn()
 			for(next_turf in path)
+				if(!src || !loc)
+					return
+				if(!in_flight) return
+
 				if(distance_travelled >= range)
 					ammo.do_at_max_range(src)
-					sleep(1)
+					in_flight = 0
 					if(src) del(src)
 					return
 
 				if(scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
-					sleep(1)
+					in_flight = 0
 					if(src) del(src)
 					return
 
@@ -238,40 +235,39 @@
 
 			if(A == original && istype(A,/obj/item/clothing/mask/facehugger)) //Shoot that fucker!
 				A.bullet_act(src)
-				return 1
+				continue
 
 			if(isobj(A) || isturf(A))
 				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad
 					continue
 
-				if(A.density == 0 || (isobj(A) && A.layer < 3) || A.throwpass) //We're scanning a non dense object.
-
+				if(A.density == 0) //We're scanning a non dense object.
 					continue
-				if(ammo)
-					if(isobj(A))
-						ammo.on_hit_obj(A,src)
-					else
-						ammo.on_hit_turf(A,src)
+
+				if(isobj(A) && A.throwpass == 0)
+					A.bullet_act(src)
+					return 1
 
 				var/response = A.bullet_act(src)
 				if(response > 0 || response == null)
+					if(ammo)
+						if(isobj(A))
+							ammo.on_hit_obj(A,src)
+						else
+							ammo.on_hit_turf(A,src)
 					return 1
 
 			else
 				if(ismob(A))
-					if(istype(A,/mob/living) && roll_to_hit(firer,A) == 1 && (!A:lying || A == original))
+					if(istype(A,/mob/living) && roll_to_hit(firer,A) == 1 && (A:lying == 0 || A == original))
 						A.bullet_act(src)
-						return 1
-					else
-						permutated.Add(A)
+						if(A && src)
+							src.ammo.on_hit_mob(A,src) //Deal with special effects.
 						return 1
 
 		return 0 //Found nothing.
 
-	Crossed(AM as mob|obj)
-		if(!AM in permutated)
-			if(AM:bullet_act(src) != 0)
-				if(src) del(src)
+
 
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
 	if(!P || isnull(P)) return
@@ -405,10 +401,7 @@
 	if(src && P && damage > 0)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, P, 0, P)
 
-	if(!src || !P || !P.ammo) return 1
-
 	bullet_message(P)
-	P.ammo.on_hit_mob(src,P) //Deal with special effects.
 
 	if (P && P.ammo && src && absorbed == 0 && damage > 0 && P.ammo.shrapnel_chance > 0)
 		if(prob(P.ammo.shrapnel_chance + round(damage / 10)))
@@ -461,8 +454,13 @@
 		return 1
 
 	bullet_message(P)
-	if(P.ammo)
-		P.ammo.on_hit_mob(src,P)
+	if(P && P.ammo && P.ammo.incendiary)
+		if(fire_immune)
+			src << "You shrug off some persistent flames."
+		else
+			adjust_fire_stacks(rand(2,6) + round(damage / 8))
+			IgniteMob()
+			src.visible_message("\red <B>\The [src] bursts into flames!</b>","\red <B>You burst into flames!! Auuugh! Stop drop and roll!</b>")
 
 	if(src && P && damage > 0)
 		apply_damage(damage,P.damage_type, P.def_zone, 0, P,0,0)	//Deal the damage.
@@ -472,19 +470,14 @@
 			else
 				emote("roar")
 
-	if(P.ammo.incendiary)
-		if(fire_immune)
-			src << "You shrug off some persistent flames."
-		else
-			adjust_fire_stacks(rand(2,6) + round(damage / 8))
-			IgniteMob()
-			src.visible_message("\red <B>\The [src] bursts into flames!</b>","\red <B>You burst into flames!! Auuugh! Stop drop and roll!</b>")
+	if(P && P.ammo)
+		P.ammo.on_hit_mob(src,P)
 
 	updatehealth()
 	return 1
 
 /turf/bullet_act(obj/item/projectile/P)
-	if(!src.density || !P || !P.ammo)
+	if(!src.density || !P || !P.ammo || isnull(P))
 		return 0 //It's just an empty turf
 
 	src.bullet_ping(P)
@@ -540,48 +533,23 @@
 		return 0
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
-	if(flipped)
-		var/chance = 0
-		if(P.dir == reverse_direction(dir))
-			chance = 95
-		else if (P.dir == dir)
-			chance = 3
-		else
-			chance = 50
-
-		if(prob(chance))
-			src.bullet_ping(P)
-			health -= round(P.damage/2)
-			if (health > 0)
-				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-				return 1
-			else
-				visible_message("<span class='warning'>[src] breaks down!</span>")
-				destroy()
-				return 1
+	if(flipped && P.dir == reverse_direction(dir))
+		src.bullet_ping(P)
+		health -= round(P.damage/3)
+		if (health < 0)
+			visible_message("<span class='warning'>[src] breaks down!</span>")
+			destroy()
 		return 1
 	return 0
 
 /obj/structure/m_barricade/bullet_act(obj/item/projectile/P)
-	var/chance = 0
 	if(P.dir == reverse_direction(dir))
-		chance = 95
-	else if (P.dir == dir)
-		chance = 2
-	else
-		chance = 25
-
-	if(prob(chance))
 		src.bullet_ping(P)
-		health -= round(P.damage/5)
-		if (health > 0)
-			visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-			return 1
-		else
+		health -= round(P.damage/3)
+		if(health < 0)
 			visible_message("<span class='warning'>[src] breaks down!</span>")
 			destroy()
-			return 1
-
+		return 1
 	return 0
 
 //Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals

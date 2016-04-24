@@ -4,9 +4,9 @@
 	desc = "A solid barricade made of reinforced metal. Use a welding tool and/or plasteel to repair it if damaged."
 	icon = 'icons/Marine/structures.dmi'
 	icon_state = "barricade"
-	density = 1
+	density = 0
 	anchored = 1.0
-	layer = 3.5
+	layer = 2.9
 	throwpass = 1	//You can throw objects over this, despite its density.
 	climbable = 1
 	flags = ON_BORDER
