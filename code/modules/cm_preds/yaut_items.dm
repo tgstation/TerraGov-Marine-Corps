@@ -36,7 +36,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "Yautja Clan Mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 70, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
+	armor = list(melee = 80, bullet = 95, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
@@ -110,7 +110,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 50, bullet = 55, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 60, bullet = 75, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/harpoon, /obj/item/weapon/twohanded)
@@ -121,7 +121,7 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 65, bullet = 75, laser = 45, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 65, bullet = 85, laser = 45, energy = 50, bomb = 40, bio = 50, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
