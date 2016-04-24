@@ -150,10 +150,12 @@
 		var/turf/current_turf = get_turf(src)
 		var/turf/next_turf
 		in_flight = 1
+		var/this_iteration = 0
 		spawn()
 			for(next_turf in path)
 				if(!src || !loc)
 					return
+
 				if(!in_flight) return
 
 				if(distance_travelled >= range)
@@ -169,22 +171,22 @@
 
 				src.loc = next_turf
 				each_turf()
-				path -= next_turf //Remove it!
 
 				dist_since_sleep++
+				this_iteration++
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
 					sleep(1)
 
-				if(!path.len) //No more left!
-					current_turf = get_turf(src)
+
+				current_turf = get_turf(src)
+				if(this_iteration == path.len)
 					next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 					if(current_turf && next_turf)
+						path = null
 						path = getline2(current_turf,next_turf) //Build a new flight path.
 						if(path.len && src)
 							follow_flightpath(speed, change_x, change_y, range) //Onwards!
-							in_flight = 1
-							return 1
 
 //Target, firer, shot from. Ie the gun
 	proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
