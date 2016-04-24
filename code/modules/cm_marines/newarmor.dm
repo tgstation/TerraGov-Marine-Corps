@@ -37,10 +37,22 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	name = "M10 Pattern Marine Helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	armor = list(melee = 75, bullet = 60, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
-	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
-	var/hug_damage = 0
+	armor = list(melee = 65, bullet = 70, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
+	health = 5
+	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
 	anti_hug = 1
+	w_class = 5
+	var/hug_damage = 0
+
+	examine()
+		if(contents.len)
+			var/dat = "<br><br>There is something attached to \the [src]:<br><br>"
+			for(var/obj/O in src)
+				dat += "\blue *\icon[O] - [O]<br>"
+			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""][dat]"
+		else
+			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""]"
+		..()
 
 	proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
 		if(!hug_damage) //If this is our first check.
@@ -194,6 +206,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "Specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	anti_hug = 1
+	w_class = 5
 
 	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
 
@@ -344,7 +357,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		else
 			user << "\red There is no more space for [W]."
 	else if(istype(W, /obj/item/weapon/claymore/mercsword/machete))
-			user.visible_message("[src] tries to put \the [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b>","\red You try to put \the [W] on the [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b>")
+		user.visible_message("[src] tries to put \the [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b>","\red You try to put \the [W] on the [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b>")
 	else
 		user << "\red \the [W] does not fit on [src]."
 

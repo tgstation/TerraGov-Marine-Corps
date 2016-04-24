@@ -1,28 +1,6 @@
 /**********************Marine Clothing**************************/
 
 //HEADGEAR
-
-/obj/item/clothing/head/helmet/marine
-	name = "marine standard helmet"
-	desc = "Standard marine gear. Protects the head from damage."
-	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
-	health = 5
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
-	anti_hug = 1
-	w_class = 5
-
-	//Helmet attachables are in newarmor.dm
-
-	examine()
-		if(contents.len)
-			var/dat = "<br><br>There is something attached to the [src]:<br><br>"
-			for(var/obj/O in src)
-				dat += "\blue *\icon[O] - [O]<br>"
-			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""][dat]"
-		else
-			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""]"
-		..()
-
 /obj/item/clothing/head/helmet/marine/tech
 	name = "M10 Technician Helmet"
 	icon_state = "helmet-tech"
