@@ -166,10 +166,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 /datum/game_mode/huntergames/post_setup()
 	var/mob/M
 	for(M in mob_list)
-		if(M.client)
-			if(istype(M,/mob/new_player))
-				if(M:ready == 0) continue
-			if(M.z == 0 || M.z == 2) continue // Not existing, or something.
+		if(M.client && istype(M,/mob/living/carbon/human))
 			contestants += M
 			spawn_contestant(M)
 
@@ -214,8 +211,9 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 
 	if(istype(M,/mob/living/carbon/human)) //somehow?
 		H = M
-		for(var/I in H.contents)
-			del(I)
+		if(H.contents.len)
+			for(var/I in H.contents)
+				del(I)
 		H.loc = picked
 	else
 		H = new(picked)
@@ -226,12 +224,8 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		H.mind = new(H.key)
 
 	H.Weaken(15)
-	H.SetLuminosity(1)
 	H.nutrition = 300
 
-	//Damage them for realism purposes
-
-//Give them proper jobs and stuff here later
 	var/randjob = rand(0,10)
 	switch(randjob)
 		if(0) //colonial marine
@@ -293,6 +287,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	//Give them some information
 	spawn(4)
 		H << "<h2>There can be only one!!</h2>"
+		H << "Use the flare in your pocket to light the way!"
 	return 1
 
 /datum/game_mode/huntergames/proc/loop_package()

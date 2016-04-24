@@ -295,6 +295,9 @@ var/global/datum/controller/gameticker/ticker
 
 	proc/equip_characters()
 		var/captainless=1
+		if(mode && istype(mode,/datum/game_mode/huntergames))
+			return
+
 		for(var/mob/living/carbon/human/player in player_list)
 			if(player && player.mind && player.mind.assigned_role)
 				if(player.mind.assigned_role == "Commander")
