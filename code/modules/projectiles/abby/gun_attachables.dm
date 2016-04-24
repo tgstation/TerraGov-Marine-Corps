@@ -52,12 +52,12 @@
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = (G.force * melee_mod / 100)
-			if(melee_mod >= 200)
-				G.attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
-			if(melee_mod > 100 && melee_mod < 200 )
-				G.attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
-			else if (melee_mod <= 100)
-				G.attack_verb = list("struck", "hit", "bashed")
+//			if(melee_mod >= 200)
+//				G.attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
+//			if(melee_mod > 100 && melee_mod < 200 )
+//				G.attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+//			else if (melee_mod <= 100)
+//				G.attack_verb = list("struck", "hit", "bashed")
 
 		if(w_class_mod != 0) G.w_class += w_class_mod
 //		if(istype(G,/obj/item/weapon/gun/projectile))
@@ -89,7 +89,7 @@
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
 			G.force = initial(G.force)
-			G.attack_verb = list("struck", "hit", "bashed")
+//			G.attack_verb = list("struck", "hit", "bashed")
 		if(w_class_mod != 0) G.w_class -= w_class_mod
 //		if(istype(G,/obj/item/weapon/gun/projectile))
 //			if(capacity_mod != 100)
