@@ -8,8 +8,8 @@
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
 	default_ammo = "/datum/ammo/energy/taser"
-	var/cell_type = "/obj/item/weapon/cell/crap"
-	var/obj/item/weapon/cell/high/cell
+	var/cell_type = "/obj/item/weapon/cell/high"
+	var/obj/item/weapon/cell/cell
 	var/charge_cost = 50
 	fire_delay = 6
 	recoil = 0
