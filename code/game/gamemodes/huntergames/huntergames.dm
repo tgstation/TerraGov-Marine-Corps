@@ -153,6 +153,14 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			good_spawns += L.loc
 		if(L.name == "god_item")
 			god_spawns += L.loc
+
+	for(var/mob/new_player/player in player_list)
+		if(player && player.ready)
+			if(player.mind)
+				player.mind.assigned_role = "ROLE"
+			else
+				if(player.client)
+					player.mind = new(player.key)
 	return 1
 
 /datum/game_mode/huntergames/post_setup()
@@ -160,25 +168,31 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	for(M in mob_list)
 		if(M.client)
 			if(istype(M,/mob/new_player))
-				if(!M:ready) continue
-			if(istype(M,/mob/dead/observer)) continue //They already observed before round start.
+				if(M:ready == 0) continue
+			if(M.z == 0 || M.z == 2) continue // Not existing, or something.
 			contestants += M
 			spawn_contestant(M)
 
 	for(var/turf/T in crap_spawns)
 		place_drop(T,"crap",0)
+
 	for(var/turf/T in good_spawns)
 		place_drop(T,"good",0)
+
 	for(var/turf/T in god_spawns)
 		place_drop(T,"god",0)
 
-	spawn (50)
+
+	spawn(10)
 		world << "<B>The current game mode is - HUNTER GAMES!</B>"
 		world << "You have been dropped off on a Weyland Yutani colony overrun with alien Predators who have turned it into a game preserve.."
 		world << "And you are both the hunter and the hunted!"
 		world << "Be the <B>last survivor</b> and <B>win glory</B>! Fight in any way you can! Team up or be a loner, it's up to you."
 		world << "Be warned though - if someone hasn't died in 3 minutes, the watching Predators get irritated!"
 		world << sound('sound/effects/siren.ogg')
+
+	spawn(1000)
+		loop_package()
 
 /datum/game_mode/huntergames/proc/spawn_contestant(var/mob/M)
 
@@ -281,26 +295,28 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		H << "<h2>There can be only one!!</h2>"
 	return 1
 
-
-/datum/game_mode/huntergames/process()
-
-	if(dropoff_timer + last_drop >= world.time && ticks_passed > 50 && !drops_disabled)
-		world << "<B>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</b>"
-		world << "<B>One lucky contestant should prepare for a supply drop in 60 seconds.</b>"
-		for(var/mob/dead in world)
-			world << "<b>--> Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</b>"
-		world << sound('sound/effects/alert.ogg')
-		last_drop = world.time
-		waiting_for_drop_votes = 1
-		spawn(600)
+/datum/game_mode/huntergames/proc/loop_package()
+	while(finished == 0)
+		if(!drops_disabled)
+			world << "<B>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</b>"
+			world << "<B>One lucky contestant should prepare for a supply drop in 60 seconds.</b>"
+			for(var/mob/dead/D in world)
+				D << "<b>--> Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</b>"
+			world << sound('sound/effects/alert.ogg')
+			last_drop = world.time
+			waiting_for_drop_votes = 1
+			sleep(600)
 			if(!supply_votes.len)
 				world << "<b>Nobody got anything! .. weird.</b>"
+				waiting_for_drop_votes = 0
+				supply_votes = null
+				supply_votes = list()
 			else
 				var/mob/living/carbon/human/winner = pick(supply_votes) //Way it works is, more votes = more odds of winning. But not guaranteed.
 				if(istype(winner) && !winner.stat)
-					world << "<B>The spectator and Predator votes have been talled, and the supply drop recipient is </B>[winner.name]<B>! Congrats!</b>"
+					world << "The spectator and Predator votes have been talled, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!"
 					world << sound('sound/effects/alert.ogg')
-					world << "The package will shortly be dropped off at: [get_area(winner)]."
+					world << "The package will shortly be dropped off at: [get_area(winner.loc)]."
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
 					if(istype(drop_zone))
 						playsound(drop_zone,'sound/effects/bamf.ogg',100,1)
@@ -314,6 +330,9 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 				supply_votes = null
 				supply_votes = list()
 				waiting_for_drop_votes = 0
+		sleep(6000)
+
+/datum/game_mode/huntergames/process()
 
 	checkwin_counter++
 	ticks_passed++

@@ -240,27 +240,30 @@
 				A.bullet_act(src)
 				return 1
 
-			if(ismob(A))
-				if(istype(A,/mob/living) && roll_to_hit(firer,A) == 1 && (!A:lying || A == original))
-					A.bullet_act(src)
-					return 1
-				else
-					permutated.Add(A)
-			else
+			if(isobj(A) || isturf(A))
 				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad
-					permutated.Add(A)
+					continue
 
-				else
-					if(isobj(A) && (A.density == 0 || layer < 3)) //We're scanning a non dense object.
-						permutated.Add(A)
-						continue
-					else if(isobj(A) && ammo)
+				if(A.density == 0 || (isobj(A) && A.layer < 3) || A.throwpass) //We're scanning a non dense object.
+
+					continue
+				if(ammo)
+					if(isobj(A))
 						ammo.on_hit_obj(A,src)
-						if(!isnull(A)) A.bullet_act(src)
-						return 1
+					else
+						ammo.on_hit_turf(A,src)
 
-					var/response = A.bullet_act(src)
-					if(response > 0 || response == null)
+				var/response = A.bullet_act(src)
+				if(response > 0 || response == null)
+					return 1
+
+			else
+				if(ismob(A))
+					if(istype(A,/mob/living) && roll_to_hit(firer,A) == 1 && (!A:lying || A == original))
+						A.bullet_act(src)
+						return 1
+					else
+						permutated.Add(A)
 						return 1
 
 		return 0 //Found nothing.
@@ -530,7 +533,7 @@
 
 //Hitting an object. These are too numerous so they're staying in their files.
 /obj/bullet_act(obj/item/projectile/P)
-	if(!CanPass(P,get_turf(src),src.layer))
+	if(!CanPass(P,get_turf(src),src.layer) && density)
 		src.bullet_ping(P)
 		return 1
 	else
@@ -551,7 +554,7 @@
 			health -= round(P.damage/2)
 			if (health > 0)
 				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-				return 0
+				return 1
 			else
 				visible_message("<span class='warning'>[src] breaks down!</span>")
 				destroy()
@@ -559,6 +562,27 @@
 		return 1
 	return 0
 
+/obj/structure/m_barricade/bullet_act(obj/item/projectile/P)
+	var/chance = 0
+	if(P.dir == reverse_direction(dir))
+		chance = 95
+	else if (P.dir == dir)
+		chance = 2
+	else
+		chance = 25
+
+	if(prob(chance))
+		src.bullet_ping(P)
+		health -= round(P.damage/5)
+		if (health > 0)
+			visible_message("<span class='warning'>[P] hits \the [src]!</span>")
+			return 1
+		else
+			visible_message("<span class='warning'>[src] breaks down!</span>")
+			destroy()
+			return 1
+
+	return 0
 
 //Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals
 /proc/get_adj_simple(atom/Loc1 as turf|mob|obj,atom/Loc2 as turf|mob|obj)

@@ -105,8 +105,6 @@ var/global/datum/controller/gameticker/ticker
 		job_master.ResetOccupations()
 		return 0
 
-	//Configure mode and assign player to special mode stuff
-	job_master.DivideOccupations() //Distribute jobs
 	var/can_continue = src.mode.pre_setup()//Setup special modes
 	if(!can_continue)
 		del(mode)
@@ -125,6 +123,8 @@ var/global/datum/controller/gameticker/ticker
 	else
 		src.mode.announce()
 
+	//Configure mode and assign player to special mode stuff
+	job_master.DivideOccupations() //Distribute jobs
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
