@@ -225,10 +225,9 @@
 			if(reload_sound) playsound(user, reload_sound, 100, 1)
 			magazine.loc = src //Jam that sucker in there.
 			update_icon()
-			if(!ammo || !istype(ammo,ammopath))
-				if(ammo) del(ammo)
-				ammo = new ammopath()
-				ammo.current_gun = src
+			if(ammo) del(ammo)
+			ammo = new ammopath()
+			ammo.current_gun = src
 		else
 			user << "Your reload was interrupted."
 			return 0
@@ -417,11 +416,11 @@
 		if(twohanded && !istype(O))
 			user << "\red You need a more secure grip to fire this weapon!"
 			return
-		if(isYautja(user))
-			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-				var/obj/item/clothing/gloves/yautja/G = user.hands
-				if(G.cloaked)
-					G.decloak(user)
+		if(user:gloves)
+			var/obj/item/clothing/gloves/yautja/Y = user:gloves
+			if(istype(Y) && Y.cloaked)
+				Y.decloak(user)
+				return 0
 
 		add_fingerprint(user)
 
@@ -470,11 +469,11 @@
 			if(isnull(src) || isnull(target)) //Something disappeared/dropped in between.
 				click_empty(user)
 				break
-/*
+	/*
 			if(istype(user,/mob/living/carbon/human) && src.loc != user) //Had a human. dont need em anyway really
 				click_empty(user)
 				break
-*/
+	*/
 			if(!load_into_chamber()) //This also checks for a null magazine, and loads the chamber with a round.
 				click_empty(user)
 				break

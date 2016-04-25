@@ -41,33 +41,35 @@
 	if(!spit_type)
 		src << "You will now spit corrosive acid globs."
 		spit_type = 1
+		ammo.icon_state = "neurotoxin"
+		ammo.damage = 10
+		ammo.stun = 0
+		ammo.weaken = 0
+		ammo.shell_speed = 1
 		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
-		if(spit_projectile)
-			del(spit_projectile)
-		spit_projectile =  new /datum/ammo/xeno/spit/burny()
 		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
 			//Bigger and badder!
-			spit_projectile.damage += 15
-		else if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-			spit_projectile.shell_speed = 2 //Super fast!
+			ammo.damage += 15
+		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
+			ammo.damage += 5
+			ammo.shell_speed = 2 //Super fast!
 	else
 		src << "You will now spit stunning neurotoxin instead of acid."
 		spit_type = 0
+		ammo.icon_state = "toxin"
+		ammo.damage = 0
+		ammo.stun = 1
+		ammo.weaken = 2
+		ammo.shell_speed = 1
 		spit_delay = initial(spit_delay)
-		if(spit_projectile)
-			del(spit_projectile)
-		spit_projectile = new /datum/ammo/xeno/spit()
 		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
 			//Bigger and badder!
-			spit_projectile.stun += 3
-			spit_projectile.weaken += 3
-		else if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-			spit_projectile.stun += 2
-			spit_projectile.weaken += 2
-			spit_projectile.shell_speed = 2 //Super fast!
+			ammo.stun += 2
+			ammo.weaken += 2
 		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-			spit_projectile.stun += 1 //Meh?
-			spit_projectile.weaken += 1
+			ammo.stun += 1
+			ammo.weaken += 1
+			ammo.shell_speed = 2 //Super fast!
 	return
 
 /mob/living/carbon/Xenomorph/proc/plant()
@@ -288,7 +290,7 @@
 		usr << "You can't spit from here!"
 		return
 
-	if(!spit_projectile) return
+	if(!ammo) return
 
 	if(!T)
 		var/list/victims = list()
@@ -308,8 +310,6 @@
 			if(!check_plasma(50))
 				return
 
-
-
 		var/turf/Turf = get_turf(src)
 		var/turf/Target_Turf = get_turf(T)
 
@@ -325,14 +325,14 @@
 		var/obj/item/projectile/A = new(Turf)
 		A.permutated.Add(src)
 		A.def_zone = get_organ_target()
-		A.ammo = spit_projectile //This always must be set.
+		A.ammo = ammo //This always must be set.
 		A.icon = A.ammo.icon
 		A.icon_state = A.ammo.icon_state
 		A.damage = A.ammo.damage
 		A.damage_type = A.ammo.damage_type
 
 		spawn()
-			A.fire_at(T,src,src,A.ammo.max_range,A.ammo.shell_speed) //Ptui!
+			A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed) //Ptui!
 //		src.next_move += 2 //Lags you out a bit, spitting.
 		has_spat = 1
 		spawn(spit_delay)

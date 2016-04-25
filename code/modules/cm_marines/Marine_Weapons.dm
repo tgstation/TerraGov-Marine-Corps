@@ -430,14 +430,14 @@
 /obj/item/rocket_shell/ap
 	name = "armor piercing rocket shell"
 	desc = "A dense explosive designed to be fired from a launcher. Serious damage, but not much fragmentation."
-	icon_state = "ap_rocket"
+	icon_state = "rocket"
 	projectile_type = "/obj/item/missile/ap"
 
 /obj/item/missile
 	name = "high explosive rocket"
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "rocket"
-	var/primed = null
+	var/primed = 0
 	throwforce = 30
 	pass_flags = PASSTABLE
 
@@ -454,7 +454,7 @@
 
 /obj/item/missile/ap
 	name = "armor piercing rocket"
-	icon_state = "ap_rocket"
+	icon_state = "rocket"
 	throwforce = 200
 
 	throw_impact(atom/hit_atom)
