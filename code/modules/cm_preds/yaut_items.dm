@@ -7,11 +7,11 @@
 	item_state = "glaive"
 	name = "Yautja War Glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
-	force = 28
+	force = 38
 	w_class = 4.0
 	slot_flags = SLOT_BACK
 	force_unwielded = 28
-	force_wielded = 50
+	force_wielded = 60
 	throwforce = 50
 	throw_speed = 3
 	edge = 1
@@ -20,6 +20,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1
+	attack_speed = 12 //Default is 7.
 
 /obj/item/weapon/twohanded/glaive/update_icon()
 	if(wielded)
@@ -35,7 +36,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "Yautja Clan Mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 60, bullet = 85, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
+	armor = list(melee = 80, bullet = 95, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
@@ -109,7 +110,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 50, bullet = 55, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 60, bullet = 75, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/harpoon, /obj/item/weapon/twohanded)
@@ -120,7 +121,7 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 65, bullet = 80, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 65, bullet = 85, laser = 45, energy = 50, bomb = 40, bio = 50, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
@@ -151,13 +152,34 @@
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
 
+	New()
+		..()
+		if(usr)
+			var/obj/item/weapon/wristblades/get_other_hand = usr.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				attack_speed = round(initial(attack_speed) / 2) //Much faster if a second wristblade is equipped.
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+
 	dropped(var/mob/living/carbon/human/mob)
-		playsound(mob,'sound/weapons/wristblades_off.ogg', 40, 1)
+		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
 		mob << "The wrist blades retract back into your armband."
+		if(mob)
+			var/obj/item/weapon/wristblades/get_other_hand = mob.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+
 		del(src)
 
 	afterattack(obj/O as obj, mob/user as mob, proximity)
 		if(!proximity || !user) return
+		if(user)
+			var/obj/item/weapon/wristblades/get_other_hand = user.get_inactive_hand()
+			if(get_other_hand && istype(get_other_hand))
+				attack_speed = round(initial(attack_speed) / 2)
+				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+			else
+				attack_speed = initial(attack_speed)
+
 		if (istype(O, /obj/machinery/door/airlock) && get_dist(src,O) <= 1)
 			var/obj/machinery/door/airlock/D = O
 			if(!D.density)
@@ -171,10 +193,21 @@
 				user << "It's welded shut. You won't be able to rip it open."
 				return
 
-			user << "\blue You jam a wristblade into [O] and strain to rip it open."
-			playsound(user,'sound/weapons/wristblades_hit.ogg', 40, 1)
-			if(do_after(user,40))
+			user << "\blue You jam \the [src] into [O] and strain to rip it open."
+			playsound(user,'sound/weapons/wristblades_hit.ogg', 60, 1)
+			if(do_after(user,30))
 				D.open(1)
+
+/obj/item/weapon/wristblades/scimitar
+	name = "Yautja Wrist Scimitar"
+	desc = "An enormous serrated blade that extends from the gauntlet."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "scim"
+	item_state = "scim"
+	force = 62
+	attack_speed = 20 //slow!
+	hitsound = 'sound/weapons/pierce.ogg'
+
 
 /obj/item/clothing/shoes/yautja
 	name = "Yautja Armored Boots"
@@ -237,6 +270,7 @@
 	var/exploding = 0
 	var/inject_timer = 0
 	var/cloak_timer = 0
+	var/upgrades = 0
 
 	emp_act(severity)
 		charge -= (severity * 500)
@@ -259,6 +293,9 @@
 		M.update_power_display(perc)
 		return 1
 
+
+//DEFER
+
 	//Should put a cool menu here, like ninjas.
 	verb/wristblades()
 		set name = "Use Wrist Blades"
@@ -268,42 +305,33 @@
 		if(!usr || usr.stat) return
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
-		if(!isYautja(usr))
+		if(!isYautja(M))
 			usr << "You have no idea how to work these things."
 			return
-		var/obj/item/weapon/wristblades/R = usr.r_hand
-		var/obj/item/weapon/wristblades/L = usr.l_hand
-		if(!istype(R) && !istype(L))
+		var/obj/item/weapon/wristblades/R = M.get_active_hand()
+		if(R && istype(R)) //Turn it off.
+			M << "You retract your wrist blade."
+			playsound(M.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
-
-		if(blades_active) //Turn it off.
-			var/found = 0
-			if(R && istype(R))
-				found = 1
-				usr.r_hand = null
-				if(R) del(R)
-				usr.update_inv_r_hand()
-			if(L && istype(L))
-				found = 1
-				usr.l_hand = null
-				if(L) del(L)
-				usr.update_inv_l_hand()
-			if(found)
-				usr << "You retract your wrist blades."
-				playsound(src.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
-				blades_active = 0
+			M.drop_item(R)
+			if(R) del(R) //Just to make sure. The drop should take care of it though.
 			return
-		else //Turn it on!
-			if(usr.get_active_hand())
-				usr << "Your hand must be free to activate your wrist blades."
+		else
+			if(R)
+				M << "Your hand must be free to activate your wrist blade."
 				return
 			if(!drain_power(usr,50)) return
-			var/obj/item/weapon/wristblades/W = new(usr)
-			usr.put_in_active_hand(W)
+
+			var/obj/item/weapon/wristblades/W
+			if(upgrades > 1)
+				W = new /obj/item/weapon/wristblades/scimitar(M)
+
+			M.put_in_active_hand(W)
 			blades_active = 1
 			usr << "You activate your wrist blades."
 			playsound(src,'sound/weapons/wristblades_on.ogg', 40, 1)
 			usr.update_icons()
+
 		return 1
 
 	verb/cloaker()
@@ -514,6 +542,35 @@
 		for(var/obj/item/weapon/grenade/spawnergrenade/smartdisc/D in range(10))
 			D.throw_at(usr,10,1,usr)
 
+/obj/item/clothing/gloves/yautja/proc/translate()
+	set name = "Translator"
+	set desc = "Emit a message from your bracer to those nearby."
+	set category = "Yautja"
+
+	if(!usr || usr.stat) return
+
+	if(!isYautja(usr))
+		usr << "You have no idea how to work these things."
+		return
+
+	var/msg = input(usr,"Your bracer beeps and waits patiently for you to input your message.","Translator","") as text
+	if(!msg || msg == "" || isnull(msg)) return
+
+	msg = sanitize(msg)
+	msg = replacetext(msg, "o", "¤")
+	msg = replacetext(msg, "p", "þ")
+	msg = replacetext(msg, "l", "£")
+	msg = replacetext(msg, "s", "§")
+	msg = replacetext(msg, "u", "µ")
+	msg = replacetext(msg, "b", "ß") //We're ninjas now? .. fine
+
+	spawn(10)
+		if(!drain_power(usr,50)) return //At this point they've upgraded.
+		var/mob/Q
+		for(Q in hearers(usr))
+			if(Q.stat == 1) continue //Unconscious
+			if(isXeno(Q) && upgrades != 2) continue
+			Q << "A strange voice says, '[msg]'."
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
@@ -542,36 +599,63 @@
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	canremove = 0
 	w_class = 5
-	fire_delay = 5
+	fire_delay = 3
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
-	var/projectile_type = "/obj/item/projectile/beam/yautja1"
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+
+	New()
+		ammo = new /datum/ammo/energy/yautja()
+		..()
+
+	Del()
+		del(ammo)
+		ammo = null
+		source = null
+		return ..()
 
 	attack_self(mob/living/user as mob)
 		switch(mode)
 			if(2)
 				mode = 0
-				charge_cost = 70
+				charge_cost = 50
 				fire_sound = 'sound/weapons/lasercannonfire.ogg'
 				user << "\red \The [src.name] is now set to fire light plasma bolts."
-				projectile_type = "/obj/item/projectile/beam/yautja1"
-				fire_delay = 4
+				ammo.name = "plasma bolt"
+				ammo.icon_state = "ion"
+				ammo.damage = 10
+				ammo.ignores_armor = 1
+				ammo.stun = 2
+				ammo.weaken = 2
+				fire_delay = 8
+				ammo.shell_speed = 1
 			if(0)
 				mode = 1
-				charge_cost = 120
+				charge_cost = 100
 				fire_sound = 'sound/weapons/emitter2.ogg'
-				user << "\red \The [src.name] is now set to fire medium plasma bolts."
-				projectile_type = "/obj/item/projectile/beam/yautja2"
-				fire_delay = 5
+				user << "\red \The [src.name] is now set to fire medium plasma blasts."
+				fire_delay = 20
+				ammo.name = "plasma blast"
+				ammo.icon_state = "pulse1"
+				ammo.damage = 25
+				ammo.ignores_armor = 1
+				ammo.stun = 0
+				ammo.weaken = 0
+				ammo.shell_speed = 2 //Lil faster
 			if(1)
 				mode = 2
-				charge_cost = 500
-				fire_delay = 30
+				charge_cost = 300
+				fire_delay = 100
 				fire_sound = 'sound/weapons/pulse.ogg'
-				user << "\red \The [src.name] is now set to fire heavy plasma bolts."
-				projectile_type = "/obj/item/projectile/beam/yautja3"
+				user << "\red \The [src.name] is now set to fire heavy plasma spheres."
+				ammo.name = "plasma eradication sphere"
+				ammo.icon_state = "bluespace"
+				ammo.damage = 30
+				ammo.ignores_armor = 1
+				ammo.stun = 0
+				ammo.weaken = 0
+				ammo.shell_speed = 1
 		return
 
 	dropped(var/mob/living/carbon/human/mob)
@@ -581,14 +665,18 @@
 		del(src)
 		return
 
-
 	load_into_chamber()
 		if(in_chamber)	return 1
 		if(!source)	return 0
-		if(!projectile_type)	return 0
+		if(!ammo)	return 0
 		if(!usr) return 0 //somehow
 		if(!source.drain_power(usr,charge_cost)) return 0
-		in_chamber = new projectile_type(src)
+		in_chamber = new /obj/item/projectile(src)
+		in_chamber.ammo = ammo
+		in_chamber.damage = ammo.damage
+		in_chamber.damage_type = ammo.damage_type
+		in_chamber.icon_state = ammo.icon_state
+		in_chamber.dir = usr.dir
 		return 1
 
 	afterattack(atom/target, mob/user , flag)
@@ -599,29 +687,7 @@
 					var/obj/item/clothing/gloves/yautja/Y = M.gloves
 					var/perc_charge = (Y.charge / Y.charge_max * 100)
 					M.update_power_display(perc_charge)
-		..()
-
-/obj/item/projectile/beam/yautja1
-	name = "Plasma Caster Spark"
-	icon_state = "bluelaser"
-	damage = 22
-	stun = 5
-	weaken = 2
-
-/obj/item/projectile/beam/yautja2
-	name = "Plasma Caster Bolt"
-	icon_state = "pulse1"
-	damage = 35
-
-/obj/item/projectile/beam/yautja3
-	name = "Plasma Caster Blast"
-	icon_state = "pulse1_bl"
-	damage = 45
-
-	on_hit(var/atom/target, var/blocked = 0)
-		if(!istype(target, /turf/simulated/wall))
-			explosion(target,-1,-1,1,2)
-		return 1
+		return ..()
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
 /obj/item/weapon/storage/backpack/yautja
@@ -768,11 +834,10 @@
 	item_state = "predspeargun"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ejectshell = 0                          // No spent shells.
-	mouthshoot = 1                          // No suiciding with this weapon, causes runtimes.
-	fire_sound_text = "a solid thunk"
-	fire_delay = 26
-	release_force = 16
-
+	mouthshoot = 1                         // No suiciding with this weapon, causes runtimes.
+	w_class = 3 //Fits in yautja bags.
+	fire_delay = 32
+	var/fired = 0
 	slot_flags = SLOT_BELT
 	var/slots = 3
 	var/slots_filled = 0
@@ -782,14 +847,16 @@
 			user << "It can only fit three."
 			return
 
-		if (istype(W,/obj/item/weapon/arrow) || istype(W,/obj/item/weapon/twohanded/spear) || istype(W,/obj/item/weapon/harpoon))
-			user.drop_item()
+		if (istype(W,/obj/item/weapon/twohanded/spear) || istype(W,/obj/item/weapon/harpoon))
+			user.drop_from_inventory(W)
+			W.loc = src
 			if(W.throwforce > 15)
 				W.throwforce = initial(W.throwforce) - 15 //Reel this sucker back a bit.
-			W.loc = src
 			slots_filled++
 			user.visible_message("[user] slides [W] into [src].","You slide [W] into [src].")
 			icon_state = "speargun-[slots_filled]"
+			if(!in_chamber)
+				load_into_chamber()
 			return
 		else
 			return ..()
@@ -814,17 +881,38 @@
 			user << "You unload \the [src], spilling its contents on the ground."
 		return
 
-	Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-		if(!..()) return //Only do this on a successful shot.
-		if(isYautja(user))
-			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-				var/obj/item/clothing/gloves/yautja/G = user.hands
-				if(G.cloaked)
-					G.decloak(user)
+	afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+		if(get_dist(user,A) <= 2)
+			user << "\red A warning light blinks on \the [src]. Too close!"
+			return
+
+		if(!isYautja(user))
+			user << "\red \The [src] does not respond to you!"
+			return
+
+		if(fired) return
+
+		if(load_into_chamber() == 0) //This takes care of the projectile.
+			user << "No projectiles loaded! Try adding a spear or harpoon."
+			return
+
+		if(!in_chamber) return //The previous should take care of this.
+
+		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+			var/obj/item/clothing/gloves/yautja/G = user.hands
+			if(G.cloaked)
+				G.decloak(user)
 
 		if(slots_filled) slots_filled--
 		if(slots_filled >= 0)
 			icon_state = "speargun-[slots_filled]"
+
+		in_chamber.loc = get_turf(user)
+		in_chamber.throw_at(A,8,1,user)
+		fired = 1
+		spawn(fire_delay)
+			fired = 0
+		return
 
 /obj/item/weapon/melee/yautja_chain
 	name = "Yautja Chainwhip"
@@ -868,8 +956,55 @@
 	throw_range = 6
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
+	attack_self(mob/living/carbon/human/user as mob)
+		if(!isYautja(user)) return
+		if(!hasorgans(user)) return
 
+		var/obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja/H = user.get_inactive_hand()
+		var/pain_factor = 1 //Preds don't normally feel pain. This is an exception.
+
+		if(!istype(H) || !H.reagents.total_volume)
+			H = null
+
+		user << "\red You begin using your knife to rip shrapnel out. Hold still. This will probably hurt."
+
+		if(do_after(user,50))
+			if(isnull(H)) //No crystal, just get the shrapnel out of us.
+				for(var/datum/organ/external/organ in user.organs)
+					for(var/obj/item/weapon/shard/shrapnel/S in organ.implants)
+						if(istype(S)) user << "\red You dig shrapnel out of your [organ.name]."
+						S.loc = user.loc
+						organ.implants -= S
+						pain_factor++
+						organ.take_damage(rand(2,5), 0, 0)
+						organ.status |= ORGAN_BLEEDING
+
+					for(var/datum/organ/internal/I in organ.internal_organs) //Now go in and clean out the internal ones.
+						for(var/obj/item/weapon/shard/shrapnel/Q in I)
+							Q.loc = user.loc
+							I.take_damage(rand(1,2), 0, 0)
+							pain_factor += 3 //OWWW! No internal bleeding though.
+
+				if(pain_factor < 3)
+					user << "Digging that out barely hurt at all."
+				else if(pain_factor >= 3 && pain_factor < 6)
+					user << "\red That hurt like hell!!"
+				else if(pain_factor >= 6)
+					user.emote("roar")
+
+			else //Yay crystal as well. Heals all internal damage.
+				user << "\red You crush the <b>healing crystal</b> into a fine powder and sprinkle it on your injuries. Hold still to heal the rest!"
+				for(var/datum/organ/external/organ in user.organs)
+					for(var/datum/organ/internal/current_organ in organ.internal_organs)
+						current_organ.rejuvenate()
+				user.drop_from_inventory(H)
+				del(H)
+				src.attack_self(user) //Do it again! No crystal this time though.
+		else
+			user << "You were interrupted!"
+		return
 
 /obj/item/weapon/melee/yautja_sword
 	name = "Yautja Hunting Blade"
@@ -880,12 +1015,11 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 36
+	force = 38
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharp = 1
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
 		if(!isYautja(user))
@@ -919,7 +1053,7 @@
 	sharp = 1
 	force = 32
 	w_class = 4.0
-	throwforce = 18
+	throwforce = 24
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -949,15 +1083,16 @@
 /obj/item/weapon/gun/launcher/spikethrower
 	name = "Yautja Spike Rifle"
 	desc = "A long-barreled spike thrower, fashioned in the manner of a long harpoon rifle. Carried by Yautja who wish to maim their prey from a distance."
+	w_class = 5
 	var/last_regen = 0
 	var/spike_gen_time = 200
-	var/max_spikes = 3
-	var/spikes = 3
-	release_force = 12
+	var/max_spikes = 5
+	var/spikes = 5
+	var/fired = 0
+	fire_delay = 9
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
-	fire_sound_text = "a strange noise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
 	zoomdevicename = "scope"
 
@@ -979,7 +1114,7 @@
 
 /obj/item/weapon/gun/launcher/spikethrower/process()
 
-	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)
+	if(spikes < max_spikes && world.time > last_regen + spike_gen_time && prob(25))
 		spikes++
 		last_regen = world.time
 		update_icon()
@@ -994,38 +1129,55 @@
 /obj/item/weapon/gun/launcher/spikethrower/emp_act(severity)
 	return
 
-/obj/item/weapon/gun/launcher/spikethrower/special_check(user)
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		if(!isYautja(H))
-			user << "\red \The [src] does not respond to you!"
-			return 0
-	return 1
-
-/obj/item/weapon/gun/launcher/spikethrower/update_release_force()
-	return
-
 /obj/item/weapon/gun/launcher/spikethrower/load_into_chamber()
 	if(in_chamber) return 1
 	if(spikes < 1) return 0
 
-	in_chamber = new /obj/item/weapon/spike(src)
+	in_chamber = new /obj/item/weapon/spike/yautja(src)
+	spikes--
 	return 1
 
 /obj/item/weapon/gun/launcher/spikethrower/afterattack(atom/target, mob/user , flag)
-	if(isYautja(user))
-		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-			var/obj/item/clothing/gloves/yautja/G = user.hands
-			if(G.cloaked)
-				G.decloak(user)
-	return ..()
+	if(!isYautja(user))
+		user << "\red \The [src] does not respond to you!"
+		return 0
+
+	if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+		var/obj/item/clothing/gloves/yautja/G = user.hands
+		if(G.cloaked)
+			G.decloak(user)
+
+	if(fired) return
+
+	if(load_into_chamber() == 0) //This takes care of the projectile.
+		user << "No projectiles loaded! Try adding a spear or harpoon."
+		return
+
+	if(!in_chamber) return //The previous should take care of this.
+
+	if(istype(user.hands,/obj/item/clothing/gloves/yautja))
+		var/obj/item/clothing/gloves/yautja/G = user.hands
+		if(G.cloaked)
+			G.decloak(user)
+
+	spikes--
+	icon_state = "spike-[spikes]"
+
+	in_chamber.loc = get_turf(user)
+	in_chamber.throw_at(target,20,4,user)
+
+	fired = 1
+	spawn(fire_delay)
+		fired = 0
+
+	return
 
 /obj/item/weapon/spike/yautja
-	name = "spike"
+	name = "alloy spike"
 	desc = "It's about a foot of weird silver metal with a wicked point. It begins to melt as soon as you examine it."
 	sharp = 1
 	edge = 0
-	throwforce = 25
+	throwforce = 24
 	w_class = 2
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "spike"
@@ -1240,251 +1392,7 @@
 		else
 			spawn(10)
 				timer = 0
-
-/obj/item/y_hologram
-	name = "hologram"
-	desc = "A hologram."
-	//icon = 'icons/Predator/items.dmi' //Doesn't really matter
-	//icon_state = "" //Nothing!
-	anchored = 1
-	density = 0
-	unacidable = 1
-	var/shock_cooldown = 0
-	var/deleting = 0
-	var/obj/item/device/yautja_holoemitter/controller
-	var/image/image1
-	var/list/i_overlays = list()
-	var/holo_type = "human"
-	var/list/phrases_human =list("Help me!","Oh god, help!","I'm injured!","MEDIC!!","HELP!","HEEEEELP!","MAN DOWN!","Oh god it hurts!","I can't feel my legs!","I can't feel my ass!","H..help.. me..","H..help..!")
-	var/list/emotes_human =list("gasps","gasps","gasps","screams","chokes","groans","moans","collapses")
-	var/list/phrases_xeno =list("HELP!","I'M STUCK!","PULL ME!","I need weeds!!","HELP FAST!", "I'm down!!","Help a sister out!","FUCK! HELP!")
-	var/chatter_cooldown = 5
-	var/chat_timer = 0
-
-	New()
-		..()
-		processing_objects.Add(src)
-
-	Click(location,control,params)
-		if(!usr) return //somehow
-		var/mob/living/carbon/M = usr
-		if(!istype(M)) return ..()
-		if(!Adjacent(M)) return ..()
-
-		if(isYautja(M))
-			Die()
-			return
-
-		if(!shock_cooldown) //Just to stop people somehow multi clicking on it.
-			M.electrocute_act(rand(8,20),src) //Dmg, src. This already checks insulated gloves.
-			shock_cooldown = 1
-		Die()
-		return
-
-	proc/Die()
-		if(controller)
-			controller.start_cooldown()
-			controller.hologram_active = 0
-		if(!deleting) deleting = 1
-		visible_message("\The [src] begins to fade and become indistinct..")
-		visible_message("\The [src] disappears!")
-		del(src)
-
-	Del() //If it gets deleted in other ways besides dying, it needs to fix all this shit up too.
-		if(!deleting)
-			deleting = 1
-			Die()
-		processing_objects.Remove(src)
-		return ..()
-
-	process()
-		chat_timer++
-		if(chat_timer == chatter_cooldown && isturf(src.loc) && prob(80))
-			chat_timer = 0
-			if(holo_type == "human")
-				if(prob(70))
-					visible_message("[src.name] says, \"[pick(phrases_human)]\"")
-				else
-					visible_message("[src.name] [pick(emotes_human)][pick(".","!")]")
-			else
-				visible_message("[src.name] hisses, \"[pick(phrases_xeno)]\"")
-
-	bullet_act(var/obj/item/projectile/Proj)
-		if(prob(50)) //if it actually hits, 50% chance of it just disappearing.
-			Die()
-		else
-			return //Nothing happens!
-
-/obj/item/device/yautja_holoemitter
-	name = "Yautja holoemitter"
-	desc = "A controller device for holographic decoys. Use it in hand to activate it."
-	icon = 'icons/Predator/items.dmi'
-	icon_state = "emitter-notarget"
-	flags = FPRINT | TABLEPASS
-	w_class = 2
-	force = 1
-	throwforce = 1
-	unacidable = 1
-
-	var/i_icon
-	var/i_icon_state
-	var/list/i_overlays = list()
-	var/holo_type = "human"
-	var/mobname = ""
-	var/mobdesc = ""
-	var/hologram_active = 0
-	var/laying_down = 1
-	var/talk_timer = 5
-	var/cooldown = 1000 //~1 minute
-	var/cooldown_timer = 0
-	var/obj/item/y_hologram/hologram = null
-
-	attack_self(mob/user as mob)
-		if(!isYautja(user))
-			user << "You fiddle with some buttons, but nothing happens."
-			return
-
-		user.set_machine(src)
-		var/dat = "<B>Holo-Emitter Settings</b><BR><BR>"
-		dat += "Hologram is currently: "
-		if(!mobname || isnull(mobname) || mobname == "" )
-			dat += "-- NO HOLOGRAM DATA --<BR>"
-		else
-			if(hologram_active)
-				dat += "<B>ACTIVE</B> <A href='?src=\ref[src];inactivate=1'>(Inactivate)</A><BR>"
-			else
-				dat += "<B>INACTIVE</B> <A href='?src=\ref[src];activate=1'>(Activate)</A><BR>"
-
-		if(laying_down)
-			dat += "Toggle laying state: <A href='?src=\ref[src];standing=1'>Currently Laying</A><BR>"
-		else
-			dat += "Toggle laying state: <A href='?src=\ref[src];laying=1'>Currently Standing</A><BR>"
-
-		dat += "Chatterbox Timer: Every <A href='?src=\ref[src];timer=1'>[talk_timer]</A> Seconds<BR>"
-		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
-		user << browse(dat, "window=hemitter")
-		onclose(user, "hemitter")
-		return
-
-	Topic(href,href_list)
-		if(usr.stat || usr.restrained())
-			return
-		if(Adjacent(usr) || src.loc == usr)
-			usr.set_machine(src)
-			if(href_list["inactivate"])
-				if(!hologram_active)
-					usr << "There's no hologram up."
-					return
-				cooldown_timer = cooldown
-				hologram_active = 0
-				usr << "Current hologram: [mobname] wiped."
-				mobname = ""
-				update_icon()
-				if(hologram)
-					hologram.Die()
-			else if(href_list["activate"])
-				if(hologram_active)
-					usr << "There's already one active."
-					return
-				if(!mobname || isnull(mobname) || mobname == "" )
-					usr << "You have to scan a target with it first."
-					return
-				if(!isturf(usr.loc))
-					usr << "Stand on the floor, you locker jockey."
-					return
-
-				if(cooldown_timer)
-					usr << "It's still on cooldown since the last time you used it."
-					return
-
-				hologram_active = 1
-				hologram = new(usr.loc)
-				hologram.visible_message("<B>An image of [mobname] springs to life!</B>")
-				hologram.name = mobname
-				hologram.desc = mobdesc
-				hologram.icon = file(i_icon)
-				hologram.icon_state = i_icon_state
-				hologram.overlays.Cut()
-				hologram.overlays = i_overlays.Copy()
-				hologram.controller = src
-				hologram.holo_type = holo_type
-				cooldown_timer = 1
-				spawn(cooldown)
-					cooldown_timer = 0
-
-				if(laying_down && holo_type != "xeno")
-					var/matrix/M = matrix()
-					M.Turn(90)
-					M.Translate(1,-6)
-					hologram.transform = M
-
-			else if (href_list["standing"])
-				laying_down = 0
-				usr << "Image is now standing. This will not come into effect until the next hologram."
-			else if (href_list["laying"])
-				laying_down = 1
-				usr << "Image is now laying down."
-			else if (href_list["timer"])
-				var/choice = input("Set the chatter timer to how many seconds?","Timer",5)
-				if(!isnum(choice))
-					talk_timer = initial(talk_timer)
-				else
-					if(choice > 60) choice = 60
-					if(choice < 5) choice = 5
-					talk_timer = choice
-			else
-				usr << browse(null, "window=hemitter")
-				return
-
-			add_fingerprint(usr)
-			updateUsrDialog()
-		else
-			usr << browse(null, "window=hemitter")
-			return
-		return
-
-	proc/scan_target(var/mob/living/carbon/M)
-		if(!M || !istype(M)) return 0
-		if(!ishuman(M) && !isXeno(M)) return 0
-
-		i_overlays.Cut()
-		if(isXeno(M))
-			holo_type = "xeno"
-			if(M:big_xeno)
-				i_icon = "icons/Xeno/2x2_Xenos.dmi"
-			else
-				i_icon = "icons/Xeno/1x1_Xenos.dmi"
-		else
-			holo_type = "human"
-			i_icon = M.icon_state
-			if(!i_icon)
-				i_icon = "icons/mob/human.dmi"
-
-		if(holo_type == "xeno" && laying_down)
-			i_icon_state = "[M:caste] Knocked Down"
-			for(var/I in M:overlays_lying)
-				i_overlays += I
-		else//We'll just rotate it later.
-			for(var/I in M:overlays_standing)
-				i_overlays += I
-
-			i_icon_state = M.icon_state
-		mobname = M.real_name
-		mobdesc = "This is totally a real creature named [mobname]. Honest. Ignore the electrical crackles and weird glowing."
-		update_icon()
-		return 1
-
-	update_icon()
-		if(mobname == "")
-			icon_state = initial(icon_state)
-		else
-			icon_state = "emitter-[holo_type]"
-
-	proc/start_cooldown()
-		cooldown_timer = 1
-		spawn(cooldown)
-			cooldown_timer = 0
-
+/*
 /obj/item/weapon/gun/launcher/netgun
 	name = "Yautja Net Gun"
 	desc = "A short, wide-barreled weapon that fires weighted, difficult-to-remove nets or a grappling rope to snap back unwary enemies."
@@ -1556,6 +1464,7 @@
 	flags = TABLEPASS
 	pass_flags = PASSTABLE
 	var/state = 1 //"bunched up" state
+	var/fire_mode = 1//1: net. 0: grab
 
 	attack_hand(user as mob)
 		return
@@ -1578,3 +1487,4 @@
 	throw_impact(atom/hit_atom)
 		..()
 		if(!istype(hit_atom,/mob/living/carbon)) return 0
+*/

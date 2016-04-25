@@ -89,9 +89,9 @@
 	return
 
 /obj/machinery/turret/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damage_type == HALLOSS)
+	if(Proj.ammo.damage_type == HALLOSS)
 		return
-	take_damage(Proj.damage)
+	take_damage(Proj.ammo.damage)
 	..()
 	return
 
@@ -240,6 +240,9 @@
 	return
 
 /obj/machinery/turret/proc/shootAt(var/atom/movable/target)
+	//TODO: THIS
+	return
+	/*
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)
 	if (!T || !U)
@@ -270,7 +273,7 @@
 	spawn( 0 )
 		A.process()
 	return
-
+*/
 
 /obj/machinery/turret/proc/isDown()
 	return (invisibility!=0)
@@ -299,12 +302,11 @@
 				popping = 0
 
 /obj/machinery/turret/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damage_type == HALLOSS)
+	if(Proj.ammo.damage_type == HALLOSS)
 		return
-	src.health -= Proj.damage
+	src.health -= Proj.ammo.damage
 	..()
-	if(prob(45) && Proj.damage > 0) src.spark_system.start()
-	del (Proj)
+	if(prob(45) && Proj.ammo.damage > 0) src.spark_system.start()
 	if (src.health <= 0)
 		src.die()
 	return
@@ -516,9 +518,9 @@
 
 
 	bullet_act(var/obj/item/projectile/Proj)
-		if(Proj.damage_type == HALLOSS)
+		if(Proj.ammo.damage_type == HALLOSS)
 			return
-		take_damage(Proj.damage)
+		take_damage(Proj.ammo.damage)
 		..()
 		return
 

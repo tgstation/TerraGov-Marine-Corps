@@ -146,14 +146,14 @@
 
 	bullet_act(var/obj/item/projectile/Proj)
 		if(!Proj)	return
-		switch(Proj.damage_type)
+		switch(Proj.ammo.damage_type)
 		 if(BRUTE)
-			 health -= (Proj.damage/brute_resist)
+			 health -= (Proj.ammo.damage/brute_resist)
 		 if(BURN)
-			 health -= (Proj.damage/fire_resist)
+			 health -= (Proj.ammo.damage/fire_resist)
 
 		update_icon()
-		return 0
+		return 1
 
 
 	attackby(var/obj/item/weapon/W, var/mob/user)

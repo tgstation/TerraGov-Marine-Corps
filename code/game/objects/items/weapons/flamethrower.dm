@@ -1,7 +1,7 @@
 /obj/item/weapon/flamethrower
 	name = "M240 Incinerator Unit"
 	desc = "M240 Incinerator Unit has proven to be one of the most effective weapons at clearing out soft-targets. Carried by specialists, this weapon is one to be feared."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "flamethrowerbase"
 	item_state = "flamer"
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -81,7 +81,7 @@
 			return
 		var/turf/target_turf = get_turf(target)
 		if(target_turf)
-			var/turflist = getline(user, target_turf)
+			var/turflist = getline(user, target_turf) //Uses old turf generation.
 			for (var/mob/O in viewers())
 				O << "\red [user] unleashes a blast of flames!"
 			playsound(src.loc, 'sound/weapons/flamethrower_shoot.ogg', 80, 1)

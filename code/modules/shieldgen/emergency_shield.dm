@@ -67,9 +67,10 @@
 	if(health <=0)
 		visible_message("\blue The [src] dissipates!")
 		del(src)
-		return
+		return 1
 	opacity = 1
 	spawn(20) if(src) opacity = 0
+	return 1
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)

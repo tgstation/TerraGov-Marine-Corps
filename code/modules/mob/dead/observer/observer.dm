@@ -1,3 +1,6 @@
+/mob/dead
+	var/voted_this_drop = 0
+
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
@@ -766,31 +769,32 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "You are whitelisted, but there are no hunts this round. Maybe if you prayed real hard an Admin could spawn you in."
 		return
 
-	if(ticker.mode:numpreds <= 0)
+	if(ticker.mode:numpreds >= 3)
 		usr << "Already full up. There can only be 3 per round."
 		return
 
-	if(src.client && src.client.was_a_predator)
+	if((src.client && src.client.was_a_predator))
 		usr << "You already were a Yautja! Give someone else a chance."
 		return
+
+	var/I
+
+	for(I in ticker.mode.pred_keys)
+		if(uppertext(I) == uppertext(usr.key)) //case doesn't matter.
+			usr << "You already were Yautja, you bum."
+			return
 
 	var/mob/old = src
 	var/mob/living/carbon/human/M = new(pick(pred_spawn))
 	M.key = src.key
 
-	if(M.mind)
-		M.mind.assigned_role = "MODE"
-		M.mind.special_role = "Predator"
-	else //This should never happen. EVER.
-		M.mind = new(M.key)
-		M.mind.assigned_role = "MODE"
-		M.mind.special_role = "Predator"
-
 	M.set_species("Yautja")
-	if(M.client.prefs)
+	if(src.client && src.client.prefs) //Fuckit, one of these must be right.
+		M.real_name = src.client.prefs.predator_name
+		M.gender = src.client.prefs.predator_gender
+	else if(M.client && M.client.prefs)
 		M.real_name = M.client.prefs.predator_name
 		M.gender = M.client.prefs.predator_gender
-	if(!M.real_name || M.real_name == "") M.real_name = "Unknown Yautja"
 	if(!M.gender) M.gender = "male"
 	M.update_icons()
 	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
@@ -800,7 +804,49 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.real_name = "Elder [M.real_name]"
 		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
 		M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
+		M << "<B>You come equipped as an Elder should, with bonus glaive and heavy armor.</b>"
 
 	ticker.mode.predators += M.mind
+	ticker.mode.pred_keys += usr.key
+	ticker.mode:numpreds++
+	M.mind.assigned_role = "MODE"
+	M.mind.special_role = "Predator"
+	if(M.client) M.client.was_a_predator = 1
 	if(old) del(old) //Wipe the old ghost.
 	return
+
+/mob/dead/verb/drop_vote()
+	set category = "Ghost"
+	set name = "Spectator Vote"
+	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
+
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	if(!istype(ticker.mode,/datum/game_mode/huntergames))
+		usr << "Wrong game mode. You have to be observing a Hunter Games round."
+		return
+
+	if(!waiting_for_drop_votes)
+		usr << "There's no drop vote currently in progress. Wait for a supply drop to be announced!"
+		return
+
+	if(voted_this_drop)
+		usr << "You voted for this one already. Only one please!"
+		return
+
+	var/list/mobs = living_mob_list
+	var/target = null
+
+	target = input("Please, select a contestant!", "Cake Time", null, null) as null|anything in mobs
+
+	if (!target)//Make sure we actually have a target
+		return
+	else
+		usr << "Your vote for [target] has been counted!"
+		ticker.mode:supply_votes += target
+		voted_this_drop = 1
+		spawn(200)
+			voted_this_drop = 0
+		return

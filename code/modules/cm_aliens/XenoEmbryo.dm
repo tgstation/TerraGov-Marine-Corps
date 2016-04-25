@@ -125,7 +125,8 @@
 
 //Saving this in case we want to swap it back, but candidates shouldn't be picked first to be a Larva. The host should be.
 //NOPE - Abby
-
+	if(affected_mob.z == 2) //If not on Centcomm
+		return 0
 	if(candidates.len)
 		picked = pick(candidates)
 	else if(affected_mob.client)

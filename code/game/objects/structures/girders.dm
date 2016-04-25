@@ -8,18 +8,23 @@
 
 
 	bullet_act(var/obj/item/projectile/Proj)
-				//Tasers and the like should not damage girders.
-		if(Proj.damage_type == HALLOSS || Proj.damage_type == TOX || Proj.damage_type == CLONE)
-			return
+		//Tasers and the like should not damage girders.
+		if(Proj.damage_type == HALLOSS || Proj.damage_type == TOX || Proj.damage_type == CLONE || Proj.damage == 0)
+			return 0
 
-		if(istype(Proj, /obj/item/projectile/beam))
+		if(Proj.damage_type == BURN)
 			health -= Proj.damage
-			..()
 			if(health <= 0)
 				new /obj/item/stack/sheet/metal(get_turf(src))
 				del(src)
+		else
+			if(prob(50))
+				health -= round(Proj.ammo.damage / 2)
+				if(health <= 0)
+					new /obj/item/stack/sheet/metal(get_turf(src))
+					del(src)
+		return 1
 
-			return
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		for(var/obj/effect/xenomorph/acid/A in src.loc)
@@ -258,13 +263,13 @@
 
 	bullet_act(var/obj/item/projectile/Proj) //No beam check- How else will you destroy the cult girder with silver bullets?????
 
-		health -= Proj.damage
+		health -= Proj.ammo.damage
 		..()
 		if(health <= 0)
 			new /obj/item/stack/sheet/metal(get_turf(src))
 			del(src)
 
-		return
+		return 1
 
 	ex_act(severity)
 		switch(severity)

@@ -114,7 +114,7 @@
 		if(prob(60 - Proj.damage))
 			return 0
 
-		if(!Proj || Proj.nodamage)
+		if(!Proj || Proj.damage <= 0)
 			return 0
 
 		adjustBruteLoss(Proj.damage)

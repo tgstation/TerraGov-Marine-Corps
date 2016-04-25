@@ -826,7 +826,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		//Deal with two handed stuff before the drop. Sometimes doesn't clear the drop properly when being pounced etc
 		if(src.r_hand && (istype(src.r_hand,/obj/item/weapon/gun) || istype(src.r_hand,/obj/item/weapon/twohanded) ))
 			r_hand:unwield()
-		if(src.l_hand && (istype(src.l_hand,/obj/item/weapon/gun) || istype(src.r_hand,/obj/item/weapon/twohanded) ))
+		if(src.l_hand && (istype(src.l_hand,/obj/item/weapon/gun) || istype(src.l_hand,/obj/item/weapon/twohanded) ))
 			l_hand:unwield()
 
 		drop_l_hand()

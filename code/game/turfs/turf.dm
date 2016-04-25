@@ -27,6 +27,11 @@
 	var/list/resources
 	var/slayer = -1 //Can snow make snow layers on top of it?
 	var/can_bloody = 0 //Can blood spawn on this turf?
+	var/can_bullets = 0 //Can bullet holes spawn on it?
+	var/clawable = 0 //Can xenos slash it up?
+
+	var/bullet_holes = 0 //How many bullets already there?
+	var/is_clawed = 0 //Clawed up already?
 
 /turf/New()
 	..()
@@ -39,19 +44,8 @@
 /turf/ex_act(severity)
 	return 0
 
-
-/turf/bullet_act(var/obj/item/projectile/Proj)
-	if(istype(Proj ,/obj/item/projectile/beam/pulse))
-		src.ex_act(2)
-
-	if(istype(Proj ,/obj/item/projectile/beam/yautja3))
-		explosion(src,-1,-1,2)
-		if(src)
-			src.ex_act(3)
-	if(istype(Proj ,/obj/item/projectile/bullet/gyro))
-		explosion(src, -1, 0, 2)
-	..()
-	return 0
+/turf/proc/update_icon() //Base parent. - Abby
+	return
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)

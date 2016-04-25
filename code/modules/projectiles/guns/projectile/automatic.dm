@@ -12,9 +12,6 @@
 
 	fire_delay = 0
 
-	isHandgun()
-		return 0
-
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
 	name = "Uzi"
@@ -25,10 +22,6 @@
 	caliber = ".45"
 	origin_tech = "combat=5;materials=2;syndicate=8"
 	ammo_type = "/obj/item/ammo_casing/c45"
-
-	isHandgun()
-		return 1
-
 
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "\improper C-20r SMG"

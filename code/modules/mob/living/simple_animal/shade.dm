@@ -40,7 +40,7 @@
 			del src
 			return
 
-
+/*
 	attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 		if(istype(O, /obj/item/device/soulstone))
 			O.transfer_soul("SHADE", src, user)
@@ -59,3 +59,4 @@
 					if ((M.client && !( M.blinded )))
 						M.show_message("\red [user] gently taps [src] with the [O]. ")
 		return
+*/

@@ -4,9 +4,9 @@
 	desc = "A solid barricade made of reinforced metal. Use a welding tool and/or plasteel to repair it if damaged."
 	icon = 'icons/Marine/structures.dmi'
 	icon_state = "barricade"
-	density = 1
+	density = 0
 	anchored = 1.0
-	layer = 3.5
+	layer = 2.9
 	throwpass = 1	//You can throw objects over this, despite its density.
 	climbable = 1
 	flags = ON_BORDER
@@ -32,7 +32,7 @@
 	return
 
 /obj/structure/m_barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover,/obj/item/projectile/bullet))
+	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 	if(locate(/obj/structure/table) in get_turf(mover)) //Tables let you climb on barricades.
 		return 1
@@ -67,7 +67,7 @@
 	return 1
 
 /obj/structure/m_barricade/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile/bullet) && !istype(O,/obj/item/missile) && !istype(O,/obj/item/weapon/grenade))
+	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile) && !istype(O,/obj/item/missile) && !istype(O,/obj/item/weapon/grenade))
 		return 0
 	else
 		return 1

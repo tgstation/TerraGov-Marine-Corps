@@ -10,8 +10,8 @@
 	language = "Hivemind"
 	amount_grown = 0
 	max_grown = 100
-	maxHealth = 25
-	health = 25
+	maxHealth = 35
+	health = 35
 	plasma_gain = 1
 	melee_damage_lower = 0
 	melee_damage_upper = 0

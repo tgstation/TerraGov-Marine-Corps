@@ -48,7 +48,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	name = "Rail Attachments"
 	contains = list(
 					/obj/item/attachable/reddot,
-					/obj/item/attachable/reddot,
+					/obj/item/attachable/scope,
 					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/quickfire
@@ -76,12 +76,13 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	name = "Underbarrel Attachments"
 	contains = list(
 					/obj/item/attachable/foregrip,
-					/obj/item/attachable/foregrip,
 					/obj/item/attachable/gyro,
 					/obj/item/attachable/bipod,
+					/obj/item/attachable/shotgun,
+					/obj/item/attachable/flamer,
 					/obj/item/attachable/burstfire_assembly
 					)
-	cost = 40
+	cost = 45
 	containertype = /obj/structure/closet/crate
 	containername = "Attachables crate"
 	group = "Operations"
@@ -91,7 +92,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(
 					/obj/item/device/squad_beacon,
 					/obj/item/device/squad_beacon,
-					/obj/item/device/squad_beacon,
+					/obj/item/device/squad_beacon/bomb,
 					/obj/item/device/squad_beacon/bomb
 				)
 	cost = 30
@@ -116,59 +117,16 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	name = "Explosives crate"
 	contains = list(
 					/obj/item/weapon/storage/box/explosive_mines,
+					/obj/item/weapon/storage/box/explosive_mines,
+					/obj/item/weapon/storage/box/explosive_mines,
 					/obj/item/weapon/grenade/explosive,
 					/obj/item/weapon/grenade/explosive,
-					/obj/item/weapon/grenade/explosive,
-					/obj/item/weapon/grenade/incendiary,
-					/obj/item/weapon/grenade/incendiary,
 					/obj/item/weapon/grenade/incendiary
 				)
 	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "Explosives crate (WARNING)"
 	group = "Operations"
-
-/datum/supply_packs/weapons_m41
-	name = "M41A crate"
-	contains = list(
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41,
-					/obj/item/weapon/gun/projectile/automatic/m41
-				)
-	cost = 35
-	containertype = /obj/structure/closet/crate
-	containername = "M41A crate"
-	group = "Weapons"
-
-/datum/supply_packs/weapons_m39
-	name = "M39 SMG crate"
-	contains = list(
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39,
-					/obj/item/weapon/gun/projectile/automatic/m39
-				)
-	cost = 30
-	containertype = /obj/structure/closet/crate
-	containername = "M39 SMG crate"
-	group = "Weapons"
-
-/datum/supply_packs/weapons_side
-	name = "Sidearm crate"
-	contains = list(
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/m4a3,
-					/obj/item/weapon/gun/projectile/m44m,
-					/obj/item/weapon/gun/projectile/m44m
-				)
-	cost = 25
-	containertype = /obj/structure/closet/crate
-	containername = "Sidearm crate"
-	group = "Weapons"
 
 /datum/supply_packs/weapons_inc
 	name = "M240 Incinerator crate"
@@ -180,7 +138,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/tank/phoron/m240,
 					/obj/item/weapon/tank/phoron/m240
 				)
-	cost = 70
+	cost = 30
 	containertype = /obj/structure/closet/crate
 	containername = "M240 Incinerator crate"
 	group = "Weapons"
@@ -190,62 +148,34 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(
 					/obj/item/weapon/storage/box/sentry
 				)
-	cost = 200
+	cost = 120
 	containertype = /obj/structure/closet/crate
 	containername = "Sentry crate"
 	group = "Weapons"
 
-/datum/supply_packs/ammo_big
-	name = "Ammo Crate (10x24mm, 12ga)"
-	contains = list(
-					/obj/item/ammo_magazine/m41,
-					/obj/item/ammo_magazine/m41,
-					/obj/item/ammo_magazine/m41,
-					/obj/item/ammo_magazine/m41,
-					/obj/item/weapon/storage/box/m37,
-					/obj/item/weapon/storage/box/m37
-					)
-	cost = 24
-	containertype = /obj/structure/closet/crate
-	containername = "Ammo crate"
-	group = "Ammo"
-
 /datum/supply_packs/ammo_sentry
 	name = "UA 571-C Sentry ammunition"
 	contains = list(
+					/obj/item/sentry_ammo,
+					/obj/item/sentry_ammo,
 					/obj/item/sentry_ammo
 					)
-	cost = 80
+	cost = 60
 	containertype = /obj/structure/closet/crate
 	containername = "Ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_small
-	name = "Ammo Crate (9mm, .45, .44)"
-	contains = list(
-					/obj/item/ammo_magazine/m39,
-					/obj/item/ammo_magazine/m39,
-					/obj/item/ammo_magazine/m39,
-					/obj/item/ammo_magazine/m4a3,
-					/obj/item/ammo_magazine/m4a3,
-					/obj/item/ammo_magazine/m44m
-				)
-	cost = 20
-	containertype = /obj/structure/closet/crate
-	containername = "Ammo crate"
-	group = "Ammo"
 
 /datum/supply_packs/ammo_exotic
 	name = "Exotic Ammo crate (M42c, M56)"
 	contains = list(
-					/obj/item/ammo_magazine/m42c,
-					/obj/item/ammo_magazine/m42c,
-					/obj/item/ammo_magazine/m42c,
-					/obj/item/ammo_magazine/m42c,
 					/obj/item/smartgun_powerpack,
-					/obj/item/smartgun_powerpack
+					/obj/item/smartgun_powerpack,
+					/obj/item/ammo_magazine/sniper,
+					/obj/item/ammo_magazine/sniper/flak,
+					/obj/item/ammo_magazine/sniper/incendiary
 				)
-	cost = 40
+	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "Ammo crate"
 	group = "Ammo"
@@ -253,15 +183,14 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/explosive_ammo_crate
 	name = "Explosive Ammo crate (SADAR rockets, Frag Grenades)"
 	contains = list(
-					/obj/item/ammo_casing/rocket,
-					/obj/item/ammo_casing/rocket,
-					/obj/item/ammo_casing/rocket/ap,
-					/obj/item/ammo_casing/rocket/ap,
-					/obj/item/weapon/grenade/explosive,
-					/obj/item/weapon/grenade/explosive,
-					/obj/item/weapon/grenade/explosive
+					/obj/item/rocket_shell,
+					/obj/item/rocket_shell,
+					/obj/item/rocket_shell,
+					/obj/item/rocket_shell/ap,
+					/obj/item/rocket_shell/ap,
+					/obj/item/rocket_shell/ap
 				)
-	cost = 50
+	cost = 55
 	containertype = /obj/structure/closet/crate
 	containername = "Ammo crate"
 	group = "Ammo"
@@ -291,7 +220,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/clothing/head/helmet/marine/leader,
 					/obj/item/clothing/suit/storage/marine/marine_leader_armor
 				)
-	cost = 60
+	cost = 40
 	containertype = /obj/structure/closet/crate
 	containername = "Armor crate"
 	group = "Armor"
@@ -379,7 +308,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/clothing/mask/gas,
 					/obj/item/clothing/mask/gas,
 					/obj/item/clothing/mask/gas)
-	cost = 25
+	cost = 15
 	containertype = /obj/structure/closet/crate/internals
 	containername = "Emergency crate"
 	group = "Supplies"
@@ -429,7 +358,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/mule
 	name = "MULEbot Crate"
 	contains = list(/obj/machinery/bot/mulebot)
-	cost = 60
+	cost = 160
 	containertype = /obj/structure/largecrate/mule
 	containername = "MULEbot Crate"
 	group = "Supplies"
@@ -876,3 +805,27 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containertype = /obj/structure/closet/crate
 	containername = "Collectable hats crate! Brought to you by Bass.inc!"
 	group = "Clothing"
+
+/datum/supply_packs/randomised/guns
+	contains = list()
+	name = "Weyland-Yutani firearms (x3)"
+	cost = 40
+	containertype = /obj/structure/largecrate/guns
+	containername = "Weyland-Armat firearms crate"
+	group = "Weapons"
+
+/datum/supply_packs/randomised/guns/merc
+	contains = list()
+	name = "Black Market firearm (x1)"
+	cost = 25
+	containertype = /obj/structure/largecrate/guns/merc
+	containername = "Black market firearms crate"
+	group = "Weapons"
+
+/datum/supply_packs/randomised/guns/slavic
+	contains = list()
+	name = "Nagant-Yamasaki firearm (x1)"
+	cost = 100
+	containertype = /obj/structure/largecrate/guns/russian
+	containername = "Nagant-Yamasaki firearms crate"
+	group = "Weapons"

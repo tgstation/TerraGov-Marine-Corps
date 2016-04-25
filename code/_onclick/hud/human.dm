@@ -311,6 +311,27 @@
 		mymob.pred_power_icon.screen_loc = ui_predator_power
 		hud_elements |= mymob.pred_power_icon
 
+	mymob.use_attachment = new /obj/screen()
+	mymob.use_attachment.icon = ui_style
+	mymob.use_attachment.icon_state = "gun_attach"
+	mymob.use_attachment.name = "Activate weapon attachment"
+	mymob.use_attachment.screen_loc = ui_gun_attachment
+	hud_elements |= mymob.use_attachment
+
+	mymob.eject_mag = new /obj/screen()
+	mymob.eject_mag.icon = ui_style
+	mymob.eject_mag.icon_state = "gun_loaded"
+	mymob.eject_mag.name = "Eject magazine"
+	mymob.eject_mag.screen_loc = ui_gun_eject
+	hud_elements |= mymob.eject_mag
+
+	mymob.toggle_burst = new /obj/screen()
+	mymob.toggle_burst.icon = ui_style
+	mymob.toggle_burst.icon_state = "gun_burst"
+	mymob.toggle_burst.name = "Toggle burst fire"
+	mymob.toggle_burst.screen_loc = ui_gun_burst
+	hud_elements |= mymob.toggle_burst
+
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
@@ -352,6 +373,8 @@
 	//mymob.gun_setting_icon.color = ui_color
 	mymob.gun_setting_icon.alpha = ui_alpha
 	hud_elements |= mymob.gun_setting_icon
+
+
 
 	mymob.item_use_icon = new /obj/screen/gun/item(null)
 	//mymob.item_use_icon.color = ui_color

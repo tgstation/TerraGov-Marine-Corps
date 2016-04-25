@@ -95,7 +95,7 @@
 		return
 
 	..()
-
+	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
 
 		if ("help")

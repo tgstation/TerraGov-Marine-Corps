@@ -26,6 +26,7 @@
 
 /obj/effect/energy_field/bullet_act(var/obj/item/projectile/Proj)
 	Stress(Proj.damage / 10)
+	return 1
 
 /obj/effect/energy_field/meteorhit(obj/effect/meteor/M as obj)
 	if(M)
@@ -59,7 +60,7 @@
 	else if(strength < 1)
 		invisibility = 101
 		density = 0
-	
+
 	if (density != old_density)
 		update_nearby_tiles()
 

@@ -6,8 +6,8 @@
 	icon_state = "Sentinel Walking"
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	health = 140
-	maxHealth = 140
+	health = 130
+	maxHealth = 130
 	storedplasma = 75
 	plasma_gain = 10
 	maxplasma = 300
@@ -15,7 +15,6 @@
 	spit_delay = 90
 	caste_desc = ""
 	evolves_to = list("Spitter")
-	spit_projectile = /obj/item/projectile/energy/neuro
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

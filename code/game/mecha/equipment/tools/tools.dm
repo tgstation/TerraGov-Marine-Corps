@@ -54,6 +54,8 @@
 				M.updatehealth()
 				occupant_message("\red You squeeze [target] with [src.name]. Something cracks.")
 				chassis.visible_message("\red [chassis] squeezes [target].")
+				chassis.occupant.attack_log += text("\[[time_stamp()]\] <font color='red'>squeezed [M.name] with the Hydraulic Clamp</font>")
+				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>was squeezed by [chassis.occupant.name] with the Hydraulic Clamp</font>")
 			else
 				step_away(M,chassis)
 				occupant_message("You push [target] out of the way.")
@@ -582,9 +584,8 @@
 			chassis.visible_message("The [chassis.name] armor deflects the projectile")
 			chassis.log_append_to_last("Armor saved.")
 		else
-			chassis.take_damage(round(Proj.damage*src.damage_coeff),Proj.flag)
+			chassis.take_damage(round(Proj.damage*src.damage_coeff))
 			chassis.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-			Proj.on_hit(chassis)
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()

@@ -106,12 +106,11 @@
 	if(istype(W, /obj/item/stack/sheet/metal) && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
 		var/obj/item/stack/sheet/metal/M = W
 		if (M.use(1))
-			var/obj/item/weapon/secbot_assembly/ed209_assembly/B = new /obj/item/weapon/secbot_assembly/ed209_assembly
-			B.loc = get_turf(src)
+			W.loc = get_turf(src)
 			user << "<span class='notice'>You armed the robot frame.</span>"
 			if (user.get_inactive_hand()==src)
 				user.before_take_item(src)
-				user.put_in_inactive_hand(B)
+				user.put_in_inactive_hand(W)
 			del(src)
 		else
 			user << "<span class='warning'>You need one sheet of metal to arm the robot frame.</span>"

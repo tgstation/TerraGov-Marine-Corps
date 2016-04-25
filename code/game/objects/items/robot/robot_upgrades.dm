@@ -110,6 +110,7 @@
 
 /obj/item/borg/upgrade/tasercooler/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
+/*
 
 	if(!istype(R.module, /obj/item/weapon/robot_module/security))
 		R << "Upgrade mounting error!  No suitable hardpoint detected!"
@@ -132,7 +133,7 @@
 
 	else
 		T.recharge_time = max(2 , T.recharge_time - 4)
-
+*/
 	return 1
 
 /obj/item/borg/upgrade/jetpack

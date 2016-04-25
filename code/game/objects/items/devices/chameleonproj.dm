@@ -120,6 +120,7 @@
 		M << "\red Your chameleon-projector deactivates."
 	..()
 	master.disrupt()
+	return 1
 
 /obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!

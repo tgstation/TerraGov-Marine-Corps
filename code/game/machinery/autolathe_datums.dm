@@ -183,7 +183,7 @@
 	name = "syringe"
 	path = /obj/item/weapon/reagent_containers/syringe
 	category = "Medical"
-
+/*
 /datum/autolathe/recipe/shotgun_blanks
 	name = "ammunition (shotgun, blanks)"
 	path = /obj/item/ammo_casing/shotgun/blank
@@ -198,7 +198,7 @@
 	name = "ammunition (rubber)"
 	path = /obj/item/ammo_magazine/c45r
 	category = "Arms and Ammunition"
-
+*/
 /datum/autolathe/recipe/consolescreen
 	name = "console screen"
 	path = /obj/item/weapon/stock_parts/console_screen
@@ -254,7 +254,7 @@
 	path = /obj/item/weapon/flamethrower/full
 	hidden = 1
 	category = "Arms and Ammunition"
-*/
+
 /datum/autolathe/recipe/magazine_revolver_1
 	name = "ammunition (.357)"
 	path = /obj/item/ammo_magazine/a357
@@ -278,7 +278,7 @@
 	path = /obj/item/ammo_casing/shotgun/dart
 	hidden = 1
 	category = "Arms and Ammunition"
-
+*/
 /datum/autolathe/recipe/rcd
 	name = "rapid construction device"
 	path = /obj/item/weapon/rcd

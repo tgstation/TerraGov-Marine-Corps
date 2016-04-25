@@ -10,14 +10,14 @@
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 95
-	health = 340
-	maxHealth = 340
+	health = 240
+	maxHealth = 240
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
 	jellyMax = 0
 	caste_desc = "A huge tanky xenomorph."
-	speed = 0.2
+	speed = 0.5
 	evolves_to = list()
 	armor_deflection = 70
 	var/charge_dir = 0
@@ -370,9 +370,9 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	for (var/mob/living/carbon/human/M in oview())
 		var/dist = get_dist(src,M)
-		if(M && M.client && dist < 7)
+		if(M && M.client && dist < 6)
 			shake_camera(M, 5, 1)
-		if (dist < 4 && !M.lying && !M.stat)
+		if (dist < 3 && !M.lying && !M.stat && prob(75))
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
 			M.Weaken(rand(2,3))
 	return

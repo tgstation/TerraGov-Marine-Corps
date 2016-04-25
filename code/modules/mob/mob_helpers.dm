@@ -147,23 +147,25 @@ proc/hasorgans(A)
 
 //The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
-	"head" = 40,
-	"chest" = 10,
-	"groin" = 20,
-	"l_leg" = 20,
-	"r_leg" = 20,
-	"l_arm" = 20,
-	"r_arm" = 20,
-	"l_hand" = 50,
-	"r_hand" = 50,
-	"l_foot" = 50,
-	"r_foot" = 50,
+	"head" = 10,
+	"chest" = 0,
+	"groin" = 5,
+	"l_leg" = 10,
+	"r_leg" = 10,
+	"l_arm" = 10,
+	"r_arm" = 10,
+	"l_hand" = 15,
+	"r_hand" = 15,
+	"l_foot" = 40,
+	"r_foot" = 40,
+	"eyes" = 20,
+	"mouth" = 15,
 )
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
-	"head" = 25,
+	"head" = 15,
 	"chest" = 70,
 	"groin" = 30,
 	"l_leg" = 25,
@@ -174,6 +176,8 @@ var/list/global/organ_rel_size = list(
 	"r_hand" = 7,
 	"l_foot" = 10,
 	"r_foot" = 10,
+	"eyes" = 5,
+	"mouth" = 15,
 )
 
 /proc/check_zone(zone)

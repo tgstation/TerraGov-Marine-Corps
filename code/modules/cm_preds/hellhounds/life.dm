@@ -49,12 +49,12 @@
 	return
 
 /mob/living/carbon/hellhound/proc/handle_regular_status_updates()
-	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
+	if(stat == DEAD)	//DEAD
 		blinded = 1
 		silent = 0
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()
-		if(health < -50 || !has_brain())
+		if(health < -100 || !has_brain())
 			death()
 			blinded = 1
 			stat = DEAD
@@ -67,11 +67,12 @@
 		adjustFireLoss(-5)
 		adjustOxyLoss(-10)
 		adjustToxLoss(-50)
-		if(weakened) weakened--
+		if(weakened) weakened -= 2
+		if(weakened < 0) weakened = 0 //Just to be sure.
 		if(stunned) stunned = 0
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if( (getOxyLoss() > 50) || (config.health_threshold_crit > health) )
+		if(health < 0)
 			if( health <= 10 && prob(1) )
 				spawn(0)
 					emote("gasp")
