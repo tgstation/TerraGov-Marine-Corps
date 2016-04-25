@@ -473,7 +473,7 @@ BLIND     // can't see anything
 
 	if(copytext(item_color,-2) != "_d")
 		basecolor = item_color
-	if(basecolor + "_d_s" in icon_states('icons/mob/uniform.dmi'))
+	if(basecolor + "_d_s" in icon_states('icons/mob/uniform_0.dmi'))
 		body_parts_covered = "[basecolor]" ? LEGS|LOWER_TORSO : UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 		item_color = item_color == "[basecolor]" ? "[basecolor]_d" : "[basecolor]"
 		update_clothing_icon()

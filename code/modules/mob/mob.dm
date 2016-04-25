@@ -975,7 +975,7 @@ mob/proc/yank_out_object()
 		return
 	usr.next_move = world.time + 20
 
-	if(usr.stat == 1)
+	if(usr.stat)
 		usr << "You are unconcious and cannot do that!"
 		return
 
@@ -1035,7 +1035,8 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		H.shock_stage+=20
+		if(!isYautja(H))
+			H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
 		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.

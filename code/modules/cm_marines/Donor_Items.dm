@@ -12,7 +12,7 @@
 	item_state = "state"
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/suits.dmi'
-	icon_override = 'icons/mob/suit.dmi'
+	icon_override = 'icons/mob/suit_0.dmi'
 	//AND THIS LINE
 //END SUIT TEMPLATE
 
@@ -328,7 +328,7 @@
 	item_state = "state"
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/hats.dmi'
-	icon_override = 'icons/mob/head.dmi'
+	icon_override = 'icons/mob/head_0.dmi'
 	//AND THIS LINE
 //END HEAD TEMPLATE
 

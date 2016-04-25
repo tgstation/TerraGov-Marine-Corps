@@ -250,7 +250,7 @@
 
 /mob/living/proc/revive()
 	rejuvenate()
-	buckled = initial(src.buckled)
+//	buckled = initial(src.buckled) // << This causes problems
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 

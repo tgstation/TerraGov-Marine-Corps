@@ -178,7 +178,11 @@
 
 	//ensure that damage doesn't increase too quickly due to super high temperatures resulting from no coolant, for example. We dont want the SM exploding before anyone can react.
 	//We want the cap to scale linearly with power (and explosion_point). Let's aim for a cap of 5 at power = 300 (based on testing, equals roughly 5% per SM alert announcement).
-	var/damage_inc_limit = (power/300)*(explosion_point/1000)*DAMAGE_RATE_LIMIT
+	var/damage_inc_limit
+	if(power)
+		damage_inc_limit = (power/300)*(explosion_point/1000)*DAMAGE_RATE_LIMIT
+	else
+		damage_inc_limit = (1/300)*(explosion_point/1000)*DAMAGE_RATE_LIMIT
 
 	if(!istype(L, /turf/space))
 		env = L.return_air()
@@ -232,16 +236,18 @@
 
 		env.merge(removed)
 
-	for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
-			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
+	if(power)
+		for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
+			if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
+				l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
-	//adjusted range so that a power of 300 (pretty high) results in 8 tiles, roughly the distance from the core to the engine monitoring room.
-	for(var/mob/living/l in range(src, round(sqrt(power / 5))))
-		var/rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
-		l.apply_effect(rads, IRRADIATE)
+		//adjusted range so that a power of 300 (pretty high) results in 8 tiles, roughly the distance from the core to the engine monitoring room.
 
-	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
+		for(var/mob/living/l in range(src, round(sqrt(power / 5))))
+			var/rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
+			l.apply_effect(rads, IRRADIATE)
+
+			power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
 	return 1
 

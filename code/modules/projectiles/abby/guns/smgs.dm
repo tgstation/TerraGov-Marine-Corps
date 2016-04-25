@@ -22,7 +22,7 @@
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 SMG"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts or non-combat personnel. Uses 9mm rounds in a 35 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts or engineers and medics. Uses 9mm rounds in a 35 round magazine."
 	icon_state = "smg"
 	icon_empty = "smg_empty"
 	item_state = "m39"

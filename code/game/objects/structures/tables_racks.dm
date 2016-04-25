@@ -26,6 +26,22 @@
 	var/flipped = 0
 	var/health = 100
 
+/obj/structure/table/destroy(var/deconstruct = 0)
+	if(deconstruct)
+		if(parts)
+			new parts(loc)
+	else
+		if(istype(src,/obj/structure/table/reinforced))
+			if(prob(50))
+				new /obj/item/stack/rods(loc)
+			new /obj/item/stack/sheet/metal(loc)
+		else if(istype(src,/obj/structure/table/woodentable) || istype(src,/obj/structure/table/gamblingtable))
+			new /obj/item/stack/sheet/wood(loc)
+		else
+			new /obj/item/stack/sheet/metal(loc)
+	density = 0
+	del(src)
+
 /obj/structure/table/proc/update_adjacent()
 	for(var/direction in list(1,2,4,8,5,6,9,10))
 		if(locate(/obj/structure/table,get_step(src,direction)))
@@ -355,7 +371,7 @@
 		user << "\blue Now disassembling table"
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user,50))
-			destroy()
+			destroy(1)
 		return
 
 	if(isrobot(user))
@@ -595,12 +611,28 @@
 
 /obj/structure/rack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/wrench))
-		new /obj/item/weapon/rack_parts( src.loc )
+		destroy(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		del(src)
 		return
 	if(isrobot(user))
 		return
 	user.drop_item()
 	if(W && W.loc)	W.loc = src.loc
 	return
+
+/obj/structure/rack/Crossed(atom/movable/O)
+	..()
+	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
+		var/mob/living/carbon/Xenomorph/M = O
+		if(!M.stat) //No dead xenos jumpin on the bed~
+			visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
+			destroy()
+
+/obj/structure/rack/destroy(var/deconstruct = 0)
+	if(deconstruct)
+		if(parts)
+			new parts(loc)
+	else
+		new /obj/item/stack/sheet/metal(loc)
+	density = 0
+	del(src)

@@ -60,6 +60,42 @@ should be listed in the changelog upon commit though. Thanks. -->
 
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
 
+
+<div class='commit sansserif'>
+	<h2 class='date'>23 April 2016</h2>
+	<h3 class='author'>Infernus44 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>You can now put various items on your helmet! Up to 3 items can be placed on it.<br>Remove the items by click and dragging the helmet to your mob sprite, and selecting the items from the list. <br>Thanks to Monkeyfist101 for providing icons!</li>
+		<li class='rscadd'>New variable called sprite_sheet_id<br> What does it do? It enables us to get pass the sprite limit inside icon files! (override_icon was used till now, but you couldn't use it if it required multiple sprites) More info for devs in development forums.</li>
+		<li class='tweak'>Performance optimization for dead Xenos. They no longer calculate some stuff when dead. If any issues come up, report them on forums</li>
+		<li class='tweak'>Minimum napalm range reduced to 1x1, and increased mixture ammount required to rise it</li>
+		<li class='tweak'>Marine backpacks and flashlights have been removed from lockers, but are now located inside vendors</li>
+		<li class='tweak'>Admin revive verb no longer unbuckles mobs, as it caused problems</li>
+		<li class='tweak'>Reduced the ammount of metal rods around the colony</li>
+		<li class='tweak'>Volume pump and powered pumps no longer use more power than the entire Sulaco deck</li>
+		<li class='tweak'>Adjusted SMG description</li>
+		<li class='tweak'>Renamed NMV Sulaco to USS Sulaco</li>
+		<li class='tweak'>Destroying tables and racks now leave some building material, raher than building parts</li>
+		<li class='bugfix'>Fixed survivors sometimes not spawning with a light source</li>
+		<li class='bugfix'>Fixed bridge blastdoor control having wrong names</li>
+		<li class='bugfix'>Fixed security having a missing window</li>
+		<li class='bugfix'>Fixed smoke effect being pullable</li>
+		<li class='bugfix'>Fixed Yautja spear gun unloading issues</li>
+		<li class='bugfix'>Fixed Yautja speed issues</li>
+		<li class='bugfix'>Fixed very high blurry eye timer due to blood loss</li>
+		<li class='bugfix'>Fixed SM engine runtime errors</li>
+		<li class='bugfix'>Fixed Xenos being able to open welded doors</li>
+		<li class='bugfix'>Fixed duplicate marine helmet path, which lead to incorrect variables being loaded</li>
+		<li class='bugfix'>Fixed huggers being able to jump between walls or other dense objects</li>
+		<li class='bugfix'>Fixed disposal chute deleting objects when destroyed, instead of throwing them out</li>
+		<li class='bugfix'>Fixed admin "drop_everything" command also dropping embryos</li>
+		<li class='bugfix'>Fixed survivor spawning in prison areas where they cannot exit without admin intervention</li>
+		<li class='bugfix'>Fixed predators being listed on crew manifests</li>
+		<li class='bugfix'>Fixed tables and metal barricades allowing player to be placed on top of other tables and barricades</li>
+	</ul>
+</div>
+
+
 <div class='commit sansserif'>
 	<h2 class='date'>22 April 2016</h2>
 	<h3 class='author'>Absynth updated:</h3>

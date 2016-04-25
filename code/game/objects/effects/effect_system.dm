@@ -241,6 +241,7 @@ steam.start() -- spawns the effect
 	mouse_opacity = 0
 	var/amount = 6.0
 	var/time_to_live = 100
+	anchored = 1
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
