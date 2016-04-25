@@ -97,7 +97,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				if(!pale)
 					pale = 1
 					update_body()
-				eye_blurry += 6
+				if(eye_blurry < 50)
+					eye_blurry += 6
 				if(oxyloss < 50)
 					oxyloss += 10
 				oxyloss += 1

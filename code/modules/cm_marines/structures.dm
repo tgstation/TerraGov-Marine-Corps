@@ -108,7 +108,7 @@
 /obj/structure/m_barricade/destroy()
 	src.visible_message("\red [src] collapses!")
 	var/obj/item/stack/sheet/plasteel/P = new (src.loc)
-	P.amount = 5
+	P.amount = pick(3,4)
 	density = 0
 	del(src)
 	return

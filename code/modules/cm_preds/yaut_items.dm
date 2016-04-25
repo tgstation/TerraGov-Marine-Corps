@@ -877,6 +877,7 @@
 				found=1
 				if(isturf(user.loc))
 					I.loc = user.loc
+					slots_filled--
 		if(found)
 			user << "You unload \the [src], spilling its contents on the ground."
 		return

@@ -211,7 +211,7 @@
 			new /obj/item/device/radio/headset/mcharlie(src)
 //			new /obj/item/weapon/storage/backpack/marine(src)
 
-//Delta EQUIPMENT CLOSET
+//DELTA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
 	name = "Delta Equipment Locker"
 	req_access = list(access_marine_prep, access_squad_delta)

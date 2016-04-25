@@ -238,10 +238,11 @@
 
 	//adjusted range so that a power of 300 (pretty high) results in 8 tiles, roughly the distance from the core to the engine monitoring room.
 	for(var/mob/living/l in range(src, round(sqrt(power / 5))))
-		var/rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
-		l.apply_effect(rads, IRRADIATE)
+		if(power)
+			var/rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
+			l.apply_effect(rads, IRRADIATE)
 
-	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
+			power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
 	return 1
 
