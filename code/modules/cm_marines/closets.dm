@@ -161,7 +161,7 @@
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/malpha(src)
 
 //BRAVO EQUIPMENT CLOSET
@@ -183,9 +183,9 @@
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mbravo(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+//			new /obj/item/weapon/storage/backpack/marine(src)
 
 
 //CHARLIE EQUIPMENT CLOSET
@@ -207,11 +207,11 @@
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mcharlie(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+//			new /obj/item/weapon/storage/backpack/marine(src)
 
-//Delta EQUIPMENT CLOSET
+//DELTA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
 	name = "Delta Equipment Locker"
 	req_access = list(access_marine_prep, access_squad_delta)
@@ -230,9 +230,9 @@
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mdelta(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+//			new /obj/item/weapon/storage/backpack/marine(src)
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical

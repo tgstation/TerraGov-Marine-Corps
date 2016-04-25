@@ -11,7 +11,7 @@
 
 	volume = 1000
 
-	power_rating = 7500 //7500 W ~ 10 HP
+	power_rating = 750 //7500 W ~ 10 HP
 	power_losses = 150
 
 /obj/machinery/portable_atmospherics/powered/pump/New()

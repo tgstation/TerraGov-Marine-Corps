@@ -1,16 +1,6 @@
 /**********************Marine Clothing**************************/
 
 //HEADGEAR
-
-/obj/item/clothing/head/helmet/marine
-	name = "marine standard helmet"
-	desc = "Standard marine gear. Protects the head from damage."
-	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
-	health = 5
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
-	anti_hug = 1
-	w_class = 5
-
 /obj/item/clothing/head/helmet/marine/tech
 	name = "M10 Technician Helmet"
 	icon_state = "helmet-tech"
@@ -20,7 +10,6 @@
 	name = "M10 Medic Helmet"
 	icon_state = "helmet-medic"
 	item_color = "helmet-medic"
-
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
