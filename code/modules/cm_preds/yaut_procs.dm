@@ -163,7 +163,7 @@
 	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. Would you like to proceed, Yautja?","Sure?","Begin the Hunt","No, not now")
 	if(sure == "Begin the Hunt")
 		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
-		var/list/other = list("The Fleeting Speargun", "The Brutal Spike-Cannon", "The Purifying Smart-Disc","The Enhanced Bracer")//, "The Clever Hologram")
+		var/list/other = list("The Fleeting Speargun", "The Brutal Plasma Rifle", "The Purifying Smart-Disc","The Enhanced Bracer")//, "The Clever Hologram")
 
 		var/msel = input("Which weapon shall you use on your hunt?:","Melee Weapon") as null|anything in melee
 		var/mother_0 = input("Which secondary gear shall you take?","Item 1 (of 2)") as null|anything in other
@@ -184,8 +184,8 @@
 		switch(mother_0)
 			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("The Brutal Spike-Cannon")
-				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
+			if("The Brutal Plasma Rifle")
+				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
 			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 			if("The Enhanced Bracer")
@@ -196,8 +196,8 @@
 		switch(mother_1)
 			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("The Brutal Spike-Cannon")
-				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
+			if("The Brutal Plasma Rifle")
+				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
 			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 			if("The Enhanced Bracer")

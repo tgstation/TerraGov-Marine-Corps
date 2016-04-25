@@ -1,6 +1,12 @@
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
+	if(istype(mover,/mob/living/carbon/hellhound))
+		var/area/area = get_area(target)
+		if(area.can_hellhound_enter == 0)
+			mover << "Some kind of invisible force field prevents you from entering there."
+			return 0
+
 	if(ismob(mover))
 		var/mob/moving_mob = mover
 		if ((other_mobs && moving_mob.other_mobs))

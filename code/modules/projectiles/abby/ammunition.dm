@@ -59,15 +59,9 @@
 	proc/burst(var/atom/target,var/obj/item/projectile/P,var/message = "buckshot")
 		if(!target) return
 
-		for(var/mob/living/M in range(1,target))
-			var/turf/turf_loc = get_turf(M)
-			if(istype(turf_loc)) new /obj/effect/buckshot_blast(M)
+		for(var/mob/living/carbon/M in range(1,target))
 			M.visible_message("\red [M] is hit by [message]!","\red You are hit by </b>[message]</b>!")
-			M.apply_damage(rand(5,20),BRUTE)
-
-		if(P)
-			P.permutated = null
-			del(P)
+			M.apply_damage(rand(5,25),BRUTE)
 
 //Boxes of ammo
 /obj/item/ammo_magazine
