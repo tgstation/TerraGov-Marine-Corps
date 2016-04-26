@@ -27,6 +27,7 @@
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
 	icon_state = "ResinWall1" //same as resin, but consistency ho!
+	layer = 3.1
 
 /obj/effect/alien/resin/membrane
 	name = "resin membrane"

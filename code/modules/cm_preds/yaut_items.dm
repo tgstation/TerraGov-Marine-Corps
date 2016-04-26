@@ -1065,7 +1065,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
-	fire_sound = 'sound/weapons/bladeslice.ogg'
+	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	zoomdevicename = "scope"
 	w_class = 5
 	fire_delay = 4
@@ -1073,6 +1073,7 @@
 	slot_flags = SLOT_BACK
 	var/last_regen
 	var/charge_time = 0
+	accuracy = 60
 
 	verb/scope()
 		set category = "Yautja"
@@ -1086,10 +1087,10 @@
 		..()
 
 	process()
-		if(charge_time < 500)
+		if(charge_time < 100)
 			charge_time++
-			if(charge_time == 500)
-				if(usr) usr << "[src] hums as it achieves maximum charge."
+			if(charge_time == 100)
+				if(usr) usr << "\blue [src] hums as it achieves maximum charge."
 
 	New()
 		..()
@@ -1110,18 +1111,18 @@
 		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
 		P.name = P.ammo.name
 
-		if(charge_time < 30)
+		if(charge_time < 10)
 			P.icon_state ="ion"
 			P.ammo.weaken = 1
 
-		else if(charge_time < 100)
+		else if(charge_time < 50)
 			P.icon_state = "pulse1"
 			P.ammo.weaken = 0
 		else
 			P.icon_state = "bluespace"
 			P.ammo.weaken = 0
 
-		P.damage = P.ammo.damage + (charge_time / 5) //For reverse lookups.
+		P.damage = P.ammo.damage + charge_time
 		P.damage_type = P.ammo.damage_type
 		in_chamber = P
 		charge_time = 0
@@ -1130,12 +1131,17 @@
 	attack_self(mob/user as mob)
 		if(!isYautja(user))
 			return ..()
-		user.visible_message("You feel a strange surge of energy in the area.","You release the rifle battery's energy.")
-		var/obj/item/clothing/gloves/yautja/Y = user:gloves
-		if(Y && Y.charge < Y.charge_max)
-			Y.charge += round(charge_time / 5)
-			charge_time = 0
-			user << "Your bracers absorb some of the released energy."
+
+		if(charge_time > 50)
+			user.visible_message("\blue You feel a strange surge of energy in the area.","\blue You release the rifle battery's energy.")
+			var/obj/item/clothing/gloves/yautja/Y = user:gloves
+			if(Y && Y.charge < Y.charge_max)
+				Y.charge += charge_time * 2
+				if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
+				charge_time = 0
+				user << "Your bracers absorb some of the released energy."
+		else
+			user << "The weapon's not charged enough with ambient energy."
 		return
 
 
