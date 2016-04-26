@@ -8,6 +8,12 @@
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons and armor."
 	icon_state = "armory"
 	icon_vend = "armory-vend"
+	icon_deny = "armory"
+	req_access = null
+	req_access_txt = "0"
+	req_one_access = null
+	req_one_access_txt = "9;2;21"
+
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 					/obj/item/weapon/gun/pistol/m4a3 = 25,
@@ -151,7 +157,7 @@
 						/obj/item/weapon/cell/high = 10
 					)
 	contraband = list(
-					/obj/item/clothing/head/helmet/marine/tech = 2
+						/obj/item/clothing/head/helmet/marine/tech = 2
 			)
 	premium = list()
 	prices = list()
@@ -200,7 +206,7 @@
 						/obj/item/weapon/storage/firstaid/adv = 3
 					)
 	contraband = list(
-					/obj/item/clothing/head/helmet/marine/medic = 2
+					///obj/item/clothing/head/helmet/marine/medic = 2
 			)
 	premium = list()
 	prices = list()
