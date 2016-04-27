@@ -812,6 +812,12 @@
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5)
 	prices = list()
 
+/obj/machinery/vending/cigarette/colony
+	products = list(/obj/item/weapon/storage/fancy/cigarettes/kpack = 5,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 5,
+					/obj/item/weapon/storage/fancy/cigarettes = 5,
+					/obj/item/weapon/storage/box/matches = 10,
+					/obj/item/weapon/flame/lighter/random = 4)
 
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"

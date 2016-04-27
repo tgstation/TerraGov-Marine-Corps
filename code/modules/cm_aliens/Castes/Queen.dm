@@ -169,7 +169,7 @@
 			else
 				shake_camera(M, 30, 1) // 50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 
-	for (var/mob/living/carbon/human/M in oview())
+	for (var/mob/living/carbon/human/M in view())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue
 		var/dist = get_dist(src,M)

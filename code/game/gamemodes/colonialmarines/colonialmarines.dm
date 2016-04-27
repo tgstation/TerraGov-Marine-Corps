@@ -478,7 +478,7 @@ var/list/toldstory = list()
 
 					if(M)
 						text += "<br>[M.key] was "
-						text += "[M.name] ("
+						text += "[M.real_name] ("
 						if(M.stat == DEAD)
 							text += "died"
 						else

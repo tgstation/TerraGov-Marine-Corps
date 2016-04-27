@@ -747,7 +747,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 				var/image/scratchy = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
 				standing.overlays += scratchy
 			//Update helmet contents overlay
-			if(contents.len)
+			if(head.contents.len)
 				for(var/obj/I in head.contents)
 					if(!isnull(I) && I in head.contents)
 						//Cigar Packs
@@ -767,7 +767,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_matches")
 
 						//Rosary
-						else if(istype(I,/obj/item/fluff/val_mcneil_1))
+						else if(istype(I,/obj/item/fluff/val_mcneil_1) || istype(I, /obj/item/clothing/mask/mara_kilpatrick_1))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_rosary")
 
 						//Flasks

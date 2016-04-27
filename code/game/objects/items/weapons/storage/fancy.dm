@@ -188,6 +188,12 @@
 	icon_state = "lspacket"
 	item_state = "Dpacket"
 
+/obj/item/weapon/storage/fancy/cigarettes/kpack
+	name = "\improper Lucky Strikes Packet"
+	desc = "Lucky Strikes Means Fine Tobacco! 9/10 doctors agree on Lucky Strikes...as the leading cause of marine lung cancer."
+	icon_state = "lspacket"
+	item_state = "Dpacket"
+
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."

@@ -276,11 +276,17 @@
 	center_of_mass = list("x"=17, "y"=10)
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "Captain's Flask"
-	desc = "A metal flask belonging to the captain"
+	name = "metal flask"
+	desc = "A metal flask"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
+
+/obj/item/weapon/reagent_containers/food/drinks/flask/marine
+	icon_state = "flask_uscm"
+	New()
+		..()
+		reagents.add_reagent("water", 60)
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/detflask
 	name = "Detective's Flask"
