@@ -188,7 +188,7 @@
 	accurate_range = 20
 	max_range = 30
 	armor_pen = 50
-	accuracy = 25
+	accuracy = 15
 	shell_speed = 2
 
 /datum/ammo/bullet/sniper/incendiary
@@ -214,7 +214,7 @@
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic bullet"
-	damage = 250
+	damage = 160
 	accurate_range = 30
 	max_range = 30
 	armor_pen = 50
@@ -439,3 +439,100 @@
 	accurate_range = 20
 	shell_speed = 2
 	armor_pen = 20
+
+/datum/ammo/rocket
+	name = "high explosive rocket"
+	icon_state = "missile"
+	accuracy = 10
+	accurate_range = 15
+	max_range = 15
+	damage = 5
+	damage_type = BRUTE  //Bonk!
+	shell_speed = 1
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		explosion(get_turf(M), -1, 1, 3, 4)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		explosion(get_turf(O), -1, 1, 3, 4)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		explosion(T,  -1, 1, 3, 4)
+
+	do_at_max_range(obj/item/projectile/P)
+		explosion(get_turf(P),  -1, 1, 3, 4)
+
+/datum/ammo/rocket/ap
+	name = "anti-armor rocket"
+	damage = 120
+	damage_type = BRUTE  //Bonk!
+	armor_pen = 100
+
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		explosion(get_turf(M), -1, 1, 1, 4)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		explosion(get_turf(O), -1, 1, 1, 4)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		explosion(T,  -1, 1, 1, 4)
+
+	do_at_max_range(obj/item/projectile/P)
+		explosion(P.loc,  -1, 1, 1, 4)
+
+/datum/ammo/rocket/wp
+	name = "white phosphorous rocket"
+	damage = 90
+	damage_type = BURN
+	max_range = 18
+	incendiary = 1
+
+	proc/drop_flame(var/turf/T)
+		if(!istype(T)) return
+		if(locate(/obj/flamer_fire) in T) return
+		var/obj/flamer_fire/F =  new(T)
+		processing_objects.Add(F)
+		F.firelevel = pick(15,20,25,30) //mama mia she a hot one!
+
+		for(var/mob/living/carbon/M in range(3,T))
+			if(istype(M,/mob/living/carbon/Xenomorph))
+				if(M:fire_immune) continue
+
+			if(M.stat == DEAD) continue
+			M.adjust_fire_stacks(rand(5,25))
+			M.IgniteMob()
+			M.visible_message("\red [M] bursts into flames!","\red <B>You burst into flames!</b>")
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_flame(get_turf(M))
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_flame(get_turf(O))
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_flame(get_turf(T))
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_flame(get_turf(P))
+
+/datum/ammo/rocket/wp/quad
+	name = "thermobaric rocket"
+	damage = 200
+	max_range = 30
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_flame(get_turf(M))
+		explosion(P.loc,  -1, 2, 3, 4)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_flame(get_turf(O))
+		explosion(P.loc,  -1, 2, 3, 4)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_flame(get_turf(T))
+		explosion(P.loc,  -1, 2, 3, 4)
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_flame(get_turf(P))
+		explosion(P.loc,  -1, 2, 3, 4)

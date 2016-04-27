@@ -26,7 +26,7 @@
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 40,
-					/obj/item/ammo_magazine/rifle/ap = 15,
+					/obj/item/ammo_magazine/rifle/ap = 5,
 					/obj/item/ammo_magazine/shotgun = 20,
 					/obj/item/ammo_magazine/shotgun/buckshot = 20,
 

@@ -59,6 +59,11 @@
 		if(ammo)
 			if(distance_travelled == round(ammo.max_range / 2) && loc)
 				ammo.do_at_half_range(src)
+			if(istype(ammo,/datum/ammo/rocket))
+				if(distance_travelled > 3 && ammo.shell_speed == 1) //No need to set it EVERY turf.
+					ammo.shell_speed = 2
+				else if (distance_travelled > 11 && ammo.shell_speed < 3)
+					ammo.shell_speed = 3
 		return
 
 	proc/get_accuracy()
