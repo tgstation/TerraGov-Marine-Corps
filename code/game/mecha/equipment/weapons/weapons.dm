@@ -1,3 +1,4 @@
+/*
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
@@ -230,26 +231,26 @@
 	projectile_energy_cost = 20
 	fire_cooldown = 2
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
-	var/missile_speed = 2
-	var/missile_range = 30
+///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
+//	var/missile_speed = 2
+//	var/missile_range = 30
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
-	AM.throw_at(target,missile_range, missile_speed, chassis)
+///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
+//	AM.throw_at(target,missile_range, missile_speed, chassis)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
 	name = "SRM-8 Missile Rack"
 	icon_state = "mecha_missilerack"
-	projectile = /obj/item/missile
+//	projectile = /obj/item/missile
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 8
 	projectile_energy_cost = 1000
 	equip_cooldown = 60
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target, turf/aimloc)
-	var/obj/item/missile/M = AM
-	M.primed = 1
-	..()
+///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target, turf/aimloc)
+//	var/obj/item/missile/M = AM
+//	M.primed = 1
+//	..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
 	name = "SGL-6 Grenade Launcher"
@@ -278,3 +279,4 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/rearm()
 	return//Extra bit of security
+*/

@@ -144,7 +144,7 @@
 	icon_wielded = "mar40-w"
 	item_state = "mar40"
 	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
-	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
+	fire_sound = 'sound/weapons/automag.ogg'
 	fire_delay = 6
 	recoil = 0
 	muzzle_pixel_x = 32
@@ -165,6 +165,7 @@
 	icon_state = "shortrsprifle"
 	icon_empty = "shortrsprifle0"
 	icon_wielded = "shortrsprifle-w"
+	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
 	item_state = "mar40short"
 	fire_delay = 5
 	accuracy = -20

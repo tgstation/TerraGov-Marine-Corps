@@ -7,24 +7,30 @@
 	var/obj/item/weapon/storage/backpack = M.back
 	if(!istype(backpack)) return
 
-	var/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
-									/obj/item/weapon/gun/pistol/heavy,
-									/obj/item/weapon/gun/pistol/m1911,
-									/obj/item/weapon/gun/pistol/kt42,
-									/obj/item/weapon/gun/pistol/holdout,
-									/obj/item/weapon/gun/pistol/highpower,
-									/obj/item/weapon/gun/pistol/vp70)
+	var/list/merc_sidearms = list(
+		/obj/item/weapon/gun/revolver/small,
+		/obj/item/weapon/gun/pistol/heavy,
+		/obj/item/weapon/gun/pistol/m1911,
+		/obj/item/weapon/gun/pistol/kt42,
+		/obj/item/weapon/gun/pistol/holdout,
+		/obj/item/weapon/gun/pistol/highpower,
+		/obj/item/weapon/gun/pistol/vp70,
+		/obj/item/weapon/gun/smg/uzi)
 
-	var/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
-									/obj/item/weapon/gun/shotgun/merc,
-									/obj/item/weapon/gun/shotgun/combat,
-									/obj/item/weapon/gun/shotgun/double,
-									/obj/item/weapon/gun/shotgun/pump/cmb,
-									/obj/item/weapon/gun/smg/mp7,
-									/obj/item/weapon/gun/smg/skorpion,
-									/obj/item/weapon/gun/smg/ppsh,
-									/obj/item/weapon/gun/smg/uzi,
-									/obj/item/weapon/gun/smg/p90)
+	var/list/merc_firearms = list(
+		/obj/item/weapon/gun/rifle/lmg,
+		/obj/item/weapon/gun/shotgun/merc,
+		/obj/item/weapon/gun/shotgun/combat,
+		/obj/item/weapon/gun/shotgun/double,
+		/obj/item/weapon/gun/shotgun/pump/cmb,
+		/obj/item/weapon/gun/smg/mp7,
+		/obj/item/weapon/gun/smg/skorpion,
+		/obj/item/weapon/gun/smg/uzi,
+		/obj/item/weapon/gun/rifle/mar40/carbine,
+		/obj/item/weapon/gun/rifle/m41a,
+		/obj/item/weapon/gun/smg/ppsh,
+		/obj/item/weapon/gun/smg/p90)
+
 	var/gunpath = pick(merc_firearms)
 	var/obj/item/weapon/gun/gun
 	if(sidearm)
@@ -35,39 +41,48 @@
 		gun = new gunpath(M)
 		M.equip_to_slot_or_del(gun, slot_l_hand)
 
-	var/ammopath = text2path(gun.default_ammo)
+	var/ammopath = text2path(gun.mag_type)
 	new ammopath(M.back)
 	new ammopath(M.back) //Twice the fun just to be sure
+	return 1
 
 /proc/spawn_slavic_gun(var/mob/living/M,var/sidearm = 0)
 	var/obj/item/weapon/storage/backpack = M.back
 	if(!istype(backpack)) return
 
-	var/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/revolver/upp,
-									/obj/item/weapon/gun/revolver/mateba,
-									/obj/item/weapon/gun/pistol/c99,
-									/obj/item/weapon/gun/pistol/c99/russian,
-									/obj/item/weapon/gun/pistol/kt42
-									)
+	var/list/rus_sidearms = list(
+		/obj/item/weapon/gun/pistol/m4a3,
+		/obj/item/weapon/gun/revolver/upp,
+		/obj/item/weapon/gun/revolver/mateba,
+		/obj/item/weapon/gun/pistol/c99,
+		/obj/item/weapon/gun/pistol/c99/russian,
+		/obj/item/weapon/gun/pistol/kt42,
+		/obj/item/weapon/gun/smg/ppsh)
 
-	var/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
-									/obj/item/weapon/gun/rifle/mar40/carbine,
-									/obj/item/weapon/gun/rifle/m41a,
-									/obj/item/weapon/gun/rifle/mar40/svd)
+	var/list/rus_firearms = list(
+		/obj/item/weapon/gun/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40/carbine,
+		/obj/item/weapon/gun/rifle/m41a,
+		/obj/item/weapon/gun/smg/ppsh,
+		/obj/item/weapon/gun/rifle/mar40/svd)
+
 	var/gunpath = pick(rus_firearms)
 	var/obj/item/weapon/gun/gun
-	if(sidearm)
-		gunpath = pick(rus_sidearms)
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_r_hand)
-	else
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_l_hand)
+	if(gunpath)
+		if(sidearm)
+			gunpath = pick(rus_sidearms)
+			gun = new gunpath(M)
+			M.equip_to_slot_or_del(gun, slot_r_hand)
+		else
+			gun = new gunpath(M)
+			M.equip_to_slot_or_del(gun, slot_l_hand)
 
-	var/ammopath = text2path(gun.default_ammo)
-	new ammopath(M.back)
-	new ammopath(M.back) //Twice the fun just to be sure
+		if(istype(gun))
+			var/ammopath = text2path(gun.mag_type)
+			if(ammopath)
+				new ammopath(M.back)
+				new ammopath(M.back) //Twice the fun just to be sure
+	return 1
 
 //basic persistent gamemode stuff.
 /datum/game_mode
@@ -417,7 +432,7 @@
 			mob << "<B> Ensure no damage is incurred against Weyland Yutani.</b>"
 		else
 			mob.mind.special_role = "MODE"
-			if(prob(35)) //Randomize the heavy commandos and standard PMCs.
+			if(prob(55)) //Randomize the heavy commandos and standard PMCs.
 				spawn_standard(mob)
 				mob << "<font size='3'>\red You are a Weyland Yutani Commando!</font>"
 			else
@@ -454,11 +469,11 @@
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
 
-	if(rand(0,3) != 0)//Usually, m39 elite.
+	if(rand(0,2) != 0)//Usually, m39 elite.
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_l_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M), slot_l_hand)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M.back), slot_in_backpack)
 	else //Rarely, they get an elite m41.
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/incendiary(M), slot_l_hand)
@@ -860,8 +875,8 @@
 				if(1)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/ap
-					new /obj/item/ammo_magazine/smg/ap
+					new /obj/item/ammo_magazine/smg/elite
+					new /obj/item/ammo_magazine/smg/elite
 					continue
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
@@ -917,8 +932,8 @@
 				if(1)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/ap
-					new /obj/item/ammo_magazine/smg/ap
+					new /obj/item/ammo_magazine/smg/elite
+					new /obj/item/ammo_magazine/smg/elite
 					continue
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)

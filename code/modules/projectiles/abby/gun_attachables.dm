@@ -201,6 +201,7 @@
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
 						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy,
@@ -355,6 +356,7 @@
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
@@ -384,7 +386,7 @@
 						/obj/item/weapon/gun/pistol/holdout,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
-						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy,
@@ -411,7 +413,7 @@
 						/obj/item/weapon/gun/pistol/holdout,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
-						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy
@@ -428,7 +430,7 @@
 	guns_allowed = list(
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/rifle/m41a/scoped,
-						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/upp,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
@@ -479,7 +481,9 @@
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
 						/obj/item/weapon/gun/shotgun/double,
-						/obj/item/weapon/gun/sniper
+						/obj/item/weapon/gun/sniper,
+						/obj/item/weapon/gun/rocketlauncher,
+						/obj/item/weapon/gun/m92
 						)
 	accuracy_mod = -5
 	slot = "rail"
@@ -493,7 +497,7 @@
 	accuracy_mod = 10
 	melee_mod = 115
 	size_mod = 2
-	delay_mod = 3
+	delay_mod = 6
 	pixel_shift_x = 34
 	pixel_shift_y = 15
 	guns_allowed = list(/obj/item/weapon/gun/shotgun/pump)
@@ -519,7 +523,7 @@
 	accuracy_mod = 15
 	melee_mod = 110
 	size_mod = 1
-	delay_mod = 3
+	delay_mod = 6
 	icon_state = "riflestock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
@@ -533,7 +537,7 @@
 	accuracy_mod = 20
 	melee_mod = 90
 	size_mod = 1
-	delay_mod = 3
+	delay_mod = 6
 	w_class_mod = 2
 	icon_state = "44stock"
 	pixel_shift_x = 38
@@ -547,6 +551,7 @@
 	icon_state = "grenade"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump

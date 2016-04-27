@@ -530,7 +530,7 @@
 
 			//Scatter chance is 20% by default, 10% flat with single shot.
 			if(ammo && ammo.never_scatters == 0 && (prob(5) || (burst_amount > 1 && burst_toggled)))
-				in_chamber.scatter_chance += (burst_amount * 5) //Much higher chance on a burst.
+				in_chamber.scatter_chance += (burst_amount * 3) //Much higher chance on a burst.
 
 				if(prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
 					var/scatter_x = rand(-1,1)

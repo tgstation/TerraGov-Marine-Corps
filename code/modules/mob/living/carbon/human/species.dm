@@ -465,7 +465,7 @@
 
 	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
 
-	blood_color = "#1F181F"
+	blood_color = "#FFDDDD"
 	flesh_color = "#575757"
 
 	has_organ = list(

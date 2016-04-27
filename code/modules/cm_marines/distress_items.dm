@@ -113,7 +113,7 @@
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "arg_helmet"
 	icon_state = "arg_helmet"
-	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 70, bullet = 70, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/under/marine_jumpsuit/PMC/dutch
 	name = "Dutch's Dozen Uniform"
@@ -138,16 +138,16 @@
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
-	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 70, bullet = 70, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/head/helmet/marine/PMC/bearmask
-	name = "Iron Bear Mask"
-	desc = "A protective mask"
+	name = "Iron Bear Helm"
+	desc = "Is good for winter, because it has hole to put vodka through."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
-	armor = list(melee = 30, bullet = 30, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 90, bullet = 90, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/head/helmet/marine/PMC/dutch/cap
 	item_state = "dutch_cap"
@@ -156,7 +156,6 @@
 /obj/item/clothing/head/helmet/marine/PMC/dutch/band
 	item_state = "dutch_band"
 	icon_state = "dutch_band"
-
 
 /obj/item/clothing/suit/storage/marine/PMCarmor/dutch
 	name = "Armored Vest"
@@ -186,120 +185,7 @@
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharped to deal massive damage."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "sword"
-	force = 32
-
-
-/*
-/obj/item/weapon/gun/projectile/automatic/mar40
-	name = "\improper MAR-40 Pulse Rifle"
-	desc = "A cheaply-produced, yet tough pulse rifle found far and wide across the universe. Uses 12mm rounds in a simple magazine."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "rsprifle"
-	item_state = "mar40"
-	w_class = 4
-	max_shells = 40
-	caliber = "12mm"
-	ammo_type = "/obj/item/ammo_casing/mar40"
-	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
-	load_method = 2
-	twohanded = 1
-	fire_delay = 3
-	recoil = 0
-	muzzle_pixel_x = 31
-	muzzle_pixel_y = 18
-	rail_pixel_x = 12
-	rail_pixel_y = 19
-	under_pixel_x = 21
-	under_pixel_y = 15
-	burst_amount = 4
-
-	New()
-		..()
-		empty_mag = new /obj/item/ammo_magazine/mar40/empty(src)
-		update_icon()
-		return
-
-	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
-		..()
-		if(!loaded.len && empty_mag)
-			empty_mag.loc = get_turf(src.loc)
-			empty_mag = null
-			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
-			update_icon()
-		return
-
-	update_icon()
-		..()
-		if(empty_mag)
-			icon_state = "rsprifle"
-		else
-			icon_state = "rsprifle0"
-		return
-
-/obj/item/projectile/bullet/mar40
-	damage = 28
-	name = "autorifle bullet"
-	accuracy = -15
-
-/obj/item/ammo_casing/mar40
-	desc = "A 12mm bullet casing."
-	caliber = "12mm"
-	projectile_type = "/obj/item/projectile/bullet/mar40"
-
-/obj/item/ammo_magazine/mar40
-	name = "MAR-40 12mm magazine"
-	desc = "A magazine with MAR-40 12mm ammo."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = ".45a"
-	ammo_type = "/obj/item/ammo_casing/mar40"
-	max_ammo = 40
-	w_class = 1
-
-/obj/item/ammo_magazine/mar40/empty
-	max_ammo = 0
-	icon_state = ".45a0"
-
-/obj/item/weapon/gun/projectile/merc
-	name = "sawn-off shotgun"
-	desc = "A short-barreled shotgun which can fire two 12 gauge shells in rapid succession. Commonly found in the hands of criminals, mercenaries and in museums. Dangerous."
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "rspshotgun"
-	item_state = "sawed"
-	max_shells = 2
-	w_class = 6
-	caliber = "shotgun"
-	ammo_type = "/obj/item/ammo_casing/shotgun"
-	fire_sound = 'sound/weapons/shotgun.ogg'
-	fire_delay = 20
-	burst_amount = 2
-	recoil = 2.5
-	force = 20.0
-	twohanded = 0
-	muzzle_pixel_x = 30
-	muzzle_pixel_y = 18
-	rail_pixel_x = 13
-	rail_pixel_y = 19
-	under_pixel_x = 22
-	under_pixel_y = 15
-
-	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
-		..()
-		update_icon()
-
-	update_icon()
-		..()
-		if(loaded.len)
-			icon_state = "rspshotgun"
-		else
-			icon_state = "rspshotgun0"
-/obj/item/weapon/gun/projectile/automatic/m41/commando
-	name = "\improper M41C Rifle"
-	desc = "A modified M41A Pulse Rifle, the M41C. A modification of the standard Armat systems model adjusted to be fired with one hand, and at quicker firing rates. Painted in a brown color scheme and carried by corporate Black Ops kill-teams.."
-	icon = 'icons/PMC/PMC.dmi'
-	twohanded = 0
-	fire_delay = 2
-	item_state = "m41c"
-*/
+	force = 39
 
 /obj/item/weapon/claymore/mercsword/machete
 	name = "M2132 Machete"

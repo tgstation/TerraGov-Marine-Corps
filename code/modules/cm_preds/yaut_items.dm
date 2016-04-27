@@ -295,8 +295,9 @@
 		M.update_power_display(perc)
 		return 1
 
-
-//DEFER
+	examine()
+		..()
+		usr << "They currently have [charge] out of [charge_max] charge."
 
 	//Should put a cool menu here, like ninjas.
 	verb/wristblades()
@@ -429,16 +430,14 @@
 			usr.update_icons()
 		return 1
 
-	proc/explodey()
-		for(var/mob/O in viewers())
-			O.show_message("\red <B>The [src] begin beeping.</b>",2) // 2 stands for hearable message
-		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0)
-		spawn(85)
-			var/turf/T = get_turf(src.loc)
-			if(T && istype(T))
-				explosion(T, 1, 3, 7, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
-				if(src)
-					del(src)
+	proc/explodey(var/mob/living/carbon/victim)
+		playsound(src.loc,'sound/effects/pred_countdown.ogg', 80, 0)
+		spawn(rand(65,85))
+			var/turf/T = get_turf(victim)
+			if(istype(T))
+				victim.apply_damage(1000,BRUTE,"chest")
+				explosion(T, -1, 4, 8, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
+				if(src) del(src)
 
 	verb/activate_suicide()
 		set name = "Final Countdown (!)"
@@ -841,7 +840,7 @@
 	ejectshell = 0                          // No spent shells.
 	mouthshoot = 1                         // No suiciding with this weapon, causes runtimes.
 	w_class = 3 //Fits in yautja bags.
-	fire_delay = 3
+	fire_delay = 5
 	var/fired = 0
 	slot_flags = SLOT_BELT|SLOT_BACK
 	var/spikes = 12
@@ -952,7 +951,7 @@
 		if(do_after(user,50))
 			if(isnull(H)) //No crystal, just get the shrapnel out of us.
 				for(var/datum/organ/external/organ in user.organs)
-					for(var/obj/item/weapon/shard/shrapnel/S in organ.implants)
+					for(var/obj/S in organ.implants)
 						if(istype(S)) user << "\red You dig shrapnel out of your [organ.name]."
 						S.loc = user.loc
 						organ.implants -= S
@@ -961,26 +960,30 @@
 						organ.status |= ORGAN_BLEEDING
 
 					for(var/datum/organ/internal/I in organ.internal_organs) //Now go in and clean out the internal ones.
-						for(var/obj/item/weapon/shard/shrapnel/Q in I)
+						for(var/obj/Q in I)
 							Q.loc = user.loc
 							I.take_damage(rand(1,2), 0, 0)
 							pain_factor += 3 //OWWW! No internal bleeding though.
 
-				if(pain_factor < 3)
-					user << "Digging that out barely hurt at all."
-				else if(pain_factor >= 3 && pain_factor < 6)
+				if(pain_factor < 1)
+					user << "There was nothing to dig out."
+				else if(pain_factor >= 1 && pain_factor < 5)
 					user << "\red That hurt like hell!!"
-				else if(pain_factor >= 6)
+				else if(pain_factor >= 5)
 					user.emote("roar")
 
 			else //Yay crystal as well. Heals all internal damage.
 				user << "\red You crush the <b>healing crystal</b> into a fine powder and sprinkle it on your injuries. Hold still to heal the rest!"
-				for(var/datum/organ/external/organ in user.organs)
-					for(var/datum/organ/internal/current_organ in organ.internal_organs)
-						current_organ.rejuvenate()
-				user.drop_from_inventory(H)
-				del(H)
-				src.attack_self(user) //Do it again! No crystal this time though.
+				if(do_after(user,10))
+					for(var/datum/organ/external/organ in user.organs)
+						for(var/datum/organ/internal/current_organ in organ.internal_organs)
+							current_organ.rejuvenate()
+							for(var/obj/B in current_organ)
+								B.loc = user.loc
+
+					user.drop_from_inventory(H)
+					del(H)
+					src.attack_self(user) //Do it again! No crystal this time though.
 		else
 			user << "You were interrupted!"
 		return
@@ -1051,7 +1054,7 @@
 					affecting = target:get_organ(ran_zone(user.zone_sel.selecting,90)) //No luck? Try again.
 				if(affecting)
 					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
-						user.visible_message("\red \The <B>[affecting.name]</b> is sliced clean off!","\red You slice off \the <B>[affecting.name]</b>!")
+						user.visible_message("\red <B>The limb is sliced clean off!</b>","\red You slice off a limb!")
 						affecting.droplimb(1,0,1) //the 0,1 is explode, and amputation. This amputates.
 		else //Probably an alien
 			if(prob(14))
@@ -1065,7 +1068,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
-	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
+	fire_sound = 'sound/weapons/plasma_shot.ogg'
 	zoomdevicename = "scope"
 	w_class = 5
 	fire_delay = 4

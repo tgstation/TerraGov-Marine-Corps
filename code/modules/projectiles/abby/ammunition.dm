@@ -68,11 +68,11 @@
 	name = "generic ammo"
 	desc = "A box of ammo"
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "357"
-	var/icon_empty = "357-0"
+	icon_state = ""
+	var/icon_empty = ""
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
-	item_state = "syringe_kit"
+	item_state = ""
 	matter = list("metal" = 50000)
 	throwforce = 2
 	w_class = 1.0
