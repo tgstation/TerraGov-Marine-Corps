@@ -10,7 +10,7 @@
 /obj/item/ammo_magazine/smg
 	name = "default SMG magazine"
 	default_ammo = "/datum/ammo/bullet/smg"
-	max_rounds = 1
+	max_rounds = 30
 
 /obj/item/ammo_magazine/smg/m39
 	name = "M39 SMG Mag (9mm)"
@@ -39,11 +39,12 @@
 
 //-------------------------------------------------------
 
-/obj/item/ammo_magazine/smg/ap
+/obj/item/ammo_magazine/smg/elite
 	name = "AP SMG Magazine (9mm)"
 	desc = "A 9mm special magazine."
 	default_ammo = "/datum/ammo/bullet/smg/ap"
 	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
+	max_rounds = 45
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 SMG"
@@ -51,9 +52,10 @@
 	icon_state = "smg_pmc"
 	icon_empty = "smg_pmc_empty"
 	item_state = "m39_pmc"
-	burst_amount = 4
-	mag_type = "/obj/item/ammo_magazine/smg/ap"
-	accuracy = 12
+	burst_amount = 3
+	mag_type = "/obj/item/ammo_magazine/smg/elite"
+	accuracy = 15
+	dam_bonus = 15
 
 //-------------------------------------------------------
 
@@ -85,6 +87,7 @@
 	burst_delay = 2
 	accuracy = 5
 	found_on_mercs = 1
+	dam_bonus = 15
 
 //-------------------------------------------------------
 
@@ -117,6 +120,7 @@
 	accuracy = 8
 	found_on_mercs = 1
 	found_on_russians = 1
+	dam_bonus = 10
 
 //-------------------------------------------------------
 
@@ -167,7 +171,7 @@
 	icon_empty = "mini-uzi_empty"
 	item_state = "mini-uzi"
 	fire_sound = 'sound/weapons/uzi.ogg'
-	fire_delay = 6
+	fire_delay = 4
 	mag_type = "/obj/item/ammo_magazine/smg/uzi"
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 19
@@ -175,9 +179,10 @@
 	rail_pixel_y = 22
 	under_pixel_x = 22
 	under_pixel_y = 16
-	burst_amount = 3
+	burst_amount = 4
 	burst_delay = 1
 	found_on_mercs = 1
+	dam_bonus = -5
 
 //-------------------------------------------------------
 

@@ -6,6 +6,7 @@
 /area
 	var/global/global_uid = 0
 	var/uid
+	var/can_hellhound_enter = 1
 
 /area/New()
 	icon_state = ""

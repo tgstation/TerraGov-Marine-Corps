@@ -249,7 +249,7 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
-		ammo = new()
+		ammo = new /datum/ammo/bullet/turret()
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
@@ -676,8 +676,8 @@
 	if(prob(30))
 		return 0
 
-	visible_message("\red [src] is hit by the [Proj]!")
-	update_health(round(Proj.damage / 3))
+	visible_message("\The [src] is hit by the [Proj.name]!")
+	update_health(round(Proj.damage / 10))
 	return 1
 
 /obj/machinery/marine_turret/process()
@@ -708,17 +708,20 @@
 	if(!ammo) return 0 //Our ammo datum is missing. We need one, and it should have set when we reloaded, so, abort.
 
 	if(in_chamber) return 1 //Already set!
+	if(!on || !cell || rounds == 0 || stat == 1) return 0
 
-	var/obj/item/projectile/P = new(src) //New bullet!
-	P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
+	var/obj/item/projectile/P = new(src.loc) //New bullet!
+	P.ammo = ammo //Share the ammo type. This does all the heavy lifting.
 	P.name = P.ammo.name
 	P.icon_state = P.ammo.icon_state //Make it look fancy.
-	in_chamber = P
 	P.damage = P.ammo.damage //For reverse lookups.
 	P.damage_type = P.damage_type
+	in_chamber = P
 	return 1
 
 /obj/machinery/marine_turret/proc/process_shot()
+	set waitfor = 0
+
 	if(isnull(target)) return //Acqure our victim.
 
 	if(!ammo) return
@@ -754,10 +757,10 @@
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)
 	var/scatter_chance = 5
-	if(burst_fire) scatter_chance = 30
+	if(burst_fire) scatter_chance = 20
 
 	if(prob(scatter_chance))
-		U = locate(U.x + rand(-2,2),U.y + rand(-2,2),U.z)
+		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
 
 	if (!istype(T) || !istype(U))
 		return
@@ -774,26 +777,30 @@
 			if(dx > 0)	dir = EAST
 			else		dir = WEST
 
-	load_into_chamber()
-	if(isnull(in_chamber) || in_chamber == 0 || !in_chamber) return //bugggggg
-	in_chamber.original = target
-	in_chamber.dir = src.dir
-	in_chamber.def_zone = pick("chest","chest","chest","head")
-	playsound(src.loc, 'sound/weapons/gunshot_rifle.ogg', 100, 1)
-	in_chamber.fire_at(U,src,src,in_chamber.ammo.max_range,in_chamber.ammo.shell_speed)
-	rounds--
-	if(rounds == 0)
-		visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")
-		playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
-
+	if(load_into_chamber() == 1)
+		if(istype(in_chamber,/obj/item/projectile) && in_chamber.ammo == ammo)
+			in_chamber.original = target
+			in_chamber.dir = src.dir
+			in_chamber.def_zone = pick("chest","chest","chest","head")
+			playsound(src.loc, 'sound/weapons/gunshot_rifle.ogg', 100, 1)
+			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
+			in_chamber = null
+			rounds--
+			if(rounds == 0)
+				visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")
+				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
 	return
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
-	var/range = 9
+	var/range = 10
 
 	if(!dir_locked)
 		range = 3
+
+	var/list/turf/path = list()
+	var/turf/T
+	var/blocked = 0
 
 	for(var/mob/living/carbon/C in oview(range,src))
 		if(ishuman(C))
@@ -806,26 +813,37 @@
 		if(C.stat) continue //No unconscious/deads.
 
 		if(dir_locked) //We're dir locked and facing the right way.
-			var/dx = C.x - x
-			var/dy = C.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
-			var/direct
+			var/angle = get_dir(src,C)
+			if(dir == NORTH && (angle == NORTHEAST || angle == NORTHWEST)) //There's probably an easier way to do this. MEH
+				angle = NORTH
+			if(dir == SOUTH && (angle == SOUTHEAST || angle == SOUTHWEST))
+				angle = SOUTH
+			if(dir == EAST && (angle == NORTHEAST || angle == SOUTHEAST))
+				angle = EAST
+			if(dir == WEST && (angle == NORTHWEST || angle == SOUTHWEST))
+				angle = WEST
 
-			if(abs(dx) < abs(dy))
-				if(dy > 0)	direct = NORTH
-				else		direct = SOUTH
-			else
-				if(dx > 0)	direct = EAST
-				else		direct = WEST
-
-			if(direct == dir)
-				targets += C
+			if(angle == dir)
+				path = getline2(src,C)
+				blocked = 0
+				for(T in path)
+					if(T.density) //Simple density check on turfs in the firing path.
+						blocked = 1
+				if(blocked == 0)
+					targets += C
 		else  //Otherwise grab everyone around us.
-			targets += C
+			path = getline2(src,C)
+			blocked = 0
+			for(T in path)
+				if(T.density)
+					blocked = 1
+			if(blocked == 0)
+				targets += C
 
 	if(targets.len)
-		var/mob/T = pick(targets)
-		if(T)
-			return T
+		var/mob/P = pick(targets)
+		if(P)
+			return P
 
 	return null
 
@@ -920,4 +938,4 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
-
+		ammo = new /datum/ammo/bullet/turret()

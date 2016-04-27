@@ -51,6 +51,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/attachable/scope,
 					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/magnetic_harness,
+					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/quickfire
 					)
 	cost = 40
@@ -146,17 +147,15 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/weapons_sentry
 	name = "UA 571-C sentry crate"
 	contains = list(
-					/obj/item/weapon/storage/box/sentry
 				)
 	cost = 120
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/item/weapon/storage/box/sentry
 	containername = "Sentry crate"
 	group = "Weapons"
 
 /datum/supply_packs/ammo_sentry
 	name = "UA 571-C Sentry ammunition"
 	contains = list(
-					/obj/item/sentry_ammo,
 					/obj/item/sentry_ammo,
 					/obj/item/sentry_ammo
 					)
@@ -175,22 +174,22 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/sniper/flak,
 					/obj/item/ammo_magazine/sniper/incendiary
 				)
-	cost = 50
+	cost = 30
 	containertype = /obj/structure/closet/crate
 	containername = "Ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/explosive_ammo_crate
-	name = "Explosive Ammo crate (SADAR rockets, Frag Grenades)"
+	name = "Explosive Ammo crate (SADAR rockets)"
 	contains = list(
-					/obj/item/rocket_shell,
-					/obj/item/rocket_shell,
-					/obj/item/rocket_shell,
-					/obj/item/rocket_shell/ap,
-					/obj/item/rocket_shell/ap,
-					/obj/item/rocket_shell/ap
+					/obj/item/ammo_magazine/rocket_tube,
+					/obj/item/ammo_magazine/rocket_tube,
+					/obj/item/ammo_magazine/rocket_tube/ap,
+					/obj/item/ammo_magazine/rocket_tube/ap,
+					/obj/item/ammo_magazine/rocket_tube/wp,
+					/obj/item/ammo_magazine/rocket_tube/wp
 				)
-	cost = 55
+	cost = 30
 	containertype = /obj/structure/closet/crate
 	containername = "Ammo crate"
 	group = "Ammo"
@@ -265,7 +264,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/weapon/storage/box/wy_mre,
 					/obj/item/weapon/storage/box/wy_mre
 					)
-	cost = 15
+	cost = 12
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "W-Y MRE crate"
 	group = "Supplies"

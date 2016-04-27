@@ -148,6 +148,7 @@
 	edge = 1
 	sharp = 0
 	flags = NOSHIELD
+	slot_flags = 0
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
@@ -240,6 +241,7 @@
 	icon_state = "mesh_shirt"
 	icon_override = 'icons/Predator/items.dmi'
 	item_color = "mesh_shirt"
+	item_state = "mesh_shirt"
 	has_sensor = 0
 	armor = list(melee = 5, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -293,8 +295,9 @@
 		M.update_power_display(perc)
 		return 1
 
-
-//DEFER
+	examine()
+		..()
+		usr << "They currently have [charge] out of [charge_max] charge."
 
 	//Should put a cool menu here, like ninjas.
 	verb/wristblades()
@@ -325,6 +328,8 @@
 			var/obj/item/weapon/wristblades/W
 			if(upgrades > 1)
 				W = new /obj/item/weapon/wristblades/scimitar(M)
+			else
+				W = new /obj/item/weapon/wristblades(M)
 
 			M.put_in_active_hand(W)
 			blades_active = 1
@@ -425,16 +430,14 @@
 			usr.update_icons()
 		return 1
 
-	proc/explodey()
-		for(var/mob/O in viewers())
-			O.show_message("\red <B>The [src] begin beeping.</b>",2) // 2 stands for hearable message
-		playsound(src.loc,'sound/effects/pred_countdown.ogg', 100, 0)
-		spawn(85)
-			var/turf/T = get_turf(src.loc)
-			if(T && istype(T))
-				explosion(T, 1, 3, 7, 1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
-				if(src)
-					del(src)
+	proc/explodey(var/mob/living/carbon/victim)
+		playsound(src.loc,'sound/effects/pred_countdown.ogg', 80, 0)
+		spawn(rand(65,85))
+			var/turf/T = get_turf(victim)
+			if(istype(T))
+				victim.apply_damage(1000,BRUTE,"chest")
+				explosion(T, -1, 4, 8, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
+				if(src) del(src)
 
 	verb/activate_suicide()
 		set name = "Final Countdown (!)"
@@ -828,91 +831,66 @@
 
 /obj/item/weapon/gun/launcher/speargun
 	name = "Yautja Speargun"
-	desc = "A compact Yautja device in the shape of a shell. Capable of being loaded with spears to be launched at prey. Commonly carried by cautious hunters."
+	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "speargun-0"
+	icon_state = "speargun-3"
+	icon_empty = "speargun-0"
 	item_state = "predspeargun"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ejectshell = 0                          // No spent shells.
 	mouthshoot = 1                         // No suiciding with this weapon, causes runtimes.
 	w_class = 3 //Fits in yautja bags.
-	fire_delay = 32
+	fire_delay = 5
 	var/fired = 0
-	slot_flags = SLOT_BELT
-	var/slots = 3
-	var/slots_filled = 0
+	slot_flags = SLOT_BELT|SLOT_BACK
+	var/spikes = 12
+	var/max_spikes = 12
+	var/last_regen
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(slots_filled == slots)
-			user << "It can only fit three."
-			return
+	Del()
+		processing_objects.Remove(src)
+		..()
 
-		if (istype(W,/obj/item/weapon/twohanded/spear) || istype(W,/obj/item/weapon/harpoon))
-			user.drop_from_inventory(W)
-			W.loc = src
-			if(W.throwforce > 15)
-				W.throwforce = initial(W.throwforce) - 15 //Reel this sucker back a bit.
-			slots_filled++
-			user.visible_message("[user] slides [W] into [src].","You slide [W] into [src].")
-			icon_state = "speargun-[slots_filled]"
-			if(!in_chamber)
-				load_into_chamber()
-			return
-		else
-			return ..()
+	process()
+		if(spikes < max_spikes && world.time > last_regen + 100 && prob(70))
+			spikes++
+			last_regen = world.time
+			update_icon()
+
+	New()
+		..()
+		ammo = new /datum/ammo/yautja_spike()
+		processing_objects.Add(src)
+		last_regen = world.time
+
+	examine()
+		..()
+		usr << "It currently has [spikes] / [max_spikes] spikes."
 
 	load_into_chamber()
-		if(!slots_filled)
-			return 0
-		for(var/obj/item/I in contents)
-			if(istype(I))
-				in_chamber = I
-				return 1
-		return 0
+		if(spikes <= 0)	return 0
+		if(!isYautja(usr)) return 0
 
-	attack_self(mob/living/user as mob)
-		var/found = 0
-		for(var/obj/item/I in contents)
-			if(istype(I))
-				found=1
-				if(isturf(user.loc))
-					I.loc = user.loc
-		if(found)
-			user << "You unload \the [src], spilling its contents on the ground."
+		var/obj/item/projectile/P = new(src) //New bullet!
+
+		in_chamber = null
+		spikes--
+
+		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
+		P.name = P.ammo.name
+		P.icon_state = P.ammo.icon_state //Make it look fancy.
+		P.damage = P.ammo.damage //For reverse lookups.
+		P.damage_type = P.ammo.damage_type
+		in_chamber = P
+		return 1
+
+	update_icon()
+		if(spikes <= 0)
+			icon_state = icon_empty
+		else
+			icon_state = initial(icon_state)
 		return
 
-	afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
-		if(get_dist(user,A) <= 2)
-			user << "\red A warning light blinks on \the [src]. Too close!"
-			return
-
-		if(!isYautja(user))
-			user << "\red \The [src] does not respond to you!"
-			return
-
-		if(fired) return
-
-		if(load_into_chamber() == 0) //This takes care of the projectile.
-			user << "No projectiles loaded! Try adding a spear or harpoon."
-			return
-
-		if(!in_chamber) return //The previous should take care of this.
-
-		if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-			var/obj/item/clothing/gloves/yautja/G = user.hands
-			if(G.cloaked)
-				G.decloak(user)
-
-		if(slots_filled) slots_filled--
-		if(slots_filled >= 0)
-			icon_state = "speargun-[slots_filled]"
-
-		in_chamber.loc = get_turf(user)
-		in_chamber.throw_at(A,8,1,user)
-		fired = 1
-		spawn(fire_delay)
-			fired = 0
-		return
 
 /obj/item/weapon/melee/yautja_chain
 	name = "Yautja Chainwhip"
@@ -973,7 +951,7 @@
 		if(do_after(user,50))
 			if(isnull(H)) //No crystal, just get the shrapnel out of us.
 				for(var/datum/organ/external/organ in user.organs)
-					for(var/obj/item/weapon/shard/shrapnel/S in organ.implants)
+					for(var/obj/S in organ.implants)
 						if(istype(S)) user << "\red You dig shrapnel out of your [organ.name]."
 						S.loc = user.loc
 						organ.implants -= S
@@ -982,26 +960,30 @@
 						organ.status |= ORGAN_BLEEDING
 
 					for(var/datum/organ/internal/I in organ.internal_organs) //Now go in and clean out the internal ones.
-						for(var/obj/item/weapon/shard/shrapnel/Q in I)
+						for(var/obj/Q in I)
 							Q.loc = user.loc
 							I.take_damage(rand(1,2), 0, 0)
 							pain_factor += 3 //OWWW! No internal bleeding though.
 
-				if(pain_factor < 3)
-					user << "Digging that out barely hurt at all."
-				else if(pain_factor >= 3 && pain_factor < 6)
+				if(pain_factor < 1)
+					user << "There was nothing to dig out."
+				else if(pain_factor >= 1 && pain_factor < 5)
 					user << "\red That hurt like hell!!"
-				else if(pain_factor >= 6)
+				else if(pain_factor >= 5)
 					user.emote("roar")
 
 			else //Yay crystal as well. Heals all internal damage.
 				user << "\red You crush the <b>healing crystal</b> into a fine powder and sprinkle it on your injuries. Hold still to heal the rest!"
-				for(var/datum/organ/external/organ in user.organs)
-					for(var/datum/organ/internal/current_organ in organ.internal_organs)
-						current_organ.rejuvenate()
-				user.drop_from_inventory(H)
-				del(H)
-				src.attack_self(user) //Do it again! No crystal this time though.
+				if(do_after(user,10))
+					for(var/datum/organ/external/organ in user.organs)
+						for(var/datum/organ/internal/current_organ in organ.internal_organs)
+							current_organ.rejuvenate()
+							for(var/obj/B in current_organ)
+								B.loc = user.loc
+
+					user.drop_from_inventory(H)
+					del(H)
+					src.attack_self(user) //Do it again! No crystal this time though.
 		else
 			user << "You were interrupted!"
 		return
@@ -1072,7 +1054,7 @@
 					affecting = target:get_organ(ran_zone(user.zone_sel.selecting,90)) //No luck? Try again.
 				if(affecting)
 					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
-						user.visible_message("\red \The <B>[affecting.name]</b> is sliced clean off!","\red You slice off \the <B>[affecting.name]</b>!")
+						user.visible_message("\red <B>The limb is sliced clean off!</b>","\red You slice off a limb!")
 						affecting.droplimb(1,0,1) //the 0,1 is explode, and amputation. This amputates.
 		else //Probably an alien
 			if(prob(14))
@@ -1080,21 +1062,21 @@
 
 		return
 
-/obj/item/weapon/gun/launcher/spikethrower
-	name = "Yautja Spike Rifle"
-	desc = "A long-barreled spike thrower, fashioned in the manner of a long harpoon rifle. Carried by Yautja who wish to maim their prey from a distance."
-	w_class = 5
-	var/last_regen = 0
-	var/spike_gen_time = 200
-	var/max_spikes = 5
-	var/spikes = 5
-	var/fired = 0
-	fire_delay = 9
+/obj/item/weapon/gun/launcher/plasmarifle
+	name = "Yautja Plasma Rifle"
+	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
-	fire_sound = 'sound/weapons/bladeslice.ogg'
+	fire_sound = 'sound/weapons/plasma_shot.ogg'
 	zoomdevicename = "scope"
+	w_class = 5
+	fire_delay = 4
+	var/fired = 0
+	slot_flags = SLOT_BACK
+	var/last_regen
+	var/charge_time = 0
+	accuracy = 60
 
 	verb/scope()
 		set category = "Yautja"
@@ -1103,97 +1085,67 @@
 
 		zoom()
 
-/obj/item/weapon/gun/launcher/spikethrower/New()
-	..()
-	processing_objects.Add(src)
-	last_regen = world.time
+	Del()
+		processing_objects.Remove(src)
+		..()
 
-/obj/item/weapon/gun/launcher/spikethrower/Del()
-	processing_objects.Remove(src)
-	..()
-
-/obj/item/weapon/gun/launcher/spikethrower/process()
-
-	if(spikes < max_spikes && world.time > last_regen + spike_gen_time && prob(25))
-		spikes++
-		last_regen = world.time
-		update_icon()
-
-/obj/item/weapon/gun/launcher/spikethrower/examine()
-	..()
-	usr << "It has [spikes] [spikes == 1 ? "spike" : "spikes"] remaining."
-
-/obj/item/weapon/gun/launcher/spikethrower/update_icon()
-	icon_state = "spike-[spikes]"
-
-/obj/item/weapon/gun/launcher/spikethrower/emp_act(severity)
-	return
-
-/obj/item/weapon/gun/launcher/spikethrower/load_into_chamber()
-	if(in_chamber) return 1
-	if(spikes < 1) return 0
-
-	in_chamber = new /obj/item/weapon/spike/yautja(src)
-	spikes--
-	return 1
-
-/obj/item/weapon/gun/launcher/spikethrower/afterattack(atom/target, mob/user , flag)
-	if(!isYautja(user))
-		user << "\red \The [src] does not respond to you!"
-		return 0
-
-	if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-		var/obj/item/clothing/gloves/yautja/G = user.hands
-		if(G.cloaked)
-			G.decloak(user)
-
-	if(fired) return
-
-	if(load_into_chamber() == 0) //This takes care of the projectile.
-		user << "No projectiles loaded! Try adding a spear or harpoon."
-		return
-
-	if(!in_chamber) return //The previous should take care of this.
-
-	if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-		var/obj/item/clothing/gloves/yautja/G = user.hands
-		if(G.cloaked)
-			G.decloak(user)
-
-	spikes--
-	icon_state = "spike-[spikes]"
-
-	in_chamber.loc = get_turf(user)
-	in_chamber.throw_at(target,20,4,user)
-
-	fired = 1
-	spawn(fire_delay)
-		fired = 0
-
-	return
-
-/obj/item/weapon/spike/yautja
-	name = "alloy spike"
-	desc = "It's about a foot of weird silver metal with a wicked point. It begins to melt as soon as you examine it."
-	sharp = 1
-	edge = 0
-	throwforce = 24
-	w_class = 2
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "spike"
-	item_state = "bolt"
+	process()
+		if(charge_time < 100)
+			charge_time++
+			if(charge_time == 100)
+				if(usr) usr << "\blue [src] hums as it achieves maximum charge."
 
 	New()
 		..()
-		spawn(50)
-			if(istype(src.loc,/mob/living))
-				var/mob/living/L = src.loc
-				L.drop_from_inventory(src) //Clean out the inventory properly
-				if(L.anchored) L.anchored = 0
-				if(src in L.pinned)	L.pinned.Remove(src)
-				del(src)
-			else
-				del(src)
+		ammo = new /datum/ammo/energy/yautja/rifle()
+		processing_objects.Add(src)
+		last_regen = world.time
+
+	examine()
+		..()
+		usr << "It currently has [charge_time] / 500 charge."
+
+	load_into_chamber()
+		if(!isYautja(usr)) return 0
+
+		var/obj/item/projectile/P = new(src) //New bullet!
+		in_chamber = null
+
+		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
+		P.name = P.ammo.name
+
+		if(charge_time < 10)
+			P.icon_state ="ion"
+			P.ammo.weaken = 1
+
+		else if(charge_time < 50)
+			P.icon_state = "pulse1"
+			P.ammo.weaken = 0
+		else
+			P.icon_state = "bluespace"
+			P.ammo.weaken = 0
+
+		P.damage = P.ammo.damage + charge_time
+		P.damage_type = P.ammo.damage_type
+		in_chamber = P
+		charge_time = 0
+		return 1
+
+	attack_self(mob/user as mob)
+		if(!isYautja(user))
+			return ..()
+
+		if(charge_time > 50)
+			user.visible_message("\blue You feel a strange surge of energy in the area.","\blue You release the rifle battery's energy.")
+			var/obj/item/clothing/gloves/yautja/Y = user:gloves
+			if(Y && Y.charge < Y.charge_max)
+				Y.charge += charge_time * 2
+				if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
+				charge_time = 0
+				user << "Your bracers absorb some of the released energy."
+		else
+			user << "The weapon's not charged enough with ambient energy."
+		return
 
 
 /obj/item/weapon/grenade/spawnergrenade/hellhound
