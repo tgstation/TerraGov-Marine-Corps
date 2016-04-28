@@ -33,7 +33,6 @@
 		handle_regular_status_updates()
 //		updatehealth() //It already updates each handle_regular_status_updates() update
 		update_canmove()
-		update_fire(0)
 		handle_statuses() //Deals with stunned, etc
 		update_icons()
 		if(loc)
@@ -51,6 +50,8 @@
 		else
 			if(stat != DEAD && !fire_immune)
 				adjustFireLoss(fire_stacks + 3)
+			update_fire()
+			updatehealth()
 			fire_stacks--
 
 	if(health > -100 && health < 0) //Unconscious

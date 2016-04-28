@@ -1162,7 +1162,7 @@
 
 /obj/item/clothing/mask/mara_kilpatrick_1 //staghorn: Mara Kilpatrick
 	name = "shamrock pendant"
-	desc = "A silver and emerald shamrock pendant. It has the initials \"M.K.\" engraved on the back."
+	desc = "A silver and emerald shamrock pendant."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "mara_kilpatrick_1"
 	flags = FPRINT|TABLEPASS

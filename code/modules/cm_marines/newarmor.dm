@@ -39,7 +39,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	armor = list(melee = 65, bullet = 70, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
+	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	anti_hug = 1
 	w_class = 5
 	var/hug_damage = 0
@@ -348,7 +348,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 //Helmet Attachables
 /obj/item/clothing/head/helmet/marine/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/flame/lighter) || istype(W, /obj/item/weapon/storage/fancy/cigarettes) || istype(W, /obj/item/weapon/storage/box/matches) || istype(W, /obj/item/weapon/deck) || istype(W, /obj/item/weapon/hand) || istype(W,/obj/item/weapon/reagent_containers/food/drinks/flask) || istype(W,/obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(W,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito) || istype(W,/obj/item/fluff/val_mcneil_1))
+	if(istype(W, /obj/item/weapon/flame/lighter) || istype(W, /obj/item/weapon/storage/fancy/cigarettes)\
+	|| istype(W, /obj/item/weapon/storage/box/matches) || istype(W, /obj/item/weapon/deck)\
+	|| istype(W, /obj/item/weapon/hand) || istype(W,/obj/item/weapon/reagent_containers/food/drinks/flask)\
+	|| istype(W, /obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(W,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito)\
+	|| istype(W, /obj/item/fluff/val_mcneil_1) || istype(W, /obj/item/clothing/mask/mara_kilpatrick_1))
 		if(contents.len < 3)
 			user.drop_item()
 			W.loc = src
@@ -368,11 +372,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			if(!isnull(I) && I in contents)
 				//Cigar Packs
 				if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
+				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
 				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_ls")
 				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
-					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
 
 				//Cards
 				else if(istype(I,/obj/item/weapon/deck) || istype(I,/obj/item/weapon/hand))
@@ -383,7 +389,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_matches")
 
 				//Rosary
-				else if(istype(I,/obj/item/fluff/val_mcneil_1))
+				else if(istype(I,/obj/item/fluff/val_mcneil_1) || istype(I, /obj/item/clothing/mask/mara_kilpatrick_1))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_rosary")
 
 				//Flasks
@@ -393,7 +399,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				//Lighters
 				else if(istype(I,/obj/item/weapon/flame/lighter/zippo))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_lighter_zippo")
-
 				else if(istype(I,/obj/item/weapon/flame/lighter) && !istype(I,/obj/item/weapon/flame/lighter/zippo))
 					var/obj/item/weapon/flame/lighter/L = I
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_lighter_[L.clr]")
@@ -415,7 +420,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		if(contents.len)
 			var/obj/item/choice = input("What item would you like to remove from the [src]?") as null|obj in contents
 			if(!isnull(choice) && choice)
-				if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+				if((!usr.canmove && !usr.buckled) || usr.stat || usr.restrained() || !in_range(loc, usr))
 					return
 				if(!istype(choice, /obj/item))
 					usr << "\red You can't remove \the [choice] from your [src]."
