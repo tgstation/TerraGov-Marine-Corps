@@ -751,7 +751,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 				for(var/obj/I in head.contents)
 					if(!isnull(I) && I in head.contents)
 						//Cigar Packs
-						if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
+						if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
 						else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
