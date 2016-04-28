@@ -189,10 +189,10 @@
 	item_state = "Dpacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/kpack
-	name = "\improper Lucky Strikes Packet"
-	desc = "Lucky Strikes Means Fine Tobacco! 9/10 doctors agree on Lucky Strikes...as the leading cause of marine lung cancer."
-	icon_state = "lspacket"
-	item_state = "Dpacket"
+	name = "\improper Koorlander Gold packet"
+	desc = "Koorlander, Gold quality cigarettes. Now cures cancer!"
+	icon_state = "kpacket"
+	item_state = "kpacket"
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"

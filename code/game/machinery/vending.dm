@@ -807,17 +807,22 @@
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
 	vend_delay = 14
 	icon_state = "cigs"
-	products = list(/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = 10,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 4)
-	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
+	products = list(/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = 30,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 10,
+					/obj/item/weapon/storage/fancy/cigarettes = 10,
+					/obj/item/weapon/storage/box/matches = 10,
+					/obj/item/weapon/flame/lighter/random = 15)
+
+	contraband = list(/obj/item/weapon/flame/lighter/zippo = 5)
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5)
 	prices = list()
 
 /obj/machinery/vending/cigarette/colony
-	products = list(/obj/item/weapon/storage/fancy/cigarettes/kpack = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 5,
-					/obj/item/weapon/storage/fancy/cigarettes = 5,
+	products = list(/obj/item/weapon/storage/fancy/cigarettes/kpack = 30,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 10,
+					/obj/item/weapon/storage/fancy/cigarettes = 10,
 					/obj/item/weapon/storage/box/matches = 10,
-					/obj/item/weapon/flame/lighter/random = 4)
+					/obj/item/weapon/flame/lighter/random = 15)
 
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"

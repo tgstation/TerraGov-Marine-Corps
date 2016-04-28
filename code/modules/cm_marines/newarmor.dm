@@ -372,11 +372,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			if(!isnull(I) && I in contents)
 				//Cigar Packs
 				if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
+				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
 				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_ls")
 				else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
-					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
+					overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
 
 				//Cards
 				else if(istype(I,/obj/item/weapon/deck) || istype(I,/obj/item/weapon/hand))
