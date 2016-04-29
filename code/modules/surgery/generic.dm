@@ -41,6 +41,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts the bloodless incision on [target]'s [affected.display_name] with \the [tool].", \
 		"You start the bloodless incision on [target]'s [affected.display_name] with \the [tool].")
 		target.custom_pain("You feel a horrible, searing pain in your [affected.display_name]!",1)
@@ -48,6 +49,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] has made a bloodless incision on [target]'s [affected.display_name] with \the [tool].", \
 		"\blue You have made a bloodless incision on [target]'s [affected.display_name] with \the [tool].",)
 		//Could be cleaner ...
@@ -84,6 +88,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].", \
 		"You start to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].")
 		target.custom_pain("You feel a horrible, searing pain in your [affected.display_name] as it is pushed apart!",1)
@@ -91,6 +96,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] has constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool].", \
 		"\blue You have constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool].",)
 		affected.open = 1
@@ -131,6 +139,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts the incision on [target]'s [affected.display_name] with \the [tool].", \
 		"You start the incision on [target]'s [affected.display_name] with \the [tool].")
 		target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.display_name]!",1)
@@ -138,6 +147,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] has made an incision on [target]'s [affected.display_name] with \the [tool].", \
 		"\blue You have made an incision on [target]'s [affected.display_name] with \the [tool].",)
 		affected.open = 1
@@ -172,6 +184,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts clamping bleeders in [target]'s [affected.display_name] with \the [tool].", \
 		"You start clamping bleeders in [target]'s [affected.display_name] with \the [tool].")
 		target.custom_pain("The pain in your [affected.display_name] is maddening!",1)
@@ -179,6 +192,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] clamps bleeders in [target]'s [affected.display_name] with \the [tool].",	\
 		"\blue You clamp bleeders in [target]'s [affected.display_name] with \the [tool].")
 		affected.clamp()
@@ -208,6 +224,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		var/msg = "[user] starts to pry open the incision on [target]'s [affected.display_name] with \the [tool]."
 		var/self_msg = "You start to pry open the incision on [target]'s [affected.display_name] with \the [tool]."
 		if (target_zone == "chest")
@@ -222,6 +239,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		var/msg = "\blue [user] keeps the incision open on [target]'s [affected.display_name] with \the [tool]."
 		var/self_msg = "\blue You keep the incision open on [target]'s [affected.display_name] with \the [tool]."
 		if (target_zone == "chest")
@@ -265,6 +285,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] is beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool]." , \
 		"You are beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool].")
 		target.custom_pain("Your [affected.display_name] is being burned!",1)
@@ -272,6 +293,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] cauterizes the incision on [target]'s [affected.display_name] with \the [tool].", \
 		"\blue You cauterize the incision on [target]'s [affected.display_name] with \the [tool].")
 		affected.open = 0
@@ -309,6 +333,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] is beginning to cut off [target]'s [affected.display_name] with \the [tool]." , \
 		"You are beginning to cut off [target]'s [affected.display_name] with \the [tool].")
 		target.custom_pain("Your [affected.display_name] is being ripped apart!",1)
@@ -316,6 +341,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] cuts off [target]'s [affected.display_name] with \the [tool].", \
 		"\blue You cut off [target]'s [affected.display_name] with \the [tool].")
 		affected.droplimb(1,1,1)
