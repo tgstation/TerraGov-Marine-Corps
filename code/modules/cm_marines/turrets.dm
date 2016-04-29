@@ -605,8 +605,8 @@
 					del(src)
 		return
 
-	if(health > 100)
-		health = 100
+	if(health > health_max)
+		health = health_max
 	if(!stat && damage > 0 && !immobile)
 		if(prob(10))
 			spark_system.start()

@@ -77,8 +77,8 @@
 	spawn_positions = 1
 	supervisors = "the Commander, the Executive Officer"
 	selection_color = "#9990B2"
-	access = list(access_sulaco_cargo)
-	minimal_access = list(access_sulaco_cargo)
+	access = list(access_sulaco_cargo, access_sulaco_bridge)
+	minimal_access = list(access_sulaco_cargo, access_sulaco_bridge)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
