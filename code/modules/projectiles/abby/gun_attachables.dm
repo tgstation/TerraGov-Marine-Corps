@@ -229,8 +229,6 @@
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/smg/mp7,
-						/obj/item/weapon/gun/smg/skorpion,
-						/obj/item/weapon/gun/smg/uzi,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump
 					)
@@ -331,6 +329,7 @@
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
+						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/sniper
@@ -352,7 +351,7 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
@@ -377,7 +376,7 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/smartgun,
 						/obj/item/weapon/gun/pistol/m4a3,
@@ -404,7 +403,7 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/smartgun,
 						/obj/item/weapon/gun/pistol/m4a3,
@@ -708,6 +707,9 @@
 	slot = "rail"
 	passive = 1
 	can_activate = 1
+	delay_mod = 6
+	accuracy_mod = 50
+	burst_mod = -1
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
 		target.zoom(11,12,user)

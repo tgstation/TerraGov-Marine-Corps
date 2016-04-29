@@ -142,7 +142,7 @@
 	desc = "A pair of huge, serrated blades extending from a metal gauntlet."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
-	item_state = "wristblades"
+	item_state = "wristblade"
 	force = 30
 	w_class = 5.0
 	edge = 1
@@ -435,8 +435,8 @@
 		spawn(rand(65,85))
 			var/turf/T = get_turf(victim)
 			if(istype(T))
-				victim.apply_damage(1000,BRUTE,"chest")
-				explosion(T, -1, 4, 8, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
+				victim.apply_damage(50,BRUTE,"chest")
+				explosion(T, 1, 4, 7, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
 				if(src) del(src)
 
 	verb/activate_suicide()
@@ -476,7 +476,7 @@
 			return
 		if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
 			M << "\red You set the timer. May your journey to the great hunting grounds be swift."
-			src.explodey()
+			src.explodey(M)
 
 	verb/injectors()
 		set name = "Create Self-Heal Crystal"

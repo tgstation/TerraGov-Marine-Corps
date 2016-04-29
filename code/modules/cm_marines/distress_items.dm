@@ -148,6 +148,7 @@
 	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
 	armor = list(melee = 90, bullet = 90, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+	anti_hug = 2
 
 /obj/item/clothing/head/helmet/marine/PMC/dutch/cap
 	item_state = "dutch_cap"
