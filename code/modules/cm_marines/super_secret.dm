@@ -91,7 +91,7 @@ Items and objects that are very hard to get to and do not affect balance.
 			return
 		if(!state)
 			if(coins)
-				user.visible_message("You hear a rusty click from somewhere near...","\blue You press the button and hear a rusty click going from inside...")
+				user.visible_message("You hear a click from somewhere near...","\blue You press the button and hear a click coming from inside...")
 				state = 1
 				spawn(rand(100,200))
 					switch(coins)

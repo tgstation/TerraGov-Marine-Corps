@@ -12,7 +12,7 @@
 	// duration of the step
 	var/min_duration = 0
 	var/max_duration = 0
-
+	var/is_same_target = 0
 	// evil infection stuff that will make everyone hate me
 	var/can_infect = 0
 	//How much blood this step can get on surgeon. 1 - hands, 2 - full body.
@@ -72,11 +72,19 @@
 proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
 	if(!istype(user) || !istype(E)) return
 
-	var/germ_level = user.germ_level
+//Gloves
 	if(user.gloves)
-		germ_level = user.gloves.germ_level
+		if(user.gloves.germ_level && user.gloves.germ_level > 60)
+			E.germ_level += user.gloves.germ_level / 2
+	else if(user.germ_level)
+		E.germ_level += user.germ_level / 2
 
-	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
+//Masks
+	if(user.wear_mask)
+		if(user.wear_mask.germ_level && !istype(user.wear_mask, /obj/item/clothing/mask/surgical) && prob(30))
+			E.germ_level += user.wear_mask.germ_level / 2
+	else if(user.germ_level && prob(60))
+		E.germ_level += user.germ_level / 2
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))

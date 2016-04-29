@@ -8,7 +8,7 @@ var/const/BLOOD_VOLUME_BAD = 224
 var/const/BLOOD_VOLUME_SURVIVE = 122
 
 /mob/living/carbon/human/var/datum/reagents/vessel	//Container for blood and BLOOD ONLY. Do not transfer other chems here.
-/mob/living/carbon/human/var/var/pale = 0			//Should affect how mob sprite is drawn, but currently doesn't.
+/mob/living/carbon/human/var/pale_max = 0			//Should affect how mob sprite is drawn
 
 //Initializes blood vessels
 /mob/living/carbon/human/proc/make_blood()
@@ -18,7 +18,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 
 	vessel = new/datum/reagents(600)
 	vessel.my_atom = src
-
 	if(species && species.flags & NO_BLOOD) //We want the var for safety but we can do without the actual blood.
 		return
 
@@ -34,6 +33,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = null)
 			B.color = B.data["blood_colour"]
 
+	if(!pale_max)
+		pale_max = s_tone + 30
+
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/proc/handle_blood()
 
@@ -41,8 +43,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
-
 		var/blood_volume = round(vessel.get_reagent_amount("blood"))
+
+		if(blood_volume >= 560 && s_tone != pale_max-30)//Reset
+			s_tone = pale_max-30
+			update_body()
 
 		//Blood regeneration if there is some space
 		if(blood_volume < 560 && blood_volume)
@@ -79,29 +84,38 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		//Effects of bloodloss
 		switch(blood_volume)
 			if(BLOOD_VOLUME_SAFE to 10000)
-				if(pale)
-					pale = 0
-					update_body()
+				if(s_tone > pale_max-30)
+					s_tone--
+					if(prob(15))
+						update_body()
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-				if(!pale)
-					pale = 1
-					update_body()
-					var/word = pick("dizzy","woozy","faint")
-					src << "\red You feel [word]"
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel [word]"
+				if(s_tone < pale_max)
+					s_tone++
+					if(prob(15))
+						update_body()
+				else
+					s_tone--
+					if(prob(15))
+						update_body()
 				if(oxyloss < 20)
 					oxyloss += 3
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
-				if(!pale)
-					pale = 1
-					update_body()
 				if(eye_blurry < 50)
 					eye_blurry += 6
 				if(oxyloss < 50)
 					oxyloss += 10
-				oxyloss += 1
+				oxyloss += 2
+				if(s_tone < pale_max + 20)
+					s_tone++
+					if(prob(15))
+						update_body()
+				else
+					s_tone--
+					if(prob(15))
+						update_body()
 				if(prob(15))
 					Paralyse(rand(1,3))
 					var/word = pick("dizzy","woozy","faint")
@@ -109,6 +123,14 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				oxyloss += 5
 				toxloss += 3
+				if(s_tone < pale_max + 40)
+					s_tone++
+					if(prob(15))
+						update_body()
+				else
+					s_tone--
+					if(prob(15))
+						update_body()
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
 					src << "\red You feel extremely [word]"
