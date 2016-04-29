@@ -722,12 +722,14 @@
 			mob << "<B> You must lead the Iron Bears mercenaries to victory against any and all hostile threats.</b>"
 			mob << "<B> To Hell with Weyland Yutani and the USCM! The Iron Bears run the show now!</b>"
 			mob << "<B> ... Or whatever. It's up to you. You're the only one they taught any English..</b>"
+			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
 		else
 			spawn_standard(mob)
 			mob.remove_language("Sol Common")
 			mob.remove_language("English")
 			mob << "<font size='3'>\red You are an Iron Bear mercenary!</font>"
 			mob << "<font size='3'>\red Listen to your Leader, you idiot!! Try not to blow yourself up!</font>"
+			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -747,6 +749,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/Bear(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/bearmask(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
