@@ -13,23 +13,23 @@
 /obj/item/weapon/facepaint/green
 	name = "green facepaint"
 	colour = "green"
-	icon_state = "green_camo"
+	icon_state = "green_cammo"
 
 
 /obj/item/weapon/facepaint/brown
 	name = "brown facepaint"
 	colour = "brown"
-	icon_state = "brown_camo"
+	icon_state = "brown_cammo"
 
 /obj/item/weapon/facepaint/black
 	name = "black facepaint"
 	colour = "black"
-	icon_state = "black_camo"
+	icon_state = "black_cammo"
 
 /obj/item/weapon/facepaint/sniper
 	name = "Fullbody paint"
 	colour = "full"
-	icon_state = "full_camo"
+	icon_state = "full_cammo"
 
 
 /obj/item/weapon/facepaint/attack(mob/M as mob, mob/user as mob)

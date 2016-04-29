@@ -448,6 +448,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
 	item_state = "durag"
+	icon_state = "durag"
 	item_color = "durag"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 5, bullet = 5, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
