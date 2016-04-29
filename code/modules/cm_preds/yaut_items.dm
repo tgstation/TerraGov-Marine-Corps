@@ -142,7 +142,7 @@
 	desc = "A pair of huge, serrated blades extending from a metal gauntlet."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
-	item_state = "wristblades"
+	item_state = "wristblade"
 	force = 30
 	w_class = 5.0
 	edge = 1

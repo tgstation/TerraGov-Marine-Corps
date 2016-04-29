@@ -161,17 +161,22 @@
 		user << "\The [A] doesn't fit on [src]."
 		return
 
-	//First, deal with the slot in question.
 	var/nope = 0
-	if(A.slot == "rail" && src.rail) nope = 1
-	if(A.slot == "muzzle" && src.muzzle) nope = 1
-	if(A.slot == "under" && src.under) nope = 1
+	if(A.slot == "rail" && rail && rail.can_be_removed == 0) nope = 1
+	else if(A.slot == "muzzle" && muzzle && muzzle.can_be_removed == 0) nope = 1
+	else if(A.slot == "under" && under && under.can_be_removed == 0) nope = 1
+	else if(A.slot == "stock" && stock && stock.can_be_removed == 0) nope = 1
 	if(nope)
-		user << "There's already something attached in that weapon slot. Field strip your weapon first."
+		user << "The attachment on [src]'s [A.slot] cannot be removed."
 		return
 
 	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying \the [src]..")
 	if(do_after(user,60))
+		if(A.slot == "rail" && rail) rail.Detach(src)
+		else if(A.slot == "muzzle" && muzzle ) muzzle.Detach(src)
+		else if(A.slot == "under" && under ) under.Detach(src)
+		else if(A.slot == "stock" && stock ) stock.Detach(src)
+
 		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
 		user.drop_item()
 		A.loc = src
