@@ -403,7 +403,7 @@
 			armor = getarmor_organ(organ, "energy") //Everything else. Bullet act should probably not use this except for exotic bullets.
 
 		armor -= P.ammo.armor_pen
-		armor = round(armor/2)
+		armor = round(2 * armor / 3)
 
 		if(armor > 0) damage = damage - (damage * armor / 100)
 
@@ -424,7 +424,7 @@
 		apply_effects(P.ammo.stun,P.ammo.weaken,P.ammo.paralyze,P.ammo.irradiate,P.ammo.stutter,P.ammo.eyeblur,P.ammo.drowsy,P.ammo.agony)
 
 	if(src && P && damage > 0)
-		apply_damage(damage, P.ammo.damage_type, P.def_zone)
+		apply_damage(damage, P.damage_type, P.def_zone)
 
 	bullet_message(P)
 

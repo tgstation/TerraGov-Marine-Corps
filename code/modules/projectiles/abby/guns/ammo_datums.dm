@@ -7,7 +7,7 @@
 	accurate_range = 6
 	shrapnel_chance = 10
 	icon_state = "bullet"
-	shell_speed = 1 //Hmmmmmmm.
+	shell_speed = 2 //Hmmmmmmm.
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
