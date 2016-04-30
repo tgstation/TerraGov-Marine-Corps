@@ -34,6 +34,7 @@
 //		updatehealth() //It already updates each handle_regular_status_updates() update
 		update_canmove()
 		handle_statuses() //Deals with stunned, etc
+		update_fire()
 		update_icons()
 		if(loc)
 			handle_environment(loc.return_air())
@@ -50,7 +51,6 @@
 		else
 			if(stat != DEAD && !fire_immune)
 				adjustFireLoss(fire_stacks + 3)
-			update_fire()
 			updatehealth()
 			fire_stacks--
 

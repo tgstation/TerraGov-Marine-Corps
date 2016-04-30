@@ -1,5 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
+	var/icon/icon_decals = null
+
 	var/list/species_restricted = null //Only these species can wear this kit.
 
 	/*
@@ -9,6 +11,26 @@
 		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. vox wearing jumpsuits).
 	*/
 	var/list/sprite_sheets_refit = null
+
+/obj/item/clothing/proc/add_clothing_decals(var/class,var/type,var/random_x,var/random_y,var/target_zone)
+//Class:
+	//destroy
+		//Type:
+			//claws
+	var/icon/I
+	if(icon_decals)
+		I = new(icon_decals)
+	else
+		I = new(sprite_sheet_id?'icons/mob/uniform_1.dmi':'icons/mob/uniform_0.dmi',icon_state = "[icon_state]_s")
+	//I.pixel_x = rand(-random_x,random_x)
+	//I.pixel_y = rand(-random_y,random_y)
+	I.AddAlphaMask('icons/clothing_decals.dmi', "[class]_[type]_[target_zone][pick("0","1")]")
+	icon_decals = new(I)
+	icon = I
+	world << icon
+	world << "\icon[I]"
+
+
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()

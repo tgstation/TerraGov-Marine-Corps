@@ -27,6 +27,10 @@
 			user << "<span class='warning'>You need at least four rods to reinforce the [name].</span>"
 
 /obj/item/weapon/table_parts/attack_self(mob/user as mob)
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
+
 	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
 		user << "<span class='warning'>There is already a table here.</span>"
 		return
@@ -47,6 +51,10 @@
 		del(src)
 
 /obj/item/weapon/table_parts/reinforced/attack_self(mob/user as mob)
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
+
 	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
 		user << "<span class='warning'>There is already a table here.</span>"
 		return
@@ -74,6 +82,10 @@
 			del(src)
 
 /obj/item/weapon/table_parts/wood/attack_self(mob/user as mob)
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
+
 	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/m_barricade) in usr.loc)
 		user << "<span class='warning'>There is already a table here.</span>"
 		return
@@ -99,6 +111,10 @@
 		del(src)
 
 /obj/item/weapon/table_parts/gambling/attack_self(mob/user as mob)
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
+
 	new /obj/structure/table/gamblingtable( user.loc )
 	user.drop_item()
 	del(src)
@@ -115,6 +131,10 @@
 	return
 
 /obj/item/weapon/rack_parts/attack_self(mob/user as mob)
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
+
 	if(locate(/obj/structure/rack) in user.loc)
 		user << "<span class='warning'>There is already a rack here.</span>"
 		return

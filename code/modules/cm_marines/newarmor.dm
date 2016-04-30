@@ -433,3 +433,20 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				usr.visible_message("\blue [usr] removes \the [choice] off \the [src].","\blue You remove \the [choice] off \the [src].")
 		else
 			usr << "\red There is nothing on [src]."
+
+
+/obj/item/clothing/under/marine_jumpsuit/test
+	New()
+		add_clothing_decals("destroy","claws",5,3,"chest")
+		if(prob(50))
+			add_clothing_decals("destroy","claws",5,3,"chest")
+		if(prob(50))
+			add_clothing_decals("destroy","claws",5,3,"chest")
+		if(prob(50))
+			add_clothing_decals("destroy","claws",5,3,"chest")
+		if(prob(50))
+			add_clothing_decals("destroy","claws",5,3,"chest")
+
+/obj/item/clothing/under/marine_jumpsuit/test/a
+	New()
+		add_clothing_decals("destroy","claws",5,3,"chest")

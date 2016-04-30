@@ -549,16 +549,22 @@ proc/get_damage_icon_part(damage_state, body_part)
 /mob/living/carbon/human/update_inv_w_uniform(var/update_icons=1)
 	if(w_uniform && istype(w_uniform, /obj/item/clothing/under) )
 		w_uniform.screen_loc = ui_iclothing
-		var/t_color = w_uniform.item_color
-		if(!t_color)		t_color = icon_state
-		var/image/standing	= image("icon_state" = "[t_color]_s")
+		var/t_color
+		var/image/standing
+		if(!w_uniform:icon_decals)
+			t_color = w_uniform.item_color
+			if(!t_color)		t_color = icon_state
+			standing	= image("icon_state" = "[t_color]_s")
 
 		if(w_uniform.icon_override)
 			standing.icon = w_uniform.icon_override
 		else if(w_uniform.sprite_sheets && w_uniform.sprite_sheets[species.name])
 			standing.icon = w_uniform.sprite_sheets[species.name]
-		else
+		else if(!w_uniform:icon_decals)
 			standing.icon = w_uniform.sprite_sheet_id?'icons/mob/uniform_1.dmi':'icons/mob/uniform_0.dmi'
+		else
+			standing = image('icons/effects/effects.dmi', "icon_state"="nothing")
+			standing.overlays += new/icon(w_uniform:icon_decals)
 
 		if(w_uniform.blood_DNA)
 			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "uniformblood")

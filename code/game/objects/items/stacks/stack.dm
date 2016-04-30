@@ -35,7 +35,9 @@
 	return
 
 /obj/item/stack/attack_self(mob/user as mob)
-
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
 
 	list_recipes(user)
 

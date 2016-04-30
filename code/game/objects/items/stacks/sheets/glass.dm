@@ -30,6 +30,9 @@
 	created_window = /obj/structure/window/basic
 
 /obj/item/stack/sheet/glass/attack_self(mob/user as mob)
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
 
 	construct_window(user)
 
