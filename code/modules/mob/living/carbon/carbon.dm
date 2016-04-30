@@ -136,8 +136,9 @@
 	var/obj/item/item_in_hand = src.get_active_hand()
 	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
 		if(istype(item_in_hand,/obj/item/weapon/twohanded))
-			if(item_in_hand:wielded == 1)
-				usr << "<span class='warning'>Your other hand is too busy holding the [item_in_hand.name]</span>"
+			if(istype(item_in_hand,/obj/item/weapon/twohanded/offhand))
+				var/obj/item/inactive_hand = get_inactive_hand()
+				usr << "<span class='warning'>Your other hand is too busy holding the [inactive_hand.name]</span>"
 				return
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
