@@ -172,10 +172,18 @@
 
 	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying \the [src]..")
 	if(do_after(user,60))
-		if(A.slot == "rail" && rail) rail.Detach(src)
-		else if(A.slot == "muzzle" && muzzle ) muzzle.Detach(src)
-		else if(A.slot == "under" && under ) under.Detach(src)
-		else if(A.slot == "stock" && stock ) stock.Detach(src)
+		if(A.slot == "rail" && rail)
+			rail.Detach(src)
+			rail.loc = src.loc //Things were disapearing for no reason, so now they shouldnt --MadSnailDisease
+		else if(A.slot == "muzzle" && muzzle )
+			muzzle.Detach(src)
+			muzzle.loc = src.loc
+		else if(A.slot == "under" && under )
+			under.Detach(src)
+			under.loc = src.loc
+		else if(A.slot == "stock" && stock )
+			stock.Detach(src)
+			stock.loc = src.loc
 
 		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
 		user.drop_item()
