@@ -51,9 +51,9 @@
 					I.loc = src
 					I.layer = 20
 					I.add_fingerprint(src)
-					src.update_inv_l_hand()
+					src.update_inv_l_hand(0)
 					src.update_inv_r_hand()
-					usr.update_inv_l_hand()
+					usr.update_inv_l_hand(0)
 					usr.update_inv_r_hand()
 					src.visible_message("\blue [usr.name] handed \the [I.name] to [src.name].")
 			if("No")

@@ -4,6 +4,7 @@
 	var/queen_death_timer = 0
 	var/list/datum/mind/predators = list()
 	var/list/datum/mind/hellhounds = list()
+	var/pred_keys = list()
 
 /datum/game_mode/colonialmarines
 	name = "colonial marines"
@@ -18,7 +19,7 @@
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 	var/pred_chance = 5 //1 in <x>
 	var/is_pred_round = 0
-	var/numpreds = 3
+	var/numpreds = 0
 
 
 /* Pre-pre-startup */
@@ -41,19 +42,16 @@
 
 	if(round(rand(1,pred_chance)) == 1) //Just make sure we have enough.
 		is_pred_round = 1
-		if(!possible_predators.len)
-			is_pred_round = 0
-		else
-			while(numpreds > 0)
-				if(!possible_predators.len)
-					break
-				else
-					var/datum/mind/new_pred = pick(possible_predators)
-					possible_predators -= new_pred
-					predators += new_pred
-					numpreds--
-					new_pred.assigned_role = "MODE"
-					new_pred.special_role = "Predator"
+		while(numpreds < 3)
+			if(!possible_predators.len)
+				break
+			else
+				var/datum/mind/new_pred = pick(possible_predators)
+				possible_predators -= new_pred
+				predators += new_pred
+				numpreds--
+				new_pred.assigned_role = "MODE"
+				new_pred.special_role = "Predator"
 	else
 		is_pred_round = 0
 
@@ -113,7 +111,10 @@
 	return 1
 
 /datum/game_mode/colonialmarines/announce()
-	world << "<B>The current game mode is - Colonial Marines! Hoooah!</B>"
+	world << "<B>The current game mode is - Colonial Marines!/B>"
+
+/datum/game_mode/colonialmarines/send_intercept()
+	return 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -175,37 +176,89 @@
 	H.take_organ_damage(rand(0,15), rand(0,15))
 
 //Give them proper jobs and stuff here later
-	var/randjob = rand(0,9)
+	var/randjob = rand(0,10)
 	switch(randjob)
 		if(0) //assistant
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
 		if(1) //civilian in pajamas
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		if(2) //Scientist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(H), slot_back)
 		if(3) //Doctor
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(H), slot_belt)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
 		if(4) //Chef!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(H), slot_l_hand)
 		if(5) //Botanist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/hatchet(H), slot_belt)
 		if(6)//Atmos
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech(H), slot_belt)
 		if(7) //Chaplain
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/bible/booze(H), slot_l_hand)
 		if(8) //Miner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/weapon/pickaxe(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		if(9) //Corporate guy
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), slot_l_hand)
+		if(10) //Colonial Marshal
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), slot_l_hand)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+
+	var/randgear = rand(0,20) //slot_l_hand and slot_r/l_store are taken above.
+	switch(randgear)
+		if(0)
+			H.equip_to_slot_or_del(new /obj/item/device/camera/fluff/oldcamera(H), slot_r_hand)
+		if(1)
+			H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_r_hand)
+		if(2)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_r_hand)
+		if(3)
+			H.equip_to_slot_or_del(new /obj/item/weapon/wrench(H), slot_r_hand)
+		if(4)
+			H.equip_to_slot_or_del(new /obj/item/weapon/surgicaldrill(H), slot_r_hand)
+		if(5)
+			H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(H), slot_r_hand)
+		if(6)
+			H.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(H), slot_r_hand)
+		if(7)
+			H.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(H), slot_r_hand)
+		if(8)
+			H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice(H), slot_r_hand)
+		if(9)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(H), slot_r_hand)
+		if(10)
+			H.equip_to_slot_or_del(new /obj/item/weapon/weldingtool/largetank(H), slot_r_hand)
+
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
 	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+
 	H.update_icons()
 
 	//Give them some information
@@ -282,11 +335,11 @@ var/list/toldstory = list()
 	var/human_count = 0
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H) //Prevent any runtime errors
-			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
+			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space) && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 				if(H.species != "Yautja") // Preds don't count in round end.
 					human_count += 1 //Add them to the amount of people who're alive.
 		else
-			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
+			log_debug("ERROR! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
 
 	return human_count
 
@@ -425,7 +478,7 @@ var/list/toldstory = list()
 
 					if(M)
 						text += "<br>[M.key] was "
-						text += "[M.name] ("
+						text += "[M.real_name] ("
 						if(M.stat == DEAD)
 							text += "died"
 						else
@@ -455,6 +508,7 @@ var/list/toldstory = list()
 						text += "<BR>[A.key] was Unknown! (body destroyed)"
 
 			world << text
+
 //	..()
 	return 1
 

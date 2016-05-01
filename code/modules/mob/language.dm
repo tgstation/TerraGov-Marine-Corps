@@ -94,8 +94,8 @@
 	flags = RESTRICTED
 
 /datum/language/common
-	name = "Galactic Common"
-	desc = "The common galactic tongue."
+	name = "English"
+	desc = "Common earth English."
 	speech_verb = "says"
 	key = "0"
 	flags = RESTRICTED
@@ -123,11 +123,11 @@
 	colour = "say_quote"
 	key = "2"
 
-/datum/language/gutter
-	name = "Gutter"
-	desc = "Much like Standard, this crude pidgin tongue descended from numerous languages and serves as Tradeband for criminal elements."
-	speech_verb = "growls"
-	colour = "rough"
+/datum/language/russian
+	name = "Russian"
+	desc = "An East Slavic language from Earth."
+	speech_verb = "says"
+	colour = "soghun"
 	key = "3"
 
 /datum/language/sainja

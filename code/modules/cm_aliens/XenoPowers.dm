@@ -32,23 +32,44 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/shift_spits()
-	set name = "Toggle Spit Type"
+	set name = "Toggle Spit Type (20)"
 	set desc = "Toggles between a lighter, single-target stun spit or a heavier area acid that burns. The heavy version requires more plasma."
 	set category = "Alien"
 
+	if(!check_plasma(20)) return
+
 	if(!spit_type)
-		src << "You will now spit heavier globs of acid instead of neurotoxin."
+		src << "You will now spit corrosive acid globs."
 		spit_type = 1
+		ammo.icon_state = "neurotoxin"
+		ammo.damage = 10
+		ammo.stun = 0
+		ammo.weaken = 0
+		ammo.shell_speed = 1
 		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
 		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-			spit_projectile = /obj/item/projectile/energy/neuro/acid/heavy
-		else
-			spit_projectile = /obj/item/projectile/energy/neuro/acid/
+			//Bigger and badder!
+			ammo.damage += 15
+		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
+			ammo.damage += 5
+			ammo.shell_speed = 2 //Super fast!
 	else
-		src << "You will now spit lighter neurotoxin instead of acid."
+		src << "You will now spit stunning neurotoxin instead of acid."
 		spit_type = 0
-		spit_projectile = initial(spit_projectile)
+		ammo.icon_state = "toxin"
+		ammo.damage = 0
+		ammo.stun = 1
+		ammo.weaken = 2
+		ammo.shell_speed = 1
 		spit_delay = initial(spit_delay)
+		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
+			//Bigger and badder!
+			ammo.stun += 2
+			ammo.weaken += 2
+		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
+			ammo.stun += 1
+			ammo.weaken += 1
+			ammo.shell_speed = 2 //Super fast!
 	return
 
 /mob/living/carbon/Xenomorph/proc/plant()
@@ -273,7 +294,7 @@
 		usr << "You can't spit from here!"
 		return
 
-	if(!spit_projectile) return
+	if(!ammo) return
 
 	if(!T)
 		var/list/victims = list()
@@ -293,8 +314,6 @@
 			if(!check_plasma(50))
 				return
 
-		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
-
 		var/turf/Turf = get_turf(src)
 		var/turf/Target_Turf = get_turf(T)
 
@@ -305,19 +324,20 @@
 			src << "Too close!"
 			return
 
-		var/obj/item/projectile/energy/neuro/A = new spit_projectile(Turf)
-		if(is_robotic && isturf(src.loc))
-			playsound(src.loc,'sound/weapons/pulse.ogg',75,1)
-		A.current = Target_Turf
-		A.yo = Target_Turf.y - Turf.y
-		A.xo = Target_Turf.x - Turf.x
-		A.def_zone = get_organ_target()
-		A.firer = src
-		A.original= T
-		A.starting = src.loc
-		spawn(1)
-			A.process()
+		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
 
+		var/obj/item/projectile/A = new(Turf)
+		A.permutated.Add(src)
+		A.def_zone = get_organ_target()
+		A.ammo = ammo //This always must be set.
+		A.icon = A.ammo.icon
+		A.icon_state = A.ammo.icon_state
+		A.damage = A.ammo.damage
+		A.damage_type = A.ammo.damage_type
+
+		spawn()
+			A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed) //Ptui!
+//		src.next_move += 2 //Lags you out a bit, spitting.
 		has_spat = 1
 		spawn(spit_delay)
 			has_spat = 0
@@ -388,6 +408,10 @@
 	set name = "Permit/Disallow Slashing"
 	set desc = "Allows you to permit the hive to harm."
 	set category = "Alien"
+
+	if(stat)
+		src << "You can't do that now."
+		return
 
 	if(pslash_delay)
 		src << "You must wait a bit before you can toggle this again."

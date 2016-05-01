@@ -837,7 +837,7 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
+/*
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"
 	set desc="Toggle alien mobs"
@@ -855,7 +855,7 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] toggled Space Ninjas to [toggle_space_ninja].")
 	message_admins("[key_name_admin(usr)] toggled Space Ninjas [toggle_space_ninja ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
+*/
 /datum/admins/proc/delay()
 	set category = "Server"
 	set desc="Delay the game start/end"
@@ -955,10 +955,10 @@ var/global/floorIsLava = 0
 		if (ticker.mode.config_tag == "nuclear")
 			return 2
 		return 1
-	if(M.mind in ticker.mode.wizards)
-		if (ticker.mode.config_tag == "wizard")
-			return 2
-		return 1
+//	if(M.mind in ticker.mode.wizards)
+//		if (ticker.mode.config_tag == "wizard")
+//			return 2
+//		return 1
 	if(M.mind in ticker.mode.changelings)
 		if (ticker.mode.config_tag == "changeling")
 			return 2

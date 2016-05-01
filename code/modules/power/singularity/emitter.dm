@@ -23,6 +23,15 @@
 	var/shot_number = 0
 	var/state = 0
 	var/locked = 0
+	var/datum/ammo/energy/emitter/ammo
+
+	New()
+		..()
+		ammo = new()
+
+	Del()
+		del(ammo)
+		..()
 
 
 /obj/machinery/power/emitter/verb/rotate()
@@ -129,30 +138,38 @@
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
+		var/obj/item/projectile/A = new ( src.loc )
+
+		A.ammo = ammo //This stuff is normally done in load_into_chamber.
+		A.name = A.ammo.name
+		A.icon_state = A.ammo.icon_state //Make it look fancy.
+		A.damage_type = A.damage_type //Burn it
+		A.dir = dir
+
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
 
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
-		//if(prob(35))
-		//	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-		//	s.set_up(5, 1, src)
-		//	s.start()
-		A.dir = src.dir
-		switch(dir)
-			if(NORTH)
-				A.yo = 20
-				A.xo = 0
-			if(EAST)
-				A.yo = 0
-				A.xo = 20
-			if(WEST)
-				A.yo = 0
-				A.xo = -20
-			else // Any other
-				A.yo = -20
-				A.xo = 0
-		A.process()	//TODO: Carn: check this out
+		var/turf/T = get_turf(src)
 
+		var/turf/target
+		if(dir == NORTH)
+			target = locate(T.x,T.y+3,T.z)
+		else if (dir == EAST)
+			target = locate(T.x+3,T.y,T.z)
+		else if (dir == SOUTH)
+			target = locate(T.x,T.y-3,T.z)
+		else if (dir == WEST)
+			target = locate(T.x-3,T.y,T.z)
+		else //Somehow??
+			target = locate(T.x,T.y+3,T.z)
+
+		if(!target) //Off the edge of the map somehow.
+			A.ammo = null
+			del(A)
+			return
+
+		A.fire_at(target,src,src,30,1) //Range, speed. Emitter shots are slow.
+		return //That's it!
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 

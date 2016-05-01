@@ -1,6 +1,12 @@
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
+	if(istype(mover,/mob/living/carbon/hellhound))
+		var/area/area = get_area(target)
+		if(area.can_hellhound_enter == 0)
+			mover << "Some kind of invisible force field prevents you from entering there."
+			return 0
+
 	if(ismob(mover))
 		var/mob/moving_mob = mover
 		if ((other_mobs && moving_mob.other_mobs))
@@ -264,7 +270,7 @@
 		//We can use orange instead of range, since Crossed already checks their turf.
 		if(ishuman(mob) && isturf(mob.loc) && !(mob.status_flags & XENO_HOST) && mob.stat != DEAD && !mob.lying)
 			for(var/obj/item/clothing/mask/facehugger/F in range(1,mob))
-				if(!F.stat && isturf(F.loc) && CanHug(mob))
+				if(!F.stat && isturf(F.loc) && CanHug(mob) && F.Adjacent(mob))
 					F.visible_message("<span class='warning'>[F] leaps at [mob]!</span>","<span class='warning'>[F] leaps at [mob]!</span>")
 					F.HasProximity(mob)
 					break
@@ -414,7 +420,7 @@
 				L.loc = locate(locx,locy,mobloc.z)
 				spawn(0)
 					var/limit = 2//For only two trailing shadows.
-					for(var/turf/T in getline(mobloc, L.loc))
+					for(var/turf/T in getline2(mobloc, L.loc))
 						spawn(0)
 							anim(T,L,'icons/mob/mob.dmi',,"shadow",,L.dir)
 						limit--

@@ -180,26 +180,6 @@
 				del(src)
 
 
-/obj/machinery/bot/secbot/ed209/bullet_act(var/obj/item/projectile/Proj)
-	if((src.lasercolor == "b") && (src.disabled == 0))
-		if(istype(Proj, /obj/item/projectile/beam/lastertag/red))
-			src.disabled = 1
-			del (Proj)
-			sleep(100)
-			src.disabled = 0
-		else
-			..()
-	else if((src.lasercolor == "r") && (src.disabled == 0))
-		if(istype(Proj, /obj/item/projectile/beam/lastertag/blue))
-			src.disabled = 1
-			del (Proj)
-			sleep(100)
-			src.disabled = 0
-		else
-			..()
-	else
-		..()
-
 /obj/machinery/bot/secbot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
 	new /obj/machinery/bot/secbot/ed209(get_turf(src),null,"b")
 	del(src)

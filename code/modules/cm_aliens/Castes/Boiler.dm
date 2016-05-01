@@ -9,14 +9,14 @@
 	tacklemin = 2
 	tacklemax = 4
 	tackle_chance = 60
-	health = 190
-	maxHealth = 190
+	health = 180
+	maxHealth = 180
 	storedplasma = 450
 	plasma_gain = 30
 	maxplasma = 800
 	jellyMax = 0
 	spit_delay = 40
-	speed = 1
+	speed = 1.5
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
@@ -27,13 +27,13 @@
 	var/zoom_timer = 0
 	var/is_bombarding = 0
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"
-	var/bombard_type = 0
 	var/readying_bombard = 0
 	var/bomb_cooldown = 0
 	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
 	var/acid_cooldown = 0
 	var/prev_turf = null
 	var/turf/bomb_turf = null
+	var/datum/ammo/bomb_ammo = null
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -52,6 +52,7 @@
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
+		bomb_ammo = new /datum/ammo/boiler_gas() //Set up the bombard ammo type.
 
 	Del()
 		SetLuminosity(0)
@@ -111,19 +112,17 @@
 
 	if(!check_state()) return
 
-	switch(bombard_type)
-		if(0)
-			src << "\blue You will now fire gaseous acid."
-			bombard_type = 1
-			grenade_type = "/obj/item/weapon/grenade/xeno"
-			return
-		if(1)
-			src << "\blue You will now fire neurotoxic gas."
-			bombard_type = 0
-			grenade_type = "/obj/item/weapon/grenade/xeno_weaken"
-			return
+	if(!istype(bomb_ammo,/datum/ammo/boiler_gas/corrosive))
+		src << "\blue You will now fire corrosive gas. This is lethal!"
+		if(bomb_ammo) del(bomb_ammo)
+		bomb_ammo = new /datum/ammo/boiler_gas/corrosive()
+		return
+	else //This also checks for null ammo.
+		src << "\blue You will now fire neurotoxic gas. This is nonlethal."
+		if(bomb_ammo) del(bomb_ammo)
+		bomb_ammo = new /datum/ammo/boiler_gas()
+		return
 
-	bombard_type = 0 //Shouldn't really ever happen
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bombard()
@@ -195,7 +194,11 @@
 		src << "You are too close! You must be at least 7 meters from the target, due to the trajectory arc."
 		return
 
-	if(!check_plasma(200 + (50 * bombard_type)))
+	if(!bomb_ammo)
+		src << "You have no bomb type selected, somehow."
+		return
+
+	if(!check_plasma(200))
 		return
 
 	var/offset_x = rand(-1,1)
@@ -219,13 +222,15 @@
 	if(do_after(src,50))
 		bomb_turf = null
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
-		target.visible_message("\green <B>A glob of acid falls from the sky!</b>")
-		if(grenade_type)
-			var/obj/item/weapon/grenade/G = new grenade_type(src.loc)
-			G.throw_at(target, 20, 2, src)
-			playsound(target, 'sound/effects/blobattack.ogg', 60, 1)
-			spawn(10)
-				G.prime()
+
+		var/obj/item/projectile/P = new(src.loc)
+		P.ammo = bomb_ammo
+		P.icon_state = P.ammo.icon_state
+		P.damage = P.ammo.damage
+		P.damage_type = P.ammo.damage_type
+		P.fire_at(target,src,null,P.ammo.max_range,P.ammo.shell_speed)
+		playsound(src, 'sound/effects/blobattack.ogg', 60, 1)
+
 		spawn(200) //20 seconds cooldown.
 			bomb_cooldown = 0
 			src << "You feel your toxin glands swell. You are able to bombard an area again."
@@ -244,6 +249,7 @@
 	det_time = 8
 	flags = FPRINT
 	anchored = 1
+	density = 0
 	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
 
 	New()
@@ -447,9 +453,14 @@
 				break
 			else if(DirBlocked(T,turn(src.dir,180)))
 				break
-		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/structure/mineral_door,T) || locate(/obj/effect/alien/resin/membrane,T))
+		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/effect/alien/resin/membrane,T) || locate(/obj/structure/girder,T))
 			break //Nope.avi
-
+		var/obj/structure/mineral_door/resin/D = locate() in T
+		if(D)
+			if(D.density) break
+		var/obj/machinery/M = locate() in T
+		if(M)
+			if(M.density) break
 		var/obj/structure/window/W = locate() in T
 		if(W)
 			if(W.is_full_window()) break

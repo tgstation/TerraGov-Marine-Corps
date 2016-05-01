@@ -159,9 +159,19 @@
 	density = 1
 	blocks_air = 1
 
+/turf/simulated/shuttle/wall/dropship
+	name = "wall"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rasputin1"
+
 /turf/simulated/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
+
+/turf/simulated/shuttle/floor/dropship
+	name = "floor"
+	icon_state = "rasputin1"
+
 
 /turf/simulated/shuttle/plating
 	name = "plating"

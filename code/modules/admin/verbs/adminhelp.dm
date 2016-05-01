@@ -108,8 +108,8 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	if(!mob)	return						//this doesn't happen
 
 	var/ref_mob = "\ref[mob]"
-	var/mentor_msg = "<b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>)(<A HREF='?_src_=holder;retarded=[ref_mob]'>Retarded</A>) [get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]: <br><font color='red'>[msg]</font></b><br>"
-	msg = "<b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>)(<A HREF='?_src_=holder;retarded=[ref_mob]'>Retarded</A>) [get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]: <br><font color='red'>[msg]</font></b><br>"
+	var/mentor_msg = "<br><br><font color='#009900'><b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>) [get_options_bar(mob, 0, 0, 1, 0)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
+	msg = "<br><br><font color='#009900'><b>[selected_upper]: (<A HREF='?_src_=holder;dibs=[ref_mob]'>Mark</A>)(<A HREF='?_src_=holder;NOPE=[ref_mob]'>No Response</A>) [get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
 
 
 
@@ -179,7 +179,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 				X << msg*/
 
 	//show it to the person adminhelping too
-	src << "<font color='blue'><b>PM to Staff ([selected_type]):</b> [original_msg]</font>"
+	src << "<br><font color='#009900'><b>PM to Staff ([selected_type]): <font color='#DA6200'>[original_msg]</b></font><br>"
 
 	var/admin_number_present = admins.len - admin_number_afk
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")

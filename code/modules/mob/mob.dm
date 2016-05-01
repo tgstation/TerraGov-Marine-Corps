@@ -826,7 +826,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		//Deal with two handed stuff before the drop. Sometimes doesn't clear the drop properly when being pounced etc
 		if(src.r_hand && (istype(src.r_hand,/obj/item/weapon/gun) || istype(src.r_hand,/obj/item/weapon/twohanded) ))
 			r_hand:unwield()
-		if(src.l_hand && (istype(src.l_hand,/obj/item/weapon/gun) || istype(src.r_hand,/obj/item/weapon/twohanded) ))
+		if(src.l_hand && (istype(src.l_hand,/obj/item/weapon/gun) || istype(src.l_hand,/obj/item/weapon/twohanded) ))
 			l_hand:unwield()
 
 		drop_l_hand()
@@ -975,7 +975,7 @@ mob/proc/yank_out_object()
 		return
 	usr.next_move = world.time + 20
 
-	if(usr.stat == 1)
+	if(usr.stat)
 		usr << "You are unconcious and cannot do that!"
 		return
 
@@ -1035,7 +1035,8 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		H.shock_stage+=20
+		if(!isYautja(H))
+			H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
 		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.

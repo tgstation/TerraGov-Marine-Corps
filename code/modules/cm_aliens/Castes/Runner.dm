@@ -14,10 +14,11 @@
 	maxplasma = 100
 	jellyMax = 400
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-	speed = -1.8
+	speed = -1.5
 	evolves_to = list("Hunter")
 	charge_type = 1 //Pounce
 	pass_flags = PASSTABLE
+	attack_delay = -3
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

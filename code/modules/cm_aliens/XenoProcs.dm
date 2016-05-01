@@ -197,7 +197,7 @@
 
 /mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
 	return
-
+/*
 /obj/item/projectile/energy/neuro
 	name = "spit"
 	icon_state = "neurotoxin"
@@ -245,7 +245,7 @@
 
 /obj/item/projectile/energy/neuro/acid/heavy
 	damage = 25
-
+*/
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
 //Also need to change the icons

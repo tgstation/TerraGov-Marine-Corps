@@ -64,11 +64,11 @@
 /mob/proc/put_in_hands(var/obj/item/W)
 	if(!W)		return 0
 	if(put_in_active_hand(W))
-		update_inv_l_hand()
+		update_inv_l_hand(0)
 		update_inv_r_hand()
 		return 1
 	else if(put_in_inactive_hand(W))
-		update_inv_l_hand()
+		update_inv_l_hand(0)
 		update_inv_r_hand()
 		return 1
 	else

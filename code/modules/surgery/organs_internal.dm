@@ -38,6 +38,8 @@
 		return ..() && embryo && affected.open == 3 && target_zone == "chest"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		var/msg = "[user] starts to pull something out from [target]'s ribcage with \the [tool]."
 		var/self_msg = "You start to pull something out from [target]'s ribcage with \the [tool]."
 		user.visible_message(msg, self_msg)
@@ -46,10 +48,12 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(!hasorgans(target)) return
-
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\red [user] rips a wriggling parasite out of [target]'s ribcage!",
 							 "You rip a wriggling parasite out of [target]'s ribcage!")
-		var/datum/organ/external/affected = target.get_organ(target_zone)
 		for(var/obj/item/alien_embryo/A in target)
 			A.loc = A.loc.loc
 			affected.implants -= A
@@ -85,6 +89,9 @@
 		return ..() && is_organ_damaged
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
+
 		var/tool_name = "\the [tool]"
 		if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
 			tool_name = "regenerative membrane"
@@ -96,7 +103,6 @@
 
 		if (!hasorgans(target))
 			return
-		var/datum/organ/external/affected = target.get_organ(target_zone)
 
 		for(var/datum/organ/internal/I in affected.internal_organs)
 			if(I && I.damage > 0)
@@ -120,14 +126,18 @@
 		if (!hasorgans(target))
 			return
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		for(var/datum/organ/internal/I in affected.internal_organs)
-			if(I && I.damage > 0)
-				if(I.robotic < 2)
+			if(I && I.damage > 0 && I.robotic < 2)
+				if(I.parent_organ == "head")
+					user.visible_message("\blue [user] thinks about treating [target]'s [I.name] with [tool_name], but forgots how stupid he is...", \
+					"\red Are you insane? You can't just place [tool_name] on [target]'s [I.name]!" )
+				else
 					user.visible_message("\blue [user] treats damage to [target]'s [I.name] with [tool_name].", \
 					"\blue You treat damage to [target]'s [I.name] with [tool_name]." )
 					I.damage = 0
-
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
@@ -184,6 +194,7 @@
 		if (!hasorgans(target))
 			return
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 
 		for(var/datum/organ/internal/I in affected.internal_organs)
 			if(I && I.damage > 0)
@@ -199,7 +210,9 @@
 		if (!hasorgans(target))
 			return
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		for(var/datum/organ/internal/I in affected.internal_organs)
 
 			if(I && I.damage > 0)
@@ -259,8 +272,8 @@
 		return ..() && organ_to_remove
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 
 		user.visible_message("[user] starts to separate [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start to separate [target]'s [target.op_stage.current_organ] with \the [tool]." )
@@ -268,6 +281,11 @@
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
+
 		user.visible_message("\blue [user] has separated [target]'s [target.op_stage.current_organ] with \the [tool]." , \
 		"\blue You have separated [target]'s [target.op_stage.current_organ] with \the [tool].")
 
@@ -315,19 +333,26 @@
 		return ..()
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
+
 		user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
 		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!",1)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
+
 		user.visible_message("\blue [user] has removed [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"\blue You have removed [target]'s [target.op_stage.current_organ] with \the [tool].")
 
 		// Extract the organ!
 		if(target.op_stage.current_organ)
 
-			var/datum/organ/external/affected = target.get_organ(target_zone)
 			var/datum/organ/internal/I = target.internal_organs_by_name[target.op_stage.current_organ]
 
 			var/obj/item/organ/O
@@ -412,6 +437,7 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts transplanting \the [tool] into [target]'s [affected.display_name].", \
 		"You start transplanting \the [tool] into [target]'s [affected.display_name].")
 		target.custom_pain("Someone's rooting around in your [affected.display_name]!",1)
@@ -419,6 +445,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] has transplanted \the [tool] into [target]'s [affected.display_name].", \
 		"\blue You have transplanted \the [tool] into [target]'s [affected.display_name].")
 		user.drop_item(tool)
@@ -486,12 +515,19 @@
 		return ..()
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
 		"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
 		target.custom_pain("Someone's digging needles into your [target.op_stage.current_organ]!",1)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
+
 		user.visible_message("\blue [user] has reattached [target]'s [target.op_stage.current_organ] with \the [tool]." , \
 		"\blue You have reattached [target]'s [target.op_stage.current_organ] with \the [tool].")
 

@@ -147,6 +147,10 @@
 				usr << "\red The round is either not ready, or has already finished..."
 				return
 
+			if(istype(ticker.mode,/datum/game_mode/huntergames))
+				usr << "Sorry, during the Hunter Games, you have to start at the beginning of the round. Observe and wait! Cheer on your favorite!"
+				return
+
 			if(client.prefs.species != "Human")
 				if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
 					src << alert("You are currently not whitelisted to play [client.prefs.species].")
@@ -427,9 +431,6 @@
 
 		if(mind)
 			mind.active = 0					//we wish to transfer the key manually
-			if(mind.assigned_role == "Clown")				//give them a clownname if they are a clown
-				new_character.real_name = pick(clown_names)	//I hate this being here of all places but unfortunately dna is based on real_name!
-				new_character.rename_self("clown")
 			mind.original = new_character
 			mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 

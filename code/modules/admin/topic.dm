@@ -9,7 +9,7 @@
 	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
 		check_antagonists()
 		return
-
+/*
 	if(href_list["makeAntag"])
 		switch(href_list["makeAntag"])
 			if("1")
@@ -32,27 +32,28 @@
 				log_admin("[key_name(usr)] has spawned a malf AI.")
 				if(!src.makeMalfAImode())
 					usr << "\red Unfortunately there weren't enough candidates available."
-			if("6")
-				log_admin("[key_name(usr)] has spawned a wizard.")
-				if(!src.makeWizard())
-					usr << "\red Unfortunately there weren't enough candidates available."
+//			if("6")
+//				log_admin("[key_name(usr)] has spawned a wizard.")
+//				if(!src.makeWizard())
+//					usr << "\red Unfortunately there weren't enough candidates available."
 			if("7")
 				log_admin("[key_name(usr)] has spawned a nuke team.")
 				if(!src.makeNukeTeam())
 					usr << "\red Unfortunately there weren't enough candidates available."
-			if("8")
-				log_admin("[key_name(usr)] has spawned a ninja.")
-				src.makeSpaceNinja()
-			if("9")
-				log_admin("[key_name(usr)] has spawned aliens.")
-				src.makeAliens()
-			if("10")
-				log_admin("[key_name(usr)] has spawned a death squad.")
-			if("11")
-				log_admin("[key_name(usr)] has spawned vox raiders.")
-				if(!src.makeVoxRaiders())
-					usr << "\red Unfortunately there weren't enough candidates available."
-	else if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
+//			if("8")
+//				log_admin("[key_name(usr)] has spawned a ninja.")
+//				src.makeSpaceNinja()
+//			if("9")
+//				log_admin("[key_name(usr)] has spawned aliens.")
+//				src.makeAliens()
+//			if("10")
+//				log_admin("[key_name(usr)] has spawned a death squad.")
+//			if("11")
+//				log_admin("[key_name(usr)] has spawned vox raiders.")
+//				if(!src.makeVoxRaiders())
+//					usr << "\red Unfortunately there weren't enough candidates available."
+*/
+	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 		var/adminckey = href_list["dbsearchadmin"]
 		var/playerckey = href_list["dbsearchckey"]
 
@@ -295,6 +296,8 @@
 			if("praetorian")		M.change_mob_type( /mob/living/carbon/Xenomorph/Praetorian , null, null, delmob )
 			if("ravager")			M.change_mob_type( /mob/living/carbon/Xenomorph/Ravager , null, null, delmob )
 			if("spitter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Spitter , null, null, delmob )
+			if("boiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Boiler , null, null, delmob )
+			if("crusher")			M.change_mob_type( /mob/living/carbon/Xenomorph/Crusher , null, null, delmob )
 			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen , null, null, delmob )
 //			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
@@ -1631,18 +1634,14 @@
 			else if(!ispath(path, /obj) && !ispath(path, /turf) && !ispath(path, /mob))
 				removed_paths += dirty_path
 				continue
-			else if(ispath(path, /obj/item/weapon/gun/energy/pulse_rifle))
-				if(!check_rights(R_FUN,0))
-					removed_paths += dirty_path
-					continue
 			else if(ispath(path, /obj/item/weapon/melee/energy/blade))//Not an item one should be able to spawn./N
 				if(!check_rights(R_FUN,0))
 					removed_paths += dirty_path
 					continue
-			else if(ispath(path, /obj/effect/bhole))
-				if(!check_rights(R_FUN,0))
-					removed_paths += dirty_path
-					continue
+//			else if(ispath(path, /obj/effect/bhole)) //What is this?
+//				if(!check_rights(R_FUN,0))
+//					removed_paths += dirty_path
+//					continue
 			paths += path
 
 		if(!paths)
@@ -1779,10 +1778,10 @@
 					spawn(0)
 						H.corgize()
 				ok = 1
-			if("striketeam")
-				if(usr.client.strike_team())
-					feedback_inc("admin_secrets_fun_used",1)
-					feedback_add_details("admin_secrets_fun_used","Strike")
+//			if("striketeam")
+//				if(usr.client.strike_team())
+//					feedback_inc("admin_secrets_fun_used",1)
+//					feedback_add_details("admin_secrets_fun_used","Strike")
 			if("tripleAI")
 				usr.client.triple_ai()
 				feedback_inc("admin_secrets_fun_used",1)
@@ -1830,7 +1829,7 @@
 				message_admins("\blue [key_name_admin(usr)] spawned a cortical borer infestation.", 1)
 				new /datum/event/borer_infestation
 
-			if("power")
+/*			if("power")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","P")
 				log_admin("[key_name(usr)] made all areas powered", 1)
@@ -1847,7 +1846,7 @@
 				feedback_add_details("admin_secrets_fun_used","QP")
 				log_admin("[key_name(usr)] made all SMESs powered", 1)
 				message_admins("\blue [key_name_admin(usr)] made all SMESs powered", 1)
-				power_restore_quick()
+				power_restore_quick()*/
 			if("activateprison")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","AP")
@@ -2149,7 +2148,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","MW")
 				new /datum/event/meteor_wave
-
+/*NO
 			if("gravanomalies")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","GA")
@@ -2165,7 +2164,7 @@
 				//moved to its own dm so I could split it up and prevent the spawns copying variables over and over
 				//can be found in code\game\game_modes\events\wormholes.dm
 				wormhole_event()
-
+*/
 			if("spiders")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","SL")
@@ -2180,12 +2179,13 @@
 				else
 					communications_blackout(1)
 				message_admins("[key_name_admin(usr)] triggered a communications blackout.", 1)
-			if("spaceninja")
+/*			if("spaceninja")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","SN")
 				if(toggle_space_ninja)
 					if(space_ninja_arrival())//If the ninja is actually spawned. They may not be depending on a few factors.
 						message_admins("[key_name_admin(usr)] has sent in a space ninja", 1)
+*/
 			if("carp")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","C")
@@ -2198,11 +2198,13 @@
 				feedback_add_details("admin_secrets_fun_used","R")
 				message_admins("[key_name_admin(usr)] has has irradiated the station", 1)
 				new /datum/event/radiation_storm
+/*
 			if("immovable")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","IR")
 				message_admins("[key_name_admin(usr)] has sent an immovable rod to the station", 1)
 				immovablerod()
+*/
 			if("prison_break")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","PB")
@@ -2351,11 +2353,11 @@
 				var/show_log = alert(usr, "Show ion message?", "Message", "Yes", "No")
 				if(show_log == "Yes")
 					command_announcement.Announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
-			if("spacevines")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","K")
-				new /datum/event/spacevine
-				message_admins("[key_name_admin(usr)] has spawned spacevines", 1)
+//			if("spacevines")
+//				feedback_inc("admin_secrets_fun_used",1)
+//				feedback_add_details("admin_secrets_fun_used","K")
+//				new /datum/event/spacevine
+//				message_admins("[key_name_admin(usr)] has spawned spacevines", 1)
 			if("onlyone")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","OO")
@@ -2736,7 +2738,7 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'Mark'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked your request and is preparing to respond...</b>"
 
 		//send this msg to all admins
@@ -2751,8 +2753,8 @@
 		if(!istype(ref_person))
 			usr << "\blue Looks like that person stopped existing!"
 			return
-		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font> as 'No response necessary'. The player has been notified.</b>"
-		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
+		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'No response necessary'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.</b>"
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your Adminhelp is being handled, it's fixed, or it's nonsensical.</font></b>"
 
 		//send this msg to all admins
 		for(var/client/X in admins)
@@ -2761,20 +2763,20 @@
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
-	if(href_list["retarded"]) // Their message is fucking stupid
-		var/mob/ref_person = locate(href_list["retarded"])
-		if(!istype(ref_person))
-			usr << "\blue Looks like that person stopped existing!"
-			return
-		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font> as 'Completely fucking retarded' - this Ahelp was written by someone whom, if they were any less intelligent, would need to be watered twice a day. The player has been nicely notified of this as 'No response necessary'.</b>"
-		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
-
-		//send this msg to all admins
-		for(var/client/X in admins)
-			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
-				X << msg
-
-		ref_person << msgplayer //send a message to the player
+	// if(href_list["retarded"]) // Their message is fucking stupid
+	// 	var/mob/ref_person = locate(href_list["retarded"])
+	// 	if(!istype(ref_person))
+	// 		usr << "\blue Looks like that person stopped existing!"
+	// 		return
+	// 	var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font> as 'Completely fucking retarded' - this Ahelp was written by someone whom, if they were any less intelligent, would need to be watered twice a day. The player has been nicely notified of this as 'No response necessary'.</b>"
+	// 	var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
+	//
+	// 	//send this msg to all admins
+	// 	for(var/client/X in admins)
+	// 		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
+	// 			X << msg
+	//
+	// 	ref_person << msgplayer //send a message to the player
 
 
 	if(href_list["ccdibs"]) // CentComm-Dibs. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.

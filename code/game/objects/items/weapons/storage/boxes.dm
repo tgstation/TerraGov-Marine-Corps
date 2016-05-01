@@ -40,6 +40,7 @@
 		sleep(1)
 		new /obj/item/clothing/mask/breath( src )
 		new /obj/item/weapon/tank/emergency_oxygen( src )
+		w_class = 3
 		return
 
 /obj/item/weapon/storage/box/engineer/
@@ -136,7 +137,7 @@
 		new /obj/item/weapon/dnainjector/m2h(src)
 		new /obj/item/weapon/dnainjector/m2h(src)
 		new /obj/item/weapon/dnainjector/m2h(src)
-
+/*
 
 /obj/item/weapon/storage/box/blanks
 	name = "box of blank shells"
@@ -180,7 +181,7 @@
 		new /obj/item/ammo_casing/shotgun(src)
 		new /obj/item/ammo_casing/shotgun(src)
 		new /obj/item/ammo_casing/shotgun(src)
-
+*/
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"

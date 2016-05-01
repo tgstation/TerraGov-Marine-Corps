@@ -44,6 +44,9 @@
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
+/obj/machinery/door_control/attack_alien(mob/user as mob)
+	return
+
 /obj/machinery/door_control/attackby(obj/item/weapon/W, mob/user as mob)
 	/* For later implementation
 	if (istype(W, /obj/item/weapon/screwdriver))
@@ -120,6 +123,8 @@
 
 /obj/machinery/door_control/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
+	if(istype(user,/mob/living/carbon/Xenomorph))
+		return
 	if(stat & (NOPOWER|BROKEN))
 		return
 

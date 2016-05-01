@@ -1,21 +1,12 @@
 //Deployable turrets. They can be either automated, manually fired, or installed with a pAI.
 //They are built in stages, and only engineers have access to them.
 
-/obj/item/projectile/bullet/m30
-	name = "autocannon shell"
-	damage = 32
-	icon_state = "bullet2"
-	iff = 1
-	accuracy = 100
-	armor_pierce = 70
-
 /obj/item/sentry_ammo
 	name = "M30 box magazine"
 	desc = "A box of 300 armor-piercing rounds for the UA 571-C Sentry Gun. Just click the sentry with this to reload it."
 	w_class = 4
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "a762"
-
 
 /obj/item/weapon/storage/box/sentry
 	name = "UA 571-C Sentry Crate"
@@ -223,8 +214,8 @@
 	req_one_access = list(access_sulaco_engineering,access_marine_leader)
 	var/dir_locked = 1
 	var/safety_off = 0
-	var/ammo = 300
-	var/ammo_max = 300
+	var/rounds = 300
+	var/rounds_max = 300
 	var/locked = 0
 	var/atom/target = null
 	var/mob/living/carbon/human/operator = null
@@ -244,6 +235,8 @@
 	var/is_bursting = 0
 	var/obj/item/turret_laptop/laptop = null
 	var/immobile = 0 //Used for prebuilt ones.
+	var/datum/ammo/bullet/turret/ammo //Pre-makes the bullet data.
+	var/obj/item/projectile/in_chamber = null
 
 	New()
 		spark_system = new /datum/effect/effect/system/spark_spread
@@ -256,6 +249,7 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
+		ammo = new /datum/ammo/bullet/turret()
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
@@ -316,6 +310,7 @@
 			user.visible_message("[user] rights the [src].","You put the [src] upright.")
 			stat = 0
 			update_icon()
+			update_health()
 		return
 
 	if(locked)
@@ -327,7 +322,7 @@
 
 	var/dat = "<b>[src.name]:</b> <BR><BR>"
 	dat += "--------------------<BR><BR>"
-	dat += "<B>Current Rounds:</b> [ammo] / [ammo_max]<BR>"
+	dat += "<B>Current Rounds:</b> [rounds] / [rounds_max]<BR>"
 	dat += "<B>Structural Integrity:</b> [round(health * 100 / health_max)] percent <BR>"
 	if(cell)
 		dat += "<B>Power Cell:</b> [cell.charge] / [cell.maxcharge]<BR>"
@@ -568,15 +563,15 @@
 				O.loc = src
 		return
 	if(istype(O,/obj/item/sentry_ammo))
-		if(ammo)
+		if(rounds)
 			user << "It can only be reloaded when empty."
 			return
 		user.visible_message("[user] begins fitting a new box magazine into the sentry turret.","You begin reloading..")
-		if(do_after(user,60))
+		if(do_after(user,70))
 			playsound(src.loc, 'sound/weapons/unload.ogg', 60, 1)
 			user.visible_message("\blue [user] reloads the [src].","\blue You reload the [src].")
 			user.drop_from_inventory(O)
-			ammo = ammo_max
+			rounds = rounds_max
 			del(O)
 		return
 
@@ -610,8 +605,8 @@
 					del(src)
 		return
 
-	if(health > 100)
-		health = 100
+	if(health > health_max)
+		health = health_max
 	if(!stat && damage > 0 && !immobile)
 		if(prob(10))
 			spark_system.start()
@@ -678,14 +673,12 @@
 	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
-	if(istype(Proj,/obj/item/projectile/energy) || istype(Proj,/obj/item/projectile/beam))
-		visible_message("\red [src] is hit by the [Proj]!")
-		update_health(Proj.damage / 2)
-		return
+	if(prob(30))
+		return 0
 
-	if(istype(Proj,/obj/item/projectile/bullet))
-		visible_message("\blue [Proj] bounces harmlessly off the [src]'s armor plating.")
-	return
+	visible_message("\The [src] is hit by the [Proj.name]!")
+	update_health(round(Proj.damage / 10))
+	return 1
 
 /obj/machinery/marine_turret/process()
 
@@ -703,18 +696,38 @@
 	if(gunner || manual_override) //If someone's firing it manually.
 		return
 
+	if(rounds == 0)
+		return
+
 	manual_override = 0
 	target = get_target()
 	process_shot()
 	return
 
+/obj/machinery/marine_turret/proc/load_into_chamber()
+	if(!ammo) return 0 //Our ammo datum is missing. We need one, and it should have set when we reloaded, so, abort.
+
+	if(in_chamber) return 1 //Already set!
+	if(!on || !cell || rounds == 0 || stat == 1) return 0
+
+	var/obj/item/projectile/P = new(src.loc) //New bullet!
+	P.ammo = ammo //Share the ammo type. This does all the heavy lifting.
+	P.name = P.ammo.name
+	P.icon_state = P.ammo.icon_state //Make it look fancy.
+	P.damage = P.ammo.damage //For reverse lookups.
+	P.damage_type = P.damage_type
+	in_chamber = P
+	return 1
+
 /obj/machinery/marine_turret/proc/process_shot()
+	set waitfor = 0
+
 	if(isnull(target)) return //Acqure our victim.
 
 	if(!ammo) return
 
 	if(burst_fire && target && !last_fired)
-		if(ammo > 3)
+		if(rounds > 3)
 			for(var/i = 1 to 3)
 				is_bursting = 1
 				fire_shot()
@@ -744,7 +757,7 @@
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)
 	var/scatter_chance = 5
-	if(burst_fire) scatter_chance = 30
+	if(burst_fire) scatter_chance = 20
 
 	if(prob(scatter_chance))
 		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
@@ -764,39 +777,30 @@
 			if(dx > 0)	dir = EAST
 			else		dir = WEST
 
-	playsound(src.loc, 'sound/weapons/Gunshot.ogg', 80, 1)
-
-	var/obj/item/projectile/bullet/m30/B = new(T)
-	B.original = target.loc
-	B.starting = get_turf(src)
-
-	B.current = T
-	B.yo = U.y - T.y
-	B.xo = U.x - T.x
-	B.def_zone = ran_zone() //Random body part.
-	if(gunner)
-		B.firer = gunner
-	else
-		B.firer = src
-
-	B.shot_from = src
-
-	spawn( 1 )
-		B.process()
-
-	ammo--
-	if(ammo == 0)
-		visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")
-		playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
-
+	if(load_into_chamber() == 1)
+		if(istype(in_chamber,/obj/item/projectile) && in_chamber.ammo == ammo)
+			in_chamber.original = target
+			in_chamber.dir = src.dir
+			in_chamber.def_zone = pick("chest","chest","chest","head")
+			playsound(src.loc, 'sound/weapons/gunshot_rifle.ogg', 100, 1)
+			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
+			in_chamber = null
+			rounds--
+			if(rounds == 0)
+				visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")
+				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
 	return
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
-	var/range = 9
+	var/range = 10
 
 	if(!dir_locked)
 		range = 3
+
+	var/list/turf/path = list()
+	var/turf/T
+	var/blocked = 0
 
 	for(var/mob/living/carbon/C in oview(range,src))
 		if(ishuman(C))
@@ -809,26 +813,37 @@
 		if(C.stat) continue //No unconscious/deads.
 
 		if(dir_locked) //We're dir locked and facing the right way.
-			var/dx = C.x - x
-			var/dy = C.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
-			var/direct
+			var/angle = get_dir(src,C)
+			if(dir == NORTH && (angle == NORTHEAST || angle == NORTHWEST)) //There's probably an easier way to do this. MEH
+				angle = NORTH
+			if(dir == SOUTH && (angle == SOUTHEAST || angle == SOUTHWEST))
+				angle = SOUTH
+			if(dir == EAST && (angle == NORTHEAST || angle == SOUTHEAST))
+				angle = EAST
+			if(dir == WEST && (angle == NORTHWEST || angle == SOUTHWEST))
+				angle = WEST
 
-			if(abs(dx) < abs(dy))
-				if(dy > 0)	direct = NORTH
-				else		direct = SOUTH
-			else
-				if(dx > 0)	direct = EAST
-				else		direct = WEST
-
-			if(direct == dir)
-				targets += C
+			if(angle == dir)
+				path = getline2(src,C)
+				blocked = 0
+				for(T in path)
+					if(T.density) //Simple density check on turfs in the firing path.
+						blocked = 1
+				if(blocked == 0)
+					targets += C
 		else  //Otherwise grab everyone around us.
-			targets += C
+			path = getline2(src,C)
+			blocked = 0
+			for(T in path)
+				if(T.density)
+					blocked = 1
+			if(blocked == 0)
+				targets += C
 
 	if(targets.len)
-		var/mob/T = pick(targets)
-		if(T)
-			return T
+		var/mob/P = pick(targets)
+		if(P)
+			return P
 
 	return null
 
@@ -907,8 +922,8 @@
 	immobile = 1
 	on = 1
 	burst_fire = 1
-	ammo = 900
-	ammo_max = 900
+	rounds = 900
+	rounds_max = 900
 	icon_state = "turret-1"
 
 	New()
@@ -923,4 +938,4 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
-
+		ammo = new /datum/ammo/bullet/turret()

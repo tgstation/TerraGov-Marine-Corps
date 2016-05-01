@@ -103,4 +103,4 @@
 /obj/effect/dummy/spell_jaunt/ex_act(blah)
 	return
 /obj/effect/dummy/spell_jaunt/bullet_act(blah)
-	return
+	return 1

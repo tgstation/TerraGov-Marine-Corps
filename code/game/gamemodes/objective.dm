@@ -480,7 +480,7 @@ datum/objective/steal
 	var/target_name
 
 	var/global/possible_items[] = list(
-		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/laser/captain,
+//		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/laser/captain,
 		"a hand teleporter" = /obj/item/weapon/hand_tele,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
@@ -504,7 +504,6 @@ datum/objective/steal
 
 	var/global/possible_items_special[] = list(
 		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
-		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
 		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
 		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/weapon/cell/hyper,
@@ -814,23 +813,19 @@ datum/objective/heist/loot
 				target = /obj/item/weapon/gun
 				target_amount = 6
 				loot = "six guns"
-			if(6)
-				target = /obj/item/weapon/gun/energy
-				target_amount = 4
-				loot = "four energy guns"
-			if(7)
-				target = /obj/item/weapon/gun/energy/laser
-				target_amount = 2
-				loot = "two laser guns"
-			if(8)
-				target = /obj/item/weapon/gun/energy/ionrifle
-				target_amount = 1
-				loot = "an ion gun"
+//			if(6)
+//				target = /obj/item/weapon/gun/energy
+//				target_amount = 4
+//				loot = "four energy guns"
+//			if(7)
+//				target = /obj/item/weapon/gun/energy/laser
+//				target_amount = 2
+//				loot = "two laser guns"
 
 		explanation_text = "We are lacking in hardware. Steal [loot]."
 
 	check_completion()
-
+/*
 		var/total_amount = 0
 
 		for(var/obj/O in locate(/area/shuttle/vox/station))
@@ -845,7 +840,7 @@ datum/objective/heist/loot
 				for(var/obj/O in raider.current.get_contents())
 					if(istype(O,target)) total_amount++
 					if(total_amount >= target_amount) return 1
-
+*/
 		return 0
 
 datum/objective/heist/salvage
@@ -880,7 +875,7 @@ datum/objective/heist/salvage
 		explanation_text = "Ransack the station and escape with [target_amount] [target]."
 
 	check_completion()
-
+/*
 		var/total_amount = 0
 
 		for(var/obj/item/O in locate(/area/shuttle/vox/station))
@@ -906,6 +901,7 @@ datum/objective/heist/salvage
 							total_amount += S.get_amount()
 
 		if(total_amount >= target_amount) return 1
+*/
 		return 0
 
 
@@ -913,8 +909,10 @@ datum/objective/heist/inviolate_crew
 	explanation_text = "Do not leave any Vox behind, alive or dead."
 
 	check_completion()
+	/*
 		var/datum/game_mode/heist/H = ticker.mode
 		if(H.is_raider_crew_safe()) return 1
+		*/
 		return 0
 
 #define MAX_VOX_KILLS 10 //Number of kills during the round before the Inviolate is broken.
@@ -946,7 +944,7 @@ datum/objective/heist/inviolate_death
 		var/mob/living/simple_animal/borer/B = owner.current
 		if(istype(B) && B.has_reproduced) return 1
 	return 0
-
+/*
 /datum/objective/ninja_highlander
 	explanation_text = "You aspire to be a Grand Master of the Spider Clan. Kill all of your fellow acolytes."
 
@@ -957,7 +955,7 @@ datum/objective/heist/inviolate_death
 				if(ninja.current.stat < 2) return 0
 		return 1
 	return 0
-
+*/
 /datum/objective/cult_summon
 	explanation_text = "Summon Nar-Sie via the use of the appropriate rune (Hell join self). It will only work if nine cultists stand on and around it."
 

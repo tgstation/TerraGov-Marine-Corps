@@ -125,7 +125,8 @@
 
 //Saving this in case we want to swap it back, but candidates shouldn't be picked first to be a Larva. The host should be.
 //NOPE - Abby
-
+	if(affected_mob.z == 2) //If not on Centcomm
+		return 0
 	if(candidates.len)
 		picked = pick(candidates)
 	else if(affected_mob.client)
@@ -134,7 +135,7 @@
 			stage = 4
 			return 0
 		else
-			if(affected_mob.client.prefs.be_special & BE_ALIEN)
+			if(affected_mob.client.prefs.be_special & BE_ALIEN && !jobban_isbanned(affected_mob,"Alien"))
 				picked = affected_mob.key
 			else
 				if(counter) counter = round(counter/2)

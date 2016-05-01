@@ -8,34 +8,46 @@
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons and armor."
 	icon_state = "armory"
 	icon_vend = "armory-vend"
+	icon_deny = "armory"
+	req_access = null
+	req_access_txt = "0"
+	req_one_access = null
+	req_one_access_txt = "9;2;21"
+
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/weapon/gun/projectile/m4a3 = 10,
-					/obj/item/weapon/gun/projectile/m44m = 10,
-					/obj/item/weapon/gun/projectile/automatic/m39 = 10,
-					/obj/item/weapon/gun/projectile/automatic/m41 = 20,
-					/obj/item/weapon/gun/projectile/shotgun/pump/m37 = 10,
+					/obj/item/weapon/gun/pistol/m4a3 = 25,
+					/obj/item/weapon/gun/revolver/m44 = 5,
+					/obj/item/weapon/gun/smg/m39 = 20,
+					/obj/item/weapon/gun/rifle/m41a = 25,
+					/obj/item/weapon/gun/shotgun/pump = 10,
 
-					/obj/item/ammo_magazine/m4a3 = 20,
-					/obj/item/ammo_magazine/m44m = 20,
-					/obj/item/ammo_magazine/m39 =  20,
-					/obj/item/ammo_magazine/m41 =  40,
-					/obj/item/weapon/storage/box/m37 = 20,
+					/obj/item/ammo_magazine/pistol = 30,
+					/obj/item/ammo_magazine/revolver = 25,
+					/obj/item/ammo_magazine/smg/m39 = 30,
+					/obj/item/ammo_magazine/rifle = 40,
+					/obj/item/ammo_magazine/rifle/ap = 5,
+					/obj/item/ammo_magazine/shotgun = 20,
+					/obj/item/ammo_magazine/shotgun/buckshot = 20,
 
-					/obj/item/weapon/combat_knife = 10,
+					/obj/item/weapon/combat_knife = 20,
 					/obj/item/weapon/storage/belt/knifepouch = 5,
-					/obj/item/weapon/throwing_knife = 10,
+					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/device/flashlight/flare = 30,
-					/obj/item/weapon/storage/backpack/marine = 20,
-					///obj/item/weapon/storage/backpack/marinesatchel = 5,
+					/obj/item/device/flashlight/ = 20,
+					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/device/radio/headset/msulaco = 5,
-					/obj/item/device/flashlight/flare = 10,
-					/obj/item/clothing/suit/storage/marine = 5,
+//					/obj/item/clothing/suit/storage/marine = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
-					/obj/item/clothing/head/helmet/marine = 5,
+//					/obj/item/clothing/head/helmet/marine = 5,
 					/obj/item/clothing/shoes/marine = 5,
-					/obj/item/clothing/under/marine_jumpsuit =5
+//					/obj/item/clothing/under/marine_jumpsuit =5
+					/obj/item/clothing/under/marine_jumpsuit/snow = 5,
+					/obj/item/clothing/suit/storage/marine/snow = 5,
+					/obj/item/clothing/head/helmet/marine/snow = 5,
+					/obj/item/clothing/mask/rebreather = 5
 					)
+
 	contraband = list(/*bj/item/weapon/storage/fancy/donut_box = 5,
 					/obj/item/ammo_magazine/a357 = 5,
 					/obj/item/ammo_magazine/a50 = 5,*/
@@ -47,8 +59,8 @@
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
-	name = "Marine Food Vendor"
-	desc = "Standard Issue Food Vendor, containing standard military food"
+	name = "Marine Food and Drinks Vendor"
+	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
@@ -57,7 +69,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15)
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/flask/marine = 20)
+
 					/*(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25) */
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)
@@ -150,7 +164,7 @@
 						/obj/item/weapon/cell/high = 10
 					)
 	contraband = list(
-					/obj/item/clothing/head/helmet/marine/tech = 2
+						/obj/item/clothing/head/helmet/marine/tech = 2
 			)
 	premium = list()
 	prices = list()
@@ -199,7 +213,7 @@
 						/obj/item/weapon/storage/firstaid/adv = 3
 					)
 	contraband = list(
-					/obj/item/clothing/head/helmet/marine/medic = 2
+					///obj/item/clothing/head/helmet/marine/medic = 2
 			)
 	premium = list()
 	prices = list()
@@ -278,7 +292,16 @@
 						/obj/item/attachable/bipod = 4,
 						/obj/item/attachable/burstfire_assembly = 2,
 
+						/obj/item/attachable/compensator/stock = 3,
+						/obj/item/attachable/compensator/riflestock = 3 ,
+						/obj/item/attachable/compensator/revolverstock = 3,
+
+						/obj/item/attachable/grenade = 5,
+						/obj/item/attachable/shotgun = 3,
+						/obj/item/attachable/flamer = 3,
+
 						/obj/item/clothing/tie/storage/webbing = 3,
+						/obj/item/weapon/claymore/mercsword/machete = 5
 
 					)
 	contraband = list()

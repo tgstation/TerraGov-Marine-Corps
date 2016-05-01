@@ -35,7 +35,9 @@
 	return
 
 /obj/item/stack/attack_self(mob/user as mob)
-
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
 
 	list_recipes(user)
 
@@ -124,6 +126,8 @@
 			return
 		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
 			usr << "\red There is another [R.title] here!"
+		if(locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/table) in usr.loc)
+			usr << "\red Not enough space to construct [R.title] here!"
 			return
 		if (R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor)))
 			usr << "\red \The [R.title] must be constructed on the floor!"

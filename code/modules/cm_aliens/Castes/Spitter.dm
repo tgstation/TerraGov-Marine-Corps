@@ -6,8 +6,8 @@
 	icon_state = "Spitter Walking"
 	melee_damage_lower = 12
 	melee_damage_upper = 22
-	health = 180
-	maxHealth = 180
+	health = 150
+	maxHealth = 150
 	storedplasma = 150
 	plasma_gain = 20
 	maxplasma = 600
@@ -16,7 +16,6 @@
 	speed = 0
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
-	spit_projectile = /obj/item/projectile/energy/neuro/strong
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

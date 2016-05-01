@@ -31,11 +31,17 @@
 		return ..()
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts to separate the corneas on [target]'s eyes with \the [tool].", \
 		"You start to separate the corneas on [target]'s eyes with \the [tool].")
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] has separated the corneas on [target]'s eyes with \the [tool]." , \
 		"\blue You have separated the corneas on [target]'s eyes with \the [tool].",)
 		target.op_stage.eyes = 1
@@ -64,11 +70,17 @@
 		return ..() && target.op_stage.eyes == 1
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts lifting corneas from [target]'s eyes with \the [tool].", \
 		"You start lifting corneas from [target]'s eyes with \the [tool].")
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] has lifted the corneas from [target]'s eyes from with \the [tool]." , \
 		"\blue You has lifted the corneas from [target]'s eyes from with \the [tool]." )
 		target.op_stage.eyes = 2
@@ -96,11 +108,17 @@
 		return ..() && target.op_stage.eyes == 2
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts mending the nerves and lenses in [target]'s eyes with \the [tool].", \
 		"You start mending the nerves and lenses in [target]'s eyes with the [tool].")
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] mends the nerves and lenses in [target]'s with \the [tool]." ,	\
 		"\blue You mend the nerves and lenses in [target]'s with \the [tool].")
 		target.op_stage.eyes = 3
@@ -129,10 +147,16 @@
 		return ..()
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] is beginning to cauterize the incision around [target]'s eyes with \the [tool]." , \
 		"You are beginning to cauterize the incision around [target]'s eyes with \the [tool].")
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		var/datum/organ/internal/eyes/eyes = target.internal_organs_by_name["eyes"]
 		user.visible_message("\blue [user] cauterizes the incision around [target]'s eyes with \the [tool].", \
 		"\blue You cauterize the incision around [target]'s eyes with \the [tool].")

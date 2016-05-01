@@ -6,6 +6,7 @@
 
 /mob/living/carbon/Xenomorph/UnarmedAttack(var/atom/A) //The generic CLICK A THING proc
 	A.attack_alien(src)
+	next_move = world.time + (10 + attack_delay) //Adds some lag to the 'attack'
 
 /atom/proc/attack_alien(mob/user as mob) //The initial proc, defaults to mankeys
 	return ..(attack_paw(user))
@@ -15,7 +16,7 @@
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva)) //Larva can't do shit-all
 		visible_message("\red <B>[M] nudges its head against [src].</B>")
 		return 0
-
+//	next_move += (7 + M.attack_delay) //Adds some lag to the 'attack'
 	switch(M.a_intent)
 		if ("help")
 			visible_message(text("\blue \The [M] caresses [src] with its scythe like arm."))
@@ -37,6 +38,10 @@
 		if("hurt")
 			if(slashing_allowed == 0 && !M.is_intelligent)
 				M.visible_message("<b>\The [M] tries to slash [src], but suddenly hesitates!","Slashing is currently <b>forbidden</b> by the Queen. You hesitate and miss your target.")
+				return
+
+			if(stat == 2)
+				M << "It is dead, why do you want to touch it?"
 				return
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -136,7 +141,7 @@
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva))
 		visible_message("\red <B>[M] nudges its head against [src].</B>")
 		return 0
-
+//	M.next_move += (7 + M.attack_delay) //Adds some lag to the 'attack'
 	switch(M.a_intent)
 		if ("help")
 			visible_message(text("\blue [M] caresses [src] with its scythe like arm. Ooh la la!"))
@@ -217,8 +222,8 @@
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	visible_message("<span class='danger'>[M] slices [src] apart!</span>")
-	new /obj/item/weapon/rack_parts( src.loc )
-	del(src)
+	destroy()
+
 
 //Default "structure" proc. This should be overwritten by sub procs.
 //If we sent it to monkey we'd get some weird shit happening.
@@ -247,13 +252,14 @@
 							"You hear a tap-tap-tapping sound.")
 
 //Slashing turrets
+/*
 /obj/machinery/turret/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	if(!(stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 		visible_message("\red <B>[M] has slashed at [src]!</B>")
 		src.take_damage(15)
-
+*/
 //Slashing bots
 /obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
@@ -362,14 +368,14 @@
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	var/turf/cur_loc = M.loc
 	if(locked)
-		M << "\blue The airlock's bolts prevent it from being forced."
+		M << "\red The airlock's bolts prevent it from being forced."
 		return
 	if(welded)
-		M << "\blue The airlock seems to be welded shut."
+		M << "\red The airlock seems to be welded shut."
 		return
 	if(!istype(cur_loc)) return //Some basic logic here
 	if(!density)
-		M << "It's already open!"
+		M << "\red It's already open!"
 		return
 
 	if(isXenoLarva(M)) //Larvae cannot pry open doors, but they CAN squeeze under them.
@@ -384,6 +390,12 @@
 
 	if(do_after(M,40))
 		if(M.loc != cur_loc) return //Make sure we're still there
+		if(locked)
+			M << "\red The airlock's bolts prevent it from being forced."
+			return
+		if(welded)
+			M << "\red The airlock seems to be welded shut."
+			return
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)
@@ -393,12 +405,12 @@
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc)) return //Some basic logic here
 	if(!density)
-		M << "It's already open!"
+		M << "\red It's already open!"
 		return
 	if(isXenoLarva(M)) return //Larvae can't do shit
 
 	if(blocked)
-		M << "It's welded shut!"
+		M << "\red It's welded shut!"
 		return
 
 	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 50, 1)
@@ -407,6 +419,9 @@
 
 	if(do_after(M,30))
 		if(M.loc != cur_loc) return //Make sure we're still there
+		if(blocked)
+			M << "\red The [src.name] seems to be welded shut."
+			return
 		if(density) //Make sure it's still closed
 			spawn(0)
 				open(1)

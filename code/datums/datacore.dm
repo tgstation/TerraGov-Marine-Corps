@@ -7,6 +7,7 @@
 		if(!nosleep)
 			sleep(40)
 		for(var/mob/living/carbon/human/H in player_list)
+			if(H.species && H.species.name == "Yautja") continue
 			manifest_inject(H)
 		return
 
@@ -197,7 +198,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 		eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 	var/icon/clothes_s = null
-	clothes_s = new /icon('icons/mob/uniform.dmi', "marine_underpants_s")
+	clothes_s = new /icon('icons/mob/uniform_0.dmi', "marine_underpants_s")
 	clothes_s.Blend(new /icon('icons/mob/feet.dmi', "black"), ICON_UNDERLAY)
 	preview_icon.Blend(eyes_s, ICON_OVERLAY)
 	if(clothes_s)

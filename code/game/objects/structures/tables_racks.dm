@@ -26,6 +26,22 @@
 	var/flipped = 0
 	var/health = 100
 
+/obj/structure/table/destroy(var/deconstruct = 0)
+	if(deconstruct)
+		if(parts)
+			new parts(loc)
+	else
+		if(istype(src,/obj/structure/table/reinforced))
+			if(prob(50))
+				new /obj/item/stack/rods(loc)
+			new /obj/item/stack/sheet/metal(loc)
+		else if(istype(src,/obj/structure/table/woodentable) || istype(src,/obj/structure/table/gamblingtable))
+			new /obj/item/stack/sheet/wood(loc)
+		else
+			new /obj/item/stack/sheet/metal(loc)
+	density = 0
+	del(src)
+
 /obj/structure/table/proc/update_adjacent()
 	for(var/direction in list(1,2,4,8,5,6,9,10))
 		if(locate(/obj/structure/table,get_step(src,direction)))
@@ -266,9 +282,6 @@
 	return
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover,/obj/item/projectile))
-		return (check_cover(mover,target))
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	if(locate(/obj/structure/table) in get_turf(mover))
@@ -279,33 +292,6 @@
 		else
 			return 1
 	return 0
-
-//checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
-/obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
-	var/turf/cover = flipped ? get_turf(src) : get_step(loc, get_dir(from, loc))
-	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
-		return 1
-	if (get_turf(P.original) == cover)
-		var/chance = 20
-		if (ismob(P.original))
-			var/mob/M = P.original
-			if (M.lying)
-				chance += 20				//Lying down lets you catch less bullets
-		if(flipped)
-			if(get_dir(loc, from) == dir)	//Flipped tables catch mroe bullets
-				chance += 20
-			else
-				return 1					//But only from one side
-		if(prob(chance))
-			health -= P.damage/2
-			if (health > 0)
-				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-				return 0
-			else
-				visible_message("<span class='warning'>[src] breaks down!</span>")
-				destroy()
-				return 1
-	return 1
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
@@ -355,7 +341,7 @@
 		user << "\blue Now disassembling table"
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user,50))
-			destroy()
+			destroy(1)
 		return
 
 	if(isrobot(user))
@@ -595,12 +581,28 @@
 
 /obj/structure/rack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/wrench))
-		new /obj/item/weapon/rack_parts( src.loc )
+		destroy(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		del(src)
 		return
 	if(isrobot(user))
 		return
 	user.drop_item()
 	if(W && W.loc)	W.loc = src.loc
 	return
+
+/obj/structure/rack/Crossed(atom/movable/O)
+	..()
+	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
+		var/mob/living/carbon/Xenomorph/M = O
+		if(!M.stat) //No dead xenos jumpin on the bed~
+			visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
+			destroy()
+
+/obj/structure/rack/destroy(var/deconstruct = 0)
+	if(deconstruct)
+		if(parts)
+			new parts(loc)
+	else
+		new /obj/item/stack/sheet/metal(loc)
+	density = 0
+	del(src)

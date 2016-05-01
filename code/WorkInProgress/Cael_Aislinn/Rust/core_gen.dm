@@ -284,4 +284,4 @@ max volume of phoron storeable by the field = the total volume of a number of ti
 /obj/machinery/power/rust_core/bullet_act(var/obj/item/projectile/Proj)
 	if(owned_field)
 		return owned_field.bullet_act(Proj)
-	return 0
+	return 1

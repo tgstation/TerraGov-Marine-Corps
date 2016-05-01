@@ -177,7 +177,7 @@
 		update_icon(1,1)
 
 	//Update icon
-	proc/update_icon(var/update_full, var/skip_sides)
+	update_icon(var/update_full, var/skip_sides)
 		icon_state = "snow[slayer]_[pick("1","2","3")]"
 		switch(slayer)
 			if(0)
@@ -362,7 +362,7 @@
 		..()
 		update_icon(1)
 
-	proc/update_icon(var/skip_sides)
+	update_icon(var/skip_sides)
 		//Update the side overlays
 		var/turf/T
 		if(!skip_sides)

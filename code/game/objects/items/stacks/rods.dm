@@ -42,6 +42,9 @@
 
 	if(!istype(user.loc,/turf)) return 0
 
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))
+		usr << "<span class='warning'>You cannot build structures in hangar, this area is needed for the dropships and personnel.</span>"
+		return
 
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)

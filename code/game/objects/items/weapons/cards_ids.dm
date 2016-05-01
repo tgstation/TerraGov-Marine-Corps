@@ -92,7 +92,7 @@
 		/obj/machinery/clonepod,
 		/obj/machinery/deployable,
 		/obj/machinery/door_control,
-		/obj/machinery/porta_turret,
+//		/obj/machinery/porta_turret,
 		/obj/machinery/shieldgen,
 		/obj/machinery/turretid,
 		/obj/machinery/vending,

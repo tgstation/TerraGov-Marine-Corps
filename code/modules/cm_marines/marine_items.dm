@@ -316,33 +316,94 @@
 	icon = 'icons/Marine/apc.dmi'
 	icon_state = "apc"
 
+//Possibly the most generically named procs in history. congrats
 /obj/structure/largecrate/random
 	name = "supply crate"
+	var/num_things = 0
+	var/list/stuff = list(/obj/item/weapon/cell/high,
+						/obj/item/weapon/storage/belt/utility/full,
+						/obj/item/device/multitool,
+						/obj/item/weapon/crowbar,
+						/obj/item/device/flashlight,
+						/obj/item/weapon/reagent_containers/food/snacks/donkpocket,
+						/obj/item/weapon/grenade/smokebomb,
+						/obj/item/weapon/airlock_electronics,
+						/obj/item/device/assembly/igniter,
+						/obj/item/weapon/weldingtool,
+						/obj/item/weapon/wirecutters,
+						/obj/item/device/analyzer,
+						/obj/item/clothing/under/marine_jumpsuit,
+						/obj/item/clothing/under/marine_underoos,
+						/obj/item/clothing/shoes/marine)
 
 	New()
 		spawn(1)
-			var/i = rand(0,3)
+			if(!num_things) num_things = rand(0,3)
 
-			while(i)
-				if(!i)
+			while(num_things)
+				if(!num_things)
 					break
-				i--
-				var/obj/item/thing = pick(/obj/item/weapon/cell/high,
-								/obj/item/weapon/storage/belt/utility/full,
-								/obj/item/device/multitool,
-								/obj/item/weapon/crowbar,
-								/obj/item/device/flashlight,
-								/obj/item/weapon/reagent_containers/food/snacks/donkpocket,
-								/obj/item/weapon/grenade/smokebomb,
-								/obj/item/weapon/airlock_electronics,
-								/obj/item/device/assembly/igniter,
-								/obj/item/weapon/weldingtool,
-								/obj/item/weapon/wirecutters,
-								/obj/item/device/analyzer,
-								/obj/item/clothing/under/marine_jumpsuit,
-								/obj/item/clothing/under/marine_underoos,
-								/obj/item/clothing/shoes/marine)
+				num_things--
+				var/obj/item/thing = pick(stuff)
 				new thing(src)
+
+/obj/structure/largecrate/guns
+	name = "USCM firearms crate (x3)" //Doubling up stuff on the list will just make it twice as likely.
+	var/num_things = 3
+	var/list/stuff = list(	/obj/item/weapon/gun/pistol/m4a3,
+					/obj/item/weapon/gun/pistol/m4a3,
+					/obj/item/weapon/gun/revolver/m44,
+					/obj/item/weapon/gun/rifle/m41a,
+					/obj/item/weapon/gun/rifle/m41a,
+					/obj/item/weapon/gun/shotgun/pump,
+					/obj/item/weapon/gun/smg/m39,
+					/obj/item/weapon/gun/smg/m39,
+					/obj/item/weapon/gun/rifle/m41a/scoped,
+					/obj/item/weapon/gun/rifle/lmg
+				)
+	New()
+		spawn(1)
+			while(num_things)
+				if(!num_things)
+					break
+				num_things--
+				var/guntype = pick(stuff)
+				var/obj/item/weapon/gun/thing = new guntype(src)
+				var/magpath = text2path(thing.mag_type)
+				if(magpath)
+					new magpath(src)
+					new magpath(src) //2 spare mags for each, if it has one
+
+/obj/structure/largecrate/guns/russian
+	num_things = 1
+	name = "Nagant-Yamasaki firearm crate"
+	stuff = list(	/obj/item/weapon/gun/revolver/upp,
+					/obj/item/weapon/gun/pistol/c99,
+					/obj/item/weapon/gun/pistol/kt42,
+					/obj/item/weapon/gun/rifle/mar40,
+					/obj/item/weapon/gun/rifle/mar40/carbine,
+					/obj/item/weapon/gun/rifle/mar40/svd,
+					/obj/item/weapon/gun/smg/ppsh
+				)
+
+/obj/structure/largecrate/guns/merc
+	num_things = 1
+	name = "Black market firearm crate"
+	stuff = list(	/obj/item/weapon/gun/pistol/holdout,
+					/obj/item/weapon/gun/pistol/highpower,
+					/obj/item/weapon/gun/pistol/m1911,
+					/obj/item/weapon/gun/pistol/vp70,
+					/obj/item/weapon/gun/pistol/heavy,
+					/obj/item/weapon/gun/revolver/small,
+					/obj/item/weapon/gun/revolver/cmb,
+					/obj/item/weapon/gun/shotgun/merc,
+					/obj/item/weapon/gun/shotgun/pump/cmb,
+					/obj/item/weapon/gun/shotgun/double,
+					/obj/item/weapon/gun/smg/mp7,
+					/obj/item/weapon/gun/smg/skorpion,
+					/obj/item/weapon/gun/smg/uzi,
+					/obj/item/weapon/gun/smg/p90
+				)
 
 /obj/item/weapon/storage/box/uscm_mre
 	name = "USCM Meal Ready to Eat"
@@ -535,4 +596,5 @@
 		</html>
 
 		"}
+
 

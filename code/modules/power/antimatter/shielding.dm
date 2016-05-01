@@ -117,8 +117,7 @@ proc/cardinalrange(var/center)
 
 
 /obj/machinery/am_shielding/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.flag != "bullet")
-		stability -= Proj.force/2
+	stability -= Proj.damage
 	return 0
 
 

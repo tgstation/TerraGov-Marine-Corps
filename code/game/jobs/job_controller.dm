@@ -346,7 +346,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			//Equip job items.
 			job.equip(H)
 		else
-			H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
+			return
 
 		H.job = rank
 

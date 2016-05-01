@@ -12,7 +12,7 @@
 	item_state = "state"
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/suits.dmi'
-	icon_override = 'icons/mob/suit.dmi'
+	icon_override = 'icons/mob/suit_0.dmi'
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = 220
 	//AND THIS LINE
@@ -330,7 +330,7 @@
 	item_state = "state"
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/hats.dmi'
-	icon_override = 'icons/mob/head.dmi'
+	icon_override = 'icons/mob/head_0.dmi'
 	min_cold_protection_temperature = 220
 	//AND THIS LINE
 //END HEAD TEMPLATE
@@ -918,6 +918,7 @@
 	name = "PMC Mask"
 	desc = "A white colored PMC Mask.  DONOR ITEM."
 	icon = 'icons/PMC/PMC.dmi'
+	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_mask"
 	icon_state = "pmc_mask"
 
