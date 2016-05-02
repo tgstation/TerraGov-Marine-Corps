@@ -5,11 +5,15 @@
 	name = "M10 Technician Helmet"
 	icon_state = "helmet-tech"
 	item_color = "helmet-tech"
+	cold_protection = HEAD
+	min_cold_protection_temperature = 220
 
 /obj/item/clothing/head/helmet/marine/medic
 	name = "M10 Medic Helmet"
 	icon_state = "helmet-medic"
 	item_color = "helmet-medic"
+	cold_protection = HEAD
+	min_cold_protection_temperature = 220
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"

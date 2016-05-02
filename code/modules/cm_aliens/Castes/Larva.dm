@@ -9,7 +9,7 @@
 	icon_state = "Bloody Larva"
 	language = "Hivemind"
 	amount_grown = 0
-	max_grown = 200
+	max_grown = 100
 	maxHealth = 35
 	health = 35
 	plasma_gain = 1
@@ -34,7 +34,7 @@
 //Larva Progression.. Most of this stuff is obsolete.
 /mob/living/carbon/Xenomorph/Larva/update_progression()
 	..()
-	if(amount_grown < max_grown && client)
+	if(amount_grown < max_grown)
 		amount_grown++
 	if(!isnull(src.loc) && amount_grown < max_grown)
 		if(locate(/obj/effect/alien/weeds) in loc)
