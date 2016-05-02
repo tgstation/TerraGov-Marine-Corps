@@ -42,10 +42,11 @@
 //					/obj/item/clothing/head/helmet/marine = 5,
 					/obj/item/clothing/shoes/marine = 5,
 //					/obj/item/clothing/under/marine_jumpsuit =5
-					/obj/item/clothing/under/marine_jumpsuit/snow = 5,
-					/obj/item/clothing/suit/storage/marine/snow = 5,
-					/obj/item/clothing/head/helmet/marine/snow = 5,
-					/obj/item/clothing/mask/rebreather = 5
+					/obj/item/clothing/under/marine_jumpsuit/snow = 15,
+					/obj/item/clothing/suit/storage/marine/snow = 15,
+					/obj/item/clothing/head/helmet/marine/snow = 15,
+					/obj/item/clothing/mask/rebreather = 15,
+					/obj/item/device/radio = 10
 					)
 
 	contraband = list(/*bj/item/weapon/storage/fancy/donut_box = 5,

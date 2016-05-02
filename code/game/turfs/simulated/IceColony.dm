@@ -565,6 +565,7 @@
 	climbable = 1
 	density = 1
 	anchored = 1
+	layer = 2.9
 
 	//Item Attack
 	attackby(obj/item/W as obj, mob/user as mob)
