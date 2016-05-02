@@ -252,8 +252,8 @@
 	name = "\improper Doorms Maintenance"
 	icon_state = "maint_dormitory"
 
-/area/ice_colony/underground/research/doorms
-	name = "\improper Doorms"
+/area/ice_colony/underground/research/dorms
+	name = "\improper Dorms"
 	icon_state = "crew_quarters"
 
 /area/ice_colony/underground/research/anomaly_storage_two

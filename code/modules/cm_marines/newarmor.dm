@@ -206,6 +206,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_color = "spec"
 	name = "Specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
+	min_cold_protection_temperature = 220
 	anti_hug = 1
 	w_class = 5
 
@@ -447,6 +448,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "marine_sniper"
 	item_color = "marine_sniper"
 	armor = list(melee = 70, bullet = 75, laser = 50,energy = 20, bomb = 30, bio = 0, rad = 0)
+	min_cold_protection_temperature = 220
 
 /obj/item/clothing/head/helmet/marine/durag
 	name = "durag"
@@ -456,3 +458,4 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_color = "durag"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 5, bullet = 5, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	min_cold_protection_temperature = 220
