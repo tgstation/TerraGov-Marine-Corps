@@ -7,7 +7,7 @@
 	anchored = 1
 	flags = FPRINT | CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	layer = 2.9
+	layer = 3
 	explosion_resistance = 5
 	var/health = 10
 	var/destroyed = 0
@@ -133,15 +133,13 @@
 
 /obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
 
-	if(!Proj)	return
-
 	//Tasers and the like should not damage grilles.
 	if(Proj.damage_type == HALLOSS)
-		return
+		return 0
 
-	src.health -= Proj.damage*0.2
+	src.health -= round(Proj.damage*0.3)
 	healthcheck()
-	return 0
+	return 1
 
 /obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(iswirecutter(W))
@@ -149,7 +147,7 @@
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			new /obj/item/stack/rods(loc, 2)
 			del(src)
-	else if((isscrewdriver(W)) && (istype(loc, /turf/simulated) || anchored))
+	else if(isscrewdriver(W) && (istype(loc, /turf/simulated) || istype(loc, /turf/unsimulated/floor))) //|| anchored Does this fix it?
 		if(!shock(user, 90))
 			playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			anchored = !anchored

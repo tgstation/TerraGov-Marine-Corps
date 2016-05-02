@@ -16,9 +16,6 @@
 	var/obj/item/ammo_casing/current_shell = null
 	twohanded = 1
 
-	isHandgun()
-		return 0
-
 	load_into_chamber()
 		if(in_chamber)
 			return 1

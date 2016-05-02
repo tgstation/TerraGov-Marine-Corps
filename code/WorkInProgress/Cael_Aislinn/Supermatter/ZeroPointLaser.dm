@@ -78,6 +78,8 @@
 	return 1
 
 /obj/machinery/zero_point_emitter/process()
+
+/* FUCK THIS THING
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(src.state != 2)
@@ -114,7 +116,7 @@
 				A.xo = 0
 		A.process()	//TODO: Carn: check this out
 
-
+*/
 /obj/machinery/zero_point_emitter/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/weapon/wrench))

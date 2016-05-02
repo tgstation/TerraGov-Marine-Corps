@@ -318,6 +318,8 @@ proc/isInSight(var/atom/A, var/atom/B)
 /proc/get_alien_candidates()
 	var/list/candidates = list() //List of candidate KEYS
 	for(var/mob/dead/observer/G in player_list)
+		if(jobban_isbanned(G,"Alien"))
+			continue
 		if(G.client && G.client.prefs.be_special & BE_ALIEN)
 			if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + 5)
 				candidates += G.key

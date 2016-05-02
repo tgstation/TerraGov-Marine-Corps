@@ -16,7 +16,7 @@
 	maxplasma = 400
 	jellyMax = 0
 	spit_delay = 75
-	speed = 2.2
+	speed = 1.6
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
@@ -25,7 +25,6 @@
 	evolves_to = list()
 	armor_deflection = 82
 	big_xeno = 1
-	spit_projectile = /obj/item/projectile/energy/neuro/strongest
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

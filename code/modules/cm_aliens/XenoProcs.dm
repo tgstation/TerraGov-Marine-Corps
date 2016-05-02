@@ -157,12 +157,10 @@
 	if(istype(loc,/turf/unsimulated/floor/snow)) //Snow slows you down
 		var/turf/unsimulated/floor/snow/S = src.loc
 		if(S && istype(S) && S.slayer > 0)
-			tally += 1 * S.slayer
-			if(S.slayer && prob(2))
+			tally += 0.5 * S.slayer
+			if(S.slayer && prob(1))
 				src << "\red Moving through [S] slows you down"
-			if(S.slayer == 3 && prob(1))
-				src << "\red You got stuck in [S] for a moment!"
-				tally += 5
+
 
 	if(frenzy_aura)
 		tally = tally - (frenzy_aura * 0.1) - 0.4
@@ -197,7 +195,7 @@
 
 /mob/living/carbon/Xenomorph/show_inv(mob/user as mob)
 	return
-
+/*
 /obj/item/projectile/energy/neuro
 	name = "spit"
 	icon_state = "neurotoxin"
@@ -245,7 +243,7 @@
 
 /obj/item/projectile/energy/neuro/acid/heavy
 	damage = 25
-
+*/
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
 //Also need to change the icons

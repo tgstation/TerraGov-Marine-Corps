@@ -94,9 +94,10 @@
 			..()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	health -= Proj.ammo.damage
 	..()
 	healthcheck()
+	return 1
 
 /obj/machinery/bot/meteorhit()
 	src.explode()

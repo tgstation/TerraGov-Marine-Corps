@@ -206,8 +206,8 @@
 	if(!isturf(target.loc) || target == user) return
 	..()
 
-/obj/item/weapon/gun/dartgun/can_hit(var/mob/living/target as mob, var/mob/living/user as mob)
-	return 1
+///obj/item/weapon/gun/dartgun/can_hit(var/mob/living/target as mob, var/mob/living/user as mob)
+//	return 1
 
 /obj/item/weapon/gun/dartgun/attack_self(mob/user)
 

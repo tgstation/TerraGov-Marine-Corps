@@ -10,8 +10,8 @@
 	language = "Hivemind"
 	amount_grown = 0
 	max_grown = 100
-	maxHealth = 25
-	health = 25
+	maxHealth = 35
+	health = 35
 	plasma_gain = 1
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -49,10 +49,8 @@
 		state = "Normal"
 	if(state == "Normal" && amount_grown < 100)
 		name = "Larva ([nicknumber])"
-		src.mind.name  = name
 	else if(amount_grown >=100)
 		name = "Mature Larva ([nicknumber])"
-		src.mind.name  = name
 
 	if(stat == DEAD)
 		icon_state = "[state] Larva Dead"

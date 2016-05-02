@@ -6,7 +6,7 @@ ex_act
 meteor_act
 emp_act
 
-*/
+OBSOLETE BITCH
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
@@ -18,6 +18,7 @@ emp_act
 		return 2
 
 	//Laserproof armour
+/*
 	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/armor/laserproof))
 		if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
 			var/reflectchance = 40 - round(P.damage/3)
@@ -41,7 +42,7 @@ emp_act
 					P.xo = new_x - curloc.x
 
 				return -1 // complete projectile permutation
-
+*/
 	//Shrapnel
 	if (P.damage_type == BRUTE)
 		var/armor = getarmor_organ(organ, "bullet")
@@ -53,7 +54,7 @@ emp_act
 			organ.embed(SP)
 
 	return (..(P , def_zone))
-
+*/
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/datum/organ/external/affected = get_organ(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
@@ -130,7 +131,7 @@ emp_act
 
 /mob/living/carbon/human/proc/check_head_coverage()
 
-	var/list/body_parts = list(head, wear_mask ) /*, wear_suit, w_uniform, gloves, shoes*/ //We don't need to check these for heads.
+	var/list/body_parts = list(head, wear_mask, wear_suit ) /* w_uniform, gloves, shoes*/ //We don't need to check these for heads.
 	for(var/bp in body_parts)
 		if(!bp)	continue
 		if(bp && istype(bp ,/obj/item/clothing))
@@ -149,22 +150,6 @@ emp_act
 		var/obj/item/weapon/I = r_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
 			visible_message("\red <B>[src] blocks [attack_text] with the [r_hand.name]!</B>")
-			return 1
-	if(wear_suit && istype(wear_suit, /obj/item/))
-		var/obj/item/I = wear_suit
-		if(I.IsShield() && (prob(35)))
-			visible_message("\red <B>The reactive teleport system flings [src] clear of [attack_text]!</B>")
-			var/list/turfs = new/list()
-			for(var/turf/T in orange(6))
-				if(istype(T,/turf/space)) continue
-				if(T.density) continue
-				if(T.x>world.maxx-6 || T.x<6)	continue
-				if(T.y>world.maxy-6 || T.y<6)	continue
-				turfs += T
-			if(!turfs.len) turfs += pick(/turf in orange(6))
-			var/turf/picked = pick(turfs)
-			if(!isturf(picked)) return
-			src.loc = picked
 			return 1
 	return 0
 
@@ -282,19 +267,12 @@ emp_act
 		forcesay(hit_appends)	//forcesay checks stat already
 
 	//Melee weapon embedded object code.
-	if (I.damtype == BRUTE && !I.is_robot_module())
+	if (I.damtype == BRUTE && !I.is_robot_module() && I.canremove)
 		var/damage = I.force
 		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
-		if (armor)
-			damage /= armor+1
-
-		//blunt objects should really not be embedding in things unless a huge amount of force is involved
-		var/embed_chance = weapon_sharp? damage/I.w_class : damage/(I.w_class*3)
-		var/embed_threshold = weapon_sharp? 5*I.w_class : 15*I.w_class
-
-		//Sharp objects will always embed if they do enough damage.
-		if((weapon_sharp && damage > (10*I.w_class)) || (damage > embed_threshold && prob(embed_chance)))
+		if (!armor && weapon_sharp && prob(3))
 			affecting.embed(I)
+
 	return 1
 
 //this proc handles being hit by a thrown atom

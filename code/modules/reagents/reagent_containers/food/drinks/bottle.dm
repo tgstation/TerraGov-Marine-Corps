@@ -146,6 +146,16 @@
 		..()
 		reagents.add_reagent("tequilla", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/davenport
+	name = "Davenport Rye"
+	desc = "An expensive alcohol with a distinct flavor"
+	icon_state = "davenport"
+	center_of_mass = list("x"=16, "y"=3)
+	New()
+		..()
+		reagents.add_reagent("davenport", 100)
+
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
 	desc = "A bottle filled with nothing"

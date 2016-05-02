@@ -137,8 +137,6 @@
 			if(user.client)
 				user << "\red <B>You attack [M] with [src]. </B>"
 
-
-
 	if(istype(M, /mob/living/carbon/human))
 		var/hit = M:attacked_by(src, user, def_zone)
 		if (hit && hitsound)

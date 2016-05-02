@@ -9,7 +9,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/melee/defibrillator)
+	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/melee/defibrillator)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -30,11 +30,6 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		var/area/a = get_area(src)
 		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
 			user << "\red The [name] blinks red as you try to insert the item!"
-			return
-		if (istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
-			user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
-			return
-		if (istype(G, /obj/item/weapon/gun/energy/staff))
 			return
 		if(istype(G, /obj/item/device/laptop))
 			var/obj/item/device/laptop/L = G
@@ -78,7 +73,7 @@ obj/machinery/recharger/process()
 		update_use_power(1)
 		icon_state = icon_state_idle
 	else
-		if(istype(charging, /obj/item/weapon/gun/energy))
+		/*if(istype(charging, /obj/item/weapon/gun/energy))
 			var/obj/item/weapon/gun/energy/E = charging
 			if(!E.power_supply.fully_charged())
 				icon_state = icon_state_charging
@@ -88,7 +83,7 @@ obj/machinery/recharger/process()
 				icon_state = icon_state_charged
 				update_use_power(1)
 			return
-
+*/
 		if(istype(charging, /obj/item/weapon/melee/baton))
 			var/obj/item/weapon/melee/baton/B = charging
 			if(B.bcell)
@@ -145,13 +140,13 @@ obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
-
+/*
 	if(istype(charging,  /obj/item/weapon/gun/energy))
 		var/obj/item/weapon/gun/energy/E = charging
 		if(E.power_supply)
 			E.power_supply.emp_act(severity)
-
-	else if(istype(charging, /obj/item/weapon/melee/baton))
+*/
+	if(istype(charging, /obj/item/weapon/melee/baton))
 		var/obj/item/weapon/melee/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0
@@ -163,7 +158,7 @@ obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to 
 	else
 		icon_state = icon_state_idle
 
-
+/*
 obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -173,3 +168,4 @@ obj/machinery/recharger/wallcharger
 	icon_state_charged = "wrecharger2"
 	icon_state_charging = "wrecharger1"
 	icon_state_idle = "wrecharger0"
+*/

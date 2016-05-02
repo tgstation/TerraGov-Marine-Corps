@@ -70,17 +70,14 @@
 			return
 
 	for(var/datum/disease/D in viruses)
-
 		if(D.spread_by_touch())
-
 			M.contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	for(var/datum/disease/D in M.viruses)
-
 		if(D.spread_by_touch())
-
 			contract_disease(D, 0, 1, CONTACT_HANDS)
 
+	next_move += 7 //Adds some lag to the 'attack'
 	return
 
 
@@ -97,6 +94,7 @@
 		if(D.spread_by_touch())
 			contract_disease(D, 0, 1, CONTACT_HANDS)
 
+	next_move += 7 //Adds some lag to the 'attack'
 	return
 
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
@@ -114,8 +112,12 @@
 			"\red <B>You feel a powerful shock course through your body!</B>", \
 			"\red You hear a heavy electrical crack." \
 		)
-		Stun(10)//This should work for now, more is really silly and makes you lay there forever
-		Weaken(10)
+		if(!(istype(src,/mob/living/carbon/Xenomorph/Boiler) || istype(src,/mob/living/carbon/Xenomorph/Crusher) || istype(src,/mob/living/carbon/Xenomorph/Hivelord) || istype(src,/mob/living/carbon/Xenomorph/Praetorian) || istype(src,/mob/living/carbon/Xenomorph/Queen) || istype(src,/mob/living/carbon/Xenomorph/Ravager)))
+			Stun(10)//This should work for now, more is really silly and makes you lay there forever
+			Weaken(10)
+		else
+			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
+			Weaken(1)
 	else
 		src.visible_message(
 			"\red [src] was mildly shocked by the [source].", \
@@ -133,10 +135,10 @@
 /mob/living/carbon/proc/swap_hand()
 	var/obj/item/item_in_hand = src.get_active_hand()
 	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		if(istype(item_in_hand,/obj/item/weapon/twohanded))
-			if(item_in_hand:wielded == 1)
-				usr << "<span class='warning'>Your other hand is too busy holding the [item_in_hand.name]</span>"
-				return
+		if(istype(get_inactive_hand(),/obj/item/weapon/twohanded/offhand) && item_in_hand:wielded)
+			var/obj/item/inactive_hand = get_inactive_hand()
+			usr << "<span class='warning'>Your other hand is too busy holding the [inactive_hand.name]</span>"
+			return
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use

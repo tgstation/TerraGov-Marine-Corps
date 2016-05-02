@@ -223,7 +223,7 @@
 					owner.reagents.remove_reagent(R.id, ALCOHOL_METABOLISM*filter_effect)
 
 			//Heal toxin damage slowly if not damaged
-			if(damage < 5 && prob(10))
+			if(damage < 5 && prob(25))
 				owner.adjustToxLoss(-0.5)
 
 			//Deal toxin damage if damaged

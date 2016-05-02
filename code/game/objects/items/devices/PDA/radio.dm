@@ -34,7 +34,7 @@
 		return
 
 	proc/generate_menu()
-
+/*
 /obj/item/radio/integrated/beepsky
 	var/list/botlist = null		// list of bots
 	var/obj/machinery/bot/secbot/active 	// the active bot; if null, show bot list
@@ -98,7 +98,7 @@
 			if("summon")
 				post_signal(control_freq, "command", "summon", "active", active, "target", get_turf(PDA) , s_filter = RADIO_SECBOT)
 				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
-
+*/
 /obj/item/radio/integrated/mule
 	var/list/botlist = null		// list of bots
 	var/obj/machinery/bot/mulebot/active 	// the active bot; if null, show bot list

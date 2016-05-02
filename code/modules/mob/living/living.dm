@@ -1,10 +1,14 @@
 /mob/living/verb/succumb()
 	set hidden = 1
+
+	src << "\blue You can't succumb."
+	return
+/*
 	if ((src.health < 0 && src.health > -95.0))
 		src.adjustOxyLoss(src.health + 200)
 		src.health = 100 - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
 		src << "\blue You have given up life and succumbed to death."
-
+*/
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -246,7 +250,7 @@
 
 /mob/living/proc/revive()
 	rejuvenate()
-	buckled = initial(src.buckled)
+//	buckled = initial(src.buckled) // << This causes problems
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 
@@ -807,7 +811,7 @@
 		return
 
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("<B>[src] scrambles into the ventillation ducts!</B>"), 1)
+		O.show_message(text("<B>[src] scrambles into the ventilation ducts!</B>"), 1)
 	loc = target_vent
 
 	var/travel_time = round(get_dist(loc, target_vent.loc) / 2)

@@ -26,7 +26,7 @@
 
 	var/language                  // Default racial language, if any.
 	// Default language is used when 'say' is used without modifiers.
-	var/default_language = "Galactic Common"
+	var/default_language = "English"
 	var/secondary_langs = list()  // The names of secondary languages that are available to this species.
 	var/mutantrace                // Safeguard due to old code.
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
@@ -288,7 +288,7 @@
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
 	default_language = "Vox-pidgin"
-	language = "Galactic Common"
+	language = "English"
 	unarmed_type = /datum/unarmed_attack/claws/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	rarity_value = 2
@@ -465,7 +465,7 @@
 
 	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
 
-	blood_color = "#1F181F"
+	blood_color = "#FFDDDD"
 	flesh_color = "#575757"
 
 	has_organ = list(
@@ -482,7 +482,7 @@
 	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
-	secondary_langs = list("Galactic Common")  // Sure, what the hell. They can grunt a few words.
+	secondary_langs = list("Sol Common")  // Sure, what the hell. They can grunt a few words.
 	unarmed_type = /datum/unarmed_attack/punch
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	blood_color = "#004400"

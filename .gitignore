@@ -10,3 +10,4 @@ data/
 cfg/
 tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
+*.json

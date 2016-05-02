@@ -27,6 +27,7 @@
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
 	icon_state = "ResinWall1" //same as resin, but consistency ho!
+	layer = 3.1
 
 /obj/effect/alien/resin/membrane
 	name = "resin membrane"
@@ -53,7 +54,7 @@
 	health -= Proj.damage
 	..()
 	healthcheck()
-	return
+	return 1
 
 /obj/effect/alien/resin/ex_act(severity)
 	switch(severity)
@@ -114,9 +115,8 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/aforce = W.force
-	health = max(0, health - aforce)
+/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
+	health = health - W.force
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 	healthcheck()
 	return ..(W,user)
@@ -135,7 +135,7 @@
 
 /obj/effect/alien/weeds
 	name = "weeds"
-	desc = "Weird purple weeds."
+	desc = "Weird black weeds..."
 	icon_state = "weeds"
 
 	anchored = 1
@@ -149,7 +149,7 @@
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
 	name = "purple sac"
-	desc = "Weird purple octopus-like thing."
+	desc = "Weird black octopus-like thing."
 	layer = 2.7
 //	luminosity = NODERANGE
 	var/node_range = NODERANGE
@@ -214,8 +214,8 @@
 				del(src)
 	return
 
-/obj/effect/alien/weeds/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(!W || !user)	return 0
+/obj/effect/alien/weeds/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!W || !user || isnull(W))	return 0
 
 	if(W.attack_verb.len)
 		visible_message("\red <B>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
@@ -392,7 +392,7 @@
 		icon_state = "Egg Opened"
 		flick("Egg Opening", src)
 		status = BURSTING
-		spawn(15)
+		spawn(10)
 			status = BURST
 			if(src.loc)
 				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
@@ -400,17 +400,19 @@
 					child.Die()
 				else
 					if(istype(child))
-						for(var/mob/living/carbon/human/F in range("3x3",src))
-							if(CanHug(F) && !isYautja(F) && Adjacent(F))
+						for(var/mob/living/carbon/human/F in view(2,src))
+							if(CanHug(F) && !isYautja(F) && get_dist(src,F) <= 1)
 								F.visible_message("<span class='warning'>\The scuttling [src] leaps at [F]!</span>","<span class='warning'>The scuttling [src] leaps at [F]!</span>")
 								HasProximity(F)
 								break
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
+	if(Proj.damage_type == BURN)
+		health -= round(Proj.damage * 0.3)
 	..()
 	healthcheck()
-	return
+	return 1
 
 /obj/effect/alien/egg/update_icon()
 	overlays.Cut()
@@ -424,7 +426,7 @@
 		spawn(rand(125,200))
 			del(src)
 
-/obj/effect/alien/egg/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/alien/egg/attackby(obj/item/W as obj, mob/user as mob)
 	if(health <= 0)
 		return
 	if(W.attack_verb.len)
@@ -449,7 +451,7 @@
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)
-		if(!CanHug(AM))
+		if(!CanHug(AM) || isYautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
 		Burst(0)
 
@@ -497,7 +499,7 @@
 	return
 
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
-	return
+	return 0
 
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)
@@ -618,7 +620,7 @@
 
 /obj/structure/stool/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
 
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
+	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || user.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
 	unbuckle()
@@ -702,6 +704,23 @@
 	buckled_mob.pixel_y = 0
 	buckled_mob.old_y = 0
 	..()
+
+/obj/structure/stool/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(M.a_intent == "hurt")
+		M.visible_message("\red [M] claws at the [name]!", "\blue You claw at the [name].")
+		playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
+		healthcheck()
+	else
+		src.attack_hand(M)
+
+/obj/structure/stool/bed/nest/attack_animal(mob/living/M as mob)
+	M.visible_message("\red [M] tears at the [name]!", "\blue You tear at the [name].")
+	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
+	health -= 40
+	healthcheck()
+	return
 
 //Alien blood effects.
 /obj/effect/decal/cleanable/blood/xeno

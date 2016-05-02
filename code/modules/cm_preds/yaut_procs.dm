@@ -163,12 +163,12 @@
 	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. Would you like to proceed, Yautja?","Sure?","Begin the Hunt","No, not now")
 	if(sure == "Begin the Hunt")
 		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
-		var/list/other = list("The Fleeting Speargun", "The Brutal Spike-Cannon", "The Purifying Smart-Disc","The Savage Hellhound")//, "The Clever Hologram")
+		var/list/other = list("The Fleeting Speargun", "The Brutal Plasma Rifle", "The Purifying Smart-Disc","The Enhanced Bracer")//, "The Clever Hologram")
 
 		var/msel = input("Which weapon shall you use on your hunt?:","Melee Weapon") as null|anything in melee
 		var/mother_0 = input("Which secondary gear shall you take?","Item 1 (of 2)") as null|anything in other
 		var/mother_1 = input("And the last piece of equipment?:","Item 2 (of 2)") as null|anything in other
-
+		var/obj/item/clothing/gloves/yautja/Y = src.gloves
 		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry (it's okai abbi)
 		switch(msel)
 			if("The Lumbering Glaive")
@@ -182,32 +182,38 @@
 			if("The Adaptive Combi-Stick")
 				new /obj/item/weapon/melee/combistick(src.loc)
 		switch(mother_0)
-//				if("heavy armor")
-//					new /obj/item/clothing/suit/armor/yautja/full(src.loc)
 			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("The Brutal Spike-Cannon")
-				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
+			if("The Brutal Plasma Rifle")
+				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
 			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
-			if("The Savage Hellhound")
-				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
-//			if("The Clever Hologram")
-//				new /obj/item/device/yautja_holoemitter(src.loc)
+			if("The Enhanced Bracer")
+				if(istype(Y))
+					Y.charge_max += 500
+					Y.upgrades++
+
 		switch(mother_1)
 			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("The Brutal Spike-Cannon")
-				new /obj/item/weapon/gun/launcher/spikethrower(src.loc)
+			if("The Brutal Plasma Rifle")
+				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
 			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
-			if("The Savage Hellhound")
-				new /obj/item/weapon/grenade/spawnergrenade/hellhound(src.loc)
-//			if("The Clever Hologram")
-//				new /obj/item/device/yautja_holoemitter(src.loc)
+			if("The Enhanced Bracer")
+				if(istype(Y))
+					Y.charge_max += 500
+					Y.upgrades++
 
-	else
-		return
+		if(istype(Y))
+			if(Y.upgrades >= 1)
+				src << "\green <B>Your [Y.name] hums as it receives a battery and translator upgrade.</b>"
+				var/newverb = /obj/item/clothing/gloves/yautja/proc/translate
+				Y.verbs |= newverb
+			if (Y.upgrades == 2)
+				src << "\green <B>Your [Y.name] can now translate to xenomorph hives as well.</b>"
+				src << "\green <B>Your [Y.name] has been upgraded to carry a scimitar instead of blades.</b>"
+	return
 
 /proc/get_whitelisted_predators(var/readied = 1)
 	// Assemble a list of active players who are whitelisted.
@@ -284,6 +290,8 @@
 	if(ticker && ticker.mode)
 		if(!(ghost in ticker.mode.predators))
 			ticker.mode.predators += ghost
+
+	ticker.mode.pred_keys += newmob.key
 
 	if(H) del(H)
 	return 1

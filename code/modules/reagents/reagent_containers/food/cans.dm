@@ -113,8 +113,8 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
 	name = "Bottled Water"
-	desc = "Introduced to the vending machines by Skrellian request, this water comes straight from the Martian poles."
-	icon_state = "waterbottle"
+	desc = "Overpriced 'Spring' water. Bottled by the Weyland-Yutani Corporation."
+	icon_state = "wy_water"
 	center_of_mass = list("x"=15, "y"=8)
 	New()
 		..()
@@ -230,3 +230,48 @@
 	New()
 		..()
 		reagents.add_reagent("sodawater", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto
+	name = "Souto Classic"
+	desc = "A fruit flavored soda canned in Havana."
+	icon_state = "souoto"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("souto_classic", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto/diet
+	name = "Souto Diet"
+	desc = "Now with 0% fruit juice! Canned in Havana"
+	icon_state = "souto_diet"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("souto_classic", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry
+	name = "Souto Cherry"
+	desc = "Now with 0% fruit juice! Canned in Havana"
+	icon_state = "souoto"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("souto_cherry", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry/diet
+	name = "Diet Souto Cherry"
+	desc = "It's neither diet nor cherry flavored. Canned in Havanna."
+	icon_state = "souto_diet"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("souto_cherry", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/aspen
+	name = "Aspen Beer"
+	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by the Weyland-Yutani Corporation."
+	icon_state = "wy_beer"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("aspen", 50)

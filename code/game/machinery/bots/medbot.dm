@@ -456,11 +456,6 @@
 	visible_message("[src] beeps, \"[message]\"")
 	return
 
-/obj/machinery/bot/medbot/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.flag == "taser")
-		src.stunned = min(stunned+10,20)
-	..()
-
 /obj/machinery/bot/medbot/explode()
 	src.on = 0
 	visible_message("\red <B>[src] blows apart!</B>", 1)

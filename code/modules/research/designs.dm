@@ -296,14 +296,14 @@ datum/design/prisonmanage
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/prisoner"
 
-datum/design/mechacontrol
+/*datum/design/mechacontrol
 	name = "Circuit Design (Exosuit Control Console)"
 	desc = "Allows for the construction of circuit boards used to build an exosuit control console."
 	id = "mechacontrol"
 	req_tech = list("programming" = 3)
 	build_type = IMPRINTER
 	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/mecha_control"
+	build_path = "/obj/item/weapon/circuitboard/mecha_control"*/
 
 datum/design/mechapower
 	name = "Circuit Design (Mech Bay Power Control Console)"
@@ -842,14 +842,15 @@ datum/design/mech_repair_droid
 	build_path = "/obj/item/mecha_parts/mecha_equipment/repair_droid"
 	category = "Exosuit Equipment"
 
-datum/design/mech_phoron_generator
-	name = "Exosuit Module Design (Phoron Generator Module)"
-	desc = "Exosuit-mounted phoron generator."
-	id = "mech_phoron_generator"
-	build_type = MECHFAB
-	req_tech = list("phorontech" = 2, "powerstorage"= 2, "engineering" = 2)
-	build_path = "/obj/item/mecha_parts/mecha_equipment/phoron_generator"
-	category = "Exosuit Equipment"
+// Removed to fix a runtime and lag spike - the object in the build_path doesn't even exist
+// datum/design/mech_phoron_generator
+// 	name = "Exosuit Module Design (Phoron Generator Module)"
+// 	desc = "Exosuit-mounted phoron generator."
+// 	id = "mech_phoron_generator"
+// 	build_type = MECHFAB
+// 	req_tech = list("phorontech" = 2, "powerstorage"= 2, "engineering" = 2)
+// 	build_path = "/obj/item/mecha_parts/mecha_equipment/phoron_generator"
+// 	category = "Exosuit Equipment"
 
 datum/design/mech_energy_relay
 	name = "Exosuit Module Design (Tesla Energy Relay)"

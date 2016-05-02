@@ -316,6 +316,26 @@
 		AM.pipe_eject(0)
 	update()
 
+	// pipe affected by explosion
+/obj/machinery/disposal/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			Del()
+			return
+		if(2.0)
+			if(prob(60))
+				Del()
+			return
+		if(3.0)
+			if(prob(25))
+				Del()
+			return
+
+/obj/machinery/disposal/Del()
+	if(contents.len)
+		eject()
+	..()
+
 // update the icon & overlays to reflect mode & status
 /obj/machinery/disposal/proc/update()
 	overlays.Cut()
@@ -366,7 +386,7 @@
 
 	if(mode != 1) //if off or ready, no need to charge
 		update_use_power(1)
-	else if(air_contents.return_pressure() >= SEND_PRESSURE) 
+	else if(air_contents.return_pressure() >= SEND_PRESSURE)
 		mode = 2 //if full enough, switch to ready mode
 		update()
 	else

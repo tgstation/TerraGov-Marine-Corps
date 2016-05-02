@@ -8,8 +8,8 @@
 	icon_state = "Hivelord Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
-	health = 260
-	maxHealth = 260
+	health = 220
+	maxHealth = 220
 	storedplasma = 200
 	maxplasma = 800
 	jellyMax = 0 //Final evolution anyway
@@ -20,7 +20,7 @@
 	adjust_pixel_y = -6
 	adjust_size_x = 0.8
 	adjust_size_y = 0.75
-	speed = 1.3
+	speed = 1.5
 	big_xeno = 1
 	var/speed_activated = 0
 
@@ -70,8 +70,9 @@
 		return
 
 	if(!istype(T,/turf/unsimulated/floor/gm))
-		src << "You scrape around, but nothing happens. You can only place these on open ground."
-		return
+		if(!istype(T,/turf/unsimulated/floor/snow))
+			src << "You scrape around, but nothing happens. You can only place these on open ground."
+			return
 
 	if(locate(/obj/structure/tunnel) in src.loc)
 		src << "There's already a tunnel here. Go somewhere else."

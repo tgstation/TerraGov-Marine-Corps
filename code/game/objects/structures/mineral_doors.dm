@@ -272,7 +272,7 @@
 		health -= Proj.damage
 		..()
 		healthcheck()
-
+		return 1
 
 	TryToSwitchState(atom/user)
 		if(isalien(user))

@@ -159,7 +159,7 @@ var/global/list/frozen_items = list()
 		/obj/item/device/aicard,
 		/obj/item/device/mmi,
 		/obj/item/device/paicard,
-		/obj/item/weapon/gun,
+		///obj/item/weapon/gun,
 		/obj/item/weapon/pinpointer,
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,

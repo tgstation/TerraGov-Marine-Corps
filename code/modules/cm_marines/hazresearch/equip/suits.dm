@@ -5,7 +5,7 @@
 	desc = "A suit worn by members of the biohazardous response and containment teams. Armoured and fire resistant."
 	icon_state = "marine-hazmat"
 	item_state = "haz-marine"
-	icon = 'icons/mob/suit.dmi'
+	icon = 'icons/mob/suit_0.dmi'
 	w_class = 3
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen)
 	slowdown = 1

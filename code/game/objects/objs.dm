@@ -15,6 +15,7 @@
 
 	var/damtype = "brute"
 	var/force = 0
+	var/attack_speed = 7  //+3, Adds up to 10.
 	var/destroy_on_drop = 0
 
 /obj/item/proc/is_used_on(obj/O, mob/user)

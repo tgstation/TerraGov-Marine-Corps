@@ -131,10 +131,14 @@ var/list/department_radio_keys = list(
 	spawn(30) del(speech_bubble)
 
 	for(var/mob/M in listening)
-		M << speech_bubble
+		if(!M.stat)
+			M << speech_bubble
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
+	var/fail = 10
 	for(var/obj/O in listening_obj)
+		fail--
+		if(!fail) break //NOPE
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking)

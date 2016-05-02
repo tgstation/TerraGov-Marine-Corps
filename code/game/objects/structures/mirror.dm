@@ -81,6 +81,7 @@
 		else
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 	..()
+	return 1
 
 
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)

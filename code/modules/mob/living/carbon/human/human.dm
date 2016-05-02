@@ -49,16 +49,13 @@
 
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
-	if(ticker && ticker.mode && ticker.mode.name == "AI malfunction")
-		if(ticker.mode:malf_mode_declared)
-			stat(null, "Time left: [max(ticker.mode:AI_win_timeleft/(ticker.mode:apcs/3), 0)]")
+
 	if(emergency_shuttle)
 		var/eta_status = emergency_shuttle.get_status_panel_eta()
 		if(eta_status)
 			stat(null, eta_status)
 
 	if (client.statpanel == "Status")
-
 		if (internal)
 			if (!internal.air_contents)
 				del(internal)
@@ -66,7 +63,7 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
-
+/*
 		var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 		if(P)
 			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
@@ -77,14 +74,13 @@
 
 		if (istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)&&wear_suit:s_initialized)
 			stat("Energy Charge", round(wear_suit:cell:charge/100))
-
+*/
 	if(mind)
 		if(mind.assigned_squad)
-			var/datum/squad/S = mind.assigned_squad
-			if(S.primary_objective)
-				stat(null,"Primary Objective: [S.primary_objective]")
-			if(S.secondary_objective)
-				stat(null,"Secondary Objective: [S.secondary_objective]")
+			if(mind.assigned_squad.primary_objective)
+				stat("Primary Objective: ", mind.assigned_squad.primary_objective)
+			if(mind.assigned_squad.secondary_objective)
+				stat("Secondary Objective: ", mind.assigned_squad.secondary_objective)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -184,9 +180,9 @@
 	if (health > 0)
 		var/datum/organ/external/affecting = get_organ(pick("chest", "chest", "chest", "head"))
 		if(!affecting)	return
-		if (istype(O, /obj/effect/immovablerod))
-			if(affecting.take_damage(101, 0))
-				UpdateDamageIcon()
+//		if (istype(O, /obj/effect/immovablerod))
+//			if(affecting.take_damage(101, 0))
+//				UpdateDamageIcon()
 		else
 			if(affecting.take_damage((istype(O, /obj/effect/meteor/small) ? 10 : 25), 30))
 				UpdateDamageIcon()
@@ -825,6 +821,9 @@
 	if(species.flags & IS_SYNTHETIC)
 		return //Machines don't throw up.
 
+	if(stat == 2) //Corpses don't puke
+		return
+
 	if(!lastpuke)
 		lastpuke = 1
 		src << "<spawn class='warning'>You feel nauseous..."
@@ -1118,7 +1117,7 @@
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
 			continue
 		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
+			if(!istype(O,/obj/item/weapon/implant) && prob(4)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				var/msg = null
 				switch(rand(1,3))
@@ -1130,10 +1129,10 @@
 						msg ="<span class='warning'>[O] in your [organ.display_name] twists painfully as you move.</span>"
 				src << msg
 
-				organ.take_damage(rand(1,3), 0, 0)
+				organ.take_damage(rand(1,2), 0, 0)
 				if(!(organ.status & ORGAN_ROBOT) && !(species.flags & NO_BLOOD)) //There is no blood in protheses.
 					organ.status |= ORGAN_BLEEDING
-					src.adjustToxLoss(rand(1,3))
+					if(prob(10)) src.adjustToxLoss(1)
 
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
@@ -1142,7 +1141,7 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat == 1 || usr.restrained() || !isliving(usr)) return
+	if(usr.stat > 0 || usr.restrained() || !isliving(usr)) return
 
 	if(usr == src)
 		self = 1

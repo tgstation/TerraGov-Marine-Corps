@@ -188,13 +188,14 @@
 	hitsound = null
 	var/active = 0
 	w_class = 2
-	force = 2
+	force = 8
 	sharp = 0
 	edge = 0
 	throw_speed = 3
 	throw_range = 4
 	throwforce = 7
 	attack_verb = list("patted", "tapped")
+	attack_speed = 4
 
 /obj/item/butterflyconstruction
 	name = "unfinished concealed knife"

@@ -69,7 +69,7 @@
 		// initialize with the appropriate stage
 		src.init_stage(damage)
 
-		bleed_timer += damage
+		bleed_timer += damage*2.5
 
 	// returns 1 if there's a next stage, 0 otherwise
 	proc/init_stage(var/initial_damage)
@@ -166,7 +166,7 @@
 	// opens the wound again
 	proc/open_wound(damage)
 		src.damage += damage
-		bleed_timer += damage*1.5
+		bleed_timer += damage
 
 		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= src.damage / src.amount)
 			src.current_stage--

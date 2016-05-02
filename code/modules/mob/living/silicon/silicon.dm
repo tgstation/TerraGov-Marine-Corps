@@ -21,7 +21,7 @@
 
 /mob/living/silicon/New()
 	..()
-	add_language("Galactic Common")
+	add_language("English")
 
 /mob/living/silicon/proc/show_laws()
 	return
@@ -73,20 +73,17 @@
 		src.updatehealth()
 		return 1
 	return 0
-
+/*
 /mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
 
-	if(!Proj.nodamage)
-		switch(Proj.damage_type)
-			if(BRUTE)
-				adjustBruteLoss(Proj.damage)
-			if(BURN)
-				adjustFireLoss(Proj.damage)
-
-	Proj.on_hit(src,2)
+	switch(Proj.damage_type)
+		if(BRUTE)
+			adjustBruteLoss(Proj.damage)
+		if(BURN)
+			adjustFireLoss(Proj.damage)
 	updatehealth()
 	return 2
-
+*/
 /mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
 	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 /*

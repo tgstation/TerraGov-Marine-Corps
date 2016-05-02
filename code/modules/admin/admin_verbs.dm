@@ -71,6 +71,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggledebuglogs,
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
+	/client/proc/change_security_level, /* Changes alert levels*/
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
 	/datum/admins/proc/admin_force_distress,
@@ -102,7 +103,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/one_click_antag,
 	// /datum/admins/proc/toggle_aliens,
 	// /datum/admins/proc/toggle_space_ninja,
-	/client/proc/send_space_ninja,
+//	/client/proc/send_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/make_sound,
@@ -134,7 +135,7 @@ var/list/admin_verbs_server = list(
 	// /datum/admins/proc/toggle_space_ninja,
 	// /client/proc/toggle_random_events,
 	// /client/proc/check_customitem_activity,
-	/client/proc/nanomapgen_DumpImage
+	// /client/proc/nanomapgen_DumpImage
 	)
 var/list/admin_verbs_debug = list(
         /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
@@ -213,7 +214,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cinematic,
 	// /datum/admins/proc/toggle_aliens,
 	// /datum/admins/proc/toggle_space_ninja,
-	/client/proc/send_space_ninja,
+//	/client/proc/send_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/cmd_admin_create_centcom_report,
@@ -871,3 +872,15 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
+
+
+/client/proc/change_security_level()
+	set name = "Set security level"
+	set desc = "Sets the station security level"
+	set category = "Admin"
+
+	if(!check_rights(R_ADMIN))	return
+	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
+	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
+		set_security_level(sec_level)
+		log_admin("[key_name(usr)] changed the security level to code [sec_level].")

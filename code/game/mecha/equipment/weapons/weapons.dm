@@ -1,3 +1,4 @@
+/*
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
@@ -84,7 +85,7 @@
 	name = "CH-LC \"Solaris\" Laser Cannon"
 	icon_state = "mecha_laser"
 	energy_drain = 60
-	projectile = /obj/item/projectile/beam/heavylaser
+	projectile = /obj/item/projectile
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
@@ -92,7 +93,7 @@
 	name = "mkIV Ion Heavy Cannon"
 	icon_state = "mecha_ion"
 	energy_drain = 120
-	projectile = /obj/item/projectile/ion
+	projectile = /obj/item/projectile
 	fire_sound = 'sound/weapons/Laser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
@@ -101,27 +102,27 @@
 	icon_state = "mecha_pulse"
 	energy_drain = 120
 	origin_tech = "materials=3;combat=6;powerstorage=4"
-	projectile = /obj/item/projectile/beam/pulse/heavy
+	projectile = /obj/item/projectile
 	fire_sound = 'sound/weapons/marauder.ogg'
-
+/*
 /obj/item/projectile/beam/pulse/heavy
 	name = "heavy pulse laser"
 	icon_state = "pulse1_bl"
 	var/life = 20
 
 	Bump(atom/A)
-		A.bullet_act(src, def_zone)
+		A.bullet_act(src)
 		src.life -= 10
 		if(life <= 0)
 			del(src)
 		return
-
+*/
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
 	name = "PBT \"Pacifier\" Mounted Taser"
 	icon_state = "mecha_taser"
 	energy_drain = 20
 	equip_cooldown = 8
-	projectile = /obj/item/projectile/beam/stun
+	projectile = /obj/item/projectile
 	fire_sound = 'sound/weapons/Taser.ogg'
 
 /* Commenting this out rather than removing it because it may be useful for reference.
@@ -210,7 +211,7 @@
 	name = "LBX AC 10 \"Scattershot\""
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
-	projectile = /obj/item/projectile/bullet/midbullet
+	projectile = /obj/item/projectile
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	fire_volume = 80
 	projectiles = 40
@@ -222,7 +223,7 @@
 	name = "Ultra AC 2"
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
-	projectile = /obj/item/projectile/bullet/weakbullet
+	projectile = /obj/item/projectile
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	projectiles = 300
 	projectiles_per_shot = 3
@@ -230,26 +231,26 @@
 	projectile_energy_cost = 20
 	fire_cooldown = 2
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
-	var/missile_speed = 2
-	var/missile_range = 30
+///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
+//	var/missile_speed = 2
+//	var/missile_range = 30
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
-	AM.throw_at(target,missile_range, missile_speed, chassis)
+///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
+//	AM.throw_at(target,missile_range, missile_speed, chassis)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
 	name = "SRM-8 Missile Rack"
 	icon_state = "mecha_missilerack"
-	projectile = /obj/item/missile
+//	projectile = /obj/item/missile
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 8
 	projectile_energy_cost = 1000
 	equip_cooldown = 60
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target, turf/aimloc)
-	var/obj/item/missile/M = AM
-	M.primed = 1
-	..()
+///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target, turf/aimloc)
+//	var/obj/item/missile/M = AM
+//	M.primed = 1
+//	..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
 	name = "SGL-6 Grenade Launcher"
@@ -278,3 +279,4 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/rearm()
 	return//Extra bit of security
+*/

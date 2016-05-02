@@ -186,7 +186,7 @@ datum/mind
 				text += "<b>EMPLOYEE</b>|<a href='?src=\ref[src];cult=cultist'>cultist</a>"
 			sections["cult"] = text
 
-			/** WIZARD ***/
+			/** WIZARD
 			text = "wizard"
 			if (ticker.mode.config_tag=="wizard")
 				text = uppertext(text)
@@ -199,7 +199,7 @@ datum/mind
 			else
 				text += "<a href='?src=\ref[src];wizard=wizard'>yes</a>|<b>NO</b>"
 			sections["wizard"] = text
-
+			*/
 			/** CHANGELING ***/
 			text = "changeling"
 			if (ticker.mode.config_tag=="changeling" || ticker.mode.config_tag=="traitorchan")
@@ -686,7 +686,7 @@ datum/mind
 					if (!ticker.mode.equip_cultist(current))
 						usr << "\red Spawning amulet failed!"
 
-		else if (href_list["wizard"])
+/*		else if (href_list["wizard"])
 			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
 
 			switch(href_list["wizard"])
@@ -715,7 +715,7 @@ datum/mind
 					if(!config.objectives_disabled)
 						ticker.mode.forge_wizard_objectives(src)
 						usr << "\blue The objectives for wizard [key] have been generated. You can edit them and anounce manually."
-
+*/
 		else if (href_list["changeling"])
 			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
 			switch(href_list["changeling"])
@@ -901,7 +901,7 @@ datum/mind
 							/datum/game_mode/malfunction/proc/takeover,
 							/datum/game_mode/malfunction/proc/ai_win,
 							/client/proc/fireproof_core,
-							/client/proc/upgrade_turrets,
+//							/client/proc/upgrade_turrets,
 							/client/proc/disable_rcd,
 							/client/proc/overload_machine,
 							/client/proc/blackout,
@@ -1091,7 +1091,7 @@ datum/mind
 			if(!config.objectives_disabled)
 				ticker.mode.forge_changeling_objectives(src)
 			ticker.mode.greet_changeling(src)
-
+/*
 	proc/make_Wizard()
 		if(!(src in ticker.mode.wizards))
 			ticker.mode.wizards += src
@@ -1110,7 +1110,7 @@ datum/mind
 			ticker.mode.name_wizard(current)
 			ticker.mode.forge_wizard_objectives(src)
 			ticker.mode.greet_wizard(src)
-
+*/
 
 	proc/make_Cultist()
 		if(!(src in ticker.mode.cult))

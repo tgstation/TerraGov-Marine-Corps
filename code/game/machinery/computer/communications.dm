@@ -512,9 +512,9 @@
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
-	if(sent_strike_team == 1)
-		user << "Weyland Yutani will not allow the shuttle to be called. Consider all contracts terminated."
-		return
+//	if(sent_strike_team == 1)
+//		user << "Weyland Yutani will not allow the shuttle to be called. Consider all contracts terminated."
+//		return
 
 	if(emergency_shuttle.deny_shuttle)
 		user << "The emergency shuttle may not be sent at this time. Please try again later."
@@ -561,9 +561,9 @@
 			user << "Weyland Yutani does not currently have a shuttle available in your sector. Please try again later."
 			return
 
-		if(sent_strike_team == 1)
-			user << "Weyland Yutani will not allow the shuttle to be called. Consider all contracts terminated."
-			return
+//		if(sent_strike_team == 1)
+//			user << "Weyland Yutani will not allow the shuttle to be called. Consider all contracts terminated."
+//			return
 
 		if(world.time < 36000) // 1 hour grace period to let the game get going without lolmetagaming. -- TLE
 			user << "The emergency shuttle is refueling. Please wait another [round((36000-world.time)/600)] minutes before trying again."
@@ -632,8 +632,8 @@
 		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
 			return ..()
 
-	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
-		return ..()
+//	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
+//		return ..()
 
 	emergency_shuttle.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
@@ -655,8 +655,8 @@
 		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
 			return ..()
 
-	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
-		return ..()
+//	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
+//		return ..()
 
 	emergency_shuttle.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")

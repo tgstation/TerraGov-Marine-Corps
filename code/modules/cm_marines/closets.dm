@@ -45,6 +45,15 @@
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mcom(src)
 
+/obj/structure/closet/secure_closet/securecom
+	name = "Commander's Secure Box"
+	req_access = list(access_sulaco_captain)
+	desc = "You could probably get court-marshaled just by looking at this..."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "largermetal"
+	icon_opened = "largermetalopen"
+	icon_closed = "largermetal"
+	icon_locked = "largermetal"
 
 /obj/structure/closet/secure_closet/marine/marine_lo
 	name = "Bridge Officer's Locker"
@@ -61,6 +70,8 @@
 		spawn(2)
 			new /obj/item/clothing/head/cmberet(src)
 			new /obj/item/clothing/head/cmberet(src)
+			new /obj/item/clothing/head/cmberet/tan(src)
+			new /obj/item/clothing/head/cmberet/tan(src)
 			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/clothing/head/cmcap/ro(src)
 			new /obj/item/clothing/head/cmcap/ro(src)
@@ -99,7 +110,7 @@
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mmpo(src)
-			new /obj/item/weapon/gun/energy/taser(src)
+			new /obj/item/weapon/gun/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
 
@@ -147,9 +158,9 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/alpha(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/malpha(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+//			new /obj/item/weapon/storage/backpack/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -178,9 +189,9 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/bravo(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mbravo(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+//			new /obj/item/weapon/storage/backpack/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -210,9 +221,9 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/charlie(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mcharlie(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+//			new /obj/item/weapon/storage/backpack/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -226,8 +237,7 @@
 					new /obj/item/clothing/suit/storage/marine(src)
 
 
-
-//Delta EQUIPMENT CLOSET
+//DELTA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
 	name = "Delta Equipment Locker"
 	req_access = list(access_marine_prep, access_squad_delta)
@@ -243,9 +253,9 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/delta(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/device/flashlight(src)
+//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mdelta(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+//			new /obj/item/weapon/storage/backpack/marine(src)
 
 			spawn(2200)//Wait till the game ticker is done
 				if(istype(ticker.mode,/datum/game_mode/ice_colony))
@@ -308,7 +318,8 @@
 			new /obj/item/clothing/suit/storage/labcoat(src)
 			new /obj/item/clothing/suit/storage/fr_jacket(src)
 			new /obj/item/clothing/shoes/white(src)
-			new /obj/item/device/radio/headset/headset_med(src)
+			if(z && (z == 3 || z == 4))
+				new /obj/item/device/radio/headset/headset_med(src)
 			new /obj/item/weapon/storage/belt/medical(src)
 			new /obj/item/clothing/glasses/hud/health(src)
 
@@ -418,6 +429,6 @@
 			new /obj/item/clothing/head/soft/ro_cap(src)
 			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
-			new /obj/item/weapon/gun/energy/taser(src)
+			new /obj/item/weapon/gun/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/marine(src)

@@ -7,7 +7,7 @@
 	var/hull = 0 //Can it be deconstructed by tools or thermite? Used for Sulaco walls
 
 	var/damage = 0
-	var/damage_cap = 100 //Wall will break down to girders if damage reaches this point
+	var/damage_cap = 1000 //Wall will break down to girders if damage reaches this point
 
 	var/damage_overlay
 	var/global/damage_overlays[8]
@@ -50,7 +50,7 @@
 	if(rotting)
 		usr << "<span class='warning'>There is fungus growing on [src].</span>"
 
-/turf/simulated/wall/proc/update_icon()
+/turf/simulated/wall/update_icon()
 	if(!damage_overlays[1]) //list hasn't been populated
 		generate_overlays()
 

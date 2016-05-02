@@ -36,51 +36,6 @@
 /mob/living/proc/getarmor(var/def_zone, var/type)
 	return 0
 
-
-/mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
-	flash_weak_pain()
-
-	//Being hit while using a cloaking device
-//	var/obj/item/weapon/cloaking_device/C = locate((/obj/item/weapon/cloaking_device) in src)
-//	if(C && C.active)
-//		C.attack_self(src)//Should shut it off
-//		update_icons()
-//		src << "\blue Your [C.name] was disrupted!"
-//		Stun(2)
-
-	if(ishuman(src))
-		var/mob/living/carbon/human/M = src
-		var/obj/item/clothing/gloves/yautja/Y = M.gloves
-		if(Y && istype(Y) && Y.cloaked && rand(0,100) < 25 )
-			Y.decloak(src)
-
-	//Being hit while using a deadman switch
-	if(istype(equipped(),/obj/item/device/assembly/signaler))
-		var/obj/item/device/assembly/signaler/signaler = equipped()
-		if(signaler.deadman && prob(80))
-			src.visible_message("\red [src] triggers their deadman's switch!")
-			signaler.signal()
-
-	//Stun Beams
-	if(istype(P, /obj/item/projectile/beam/stun) || istype(P, /obj/item/projectile/bullet/stunshot))
-		stun_effect_act(0, P.agony, def_zone, P)
-		src <<"\red You have been hit by [P]!"
-		del P
-		return
-
-	//Armor
-	var/absorb = run_armor_check(def_zone, P.flag)
-	var/proj_sharp = is_sharp(P)
-	var/proj_edge = has_edge(P)
-	if ((proj_sharp || proj_edge) && prob(getarmor(def_zone, P.flag)))
-		proj_sharp = 0
-		proj_edge = 0
-
-	if(!P.nodamage)
-		apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp=proj_sharp, edge=proj_edge)
-	P.on_hit(src, absorb, def_zone)
-	return absorb
-
 //Handles the effects of "stun" weapons
 /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
 	flash_pain()

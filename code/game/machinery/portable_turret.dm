@@ -66,12 +66,13 @@
 		spark_system.attach(src)
 		sleep(10)
 		if(!installation)// if for some reason the turret has no gun (ie, admin spawned) it resorts to basic taser shots
-			projectile = /obj/item/projectile/beam/stun//holder for the projectile, here it is being set
-			eprojectile = /obj/item/projectile/beam//holder for the projectile when emagged, if it is different
+			projectile = /obj/item/projectile
+			eprojectile = /obj/item/projectile
 			reqpower = 200
 			sound = 1
 			iconholder = 1
 		else
+			/*
 			var/obj/item/weapon/gun/energy/E=new installation
 					// All energy-based weapons are applicable
 			switch(E.type)
@@ -175,6 +176,7 @@
 					iconholder = 1
 					egun = 1
 					reqpower = 200
+				*/
 
 	Del()
 		// deletes its own cover with it
@@ -271,7 +273,7 @@ Status: []<BR>"},
 	else
 		if( !(stat & NOPOWER) )
 			if (on)
-				if (installation == /obj/item/weapon/gun/energy/laser || installation == /obj/item/weapon/gun/energy/pulse_rifle)
+//				if (installation == /obj/item/weapon/gun/energy/laser || installation == /obj/item/weapon/gun/energy/pulse_rifle)
 					// laser guns and pulse rifles have an orange icon
 					icon_state = "[lasercolor]orange_target_prism"
 				else
@@ -363,7 +365,7 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret/bullet_act(var/obj/item/projectile/Proj)
 
-	if(Proj.damage_type == HALLOSS)
+	if(Proj.ammo.damage_type == HALLOSS)
 		return
 
 	if(on)
@@ -373,23 +375,11 @@ Status: []<BR>"},
 				sleep(60)
 				attacked = 0
 
-	src.health -= Proj.damage
+	src.health -= Proj.ammo.damage
 	..()
-	if(prob(45) && Proj.damage > 0) src.spark_system.start()
+	if(prob(45) && Proj.ammo.damage > 0) src.spark_system.start()
 	if (src.health <= 0)
 		src.die() // the death process :(
-	if((src.lasercolor == "b") && (src.disabled == 0))
-		if(istype(Proj, /obj/item/projectile/beam/lastertag/red))
-			src.disabled = 1
-			del (Proj)
-			sleep(100)
-			src.disabled = 0
-	if((src.lasercolor == "r") && (src.disabled == 0))
-		if(istype(Proj, /obj/item/projectile/beam/lastertag/blue))
-			src.disabled = 1
-			del (Proj)
-			sleep(100)
-			src.disabled = 0
 	return
 
 /obj/machinery/porta_turret/emp_act(severity)
@@ -553,7 +543,7 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/perp as mob)
 	var/threatcount = 0 // the integer returned
-
+/*
 	if(src.emagged) return 10 // if emagged, always return 10.
 
 	if((stun_all && !src.allowed(perp)) || attacked && !src.allowed(perp))
@@ -610,7 +600,7 @@ Status: []<BR>"},
 						break
 
 
-
+*/
 	return threatcount
 
 

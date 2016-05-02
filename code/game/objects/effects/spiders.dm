@@ -40,8 +40,9 @@
 
 /obj/effect/spider/bullet_act(var/obj/item/projectile/Proj)
 	..()
-	health -= Proj.damage
+	health -= Proj.ammo.damage
 	healthcheck()
+	return 1
 
 /obj/effect/spider/proc/healthcheck()
 	if(health <= 0)
