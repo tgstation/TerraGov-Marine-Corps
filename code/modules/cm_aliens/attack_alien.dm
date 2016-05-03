@@ -25,7 +25,7 @@
 		if ("grab") //Defaults to ctrl-click pull. Grabs are fucked up!
 			if(M == src || anchored)
 				return
-			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
+			if(check_shields(0, M.name) && rand(0,2) != 0) //Bit of a bonus
 				M.visible_message("\red <B>\The [M]'s grab is blocked by [src]'s shield!</B>", "\red <B>Your grab was blocked by a shield!</B>")
 				return 0
 
@@ -56,7 +56,7 @@
 					M << "You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders."
 					return 0
 
-			if(check_shields(0, M.name) && rand(0,4) != 0) //Bit of a bonus
+			if(check_shields(0, M.name) && rand(0,2) != 0) //Bit of a bonus
 				visible_message("\red <B>\The [M]'s slash is blocked by [src]'s shield!</B>")
 				return 0
 
@@ -103,7 +103,7 @@
 			updatehealth()
 
 		if("disarm")
-			if(check_shields(0, M.name) && rand(0,5) != 0) //Bit of a bonus
+			if(check_shields(0, M.name) && rand(0,2) != 0) //Bit of a bonus
 				visible_message("\red <B> \The [M]'s tackle is blocked by [src]'s shield!</B>")
 				return 0
 			if(weakened)
@@ -286,7 +286,9 @@
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 	visible_message("\red <B>[M] smashes against the [src.name].</B>", 1)
-	take_damage(25)
+	var/damage = 25
+	if(M.big_xeno) damage = 40
+	take_damage(damage)
 	return
 
 //Slashing mechas
@@ -480,6 +482,10 @@
 
 	if(isXenoLarva(M)) return
 
+	if(unacidable)
+		M << "This one's too reinforced for you to damage."
+		return
+
 	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 	var/allcut = 1
@@ -508,6 +514,7 @@
 	M.visible_message("<span class='warning'>[M] smashes the [src.name]!</span>", \
 		 "<span class='warning'>You smash at the barricade!</span>")
 	if(src.health <= 0)
+		playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 		visible_message("\red The [src.name] falls apart!")
 		del(src)
 
@@ -544,6 +551,97 @@
 			M  << "\red There is nothing to clear out!"
 			return
 
-		M.visible_message("\blue \The [M] clears out \the [src].")
+		M.visible_message("\blue [M] clears out \the [src].")
 		slayer -= 1
 		update_icon(1)
+
+//Crates, closets, other paraphernalia
+/obj/structure/largecrate/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return
+
+	playsound(src, 'sound/effects/woodhit.ogg', 100, 1)
+	new /obj/item/stack/sheet/wood(src)
+	var/turf/T = get_turf(src)
+	for(var/obj/O in contents)
+		O.loc = T
+	M.visible_message("<span class='notice'>[M] smashes \the [src] open!</span>", \
+						 "<span class='notice'>You smash open \the [src]!</span>", \
+						 "<span class='notice'>You hear splitting wood.</span>")
+	del(src)
+	return
+
+/obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return src.attack_hand(M)
+
+	if(M.a_intent == "hurt" && !src.unacidable)
+		if(prob(70))
+			var/turf/T = get_turf(src)
+			for(var/obj/O in contents)
+				O.loc = T
+			M.visible_message("<span class='notice'>[M] smashes open \the [src] open!</span>", "<span class='notice'>You smash open \the [src]!</span>")
+		else
+			M.visible_message("<span class='notice'>[M] smashes at \the [src]!</span>", "<span class='notice'>You smash \the [src]!</span>")
+	else
+		return attack_paw(M)
+
+/obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return
+
+	if(M.melee_damage_lower < 28 || src.unacidable)
+		M << "Your claws aren't sharp enough to damage \the [src]."
+		return
+	else
+		src.health -= round(rand(M.melee_damage_lower,M.melee_damage_upper) / 2)
+
+		M.visible_message("<span class='notice'>[M] smashes at \the [src]!</span>", "<span class='notice'>You smash \the [src]!</span>")
+		if(health < 0)
+			playsound(loc, 'sound/effects/metalhit.ogg', 75, 1)
+			dismantle()
+			return
+		playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+
+
+/obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return
+
+	if((stat & (BROKEN|NOPOWER)) || tipped_level)
+		M << "There's no reason to bother with that old piece of trash."
+		return
+
+	if(M.a_intent == "hurt")
+		if(prob(M.melee_damage_lower))
+			playsound(loc, 'sound/effects/metalhit.ogg', 75, 1)
+			M.visible_message("<span class='notice'><b>[M] destroys \the [src] beyond recognition!</b></span>","\red <B>You destroy \the [src] in a frenzy!</b>")
+			malfunction()
+			return
+		else
+			M.visible_message("<span class='notice'>[M] slashes at \the [src]!</span>","\red You slash at \the [src]!")
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+		return
+
+	M.visible_message("\red [M] begins to lean against \the [src]..","\red You shove against \the [src].. hold still!")
+	tipped_level = 1
+	var/shove_time = 100
+	if(M.big_xeno) shove_time = 50
+	if(istype(M,/mob/living/carbon/Xenomorph/Crusher)) shove_time = 15
+	if(do_after(M,shove_time))
+		M.visible_message("\red <B>[M] knocks over \the [src]!</b>","\red <B>You knock over \the [src]!</b>")
+		tip_over()
+	else
+		tipped_level = 0
+
+/obj/machinery/vending/proc/tip_over()
+	var/matrix/A = matrix()
+	tipped_level = 2
+	density = 0
+	A.Turn(90)
+	src.transform = A
+	malfunction()
+	return
+
+/obj/machinery/vending/proc/flip_back()
+	icon_state = initial(icon_state)
+	tipped_level = 0
+	density = 1
+	stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
+	return

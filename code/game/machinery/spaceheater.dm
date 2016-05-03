@@ -1,6 +1,6 @@
 /obj/machinery/space_heater
 	anchored = 0
-	density = 1
+	density = 0
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
@@ -8,7 +8,7 @@
 	var/obj/item/weapon/cell/cell
 	var/on = 0
 	var/open = 0
-	var/set_temperature = T0C + 50	//K
+	var/set_temperature = T0C + 70	//K
 	var/heating_power = 40000
 
 	flags = FPRINT
@@ -16,7 +16,8 @@
 
 /obj/machinery/space_heater/New()
 	..()
-	cell = new(src)
+	cell = new (src)
+	cell.charge += 500
 	update_icon()
 
 /obj/machinery/space_heater/update_icon()

@@ -4,7 +4,7 @@
 	name = "machine frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
-	density = 1
+	density = 0
 	anchored = 1
 	use_power = 0
 	var/obj/item/weapon/circuitboard/circuit = null

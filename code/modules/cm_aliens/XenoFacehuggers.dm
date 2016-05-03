@@ -34,6 +34,17 @@ var/const/MAX_ACTIVE_TIME = 200
 			M.drop_from_inventory(src)
 		return ..()
 
+	dropped()
+		spawn(2)
+			var/obj/item/clothing/mask/facehugger/F
+			var/count = 0
+			for(F in get_turf(src))
+				if(F.stat == CONSCIOUS) count++
+			if(count > 5)
+				src.visible_message("\red The facehugger is furiously cannibalized by the nearby horde of other ones!")
+				del(src)
+				return
+
 
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob) //can be picked up by aliens
 	attack_hand(user)

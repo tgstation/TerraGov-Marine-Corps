@@ -4,7 +4,7 @@
 	name = "cryo cell"
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "cell-off"
-	density = 1
+	density = 0
 	anchored = 1.0
 	layer = 2.8
 
