@@ -169,7 +169,8 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), slot_wear_mask)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), slot_shoes)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
 	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
 

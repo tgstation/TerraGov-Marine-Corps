@@ -17,9 +17,9 @@
 #define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
 #define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
 
-#define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
-#define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
-#define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
+#define COLD_GAS_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
+#define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
+#define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
 
@@ -606,8 +606,9 @@
 
 		// Hot air hurts :(
 		var/rebreather = 0 //If you have rebreather equipped, don't damage the lungs
-		if(istype(wear_mask, /obj/item/clothing/mask/rebreather))
-			rebreather = 1
+		if(wear_mask)
+			if(istype(wear_mask, /obj/item/clothing/mask/rebreather) || istype(wear_mask, /obj/item/clothing/mask/fluff))
+				rebreather = 1
 		if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations) && !rebreather)
 
 			if(breath.temperature < species.cold_level_1)
