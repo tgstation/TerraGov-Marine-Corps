@@ -12,7 +12,7 @@
 
 	flags =  FPRINT | TABLEPASS | CONDUCT
 	matter = list("metal" = 2000)
-	w_class = 2.0
+	w_class = 4.0
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
 	var/list/guns_allowed = list() //what weapons can it be attached to? Note that it must be the FULL path, not parents.

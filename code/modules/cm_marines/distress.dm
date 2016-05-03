@@ -3,85 +3,113 @@
 
 
 
-/proc/spawn_merc_gun(var/mob/living/M,var/sidearm = 0)
-	var/obj/item/weapon/storage/backpack = M.back
-	if(!istype(backpack)) return
+/proc/spawn_merc_gun(var/atom/M,var/sidearm = 0)
+	if(!M || isnull(M) || !istype(M))
+		M = usr //One last shot.
+		if(isnull(M)) return
 
-	var/list/merc_sidearms = list(
-		/obj/item/weapon/gun/revolver/small,
+	var/atom/spawnloc = M
+
+	var/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
 		/obj/item/weapon/gun/pistol/heavy,
 		/obj/item/weapon/gun/pistol/m1911,
 		/obj/item/weapon/gun/pistol/kt42,
 		/obj/item/weapon/gun/pistol/holdout,
 		/obj/item/weapon/gun/pistol/highpower,
 		/obj/item/weapon/gun/pistol/vp70,
+		/obj/item/weapon/gun/smg/mp7,
+		/obj/item/weapon/gun/smg/skorpion,
+		/obj/item/weapon/gun/smg/uzi,
 		/obj/item/weapon/gun/smg/uzi)
 
-	var/list/merc_firearms = list(
-		/obj/item/weapon/gun/rifle/lmg,
+	var/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
 		/obj/item/weapon/gun/shotgun/merc,
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/pump/cmb,
-		/obj/item/weapon/gun/smg/mp7,
-		/obj/item/weapon/gun/smg/skorpion,
-		/obj/item/weapon/gun/smg/uzi,
+		/obj/item/weapon/gun/rifle/mar40,
 		/obj/item/weapon/gun/rifle/mar40/carbine,
+		/obj/item/weapon/gun/rifle/mar40/svd,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/p90)
 
-	var/gunpath = pick(merc_firearms)
-	var/obj/item/weapon/gun/gun
-	if(sidearm)
-		gunpath = pick(merc_sidearms)
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_r_hand)
+	var/gunpath
+	if(!sidearm)
+		gunpath = pick(merc_firearms)
 	else
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_l_hand)
+		gunpath = pick(merc_sidearms)
 
-	var/ammopath = text2path(gun.mag_type)
-	new ammopath(M.back)
-	new ammopath(M.back) //Twice the fun just to be sure
+	var/obj/item/weapon/gun/gun
+
+	if(gunpath)
+		gun = new gunpath(spawnloc)
+		var/ammopath = text2path(gun.mag_type)
+		if(ishuman(spawnloc))
+			var/mob/living/carbon/human/H = spawnloc
+			if(!sidearm)
+				H.equip_to_slot_or_del(gun, slot_r_hand)
+			else
+				H.equip_to_slot_or_del(gun, slot_l_hand)
+			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
+				new ammopath(H.back)
+				new ammopath(H.back)
+		else
+			if(ammopath)
+				new ammopath(get_turf(spawnloc))
+				new ammopath(get_turf(spawnloc))
+
 	return 1
 
-/proc/spawn_slavic_gun(var/mob/living/M,var/sidearm = 0)
-	var/obj/item/weapon/storage/backpack = M.back
-	if(!istype(backpack)) return
+/proc/spawn_slavic_gun(var/atom/M,var/sidearm = 0)
+	if(!M || isnull(M) || !istype(M))
+		M = usr //One last shot.
+		if(isnull(M)) return
 
-	var/list/rus_sidearms = list(
-		/obj/item/weapon/gun/pistol/m4a3,
+	var/atom/spawnloc = M
+
+	var/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
 		/obj/item/weapon/gun/revolver/upp,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/weapon/gun/pistol/c99/russian,
 		/obj/item/weapon/gun/pistol/kt42,
+		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/ppsh)
 
-	var/list/rus_firearms = list(
+	var/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40,
 		/obj/item/weapon/gun/rifle/mar40,
 		/obj/item/weapon/gun/rifle/mar40/carbine,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/rifle/mar40/svd)
 
-	var/gunpath = pick(rus_firearms)
-	var/obj/item/weapon/gun/gun
-	if(gunpath)
-		if(sidearm)
-			gunpath = pick(rus_sidearms)
-			gun = new gunpath(M)
-			M.equip_to_slot_or_del(gun, slot_r_hand)
-		else
-			gun = new gunpath(M)
-			M.equip_to_slot_or_del(gun, slot_l_hand)
+	var/gunpath
+	if(!sidearm)
+		gunpath = pick(rus_firearms)
+	else
+		gunpath = pick(rus_sidearms)
 
-		if(istype(gun))
-			var/ammopath = text2path(gun.mag_type)
+	var/obj/item/weapon/gun/gun
+
+	if(gunpath)
+		gun = new gunpath(spawnloc)
+		var/ammopath = text2path(gun.mag_type)
+		if(ishuman(spawnloc))
+			var/mob/living/carbon/human/H = spawnloc
+			if(!sidearm)
+				H.equip_to_slot_or_del(gun, slot_r_hand)
+			else
+				H.equip_to_slot_or_del(gun, slot_l_hand)
+			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
+				new ammopath(H.back)
+				new ammopath(H.back)
+		else
 			if(ammopath)
-				new ammopath(M.back)
-				new ammopath(M.back) //Twice the fun just to be sure
+				new ammopath(get_turf(spawnloc))
+				new ammopath(get_turf(spawnloc))
+
 	return 1
 
 //basic persistent gamemode stuff.
@@ -688,7 +716,7 @@
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 
 	spawn_merc_gun(M)
-	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
+	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands
 
 /datum/emergency_call/bears/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()

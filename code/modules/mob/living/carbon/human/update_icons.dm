@@ -1048,8 +1048,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 /mob/living/carbon/human/update_fire(var/update_icons = 1)
 	if(on_fire)
-		var/image/fire = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=-FIRE_LAYER)
-		overlays_standing[FIRE_LAYER] = fire
+		overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=-FIRE_LAYER)
 	else
 		overlays_standing[FIRE_LAYER] = null
 
