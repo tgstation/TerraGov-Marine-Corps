@@ -73,6 +73,7 @@
 //	update_inv_pockets(0)
 	//update_hud() //Icons already update hud
 	update_icons()
+	update_fire()
 
 
 /mob/living/carbon/Xenomorph/update_hud()
@@ -177,19 +178,19 @@
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/Xenomorph/proc/create_shriekwave()
-	var/image/waves = image("icon" = src.icon, "icon_state" = "shriek_waves")
-	overlays_standing[X_SUIT_LAYER] = waves //Ehh, suit layer's not being used.
+	overlays_standing[X_SUIT_LAYER] = image("icon" = src.icon, "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
 	update_icons()
-	spawn(50)
+	spawn(30)
 		overlays_standing[X_SUIT_LAYER] = null
 		update_icons()
 
 /mob/living/carbon/Xenomorph/update_fire(var/update_icons=1)
 	if(on_fire)
-		var/image/fire = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
 		if(big_xeno)
-			fire.pixel_x += 8
-		overlays_standing[X_FIRE_LAYER] = fire
+			overlays_standing[X_FIRE_LAYER] = image("icon"='icons/Xeno/Effects.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+		else
+			overlays_standing[X_FIRE_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
+
 	else
 		overlays_standing[X_FIRE_LAYER] = null
 

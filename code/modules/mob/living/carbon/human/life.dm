@@ -606,7 +606,6 @@
 
 		// Hot air hurts :(
 		if( (breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
-
 			if(breath.temperature < species.cold_level_1)
 				if(prob(20))
 					src << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"

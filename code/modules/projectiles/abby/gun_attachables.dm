@@ -12,7 +12,7 @@
 
 	flags =  FPRINT | TABLEPASS | CONDUCT
 	matter = list("metal" = 2000)
-	w_class = 2.0
+	w_class = 4.0
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
 	var/list/guns_allowed = list() //what weapons can it be attached to? Note that it must be the FULL path, not parents.
@@ -45,16 +45,16 @@
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
 		if(slot == "rail")
-			G.rail.loc = get_turf(G)
+			G.rail.Detach(G)
 			G.rail = null
-		if(slot == "muzzle")
-			G.muzzle.loc = get_turf(G)
+		else if(slot == "muzzle")
+			G.muzzle.Detach(G)
 			G.muzzle = null
-		if(slot == "under")
-			G.under.loc = get_turf(G)
+		else if(slot == "under")
+			G.under.Detach(G)
 			G.under = null
-		if(slot == "stock")
-			G.stock.loc = get_turf(G)
+		else if(slot == "stock")
+			G.stock.Detach(G)
 			G.stock = null
 
 		//Now deal with static, non-coded modifiers.
@@ -86,6 +86,7 @@
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
+
 		if(slot == "rail") G.rail.loc = get_turf(G)
 		if(slot == "muzzle") G.muzzle.loc = get_turf(G)
 		if(slot == "under") G.under.loc = get_turf(G)

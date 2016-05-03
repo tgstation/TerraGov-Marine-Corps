@@ -21,7 +21,7 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
-	anchored = 0
+	anchored = 1 //Yep
 
 	var/const/mob_size = 15
 
