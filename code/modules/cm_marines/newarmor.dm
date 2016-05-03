@@ -443,19 +443,16 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "M3 Pattern Sniper Armor"
 	desc = "A custom modified set of M3 armor designed for recon missions."
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	icon_state = "marine_sniper"
 	item_state = "marine_sniper"
-	item_color = "marine_sniper"
 	armor = list(melee = 70, bullet = 75, laser = 50,energy = 20, bomb = 30, bio = 0, rad = 0)
 	min_cold_protection_temperature = 220
 
-/obj/item/clothing/head/helmet/marine/durag
+/obj/item/clothing/head/helmet/durag
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
+	icon = 'icons/obj/clothing/hats.dmi'
 	item_state = "durag"
 	icon_state = "durag"
-	item_color = "durag"
-	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 5, bullet = 5, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	min_cold_protection_temperature = 220

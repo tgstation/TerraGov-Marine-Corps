@@ -242,7 +242,8 @@
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/weapon/facepaint/sniper(src)
 			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/head/helmet/marine/durag(src)
+			new /obj/item/clothing/head/helmet/durag(src)
+			new /obj/item/weapon/storage/backpack/smock(src)
 
 
 /obj/item/weapon/gun/m92
