@@ -652,15 +652,14 @@
 
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(!H.weakened)  //Don't ask me why is has to be
-			user << "[M] is resisting, tackle them first"
+		if(!H.lying)  //Don't ask me why is has to be
+			user << "[M] is resisting, tackle them first."
 			return
 
-	else
-		M.visible_message(\
-			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
+	M.visible_message("<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
 			"<span class='warning'>[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!</span>",\
 			"<span class='notice'>You hear squelching...</span>")
+
 	M.buckled = src
 	M.loc = src.loc
 	M.dir = src.dir
@@ -671,6 +670,29 @@
 	src.buckled_mob = M
 	src.add_fingerprint(user)
 	return
+
+/obj/item/weapon/handcuffs/xeno
+	name = "hardened resin"
+	desc = "A thick, nasty resin. You could probably resist out of this."
+	breakouttime = 200
+	cuff_sound = 'sound/effects/blobattack.ogg'
+	icon = 'icons/xeno/effects.dmi'
+	icon_state = "sticky2"
+
+	dropped()
+		del(src)
+		return
+
+/obj/item/weapon/legcuffs/xeno
+	name = "sticky resin"
+	desc = "A thick, nasty resin. You could probably resist out of this."
+	breakouttime = 100
+	icon = 'icons/xeno/effects.dmi'
+	icon_state = "sticky2"
+
+	dropped()
+		del(src)
+		return
 
 /obj/structure/stool/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/aforce = W.force
