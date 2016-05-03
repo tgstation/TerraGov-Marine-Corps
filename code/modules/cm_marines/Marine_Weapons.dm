@@ -226,7 +226,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 7
+	storage_slots = 10
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
@@ -240,6 +240,10 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
+			new /obj/item/weapon/facepaint/sniper(src)
+			new /obj/item/clothing/suit/storage/marine/sniper(src)
+			new /obj/item/clothing/head/helmet/durag(src)
+			new /obj/item/weapon/storage/backpack/smock(src)
 
 
 /obj/item/weapon/gun/m92

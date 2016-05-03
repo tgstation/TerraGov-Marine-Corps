@@ -58,7 +58,7 @@
 		desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Weyland-Yutani Corporation."
 	buritto
 		name = "Burrito wrapper"
-		icon_state = "burritto"
+		icon_state = "burrito"
 		desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Weyland-Yutani Corporation."
 	hotdog
 		name = "Hotdog wrapper"

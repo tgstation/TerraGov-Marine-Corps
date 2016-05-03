@@ -443,6 +443,15 @@
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
 
+/obj/item/weapon/storage/backpack/smock
+	name = "Sniper's Smock"
+	desc = "A specially designed smock with pockets for all your sniper needs."
+	icon_state = "smock"
+	item_state = "smock"
+	max_w_class = 3
+	max_combined_w_class = 21
+
+
 /obj/item/weapon/storage/backpack/marine/medic
 	name = "USCM Medic Backpack"
 	desc = "The standard-issue backpack worn by USCM Medics."

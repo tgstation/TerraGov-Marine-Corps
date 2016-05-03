@@ -384,7 +384,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 		//Mouth	(lipstick!)
 		if(lip_style && (species && species.flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
-			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "lips_[lip_style]_s"), ICON_OVERLAY)
+			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[lip_style]_s"), ICON_OVERLAY)
 
 	//Underwear
 	if(underwear >0 && underwear < 12 && species.flags & HAS_UNDERWEAR)
@@ -747,16 +747,18 @@ proc/get_damage_icon_part(damage_state, body_part)
 				var/image/scratchy = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
 				standing.overlays += scratchy
 			//Update helmet contents overlay
-			if(contents.len)
+			if(head.contents.len)
 				for(var/obj/I in head.contents)
 					if(!isnull(I) && I in head.contents)
 						//Cigar Packs
-						if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
+						if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
+							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
+						else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
 						else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_ls")
 						else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
+							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
 
 						//Cards
 						else if(istype(I,/obj/item/weapon/deck) || istype(I,/obj/item/weapon/hand))
@@ -767,7 +769,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_matches")
 
 						//Rosary
-						else if(istype(I,/obj/item/fluff/val_mcneil_1))
+						else if(istype(I,/obj/item/fluff/val_mcneil_1) || istype(I, /obj/item/clothing/mask/mara_kilpatrick_1))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_rosary")
 
 						//Flasks

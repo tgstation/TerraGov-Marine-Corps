@@ -49,6 +49,8 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
+
 		user.visible_message("[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].", \
 		"You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]." )
 		target.custom_pain("The pain in your chest is living hell!",1)
@@ -57,6 +59,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/chest/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].", \
 		"\blue You make some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]." )
 
@@ -86,6 +91,8 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
+
 		user.visible_message("[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].", \
 		"You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool]." )
 		target.custom_pain("The pain in your chest is living hell!",1)
@@ -94,6 +101,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/chest/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool].", \
 		"\blue You mend [target]'s [get_cavity(affected)] cavity walls with \the [tool]." )
 
@@ -118,6 +128,8 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
+
 		user.visible_message("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.", \
 		"You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity." )
 		target.custom_pain("The pain in your chest is living hell!",1)
@@ -125,7 +137,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/chest/affected = target.get_organ(target_zone)
-
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.", \
 		"\blue You put \the [tool] inside [target]'s [get_cavity(affected)] cavity." )
 		if (tool.w_class > get_max_wclass(affected)/2 && prob(50))
@@ -165,6 +179,8 @@
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
+
 		user.visible_message("[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool].", \
 		"You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool]" )
 		target.custom_pain("The pain in your chest is living hell!",1)
@@ -172,7 +188,9 @@
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/chest/affected = target.get_organ(target_zone)
-
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		var/find_prob = 0
 
 		if (affected.implants.len)

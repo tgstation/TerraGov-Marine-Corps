@@ -54,8 +54,8 @@
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
-	name = "Marine Food Vendor"
-	desc = "Standard Issue Food Vendor, containing standard military food"
+	name = "Marine Food and Drinks Vendor"
+	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/protein_pack = 50,
@@ -64,7 +64,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15)
+					/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6 = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/flask/marine = 20)
+
 					/*(/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1 = 25, /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 	/obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3 = 25) */
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/tea = 10, /obj/item/weapon/reagent_containers/food/snacks/donkpocket = 50)

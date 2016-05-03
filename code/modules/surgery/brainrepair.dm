@@ -19,11 +19,17 @@
 		return (sponge && sponge.damage > 0 && sponge.damage <= 20) && affected.open == 3 && target_zone == "head"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts taking bone chips out of [target]'s brain with \the [tool].", \
 		"You start taking bone chips out of [target]'s brain with \the [tool].")
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] takes out all the bone chips in [target]'s brain with \the [tool].",	\
 		"\blue You take out all the bone chips in [target]'s brain with \the [tool].")
 		var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
@@ -52,11 +58,17 @@
 		return (sponge && sponge.damage > 20) && affected.open == 3 && target_zone == "head"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		is_same_target = affected
 		user.visible_message("[user] starts mending hematoma in [target]'s brain with \the [tool].", \
 		"You start mending hematoma in [target]'s brain with \the [tool].")
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/datum/organ/external/affected = target.get_organ(target_zone)
+		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			return
 		user.visible_message("\blue [user] mends hematoma in [target]'s brain with \the [tool].",	\
 		"\blue You mend hematoma in [target]'s brain with \the [tool].")
 		var/datum/organ/internal/brain/sponge = target.internal_organs_by_name["brain"]
