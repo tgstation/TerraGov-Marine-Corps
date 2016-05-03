@@ -4,7 +4,7 @@
 	icon_state = "coffin"
 	icon_closed = "coffin"
 	icon_opened = "coffin_open"
-	anchored = 1
+	anchored = 0
 
 /obj/structure/closet/coffin/update_icon()
 	if(!opened)
