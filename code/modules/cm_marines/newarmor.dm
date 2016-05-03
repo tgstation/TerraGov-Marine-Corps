@@ -207,6 +207,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "Specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	min_cold_protection_temperature = 220
+	cold_protection = HEAD
 	anti_hug = 1
 	w_class = 5
 
@@ -219,6 +220,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 100, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = 220
+	cold_protection = HEAD
 	anti_hug = 3
 	unacidable = 1
 
@@ -230,6 +232,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_color="brown"
 	armor = list(melee = 95, bullet = 100, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
 	unacidable = 1
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/weapon/storage/box/heavy_armor
 	name = "B-Series Defensive Armor crate"
@@ -254,6 +260,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 75, bullet = 90, laser = 70,energy = 50, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 2
 	min_cold_protection_temperature = 220
+	cold_protection = HEAD
 	var/obj/machinery/camera/camera
 
 	New()
@@ -447,6 +454,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "marine_sniper"
 	armor = list(melee = 70, bullet = 75, laser = 50,energy = 20, bomb = 30, bio = 0, rad = 0)
 	min_cold_protection_temperature = 220
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
 
 /obj/item/clothing/head/helmet/durag
 	name = "durag"
@@ -456,3 +465,4 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "durag"
 	armor = list(melee = 5, bullet = 5, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	min_cold_protection_temperature = 220
+	cold_protection = HEAD

@@ -112,7 +112,7 @@
 	slowdown = 1
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE

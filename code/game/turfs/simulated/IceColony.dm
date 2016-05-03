@@ -349,7 +349,7 @@
 //ICE WALLS-----------------------------------//
 //Ice Wall
 /turf/unsimulated/wall/ice
-	name = "thick ice wall"
+	name = "dense ice wall"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "ice_wall"
 	desc = "It is very thick."
@@ -470,6 +470,27 @@
 	icon_state = "lightstick_blue0"
 	l_color = "#47A3FF" //Blue
 	var/s_color = "blue"
+
+	Crossed(var/mob/living/O)
+		if(anchored && prob(20))
+			if(!istype(O,/mob/living/carbon/Xenomorph/Larva))
+				visible_message("<span class='danger'>[O] tramples the [src]!</span>")
+				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+				if(istype(O,/mob/living/carbon/Xenomorph))
+					if(prob(40))
+						Del()
+					else
+						anchored = 0
+						icon_state = "lightstick_[s_color][anchored]"
+						SetLuminosity(0)
+						pixel_x = 0
+						pixel_y = 0
+				else
+					anchored = 0
+					icon_state = "lightstick_[s_color][anchored]"
+					SetLuminosity(0)
+					pixel_x = 0
+					pixel_y = 0
 
 	//Removing from turf
 	attack_hand(mob/user)
@@ -835,6 +856,19 @@ obj/item/alienjar
 	icon_state = "marine_jumpsuit_snow"
 	item_state = "marine_jumpsuit_snow"
 	item_color = "marine_jumpsuit_snow"
+
+//SHOES
+//Snow Shoes
+/obj/item/clothing/shoes/snow
+	name = "snow boots"
+	desc = "When you feet are as cold as your heart"
+	icon_state = "swat"
+	siemens_coefficient = 0.6
+
+	cold_protection = FEET
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = FEET
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 //TESTING
 /datum/file/program/door_control
