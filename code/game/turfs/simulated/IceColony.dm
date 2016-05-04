@@ -877,8 +877,8 @@ obj/item/alienjar
 //Sniper Armor
 /obj/item/clothing/suit/storage/marine/sniper/snow
 	name = "M3 Pattern Sniper Snow Armor"
-	icon_state = "marine_sniper" //NEEDS ICON
-	item_state = "marine_sniper"
+	icon_state = "s_marine_sniper" //NEEDS ICON
+	item_state = "s_marine_sniper"
 	min_cold_protection_temperature = 220
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
@@ -893,16 +893,16 @@ obj/item/alienjar
 //Snow Engineer Helmet
 /obj/item/clothing/head/helmet/marine/tech/snow
 	name = "M10 Technician Snow Helmet"
-	icon_state = "helmet-tech" //NEEDS ICON
-	item_color = "helmet-tech"
+	icon_state = "s_helmet-tech"
+	item_color = "s_helmet-tech"
 	cold_protection = HEAD
 	min_cold_protection_temperature = 220
 
 //Snow Medic Helmet
 /obj/item/clothing/head/helmet/marine/medic/snow
 	name = "M10 Medic Snow Helmet"
-	icon_state = "helmet-medic" //NEEDS ICON
-	item_color = "helmet-medic"
+	icon_state = "s_helmet-medic" //NEEDS ICON
+	item_color = "s_helmet-medic"
 	cold_protection = HEAD
 	min_cold_protection_temperature = 220
 
@@ -938,14 +938,14 @@ obj/item/alienjar
 
 //Snow Medic Uniform
 /obj/item/clothing/under/marine/fluff/marineengineer/snow
-	name = "Marine Engineer Jumpsuit"
+	name = "Marine Engineer Snow Uniform"
 	icon_state = "marine_engineer_snow"
 	item_state = "marine_engineer_snow"
 	item_color = "marine_engineer_snow"
 
 //Snow Engineer Uniform
 /obj/item/clothing/under/marine/fluff/marinemedic/snow
-	name = "Marine Medic Snow Jumpsuit"
+	name = "Marine Medic Snow Uniform"
 	icon_state = "marine_medic_snow"
 	item_state = "marine_medic_snow"
 	item_color = "marine_medic_snow"
