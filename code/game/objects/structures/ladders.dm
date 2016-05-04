@@ -89,7 +89,57 @@
 	return attack_hand(user)
 
 /obj/structure/ladder/attackby(obj/item/weapon/W, mob/user as mob)
-	return attack_hand(user)
+	//Throwing Grenades
+	if(istype(W,/obj/item/weapon/grenade))
+		if(!W:active)
+			if(up && down)
+				switch( alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel") )
+					if("Up")
+						user << "You take the position to throw the [W]."
+						if(do_after(user,10))
+							user.visible_message("<span class='warning'>[user] throws \the [W] up \the [src]!</span>", \
+												 "<span class='warning'>You throw \the [W] up \the [src]</span>")
+							user.drop_item()
+							W.loc = get_turf(up)
+							W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+							step_away(W,src,rand(1,5))
+							W:activate(user)
+
+					if("Down")
+						user << "You take the position to throw the [W]."
+						if(do_after(user,10))
+							user.visible_message("<span class='warning'>[user] throws \the [W] down \the [src]!</span>", \
+												 "<span class='warning'>You throw \the [W] down \the [src]</span>")
+							user.drop_item()
+							W.loc = get_turf(down)
+							W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+							step_away(W,src,rand(1,5))
+							W:activate(user)
+
+					if("Cancel")
+						return
+
+			else if(up)
+				user << "You take the position to throw the [W]."
+				if(do_after(user,10))
+					user.visible_message("<span class='warning'>[user] throws \the [W] up \the [src]!</span>", \
+										 "<span class='warning'>You throw \the [W] up \the [src]</span>")
+					user.drop_item()
+					W.loc = get_turf(up)
+					W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+					step_away(W,src,rand(1,5))
+					W:activate(user)
+
+			else if(down)
+				user << "You take the position to throw the [W]."
+				if(do_after(user,10))
+					user.visible_message("<span class='warning'>[user] throws \the [W] down \the [src]!</span>", \
+										 "<span class='warning'>You throw \the [W] down \the [src]</span>")
+					user.drop_item()
+					W.loc = get_turf(down)
+					W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+					step_away(W,src,rand(1,5))
+					W:activate(user)
 
 /obj/structure/ladder/attack_robot(mob/user as mob)
 	return attack_hand(user)

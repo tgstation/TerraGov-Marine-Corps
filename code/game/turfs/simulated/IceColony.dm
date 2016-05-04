@@ -815,7 +815,7 @@ obj/item/alienjar
 	w_class = 2
 
 //SUITS-----------------------//
-//Snow Suit
+//Snow Armor
 /obj/item/clothing/suit/storage/marine/snow
 	name = "M3 Pattern Marine Snow Armor"
 	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage. It's extremely thick insulation can protect the wearer from extreme temperatures down to 220K (-53°C)."
@@ -824,6 +824,7 @@ obj/item/alienjar
 	min_cold_protection_temperature = 220
 	armor = list(melee = 45, bullet = 65, laser = 65, energy = 20, bomb = 20, bio = 0, rad = 0)
 
+//Snow Suit
 /obj/item/clothing/suit/storage/snow_suit
 	name = "Snow Suit"
 	desc = "A standard snow suit. It can protect the wearer from extreme temperatures down to 220K (-53°C)."
@@ -836,32 +837,120 @@ obj/item/alienjar
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
 
+//Doctor Snow Suit
 /obj/item/clothing/suit/storage/snow_suit/doctor
 	name = "Doctor's Snow Suit"
 	icon_state = "snowsuit_doctor"
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 
+//Engineer Snow Suit
 /obj/item/clothing/suit/storage/snow_suit/engineer
 	name = "Engineer's Snow Suit"
 	icon_state = "snowsuit_engineer"
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 
-//HELMET-----------------------//
-//Snow helmet
+//B18 Snow Armor
+/obj/item/clothing/suit/storage/marine/marine_spec_armor/snow
+	name = "B18 Defensive Snow Armor"
+	icon_state = "s_xarmor"
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = 220
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+//B12 Leader Snow Armor
+/obj/item/clothing/suit/storage/marine/marine_leader_armor/snow
+	name = "B12 Pattern Leader Snow Armor"
+	icon_state = "s_7"
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = 220
+	heat_protection = UPPER_TORSO|LOWER_TORSO
+
+//M56 Combat Snow Harness
+/obj/item/clothing/suit/storage/marine_smartgun_armor/snow
+	name = "M56 Combat Snow Harness"
+	icon_state = "s_8"
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = 220
+	heat_protection = UPPER_TORSO|LOWER_TORSO
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+
+//Sniper Armor
+/obj/item/clothing/suit/storage/marine/sniper/snow
+	name = "M3 Pattern Sniper Snow Armor"
+	icon_state = "marine_sniper" //NEEDS ICON
+	item_state = "marine_sniper"
+	min_cold_protection_temperature = 220
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+//HELMETS-----------------------//
+//Snow Helmet
 /obj/item/clothing/head/helmet/marine/snow
+	name = "M10 Pattern Marine Snow Helmet"
 	min_cold_protection_temperature = 220
 	icon_state = "helmet_snow"
 	item_state = "helmet_snow"
 
+//Snow Engineer Helmet
+/obj/item/clothing/head/helmet/marine/tech/snow
+	name = "M10 Technician Snow Helmet"
+	icon_state = "helmet-tech" //NEEDS ICON
+	item_color = "helmet-tech"
+	cold_protection = HEAD
+	min_cold_protection_temperature = 220
+
+//Snow Medic Helmet
+/obj/item/clothing/head/helmet/marine/medic/snow
+	name = "M10 Medic Snow Helmet"
+	icon_state = "helmet-medic" //NEEDS ICON
+	item_color = "helmet-medic"
+	cold_protection = HEAD
+	min_cold_protection_temperature = 220
+
+//Snow SpecRag (?What?)
+/obj/item/clothing/head/helmet/specrag/snow
+	icon_state = "s_spec"
+	item_state = "s_spec"
+	item_color = "s_spec"
+	min_cold_protection_temperature = 220
+	cold_protection = HEAD
+
+//B12 Snow Helmet
+/obj/item/clothing/head/helmet/marine/heavy/snow
+	name = "B18 Snow Helmet"
+	icon_state = "s_xhelm"
+	min_cold_protection_temperature = 220
+	cold_protection = HEAD
+
+//M11 Snow Helmet
+/obj/item/clothing/head/helmet/marine/leader/snow
+	name = "M11 Pattern Leader Snow Helmet"
+	icon_state = "s_xhelm"
+	min_cold_protection_temperature = 220
+	cold_protection = HEAD
 
 //UNIFORM-----------------------//
 //Snow Uniform
 /obj/item/clothing/under/marine_jumpsuit/snow
+	name = "USCM Snow Uniform"
 	icon_state = "marine_jumpsuit_snow"
 	item_state = "marine_jumpsuit_snow"
 	item_color = "marine_jumpsuit_snow"
 
+//Snow Medic Uniform
+/obj/item/clothing/under/marine/fluff/marineengineer/snow
+	name = "Marine Engineer Jumpsuit"
+	icon_state = "marine_engineer_snow"
+	item_state = "marine_engineer_snow"
+	item_color = "marine_engineer_snow"
+
+//Snow Engineer Uniform
+/obj/item/clothing/under/marine/fluff/marinemedic/snow
+	name = "Marine Medic Snow Jumpsuit"
+	icon_state = "marine_medic_snow"
+	item_state = "marine_medic_snow"
+	item_color = "marine_medic_snow"
 //SHOES
+
 //Snow Shoes
 /obj/item/clothing/shoes/snow
 	name = "snow boots"
