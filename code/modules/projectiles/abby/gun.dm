@@ -716,19 +716,15 @@
 
 	if(rail && rail.can_be_removed)
 		usr << "You remove the weapon's [rail]."
-		rail.loc = get_turf(usr)
 		rail.Detach(src)
 	if(muzzle && muzzle.can_be_removed)
 		usr << "You remove the weapon's [muzzle]."
-		muzzle.loc = get_turf(usr)
 		muzzle.Detach(src)
 	if(under && under.can_be_removed)
 		usr << "You remove the weapon's [under]."
-		under.loc = get_turf(usr)
 		under.Detach(src)
 	if(stock && stock.can_be_removed)
 		usr << "You remove the weapon's [stock]."
-		stock.loc = get_turf(usr)
 		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)
