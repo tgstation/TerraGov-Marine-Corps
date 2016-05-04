@@ -17,15 +17,16 @@
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
-	if(reagents.has_reagent("hyperzine")) return -1
+	if(reagents.has_reagent("hyperzine"))
+		tally -= 1.5
 
 	if(reagents.has_reagent("nuka_cola")) return -1
 
 	var/health_deficiency = (100 - health)
-	if(health_deficiency >= 40) tally += (health_deficiency / 25)
+	if(health_deficiency >= 40) tally += round(health_deficiency / 25)
 
 	if (!(species && (species.flags & NO_PAIN)))
-		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+		if(halloss >= 10) tally += round(halloss / 15) //halloss shouldn't slow you down if you can't even feel it
 
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 	if (hungry >= 70) tally += hungry/50
@@ -38,7 +39,7 @@
 			tally += 8
 
 		if(locate(/obj/effect/alien/weeds) in src.loc) //Weeds slow you down
-			tally += 2
+			tally += 1.75
 
 		if(istype(src.loc,/turf/unsimulated/floor/snow)) //Snow slows you down
 			var/turf/unsimulated/floor/snow/S = src.loc
@@ -83,11 +84,11 @@
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
 
-	if(shock_stage >= 10) tally += 3
+	if(shock_stage >= 10 && !isYautja(src)) tally += 3
 
 	if(FAT in src.mutations)
 		tally += 1.5
-	if (bodytemperature < 283.222)
+	if (bodytemperature < 283.222 && !isYautja(src))
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 
 	if(mRun in mutations)

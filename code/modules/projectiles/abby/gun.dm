@@ -172,14 +172,8 @@
 
 	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying \the [src]..")
 	if(do_after(user,60))
-		if(A.slot == "rail" && rail) rail.Detach(src)
-		else if(A.slot == "muzzle" && muzzle ) muzzle.Detach(src)
-		else if(A.slot == "under" && under ) under.Detach(src)
-		else if(A.slot == "stock" && stock ) stock.Detach(src)
-
 		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
-		user.drop_item()
-		A.loc = src
+		user.drop_item(A)
 		A.Attach(src)
 		update_attachables()
 		if(reload_sound)
@@ -722,19 +716,15 @@
 
 	if(rail && rail.can_be_removed)
 		usr << "You remove the weapon's [rail]."
-		rail.loc = get_turf(usr)
 		rail.Detach(src)
 	if(muzzle && muzzle.can_be_removed)
 		usr << "You remove the weapon's [muzzle]."
-		muzzle.loc = get_turf(usr)
 		muzzle.Detach(src)
 	if(under && under.can_be_removed)
 		usr << "You remove the weapon's [under]."
-		under.loc = get_turf(usr)
 		under.Detach(src)
 	if(stock && stock.can_be_removed)
 		usr << "You remove the weapon's [stock]."
-		stock.loc = get_turf(usr)
 		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)

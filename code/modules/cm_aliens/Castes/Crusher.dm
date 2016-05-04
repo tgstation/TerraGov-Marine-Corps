@@ -210,6 +210,32 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						now_pushing = 0
 						return //Might be destroyed.
 
+					if(istype(AM,/obj/structure/m_barricade))
+						if(momentum > 10)
+							var/obj/structure/m_barricade/M = AM
+							M.health -= (momentum * 4)
+							playsound(loc, "punch", 100, 1, -1)
+							visible_message("\red The [src] smashes straight into [M]!")
+							M.update_health()
+							src << "\red Bonk!"
+							stop_momentum(charge_dir,1)
+							now_pushing = 0
+							return
+
+					if(istype(AM,/obj/machinery/vending))
+						if(momentum > 20)
+							visible_message("\red The [src] smashes straight into the [AM]!")
+							playsound(loc, "punch", 100, 1, -1)
+							src << "\red Bonk!"
+							stop_momentum(charge_dir,1)
+							Weaken(2)
+							now_pushing = 0
+							AM:tip_over()
+							diagonal_step(AM,dir,50)//Occasionally fling it diagonally.
+							step_away(AM,src)
+							step_away(AM,src)
+							return
+
 					if(istype(AM,/obj/structure/barricade/wooden))
 						if(momentum > 8)
 							var/obj/structure/S = AM
@@ -233,16 +259,6 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						else
 							now_pushing = 0
 							return
-
-					if(istype(AM,/obj/structure/m_barricade))
-						var/obj/structure/m_barricade/M = AM
-						M.health -= (momentum * 4)
-						visible_message("\red The [src] smashes straight into [M]!")
-						M.update_health()
-						src << "\red Bonk!"
-						stop_momentum(charge_dir,1)
-						now_pushing = 0
-						return
 
 					if(istype(AM,/obj/mecha))
 						var/obj/mecha/mech = AM

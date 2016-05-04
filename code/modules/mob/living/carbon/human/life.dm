@@ -610,7 +610,6 @@
 			if(istype(wear_mask, /obj/item/clothing/mask/rebreather) || istype(wear_mask, /obj/item/clothing/mask/fluff) || istype(wear_mask, /obj/item/clothing/mask/facehugger))
 				rebreather = 1
 		if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations) && !rebreather)
-
 			if(breath.temperature < species.cold_level_1)
 				if(prob(20))
 					src << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"

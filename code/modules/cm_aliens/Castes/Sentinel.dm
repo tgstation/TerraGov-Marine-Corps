@@ -23,6 +23,7 @@
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/proc/neurotoxin //Weakest version
+
 		)
 
 /mob/living/carbon/Xenomorph/Sentinel/ClickOn(var/atom/A, params)

@@ -12,7 +12,7 @@
 
 	flags =  FPRINT | TABLEPASS | CONDUCT
 	matter = list("metal" = 2000)
-	w_class = 2.0
+	w_class = 4.0
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
 	var/list/guns_allowed = list() //what weapons can it be attached to? Note that it must be the FULL path, not parents.
@@ -45,17 +45,21 @@
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
 		if(slot == "rail")
-			G.rail.loc = get_turf(G)
-			G.rail = null
-		if(slot == "muzzle")
-			G.muzzle.loc = get_turf(G)
-			G.muzzle = null
-		if(slot == "under")
-			G.under.loc = get_turf(G)
-			G.under = null
-		if(slot == "stock")
-			G.stock.loc = get_turf(G)
-			G.stock = null
+			if(G.rail) G.rail.Detach(G)
+			G.rail = src
+		else if(slot == "muzzle")
+			if(G.muzzle) G.muzzle.Detach(G)
+			G.muzzle = src
+		else if(slot == "under")
+			if(G.under) G.under.Detach(G)
+			G.under = src
+		else if(slot == "stock")
+			if(G.stock) G.stock.Detach(G)
+			G.stock = src
+		if(ishuman(loc))
+			var/mob/living/carbon/human/M = src.loc
+			M.drop_item(src)
+		loc = G
 
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
@@ -86,10 +90,19 @@
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
-		if(slot == "rail") G.rail.loc = get_turf(G)
-		if(slot == "muzzle") G.muzzle.loc = get_turf(G)
-		if(slot == "under") G.under.loc = get_turf(G)
-		if(slot == "stock") G.stock.loc = get_turf(G)
+
+		if(slot == "rail")
+			G.rail.loc = get_turf(G)
+			G.rail = null
+		if(slot == "muzzle")
+			G.muzzle.loc = get_turf(G)
+			G.muzzle = null
+		if(slot == "under")
+			G.under.loc = get_turf(G)
+			G.under = null
+		if(slot == "stock")
+			G.stock.loc = get_turf(G)
+			G.stock = null
 
 		if(G.wielded)
 			G.unwield()

@@ -269,6 +269,7 @@
 
 /atom/movable/CtrlClick(var/mob/user)
 	if(Adjacent(user) && !isXenoLarva(user))
+		if(isXeno(user) && isobj(src)) return
 		user.start_pulling(src)
 
 /*
