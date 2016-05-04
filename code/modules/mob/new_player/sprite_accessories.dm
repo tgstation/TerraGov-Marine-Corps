@@ -400,6 +400,121 @@
 		icon_state = "hair_joestar"
 		gender = MALE
 
+	flat_top_fade
+		name = "Flat Top Fade"
+		icon_state = "hair_mflattopfade"
+		gender = MALE
+
+	high_and_tight
+		name = "High and Tight"
+		icon_state = "hair_mhighandtight"
+		gender = MALE
+
+	iceman
+		name = "Iceman"
+		icon_state = "hair_miceman"
+		gender = MALE
+
+	pvt_joker
+		name = "Pvt. Joker"
+		icon_state = "hair_mjoker"
+		gender = MALE
+
+	marine_fade
+		name = "Marine Fade"
+		icon_state = "hair_mmarinefade"
+		gender = MALE
+
+	marine_mohawk
+		name = "Marine Mohawk"
+		icon_state = "hair_mmarinemohawk"
+		gender = MALE
+
+	shaved_balding
+		name = "Shaved Balding"
+		icon_state = "hair_mshavedbalding"
+		gender = MALE
+
+	wardaddy
+		name = "Wardaddy"
+		icon_state = "hair_mwardaddy"
+		gender = MALE
+
+	marine_flat_top
+		name = "Marine Flat Top"
+		icon_state = "hair_uflat"
+		gender = MALE
+
+	shaved_head
+		name = "Shaved Head"
+		icon_state = "hair_ushaved"
+		gender = MALE
+
+	head_stubble
+		name = "Head Stubble"
+		icon_state = "hair_ustubble"
+		gender = MALE
+
+	corn_rows
+		name = "Corn Rows"
+		icon_state = "hair_fcornrows"
+		gender = FEMALE
+
+	curly_hair
+		name = "Curly Hair"
+		icon_state = "hair_fcurly"
+		gender = FEMALE
+
+	pixie_cut_left
+		name = "Pixie Cut Left"
+		icon_state = "hair_fpixieleft"
+		gender = FEMALE
+
+	pixie_cut_right
+		name = "Pixie Cut Right"
+		icon_state = "hair_fpixieright"
+		gender = FEMALE
+
+	pvt_redding
+		name = "Pvt. Redding"
+		icon_state = "hair_fredding"
+		gender = FEMALE
+
+	pvt_clarison
+		name = "Pvt. Clarison"
+		icon_state = "hair_fbella"
+		gender = FEMALE
+
+	cpl_dietrich
+		name = "Cpl. Dietrich"
+		icon_state = "hair_fdietrich"
+		gender = FEMALE
+
+	pvt_vasquez
+		name = "Pvt. Vasquez"
+		icon_state = "hair_fvasquez"
+		gender = FEMALE
+
+	marine_bun
+		name = "Marine Bun"
+		icon_state = "hair_fbun"
+		gender = FEMALE
+
+	marine_flat_top
+		name = "Marine Flat Top"
+		icon_state = "hair_uflat"
+		gender = FEMALE
+
+	shaved_head
+		name = "Shaved Head"
+		icon_state = "hair_ushaved"
+		gender = FEMALE
+
+	head_stubble
+		name = "Head Stubble"
+		icon_state = "hair_ustubble"
+		gender = FEMALE
+
 	bald
 		name = "Bald"
 		icon_state = "bald"
@@ -562,6 +677,26 @@
 	dwarf
 		name = "Dwarf Beard"
 		icon_state = "facial_dwarf"
+
+	threeOclock
+		name = "3 O'clock Shadow"
+		icon_state = "facial_3oclock"
+
+	ficeOclock
+		name = "5 O'clock Shadow"
+		icon_state = "facial_5oclock"
+
+	fiveOclock_m
+		name = "5 Oclock Moustache"
+		icon_state = "facial_5oclockmoustache"
+
+	sevenOclock
+		name = "7 O'clock Shadow"
+		icon_state = "facial_7oclock"
+
+	soul_patch
+		name = "Soul Patch"
+		icon_state = "facial_soulpatch"
 
 /*
 ///////////////////////////////////

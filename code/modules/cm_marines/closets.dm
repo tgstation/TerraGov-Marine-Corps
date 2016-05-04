@@ -10,6 +10,7 @@
 	icon_broken = "standard_emmaged"
 	icon_off = "standard_off"
 	icon = 'icons/Marine/Marine_Lockers.dmi'
+	special_equipment = 1
 
 	New()
 		spawn(5)
@@ -20,6 +21,22 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine_jumpsuit(src)
 		return
+
+	select_gamemode_equipment(gamemode = "")
+		if(special_equipment)
+			switch(gamemode)
+				if("Ice colony")
+					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
+					new /obj/item/clothing/head/helmet/marine/snow(src)
+					new /obj/item/clothing/suit/storage/marine/snow(src)
+					new /obj/item/clothing/mask/rebreather(src)
+
+				else
+					new /obj/item/clothing/under/marine_jumpsuit(src)
+					new /obj/item/clothing/head/helmet/marine(src)
+					new /obj/item/clothing/suit/storage/marine(src)
+
+
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
@@ -158,20 +175,8 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/alpha(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/malpha(src)
-//			new /obj/item/weapon/storage/backpack/marine(src)
 
-			spawn(2200)//Wait till the game ticker is done
-				if(istype(ticker.mode,/datum/game_mode/ice_colony))
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/marine/snow(src)
-					new /obj/item/clothing/mask/rebreather(src)
-				else
-					new /obj/item/clothing/under/marine_jumpsuit(src)
-					new /obj/item/clothing/head/helmet/marine(src)
-					new /obj/item/clothing/suit/storage/marine(src)
 
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment
@@ -189,20 +194,8 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/bravo(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mbravo(src)
-//			new /obj/item/weapon/storage/backpack/marine(src)
 
-			spawn(2200)//Wait till the game ticker is done
-				if(istype(ticker.mode,/datum/game_mode/ice_colony))
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/marine/snow(src)
-					new /obj/item/clothing/mask/rebreather(src)
-				else
-					new /obj/item/clothing/under/marine_jumpsuit(src)
-					new /obj/item/clothing/head/helmet/marine(src)
-					new /obj/item/clothing/suit/storage/marine(src)
 
 
 //CHARLIE EQUIPMENT CLOSET
@@ -221,20 +214,7 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/charlie(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mcharlie(src)
-//			new /obj/item/weapon/storage/backpack/marine(src)
-
-			spawn(2200)//Wait till the game ticker is done
-				if(istype(ticker.mode,/datum/game_mode/ice_colony))
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/marine/snow(src)
-					new /obj/item/clothing/mask/rebreather(src)
-				else
-					new /obj/item/clothing/under/marine_jumpsuit(src)
-					new /obj/item/clothing/head/helmet/marine(src)
-					new /obj/item/clothing/suit/storage/marine(src)
 
 
 //DELTA EQUIPMENT CLOSET
@@ -253,22 +233,7 @@
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/delta(src)
 			new /obj/item/weapon/storage/belt/marine(src)
-//			new /obj/item/device/flashlight(src)
 			new /obj/item/device/radio/headset/mdelta(src)
-//			new /obj/item/weapon/storage/backpack/marine(src)
-
-			spawn(2200)//Wait till the game ticker is done
-				if(istype(ticker.mode,/datum/game_mode/ice_colony))
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/marine/snow(src)
-					new /obj/item/clothing/mask/rebreather(src)
-				else
-					new /obj/item/clothing/under/marine_jumpsuit(src)
-					new /obj/item/clothing/head/helmet/marine(src)
-					new /obj/item/clothing/suit/storage/marine(src)
-
-
 
 
 //SULACO MEDICAL CLOSET
@@ -282,7 +247,16 @@
 	icon_broken = "securemedbroken"
 	icon_off = "securemedoff"
 	icon = 'icons/obj/closet.dmi'
+	special_equipment = 1
 
+	select_gamemode_equipment(gamemode = "")
+		if(special_equipment)
+			switch(gamemode)
+				if("Ice colony")
+					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
+					new /obj/item/clothing/head/helmet/marine/snow(src)
+					new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
+					new /obj/item/clothing/mask/rebreather(src)
 
 	New()
 		spawn(9)
@@ -323,12 +297,6 @@
 			new /obj/item/weapon/storage/belt/medical(src)
 			new /obj/item/clothing/glasses/hud/health(src)
 
-			spawn(2200)//Wait till the game ticker is done
-				if(istype(ticker.mode,/datum/game_mode/ice_colony))
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
-					new /obj/item/clothing/mask/rebreather(src)
 
 //MARINE SUPPLY CRATES APOPHIS775 15JAN2015
 

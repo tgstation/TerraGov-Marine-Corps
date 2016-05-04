@@ -103,6 +103,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			spawn(5)
 				icon_state = "[rand(1,6)]"
 				ArmorVariation = icon_state
+		else if(src.name == "M3 Pattern Marine Snow Armor") //This is to stop subtypes from icon changing. There's prolly a better way
+			spawn(5)
+				icon_state = "s_[rand(1,6)]"
+				ArmorVariation = icon_state
 		else
 			ArmorVariation = icon_state
 		overlays += image('icons/Marine/marine_armor.dmi', "lamp")
@@ -158,9 +162,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
 	icon_state = "xarmor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = 220
-	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	slowdown = 1
 	armor = list(melee = 95, bullet = 100, laser = 80, energy = 90, bomb = 75, bio = 20, rad = 10)
 	var/injections = 2
@@ -206,8 +207,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_color = "spec"
 	name = "Specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
-	min_cold_protection_temperature = 220
-	cold_protection = HEAD
 	anti_hug = 1
 	w_class = 5
 
@@ -219,8 +218,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "The B18 Helmet that goes along with the B18 Defensive armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 100, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
-	min_cold_protection_temperature = 220
-	cold_protection = HEAD
 	anti_hug = 3
 	unacidable = 1
 
@@ -248,10 +245,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 	New()
 		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
-			new /obj/item/clothing/head/helmet/marine/heavy(src)
+		spawn(1)//Hax
 			new /obj/item/clothing/gloves/specialist(src)
+			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+				new /obj/item/clothing/suit/storage/marine/marine_spec_armor/snow(src)
+				new /obj/item/clothing/head/helmet/marine/heavy/snow(src)
+			else
+				new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
+				new /obj/item/clothing/head/helmet/marine/heavy(src)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "M11 Pattern Leader Helmet"
@@ -259,8 +260,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 90, laser = 70,energy = 50, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 2
-	min_cold_protection_temperature = 220
-	cold_protection = HEAD
 	var/obj/machinery/camera/camera
 
 	New()
@@ -283,9 +282,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
 	icon_state = "7"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = 220
-	heat_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 45, bullet = 85, laser = 70, energy = 40, bomb = 15, bio = 0, rad = 0)
 	allowed = list(
 					/obj/item/weapon/gun,
@@ -302,50 +298,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/claymore/mercsword/machete,
 					/obj/item/weapon/storage/bible)
-	/*var/brightness_on = 7   //All Marine armor now has this function, moved it to the standard marine armor area.
-	var/on = 0
-	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
-
-	pickup(mob/user)
-		if(on && src.loc != user)
-			user.SetLuminosity(brightness_on)
-			SetLuminosity(0)
-
-	dropped(mob/user)
-		if(on && src.loc != user)
-			user.SetLuminosity(-brightness_on)
-			SetLuminosity(brightness_on)
-
-	Del()
-		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
-		else
-			SetLuminosity(0)
-		..()
-
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
-			return 0
-
-		if(on) //Turn it off.
-			if(user)
-				user.SetLuminosity(-brightness_on)
-			else //Shouldn't be possible, but whatever
-				SetLuminosity(0)
-			icon_state = "[initial(icon_state)]"
-			on = 0
-		else //Turn it on!
-			on = 1
-			if(user)
-				user.SetLuminosity(brightness_on)
-			else //Somehow
-				SetLuminosity(brightness_on)
-			icon_state = "[initial(icon_state)]-on"
-
-		playsound(src,'sound/machines/click.ogg', 20, 1)
-		update_clothing_icon()
-		return 1*/
 
 /obj/item/clothing/suit/storage/marine/MP
 	icon_state = "mp"
@@ -453,8 +405,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "marine_sniper"
 	item_state = "marine_sniper"
 	armor = list(melee = 70, bullet = 75, laser = 50,energy = 20, bomb = 30, bio = 0, rad = 0)
-	min_cold_protection_temperature = 220
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 
 /obj/item/clothing/head/helmet/durag
