@@ -8,9 +8,9 @@
 #define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
 
-#define COLD_DAMAGE_LEVEL_1 0.4 //Amount of damage applied when your body temperature just passes the 260.15k safety point
-#define COLD_DAMAGE_LEVEL_2 1.4 //Amount of damage applied when your body temperature passes the 200K point
-#define COLD_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 120K point
+#define COLD_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
+#define COLD_DAMAGE_LEVEL_2 1.0 //Amount of damage applied when your body temperature passes the 200K point
+#define COLD_DAMAGE_LEVEL_3 2 //Amount of damage applied when your body temperature passes the 120K point
 
 //Note that gas heat damage is only applied once every FOUR ticks.
 #define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
@@ -607,7 +607,7 @@
 		// Hot air hurts :(
 		var/rebreather = 0 //If you have rebreather equipped, don't damage the lungs
 		if(wear_mask)
-			if(istype(wear_mask, /obj/item/clothing/mask/rebreather) || istype(wear_mask, /obj/item/clothing/mask/fluff))
+			if(istype(wear_mask, /obj/item/clothing/mask/rebreather) || istype(wear_mask, /obj/item/clothing/mask/fluff) || istype(wear_mask, /obj/item/clothing/mask/facehugger))
 				rebreather = 1
 		if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations) && !rebreather)
 

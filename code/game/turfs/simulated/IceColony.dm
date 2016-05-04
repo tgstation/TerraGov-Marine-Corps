@@ -99,6 +99,7 @@
 
 					if(slayer == 3)
 						user  << "\red You can't add any more snow here!"
+						S.working = 0
 						return
 
 					user.visible_message("\blue \The [user] clears out \the [src].")
@@ -124,6 +125,7 @@
 
 					if(slayer <= 0)
 						user  << "\red There is no more snow to pick up!"
+						S.working = 0
 						return
 
 					user.visible_message("\blue \The [user] clears out \the [src].")
@@ -157,10 +159,12 @@
 
 				if(!slayer)
 					user  << "\red You can't build the barricade here, there must be more snow on that area!"
+					S.working = 0
 					return
 
 				if(locate(/obj/structure/barricade/snow) in get_turf(src))
 					user  << "\red You can't build another barricade on the same spot!"
+					S.working = 0
 					return
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
