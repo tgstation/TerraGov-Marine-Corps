@@ -242,11 +242,11 @@
 /datum/ammo/energy/yautja
 	name = "plasma bolt"
 	icon_state = "ion"
-	damage = 10
+	damage = 5
 	damage_type = BURN
 	ignores_armor = 0
 	stun = 1
-	weaken = 1
+	weaken = 2
 	shell_speed = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
@@ -264,23 +264,24 @@
 /datum/ammo/energy/yautja/rifle
 	name = "plasma bolt"
 	icon_state = "ion"
-	damage = 1
+	damage = 10
 	damage_type = BURN
-	ignores_armor = 1
 	stun = 0
-	weaken = 2
+	weaken = 0
 	shell_speed = 2
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(damage > 35)
-			explosion(get_turf(P.loc), -1, -1, 2, 2)
+		if(M && !M.stat && P.damage > 25)
+			M.Weaken(2)
+			step_rand(M)
+			playsound(M.loc, 'sound/weapons/punch1.ogg', 70, 1)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(damage > 35)
+		if(damage > 25)
 			explosion(T, -1, -1, 2, 2)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(damage > 35)
+		if(damage > 25)
 			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 /datum/ammo/bullet/turret

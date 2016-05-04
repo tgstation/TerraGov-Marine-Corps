@@ -65,7 +65,7 @@
 
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/obj/item/weapon/spacecash/ewallet/ewallet
-
+	var/tipped_level = 0
 
 /obj/machinery/vending/New()
 	..()
@@ -163,6 +163,10 @@
 	return
 
 /obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(tipped_level)
+		user << "Tip it back upright first!"
+		return
+
 	if (istype(W, /obj/item/weapon/card/emag))
 		src.emagged = 1
 		user << "You short out the product lock on [src]"
@@ -211,8 +215,6 @@
 					anchored = 0
 		return
 
-
-
 //Vending exploit. - Not exploit, being turned into feature. - Apophis
 //Deletes the old object and creates a new one in the vendor,
 //thus fixing broken helmets and replensishing autoinjectors in seconds.
@@ -220,7 +222,7 @@
 	else if(src.panel_open)
 
 		for(var/datum/data/vending_product/R in product_records)
-			if(istype(W, R.product_path))
+			if(istype(W, R.product_path) && !istype(W,/obj/item/weapon/storage)) //Nice try, specialists/engis
 				stock(R, user)
 				del(W)
 
@@ -324,6 +326,18 @@
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
 		return
+
+	if(tipped_level == 2)
+		tipped_level = 1
+		user.visible_message("\blue [user] begins to heave the vending machine back into place!","\blue You start heaving the vending machine back into place..")
+		if(do_after(user,80))
+			user.visible_message("\blue [user] rights the [src]!","\blue You right the [src]!")
+			flip_back()
+			return
+		else
+			tipped_level = 2
+			return
+
 	user.set_machine(src)
 
 	if(src.seconds_electrified != 0)

@@ -504,3 +504,52 @@
 		current_aura = null
 		src << "<b>You stop emitting pheromones.</b>"
 		return
+
+/mob/living/carbon/Xenomorph/proc/secure_host(mob/living/carbon/human/victim as mob in view(2))
+	set name = "Secure Host (50)"
+	set desc = "Spin some resin to further secure a host within the nest."
+	set category = "Alien"
+
+	if(last_special > world.time) return
+
+	if(!check_state()) return
+
+	if(!victim)
+		var/list/victims = list()
+		for(var/mob/living/carbon/human/C in view(2))
+			if(C.lying && (!C.handcuffed || !C.legcuffed))
+				victims += C
+
+		victim = input(src, "Who to secure?") as null|anything in victims
+
+	if(victim && get_dist(src,victim) <= 2)
+		if(!check_plasma(50)) return
+		if(!victim.lying)
+			src << "Your victim has to be lying down."
+			return
+		if(!victim.buckled || !istype(victim.buckled,/obj/structure/stool/bed/nest))
+			src << "Your victim must be nested."
+			return
+		if(victim.handcuffed && victim.legcuffed)
+			src << "They're already secured."
+			return
+
+		src.visible_message("\red [src] begins securing [victim] with resin!","You begin securing [victim] with resin.. Hold still!")
+		if(do_after(src,40))
+			src.visible_message("\red [src] continues securing [victim] with resin..","You continue securing [victim] with resin.. almost there.")
+		if(do_after(src,80))
+			if(victim.handcuffed && !victim.legcuffed)
+				victim.legcuffed = new /obj/item/weapon/legcuffs/xeno(victim)
+				src.visible_message("\red <B>[src] finishes binding [victim]'s legs.</b>","\red <B>You finish securing [victim]'s legs!</b>")
+			else if(!victim.handcuffed)
+				victim.handcuffed = new /obj/item/weapon/handcuffs/xeno(victim)
+				src.visible_message("\red <B>[src] finishes securing [victim]'s arms.</b>","\red <B>You finish securing [victim]'s arms!</b>")
+			else
+				src << "Looks like someone secured them before you!"
+				return
+
+			last_special = world.time + 50
+		return
+
+	src << "Nobody like that around here."
+	return

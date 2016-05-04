@@ -607,6 +607,7 @@
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+	accuracy = 10
 
 	New()
 		ammo = new /datum/ammo/energy/yautja()
@@ -1076,7 +1077,7 @@
 	slot_flags = SLOT_BACK
 	var/last_regen
 	var/charge_time = 0
-	accuracy = 60
+	accuracy = 10
 
 	verb/scope()
 		set category = "Yautja"
@@ -1103,7 +1104,7 @@
 
 	examine()
 		..()
-		usr << "It currently has [charge_time] / 500 charge."
+		usr << "It currently has [charge_time] / 100 charge."
 
 	load_into_chamber()
 		if(!isYautja(usr)) return 0
@@ -1114,28 +1115,26 @@
 		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
 		P.name = P.ammo.name
 
-		if(charge_time < 10)
-			P.icon_state ="ion"
-			P.ammo.weaken = 1
-
-		else if(charge_time < 50)
-			P.icon_state = "pulse1"
-			P.ammo.weaken = 0
+		if(charge_time < 25)
+			P.icon_state = "ion"
+			P.ammo.shell_speed = 2
 		else
 			P.icon_state = "bluespace"
-			P.ammo.weaken = 0
+			P.ammo.shell_speed = 1
 
 		P.damage = P.ammo.damage + charge_time
+		P.ammo.accuracy = charge_time
 		P.damage_type = P.ammo.damage_type
 		in_chamber = P
 		charge_time = 0
+		P.SetLuminosity(1)
 		return 1
 
 	attack_self(mob/user as mob)
 		if(!isYautja(user))
 			return ..()
 
-		if(charge_time > 50)
+		if(charge_time > 10)
 			user.visible_message("\blue You feel a strange surge of energy in the area.","\blue You release the rifle battery's energy.")
 			var/obj/item/clothing/gloves/yautja/Y = user:gloves
 			if(Y && Y.charge < Y.charge_max)
