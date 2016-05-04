@@ -45,17 +45,21 @@
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
 		if(slot == "rail")
-			G.rail.Detach(G)
-			G.rail = null
+			if(G.rail) G.rail.Detach(G)
+			G.rail = src
 		else if(slot == "muzzle")
-			G.muzzle.Detach(G)
-			G.muzzle = null
+			if(G.muzzle) G.muzzle.Detach(G)
+			G.muzzle = src
 		else if(slot == "under")
-			G.under.Detach(G)
-			G.under = null
+			if(G.under) G.under.Detach(G)
+			G.under = src
 		else if(slot == "stock")
-			G.stock.Detach(G)
-			G.stock = null
+			if(G.stock) G.stock.Detach(G)
+			G.stock = src
+		if(ishuman(loc))
+			var/mob/living/carbon/human/M = src.loc
+			M.drop_item(src)
+		loc = G
 
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
@@ -87,10 +91,18 @@
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
 
-		if(slot == "rail") G.rail.loc = get_turf(G)
-		if(slot == "muzzle") G.muzzle.loc = get_turf(G)
-		if(slot == "under") G.under.loc = get_turf(G)
-		if(slot == "stock") G.stock.loc = get_turf(G)
+		if(slot == "rail")
+			G.rail.loc = get_turf(G)
+			G.rail = null
+		if(slot == "muzzle")
+			G.muzzle.loc = get_turf(G)
+			G.muzzle = null
+		if(slot == "under")
+			G.under.loc = get_turf(G)
+			G.under = null
+		if(slot == "stock")
+			G.stock.loc = get_turf(G)
+			G.stock = null
 
 		if(G.wielded)
 			G.unwield()
