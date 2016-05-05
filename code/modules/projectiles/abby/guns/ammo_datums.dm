@@ -188,6 +188,7 @@
 	accurate_range = 20
 	max_range = 30
 	armor_pen = 50
+	damage_bleed = 0
 	accuracy = 15
 	shell_speed = 2
 
@@ -442,11 +443,12 @@
 	name = "high explosive rocket"
 	icon_state = "missile"
 	accuracy = 10
-	accurate_range = 15
-	max_range = 15
-	damage = 5
+	accurate_range = 25
+	max_range = 25
+	damage = 15
 	damage_type = BRUTE  //Bonk!
 	shell_speed = 1
+	damage_bleed = 0
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 3, 4)
@@ -462,10 +464,10 @@
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
-	damage = 120
+	damage = 160
 	damage_type = BRUTE  //Bonk!
 	armor_pen = 100
-
+	damage_bleed = 0
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 1, 4)

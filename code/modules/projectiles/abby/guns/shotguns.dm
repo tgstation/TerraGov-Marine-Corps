@@ -234,7 +234,7 @@
 		return
 
 	snowflake_reload(var/obj/item/ammo_magazine/A)
-		if(!istype(A) || !istype(current_mag) || !istype(A,current_mag.type))
+		if(!istype(A) || !istype(current_mag) || !istype(A,current_mag.type) || A.default_ammo != current_mag.default_ammo)
 			if(usr) usr << "The ammo types must be the same."
 			return 0
 		if(A.current_rounds == 0)
@@ -257,8 +257,12 @@
 				playsound(H, 'sound/weapons/shotgun_shell_insert.ogg', 50, 1)
 				A.current_rounds--
 				current_mag.current_rounds++
+				if(A.current_rounds == 0)
+					A.update_icon()
+					src.update_icon()
+					if(usr) usr << "\blue The [A] is empty!"
+					break
 				sleep(3)
-
 
 
 
