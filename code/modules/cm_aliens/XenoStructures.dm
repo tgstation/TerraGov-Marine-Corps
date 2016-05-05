@@ -35,6 +35,7 @@
 	icon_state = "Resin Membrane"
 	opacity = 0
 	health = 120
+	layer = 3
 
 /obj/effect/alien/resin/sticky
 	name = "sticky resin"
@@ -43,6 +44,7 @@
 	density = 0
 	opacity = 0
 	health = 150
+	layer = 2.9
 
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <=0)

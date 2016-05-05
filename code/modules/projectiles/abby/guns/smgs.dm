@@ -42,6 +42,8 @@
 /obj/item/ammo_magazine/smg/elite
 	name = "AP SMG Magazine (9mm)"
 	desc = "A 9mm special magazine."
+	icon_state = "9x"
+	icon_empty = "9x0"
 	default_ammo = "/datum/ammo/bullet/smg/ap"
 	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
 	max_rounds = 45
