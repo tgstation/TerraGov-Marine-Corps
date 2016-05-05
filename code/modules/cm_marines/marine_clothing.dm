@@ -381,11 +381,12 @@
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	armor = list(melee = 10, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
+	armor = list(melee = 60, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	body_parts_covered = FEET
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife
 	//flags = NOSLIP  Removed because it makes them not slip when there are breaches.
+	var/armor_stage = 0
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
@@ -410,10 +411,12 @@
 			update_icon()
 
 	update_icon()
-		if(knife)
+		if(knife && !armor_stage)
 			icon_state = "jackboots-1"
 		else
-			icon_state = initial(icon_state)
+			if(!armor_stage)
+				icon_state = initial(icon_state)
+
 
 /obj/item/clothing/shoes/marinechief
 	name = "chief officer shoes"

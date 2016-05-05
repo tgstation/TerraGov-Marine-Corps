@@ -168,7 +168,7 @@
 		tally = tally - (frenzy_aura * 0.1) - 0.4
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 2
+		tally += 3
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src

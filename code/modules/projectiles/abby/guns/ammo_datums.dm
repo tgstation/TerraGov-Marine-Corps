@@ -244,49 +244,46 @@
 	icon_state = "ion"
 	damage = 5
 	damage_type = BURN
-	ignores_armor = 0
-	stun = 1
+	ignores_armor = 1
+	stun = 2
 	weaken = 2
 	shell_speed = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(damage > 25)
+		if(P.damage > 25)
 			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(damage > 25)
+		if(P.damage > 25)
 			explosion(T, -1, -1, 2, 2)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(damage > 25)
+		if(P.damage > 25)
 			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 /datum/ammo/energy/yautja/rifle
-	name = "plasma bolt"
-	icon_state = "ion"
 	damage = 10
-	damage_type = BURN
 	stun = 0
 	weaken = 0
 	shell_speed = 2
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		if(M && !M.stat && P.damage > 25)
-			M.Weaken(2)
+			M.Weaken(4)
 			step_rand(M)
-			playsound(M.loc, 'sound/weapons/punch1.ogg', 70, 1)
+			playsound(M.loc, 'sound/weapons/pulse.ogg', 70, 1)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(damage > 25)
-			explosion(T, -1, -1, 2, 2)
+		if(P.damage > 25)
+			explosion(T, -1, -1, 2, -1)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(damage > 25)
-			explosion(get_turf(P.loc), -1, -1, 2, 2)
+		if(P.damage > 25)
+			explosion(get_turf(P.loc), -1, -1, 2, -1)
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	damage = 45
+	damage = 50
 	skips_marines = 1
 	armor_pen = 5
 	accuracy = 50
@@ -354,7 +351,7 @@
 	weaken = 3
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(P && P.loc && !istype(M,/mob/living/carbon/monkey))
+		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
 			P.visible_message("\The [src] chimpers furiously!")
 			new /mob/living/carbon/monkey(P.loc)
 

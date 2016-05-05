@@ -144,7 +144,7 @@
 	icon_empty = "m37_empty"
 	icon_wielded = "m37-w"
 	item_state = "m37"
-	fire_delay = 32
+	fire_delay = 24
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 19
 	rail_pixel_x = 10
@@ -154,10 +154,14 @@
 	w_class = 4
 	var/recentpump = 0
 	autoejector = 0 //Does not automatically eject "magazines".
+	var/is_pumped = 0
+	var/is_reloading = 0
 
 	load_into_chamber()
-		if(in_chamber) return 1
-		return 0
+		if(is_pumped == 0)
+			return 0
+
+		return ..()
 
 	AltClick(var/mob/user)
 		if(recentpump)	return
@@ -180,21 +184,21 @@
 			recentpump = 0
 			return 0
 
-		playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
+		playsound(M, 'sound/weapons/shotgunpump.ogg', 70, 1)
 		var/casingtype = text2path(ammo.casing_type)
 		if(casingtype)
 			new casingtype(get_turf(src)) //Drop a spent casing.
 
-		ready_bullet()
-
+		//ready_bullet()
+		is_pumped = 1
 		if(M && current_mag.current_rounds <= 0)
-			M << "\blue The last of \the [src]'s casings hit the ground. Reload!"
+			M << "\blue The last of \the [src]'s casings hit the ground. <B>Reload</b>!"
 			current_mag.loc = get_turf(src) //Eject the mag.
 			current_mag = null
 
 		update_icon()
 		return 1
-
+/*
 	proc/ready_bullet()	//Clone of load_into_chamber, only does it at a different time.
 		var/obj/item/projectile/P = new(src) //New bullet!
 		P.ammo = src.ammo
@@ -204,7 +208,7 @@
 		P.damage = P.ammo.damage //For reverse lookups.
 		P.damage_type = P.damage_type
 		return 1
-
+*/
 	verb/pump_shotgun()
 		set category = "Weapons"
 		set name = "Pump Shotgun"
@@ -228,6 +232,36 @@
 			recentpump = 0
 
 		return
+
+	snowflake_reload(var/obj/item/ammo_magazine/A)
+		if(!istype(A) || !istype(current_mag) || !istype(A,current_mag.type))
+			if(usr) usr << "The ammo types must be the same."
+			return 0
+		if(A.current_rounds == 0)
+			if(usr) usr << "That [A] is empty."
+			return 0
+
+		var/shells_to_load = A.current_rounds + current_mag.current_rounds
+		if(shells_to_load > current_mag.max_rounds) shells_to_load = current_mag.max_rounds
+		var/turf/start_turf = get_turf(src.loc)
+
+		if(usr && istype(usr,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = usr
+			H.visible_message("\blue [H] begins hand-reloading reloading \the [src].","\blue You begin hand-reloading the [src].")
+			for(var/i = 1 to shells_to_load)
+				is_reloading = 1
+				if(get_turf(src.loc) != start_turf) break//We moved
+				if(!A || !current_mag || current_mag.loc != src || A.loc != H) break	 //We ejected the mag
+				if(H.get_active_hand() != A) break //We put it in backpacks
+				if(!H || H.stat || H.lying || H.buckled) break //We died
+				playsound(H, 'sound/weapons/shotgun_shell_insert.ogg', 50, 1)
+				A.current_rounds--
+				current_mag.current_rounds++
+				sleep(3)
+
+
+
+
 
 //-------------------------------------------------------
 

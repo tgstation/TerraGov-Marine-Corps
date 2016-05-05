@@ -80,8 +80,8 @@
 	fire_delay = 8
 	recoil = 1
 	force = 8
-	muzzle_pixel_x = 31
-	muzzle_pixel_y = 20
+	muzzle_pixel_x = 30
+	muzzle_pixel_y = 19
 	rail_pixel_x = 17
 	rail_pixel_y = 23
 	under_pixel_x = 24
@@ -417,7 +417,7 @@
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper VP70 Pistol"
-	desc = "A powerful sidearm issed mainly to Weyland Yutani response teams. Fires 9mm armor piercing round and is capable of 3-round burst."
+	desc = "A powerful sidearm issed mainly to Weyland Yutani response teams. Fires 9mm armor piercing rounds and is capable of 3-round burst."
 	icon_state = "vp70"
 	item_state = "vp70"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp70"
