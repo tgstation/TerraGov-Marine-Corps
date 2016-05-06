@@ -140,6 +140,8 @@
 					W.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 					step_away(W,src,rand(1,5))
 					W:activate(user)
+	else
+		return attack_hand(user)
 
 /obj/structure/ladder/attack_robot(mob/user as mob)
 	return attack_hand(user)
