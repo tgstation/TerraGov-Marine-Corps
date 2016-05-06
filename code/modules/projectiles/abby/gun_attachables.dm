@@ -564,7 +564,7 @@
 	w_class_mod = 2
 	icon_state = "44stock"
 	pixel_shift_x = 38
-	pixel_shift_y = 16
+	pixel_shift_y = 19
 	guns_allowed = list(/obj/item/weapon/gun/revolver/m44)
 
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.

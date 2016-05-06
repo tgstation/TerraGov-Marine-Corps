@@ -86,6 +86,7 @@
 	var/null_ammo = 0 //Set this to 0 to have a non-ammo-datum-using magazine without generating errors.
 	var/reload_delay = 1 //Set a timer for reloading mags (shotguns mostly). Higher is slower.
 	var/sound_empty = 'sound/weapons/smg_empty_alarm.ogg'
+	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 
 	New()
 		..()

@@ -144,7 +144,7 @@
 	icon_empty = "m37_empty"
 	icon_wielded = "m37-w"
 	item_state = "m37"
-	fire_delay = 24
+	fire_delay = 26
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 19
 	rail_pixel_x = 10
@@ -160,8 +160,9 @@
 	load_into_chamber()
 		if(is_pumped == 0)
 			return 0
-
-		return ..()
+		..()
+		is_pumped = 0
+		return
 
 	AltClick(var/mob/user)
 		if(recentpump)	return
@@ -241,6 +242,12 @@
 			if(usr) usr << "That [A] is empty."
 			return 0
 
+		if(current_mag.current_rounds >= current_mag.max_rounds)
+			if(usr) usr << "It's already full."
+			return 0
+
+		if(is_reloading) return
+
 		var/shells_to_load = A.current_rounds + current_mag.current_rounds
 		if(shells_to_load > current_mag.max_rounds) shells_to_load = current_mag.max_rounds
 		var/turf/start_turf = get_turf(src.loc)
@@ -261,8 +268,12 @@
 					A.update_icon()
 					src.update_icon()
 					if(usr) usr << "\blue The [A] is empty!"
+					is_reloading = 0
 					break
-				sleep(3)
+				sleep(4)
+
+			spawn(4 * shells_to_load)
+				is_reloading = 0
 
 
 

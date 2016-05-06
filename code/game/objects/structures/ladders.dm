@@ -49,16 +49,16 @@
 										 "<span class='notice'>You climb up \the [src]!</span>")
 					user.loc = get_turf(up)
 					up.add_fingerprint(user)
-					if(user.pulling && get_dist(src,user.pulling) <= 1)
-						user.pulling.loc = user.loc
+					if(user.pulling && get_dist(src,user.pulling) <= 2)
+						user.pulling.loc = up.loc
 			if("Down")
 				user << "You start climbing down the ladder.."
 				if(do_after(user,20))
 					user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 										 "<span class='notice'>You climb down \the [src]!</span>")
 					user.loc = get_turf(down)
-					if(user.pulling && get_dist(src,user.pulling) <= 1)
-						user.pulling.loc = user.loc
+					if(user.pulling && get_dist(src,user.pulling) <= 2)
+						user.pulling.loc = down.loc
 					down.add_fingerprint(user)
 			if("Cancel")
 				return
@@ -69,8 +69,8 @@
 			user.visible_message("<span class='notice'>[user] climbs up \the [src]!</span>", \
 								 "<span class='notice'>You climb up \the [src]!</span>")
 			user.loc = get_turf(up)
-			if(user.pulling && get_dist(src,user.pulling) <= 1)
-				user.pulling.loc = user.loc
+			if(user.pulling && get_dist(src,user.pulling) <= 2)
+				user.pulling.loc = up.loc
 			up.add_fingerprint(user)
 
 	else if(down)
@@ -79,8 +79,8 @@
 			user.visible_message("<span class='notice'>[user] climbs down \the [src]!</span>", \
 								 "<span class='notice'>You climb down \the [src]!</span>")
 			user.loc = get_turf(down)
-			if(user.pulling && get_dist(src,user.pulling) <= 1)
-				user.pulling.loc = user.loc
+			if(user.pulling && get_dist(src,user.pulling) <= 2)
+				user.pulling.loc = down.loc
 			down.add_fingerprint(user)
 
 	add_fingerprint(user)

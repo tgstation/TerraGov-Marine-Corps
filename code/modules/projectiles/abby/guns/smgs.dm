@@ -20,6 +20,14 @@
 	max_rounds = 35
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 
+/obj/item/ammo_magazine/smg/m39/extended
+	name = "M39 Extended Mag (9mm)"
+	desc = "A 9mm submachinegun magazine."
+	icon_state = "9e"
+	icon_empty = "9e0"
+	max_rounds = 60
+	bonus_overlay = "m39_mag"
+
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 SMG"
 	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 9mm rounds in a 35 round magazine."
@@ -142,6 +150,14 @@
 	icon_empty = "darts-0"
 	max_rounds = 71
 	gun_type = "/obj/item/weapon/gun/smg/ppsh"
+
+/obj/item/ammo_magazine/smg/ppsh/extended
+	name = "PPSh-17b Magazine (7.62mm)"
+	desc = "A standard 7.62mm magazine for the PPSh submachinegun."
+	icon_state = "darts-0" //Dumb
+	icon_empty = "darts-0"
+	max_rounds = 35
+	bonus_overlay = "ppsh_mag"
 
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b Submachinegun"

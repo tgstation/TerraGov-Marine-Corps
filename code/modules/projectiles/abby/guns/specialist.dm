@@ -216,18 +216,16 @@
 		puff = new /datum/effect/effect/system/smoke_spread()
 		puff.attach(src)
 
-	afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
-		..()
-		sleep(2)
-		if(isnull(current_mag))
+	load_into_chamber()
+		if(..() == 1)
+			sleep(1)
 			var/list/cardinals = list(1,2,4,8)
 			for(var/Q in cardinals)
-				if(Q == user.dir)
+				if(Q == usr.dir)
 					cardinals -= Q //Shouldnt puff back into their face.
-			var/turf/behind = get_step(get_turf(user),reverse_direction(user))
-			if(istype(behind))
-				puff.set_up(1,cardinals,behind)
-				puff.start()
+			puff.set_up(1,cardinals)
+			puff.start()
+
 
 //-------------------------------------------------------
 //SADARS MEAN FUCKING COUSIN

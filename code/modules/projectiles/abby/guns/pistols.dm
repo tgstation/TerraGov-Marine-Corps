@@ -22,6 +22,14 @@
 	default_ammo = "/datum/ammo/bullet/pistol/incendiary"
 	max_rounds = 10
 
+/obj/item/ammo_magazine/pistol/extended
+	name = "Extended Pistol Magazine (9mm)"
+	default_ammo = "/datum/ammo/bullet/pistol"
+	max_rounds = 22
+	icon_state = ".45e"
+	icon_empty = ".45e0"
+	bonus_overlay = "pistol_mag"
+
 
 /obj/item/weapon/gun/pistol
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
@@ -80,8 +88,8 @@
 	fire_delay = 8
 	recoil = 1
 	force = 8
-	muzzle_pixel_x = 30
-	muzzle_pixel_y = 19
+	muzzle_pixel_x = 29
+	muzzle_pixel_y = 17
 	rail_pixel_x = 17
 	rail_pixel_y = 23
 	under_pixel_x = 24
