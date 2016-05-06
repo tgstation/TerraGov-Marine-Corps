@@ -66,6 +66,12 @@
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/obj/item/weapon/spacecash/ewallet/ewallet
 	var/tipped_level = 0
+	var/special_equipment = 0
+
+	proc/select_gamemode_equipment(gamemode = "")
+		return
+
+
 
 /obj/machinery/vending/New()
 	..()

@@ -9,6 +9,17 @@
 		..()
 		name = "floor"
 
+/turf/simulated/floor/icefloor
+	icon_state = "floor"
+	name = "ice colony floor"
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
+	temperature = 223 //ICE_TEMPERATURE
+
+	New()
+		..()
+		name = "floor"
+
 /turf/simulated/floor/airless/ceiling
 	icon_state = "rockvault"
 
@@ -109,6 +120,17 @@
 	oxygen = 0.01
 	nitrogen = 0.01
 	temperature = TCMB
+
+	New()
+		..()
+		name = "plating"
+
+/turf/simulated/floor/plating/icefloor
+	icon_state = "plating"
+	name = "ice colony plating"
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
+	temperature = 223
 
 	New()
 		..()

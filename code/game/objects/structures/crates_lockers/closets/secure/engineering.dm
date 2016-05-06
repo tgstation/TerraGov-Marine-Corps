@@ -106,6 +106,17 @@
 	icon_opened = "secureengopen"
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
+	special_equipment = 1
+
+	select_gamemode_equipment(gamemode = "")
+		if(special_equipment)
+			switch(gamemode)
+				if("Ice Colony")
+					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
+					new /obj/item/clothing/head/helmet/marine/snow(src)
+					new /obj/item/clothing/suit/storage/snow_suit(src)
+					new /obj/item/clothing/mask/rebreather(src)
+
 
 
 	New()
@@ -128,6 +139,7 @@
 		new /obj/item/weapon/cartridge/engineering(src)
 		new /obj/item/taperoll/engineering(src)
 		return
+
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "Technician's Locker"
 	req_access = list(access_sulaco_engineering)

@@ -85,6 +85,10 @@
 		src << "You can't do that here."
 		return
 
+	if(T.slayer > 0)
+		src << "It requires a solid ground. Dig it up!"
+		return
+
 	if(!is_weedable(T))
 		src << "Bad place for a garden!"
 		return
@@ -366,7 +370,7 @@
 	else if(istype(O, /turf/simulated))
 		var/turf/T = O
 		// R WALL
-		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
+		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
 			src << "\green You cannot dissolve this."
 			return
 		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))

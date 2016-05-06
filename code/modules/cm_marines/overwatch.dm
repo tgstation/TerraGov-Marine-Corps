@@ -400,7 +400,7 @@
 		usr << "\icon[src] Beacon is not transmitting from the ground."
 		return
 	var/area/A = get_area(current_squad.bbeacon)
-	if(A && istype(A,/area/lv624/ground/caves))
+	if(A && istype(A,/area/lv624/ground/caves) || istype(A, /area/ice_colony/underground))
 		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return
 
@@ -485,6 +485,11 @@
 
 	if(!isturf(current_squad.sbeacon.loc))
 		usr << "\icon[src] The beacon was not detected on the ground."
+		return
+
+	var/area/A = get_area(current_squad.bbeacon)
+	if(A && istype(A,/area/lv624/ground/caves) || istype(A, /area/ice_colony/underground))
+		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return
 
 	var/turf/T = get_turf(current_squad.sbeacon)
@@ -584,9 +589,15 @@
 		if(squad.sbeacon)
 			user << "Your squad already has a beacon activated."
 			return
-		if(!istype(get_turf(user),/turf/unsimulated/floor/gm))
+		if(!istype(get_turf(user),/turf/unsimulated/floor/gm) && !istype(get_turf(user),/turf/unsimulated/floor/snow))
 			user << "You have to be outside (on a ground map turf) to activate this."
 			return
+
+		var/area/A = get_area(user)
+		if(A && istype(A))
+			if(istype(A,/area/ice_colony/underground))
+				user << "This won't work if you're standing underground."
+				return
 
 		squad.sbeacon = src
 		activated = 1
@@ -634,6 +645,9 @@
 		if(A && istype(A))
 			if(istype(A,/area/lv624/ground/caves))
 				user << "This won't work if you're standing in a cave."
+				return
+			if(istype(A,/area/ice_colony/underground))
+				user << "This won't work if you're standing underground."
 				return
 
 		message_admins("ALERT: [user] ([user.key]) triggered an orbital strike beacon.")

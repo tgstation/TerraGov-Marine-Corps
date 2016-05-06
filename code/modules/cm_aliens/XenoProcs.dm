@@ -154,12 +154,13 @@
 			if(locate(/obj/effect/alien/weeds) in src.loc)
 				tally -= 1.5
 
-	if(istype(loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
-		var/turf/simulated/floor/gm/snow/S = src.loc
+	if(istype(loc,/turf/unsimulated/floor/snow)) //Snow slows you down
+		var/turf/unsimulated/floor/snow/S = src.loc
 		if(S && istype(S) && S.slayer > 0)
-			tally += 1 * S.slayer
-			if(S.slayer && prob(2))
+			tally += 0.5 * S.slayer
+			if(S.slayer && prob(1))
 				src << "\red Moving through [S] slows you down!"
+
 			if(S.slayer == 3 && prob(5))
 				src << "\red You got stuck in [S] for a moment!"
 				tally += 10

@@ -99,10 +99,16 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/clothing/glasses/night/m56_goggles(src)
-			new /obj/item/smartgun_powerpack(src)
-			new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
-			new /obj/item/weapon/gun/smartgun(src)
+			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+				new /obj/item/clothing/glasses/night/m56_goggles(src)
+				new /obj/item/smartgun_powerpack(src)
+				new /obj/item/clothing/suit/storage/marine_smartgun_armor/snow(src)
+				new /obj/item/weapon/gun/smartgun(src)
+			else
+				new /obj/item/clothing/glasses/night/m56_goggles(src)
+				new /obj/item/smartgun_powerpack(src)
+				new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
+				new /obj/item/weapon/gun/smartgun(src)
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
 	name = "M56 combat harness"
@@ -112,10 +118,6 @@
 	slowdown = 1
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	blood_overlay_type = "armor"
 	armor = list(melee = 55, bullet = 75, laser = 30, energy = 0, bomb = 35, bio = 0, rad = 0)
@@ -241,10 +243,14 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/weapon/facepaint/sniper(src)
-			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/head/helmet/durag(src)
 			new /obj/item/weapon/storage/backpack/smock(src)
 
+			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+				new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
+				new /obj/item/clothing/head/helmet/marine/snow(src)
+			else
+				new /obj/item/clothing/suit/storage/marine/sniper(src)
+				new /obj/item/clothing/head/helmet/durag(src)
 
 /obj/item/weapon/gun/m92
 	name = "M92 grenade launcher"

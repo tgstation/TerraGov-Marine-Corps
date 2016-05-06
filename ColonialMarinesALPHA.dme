@@ -37,6 +37,7 @@
 #define FILE_DIR "icons/NTOS/battery_icons"
 #define FILE_DIR "icons/obj"
 #define FILE_DIR "icons/obj/assemblies"
+#define FILE_DIR "icons/obj/atmospherics-UNUSED"
 #define FILE_DIR "icons/obj/clothing"
 #define FILE_DIR "icons/obj/clothing/species"
 #define FILE_DIR "icons/obj/clothing/species/skrell"
@@ -295,6 +296,7 @@
 #include "code\game\gamemodes\changeling\traitor_chan.dm"
 #include "code\game\gamemodes\colonialmarines\colonialmarines.dm"
 #include "code\game\gamemodes\colonialmarines\Halloween.dm"
+#include "code\game\gamemodes\colonialmarines\ice_colony.dm"
 #include "code\game\gamemodes\cult\cult.dm"
 #include "code\game\gamemodes\cult\cult_items.dm"
 #include "code\game\gamemodes\cult\cult_structures.dm"
@@ -1553,12 +1555,11 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.01.LV624.dmm"
+#include "maps\Z.01.IceColony-Infernus.dmm"
 #include "maps\Z.02.Centcomm.dmm"
 #include "maps\Z.03.PlaceholderSulaco.dmm"
 #include "maps\Z.04.SulacoBottom.dmm"
 #include "maps\Z.05.Space.dmm"
-#include "maps\Z.06.Space2.dmm"
 // END_INCLUDE
 
 

@@ -511,12 +511,10 @@
 /obj/structure/barricade/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
-	M.visible_message("<span class='warning'>[M] smashes the [src.name]!</span>", \
+	M.visible_message("<span class='warning'>[M] smashes at the [src.name]!</span>", \
 		 "<span class='warning'>You smash at the barricade!</span>")
-	if(src.health <= 0)
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
-		visible_message("\red The [src.name] falls apart!")
-		del(src)
+	health_check()
+	playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 
 //Some generic defaults
 /obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M as mob)
@@ -533,7 +531,7 @@
 	return attack_hand(M)
 
 //Digging snow
-/turf/simulated/floor/gm/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/turf/unsimulated/floor/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(M.a_intent == "grab")
 		if(isXenoLarva(M))
 			return
@@ -553,7 +551,7 @@
 
 		M.visible_message("\blue [M] clears out \the [src].")
 		slayer -= 1
-		update_icon(1)
+		update_icon(1,0)
 
 //Crates, closets, other paraphernalia
 /obj/structure/largecrate/attack_alien(mob/living/carbon/Xenomorph/M as mob)
