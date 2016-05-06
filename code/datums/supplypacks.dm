@@ -179,6 +179,21 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammo_exotic
+	name = "Extended Magazine crate (M41A, M4A3, M39)"
+	contains = list(
+					/obj/item/ammo_magazine/rifle/extended,
+					/obj/item/ammo_magazine/rifle/extended,
+					/obj/item/ammo_magazine/pistol/extended,
+					/obj/item/ammo_magazine/pistol/extended,
+					/obj/item/ammo_magazine/smg/m39/extended,
+					/obj/item/ammo_magazine/smg/m39/extended
+				)
+	cost = 30
+	containertype = /obj/structure/closet/crate
+	containername = "Ammo crate"
+	group = "Ammo"
+
 /datum/supply_packs/explosive_ammo_crate
 	name = "Explosive Ammo crate (SADAR rockets)"
 	contains = list(
@@ -824,7 +839,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/randomised/guns/slavic
 	contains = list()
 	name = "Nagant-Yamasaki firearm (x1)"
-	cost = 100
+	cost = 80
 	containertype = /obj/structure/largecrate/guns/russian
 	containername = "Nagant-Yamasaki firearms crate"
 	group = "Weapons"

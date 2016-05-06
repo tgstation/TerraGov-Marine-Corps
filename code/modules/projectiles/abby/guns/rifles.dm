@@ -11,7 +11,7 @@
 //M41A PULSE RIFLE
 
 /obj/item/ammo_magazine/rifle
-	name = "M41A Magazine (10mm)"
+	name = "Pulse Rifle Magazine (10mm)"
 	desc = "A 10mm assault rifle magazine."
 	icon_state = "m309a"
 	icon_empty = "m309a0"
@@ -19,13 +19,19 @@
 	max_rounds = 30
 	gun_type = "/obj/item/weapon/gun/rifle/m41a"
 
+/obj/item/ammo_magazine/rifle/extended
+	name = "Pulse Rifle Extended Magazine (10mm)"
+	desc = "A 10mm assault extended rifle magazine."
+	max_rounds = 70
+	bonus_overlay = "m41a_exmag"
+
 /obj/item/ammo_magazine/rifle/incendiary
-	name = "M41A Incendiary Magazine (10mm)"
+	name = "Pulse Rifle Incendiary Magazine (10mm)"
 	desc = "A 10mm assault rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/incendiary"
 
 /obj/item/ammo_magazine/rifle/ap
-	name = "M41A AP Magazine (10mm)"
+	name = "Pulse Rifle AP Magazine (10mm)"
 	desc = "A 10mm armor piercing magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/ap"
 
@@ -106,9 +112,10 @@
 
 /obj/item/ammo_magazine/rifle/elite
 	name = "M41A/2 Magazine (10mm)"
-	desc = "A 10mm marksman rifle magazine."
+	desc = "A 10mm rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/ap"
 	gun_type = "/obj/item/weapon/gun/rifle/m41a/elite"
+	max_rounds = 40
 
 /obj/item/weapon/gun/rifle/m41a/elite
 	name = "\improper M41A/2 Battle Rifle"
@@ -118,7 +125,7 @@
 	item_state = "pmc_m41a"
 	icon_wielded = "pmc_m41a-w"
 	mag_type = "/obj/item/ammo_magazine/rifle/elite"
-	fire_delay = 6
+	fire_delay = 7
 	burst_amount = 3
 	accuracy = 35
 	dam_bonus = 15
@@ -128,17 +135,23 @@
 //MAR-40 AK CLONE
 
 /obj/item/ammo_magazine/rifle/mar40
-	name = "Assault Rifle Magazine (12mm)"
-	desc = "A 12mm MAR-40 assault rifle magazine."
-	icon_state = "a762"
-	icon_empty = "a762-0"
+	name = "Ammo Magazine (12mm)"
+	desc = "A 12mm magazine for the MAR series of firearms."
+	icon_state = "5.56"
+	icon_empty = "5.56"
 	default_ammo = "/datum/ammo/bullet/rifle/mar40"
 	max_rounds = 40
 	gun_type = "/obj/item/weapon/gun/rifle/mar40"
 
+/obj/item/ammo_magazine/rifle/mar40/extended
+	name = "Extended Magazine (12mm)"
+	desc = "A 12mm MAR magazine."
+	max_rounds = 60
+	bonus_overlay = "mar40_mag"
+
 /obj/item/weapon/gun/rifle/mar40
 	name = "\improper MAR-40 Battle Rifle"
-	desc = "A cheap, reliable assault rifle chambered in 12mm. Commonly found in the hands of criminals or mercenaries."
+	desc = "A cheap, reliable assault rifle chambered in 12mm. Commonly found in the hands of criminals or mercenaries, or in the hands of the UPP or Iron Bears."
 	icon_state = "rsprifle"
 	icon_empty = "rsprifle0"
 	icon_wielded = "mar40-w"
@@ -154,8 +167,8 @@
 	under_pixel_x = 24
 	under_pixel_y = 15
 	burst_amount = 4
-	burst_delay = 3
-	accuracy = -15
+	burst_delay = 2
+	accuracy = -12
 	found_on_mercs = 1
 	found_on_russians = 1
 
@@ -168,7 +181,7 @@
 	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
 	item_state = "mar40short"
 	fire_delay = 5
-	accuracy = -20
+	accuracy = -16
 
 /obj/item/ammo_magazine/rifle/mar40/svd
 	name = "SVD Magazine (12mm)"
@@ -181,7 +194,7 @@
 
 /obj/item/weapon/gun/rifle/mar40/svd
 	name = "\improper SVD Dragunov-033"
-	desc = "A marksman variant of the MAR-40 rifle, with a new stock and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
+	desc = "A marksman variant of the MAR-40 rifle, with a new stock, barrel, and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
 	icon_state = "VSS"
 	icon_empty = "VSS_empty"
 	icon_wielded = "SVD-w"

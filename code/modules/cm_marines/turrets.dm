@@ -793,7 +793,7 @@
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
-	var/range = 10
+	var/range = 9
 
 	if(!dir_locked)
 		range = 3

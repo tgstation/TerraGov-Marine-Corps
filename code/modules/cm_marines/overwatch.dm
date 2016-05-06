@@ -269,27 +269,27 @@
 				current_squad.secondary_objective = input
 				send_to_squad("Your secondary objective has changed. See Status pane for details.")
 		if("supply_x")
-			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
-			if(input > 5) input = 5
-			if(input < -5) input = -5
+			var/input = input(usr,"What X-coordinate offset between -10 and 10 would you like? (Positive means east)","X Offset",0) as num
+			if(input > 10) input = 10
+			if(input < -10) input = -10
 			usr << "\icon[src] X-offset is now [input]."
 			src.x_offset_s = input
 		if("supply_y")
-			var/input = input(usr,"What Y-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
-			if(input > 5) input = 5
-			if(input < -5) input = -5
+			var/input = input(usr,"What Y-coordinate offset between -10 and 10 would you like? (Positive means north)","Y Offset",0) as num
+			if(input > 10) input = 10
+			if(input < -10) input = -10
 			usr << "\icon[src] Y-offset is now [input]."
 			y_offset_s = input
 		if("bomb_x")
-			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
-			if(input > 5) input = 5
-			if(input < -5) input = -5
+			var/input = input(usr,"What X-coordinate offset between -10 and 10 would you like? (Positive means east)","X Offset",0) as num
+			if(input > 10) input = 10
+			if(input < -10) input = -10
 			usr << "\icon[src] X-offset is now [input]."
 			x_offset_b = input
 		if("bomb_y")
-			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
-			if(input > 5) input = 5
-			if(input < -5) input = -5
+			var/input = input(usr,"What X-coordinate offset between -10 and 10 would you like? (Positive means north)","Y Offset",0) as num
+			if(input > 10) input = 10
+			if(input < -10) input = -10
 			usr << "\icon[src] Y-offset is now [input]."
 			y_offset_b = input
 		if("refresh")
