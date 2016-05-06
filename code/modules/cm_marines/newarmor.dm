@@ -370,7 +370,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				//Snacks
 				else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_burrito")
-				else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/eat_bar))
+				else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(I,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
 					overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_eat")
 
 		overlays += image('icons/mob/helmet_garb.dmi', "helmet_band")

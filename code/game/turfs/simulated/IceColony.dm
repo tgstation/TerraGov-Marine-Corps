@@ -1148,22 +1148,24 @@ obj/item/alienjar
 	dat = ""
 	active_state = "text"
 	var/list/logs = list(
-	1 = list(name = "Research Log I",  dat = "<b>Research Log I</b><br><br>This log is very nice looking!"),
-	2 = list(name = "Research Log II",  dat =  "<b>Research Log II</b><br><br>This log is very nice looking!"),
-	3 = list(name = "Research Log III",  dat = "<b>Research Log III</b><br><br>This log is very nice looking!"),
-	4 = list(name = "Research Log IV",  dat =  "<b>Research Log IV</b><br><br>This log is very nice looking!"),
-	5 = list(name = "Research Log V",  dat =   "<b>Research Log V</b><br><br>This log is very nice looking!")
+	"Research Log I" = "<b>Research Log I</b><br><br>This log is very nice looking!",
+	"Research Log II" = "<b>Research Log II</b><br><br>This log is very nice looking!",
+	"Research Log III" = "<b>Research Log III</b><br><br>This log is very nice looking!",
+	"Research Log IV" = "<b>Research Log IV</b><br><br>This log is very nice looking!",
+	"Research Log V" = "<b>Research Log V</b><br><br>This log is very nice looking!"
 	)
 
 
-
+/*
 	New()
 		..()
-		for(var/i = 1 to logs.len)
-			dat += "Test"
+		for(var/i in logs)
+			world << "[i] = [logs[i]]"
+			world << "<a href=\"byond://?show_help=[i]\">[i]</a>"
+			world << "_____________________"
 
 			//"[topic_link(src,"log_1","Log I")]<br>[topic_link(src,"log_2","Log II")]<br>[topic_link(src,"log_3","Log III")]<br>[topic_link(src,"log_4","Log IV")]<br>[topic_link(src,"log_5","Log V")]"
-
+*/
 
 /datum/file/program/data/text/aces_log/Topic(href, list/href_list)
 	if(!interactable() || ..(href,href_list))
