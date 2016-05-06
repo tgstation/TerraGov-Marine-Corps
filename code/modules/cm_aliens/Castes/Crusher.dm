@@ -187,7 +187,6 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				return
 
 		if(istype(AM,/obj/structure/table))
-			bumped = 0
 			now_pushing = 0
 			AM:Crossed(src)
 			return 0
