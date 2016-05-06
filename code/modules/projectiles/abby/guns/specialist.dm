@@ -221,7 +221,7 @@
 			sleep(1)
 			var/list/cardinals = list(1,2,4,8)
 			for(var/Q in cardinals)
-				if(Q == user.dir)
+				if(Q == usr.dir)
 					cardinals -= Q //Shouldnt puff back into their face.
 			puff.set_up(1,cardinals)
 			puff.start()
