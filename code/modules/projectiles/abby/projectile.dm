@@ -403,14 +403,15 @@
 			armor = getarmor_organ(organ, "energy") //Everything else. Bullet act should probably not use this except for exotic bullets.
 
 		armor -= P.ammo.armor_pen
-		armor = round(2 * armor / 3)
 
 		if(armor > 0) damage = damage - (damage * armor / 100)
 
-		if(prob(armor)) //Yay we absorbed more!
+		if(damage < 0) damage = 0
+
+		if(damage > 0 && prob(armor)) //Yay we absorbed more!
 			damage = damage - round(damage / 2)
 			absorbed = 1
-			if(prob(armor - 20)) //Let's go one more time.
+			if(damage > 0 && prob(armor - 20)) //Let's go one more time.
 				damage = damage - round(damage / 2) //Nice!
 				absorbed = 2
 
@@ -418,6 +419,8 @@
 				src << "\red Your armor softens the impact of \the [P]!"
 			else if (absorbed == 2 && !stat)
 				src << "\red Your armor absorbs the force of \the [P]!"
+
+		if(damage < 0) damage = 0
 
 	if(stat != DEAD && absorbed <= 1) //Not on deads please
 		//Apply happy funtime effects! Based on the ammo datum attached to the bullet.

@@ -56,7 +56,7 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/gun/pistol/vp78,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
 								/obj/item/weapon/gun/sniper/elite,
-								/obj/item/weapon/gun/quadlauncher)
+								/obj/item/weapon/gun/rocketlauncher/quad)
 
 var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 								/obj/item/device/multitool,\

@@ -39,7 +39,7 @@
 			tally += 8
 
 		if(locate(/obj/effect/alien/weeds) in src.loc) //Weeds slow you down
-			tally += 1.75
+			tally += 1
 
 		if(istype(src.loc,/turf/unsimulated/floor/snow)) //Snow slows you down
 			var/turf/unsimulated/floor/snow/S = src.loc
