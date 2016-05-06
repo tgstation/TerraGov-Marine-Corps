@@ -67,7 +67,7 @@
 					products2 = list(/obj/item/clothing/under/marine_jumpsuit/snow = 10,
 									/obj/item/clothing/suit/storage/marine/snow = 10,
 									/obj/item/clothing/head/helmet/marine/snow = 10,
-									/obj/item/clothing/mask/rebreather = 10,
+									/obj/item/clothing/mask/rebreather/scarf = 10,
 									/obj/item/device/radio = 5
 									)
 				else
