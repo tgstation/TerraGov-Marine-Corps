@@ -81,6 +81,10 @@
 			icon_state = icon_empty
 		else
 			icon_state = initial(icon_state)
+		update_attachables() //This will cut existing overlays
+		if(current_mag && !isnull(current_mag.bonus_overlay))
+			var/image/I = new(current_mag.icon,current_mag.bonus_overlay) //Mag adds an overlay
+			overlays += I
 
 	New()
 		..()
@@ -243,6 +247,7 @@
 		if(ammo) del(ammo)
 		ammo = new ammopath()
 		ammo.current_gun = src
+
 	return 1
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
@@ -565,9 +570,15 @@
 			usr << "Your gun is malfunctioning. Tell a coder! (don't forget to say exactly how you got this message)"
 			burst_firing = 0
 			return
+
+		if(get_turf(target) != get_turf(user))
 //vvvvvvvvvvvvvvvvvvvvvv
-		in_chamber.fire_at(target,user,src,ammo.max_range,ammo.shell_speed)
+			in_chamber.fire_at(target,user,src,ammo.max_range,ammo.shell_speed)
 //^^^^^^^^^^^^^^^^^^^^^^
+		else
+			sleep(burst_delay)
+			continue
+
 		in_chamber = null //Now we absolve all knowledge of it. Its the targets problem now
 		if(target)
 			var/angle = round(Get_Angle(user,target))
