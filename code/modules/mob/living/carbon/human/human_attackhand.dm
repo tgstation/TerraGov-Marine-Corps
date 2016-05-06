@@ -99,6 +99,8 @@
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
 				M << "<span class='notice'>You cannot grab [src], \he is buckled in!</span>"
+				return
+
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
 			M.put_in_active_hand(G)

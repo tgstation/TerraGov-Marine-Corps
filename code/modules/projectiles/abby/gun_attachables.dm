@@ -90,17 +90,19 @@
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
+		if(G.zoom)
+			G.zoom()
 
-		if(slot == "rail")
+		if(slot == "rail" && G.rail == src)
 			G.rail.loc = get_turf(G)
 			G.rail = null
-		if(slot == "muzzle")
+		if(slot == "muzzle" && G.muzzle == src)
 			G.muzzle.loc = get_turf(G)
 			G.muzzle = null
-		if(slot == "under")
+		if(slot == "under" && G.under == src)
 			G.under.loc = get_turf(G)
 			G.under = null
-		if(slot == "stock")
+		if(slot == "stock" && G.stock == src)
 			G.stock.loc = get_turf(G)
 			G.stock = null
 
@@ -155,6 +157,7 @@
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/skorpion,
 						/obj/item/weapon/gun/smg/uzi,
+						/obj/item/weapon/gun/smg/p90,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/c99,
 						/obj/item/weapon/gun/pistol/m1911,
@@ -598,7 +601,7 @@
 			G.throw_range = 20
 			G.throw_at(target, 20, 2, user)
 			current_ammo--
-			spawn(12) //~1 second.
+			spawn(15) //~1 second.
 				if(G) //If somehow got deleted since then
 					G.prime()
 			return 1
@@ -644,8 +647,8 @@
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb)
-	ammo_capacity = 9
-	current_ammo = 9
+	ammo_capacity = 20
+	current_ammo = 20
 	slot = "under"
 	shoot_sound = 'sound/weapons/flamethrower_shoot.ogg'
 	continuous = 0

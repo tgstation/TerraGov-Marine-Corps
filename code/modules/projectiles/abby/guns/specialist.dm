@@ -43,6 +43,7 @@
 	rail_pixel_y = 20
 	under_pixel_x = 19
 	under_pixel_y = 14
+	accuracy = 10
 
 	New()
 		..()
@@ -129,6 +130,7 @@
 	burst_delay = 1
 	autoejector = 0
 	slot_flags = 0
+	accuracy = 5
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(!istype(I,/obj/item/attachable)) //Don't allow reloading by clicking it somehow.
@@ -240,7 +242,7 @@
 	gun_type = "/obj/item/weapon/gun/quadlauncher"
 	reload_delay = 200
 
-/obj/item/weapon/gun/quadlauncher
+/obj/item/weapon/gun/rocketlauncher/quad
 	name = "M83AM Thermobaric Launcher"
 	desc = "The M83AM is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "quaddar"

@@ -110,7 +110,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 60, bullet = 75, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 65, bullet = 80, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/harpoon, /obj/item/weapon/twohanded)
@@ -121,7 +121,7 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 65, bullet = 85, laser = 45, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 69, bullet = 90, laser = 65, energy = 50, bomb = 40, bio = 70, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
@@ -152,14 +152,14 @@
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
+	attack_speed = 6
 
 	New()
 		..()
 		if(usr)
 			var/obj/item/weapon/wristblades/get_other_hand = usr.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
-				attack_speed = round(initial(attack_speed) / 2) //Much faster if a second wristblade is equipped.
-				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+				attack_speed = 4
 
 	dropped(var/mob/living/carbon/human/mob)
 		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
@@ -167,7 +167,7 @@
 		if(mob)
 			var/obj/item/weapon/wristblades/get_other_hand = mob.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
-				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+				get_other_hand.attack_speed = 6
 
 		del(src)
 
@@ -176,8 +176,7 @@
 		if(user)
 			var/obj/item/weapon/wristblades/get_other_hand = user.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
-				attack_speed = round(initial(attack_speed) / 2)
-				get_other_hand.attack_speed = round(initial(get_other_hand.attack_speed) / 2)
+				attack_speed = 4
 			else
 				attack_speed = initial(attack_speed)
 
@@ -206,7 +205,7 @@
 	icon_state = "scim"
 	item_state = "scim"
 	force = 62
-	attack_speed = 20 //slow!
+	attack_speed = 18 //slow!
 	hitsound = 'sound/weapons/pierce.ogg'
 
 
@@ -217,7 +216,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	desc = "A pair of armored, perfectly balanced boots. Perfect for running through the jungle."
 //	item_state = "yautja"
-
+	unacidable = 1
 	permeability_coefficient = 0.01
 	flags = NOSLIP
 	body_parts_covered = FEET|LEGS
@@ -263,6 +262,7 @@
 	canremove = 0
 	body_parts_covered = HANDS|ARMS
 	armor = list(melee = 80, bullet = 80, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
+	unacidable = 1
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
@@ -623,27 +623,25 @@
 		switch(mode)
 			if(2)
 				mode = 0
-				charge_cost = 50
+				charge_cost = 30
 				fire_sound = 'sound/weapons/lasercannonfire.ogg'
 				user << "\red \The [src.name] is now set to fire light plasma bolts."
 				ammo.name = "plasma bolt"
 				ammo.icon_state = "ion"
-				ammo.damage = 10
-				ammo.ignores_armor = 1
+				ammo.damage = 5
 				ammo.stun = 2
 				ammo.weaken = 2
-				fire_delay = 8
+				fire_delay = 5
 				ammo.shell_speed = 1
 			if(0)
 				mode = 1
 				charge_cost = 100
 				fire_sound = 'sound/weapons/emitter2.ogg'
 				user << "\red \The [src.name] is now set to fire medium plasma blasts."
-				fire_delay = 20
+				fire_delay = 16
 				ammo.name = "plasma blast"
 				ammo.icon_state = "pulse1"
 				ammo.damage = 25
-				ammo.ignores_armor = 1
 				ammo.stun = 0
 				ammo.weaken = 0
 				ammo.shell_speed = 2 //Lil faster
@@ -656,7 +654,6 @@
 				ammo.name = "plasma eradication sphere"
 				ammo.icon_state = "bluespace"
 				ammo.damage = 30
-				ammo.ignores_armor = 1
 				ammo.stun = 0
 				ammo.weaken = 0
 				ammo.shell_speed = 1
@@ -1039,10 +1036,11 @@
 	throwforce = 24
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	unacidable = 1
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
 		if(!isYautja(user))
-			if(prob(50))
+			if(prob(20))
 				user.visible_message("\red <B>The [src] slips out of your hands!</b>")
 				user.drop_from_inventory(src)
 				return
@@ -1072,12 +1070,13 @@
 	fire_sound = 'sound/weapons/plasma_shot.ogg'
 	zoomdevicename = "scope"
 	w_class = 5
-	fire_delay = 4
+	fire_delay = 10
 	var/fired = 0
 	slot_flags = SLOT_BACK
 	var/last_regen
 	var/charge_time = 0
-	accuracy = 10
+	accuracy = 50
+	unacidable = 1
 
 	verb/scope()
 		set category = "Yautja"
@@ -1093,7 +1092,7 @@
 	process()
 		if(charge_time < 100)
 			charge_time++
-			if(charge_time == 100)
+			if(charge_time == 99)
 				if(usr) usr << "\blue [src] hums as it achieves maximum charge."
 
 	New()
@@ -1115,18 +1114,20 @@
 		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
 		P.name = P.ammo.name
 
-		if(charge_time < 25)
+		if(charge_time < 15)
 			P.icon_state = "ion"
 			P.ammo.shell_speed = 2
+			P.ammo.weaken = 2
 		else
 			P.icon_state = "bluespace"
 			P.ammo.shell_speed = 1
+			P.ammo.weaken = 0
 
 		P.damage = P.ammo.damage + charge_time
-		P.ammo.accuracy = charge_time
+		P.ammo.accuracy = accuracy + charge_time
 		P.damage_type = P.ammo.damage_type
 		in_chamber = P
-		charge_time = 0
+		charge_time = round(charge_time / 2)
 		P.SetLuminosity(1)
 		return 1
 
@@ -1343,6 +1344,33 @@
 		else
 			spawn(10)
 				timer = 0
+
+//Doesn't give heat or anything yet, it's just a light source.
+/obj/structure/campfire
+	name = "fire"
+	desc = "A crackling fire. What is it even burning?"
+	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
+	icon_state = "campfire"
+	density = 0
+	layer = 2
+	anchored = 1
+	unacidable = 1
+
+	New()
+		..()
+		l_color = "#FFFF0C" //Yeller
+		SetLuminosity(7)
+		spawn(3000)
+			if(ticker && istype(ticker.mode,/datum/game_mode/huntergames)) loop_firetick()
+
+
+	proc/loop_firetick() //Crackly!
+		while(src && ticker)
+			SetLuminosity(0)
+			SetLuminosity(rand(5,6))
+			sleep(rand(15,30))
+
+
 /*
 /obj/item/weapon/gun/launcher/netgun
 	name = "Yautja Net Gun"

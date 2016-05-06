@@ -534,21 +534,22 @@
 			src << "They're already secured."
 			return
 
-		src.visible_message("\red [src] begins securing [victim] with resin!","You begin securing [victim] with resin.. Hold still!")
+		src.visible_message("\red [src] begins securing [victim] with resin!","\red You begin securing [victim] with resin.. Hold still!")
 		if(do_after(src,40))
-			src.visible_message("\red [src] continues securing [victim] with resin..","You continue securing [victim] with resin.. almost there.")
+			src.visible_message("\red [src] continues securing [victim] with resin..","\red You continue securing [victim] with resin.. almost there.")
 		if(do_after(src,80))
 			if(victim.handcuffed && !victim.legcuffed)
 				victim.legcuffed = new /obj/item/weapon/legcuffs/xeno(victim)
-				src.visible_message("\red <B>[src] finishes binding [victim]'s legs.</b>","\red <B>You finish securing [victim]'s legs!</b>")
+				src.visible_message("\red <B>[src] finishes binding [victim]'s legs.</b>","\red <B>You finish binding [victim]'s legs!</b>")
 			else if(!victim.handcuffed)
 				victim.handcuffed = new /obj/item/weapon/handcuffs/xeno(victim)
 				src.visible_message("\red <B>[src] finishes securing [victim]'s arms.</b>","\red <B>You finish securing [victim]'s arms!</b>")
 			else
 				src << "Looks like someone secured them before you!"
 				return
-
+			victim.update_icons()
 			last_special = world.time + 50
+
 		return
 
 	src << "Nobody like that around here."

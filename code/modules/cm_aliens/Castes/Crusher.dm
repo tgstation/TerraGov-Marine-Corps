@@ -126,11 +126,6 @@
 		src << "\red <b>You have achieved maximum momentum!</b>"
 		emote("roar")
 
-	if(momentum > 10)
-		pass_flags = PASSTABLE
-	else
-		pass_flags = 0
-
 	if(noise_timer)
 		noise_timer--
 	else
@@ -191,6 +186,11 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 				now_pushing = 0
 				return
 
+		if(istype(AM,/obj/structure/table))
+			now_pushing = 0
+			AM:Crossed(src)
+			return 0
+
 		start_loc = AM.loc
 		if (isobj(AM) && AM.density) //Generic dense objects that aren't tables.
 			if(AM:anchored)
@@ -210,7 +210,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 						now_pushing = 0
 						return //Might be destroyed.
 
-					if(istype(AM,/obj/structure/m_barricade))
+					if(istype(AM,/obj/structure/m_barricade) && AM.dir == reverse_direction(dir))
 						if(momentum > 10)
 							var/obj/structure/m_barricade/M = AM
 							M.health -= (momentum * 4)
@@ -218,9 +218,12 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 							visible_message("\red The [src] smashes straight into [M]!")
 							M.update_health()
 							src << "\red Bonk!"
+							Weaken(2)
 							stop_momentum(charge_dir,1)
 							now_pushing = 0
 							return
+						else
+							return ..()
 
 					if(istype(AM,/obj/machinery/vending))
 						if(momentum > 20)
