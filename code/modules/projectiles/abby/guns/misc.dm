@@ -8,8 +8,8 @@
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
 	var/obj/item/weapon/cell/cell
-	var/charge_cost = 10
-	fire_delay = 12
+	var/charge_cost = 20
+	fire_delay = 10
 	recoil = 0
 
 	emp_act(severity)
@@ -36,6 +36,7 @@
 		in_chamber = P
 		P.damage = P.ammo.damage //For reverse lookups.
 		P.damage_type = P.damage_type
+		return 1
 
 	update_icon()
 		if(!cell || cell.charge - charge_cost < 0)
@@ -100,6 +101,7 @@
 		in_chamber = P
 		P.damage = P.ammo.damage
 		P.damage_type = P.damage_type
+		P.SetLuminosity(4)
 		return 1
 
 	update_icon()
