@@ -55,7 +55,12 @@
 		var/obj/item/attachable/grenade/G = new(src)
 		G.Attach(src)
 		update_attachables()
-
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "m41a") //Only change this one
+				icon_state = "s_m41a"
+				icon_empty = "s_m41a0"
+				icon_wielded = "s_m41a-w"
+				item_state = "s_m41a"
 
 //-------------------------------------------------------
 //M41A MARKSMAN VARIANT

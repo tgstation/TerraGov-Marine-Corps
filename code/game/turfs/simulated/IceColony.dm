@@ -814,6 +814,13 @@ obj/item/alienjar
 	body_parts_covered = 0
 	w_class = 2
 
+//Scarf
+/obj/item/clothing/mask/rebreather/scarf
+	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
+	name = "Heat Absorbent Coif"
+	icon_state = "coif"
+	item_state = "coif"
+
 //SUITS-----------------------//
 //Snow Armor
 /obj/item/clothing/suit/storage/marine/snow

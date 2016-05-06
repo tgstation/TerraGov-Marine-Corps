@@ -37,6 +37,14 @@
 	fire_delay = 3
 	burst_delay = 2
 
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "smg") //Only change this one
+				icon_state = "smg_pmc"
+				icon_empty = "smg_pmc_empty"
+				item_state = "m39_pmc"
+
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/elite
