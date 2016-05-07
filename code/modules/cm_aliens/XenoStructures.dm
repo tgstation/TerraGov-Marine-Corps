@@ -613,9 +613,10 @@
 				if(resisting)
 					buckled_mob << "You're already trying to free yourself. Give it some time."
 					return
-				buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
-					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+				if(buckled_mob && buckled_mob.name)
+					buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
+						"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
+						"<span class='notice'>You hear squelching...</span>")
 				resisting = 1
 				spawn(nest_resist_time)
 					if(resisting && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
