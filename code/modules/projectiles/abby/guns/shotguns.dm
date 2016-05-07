@@ -162,7 +162,7 @@
 			return 0
 		..()
 		is_pumped = 0
-		return
+		return 1
 
 	AltClick(var/mob/user)
 		if(recentpump)	return
@@ -276,7 +276,7 @@
 				is_reloading = 0
 
 
-
+	return 1
 
 //-------------------------------------------------------
 
