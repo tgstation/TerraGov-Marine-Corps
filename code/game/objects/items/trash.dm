@@ -63,7 +63,7 @@
 	hotdog
 		name = "Hotdog wrapper"
 		icon_state = "hotdog"
-		desc = "A musty plastic film that once held a microwave burrito. Packaged by the Weyland-Yutani Corporation."
+		desc = "A musty plastic film that once held a hotdog. Packaged by the Weyland-Yutani Corporation."
 	kepler
 		name = "Kepler wrapper"
 		icon_state = "kepler"
