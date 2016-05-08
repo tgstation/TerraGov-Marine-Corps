@@ -165,12 +165,23 @@
 		return 1
 
 	AltClick(var/mob/user)
+		if(!user.canmove || user.stat || user.restrained())
+			user << "Not right now."
+			return
+
+		if(is_pumped)
+			usr << "There's already a shell in the chamber, just shoot it."
+			return
+
 		if(recentpump)	return
 		var/mob/living/carbon/human/M = user
 		if(!istype(M)) return //wat
-		if(M.get_active_hand() != src && !M.get_inactive_hand() != src) return //not holding it
 
-		pump(M)
+		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
+			M << "You have to be holding a shotgun!"
+			return //not holding it
+
+		src.pump(M)
 		recentpump = 1
 		spawn(20)
 			recentpump = 0
@@ -217,6 +228,10 @@
 
 		if(!usr.canmove || usr.stat || usr.restrained())
 			usr << "Not right now."
+			return
+
+		if(is_pumped)
+			usr << "There's already a shell in the chamber, just shoot it."
 			return
 
 		if(recentpump)	return
@@ -276,7 +291,7 @@
 				is_reloading = 0
 
 
-	return 1
+		return 1
 
 //-------------------------------------------------------
 
