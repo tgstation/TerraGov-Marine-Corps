@@ -48,7 +48,7 @@
 	var/total_health = 100  //Point at which the mob will enter crit.
 
 	var/cold_level_1 = 260  // Cold damage level 1 below this point.
-	var/cold_level_2 = 200  // Cold damage level 2 below this point.
+	var/cold_level_2 = 240  // Cold damage level 2 below this point.
 	var/cold_level_3 = 120  // Cold damage level 3 below this point.
 
 	var/heat_level_1 = 360  // Heat damage level 1 above this point.

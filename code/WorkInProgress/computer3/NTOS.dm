@@ -5,7 +5,7 @@
 /datum/file/program/ntos
 	name = "YutaniOS Operating System"
 	extension = "prog"
-	active_state = "ntos"
+	active_state = "wyos"
 	var/obj/item/part/computer/storage/current // the drive being viewed, null for desktop/computer
 	var/fileop = "runfile"
 
@@ -82,6 +82,12 @@
 	switch(type)
 		if(0) // FILE OPERATIONS
 			return {""}
+
+//#F0F0F0
+//#2020a0
+//#000000
+//#f0d0d0
+//#E0E0E0
 
 /datum/file/program/ntos/interact()
 	if(!interactable())
@@ -163,7 +169,7 @@
 	</style>
 	</head>
 
-	<body><div style='width:640px;height:480px;	border:2px solid black;padding:8px;background-position:center;background-image:url(\ref['nano/images/uiBackground.png'])'>"}
+	<body><div style='width:640px;height:480px;	border:2px solid black;padding:8px;background-position:center;background-image:url(\ref['nano/images/uiBackground_WY.png'])'>"}
 
 
 	dat += generate_status_bar()

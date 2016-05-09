@@ -20,10 +20,14 @@
 	var/store_misc = 1
 	var/store_items = 1
 	var/store_mobs = 1
+	var/special_equipment = 0 //Will it check for gamemode on start and spawn special equipment?
 
 	anchored = 1 //Yep
 
 	var/const/mob_size = 15
+
+	proc/select_gamemode_equipment(var/gamemode)
+		return
 
 /obj/structure/closet/New()
 	..()

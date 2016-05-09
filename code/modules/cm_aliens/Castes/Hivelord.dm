@@ -71,8 +71,9 @@
 		return
 
 	if(!istype(T,/turf/unsimulated/floor/gm))
-		src << "You scrape around, but nothing happens. You can only place these on open ground."
-		return
+		if(!istype(T,/turf/unsimulated/floor/snow))
+			src << "You scrape around, but nothing happens. You can only place these on open ground."
+			return
 
 	if(locate(/obj/structure/tunnel) in src.loc)
 		src << "There's already a tunnel here. Go somewhere else."

@@ -9,6 +9,7 @@
 	density = 1
 	opacity = 0
 	anchored = 1
+	layer = 3.1
 
 	CanPass(atom/movable/mover, turf/target, height, air_group)
 		if(!height || air_group) return 0

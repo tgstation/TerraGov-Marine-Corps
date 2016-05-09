@@ -18,6 +18,7 @@
 	id = "Station Relay"
 	listening_level = 1
 	autolinkers = list("s_relay")
+	unacidable = 1
 
 	//We dont want anyone to mess with it
 	attackby()

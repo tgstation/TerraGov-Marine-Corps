@@ -784,7 +784,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 						//Snacks
 						else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_burrito")
-						else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/eat_bar))
+						else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(I,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
 							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_eat")
 				standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_band")
 

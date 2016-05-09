@@ -13,6 +13,8 @@
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_override = 'icons/mob/suit_0.dmi'
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = 220
 	//AND THIS LINE
 //END SUIT TEMPLATE
 
@@ -329,6 +331,7 @@
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_override = 'icons/mob/head_0.dmi'
+	min_cold_protection_temperature = 220
 	//AND THIS LINE
 //END HEAD TEMPLATE
 

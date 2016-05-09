@@ -164,6 +164,10 @@
 		spawn(5)
 			src.update()
 
+	sleep(0)	//Break few ACPs on the colony
+	if(!start_charge && z == 1 && prob(rand(3,15)))
+		set_broken()
+
 /obj/machinery/power/apc/proc/make_terminal()
 	// create a terminal object at the same position as original turf loc
 	// wires will attach to this
