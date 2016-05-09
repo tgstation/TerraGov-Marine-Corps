@@ -16,7 +16,6 @@
 	set category = "Object"
 	set src in oview()
 	var/atom/this = src//detach proc from src
-	set hidden = 1
 
 	src = null
 
@@ -26,6 +25,8 @@
 		return
 	if(usr.status_flags & FAKEDEATH)
 		return
+
+	if(isYautja(this)) return
 
 	var/tile = get_turf(this)
 	if (!tile)
