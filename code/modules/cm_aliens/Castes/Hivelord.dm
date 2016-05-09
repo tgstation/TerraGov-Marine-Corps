@@ -32,7 +32,8 @@
 		/mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/toggle_auras,
-		/mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed
+		/mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed,
+		/mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed()
@@ -70,8 +71,9 @@
 		return
 
 	if(!istype(T,/turf/unsimulated/floor/gm))
-		src << "You scrape around, but nothing happens. You can only place these on open ground."
-		return
+		if(!istype(T,/turf/unsimulated/floor/snow))
+			src << "You scrape around, but nothing happens. You can only place these on open ground."
+			return
 
 	if(locate(/obj/structure/tunnel) in src.loc)
 		src << "There's already a tunnel here. Go somewhere else."

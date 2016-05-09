@@ -10,7 +10,7 @@
 /obj/item/ammo_magazine/smg
 	name = "default SMG magazine"
 	default_ammo = "/datum/ammo/bullet/smg"
-	max_rounds = 1
+	max_rounds = 30
 
 /obj/item/ammo_magazine/smg/m39
 	name = "M39 SMG Mag (9mm)"
@@ -20,9 +20,17 @@
 	max_rounds = 35
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 
+/obj/item/ammo_magazine/smg/m39/extended
+	name = "M39 Extended Mag (9mm)"
+	desc = "A 9mm submachinegun magazine."
+	icon_state = "9e"
+	icon_empty = "9e0"
+	max_rounds = 60
+	bonus_overlay = "m39_mag"
+
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 SMG"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts or non-combat personnel. Uses 9mm rounds in a 35 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 9mm rounds in a 35 round magazine."
 	icon_state = "smg"
 	icon_empty = "smg_empty"
 	item_state = "m39"
@@ -37,13 +45,24 @@
 	fire_delay = 3
 	burst_delay = 2
 
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "smg") //Only change this one
+				icon_state = "smg_pmc"
+				icon_empty = "smg_pmc_empty"
+				item_state = "m39_pmc"
+
 //-------------------------------------------------------
 
-/obj/item/ammo_magazine/smg/ap
+/obj/item/ammo_magazine/smg/elite
 	name = "AP SMG Magazine (9mm)"
 	desc = "A 9mm special magazine."
+	icon_state = "9x"
+	icon_empty = "9x0"
 	default_ammo = "/datum/ammo/bullet/smg/ap"
 	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
+	max_rounds = 45
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 SMG"
@@ -51,9 +70,10 @@
 	icon_state = "smg_pmc"
 	icon_empty = "smg_pmc_empty"
 	item_state = "m39_pmc"
-	burst_amount = 4
-	mag_type = "/obj/item/ammo_magazine/smg/ap"
-	accuracy = 12
+	burst_amount = 3
+	mag_type = "/obj/item/ammo_magazine/smg/elite"
+	accuracy = 15
+	dam_bonus = 15
 
 //-------------------------------------------------------
 
@@ -85,6 +105,7 @@
 	burst_delay = 2
 	accuracy = 5
 	found_on_mercs = 1
+	dam_bonus = 15
 
 //-------------------------------------------------------
 
@@ -117,6 +138,7 @@
 	accuracy = 8
 	found_on_mercs = 1
 	found_on_russians = 1
+	dam_bonus = 10
 
 //-------------------------------------------------------
 
@@ -128,6 +150,14 @@
 	icon_empty = "darts-0"
 	max_rounds = 71
 	gun_type = "/obj/item/weapon/gun/smg/ppsh"
+
+/obj/item/ammo_magazine/smg/ppsh/extended
+	name = "PPSh-17b Magazine (7.62mm)"
+	desc = "A standard 7.62mm magazine for the PPSh submachinegun."
+	icon_state = "darts-0" //Dumb
+	icon_empty = "darts-0"
+	max_rounds = 35
+	bonus_overlay = "ppsh_mag"
 
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b Submachinegun"
@@ -167,7 +197,7 @@
 	icon_empty = "mini-uzi_empty"
 	item_state = "mini-uzi"
 	fire_sound = 'sound/weapons/uzi.ogg'
-	fire_delay = 6
+	fire_delay = 4
 	mag_type = "/obj/item/ammo_magazine/smg/uzi"
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 19
@@ -175,9 +205,10 @@
 	rail_pixel_y = 22
 	under_pixel_x = 22
 	under_pixel_y = 16
-	burst_amount = 3
+	burst_amount = 4
 	burst_delay = 1
 	found_on_mercs = 1
+	dam_bonus = -5
 
 //-------------------------------------------------------
 

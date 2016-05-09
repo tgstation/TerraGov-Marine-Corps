@@ -154,12 +154,13 @@
 			if(locate(/obj/effect/alien/weeds) in src.loc)
 				tally -= 1.5
 
-	if(istype(loc,/turf/simulated/floor/gm/snow)) //Snow slows you down
-		var/turf/simulated/floor/gm/snow/S = src.loc
+	if(istype(loc,/turf/unsimulated/floor/snow)) //Snow slows you down
+		var/turf/unsimulated/floor/snow/S = src.loc
 		if(S && istype(S) && S.slayer > 0)
-			tally += 1 * S.slayer
-			if(S.slayer && prob(2))
-				src << "\red Moving trough [S] slows you down"
+			tally += 0.5 * S.slayer
+			if(S.slayer && prob(1))
+				src << "\red Moving through [S] slows you down!"
+
 			if(S.slayer == 3 && prob(5))
 				src << "\red You got stuck in [S] for a moment!"
 				tally += 10
@@ -168,7 +169,7 @@
 		tally = tally - (frenzy_aura * 0.1) - 0.4
 
 	if(src.pulling)  //Dragging stuff slows you down a bit.
-		tally += 2
+		tally += 3
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src

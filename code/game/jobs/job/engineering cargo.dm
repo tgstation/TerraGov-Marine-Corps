@@ -77,14 +77,14 @@
 	spawn_positions = 1
 	supervisors = "the Commander, the Executive Officer"
 	selection_color = "#9990B2"
-	access = list(access_sulaco_cargo)
-	minimal_access = list(access_sulaco_cargo)
+	access = list(access_sulaco_cargo, access_sulaco_bridge)
+	minimal_access = list(access_sulaco_cargo, access_sulaco_bridge)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/req(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
@@ -118,7 +118,7 @@
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmbandana/tan(H), slot_head)

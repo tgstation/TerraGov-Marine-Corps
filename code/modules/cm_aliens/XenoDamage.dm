@@ -63,7 +63,7 @@
 	var/chancemod = 0
 	if(used_weapon && sharp) chancemod += 10
 	if(used_weapon && edge) chancemod += 12 //Pierce weapons give the most bonus.
-	if(def_zone == "chest") chancemod += 3 //Which it generally will be, vs xenos
+	if(def_zone != "chest") chancemod += 5 //Which it generally will be, vs xenos
 
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, chancemod)

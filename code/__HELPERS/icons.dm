@@ -853,3 +853,9 @@ proc/sort_atoms_by_layer(var/list/atoms)
 				result.Swap(i, gap + i)
 				swapped = 1
 	return result
+
+obj/proc/apply_overlay(var/icon = null, var/atom/A, var/icon_state = null, var/pixel_x = 0, var/pixel_y = 0, var/layer = 0)
+	var/image/I = new(icon, A, icon_state, layer ? layer : A.layer)
+	I.pixel_x = pixel_x
+	I.pixel_y = pixel_y
+	A.overlays += I

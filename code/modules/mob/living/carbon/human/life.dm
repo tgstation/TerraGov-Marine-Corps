@@ -8,18 +8,18 @@
 #define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
 
-#define COLD_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when your body temperature just passes the 260.15k safety point
-#define COLD_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 200K point
-#define COLD_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 120K point
+#define COLD_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
+#define COLD_DAMAGE_LEVEL_2 1.0 //Amount of damage applied when your body temperature passes the 200K point
+#define COLD_DAMAGE_LEVEL_3 2 //Amount of damage applied when your body temperature passes the 120K point
 
 //Note that gas heat damage is only applied once every FOUR ticks.
 #define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
 #define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
 #define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
 
-#define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
-#define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
-#define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
+#define COLD_GAS_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
+#define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
+#define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
 
@@ -605,8 +605,11 @@
 			adjustOxyLoss(-5)
 
 		// Hot air hurts :(
-		if( (breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
-
+		var/rebreather = 0 //If you have rebreather equipped, don't damage the lungs
+		if(wear_mask)
+			if(istype(wear_mask, /obj/item/clothing/mask/rebreather) || istype(wear_mask, /obj/item/clothing/mask/fluff) || istype(wear_mask, /obj/item/clothing/mask/facehugger))
+				rebreather = 1
+		if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations) && !rebreather)
 			if(breath.temperature < species.cold_level_1)
 				if(prob(20))
 					src << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"
@@ -725,16 +728,15 @@
 			fire_alert = max(fire_alert, 1)
 			if(status_flags & GODMODE)	return 1	//godmode
 			if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-				switch(bodytemperature)
-					if(species.cold_level_2 to species.cold_level_1)
-						take_overall_damage(burn=COLD_DAMAGE_LEVEL_1, used_weapon = "High Body Temperature")
-						fire_alert = max(fire_alert, 1)
-					if(species.cold_level_3 to species.cold_level_2)
-						take_overall_damage(burn=COLD_DAMAGE_LEVEL_2, used_weapon = "High Body Temperature")
-						fire_alert = max(fire_alert, 1)
-					if(-INFINITY to species.cold_level_3)
-						take_overall_damage(burn=COLD_DAMAGE_LEVEL_3, used_weapon = "High Body Temperature")
-						fire_alert = max(fire_alert, 1)
+				if(bodytemperature >= species.cold_level_2 && bodytemperature <= species.cold_level_1)
+					take_overall_damage(burn=COLD_DAMAGE_LEVEL_1, used_weapon = "Low Body Temperature")
+					fire_alert = max(fire_alert, 1)
+				if(bodytemperature >= species.cold_level_3 && bodytemperature < species.cold_level_2)
+					take_overall_damage(burn=COLD_DAMAGE_LEVEL_1, used_weapon = "Low Body Temperature")
+					fire_alert = max(fire_alert, 1)
+				if(bodytemperature > -INFINITY && bodytemperature < species.cold_level_3)
+					take_overall_damage(burn=COLD_DAMAGE_LEVEL_3, used_weapon = "Low Body Temperature")
+					fire_alert = max(fire_alert, 1)
 
 		// Account for massive pressure differences.  Done by Polymorph
 		// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
@@ -831,7 +833,9 @@
 	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 	proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 		var/thermal_protection_flags = 0
+
 		//Handle normal clothing
+
 		if(head)
 			if(head.max_heat_protection_temperature && head.max_heat_protection_temperature >= temperature)
 				thermal_protection_flags |= head.heat_protection
@@ -855,7 +859,6 @@
 
 	proc/get_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
 		var/thermal_protection_flags = get_heat_protection_flags(temperature)
-
 		var/thermal_protection = 0.0
 		if(thermal_protection_flags)
 			if(thermal_protection_flags & HEAD)
@@ -885,30 +888,48 @@
 		return min(1,thermal_protection)
 
 	//See proc/get_heat_protection_flags(temperature) for the description of this proc.
-	proc/get_cold_protection_flags(temperature)
+	proc/get_cold_protection_flags(temperature, var/deficit = 0)
 		var/thermal_protection_flags = 0
+		//If the temperature is lower than the cold protection, reduce the overall coverage instead of ignoring it completely.
+		var/thermal_deficit = 0
+
 		//Handle normal clothing
-
 		if(head)
-			if(head.min_cold_protection_temperature && head.min_cold_protection_temperature <= temperature)
+			if(head.min_cold_protection_temperature)
 				thermal_protection_flags |= head.cold_protection
+				if(head.min_cold_protection_temperature > temperature)
+					thermal_deficit += head.min_cold_protection_temperature - temperature
 		if(wear_suit)
-			if(wear_suit.min_cold_protection_temperature && wear_suit.min_cold_protection_temperature <= temperature)
+			if(wear_suit.min_cold_protection_temperature)
 				thermal_protection_flags |= wear_suit.cold_protection
+				if(wear_suit.min_cold_protection_temperature > temperature)
+					thermal_deficit += wear_suit.min_cold_protection_temperature - temperature
 		if(w_uniform)
-			if(w_uniform.min_cold_protection_temperature && w_uniform.min_cold_protection_temperature <= temperature)
+			if(w_uniform.min_cold_protection_temperature)
 				thermal_protection_flags |= w_uniform.cold_protection
+				if(w_uniform.min_cold_protection_temperature > temperature)
+					thermal_deficit += w_uniform.min_cold_protection_temperature - temperature
 		if(shoes)
-			if(shoes.min_cold_protection_temperature && shoes.min_cold_protection_temperature <= temperature)
+			if(shoes.min_cold_protection_temperature)
 				thermal_protection_flags |= shoes.cold_protection
+				if(shoes.min_cold_protection_temperature > temperature)
+					thermal_deficit += shoes.min_cold_protection_temperature - temperature
 		if(gloves)
-			if(gloves.min_cold_protection_temperature && gloves.min_cold_protection_temperature <= temperature)
+			if(gloves.min_cold_protection_temperature)
 				thermal_protection_flags |= gloves.cold_protection
+				if(gloves.min_cold_protection_temperature > temperature)
+					thermal_deficit += gloves.min_cold_protection_temperature - temperature
 		if(wear_mask)
-			if(wear_mask.min_cold_protection_temperature && wear_mask.min_cold_protection_temperature <= temperature)
+			if(wear_mask.min_cold_protection_temperature)
 				thermal_protection_flags |= wear_mask.cold_protection
+				if(wear_mask.min_cold_protection_temperature > temperature)
+					thermal_deficit += wear_mask.min_cold_protection_temperature - temperature
 
-		return thermal_protection_flags
+		if(deficit)
+			//world << "Deficit = [thermal_deficit]. (Get Cold Flags)"
+			return thermal_deficit
+		else
+			return thermal_protection_flags
 
 	proc/get_cold_protection(temperature)
 
@@ -917,8 +938,9 @@
 
 		temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 		var/thermal_protection_flags = get_cold_protection_flags(temperature)
-
+		var/thermal_deficit = get_cold_protection_flags(temperature, 1)
 		var/thermal_protection = 0.0
+
 		if(thermal_protection_flags)
 			if(thermal_protection_flags & HEAD)
 				thermal_protection += THERMAL_PROTECTION_HEAD
@@ -943,8 +965,11 @@
 			if(thermal_protection_flags & HAND_RIGHT)
 				thermal_protection += THERMAL_PROTECTION_HAND_RIGHT
 
-		return min(1,thermal_protection)
-
+		if(thermal_deficit)
+			//world << "Deficit = [thermal_deficit], Protection = [thermal_protection], Total Protection = [min(1,thermal_protection - (thermal_protection * (thermal_deficit/260)))] (Get Cold Protection)"
+			return min(1,thermal_protection - (thermal_protection * (thermal_deficit/260)))
+		else
+			return min(1,thermal_protection)
 	/*
 	proc/add_fire_protection(var/temp)
 		var/fire_prot = 0

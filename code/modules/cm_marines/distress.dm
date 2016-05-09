@@ -3,71 +3,114 @@
 
 
 
-/proc/spawn_merc_gun(var/mob/living/M,var/sidearm = 0)
-	var/obj/item/weapon/storage/backpack = M.back
-	if(!istype(backpack)) return
+/proc/spawn_merc_gun(var/atom/M,var/sidearm = 0)
+	if(!M || isnull(M) || !istype(M))
+		M = usr //One last shot.
+		if(isnull(M)) return
+
+	var/atom/spawnloc = M
 
 	var/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
-									/obj/item/weapon/gun/pistol/heavy,
-									/obj/item/weapon/gun/pistol/m1911,
-									/obj/item/weapon/gun/pistol/kt42,
-									/obj/item/weapon/gun/pistol/holdout,
-									/obj/item/weapon/gun/pistol/highpower,
-									/obj/item/weapon/gun/pistol/vp70)
+		/obj/item/weapon/gun/pistol/heavy,
+		/obj/item/weapon/gun/pistol/m1911,
+		/obj/item/weapon/gun/pistol/kt42,
+		/obj/item/weapon/gun/pistol/holdout,
+		/obj/item/weapon/gun/pistol/highpower,
+		/obj/item/weapon/gun/pistol/vp70,
+		/obj/item/weapon/gun/smg/mp7,
+		/obj/item/weapon/gun/smg/skorpion,
+		/obj/item/weapon/gun/smg/uzi,
+		/obj/item/weapon/gun/smg/uzi)
 
 	var/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
-									/obj/item/weapon/gun/shotgun/merc,
-									/obj/item/weapon/gun/shotgun/combat,
-									/obj/item/weapon/gun/shotgun/double,
-									/obj/item/weapon/gun/shotgun/pump/cmb,
-									/obj/item/weapon/gun/smg/mp7,
-									/obj/item/weapon/gun/smg/skorpion,
-									/obj/item/weapon/gun/smg/ppsh,
-									/obj/item/weapon/gun/smg/uzi,
-									/obj/item/weapon/gun/smg/p90)
-	var/gunpath = pick(merc_firearms)
-	var/obj/item/weapon/gun/gun
-	if(sidearm)
-		gunpath = pick(merc_sidearms)
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_r_hand)
+		/obj/item/weapon/gun/shotgun/merc,
+		/obj/item/weapon/gun/shotgun/combat,
+		/obj/item/weapon/gun/shotgun/double,
+		/obj/item/weapon/gun/shotgun/pump/cmb,
+		/obj/item/weapon/gun/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40/carbine,
+		/obj/item/weapon/gun/rifle/mar40/svd,
+		/obj/item/weapon/gun/rifle/m41a,
+		/obj/item/weapon/gun/smg/ppsh,
+		/obj/item/weapon/gun/smg/p90)
+
+	var/gunpath
+	if(!sidearm)
+		gunpath = pick(merc_firearms)
 	else
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_l_hand)
+		gunpath = pick(merc_sidearms)
 
-	var/ammopath = text2path(gun.default_ammo)
-	new ammopath(M.back)
-	new ammopath(M.back) //Twice the fun just to be sure
+	var/obj/item/weapon/gun/gun
 
-/proc/spawn_slavic_gun(var/mob/living/M,var/sidearm = 0)
-	var/obj/item/weapon/storage/backpack = M.back
-	if(!istype(backpack)) return
+	if(gunpath)
+		gun = new gunpath(spawnloc)
+		var/ammopath = text2path(gun.mag_type)
+		if(ishuman(spawnloc))
+			var/mob/living/carbon/human/H = spawnloc
+			if(!sidearm)
+				H.equip_to_slot_or_del(gun, slot_r_hand)
+			else
+				H.equip_to_slot_or_del(gun, slot_l_hand)
+			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
+				new ammopath(H.back)
+				new ammopath(H.back)
+		else
+			if(ammopath)
+				new ammopath(get_turf(spawnloc))
+				new ammopath(get_turf(spawnloc))
+
+	return 1
+
+/proc/spawn_slavic_gun(var/atom/M,var/sidearm = 0)
+	if(!M || isnull(M) || !istype(M))
+		M = usr //One last shot.
+		if(isnull(M)) return
+
+	var/atom/spawnloc = M
 
 	var/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/revolver/upp,
-									/obj/item/weapon/gun/revolver/mateba,
-									/obj/item/weapon/gun/pistol/c99,
-									/obj/item/weapon/gun/pistol/c99/russian,
-									/obj/item/weapon/gun/pistol/kt42
-									)
+		/obj/item/weapon/gun/revolver/upp,
+		/obj/item/weapon/gun/revolver/mateba,
+		/obj/item/weapon/gun/pistol/c99,
+		/obj/item/weapon/gun/pistol/c99/russian,
+		/obj/item/weapon/gun/pistol/kt42,
+		/obj/item/weapon/gun/smg/ppsh,
+		/obj/item/weapon/gun/smg/ppsh)
 
 	var/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
-									/obj/item/weapon/gun/rifle/mar40/carbine,
-									/obj/item/weapon/gun/rifle/m41a,
-									/obj/item/weapon/gun/rifle/mar40/svd)
-	var/gunpath = pick(rus_firearms)
-	var/obj/item/weapon/gun/gun
-	if(sidearm)
-		gunpath = pick(rus_sidearms)
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_r_hand)
-	else
-		gun = new gunpath(M)
-		M.equip_to_slot_or_del(gun, slot_l_hand)
+		/obj/item/weapon/gun/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40/carbine,
+		/obj/item/weapon/gun/rifle/m41a,
+		/obj/item/weapon/gun/smg/ppsh,
+		/obj/item/weapon/gun/rifle/mar40/svd)
 
-	var/ammopath = text2path(gun.default_ammo)
-	new ammopath(M.back)
-	new ammopath(M.back) //Twice the fun just to be sure
+	var/gunpath
+	if(!sidearm)
+		gunpath = pick(rus_firearms)
+	else
+		gunpath = pick(rus_sidearms)
+
+	var/obj/item/weapon/gun/gun
+
+	if(gunpath)
+		gun = new gunpath(spawnloc)
+		var/ammopath = text2path(gun.mag_type)
+		if(ishuman(spawnloc))
+			var/mob/living/carbon/human/H = spawnloc
+			if(!sidearm)
+				H.equip_to_slot_or_del(gun, slot_r_hand)
+			else
+				H.equip_to_slot_or_del(gun, slot_l_hand)
+			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
+				new ammopath(H.back)
+				new ammopath(H.back)
+		else
+			if(ammopath)
+				new ammopath(get_turf(spawnloc))
+				new ammopath(get_turf(spawnloc))
+
+	return 1
 
 //basic persistent gamemode stuff.
 /datum/game_mode
@@ -417,7 +460,7 @@
 			mob << "<B> Ensure no damage is incurred against Weyland Yutani.</b>"
 		else
 			mob.mind.special_role = "MODE"
-			if(prob(35)) //Randomize the heavy commandos and standard PMCs.
+			if(prob(55)) //Randomize the heavy commandos and standard PMCs.
 				spawn_standard(mob)
 				mob << "<font size='3'>\red You are a Weyland Yutani Commando!</font>"
 			else
@@ -454,11 +497,11 @@
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
 
-	if(rand(0,3) != 0)//Usually, m39 elite.
+	if(rand(0,2) != 0)//Usually, m39 elite.
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M), slot_l_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/ap(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M), slot_l_hand)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M.back), slot_in_backpack)
 	else //Rarely, they get an elite m41.
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/incendiary(M), slot_l_hand)
@@ -673,7 +716,7 @@
 		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 
 	spawn_merc_gun(M)
-	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
+	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands
 
 /datum/emergency_call/bears/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
@@ -707,12 +750,14 @@
 			mob << "<B> You must lead the Iron Bears mercenaries to victory against any and all hostile threats.</b>"
 			mob << "<B> To Hell with Weyland Yutani and the USCM! The Iron Bears run the show now!</b>"
 			mob << "<B> ... Or whatever. It's up to you. You're the only one they taught any English..</b>"
+			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
 		else
 			spawn_standard(mob)
 			mob.remove_language("Sol Common")
 			mob.remove_language("English")
 			mob << "<font size='3'>\red You are an Iron Bear mercenary!</font>"
 			mob << "<font size='3'>\red Listen to your Leader, you idiot!! Try not to blow yourself up!</font>"
+			mob << "\green Use say :3 <text> to speak in Russian. Works on comms too!"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -732,6 +777,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/PMCarmor/Bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/Bear(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/PMC/bearmask(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -860,8 +906,8 @@
 				if(1)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/ap
-					new /obj/item/ammo_magazine/smg/ap
+					new /obj/item/ammo_magazine/smg/elite
+					new /obj/item/ammo_magazine/smg/elite
 					continue
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
@@ -917,8 +963,8 @@
 				if(1)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/ap
-					new /obj/item/ammo_magazine/smg/ap
+					new /obj/item/ammo_magazine/smg/elite
+					new /obj/item/ammo_magazine/smg/elite
 					continue
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)

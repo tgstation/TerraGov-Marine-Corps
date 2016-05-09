@@ -4,6 +4,10 @@
 	set src in oview(1)
 
 	if(Adjacent(usr))
+		if(isobj(src) && isXeno(usr))
+			usr << "Nice try."
+			return
+
 		usr.start_pulling(src)
 	return
 
@@ -12,6 +16,7 @@
 	set category = "Object"
 	set src in oview()
 	var/atom/this = src//detach proc from src
+
 	src = null
 
 	if(!usr || !isturf(usr.loc))
@@ -20,6 +25,8 @@
 		return
 	if(usr.status_flags & FAKEDEATH)
 		return
+
+	if(isYautja(this)) return
 
 	var/tile = get_turf(this)
 	if (!tile)

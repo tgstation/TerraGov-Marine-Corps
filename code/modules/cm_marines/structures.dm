@@ -4,7 +4,7 @@
 	desc = "A solid barricade made of reinforced metal. Use a welding tool and/or plasteel to repair it if damaged."
 	icon = 'icons/Marine/structures.dmi'
 	icon_state = "barricade"
-	density = 0
+	density = 1
 	anchored = 1.0
 	layer = 2.9
 	throwpass = 1	//You can throw objects over this, despite its density.
@@ -32,8 +32,8 @@
 	return
 
 /obj/structure/m_barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover,/obj/item/projectile))
-		return (check_cover(mover,target))
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
 	if(locate(/obj/structure/table) in get_turf(mover)) //Tables let you climb on barricades.
 		return 1
 	if (get_dir(loc, target) == dir)
@@ -41,33 +41,12 @@
 	else
 		return 1
 
-	return 0
-
-//checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
-/obj/structure/m_barricade/proc/check_cover(obj/item/projectile/P, turf/from)
-	var/turf/cover = get_step(loc, get_dir(from, loc))
-	if (get_dist(P.starting, loc) <= 1)
-		return 1
-	if (get_turf(P.original) == cover)
-		var/chance = 25
-		if (ismob(P.original))
-			var/mob/M = P.original
-			if (M.lying)
-				chance += 20
-			if(get_dir(loc, from) == dir)
-				chance += 70
-			else
-				return 1
-		if(prob(chance))
-			health -= P.damage/2
-			visible_message("<span class='warning'>[P] hits \the [src]!</span>")
-			update_health()
-			return 0
-
-	return 1
-
 /obj/structure/m_barricade/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if (get_dir(loc, target) == dir && !istype(O,/obj/item/projectile) && !istype(O,/obj/item/missile) && !istype(O,/obj/item/weapon/grenade))
+	if(istype(O) && O.checkpass(PASSTABLE))
+		return 1
+	if(locate(/obj/structure/table) in get_turf(O)) //Tables let you climb on barricades.
+		return 1
+	if (get_dir(loc, target) == dir)
 		return 0
 	else
 		return 1
@@ -108,7 +87,7 @@
 /obj/structure/m_barricade/destroy()
 	src.visible_message("\red [src] collapses!")
 	var/obj/item/stack/sheet/plasteel/P = new (src.loc)
-	P.amount = 5
+	P.amount = pick(3,4)
 	density = 0
 	del(src)
 	return

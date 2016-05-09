@@ -43,6 +43,7 @@
 	rail_pixel_y = 20
 	under_pixel_x = 19
 	under_pixel_y = 14
+	accuracy = 10
 
 	New()
 		..()
@@ -118,7 +119,7 @@
 	force = 20.0
 	twohanded = 1
 	recoil = 0
-	fire_delay = 2
+	fire_delay = 3
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 16
 	rail_pixel_x = 18
@@ -126,8 +127,10 @@
 	under_pixel_x = 22
 	under_pixel_y = 14
 	burst_amount = 3
+	burst_delay = 1
 	autoejector = 0
 	slot_flags = 0
+	accuracy = 5
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(!istype(I,/obj/item/attachable)) //Don't allow reloading by clicking it somehow.
@@ -147,3 +150,106 @@
 		return 0
 
 //-------------------------------------------------------
+//SADAR
+
+/obj/item/ammo_magazine/rocket_tube
+	name = "High Explosive Rocket Tube"
+	desc = "A rocket tube for an M83 SADAR rocket. Activate it without a missile inside to receive some materials."
+	icon_state = "rocket_tube"
+	icon_empty = "rocket_tube_empty"
+	max_rounds = 1
+	default_ammo = "/datum/ammo/rocket"
+	gun_type = "/obj/item/weapon/gun/rocketlauncher"
+	reload_delay = 60
+
+	attack_self(mob/living/user as mob)
+		if(current_rounds == 0)
+			user << "You begin taking apart the empty tube frame.."
+			if(do_after(user,10))
+				user.visible_message("[user] deconstructs the rocket tube frame.","You take apart the empty frame!")
+				var/obj/item/stack/sheet/metal/M = new()
+				M.amount = 2
+				user.drop_item(src)
+				del(src)
+				return
+		else
+			user << "Not with a missile inside!"
+			return
+
+/obj/item/ammo_magazine/rocket_tube/ap
+	name = "Anti Tank Rocket Tube"
+	icon_state = "rocket_tube_ap"
+	default_ammo = "/datum/ammo/rocket/ap"
+	desc = "A tube for an AP rocket - the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
+
+/obj/item/ammo_magazine/rocket_tube/wp
+	name = "Phosphorous Rocket Tube"
+	icon_state = "rocket_tube_wp"
+	default_ammo = "/datum/ammo/rocket/wp"
+	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
+
+
+/obj/item/weapon/gun/rocketlauncher
+	name = "M83 SADAR rocket launcher"
+	desc = "The M83 SADAR is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the SADAR is a dangerous weapon with a variety of combat uses."
+	icon_state = "M83sadar"
+	item_state = "rocket"
+	icon_wielded = "rocket"
+	w_class = 5.0
+	fire_delay = 10
+	force = 15.0
+	flags =  FPRINT | TABLEPASS | CONDUCT
+	slot_flags = 0
+	twohanded = 1
+	mag_type = "/obj/item/ammo_magazine/rocket_tube"
+	recoil = 3
+	muzzle_pixel_x = 32
+	muzzle_pixel_y = 17
+	rail_pixel_x = 12
+	rail_pixel_y = 18
+	under_pixel_x = 30
+	under_pixel_y = 14
+	var/datum/effect/effect/system/smoke_spread/puff
+
+	New()
+		..()
+		puff = new /datum/effect/effect/system/smoke_spread()
+		puff.attach(src)
+
+	load_into_chamber()
+		if(current_mag && current_mag.current_rounds > 0)
+			sleep(1)
+			var/list/cardinals = list(1,2,4,8)
+			for(var/Q in cardinals)
+				if(Q == usr.dir)
+					cardinals -= Q //Shouldnt puff back into their face.
+					break
+			puff.set_up(1,cardinals)
+			puff.start()
+			return ..()
+
+
+//-------------------------------------------------------
+//SADARS MEAN FUCKING COUSIN
+
+/obj/item/ammo_magazine/rocket_tube/quad
+	name = "Thermobaric Rocket Array"
+	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
+	icon_state = "rocket_tube4"
+	icon_empty = "rocket_tube_empty4"
+	max_rounds = 4
+	default_ammo = "/datum/ammo/rocket/wp/quad"
+	gun_type = "/obj/item/weapon/gun/quadlauncher"
+	reload_delay = 200
+
+/obj/item/weapon/gun/rocketlauncher/quad
+	name = "M83AM Thermobaric Launcher"
+	desc = "The M83AM is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
+	icon_state = "quaddar"
+	item_state = "rocket4"
+	icon_wielded = "rocket4"
+	fire_delay = 6
+	burst_amount = 4
+	burst_delay = 4
+	accuracy = -20
+

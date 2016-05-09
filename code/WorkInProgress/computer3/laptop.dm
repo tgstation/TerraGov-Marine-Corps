@@ -117,6 +117,7 @@
 	pixel_y			= -3
 	show_keyboard	= 0
 
+	var/start_closed = 1
 	var/manipulating = 0 // To prevent disappearing bug
 	var/obj/item/device/laptop/portable = null
 
@@ -124,6 +125,9 @@
 		if(!built && !battery)
 			battery = new /obj/item/weapon/cell(src)
 		..(L,built)
+		sleep(0)
+		if(start_closed)
+			force_close_computer()
 
 	verb/close_computer()
 		set name = "Close Laptop"
@@ -141,6 +145,7 @@
 		if(istype(loc,/obj/item/device/laptop))
 			testing("Close closed computer")
 			return
+
 		if(!istype(loc,/turf))
 			testing("Odd computer location: [loc] - close laptop")
 			return
@@ -158,6 +163,18 @@
 			loc = portable
 			stat |= MAINT
 			usr << "You close \the [src]."
+
+	proc/force_close_computer()
+		if(!portable)
+			portable=new
+			portable.stored_computer = src
+
+		if(!manipulating)
+			start_closed = 0
+			portable.loc = loc
+			loc = portable
+			stat |= MAINT
+
 
 	auto_use_power()
 		if(stat&MAINT)

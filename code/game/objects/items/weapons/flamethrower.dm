@@ -191,9 +191,14 @@
 				break
 			else if(DirBlocked(T,turn(usr.dir,180)))
 				break
-		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/structure/mineral_door/resin,T) || locate(/obj/effect/alien/resin/membrane,T))
+		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/effect/alien/resin/membrane,T) || locate(/obj/structure/girder,T))
 			break //Nope.avi
-
+		var/obj/structure/mineral_door/resin/D = locate() in T
+		if(D)
+			if(D.density) break
+		var/obj/machinery/M = locate() in T
+		if(M)
+			if(M.density) break
 		var/obj/structure/window/W = locate() in T
 		if(W)
 			if(W.is_full_window()) break

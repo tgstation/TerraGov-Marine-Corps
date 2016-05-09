@@ -59,26 +59,20 @@
 	proc/burst(var/atom/target,var/obj/item/projectile/P,var/message = "buckshot")
 		if(!target) return
 
-		for(var/mob/living/M in range(1,target))
-			var/turf/turf_loc = get_turf(M)
-			if(istype(turf_loc)) new /obj/effect/buckshot_blast(M)
+		for(var/mob/living/carbon/M in range(1,target))
 			M.visible_message("\red [M] is hit by [message]!","\red You are hit by </b>[message]</b>!")
-			M.apply_damage(rand(5,20),BRUTE)
-
-		if(P)
-			P.permutated = null
-			del(P)
+			M.apply_damage(rand(5,25),BRUTE)
 
 //Boxes of ammo
 /obj/item/ammo_magazine
 	name = "generic ammo"
 	desc = "A box of ammo"
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "357"
-	var/icon_empty = "357-0"
+	icon_state = ""
+	var/icon_empty = ""
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
-	item_state = "syringe_kit"
+	item_state = ""
 	matter = list("metal" = 50000)
 	throwforce = 2
 	w_class = 1.0
@@ -92,6 +86,7 @@
 	var/null_ammo = 0 //Set this to 0 to have a non-ammo-datum-using magazine without generating errors.
 	var/reload_delay = 1 //Set a timer for reloading mags (shotguns mostly). Higher is slower.
 	var/sound_empty = 'sound/weapons/smg_empty_alarm.ogg'
+	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 
 	New()
 		..()

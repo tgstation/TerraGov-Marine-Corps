@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = 1
 	density = 1
-	layer = 2
+	layer = 3
 	var/state = 0
 	var/health = 200
 
@@ -78,7 +78,7 @@
 
 		else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-			user << "\blue Now dislodging the girder"
+			user << "\blue Now dislodging the girder..."
 			if(do_after(user, 40))
 				if(!src) return
 				user << "\blue You dislodged the girder!"
@@ -92,10 +92,15 @@
 
 				if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
 					if(!anchored)
-						if(S.use(2))
-							user << "<span class='notice'>You create a false wall! Push on it to open or close the passage.</span>"
-							new /obj/structure/falsewall (src.loc)
-							del(src)
+						if(S.get_amount() < 2) return ..()
+						user << "<span class='notice'>Now adding plating...</span>"
+						if (do_after(user,80))
+							if(S.use(2))
+								user << "<span class='notice'>You create a false wall. Push on it to open or close the passage.</span>"
+								new /obj/structure/falsewall (src.loc)
+								for(var/obj/structure/falsewall/F in src.loc)
+									if(F)	F.add_hiddenprint(usr)
+								del(src)
 					else
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
@@ -111,34 +116,32 @@
 
 				if(/obj/item/stack/sheet/plasteel)
 					if(!anchored)
-						if(S.use(2))
-							user << "\blue You create a false wall! Push on it to open or close the passage."
-							new /obj/structure/falserwall (src.loc)
-							del(src)
+						// if(S.use(2))
+							// user << "\blue You create a false wall! Push on it to open or close the passage."
+							// new /obj/structure/falserwall (src.loc)
+							// del(src)
+						user << "\red It doesn't look like the plasteel will do anything. Try metal." //Disable reinforced false walls
+						return
 					else
-					/*
 						if (src.icon_state == "reinforced") //I cant believe someone would actually write this line of code...
-							if(S.get_amount() < 1) return ..()
-
-							user << "<span class='notice'>Now finalising reinforced wall.</span>"
-							if(do_after(user, 50))
-								if (S.use(1))
-									user << "<span class='notice'>Wall fully reinforced!</span>"
-									var/turf/Tsrc = get_turf(src)
-									Tsrc.ChangeTurf(/turf/simulated/wall/r_wall)
-									for(var/turf/simulated/wall/r_wall/X in Tsrc.loc)
-										if(X)	X.add_hiddenprint(usr)
-									del(src)
-
-							return*/
-//						else
+							// if(S.get_amount() < 1) return ..()
+							user << "\red It doesn't look like the plasteel will do anything. Try metal."
+							// if(do_after(user, 50))
+							// 	if (S.use(1))
+							// 		user << "<span class='notice'>Wall fully reinforced!</span>"
+							// 		var/turf/Tsrc = get_turf(src)
+							// 		Tsrc.ChangeTurf(/turf/simulated/wall/r_wall)
+							// 		for(var/turf/simulated/wall/r_wall/X in Tsrc.loc)
+							// 			if(X)	X.add_hiddenprint(usr)
+							// 		del(src)
+							return
 						if(S.get_amount() < 1) return ..()
-						user << "<span class='notice'>Now reinforcing girders...</span>"
-						if (do_after(user,60))
-							if(S.use(1))
-								user << "<span class='notice'>Girders reinforced!</span>"
-								new/obj/structure/girder/reinforced( src.loc )
-								del(src)
+						user << "\red It doesn't look like the plasteel will do anything. Try metal."
+						// if (do_after(user,60))
+						// 	if(S.use(1))
+						// 		user << "<span class='notice'>Girders reinforced!</span>"
+						// 		new/obj/structure/girder/reinforced( src.loc )
+						// 		del(src)
 						return
 
 			if(S.sheettype)

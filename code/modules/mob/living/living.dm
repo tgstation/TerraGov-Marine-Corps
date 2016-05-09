@@ -250,7 +250,7 @@
 
 /mob/living/proc/revive()
 	rejuvenate()
-	buckled = initial(src.buckled)
+//	buckled = initial(src.buckled) // << This causes problems
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 
@@ -523,6 +523,10 @@
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time) )
 		if(iscarbon(L))
+			if(istype(L.buckled,/obj/structure/stool/bed/nest))
+				L.buckled.manual_unbuckle(L)
+				return
+
 			var/mob/living/carbon/C = L
 			if( C.handcuffed )
 				C.next_move = world.time + 100
@@ -538,8 +542,6 @@
 							O.show_message("\red <B>[usr] manages to unbuckle themself!</B>", 1)
 						C << "\blue You successfully unbuckle yourself."
 						C.buckled.manual_unbuckle(C)
-			if(istype(L.buckled,/obj/structure/stool/bed/nest))
-				L.buckled.manual_unbuckle(L)
 		else
 			L.buckled.manual_unbuckle(L)
 	else if(src.pinned.len)

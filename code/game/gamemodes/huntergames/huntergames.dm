@@ -30,7 +30,10 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/weapon/gun/rifle/m41a/scoped,\
 								/obj/item/weapon/gun/rifle/lmg,\
 								/obj/item/weapon/gun/shotgun/combat,\
-								/obj/item/weapon/gun/sniper)
+								/obj/item/weapon/gun/sniper,
+								/obj/item/clothing/head/helmet/marine/PMC/commando,\
+								/obj/item/clothing/shoes/PMC
+								)
 
 var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/clothing/head/helmet/space/yautja,\
@@ -47,20 +50,18 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/storage/box/grenade_system,\
 								/obj/item/weapon/storage/box/m42c_system,\
 								/obj/item/clothing/suit/storage/marine/PMCarmor/commando,\
-								/obj/item/clothing/head/helmet/marine/PMC/commando,\
-								/obj/item/clothing/shoes/PMC,\
 								/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc,\
 								/obj/item/clothing/head/helmet/marine/PMC/heavypmc,\
 								/obj/item/weapon/gun/minigun,\
 								/obj/item/weapon/gun/pistol/vp78,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
-								/obj/item/weapon/gun/sniper/elite)
+								/obj/item/weapon/gun/sniper/elite,
+								/obj/item/weapon/gun/rocketlauncher/quad)
 
 var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 								/obj/item/device/multitool,\
 								/obj/item/weapon/crowbar,\
 								/obj/item/weapon/crowbar,\
-								/obj/item/device/flashlight,\
 								/obj/item/device/flashlight,\
 								/obj/item/device/flashlight,\
 								/obj/item/weapon/reagent_containers/food/snacks/donkpocket,\
@@ -101,6 +102,10 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 								/obj/item/weapon/combat_knife,\
 								/obj/item/stack/medical/ointment,\
 								/obj/item/stack/medical/bruise_pack,\
+								/obj/item/weapon/hatchet, \
+								/obj/item/weapon/hatchet, \
+								/obj/item/weapon/hatchet, \
+								/obj/item/weapon/hatchet, \
 								/obj/item/ammo_magazine/rifle/incendiary)
 
 
@@ -112,7 +117,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/checkwin_counter = 0
 	var/finished = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/dropoff_timer = 1200 //10 minutes.
+	var/dropoff_timer = 800 //10 minutes.
 	var/last_drop = 0
 	var/last_death = 0
 	var/death_timer = 300 // 3 minutes.
@@ -325,7 +330,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 				supply_votes = null
 				supply_votes = list()
 				waiting_for_drop_votes = 0
-		sleep(6000)
+		sleep(5000)
 
 /datum/game_mode/huntergames/process()
 
@@ -367,7 +372,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/human_count = 0
 
 	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(istype(H) && H.stat == 0 && H.z != 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
+		if(istype(H) && H.stat == 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 			if(H.species != "Yautja") // Preds don't count in round end.
 				human_count += 1 //Add them to the amount of people who're alive.
 
@@ -390,7 +395,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	var/mob/living/carbon/winner = null
 
 	for(var/mob/living/carbon/human/Q in living_mob_list)
-		if(istype(Q) && Q.stat == 0 && Q.z != 0 && !isYautja(Q) && !istype(get_area(Q.loc),/area/centcom) && !istype(get_area(Q.loc),/area/tdome))
+		if(istype(Q) && Q.stat == 0 && !isYautja(Q) && !istype(get_area(Q.loc),/area/centcom) && !istype(get_area(Q.loc),/area/tdome))
 			winner = Q
 			break
 

@@ -6,6 +6,7 @@
 	opacity = 0
 	time_to_live = 300
 	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS		//PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
+	anchored = 1
 
 /obj/effect/effect/smoke/chem/New()
 	..()
@@ -232,7 +233,7 @@
 						if(!(target in wallList))
 							wallList += target
 						continue
-				
+
 				if(target in pending)
 					continue
 				if(target in complete)
@@ -241,7 +242,7 @@
 					continue
 				if(current.c_airblock(target)) //this is needed to stop chemsmoke from passing through thin window walls
 					continue
-				if(target.c_airblock(current)) 
+				if(target.c_airblock(current))
 					continue
 				pending += target
 

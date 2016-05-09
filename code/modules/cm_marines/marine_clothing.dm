@@ -1,16 +1,6 @@
 /**********************Marine Clothing**************************/
 
 //HEADGEAR
-
-/obj/item/clothing/head/helmet/marine
-	name = "marine standard helmet"
-	desc = "Standard marine gear. Protects the head from damage."
-	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
-	health = 5
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
-	anti_hug = 1
-	w_class = 5
-
 /obj/item/clothing/head/helmet/marine/tech
 	name = "M10 Technician Helmet"
 	icon_state = "helmet-tech"
@@ -20,7 +10,6 @@
 	name = "M10 Medic Helmet"
 	icon_state = "helmet-medic"
 	item_color = "helmet-medic"
-
 
 /obj/item/clothing/head/helmet/marine/fluff/anthonycarmine
 	name = "Anthony's helmet"
@@ -114,7 +103,7 @@
 	icon_state = "grey"
 	item_state = "gy_suit"
 	item_color = "grey"
-	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 	has_sensor = 3
@@ -268,7 +257,6 @@
 
 
 //ARMOR
-
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
 	desc = "Festive!"
@@ -335,7 +323,7 @@
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 	cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = 200
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	body_parts_covered = HANDS
@@ -386,17 +374,21 @@
 	item_state = "egloves"
 
 //SHOES
-
 /obj/item/clothing/shoes/marine
 	name = "marine combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	armor = list(melee = 10, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
+	armor = list(melee = 60, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	body_parts_covered = FEET
+	cold_protection = FEET
+	min_cold_protection_temperature = 200
+	heat_protection = FEET
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife
 	//flags = NOSLIP  Removed because it makes them not slip when there are breaches.
+	var/armor_stage = 0
 
 	//Knife slot
 	attack_hand(var/mob/living/M)
@@ -421,10 +413,12 @@
 			update_icon()
 
 	update_icon()
-		if(knife)
+		if(knife && !armor_stage)
 			icon_state = "jackboots-1"
 		else
-			icon_state = initial(icon_state)
+			if(!armor_stage)
+				icon_state = initial(icon_state)
+
 
 /obj/item/clothing/shoes/marinechief
 	name = "chief officer shoes"
@@ -453,6 +447,15 @@
 	item_state = "backpack"
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
+
+/obj/item/weapon/storage/backpack/smock
+	name = "Sniper's Smock"
+	desc = "A specially designed smock with pockets for all your sniper needs."
+	icon_state = "smock"
+	item_state = "smock"
+	max_w_class = 3
+	max_combined_w_class = 21
+
 
 /obj/item/weapon/storage/backpack/marine/medic
 	name = "USCM Medic Backpack"

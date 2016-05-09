@@ -109,9 +109,9 @@
 	name = "Text File"
 	extension = "txt"
 	image = 'icons/ntos/file.png'
-	var/dat = "text files go here"
+	var/dat = "text goes here!"
 	//file_increment = 0.002 // 0.002 kilobytes per character (1024 characters per KB)
-	active_state = "power"
+	active_state = "text"
 
 /datum/file/program/data/text/interact()
 	if(!interactable())

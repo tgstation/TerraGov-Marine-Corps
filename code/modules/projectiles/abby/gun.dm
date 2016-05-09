@@ -81,6 +81,10 @@
 			icon_state = icon_empty
 		else
 			icon_state = initial(icon_state)
+		update_attachables() //This will cut existing overlays
+		if(current_mag && !isnull(current_mag.bonus_overlay))
+			var/image/I = new(current_mag.icon,current_mag.bonus_overlay) //Mag adds an overlay
+			overlays += I
 
 	New()
 		..()
@@ -147,6 +151,9 @@
 
 		return ..()
 
+	proc/snowflake_reload(var/obj/item/ammo_magazine/A)
+		return 1
+
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
@@ -161,20 +168,19 @@
 		user << "\The [A] doesn't fit on [src]."
 		return
 
-	//First, deal with the slot in question.
 	var/nope = 0
-	if(A.slot == "rail" && src.rail) nope = 1
-	if(A.slot == "muzzle" && src.muzzle) nope = 1
-	if(A.slot == "under" && src.under) nope = 1
+	if(A.slot == "rail" && rail && rail.can_be_removed == 0) nope = 1
+	else if(A.slot == "muzzle" && muzzle && muzzle.can_be_removed == 0) nope = 1
+	else if(A.slot == "under" && under && under.can_be_removed == 0) nope = 1
+	else if(A.slot == "stock" && stock && stock.can_be_removed == 0) nope = 1
 	if(nope)
-		user << "There's already something attached in that weapon slot. Field strip your weapon first."
+		user << "The attachment on [src]'s [A.slot] cannot be removed."
 		return
 
 	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying \the [src]..")
 	if(do_after(user,60))
 		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
-		user.drop_item()
-		A.loc = src
+		user.drop_item(A)
 		A.Attach(src)
 		update_attachables()
 		if(reload_sound)
@@ -191,10 +197,6 @@
 		if(user) user << "That's not a magazine!"
 		return 0
 
-	if(!isnull(current_mag) && current_mag.loc == src)
-		if(user) user << "It's still got something loaded."
-		return
-
 	if(!istype(src,text2path(magazine.gun_type)))
 		if(user) user << "That magazine doesn't fit in there!"
 		return
@@ -202,6 +204,15 @@
 	if(magazine.current_rounds == 0)
 		if(user) user << "That [magazine.name] is empty!"
 		return 0
+
+	//speshul snowflake shotgun code (say that 10 times fast)
+	if(istype(src,/obj/item/weapon/gun/shotgun/pump) && current_mag && current_mag.current_rounds > 0)
+		snowflake_reload(magazine)
+		return
+
+	if(!isnull(current_mag) && current_mag.loc == src)
+		if(user) user << "It's still got something loaded."
+		return
 
 	if(magazine.current_rounds == -1) //Default, meaning full.
 		magazine.current_rounds = magazine.max_rounds
@@ -225,10 +236,9 @@
 			if(reload_sound) playsound(user, reload_sound, 100, 1)
 			magazine.loc = src //Jam that sucker in there.
 			update_icon()
-			if(!ammo || !istype(ammo,ammopath))
-				if(ammo) del(ammo)
-				ammo = new ammopath()
-				ammo.current_gun = src
+			if(ammo) del(ammo)
+			ammo = new ammopath()
+			ammo.current_gun = src
 		else
 			user << "Your reload was interrupted."
 			return 0
@@ -237,7 +247,8 @@
 		if(ammo) del(ammo)
 		ammo = new ammopath()
 		ammo.current_gun = src
-	return
+
+	return 1
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 /obj/item/weapon/gun/proc/unload(var/mob/user as mob)
@@ -417,11 +428,11 @@
 		if(twohanded && !istype(O))
 			user << "\red You need a more secure grip to fire this weapon!"
 			return
-		if(isYautja(user))
-			if(istype(user.hands,/obj/item/clothing/gloves/yautja))
-				var/obj/item/clothing/gloves/yautja/G = user.hands
-				if(G.cloaked)
-					G.decloak(user)
+		if(user:gloves)
+			var/obj/item/clothing/gloves/yautja/Y = user:gloves
+			if(istype(Y) && Y.cloaked)
+				Y.decloak(user)
+				return 0
 
 		add_fingerprint(user)
 
@@ -465,128 +476,136 @@
 		bullets_fired = 1 + ammo.bonus_projectiles
 */
 	var/i //Weirdly, this way is supposed to be less laggy. by 500%
-	spawn()
-		for(i = 1 to bullets_fired)
-			if(isnull(src) || isnull(target)) //Something disappeared/dropped in between.
-				click_empty(user)
-				break
+//	spawn()
+	for(i = 1 to bullets_fired)
+		if(isnull(src)) //Something disappeared/dropped in between.
+			break
 /*
-			if(istype(user,/mob/living/carbon/human) && src.loc != user) //Had a human. dont need em anyway really
-				click_empty(user)
-				break
+		if(istype(user,/mob/living/carbon/human) && src.loc != user) //Had a human. dont need em anyway really
+			click_empty(user)
+			break
 */
-			if(!load_into_chamber()) //This also checks for a null magazine, and loads the chamber with a round.
-				click_empty(user)
-				break
+		if(!load_into_chamber()) //This also checks for a null magazine, and loads the chamber with a round.
+			click_empty(user)
+			break
 
-			if(!in_chamber) //Guns must have something in the chamber. It doesn't necessarily have to be a bullet.
-				click_empty(user)
-				break
+		if(!in_chamber) //Guns must have something in the chamber. It doesn't necessarily have to be a bullet.
+			click_empty(user)
+			break
 
-			in_chamber.shot_from = src
-			if(!isnull(original_target) && target != original_target) //Save the original thing that we shot at.
-				in_chamber.original = original_target
+		if(!target || isnull(target))
+			target = targloc
+
+		in_chamber.shot_from = src
+		if(!isnull(original_target) && target != original_target) //Save the original thing that we shot at.
+			in_chamber.original = original_target
+		else
+			in_chamber.original = target
+		if(user)
+			in_chamber.firer = user
+			if(istype(user,/mob/living))
+				in_chamber.def_zone = user.zone_sel.selecting
+			in_chamber.dir = user.dir
+			var/actual_sound = fire_sound
+			if(active_attachable && !active_attachable.passive && active_attachable.shoot_sound)
+			 //If we're firing from an attachment, use that noise instead.
+				actual_sound = active_attachable.shoot_sound
+
+			if(silenced)
+				if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 8, 1)
 			else
-				in_chamber.original = target
-			if(user)
-				in_chamber.firer = user
-				if(istype(user,/mob/living))
-					in_chamber.def_zone = user.zone_sel.selecting
-				in_chamber.dir = user.dir
-				var/actual_sound = fire_sound
-				if(active_attachable && !active_attachable.passive && active_attachable.shoot_sound)
-				 //If we're firing from an attachment, use that noise instead.
-					actual_sound = active_attachable.shoot_sound
+				if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 50, 1)
+				if(i == 1)
+					if(ammo_counter && current_mag)
+						user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
+						"<span class='warning'>You fire [src][reflex ? "by reflex":""]! \[<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]\]</span>", \
+						"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
+					else
+						user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
+						"<span class='warning'>You fire [src][reflex ? "by reflex":""]!</span>", \
+						"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
+		if(rail)
+			if(rail.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * rail.ranged_dmg_mod / 100)
+		if(muzzle)
+			if(muzzle.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * muzzle.ranged_dmg_mod / 100)
+		if(stock)
+			if(stock.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * stock.ranged_dmg_mod / 100)
+		if(under)
+			if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
+			if(istype(under,/obj/item/attachable/bipod) && prob(30))
+				var/found = 0
+				for(var/obj/structure/Q in range(1,user)) //This is probably inefficient as fuck
+					if(Q.throwpass == 1)
+						found = 1
+						break
+				if(found)
+					user << "\blue Your bipod keeps the weapon steady!"
+					in_chamber.damage = round(5 * in_chamber.damage / 4) //Bipod gives a decent damage upgrade
 
-				if(silenced)
-					if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 8, 1)
-				else
-					if((ammo && ammo.bonus_projectiles == 0) || i == 1) playsound(user, actual_sound, 50, 1)
-					if(i == 1)
-						if(ammo_counter && current_mag)
-							user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-							"<span class='warning'>You fire [src][reflex ? "by reflex":""]! \[<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]\]</span>", \
-							"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
-						else
-							user.visible_message("<span class='warning'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-							"<span class='warning'>You fire [src][reflex ? "by reflex":""]!</span>", \
-							"You hear a [istype(in_chamber.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!")
-			if(rail)
-				if(rail.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * rail.ranged_dmg_mod / 100)
-			if(muzzle)
-				if(muzzle.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * muzzle.ranged_dmg_mod / 100)
-			if(stock)
-				if(stock.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * stock.ranged_dmg_mod / 100)
-			if(under)
-				if(under.ranged_dmg_mod) in_chamber.damage = round(in_chamber.damage * under.ranged_dmg_mod / 100)
-				if(istype(under,/obj/item/attachable/bipod) && prob(30))
-					var/found = 0
-					for(var/obj/structure/Q in range(1,user)) //This is probably inefficient as fuck
-						if(Q.throwpass == 1)
-							found = 1
-							break
-					if(found)
-						user << "\blue Your bipod keeps the weapon steady!"
-						in_chamber.damage = round(5 * in_chamber.damage / 4) //Bipod gives a decent damage upgrade
+		//Scatter chance is 20% by default, 10% flat with single shot.
+		if(ammo && ammo.never_scatters == 0 && (prob(5) || (burst_amount > 1 && burst_toggled)))
+			in_chamber.scatter_chance += (burst_amount * 3) //Much higher chance on a burst.
 
-			//Scatter chance is 20% by default, 10% flat with single shot.
-			if(ammo && ammo.never_scatters == 0 && (prob(5) || (burst_amount > 1 && burst_toggled)))
-				in_chamber.scatter_chance += (burst_amount * 5) //Much higher chance on a burst.
+			if(prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
+				var/scatter_x = rand(-1,1)
+				var/scatter_y = rand(-1,1)
+				var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
+				if(istype(new_target) && !isnull(new_target))
+					target = new_target
+					targloc = target
+					in_chamber.original = target
 
-				if(prob(in_chamber.scatter_chance) && (ammo && ammo.never_scatters == 0)) //Scattered!
-					var/scatter_x = rand(-1,1)
-					var/scatter_y = rand(-1,1)
-					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
-					if(istype(new_target) && !isnull(new_target))
-						target = new_target
-						targloc = target
-						in_chamber.original = target
+		if(params)
+			var/list/mouse_control = params2list(params)
+			if(mouse_control["icon-x"])
+				in_chamber.p_x = text2num(mouse_control["icon-x"])
+			if(mouse_control["icon-y"])
+				in_chamber.p_y = text2num(mouse_control["icon-y"])
 
-			if(params)
-				var/list/mouse_control = params2list(params)
-				if(mouse_control["icon-x"])
-					in_chamber.p_x = text2num(mouse_control["icon-x"])
-				if(mouse_control["icon-y"])
-					in_chamber.p_y = text2num(mouse_control["icon-y"])
+		if(recoil > 0 && ishuman(user))
+			shake_camera(user, recoil + 1, recoil)
 
-			if(recoil > 0 && ishuman(user))
-				shake_camera(user, recoil + 1, recoil)
+		//Finally, make with the pew pew!
+		if(!in_chamber || !istype(in_chamber,/obj) || isnull(in_chamber))
+			usr << "Your gun is malfunctioning. Tell a coder! (don't forget to say exactly how you got this message)"
+			burst_firing = 0
+			return
 
-			//Finally, make with the pew pew!
-			if(!in_chamber || !istype(in_chamber,/obj) || isnull(in_chamber))
-				usr << "Your gun is malfunctioning. Tell a coder! (don't forget to say exactly how you got this message)"
-				burst_firing = 0
-				return
-	//vvvvvvvvvvvvvvvvvvvvvv
+		if(get_turf(target) != get_turf(user))
+//vvvvvvvvvvvvvvvvvvvvvv
 			in_chamber.fire_at(target,user,src,ammo.max_range,ammo.shell_speed)
-	//^^^^^^^^^^^^^^^^^^^^^^
-			in_chamber = null //Now we absolve all knowledge of it. Its the targets problem now
-			if(target)
-				var/angle = round(Get_Angle(user,target))
-				muzzle_flash(angle)
+//^^^^^^^^^^^^^^^^^^^^^^
+		else
+			sleep(burst_delay)
+			continue
 
-			if(active_attachable && active_attachable.current_ammo > 0)
-				active_attachable.current_ammo--
-				if(!active_attachable.continuous)
-					active_attachable = null
+		in_chamber = null //Now we absolve all knowledge of it. Its the targets problem now
+		if(target)
+			var/angle = round(Get_Angle(user,target))
+			muzzle_flash(angle)
 
-			else
-				if(current_mag)  //Reduce ammo.
-					current_mag.current_rounds--
-					current_mag.update_icon()
-					if(current_mag.current_rounds == 0 && autoejector)
-						if(user)
-							playsound(user, current_mag.sound_empty, 50, 1)
-						else
-							playsound(src.loc, current_mag.sound_empty, 50, 1)
-						current_mag.loc = get_turf(src)
-						current_mag = null //Get rid of it. But not till the bullet is fired.
+		if(active_attachable && active_attachable.current_ammo > 0)
+			active_attachable.current_ammo--
+			if(!active_attachable.continuous)
+				active_attachable = null
 
-			if(i < bullets_fired)
-				sleep(burst_delay)
-			else if(i == bullets_fired) //We're on our last bullet.
-				burst_firing = 0
-				update_icon()
+		else
+			if(current_mag)  //Reduce ammo.
+				current_mag.current_rounds--
+				current_mag.update_icon()
+				if(current_mag.current_rounds == 0 && autoejector)
+					if(user)
+						playsound(user, current_mag.sound_empty, 50, 1)
+					else
+						playsound(src.loc, current_mag.sound_empty, 50, 1)
+					current_mag.loc = get_turf(src)
+					current_mag = null //Get rid of it. But not till the bullet is fired.
+
+		if(i < bullets_fired)
+			sleep(burst_delay)
+		else if(i == bullets_fired) //We're on our last bullet.
+			burst_firing = 0
+			update_icon()
 	return
 
 /obj/item/weapon/gun/proc/muzzle_flash(var/angle)
@@ -718,19 +737,15 @@
 
 	if(rail && rail.can_be_removed)
 		usr << "You remove the weapon's [rail]."
-		rail.loc = get_turf(usr)
 		rail.Detach(src)
 	if(muzzle && muzzle.can_be_removed)
 		usr << "You remove the weapon's [muzzle]."
-		muzzle.loc = get_turf(usr)
 		muzzle.Detach(src)
 	if(under && under.can_be_removed)
 		usr << "You remove the weapon's [under]."
-		under.loc = get_turf(usr)
 		under.Detach(src)
 	if(stock && stock.can_be_removed)
 		usr << "You remove the weapon's [stock]."
-		stock.loc = get_turf(usr)
 		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)

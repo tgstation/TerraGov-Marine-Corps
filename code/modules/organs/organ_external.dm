@@ -477,7 +477,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/heal_amt = 0
 
 		// if damage >= 50 AFTER treatment then it's probably too severe to heal within the timeframe of a round.
-		if (W.can_autoheal() && W.wound_damage() < 50 && prob(35) && owner.health >= 0 && !W.is_treated())
+		if (W.can_autoheal() && W.wound_damage() < 50 && prob(35) && owner.health >= 0 && !W.is_treated() && owner.bodytemperature > owner.species.cold_level_1)
 			heal_amt += 0.3 //They can't autoheal if in critical
 		else if (W.is_treated() && W.wound_damage() < 50 && prob(75))
 			heal_amt += 0.5 //Treated wounds heal faster

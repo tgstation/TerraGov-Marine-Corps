@@ -12,7 +12,7 @@
 
 	flags =  FPRINT | TABLEPASS | CONDUCT
 	matter = list("metal" = 2000)
-	w_class = 2.0
+	w_class = 4.0
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
 	var/list/guns_allowed = list() //what weapons can it be attached to? Note that it must be the FULL path, not parents.
@@ -44,10 +44,22 @@
 
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
-		if(slot == "rail") G.rail = src
-		if(slot == "muzzle") G.muzzle = src
-		if(slot == "under") G.under = src
-		if(slot == "stock") G.stock = src
+		if(slot == "rail")
+			if(G.rail) G.rail.Detach(G)
+			G.rail = src
+		else if(slot == "muzzle")
+			if(G.muzzle) G.muzzle.Detach(G)
+			G.muzzle = src
+		else if(slot == "under")
+			if(G.under) G.under.Detach(G)
+			G.under = src
+		else if(slot == "stock")
+			if(G.stock) G.stock.Detach(G)
+			G.stock = src
+		if(ishuman(loc))
+			var/mob/living/carbon/human/M = src.loc
+			M.drop_item(src)
+		loc = G
 
 		//Now deal with static, non-coded modifiers.
 		if(melee_mod != 100)
@@ -78,10 +90,21 @@
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
-		if(slot == "rail") G.rail = null
-		if(slot == "muzzle") G.muzzle = null
-		if(slot == "under") G.under = null
-		if(slot == "stock") G.stock = null
+		if(G.zoom)
+			G.zoom()
+
+		if(slot == "rail" && G.rail == src)
+			G.rail.loc = get_turf(G)
+			G.rail = null
+		if(slot == "muzzle" && G.muzzle == src)
+			G.muzzle.loc = get_turf(G)
+			G.muzzle = null
+		if(slot == "under" && G.under == src)
+			G.under.loc = get_turf(G)
+			G.under = null
+		if(slot == "stock" && G.stock == src)
+			G.stock.loc = get_turf(G)
+			G.stock = null
 
 		if(G.wielded)
 			G.unwield()
@@ -134,6 +157,7 @@
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/skorpion,
 						/obj/item/weapon/gun/smg/uzi,
+						/obj/item/weapon/gun/smg/p90,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/c99,
 						/obj/item/weapon/gun/pistol/m1911,
@@ -201,6 +225,7 @@
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
 						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy,
@@ -228,8 +253,6 @@
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/smg/mp7,
-						/obj/item/weapon/gun/smg/skorpion,
-						/obj/item/weapon/gun/smg/uzi,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump
 					)
@@ -330,6 +353,7 @@
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
+						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/sniper
@@ -351,10 +375,11 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
@@ -375,7 +400,7 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/smartgun,
 						/obj/item/weapon/gun/pistol/m4a3,
@@ -384,7 +409,7 @@
 						/obj/item/weapon/gun/pistol/holdout,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
-						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy,
@@ -402,7 +427,7 @@
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/smg/,
+						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/smartgun,
 						/obj/item/weapon/gun/pistol/m4a3,
@@ -411,7 +436,7 @@
 						/obj/item/weapon/gun/pistol/holdout,
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
-						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
 						/obj/item/weapon/gun/pistol/heavy
@@ -428,7 +453,7 @@
 	guns_allowed = list(
 						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/rifle/m41a/scoped,
-						/obj/item/weapon/gun/revolver,
+						/obj/item/weapon/gun/revolver/m44,
 						/obj/item/weapon/gun/revolver/upp,
 						/obj/item/weapon/gun/revolver/cmb,
 						/obj/item/weapon/gun/revolver/mateba,
@@ -479,7 +504,9 @@
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
 						/obj/item/weapon/gun/shotgun/double,
-						/obj/item/weapon/gun/sniper
+						/obj/item/weapon/gun/sniper,
+						/obj/item/weapon/gun/rocketlauncher,
+						/obj/item/weapon/gun/m92
 						)
 	accuracy_mod = -5
 	slot = "rail"
@@ -493,7 +520,7 @@
 	accuracy_mod = 10
 	melee_mod = 115
 	size_mod = 2
-	delay_mod = 3
+	delay_mod = 6
 	pixel_shift_x = 34
 	pixel_shift_y = 15
 	guns_allowed = list(/obj/item/weapon/gun/shotgun/pump)
@@ -519,7 +546,7 @@
 	accuracy_mod = 15
 	melee_mod = 110
 	size_mod = 1
-	delay_mod = 3
+	delay_mod = 6
 	icon_state = "riflestock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
@@ -533,11 +560,11 @@
 	accuracy_mod = 20
 	melee_mod = 90
 	size_mod = 1
-	delay_mod = 3
+	delay_mod = 6
 	w_class_mod = 2
 	icon_state = "44stock"
-	pixel_shift_x = 38
-	pixel_shift_y = 16
+	pixel_shift_x = 25
+	pixel_shift_y = 19
 	guns_allowed = list(/obj/item/weapon/gun/revolver/m44)
 
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
@@ -547,6 +574,7 @@
 	icon_state = "grenade"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump
@@ -573,7 +601,7 @@
 			G.throw_range = 20
 			G.throw_at(target, 20, 2, user)
 			current_ammo--
-			spawn(12) //~1 second.
+			spawn(15) //~1 second.
 				if(G) //If somehow got deleted since then
 					G.prime()
 			return 1
@@ -619,8 +647,8 @@
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb)
-	ammo_capacity = 9
-	current_ammo = 9
+	ammo_capacity = 20
+	current_ammo = 20
 	slot = "under"
 	shoot_sound = 'sound/weapons/flamethrower_shoot.ogg'
 	continuous = 0
@@ -703,6 +731,9 @@
 	slot = "rail"
 	passive = 1
 	can_activate = 1
+	delay_mod = 6
+	accuracy_mod = 50
+	burst_mod = -1
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
 		target.zoom(11,12,user)

@@ -71,6 +71,10 @@
 	name = "\improper Relay"
 	icon_state = "tcomsatcham"
 
+/area/ice_colony/ground/relay_secret
+	name = "\improper Communications Relay"
+	icon_state = "tcomsatcham"
+
 /area/ice_colony/ground/disposal
 	name = "\improper Disposal"
 	icon_state = "disposal"
@@ -135,6 +139,18 @@
 /area/ice_colony/underground/research/alien_research
 	name = "\improper Xenobiology Lab"
 	icon_state = "green"
+
+/area/ice_colony/underground/research/anomaly_research
+	name = "\improper Anomaly Research Lab"
+	icon_state = "purple"
+
+/area/ice_colony/underground/research/aces
+	name = "\improper Advanced Combat Energy Systems Lab"
+	icon_state = "green"
+
+/area/ice_colony/underground/research/aces_storage
+	name = "\improper ACES Secure Storage"
+	icon_state = "purple"
 
 /area/ice_colony/underground/research/anomaly_research
 	name = "\improper Anomaly Research Lab"
@@ -236,13 +252,9 @@
 	name = "\improper Doorms Maintenance"
 	icon_state = "maint_dormitory"
 
-/area/ice_colony/underground/research/doorms
-	name = "\improper Doorms"
+/area/ice_colony/underground/research/dorms
+	name = "\improper Dorms"
 	icon_state = "crew_quarters"
-
-/area/ice_colony/underground/research/cooling
-	name = "\improper Anomaly Storage Cooling Unit"
-	icon_state = "yellow"
 
 /area/ice_colony/underground/research/anomaly_storage_two
 	name = "\improper Anomaly Storage II"
@@ -255,6 +267,14 @@
 /area/ice_colony/underground/research/disposal
 	name = "\improper Disposal"
 	icon_state = "disposal"
+
+/area/ice_colony/underground/research/r_and_d
+	name = "\improper Research and Development"
+	icon_state = "purple"
+
+/area/ice_colony/underground/research/amonaly_hallway_entrance
+	name = "\improper Anomaly Hallway Entrance"
+	icon_state = "green"
 
 //Elevator-------
 /area/shuttle/elevator1/ground

@@ -9,6 +9,17 @@
 		..()
 		name = "floor"
 
+/turf/simulated/floor/icefloor
+	icon_state = "floor"
+	name = "ice colony floor"
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
+	temperature = 223 //ICE_TEMPERATURE
+
+	New()
+		..()
+		name = "floor"
+
 /turf/simulated/floor/airless/ceiling
 	icon_state = "rockvault"
 
@@ -114,6 +125,17 @@
 		..()
 		name = "plating"
 
+/turf/simulated/floor/plating/icefloor
+	icon_state = "plating"
+	name = "ice colony plating"
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
+	temperature = 223
+
+	New()
+		..()
+		name = "plating"
+
 /turf/simulated/floor/bluegrid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bcircuit"
@@ -137,9 +159,19 @@
 	density = 1
 	blocks_air = 1
 
+/turf/simulated/shuttle/wall/dropship
+	name = "wall"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rasputin1"
+
 /turf/simulated/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
+
+/turf/simulated/shuttle/floor/dropship
+	name = "floor"
+	icon_state = "rasputin1"
+
 
 /turf/simulated/shuttle/plating
 	name = "plating"

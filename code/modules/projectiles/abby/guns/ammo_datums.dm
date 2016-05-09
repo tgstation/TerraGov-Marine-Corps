@@ -4,7 +4,7 @@
 	name = "bullet"
 	damage = 10
 	damage_type = BRUTE
-	accurate_range = 5
+	accurate_range = 6
 	shrapnel_chance = 10
 	icon_state = "bullet"
 	shell_speed = 2 //Hmmmmmmm.
@@ -54,6 +54,7 @@
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
 	damage = 25
+	accurate_range = 5
 
 /datum/ammo/bullet/smg/ap
 	name = "AP submachinegun bullet"
@@ -65,7 +66,7 @@
 	damage = 30
 	armor_pen = 30
 	accuracy = 15
-	shell_speed = 3 //Faster!
+	shell_speed = 2 //Faster!
 
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
@@ -97,6 +98,7 @@
 /datum/ammo/bullet/rifle
 	name = "rifle bullet"
 	damage = 40
+	accurate_range = 10
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -114,7 +116,7 @@
 	armor_pen = 10
 	shrapnel_chance = 0
 	damage_bleed = 0
-	shell_speed = 3
+	shell_speed = 2
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -186,8 +188,9 @@
 	accurate_range = 20
 	max_range = 30
 	armor_pen = 50
-	accuracy = 25
-	shell_speed = 3
+	damage_bleed = 0
+	accuracy = 15
+	shell_speed = 2
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary shell"
@@ -212,12 +215,12 @@
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic bullet"
-	damage = 250
+	damage = 160
 	accurate_range = 30
 	max_range = 30
 	armor_pen = 50
 	accuracy = 55
-	shell_speed = 4
+	shell_speed = 3
 
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
@@ -240,7 +243,7 @@
 /datum/ammo/energy/yautja
 	name = "plasma bolt"
 	icon_state = "ion"
-	damage = 10
+	damage = 5
 	damage_type = BURN
 	ignores_armor = 1
 	stun = 2
@@ -248,30 +251,50 @@
 	shell_speed = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(damage > 25)
+		if(P.damage > 25)
 			explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(damage > 25)
+		if(P.damage > 25)
 			explosion(T, -1, -1, 2, 2)
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(damage > 25)
+		if(P.damage > 25)
 			explosion(get_turf(P.loc), -1, -1, 2, 2)
+
+/datum/ammo/energy/yautja/rifle
+	damage = 10
+	stun = 0
+	weaken = 0
+	shell_speed = 2
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		if(M && !M.stat && P.damage > 25)
+			M.Weaken(4)
+			step_rand(M)
+			playsound(M.loc, 'sound/weapons/pulse.ogg', 70, 1)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		if(P.damage > 25)
+			explosion(T, -1, -1, 2, -1)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		if(P.damage > 25)
+			explosion(get_turf(P.loc), -1, -1, 2, -1)
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	damage = 40
+	damage = 50
 	skips_marines = 1
-	armor_pen = 15
+	armor_pen = 5
 	accuracy = 50
-	accurate_range = 15
-	max_range = 10
+	accurate_range = 6
+	max_range = 12
 
 /datum/ammo/energy/emitter
 	name = "emitter bolt"
 	icon_state = "emitter"
-	damage = 50
+	damage = 30
 	ignores_armor = 1
 	damage_type = BURN
 
@@ -285,14 +308,6 @@
 	skips_xenos = 1
 	stun = 2
 	weaken = 2
-	shell_speed = 1
-
-/datum/ammo/xeno/spit/burny
-	name = "corrosive spit"
-	icon_state = "neurotoxin"
-	damage = 10
-	damage_type = BURN
-	skips_xenos = 1
 	shell_speed = 1
 
 /datum/ammo/flamethrower
@@ -337,7 +352,7 @@
 	weaken = 3
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(P && P.loc && !istype(M,/mob/living/carbon/monkey))
+		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
 			P.visible_message("\The [src] chimpers furiously!")
 			new /mob/living/carbon/monkey(P.loc)
 
@@ -389,6 +404,7 @@
 	incendiary = 1
 	accuracy = 15
 	max_range = 15
+	shell_speed = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -412,3 +428,111 @@
 		G.SetLuminosity(G.brightness_on)
 		return
 
+/datum/ammo/yautja_spike
+	name = "alloy spike"
+	damage = 40
+	icon_state = "MSpearFlight"
+	damage_type = BRUTE
+	accuracy = 50
+	max_range = 30
+	accurate_range = 20
+	shell_speed = 2
+	armor_pen = 20
+
+/datum/ammo/rocket
+	name = "high explosive rocket"
+	icon_state = "missile"
+	accuracy = 10
+	accurate_range = 25
+	max_range = 25
+	damage = 15
+	damage_type = BRUTE  //Bonk!
+	shell_speed = 1
+	damage_bleed = 0
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		explosion(get_turf(M), -1, 1, 3, 4)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		explosion(get_turf(O), -1, 1, 3, 4)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		explosion(T,  -1, 1, 3, 4)
+
+	do_at_max_range(obj/item/projectile/P)
+		explosion(get_turf(P),  -1, 1, 3, 4)
+
+/datum/ammo/rocket/ap
+	name = "anti-armor rocket"
+	damage = 160
+	damage_type = BRUTE  //Bonk!
+	armor_pen = 100
+	damage_bleed = 0
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		explosion(get_turf(M), -1, 1, 1, 4)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		explosion(get_turf(O), -1, 1, 1, 4)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		explosion(T,  -1, 1, 1, 4)
+
+	do_at_max_range(obj/item/projectile/P)
+		explosion(P.loc,  -1, 1, 1, 4)
+
+/datum/ammo/rocket/wp
+	name = "white phosphorous rocket"
+	damage = 90
+	damage_type = BURN
+	max_range = 18
+	incendiary = 1
+
+	proc/drop_flame(var/turf/T)
+		if(!istype(T)) return
+		if(locate(/obj/flamer_fire) in T) return
+		var/obj/flamer_fire/F =  new(T)
+		processing_objects.Add(F)
+		F.firelevel = pick(15,20,25,30) //mama mia she a hot one!
+
+		for(var/mob/living/carbon/M in range(3,T))
+			if(istype(M,/mob/living/carbon/Xenomorph))
+				if(M:fire_immune) continue
+
+			if(M.stat == DEAD) continue
+			M.adjust_fire_stacks(rand(5,25))
+			M.IgniteMob()
+			M.visible_message("\red [M] bursts into flames!","\red <B>You burst into flames!</b>")
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_flame(get_turf(M))
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_flame(get_turf(O))
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_flame(get_turf(T))
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_flame(get_turf(P))
+
+/datum/ammo/rocket/wp/quad
+	name = "thermobaric rocket"
+	damage = 200
+	max_range = 30
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_flame(get_turf(M))
+		explosion(P.loc,  -1, 2, 3, 4)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_flame(get_turf(O))
+		explosion(P.loc,  -1, 2, 3, 4)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_flame(get_turf(T))
+		explosion(P.loc,  -1, 2, 3, 4)
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_flame(get_turf(P))
+		explosion(P.loc,  -1, 2, 3, 4)

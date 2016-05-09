@@ -151,7 +151,7 @@ var/global/datum/controller/gameticker/ticker
 			if (S.name != "AI")
 				del(S)
 		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
-		world << sound('sound/AI/welcome.ogg') // Skie
+		//world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
@@ -187,7 +187,13 @@ var/global/datum/controller/gameticker/ticker
 		if(mode.name == "Prison rescue")
 			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
-
+		if(mode.name == "Ice colony")
+			shuttle.area_offsite = locate(/area/shuttle/drop1/ice_colony)
+			shuttle2.area_offsite = locate(/area/shuttle/drop2/ice_colony)
+		for(var/obj/structure/closet/C in world) //Set up special equipment for lockers and vendors, depending on gamemode
+			C.select_gamemode_equipment(mode.name)
+		for(var/obj/machinery/vending/V in world)
+			V.select_gamemode_equipment(mode.name)
 	return 1
 
 /datum/controller/gameticker

@@ -27,6 +27,7 @@
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
 	icon_state = "ResinWall1" //same as resin, but consistency ho!
+	layer = 3.1
 
 /obj/effect/alien/resin/membrane
 	name = "resin membrane"
@@ -34,6 +35,7 @@
 	icon_state = "Resin Membrane"
 	opacity = 0
 	health = 120
+	layer = 3
 
 /obj/effect/alien/resin/sticky
 	name = "sticky resin"
@@ -42,6 +44,7 @@
 	density = 0
 	opacity = 0
 	health = 150
+	layer = 2.9
 
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <=0)
@@ -191,7 +194,7 @@
 
 	//		if (locate(/obj/movable, T)) // don't propogate into movables
 	//			continue
-			if(istype(T,/turf/unsimulated/floor/gm/grass) || istype(T,/turf/unsimulated/floor/gm/river) || istype(T,/turf/unsimulated/floor/gm/coast))
+			if(istype(T,/turf/unsimulated/floor/gm/grass) || istype(T,/turf/unsimulated/floor/gm/river) || istype(T,/turf/unsimulated/floor/gm/coast) || T.slayer > 0)
 				continue
 
 			for(var/obj/O in T)
@@ -574,6 +577,7 @@
 	var/health = 100
 	var/on_fire = 0
 	var/resisting = 0
+	var/resisting_ready = 0
 	var/nest_resist_time = 1900
 	layer = 2.9 //Just above weeds.
 
@@ -600,20 +604,30 @@
 				if(buckled_mob.stat)
 					buckled_mob << "You're a little too unconscious to try that."
 					return
+				if(resisting_ready && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc)
+					buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] breaks free from the nest!</span>",\
+						"<span class='warning'>You pull yourself free from the nest!</span>",\
+						"<span class='notice'>You hear squelching...</span>")
+					unbuckle()
+					resisting_ready = 0
 				if(resisting)
 					buckled_mob << "You're already trying to free yourself. Give it some time."
 					return
-				buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
-					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+				if(buckled_mob && buckled_mob.name)
+					buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
+						"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
+						"<span class='notice'>You hear squelching...</span>")
 				resisting = 1
 				spawn(nest_resist_time)
 					if(resisting && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
-						buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] breaks free from the nest!</span>",\
-							"<span class='warning'>You pull yourself free from the nest!</span>",\
-							"<span class='notice'>You hear squelching...</span>")
-						unbuckle()
-					resisting = 0
+						resisting = 0
+						resisting_ready = 1
+						if(istype(usr,/mob/living/carbon/human))
+							var/mob/living/carbon/human/H = usr
+							if(H.handcuffed)
+								buckled_mob << "\red <b>You are ready to break free of the nest, but your limbs are still secured. Resist once more to pop up, then resist again to break your limbs free!</b>"
+							else
+								buckled_mob << "\red <b>You are ready to break free! Resist once more to free yourself!</b>"
 			src.add_fingerprint(user)
 	return
 
@@ -651,15 +665,14 @@
 
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(!H.weakened)  //Don't ask me why is has to be
-			user << "[M] is resisting, tackle them first"
+		if(!H.lying)  //Don't ask me why is has to be
+			user << "[M] is resisting, tackle them first."
 			return
 
-	else
-		M.visible_message(\
-			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
+	M.visible_message("<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
 			"<span class='warning'>[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!</span>",\
 			"<span class='notice'>You hear squelching...</span>")
+
 	M.buckled = src
 	M.loc = src.loc
 	M.dir = src.dir
@@ -670,6 +683,29 @@
 	src.buckled_mob = M
 	src.add_fingerprint(user)
 	return
+
+/obj/item/weapon/handcuffs/xeno
+	name = "hardened resin"
+	desc = "A thick, nasty resin. You could probably resist out of this."
+	breakouttime = 200
+	cuff_sound = 'sound/effects/blobattack.ogg'
+	icon = 'icons/xeno/effects.dmi'
+	icon_state = "sticky2"
+
+	dropped()
+		del(src)
+		return
+
+/obj/item/weapon/legcuffs/xeno
+	name = "sticky resin"
+	desc = "A thick, nasty resin. You could probably resist out of this."
+	breakouttime = 100
+	icon = 'icons/xeno/effects.dmi'
+	icon_state = "sticky2"
+
+	dropped()
+		del(src)
+		return
 
 /obj/structure/stool/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/aforce = W.force

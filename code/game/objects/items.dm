@@ -50,6 +50,7 @@
 	*/
 	var/list/sprite_sheets = null
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
+	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is defualt, 1 is the new one.
 
 	/* Species-specific sprite sheets for inventory sprites
 	Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
@@ -225,16 +226,12 @@
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
-//	..() ?? This is the base proc, why does it have a parent call
 	if(layer != initial(layer))
 		layer = initial(layer) //Set it back when dropped.
 
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
-			user.client.view = world.view
-			user.client.pixel_x = 0
-			user.client.pixel_y = 0
-			zoom = 0
+			zoom()
 	return
 
 // called just as an item is picked up (loc is not yet changed)

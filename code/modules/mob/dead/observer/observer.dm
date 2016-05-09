@@ -793,8 +793,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		M.real_name = src.client.prefs.predator_name
 		M.gender = src.client.prefs.predator_gender
 	else if(M.client && M.client.prefs)
+		if(M.client.prefs.predator_gender)
+			if(M.client.prefs.predator_gender == "male")
+				M.gender = "male"
+			else
+				M.gender = "female"
+		else
+			M.gender = "male"
+
 		M.real_name = M.client.prefs.predator_name
-		M.gender = M.client.prefs.predator_gender
+
 	if(!M.gender) M.gender = "male"
 	M.update_icons()
 	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
@@ -838,6 +846,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/mobs = living_mob_list
 	var/target = null
+
+	for(var/mob/living/M in mobs)
+		if(!istype(M,/mob/living/carbon/human) || M.stat || isYautja(M)) mobs -= M
+
 
 	target = input("Please, select a contestant!", "Cake Time", null, null) as null|anything in mobs
 

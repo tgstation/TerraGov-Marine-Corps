@@ -99,10 +99,16 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/clothing/glasses/night/m56_goggles(src)
-			new /obj/item/smartgun_powerpack(src)
-			new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
-			new /obj/item/weapon/gun/smartgun(src)
+			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+				new /obj/item/clothing/glasses/night/m56_goggles(src)
+				new /obj/item/smartgun_powerpack(src)
+				new /obj/item/clothing/suit/storage/marine_smartgun_armor/snow(src)
+				new /obj/item/weapon/gun/smartgun(src)
+			else
+				new /obj/item/clothing/glasses/night/m56_goggles(src)
+				new /obj/item/smartgun_powerpack(src)
+				new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
+				new /obj/item/weapon/gun/smartgun(src)
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
 	name = "M56 combat harness"
@@ -112,10 +118,6 @@
 	slowdown = 1
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	blood_overlay_type = "armor"
 	armor = list(melee = 55, bullet = 75, laser = 30, energy = 0, bomb = 35, bio = 0, rad = 0)
@@ -226,7 +228,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 7
+	storage_slots = 10
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
@@ -240,7 +242,15 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
+			new /obj/item/weapon/facepaint/sniper(src)
+			new /obj/item/weapon/storage/backpack/smock(src)
 
+			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+				new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
+				new /obj/item/clothing/head/helmet/marine/snow(src)
+			else
+				new /obj/item/clothing/suit/storage/marine/sniper(src)
+				new /obj/item/clothing/head/helmet/durag(src)
 
 /obj/item/weapon/gun/m92
 	name = "M92 grenade launcher"
@@ -333,137 +343,9 @@
 		spawn(1)
 			new /obj/item/weapon/gun/m92(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
+			new /obj/item/weapon/storage/belt/grenade(src)
+			new /obj/item/weapon/storage/belt/grenade(src)
 
-
-/obj/item/weapon/gun/rocketlauncher
-	name = "M83 rocket launcher"
-	desc = "The M83 SADAR is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the SADAR is a dangerous weapon with a variety of combat uses."
-	icon_state = "M83sadar"
-	item_state = "rocket"
-	icon_wielded = "rocket"
-	w_class = 4.0
-	throw_speed = 2
-	throw_range = 10
-	fire_delay = 30
-	force = 5.0
-	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY
-	slot_flags = 0
-	origin_tech = "combat=8;materials=5"
-	var/projectile = /obj/item/missile
-	mag_type = null // Does not use magazines.
-	twohanded = 1
-	var/missile_speed = 1
-	var/missile_range = 30
-	var/max_rockets = 1
-	var/list/rockets = new/list()
-
-/obj/item/weapon/gun/rocketlauncher/examine()
-	set src in view()
-	..()
-	if (!(usr in view(2)) && usr!=src.loc) return
-	usr << "\blue [rockets.len] / [max_rockets] rockets."
-
-/obj/item/weapon/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/rocket_shell))
-		if(rockets.len < max_rockets)
-			user.visible_message("\blue [user] starts feeding a shell into [src].","\blue You start feeding [I] into [src]. Stand still!")
-			if(do_after(user,20))
-				user.drop_item()
-				I.loc = src
-				rockets += I
-				playsound(user.loc,'sound/machines/click.ogg', 50, 1)
-				user << "\blue You put the [I] in [src]."
-			else
-				user << "You are interrupted!"
-		else
-			usr << "\red [src] cannot hold more rockets."
-
-///obj/item/weapon/gun/rocketlauncher/can_fire()
-//	return rockets.len
-
-/obj/item/weapon/gun/rocketlauncher/afterattack(atom/target, mob/user , flag)
-	if(user.z != 1)
-		usr << "\red The safety refuses to release!"
-		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) has attempted to fire a rocket in a restricted area. ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)")
-		log_game("[key_name(user)] attempted to fire a rocket in a restricted area at ([target.x],[target.y],[target.z])")
-		return
-
-	if(!wielded)
-		usr << "\red You require two hands to fire this!"
-		return
-
-	if(get_dist(user,target) <= 1)
-		user << "Too close!"
-		return
-
-	if(rockets.len)
-		var/obj/item/rocket_shell/I = rockets[1]
-		var/obj/item/missile/M = new I.projectile_type(user.loc)
-		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
-		M.primed = 1
-
-		var/angle = round(Get_Angle(user.loc,target.loc))
-
-		var/matrix/rotate = matrix() //Change the missile angle.
-		rotate.Turn(angle)
-		M.transform = rotate
-
-		M.throw_at(target, missile_range, missile_speed,user)
-		msg_admin_attack(("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)"))
-		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")
-		rockets -= I
-		del(I)
-		return
-	else
-		playsound(src,'sound/machines/click.ogg', 20, 1)
-		usr << "\red [src] is empty."
-		return
-
-/obj/item/rocket_shell
-	name = "high explosive rocket shell"
-	desc = "A high explosive designed to be fired from a launcher."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "rocket"
-	var/projectile_type = "/obj/item/missile"
-	w_class = 3
-
-/obj/item/rocket_shell/ap
-	name = "armor piercing rocket shell"
-	desc = "A dense explosive designed to be fired from a launcher. Serious damage, but not much fragmentation."
-	icon_state = "ap_rocket"
-	projectile_type = "/obj/item/missile/ap"
-
-/obj/item/missile
-	name = "high explosive rocket"
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "rocket"
-	var/primed = null
-	throwforce = 30
-	pass_flags = PASSTABLE
-
-	New()
-		return
-
-	throw_impact(atom/hit_atom)
-		if(primed)
-			explosion(hit_atom, -1, 1, 3, 7)
-			del(src)
-		else
-			..()
-		return
-
-/obj/item/missile/ap
-	name = "armor piercing rocket"
-	icon_state = "ap_rocket"
-	throwforce = 200
-
-	throw_impact(atom/hit_atom)
-		if(primed)
-			explosion(hit_atom, -1, 1, 1, 5)
-			del(src)
-		else
-			..()
-		return
 
 /obj/item/weapon/storage/box/rocket_system
 	name = "M83 Rocket Launcher crate"
@@ -479,12 +361,11 @@
 		..()
 		spawn(1)
 			new /obj/item/weapon/gun/rocketlauncher(src)
-			new /obj/item/rocket_shell(src)
-			new /obj/item/rocket_shell(src)
-			new /obj/item/rocket_shell(src)
-			new /obj/item/rocket_shell(src)
-			new /obj/item/rocket_shell/ap(src)
-			new /obj/item/rocket_shell/ap(src)
+			new /obj/item/ammo_magazine/rocket_tube(src)
+			new /obj/item/ammo_magazine/rocket_tube(src)
+			new /obj/item/ammo_magazine/rocket_tube/ap(src)
+			new /obj/item/ammo_magazine/rocket_tube/ap(src)
+			new /obj/item/ammo_magazine/rocket_tube/wp(src)
 
 /obj/item/weapon/tank/phoron/m240
 	name = "M240 Fuel tank"

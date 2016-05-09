@@ -48,7 +48,7 @@
 	var/total_health = 100  //Point at which the mob will enter crit.
 
 	var/cold_level_1 = 260  // Cold damage level 1 below this point.
-	var/cold_level_2 = 200  // Cold damage level 2 below this point.
+	var/cold_level_2 = 240  // Cold damage level 2 below this point.
 	var/cold_level_3 = 120  // Cold damage level 3 below this point.
 
 	var/heat_level_1 = 360  // Heat damage level 1 above this point.
@@ -447,17 +447,17 @@
 	rarity_value = 2
 
 	eyes = "blank_eyes"
-	brute_mod = 0.1
-	burn_mod = 1
+	brute_mod = 0.25
+	burn_mod = 1.1
 
 	warning_low_pressure = 0
 	hazard_low_pressure = 0
 
-	cold_level_1 = 50
+	cold_level_1 = -1
 	cold_level_2 = -1
 	cold_level_3 = -1
 
-	heat_level_1 = 500		//gives them about 25 seconds in space before taking damage
+	heat_level_1 = 500
 	heat_level_2 = 1000
 	heat_level_3 = 2000
 
@@ -465,8 +465,8 @@
 
 	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
 
-	blood_color = "#1F181F"
-	flesh_color = "#575757"
+	blood_color = "#EEEEEE"
+	flesh_color = "#272757"
 
 	has_organ = list(
 		"heart" =    /datum/organ/internal/heart,
@@ -482,16 +482,23 @@
 	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
-	secondary_langs = list("Sol Common")  // Sure, what the hell. They can grunt a few words.
 	unarmed_type = /datum/unarmed_attack/punch
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	blood_color = "#004400"
+	blood_color = "#005500"
 	flesh_color = "#907E4A"
 	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
 	speech_chance = 100
 	hud_type = /datum/hud_data/yautja
 	darksight = 5
 	slowdown = -0.8
+
+	cold_level_1 = 150
+	cold_level_2 = 100
+	cold_level_3 = 50
+
+	heat_level_1 = 500
+	heat_level_2 = 700
+	heat_level_3 = 1000
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/pred_buy,

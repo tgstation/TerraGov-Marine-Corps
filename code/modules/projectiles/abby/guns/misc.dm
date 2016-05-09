@@ -7,11 +7,9 @@
 	icon_empty = "taser0"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
-	default_ammo = "/datum/ammo/energy/taser"
-	var/cell_type = "/obj/item/weapon/cell/high"
 	var/obj/item/weapon/cell/cell
-	var/charge_cost = 50
-	fire_delay = 6
+	var/charge_cost = 20
+	fire_delay = 10
 	recoil = 0
 
 	emp_act(severity)
@@ -21,19 +19,14 @@
 
 	New()
 		..()
-		if(cell_type) cell = new cell_type(src) //Initialize our junk.
-		if(default_ammo) ammo = new default_ammo()
+		cell = new /obj/item/weapon/cell/high(src) //Initialize our junk.
+		ammo = new /datum/ammo/energy/taser()
 
 	load_into_chamber()
 		if(!cell || cell.charge - charge_cost < 0)
 			return 0
 
 		if(in_chamber) return 1 //Already set!
-
-		if(!ammo)
-			var/new_ammo = text2path(default_ammo)
-			if(new_ammo)
-				ammo = new new_ammo()
 
 		cell.charge -= charge_cost
 		var/obj/item/projectile/P = new(src) //New bullet!
@@ -43,6 +36,7 @@
 		in_chamber = P
 		P.damage = P.ammo.damage //For reverse lookups.
 		P.damage_type = P.damage_type
+		return 1
 
 	update_icon()
 		if(!cell || cell.charge - charge_cost < 0)
@@ -84,7 +78,7 @@
 	icon_empty = "flaregun"
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/Taser.ogg' //REPLACE
-	default_ammo = "/datum/ammo/flare"
+	default_ammo = ""
 	var/num_flares = 1
 	var/max_flares = 1
 	fire_delay = 30
@@ -92,18 +86,13 @@
 
 	New()
 		..()
-		if(default_ammo) ammo = new default_ammo()
+		ammo = new /datum/ammo/flare()
 
 	load_into_chamber()
 		if(num_flares <= 0)
 			return 0
 
 		if(in_chamber) return 1
-
-		if(!ammo)
-			var/new_ammo = text2path(default_ammo)
-			if(new_ammo)
-				ammo = new new_ammo()
 
 		var/obj/item/projectile/P = new(src) //New bullet!
 		P.ammo = src.ammo
@@ -112,6 +101,7 @@
 		in_chamber = P
 		P.damage = P.ammo.damage
 		P.damage_type = P.damage_type
+		P.SetLuminosity(4)
 		return 1
 
 	update_icon()
