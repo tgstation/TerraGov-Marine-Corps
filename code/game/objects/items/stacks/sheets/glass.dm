@@ -43,9 +43,9 @@
 				return
 
 			CC.use(5)
+			new /obj/item/stack/light_w(user.loc, 1)
 			use(1)
 			user << "<span class='notice'>You attach wire to the [name].</span>"
-			new /obj/item/stack/light_w(user.loc)
 		else if(istype(W, /obj/item/stack/rods))
 			var/obj/item/stack/rods/V  = W
 			if (V.get_amount() < 1 || get_amount() < 1)

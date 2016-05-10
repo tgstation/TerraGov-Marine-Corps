@@ -203,7 +203,7 @@
 
 		//ready_bullet()
 		is_pumped = 1
-		if(M && current_mag.current_rounds <= 0)
+		if(M && current_mag.current_rounds == 0)
 			M << "\blue The last of \the [src]'s casings hit the ground. <B>Reload</b>!"
 			current_mag.loc = get_turf(src) //Eject the mag.
 			current_mag = null
@@ -263,8 +263,8 @@
 
 		if(is_reloading) return
 
-		var/shells_to_load = A.current_rounds + current_mag.current_rounds
-		if(shells_to_load > current_mag.max_rounds) shells_to_load = current_mag.max_rounds
+		var/shells_to_load = current_mag.max_rounds - current_mag.current_rounds
+		if(shells_to_load > current_mag.max_rounds) return 0
 		var/turf/start_turf = get_turf(src.loc)
 
 		if(usr && istype(usr,/mob/living/carbon/human))
@@ -277,7 +277,9 @@
 				if(H.get_active_hand() != A) break //We put it in backpacks
 				if(!H || H.stat || H.lying || H.buckled) break //We died
 				playsound(H, 'sound/weapons/shotgun_shell_insert.ogg', 50, 1)
-				A.current_rounds--
+				if(A.current_rounds == -1) //Default for max ammo
+					A.current_rounds = A.max_rounds - 1
+				else A.current_rounds--
 				current_mag.current_rounds++
 				if(A.current_rounds == 0)
 					A.update_icon()
