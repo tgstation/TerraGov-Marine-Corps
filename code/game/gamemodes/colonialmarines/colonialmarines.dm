@@ -8,7 +8,7 @@
 
 /datum/game_mode/colonialmarines
 	name = "Colonial Marines"
-	config_tag = "colonialmarines"
+	config_tag = "Colonial Marines"
 	required_players = 1
 	var/checkwin_counter = 0
 	var/finished = 0
