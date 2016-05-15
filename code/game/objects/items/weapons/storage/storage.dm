@@ -23,6 +23,7 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
+	var/opened = 0 //Has it been opened before?
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if (ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
@@ -97,6 +98,8 @@
 	return
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
+	if(!opened)
+		opened = 1
 	if (src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
