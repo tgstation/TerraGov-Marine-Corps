@@ -71,7 +71,7 @@ LOG_RUNTIME
 # SQL_ENABLED
 
 ## disconnect players who did nothing during 10 minutes
-KICK_INACTIVE
+#KICK_INACTIVE
 
 ##Show mods on staffwho
 SHOW_MODS
