@@ -18,8 +18,8 @@
 
 
 /datum/game_mode/cult
-	name = "cult"
-	config_tag = "cult"
+	// name = "cult"
+	// config_tag = "cult"
 	restricted_jobs = list("Chaplain","AI", "Cyborg", "Internal Affairs Agent", "Head of Security", "Captain")
 	protected_jobs = list("Security Officer", "Warden", "Detective")
 	required_players = 5
