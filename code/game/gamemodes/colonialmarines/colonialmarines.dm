@@ -7,7 +7,7 @@
 	var/pred_keys = list()
 
 /datum/game_mode/colonialmarines
-	name = "colonial marines"
+	name = "Colonial Marines"
 	config_tag = "colonialmarines"
 	required_players = 1
 	var/checkwin_counter = 0
@@ -514,4 +514,3 @@ var/list/toldstory = list()
 
 /datum/game_mode/proc/auto_declare_completion_colonialmarines()
 	return
-

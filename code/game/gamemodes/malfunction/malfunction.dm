@@ -2,8 +2,8 @@
 	var/list/datum/mind/malf_ai = list()
 
 /datum/game_mode/malfunction
-	name = "AI malfunction"
-	config_tag = "malfunction"
+	// name = "AI malfunction"
+	// config_tag = "malfunction"
 	required_players = 2
 	required_players_secret = 15
 	required_enemies = 1
