@@ -54,7 +54,7 @@
 			playsound(L.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
 		for(var/obj/structure/engine_inside_sound/L in interim)
 			playsound(L.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
-		sleep(120)
+		sleep(100)
 
 		move(interim, destination, direction)
 		spawn(1)
