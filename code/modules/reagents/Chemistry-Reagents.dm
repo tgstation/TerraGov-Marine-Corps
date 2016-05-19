@@ -1428,6 +1428,7 @@ datum
 							M.emote(pick("twitch","blink_r","shiver"))
 
 				if(!M) M = holder.my_atom
+				if(prob(1))
 					M.emote(pick("twitch","blink_r","shiver"))
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
