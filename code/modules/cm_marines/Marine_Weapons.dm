@@ -96,9 +96,8 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
-	New()
-		..()
-		spawn(1)
+	open(var/mob/user as mob)
+		if(!opened)
 			if(istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
 				new /obj/item/smartgun_powerpack(src)
@@ -109,6 +108,8 @@
 				new /obj/item/smartgun_powerpack(src)
 				new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
 				new /obj/item/weapon/gun/smartgun(src)
+			opened = 1
+		..()
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
 	name = "M56 combat harness"
