@@ -1825,7 +1825,7 @@
 "Je" = (/obj/structure/closet/secure_closet/marine/marine_alpha_equipment,/turf/simulated/floor{icon_state = "bot"},/area/sulaco/marine/alpha)
 "Jf" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/alarm{dir = 4; pixel_x = -30},/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor{icon_state = "red"; dir = 5},/area/sulaco/marine/alpha)
 "Jg" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/turf/simulated/floor{icon_state = "red"; dir = 9},/area/sulaco/marine/alpha)
-"Jh" = (/obj/machinery/door/airlock/hatch{name = "EVA"; req_access_txt = "0"; req_one_access_txt = "1;6"},/obj/machinery/door/firedoor/border_only{dir = 2},/turf/simulated/wall/sulaco,/area/sulaco/command/eva)
+"Jh" = (/obj/machinery/door/firedoor/border_only{dir = 2},/obj/machinery/door/airlock/hatch{name = "EVA"; req_access_txt = "0"; req_one_access_txt = "1;6"},/turf/simulated/floor,/area/sulaco/command/eva)
 "Ji" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 1; on = 1},/turf/simulated/floor,/area/sulaco/command/eva)
 "Jj" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor,/area/sulaco/command/eva)
 "Jk" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow{dir = 5},/turf/simulated/floor,/area/sulaco/command/eva)
