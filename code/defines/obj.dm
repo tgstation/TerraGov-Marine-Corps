@@ -137,8 +137,8 @@
 			even = !even
 
 	dat += "</table>"
-	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
-	dat = replacetext(dat, "\t", "")
+	dat = oldreplacetext(dat, "\n", "") // so it can be placed on paper correctly
+	dat = oldreplacetext(dat, "\t", "")
 
 	return dat
 

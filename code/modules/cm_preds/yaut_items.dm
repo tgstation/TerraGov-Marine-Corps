@@ -560,12 +560,12 @@
 	if(!msg || msg == "" || isnull(msg)) return
 
 	msg = sanitize(msg)
-	msg = replacetext(msg, "o", "¤")
-	msg = replacetext(msg, "p", "þ")
-	msg = replacetext(msg, "l", "£")
-	msg = replacetext(msg, "s", "§")
-	msg = replacetext(msg, "u", "µ")
-	msg = replacetext(msg, "b", "ß") //We're ninjas now? .. fine
+	msg = oldreplacetext(msg, "o", "ï¿½")
+	msg = oldreplacetext(msg, "p", "ï¿½")
+	msg = oldreplacetext(msg, "l", "ï¿½")
+	msg = oldreplacetext(msg, "s", "ï¿½")
+	msg = oldreplacetext(msg, "u", "ï¿½")
+	msg = oldreplacetext(msg, "b", "ï¿½") //We're ninjas now? .. fine
 
 	spawn(10)
 		if(!drain_power(usr,50)) return //At this point they've upgraded.

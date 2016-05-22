@@ -298,11 +298,11 @@ var/list/toldstory = list()
 			else
 				story = pick(survivorstory)
 				survivorstory.Remove(story)
-			story = replacetext(story, "{name}", "[randomname]")
+			story = oldreplacetext(story, "{name}", "[randomname]")
 			if(istype(OH))
 				toldstory.Add(OH.name)
-				OH << replacetext(story, "{surv}", "[H.name]")
-				H << replacetext(story, "{surv}", "[OH.name]")
+				OH << oldreplacetext(story, "{surv}", "[H.name]")
+				H << oldreplacetext(story, "{surv}", "[OH.name]")
 
 			toldstory.Add(H.name)
 */
