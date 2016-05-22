@@ -389,9 +389,9 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	for (var/mob/living/carbon/human/M in oview())
 		var/dist = get_dist(src,M)
-		if(M && M.client && dist < 6)
+		if(M && M.client && dist < 7)
 			shake_camera(M, 5, 1)
-		if (dist < 3 && !M.lying && !M.stat && prob(75))
+		if (dist < 3 && !M.lying && !M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
 			M.Weaken(rand(2,3))
 	return
