@@ -208,9 +208,9 @@
 
 	if ((blind && stat != 2))
 		if ((blinded))
-			blind.layer = 18
+			blind.plane = 0
 		else
-			blind.layer = 0
+			blind.plane = -80
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
