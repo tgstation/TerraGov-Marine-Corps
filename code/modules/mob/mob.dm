@@ -308,7 +308,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
-		var/msg = replacetext(flavor_text, "\n", " ")
+		var/msg = oldreplacetext(flavor_text, "\n", " ")
 		if(lentext(msg) <= 40)
 			return "\blue [msg]"
 		else
@@ -514,7 +514,7 @@ var/list/slot_equipment_priority = list( \
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
+		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, oldreplacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
 		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
