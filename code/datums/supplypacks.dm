@@ -88,6 +88,21 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Attachables crate"
 	group = "Operations"
 
+/datum/supply_packs/s_attachables
+	name = "Stock Attachments"
+	contains = list(
+					/obj/item/attachable/compensator/revolverstock,
+					/obj/item/attachable/compensator/revolverstock,
+					/obj/item/attachable/compensator/riflestock,
+					/obj/item/attachable/compensator/riflestock,
+					/obj/item/attachable/compensator/stock,
+					/obj/item/attachable/compensator/stock
+					)
+	cost = 45
+	containertype = /obj/structure/closet/crate
+	containername = "Stocks crate"
+	group = "Operations"
+
 /datum/supply_packs/beacons
 	name = "Squad Beacons"
 	contains = list(

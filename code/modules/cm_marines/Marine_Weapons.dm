@@ -99,7 +99,7 @@
 	New()
 		..()
 		spawn(1)
-			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
 				new /obj/item/smartgun_powerpack(src)
 				new /obj/item/clothing/suit/storage/marine_smartgun_armor/snow(src)

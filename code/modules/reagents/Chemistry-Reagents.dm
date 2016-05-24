@@ -3100,10 +3100,10 @@ datum
 			var/adj_sleepy = 0
 			var/slurr_adj = 3
 			var/confused_adj = 2
-			var/slur_start = 90			//amount absorbed after which mob starts slurring
-			var/confused_start = 150	//amount absorbed after which mob starts confusing directions
-			var/blur_start = 300	//amount absorbed after which mob starts getting blurred vision
-			var/pass_out = 400	//amount absorbed after which mob starts passing out
+			var/slur_start = 180			//amount absorbed after which mob starts slurring
+			var/confused_start = 300	//amount absorbed after which mob starts confusing directions
+			var/blur_start = 600	//amount absorbed after which mob starts getting blurred vision
+			var/pass_out = 800	//amount absorbed after which mob starts passing out
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
 				M:nutrition += nutriment_factor
@@ -3214,7 +3214,7 @@ datum
 			color = "#664300" // rgb: 102, 67, 0
 			boozepwr = 2
 			dizzy_adj = 4
-			slur_start = 30		//amount absorbed after which mob starts slurring
+			slur_start = 90		//amount absorbed after which mob starts slurring
 
 		ethanol/thirteenloko
 			name = "Thirteen Loko"
@@ -3300,8 +3300,8 @@ datum
 			color = "#7E4043" // rgb: 126, 64, 67
 			boozepwr = 1.5
 			dizzy_adj = 2
-			slur_start = 65			//amount absorbed after which mob starts slurring
-			confused_start = 145	//amount absorbed after which mob starts confusing directions
+			slur_start = 125			//amount absorbed after which mob starts slurring
+			confused_start = 195	//amount absorbed after which mob starts confusing directions
 
 		ethanol/cognac
 			name = "Cognac"
@@ -3310,7 +3310,7 @@ datum
 			color = "#AB3C05" // rgb: 171, 60, 5
 			boozepwr = 1.5
 			dizzy_adj = 4
-			confused_start = 115	//amount absorbed after which mob starts confusing directions
+			confused_start = 195	//amount absorbed after which mob starts confusing directions
 
 		ethanol/hooch
 			name = "Hooch"
@@ -3320,8 +3320,8 @@ datum
 			boozepwr = 2
 			dizzy_adj = 6
 			slurr_adj = 5
-			slur_start = 35			//amount absorbed after which mob starts slurring
-			confused_start = 90	//amount absorbed after which mob starts confusing directions
+			slur_start = 95			//amount absorbed after which mob starts slurring
+			confused_start = 160	//amount absorbed after which mob starts confusing directions
 
 		ethanol/ale
 			name = "Ale"
@@ -3337,8 +3337,8 @@ datum
 			color = "#33EE00" // rgb: 51, 238, 0
 			boozepwr = 4
 			dizzy_adj = 5
-			slur_start = 15
-			confused_start = 30
+			slur_start = 45
+			confused_start = 90
 
 
 		ethanol/pwine

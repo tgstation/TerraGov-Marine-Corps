@@ -260,9 +260,9 @@
 	name = "\improper Anomaly Storage II"
 	icon_state = "south"
 
-/area/ice_colony/underground/research/anomaly_storage_five
-	name = "\improper Anomaly Storage V"
-	icon_state = "southeast"
+/area/ice_colony/underground/research/anomaly_storage_elevator
+	name = "\improper Anomaly Storage Elevator Foyer"
+	icon_state = "research"
 
 /area/ice_colony/underground/research/disposal
 	name = "\improper Disposal"

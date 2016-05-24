@@ -26,6 +26,7 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/shotgun
+	w_class = 4
 	mag_type = "/obj/item/ammo_magazine/shotgun"
 	recoil = 2
 	force = 14.0
@@ -42,7 +43,6 @@
 	icon_empty = "rspshotgun0"
 	item_state = "rspshotgun"
 	fire_delay = 10
-	w_class = 4
 	autoejector = 1
 	muzzle_pixel_x = 31
 	muzzle_pixel_y = 19
@@ -151,7 +151,6 @@
 	rail_pixel_y = 21
 	under_pixel_x = 14
 	under_pixel_y = 15
-	w_class = 4
 	var/recentpump = 0
 	autoejector = 0 //Does not automatically eject "magazines".
 	var/is_pumped = 0
