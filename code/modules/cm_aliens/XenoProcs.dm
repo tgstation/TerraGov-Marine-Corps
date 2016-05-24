@@ -1,4 +1,5 @@
 //Xenomorph General Procs And Functions - Colonial Marines
+//LAST EDIT: APOPHIS 22MAY16
 
 ///mob/living/carbon/Xenomorph/gib(anim="gibbed-m",do_gibs)
 //	return ..(anim="gibbed-a",do_gibs)
@@ -467,11 +468,38 @@
 					src.throwing = 0
 					return
 
+
+			if(charge_type == 0)  //Runner
+				visible_message("\red \The Runner pounces on [V]!","You pounce on [V]!")
+				V.Weaken(2)
+				src.canmove = 0
+				src.frozen = 1
+				src.loc = V.loc
+				src.throwing = 0 //Stop the movement
+				if(!is_robotic)
+					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+				spawn(5)
+					src.frozen = 0
+
+			if(charge_type == 1) //hunter pounce.
+				visible_message("\red \The Hunter pounces on [V]!","You pounce on [V]!")
+				V.Weaken(5)
+				src.canmove = 0
+				src.frozen = 1
+				src.loc = V.loc
+				src.throwing = 0 //Stop the movement
+				if(!is_robotic)
+					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+				spawn(20)
+					src.frozen = 0
+
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)
 				V.Weaken(2)
 				src.throwing = 0
 
+
+/*   //OLD RUNNER/HUNDER COMBO POUNCE
 			if(charge_type == 1) //Runner/hunter pounce.
 				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
 				V.Weaken(4)
@@ -482,7 +510,7 @@
 				if(!is_robotic)
 					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
 				spawn(20)
-					src.frozen = 0
+					src.frozen = 0   */
 		return
 
 	if(isturf(hit_atom))

@@ -278,6 +278,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
+	/proc/release
 )
 
 var/list/admin_verbs_mentor = list(
@@ -287,7 +288,8 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/admin_ghost,
 	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
-//	/client/proc/dsay,
+	/client/proc/dsay,
+	/datum/admins/proc/togglesleep,
 	/client/proc/cmd_admin_subtle_message
 )
 

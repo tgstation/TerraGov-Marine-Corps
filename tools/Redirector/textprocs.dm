@@ -23,14 +23,14 @@ proc
     ////////////////////
     // Replacing text //
     ////////////////////
-	dd_replacetext(text, search_string, replacement_string)
+	dd_oldreplacetext(text, search_string, replacement_string)
 		// A nice way to do this is to split the text into an array based on the search_string,
 		// then put it back together into text using replacement_string as the new separator.
 		var/list/textList = dd_text2list(text, search_string)
 		return dd_list2text(textList, replacement_string)
 
 
-	dd_replaceText(text, search_string, replacement_string)
+	dd_oldreplacetext(text, search_string, replacement_string)
 		var/list/textList = dd_text2List(text, search_string)
 		return dd_list2text(textList, replacement_string)
 

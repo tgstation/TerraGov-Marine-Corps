@@ -247,7 +247,7 @@ proc/n_inrange(var/num, var/min=-1, var/max=1)
 
 // Non-recursive
 // Imported from Mono string.ReplaceUnchecked
-/proc/string_replacetext(var/haystack,var/a,var/b)
+/proc/string_oldreplacetext(var/haystack,var/a,var/b)
 	if(istext(haystack)&&istext(a)&&istext(b))
 		var/i = 1
 		var/lenh=lentext(haystack)

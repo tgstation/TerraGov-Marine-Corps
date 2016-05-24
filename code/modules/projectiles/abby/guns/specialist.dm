@@ -217,14 +217,16 @@
 		puff.attach(src)
 
 	load_into_chamber()
-		if(..() == 1)
+		if(current_mag && current_mag.current_rounds > 0)
 			sleep(1)
 			var/list/cardinals = list(1,2,4,8)
 			for(var/Q in cardinals)
 				if(Q == usr.dir)
 					cardinals -= Q //Shouldnt puff back into their face.
+					break
 			puff.set_up(1,cardinals)
 			puff.start()
+			return ..()
 
 
 //-------------------------------------------------------

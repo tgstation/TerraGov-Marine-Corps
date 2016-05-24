@@ -25,8 +25,8 @@
 	if(istype(O,/obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = O
 		if (M.use(1))
+			new/obj/item/stack/tile/light(user.loc, 1)
 			use(1)
-			new/obj/item/stack/tile/light(user.loc)
 			user << "<span class='notice'>You make a light tile.</span>"
 		else
 			user << "<span class='warning'>You need one metal sheet to finish the light tile.</span>"

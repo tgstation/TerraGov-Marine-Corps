@@ -110,8 +110,8 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 
 
 /datum/game_mode/huntergames
-	name = "hunter games"
-	config_tag = "huntergames"
+	name = "Hunter Games"
+	config_tag = "Hunter Games"
 	required_players = 1
 	var/list/contestants = list()
 	var/checkwin_counter = 0
@@ -453,4 +453,3 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		new objtype(T)
 
 	return
-

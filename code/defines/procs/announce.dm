@@ -65,7 +65,7 @@
 		world << "<span class='alert'> -[html_encode(announcer)]</span>"
 	world << "<br>"
 
-/datum/announcement/priority/command/Message(message as text, message_title as text, var/to_xenos = 1)
+/datum/announcement/priority/command/Message(message as text, message_title as text)
 	var/command
 //	command += "<h1 class='alert'>[message_title]</h1>"
 	if (message_title)
@@ -74,7 +74,7 @@
 	command += "<br><span class='alert'>[message]</span><br>"
 	command += "<br>"
 	for(var/mob/M in player_list)
-		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
+		if(istype(M,/mob/living/carbon/Xenomorph))
 			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isYautja(M))
 			M << command

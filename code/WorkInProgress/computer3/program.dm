@@ -37,7 +37,7 @@ Programs are a file that can be executed
 
 /datum/file/program/proc/decode(text)
 		//adds line breaks
-		text = replacetext(text, "\n","<BR>")
+		text = oldreplacetext(text, "\n","<BR>")
 		return text
 
 

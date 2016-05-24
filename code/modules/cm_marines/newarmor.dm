@@ -243,9 +243,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	storage_slots = 2
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
-	New()
-		..()
-		spawn(1)//Hax
+	open(var/mob/user as mob)
+		if(!opened)
 			new /obj/item/clothing/gloves/specialist(src)
 			if(istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/suit/storage/marine/marine_spec_armor/snow(src)
@@ -253,6 +252,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			else
 				new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
 				new /obj/item/clothing/head/helmet/marine/heavy(src)
+			opened = 1
+		..()
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "M11 Pattern Leader Helmet"

@@ -235,7 +235,7 @@ datum/nano_item_lists
 								 // We trade off being able to automatically add shit for more control over what gets passed to json
 								 // and if it's sanitized for html.
 				nanoui_data["exploit"]["nanoui_exploit_record"] = html_encode(L.fields["exploit_record"])                         		// Change stuff into html
-				nanoui_data["exploit"]["nanoui_exploit_record"] = replacetext(nanoui_data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
+				nanoui_data["exploit"]["nanoui_exploit_record"] = oldreplacetext(nanoui_data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
 				nanoui_data["exploit"]["name"] =  html_encode(L.fields["name"])
 				nanoui_data["exploit"]["sex"] =  html_encode(L.fields["sex"])
 				nanoui_data["exploit"]["age"] =  html_encode(L.fields["age"])

@@ -230,7 +230,7 @@
 	var/obj/item/weapon/cell/cell = null
 	var/burst_fire = 0
 	var/obj/machinery/camera/camera = null
-	var/fire_delay = 6
+	var/fire_delay = 5
 	var/last_fired = 0
 	var/is_bursting = 0
 	var/obj/item/turret_laptop/laptop = null
@@ -401,6 +401,7 @@
 					usr << "It's already firing in a burst."
 				else
 					burst_fire = 1
+					fire_delay = 15
 					visible_message("\icon[src] A green light on [src] blinks rapidly.")
 					usr << "\blue You activate the burst fire mode."
 			else
@@ -793,7 +794,7 @@
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
-	var/range = 9
+	var/range = 7
 
 	if(!dir_locked)
 		range = 3

@@ -20,7 +20,7 @@ datum
 		var/nutriment_factor = 0
 		var/custom_metabolism = REAGENTS_METABOLISM
 		var/overdose = 0
-		var/overdose_dam = 1
+		var/overdose_dam = 0//Handeled by heart damage
 		var/scannable = 0 //shows up on health analyzers
 		//var/list/viruses = list()
 		var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
@@ -1307,6 +1307,7 @@ datum
 			color = "#C8A5DC" // rgb: 200, 165, 220
 			custom_metabolism = 1
 			overdose = 10
+			scannable = 1
 
 			on_mob_life(var/mob/living/M as mob)
 				if(volume >= overdose)
@@ -1411,15 +1412,30 @@ datum
 		hyperzine
 			name = "Hyperzine"
 			id = "hyperzine"
-			description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
+			description = "Hyperzine is a highly effective, long lasting, muscle stimulant.  May cause heart damage"
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
-			custom_metabolism = 0.03
-			overdose = REAGENTS_OVERDOSE/2
+			custom_metabolism = 0.1
+			overdose = 6
 
 			on_mob_life(var/mob/living/M as mob)
+				if(volume > overdose)
+					if(ishuman(M))
+						if(prob(50))
+							var/mob/living/carbon/human/H = M
+							var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+							E.damage += 1
+							M.emote(pick("twitch","blink_r","shiver"))
+
 				if(!M) M = holder.my_atom
-				if(prob(5)) M.emote(pick("twitch","blink_r","shiver"))
+				if(prob(1))
+					M.emote(pick("twitch","blink_r","shiver"))
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						var/datum/organ/internal/heart/F = H.internal_organs_by_name["heart"]
+						F.damage += 1
+						M.emote(pick("twitch","blink_r","shiver"))
+
 				..()
 				return
 
