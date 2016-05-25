@@ -385,6 +385,10 @@
 /obj/machinery/door/poddoor/filler_object
 	name = ""
 	icon_state = ""
+	unacidable = 1
+
+	ex_act(severity)
+		return
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'

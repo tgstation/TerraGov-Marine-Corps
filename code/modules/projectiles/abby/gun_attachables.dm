@@ -521,7 +521,7 @@
 	melee_mod = 115
 	size_mod = 2
 	delay_mod = 6
-	pixel_shift_x = 34
+	pixel_shift_x = 28
 	pixel_shift_y = 15
 	guns_allowed = list(/obj/item/weapon/gun/shotgun/pump)
 
@@ -764,7 +764,7 @@
 	can_be_removed = 0
 
 /obj/item/attachable/scope/slavic
-	icon_state = "scope"
+	icon_state = "slavicscope"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine)

@@ -628,6 +628,13 @@
 	else
 		tipped_level = 0
 
+/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(istype(M,/mob/living/carbon/Xenomorph/Larva))
+		visible_message("\red <B>[M] nudges its head against [src].</B>")
+		return 0
+
+	deflate(1)
+
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
 	tipped_level = 2

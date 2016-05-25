@@ -110,15 +110,39 @@
 	extension = "txt"
 	image = 'icons/ntos/file.png'
 	var/dat = "text goes here!"
+	var/list/logs = list()
 	//file_increment = 0.002 // 0.002 kilobytes per character (1024 characters per KB)
 	active_state = "text"
 
-/datum/file/program/data/text/interact()
-	if(!interactable())
-		return
+	interact()
+		if(!interactable())
+			return
 
-	popup.set_content(dat)
-	popup.open()
+		popup.set_content(dat)
+		popup.open()
+
+	New()
+		..()
+		if(logs.len)
+			for(var/i in logs)
+				dat += "<b><a href='?src=\ref[src];text_file=[i]'>[i]</a></b><br>"
+
+	text/Topic(href, list/href_list)
+		if(!interactable() || ..(href,href_list))
+			return
+		..()
+		if ("text_file" in href_list)
+			var/text_file = href_list["text_file"]
+			dat = "[logs[text_file]]"
+			dat += "<br><br>[topic_link(src,"return","Return")]"
+			interact()
+		if ("return" in href_list)
+			dat = "[initial(dat)]"
+			for(var/i in logs)
+				dat += "<b><a href='?src=\ref[src];text_file=[i]'>[i]</a></b><br>"
+			interact()
+
+
 
 /*
 /*

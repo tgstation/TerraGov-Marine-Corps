@@ -343,6 +343,7 @@
 		else
 			usr << "\blue Need more fuel!"
 			src.welding = 0
+			src.w_class = initial(src.w_class)
 			return
 	else
 		if(!message)
@@ -470,9 +471,10 @@
 					user << "\red You can't repair damage to your own body - it's against OH&S."
 					return
 
-		if(S.brute_dam)
+		if(S.brute_dam && welding)
 			S.heal_damage(15,0,0,1)
 			user.visible_message("\red \The [user] patches some dents on \the [M]'s [S.display_name] with \the [src].")
+			remove_fuel(1,user)
 			return
 		else
 			user << "Nothing to fix!"
