@@ -215,7 +215,7 @@
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
 
-	if (stat != 2 && prob(10)) //Is this really necessary? Xenos can't look thru cameras.
+	if (stat != 2) //Ladders have cameras now.
 		if (machine)
 			if (!( machine.check_eye(src) ))
 				reset_view(null)
