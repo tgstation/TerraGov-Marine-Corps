@@ -1329,6 +1329,14 @@
 			return
 
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
+		if(!isYautja(src))
+			user << "The screen angerly flashes three times..."
+			spawn(30)
+				playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
+				explosion(src.loc,-1,-1,2)
+				del(src)
+				return 0
+
 		if(sure == "No" || !sure) return
 		playsound(src,'sound/ambience/signal.ogg', 100, 1)
 		timer = 1
