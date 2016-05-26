@@ -123,8 +123,8 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	infos += P
 	info << infos
 
-	message_admins("\blue [key_name_admin(usr)] has edited [key]'s notes.")
-	log_admin("[key_name(usr)] has edited [key]'s notes.")
+	message_admins("\blue [key_name_admin(usr)] has edited [key]'s notes: [note]")
+	log_admin("[key_name(usr)] has edited [key]'s notes: [note]")
 
 	del info
 

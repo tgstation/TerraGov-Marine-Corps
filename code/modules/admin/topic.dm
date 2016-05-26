@@ -783,7 +783,7 @@
 				if(!reason)
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
+				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
 				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
 				M << "\red This is a temporary ban, it will be removed in [mins] minutes."
 				feedback_inc("ban_tmp",1)
@@ -793,8 +793,9 @@
 					M << "\red To try to resolve this matter head to [config.banappeals]"
 				else
 					M << "\red No ban appeals URL has been set."
-				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
+				log_admin("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
 				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
+				notes_add(M.ckey, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [reason]", usr)
 
 				del(M.client)
 				//del(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
@@ -815,11 +816,12 @@
 					M << "\red To try to resolve this matter head to [config.banappeals]"
 				else
 					M << "\red No ban appeals URL has been set."
-				ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
-				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
+				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: Permanent | Reason: [reason]")
+				log_admin("[usr.client.ckey] has banned [M.ckey] | Duration: Permanent | Reason: [reason]")
 				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 				feedback_inc("ban_perma",1)
 				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
+				notes_add(M.ckey, "Banned by [usr.client.ckey] | Duration: Permanent | Reason: [reason]", usr)
 
 				del(M.client)
 				//del(M)
