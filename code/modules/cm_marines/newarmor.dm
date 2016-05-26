@@ -109,7 +109,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				ArmorVariation = icon_state
 		else
 			ArmorVariation = icon_state
-		overlays += image('icons/Marine/marine_armor.dmi', "lamp")
+		overlays += image('icons/Marine/marine_armor.dmi', "lamp-off")
 
 
 
@@ -135,13 +135,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 			return 0
 
+		overlays.Cut()
 		if(on) //Turn it off.
 			if(user)
 				user.SetLuminosity(-brightness_on)
 			else //Shouldn't be possible, but whatever
 				SetLuminosity(0)
-			overlays -= image('icons/Marine/marine_armor.dmi', "beam")
-			user.update_inv_wear_suit()
+			overlays += image('icons/Marine/marine_armor.dmi', "lamp-off")
 			on = 0
 		else //Turn it on!
 			on = 1
@@ -149,8 +149,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				user.SetLuminosity(brightness_on)
 			else //Somehow
 				SetLuminosity(brightness_on)
-			overlays += image('icons/Marine/marine_armor.dmi', "beam")
-			user.update_inv_wear_suit()
+			overlays += image('icons/Marine/marine_armor.dmi', "lamp-on")
 
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		update_clothing_icon()
@@ -246,7 +245,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	open(var/mob/user as mob)
 		if(!opened)
 			new /obj/item/clothing/gloves/specialist(src)
-			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/suit/storage/marine/marine_spec_armor/snow(src)
 				new /obj/item/clothing/head/helmet/marine/heavy/snow(src)
 			else

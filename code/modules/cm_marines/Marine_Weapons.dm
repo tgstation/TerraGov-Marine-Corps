@@ -249,7 +249,7 @@
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
 			opened = 1
-			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
 				new /obj/item/clothing/head/helmet/marine/snow(src)
 			else
