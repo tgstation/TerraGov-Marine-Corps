@@ -63,7 +63,7 @@
 		if(special_equipment)
 			var/list/products2 = list()
 			switch(gamemode)
-				if("Ice colony")
+				if("Ice Colony")
 					products2 = list(/obj/item/clothing/under/marine_jumpsuit/snow = 10,
 									/obj/item/clothing/suit/storage/marine/snow = 10,
 									/obj/item/clothing/head/helmet/marine/snow = 10,
@@ -194,7 +194,7 @@
 			var/list/products2 = list()
 			var/list/contraband2 = list()
 			switch(gamemode)
-				if("Ice colony")
+				if("Ice Colony")
 					products2 = list(/obj/item/clothing/under/marine/fluff/marineengineer/snow = 3)
 					contraband2 = list(/obj/item/clothing/head/helmet/marine/tech/snow = 2)
 				else
@@ -260,7 +260,7 @@
 			var/list/products2 = list()
 			var/list/contraband2 = list()
 			switch(gamemode)
-				if("Ice colony")
+				if("Ice Colony")
 					products2 = list(/obj/item/clothing/under/marine/fluff/marinemedic/snow = 3)
 					contraband2 = list(/obj/item/clothing/head/helmet/marine/medic/snow = 2)
 				else
@@ -327,7 +327,7 @@
 		if(special_equipment)
 			var/list/products2 = list()
 			switch(gamemode)
-				if("Ice colony")
+				if("Ice Colony")
 					products2 = list(/obj/item/clothing/suit/storage/marine/marine_leader_armor/snow = 1,
 									/obj/item/clothing/head/helmet/marine/leader/snow = 1)
 

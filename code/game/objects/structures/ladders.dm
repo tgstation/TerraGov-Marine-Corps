@@ -126,6 +126,9 @@
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
+		if(isXenoLarva(usr) || isobserver(usr) || usr.stat)
+			usr << "You can't do that"
+			return
 		if(up && down)
 			switch( alert("Look up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
 				if("Up")
@@ -151,7 +154,6 @@
 			usr.set_machine(src)
 			is_watching = 2
 			check_eye(usr)
-			world << "[usr.machine]"
 
 		else if(down)
 			usr.visible_message("<span class='notice'>[usr] looks down \the [src]!</span>", \
@@ -159,7 +161,6 @@
 			usr.set_machine(src)
 			is_watching = 1
 			check_eye(usr)
-			world << "[usr.machine]"
 
 	add_fingerprint(usr)
 
