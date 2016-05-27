@@ -6,16 +6,17 @@
 	icon_state = "Spitter Walking"
 	melee_damage_lower = 12
 	melee_damage_upper = 22
-	health = 150
-	maxHealth = 150
+	health = 160
+	maxHealth = 160
 	storedplasma = 150
 	plasma_gain = 20
 	maxplasma = 600
-	jellyMax = 500
-	spit_delay = 80
+	jellyMax = 250
+	spit_delay = 20
 	speed = 0
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
+	armor_deflection = 20
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

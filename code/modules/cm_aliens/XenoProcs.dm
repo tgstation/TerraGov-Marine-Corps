@@ -469,7 +469,7 @@
 					return
 
 
-			if(charge_type == 0)  //Runner
+			if(charge_type == 3)  //Runner
 				visible_message("\red \The Runner pounces on [V]!","You pounce on [V]!")
 				V.Weaken(2)
 				src.canmove = 0

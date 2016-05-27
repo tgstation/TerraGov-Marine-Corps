@@ -11,10 +11,11 @@
 	storedplasma = 75
 	plasma_gain = 10
 	maxplasma = 300
-	jellyMax = 400
-	spit_delay = 90
+	jellyMax = 200
+	spit_delay = 30
 	caste_desc = ""
 	evolves_to = list("Spitter")
+	armor_deflection = 15
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
