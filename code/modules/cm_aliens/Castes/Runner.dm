@@ -1,4 +1,4 @@
-//Xenomorph Runner - Colonial Marines - Apophis775 - Last Edit: 22MAY2015
+//Runner Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 
 /mob/living/carbon/Xenomorph/Runner
 	caste = "Runner"
@@ -7,8 +7,8 @@
 	icon_state = "Runner Walking"
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	health = 120
-	maxHealth = 120
+	health = 100
+	maxHealth = 100
 	storedplasma = 50
 	plasma_gain = 1
 	maxplasma = 100

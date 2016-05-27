@@ -1,4 +1,4 @@
-
+//Crusher Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 /mob/living/carbon/Xenomorph/Crusher
 	caste = "Crusher"
 	name = "Crusher"
@@ -10,8 +10,8 @@
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 95
-	health = 240
-	maxHealth = 240
+	health = 200
+	maxHealth = 200
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
@@ -389,9 +389,9 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	for (var/mob/living/carbon/human/M in oview())
 		var/dist = get_dist(src,M)
-		if(M && M.client && dist < 7)
+		if(M && M.client && dist < 6)
 			shake_camera(M, 5, 1)
-		if (dist < 3 && !M.lying && !M.stat)
+		if (dist < 2 && !M.lying && !M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
 			M.Weaken(rand(2,3))
 	return

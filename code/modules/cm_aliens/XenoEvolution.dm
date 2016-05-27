@@ -1,4 +1,4 @@
-//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 24JAN2015
+//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 27MAY16
 
 //Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
 //All castes need an evolves_to() list in their defines
@@ -29,6 +29,12 @@
 	if(isnull(evolves_to))
 		src << "You are already the apex of form and function. Go! Spread the hive!"
 		return
+
+	//This is test code,
+
+
+
+
 
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()

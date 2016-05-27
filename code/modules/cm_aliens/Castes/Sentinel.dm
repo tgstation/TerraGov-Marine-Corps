@@ -1,4 +1,4 @@
-
+//Sentinal Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 /mob/living/carbon/Xenomorph/Sentinel
 	caste = "Sentinel"
 	name = "Sentinel"

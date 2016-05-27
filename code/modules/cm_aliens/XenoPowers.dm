@@ -127,7 +127,7 @@
 
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
-		usedPounce = 10 //about 12 seconds
+		usedPounce = 30 //about 12 seconds
 		pass_flags = PASSTABLE
 		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 2, src) //victim, distance, speed

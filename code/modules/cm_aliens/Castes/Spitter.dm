@@ -1,4 +1,4 @@
-
+//Spitter Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 /mob/living/carbon/Xenomorph/Spitter
 	caste = "Spitter"
 	name = "Spitter"
@@ -12,7 +12,7 @@
 	plasma_gain = 20
 	maxplasma = 600
 	jellyMax = 250
-	spit_delay = 20
+	spit_delay = 25
 	speed = 0
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")

@@ -1,3 +1,4 @@
+//Praetorian Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 /mob/living/carbon/Xenomorph/Praetorian
 	caste = "Praetorian"
 	name = "Praetorian"
@@ -15,8 +16,8 @@
 	plasma_gain = 25
 	maxplasma = 800
 	jellyMax = 0
-	spit_delay = 15
-	speed = 1.6
+	spit_delay = 20
+	speed = 1.7
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
