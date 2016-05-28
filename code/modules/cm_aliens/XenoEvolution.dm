@@ -57,17 +57,21 @@
 		src << "\red The restraints are too restricting to allow you to evolve."
 		return
 
-	if(caste == "Queen") // Special case for dealing with queenae
-		if(storedplasma >= 500)
-			if(is_queen_alive())
-				src << "\red There is already a queen."
+	if(caste == "Queen" && !hardcore) // Special case for dealing with queenae
+		if(!hardcore)
+			if(storedplasma >= 500)
+				if(is_queen_alive())
+					src << "\red There is already a queen."
+					return
+			else
+				src << "You require more plasma! Currently at: [storedplasma] / 500."
+				return
+
+			if(ticker && ticker.mode && ticker.mode.queen_death_timer)
+				src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
 				return
 		else
-			src << "You require more plasma! Currently at: [storedplasma] / 500."
-			return
-
-		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
-			src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
+			src << "\red Nuh-uhh."
 			return
 
 	var/mob/living/carbon/Xenomorph/M = null

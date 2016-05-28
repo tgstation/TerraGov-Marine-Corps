@@ -254,12 +254,13 @@
 
 	//XENO AND SUPPLY DROPS SPAWNER
 	if(wave_ticks_passed >= spawn_next_wave)
-//		world << "___________________________"
+		world << "___________________________"
 //		world << "Time: [world.time]"
-//		world << "wave_ticks_passed: [wave_ticks_passed]"
-//		world << "count_xenos: [count_xenos()]"
-//		world << "spawn_next_wave: [spawn_next_wave]"
-//		world << "spawn_xeno_num: [spawn_xeno_num]"
+		world << "wave_ticks_passed: [wave_ticks_passed]"
+		world << "count_xenos: [count_xenos()]"
+		world << "spawn_next_wave: [spawn_next_wave]"
+		world << "spawn_xeno_num: [spawn_xeno_num]"
+		world << "xeno_wave: [xeno_wave]"
 
 		if(count_xenos() < 45)//Checks braindead too, so we don't overpopulate!
 			wave_ticks_passed = 0
@@ -311,7 +312,7 @@
 
 //		world << "spawn_next_wave after: [spawn_next_wave]"
 //		world << "spawn_xeno_num after: [spawn_xeno_num]"
-//		world << "xeno_wave: [xeno_wave]"
+
 
 
 
@@ -336,6 +337,8 @@
 /datum/game_mode/whiskey_outpost/proc/spawn_xenos(var/amt = 1)
 	var/spawn_this_many = amt
 	var/turf/picked
+
+	var/xenos_spawned = 0 //Debug
 
 	var/list/tempspawnxeno = list() //Temporarly replaces the main list
 
@@ -363,6 +366,7 @@
 	switch(xeno_wave)//Xeno spawn controller
 		if(0)//Mostly weak runners
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner)
+			spawn_xeno_num = 10 //Reset
 
 		if(1)//Sentinels and drones are more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
@@ -372,27 +376,24 @@
 						/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Sentinel,
 						/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Drone)
-			spawn_next_wave = 15 //Reset
 
-		if(2)//Tier II versions added, but rare
+
+		if(3)//Tier II versions added, but rare
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter)
+						/mob/living/carbon/Xenomorph/Spitter,
+						/mob/living/carbon/Xenomorph/Drone)
 
-		if(3)//Tier II more common, tier I less common. More runners
+		if(4)//Tier II more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
-			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone)
-
-		if(4)//Hivelord and Carrier added
+		if(6)//Hivelord and Carrier added
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Carrier,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
-		if(6)//Ravager and Praetorian Added, Tier II more common
+		if(8)//Ravager and Praetorian Added, Tier II more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Runner,
@@ -400,7 +401,7 @@
 						/mob/living/carbon/Xenomorph/Spitter,
 						/mob/living/carbon/Xenomorph/Carrier)
 
-		if(8)//Boiler and Crusher Added, Ravager and Praetorian more common
+		if(10)//Boiler and Crusher Added, Ravager and Praetorian more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher,
 						/mob/living/carbon/Xenomorph/Boiler,
 						/mob/living/carbon/Xenomorph/Ravager,
@@ -468,53 +469,39 @@
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Boiler,
 									/mob/living/carbon/Xenomorph/Boiler,
 									/mob/living/carbon/Xenomorph/Crusher)
-
+	var/path
 	if(tempspawnxeno.len)//If temp list exists, use it
-		for(var/path in tempspawnxeno)
-			path = pick(tempspawnxeno)
-			spawn_this_many--
+		for(var/i = 0; i < spawn_this_many; i++)
 			if(xeno_spawn_loc.len)
+				path = pick(tempspawnxeno)
+				xenos_spawned++ //DEBUG
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 					X:huggers_cur = 6 //Max out huggers
-//				world << "Spawned Xeno: [X]"
-			if(!spawn_this_many)
 				break
-
-		//DEBUG
-//		world << "*******************"
-//		world << "tempspawnxeno contains:"
-//		for(var/path in tempspawnxeno)
-//			world << "[path]"
 
 
 	else //Else use the main list
-		for(var/path in spawnxeno)
-			path = pick(spawnxeno)
-			spawn_this_many--
+		for(var/i = 0; i < spawn_this_many; i++)
 			if(xeno_spawn_loc.len)
+				path = pick(spawnxeno)
+				xenos_spawned++
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 					X:huggers_cur = 6 //Max out huggers
-//				world << "Spawned Xeno: [X]"
-			if(!spawn_this_many)
-				break
 
-		//DEBUG
-//		world << "*******************"
-//		world << "spawnxeno contains:"
-//		for(var/path in spawnxeno)
-//			world << "[path]"
+	if(xenos_spawned)
+		world << "Xenos_spawned: [xenos_spawned]"
 
 /datum/game_mode/whiskey_outpost/proc/count_humans()
 	var/human_count = 0
 
 	for(var/mob/living/carbon/human/H in living_mob_list)
-		if(istype(H) && H.stat == 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
+		if(H.client && istype(H) && H.stat == 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 			if(H.species != "Yautja") // Preds don't count in round end.
 				human_count += 1 //Add them to the amount of people who're alive.
 
@@ -545,7 +532,7 @@
 /datum/game_mode/whiskey_outpost/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","Xenos won")
-		world << "\red <FONT size = 4><B>The Xenos have succesfully defended their aggressors.</B></FONT>"
+		world << "\red <FONT size = 4><B>The Xenos have succesfully defended their home planet from colonisation.</B></FONT>"
 		world << "<FONT size = 3><B>Well done, you showed those snowflakes what war means!</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log

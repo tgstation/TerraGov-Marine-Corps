@@ -43,7 +43,7 @@
 		if(indestructable)
 			//this bush marks the edge of the map, you can't destroy it
 			user << "\red You flail away at the undergrowth, but it's too thick here."
-		if(health > 225)
+		if(health > 200)
 			user << "\red This vegetation is way too thick to take down, even for [I]. Maybe try with fire?"
 		else
 			user.visible_message("\red [user] flails away at the  [src] with [I].","\red You flail away at the [src] with [I].")
@@ -56,8 +56,7 @@
 		return ..()
 
 /obj/structure/bush/proc/healthcheck()
-	world << "healthcheck()"
-	if(health < 50 && opacity)
+	if(health < 75 && opacity)
 		opacity = 0
 	if(health < 0)
 		if(prob(20))

@@ -90,6 +90,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
+	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
 
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
@@ -100,6 +101,8 @@ var/global/hive_orders = "" //What orders should the hive have
 
 /mob/living/carbon/Xenomorph/New()
 	..()
+	if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+		hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
 	add_language("Hivemind") //hivemind

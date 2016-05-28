@@ -276,6 +276,9 @@
 			continue
 		M.adjustFireLoss(rand(15,35) + firelevel)  //fwoom!
 		M.show_message(text("\red You are burned!"),1)
+		if(istype(M,/mob/living/carbon/Xenomorph)) //alyumss
+			var/mob/living/carbon/Xenomorph/X = M
+			X.updatehealth()
 
 	//This is shitty and inefficient, but the /alien/ parent obj doesn't have health.. sigh.
 	for(var/obj/effect/alien/weeds/W in loc)  //Melt dem weeds

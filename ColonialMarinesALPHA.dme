@@ -90,7 +90,6 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
-#include "code\AntiEvade.dm"
 #include "code\global.dm"
 #include "code\hub.dm"
 #include "code\names.dm"
@@ -274,6 +273,7 @@
 #include "code\game\area\prison.dm"
 #include "code\game\area\Space Station 13 areas.dm"
 #include "code\game\area\Sulaco.dm"
+#include "code\game\area\WhiskeyOutpost.dm"
 #include "code\game\area\Z_Holder.dm"
 #include "code\game\dna\dna2.dm"
 #include "code\game\dna\dna2_domutcheck.dm"

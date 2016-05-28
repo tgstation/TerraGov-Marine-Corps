@@ -127,7 +127,7 @@
 		if(locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/table) in usr.loc)
 			usr << "\red Not enough space to construct [R.title] here!"
 			return
-		if (R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor)))
+		if (R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor) || istype(usr.loc, /turf/unsimulated/jungle)))
 			usr << "\red \The [R.title] must be constructed on the floor!"
 			return
 		if (R.time)
