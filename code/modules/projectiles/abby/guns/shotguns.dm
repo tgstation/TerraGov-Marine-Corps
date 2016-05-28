@@ -26,6 +26,7 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/shotgun
+	w_class = 4
 	mag_type = "/obj/item/ammo_magazine/shotgun"
 	recoil = 2
 	force = 14.0
@@ -42,7 +43,6 @@
 	icon_empty = "rspshotgun0"
 	item_state = "rspshotgun"
 	fire_delay = 10
-	w_class = 4
 	autoejector = 1
 	muzzle_pixel_x = 31
 	muzzle_pixel_y = 19
@@ -151,7 +151,6 @@
 	rail_pixel_y = 21
 	under_pixel_x = 14
 	under_pixel_y = 15
-	w_class = 4
 	var/recentpump = 0
 	autoejector = 0 //Does not automatically eject "magazines".
 	var/is_pumped = 0
@@ -162,15 +161,26 @@
 			return 0
 		..()
 		is_pumped = 0
-		return
+		return 1
 
 	AltClick(var/mob/user)
+		if(!user.canmove || user.stat || user.restrained())
+			user << "Not right now."
+			return
+
+		if(is_pumped)
+			usr << "There's already a shell in the chamber, just shoot it."
+			return
+
 		if(recentpump)	return
 		var/mob/living/carbon/human/M = user
 		if(!istype(M)) return //wat
-		if(M.get_active_hand() != src && !M.get_inactive_hand() != src) return //not holding it
 
-		pump(M)
+		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
+			M << "You have to be holding a shotgun!"
+			return //not holding it
+
+		src.pump(M)
 		recentpump = 1
 		spawn(20)
 			recentpump = 0
@@ -192,7 +202,7 @@
 
 		//ready_bullet()
 		is_pumped = 1
-		if(M && current_mag.current_rounds <= 0)
+		if(M && current_mag.current_rounds == 0)
 			M << "\blue The last of \the [src]'s casings hit the ground. <B>Reload</b>!"
 			current_mag.loc = get_turf(src) //Eject the mag.
 			current_mag = null
@@ -217,6 +227,10 @@
 
 		if(!usr.canmove || usr.stat || usr.restrained())
 			usr << "Not right now."
+			return
+
+		if(is_pumped)
+			usr << "There's already a shell in the chamber, just shoot it."
 			return
 
 		if(recentpump)	return
@@ -248,8 +262,8 @@
 
 		if(is_reloading) return
 
-		var/shells_to_load = A.current_rounds + current_mag.current_rounds
-		if(shells_to_load > current_mag.max_rounds) shells_to_load = current_mag.max_rounds
+		var/shells_to_load = current_mag.max_rounds - current_mag.current_rounds
+		if(shells_to_load > current_mag.max_rounds) return 0
 		var/turf/start_turf = get_turf(src.loc)
 
 		if(usr && istype(usr,/mob/living/carbon/human))
@@ -262,7 +276,9 @@
 				if(H.get_active_hand() != A) break //We put it in backpacks
 				if(!H || H.stat || H.lying || H.buckled) break //We died
 				playsound(H, 'sound/weapons/shotgun_shell_insert.ogg', 50, 1)
-				A.current_rounds--
+				if(A.current_rounds == -1) //Default for max ammo
+					A.current_rounds = A.max_rounds - 1
+				else A.current_rounds--
 				current_mag.current_rounds++
 				if(A.current_rounds == 0)
 					A.update_icon()
@@ -276,7 +292,7 @@
 				is_reloading = 0
 
 
-
+		return 1
 
 //-------------------------------------------------------
 

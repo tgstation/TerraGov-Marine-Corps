@@ -706,12 +706,15 @@ var/list/be_special_flags = list(
 #define BE_MUTINEER   8192
 #define BE_CHANGELING 16384
 
+#define BE_WO_ROLE 32768
+
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"pAI" = BE_PAI,
 	"Survivor" = BE_SURVIVOR,
 	"Responder" = BE_RESPONDER,
-	"Predator" = BE_PREDATOR
+	"Predator" = BE_PREDATOR,
+	"WO Role" = BE_WO_ROLE
 
 /*
 	"Malf AI" = BE_MALF,

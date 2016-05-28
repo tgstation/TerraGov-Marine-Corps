@@ -22,7 +22,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/toggle_view_range,		/*changes how far we can see*/
 	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
-	/datum/admins/proc/view_atk_log,	/*shows the server combat-log, doesn't do anything presently*/
+	// /datum/admins/proc/view_atk_log,	/*shows the server combat-log, doesn't do anything presently*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
@@ -196,7 +196,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/admin_ghost,
 	/client/proc/toggle_view_range,
 	/datum/admins/proc/view_txt_log,
-	/datum/admins/proc/view_atk_log,
+	// /datum/admins/proc/view_atk_log,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_check_contents,
 	// /datum/admins/proc/access_news_network,
@@ -270,6 +270,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/jobbans,
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
+	/datum/admins/proc/view_txt_log,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
 	/client/proc/editzoneair,
@@ -278,6 +279,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
+	/proc/release
 )
 
 var/list/admin_verbs_mentor = list(
@@ -287,7 +289,8 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/admin_ghost,
 	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
-//	/client/proc/dsay,
+	/client/proc/dsay,
+	/datum/admins/proc/togglesleep,
 	/client/proc/cmd_admin_subtle_message
 )
 

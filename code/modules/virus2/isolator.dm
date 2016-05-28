@@ -98,7 +98,7 @@
 				var/desc = entry.fields["description"]
 				data["entry"] = list(\
 					"name" = entry.fields["name"], \
-					"description" = replacetext(desc, "\n", ""))
+					"description" = oldreplacetext(desc, "\n", ""))
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

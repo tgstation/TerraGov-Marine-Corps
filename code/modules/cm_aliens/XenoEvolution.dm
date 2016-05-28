@@ -1,4 +1,4 @@
-//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 24JAN2015
+//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 27MAY16
 
 //Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
 //All castes need an evolves_to() list in their defines
@@ -30,6 +30,12 @@
 		src << "You are already the apex of form and function. Go! Spread the hive!"
 		return
 
+	//This is test code,
+
+
+
+
+
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()
 	for(var/Q in evolves_to) //Populate our evolution list
@@ -51,17 +57,21 @@
 		src << "\red The restraints are too restricting to allow you to evolve."
 		return
 
-	if(caste == "Queen") // Special case for dealing with queenae
-		if(storedplasma >= 500)
-			if(is_queen_alive())
-				src << "\red There is already a queen."
+	if(caste == "Queen" && !hardcore) // Special case for dealing with queenae
+		if(!hardcore)
+			if(storedplasma >= 500)
+				if(is_queen_alive())
+					src << "\red There is already a queen."
+					return
+			else
+				src << "You require more plasma! Currently at: [storedplasma] / 500."
+				return
+
+			if(ticker && ticker.mode && ticker.mode.queen_death_timer)
+				src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
 				return
 		else
-			src << "You require more plasma! Currently at: [storedplasma] / 500."
-			return
-
-		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
-			src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
+			src << "\red Nuh-uhh."
 			return
 
 	var/mob/living/carbon/Xenomorph/M = null

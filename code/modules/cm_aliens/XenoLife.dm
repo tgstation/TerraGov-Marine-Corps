@@ -215,7 +215,7 @@
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
 
-	if (stat != 2 && prob(10)) //Is this really necessary? Xenos can't look thru cameras.
+	if (stat != 2) //Ladders have cameras now.
 		if (machine)
 			if (!( machine.check_eye(src) ))
 				reset_view(null)
@@ -243,7 +243,7 @@
 	if(istype(src,/mob/living/carbon/Xenomorph/Runner) && src.layer != initial(src.layer))
 		is_runner_hiding = 1
 
-	if(!is_robotic)//Robot no heal
+	if(!is_robotic && !hardcore)//Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health >= maxHealth)
 				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
@@ -258,6 +258,7 @@
 				adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 				adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 				updatehealth() //Make sure their actual health updates immediately.
+
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health
 			if(rand(0,1) == 0) storedplasma += 1
 			if(recovery_aura)
@@ -275,6 +276,43 @@
 		if(readying_tail) storedplasma -= 3
 		if(current_aura)
 			storedplasma -= 5
+
+		// START HARDCORE
+	else if(!is_robotic && hardcore)//Robot no heal
+		if(locate(/obj/effect/alien/weeds) in T)
+			if(health > 0)
+				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
+					storedplasma += plasma_gain
+					if(recovery_aura)
+						storedplasma += (recovery_aura * 2)
+			if(health < 35)//Bearly enough to stay near critical if saved
+				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+				if(recovery_aura)
+					adjustBruteLoss(-(recovery_aura))
+				adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
+				adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
+				adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
+				updatehealth() //Make sure their actual health updates immediately.
+
+		else //Xenos restore plasma VERY slowly off weeds
+			if(rand(0,1) == 0) storedplasma += 1
+			if(recovery_aura)
+				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
+				storedplasma += round(recovery_aura + 1)
+				updatehealth()
+
+		if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
+			if(src:speed_activated)
+				storedplasma -= 30
+				if(storedplasma < 0)
+					src:speed_activated = 0
+					src << "\red You feel dizzy as the world slows down."
+
+		if(readying_tail) storedplasma -= 3
+		if(current_aura)
+			storedplasma -= 5
+		//END HARDCORE
+
 	if(storedplasma > maxplasma) storedplasma = maxplasma
 	if(storedplasma < 0)
 		storedplasma = 0

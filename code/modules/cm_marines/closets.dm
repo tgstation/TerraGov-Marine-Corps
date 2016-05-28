@@ -25,11 +25,11 @@
 	select_gamemode_equipment(gamemode = "")
 		if(special_equipment)
 			switch(gamemode)
-				if("Ice colony")
+				if("Ice Colony")
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/marine/snow(src)
-					new /obj/item/clothing/mask/rebreather(src)
+					new /obj/item/clothing/mask/rebreather/scarf(src)
 
 				else
 					new /obj/item/clothing/under/marine_jumpsuit(src)
@@ -252,11 +252,11 @@
 	select_gamemode_equipment(gamemode = "")
 		if(special_equipment)
 			switch(gamemode)
-				if("Ice colony")
+				if("Ice Colony")
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
-					new /obj/item/clothing/mask/rebreather(src)
+					new /obj/item/clothing/mask/rebreather/scarf(src)
 
 	New()
 		spawn(9)

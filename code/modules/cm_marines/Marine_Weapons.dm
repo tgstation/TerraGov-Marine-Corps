@@ -96,9 +96,8 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
-	New()
-		..()
-		spawn(1)
+	open(var/mob/user as mob)
+		if(!opened)
 			if(istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
 				new /obj/item/smartgun_powerpack(src)
@@ -109,6 +108,8 @@
 				new /obj/item/smartgun_powerpack(src)
 				new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
 				new /obj/item/weapon/gun/smartgun(src)
+			opened = 1
+		..()
 
 /obj/item/clothing/suit/storage/marine_smartgun_armor
 	name = "M56 combat harness"
@@ -245,12 +246,16 @@
 			new /obj/item/weapon/facepaint/sniper(src)
 			new /obj/item/weapon/storage/backpack/smock(src)
 
-			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
+		if(!opened) //First time opening it, so add the round-specific items
+			opened = 1
+			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
 				new /obj/item/clothing/head/helmet/marine/snow(src)
 			else
 				new /obj/item/clothing/suit/storage/marine/sniper(src)
 				new /obj/item/clothing/head/helmet/durag(src)
+		..()
 
 /obj/item/weapon/gun/m92
 	name = "M92 grenade launcher"

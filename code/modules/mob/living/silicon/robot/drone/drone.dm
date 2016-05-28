@@ -66,7 +66,7 @@
 	decompiler = locate(/obj/item/weapon/matter_decompiler) in src.module
 
 	//Some tidying-up.
-	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT logo and the subscript: 'NanoTrasen Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
+	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT logo and the subscript: 'Weyland Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	updateicon()
 
 /mob/living/silicon/robot/drone/init()

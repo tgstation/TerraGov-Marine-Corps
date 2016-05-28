@@ -577,6 +577,7 @@
 	var/health = 100
 	var/on_fire = 0
 	var/resisting = 0
+	var/resisting_ready = 0
 	var/nest_resist_time = 1900
 	layer = 2.9 //Just above weeds.
 
@@ -603,20 +604,30 @@
 				if(buckled_mob.stat)
 					buckled_mob << "You're a little too unconscious to try that."
 					return
+				if(resisting_ready && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc)
+					buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] breaks free from the nest!</span>",\
+						"<span class='warning'>You pull yourself free from the nest!</span>",\
+						"<span class='notice'>You hear squelching...</span>")
+					unbuckle()
+					resisting_ready = 0
 				if(resisting)
 					buckled_mob << "You're already trying to free yourself. Give it some time."
 					return
-				buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
-					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+				if(buckled_mob && buckled_mob.name)
+					buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
+						"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
+						"<span class='notice'>You hear squelching...</span>")
 				resisting = 1
 				spawn(nest_resist_time)
 					if(resisting && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc) //Must be alive and conscious
-						buckled_mob.visible_message("<span class='warning'>[buckled_mob.name] breaks free from the nest!</span>",\
-							"<span class='warning'>You pull yourself free from the nest!</span>",\
-							"<span class='notice'>You hear squelching...</span>")
-						unbuckle()
-					resisting = 0
+						resisting = 0
+						resisting_ready = 1
+						if(istype(usr,/mob/living/carbon/human))
+							var/mob/living/carbon/human/H = usr
+							if(H.handcuffed)
+								buckled_mob << "\red <b>You are ready to break free of the nest, but your limbs are still secured. Resist once more to pop up, then resist again to break your limbs free!</b>"
+							else
+								buckled_mob << "\red <b>You are ready to break free! Resist once more to free yourself!</b>"
 			src.add_fingerprint(user)
 	return
 

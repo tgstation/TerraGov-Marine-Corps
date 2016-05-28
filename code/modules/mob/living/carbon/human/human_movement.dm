@@ -38,6 +38,29 @@
 		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
 			tally += 8
 
+		if(locate(/obj/structure/bush) in src.loc) //Bushes slows you down
+			var/obj/structure/bush/B = locate(/obj/structure/bush) in src.loc
+			if(!B.stump)
+				var/stuck = rand(0,10)
+				if(prob(75))
+					var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
+					playsound(src.loc, sound, 100, 1)
+				switch(stuck)
+					if(0 to 4)
+						tally += rand(2,3)
+						if(prob(2))
+							src << "\red Moving through [B] slows you down."
+					if(5 to 7)
+						tally += rand(4,7)
+						if(prob(10))
+							src << "\red It is very hard to move trough this [B]..."
+					if(8 to 9)
+						tally += rand(8,11)
+						src << "\red You got tangeled in [B]!"
+					if(10)
+						tally += rand(12,20)
+						src << "\red You got completely tangeled in [B]! Oh boy..."
+
 		if(locate(/obj/effect/alien/weeds) in src.loc) //Weeds slow you down
 			tally += 1
 

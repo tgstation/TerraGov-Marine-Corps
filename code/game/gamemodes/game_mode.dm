@@ -286,6 +286,7 @@
 		if(BE_ALIEN)		roletext="xeno"
 		if(BE_SURVIVOR)		roletext="survivor"
 		if(BE_PREDATOR)		roletext="predator"
+		if(BE_WO_ROLE)		roletext="WO Role"
 
 	// Assemble a list of active players without jobbans.
 	for(var/mob/new_player/player in player_list)

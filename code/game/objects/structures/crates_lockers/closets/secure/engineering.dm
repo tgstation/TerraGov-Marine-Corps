@@ -115,7 +115,7 @@
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/snow_suit(src)
-					new /obj/item/clothing/mask/rebreather(src)
+					new /obj/item/clothing/mask/rebreather/scarf(src)
 
 
 

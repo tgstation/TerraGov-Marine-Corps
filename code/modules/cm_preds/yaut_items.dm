@@ -560,12 +560,12 @@
 	if(!msg || msg == "" || isnull(msg)) return
 
 	msg = sanitize(msg)
-	msg = replacetext(msg, "o", "¤")
-	msg = replacetext(msg, "p", "þ")
-	msg = replacetext(msg, "l", "£")
-	msg = replacetext(msg, "s", "§")
-	msg = replacetext(msg, "u", "µ")
-	msg = replacetext(msg, "b", "ß") //We're ninjas now? .. fine
+	msg = oldreplacetext(msg, "o", "ï¿½")
+	msg = oldreplacetext(msg, "p", "ï¿½")
+	msg = oldreplacetext(msg, "l", "ï¿½")
+	msg = oldreplacetext(msg, "s", "ï¿½")
+	msg = oldreplacetext(msg, "u", "ï¿½")
+	msg = oldreplacetext(msg, "b", "ï¿½") //We're ninjas now? .. fine
 
 	spawn(10)
 		if(!drain_power(usr,50)) return //At this point they've upgraded.
@@ -1329,6 +1329,14 @@
 			return
 
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
+		if(!isYautja(src))
+			user << "The screen angrily flashes three times..."
+			playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
+			spawn(30)
+				explosion(src.loc,-1,-1,2)
+				del(src)
+				return 0
+
 		if(sure == "No" || !sure) return
 		playsound(src,'sound/ambience/signal.ogg', 100, 1)
 		timer = 1

@@ -118,7 +118,7 @@
 					@param replacestring: 	the string to replace the substring with
 
 		*/
-		interpreter.SetProc("replace", /proc/string_replacetext)
+		interpreter.SetProc("replace", /proc/string_oldreplacetext)
 
 		/*
 			-> Locates an element/substring inside of a list or string

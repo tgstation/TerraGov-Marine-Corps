@@ -1,8 +1,8 @@
 // BS12's less violent revolution mode
 
 /datum/game_mode/revolution/rp_revolution
-	name = "rp-revolution"
-	config_tag = "rp-revolution"
+	// name = "rp-revolution"
+	// config_tag = "rp-revolution"
 	required_players = 4
 	required_players_secret = 12
 	required_enemies = 3

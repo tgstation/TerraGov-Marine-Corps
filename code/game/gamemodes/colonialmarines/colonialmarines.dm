@@ -7,8 +7,8 @@
 	var/pred_keys = list()
 
 /datum/game_mode/colonialmarines
-	name = "colonial marines"
-	config_tag = "colonialmarines"
+	name = "Colonial Marines"
+	config_tag = "Colonial Marines"
 	required_players = 1
 	var/checkwin_counter = 0
 	var/finished = 0
@@ -298,11 +298,11 @@ var/list/toldstory = list()
 			else
 				story = pick(survivorstory)
 				survivorstory.Remove(story)
-			story = replacetext(story, "{name}", "[randomname]")
+			story = oldreplacetext(story, "{name}", "[randomname]")
 			if(istype(OH))
 				toldstory.Add(OH.name)
-				OH << replacetext(story, "{surv}", "[H.name]")
-				H << replacetext(story, "{surv}", "[OH.name]")
+				OH << oldreplacetext(story, "{surv}", "[H.name]")
+				H << oldreplacetext(story, "{surv}", "[OH.name]")
 
 			toldstory.Add(H.name)
 */
@@ -514,4 +514,3 @@ var/list/toldstory = list()
 
 /datum/game_mode/proc/auto_declare_completion_colonialmarines()
 	return
-

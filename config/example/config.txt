@@ -62,7 +62,7 @@ LOG_PDA
 # LOG_HREFS
 
 ## log world.log and runtime errors to a file
-# LOG_RUNTIME
+LOG_RUNTIME
 
 ## log admin warning messages
 ##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
@@ -71,7 +71,13 @@ LOG_PDA
 # SQL_ENABLED
 
 ## disconnect players who did nothing during 10 minutes
-# KICK_INACTIVE
+#KICK_INACTIVE
+
+##Show mods on staffwho
+SHOW_MODS
+
+##Show mentors on staffwho
+SHOW_MENTORS
 
 ## Use Mentors instead of Moderators.  Mentors are designed with the idea that
 ###they help in pushing new people to be better at roleplay.  If you uncomment
@@ -92,7 +98,7 @@ PROBABILITY CULT 1
 PROBABILITY EXTEND-A-TRAITORMONGOUS 6
 
 ## Hash out to disable random events during the round.
-ALLOW_RANDOM_EVENTS
+#ALLOW_RANDOM_EVENTS
 
 ## if amount of traitors scales or not
 TRAITOR_SCALING
@@ -116,7 +122,7 @@ ALLOW_ADMIN_OOCCOLOR
 ALLOW_VOTE_RESTART
 
 ## allow players to initate a mode-change start
-ALLOW_VOTE_MODE
+#ALLOW_VOTE_MODE
 
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
@@ -125,19 +131,19 @@ VOTE_DELAY 6000
 VOTE_PERIOD 600
 
 ## autovote initial delay (deciseconds) before first automatic transfer vote call (default 180 minutes)
-# VOTE_AUTOTRANSFER_INITIAL 108000
+VOTE_AUTOTRANSFER_INITIAL 99108000
 
 ##autovote delay (deciseconds) before sequential automatic transfer votes are called (default 60 minutes)
-# VOTE_AUTOTRANSFER_INTERVAL 36000
+VOTE_AUTOTRANSFER_INTERVAL 99936000
 
 ## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
-# VOTE_AUTOGAMEMODE_TIMELEFT 100
+VOTE_AUTOGAMEMODE_TIMELEFT 200
 
 ## prevents dead players from voting or starting votes
 #NO_DEAD_VOTE
 
 ## players' votes default to "No vote" (otherwise,  default to "No change")
-DEFAULT_NO_VOTE
+#DEFAULT_NO_VOTE
 
 ## Allow ghosts to see antagonist through AntagHUD
 ALLOW_ANTAG_HUD
@@ -200,7 +206,7 @@ GUEST_BAN
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
 ##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.9
+TICKLAG 0.5
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 TICKCOMP 0

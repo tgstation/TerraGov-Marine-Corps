@@ -1,4 +1,4 @@
-//Xenomorph - Queen- Colonial Marines - Apophis775 - Last Edit: 24JAN2015
+//Xenomorph - Queen- Colonial Marines - Apophis775 - Last Edit: 20MAY2016
 
 /mob/living/carbon/Xenomorph/Queen
 	caste = "Queen"
@@ -49,7 +49,8 @@
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/toggle_auras,
 		/mob/living/carbon/Xenomorph/Queen/proc/set_orders,
-		/mob/living/carbon/Xenomorph/proc/secure_host
+		/mob/living/carbon/Xenomorph/proc/secure_host,
+		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
 
 /mob/living/carbon/Xenomorph/Queen/gib()
@@ -247,3 +248,31 @@
 		hive_orders = ""
 
 	last_special = world.time + 150
+
+
+/mob/living/carbon/Xenomorph/Queen/proc/hive_Message()
+	set category = "Alien"
+	set name = "Word of the Queen (50)"
+	set desc = "Send a message to all aliens in the hive that is big and visible"
+	if(!check_plasma(50))
+		return
+	if(health<=0)
+		src << "You can't do that while unconcious"
+		return 0
+	var/input = input(src, "This message will be broadcast throughout the hive...", "Word of the Queen", "") as message|null
+	if(!input)
+		return
+
+	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
+	queensWord += "<br><span class='alert'>[input]</span><br>"
+
+
+
+	for(var/mob/M in player_list)
+		if(!istype(M,/mob/living/carbon/Xenomorph))
+			continue
+		M << "[queensWord]"
+
+	log_admin("[key_name(src)] has created a Word of the Queen report:")
+	log_admin("[queensWord]")
+	message_admins("[key_name_admin(src)] has created a Word of the Queen report.", 1)

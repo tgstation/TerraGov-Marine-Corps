@@ -1,4 +1,5 @@
 //Xenomorph General Procs And Functions - Colonial Marines
+//LAST EDIT: APOPHIS 22MAY16
 
 ///mob/living/carbon/Xenomorph/gib(anim="gibbed-m",do_gibs)
 //	return ..(anim="gibbed-a",do_gibs)
@@ -142,6 +143,34 @@
 	tally = speed
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
+
+	if(locate(/obj/structure/bush) in src.loc) //Bushes slows you down
+		var/obj/structure/bush/B = locate(/obj/structure/bush) in src.loc
+		if(!B.stump)
+			var/stuck = rand(0,10)+tier
+			if(prob(20*tier))
+				var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
+				playsound(src.loc, sound, 100, 1)
+			switch(stuck)
+				if(0 to 4)
+					tally += rand(1,2)
+					if(prob(2))
+						src << "\red Moving through [B] slows you down."
+				if(5 to 7)
+					if(tier > 2)
+						tally += rand(3,5)
+						if(prob(10))
+							src << "\red It is very hard to move trough this [B]..."
+				if(8 to 9)
+					if(tier > 2)
+						if(prob(20))
+							tally += rand(4,7)
+							src << "\red You got tangeled in [B]!"
+				if(10 to INFINITY)
+					if(tier > 3)
+						tally += rand(8,12)
+						src << "\red You got completely tangeled in [B]! Oh boy..."
+
 
 	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
@@ -467,11 +496,38 @@
 					src.throwing = 0
 					return
 
+
+			if(charge_type == 3)  //Runner
+				visible_message("\red \The Runner pounces on [V]!","You pounce on [V]!")
+				V.Weaken(1)
+				src.canmove = 0
+				src.frozen = 1
+				src.loc = V.loc
+				src.throwing = 0 //Stop the movement
+				if(!is_robotic)
+					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+				spawn(1)
+					src.frozen = 0
+
+			if(charge_type == 1) //hunter pounce.
+				visible_message("\red \The Hunter pounces on [V]!","You pounce on [V]!")
+				V.Weaken(3)
+				src.canmove = 0
+				src.frozen = 1
+				src.loc = V.loc
+				src.throwing = 0 //Stop the movement
+				if(!is_robotic)
+					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+				spawn(15)
+					src.frozen = 0
+
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)
 				V.Weaken(2)
 				src.throwing = 0
 
+
+/*   //OLD RUNNER/HUNDER COMBO POUNCE
 			if(charge_type == 1) //Runner/hunter pounce.
 				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
 				V.Weaken(4)
@@ -482,7 +538,7 @@
 				if(!is_robotic)
 					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
 				spawn(20)
-					src.frozen = 0
+					src.frozen = 0   */
 		return
 
 	if(isturf(hit_atom))

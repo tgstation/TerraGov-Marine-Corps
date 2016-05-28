@@ -39,7 +39,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	armor = list(melee = 65, bullet = 85, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
+	flags = FPRINT|TABLEPASS
 	anti_hug = 1
 	w_class = 5
 	var/hug_damage = 0
@@ -109,7 +109,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				ArmorVariation = icon_state
 		else
 			ArmorVariation = icon_state
-		overlays += image('icons/Marine/marine_armor.dmi', "lamp")
+		overlays += image('icons/Marine/marine_armor.dmi', "lamp-off")
 
 
 
@@ -135,13 +135,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 			return 0
 
+		overlays.Cut()
 		if(on) //Turn it off.
 			if(user)
 				user.SetLuminosity(-brightness_on)
 			else //Shouldn't be possible, but whatever
 				SetLuminosity(0)
-			overlays -= image('icons/Marine/marine_armor.dmi', "beam")
-			user.update_inv_wear_suit()
+			overlays += image('icons/Marine/marine_armor.dmi', "lamp-off")
 			on = 0
 		else //Turn it on!
 			on = 1
@@ -149,8 +149,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 				user.SetLuminosity(brightness_on)
 			else //Somehow
 				SetLuminosity(brightness_on)
-			overlays += image('icons/Marine/marine_armor.dmi', "beam")
-			user.update_inv_wear_suit()
+			overlays += image('icons/Marine/marine_armor.dmi', "lamp-on")
 
 		playsound(src,'sound/machines/click.ogg', 20, 1)
 		update_clothing_icon()
@@ -243,16 +242,17 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	storage_slots = 2
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
-	New()
-		..()
-		spawn(1)//Hax
+	open(var/mob/user as mob)
+		if(!opened)
 			new /obj/item/clothing/gloves/specialist(src)
-			if(istype(ticker.mode,/datum/game_mode/ice_colony))
+			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/suit/storage/marine/marine_spec_armor/snow(src)
 				new /obj/item/clothing/head/helmet/marine/heavy/snow(src)
 			else
 				new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
 				new /obj/item/clothing/head/helmet/marine/heavy(src)
+			opened = 1
+		..()
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "M11 Pattern Leader Helmet"
@@ -320,17 +320,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		if(contents.len < 3)
 			user.drop_item()
 			W.loc = src
-			user.visible_message("[src] puts \the [W] on the [src].","\blue You put \the [W] on the [src].")
+			user.visible_message("[usr] puts \the [W] on the [src].","\blue You put \the [W] on the [src].")
 			update_icon()
 		else
 			user << "\red There is no more space for [W]."
 	else if(istype(W, /obj/item/weapon/claymore/mercsword/machete))
-		user.visible_message("[src] tries to put \the [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b>","\red You try to put \the [W] on the [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b>")
+		user.visible_message("[usr] tries to put \the [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b>","\red You try to put \the [W] on the [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b>")
 	else
 		user << "\red \the [W] does not fit on [src]."
 
 /obj/item/clothing/head/helmet/marine/update_icon()
 	overlays.Cut()
+	if(hug_damage)
+		overlays += image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
 	if(contents.len)
 		for(var/obj/I in contents)
 			if(!isnull(I) && I in contents)

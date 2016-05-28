@@ -151,6 +151,10 @@
 				usr << "Sorry, during the Hunter Games, you have to start at the beginning of the round. Observe and wait! Cheer on your favorite!"
 				return
 
+			if(istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+				usr << "Sorry, during the Whiskey Game, you have to start at the beginning of the round. You can, however, observe and play as an alien!"
+				return
+
 			if(client.prefs.species != "Human")
 				if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
 					src << alert("You are currently not whitelisted to play [client.prefs.species].")

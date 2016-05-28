@@ -1,6 +1,6 @@
 /datum/game_mode/meteor
-	name = "meteor"
-	config_tag = "meteor"
+	// name = "meteor"
+	// config_tag = "meteor"
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 	var/const/meteordelay = 2000

@@ -1,8 +1,8 @@
 //CM HALLOWEEN GAME MODE
 
 /datum/game_mode/Halloween
-	name = "Colonial Marines Halloween"
-	config_tag = "Colonial Marines Halloween"
+	// name = "Colonial Marines Halloween"
+	// config_tag = "Colonial Marines Halloween"
 	required_players = 1
 	var/checkwin_counter = 0
 	var/finished = 0

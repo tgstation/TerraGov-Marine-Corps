@@ -1,12 +1,12 @@
-
+//Ravager Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 /mob/living/carbon/Xenomorph/Ravager
 	caste = "Ravager"
 	name = "Ravager"
 	desc = "A huge, nasty red alien with enormous scythed claws."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Ravager Walking"
-	melee_damage_lower = 28
-	melee_damage_upper = 52
+	melee_damage_lower = 30
+	melee_damage_upper = 50
 	tacklemin = 3
 	tacklemax = 6
 	tackle_chance = 80
@@ -26,7 +26,7 @@
 	var/CHARGECOOLDOWN = 120
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
-	armor_deflection = 75
+	armor_deflection = 70
 	big_xeno = 1
 	attack_delay = -2
 

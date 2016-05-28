@@ -440,6 +440,7 @@
 	name = "box of lightsticks"
 	desc = "Contains blue lightsticks."
 	icon_state = "lightstick"
+	can_hold = list(/obj/item/lightstick)
 
 	New()
 		..()
@@ -814,6 +815,13 @@ obj/item/alienjar
 	body_parts_covered = 0
 	w_class = 2
 
+//Coif
+/obj/item/clothing/mask/rebreather/scarf
+	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
+	name = "Heat Absorbent Coif"
+	icon_state = "coif"
+	item_state = "coif"
+
 //SUITS-----------------------//
 //Snow Armor
 /obj/item/clothing/suit/storage/marine/snow
@@ -1142,54 +1150,14 @@ obj/item/alienjar
 
 //-----ACES Research Reports
 /datum/file/program/data/text/aces_log
-	name = "ACES Research Report"
+	name = "ACES Research Reports"
 	extension = "txt"
 	image = 'icons/ntos/file.png'
-	dat = ""
+	dat = "<b><font face=\"verdana\" color=\"green\">ACES Research Reports</font></b><br>"
 	active_state = "text"
-	var/list/logs = list(
-	"Research Log I" = "<b>Research Log I</b><br><br>This log is very nice looking!",
-	"Research Log II" = "<b>Research Log II</b><br><br>This log is very nice looking!",
-	"Research Log III" = "<b>Research Log III</b><br><br>This log is very nice looking!",
-	"Research Log IV" = "<b>Research Log IV</b><br><br>This log is very nice looking!",
-	"Research Log V" = "<b>Research Log V</b><br><br>This log is very nice looking!"
-	)
-
-
-/*
-	New()
-		..()
-		for(var/i in logs)
-			world << "[i] = [logs[i]]"
-			world << "<a href=\"byond://?show_help=[i]\">[i]</a>"
-			world << "_____________________"
-
-			//"[topic_link(src,"log_1","Log I")]<br>[topic_link(src,"log_2","Log II")]<br>[topic_link(src,"log_3","Log III")]<br>[topic_link(src,"log_4","Log IV")]<br>[topic_link(src,"log_5","Log V")]"
-*/
-
-/datum/file/program/data/text/aces_log/Topic(href, list/href_list)
-	if(!interactable() || ..(href,href_list))
-		return
-	..()
-	if ("log_1" in href_list)
-		dat = "<b>Research Log I</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_2" in href_list)
-		dat = "<b>Research Log II</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_3" in href_list)
-		dat = "<b>Research Log III</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_4" in href_list)
-		dat = "<b>Research Log IV</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_5" in href_list)
-		dat = "<b>Research Log V</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("return" in href_list)
-		dat = "[initial(dat)]"
-
-
+	logs = list(
+				"Research Log I" = "<b><font face=\"verdana\" color=\"green\">Research Log I</font></b><br><br>This log is very nice looking!"
+				)
 
 
 //-----ACES Storage Access Program
@@ -1206,8 +1174,6 @@ obj/item/alienjar
 	action_name = "Toggle Door"
 
 //-----PaperWork-----
-
-
 
 
 //RD OFFICE-----

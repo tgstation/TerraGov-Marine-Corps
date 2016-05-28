@@ -14,8 +14,8 @@ datum/game_mode/mutiny
 	var/list/mutineers = list()
 	var/list/body_count = list()
 
-	name = "mutiny"
-	config_tag = "mutiny"
+	// name = "mutiny"
+	// config_tag = "mutiny"
 	required_players = 7
 	ert_disabled = 1
 

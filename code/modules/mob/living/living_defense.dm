@@ -160,7 +160,10 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-    fire_stacks = Clamp(fire_stacks + add_fire_stacks, min = -20, max = 20)
+	fire_stacks = Clamp(fire_stacks + add_fire_stacks, min = -20, max = 20)
+	if(fire_stacks <= 0)
+		ExtinguishMob()
+	update_fire()
 
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)

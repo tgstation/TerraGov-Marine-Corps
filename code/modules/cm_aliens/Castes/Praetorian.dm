@@ -1,29 +1,30 @@
+//Praetorian Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 /mob/living/carbon/Xenomorph/Praetorian
 	caste = "Praetorian"
 	name = "Praetorian"
 	desc = "A huge, looming beast of an alien."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Praetorian Walking"
-	melee_damage_lower = 18
-	melee_damage_upper = 26
+	melee_damage_lower = 15
+	melee_damage_upper = 25
 	tacklemin = 3
 	tacklemax = 8
 	tackle_chance = 75
 	health = 200
 	maxHealth = 200
-	storedplasma = 150
+	storedplasma = 200
 	plasma_gain = 25
-	maxplasma = 400
+	maxplasma = 800
 	jellyMax = 0
-	spit_delay = 75
-	speed = 1.6
+	spit_delay = 20
+	speed = 1.7
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
 //	adjust_size_y = 0.85
 	caste_desc = "Ptui!"
 	evolves_to = list()
-	armor_deflection = 82
+	armor_deflection = 60
 	big_xeno = 1
 
 	inherent_verbs = list(
