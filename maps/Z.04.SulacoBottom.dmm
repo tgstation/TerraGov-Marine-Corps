@@ -617,7 +617,7 @@
 "lS" = (/obj/machinery/atmospherics/binary/pump/on{dir = 1; name = "Air Supply Pump"; target_pressure = 400},/turf/simulated/floor/plating,/area/sulaco/hangar/two)
 "lT" = (/obj/structure/closet/firecloset,/turf/simulated/floor/plating,/area/sulaco/hangar/two)
 "lU" = (/obj/machinery/telecomms/server/presets/squads{produces_heat = 0},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
-"lV" = (/obj/machinery/message_server{icon_state = "server-on"},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
+"lV" = (/obj/machinery/message_server{icon_state = "server-on"; name = "M.O.T.H.E.R. Control Box"},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
 "lW" = (/obj/machinery/r_n_d/server/core{produces_heat = 0; unacidable = 1},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
 "lX" = (/obj/machinery/telecomms/server/presets/common{produces_heat = 0},/turf/simulated/floor/engine/vacuum,/area/sulaco/telecomms)
 "lY" = (/obj/machinery/computer/message_monitor{req_one_access_txt = "19;200"},/turf/simulated/floor{icon_state = "dark"},/area/sulaco/telecomms/office)
