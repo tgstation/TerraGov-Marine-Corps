@@ -5,6 +5,7 @@
 // END_INTERNALS
 // BEGIN_FILE_DIR
 #define FILE_DIR .
+#define FILE_DIR "Backup"
 #define FILE_DIR "code"
 #define FILE_DIR "code/WorkInProgress"
 #define FILE_DIR "code/WorkInProgress/Cael_Aislinn"
@@ -37,6 +38,7 @@
 #define FILE_DIR "icons/NTOS/battery_icons"
 #define FILE_DIR "icons/obj"
 #define FILE_DIR "icons/obj/assemblies"
+#define FILE_DIR "icons/obj/atmospherics-UNUSED"
 #define FILE_DIR "icons/obj/clothing"
 #define FILE_DIR "icons/obj/clothing/species"
 #define FILE_DIR "icons/obj/clothing/species/skrell"
@@ -297,6 +299,7 @@
 #include "code\game\gamemodes\colonialmarines\Halloween.dm"
 #include "code\game\gamemodes\colonialmarines\huntergames.dm"
 #include "code\game\gamemodes\colonialmarines\ice_colony.dm"
+#include "code\game\gamemodes\colonialmarines\whiskey_outpost.dm"
 #include "code\game\gamemodes\cult\cult.dm"
 #include "code\game\gamemodes\cult\cult_items.dm"
 #include "code\game\gamemodes\cult\cult_structures.dm"

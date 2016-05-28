@@ -295,6 +295,10 @@
 		if(istype(N)) //Just for safety
 			N.health -= (30 + (firelevel * 3))
 			N.healthcheck()
+	for(var/obj/structure/bush/B in loc)  //Bushes of love
+		if(istype(B)) //Just for safety
+			B.health -= firelevel + 4
+			B.healthcheck()
 	for(var/obj/item/clothing/mask/facehugger/H in loc) //Melt dem huggers
 		if(istype(H))
 //			H.health -= (firelevel + 5) //No need for a health check, just kill them

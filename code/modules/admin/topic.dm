@@ -564,6 +564,12 @@
 		else
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Survivor;jobban4=\ref[M]'>Survivor</a></td>"
 
+		//Whiskey Outpost Role
+		if(jobban_isbanned(M, "WO Role") || isbanned_dept)
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=WO Role;jobban4=\ref[M]'><font color=red>WO Role</font></a></td>"
+		else
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=WO Role;jobban4=\ref[M]'>WO Role</a></td>"
+
 
 		jobs += "</tr></table>"
 
