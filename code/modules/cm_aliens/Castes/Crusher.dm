@@ -1,17 +1,17 @@
-
+//Crusher Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
 /mob/living/carbon/Xenomorph/Crusher
 	caste = "Crusher"
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
-	melee_damage_lower = 12
-	melee_damage_upper = 22
+	melee_damage_lower = 15
+	melee_damage_upper = 30
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 95
-	health = 240
-	maxHealth = 240
+	health = 200
+	maxHealth = 200
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
@@ -19,7 +19,7 @@
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.5
 	evolves_to = list()
-	armor_deflection = 70
+	armor_deflection = 80
 	var/charge_dir = 0
 	var/momentum = 0 //Builds up charge based on movement.
 	var/charge_timer = 0 //Has a small charge window. has to keep moving to build momentum.
@@ -389,7 +389,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	for (var/mob/living/carbon/human/M in oview())
 		var/dist = get_dist(src,M)
-		if(M && M.client && dist < 7)
+		if(M && M.client && dist < 6)
 			shake_camera(M, 5, 1)
 		if (dist < 3 && !M.lying && !M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"

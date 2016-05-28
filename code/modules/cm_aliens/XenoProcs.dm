@@ -469,28 +469,28 @@
 					return
 
 
-			if(charge_type == 0)  //Runner
+			if(charge_type == 3)  //Runner
 				visible_message("\red \The Runner pounces on [V]!","You pounce on [V]!")
-				V.Weaken(2)
+				V.Weaken(1)
 				src.canmove = 0
 				src.frozen = 1
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
 					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
-				spawn(5)
+				spawn(1)
 					src.frozen = 0
 
 			if(charge_type == 1) //hunter pounce.
 				visible_message("\red \The Hunter pounces on [V]!","You pounce on [V]!")
-				V.Weaken(5)
+				V.Weaken(3)
 				src.canmove = 0
 				src.frozen = 1
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
 					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
-				spawn(20)
+				spawn(15)
 					src.frozen = 0
 
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead

@@ -42,22 +42,22 @@
 		src << "You will now spit corrosive acid globs."
 		spit_type = 1
 		ammo.icon_state = "neurotoxin"
-		ammo.damage = 10
+		ammo.damage = 20
 		ammo.stun = 0
 		ammo.weaken = 0
 		ammo.shell_speed = 1
-		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
+		spit_delay = (initial(spit_delay) - 10) // Down from +20 to -10.  This should be sort of the base alien "ranged" attack.  Also, Praes/Spitters get lolshit for melee damage
 		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
 			//Bigger and badder!
-			ammo.damage += 15
+			ammo.damage += 25
 		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-			ammo.damage += 5
+			ammo.damage += 10
 			ammo.shell_speed = 2 //Super fast!
 	else
 		src << "You will now spit stunning neurotoxin instead of acid."
 		spit_type = 0
 		ammo.icon_state = "toxin"
-		ammo.damage = 0
+		ammo.damage = 1
 		ammo.stun = 1
 		ammo.weaken = 2
 		ammo.shell_speed = 1
@@ -127,7 +127,7 @@
 
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
-		usedPounce = 180 //about 12 seconds
+		usedPounce = 30 //about 12 seconds
 		pass_flags = PASSTABLE
 		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 2, src) //victim, distance, speed
