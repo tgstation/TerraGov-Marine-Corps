@@ -5,7 +5,6 @@
 // END_INTERNALS
 // BEGIN_FILE_DIR
 #define FILE_DIR .
-#define FILE_DIR "Backup"
 #define FILE_DIR "code"
 #define FILE_DIR "code/WorkInProgress"
 #define FILE_DIR "code/WorkInProgress/Cael_Aislinn"
@@ -90,6 +89,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "code\AntiEvade.dm"
 #include "code\global.dm"
 #include "code\hub.dm"
 #include "code\names.dm"
