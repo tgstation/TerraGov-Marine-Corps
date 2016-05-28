@@ -391,7 +391,7 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 		var/dist = get_dist(src,M)
 		if(M && M.client && dist < 6)
 			shake_camera(M, 5, 1)
-		if (dist < 2 && !M.lying && !M.stat)
+		if (dist < 3 && !M.lying && !M.stat)
 			M << "<span class='warning'><B>The earth moves beneath your feet!</span></b>"
 			M.Weaken(rand(2,3))
 	return
