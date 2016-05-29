@@ -15,7 +15,7 @@
 	var/health = 100
 
 /obj/structure/bush/New()
-	health = rand(100,300)
+	health = rand(75,125)
 	if(prob(85))
 		opacity = 1
 
@@ -37,14 +37,12 @@
 /obj/structure/bush/attackby(var/obj/I as obj, var/mob/user as mob)
 	//hatchets and shiet can clear away undergrowth
 	if(I && (istype(I, /obj/item/weapon/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
-		var/damage = rand(1,3)
+		var/damage = rand(2,5)
 		if(istype(I,/obj/item/weapon/claymore/mercsword))
-			damage = rand(6,12)
+			damage = rand(8,18)
 		if(indestructable)
 			//this bush marks the edge of the map, you can't destroy it
 			user << "\red You flail away at the undergrowth, but it's too thick here."
-		if(health > 200)
-			user << "\red This vegetation is way too thick to take down, even for [I]. Maybe try with fire?"
 		else
 			user.visible_message("\red [user] flails away at the  [src] with [I].","\red You flail away at the [src] with [I].")
 			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 100, 1)
@@ -56,10 +54,10 @@
 		return ..()
 
 /obj/structure/bush/proc/healthcheck()
-	if(health < 75 && opacity)
+	if(health < 45 && opacity)
 		opacity = 0
 	if(health < 0)
-		if(prob(20))
+		if(prob(10))
 			icon_state = "stump[rand(1,2)]"
 			name = "cleared foliage"
 			desc = "There used to be dense undergrowth here."

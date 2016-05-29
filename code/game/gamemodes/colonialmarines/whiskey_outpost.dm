@@ -3,6 +3,7 @@
 	config_tag = "Whiskey Outpost"
 	required_players = 1
 	recommended_enemies = 5 //Force doctors and commander if no one wants them
+
 	var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 
 	var/checkwin_counter = 0
@@ -42,6 +43,8 @@
 	return 1
 
 /datum/game_mode/whiskey_outpost/pre_setup()
+	slashing_allowed = 1 //Allows harm intent for aliens
+
 	var/obj/effect/landmark/L
 
 	for(L in world)
@@ -66,19 +69,29 @@
 	var/list/possible_roles = get_players_for_role(BE_WO_ROLE) //Grab people who want to be speshul
 	var/docs_max = 4
 
+
+
 	//Setup possible roles list
 	if(possible_roles.len)
+		//DEBUG
+		world << "possible_roles:"
+		for(var/datum/mind/S in possible_roles)
+			world << "[S]"
+		world << "________________"
 		//Commanders
 		for(var/datum/mind/S in possible_roles)
 			if(S && S.assigned_role != "ROLE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "ROLE"
 				S.special_role = "WO_COM"
+				world << "[S] as WO_COM"
 				break
+
 		//Doctors
 		for(var/datum/mind/S in possible_roles)
 			if(S && S.assigned_role != "ROLE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "ROLE"
 				S.special_role = "WO_DOC"
+				world << "[S] as WO_DOC"
 				docs_max--
 				if(!docs_max)
 					break
@@ -136,8 +149,7 @@
 	if(!H.mind)
 		H.mind = new(H.key)
 
-	H.nutrition = rand(150,300)
-	var/obj/item/weapon/card/id/W = new(H)
+	H.nutrition = rand(325,400)
 
 	if(H.mind.special_role == "WO_COM") //First, the commander
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
@@ -154,6 +166,7 @@
 		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), slot_in_backpack)
 		Commander = H //Make him the Commander
 
+		var/obj/item/weapon/card/id/gold/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
 		W.access = list()
 		W.assignment = "Commander"
@@ -161,13 +174,19 @@
 		H.equip_to_slot_or_del(W, slot_wear_id)
 
 		spawn(40)
-			H << "________________________"
-			H << "\red <b>You are the Commander!<b>"
-			H << "Coordinate your team and prepare defenses."
-			H << "Motion trackets have detected movements from local creatures, and they are heading towards the outpost!"
-			H << "Stay alive! If you die, supplies will stop arriving."
-			H << "Hold the outpost for one hour, until the main force arrives!"
-			H << "________________________"
+			if(H)
+				H << "________________________"
+				H << "\red <b>You are the Commander!<b>"
+				H << "Coordinate your team and prepare defenses."
+				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "Stay alive! If you die, supplies will stop arriving."
+				H << "Hold the outpost for one hour until the main force arrives!"
+				H << "________________________"
+		spawn(240) //So they can see it
+			if(H)
+				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
+				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
+
 
 	else if(H.mind.special_role == "WO_DOC") //Then, the doctors
 		switch(H.backbag)
@@ -180,6 +199,7 @@
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), slot_l_ear)
 
+		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
 		W.access = list()
 		W.assignment = "Doctor"
@@ -188,13 +208,17 @@
 
 		//Give them some information
 		spawn(40)
-			H << "________________________"
-			H << "\red <b>You are the WO Doctor!<b>"
-			H << "Gear up, prepare the medbay and keep your temmates alive."
-			H << "Motion trackets have detected movements from local creatures, and they are heading towards the outpost!"
-			H << "Hold the outpost for one hour, until the main force arrives!"
-			H << "________________________"
-
+			if(H)
+				H << "________________________"
+				H << "\red <b>You are the WO Doctor!<b>"
+				H << "Gear up, prepare the medbay and keep your temmates alive."
+				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "Hold the outpost for one hour until the main force arrives!"
+				H << "________________________"
+		spawn(240) //So they can see it
+			if(H)
+				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
+				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
 	else
 		//Standard Marine
@@ -206,6 +230,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_ear)
 
+		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
 		W.access = list()
 		W.assignment = "Marine"
@@ -232,12 +257,13 @@
 
 		//Give them some information
 		spawn(40)
-			H << "________________________"
-			H << "\red <b>You are the Marine!<b>"
-			H << "Gear up, prepare defenses and work as a team. Protect your doctors and commander!"
-			H << "Motion trackets have detected movements from local creatures, and they are heading towards the outpost!"
-			H << "Hold the outpost for one hour, untill the main force arrives!"
-			H << "________________________"
+			if(H)
+				H << "________________________"
+				H << "\red <b>You are the Marine!<b>"
+				H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
+				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "Hold the outpost for one hour until the main force arrives!"
+				H << "________________________"
 
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_l_store)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
@@ -258,11 +284,10 @@
 //		world << "Time: [world.time]"
 		world << "wave_ticks_passed: [wave_ticks_passed]"
 		world << "count_xenos: [count_xenos()]"
-		world << "spawn_next_wave: [spawn_next_wave]"
 		world << "spawn_xeno_num: [spawn_xeno_num]"
 		world << "xeno_wave: [xeno_wave]"
 
-		if(count_xenos() < 45)//Checks braindead too, so we don't overpopulate!
+		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate!
 			wave_ticks_passed = 0
 
 			if(spawn_next_wave > 60) //100
@@ -271,6 +296,7 @@
 
 			if(spawn_xeno_num < 40)
 				spawn_xeno_num ++
+			world << "spawn_next_wave: [spawn_next_wave]"
 
 			//SUPPLY SPAWNER
 			if(xeno_wave == next_supply)
@@ -293,16 +319,16 @@
 						break //Place only 3
 
 					switch(xeno_wave)
-						if(0 to 8)
+						if(0 to 11)
 							next_supply++
-						if(9 to 15)
+						if(12 to 18)
 							next_supply += 2
 						else
 							next_supply += 3
 				else if(Commander)
-					world << "Commander ([Commander]) is dead, so no supplies will arrive!"
+					world << "\red Commander ([Commander]) is dead, so no supplies will arrive!"
 				else
-					world << "Commander could not be found. He probably exploded into bits..."
+					world << "\red Commander could not be found. He probably exploded into bits..."
 
 			xeno_wave++
 		else
@@ -478,6 +504,8 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
+				X.storedplasma = X.maxplasma
+				X.a_intent = "harm"
 				if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 					X:huggers_cur = 6 //Max out huggers
 				break
@@ -532,7 +560,7 @@
 /datum/game_mode/whiskey_outpost/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","Xenos won")
-		world << "\red <FONT size = 4><B>The Xenos have succesfully defended their home planet from colonisation.</B></FONT>"
+		world << "\red <FONT size = 4><B>The Xenos have succesfully defended their home planet from colonization.</B></FONT>"
 		world << "<FONT size = 3><B>Well done, you showed those snowflakes what war means!</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log
@@ -602,10 +630,11 @@
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
 								/obj/item/weapon/storage/belt/medical/combatLifesaver,
 								/obj/item/clothing/glasses/hud/health,
-								/obj/item/clothing/glasses/hud/health)
+								/obj/item/clothing/glasses/hud/health,
+								/obj/item/weapon/melee/defibrillator)
 
 			if(2 to 8)//Random Medical Items
-				choosemax = rand(5,10)
+				choosemax = rand(10,15)
 				randomitems = list(/obj/item/weapon/storage/firstaid/fire,
 								/obj/item/weapon/storage/firstaid/regular,
 								/obj/item/weapon/storage/firstaid/toxin,
@@ -657,7 +686,7 @@
 
 	else if (OT == "wep")
 		crate = new /obj/structure/closet/crate/secure/weapon(T)
-		randpick = rand(0,17)
+		randpick = rand(0,16)
 		switch(randpick)
 			if(0)//Specialist Crate
 				spawnitems = list(/obj/item/weapon/flamethrower/full,
@@ -836,7 +865,7 @@
 									/obj/item/ammo_magazine/shotgun/buckshot/cmb,
 									/obj/item/ammo_magazine/shotgun/incendiary/cmb)
 
-			if(13 to 17)//Random Secondary Ammo
+			if(13 to 16)//Random Secondary Ammo
 				choosemax = rand(25,30)
 				randomitems = list(/obj/item/ammo_magazine/pistol,
 									/obj/item/ammo_magazine/pistol,
@@ -873,11 +902,11 @@
 									/obj/item/ammo_magazine/smg/p90)
 
 	else if (OT == "sup")
-		randpick = rand(0,7)
+		randpick = rand(0,12)
 		crate = new /obj/structure/closet/crate/secure/gear(T)
 		switch(randpick)
-			if(0)//Food
-				choosemax = rand(15,30)
+			if(0 to 1)//Food
+				choosemax = rand(25,30)
 				randomitems = list(/obj/item/weapon/storage/box/uscm_mre,
 								/obj/item/weapon/storage/box/donkpockets,
 								/obj/item/weapon/reagent_containers/food/snacks/protein_pack,
@@ -896,9 +925,8 @@
 								/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6,
 								/obj/item/weapon/storage/box/wy_mre)
 
-
-			if(1)//Tools
-				choosemax = rand(2,5)
+			if(2 to 3)//Tools
+				choosemax = rand(3,6)
 				randomitems = list(/obj/item/device/multitool,
 								/obj/item/device/multitool,
 								/obj/item/weapon/storage/toolbox/electrical,
@@ -908,7 +936,7 @@
 								/obj/item/weapon/cell/high,
 								/obj/item/clothing/glasses/welding								)
 
-			if(2)//Marine Gear
+			if(4 to 6)//Marine Gear
 				choosemax = rand(10,15)
 				randomitems = list(/obj/item/clothing/head/helmet/marine,
 								/obj/item/clothing/head/helmet/marine,
@@ -926,7 +954,7 @@
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/device/binoculars)
 
-			if(3)//Lights and shiet
+			if(7 to 8)//Lights and shiet
 				choosemax = rand(10,20)
 				randomitems = list(/obj/item/device/flashlight/flare,
 								/obj/item/device/flashlight/flare,
@@ -942,17 +970,18 @@
 								/obj/item/device/flashlight/combat,
 								/obj/item/device/flashlight/combat,
 								/obj/item/device/flashlight/combat,
-								/obj/machinery/floodlight)
+								/obj/machinery/floodlight,
+								/obj/item/weapon/storage/box/lightstick/red)
 
-			if(4)//Crap
-				choosemax = rand(1,3)
+			if(9)//Crap
+				choosemax = rand(2,3)
 				randomitems = list(/obj/item/weapon/facepaint/green,
 									/obj/item/weapon/facepaint/brown,
 									/obj/item/weapon/facepaint/black,
 									/obj/item/weapon/facepaint/sniper,
 									/obj/item/weapon/storage/box/bodybags)
 
-			if(5 to 7)//Materials
+			if(10 to 12)//Materials
 				choosemax = rand(3,8)
 				randomitems = list(/obj/item/stack/rods,
 								/obj/item/stack/sheet/glass,
@@ -983,3 +1012,73 @@
 	else
 		for(var/path in spawnitems)
 			new path(crate)
+
+//Whiskey Outpost Recycler Machine. Teleports objects to centcomm so it doesnt lag
+/obj/machinery/wo_recycler
+	icon = 'icons/obj/recycling.dmi'
+	icon_state = "grinder-o0"
+	var/icon_on = "grinder-o1"
+
+	name = "Recycler"
+	desc = "Instructions: Place objects you want to destroy on top of it and use the machine. Use with care"
+	density = 0
+	anchored = 1
+	var/working = 0
+
+	attack_hand(mob/user)
+		if(inoperable(MAINT))
+			return
+		if(user.lying || user.stat)
+			return
+		if(istype(usr, /mob/living/silicon) || \
+			istype(usr, /mob/living/carbon/Xenomorph) || \
+			istype(usr, /mob/living/carbon/monkey))
+			usr << "\red You don't have the dexterity to do this!"
+			return
+		if(working)
+			user << "\red Wait for it to recharge first."
+			return
+
+		var/remove_max = 10
+		var/turf/T = src.loc
+		if(T)
+			user << "\red You turn on the recycler."
+			var/removed = 0
+			for(var/i, i < remove_max, i++)
+				for(var/obj/O in T)
+					if(istype(O,/obj/structure/closet/crate))
+						var/obj/structure/closet/crate/C = O
+						if(C.contents.len)
+							user << "\red [O] must be emptied before it can be recycled"
+							continue
+						new /obj/item/stack/sheet/metal(get_step(src,dir))
+						O.loc = get_turf(locate(84,237,2)) //z.2
+//						O.loc = get_turf(locate(30,70,1)) //z.1
+						removed++
+						break
+					else if(istype(O,/obj/item))
+						var/obj/item/I = O
+						if(I.anchored)
+							continue
+						O.loc = get_turf(locate(84,237,2)) //z.2
+//						O.loc = get_turf(locate(30,70,1)) //z.1
+						removed++
+						break
+				for(var/mob/M in T)
+					if(istype(M,/mob/living/carbon/Xenomorph))
+						var/mob/living/carbon/Xenomorph/X = M
+						if(!X.stat == DEAD)
+							continue
+						O.loc = get_turf(locate(84,237,2)) //z.2
+//						X.loc = get_turf(locate(30,70,1)) //z.1
+						removed++
+						break
+				if(removed && !working)
+					playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
+					working = 1 //Stops the sound from repeating
+				if(removed >= remove_max)
+					break
+
+		working = 1
+		spawn(100)
+			working = 0

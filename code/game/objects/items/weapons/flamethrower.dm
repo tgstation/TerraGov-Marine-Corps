@@ -300,7 +300,7 @@
 			N.healthcheck()
 	for(var/obj/structure/bush/B in loc)  //Bushes of love
 		if(istype(B)) //Just for safety
-			B.health -= firelevel + 4
+			B.health -= firelevel + 10
 			B.healthcheck()
 	for(var/obj/item/clothing/mask/facehugger/H in loc) //Melt dem huggers
 		if(istype(H))
@@ -338,6 +338,9 @@
 				continue
 		M.adjustFireLoss(rand(18,32) + round(throw_amount / 50))  //fwoom!
 		M.show_message(text("\red Auuugh! You are roasted by the flamethrower!"), 1)
+		if(istype(M,/mob/living/carbon/Xenomorph)) //alyumss
+			var/mob/living/carbon/Xenomorph/X = M
+			X.updatehealth()
 	return
 
 /obj/item/weapon/flamethrower/full/New(var/loc)
