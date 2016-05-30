@@ -301,7 +301,7 @@ var/global/datum/controller/gameticker/ticker
 
 	proc/equip_characters()
 		var/captainless=1
-		if(mode && istype(mode,/datum/game_mode/huntergames) || istype(mode,/datum/game_mode/whiskey_outpost))
+		if(mode && istype(mode,/datum/game_mode/huntergames)) // || istype(mode,/datum/game_mode/whiskey_outpost)
 			return
 
 		for(var/mob/living/carbon/human/player in player_list)
