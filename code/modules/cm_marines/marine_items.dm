@@ -597,4 +597,31 @@
 
 		"}
 
+/obj/item/weapon/book/manual/whiskey_outpost_map
+	name = "Whiskey Outpost Map"
+	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	author = "Weyland Yutani"
+	title = "Whiskey Outpost Map"
 
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<b>Purple:</b> Supply Drops<br>
+		<b>Orange:</b> Tcomms Tower and APC<br>
+		<b>LBlue:</b>  Recycler<br>
+		<b>DBlue:</b>  Defensive Positions<br>
+		<b>Red:</b>    Threat<br>
+		<b>Yellow:</b> Potential Threat<br><br>
+		<b>Whiskey Outpost Tactical Map:</b>
+		<iframe width='100%' height='97%' src='https://gyazo.com/d4d2b7bc112bf650b0440caad70f4d2b.png' frameborder="0" id="main_frame"></iframe>
+		</body>
+
+		</html>
+
+		"}

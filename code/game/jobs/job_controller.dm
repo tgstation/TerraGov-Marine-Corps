@@ -61,7 +61,19 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
 		if(player && player.mind && rank)
+
+			//WHISKEY OUTPOST SPESHUL HACK CODE
+			//For Whiskey outpost gamemode, we want to force every non marine into Squad Marine.
+				//Why? Because we only need marines for this gamemode, and the only way to set up squads is by this hacky way.
+				//Once they spawn on Sulaco, they are teleported to WO map.
+			if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+				world << "Rank: [rank]"
+				if(rank != "Squad Marine" && rank != "Squad Medic" && rank != "Squad Engineer" && rank != "Squad Specialist" && rank != "Squad Leader")
+					rank = "Squad Marine"
+					world << "Rank Post: [rank]"
+
 			var/datum/job/job = GetJob(rank)
+
 			if(!job)	return 0
 			if(jobban_isbanned(player, rank))	return 0
 			if(!job.player_old_enough(player.client)) return 0
@@ -344,6 +356,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 
 			//Equip job items.
+			world << "job.equip(H)" //////////////////
 			job.equip(H)
 		else
 			return
@@ -565,7 +578,10 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 		if(H.mind)
 			if(H.mind.assigned_squad)
 				H << "You have been assigned to: \b [H.mind.assigned_squad.name] squad."
-				H << "Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."
+				//WHISKEY OUTPOST GAMEMODE
+					//They spawn ready on the outpost, not on Sulaco!
+				if(ticker && !istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+					H << "Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."
 		return
 
 	proc/spawnId(var/mob/living/carbon/human/H, rank, title)

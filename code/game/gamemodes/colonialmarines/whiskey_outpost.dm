@@ -80,22 +80,22 @@
 		world << "________________"
 		//Commanders
 		for(var/datum/mind/S in possible_roles)
-			if(S && S.assigned_role != "ROLE" && !S.special_role) //Make sure it's not already here.
-				S.assigned_role = "ROLE"
+			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
+				S.assigned_role = "MODE"
 				S.special_role = "WO_COM"
 				world << "[S] as WO_COM"
 				break
 
 		//Doctors
 		for(var/datum/mind/S in possible_roles)
-			if(S && S.assigned_role != "ROLE" && !S.special_role) //Make sure it's not already here.
-				S.assigned_role = "ROLE"
+			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
+				S.assigned_role = "MODE"
 				S.special_role = "WO_DOC"
 				world << "[S] as WO_DOC"
 				docs_max--
 				if(!docs_max)
 					break
-
+/*
 	//Setup Marines
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready)
@@ -104,7 +104,7 @@
 					player.mind.assigned_role = "ROLE"
 			else
 				if(player.client)
-					player.mind = new(player.key)
+					player.mind = new(player.key)*/
 	return 1
 
 /datum/game_mode/whiskey_outpost/post_setup()
@@ -135,13 +135,14 @@
 		message_admins("Warning, null picked spawn in spawn_player")
 		return 0
 
-	if(istype(M,/mob/living/carbon/human)) //somehow?
+	if(istype(M,/mob/living/carbon/human)) //If We started on Sulaco as squad marine
 		H = M
 		if(H.contents.len)
-			for(var/I in H.contents)
-				del(I)
+			for(var/I in H.contents)//Delete the cryo uniform
+				if(istype(I,/obj/item/clothing/under/marine_underoos))
+					del(I)
 		H.loc = picked
-	else
+	else //Else if we spawned as doctor or commander
 		H = new(picked)
 
 	H.key = M.key
@@ -151,7 +152,10 @@
 
 	H.nutrition = rand(325,400)
 
-	if(H.mind.special_role == "WO_COM") //First, the commander
+	//Squad ID and backpack are already spawned in job datum
+
+	//COMMANDER
+	if(H.mind.special_role == "WO_COM")
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), slot_w_uniform)
@@ -159,6 +163,8 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), slot_gloves)
+		H.equip_to_slot_or_del(new /obj/item/weapon/book/manual/whiskey_outpost_map(H), slot_r_hand)
+
 
 		H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), slot_in_backpack)
@@ -168,7 +174,7 @@
 
 		var/obj/item/weapon/card/id/gold/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
-		W.access = list()
+		W.access = get_all_accesses()
 		W.assignment = "Commander"
 		W.registered_name = M.real_name
 		H.equip_to_slot_or_del(W, slot_wear_id)
@@ -187,7 +193,7 @@
 				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
 				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
-
+	//DOCTORS
 	else if(H.mind.special_role == "WO_DOC") //Then, the doctors
 		switch(H.backbag)
 			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), slot_back)
@@ -201,7 +207,7 @@
 
 		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
-		W.access = list()
+		W.access = list(access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research, access_sulaco_bridge)
 		W.assignment = "Doctor"
 		W.registered_name = M.real_name
 		H.equip_to_slot_or_del(W, slot_wear_id)
@@ -220,55 +226,223 @@
 				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
 				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
+	//SQUADS
 	else
-		//Standard Marine
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
-		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), slot_gloves)
+		var/randwep = 1 //Specialists spawn with their own random weapon
+
+
+		//SQUAD LEADER
+		if(H.mind.assigned_role == "Squad Leader")
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), slot_head)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/marine_leader_armor(H), slot_wear_suit)
+
+			//SPESHUL EQUIPMENT
+			//Binos, webbing and bomb beacons in backpack
+			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
+
+			//Belt and grenades
+			var/obj/item/weapon/storage/belt/marine/B = new/obj/item/weapon/storage/belt/marine(H)
+			new /obj/item/weapon/grenade/explosive(B)
+			new /obj/item/weapon/grenade/explosive(B)
+			new /obj/item/weapon/grenade/explosive(B)
+			new /obj/item/weapon/grenade/incendiary(B)
+			new /obj/item/weapon/grenade/incendiary(B)
+			H.equip_to_slot_or_del(B, slot_belt)
+
+
+		//SQUAD ENGINEER
+		else if(H.mind.assigned_role == "Squad Engineer")
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/fluff/marineengineer(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), slot_head)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+
+			//SPESHUL EQUIPMENT
+			//Metal, webbing, grenades in backpack
+			var/obj/item/stack/sheet/metal/MET = new /obj/item/stack/sheet/metal(H)
+			MET.amount = 50
+			H.equip_to_slot_or_del(MET, slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
+
+
+			//Utility Belt
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
+
+			//Welding Glasses
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), slot_glasses)
+
+		//SQUAD MEDIC
+		else if(H.mind.assigned_role == "Squad Medic")
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/fluff/marinemedic(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), slot_head)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+
+			//SPESHUL EQUIPMENT
+			//Defibs, webbing, first aid, adv aid in backpack
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H), slot_in_backpack)
+
+			//Medical encryption key
+			H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_med(H), slot_l_hand)
+
+			//Utility Belt
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), slot_belt)
+
+			//Med Hud
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), slot_glasses)
+
+		//SQUAD SPECIALIST
+		else if(H.mind.assigned_role == "Squad Specialist")
+			randwep = 0
+			var/type = rand(0,14)
+
+			switch(type) //Scaled based on player feedback
+				if(0 to 4)//Smartgun
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m56_system(H), slot_l_hand)
+					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
+
+				if(5 to 8)//Sniper
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m42c_system(H), slot_l_hand)
+
+				if(9 to 11)//SADAR
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/rocket_system(H), slot_l_hand)
+
+					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+
+				if(12 to 13)//Flamethrower
+					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), slot_in_backpack)
+
+					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+
+
+				if(14)//Grenade Launcher
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/grenade_system(H), slot_l_hand)
+
+					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+
+			//SPESHUL EQUIPMENT
+			//Webbing
+			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
+
+			//Backup SMG Weapon
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), slot_belt)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+
+		//SQUAD MARINE
+		else
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+
+
+		//Every Squad Starts with this:
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/marine(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_l_store)
+		H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
 
-		var/obj/item/weapon/card/id/W = new(H)
-		W.name = "[M.real_name]'s ID Card"
-		W.access = list()
-		W.assignment = "Marine"
-		W.registered_name = M.real_name
-		H.equip_to_slot_or_del(W, slot_wear_id)
+		//Find their squad
+		var/squad = get_squad_from_card(H)
+		var/leader = is_leader_from_card(H)
 
-		var/randwep = rand(0,2)
-		switch(randwep)
-			if(0)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), slot_s_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-			if(1)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), slot_s_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-			if(2)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), slot_s_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+		//Squad Gloves and radio headsets
+		switch(squad)
+			if(1)//Alpha
+					//Radio
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/malphal(H), slot_l_ear)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/malpha(H), slot_l_ear)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), slot_gloves)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 
-		//Give them some information
-		spawn(40)
-			if(H)
-				H << "________________________"
-				H << "\red <b>You are the Marine!<b>"
-				H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
-				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
-				H << "Hold the outpost for one hour until the main force arrives!"
-				H << "________________________"
+			if(2)//Bravo
+					//Radio
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mbravol(H), slot_l_ear)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mbravo(H), slot_l_ear)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/bravo(H), slot_gloves)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_l_store)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
+			if(3)//Charlie
+					//Radio
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcharliel(H), slot_l_ear)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcharlie(H), slot_l_ear)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/charlie(H), slot_gloves)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 
+			if(4)//Delta
+					//Radio
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mdeltal(H), slot_l_ear)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mdelta(H), slot_l_ear)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/delta(H), slot_gloves)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+
+		//Set Random Weapon and Ammo
+		if(randwep)
+			var/rand_wep = rand(0,2)
+			switch(rand_wep)
+				if(0)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
+				if(1)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
+				if(2)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+
+	//Finally, update all icons
 	H.update_icons()
+
+	//Give them some information
+	spawn(40)
+		if(H)
+			H << "________________________"
+			H << "\red <b>You are the [H.mind.assigned_role]!<b>"
+			H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
+			H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+			H << "Hold the outpost for one hour until the main force arrives!"
+			H << "________________________"
 
 	return 1
 
@@ -694,12 +868,17 @@
 								/obj/item/weapon/tank/phoron/m240,
 								/obj/item/weapon/tank/phoron/m240,
 								/obj/item/weapon/tank/phoron/m240,
+								/obj/item/weapon/tank/phoron/m240,
+								/obj/item/weapon/tank/phoron/m240,
+								/obj/item/ammo_magazine/sniper,
+								/obj/item/ammo_magazine/sniper,
 								/obj/item/ammo_magazine/sniper,
 								/obj/item/ammo_magazine/sniper,
 								/obj/item/ammo_magazine/sniper/incendiary,
 								/obj/item/ammo_magazine/sniper/flak,
 								/obj/item/sentry_ammo,
 								/obj/item/sentry_ammo,
+								/obj/item/smartgun_powerpack
 								/obj/item/smartgun_powerpack)
 
 				var/pick_special = rand(0,6)
@@ -934,7 +1113,7 @@
 								/obj/item/weapon/storage/belt/utility/full,
 								/obj/item/weapon/weldpack,
 								/obj/item/weapon/cell/high,
-								/obj/item/clothing/glasses/welding								)
+								/obj/item/clothing/glasses/welding)
 
 			if(4 to 6)//Marine Gear
 				choosemax = rand(10,15)
@@ -1069,7 +1248,7 @@
 						var/mob/living/carbon/Xenomorph/X = M
 						if(!X.stat == DEAD)
 							continue
-						O.loc = get_turf(locate(84,237,2)) //z.2
+						X.loc = get_turf(locate(84,237,2)) //z.2
 //						X.loc = get_turf(locate(30,70,1)) //z.1
 						removed++
 						break
