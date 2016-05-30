@@ -878,7 +878,7 @@
 								/obj/item/ammo_magazine/sniper/flak,
 								/obj/item/sentry_ammo,
 								/obj/item/sentry_ammo,
-								/obj/item/smartgun_powerpack
+								/obj/item/smartgun_powerpack,
 								/obj/item/smartgun_powerpack)
 
 				var/pick_special = rand(0,6)
