@@ -45,9 +45,12 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/traitor.ogg',
 	'sound/music/title2.ogg',
 	'sound/music/clouds.s3m'*/
+	'sound/music/good_day_to_die.ogg',
 	'sound/music/Suspense_Explore.ogg',
 	'sound/music/Aliens_Main_Theme.ogg',
-	'sound/music/Prometheus_trailer.ogg',
+	//'sound/music/fortunate_son.ogg',
+	//'sound/music/buffalo_springfield.ogg',
+	//'sound/music/Prometheus_trailer.ogg',
 	'sound/music/warrior_song.ogg')  //The Warrior Song
 
 	/*'SEASONAL/ColonialHalloween.ogg'
