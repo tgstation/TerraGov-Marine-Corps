@@ -95,6 +95,7 @@
 	storage_slots = 5
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
 	open(var/mob/user as mob)
 		if(!opened)
@@ -232,6 +233,7 @@
 	storage_slots = 10
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
 	New()
 		..()
@@ -342,6 +344,7 @@
 	storage_slots = 2
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
 	New()
 		..()
@@ -361,6 +364,7 @@
 	storage_slots = 7
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
 	New()
 		..()

@@ -206,3 +206,83 @@
 
 
 
+//PERIDAXON
+/obj/item/weapon/storage/pill_bottle/peridaxon
+	name = "Peridaxon Pill Bottle"
+	desc = "Pills that heal internal organs"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+
+
+/obj/item/weapon/reagent_containers/pill/peridaxon
+	name = "Peridaxon (10u)"
+	desc = "Heals internal organ damage"
+	icon_state = "pill13"
+	New()
+		..()
+		reagents.add_reagent("peridaxon", 10)
+
+//imidazoline
+/obj/item/weapon/storage/pill_bottle/imidazoline
+	name = "Imidazoline Pill Bottle"
+	desc = "Pills that heal eye damage"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+
+
+/obj/item/weapon/reagent_containers/pill/imidazoline
+	name = "Imidazoline (10u)"
+	desc = "Heals eye damage"
+	icon_state = "pill3"
+	New()
+		..()
+		reagents.add_reagent("imidazoline", 10)
+
+//Alkysine
+/obj/item/weapon/storage/pill_bottle/alkysine
+	name = "Alkysine Pill Bottle"
+	desc = "Pills that heal brain damage"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+
+
+/obj/item/weapon/reagent_containers/pill/alkysine
+	name = "Alkysine (10u)"
+	desc = "Heals brain damage"
+	icon_state = "pill15"
+	New()
+		..()
+		reagents.add_reagent("alkysine", 10)
