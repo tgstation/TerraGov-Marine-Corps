@@ -172,7 +172,9 @@
 			usr << "There's already a shell in the chamber, just shoot it."
 			return
 
-		if(recentpump)	return
+		if(recentpump)
+			usr << "You just pumped it a second ago. Take a break dude."
+			return
 		var/mob/living/carbon/human/M = user
 		if(!istype(M)) return //wat
 
@@ -188,6 +190,7 @@
 
 	proc/pump(mob/M as mob)
 		if(in_chamber)     //We have a shell in the chamber
+			M << "There's already a shell loaded inside the chamber!"
 			return 0
 
 		if(!current_mag || !ammo)

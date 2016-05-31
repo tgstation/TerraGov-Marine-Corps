@@ -2,7 +2,7 @@
 	name = "Whiskey Outpost"
 	config_tag = "Whiskey Outpost"
 	required_players = 1
-	recommended_enemies = 5 //Force doctors and commander if no one wants them
+	recommended_enemies = 6 //Force doctors and commander if no one wants them
 
 	var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 
@@ -12,9 +12,11 @@
 
 	var/spawn_next_wave = 200 //Spawn first batch at ~15 minutes //200
 	var/xeno_wave = 0 //Which wave is it
-	var/spawn_xeno_num = 25 //How many to spawn per wave //First wave is big, cus runners.
+	var/spawn_xeno_num = 30 //How many to spawn per wave //First wave is big, cus runners.
 
 	var/wave_ticks_passed = 0 //Timer for xeno waves
+
+	var/next_xeno_cleanup = 2 //At which wave does it move all dead xenos to centcomm to prevent client lag
 
 	var/list/players = list()
 
@@ -30,7 +32,8 @@
 	var/next_supply = 0 //At which wave does the next supply drop come?
 
 	var/ticks_passed = 0
-
+	var/lobby_time = 0 //Lobby time does not count for marine 1h win condition
+	var/wave_times_delayed = 0 //How many time was the current wave delayed due to pop limit?
 	//Who to spawn and how often which caste spawns
 		//The more entires with same path, the more chances there are to pick it
 			//This will get populated with spawn_xenos() proc
@@ -44,7 +47,6 @@
 
 /datum/game_mode/whiskey_outpost/pre_setup()
 	slashing_allowed = 1 //Allows harm intent for aliens
-
 	var/obj/effect/landmark/L
 
 	for(L in world)
@@ -67,23 +69,15 @@
 
 	//Ehh, setting special roles is done in spawn_player()
 	var/list/possible_roles = get_players_for_role(BE_WO_ROLE) //Grab people who want to be speshul
-	var/docs_max = 4
-
-
+	var/docs_free = 5
 
 	//Setup possible roles list
 	if(possible_roles.len)
-		//DEBUG
-		//world << "possible_roles:"
-		//for(var/datum/mind/S in possible_roles)
-		//	world << "[S]"
-		//world << "________________"
 		//Commanders
 		for(var/datum/mind/S in possible_roles)
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
 				S.special_role = "WO_COM"
-				//world << "[S] as WO_COM"
 				break
 
 		//Doctors
@@ -91,23 +85,14 @@
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
 				S.special_role = "WO_DOC"
-				//world << "[S] as WO_DOC"
-				docs_max--
-				if(!docs_max)
+				docs_free--
+				if(!docs_free)
 					break
-/*
-	//Setup Marines
-	for(var/mob/new_player/player in player_list)
-		if(player && player.ready)
-			if(player.mind)
-				if(!player.mind.special_role)
-					player.mind.assigned_role = "ROLE"
-			else
-				if(player.client)
-					player.mind = new(player.key)*/
+
 	return 1
 
 /datum/game_mode/whiskey_outpost/post_setup()
+	lobby_time = world.time
 	var/mob/M
 
 	for(M in mob_list)
@@ -446,32 +431,34 @@
 
 	return 1
 
+
+//PROCCESS
 /datum/game_mode/whiskey_outpost/process()
 	checkwin_counter++
 	ticks_passed++
 	wave_ticks_passed++
-//	world << "Time: [world.time] - Tick: [ticks_passed]"
 
 	//XENO AND SUPPLY DROPS SPAWNER
 	if(wave_ticks_passed >= spawn_next_wave)
-/*		world << "___________________________"
-//		world << "Time: [world.time]"
-		world << "wave_ticks_passed: [wave_ticks_passed]"
-		world << "count_xenos: [count_xenos()]"
-		world << "spawn_xeno_num: [spawn_xeno_num]"
-		world << "xeno_wave: [xeno_wave]"*/
-
 		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate!
-			wave_ticks_passed = 0
+			world << "\red <b>***Whiskey Outpost Controller***</b>"
+			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?" | red\ Times delayed: [wave_times_delayed]":""]"
+			world << "\red *___________________________________*"
 
-			if(spawn_next_wave > 60) //100
-				spawn_next_wave -= 20 //50 //Spawns faster and faster
+			wave_ticks_passed = 0
+			if(xeno_wave == next_xeno_cleanup)
+				next_xeno_cleanup += 3 //Scedule next cleanup
+				CleanXenos()
+
+			if(spawn_next_wave > 40)
+				spawn_next_wave -= 5
 			spawn_xenos(spawn_xeno_num)
 
-			if(spawn_xeno_num < 40)
-				spawn_xeno_num ++
-			//world << "spawn_next_wave: [spawn_next_wave]"
+			if(spawn_xeno_num < 50)
+				spawn_xeno_num += 2
 
+			if(wave_times_delayed)
+				wave_times_delayed = 0
 			//SUPPLY SPAWNER
 			if(xeno_wave == next_supply)
 				if(Commander && Commander.stat != DEAD)
@@ -506,16 +493,8 @@
 
 			xeno_wave++
 		else
-			wave_ticks_passed -= 15 //Wait 15 ticks and try again
-
-
-
-//		world << "spawn_next_wave after: [spawn_next_wave]"
-//		world << "spawn_xeno_num after: [spawn_xeno_num]"
-
-
-
-
+			wave_ticks_passed -= 20 //Wait 20 ticks and try again
+			wave_times_delayed++
 
 	if(has_started_timer > 0) //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 		has_started_timer--
@@ -526,14 +505,16 @@
 		checkwin_counter = 0
 	return 0
 
-/datum/game_mode/whiskey_outpost/check_win()//TODO
+//CHECK WIN
+/datum/game_mode/whiskey_outpost/check_win()
 	var/C = count_humans()
 
 	if(C == 0)
-		finished = 1
-	else if(world.time > 36000)//one hour or so
-		finished = 2
+		finished = 1 //Alien win
+	else if(world.time > 36000 + lobby_time)//one hour or so
+		finished = 2 //Marine win
 
+//SPAWN XENOS
 /datum/game_mode/whiskey_outpost/proc/spawn_xenos(var/amt = 1)
 	var/spawn_this_many = amt
 	var/turf/picked
@@ -566,7 +547,10 @@
 	switch(xeno_wave)//Xeno spawn controller
 		if(0)//Mostly weak runners
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner)
-			spawn_xeno_num = 10 //Reset
+			spawn_xeno_num = 20 //Reset
+			spawn_next_wave = 80
+			world << sound('sound/effects/siren.ogg') //Mark the first wave
+
 
 		if(1)//Sentinels and drones are more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
@@ -589,23 +573,31 @@
 						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
-		if(6)//Hivelord and Carrier added
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Carrier,
+		if(6)//Hivelord and Tier II more common
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
+						/mob/living/carbon/Xenomorph/Spitter,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
-		if(8)//Ravager and Praetorian Added, Tier II more common
+		if(8)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter,
-						/mob/living/carbon/Xenomorph/Carrier)
+						/mob/living/carbon/Xenomorph/Spitter)
 
-		if(10)//Boiler and Crusher Added, Ravager and Praetorian more common
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
+						/mob/living/carbon/Xenomorph/Drone,
+						/mob/living/carbon/Xenomorph/Runner)
+
+		if(10)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher,
 						/mob/living/carbon/Xenomorph/Boiler,
 						/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
+						/mob/living/carbon/Xenomorph/Drone,
+						/mob/living/carbon/Xenomorph/Runner)
 
 		if(15 to INFINITY)
 			var/random_wave = rand(0,8)
@@ -627,8 +619,8 @@
 										/mob/living/carbon/Xenomorph/Spitter)
 
 				if(6)//Runner madness
-					spawn_next_wave += 75//Slow down the next wave //200
-					spawn_this_many = 35//A lot of them
+					spawn_next_wave += 40//Slow down the next wave
+					spawn_this_many = 50//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Runner,
 									/mob/living/carbon/Xenomorph/Runner,
 									/mob/living/carbon/Xenomorph/Runner,
@@ -645,13 +637,9 @@
 									/mob/living/carbon/Xenomorph/Ravager)
 
 				if(7)//Spitter madness
-					spawn_next_wave += 100//Slow down the next wave //200
-					spawn_this_many =  25//A lot of them
+					spawn_next_wave += 60//Slow down the next wave
+					spawn_this_many =  35//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
 										/mob/living/carbon/Xenomorph/Sentinel,
 										/mob/living/carbon/Xenomorph/Sentinel,
 										/mob/living/carbon/Xenomorph/Sentinel,
@@ -664,8 +652,8 @@
 										/mob/living/carbon/Xenomorph/Praetorian)
 
 				if(8)//Siege madness
-					spawn_this_many = 8//A lot of them
-					spawn_next_wave += 150//Slow down the next wave //300
+					spawn_this_many = 10//A lot of them
+					spawn_next_wave += 120//Slow down the next wave
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Boiler,
 									/mob/living/carbon/Xenomorph/Boiler,
 									/mob/living/carbon/Xenomorph/Crusher)
@@ -674,14 +662,14 @@
 		for(var/i = 0; i < spawn_this_many; i++)
 			if(xeno_spawn_loc.len)
 				path = pick(tempspawnxeno)
-				xenos_spawned++ //DEBUG
+				//xenos_spawned++ //DEBUG
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
 				X.a_intent = "harm"
-				if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
-					X:huggers_cur = 6 //Max out huggers
+				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
+				//	X:huggers_cur = 6 //Max out huggers
 				break
 
 
@@ -689,14 +677,14 @@
 		for(var/i = 0; i < spawn_this_many; i++)
 			if(xeno_spawn_loc.len)
 				path = pick(spawnxeno)
-				xenos_spawned++
+				//xenos_spawned++
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
 				X.a_intent = "harm"
-				if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
-					X:huggers_cur = 6 //Max out huggers
+				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
+				//	X:huggers_cur = 6 //Max out huggers
 
 	//if(xenos_spawned)
 	//	world << "Xenos_spawned: [xenos_spawned]"
@@ -719,6 +707,20 @@
 				xeno_count += 1 //Add them to the amount of people who're alive.
 
 	return xeno_count
+
+/datum/game_mode/whiskey_outpost/proc/CleanXenos()//moves dead xenos to space
+	var/xeno_count = 0
+	for(var/mob/living/carbon/Xenomorph/X in dead_mob_list)
+		if(X) //Prevent any runtime errors
+			if(istype(X) && X.stat == DEAD && X.z != 2 && !istype(X.loc,/turf/space))
+				X.loc = get_turf(locate(84,237,2)) //z.2
+				xeno_count++
+
+	if(xeno_count)
+		world << "\red <b>***Whiskey Outpost Controller***</b>"
+		world << "\blue Moved [xeno_count] dead Xenos to trash."
+		world << "\red *___________________________________*"
+
 
 ///////////////////////////////
 //Checks if the round is over//
@@ -807,7 +809,10 @@
 								/obj/item/weapon/storage/belt/medical/combatLifesaver,
 								/obj/item/clothing/glasses/hud/health,
 								/obj/item/clothing/glasses/hud/health,
-								/obj/item/weapon/melee/defibrillator)
+								/obj/item/weapon/melee/defibrillator,
+								/obj/item/weapon/storage/pill_bottle/peridaxon,
+								/obj/item/weapon/storage/pill_bottle/imidazoline,
+								/obj/item/weapon/storage/pill_bottle/alkysine)
 
 			if(2 to 8)//Random Medical Items
 				choosemax = rand(10,15)
@@ -1176,8 +1181,7 @@
 								/obj/item/stack/sheet/metal,
 								/obj/item/stack/sheet/plasteel,
 								/obj/item/stack/sheet/wood,
-								/obj/item/stack/sheet/wood,
-								/obj/item/stack/sheet/mineral/phoron)
+								/obj/item/stack/sheet/wood)
 
 
 	if(randomitems.len)
