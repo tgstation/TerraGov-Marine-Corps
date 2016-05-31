@@ -188,7 +188,7 @@
 	icon_state = "darts"
 	icon_empty = "darts-0"
 	max_rounds = 50
-	gun_type = "/obj/item/weapon/gun/smg/p90"
+	gun_type = "/obj/item/weapon/gun/smg/uzi"
 
 /obj/item/weapon/gun/smg/uzi
 	name = "\improper MAC-15"

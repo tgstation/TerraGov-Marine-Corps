@@ -74,16 +74,16 @@
 	//Setup possible roles list
 	if(possible_roles.len)
 		//DEBUG
-		world << "possible_roles:"
-		for(var/datum/mind/S in possible_roles)
-			world << "[S]"
-		world << "________________"
+		//world << "possible_roles:"
+		//for(var/datum/mind/S in possible_roles)
+		//	world << "[S]"
+		//world << "________________"
 		//Commanders
 		for(var/datum/mind/S in possible_roles)
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
 				S.special_role = "WO_COM"
-				world << "[S] as WO_COM"
+				//world << "[S] as WO_COM"
 				break
 
 		//Doctors
@@ -91,7 +91,7 @@
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
 				S.special_role = "WO_DOC"
-				world << "[S] as WO_DOC"
+				//world << "[S] as WO_DOC"
 				docs_max--
 				if(!docs_max)
 					break
@@ -204,6 +204,8 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), slot_l_ear)
+		//Combat Lifesaver belt
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), slot_belt)
 
 		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
@@ -292,7 +294,7 @@
 			//Medical encryption key
 			H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_med(H), slot_l_hand)
 
-			//Utility Belt
+			//Combat Lifesaver belt
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), slot_belt)
 
 			//Med Hud
@@ -350,7 +352,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
-
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), slot_belt)
 
 		//Every Squad Starts with this:
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
@@ -430,19 +432,17 @@
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
-
+		//Give them some information
+		spawn(40)
+			if(H)
+				H << "________________________"
+				H << "\red <b>You are the [H.mind.assigned_role]!<b>"
+				H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
+				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "Hold the outpost for one hour until the main force arrives!"
+				H << "________________________"
 	//Finally, update all icons
 	H.update_icons()
-
-	//Give them some information
-	spawn(40)
-		if(H)
-			H << "________________________"
-			H << "\red <b>You are the [H.mind.assigned_role]!<b>"
-			H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
-			H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
-			H << "Hold the outpost for one hour until the main force arrives!"
-			H << "________________________"
 
 	return 1
 
@@ -454,12 +454,12 @@
 
 	//XENO AND SUPPLY DROPS SPAWNER
 	if(wave_ticks_passed >= spawn_next_wave)
-		world << "___________________________"
+/*		world << "___________________________"
 //		world << "Time: [world.time]"
 		world << "wave_ticks_passed: [wave_ticks_passed]"
 		world << "count_xenos: [count_xenos()]"
 		world << "spawn_xeno_num: [spawn_xeno_num]"
-		world << "xeno_wave: [xeno_wave]"
+		world << "xeno_wave: [xeno_wave]"*/
 
 		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate!
 			wave_ticks_passed = 0
@@ -470,7 +470,7 @@
 
 			if(spawn_xeno_num < 40)
 				spawn_xeno_num ++
-			world << "spawn_next_wave: [spawn_next_wave]"
+			//world << "spawn_next_wave: [spawn_next_wave]"
 
 			//SUPPLY SPAWNER
 			if(xeno_wave == next_supply)
@@ -538,7 +538,7 @@
 	var/spawn_this_many = amt
 	var/turf/picked
 
-	var/xenos_spawned = 0 //Debug
+	//var/xenos_spawned = 0 //Debug
 
 	var/list/tempspawnxeno = list() //Temporarly replaces the main list
 
@@ -693,11 +693,13 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
+				X.storedplasma = X.maxplasma
+				X.a_intent = "harm"
 				if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 					X:huggers_cur = 6 //Max out huggers
 
-	if(xenos_spawned)
-		world << "Xenos_spawned: [xenos_spawned]"
+	//if(xenos_spawned)
+	//	world << "Xenos_spawned: [xenos_spawned]"
 
 /datum/game_mode/whiskey_outpost/proc/count_humans()
 	var/human_count = 0
@@ -1120,8 +1122,6 @@
 				randomitems = list(/obj/item/clothing/head/helmet/marine,
 								/obj/item/clothing/head/helmet/marine,
 								/obj/item/clothing/head/helmet/marine,
-								/obj/item/weapon/storage/belt/marine,
-								/obj/item/weapon/storage/belt/marine,
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/suit/storage/marine,
@@ -1131,7 +1131,8 @@
 								/obj/item/clothing/under/marine/fluff/marineengineer,
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/clothing/tie/storage/webbing,
-								/obj/item/device/binoculars)
+								/obj/item/device/binoculars,
+								/obj/item/device/squad_beacon/bomb)
 
 			if(7 to 8)//Lights and shiet
 				choosemax = rand(10,20)
@@ -1153,12 +1154,19 @@
 								/obj/item/weapon/storage/box/lightstick/red)
 
 			if(9)//Crap
-				choosemax = rand(2,3)
+				choosemax = rand(5,10)
 				randomitems = list(/obj/item/weapon/facepaint/green,
 									/obj/item/weapon/facepaint/brown,
 									/obj/item/weapon/facepaint/black,
 									/obj/item/weapon/facepaint/sniper,
-									/obj/item/weapon/storage/box/bodybags)
+									/obj/item/weapon/storage/box/bodybags,
+									/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes,
+									/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes,
+									/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
+									/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
+									/obj/item/weapon/flame/lighter/random,
+									/obj/item/weapon/flame/lighter/random,
+									/obj/item/fluff/val_mcneil_1)
 
 			if(10 to 12)//Materials
 				choosemax = rand(3,8)
@@ -1202,6 +1210,7 @@
 	desc = "Instructions: Place objects you want to destroy on top of it and use the machine. Use with care"
 	density = 0
 	anchored = 1
+	unacidable = 1
 	var/working = 0
 
 	attack_hand(mob/user)
@@ -1261,3 +1270,6 @@
 		working = 1
 		spawn(100)
 			working = 0
+
+	ex_act(severity)
+		return
