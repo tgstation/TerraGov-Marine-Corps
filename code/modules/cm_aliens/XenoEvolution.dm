@@ -9,6 +9,10 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	if(hardcore)
+		src << "\red Nuh-uh"
+		return
+
 	if(jobban_isbanned(src,"Alien"))
 		src << "\red You are jobbanned from Aliens and cannot evolve. How did you even become an alien?"
 		return
@@ -57,7 +61,7 @@
 		src << "\red The restraints are too restricting to allow you to evolve."
 		return
 
-	if(caste == "Queen" && !hardcore) // Special case for dealing with queenae
+	if(caste == "Queen") // Special case for dealing with queenae
 		if(!hardcore)
 			if(storedplasma >= 500)
 				if(is_queen_alive())

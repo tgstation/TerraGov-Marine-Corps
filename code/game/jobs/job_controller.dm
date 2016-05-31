@@ -67,10 +67,10 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				//Why? Because we only need marines for this gamemode, and the only way to set up squads is by this hacky way.
 				//Once they spawn on Sulaco, they are teleported to WO map.
 			if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
-				world << "Rank: [rank]"
+				//world << "Rank: [rank]"
 				if(rank != "Squad Marine" && rank != "Squad Medic" && rank != "Squad Engineer" && rank != "Squad Specialist" && rank != "Squad Leader")
 					rank = "Squad Marine"
-					world << "Rank Post: [rank]"
+					//world << "Rank Post: [rank]"
 
 			var/datum/job/job = GetJob(rank)
 
@@ -356,7 +356,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 
 
 			//Equip job items.
-			world << "job.equip(H)" //////////////////
+			//world << "job.equip(H)" //////////////////
 			job.equip(H)
 		else
 			return
