@@ -149,7 +149,7 @@
 		if(!B.stump)
 			if(prob(20*tier))
 				var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
-				playsound(src.loc, sound, 100, 1)
+				playsound(src.loc, sound, 50, 1)
 
 
 	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down

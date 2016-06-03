@@ -15,14 +15,14 @@
 	var/health = 100
 
 /obj/structure/bush/New()
-	health = rand(75,125)
-	if(prob(85))
+	health = rand(50,75)
+	if(prob(75))
 		opacity = 1
 
 	//Randomise a bit
 	var/matrix/M = matrix()
 	M.Turn(rand(1,360))
-	M.Scale(pick(0.7,0.8,0.9,1,1.1,1.2,1.3),pick(0.7,0.8,0.9,1,1.1,1.2,1.3))
+	M.Scale(pick(0.7,0.8,0.9,1,1.1,1.2),pick(0.7,0.8,0.9,1,1.1,1.2))
 	src.transform = M
 
 
@@ -45,7 +45,7 @@
 			user << "\red You flail away at the undergrowth, but it's too thick here."
 		else
 			user.visible_message("\red [user] flails away at the  [src] with [I].","\red You flail away at the [src] with [I].")
-			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 100, 1)
+			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 50, 1)
 			health -= damage
 			if(health < 0)
 				user << "\blue You clear away [src]."
@@ -54,7 +54,7 @@
 		return ..()
 
 /obj/structure/bush/proc/healthcheck()
-	if(health < 45 && opacity)
+	if(health < 35 && opacity)
 		opacity = 0
 	if(health < 0)
 		if(prob(10))
