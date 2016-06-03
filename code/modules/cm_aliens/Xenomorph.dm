@@ -101,6 +101,7 @@ var/global/hive_orders = "" //What orders should the hive have
 
 /mob/living/carbon/Xenomorph/New()
 	..()
+	//WO GAMEMODE
 	if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
 		hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
