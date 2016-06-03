@@ -275,6 +275,9 @@
 				M.emote("roar")
 			continue
 		M.adjustFireLoss(rand(15,35) + firelevel)  //fwoom!
+		if(istype(M,/mob/living/carbon/Xenomorph))
+			var/mob/living/carbon/Xenomorph/X = M
+			X.updatehealth()
 		M.show_message(text("\red You are burned!"),1)
 
 	//This is shitty and inefficient, but the /alien/ parent obj doesn't have health.. sigh.
@@ -330,6 +333,9 @@
 			if(istype(M:wear_suit, /obj/item/clothing/suit/fire) || istype(M:wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue
 		M.adjustFireLoss(rand(18,32) + round(throw_amount / 50))  //fwoom!
+		if(istype(M,/mob/living/carbon/Xenomorph))
+			var/mob/living/carbon/Xenomorph/X = M
+			X.updatehealth()
 		M.show_message(text("\red Auuugh! You are roasted by the flamethrower!"), 1)
 	return
 

@@ -18,6 +18,7 @@
 	origin_tech = "combat=1"
 	attack_verb = list("struck", "hit", "bashed")
 
+	var/can_pointblank = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/reload_sound = 'sound/weapons/empty.ogg'
 	var/obj/item/projectile/in_chamber = null //What is currently "loaded"? Sort of a generic term.
@@ -639,7 +640,7 @@
 
 /obj/item/weapon/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	//Suicide handling.
-	if (M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
+	if (M == user && user.zone_sel.selecting == "mouth" && !mouthshoot && can_pointblank)
 		mouthshoot = 1
 		M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")
 		if(!do_after(user, 40))
@@ -668,7 +669,7 @@
 
 	if (load_into_chamber())
 		//Point blank shooting if on harm intent or target we were targeting.
-		if(user.a_intent == "hurt")
+		if(user.a_intent == "hurt" && can_pointblank)
 			user.visible_message("\red <b> \The [user] fires \the [src] point blank at [M]!</b>")
 			if(istype(in_chamber)) in_chamber.damage *= 1.1
 			burst_toggled = 0 //NOPE.jpg

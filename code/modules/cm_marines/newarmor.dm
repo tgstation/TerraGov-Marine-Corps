@@ -241,6 +241,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	w_class = 5
 	storage_slots = 2
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
 	open(var/mob/user as mob)
 		if(!opened)

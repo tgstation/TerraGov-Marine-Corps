@@ -563,7 +563,7 @@
 	delay_mod = 6
 	w_class_mod = 2
 	icon_state = "44stock"
-	pixel_shift_x = 25
+	pixel_shift_x = 35
 	pixel_shift_y = 19
 	guns_allowed = list(/obj/item/weapon/gun/revolver/m44)
 

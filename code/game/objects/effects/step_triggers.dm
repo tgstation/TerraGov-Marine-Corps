@@ -135,3 +135,6 @@
 					M.make_floating(0)
 					M.visible_message("\red <B> [M] falls from the sky!</B>","\red <B>SPLAT!!</B>")
 					M.adjustBruteLoss(dmg)
+					if(istype(M,/mob/living/carbon/Xenomorph))
+						var/mob/living/carbon/Xenomorph/X = M
+						X.updatehealth()

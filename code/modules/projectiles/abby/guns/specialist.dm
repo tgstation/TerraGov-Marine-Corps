@@ -209,6 +209,7 @@
 	rail_pixel_y = 18
 	under_pixel_x = 30
 	under_pixel_y = 14
+	can_pointblank = 0
 	var/datum/effect/effect/system/smoke_spread/puff
 
 	New()

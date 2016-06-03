@@ -230,7 +230,7 @@
 						W:activate(user)
 
 		//Throwing Flares and flashlights
-		if(istype(W,/obj/item/device/flashlight))
+		else if(istype(W,/obj/item/device/flashlight))
 			if(up && down)
 				switch( alert("Throw up or down?", "Ladder", "Up", "Down", "Cancel") )
 					if("Up")
