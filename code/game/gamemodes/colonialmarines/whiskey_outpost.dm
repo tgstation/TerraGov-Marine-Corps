@@ -46,7 +46,6 @@
 	return 1
 
 /datum/game_mode/whiskey_outpost/pre_setup()
-	slashing_allowed = 1 //Allows harm intent for aliens
 	var/obj/effect/landmark/L
 
 	for(L in world)
@@ -189,8 +188,13 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), slot_l_ear)
+
 		//Combat Lifesaver belt
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), slot_belt)
+
+		//Advanced Meds
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), slot_l_store)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), slot_r_store)
 
 		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
@@ -225,6 +229,9 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/marine_leader_armor(H), slot_wear_suit)
 
 			//SPESHUL EQUIPMENT
+			//Machete
+			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/machete(H), slot_r_hand)
+
 			//Binos, webbing and bomb beacons in backpack
 			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), slot_in_backpack)
 			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), slot_in_backpack)
@@ -292,14 +299,14 @@
 
 			switch(type) //Scaled based on player feedback
 				if(0 to 4)//Smartgun
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m56_system(H), slot_l_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m56_system(H), slot_r_hand)
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 
 				if(5 to 8)//Sniper
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m42c_system(H), slot_l_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m42c_system(H), slot_r_hand)
 
 				if(9 to 11)//SADAR
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/rocket_system(H), slot_l_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/rocket_system(H), slot_r_hand)
 
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
@@ -315,7 +322,7 @@
 
 
 				if(14)//Grenade Launcher
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/grenade_system(H), slot_l_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/grenade_system(H), slot_r_hand)
 
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
@@ -340,9 +347,15 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), slot_belt)
 
 		//Every Squad Starts with this:
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_l_store)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+		//Knife
+		if(prob(25))
+			H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), slot_l_hand)
+
+
+
 
 		//Find their squad
 		var/squad = get_squad_from_card(H)
@@ -402,17 +415,17 @@
 		if(randwep)
 			var/rand_wep = rand(0,2)
 			switch(rand_wep)
-				if(0)
+				if(0)//M41a
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), slot_s_store)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-				if(1)
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), slot_s_store)
+				if(1)//Combat Shotgun
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), slot_s_store)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-				if(2)
+				if(2)//SMG
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), slot_s_store)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
@@ -441,8 +454,9 @@
 	//XENO AND SUPPLY DROPS SPAWNER
 	if(wave_ticks_passed >= spawn_next_wave)
 		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate!
+			world << "\red *___________________________________*"
 			world << "\red <b>***Whiskey Outpost Controller***</b>"
-			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?" | red\ Times delayed: [wave_times_delayed]":""]"
+			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?" | \red Times delayed: [wave_times_delayed]":""]"
 			world << "\red *___________________________________*"
 
 			wave_ticks_passed = 0
@@ -518,12 +532,12 @@
 /datum/game_mode/whiskey_outpost/proc/spawn_xenos(var/amt = 1)
 	var/spawn_this_many = amt
 	var/turf/picked
-
 	//var/xenos_spawned = 0 //Debug
-
 	var/list/tempspawnxeno = list() //Temporarly replaces the main list
-
 	var/list/xeno_spawn_loc = list()
+	if(slashing_allowed != 1)
+		slashing_allowed = 1 //Allows harm intent for aliens
+
 	var/side = rand(0,4)
 		//0 - All directions
 		//1-4 - List number
@@ -548,7 +562,7 @@
 		if(0)//Mostly weak runners
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner)
 			spawn_xeno_num = 20 //Reset
-			spawn_next_wave = 80
+			spawn_next_wave = 90
 			world << sound('sound/effects/siren.ogg') //Mark the first wave
 
 
@@ -578,10 +592,14 @@
 						/mob/living/carbon/Xenomorph/Spitter,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
+		if(7)
+			spawn_next_wave += 110 //Slow down now, strong castes introduced next wave
+			spawn_xeno_num = 20
+
 		if(8)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
-						/mob/living/carbon/Xenomorph/Runner,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
@@ -619,7 +637,7 @@
 										/mob/living/carbon/Xenomorph/Spitter)
 
 				if(6)//Runner madness
-					spawn_next_wave += 40//Slow down the next wave
+					spawn_next_wave += 50//Slow down the next wave
 					spawn_this_many = 50//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Runner,
 									/mob/living/carbon/Xenomorph/Runner,
@@ -637,8 +655,8 @@
 									/mob/living/carbon/Xenomorph/Ravager)
 
 				if(7)//Spitter madness
-					spawn_next_wave += 60//Slow down the next wave
-					spawn_this_many =  35//A lot of them
+					spawn_next_wave += 70//Slow down the next wave
+					spawn_this_many =  45//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Sentinel,
 										/mob/living/carbon/Xenomorph/Sentinel,
 										/mob/living/carbon/Xenomorph/Sentinel,
@@ -667,7 +685,9 @@
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
-				X.a_intent = "harm"
+				X.pass_flags = 0 // Runners cannot pass trough tables
+
+				//X.a_intent = "harm" This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 				//	X:huggers_cur = 6 //Max out huggers
 				break
@@ -682,7 +702,9 @@
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
-				X.a_intent = "harm"
+				X.pass_flags = 0 // Runners cannot pass trough tables
+
+				//X.a_intent = "harm" This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 				//	X:huggers_cur = 6 //Max out huggers
 
@@ -712,13 +734,14 @@
 	var/xeno_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in dead_mob_list)
 		if(X) //Prevent any runtime errors
-			if(istype(X) && X.stat == DEAD && X.z != 2 && !istype(X.loc,/turf/space))
+			if(istype(X) && X.stat == DEAD && X.z != 2)
 				X.loc = get_turf(locate(84,237,2)) //z.2
 				xeno_count++
 
 	if(xeno_count)
+		world << "\red *___________________________________*"
 		world << "\red <b>***Whiskey Outpost Controller***</b>"
-		world << "\blue Moved [xeno_count] dead Xenos to trash."
+		world << "\blue Moved [xeno_count] Xeno remains to trash."
 		world << "\red *___________________________________*"
 
 
@@ -771,7 +794,7 @@
 	var/list/randomitems = list()
 	var/list/spawnitems = list()
 	var/choosemax
-	var/crate
+	var/obj/structure/closet/crate/crate
 
 	if(isnull(OT) || OT == "")
 		OT = "sup"
@@ -867,7 +890,7 @@
 
 	else if (OT == "wep")
 		crate = new /obj/structure/closet/crate/secure/weapon(T)
-		randpick = rand(0,16)
+		randpick = rand(0,18)
 		switch(randpick)
 			if(0)//Specialist Crate
 				spawnitems = list(/obj/item/weapon/flamethrower/full,
@@ -910,7 +933,7 @@
 
 
 			if(1)//Random Attachments Crate
-				choosemax = rand(10,20)
+				choosemax = rand(20,30)
 				randomitems = list(/obj/item/attachable/suppressor,
 								/obj/item/attachable/suppressor,
 								/obj/item/attachable/reddot,
@@ -1024,8 +1047,8 @@
 									/obj/item/weapon/gun/revolver/mateba,
 									/obj/item/weapon/gun/revolver/cmb)
 
-			if(8 to 12)//Random Primary Ammo
-				choosemax = rand(25,30)
+			if(8 to 14)//Random Primary Ammo
+				choosemax = rand(50,60)
 				randomitems = list(/obj/item/ammo_magazine/rifle,
 									/obj/item/ammo_magazine/rifle,
 									/obj/item/ammo_magazine/rifle,
@@ -1051,8 +1074,8 @@
 									/obj/item/ammo_magazine/shotgun/buckshot/cmb,
 									/obj/item/ammo_magazine/shotgun/incendiary/cmb)
 
-			if(13 to 16)//Random Secondary Ammo
-				choosemax = rand(25,30)
+			if(15 to 18)//Random Secondary Ammo
+				choosemax = rand(50,60)
 				randomitems = list(/obj/item/ammo_magazine/pistol,
 									/obj/item/ammo_magazine/pistol,
 									/obj/item/ammo_magazine/pistol,
@@ -1092,7 +1115,7 @@
 		crate = new /obj/structure/closet/crate/secure/gear(T)
 		switch(randpick)
 			if(0 to 1)//Food
-				choosemax = rand(25,30)
+				choosemax = rand(35,60)
 				randomitems = list(/obj/item/weapon/storage/box/uscm_mre,
 								/obj/item/weapon/storage/box/donkpockets,
 								/obj/item/weapon/reagent_containers/food/snacks/protein_pack,
@@ -1183,10 +1206,11 @@
 								/obj/item/stack/sheet/wood,
 								/obj/item/stack/sheet/wood)
 
+	crate.storage_capacity = 60
 
 	if(randomitems.len)
-		for(var/path in randomitems)
-			path = pick(randomitems)
+		for(var/i = 0; i < choosemax; i++)
+			var/path = pick(randomitems)
 			var/obj/I = new path(crate)
 			if(OT == "sup")
 				if(I && istype(I,/obj/item/stack/sheet/mineral/phoron) || istype(I,/obj/item/stack/rods) || istype(I,/obj/item/stack/sheet/glass) || istype(I,/obj/item/stack/sheet/metal) || istype(I,/obj/item/stack/sheet/plasteel) || istype(I,/obj/item/stack/sheet/wood))
@@ -1196,9 +1220,7 @@
 						I:amount = rand(10,30)
 				if(I && istype(I,/obj/machinery/floodlight))
 					I.anchored = 0
-			choosemax--
-			if(!choosemax)
-				break
+
 
 	else
 		for(var/path in spawnitems)

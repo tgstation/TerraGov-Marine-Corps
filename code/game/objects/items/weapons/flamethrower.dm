@@ -300,7 +300,7 @@
 			N.healthcheck()
 	for(var/obj/structure/bush/B in loc)  //Bushes of love
 		if(istype(B)) //Just for safety
-			B.health -= firelevel + 10
+			B.health -= firelevel + 15
 			B.healthcheck()
 	for(var/obj/item/clothing/mask/facehugger/H in loc) //Melt dem huggers
 		if(istype(H))
