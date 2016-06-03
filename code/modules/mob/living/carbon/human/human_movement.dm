@@ -42,9 +42,9 @@
 			var/obj/structure/bush/B = locate(/obj/structure/bush) in src.loc
 			if(!B.stump)
 				var/stuck = rand(0,10)
-				if(prob(75))
+				if(prob(60))
 					var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
-					playsound(src.loc, sound, 100, 1)
+					playsound(src.loc, sound, 50, 1)
 				switch(stuck)
 					if(0 to 4)
 						tally += rand(2,3)
