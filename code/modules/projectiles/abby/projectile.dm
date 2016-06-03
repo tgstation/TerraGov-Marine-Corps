@@ -435,7 +435,7 @@
 		if(prob(P.ammo.shrapnel_chance + round(damage / 10)))
 			embed_shrapnel(P,organ)
 
-	if(P.ammo && !damage > 0 && absorbed == 0 && P.ammo.incendiary)
+	if(P.ammo && damage > 0 && absorbed == 0 && P.ammo.incendiary)
 		adjust_fire_stacks(rand(6,11))
 		IgniteMob()
 		emote("scream")

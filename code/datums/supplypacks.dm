@@ -194,7 +194,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_exotic
+/datum/supply_packs/ammo_extended
 	name = "Extended Magazine crate (M41A, M4A3, M39)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/extended,
