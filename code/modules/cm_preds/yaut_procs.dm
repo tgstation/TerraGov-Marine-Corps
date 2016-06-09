@@ -292,6 +292,7 @@
 			ticker.mode.predators += ghost
 
 	ticker.mode.pred_keys += newmob.key
+	newmob.is_pred = 1
 
 	if(H) del(H)
 	return 1

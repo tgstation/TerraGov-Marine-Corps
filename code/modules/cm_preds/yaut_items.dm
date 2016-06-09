@@ -560,12 +560,27 @@
 	if(!msg || msg == "" || isnull(msg)) return
 
 	msg = sanitize(msg)
-	msg = oldreplacetext(msg, "o", "ï¿½")
-	msg = oldreplacetext(msg, "p", "ï¿½")
-	msg = oldreplacetext(msg, "l", "ï¿½")
-	msg = oldreplacetext(msg, "s", "ï¿½")
-	msg = oldreplacetext(msg, "u", "ï¿½")
-	msg = oldreplacetext(msg, "b", "ï¿½") //We're ninjas now? .. fine
+	msg = oldreplacetext(msg, "a", "@")
+	msg = oldreplacetext(msg, "b", "8")
+	msg = oldreplacetext(msg, "c", "©")
+	msg = oldreplacetext(msg, "d", ")")
+	msg = oldreplacetext(msg, "e", "3")
+	msg = oldreplacetext(msg, "g", "6")
+	msg = oldreplacetext(msg, "h", "#")
+	msg = oldreplacetext(msg, "i", "1")
+	msg = oldreplacetext(msg, "j", "]")
+	msg = oldreplacetext(msg, "k", "X")
+	msg = oldreplacetext(msg, "l", "|")
+	msg = oldreplacetext(msg, "o", "0")
+	msg = oldreplacetext(msg, "p", "¶")
+	msg = oldreplacetext(msg, "q", "9")
+	msg = oldreplacetext(msg, "r", "2")
+	msg = oldreplacetext(msg, "s", "5")
+	msg = oldreplacetext(msg, "t", "7")
+	msg = oldreplacetext(msg, "u", "µ")
+	msg = oldreplacetext(msg, "x", "%")
+	msg = oldreplacetext(msg, "y", "¥")
+	msg = oldreplacetext(msg, "z", "2")   //Preds now speak in bastardized 1337speak BECAUSE.
 
 	spawn(10)
 		if(!drain_power(usr,50)) return //At this point they've upgraded.
@@ -1327,9 +1342,9 @@
 		if(istype(get_area(user),/area/yautja))
 			user << "Nothing happens."
 			return
-
+		var/mob/living/carbon/human/H = user
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
-		if(!isYautja(src))
+		if(!H.is_pred)
 			user << "The screen angrily flashes three times..."
 			playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
 			spawn(30)
