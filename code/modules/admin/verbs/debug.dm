@@ -543,7 +543,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"Dutch Merc (Leader)",
 		"Business Person",
 		"UPP Spy",
-		"Standard Space Gear")
+		"Standard Space Gear",
+		"Fleet Admiral")
 
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
 	if (isnull(dresscode))
@@ -925,7 +926,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(M), slot_wear_mask)
 			J.Topic(null, list("stat" = 1))
 
-/*
 		if("Fleet Admiral") //Renamed from Soviet Admiral
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/hgpiratecap(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), slot_shoes)
@@ -947,6 +947,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
+
+/*
+
 
 		if ("tournament gangster") //gangster are supposed to fight each other. --rastaf0
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/det(M), slot_w_uniform)
