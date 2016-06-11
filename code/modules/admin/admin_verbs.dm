@@ -68,6 +68,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_change_custom_event,
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/toggleattacklogs,
+	/client/proc/toggleffattacklogs,
 	/client/proc/toggledebuglogs,
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
@@ -812,6 +813,16 @@ var/list/admin_verbs_mentor = list(
 		usr << "You now will get attack log messages"
 	else
 		usr << "You now won't get attack log messages"
+
+/client/proc/toggleffattacklogs()
+	set name = "Toggle Attack Log Messages"
+	set category = "Preferences"
+
+	prefs.toggles ^= CHAT_FFATTACKLOGS
+	if (prefs.toggles & CHAT_FFATTACKLOGS)
+		usr << "You now will get friendly fire attack log messages"
+	else
+		usr << "You now won't get friendly fire attack log messages"
 
 
 /client/proc/toggleghostwriters()

@@ -20,6 +20,15 @@ var/global/floorIsLava = 0
 				var/msg = rendered
 				C << msg
 
+/proc/msg_admin_ff(var/text)
+	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
+	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=green><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
+	for(var/client/C in admins)
+		if(R_MOD & C.holder.rights)
+			if(C.prefs.toggles & CHAT_ATTACKLOGS)
+				var/msg = rendered
+				C << msg
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
@@ -59,6 +68,8 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
+		<A href='?src=\ref[src];lazyban=\ref[M]'>LazyBan</A> |
+		<A href='?src=\ref[src];requestban=\ref[M]'>Request Ban</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
 		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}

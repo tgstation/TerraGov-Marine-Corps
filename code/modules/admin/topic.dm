@@ -828,6 +828,78 @@
 			if("Cancel")
 				return
 
+	else if(href_list["lazyban"])
+		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
+
+		var/mob/M = locate(href_list["lazyban"])
+		if(!ismob(M)) return
+
+		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
+
+		if(!M.ckey)
+			usr << "\red <B>Warning: Mob ckey for [M.name] not found.</b>"
+			return
+
+		var/mins = 0
+		var/reason = ""
+
+		switch(alert("Reason?", , "R1", "R2", "R3"))
+			if("R1")
+				//var/mins = //TODO: Remember times
+				//var/reason = //TODO: Remember reasons
+			if("R2")
+				//var/mins =
+				//var/reason =
+			if("R3")
+				//var/mins =
+				//var/reason =
+
+			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
+			ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+			M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
+			M << "\red This is a temporary ban, it will be removed in [mins] minutes."
+			M << "\blue This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section."
+			if(config.banappeals)
+				M << "\blue The ban appeal forums are located here: [config.banappeals]"
+			else
+				M << "\blue Unfortunately, no ban appeals URL has been set."
+			feedback_inc("ban_tmp", 1)
+			DB_ban_record(BANTYPE_TEMP, M, mins, reason)
+			feedback_inc("ban_tmp_mins", mins)
+			log_admin("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
+			notes_add(M.ckey, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [reason]", usr)
+
+			del(M.client)
+
+	//I can not figure out a good why to store an indefinite amount of requests. I should resume this later.
+	/*
+	else if(href_list["requestban"])
+		var/mob/M = locate(href_list["requestban"]
+
+		if(!ismob(M)) return
+
+		if(M.client && M.client.holder) return //Don't request to ban an admin
+
+		if(!M.ckey)
+			usr << "\red <B>Warning, ckey for [M.name] not found.</B>"
+			return
+
+		if(!check_rights(R_MENTOR, 0) && !check_rights(R_MOD,0) && !check_rights(R_ADMIN)) //JUST IN CASE
+			return
+
+		var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
+		if(!mins)
+			return
+		if(mins >= 525600) mins = 525599
+		var/reason = input(usr,"Reason?","reason","") as text|null
+		if(!reason)
+			return
+
+		RequestBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
+	*/
+
+
 	else if(href_list["mute"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
 
@@ -978,7 +1050,7 @@
 		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
 
 	else if(href_list["sendbacktolobby"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_MOD))
 			return
 
 		var/mob/M = locate(href_list["sendbacktolobby"])
