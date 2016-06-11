@@ -1,4 +1,5 @@
-//Ravager Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
+//Ravager Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+
 /mob/living/carbon/Xenomorph/Ravager
 	caste = "Ravager"
 	name = "Ravager"
@@ -15,7 +16,8 @@
 	storedplasma = 50
 	plasma_gain = 8
 	maxplasma = 100
-	jellyMax = 0
+	jelly = 1
+	jellyMax = 800
 	caste_desc = "A brutal, devastating front-line attacker."
 	speed = -1.2 //Not as fast as runners, but faster than other xenos.
 	evolves_to = list()
@@ -29,7 +31,8 @@
 	armor_deflection = 70
 	big_xeno = 1
 	attack_delay = -2
-
+	tier = 3
+	upgrade = 0
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
 

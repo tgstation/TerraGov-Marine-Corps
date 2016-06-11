@@ -1,4 +1,5 @@
-//Crusher Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
+//Crusher Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+
 /mob/living/carbon/Xenomorph/Crusher
 	caste = "Crusher"
 	name = "Crusher"
@@ -15,11 +16,14 @@
 	storedplasma = 200
 	plasma_gain = 10
 	maxplasma = 200
-	jellyMax = 0
+	jelly = 1
+	jellyMax = 800
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.5
 	evolves_to = list()
 	armor_deflection = 80
+	tier = 3
+	upgrade = 0
 	var/charge_dir = 0
 	var/momentum = 0 //Builds up charge based on movement.
 	var/charge_timer = 0 //Has a small charge window. has to keep moving to build momentum.

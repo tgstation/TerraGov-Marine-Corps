@@ -1,4 +1,4 @@
-//Xenomorph Super - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
+//Xenomorph Powers - Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
 //Their verbs are all actually procs, so we don't need to add them like 4 times copypaste for different species
 //Just add the name to the caste's inherent_verbs() list

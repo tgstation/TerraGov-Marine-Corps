@@ -1,10 +1,10 @@
-//Xenomorph - Queen- Colonial Marines - Apophis775 - Last Edit: 20MAY2016
+//Xenomorph - Queen- Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
 /mob/living/carbon/Xenomorph/Queen
 	caste = "Queen"
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/xeno/Colonial_Queen.dmi'
+	icon = 'icons/xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
 //	pass_flags = PASSTABLE
 	melee_damage_lower = 30
@@ -25,14 +25,18 @@
 	plasma_gain = 30
 	is_intelligent = 1
 	speed = 1
-	jellyMax = 0
+	jelly = 1
+	jellyMax = 800
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
 	adjust_size_x = 0.9
 	adjust_size_y = 0.85
 	fire_immune = 1
 	big_xeno = 1
+	jelly = 1
 	armor_deflection = 75
+	tier = 0 //Queen doesn't count towards population limit.
+	upgrade = 0
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,

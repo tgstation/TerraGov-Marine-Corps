@@ -1,4 +1,5 @@
-//Boiler Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
+//Boiler Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+
 /mob/living/carbon/Xenomorph/Boiler
 	caste = "Boiler"
 	name = "Boiler"
@@ -15,7 +16,8 @@
 	storedplasma = 450
 	plasma_gain = 30
 	maxplasma = 800
-	jellyMax = 0
+	jelly = 1
+	jellyMax = 800
 	spit_delay = 40
 	speed = 1.2 //faster from 1.5
 	adjust_pixel_x = -16
@@ -25,6 +27,8 @@
 	caste_desc = "Gross!"
 	evolves_to = list()
 	big_xeno = 1 //Toggles pushing
+	tier = 3
+	upgrade = 0
 	var/zoom_timer = 0
 	var/is_bombarding = 0
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"

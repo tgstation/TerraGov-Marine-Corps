@@ -1,4 +1,4 @@
-//Xenomorph - Drone - Colonial Marines - Apophis775 - Last Edit: 24JAN2015
+//Xenomorph - Drone - Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
 /mob/living/carbon/Xenomorph/Drone
 	caste = "Drone"
@@ -13,7 +13,8 @@
 	maxplasma = 750
 	jellyMax = 500
 	plasma_gain = 12
-
+	tier = 1
+	upgrade = -2 //Drones can't upgrade, since they become Le Queen  Maybe this will change in the future?
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	inherent_verbs = list(

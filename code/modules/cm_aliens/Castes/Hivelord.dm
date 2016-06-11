@@ -1,4 +1,4 @@
-
+//Hivelord Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
 /mob/living/carbon/Xenomorph/Hivelord
 	caste = "Hivelord"
@@ -12,7 +12,7 @@
 	maxHealth = 220
 	storedplasma = 200
 	maxplasma = 800
-	jellyMax = 0 //Final evolution anyway
+	jellyMax = 800
 	plasma_gain = 35
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
@@ -23,7 +23,8 @@
 	speed = 1.5
 	big_xeno = 1
 	var/speed_activated = 0
-
+	tier = 2
+	upgrade = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/build_resin,

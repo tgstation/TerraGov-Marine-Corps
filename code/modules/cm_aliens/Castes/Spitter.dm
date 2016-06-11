@@ -1,4 +1,5 @@
-//Spitter Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
+//Spitter Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+
 /mob/living/carbon/Xenomorph/Spitter
 	caste = "Spitter"
 	name = "Spitter"
@@ -14,10 +15,12 @@
 	jellyMax = 250
 	spit_delay = 25
 	speed = 0
+	jelly = 1
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
 	armor_deflection = 20
-
+	tier = 2
+	upgrade = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

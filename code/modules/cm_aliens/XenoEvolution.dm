@@ -1,4 +1,4 @@
-//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 27MAY16
+//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
 //Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
 //All castes need an evolves_to() list in their defines
@@ -8,6 +8,10 @@
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
+	var totalAyy = 0.0 //total number of Aliens
+//	var tierA = 0.0 //Tier 1  currently unused.
+	var tierB = 0.0 //Tier 2
+	var tierC = 0.0 //Tier 3
 
 	if(jobban_isbanned(src,"Alien"))
 		src << "\red You are jobbanned from Aliens and cannot evolve. How did you even become an alien?"
@@ -30,11 +34,34 @@
 		src << "You are already the apex of form and function. Go! Spread the hive!"
 		return
 
-	//This is test code,
+	if(upgrade > 0 )
+		src <<"You gave up evolving in exchange for power..."
+		return
+
+	if(health < maxHealth)
+		src << "\red You must be at full health to evolve."
+		return
+
+	if(storedplasma < maxplasma)
+		src << "\red You must be at full Plasma to evolve."
+		return
+
+	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 
 
-
-
+	for(var/mob/living/carbon/Xenomorph/M in living_mob_list) //should count mindless as well so people don't cheat
+		if(M.tier == 0)
+			continue
+		else if(M.tier == 1)
+			totalAyy++
+		else if(M.tier == 2)
+			tierB++
+		else if(M.tier == 3)
+			tierC++
+		else
+			src <<"\red You shouldn't see this.  If you do, bug repot it! (Error XE01)."
+			continue
+		totalAyy++
 
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()
@@ -69,6 +96,17 @@
 		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
 			src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
 			return
+
+
+
+
+	if(tier == 1 && ((tierB+tierC)/totalAyy)> 0.4 && caste != "Queen")
+		src << "\red The hive can't support another Tier 2 alien, either upgrade or wait for either more aliens to be born or someone to die..."
+		return
+	else if(tier == 2 && (tierB+tierC/totalAyy)> 0.2 && caste != "Queen")
+		src << "\red The hive can't support another Tier 3 alien, wait until someone stronge dies or upgrade."
+		return
+	else src << "\green Looks like the hive can support your evolution!"
 
 	var/mob/living/carbon/Xenomorph/M = null
 
