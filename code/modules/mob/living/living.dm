@@ -461,36 +461,11 @@
 
 		if(istype(M))
 			for(var/atom/A in M.contents)
-				if(istype(A,/mob/living/simple_animal/borer) || istype(A,/obj/item/weapon/holder))
+				if(istype(A,/obj/item/weapon/holder))
 					return
 
 		M.status_flags &= ~PASSEMOTES
 		return
-
-	//Resisting control by an alien mind.
-	if(istype(src.loc,/mob/living/simple_animal/borer))
-		var/mob/living/simple_animal/borer/B = src.loc
-		var/mob/living/captive_brain/H = src
-
-		H << "\red <B>You begin doggedly resisting the parasite's control (this will take approximately sixty seconds).</B>"
-		B.host << "\red <B>You feel the captive mind of [src] begin to resist your control.</B>"
-
-		spawn(rand(400,500)+B.host.brainloss)
-
-			if(!B || !B.controlling)
-				return
-
-			B.host.adjustBrainLoss(rand(5,10))
-			H << "\red <B>With an immense exertion of will, you regain control of your body!</B>"
-			B.host << "\red <B>You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you.</b>"
-
-			B.detatch()
-
-			verbs -= /mob/living/carbon/proc/release_control
-			verbs -= /mob/living/carbon/proc/punish_host
-			verbs -= /mob/living/carbon/proc/spawn_larvae
-
-			return
 
 	//resisting grabs (as if it helps anyone...)
 	if ((!( L.stat ) && L.canmove && !( L.restrained() )))

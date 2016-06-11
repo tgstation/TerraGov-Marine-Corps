@@ -46,7 +46,6 @@ var/list/event_last_fired = list()
 	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events_Mundane.dm
 
 	if(ticker.mode && ticker.mode.name == "calamity") //Calamity mode messes with some events.
-		possibleEvents[/datum/event/borer_infestation] = 400
 		possibleEvents[/datum/event/economic_event] = 25
 		possibleEvents[/datum/event/trivial_news] = 25
 		possibleEvents[/datum/event/mundane_news] = 25
