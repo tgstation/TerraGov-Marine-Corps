@@ -1,7 +1,7 @@
 var/list/clients = list()							//list of all clients
 var/list/admins = list()							//list of all clients whom are admins
 var/list/directory = list()							//list of all ckeys with associated client
-var/list/unheardAhelps = list()						//This feels inefficient, but I can't think of a better way. Stores "ckey: message"
+var/list/unansweredAhelps = list()						//This feels inefficient, but I can't think of a better way. Stores "ckey: message"
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code

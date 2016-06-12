@@ -815,7 +815,7 @@ var/list/admin_verbs_mentor = list(
 		usr << "You now won't get attack log messages"
 
 /client/proc/toggleffattacklogs()
-	set name = "Toggle Attack Log Messages"
+	set name = "Toggle FF Attack Log Messages"
 	set category = "Preferences"
 
 	prefs.toggles ^= CHAT_FFATTACKLOGS
