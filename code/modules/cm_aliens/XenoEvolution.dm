@@ -8,8 +8,8 @@
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
-	var totalAyy = 0.0 //total number of Aliens
-//	var tierA = 0.0 //Tier 1  currently unused.
+	var totalXenos = 0.0 //total number of Xenos
+	var tierA = 0.0 //Tier 1
 	var tierB = 0.0 //Tier 2
 	var tierC = 0.0 //Tier 3
 
@@ -53,7 +53,7 @@
 		if(M.tier == 0)
 			continue
 		else if(M.tier == 1)
-			totalAyy++
+			tierA++
 		else if(M.tier == 2)
 			tierB++
 		else if(M.tier == 3)
@@ -61,7 +61,13 @@
 		else
 			src <<"\red You shouldn't see this.  If you do, bug repot it! (Error XE01)."
 			continue
-		totalAyy++
+		totalXenos++
+
+	// Debugging that should've been done
+	// world << "[tierA]"
+	// world << "[tierB]"
+	// world << "[tierC]"
+	// world << "[totalXenos]"
 
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()
@@ -100,10 +106,10 @@
 
 
 
-	if(tier == 1 && ((tierB+tierC)/totalAyy)> 0.4 && caste != "Queen")
+	if(tier == 1 && ((tierB+tierC)/totalXenos)> 0.4 && caste != "Queen")
 		src << "\red The hive can't support another Tier 2 alien, either upgrade or wait for either more aliens to be born or someone to die..."
 		return
-	else if(tier == 2 && (tierB+tierC/totalAyy)> 0.2 && caste != "Queen")
+	else if(tier == 2 && (tierB+tierC/totalXenos)> 0.2 && caste != "Queen")
 		src << "\red The hive can't support another Tier 3 alien, wait until someone stronge dies or upgrade."
 		return
 	else src << "\green Looks like the hive can support your evolution!"
