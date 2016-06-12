@@ -323,7 +323,7 @@
 	else
 		visible_message("\red [name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!")
 
-	if(ishuman(P) && ishuman(src)) //One human shot another, be worried about it but do everything basically the same
+	if(ishuman(P.firer) && ishuman(src) && !P.firer:mind:special_role && !src.mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
 		attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
 		P.firer:attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
 		msg_admin_ff("[P.firer] ([P.firer:ckey]) shot [src] ([src.ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>) (<a href='?priv_msg=\ref[P.firer]'>PM</a>")
