@@ -52,7 +52,7 @@
 	for(var/mob/living/carbon/Xenomorph/M in living_mob_list) //should count mindless as well so people don't cheat
 		if(M.tier == 0)
 			continue
-		// else if(M.tier == 1)
+		else if(M.tier == 1)
 		// 	tierA++
 		else if(M.tier == 2)
 			tierB++
@@ -106,10 +106,10 @@
 
 
 
-	if(tier == 1 && ((tierB+tierC)/totalXenos)> 0.4 && caste != "Queen")
+	if(tier == 1 && ((tierB+tierC)/totalXenos)> 0.5 && caste != "Queen")
 		src << "\red The hive can't support another Tier 2 alien, either upgrade or wait for either more aliens to be born or someone to die..."
 		return
-	else if(tier == 2 && (tierB+tierC/totalXenos)> 0.2 && caste != "Queen")
+	else if(tier == 2 && (tierB+tierC/totalXenos)> 0.25 && caste != "Queen")
 		src << "\red The hive can't support another Tier 3 alien, wait until someone stronge dies or upgrade."
 		return
 	else src << "\green Looks like the hive can support your evolution!"
