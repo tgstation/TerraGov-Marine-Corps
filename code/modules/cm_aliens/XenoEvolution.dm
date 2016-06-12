@@ -9,7 +9,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 	var totalXenos = 0.0 //total number of Xenos
-	var tierA = 0.0 //Tier 1
+	// var tierA = 0.0 //Tier 1 - Not used in calculation of Tier maximums
 	var tierB = 0.0 //Tier 2
 	var tierC = 0.0 //Tier 3
 
@@ -52,8 +52,8 @@
 	for(var/mob/living/carbon/Xenomorph/M in living_mob_list) //should count mindless as well so people don't cheat
 		if(M.tier == 0)
 			continue
-		else if(M.tier == 1)
-			tierA++
+		// else if(M.tier == 1)
+		// 	tierA++
 		else if(M.tier == 2)
 			tierB++
 		else if(M.tier == 3)
@@ -63,11 +63,11 @@
 			continue
 		totalXenos++
 
-	// Debugging that should've been done
-	// world << "[tierA]"
-	// world << "[tierB]"
-	// world << "[tierC]"
-	// world << "[totalXenos]"
+	//Debugging that should've been done
+	// world << "[tierA] Tier 1"
+	// world << "[tierB] Tier 2"
+	// world << "[tierC] Tier 3"
+	// world << "[totalXenos] Total"
 
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()
