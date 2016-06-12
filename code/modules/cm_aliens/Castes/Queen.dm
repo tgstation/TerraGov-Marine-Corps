@@ -28,8 +28,8 @@
 	jellyMax = 0
 	adjust_pixel_x = -16
 	adjust_pixel_y = -6
-	adjust_size_x = 0.9
-	adjust_size_y = 0.85
+//	adjust_size_x = 0.9 Removing these should fix blurriness. let's try.
+//	adjust_size_y = 0.85
 	fire_immune = 1
 	big_xeno = 1
 	armor_deflection = 75
