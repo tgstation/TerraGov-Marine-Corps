@@ -18,7 +18,7 @@ var/global/floorIsLava = 0
 		if(R_MOD & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
 				var/msg = rendered
-				statpanel("Logs", , msg)
+				C << msg
 
 /proc/msg_admin_ff(var/text)
 	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
@@ -27,7 +27,7 @@ var/global/floorIsLava = 0
 		if(R_MOD & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
 				var/msg = rendered
-				statpanel("Logs", , msg)
+				C << msg
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels

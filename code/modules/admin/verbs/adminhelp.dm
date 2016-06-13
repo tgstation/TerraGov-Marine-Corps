@@ -192,6 +192,6 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		send2adminirc("[selected_upper] from [key_name(src)]: [html_decode(original_msg)]")
 	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	unansweredAhelps["[key_name(src)]"] = html_encode(msg) //encoding in case the href_list args get fucked up when src is different
+	unansweredAhelps["[key_name(src)]"] = msg
 
 	return
