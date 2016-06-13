@@ -1,6 +1,7 @@
 var/list/clients = list()							//list of all clients
 var/list/admins = list()							//list of all clients whom are admins
 var/list/directory = list()							//list of all ckeys with associated client
+var/list/unansweredAhelps = list()						//This feels inefficient, but I can't think of a better way. Stores "ckey: message"
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
@@ -102,7 +103,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 	for(var/T in paths)
 		var/datum/language/L = new T
 		all_languages[L.name] = L
-	
+
 	for (var/language_name in all_languages)
 		var/datum/language/L = all_languages[language_name]
 		language_keys[":[lowertext(L.key)]"] = L
