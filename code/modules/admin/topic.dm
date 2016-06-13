@@ -2823,6 +2823,7 @@
 		var/ahelp = href_list["deleteahelp"]
 
 		unansweredAhelps -= ahelp
+		src.viewUnheardAhelps() //This SHOULD refresh the page
 
 		log_admin("[src] removed the ahelp: [html_decode(ahelp)]") //decoding just in case there are links or some shit
 
@@ -2832,6 +2833,7 @@
 			return
 
 		unansweredAhelps = list()
+		src.viewUnheardAhelps() //This SHOULD refresh the page
 
 		log_admin("[src] cleared all unanswered ahelps")
 

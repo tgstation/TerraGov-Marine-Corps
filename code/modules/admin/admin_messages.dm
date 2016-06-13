@@ -1,5 +1,5 @@
 
-/client/proc/viewUnheardAhelps()
+/datum/admins/proc/viewUnheardAhelps()
 	set name = "View Unheard Ahelps"
 	set desc = "View any Ahelps that went unanswered"
 	set category = "Admin"
@@ -8,6 +8,7 @@
 	body += "<body><B>Unheard Ahelps</B>"
 	body += "<br><br>"
 	body += "<a href='?deleteallahelps=\ref[src]'>Delete All</a>"
+	body += "<br><br>"
 
 	for(var/message in unansweredAhelps)
 		body += "[message]<br>" //If I have done these correctly, it should have the options bar as well a mark and noresponse
@@ -16,5 +17,5 @@
 
 	body += "<br><br></body></html>"
 
-	src << browse(body, "size=550x550")
+	src << browse(body, "window=ahelps;size=300x300")
 
