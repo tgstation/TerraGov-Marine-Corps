@@ -20,10 +20,7 @@
 	plasma_gain = 8
 	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."
-	adjust_size_x = 1.1
-	adjust_size_y = 1.2
 	var/huggers_max = 6
-	adjust_pixel_y = 3
 	var/huggers_cur = 0
 	var/throwspeed = 1
 	var/threw_a_hugger = 0
@@ -31,9 +28,9 @@
 	tier = 3
 	upgrade = 0
 	adjust_pixel_x = -16 //Needed for 2x2
-	adjust_pixel_y = -6  //Needed for 2x2
-	adjust_size_x = 0.8  //Needed for 2x2
-	adjust_size_y = 0.75  //Needed for 2x2
+	// adjust_pixel_y = -6  //Needed for 2x2
+	// adjust_size_x = 0.8  //Needed for 2x2
+	// adjust_size_y = 0.75  //Needed for 2x2
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
