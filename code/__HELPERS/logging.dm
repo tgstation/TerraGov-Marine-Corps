@@ -32,7 +32,7 @@
 
 	for(var/client/C in admins)
 		if(C.prefs.toggles & CHAT_DEBUGLOGS)
-			statpanel("Logs", , "DEBUG: [text]")
+			C << "DEBUG: [text]"
 
 
 /proc/log_game(text)
