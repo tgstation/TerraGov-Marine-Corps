@@ -17,7 +17,7 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/pred_chance = 5 //1 in <x>
+	var/pred_chance = 5 //1 in <x>, "5" = 20% chance
 	var/is_pred_round = 0
 	var/numpreds = 0
 
@@ -27,10 +27,9 @@
 //So use list.len as much as possible before a pick() for logic checks.
 /datum/game_mode/colonialmarines/can_start()
 
-	// Alien number scales to player number (preferred). Swap these to test solo.
-	var/readyplayers = num_players()
+	var/readyplayers = num_players() // Get all players that have "Ready" selected
 
-	numaliens = Clamp((readyplayers/5), 1, 14) //(n, minimum, maximum)
+	numaliens = Clamp((readyplayers/5), 1, 14) //(n, minimum aliens, maximum aliens)
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 	var/list/datum/mind/possible_predators = get_whitelisted_predators()
@@ -158,7 +157,7 @@
 
 	new_xeno << "<B>You are now an alien!</B>"
 	new_xeno << "<B>Your job is to spread the hive and protect the Queen. You can become the Queen yourself by evolving into a drone.</B>"
-	new_xeno << "Use say :a to talk to the hive."
+	new_xeno << "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')"
 
 	new_xeno.update_icons()
 

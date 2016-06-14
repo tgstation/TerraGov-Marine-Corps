@@ -34,10 +34,9 @@
 	tier = 3
 	upgrade = 0
 	adjust_pixel_x = -16
-	adjust_pixel_y = -6
-
-	adjust_size_x = 0.8
-	adjust_size_y = 0.75
+	// adjust_pixel_y = -6
+	// adjust_size_x = 0.8
+	// adjust_size_y = 0.75
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
