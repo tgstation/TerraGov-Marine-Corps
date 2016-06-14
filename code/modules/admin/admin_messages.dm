@@ -10,12 +10,12 @@
 	body += "<a href='?deleteallahelps=\ref[src]'>Delete All</a>"
 	body += "<br><br>"
 
-	for(var/message in unansweredAhelps)
-		body += "[message]<br>" //If I have done these correctly, it should have the options bar as well a mark and noresponse
-		body += "<a href='?deleteahelp=[message]'>Delete</a>"
+	for(var/ckey in unansweredAhelps)
+		body += "[unansweredAhelps[ckey]]" //If I have done these correctly, it should have the options bar as well a mark and noresponse
+		body += "<a href='?deleteahelp=[ckey]'>Delete</a>"
 		body += "<br><br>"
 
 	body += "<br><br></body></html>"
 
-	src << browse(body, "window=ahelps;size=300x300")
+	src << browse(body, "window=ahelps;size=800x300")
 
