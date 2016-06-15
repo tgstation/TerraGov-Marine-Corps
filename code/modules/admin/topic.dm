@@ -2797,7 +2797,8 @@
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
-		unansweredAhelps.Remove(key_name(ref_person)) //It has been answered so take it off of the unanswered list
+		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
+		src.viewUnheardAhelps() //This SHOULD refresh the page
 
 	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
 		var/mob/ref_person = locate(href_list["NOPE"])
@@ -2814,28 +2815,8 @@
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
-		unansweredAhelps.Remove(key_name(ref_person)) //It has been answered so take it off of the unanswered list
-
-	if(href_list["deleteahelp"])
-		if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))
-			return
-
-		var/ahelp = href_list["deleteahelp"]
-
-		unansweredAhelps -= ahelp
+		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
 		src.viewUnheardAhelps() //This SHOULD refresh the page
-
-		log_admin("[src] removed the ahelp: [html_decode(ahelp)]") //decoding just in case there are links or some shit
-
-	if(href_list["deleteallahelps"])
-		if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))
-			src << "\red You don't have permission to do that"
-			return
-
-		unansweredAhelps = list()
-		src.viewUnheardAhelps() //This SHOULD refresh the page
-
-		log_admin("[src] cleared all unanswered ahelps")
 
 	// if(href_list["retarded"]) // Their message is fucking stupid
 	// 	var/mob/ref_person = locate(href_list["retarded"])
