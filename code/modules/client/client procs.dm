@@ -43,7 +43,7 @@
 			var/mob/M = C
 			C = M.client
 		cmd_admin_pm(C,null)
-		if(unansweredAhelps[src.mob.computer_id]) unansweredAhelps.Remove(src.mob.computer_id)
+		if(unansweredAhelps[C.mob.computer_id]) unansweredAhelps.Remove(C.mob.computer_id)
 		return
 
 	if(href_list["irc_msg"])
