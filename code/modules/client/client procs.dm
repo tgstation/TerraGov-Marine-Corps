@@ -43,7 +43,7 @@
 			var/mob/M = C
 			C = M.client
 		cmd_admin_pm(C,null)
-		if(unansweredAhelps[key_name(src)]) unansweredAhelps.Remove(key_name(src)) //It's possible they have two, but since the entire system is garbage, I'm not checking for that
+		if(unansweredAhelps[src.mob.computer_id]) unansweredAhelps.Remove(src.mob.computer_id)
 		return
 
 	if(href_list["irc_msg"])
