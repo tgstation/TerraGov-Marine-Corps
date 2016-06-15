@@ -203,6 +203,8 @@
 
 			new /obj/effect/alien/weeds(T, linked_node)
 
+	spawn(600)
+		goto direction_loop
 
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
