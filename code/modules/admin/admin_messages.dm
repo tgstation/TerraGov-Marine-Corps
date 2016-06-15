@@ -10,7 +10,6 @@
 
 	for(var/CID in unansweredAhelps)
 		body += "[unansweredAhelps[CID]]" //If I have done these correctly, it should have the options bar as well a mark and noresponse
-		body += "<br><br>"
 
 	body += "<br><br></body></html>"
 

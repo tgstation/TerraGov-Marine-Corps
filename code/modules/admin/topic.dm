@@ -843,7 +843,7 @@
 		var/mins = 0
 		var/reason = ""
 
-		switch(alert("Reason?", , "Disobeying staff", "Arguing with staff", "EORG"))
+		switch(alert("Reason?", , "Disobeying staff", "Arguing with staff", "EORG", "Cancel"))
 			if("Disobeying staff")
 				mins = 4320
 				reason = "Expressly disobeying staff"
@@ -851,11 +851,13 @@
 				mins = 4320
 				reason = "Needlessly talking back and/or arguing with staff members"
 			if("EORG")
-				M.EORGBans++
-				if(M.EORGBans == 1) mins = 1440
-				else if(M.EORGBans == 2) mins = 2880
-				else mins = 10080
+				switch(alert("Which offense?", ,"1st", "2nd", "3rd or more"))
+					if("1st") mins = 1440
+					if("2nd") mins = 2880
+					if("3rd or more") mins = 10080
 				reason = "EORG"
+			if("Cancel")
+				return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 		ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
 		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
