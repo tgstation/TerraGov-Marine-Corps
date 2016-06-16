@@ -101,6 +101,7 @@
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>\The [src] regurgitates a pulsating node and plants it on the ground!</B>"), 1)
 		new /obj/effect/alien/weeds/node(loc)
+		new /obj/effect/alien/weeds(loc)
 		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //splat!
 	return
 
