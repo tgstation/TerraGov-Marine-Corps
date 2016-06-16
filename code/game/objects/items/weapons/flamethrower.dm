@@ -56,7 +56,9 @@
 	if(ptank)
 		overlays += "+ptank"
 	if(lit)
-		overlays += "+lit"
+		var/image/lit_overlay = new(icon, "+lit")//Need to shift it three pixels right.
+		lit_overlay.pixel_x += 3
+		overlays += lit_overlay
 		item_state = "flamethrower_1"
 	else
 		item_state = "flamethrower_0"

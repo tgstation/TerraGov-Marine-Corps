@@ -43,7 +43,6 @@
 	icon_empty = "rspshotgun0"
 	item_state = "rspshotgun"
 	fire_delay = 10
-	autoejector = 1
 	muzzle_pixel_x = 31
 	muzzle_pixel_y = 19
 	rail_pixel_x = 10
@@ -128,11 +127,8 @@
 	under_pixel_y = 16
 	accuracy = -20
 	twohanded = 0
+	dam_bonus = 15
 	slot_flags = SLOT_BELT
-
-	load_into_chamber()
-		..()
-		if(in_chamber) in_chamber.damage += 15
 
 //-------------------------------------------------------
 //Shotguns not in this category will not need to be pumped on each shot.
@@ -146,13 +142,14 @@
 	item_state = "m37"
 	fire_delay = 26
 	muzzle_pixel_x = 33
-	muzzle_pixel_y = 19
+	muzzle_pixel_y = 18
 	rail_pixel_x = 10
 	rail_pixel_y = 21
-	under_pixel_x = 14
-	under_pixel_y = 15
-	var/recentpump = 0
+	under_pixel_x = 20
+	under_pixel_y = 14
 	autoejector = 0 //Does not automatically eject "magazines".
+	internal_magazine = 1 // They have an internal cylinder, no need to eject it.
+	var/recentpump = 0
 	var/is_pumped = 0
 	var/is_reloading = 0
 
@@ -163,51 +160,62 @@
 		is_pumped = 0
 		return 1
 
+	verb/pump_shotgun()
+		set category = "Weapons"
+		set name = "Pump Shotgun"
+		set src in usr
+
+		if(!ishuman(usr)) return //These checks are killing me.We REALLY need a standard sanity check.
+		if(!usr.canmove || usr.stat || usr.restrained())
+			usr << "Not right now."
+			return
+
+		pump(usr)
+
+		return
+
 	AltClick(var/mob/user)
+
+		if(!ishuman(user)) return //These checks are killing me.
 		if(!user.canmove || user.stat || user.restrained())
 			user << "Not right now."
 			return
 
-		if(is_pumped)
-			usr << "There's already a shell in the chamber, just shoot it."
-			return
-
-		if(recentpump)	return
-		var/mob/living/carbon/human/M = user
-		if(!istype(M)) return //wat
-
-		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
-			M << "You have to be holding a shotgun!"
-			return //not holding it
-
-		src.pump(M)
-		recentpump = 1
-		spawn(20)
-			recentpump = 0
+		pump(user)
 		return
 
-	proc/pump(mob/M as mob)
-		if(in_chamber)     //We have a shell in the chamber
-			return 0
+	proc/pump(mob/living/carbon/human/M as mob)
+		if(recentpump)	return
+
+		if(is_pumped) //I might make it so you can keep pumping.
+			M << "There's already a shell in the chamber, just shoot it."
+			return
+
+		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)  //not holding it.
+			M << "You have to be holding a shotgun!"
+			return
+
+		if(in_chamber) //We have a shell in the chamber. DEBUG THIS SHOULD NEVER HAPPEN
+			del(in_chamber) // Delete whatever it is. It shouldn't be there.
+			in_chamber = null // If we leave this as in_chamber, the gun won't fire again. Swell, huh?
+			return
 
 		if(!current_mag || !ammo)
 			M << "There's nothing loaded!"
 			recentpump = 0
-			return 0
+			return
 
 		playsound(M, 'sound/weapons/shotgunpump.ogg', 70, 1)
-		var/casingtype = text2path(ammo.casing_type)
-		if(casingtype)
-			new casingtype(get_turf(src)) //Drop a spent casing.
+		make_casing(1) //Override so it makes a casing.
 
 		//ready_bullet()
 		is_pumped = 1
-		if(M && current_mag.current_rounds == 0)
-			M << "\blue The last of \the [src]'s casings hit the ground. <B>Reload</b>!"
-			current_mag.loc = get_turf(src) //Eject the mag.
-			current_mag = null
-
-		update_icon()
+		recentpump = 1
+		if(current_mag && current_mag.current_rounds <= 0) // We should have a mag, and if it's empty, change icon.
+			current_mag.current_rounds = 0 // Just in case we somehow had negative rounds.
+			update_icon()
+		spawn(20)
+			recentpump = 0
 		return 1
 /*
 	proc/ready_bullet()	//Clone of load_into_chamber, only does it at a different time.
@@ -220,33 +228,6 @@
 		P.damage_type = P.damage_type
 		return 1
 */
-	verb/pump_shotgun()
-		set category = "Weapons"
-		set name = "Pump Shotgun"
-		set src in usr
-
-		if(!usr.canmove || usr.stat || usr.restrained())
-			usr << "Not right now."
-			return
-
-		if(is_pumped)
-			usr << "There's already a shell in the chamber, just shoot it."
-			return
-
-		if(recentpump)	return
-		var/mob/living/carbon/human/M = usr
-		if(!istype(M)) return //wat
-
-		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
-			M << "You have to be holding a shotgun!"
-			return //not holding it
-
-		src.pump(M)
-		recentpump = 1
-		spawn(20)
-			recentpump = 0
-
-		return
 
 	snowflake_reload(var/obj/item/ammo_magazine/A)
 		if(!istype(A) || !istype(current_mag) || !istype(A,current_mag.type) || A.default_ammo != current_mag.default_ammo)
@@ -265,8 +246,8 @@
 		var/shells_to_load = current_mag.max_rounds - current_mag.current_rounds
 		if(shells_to_load > current_mag.max_rounds) return 0
 		var/turf/start_turf = get_turf(src.loc)
-
-		if(usr && istype(usr,/mob/living/carbon/human))
+		//This is terrible. I am going to rewrite it.
+		if(usr && istype(usr,/mob/living/carbon/human)) //<---- what? why? why does it matter if they're human??? ??????????
 			var/mob/living/carbon/human/H = usr
 			H.visible_message("\blue [H] begins hand-reloading reloading \the [src].","\blue You begin hand-reloading the [src].")
 			for(var/i = 1 to shells_to_load)
@@ -320,7 +301,7 @@
 	icon_wielded = "CMBshotgun-w"
 	mag_type = "/obj/item/ammo_magazine/shotgun/cmb"
 	fire_delay = 16
-	muzzle_pixel_x = 33
+	muzzle_pixel_x = 30
 	muzzle_pixel_y = 20
 	rail_pixel_x = 10
 	rail_pixel_y = 23

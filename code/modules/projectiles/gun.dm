@@ -57,7 +57,7 @@
 			last_fired = world.time
 			return 1
 		else
-			return 0
+			return
 
 	proc/load_into_chamber()
 		return 0

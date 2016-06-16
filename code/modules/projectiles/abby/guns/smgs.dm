@@ -10,6 +10,8 @@
 /obj/item/ammo_magazine/smg
 	name = "default SMG magazine"
 	default_ammo = "/datum/ammo/bullet/smg"
+	icon_state = "9x"
+	icon_empty = "9x0"
 	max_rounds = 30
 
 /obj/item/ammo_magazine/smg/m39
@@ -18,13 +20,14 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 35
+	default_ammo = "/datum/ammo/bullet/smg/caseless"
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 
 /obj/item/ammo_magazine/smg/m39/extended
 	name = "M39 Extended Mag (9mm)"
 	desc = "A 9mm submachinegun magazine."
-	icon_state = "9e"
-	icon_empty = "9e0"
+	icon_state = "9x"
+	icon_empty = "9x0"
 	max_rounds = 60
 	bonus_overlay = "m39_mag"
 
@@ -35,7 +38,7 @@
 	icon_empty = "smg_empty"
 	item_state = "m39"
 	mag_type = "/obj/item/ammo_magazine/smg/m39"
-	muzzle_pixel_x = 33
+	muzzle_pixel_x = 30
 	muzzle_pixel_y = 20
 	rail_pixel_x = 11
 	rail_pixel_y = 22
@@ -60,7 +63,7 @@
 	desc = "A 9mm special magazine."
 	icon_state = "9x"
 	icon_empty = "9x0"
-	default_ammo = "/datum/ammo/bullet/smg/ap"
+	default_ammo = "/datum/ammo/bullet/smg/caseless"
 	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
 	max_rounds = 45
 
@@ -129,8 +132,8 @@
 	mag_type = "/obj/item/ammo_magazine/smg/skorpion"
 	muzzle_pixel_x = 29
 	muzzle_pixel_y = 18
-	rail_pixel_x = 10
-	rail_pixel_y = 20
+	rail_pixel_x = 12
+	rail_pixel_y = 22
 	under_pixel_x = 23
 	under_pixel_y = 15
 	burst_amount = 3
@@ -166,6 +169,7 @@
 	icon_empty = "ppsh_empty"
 	item_state = "ppsh"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
+	autoejector = 0 // Drum mag, hard to eject.
 	fire_delay = 6
 	mag_type = "/obj/item/ammo_magazine/smg/ppsh"
 	muzzle_pixel_x = 33
@@ -183,10 +187,10 @@
 
 /obj/item/ammo_magazine/smg/uzi
 	name = "Mac-15 Magazine (9mm)"
-	desc = "A magazine for the P90 SMG."
+	desc = "A magazine for the MAC-15."
 	default_ammo = "/datum/ammo/bullet/smg"
-	icon_state = "darts"
-	icon_empty = "darts-0"
+	icon_state = "9x"
+	icon_empty = "9x0"
 	max_rounds = 50
 	gun_type = "/obj/item/weapon/gun/smg/uzi"
 
@@ -232,8 +236,8 @@
 	mag_type = "/obj/item/ammo_magazine/smg/p90"
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 18
-	rail_pixel_x = 22
-	rail_pixel_y = 24
+	rail_pixel_x = 18
+	rail_pixel_y = 20
 	under_pixel_x = 22
 	under_pixel_y = 16
 	burst_amount = 3

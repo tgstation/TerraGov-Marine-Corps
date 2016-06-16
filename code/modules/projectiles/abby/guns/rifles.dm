@@ -36,7 +36,7 @@
 	default_ammo = "/datum/ammo/bullet/rifle/ap"
 
 /obj/item/weapon/gun/rifle/m41a
-	name = "\improper M41A Pulse Rifle"
+	name = "\improper M41A Pulse Rifle MK2"
 	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10mm special ammunition."
 	icon_state = "m41a"
 	icon_empty = "m41a0"
@@ -49,9 +49,9 @@
 	burst_amount = 3
 	burst_delay = 2
 	muzzle_pixel_x = 32
-	muzzle_pixel_y = 17
+	muzzle_pixel_y = 18
 	rail_pixel_x = 12
-	rail_pixel_y = 21
+	rail_pixel_y = 23
 	under_pixel_x = 24
 	under_pixel_y = 13
 	ammo_counter = 1
@@ -69,6 +69,28 @@
 				item_state = "s_m41a"
 
 //-------------------------------------------------------
+//M41A TRUE AND ORIGINAL
+
+/obj/item/ammo_magazine/rifle/original
+	name = "M41 Standard Magazine (10mm)"
+	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
+	max_rounds = 95
+	gun_type = "/obj/item/weapon/gun/rifle/m41a/original"
+
+/obj/item/weapon/gun/rifle/m41a/original
+	name = "\improper M41A Pulse Rifle"
+	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10mm special ammunition."
+	icon_state = "s_m41a"
+	icon_empty = "s_m41a0"
+	icon_wielded = "s_m41a-w"
+	item_state = "s_m41a"
+	mag_type = "/obj/item/ammo_magazine/rifle/original"
+	fire_delay = 6
+	burst_amount = 4
+	accuracy = 10
+	dam_bonus = 5
+
+//-------------------------------------------------------
 //M41A MARKSMAN VARIANT
 
 /obj/item/ammo_magazine/rifle/marksman
@@ -79,7 +101,7 @@
 
 /obj/item/weapon/gun/rifle/m41a/scoped
 	name = "\improper M41A/M Marksman Rifle"
-	desc = "An advanced prototype pulse rifle based on the tried and true M41A. Uses any standard M41 magazine and is equipped with rail scope."
+	desc = "An advanced prototype pulse rifle based on the tried and true M41A Pulse Rifle MK2. Uses any standard M41 magazine and is equipped with rail scope."
 	icon_state = "m41b"
 	icon_empty = "m41b0"
 	item_state = "m41a"
@@ -90,8 +112,8 @@
 	recoil = 1
 	burst_amount = 0
 	accuracy = 15
-	under_pixel_x = 22
-	under_pixel_y = 14
+	under_pixel_x = 24
+	under_pixel_y = 13
 
 	New()
 		var/obj/item/attachable/scope/S = new(src)
@@ -124,7 +146,7 @@
 
 /obj/item/weapon/gun/rifle/m41a/elite
 	name = "\improper M41A/2 Battle Rifle"
-	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle. Given only to elite units."
+	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle MK2. Given only to elite units."
 	icon_state = "pmc_m41a"
 	icon_empty = "pmc_m41a0"
 	item_state = "pmc_m41a"
@@ -167,10 +189,10 @@
 	recoil = 0
 	muzzle_pixel_x = 32
 	muzzle_pixel_y = 17
-	rail_pixel_x = 11
+	rail_pixel_x = 13
 	rail_pixel_y = 19
 	under_pixel_x = 24
-	under_pixel_y = 15
+	under_pixel_y = 13
 	burst_amount = 4
 	burst_delay = 2
 	accuracy = -12
@@ -193,7 +215,7 @@
 	desc = "A 12mm marksman rifle magazine."
 	icon_state = "a762"
 	icon_empty = "a762-0"
-	default_ammo = "/datum/ammo/bullet/rifle/marksman"
+	default_ammo = "/datum/ammo/bullet/rifle/marksman/svd"
 	max_rounds = 30
 	gun_type = "/obj/item/weapon/gun/rifle/mar40/svd"
 
@@ -230,7 +252,7 @@
 
 /obj/item/weapon/gun/rifle/lmg
 	name = "\improper M41AE2 Heavy Pulse Rifle"
-	desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing among USCM scout platoons and in mercenary companies. Like it's smaller brother, the M41A, the M41AE2 is chambered in 10mm."
+	desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing among USCM scout platoons and in mercenary companies. Like it's smaller brother, the M41A MK2, the M41AE2 is chambered in 10mm."
 	icon_state = "rsplmg"
 	icon_empty = "rsplmg0"
 	item_state = "rsplmg"
@@ -239,12 +261,12 @@
 	fire_sound = 'sound/weapons/gunshot_rifle.ogg' //Change
 	fire_delay = 4
 	recoil = 0
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 17
-	rail_pixel_x = 11
-	rail_pixel_y = 19
-	under_pixel_x = 20
-	under_pixel_y = 15
+	muzzle_pixel_x = 33
+	muzzle_pixel_y = 19
+	rail_pixel_x = 10
+	rail_pixel_y = 24
+	under_pixel_x = 24
+	under_pixel_y = 12
 	burst_amount = 4
 	accuracy = -25
 	found_on_mercs = 1

@@ -49,9 +49,11 @@
 		..()
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = "" //Let's make it invisible. The sprite already has one.
+		S.can_be_removed = 0
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
+		burst_amount = 0 //Fix so the sniper scopes don't set burst fire to -1 ~N
 		update_attachables()
 
 /obj/item/ammo_magazine/sniper/elite
@@ -87,7 +89,9 @@
 		var/obj/item/attachable/scope/S = new(src)
 		if(S)
 			S.icon_state = "pmcscope"
+			S.can_be_removed = 0
 			S.Attach(src)
+			burst_amount = 0 //Fix for snipers.
 			update_attachables()
 
 	afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
@@ -107,6 +111,10 @@
 	default_ammo = "/datum/ammo/bullet/smartgun"
 	gun_type = "/obj/item/weapon/gun/smartgun"
 
+/obj/item/ammo_magazine/smartgun_integrated/dirty
+	default_ammo = "/datum/ammo/bullet/smartgun/dirty"
+	gun_type = "/obj/item/weapon/gun/smartgun/dirty"
+
 //Come get some.
 /obj/item/weapon/gun/smartgun
 	name = "\improper M56 Smartgun"
@@ -122,32 +130,76 @@
 	fire_delay = 3
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 16
-	rail_pixel_x = 18
-	rail_pixel_y = 18
+	rail_pixel_x = 17
+	rail_pixel_y = 19
 	under_pixel_x = 22
 	under_pixel_y = 14
 	burst_amount = 3
 	burst_delay = 1
 	autoejector = 0
+	integrated_assembly = 1
 	slot_flags = 0
 	accuracy = 5
+	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
+	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
+	var/safety_toggled = 1 //Begin with the safety on.
 
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(!istype(I,/obj/item/attachable)) //Don't allow reloading by clicking it somehow.
+	AltClick(var/mob/user)
+		if(!ishuman(user))
 			return
-		return ..()
 
-	unload(var/mob/user as mob)
-		if(user) user << "The smartgun has an integrated ammo feed and cannot be unloaded."
+		if(!user.canmove || user.stat || user.restrained()) //I need to make this a general mob sanity check.
+			user << "Not right now."
+			return
+
+		var/mob/living/carbon/human/M = user
+
+		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
+			M << "You have to be holding the smartgun!"
+			return //not holding it
+		else
+			toggle_safety()
+		return
+
+	proc/toggle_safety() //Works like reloading the gun. We don't actually change the ammo though.
+		playsound(src.loc,'sound/machines/click.ogg', 50, 1)
+		safety_toggled = !safety_toggled
+		if(ammo) del(ammo)
+		if(safety_toggled)
+			usr << "\icon[src] You <B>enable</b> the [src]'s safety mode. You will not harm allies."
+			ammo = new/datum/ammo/bullet/smartgun
+		else
+			usr << "\icon[src] You <B>disable</b> the [src]'s safety mode. You will harm anyone in your way."
+			ammo = new/datum/ammo/bullet/smartgun/nosafety
 		return
 
 	Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0, atom/original_target as mob|obj|turf)
-		if(!istype(user,/mob/living/carbon/human)) return 0
-		if(istype(user:wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) && istype(user:back,/obj/item/smartgun_powerpack))
+		if(!ishuman(user)) return
+		var/mob/living/carbon/human/smart_gunner = user
+		if(istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) && istype(smart_gunner.back,/obj/item/smartgun_powerpack))
+			var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
+			if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
+				spawn(1)
+					power_pack.attack_self(smart_gunner)
+			else
+				if(burst_toggled) //If the gun is set on burst, we want to add the number of bullets it can fire on burst instead.
+					shells_fired_now = shells_fired_now + min(burst_amount, current_mag.current_rounds)
+				else
+					shells_fired_now++
 			return ..()
 
 		user << "\blue *click*"
-		return 0
+		return
+
+//Cannot be upgraded.
+/obj/item/weapon/gun/smartgun/dirty
+	name = "\improper M57D 'Dirty' Smartgun"
+	desc = "The actual firearm in the 4-piece M57D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. Otherwise identical to the M56."
+	safety_toggled = 0
+	mag_type = "/obj/item/ammo_magazine/smartgun_integrated/dirty"
+	accuracy = 10 //Slightly more accurate.
+
+	AltClick(var/mob/user) return //No safety system.
 
 //-------------------------------------------------------
 //SADAR

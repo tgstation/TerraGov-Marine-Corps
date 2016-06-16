@@ -10,6 +10,7 @@
 	flags = FPRINT | TABLEPASS
 	pass_flags = PASSTABLE | PASSGRILLE
 	mouse_opacity = 0
+	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
 
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
@@ -67,7 +68,7 @@
 		return
 
 	proc/get_accuracy()
-		var/acc = 85 //Base accuracy.
+		var/acc = 85 //Base accuracy. Can be taken from the marine/whoever fires the bullet in the future.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 
@@ -180,9 +181,11 @@
 				if(!in_flight) return
 
 				if(distance_travelled >= range)
-					ammo.do_at_max_range(src)
-					in_flight = 0
-					if(src) del(src)
+					if(ammo) //Fixes a runtime for null ammo, when fired from attachments.
+						ammo.do_at_max_range(src)
+					if(src)
+						in_flight = 0
+						del(src)
 					return
 
 				if(scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
@@ -192,6 +195,7 @@
 					return
 
 				src.loc = next_turf
+				//invisibility = 0 // Bullet is now travelling and is visible.
 				each_turf()
 
 				dist_since_sleep++
@@ -289,11 +293,11 @@
 		return 0 //Found nothing.
 
 
-
+//This is where the bullet bounces off.
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
-	if(!P || isnull(P)) return
+	if(!P || isnull(P) || !P.ammo.ping) return
 
-	var/image/ping = image('icons/obj/projectiles.dmi',src,"ping",10) //Layer 10, above most things but not the HUD.
+	var/image/ping = image('icons/obj/projectiles.dmi',src,P.ammo.ping,10) //Layer 10, above most things but not the HUD.
 	var/angle = round(rand(1,359))
 	ping.pixel_x += rand(-6,6)
 	ping.pixel_y += rand(-6,6)

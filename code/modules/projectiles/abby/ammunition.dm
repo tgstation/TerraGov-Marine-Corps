@@ -26,8 +26,9 @@
 	var/shrapnel_chance = 0
 	var/icon = 'icons/obj/projectiles.dmi'
 	var/icon_state = "bullet"
-	var/tracer = 0 //TODO
-	var/caseless = 1 //TODO
+	var/ping = "ping_b" //The icon that is displayed when the bullet bounces off something.
+	var/tracer = 0 //TODO <----- Unsure what this was meant to do. ~N
+	var/caseless = 1 //Is the bullet caseless? Shotguns and revolvers are not actually caseless, but use this too.
 	var/ignores_armor = 0 //Use this on tasers, not on bullets. Use armor pen for that.
 
 	var/max_range = 30 //This will de-increment a counter on the bullet.
@@ -35,7 +36,7 @@
 	var/damage_bleed = 1 //How much damage the bullet loses per turf traveled, very high for shotguns
 	var/casing_type = "/obj/item/ammo_casing"
 	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
-	var/bonus_projectiles = 0
+	var/bonus_projectiles = 0 //Seems to be only used for buckshot. ~N
 	var/never_scatters = 0 //Never wanders
 
 	proc/do_at_half_range(var/obj/item/projectile/P)
@@ -118,7 +119,7 @@
 	name = "bullet casing"
 	desc = "A bullet casing."
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "s-casing"
+	icon_state = "casing"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	throwforce = 1
 	w_class = 1.0
@@ -127,7 +128,7 @@
 		..()
 		pixel_x = rand(-10.0, 10)
 		pixel_y = rand(-10.0, 10)
-		dir = pick(NORTH,EAST,SOUTH,WEST)
+		icon = turn(icon, rand(1,360))
 		return
 
 /obj/item/ammo_casing/shotgun

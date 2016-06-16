@@ -50,8 +50,8 @@
 /obj/item/ammo_magazine/pistol/chimp
 	name = "CHIMP70 Magazine (9mm)"
 	default_ammo = "/datum/ammo/bullet/pistol/mankey"
-	icon_state = "45"
-	icon_empty = "45-0"
+	icon_state = "monkey1"
+	icon_empty = "monkey1"
 	max_rounds = 300
 	gun_type = "/obj/item/weapon/gun/pistol/chimp"
 
@@ -60,6 +60,7 @@
 	desc = "A powerful sidearm issed mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "chimp70"
 	item_state = "chimp70"
+	icon_empty = "chimp70_empty"
 	mag_type = "/obj/item/ammo_magazine/pistol/chimp"
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	fire_delay = 3
@@ -137,7 +138,7 @@
 	desc = "A huge ammo drum for a huge gun."
 	icon_state = "a762"
 	icon_empty = "a762-0"
-	default_ammo = "/datum/ammo/bullet"
+	default_ammo = "/datum/ammo/bullet/minigun"
 	max_rounds = 300
 	gun_type = "/obj/item/weapon/gun/minigun"
 
@@ -150,6 +151,7 @@
 	icon_wielded = "painless-w"
 	mag_type = "/obj/item/ammo_magazine/minigun"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg' //Change
+	autoejector = 0 // Hard to reload.
 	twohanded = 1
 	w_class = 5
 	force = 20

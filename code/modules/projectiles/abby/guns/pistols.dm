@@ -1,3 +1,19 @@
+//--------------------------------------------------
+//Base pistol and revolver for inheritance/
+/obj/item/weapon/gun/pistol
+	icon_state = "" //Defaults to revolver pistol when there's no sprite.
+	slot_flags = SLOT_BELT
+	w_class = 3
+	fire_sound = 'sound/weapons/44mag.ogg'
+
+/obj/item/weapon/gun/revolver
+	slot_flags = SLOT_BELT
+	w_class = 3
+	autoejector = 0 // Revolvers don't auto eject.
+	internal_magazine = 1 // They have an internal cylinder.
+	fire_sound = 'sound/weapons/servicepistol.ogg'
+//---------------------------------------------------
+
 //-------------------------------------------------------
 //M4A3 PISTOL
 
@@ -30,13 +46,6 @@
 	icon_empty = ".45e0"
 	bonus_overlay = "pistol_mag"
 
-
-/obj/item/weapon/gun/pistol
-	icon_state = "" //Defaults to revolver pistol when there's no sprite.
-	slot_flags = SLOT_BELT
-	w_class = 3
-	fire_sound = 'sound/weapons/servicepistol.ogg'
-
 /obj/item/weapon/gun/pistol/m4a3
 	name = "\improper M4A3 Service Pistol"
 	desc = "An M4A3 Colt Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds."
@@ -50,15 +59,15 @@
 	force = 6
 	muzzle_pixel_x = 28
 	muzzle_pixel_y = 20
-	rail_pixel_x = 12
-	rail_pixel_y = 21
+	rail_pixel_x = 10
+	rail_pixel_y = 22
 	under_pixel_x = 21
 	under_pixel_y = 17
 
-//	New()
-//		..()
-		//if(initial(icon_state) == "colt1")
-			//icon_state = "colt[rand(1,7)]" //Lets get some variations up in this shit
+	New()
+		..()
+		icon_state = pick("colt1","colt2")
+
 
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER
@@ -75,9 +84,6 @@
 	name = "Marksman Speed Loader (.44)"
 	default_ammo = "/datum/ammo/bullet/revolver/marksman"
 
-/obj/item/weapon/gun/revolver
-	fire_sound = 'sound/weapons/44mag.ogg'
-
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M44 Combat Revolver"
 	desc = "A bulky 44-calibre revolver, occasionally carried by assault troops and officers in the Colonial Marines. Uses 44 Magnum rounds."
@@ -88,11 +94,11 @@
 	fire_delay = 8
 	recoil = 1
 	force = 8
-	muzzle_pixel_x = 29
-	muzzle_pixel_y = 17
+	muzzle_pixel_x = 30
+	muzzle_pixel_y = 21
 	rail_pixel_x = 17
 	rail_pixel_y = 23
-	under_pixel_x = 24
+	under_pixel_x = 22
 	under_pixel_y = 19
 
 //-------------------------------------------------------
@@ -109,7 +115,8 @@
 /obj/item/weapon/gun/revolver/small
 	name = "\improper S&W .357 Revolver"
 	desc = "A lean 357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
-	icon_state = "detective"
+	icon_state = "357"
+	icon_empty = "357_dry"
 	item_state = "detective"
 	mag_type = "/obj/item/ammo_magazine/revolver/small"
 	fire_delay = 3
@@ -138,6 +145,7 @@
 	name = "\improper N-Y 7.62mm Revolver"
 	desc = "The Nagant-Yamasaki 7.62 is an effective killing machine designed by a consortion of shady Not-Americans. It is frequently found in the hands of criminals or mercenaries."
 	icon_state = "revolver"
+	icon_empty = "revolver_dry"
 	item_state = "revolver"
 	mag_type = "/obj/item/ammo_magazine/revolver/upp"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
@@ -168,6 +176,7 @@
 	name = "\improper Mateba Autorevolver"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds."
 	icon_state = "mateba"
+	icon_empty = "mateba_dry"
 	item_state = "mateba"
 	mag_type = "/obj/item/ammo_magazine/revolver/mateba"
 	fire_sound = 'sound/weapons/mateba.ogg'
@@ -176,14 +185,13 @@
 	burst_delay = 4
 	recoil = 1
 	force = 15
-	muzzle_pixel_x = 30
-	muzzle_pixel_y = 19
+	muzzle_pixel_x = 28
+	muzzle_pixel_y = 18
 	rail_pixel_x = 12
 	rail_pixel_y = 21
 	under_pixel_x = 22
 	under_pixel_y = 15
 	found_on_russians = 1
-	slot_flags = SLOT_BELT
 
 //-------------------------------------------------------
 //DEAGLE
@@ -250,7 +258,14 @@
 	under_pixel_y = 18
 	found_on_mercs = 1
 	found_on_russians = 0
-	silenced = 1
+
+	New()//Making the gun have an invisible silencer since it's supposed to have one.
+		..()
+		var/obj/item/attachable/suppressor/S = new(src)
+		S.icon_state = ""
+		S.can_be_removed = 0
+		S.Attach(src)
+		update_attachables()
 
 /obj/item/weapon/gun/pistol/c99/russian
 	found_on_russians = 1
@@ -262,7 +277,7 @@
 
 /obj/item/ammo_magazine/pistol/m1911
 	name = "M1911 Pulse Pistol Magazine (.40)"
-	default_ammo = "/datum/ammo/bullet/pistol/heavy"
+	default_ammo = "/datum/ammo/bullet/pistol/heavy/caseless"
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 12
@@ -343,7 +358,7 @@
 	w_class = 1
 	force = 2
 	muzzle_pixel_x = 25
-	muzzle_pixel_y = 19
+	muzzle_pixel_y = 20
 	rail_pixel_x = 12
 	rail_pixel_y = 22
 	under_pixel_x = 17
@@ -395,7 +410,8 @@
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB Spearhead Autorevolver"
 	desc = "A powerful automatic revolver chambered in .357. Commonly issued to Colonial Marshals."
-	icon_state = "CMBpistol"
+	icon_state = "CMB"
+	icon_empty = "CMB_dry"
 	item_state = "cmbpistol"
 	mag_type = "/obj/item/ammo_magazine/revolver/cmb"
 	fire_sound = 'sound/weapons/44mag2.ogg'
@@ -403,9 +419,8 @@
 	burst_amount = 3
 	burst_delay = 6
 	recoil = 1
-	w_class = 3
 	force = 12
-	muzzle_pixel_x = 31
+	muzzle_pixel_x = 29
 	muzzle_pixel_y = 22
 	rail_pixel_x = 11
 	rail_pixel_y = 25
@@ -467,9 +482,9 @@
 	recoil = 1
 	w_class = 3
 	force = 8
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 20
-	rail_pixel_x = 8
+	muzzle_pixel_x = 30
+	muzzle_pixel_y = 21
+	rail_pixel_x = 9
 	rail_pixel_y = 24
 	under_pixel_x = 23
 	under_pixel_y = 13

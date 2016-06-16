@@ -11,6 +11,7 @@
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
+	caseless = 0 // Pistols are not normally caseless.
 	damage = 22
 	accuracy = -5 //Not very accurate.
 
@@ -39,6 +40,9 @@
 	armor_pen = 5
 	shrapnel_chance = 25
 
+/datum/ammo/bullet/pistol/heavy/caseless
+	caseless = 1 // For the pulse pistol.
+
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	damage = 20
@@ -55,8 +59,17 @@
 	name = "submachinegun bullet"
 	damage = 25
 	accurate_range = 5
+	caseless = 0 // SMGs are generally not caseless.
+
+/datum/ammo/bullet/smg/caseless
+	caseless = 1 // But this one is an exception.
 
 /datum/ammo/bullet/smg/ap
+	name = "AP submachinegun bullet"
+	damage = 22
+	armor_pen = 30
+
+/datum/ammo/bullet/smg/caseless/ap
 	name = "AP submachinegun bullet"
 	damage = 22
 	armor_pen = 30
@@ -68,7 +81,7 @@
 	accuracy = 15
 	shell_speed = 2 //Faster!
 
-/datum/ammo/bullet/revolver
+/datum/ammo/bullet/revolver //Revolvers do not not eject a casing, as the rounds remain in the cylinder.
 	name = "revolver bullet"
 	damage = 35
 	armor_pen = 3
@@ -95,7 +108,7 @@
 	accuracy = -10
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
-/datum/ammo/bullet/rifle
+/datum/ammo/bullet/rifle // Majority of the rifles are caseless, sides the MAR line.
 	name = "rifle bullet"
 	damage = 40
 	accurate_range = 10
@@ -118,6 +131,9 @@
 	damage_bleed = 0
 	shell_speed = 2
 
+/datum/ammo/bullet/rifle/marksman/svd
+	caseless = 0 // For the SVD, identical otherwise.
+
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 	damage = 35
@@ -125,12 +141,13 @@
 	armor_pen = 15
 
 /datum/ammo/bullet/rifle/mar40
+	caseless = 0 // For the MAR.
 	damage = 50
 	accuracy = -5
 	armor_pen = -5
 
 //Slugs.
-/datum/ammo/bullet/shotgun
+/datum/ammo/bullet/shotgun //Shotguns also do not eject casings; they do so when pumped.
 	name = "shotgun slug"
 	damage = 70
 	damage_bleed = 7 //Loses 7 damage every turf.
@@ -230,6 +247,23 @@
 	accuracy = 50
 	accurate_range = 6
 
+/datum/ammo/bullet/smartgun/nosafety
+	damage = 33
+	skips_marines = 0
+	armor_pen = 10
+
+/datum/ammo/bullet/smartgun/dirty //This thing is extremely nasty.
+	irradiate = 1
+	agony = 1
+	damage = 35 // Slightly more damage than regular smartgun.
+	skips_marines = 0
+	armor_pen = 25
+	shrapnel_chance = 65 // High chance of shrapnel tearing up your insides.
+	damage_type = BRUTE
+
+/datum/ammo/energy
+	ping = null //no bounce off.
+
 /datum/ammo/energy/taser
 	name = "taser bolt"
 	icon_state = "stun"
@@ -291,6 +325,15 @@
 	accurate_range = 6
 	max_range = 12
 
+/datum/ammo/bullet/minigun
+	name = "minigun bullet"
+	caseless = 0
+	damage = 50
+	armor_pen = 10
+	accuracy = -5
+	accurate_range = 6
+	max_range = 12
+
 /datum/ammo/energy/emitter
 	name = "emitter bolt"
 	icon_state = "emitter"
@@ -301,6 +344,7 @@
 /datum/ammo/xeno/spit
 	name = "acid spit"
 	icon_state = "toxin"
+	ping = "ping_x"
 	damage = 0
 	ignores_armor = 0
 	damage_type = TOX
@@ -342,7 +386,9 @@
 //all of my keks, i give them to you
 /datum/ammo/bullet/pistol/mankey
 	name = "monkey"
+	caseless = 1
 	icon_state = "monkey1"
+	ping = null //no bounce off.
 	incendiary = 1
 	shell_speed = 1
 	ignores_armor = 1
@@ -359,6 +405,7 @@
 /datum/ammo/boiler_gas
 	name = "glob"
 	icon_state = "acid"
+	ping = "ping_x"
 	incendiary = 1
 	shell_speed = 1
 	ignores_armor = 1
@@ -399,6 +446,7 @@
 
 /datum/ammo/flare
 	name = "flare"
+	ping = null //no bounce off.
 	damage = 15
 	damage_type = BURN
 	incendiary = 1
@@ -430,6 +478,7 @@
 
 /datum/ammo/yautja_spike
 	name = "alloy spike"
+	ping = "ping_s"
 	damage = 40
 	icon_state = "MSpearFlight"
 	damage_type = BRUTE
@@ -442,6 +491,7 @@
 /datum/ammo/rocket
 	name = "high explosive rocket"
 	icon_state = "missile"
+	ping = null //no bounce off.
 	accuracy = 10
 	accurate_range = 25
 	max_range = 25
