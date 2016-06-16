@@ -944,9 +944,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Fleet Admiral"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
-			W.access = list()
-			W.access = get_all_accesses()
-			W.access += get_all_centcom_access()
 
 /*
 

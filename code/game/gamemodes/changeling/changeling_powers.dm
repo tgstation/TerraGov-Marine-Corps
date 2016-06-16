@@ -282,9 +282,6 @@
 	var/datum/changeling/changeling = changeling_power(1,0,0)
 	if(!changeling)	return
 
-	if(src.has_brain_worms())
-		src << "<span class='warning'>We cannot perform this ability at the present time!</span>"
-		return
 
 	var/mob/living/carbon/C = src
 	changeling.chem_charges--

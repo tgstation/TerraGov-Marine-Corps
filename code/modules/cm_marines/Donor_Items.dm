@@ -1,4 +1,4 @@
-////SS13 DONATOR CUSTOM ITEM STORAGE ZONE OF MAGICAL HAPPINESS APOPHIS - LAST UPDATE - 16MAY2015
+////SS13 DONATOR CUSTOM ITEM STORAGE ZONE OF MAGICAL HAPPINESS APOPHIS - LAST UPDATE - 14JUN2016
 
 
 
@@ -12,11 +12,14 @@
 	item_state = "state"
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/suits.dmi'
-	icon_override = 'icons/mob/suit_0.dmi'
+	icon_override = 'icons/mob/suit_0.dmi'  //Don't fuck with this in the future please.
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = 220
+
 	//AND THIS LINE
 //END SUIT TEMPLATE
+
+
 
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
@@ -43,7 +46,7 @@
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
 
-/obj/item/clothing/suit/storage/marine/fluff/sas
+/obj/item/clothing/suit/storage/marine/fluff/sas5
 	name = "Juggernaut Armor"
 	desc = "Some fancy looking armor. DONOR ITEM"
 	icon_state = "rig-syndi"
@@ -315,9 +318,65 @@
 
 /obj/item/clothing/suit/storage/marine/fluff/Sanctum_medium
 	name = "Sanctum Standard Armor"
-	desc = "The Standard Issue Armor for Sanctum Operatives  Unique DONOR ITEM" //Add UNIQUE if Unique
+	desc = "The Standard Issue Armor for Sanctum Operatives  Unique DONOR ITEM"
 	icon_state = "Sanctum_Medium_u"
 	item_state = "Sanctum_Medium_u"
+
+/obj/item/clothing/suit/storage/marine/fluff/AlexLemire
+	name = "Rainbow Coat"
+	desc = "Powered by the magic of FRIENDSHIP. (Can be toggled opened or closed)  UNIQUE DONOR ITEM"
+	icon_state = "AlexLermire_u"
+	item_state = "AlexLermire_u"
+	var/open = 0
+/obj/item/clothing/suit/storage/marine/fluff/AlexLemire/verb/verb_toggleopen()
+	set category = "Object"
+	set name = "Toggle Open"
+	if(open ==0)
+		icon_state = "AlexLermire_on_u"
+		item_state = "AlexLermire_on_u"
+		open = 1
+	else
+		open = 0
+		icon_state = "AlexLermire_u"
+		item_state = "AlexLermire_u"
+	update_icon()
+	return
+
+/obj/item/clothing/suit/storage/marine/fluff/titus
+	name = "ODST Armor"
+	desc = "Strange looking armor with faded ODST lettering...  UNIQUE DONOR ITEM"
+	icon_state = "leviathan13_u"
+	item_state = "leviathan13_u"
+
+/obj/item/clothing/suit/storage/marine/fluff/blackdrago
+	name = "Strange Looking Armor"
+	desc = "Looks like it's from another time and place...  UNIQUE DONOR ITEM"
+	icon_state = "TR-Donor_u"
+	item_state = "TR-Donor_u"
+
+/obj/item/clothing/suit/storage/marine/fluff/zegara
+	name = "Black and Pink armor"
+	desc = "Shiney black armor with pink accents...  UNIQUE DONOR ITEM"
+	icon_state = "zegara_armor_u"
+	item_state = "zegara_armor_u"
+
+/obj/item/clothing/suit/storage/marine/fluff/eonoc
+	name = "Browncoat"
+	desc = "You can't take the sky from me...  DONOR ITEM"
+	icon_state = "Eonoc_coat"
+	item_state = "Eonoc_coat"
+
+/obj/item/clothing/suit/storage/marine/fluff/kaila
+	name = "Custom Engineering Armor"
+	desc = "Custom paint job on an set of engineering armor.  DONOR ITEM"
+	icon_state = "kailas_armor"
+	item_state = "kailas_armor"
+
+/obj/item/clothing/suit/storage/marine/fluff/reznor
+	name = "Solid Black Labcoat"
+	desc = "Very stylish. DONOR ITEM"
+	icon_state = "Reznoriam"
+	item_state = "Reznoriam"
 
 
 //	HELMETS/HATS/BERETS COSMETICS  ////////////////////////////////////////////////
@@ -538,14 +597,20 @@
 /obj/item/clothing/head/helmet/marine/fluff/roswell
 	name = "Merc Beret"
 	desc = "Beret from a Mercenary Company.  DONOR ITEM"
-	icon_state = "flat_cap"
-	item_state = "flat_cap"
+	icon_state = "cargosoft"
+	item_state = "cargosoft"
 
 /obj/item/clothing/head/helmet/marine/fluff/radical
 	name = "Bounty Hunter Helmet"
 	desc = "A helmet from an ancient bounty hunter.  DONOR ITEM"
 	icon_state = "boba_helmet"
 	item_state = "boba_helmet"
+
+/obj/item/clothing/head/helmet/marine/fluff/coleMercer
+	name = "Black Ops Helmet"
+	desc = "Your not authorized to look at it.  DONOR ITEM"
+	icon_state = "syndicate-helm-black"
+	item_state = "syndicate-helm-black"
 
 /obj/item/clothing/head/helmet/marine/fluff/leondark
 	name = "Hunter's USCM Cap"
@@ -631,6 +696,31 @@
 	desc = " The Standard Issue helmet of Sanctum Team.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "Sanctum_Helm_u"
 	item_state = "Sanctum_Helm_u"
+
+/obj/item/clothing/head/helmet/marine/fluff/DingleDangle
+	name = "Rusty's Cap"
+	desc = "A little old and shabby. The color has slightly faded over time.  DONOR ITEM"
+	icon_state = "bluesoft"
+	item_state = "bluesoft"
+
+/obj/item/clothing/head/helmet/marine/fluff/titus
+	name = "ODST helmet"
+	desc = "An old helmet, with faded ODST lettering.  UNIQUE DONOR ITEM"
+	icon_state = "leviathan13_helm_u"
+	item_state = "leviathan13_helm_u"
+
+/obj/item/clothing/head/helmet/marine/fluff/kaila
+	name = "Custom Engineering Snow Helmet"
+	desc = "A custom paint job done on an engineering helmet.  DONOR ITEM"
+	icon_state = "kailas_helmet"
+	item_state = "kailas_helmet"
+
+/obj/item/clothing/head/helmet/marine/fluff/edgelord
+	name = "Custom overwatch radio helmet"
+	desc = "Gives you superior control over the radios.  DONOR ITEM"
+	icon_state = "edgelord_cap"
+	item_state = "edgelord_cap"
+
 
 //	UNIFORM/JUMPSUIT COSMETICS  ////////////////////////////////////////////////
 
@@ -874,8 +964,23 @@
 	name = "Sanctum Fatigues"
 	desc = "Fatigues with Kevlar fibers for a bit more protection than most clothing.  UNIQUE DONOR ITEM"
 	icon_state = "Sanctum_u"
-	item_state = "Sanctum_u_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
-	item_color = "Sanctum_u" //color must always be the same as item_state
+	item_state = "Sanctum_u_s"
+	item_color = "Sanctum_u"
+
+/obj/item/clothing/under/marine/fluff/sailorDave
+	name = "Eden USCM uniform"
+	desc = "An older model USCM uniform.  UNIQUE DONOR ITEM"
+	icon_state = "syndicate"
+	item_state = "syndicate_s"
+	item_color = "syndicate"
+
+/obj/item/clothing/under/marine/fluff/coleMercer
+	name = "Black Ops uniform"
+	desc = "Way above your pay grade...  DONOR ITEM"
+	icon_state = "jensen"
+	item_state = "jensen_s"
+	item_color = "jensen"
+
 
 //	MASK COSMETICS  ////////////////////////////////////////////////
 

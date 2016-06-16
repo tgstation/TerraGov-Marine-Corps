@@ -57,10 +57,7 @@
 
 	..()
 
-	var/mob/living/simple_animal/borer/borer = target.has_brain_worms()
 
-	if(borer)
-		borer.detatch() //Should remove borer if the brain is removed - RR
 
 	var/mob/living/carbon/human/H = target
 	var/obj/item/organ/brain/B = src

@@ -270,6 +270,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/jobbans,
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
+	/client/proc/toggleffattacklogs,
 	/datum/admins/proc/view_txt_log,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
@@ -279,7 +280,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
-	/proc/release
+	/proc/release,
+	/datum/admins/proc/viewUnheardAhelps //Why even have it as a client proc anyway?  ¯\_("/)_/¯
 )
 
 var/list/admin_verbs_mentor = list(
@@ -812,6 +814,16 @@ var/list/admin_verbs_mentor = list(
 		usr << "You now will get attack log messages"
 	else
 		usr << "You now won't get attack log messages"
+
+/client/proc/toggleffattacklogs()
+	set name = "Toggle FF Attack Log Messages"
+	set category = "Preferences"
+
+	prefs.toggles ^= CHAT_FFATTACKLOGS
+	if (prefs.toggles & CHAT_FFATTACKLOGS)
+		usr << "You now will get friendly fire attack log messages"
+	else
+		usr << "You now won't get friendly fire attack log messages"
 
 
 /client/proc/toggleghostwriters()

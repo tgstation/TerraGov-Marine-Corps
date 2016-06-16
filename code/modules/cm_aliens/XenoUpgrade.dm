@@ -38,7 +38,7 @@
 	//FIRST UPGRADE
 	if(upgrade == 0)
 		var/up = alert(src, "If you upgrade, you will never be able to evolve, are you sure?",,"Yes","No")
-		if(up == "no")
+		if(up == "No")
 			return
 		name = "Mature [caste] ([nicknumber])"
 		real_name = name
@@ -426,17 +426,17 @@
 		switch(caste)
 			if("Runner")
 				src << "\red You are the fastest assassin of all time.  Your speed is unmatched."
-				melee_damage_lower = 40
-				melee_damage_upper = 50
-				health = 150
-				maxHealth = 150
+				melee_damage_lower = 25
+				melee_damage_upper = 35
+				health = 140
+				maxHealth = 140
 				storedplasma = 0
 				plasma_gain = 2
 				maxplasma = 200
 				caste_desc = "Not what you want to run into in a dark alley...  It looks fucking deadly..."
 				speed = -2
-				armor_deflection = 15
-				attack_delay = -6
+				armor_deflection = 10
+				attack_delay = -4
 				tacklemin = 3
 				tacklemax = 5
 				tackle_chance = 70

@@ -1789,13 +1789,6 @@
 			holder2.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
-		else if(has_brain_worms())
-			var/mob/living/simple_animal/borer/B = has_brain_worms()
-			if(B.controlling)
-				holder.icon_state = "hudbrainworm"
-			else
-				holder.icon_state = "hudhealthy"
-			holder2.icon_state = "hudbrainworm"
 		else
 			holder.icon_state = "hudhealthy"
 			if(virus2.len)
