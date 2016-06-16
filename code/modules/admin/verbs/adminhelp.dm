@@ -192,6 +192,6 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		send2adminirc("[selected_upper] from [key_name(src)]: [html_decode(original_msg)]")
 	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	unansweredAhelps["[key_name(src)]"] = msg
+	unansweredAhelps["[src.mob.computer_id]"] = msg //We are gonna do it by CID, since any other way really gets fucked over by ghosting etc
 
 	return

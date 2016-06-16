@@ -363,8 +363,8 @@
 /obj/item/clothing/suit/storage/marine/fluff/eonoc
 	name = "Browncoat"
 	desc = "You can't take the sky from me...  DONOR ITEM"
-	icon_state = "eonoc_coat"
-	item_state = "eonoc_coat"
+	icon_state = "Eonoc_coat"
+	item_state = "Eonoc_coat"
 
 /obj/item/clothing/suit/storage/marine/fluff/kaila
 	name = "Custom Engineering Armor"
