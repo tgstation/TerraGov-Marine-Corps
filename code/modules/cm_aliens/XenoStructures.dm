@@ -160,7 +160,7 @@
 
 /obj/effect/alien/weeds/node/New()
 	..(src.loc, src)
-
+	new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/weeds/New(pos, node)
 	..()
