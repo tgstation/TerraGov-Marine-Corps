@@ -276,6 +276,7 @@
 		if(!istype(M,/mob/living/carbon/Xenomorph))
 			continue
 		M << "[queensWord]"
+		playsound(M, "queen", 50, 0)
 
 	log_admin("[key_name(src)] has created a Word of the Queen report:")
 	log_admin("[queensWord]")

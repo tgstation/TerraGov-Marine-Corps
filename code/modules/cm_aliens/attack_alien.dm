@@ -470,7 +470,7 @@
 		if(alerted >0)
 			command_announcement.Announce("Unknown biological entity has accessed a shuttle console.", "RED ALERT:", new_sound = 'sound/misc/queen_alarm.ogg')
 			alerted--
-			M << "\red <b>A loud alarm erupts from the console! They must know that you are on your way to them!</b>"
+			M << "\red <b>A loud alarm erupts from the console! The fleshy hosts must know that you can access it!</b>"
 	else
 		..()
 	return
