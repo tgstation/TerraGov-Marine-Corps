@@ -11,7 +11,6 @@
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
-	caseless = 0 // Pistols are not normally caseless.
 	damage = 22
 	accuracy = -5 //Not very accurate.
 
@@ -40,9 +39,6 @@
 	armor_pen = 5
 	shrapnel_chance = 25
 
-/datum/ammo/bullet/pistol/heavy/caseless
-	caseless = 1 // For the pulse pistol.
-
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	damage = 20
@@ -59,17 +55,8 @@
 	name = "submachinegun bullet"
 	damage = 25
 	accurate_range = 5
-	caseless = 0 // SMGs are generally not caseless.
-
-/datum/ammo/bullet/smg/caseless
-	caseless = 1 // But this one is an exception.
 
 /datum/ammo/bullet/smg/ap
-	name = "AP submachinegun bullet"
-	damage = 22
-	armor_pen = 30
-
-/datum/ammo/bullet/smg/caseless/ap
 	name = "AP submachinegun bullet"
 	damage = 22
 	armor_pen = 30
@@ -81,7 +68,7 @@
 	accuracy = 15
 	shell_speed = 2 //Faster!
 
-/datum/ammo/bullet/revolver //Revolvers do not not eject a casing, as the rounds remain in the cylinder.
+/datum/ammo/bullet/revolver
 	name = "revolver bullet"
 	damage = 35
 	armor_pen = 3
@@ -108,7 +95,7 @@
 	accuracy = -10
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
-/datum/ammo/bullet/rifle // Majority of the rifles are caseless, sides the MAR line.
+/datum/ammo/bullet/rifle
 	name = "rifle bullet"
 	damage = 40
 	accurate_range = 10
@@ -131,9 +118,6 @@
 	damage_bleed = 0
 	shell_speed = 2
 
-/datum/ammo/bullet/rifle/marksman/svd
-	caseless = 0 // For the SVD, identical otherwise.
-
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 	damage = 35
@@ -141,39 +125,41 @@
 	armor_pen = 15
 
 /datum/ammo/bullet/rifle/mar40
-	caseless = 0 // For the MAR.
 	damage = 50
 	accuracy = -5
 	armor_pen = -5
 
 //Slugs.
-/datum/ammo/bullet/shotgun //Shotguns also do not eject casings; they do so when pumped.
+/datum/ammo/bullet/shotgun
 	name = "shotgun slug"
-	damage = 70
-	damage_bleed = 7 //Loses 7 damage every turf.
-	accurate_range = 4
+	damage = 65 //High damage.
+	//damage_bleed = 7 //Loses 7 damage every turf. No.
+	//accurate_range = 4 //Slugs are like bullets, they travel the same.
 	max_range = 12
+	armor_pen = 20 //Good armor pen.
 	casing_type = "/obj/item/ammo_casing/shotgun"
 	shell_speed = 1
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
 	damage = 50
-	damage_bleed = 5 //Loses 7 damage every turf.
-	accurate_range = 4
+	//damage_bleed = 5 //Loses 5 damage every turf. No.
+	//accurate_range = 4
 	max_range = 12
 	casing_type = "/obj/item/ammo_casing/shotgun/red"
+	armor_pen = 10
 	incendiary = 1
 	damage_type = BURN
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "buckshot"
-	damage = 25
-	damage_bleed = 5 //Loses 5 damage every turf.
+	damage = 100 //Incredible damage up close, very quick fallout thereafter.
+	damage_bleed = 20 //Loses 20 damage every turf.
 	accurate_range = 4
-	max_range = 4
+	max_range = 4 //Travels only four tiles.
 	icon_state = "buckshot"
 	casing_type = "/obj/item/ammo_casing/shotgun/green"
+	armor_pen = 0
 	bonus_projectiles = 4
 
 	do_at_max_range(obj/item/projectile/P)
@@ -327,7 +313,6 @@
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
-	caseless = 0
 	damage = 50
 	armor_pen = 10
 	accuracy = -5
@@ -386,7 +371,6 @@
 //all of my keks, i give them to you
 /datum/ammo/bullet/pistol/mankey
 	name = "monkey"
-	caseless = 1
 	icon_state = "monkey1"
 	ping = null //no bounce off.
 	incendiary = 1

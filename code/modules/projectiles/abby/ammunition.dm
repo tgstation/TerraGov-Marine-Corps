@@ -1,5 +1,4 @@
 //Ammo datums, magazine items, and casings.
-
 /datum/ammo
 	var/name = "generic bullet"
 
@@ -27,8 +26,6 @@
 	var/icon = 'icons/obj/projectiles.dmi'
 	var/icon_state = "bullet"
 	var/ping = "ping_b" //The icon that is displayed when the bullet bounces off something.
-	var/tracer = 0 //TODO <----- Unsure what this was meant to do. ~N
-	var/caseless = 1 //Is the bullet caseless? Shotguns and revolvers are not actually caseless, but use this too.
 	var/ignores_armor = 0 //Use this on tasers, not on bullets. Use armor pen for that.
 
 	var/max_range = 30 //This will de-increment a counter on the bullet.
@@ -36,7 +33,7 @@
 	var/damage_bleed = 1 //How much damage the bullet loses per turf traveled, very high for shotguns
 	var/casing_type = "/obj/item/ammo_casing"
 	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
-	var/bonus_projectiles = 0 //Seems to be only used for buckshot. ~N
+	var/bonus_projectiles = 0 //Seems to be only set for buckshot, and not actually used. I might need to take a look into this. ~N
 	var/never_scatters = 0 //Never wanders
 
 	proc/do_at_half_range(var/obj/item/projectile/P)
@@ -64,7 +61,18 @@
 			M.visible_message("\red [M] is hit by [message]!","\red You are hit by </b>[message]</b>!")
 			M.apply_damage(rand(5,25),BRUTE)
 
-//Boxes of ammo
+/*
+I took the idea from Baystation projectiles, since handling casings can be really annoying.
+Relates to the handle_casing variable for the ammo boxes. Four ways to handle casings.
+We either keep them in the cylinder, eject them every shot, pump them out,
+or don't worry about them. ~N
+*/
+#define HOLD_CASINGS	0 //This adds to the casings_to_eject every shot.
+#define CLEAR_CASINGS	1 //This is actual caseless ammo, doesn't bother making casings. Default for most marine guns.
+#define EJECT_CASINGS	2 //Throw out the casing with every shot, simple.
+#define CYCLE_CASINGS	3 //Keep only a single casing on record, to eject with the next pump.
+
+//Boxes of ammo. Certain weapons have internal boxes of ammo that cannot be removed and function as part of the weapon.
 /obj/item/ammo_magazine
 	name = "generic ammo"
 	desc = "A box of ammo"
@@ -83,7 +91,8 @@
 	var/max_rounds = 7 //How many rounds can it hold?
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/gun_type = "/obj/item/weapon/gun" //What type of gun does it fit in? Must be currently a gun. (see : gun reload proc)
-	var/fits_in_subtypes = 1 //TODO
+	var/handle_casing = CLEAR_CASINGS //What does the casing actually do? Revolvers hold casings.
+	var/casings_to_eject[] = list()//Casings to eject when the gun eventually does so, if it does so.
 	var/null_ammo = 0 //Set this to 0 to have a non-ammo-datum-using magazine without generating errors.
 	var/reload_delay = 1 //Set a timer for reloading mags (shotguns mostly). Higher is slower.
 	var/sound_empty = 'sound/weapons/smg_empty_alarm.ogg'

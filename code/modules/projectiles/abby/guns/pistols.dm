@@ -1,18 +1,36 @@
-//--------------------------------------------------
 //Base pistol and revolver for inheritance/
+//--------------------------------------------------
+
 /obj/item/weapon/gun/pistol
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
 	slot_flags = SLOT_BELT
 	w_class = 3
 	fire_sound = 'sound/weapons/44mag.ogg'
 
+//---------------------------------------------------
+
 /obj/item/weapon/gun/revolver
 	slot_flags = SLOT_BELT
 	w_class = 3
 	autoejector = 0 // Revolvers don't auto eject.
-	internal_magazine = 1 // They have an internal cylinder.
 	fire_sound = 'sound/weapons/servicepistol.ogg'
-//---------------------------------------------------
+	reload_type = HANDFUL|SPEEDLOADER // Either handfuls or a speedloader.
+
+/obj/item/ammo_magazine/revolver/internal
+	name = "Internal Revolver Magazine"
+	desc = "An internal magazine. It is not supposed to be seen or removed."
+	default_ammo = "/datum/ammo/bullet/revolver"
+	icon_state = "38"
+	icon_empty = "38-0"
+	gun_type = "/obj/item/weapon/gun/revolver" // Won't be used, reference only.
+	max_rounds = 6
+	handle_casing = HOLD_CASINGS
+
+/obj/item/ammo_magazine/revolver/internal/seven
+	max_rounds = 7
+
+/obj/item/ammo_magazine/revolver/internal/eight
+	max_rounds = 8
 
 //-------------------------------------------------------
 //M4A3 PISTOL
@@ -24,6 +42,7 @@
 	max_rounds = 12
 	default_ammo = "/datum/ammo/bullet/pistol"
 	gun_type = "/obj/item/weapon/gun/pistol/m4a3"
+	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "Hollowpoint Pistol Mag (9mm)"
@@ -91,6 +110,7 @@
 	icon_empty = "44_dry"
 	item_state = "44"
 	mag_type = "/obj/item/ammo_magazine/revolver"
+	mag_type_internal = "/obj/item/ammo_magazine/revolver/internal/seven"
 	fire_delay = 8
 	recoil = 1
 	force = 8
@@ -119,6 +139,7 @@
 	icon_empty = "357_dry"
 	item_state = "detective"
 	mag_type = "/obj/item/ammo_magazine/revolver/small"
+	mag_type_internal = "/obj/item/ammo_magazine/revolver/internal/seven"
 	fire_delay = 3
 	recoil = 0
 	force = 6
@@ -147,7 +168,7 @@
 	icon_state = "revolver"
 	icon_empty = "revolver_dry"
 	item_state = "revolver"
-	mag_type = "/obj/item/ammo_magazine/revolver/upp"
+	mag_type = "/obj/item/ammo_magazine/revolver/internal/eight"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
 	fire_delay = 8
 	recoil = 1
@@ -179,6 +200,7 @@
 	icon_empty = "mateba_dry"
 	item_state = "mateba"
 	mag_type = "/obj/item/ammo_magazine/revolver/mateba"
+	mag_type_internal = "/obj/item/ammo_magazine/revolver/internal/eight"
 	fire_sound = 'sound/weapons/mateba.ogg'
 	fire_delay = 8
 	burst_amount = 2
@@ -277,11 +299,12 @@
 
 /obj/item/ammo_magazine/pistol/m1911
 	name = "M1911 Pulse Pistol Magazine (.40)"
-	default_ammo = "/datum/ammo/bullet/pistol/heavy/caseless"
+	default_ammo = "/datum/ammo/bullet/pistol/heavy"
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 12
 	gun_type = "/obj/item/weapon/gun/pistol/m1911"
+	handle_casing = CLEAR_CASINGS
 
 /obj/item/weapon/gun/pistol/m1911
 	name = "\improper M1911 Pulse Pistol"
@@ -414,6 +437,7 @@
 	icon_empty = "CMB_dry"
 	item_state = "cmbpistol"
 	mag_type = "/obj/item/ammo_magazine/revolver/cmb"
+	mag_type_internal = "/obj/item/ammo_magazine/revolver/internal"
 	fire_sound = 'sound/weapons/44mag2.ogg'
 	fire_delay = 12
 	burst_amount = 3

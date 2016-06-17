@@ -169,6 +169,7 @@
 	default_ammo = "/datum/ammo/bullet/rifle/mar40"
 	max_rounds = 40
 	gun_type = "/obj/item/weapon/gun/rifle/mar40"
+	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/rifle/mar40/extended
 	name = "Extended Magazine (12mm)"
@@ -215,7 +216,7 @@
 	desc = "A 12mm marksman rifle magazine."
 	icon_state = "a762"
 	icon_empty = "a762-0"
-	default_ammo = "/datum/ammo/bullet/rifle/marksman/svd"
+	default_ammo = "/datum/ammo/bullet/rifle/marksman"
 	max_rounds = 30
 	gun_type = "/obj/item/weapon/gun/rifle/mar40/svd"
 

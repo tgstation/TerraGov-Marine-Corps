@@ -13,6 +13,7 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 30
+	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/smg/m39
 	name = "M39 SMG Mag (9mm)"
@@ -20,7 +21,8 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 35
-	default_ammo = "/datum/ammo/bullet/smg/caseless"
+	handle_casing = CLEAR_CASINGS
+	default_ammo = "/datum/ammo/bullet/smg"
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 
 /obj/item/ammo_magazine/smg/m39/extended
@@ -63,7 +65,7 @@
 	desc = "A 9mm special magazine."
 	icon_state = "9x"
 	icon_empty = "9x0"
-	default_ammo = "/datum/ammo/bullet/smg/caseless"
+	default_ammo = "/datum/ammo/bullet/smg/ap"
 	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
 	max_rounds = 45
 

@@ -1,4 +1,14 @@
-
+/*
+Also inspired by Baystation.
+There are four main ways to reload a gun. The magazine, which is counted as the default,
+the handful of shells/bullets and is a single click for single bullet, and the speedloader
+method that only works if the gun is completely empty (kind of like a mag).
+Integrated feed system have their own thing.
+*/
+#define MAGAZINE 		1	//Regular ammo mags, the default for all guns and the most common method.
+#define SPEEDLOADER 	2	//The gun takes a speedloader. Revolvers do this, but they also take handfuls.
+#define HANDFUL			4	//The gun only accepts handfuls. This is a shotgun and revolver thing.
+#define INTEGRATED		8	//Smartgun, or anything else with an ammo belt feed system.
 
 /obj/item/weapon/gun
 	name = "gun"
@@ -25,7 +35,9 @@
 	var/datum/ammo/ammo = null //The default ammo datum when a round is chambered. Null means it probably does its own thing.
 	var/obj/item/ammo_magazine/current_mag = null //What magazine is currently loaded?
 	var/mag_type = null  //The default magazine loaded into a projectile weapon for reverse lookups. Leave this null to do your own thing.
+	var/mag_type_internal = null //If the weapon has an internal magazine, this is the way to do it. This will be used on New() if it exists.
 	var/default_ammo = "/datum/ammo" //For stuff that doesn't use mags. Just fire it.
+	var/reload_type = MAGAZINE //What sort of reload does it use? Defaults to mags.
 
 	var/silenced = 0
 	var/recoil = 0
@@ -72,11 +84,9 @@
 	var/is_bursting = 0 //Sentries use this.
 	var/ammo_counter = 0 //M39s and M41s have this.
 	var/autoejector = 1 //Automatically ejects spent magazines. Defaults to yes.
-	var/integrated_assembly = 0 //For the smartgun checking, might eventually make its way elsewhere.
-	var/internal_magazine = 0 //For weapons that do not eject their magazine when empty, or eject casings, like pump shotguns or revolvers.
 	var/found_on_mercs = 0 //For the randomizer.
 	var/found_on_russians = 0 //For the randomizer.
-	var/muzzle_flash = 1 //1 : small, 2: big?
+	var/muzzle_flash = 1 //1 : small, 2: big? <---- Potentially something to add in later, a bigger or different flash.
 	var/one_shot = 1 //For alternate fire weapons, does it fire 1 then revert, or continue?
 
 	update_icon()
@@ -92,7 +102,13 @@
 
 	New()
 		..()
-		var/magpath = text2path(mag_type)
+		var/magpath
+
+		if(mag_type_internal)
+			magpath = text2path(mag_type_internal)
+		else if(mag_type)
+			magpath = text2path(mag_type)
+
 		if(magpath)
 			current_mag = new magpath(src)
 			current_mag.current_rounds = current_mag.max_rounds //Eh. For now they can always start full.
@@ -136,7 +152,7 @@
 	examine()
 		..()
 		if(current_mag && current_mag.current_rounds > 0)
-			if(ammo_counter || integrated_assembly)
+			if(ammo_counter || ( reload_type == INTEGRATED ) )
 				usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
 			else
 				usr << "It's loaded."
@@ -166,8 +182,8 @@
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/ammo_magazine) && !integrated_assembly) //Can't reload integrated assemblies.
-		src.reload(user,I)
+	if(istype(I,/obj/item/ammo_magazine)) //Can't reload integrated assemblies.
+		reload(user,I)
 		return
 
 	if(!istype(I,/obj/item/attachable)) return
@@ -224,15 +240,24 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 	//DEBUG HERE
 	//speshul snowflake shotgun code (say that 10 times fast)
-	if(istype(src,/obj/item/weapon/gun/shotgun/pump) && current_mag && current_mag.current_rounds > 0)
-		snowflake_reload(magazine)
-		return
+	//if(istype(src,/obj/item/weapon/gun/shotgun/pump) && current_mag && current_mag.current_rounds > 0)
+	//	snowflake_reload(magazine)
+	//	return
 	//DEBUG HERE
 
-	if(!isnull(current_mag) && current_mag.loc == src)
-		if(user) user << "It's still got something loaded."
-		return
 
+/* DEBUG DEBUG DEBUG DEBUG
+	switch()
+		(MAGAZINE)
+			if(!isnull(current_mag) && current_mag.loc == src)
+				if(user) user << "It's still got something loaded."
+				return
+		(HANDFUL)
+
+		(SPEEDLOADER)
+		(INTEGRATED)
+			return //Can't reload one of these regularly.
+*/
 	/*
 	Current rounds are set to -1 by default.
 	When the magazine spawns in with New(), the -1 tell it to fill to full.
@@ -284,17 +309,58 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(user) user << "It's already empty or doesn't need to be unloaded."
 		return
 
-	if(integrated_assembly)
-		if(user) user << "\The [name] has an integrated ammo feed and cannot be unloaded."
-		return
+	switch(reload_type)
+		if(MAGAZINE)
+			current_mag.loc = get_turf(src)
+			playsound(src, 'sound/weapons/flipblade.ogg', 20, 1)
+			if(user) user << "\blue You unload the magazine from \the [src]."
+			make_casing(1) //override for ejecting the mag.
 
-	current_mag.loc = get_turf(src)
-	playsound(src, 'sound/weapons/flipblade.ogg', 20, 1)
-	if(user) user << "\blue You unload the magazine from \the [src]."
+		if(SPEEDLOADER | HANDFUL) //Only revolvers use this.  //WIP DEBUG
+			//It will unload all the live ammo into a handful. These two will be the same.
+			playsound(src, 'sound/weapons/flipblade.ogg', 20, 1) //Need to change this later.
+			if(user) user << "\blue You unload the ammunition from \the [src]."
+			make_casing(1)
+		if(HANDFUL) //Only shotties will use this.  //WIP DEBUG
+			//It will unload all the live ammo into a handful.
+			playsound(src, 'sound/weapons/flipblade.ogg', 20, 1)
+			world << "Worked."
+			if(user) user << "\blue You unload the ammunition from \the [src]."
+
+		if(INTEGRATED) //Can't unload these.
+			return
+
 //	if(in_chamber) del(in_chamber)
 	current_mag = null
 	update_icon()
 	return
+
+//Since reloading and casings are closely related, placing this here ~N
+/obj/item/weapon/gun/proc/make_casing(var/casing_override) //casing_override is for things like unloading or reloading through handfuls.
+	if(current_mag && ammo) //Just in case something somehow breaks.
+		switch(current_mag.handle_casing) //No case for caseless ammo as nothing happens.
+			if(HOLD_CASINGS)
+				//If the gun has spent shells and we either have no ammo remaining or we're reloading it on the go.
+				if(current_mag.casings_to_eject.len && casing_override)
+					var/i
+					for(i in current_mag.casings_to_eject)
+						var/casingtype = text2path(i)//Get the path.
+						new casingtype(get_turf(src))
+					current_mag.casings_to_eject = list() //Empty list.
+				else //So we're not reloading/emptying, we're firing the gun.
+					//I would add a check here for attachables, but you can't fit the masterkey on a revolver/shotgun.
+					current_mag.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
+
+			if(EJECT_CASINGS)
+				if(!casing_override)
+					var/casingtype = text2path(ammo.casing_type) //Get the path.
+					new casingtype(get_turf(src))
+
+			if(CYCLE_CASINGS)
+				if(current_mag.casings_to_eject.len && casing_override) //We have a casing to eject and we're pumping it. Not just shooting.
+					var/casingtype = text2path(current_mag.casings_to_eject[1]) //Get the path.
+					new casingtype(get_turf(src))
+					current_mag.casings_to_eject = list() //Empty list.
 
 /obj/item/weapon/gun/proc/load_into_chamber()
 
@@ -618,7 +684,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		if(get_turf(target) != get_turf(user))
 			//in_chamber.invisibility = 100 // Let's make it invisible when it actually leaves the gun, so it doesn't appear below the character.
 			var/obj/to_be_fired = in_chamber
-			spawn(1)
+			spawn(0)
 				if(to_be_fired) to_be_fired.invisibility = 0 // If it still exists, let's make it visible again.
 //vvvvvvvvvvvvvvvvvvvvvv
 			in_chamber.fire_at(target,user,src,ammo.max_range,ammo.shell_speed)
@@ -635,7 +701,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 		//>>POST PROCESSING AND CLEANUP BEGIN HERE.<<
 		in_chamber = null //Now we absolve all knowledge of it. Its the targets problem now
+
+		//Casing handling.
 		make_casing() // Drop a casing if needed.
+		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 		if(target)
 			var/angle = round(Get_Angle(user,target))
@@ -662,9 +731,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 						playsound(user, current_mag.sound_empty, 50, 1)
 					else
 						playsound(src.loc, current_mag.sound_empty, 50, 1)
-					current_mag.loc = get_turf(src)
-					current_mag = null //Get rid of it. But not till the bullet is fired.
-					update_icon() //Update icon to reflect this.
+					unload(user)
 
 		if(i < bullets_fired) //We still have some bullets to fire.
 			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
@@ -749,11 +816,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	else
 		return ..() //Pistolwhippin'
 
-/obj/item/weapon/gun/proc/make_casing(casing_override = 0) // In case we need to make a casing anyway.
-	if(casing_override || (!ammo.caseless && !internal_magazine) ) // If it's not caseless and the thing doesn't have an internal mag.
-		var/casingtype = text2path(ammo.casing_type) //Get the path.
-		if(casingtype)
-			new casingtype(get_turf(src)) //Drop a spent casing.
 
 /obj/item/weapon/gun/proc/update_attachables()
 	overlays.Cut()

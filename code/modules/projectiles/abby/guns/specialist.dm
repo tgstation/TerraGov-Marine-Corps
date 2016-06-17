@@ -30,6 +30,7 @@
 	item_state = "m42a"  //placeholder!!
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	mag_type = "/obj/item/ammo_magazine/sniper"
+	burst_amount = 1 //Fix so the sniper scopes don't set burst fire to -1 ~N
 	fire_delay = 60
 	w_class = 4.0
 	force = 12
@@ -53,7 +54,6 @@
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
-		burst_amount = 0 //Fix so the sniper scopes don't set burst fire to -1 ~N
 		update_attachables()
 
 /obj/item/ammo_magazine/sniper/elite
@@ -91,7 +91,6 @@
 			S.icon_state = "pmcscope"
 			S.can_be_removed = 0
 			S.Attach(src)
-			burst_amount = 0 //Fix for snipers.
 			update_attachables()
 
 	afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
@@ -122,7 +121,8 @@
 	icon_state = "m56"
 	item_state = "m56"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
-	mag_type = "/obj/item/ammo_magazine/smartgun_integrated"
+	mag_type_internal = "/obj/item/ammo_magazine/smartgun_integrated"
+	reload_type = INTEGRATED
 	w_class = 5.0
 	force = 20.0
 	twohanded = 1
@@ -137,7 +137,6 @@
 	burst_amount = 3
 	burst_delay = 1
 	autoejector = 0
-	integrated_assembly = 1
 	slot_flags = 0
 	accuracy = 5
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
@@ -196,7 +195,7 @@
 	name = "\improper M57D 'Dirty' Smartgun"
 	desc = "The actual firearm in the 4-piece M57D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. Otherwise identical to the M56."
 	safety_toggled = 0
-	mag_type = "/obj/item/ammo_magazine/smartgun_integrated/dirty"
+	mag_type_internal = "/obj/item/ammo_magazine/smartgun_integrated/dirty"
 	accuracy = 10 //Slightly more accurate.
 
 	AltClick(var/mob/user) return //No safety system.

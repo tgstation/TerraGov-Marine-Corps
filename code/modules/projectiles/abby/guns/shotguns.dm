@@ -1,41 +1,65 @@
-//Generic shotgun magazines
+/*
+So I had to hack this in, sort of, to get shotguns working right.
+Woo hoo.
+
+Generic internal magazines
+*/
+/obj/item/ammo_magazine/shotgun/internal
+	name = "Internal Shotgun Magazine"
+	desc = "An internal magazine. It is not supposed to be seen or removed."
+	icon_state = "shells"
+	default_ammo = "/datum/ammo/bullet/shotgun"
+	gun_type = "/obj/item/weapon/gun/shotgun" //Doesn't matter, it will never be ejected.
+	max_rounds = 8
+	handle_casing = EJECT_CASINGS
+
+//-------------------------------------------------------
+//Generic shotgun magazines. Only three of them, since all shotguns can use the same ammo unless we add other gauges.
 
 /obj/item/ammo_magazine/shotgun
 	name = "Box of Shotgun Slugs"
-	desc = "A box filled with heavy shotgun shells. A timeless classic."
+	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "shells"
 	default_ammo = "/datum/ammo/bullet/shotgun"
-	max_rounds = 8
+	max_rounds = 10
 	gun_type = "/obj/item/weapon/gun/shotgun"
-	reload_delay = 30 //3 second reload.
 
 /obj/item/ammo_magazine/shotgun/buckshot
 	name = "Box of Buckshot Shells"
-	desc = "A box filled with buckshot spread shotgun shells."
+	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
 	icon_state = "beanbag"
 	default_ammo = "/datum/ammo/bullet/shotgun/buckshot"
-	max_rounds = 8
+	max_rounds = 10
 
 /obj/item/ammo_magazine/shotgun/incendiary
 	name = "Box of Incendiary Slugs"
-	desc = "A box filled with self-detonating incendiary shotgun rounds."
+	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
 	default_ammo = "/datum/ammo/bullet/shotgun/incendiary"
-	max_rounds = 8
+	max_rounds = 10
 
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/shotgun
 	w_class = 4
 	mag_type = "/obj/item/ammo_magazine/shotgun"
+	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal"
 	recoil = 2
 	force = 14.0
 	twohanded = 1
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	accuracy = 10
 	slot_flags = SLOT_BACK
+	reload_type = HANDFUL //All shotguns reload via handfuls.
+	var/casing_types[] = list()// Our list of what to fire and when, refers to the ammo datum paths.
 
-//MERC SHOTGUN - DOES NOT REQUIRE PUMPING
+	New()
+		..()
+		casing_types = list() //We make a new list.
+		var/i = current_mag.max_rounds //We pull the number of entries equal to the initial ammo count.
+		for(i, i>casing_types.len, i--) //And we populate it with paths.
+			casing_types += current_mag.default_ammo//For each individual shell.
+
 /obj/item/weapon/gun/shotgun/merc
 	name = "\improper Custom Built Shotgun"
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
@@ -82,18 +106,9 @@
 
 //-------------------------------------------------------
 
-/obj/item/ammo_magazine/shotgun/double
-	name = "12 Gauge Slugs"
-	desc = "2 heavy shotgun shells designed for the double barrel shotgun. Just click to load them in."
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "twoshells"
-	icon_empty = "twoshells0"
-	default_ammo = "/datum/ammo/bullet/shotgun"
+/obj/item/ammo_magazine/shotgun/internal/double //For a double barrel.
 	max_rounds = 2
-	gun_type = "/obj/item/weapon/gun/shotgun/double"
-	reload_delay = 6
-
-//-------------------------------------------------------
+	handle_casing = HOLD_CASINGS
 
 /obj/item/weapon/gun/shotgun/double
 	name = "\improper Double Barrel Shotgun"
@@ -102,7 +117,8 @@
 	icon_empty = "dshotgun"
 	item_state = "dshotgun"
 	icon_wielded = "dshotgun-w"
-	mag_type = "/obj/item/ammo_magazine/shotgun/double"
+	mag_type = "/obj/item/ammo_magazine/shotgun/buckshot"
+	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/double"
 	fire_delay = 6
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 21
@@ -131,7 +147,10 @@
 	slot_flags = SLOT_BELT
 
 //-------------------------------------------------------
-//Shotguns not in this category will not need to be pumped on each shot.
+//Shotguns in this category will need to be pumped each shot.
+
+/obj/item/ammo_magazine/shotgun/internal/pump //The only cycle method.
+	handle_casing = CYCLE_CASINGS
 
 /obj/item/weapon/gun/shotgun/pump
 	name = "\improper M37A2 Pump Shotgun"
@@ -148,7 +167,6 @@
 	under_pixel_x = 20
 	under_pixel_y = 14
 	autoejector = 0 //Does not automatically eject "magazines".
-	internal_magazine = 1 // They have an internal cylinder, no need to eject it.
 	var/recentpump = 0
 	var/is_pumped = 0
 	var/is_reloading = 0
@@ -229,6 +247,7 @@
 		return 1
 */
 
+/*
 	snowflake_reload(var/obj/item/ammo_magazine/A)
 		if(!istype(A) || !istype(current_mag) || !istype(A,current_mag.type) || A.default_ammo != current_mag.default_ammo)
 			if(usr) usr << "The ammo types must be the same."
@@ -272,25 +291,12 @@
 			spawn(4 * shells_to_load)
 				is_reloading = 0
 
-
 		return 1
-
+*/
 //-------------------------------------------------------
 
-/obj/item/ammo_magazine/shotgun/cmb
-	gun_type = "/obj/item/weapon/gun/shotgun/pump/cmb"
-	reload_delay = 10
+/obj/item/ammo_magazine/shotgun/internal/pump/CMB //The only cycle method.
 	max_rounds = 4
-
-/obj/item/ammo_magazine/shotgun/buckshot/cmb
-	gun_type = "/obj/item/weapon/gun/shotgun/pump/cmb"
-	max_rounds = 4
-	reload_delay = 10
-
-/obj/item/ammo_magazine/shotgun/incendiary/cmb
-	gun_type = "/obj/item/weapon/gun/shotgun/pump/cmb"
-	max_rounds = 4
-	reload_delay = 15
 
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper HG 37-12 Pump Shotgun"
@@ -299,7 +305,8 @@
 	icon_empty = "CMBshotgun"
 	item_state = "CMBshotgun"
 	icon_wielded = "CMBshotgun-w"
-	mag_type = "/obj/item/ammo_magazine/shotgun/cmb"
+	mag_type = "/obj/item/ammo_magazine/shotgun/incendiary"
+	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/pump/CMB"
 	fire_delay = 16
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 20

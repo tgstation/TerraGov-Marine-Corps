@@ -54,6 +54,7 @@
 	icon_empty = "monkey1"
 	max_rounds = 300
 	gun_type = "/obj/item/weapon/gun/pistol/chimp"
+	handle_casing = CLEAR_CASINGS
 
 /obj/item/weapon/gun/pistol/chimp
 	name = "\improper CHIMP70 Pistol"
@@ -151,7 +152,7 @@
 	icon_wielded = "painless-w"
 	mag_type = "/obj/item/ammo_magazine/minigun"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg' //Change
-	autoejector = 0 // Hard to reload.
+	autoejector = 0 // Harder to reload.
 	twohanded = 1
 	w_class = 5
 	force = 20

@@ -846,7 +846,6 @@
 	icon_empty = "speargun-0"
 	item_state = "predspeargun"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
-	ejectshell = 0                          // No spent shells.
 	mouthshoot = 1                         // No suiciding with this weapon, causes runtimes.
 	w_class = 3 //Fits in yautja bags.
 	fire_delay = 5
