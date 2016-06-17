@@ -8,6 +8,7 @@ var/list/swing_hit_sound = list('sound/weapons/genhit1.ogg', 'sound/weapons/genh
 var/list/hiss_sound = list('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
 var/list/page_sound = list('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 //var/list/gun_sound = list('sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg','sound/weapons/Gunshot4.ogg')
+var/list/queen_sound = list('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global)
 
@@ -113,4 +114,5 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("hiss") soundin = pick(hiss_sound)
 			if ("pageturn") soundin = pick(page_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
+			if ("queen") soundin = pick(queen_sound)
 	return soundin

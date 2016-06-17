@@ -160,7 +160,7 @@
 
 /obj/effect/alien/weeds/node/New()
 	..(src.loc, src)
-
+	new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/weeds/New(pos, node)
 	..()
@@ -203,8 +203,9 @@
 
 			new /obj/effect/alien/weeds(T, linked_node)
 
-	spawn(600)
-		goto direction_loop
+		spawn(600)
+			if(linked_node)
+				goto direction_loop
 
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
