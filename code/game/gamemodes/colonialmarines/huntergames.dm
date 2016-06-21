@@ -79,6 +79,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 								/obj/item/weapon/twohanded/spear,\
 								/obj/item/weapon/claymore,\
 								/obj/item/weapon/katana,\
+								/obj/item/weapon/katana/replica,\
 								/obj/item/weapon/harpoon,\
 								/obj/item/weapon/baseballbat,\
 								/obj/item/weapon/baseballbat/metal,\

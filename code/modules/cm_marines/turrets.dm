@@ -20,10 +20,10 @@
 	New()
 		..()
 		spawn(1)
-			var/obj/item/stack/sheet/plasteel/P = new(src)
-			P.amount = 20
-			var/obj/item/stack/sheet/metal/Q = new(src)
-			Q.amount = 10
+			var/obj/item/stack/sheet/plasteel/plasteel_stack = new(src)
+			plasteel_stack.amount = 20
+			var/obj/item/stack/sheet/metal/metal_stack = new(src)
+			metal_stack.amount = 10
 			new /obj/item/device/turret_top(src)
 			new /obj/item/device/turret_sensor(src)
 			new /obj/item/weapon/cell(src)
@@ -678,7 +678,11 @@
 		return 0
 
 	visible_message("\The [src] is hit by the [Proj.name]!")
-	update_health(round(Proj.damage / 10))
+
+	if(Proj.ammo && istype(Proj.ammo, /datum/ammo/xeno/spit)) //Fix for xenomorph spit doing baby damage.
+		update_health(round(Proj.damage / 3))
+	else
+		update_health(round(Proj.damage / 10))
 	return 1
 
 /obj/machinery/marine_turret/process()
@@ -804,11 +808,19 @@
 	var/blocked = 0
 
 	for(var/mob/living/carbon/C in oview(range,src))
-		if(ishuman(C))
+		if(ishuman(C) && !isYautja(C)) //Predators are not recognized.
 			var/mob/living/carbon/human/H = C
-			if(!isnull(H.wear_id) && !isYautja(C))//Just do a blanket ID check for now..
+			var/obj/item/device/pda/pda_check = H.wear_id
+			var/obj/item/weapon/card/ID_check = H.wear_id
+			if(istype(H.wear_id, ID_check) || ( istype(H.wear_id, pda_check) && pda_check.id) ) //Do they have a card or pda?
 				continue
-			if(istype(H.get_active_hand(),/obj/item/weapon/card))
+			pda_check = H.l_hand
+			ID_check = H.l_hand
+			if( istype(H.l_hand, ID_check) || ( istype(H.l_hand, pda_check) && pda_check.id ) ) //Check left hand.
+				continue
+			pda_check = H.r_hand
+			ID_check = H.r_hand
+			if( istype(H.r_hand, ID_check) || ( istype(H.r_hand, pda_check) && pda_check.id ) ) //Check right hand.
 				continue
 
 		if(C.stat) continue //No unconscious/deads.

@@ -1,6 +1,7 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle
+	origin_tech = "combat=4;materials=3"
 	twohanded = 1
 	slot_flags = SLOT_BACK
 	w_class = 4
@@ -13,11 +14,13 @@
 /obj/item/ammo_magazine/rifle
 	name = "Pulse Rifle Magazine (10mm)"
 	desc = "A 10mm assault rifle magazine."
+	caliber = "10mm"
 	icon_state = "m309a"
 	icon_empty = "m309a0"
 	default_ammo = "/datum/ammo/bullet/rifle"
 	max_rounds = 30
 	gun_type = "/obj/item/weapon/gun/rifle/m41a"
+	handful_type = "Bullets (10mm)"
 
 /obj/item/ammo_magazine/rifle/extended
 	name = "Pulse Rifle Extended Magazine (10mm)"
@@ -29,11 +32,13 @@
 	name = "Pulse Rifle Incendiary Magazine (10mm)"
 	desc = "A 10mm assault rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/incendiary"
+	handful_type = "Incendiary Bullets (10mm)"
 
 /obj/item/ammo_magazine/rifle/ap
 	name = "Pulse Rifle AP Magazine (10mm)"
 	desc = "A 10mm armor piercing magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/ap"
+	handful_type = "AP Bullets (10mm)"
 
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A Pulse Rifle MK2"
@@ -80,10 +85,11 @@
 /obj/item/weapon/gun/rifle/m41a/original
 	name = "\improper M41A Pulse Rifle"
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10mm special ammunition."
-	icon_state = "s_m41a"
+	icon_state = "s_m41a" //Placeholder.
 	icon_empty = "s_m41a0"
 	icon_wielded = "s_m41a-w"
 	item_state = "s_m41a"
+	fire_sound = 'sound/weapons/m41a_2.ogg'
 	mag_type = "/obj/item/ammo_magazine/rifle/original"
 	fire_delay = 6
 	burst_amount = 4
@@ -98,6 +104,7 @@
 	desc = "A 10mm marksman rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/marksman"
 	gun_type = "/obj/item/weapon/gun/rifle/m41a/scoped"
+	handful_type = "Marksman Bullets (10mm)"
 
 /obj/item/weapon/gun/rifle/m41a/scoped
 	name = "\improper M41A/M Marksman Rifle"
@@ -105,6 +112,7 @@
 	icon_state = "m41b"
 	icon_empty = "m41b0"
 	item_state = "m41a"
+	origin_tech = "combat=5;materials=4"
 	mag_type = "/obj/item/ammo_magazine/rifle/marksman"
 	force = 16
 	twohanded = 1
@@ -118,7 +126,7 @@
 	New()
 		var/obj/item/attachable/scope/S = new(src)
 		S.Attach(src)
-		var/obj/item/attachable/compensator/riflestock/Q = new(src)
+		var/obj/item/attachable/stock/rifle/Q = new(src)
 		Q.Attach(src)
 
 		update_attachables()
@@ -138,10 +146,11 @@
 //M41A PMC VARIANT
 
 /obj/item/ammo_magazine/rifle/elite
-	name = "M41A/2 Magazine (10mm)"
+	name = "M41A/2 AP Magazine (10mm)"
 	desc = "A 10mm rifle magazine."
 	default_ammo = "/datum/ammo/bullet/rifle/ap"
 	gun_type = "/obj/item/weapon/gun/rifle/m41a/elite"
+	handful_type = "AP Bullets (10mm)"
 	max_rounds = 40
 
 /obj/item/weapon/gun/rifle/m41a/elite
@@ -151,6 +160,7 @@
 	icon_empty = "pmc_m41a0"
 	item_state = "pmc_m41a"
 	icon_wielded = "pmc_m41a-w"
+	origin_tech = "combat=7;materials=5"
 	mag_type = "/obj/item/ammo_magazine/rifle/elite"
 	fire_delay = 7
 	burst_amount = 3
@@ -164,11 +174,13 @@
 /obj/item/ammo_magazine/rifle/mar40
 	name = "Ammo Magazine (12mm)"
 	desc = "A 12mm magazine for the MAR series of firearms."
+	caliber = "12mm"
 	icon_state = "5.56"
 	icon_empty = "5.56"
 	default_ammo = "/datum/ammo/bullet/rifle/mar40"
 	max_rounds = 40
 	gun_type = "/obj/item/weapon/gun/rifle/mar40"
+	handful_type = "Bullets (12mm)"
 	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/rifle/mar40/extended
@@ -184,8 +196,9 @@
 	icon_empty = "rsprifle0"
 	icon_wielded = "mar40-w"
 	item_state = "mar40"
+	origin_tech = "combat=4;materials=2;syndicate=4"
 	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
-	fire_sound = 'sound/weapons/automag.ogg'
+	fire_sound = 'sound/weapons/heavyrifle.ogg'
 	fire_delay = 6
 	recoil = 0
 	muzzle_pixel_x = 32
@@ -212,21 +225,25 @@
 	accuracy = -16
 
 /obj/item/ammo_magazine/rifle/mar40/svd
-	name = "SVD Magazine (12mm)"
+	name = "SVD Magazine (7.62×54mmR)"
 	desc = "A 12mm marksman rifle magazine."
+	caliber = "7.62×54mmR"
 	icon_state = "a762"
 	icon_empty = "a762-0"
 	default_ammo = "/datum/ammo/bullet/rifle/marksman"
 	max_rounds = 30
 	gun_type = "/obj/item/weapon/gun/rifle/mar40/svd"
+	handful_type = "Marksman Bullets (7.62×54mmR)"
 
 /obj/item/weapon/gun/rifle/mar40/svd
 	name = "\improper SVD Dragunov-033"
 	desc = "A marksman variant of the MAR-40 rifle, with a new stock, barrel, and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
 	icon_state = "VSS"
 	icon_empty = "VSS_empty"
+	origin_tech = "combat=5;materials=3;syndicate=5"
 	icon_wielded = "SVD-w"
 	item_state = "mar40"
+	fire_sound = 'sound/weapons/automag.ogg'
 	accuracy = 0
 
 	New()
@@ -235,7 +252,7 @@
 		S.Attach(src)
 		S = new /obj/item/attachable/slavicbarrel(src)
 		S.Attach(src)
-		S = new /obj/item/attachable/compensator/stock/slavic(src)
+		S = new /obj/item/attachable/stock/slavic(src)
 		S.Attach(src)
 		update_attachables()
 
@@ -258,6 +275,7 @@
 	icon_empty = "rsplmg0"
 	item_state = "rsplmg"
 	icon_wielded = "rsplmg-w"
+	origin_tech = "combat=5;materials=4"
 	mag_type = "/obj/item/ammo_magazine/rifle/lmg"
 	fire_sound = 'sound/weapons/gunshot_rifle.ogg' //Change
 	fire_delay = 4

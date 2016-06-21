@@ -43,6 +43,7 @@
 		spit_type = 1
 		ammo.icon_state = "neurotoxin"
 		ammo.damage = 20
+		ammo.damage_type = BURN
 		ammo.stun = 0
 		ammo.weaken = 0
 		ammo.shell_speed = 1
@@ -58,6 +59,7 @@
 		spit_type = 0
 		ammo.icon_state = "toxin"
 		ammo.damage = 1
+		ammo.damage_type = TOX
 		ammo.stun = 1
 		ammo.weaken = 2
 		ammo.shell_speed = 1

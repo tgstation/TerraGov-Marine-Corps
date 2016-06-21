@@ -330,12 +330,12 @@
 	name = "acid spit"
 	icon_state = "toxin"
 	ping = "ping_x"
-	damage = 0
+	damage = 1
 	ignores_armor = 0
 	damage_type = TOX
 	accuracy = 10
 	skips_xenos = 1
-	stun = 2
+	stun = 1
 	weaken = 2
 	shell_speed = 1
 
@@ -421,6 +421,7 @@
 	damage = 50
 	stun = 1
 	weaken = 1
+	damage_type = TOX
 
 	drop_nade(turf/T)
 		var/obj/item/weapon/grenade/xeno/G = new (T)

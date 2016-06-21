@@ -1,3 +1,4 @@
+//We need to check for if(ammo) when running anything related to it. This is the number one reason these procs runtime.
 
 //The actual bullet objects.
 /obj/item/projectile
@@ -10,7 +11,7 @@
 	flags = FPRINT | TABLEPASS
 	pass_flags = PASSTABLE | PASSGRILLE
 	mouse_opacity = 0
-	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
+	//invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
 
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
@@ -106,12 +107,13 @@
 				else
 					hit_chance -= 10
 
-			if(ammo.skips_marines && ishuman(target))
+			//We want to check for ammo here in case there isn't any. Otherwise it can and will runtime.
+			if(ammo && ammo.skips_marines && ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(H.get_marine_id())
 					return -1 //Pass straight through.
 
-			if(ammo.skips_xenos && isXeno(target)) return -1 //Mostly some spits.
+			if(ammo && ammo.skips_xenos && isXeno(target)) return -1 //Mostly some spits.
 
 			if(istype(target,/mob/living/carbon/human) && istype(shooter,/mob/living/carbon/human))
 				if(target:faction == shooter:faction || target:m_intent == "walk") //Humans can aim around their buddies to an extent.
@@ -295,7 +297,7 @@
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
-	if(!P || isnull(P) || !P.ammo.ping) return
+	if(!P || isnull(P) || !P.ammo || !P.ammo.ping) return
 
 	var/image/ping = image('icons/obj/projectiles.dmi',src,P.ammo.ping,10) //Layer 10, above most things but not the HUD.
 	var/angle = round(rand(1,359))

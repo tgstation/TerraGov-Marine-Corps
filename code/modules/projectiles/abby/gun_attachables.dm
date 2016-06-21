@@ -24,7 +24,7 @@ attachments.
 
 	flags =  FPRINT | TABLEPASS | CONDUCT
 	matter = list("metal" = 2000)
-	w_class = 4.0
+	w_class = 2.0
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
 	var/list/guns_allowed = list() //what weapons can it be attached to? Note that it must be the FULL path, not parents.
@@ -35,6 +35,7 @@ attachments.
 
 	//var/list/loaded = list() //Stores an attachable's internal contents, ie. grenades
 	var/ammo_type = null //Which type of ammo it uses. If it's not a datum, it'll be a seperate object.
+	var/datum/ammo/ammo = null //Turning this into a New(), since otherwise attachables don't work right. ~N
 	var/ammo_capacity = 0 //How much ammo it can store
 	var/current_ammo = 0
 	var/shoot_sound = null //Sound to play when firing it alternately
@@ -53,6 +54,17 @@ attachments.
 	var/continuous = 0 //Shootable attachments normally swap back after 1 shot.
 	var/passive = 1 //Can't actually be an active attachable, but might still be activatible.
 	var/can_be_removed = 1
+
+	New() //Let's make sure if something needs an ammo type, it spawns with one.
+		..()
+		if(ammo_type) //We have a string.
+			var/ammopath = text2path(ammo_type) //Convert it.
+			if(ispath(ammopath)) //Is it a path?
+				ammo = new ammopath() //Link it up.
+
+	Del() //We want to delete this.
+		if(ammo) del(ammo)
+		..()
 
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
@@ -497,7 +509,6 @@ attachments.
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/smg/m39/elite,
-						/obj/item/weapon/gun/sniper,
 						/obj/item/weapon/gun/smartgun,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/c99,
@@ -536,35 +547,39 @@ attachments.
 	slot = "rail"
 	pixel_shift_x = 13
 
-/obj/item/attachable/compensator/stock
-	name = "M37 Wooden Stock"
-	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
-	slot = "stock"
+/obj/item/attachable/stock //Generic stock parent and related things.
+	name = "default stock"
+	desc = "Default parent object, not meant for use."
 	icon_state = "stock"
-	recoil_mod = -1
 	accuracy_mod = 10
+	recoil_mod = -1
+	slot = "stock"
 	melee_mod = 115
 	size_mod = 2
 	delay_mod = 6
 	pixel_shift_x = 30
 	pixel_shift_y = 14
+
+/obj/item/attachable/stock/shotgun
+	name = "M37 Wooden Stock"
+	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
+	slot = "stock"
+	icon_state = "stock"
 	guns_allowed = list(/obj/item/weapon/gun/shotgun/pump)
 
-/obj/item/attachable/compensator/stock/slavic
+/obj/item/attachable/stock/slavic
 	name = "Wooden Stock"
 	desc = "A non-standard heavy wooden stock for Slavic firearms."
 	icon_state = "slavicstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	can_be_removed = 0 //This weapon shouldn't have the stock removed, considering it has one in the base sprite.
-
 	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
 
-/obj/item/attachable/compensator/riflestock
+/obj/item/attachable/stock/rifle
 	name = "M41A Marksman Stock"
 	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
-	recoil_mod = -1
 	accuracy_mod = 15
 	melee_mod = 110
 	size_mod = 1
@@ -574,11 +589,10 @@ attachments.
 	pixel_shift_y = 10
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,/obj/item/weapon/gun/rifle/m41a/scoped,/obj/item/weapon/gun/rifle/m41a/elite)
 
-/obj/item/attachable/compensator/revolverstock
+/obj/item/attachable/stock/revolver
 	name = "44 Magnum Sharpshooter Stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
 	slot = "stock"
-	recoil_mod = -1
 	accuracy_mod = 20
 	melee_mod = 90
 	size_mod = 1
@@ -594,6 +608,7 @@ attachments.
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, two-shot grenade launcher. It cannot be reloaded."
 	icon_state = "grenade"
+	w_class = 4.0
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/original,
 						/obj/item/weapon/gun/rifle/m41a/elite,
@@ -623,7 +638,7 @@ attachments.
 	fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 		if(current_ammo > 0)
 			var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
-			playsound(user.loc,'sound/weapons/grenadelaunch.ogg', 50, 1)
+			playsound(user.loc,'sound/weapons/grenade_shot.ogg', 50, 1)
 			message_admins("[key_name_admin(user)] fired an underslung grenade launcher.")
 			log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 			G.active = 1
@@ -647,6 +662,7 @@ attachments.
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. It cannot be reloaded."
+	w_class = 4.0
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/original,
 						/obj/item/weapon/gun/rifle/m41a/elite,
@@ -654,7 +670,7 @@ attachments.
 						/obj/item/weapon/gun/rifle/mar40/carbine)
 	ammo_capacity = 6
 	current_ammo = 6
-	ammo_type = /datum/ammo/bullet/shotgun //Slugs.
+	ammo_type = "/datum/ammo/bullet/shotgun" //Slugs.
 	slot = "under"
 	shoot_sound = 'sound/weapons/shotgun.ogg'
 	passive = 0
@@ -678,6 +694,7 @@ attachments.
 	name = "mini flamethrower"
 	icon_state = "flamethrower"
 	desc = "A weapon-mounted flamethrower attachment.\nIt is designed for short bursts and must be discarded after it is empty."
+	w_class = 4.0
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
 						/obj/item/weapon/gun/rifle/m41a/original,
 						/obj/item/weapon/gun/rifle/m41a/elite,
@@ -714,6 +731,7 @@ attachments.
 			var/distance = 0
 			var/obj/structure/window/W
 			var/turf/T
+			playsound(src.loc, 'sound/weapons/flamethrower_2.ogg', 80, 1)
 			for(T in turfs)
 				distance++
 				if(T == user.loc) continue

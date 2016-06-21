@@ -91,12 +91,12 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/s_attachables
 	name = "Stock Attachments"
 	contains = list(
-					/obj/item/attachable/compensator/revolverstock,
-					/obj/item/attachable/compensator/revolverstock,
-					/obj/item/attachable/compensator/riflestock,
-					/obj/item/attachable/compensator/riflestock,
-					/obj/item/attachable/compensator/stock,
-					/obj/item/attachable/compensator/stock
+					/obj/item/attachable/stock/revolver,
+					/obj/item/attachable/stock/revolver,
+					/obj/item/attachable/stock/rifle,
+					/obj/item/attachable/stock/rifle,
+					/obj/item/attachable/stock/shotgun,
+					/obj/item/attachable/stock/shotgun
 					)
 	cost = 45
 	containertype = /obj/structure/closet/crate
@@ -851,6 +851,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containername = "Black market firearms crate"
 	group = "Weapons"
 
+/* No more Russian guns, sorry.
 /datum/supply_packs/randomised/guns/slavic
 	contains = list()
 	name = "Nagant-Yamasaki firearm (x1)"
@@ -858,3 +859,4 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	containertype = /obj/structure/largecrate/guns/russian
 	containername = "Nagant-Yamasaki firearms crate"
 	group = "Weapons"
+*/

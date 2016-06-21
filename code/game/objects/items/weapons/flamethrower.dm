@@ -82,11 +82,11 @@
 			update_icon()
 			return
 		var/turf/target_turf = get_turf(target)
-		if(target_turf)
+		if(target_turf && target_turf!=get_turf(user)) //Don't want to incinerate ourselves.
 			var/turflist = getline(user, target_turf) //Uses old turf generation.
 			for (var/mob/O in viewers())
 				O << "\red [user] unleashes a blast of flames!"
-			playsound(src.loc, 'sound/weapons/flamethrower_shoot.ogg', 80, 1)
+			playsound(src.loc, 'sound/weapons/flamethrower_1.ogg', 80, 1)
 			flame_turf(turflist)
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
@@ -144,6 +144,7 @@
 	user << browse(dat, "window=flamethrower;size=600x300")
 	onclose(user, "flamethrower")
 	return
+
 /obj/item/weapon/flamethrower/Topic(href,href_list[])
 	if(href_list["close"])
 		usr.unset_machine()

@@ -329,7 +329,10 @@
 				recipe.resources = list()
 				for(var/material in I.matter)
 					if(!isnull(storage_capacity[material]))
-						recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+						if(istype(I,/obj/item/stack/sheet))
+							recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
+						else
+							recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
 				del(I)
 
 	//Create parts for lathe.

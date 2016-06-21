@@ -1189,6 +1189,7 @@
 #include "code\modules\projectiles\abby\guns\ammo_datums.dm"
 #include "code\modules\projectiles\abby\guns\misc.dm"
 #include "code\modules\projectiles\abby\guns\pistols.dm"
+#include "code\modules\projectiles\abby\guns\revolvers.dm"
 #include "code\modules\projectiles\abby\guns\rifles.dm"
 #include "code\modules\projectiles\abby\guns\shotguns.dm"
 #include "code\modules\projectiles\abby\guns\smgs.dm"

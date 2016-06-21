@@ -1,18 +1,3 @@
-/*
-So I had to hack this in, sort of, to get shotguns working right.
-Woo hoo.
-
-Generic internal magazines
-*/
-/obj/item/ammo_magazine/shotgun/internal
-	name = "Internal Shotgun Magazine"
-	desc = "An internal magazine. It is not supposed to be seen or removed."
-	icon_state = "shells"
-	default_ammo = "/datum/ammo/bullet/shotgun"
-	gun_type = "/obj/item/weapon/gun/shotgun" //Doesn't matter, it will never be ejected.
-	max_rounds = 8
-	handle_casing = EJECT_CASINGS
-
 //-------------------------------------------------------
 //Generic shotgun magazines. Only three of them, since all shotguns can use the same ammo unless we add other gauges.
 
@@ -20,27 +5,50 @@ Generic internal magazines
 	name = "Box of Shotgun Slugs"
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "shells"
+	icon_spent = "gshell"
 	default_ammo = "/datum/ammo/bullet/shotgun"
-	max_rounds = 10
+	caliber = "12g" //All shotgun rounds are 12g right now.
 	gun_type = "/obj/item/weapon/gun/shotgun"
+	handful_type = "Slugs"
+	icon_type = "shell_s"
+	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
+	w_class = 3 // Can't throw it in your pocket, friend.
+	handful_max_rounds = 5
 
 /obj/item/ammo_magazine/shotgun/buckshot
 	name = "Box of Buckshot Shells"
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
 	icon_state = "beanbag"
+	icon_spent = "bshell"
 	default_ammo = "/datum/ammo/bullet/shotgun/buckshot"
+	handful_type = "Shells"
+	icon_type = "shell_b"
 	max_rounds = 10
 
 /obj/item/ammo_magazine/shotgun/incendiary
 	name = "Box of Incendiary Slugs"
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
+	icon_spent = "ishell"
 	default_ammo = "/datum/ammo/bullet/shotgun/incendiary"
+	handful_type = "Incendiary Slugs"
+	icon_type = "shell_i"
 	max_rounds = 10
+
+/*
+Generic internal magazine. All shotguns will use this or a variation with different ammo number.
+Since all shotguns share ammo types, the gun path is going to be the same for all of them.
+*/
+/obj/item/ammo_magazine/shotgun/internal
+	name = "Shotgun Tube"
+	desc = "An internal magazine. It is not supposed to be seen or removed."
+	max_rounds = 8
+	handle_casing = EJECT_CASINGS
 
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/shotgun
+	origin_tech = "combat=4;materials=3"
 	w_class = 4
 	mag_type = "/obj/item/ammo_magazine/shotgun"
 	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal"
@@ -48,9 +56,11 @@ Generic internal magazines
 	force = 14.0
 	twohanded = 1
 	fire_sound = 'sound/weapons/shotgun.ogg'
+	reload_sound = 'sound/weapons/shotgun_shell_insert.ogg'
 	accuracy = 10
 	slot_flags = SLOT_BACK
 	reload_type = HANDFUL //All shotguns reload via handfuls.
+	autoejector = 0 // It doesn't do this.
 	var/casing_types[] = list()// Our list of what to fire and when, refers to the ammo datum paths.
 
 	New()
@@ -66,6 +76,8 @@ Generic internal magazines
 	icon_state = "rspshotgun"
 	icon_empty = "rspshotgun0"
 	item_state = "rspshotgun"
+	origin_tech = "combat=4;materials=2"
+	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
 	fire_delay = 10
 	muzzle_pixel_x = 31
 	muzzle_pixel_y = 19
@@ -73,7 +85,7 @@ Generic internal magazines
 	rail_pixel_y = 21
 	under_pixel_x = 17
 	under_pixel_y = 14
-	burst_amount = 4
+	burst_amount = 2
 	burst_delay = 2
 	accuracy = -10
 	found_on_mercs = 1
@@ -88,6 +100,8 @@ Generic internal magazines
 	icon_empty = "cshotgun"
 	item_state = "cshotgun"
 	icon_wielded = "cshotgun-w"
+	origin_tech = "combat=5;materials=4"
+	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
 	fire_delay = 12
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 19
@@ -107,6 +121,7 @@ Generic internal magazines
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/shotgun/internal/double //For a double barrel.
+	default_ammo = "/datum/ammo/bullet/shotgun/buckshot"
 	max_rounds = 2
 	handle_casing = HOLD_CASINGS
 
@@ -117,8 +132,10 @@ Generic internal magazines
 	icon_empty = "dshotgun"
 	item_state = "dshotgun"
 	icon_wielded = "dshotgun-w"
+	origin_tech = "combat=4;materials=2"
 	mag_type = "/obj/item/ammo_magazine/shotgun/buckshot"
 	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/double"
+	fire_sound = 'sound/weapons/shotgun_heavy.ogg'
 	fire_delay = 6
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 21
@@ -159,6 +176,7 @@ Generic internal magazines
 	icon_empty = "m37_empty"
 	icon_wielded = "m37-w"
 	item_state = "m37"
+	fire_sound = 'sound/weapons/shotgun.ogg'
 	fire_delay = 26
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 18
@@ -166,7 +184,6 @@ Generic internal magazines
 	rail_pixel_y = 21
 	under_pixel_x = 20
 	under_pixel_y = 14
-	autoejector = 0 //Does not automatically eject "magazines".
 	var/recentpump = 0
 	var/is_pumped = 0
 	var/is_reloading = 0
@@ -296,6 +313,7 @@ Generic internal magazines
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/shotgun/internal/pump/CMB //The only cycle method.
+	default_ammo = "/datum/ammo/bullet/shotgun/incendiary"
 	max_rounds = 4
 
 /obj/item/weapon/gun/shotgun/pump/cmb
@@ -307,6 +325,7 @@ Generic internal magazines
 	icon_wielded = "CMBshotgun-w"
 	mag_type = "/obj/item/ammo_magazine/shotgun/incendiary"
 	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/pump/CMB"
+	fire_sound = 'sound/weapons/shotgun_small.ogg'
 	fire_delay = 16
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 20

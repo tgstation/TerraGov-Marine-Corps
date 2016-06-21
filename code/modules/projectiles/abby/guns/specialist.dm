@@ -2,22 +2,26 @@
 //SNIPER RIFLES
 
 /obj/item/ammo_magazine/sniper
-	name = "M42A Scoped Rifle Magazine (.50)"
+	name = "M42A Scoped Rifle Magazine (10×28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
+	caliber = "10×28mm Caseless"
 	icon_state = "75"
 	icon_empty = "75-0"
 	max_rounds = 7
 	default_ammo = "/datum/ammo/bullet/sniper"
 	gun_type = "/obj/item/weapon/gun/sniper"
+	handful_type = "Bullets (10×28mm Caseless)"
 	reload_delay = 3
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "M42A Incendiary Magazine (.50)"
+	name = "M42A Incendiary Magazine (10×28mm Caseless)"
 	default_ammo = "/datum/ammo/bullet/sniper/incendiary"
+	handful_type = "Incendiary Bullets (10×28mm Caseless)"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "M42A Flak Magazine (.50)"
+	name = "M42A Flak Magazine (10×28mm Caseless)"
 	default_ammo = "/datum/ammo/bullet/sniper/flak"
+	handful_type = "Flak Bullets (10×28mm Caseless)"
 	icon_state = "a762"
 	icon_empty = "a762-0"
 
@@ -28,6 +32,7 @@
 	icon_state = "M42c"
 	icon_empty = "M42c_empty"
 	item_state = "m42a"  //placeholder!!
+	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/GunFireSniper.ogg'
 	mag_type = "/obj/item/ammo_magazine/sniper"
 	burst_amount = 1 //Fix so the sniper scopes don't set burst fire to -1 ~N
@@ -57,10 +62,12 @@
 		update_attachables()
 
 /obj/item/ammo_magazine/sniper/elite
-	name = "M42C Magazine (.75)"
+	name = "M42C Magazine (12.7×99mm Caseless)"
 	default_ammo = "/datum/ammo/bullet/sniper/elite"
 	gun_type = "/obj/item/weapon/gun/sniper/elite"
+	caliber = ".50 Caseless"
 	max_rounds = 9
+	handful_type = "Bullets (12.7×99mm Caseless)"
 
 /obj/item/weapon/gun/sniper/elite
 	name = "\improper M42C Anti-Tank Sniper Rifle"
@@ -68,7 +75,8 @@
 	icon_state = "pmcM42c"
 	icon_empty = "pmcM42c_empty"
 	item_state = "m42a"  //placeholder!!
-	fire_sound = 'sound/weapons/GunFireSniper.ogg'
+	origin_tech = "combat=7;materials=5"
+	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	mag_type = "/obj/item/ammo_magazine/sniper/elite"
 	fire_delay = 90
 	w_class = 5.0
@@ -104,11 +112,13 @@
 //SMARTGUN
 /obj/item/ammo_magazine/smartgun_integrated
 	name = "Integrated Smartgun Belt"
+	caliber = "10×28mm Caseless"
 	icon_state = ".45a"
 	icon_empty = ".45a0"
 	max_rounds = 50
 	default_ammo = "/datum/ammo/bullet/smartgun"
 	gun_type = "/obj/item/weapon/gun/smartgun"
+	handful_type = "Bullets (10×28mm Caseless)"
 
 /obj/item/ammo_magazine/smartgun_integrated/dirty
 	default_ammo = "/datum/ammo/bullet/smartgun/dirty"
@@ -120,6 +130,7 @@
 	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a Powerpack. Click the powerpack icon in the top left to reload."
 	icon_state = "m56"
 	item_state = "m56"
+	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	mag_type_internal = "/obj/item/ammo_magazine/smartgun_integrated"
 	reload_type = INTEGRATED
@@ -163,7 +174,7 @@
 	proc/toggle_safety() //Works like reloading the gun. We don't actually change the ammo though.
 		playsound(src.loc,'sound/machines/click.ogg', 50, 1)
 		safety_toggled = !safety_toggled
-		if(ammo) del(ammo)
+		if(ammo) del(ammo) //Better safe than sorry.
 		if(safety_toggled)
 			usr << "\icon[src] You <B>enable</b> the [src]'s safety mode. You will not harm allies."
 			ammo = new/datum/ammo/bullet/smartgun
@@ -194,6 +205,7 @@
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M57D 'Dirty' Smartgun"
 	desc = "The actual firearm in the 4-piece M57D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. Otherwise identical to the M56."
+	origin_tech = "combat=7;materials=5"
 	safety_toggled = 0
 	mag_type_internal = "/obj/item/ammo_magazine/smartgun_integrated/dirty"
 	accuracy = 10 //Slightly more accurate.
@@ -208,6 +220,8 @@
 	desc = "A rocket tube for an M83 SADAR rocket. Activate it without a missile inside to receive some materials."
 	icon_state = "rocket_tube"
 	icon_empty = "rocket_tube_empty"
+	origin_tech = "combat=3;materials=3"
+	matter = list("metal" = 100000)
 	max_rounds = 1
 	default_ammo = "/datum/ammo/rocket"
 	gun_type = "/obj/item/weapon/gun/rocketlauncher"
@@ -246,6 +260,8 @@
 	icon_state = "M83sadar"
 	item_state = "rocket"
 	icon_wielded = "rocket"
+	origin_tech = "combat=6;materials=5"
+	matter = list("metal" = 100000)
 	w_class = 5.0
 	fire_delay = 10
 	force = 15.0
@@ -289,6 +305,7 @@
 	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
 	icon_state = "rocket_tube4"
 	icon_empty = "rocket_tube_empty4"
+	origin_tech = "combat=4;materials=4"
 	max_rounds = 4
 	default_ammo = "/datum/ammo/rocket/wp/quad"
 	gun_type = "/obj/item/weapon/gun/quadlauncher"
@@ -300,6 +317,7 @@
 	icon_state = "quaddar"
 	item_state = "rocket4"
 	icon_wielded = "rocket4"
+	origin_tech = "combat=7;materials=5"
 	fire_delay = 6
 	burst_amount = 4
 	burst_delay = 4

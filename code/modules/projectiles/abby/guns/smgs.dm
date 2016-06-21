@@ -1,4 +1,5 @@
 /obj/item/weapon/gun/smg
+	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	slot_flags = SLOT_BELT
 	force = 8
@@ -16,17 +17,19 @@
 	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/smg/m39
-	name = "M39 SMG Mag (9mm)"
+	name = "M39 SMG Mag (9mm Caseless)"
 	desc = "A 9mm submachinegun magazine."
+	caliber = "9mm Caseless"
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 35
 	handle_casing = CLEAR_CASINGS
 	default_ammo = "/datum/ammo/bullet/smg"
 	gun_type = "/obj/item/weapon/gun/smg/m39"
+	handful_type = "Bullets (9mm Caseless)"
 
 /obj/item/ammo_magazine/smg/m39/extended
-	name = "M39 Extended Mag (9mm)"
+	name = "M39 Extended Mag (9mm Caseless)"
 	desc = "A 9mm submachinegun magazine."
 	icon_state = "9x"
 	icon_empty = "9x0"
@@ -61,12 +64,14 @@
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/elite
-	name = "AP SMG Magazine (9mm)"
+	name = "AP SMG AP Magazine (9mm Caseless)"
 	desc = "A 9mm special magazine."
+	caliber = "9mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
 	default_ammo = "/datum/ammo/bullet/smg/ap"
 	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
+	handful_type = "AP Bullets (9mm Caseless)"
 	max_rounds = 45
 
 /obj/item/weapon/gun/smg/m39/elite
@@ -75,6 +80,7 @@
 	icon_state = "smg_pmc"
 	icon_empty = "smg_pmc_empty"
 	item_state = "m39_pmc"
+	origin_tech = "combat=6;materials=5"
 	burst_amount = 3
 	mag_type = "/obj/item/ammo_magazine/smg/elite"
 	accuracy = 15
@@ -86,10 +92,12 @@
 	name = "MP27 Magazine (4.6mm)"
 	desc = "A 9mm special magazine."
 	default_ammo = "/datum/ammo/bullet/smg/ap"
+	caliber = "4.6mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
-	max_rounds = 40
 	gun_type = "/obj/item/weapon/gun/smg/mp7"
+	handful_type = "Bullets (4.6mm)"
+	max_rounds = 40
 
 /obj/item/weapon/gun/smg/mp7
 	name = "\improper MP27"
@@ -97,7 +105,8 @@
 	icon_state = "mp7"
 	icon_empty = "mp7_empty"
 	item_state = "mp7"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	origin_tech = "combat=3;materials=2"
+	fire_sound = 'sound/weapons/smg_light.ogg'
 	fire_delay = 4
 	mag_type = "/obj/item/ammo_magazine/smg/mp7"
 	muzzle_pixel_x = 33
@@ -118,10 +127,12 @@
 	name = "Skorpion Magazine (.32)"
 	desc = "A .32 caliber magazine for the Skorpion."
 	default_ammo = "/datum/ammo/bullet/smg"
+	caliber = ".32"
 	icon_state = "12mm"
 	icon_empty = "12mm0"
-	max_rounds = 20
 	gun_type = "/obj/item/weapon/gun/smg/skorpion"
+	handful_type = "Bullets (.32)"
+	max_rounds = 20
 
 /obj/item/weapon/gun/smg/skorpion
 	name = "\improper Skorpion"
@@ -129,7 +140,8 @@
 	icon_state = "skorpion"
 	icon_empty = "skorpion_empty"
 	item_state = "skorpion"
-	fire_sound = 'sound/weapons/holdout.ogg'
+	origin_tech = "combat=3;materials=2"
+	fire_sound = 'sound/weapons/skorpion.ogg'
 	fire_delay = 3
 	mag_type = "/obj/item/ammo_magazine/smg/skorpion"
 	muzzle_pixel_x = 29
@@ -151,10 +163,12 @@
 	name = "PPSh-17b Drum Magazine (7.62mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
 	default_ammo = "/datum/ammo/bullet/smg"
+	caliber = "7.62mm"
 	icon_state = "darts-0" //Dumb
 	icon_empty = "darts-0"
 	max_rounds = 71
 	gun_type = "/obj/item/weapon/gun/smg/ppsh"
+	handful_type = "Bullets (7.62mm)"
 
 /obj/item/ammo_magazine/smg/ppsh/extended
 	name = "PPSh-17b Magazine (7.62mm)"
@@ -170,7 +184,8 @@
 	icon_state = "ppsh"
 	icon_empty = "ppsh_empty"
 	item_state = "ppsh"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	origin_tech = "combat=3;materials=2;syndicate=4"
+	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	autoejector = 0 // Drum mag, hard to eject.
 	fire_delay = 6
 	mag_type = "/obj/item/ammo_magazine/smg/ppsh"
@@ -191,10 +206,12 @@
 	name = "Mac-15 Magazine (9mm)"
 	desc = "A magazine for the MAC-15."
 	default_ammo = "/datum/ammo/bullet/smg"
+	caliber = "9mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 50
 	gun_type = "/obj/item/weapon/gun/smg/uzi"
+	handful_type = "Bullets (9mm)"
 
 /obj/item/weapon/gun/smg/uzi
 	name = "\improper MAC-15"
@@ -202,6 +219,7 @@
 	icon_state = "mini-uzi"
 	icon_empty = "mini-uzi_empty"
 	item_state = "mini-uzi"
+	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/uzi.ogg'
 	fire_delay = 4
 	mag_type = "/obj/item/ammo_magazine/smg/uzi"
@@ -222,10 +240,12 @@
 	name = "P90 Magazine (5.7mm)"
 	desc = "A magazine for the P90 SMG."
 	default_ammo = "/datum/ammo/bullet/smg/ludicrous"
+	caliber = "5.7mm"
 	icon_state = "763"
 	icon_empty = "763-0"
 	max_rounds = 50
 	gun_type = "/obj/item/weapon/gun/smg/p90"
+	handful_type = "Bullets (5.7mm)"
 
 /obj/item/weapon/gun/smg/p90
 	name = "\improper FN FP9000"
@@ -233,7 +253,8 @@
 	icon_state = "p90"
 	icon_empty = "p90_empty"
 	item_state = "p90"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	origin_tech = "combat=5;materials=4"
+	fire_sound = 'sound/weapons/p90.ogg'
 	fire_delay = 5
 	mag_type = "/obj/item/ammo_magazine/smg/p90"
 	muzzle_pixel_x = 33

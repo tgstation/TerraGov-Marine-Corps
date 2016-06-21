@@ -254,6 +254,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	item_color = "bracer"
 	item_state = "bracera"
+	origin_tech = "combat=8;materials=8;magnets=8;programming=8"
 	//icon_state = "bracer"//placeholder
 	//item_state = "bracer"
 	species_restricted = null
@@ -845,6 +846,7 @@
 	icon_state = "speargun-3"
 	icon_empty = "speargun-0"
 	item_state = "predspeargun"
+	origin_tech = "combat=7;materials=7"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	mouthshoot = 1                         // No suiciding with this weapon, causes runtimes.
 	w_class = 3 //Fits in yautja bags.
@@ -1077,6 +1079,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
+	origin_tech = "combat=8;materials=7;bluespace=6"
 	fire_sound = 'sound/weapons/plasma_shot.ogg'
 	zoomdevicename = "scope"
 	w_class = 5
@@ -1326,6 +1329,7 @@
 	desc = "A device covered in Yautja writing. It whirrs and beeps every couple of seconds."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "teleporter"
+	origin_tech = "materials=7;bluespace=7;engineering=7"
 	flags = FPRINT | TABLEPASS
 	w_class = 2
 	force = 1
