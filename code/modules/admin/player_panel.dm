@@ -76,6 +76,7 @@
 					body += "</td><td align='center'>";
 
 					body += "<a href='?src=\ref[src];adminplayeropts="+ref+"'>PP</a> - "
+					body += "<a href='?src=\ref[src];playerpanelextended="+ref+"'>PPE</a> - "
 					body += "<a href='?src=\ref[src];notes=show;mob="+ref+"'>N</a> - "
 					body += "<a href='?_src_=vars;Vars="+ref+"'>VV</a> - "
 					body += "<a href='?src=\ref[src];traitor="+ref+"'>TP</a> - "

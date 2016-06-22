@@ -84,7 +84,6 @@ var/list/admin_verbs_admin = list(
 //	/client/proc/toggle_antagHUD_use,
 //	/client/proc/toggle_antagHUD_restrictions,
 	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
-	/client/proc/extended_player_panel,
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes
 )
@@ -285,7 +284,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
 	/proc/release,
 	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  ¯\_("/)_/¯
-	/client/proc/extended_player_panel,
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes
 )
@@ -430,14 +428,6 @@ var/list/admin_verbs_mentor = list(
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 */
-
-/client/proc/extended_player_panel()
-	set name = "Player Panel Extended"
-	set category = "Admin"
-	if(holder)
-		holder.player_panel_extended()
-	feedback_add_details("admin_verb","PPE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
 /client/proc/player_panel_new()
 	set name = "Player Panel New"

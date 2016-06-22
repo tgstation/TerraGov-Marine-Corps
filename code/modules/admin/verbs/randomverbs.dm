@@ -622,7 +622,27 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name_admin(src)] has created a M.O.T.H.E.R. report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_xeno_report()
+	set category = "Special Verbs"
+	set name = "Create Queen Mother Report"
+	set desc = "Basically a MOTHER report, but only for Xenos"
+	if(!holder)
+		src << "Only administrators may use this command."
+		return
+	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.", "What?", "") as message|null
+	var/customname = "Queen Mother Status Update"
+	if(!input)
+		return
 
+	var/data = "<h1>[customname]</h1><br><br><br>\red[input]<br><br>"
+
+	for(var/mob/M in player_list)
+		if(isXeno(M))
+			M << data
+
+	log_admin("[key_name(src)] has created a Queen Mother report: [input]")
+	message_admins("[key_name_admin(src)] has created a Queen Mother report", 1)
+	feedback_add_details("admin_verb","QMR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_delete(atom/O as obj|mob|turf in world)
 	set category = "Admin"
