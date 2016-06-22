@@ -432,7 +432,7 @@ var/list/admin_verbs_mentor = list(
 */
 
 /client/proc/extended_player_panel()
-	set name = "Extended Player Panel"
+	set name = "Player Panel Extended"
 	set category = "Admin"
 	if(holder)
 		holder.player_panel_extended()
