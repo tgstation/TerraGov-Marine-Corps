@@ -1,7 +1,7 @@
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
 var/list/admin_verbs_default = list(
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
-	/client/proc/player_panel,
+//	/client/proc/player_panel,
 	/client/proc/toggleadminhelpsound,	/*toggles whether we hear a sound when adminhelps/PMs are used*/
 	/client/proc/deadmin_self,			/*destroys our own admin datum so we can play as a regular player*/
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
@@ -83,7 +83,9 @@ var/list/admin_verbs_admin = list(
 	/client/proc/response_team, // Response Teams admin verb
 //	/client/proc/toggle_antagHUD_use,
 //	/client/proc/toggle_antagHUD_restrictions,
-	/client/proc/allow_character_respawn    /* Allows a ghost to respawn */
+	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
+	/datum/admins/proc/viewCLFaxes,
+	/datum/admins/proc/viewUSCMFaxes
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -281,7 +283,9 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
 	/proc/release,
-	/datum/admins/proc/viewUnheardAhelps //Why even have it as a client proc anyway?  ¯\_("/)_/¯
+	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  ¯\_("/)_/¯
+	/datum/admins/proc/viewCLFaxes,
+	/datum/admins/proc/viewUSCMFaxes
 )
 
 var/list/admin_verbs_mentor = list(
@@ -293,7 +297,9 @@ var/list/admin_verbs_mentor = list(
 	/datum/admins/proc/show_player_info,
 	/client/proc/dsay,
 	/datum/admins/proc/togglesleep,
-	/client/proc/cmd_admin_subtle_message
+	/client/proc/cmd_admin_subtle_message,
+	/datum/admins/proc/viewCLFaxes,
+	/datum/admins/proc/viewUSCMFaxes
 )
 
 /client/proc/add_admin_verbs()
@@ -413,7 +419,7 @@ var/list/admin_verbs_mentor = list(
 			mob << "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>"
 			mob.alpha = max(mob.alpha - 100, 0)
 
-
+/*
 /client/proc/player_panel()
 	set name = "Player Panel"
 	set category = "Admin"
@@ -421,6 +427,7 @@ var/list/admin_verbs_mentor = list(
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
+*/
 
 /client/proc/player_panel_new()
 	set name = "Player Panel New"

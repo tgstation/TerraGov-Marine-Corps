@@ -25,7 +25,7 @@ var/global/floorIsLava = 0
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
-			if(C.prefs.toggles & CHAT_ATTACKLOGS)
+			if(C.prefs.toggles & CHAT_FFATTACKLOGS)
 				var/msg = rendered
 				C << msg
 
