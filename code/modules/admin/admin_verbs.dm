@@ -1,7 +1,7 @@
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
 var/list/admin_verbs_default = list(
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
-	/client/proc/player_panel,
+//	/client/proc/player_panel,
 	/client/proc/toggleadminhelpsound,	/*toggles whether we hear a sound when adminhelps/PMs are used*/
 	/client/proc/deadmin_self,			/*destroys our own admin datum so we can play as a regular player*/
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
@@ -421,7 +421,7 @@ var/list/admin_verbs_mentor = list(
 			mob << "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>"
 			mob.alpha = max(mob.alpha - 100, 0)
 
-
+/*
 /client/proc/player_panel()
 	set name = "Player Panel"
 	set category = "Admin"
@@ -429,13 +429,14 @@ var/list/admin_verbs_mentor = list(
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
+*/
 
 /client/proc/extended_player_panel()
 	set name = "Extended Player Panel"
 	set category = "Admin"
 	if(holder)
 		holder.player_panel_extended()
-	feedback_add_details("admin_verb","EPP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","PPE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/player_panel_new()
