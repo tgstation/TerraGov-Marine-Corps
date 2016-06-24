@@ -1007,7 +1007,7 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
-	force = 38
+	force = 45 //More damage than other weapons like it. Considering how "strong" this sword is supposed to be, 38 damage was laughable.
 	w_class = 4.0
 	throwforce = 18
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -1022,7 +1022,7 @@
 		else
 			force = initial(force)
 
-		if(isYautja(user) && prob(15) && !target.lying)
+		if(isYautja(user) && prob(35) && !target.lying)
 			user.visible_message("[user] slashes \the [target] so hard they go flying!")
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 			target.Weaken(3)

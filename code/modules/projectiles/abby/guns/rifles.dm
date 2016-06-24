@@ -1,12 +1,18 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle
+	reload_sound = 'sound/weapons/rifle_reload.ogg'
+	cocked_sound = 'sound/weapons/rifle_cocked.ogg'
 	origin_tech = "combat=4;materials=3"
 	twohanded = 1
 	slot_flags = SLOT_BACK
 	w_class = 4
 	force = 15
 	burst_amount = 2
+
+	New()
+		..()
+		load_into_chamber()
 
 //-------------------------------------------------------
 //M41A PULSE RIFLE
@@ -181,7 +187,6 @@
 	max_rounds = 40
 	gun_type = "/obj/item/weapon/gun/rifle/mar40"
 	handful_type = "Bullets (12mm)"
-	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/rifle/mar40/extended
 	name = "Extended Magazine (12mm)"
@@ -199,6 +204,7 @@
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
 	fire_sound = 'sound/weapons/heavyrifle.ogg'
+	handle_casing = EJECT_CASINGS
 	fire_delay = 6
 	recoil = 0
 	muzzle_pixel_x = 32

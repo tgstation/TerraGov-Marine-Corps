@@ -351,6 +351,7 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 
+						/obj/item/attachable/scope = 0,
 						/obj/item/attachable/flashlight = 20,
 						/obj/item/attachable/reddot = 10,
 						/obj/item/attachable/magnetic_harness = 8,

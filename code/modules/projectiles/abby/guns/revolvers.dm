@@ -6,8 +6,240 @@
 	origin_tech = "combat=3;materials=2"
 	autoejector = 0 // Revolvers don't auto eject.
 	fire_sound = 'sound/weapons/44mag.ogg'
-	reload_sound = 'sound/weapons/revolver_load.ogg'
+	reload_sound = 'sound/weapons/revolver_cocked.ogg'
+	var/hand_reload_sound = 'sound/weapons/revolver_load3.ogg'
+	cocked_sound = 'sound/weapons/revolver_spun.ogg'
+	unload_sound = 'sound/weapons/revolver_unload.ogg'
 	reload_type = HANDFUL & SPEEDLOADER // Either handfuls or a speedloader.
+	handle_casing = HOLD_CASINGS
+
+	New()
+		..() //Do all that other stuff.
+		replace_cylinder(current_mag.current_rounds)
+
+	update_icon() //Special snowflake update icon.
+		if(isnull(icon_empty)) return
+		if(current_mag.cylinder_closed)
+			icon_state = initial(icon_state)
+		else
+			icon_state = icon_empty
+		update_attachables() //This will cut existing overlays
+
+	proc/rotate_cylinder(var/mob/user as mob) //Cylinder moves backward.
+		current_mag.cylinder_position = ( current_mag.cylinder_position == 1 ? current_mag.max_rounds : current_mag.cylinder_position - 1 )
+
+	proc/spin_cylinder(var/mob/user as mob)
+		if(current_mag.cylinder_closed) //We're not spinning while it's open. Could screw up reloading.
+			current_mag.cylinder_position = rand(1,current_mag.max_rounds)
+			if(user)
+				user << "\blue You spin the cylinder."
+				playsound(user, cocked_sound, 70, 1)
+		return
+
+	proc/replace_cylinder(var/number_to_replace)
+		current_mag.cylinder_contents = list()
+		current_mag.cylinder_contents.len = current_mag.max_rounds
+		var/i
+		for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
+			if(i > number_to_replace)
+				current_mag.cylinder_contents[i] = "empty"
+			else
+				current_mag.cylinder_contents[i] = "bullet"
+		current_mag.cylinder_position = number_to_replace
+		return
+
+	proc/empty_cylinder()
+		var/i
+		for(i = 1 to current_mag.max_rounds)
+			current_mag.cylinder_contents[i] = "empty"
+
+	//The cylinder is always emptied out before a reload takes place.
+	proc/add_to_cylinder(var/mob/user as mob) //Bullets are added forward.
+		//First we're going to try and replace the current bullet.
+		if(current_mag.cylinder_contents[current_mag.cylinder_position] == "empty")
+			current_mag.cylinder_contents[current_mag.cylinder_position] = "bullet"
+
+		//Failing that, we'll try to replace the next bullet in line.
+		else if( (current_mag.cylinder_position + 1) > current_mag.max_rounds  && current_mag.cylinder_contents[1] == "empty")
+			current_mag.cylinder_contents[1] = "bullet"
+			current_mag.cylinder_position = 1
+
+		else if( current_mag.cylinder_contents[current_mag.cylinder_position + 1] == "empty" )
+			current_mag.cylinder_contents[current_mag.cylinder_position + 1] = "bullet"
+			current_mag.cylinder_position++
+
+		if(user) playsound(user, hand_reload_sound, 100, 1)
+		return
+
+	reload(var/mob/user = null, var/obj/item/ammo_magazine/magazine)
+		if(burst_toggled && burst_firing)
+			world << "Triggered burst return."
+			return
+
+		if(!magazine || !istype(magazine))
+			if(user) user << "That's not gonna work!"
+			return
+
+		if(magazine.current_rounds <= 0)
+			if(user) user << "That [magazine.name] is empty!"
+			return
+
+		if(user)
+			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
+			if( in_hand != src )
+				user << "You have to hold \the [src] to reload!"
+				return
+		if(current_mag.cylinder_closed)
+			if(user) user << "You can't load anything when the cylinder is closed!"
+			return
+
+		if(current_mag.current_rounds == current_mag.max_rounds)
+			if(user) user << "It's already full!"
+			return
+
+		if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
+			if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
+				replace_ammo(user, magazine) //We are going to replace the ammo just in case.
+				current_mag.transfer_ammo(magazine,current_mag,user,1) //Handful can get deleted, so we can't check through it.
+				add_to_cylinder(user)
+			//If bullets still remain in the gun, we want to check if the actual ammo matches.
+			else if(current_mag.default_ammo == magazine.default_ammo) //Ammo datums match, let's see if they are compatible.
+				if(current_mag.transfer_ammo(magazine,current_mag,user,1)) //If the magazine is deleted, we're still fine.
+					add_to_cylinder(user)
+			else //Not the right kind of ammo.
+				if(user) user << "\The [current_mag] is already loaded with some other ammo. Better not mix them up."
+		else //So if it's not a handful, it's an actual speedloader.
+			if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
+				if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
+					if(current_mag.transfer_ammo(magazine,current_mag,user,magazine.current_rounds))//Make sure we're successful.
+						replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
+						replace_cylinder(current_mag.current_rounds)
+						if(user) playsound(src, reload_sound, 80, 1) // Reloading via speedloader.
+				else
+					if(user) user << "That [magazine] doesn't fit!"
+			else
+				if(user) user << "You can't load a speedloader when there's something in the cylinder!"
+		return
+
+	unload(var/mob/user as mob)
+		if(burst_toggled && burst_firing) return
+
+		if(current_mag.cylinder_closed) //If it's actually closed.
+			if(user) user << "\blue You clear the cylinder of \the [src]."
+			make_casing()
+			empty_cylinder()
+			current_mag.create_handful(current_mag, user)
+			current_mag.cylinder_closed = !current_mag.cylinder_closed
+		else
+			current_mag.cylinder_closed = !current_mag.cylinder_closed
+		if(user) playsound(src, unload_sound, 40, 1)
+		update_icon()
+		return
+
+	make_casing()
+		var/sound_to_play = pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
+		//Hilariously faster than the example above and doesn't crash.
+		if(current_mag.used_casings) //We have some spent casings to eject.
+			var/turf/current_turf = get_turf(src) //Figure out the turf we're on.
+			var/obj/item/ammo_casing/bullet/casing = locate() in current_turf //Could cause issues if there are a lot of objects.
+			if(!casing) //If there is no casing, make one.
+				casing = new(current_turf) //Don't need to do anything else.
+				current_mag.used_casings -= 1
+				playsound(current_turf, sound_to_play, 20, 1)
+			//Then do the rest of the operation.
+			casing.casings += current_mag.used_casings
+			casing.update_icon()
+			current_mag.used_casings = 0 //Always dump out everything.
+			playsound(current_turf, sound_to_play, 20, 1)
+		return
+
+	able_to_fire(var/mob/user as mob)
+		if(!current_mag.cylinder_closed)
+			user << "\red Close the cylinder!"
+			return
+		return ..()
+
+	load_into_chamber()
+		if(active_attachable)
+			active_attachable = null
+
+		if(current_mag && current_mag.current_rounds > 0)
+			if( current_mag.cylinder_contents[current_mag.cylinder_position] == "bullet")
+				current_mag.current_rounds-- //Subtract the round from the mag.
+				in_chamber = create_bullet(ammo)
+				return in_chamber
+
+		//If we fail to return to chamber the round, we just move the firing pin some.
+		rotate_cylinder()
+		return
+
+	reload_into_chamber(var/mob/user as mob)
+		current_mag.cylinder_contents[current_mag.cylinder_position] = "blank" //We shot the bullet.
+		current_mag.used_casings += 1 //We add this only if we actually fired the bullet.
+		rotate_cylinder()
+		return 1
+
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+		del(projectile_to_fire)
+		if(refund)
+			current_mag.current_rounds++
+		return 1
+
+	unique_action(var/mob/living/carbon/human/user as mob)
+		spin_cylinder(user)
+
+	proc/revolver_trick(var/mob/living/carbon/human/user as mob)
+		var/chance = -5
+		if(user.health <6)
+			chance = 0
+		else
+			chance = chance + user.health
+
+		//add something about pain too, maybe unjuries.
+		//user.health < 6 ? chance = 0 : chance = chance + user.health
+
+		if(prob(chance))
+			switch(rand(1,5))
+				if(1)
+					user.visible_message("\The [user] deftly flicks and spins \the [src]!")
+					user << "\blue You flick and spin \the [src]!"
+					animation_spin(src, "left", 1, 1)
+				if(2)
+					user.visible_message("\The [user] deftly flicks and spins \the [src]!")
+					user << "\blue You flick and spin \the [src]!"
+					animation_spin(src, "right", 1, 1)
+				if(3)
+					user.visible_message("\The [user] throws \the [src] in to the air and catches it!")
+					user << "\blue You throw and catch \the [src]. Nice!"
+				if(4)
+					user.visible_message("\The [user] deftly flicks and spins \the [src]!")
+					user << "\blue You flick and spin \the [src]!"
+					animation_spin(src, "right", 1, 1)
+					animation_spin(src, "left", 1, 1)
+				if(5)
+					spawn(0)
+						animation_spin(src, "right", 1, 1)
+					user.visible_message("\The [user] deftly flicks \the [src] and tosses it into the air!")
+					user << "\blue You flick and toss \the [src] into the air!"
+					if(user.get_inactive_hand())
+						user.visible_message("\The [user] catches \the [src] with the same hand!")
+						user << "\blue You catch \the [src] as it spins in to your hand!"
+					else
+						user.visible_message("\The [user] catches \the [src] with his other hand!")
+						user << "\blue You snatch \the [src] with your other hand! Awesome!"
+						user.put_in_inactive_hand(src)
+						user.update_inv_l_hand(0)
+						user.update_inv_r_hand()
+			//	if(6)
+			//	if(7)
+			//	if(8)
+			//	if(9)
+			//	if(10)
+		else
+			user << "You fumble with \the [src] like an idiot... Uncool."
+			if(prob(30))
+				user.visible_message("<b> \The [user] fumbles with \the [src] like a huge idiot!</b>")
+		return
 
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER
@@ -15,14 +247,13 @@
 /obj/item/ammo_magazine/revolver
 	name = "Revolver Speed Loader (.44)"
 	default_ammo = "/datum/ammo/bullet/revolver"
+	slot_flags = null
 	caliber = ".44"
 	icon_state = "38"
 	icon_empty = "38-0"
 	max_rounds = 7
 	gun_type = "/obj/item/weapon/gun/revolver"
 	handful_type = "Bullets (.44)"
-	handle_casing = HOLD_CASINGS
-	var/cylinder_closed = 1 //Starts out closed. Ye basic variable.
 
 /obj/item/ammo_magazine/revolver/marksman
 	name = "Marksman Speed Loader (.44)"

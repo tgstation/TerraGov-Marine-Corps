@@ -789,12 +789,35 @@
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/gunshot_rifle.ogg', 100, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
+			if(target)
+				var/angle = round(Get_Angle(src,target))
+				muzzle_flash(angle)
 			in_chamber = null
 			rounds--
 			if(rounds == 0)
 				visible_message("\icon[src] \red The turret beeps steadily and its ammo light blinks red.")
 				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
 	return
+
+//Mostly taken from gun code.
+/obj/machinery/marine_turret/proc/muzzle_flash(var/angle)
+	if(isnull(angle)) return
+
+	if(prob(65))
+		var/layer = MOB_LAYER-0.1
+
+		var/image/flash = image('icons/obj/projectiles.dmi',src,"muzzle_flash",layer)
+
+		var/matrix/rotate = matrix() //Change the flash angle.
+		rotate.Translate(0,5)
+		rotate.Turn(angle)
+		flash.transform = rotate
+
+		for(var/mob/M in viewers(src))
+			M << flash
+
+		spawn(3)
+			del(flash)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()

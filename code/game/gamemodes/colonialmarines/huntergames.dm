@@ -30,7 +30,7 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/weapon/gun/rifle/m41a/scoped,\
 								/obj/item/weapon/gun/rifle/lmg,\
 								/obj/item/weapon/gun/shotgun/combat,\
-								/obj/item/weapon/gun/sniper,
+								/obj/item/weapon/gun/rifle/sniper,
 								/obj/item/clothing/head/helmet/marine/PMC/commando,\
 								/obj/item/clothing/shoes/PMC
 								)
@@ -55,7 +55,7 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/gun/minigun,\
 								/obj/item/weapon/gun/pistol/vp78,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
-								/obj/item/weapon/gun/sniper/elite,
+								/obj/item/weapon/gun/rifle/sniper/elite,
 								/obj/item/weapon/gun/rocketlauncher/quad)
 
 var/global/list/crap_items = list(/obj/item/weapon/cell/high,\

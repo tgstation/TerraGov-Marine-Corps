@@ -1,11 +1,16 @@
 /obj/item/weapon/gun/smg
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
+	handle_casing = EJECT_CASINGS
 	slot_flags = SLOT_BELT
 	force = 8
 	w_class = 4
 	recoil = 0
 	twohanded = 0
+
+	New()
+		..()
+		load_into_chamber()
 
 //-------------------------------------------------------
 /obj/item/ammo_magazine/smg
@@ -14,7 +19,6 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 30
-	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/smg/m39
 	name = "M39 SMG Mag (9mm Caseless)"
@@ -23,7 +27,6 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 35
-	handle_casing = CLEAR_CASINGS
 	default_ammo = "/datum/ammo/bullet/smg"
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 	handful_type = "Bullets (9mm Caseless)"
@@ -43,6 +46,7 @@
 	icon_empty = "smg_empty"
 	item_state = "m39"
 	mag_type = "/obj/item/ammo_magazine/smg/m39"
+	handle_casing = CLEAR_CASINGS
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 20
 	rail_pixel_x = 11

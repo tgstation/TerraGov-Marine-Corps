@@ -60,7 +60,6 @@
 	max_rounds = 300
 	gun_type = "/obj/item/weapon/gun/pistol/chimp"
 	handful_type = "Bullets (.70M)"
-	handle_casing = CLEAR_CASINGS
 
 /obj/item/weapon/gun/pistol/chimp
 	name = "\improper CHIMP70 Pistol"
@@ -71,6 +70,7 @@
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	mag_type = "/obj/item/ammo_magazine/pistol/chimp"
 	fire_sound = 'sound/weapons/chimp70.ogg'
+	handle_casing = CLEAR_CASINGS
 	fire_delay = 3
 	burst_delay = 2
 	burst_amount = 6
@@ -156,7 +156,6 @@
 	reload_delay = 24 //Hard to reload.
 	gun_type = "/obj/item/weapon/gun/minigun"
 	handful_type = "Bullets (.37.62×51mm)"
-	handle_casing = EJECT_CASINGS
 
 /obj/item/weapon/gun/minigun
 	name = "\improper Ol' Painless"
@@ -168,6 +167,7 @@
 	origin_tech = "combat=7;materials=5"
 	mag_type = "/obj/item/ammo_magazine/minigun"
 	fire_sound = 'sound/weapons/minigun.ogg'
+	handle_casing = EJECT_CASINGS
 	autoejector = 0 // Harder to reload.
 	twohanded = 1
 	w_class = 5

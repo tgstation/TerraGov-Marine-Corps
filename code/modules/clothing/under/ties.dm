@@ -320,7 +320,7 @@
 	icon_state = "webbing"
 	item_color = "webbing"
 	w_class = 3
-	var/slots = 3
+	var/slots = 4
 	var/obj/item/weapon/storage/internal/hold
 
 /obj/item/clothing/tie/storage/New()
@@ -367,6 +367,7 @@
 	desc = "Strudy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
 	item_color = "webbing"
+	slots = 3
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"

@@ -49,8 +49,16 @@ attachments.
 	var/delay_mod = 0 //Changes firing delay. Cannot go below 0.
 	var/burst_mod = 0 //Changes burst rate. 1 == 0.
 	var/size_mod = 0 //Increases the weight class
-	var/activation_sound = 'sound/machines/click.ogg'
+
+	/*
+	This is where activation begins. Attachments that activate can be passive (like a scope),
+	or they can be active like a shotgun or grenade launcher. Attachments may be continuous,
+	or they fire so long as you can activate them, or single fire. That is where they deactivate
+	after one pass.
+	*/
 	var/can_activate = 0
+	var/activation_sound = 'sound/machines/click.ogg'
+	var/projectile_based = 0 //Does this thing use the projectile cycle to fire? Defaults to no.
 	var/continuous = 0 //Shootable attachments normally swap back after 1 shot.
 	var/passive = 1 //Can't actually be an active attachable, but might still be activatible.
 	var/can_be_removed = 1
@@ -132,8 +140,7 @@ attachments.
 			G.stock.loc = get_turf(G)
 			G.stock = null
 
-		if(G.wielded)
-			G.unwield()
+		G.unwield()
 
 		if(G.active_attachable == src)
 			G.active_attachable = null
@@ -168,7 +175,7 @@ attachments.
 		return
 
 	proc/fire_attachment(var/atom/target,var/obj/item/weapon/gun/gun, var/mob/user) //For actually shooting those guns.
-		return 0
+		return
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
@@ -306,7 +313,7 @@ attachments.
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/sniper,
+						/obj/item/weapon/gun/rifle/sniper,
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
@@ -390,7 +397,7 @@ attachments.
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/sniper
+						/obj/item/weapon/gun/rifle/sniper
 					)
 	recoil_mod = -1
 	accuracy_mod = 30
@@ -670,11 +677,12 @@ attachments.
 						/obj/item/weapon/gun/rifle/mar40/carbine)
 	ammo_capacity = 6
 	current_ammo = 6
-	ammo_type = "/datum/ammo/bullet/shotgun" //Slugs.
+	ammo_type = "/datum/ammo/bullet/shotgun/buckshot" //buckshot
 	slot = "under"
 	shoot_sound = 'sound/weapons/shotgun.ogg'
 	passive = 0
 	continuous = 1
+	projectile_based = 1 //Uses the projectile system.
 	can_activate = 1
 
 	examine()
@@ -790,7 +798,7 @@ attachments.
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/p90,
-						/obj/item/weapon/gun/sniper)
+						/obj/item/weapon/gun/rifle/sniper)
 	slot = "rail"
 	passive = 1
 	can_activate = 1
@@ -818,7 +826,7 @@ attachments.
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
-	guns_allowed = list(/obj/item/weapon/gun/sniper)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/sniper)
 	slot = "muzzle"
 	accuracy_mod = 10
 	ranged_dmg_mod = 110

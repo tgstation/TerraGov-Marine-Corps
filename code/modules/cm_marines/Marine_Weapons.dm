@@ -243,7 +243,7 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/sniper(src)
+			new /obj/item/weapon/gun/rifle/sniper(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)

@@ -30,7 +30,7 @@
 
 	var/max_range = 30 //This will de-increment a counter on the bullet.
 	var/accurate_range = 7 //After this distance, accuracy suffers badly unless zoomed.
-	var/damage_bleed = 1 //How much damage the bullet loses per turf traveled, very high for shotguns
+	var/damage_bleed = 1 //How much damage the bullet loses per turf traveled, very high for shotguns. //Not anymore ~N.
 	var/casing_type = "/obj/item/ammo_casing"
 	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
 	var/bonus_projectiles = 0 //Seems to be only set for buckshot, and not actually used. I might need to take a look into this. ~N
@@ -62,17 +62,9 @@
 			M.apply_damage(rand(5,25),BRUTE)
 
 /*
-I took the idea from Baystation projectiles, since handling casings can be really annoying.
-Relates to the handle_casing variable for the ammo boxes. Four ways to handle casings.
-We either keep them in the cylinder, eject them every shot, pump them out,
-or don't worry about them. ~N
+Boxes of ammo. Certain weapons have internal boxes of ammo that cannot be removed and function as part of the weapon.
+They're all essentially identical when it comes to actually getting the job done.
 */
-#define CLEAR_CASINGS	0 //This is actual caseless ammo, doesn't bother making casings. Default for most marine guns.
-#define EJECT_CASINGS	1 //Throw out the casing with every shot, simple.
-#define HOLD_CASINGS	2 //This adds to the casings_to_eject every shot.
-#define CYCLE_CASINGS	3 //Keep only a single casing on record, to eject with the next pump.
-
-//Boxes of ammo. Certain weapons have internal boxes of ammo that cannot be removed and function as part of the weapon.
 /obj/item/ammo_magazine
 	name = "generic ammo"
 	desc = "A box of ammo"
@@ -94,18 +86,20 @@ or don't worry about them. ~N
 	var/max_rounds = 7 //How many rounds can it hold?
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/gun_type = "/obj/item/weapon/gun" //What type of gun does it fit in? Must be currently a gun. (see : gun reload proc)
-	var/handle_casing = CLEAR_CASINGS //What does the casing actually do? Revolvers hold casings.
 	var/icon_type = "bullet" //Used for updating the icon when it creates casings.
-	var/casings_to_eject[] = list()//Casings to eject when the gun eventually does so, if it does so.
 	var/null_ammo = 0 //Set this to 0 to have a non-ammo-datum-using magazine without generating errors.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
-	var/sound_empty = 'sound/weapons/smg_empty_alarm.ogg'
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 
 	//For the handful method of reloading. Not used for regular mags.
 	var/handful_type = "Bullets" // "Bullets" or "Shells" or "Slugs" or "Incendiary Slugs"
 	var/handful_max_rounds = 8 // Tell a handful of how many rounds to make when it defaults.
 
+	//For revolvers.
+	var/cylinder_contents[] //What is actually in the cylinder. Initiated on New().
+	var/cylinder_position = 1 //Where the firing pin is located. We don't rotate the cylinder, just move the pin.
+	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
+	var/cylinder_closed = 1 //Starts out closed.
 
 	/*
 	Current rounds are set to -1 by default.
@@ -120,7 +114,6 @@ or don't worry about them. ~N
 
 	New()
 		..()
-		//Fill the ammo up.
 		if(isnull(default_ammo) || null_ammo) //None!
 			icon_state = icon_empty
 			current_rounds = 0
@@ -143,22 +136,22 @@ or don't worry about them. ~N
 		if(current_rounds < 0)
 			usr << "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
 		else
-			usr << "The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
+			usr << "\The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 	attack_hand(mob/user as mob)
-		if(caliber == "12g" || handle_casing == HOLD_CASINGS) //If it's a box of shotgun shells or a speedloader.
+		if(caliber == "12g" || istype(src,/obj/item/ammo_magazine/revolver)) //If it's a box of shotgun shells or a speedloader.
 			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
 			if( in_hand == src ) //Have to be holding it in the hand.
 				if (current_rounds > 0)
 					create_handful(src,user)
 					return
 				else
-					user << "\blue \The [src] is empty. Nothing to grab."
+					user << "\The [src] is empty. Nothing to grab."
 		return ..() //Do normal stuff.
 
 	//We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
 	attackby(obj/item/I as obj, mob/user as mob)
-		if(caliber == "12g" || handle_casing == HOLD_CASINGS) //Same deal.
+		if(caliber == "12g" || istype(src,/obj/item/ammo_magazine/revolver)) //Same deal.
 			var/obj/item/ammo_magazine/handful/transfer_from = I
 			if(istype(transfer_from)) // We have a handful.
 				var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
@@ -166,33 +159,34 @@ or don't worry about them. ~N
 					if(default_ammo == transfer_from.default_ammo)
 						transfer_ammo(transfer_from,src,user,transfer_from.current_rounds) // This takes care of the rest.
 					else
-						user << "\blue Those aren't the same rounds. Better not mix them up."
+						user << "Those aren't the same rounds. Better not mix them up."
 				else
-					user << "\blue Try holding \the [src] before you attempt to restock it."
+					user << "Try holding \the [src] before you attempt to restock it."
 		return
 
 	//Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 	proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,var/mob/user as mob,var/transfer_amount = 1)
-		if( target.current_rounds<target.max_rounds ) //Does the target mag actually need reloading?
-			if(source.caliber == target.caliber) //Are they the same caliber?
-				var/S = min(transfer_amount, target.max_rounds - target.current_rounds)
-				source.current_rounds -= S
-				target.current_rounds += S
-				//if(user) user << "\blue You transfer [S] round\s from \the [source] to \the [target]."
-				if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
-					del(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
-					if(user)
-						user.update_inv_l_hand(0) //In case we will get in hand icons.
-						user.update_inv_r_hand()
-				else
-					source.update_icon()
-				target.update_icon()
-				return S // We return the number transferred if it was successful.
-			else
-				if(user) user << "\blue The rounds don't match up. Better not mix them up."
+		if( target.current_rounds == target.max_rounds ) //Does the target mag actually need reloading?
+			if(user) user << "\The [target] is already full."
+			return
+
+		if(source.caliber != target.caliber) //Are they the same caliber?
+			if(user) user << "The rounds don't match up. Better not mix them up."
+			return
+
+		var/S = min(transfer_amount, target.max_rounds - target.current_rounds)
+		source.current_rounds -= S
+		target.current_rounds += S
+		//if(user) user << "\blue You transfer [S] round\s from \the [source] to \the [target]."
+		if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
+			del(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
+			if(user)
+				user.update_inv_l_hand(0) //In case we will get in hand icons.
+				user.update_inv_r_hand()
 		else
-			if(user) user << "\blue \The [target] is already full."
-		return
+			source.update_icon()
+		target.update_icon()
+		return S // We return the number transferred if it was successful.
 
 	//This will attempt to place the ammo in the user's hand if possible.
 	proc/create_handful(var/obj/item/ammo_magazine/source, var/mob/user as mob)
@@ -221,6 +215,8 @@ or don't worry about them. ~N
 					user << "\blue You remove <b>[S]</b> round\s from \the [source]."
 				else
 					user << "\blue You grab <b>[S]</b> round\s from \the [source]."
+			else
+				new_handful.loc = get_turf(src)
 
 			source.update_icon() //Update the other one.
 		return S //Give the number created.

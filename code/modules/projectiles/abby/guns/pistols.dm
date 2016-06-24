@@ -3,11 +3,18 @@
 
 /obj/item/weapon/gun/pistol
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
+	reload_sound = 'sound/weapons/flipblade.ogg'
+	cocked_sound = 'sound/weapons/pistol_cocked.ogg'
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 65000)
 	slot_flags = SLOT_BELT
 	w_class = 3
 	fire_sound = 'sound/weapons/servicepistol.ogg'
+	handle_casing = EJECT_CASINGS
+
+	New()
+		..()
+		load_into_chamber()
 
 //-------------------------------------------------------
 //M4A3 PISTOL
@@ -21,7 +28,6 @@
 	default_ammo = "/datum/ammo/bullet/pistol"
 	gun_type = "/obj/item/weapon/gun/pistol/m4a3"
 	handful_type = "Bullets (9mm)"
-	handle_casing = EJECT_CASINGS
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "Hollowpoint Pistol Mag (9mm)"
@@ -162,7 +168,6 @@
 	max_rounds = 12
 	gun_type = "/obj/item/weapon/gun/pistol/m1911"
 	handful_type = "Bullets (.40 Caseless)"
-	handle_casing = CLEAR_CASINGS
 
 /obj/item/weapon/gun/pistol/m1911
 	name = "\improper M1911 Pulse Pistol"
@@ -174,6 +179,7 @@
 	fire_sound = 'sound/weapons/44mag.ogg'
 	mag_type = "/obj/item/ammo_magazine/pistol/m1911"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
+	handle_casing = CLEAR_CASINGS
 	fire_delay = 2
 	force = 1
 	recoil = 0

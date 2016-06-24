@@ -233,17 +233,12 @@
 	accuracy = 50
 	accurate_range = 6
 
-/datum/ammo/bullet/smartgun/nosafety
-	damage = 33
-	skips_marines = 0
-	armor_pen = 10
-
 /datum/ammo/bullet/smartgun/dirty //This thing is extremely nasty.
 	irradiate = 1
 	agony = 1
 	damage = 35 // Slightly more damage than regular smartgun.
 	skips_marines = 0
-	armor_pen = 25
+	armor_pen = 25 // Ouch.
 	shrapnel_chance = 65 // High chance of shrapnel tearing up your insides.
 	damage_type = BRUTE
 
