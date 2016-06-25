@@ -7,61 +7,68 @@ ERROR CODE I1: projectile malfunctioned while firing. <------------ Right before
 ERROR CODE I2: null ammo while load_into_chamber() <------------- Somehow the ammo datum is missing or something. We need to figure out how that happened.
 ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammunition only. Ammunition should never have negative rounds on spawn.
 
-NOTES
+	NOTES
 
 
-if(burst_toggled && burst_firing) return
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-That should be on for most procs that deal with the gun doing some action. We do not want
-the gun to suddenly begin to fire when you're doing something else to it that could mess it up.
-As a general safety, make sure you remember this.
+	if(burst_toggled && burst_firing) return
+	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	That should be on for most procs that deal with the gun doing some action. We do not want
+	the gun to suddenly begin to fire when you're doing something else to it that could mess it up.
+	As a general safety, make sure you remember this.
 
 
-Guns, on the front end, function off a three tier process. To successfully create some unique gun
-that has a special method of firing, you need to override these procs.
+	Guns, on the front end, function off a three tier process. To successfully create some unique gun
+	that has a special method of firing, you need to override these procs.
 
-New() //You can typically leave this one alone, unless you need for the gun to do something on spawn.
-Guns that use the regular system of chamber fire should load_into_chamber() on New().
+	New() //You can typically leave this one alone, unless you need for the gun to do something on spawn.
+	Guns that use the regular system of chamber fire should load_into_chamber() on New().
 
-reload() //If the gun doesn't use the normal methods of reloading, like revolvers or shotguns which use
-handfuls, you will need to specify just how it reloads. User can be passed as null.
+	reload() //If the gun doesn't use the normal methods of reloading, like revolvers or shotguns which use
+	handfuls, you will need to specify just how it reloads. User can be passed as null.
 
-unload() //Same deal. If it's some unique unload method, you need to put that here. User can be passed as null.
+	unload() //Same deal. If it's some unique unload method, you need to put that here. User can be passed as null.
 
-make_casing() //What the gun does to make a casing. If it just shoots them out (or doesn't make casings), the
-regular proc is fine. This proc uses .dir and icon_state to change the number of bullets spawned, and is the
-fastest I could make it. One thing to note about it is that if more casings are desired, they have to be
-pregenerated, usually by hand.
+	make_casing() //What the gun does to make a casing. If it just shoots them out (or doesn't make casings), the
+	regular proc is fine. This proc uses .dir and icon_state to change the number of bullets spawned, and is the
+	fastest I could make it. One thing to note about it is that if more casings are desired, they have to be
+	pregenerated, usually by hand.
 
-able_to_fire() //Unless the gun has some special check to see whether or not it may fire, you don't need this.
-You can see examples of how this is modified in smartgun/sadar code, along with others. Return ..() on a success.
+	able_to_fire() //Unless the gun has some special check to see whether or not it may fire, you don't need this.
+	You can see examples of how this is modified in smartgun/sadar code, along with others. Return ..() on a success.
 
-load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
-the Fire() process, just set them to null and leave the if(current_mag && current_mag.current_rounds > 0) check.
-The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
+	load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
+	the Fire() process, just set them to null and leave the if(current_mag && current_mag.current_rounds > 0) check.
+	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
+	This must return positive to continue the fire cycle.
 
-reload_into_chamber() //The is the back action of the fire cycle that tells the gun to do all the stuff it needs
-to in order to prepare for the next fire cycle. This will be called if the gun fired successfully, per bullet.
-This is also where the gun will make a casing. So if your gun doesn't handle casings the regular way, modify it.
-Also where the gun will do final attachment calculations if the gun fired an attachment bullet.
+	reload_into_chamber() //The is the back action of the fire cycle that tells the gun to do all the stuff it needs
+	to in order to prepare for the next fire cycle. This will be called if the gun fired successfully, per bullet.
+	This is also where the gun will make a casing. So if your gun doesn't handle casings the regular way, modify it.
+	Also where the gun will do final attachment calculations if the gun fired an attachment bullet.
+	This must return positive to continue burst firing or so that you don't hear *click*.
 
-delete_bullet() //Important for point blanking and and jams, but can be called on for other reasons (that are
-not currently used). If the gun makes a bullet but doesn't fire it, this will be called on through clear_jam().
-This is also used to delete the bullet when you directly fire a bullet without going through the Fire() process,
-like with the mentioned point blanking/suicide.
+	delete_bullet() //Important for point blanking and and jams, but can be called on for other reasons (that are
+	not currently used). If the gun makes a bullet but doesn't fire it, this will be called on through clear_jam().
+	This is also used to delete the bullet when you directly fire a bullet without going through the Fire() process,
+	like with the mentioned point blanking/suicide.
 
 
-Other procs are pretty self explanatory, and what is listed above is what you should usually cahnge for unusual
-cases. So long as the gun can return true on able_to_fire() then move on to load_into_chamber() and finally
-reload_into_chamber(), you're in good shape. Those three procs basically make up the fire cycle, and if they
-function correctly, everything else will follow.
+	Other procs are pretty self explanatory, and what is listed above is what you should usually cahnge for unusual
+	cases. So long as the gun can return true on able_to_fire() then move on to load_into_chamber() and finally
+	reload_into_chamber(), you're in good shape. Those three procs basically make up the fire cycle, and if they
+	function correctly, everything else will follow.
 
-This system is incredibly robust and can be used for anything from single bullet carbines to high-end energy
-weapons. So long as the steps are followed, it will work without issue. Some guns ignore active attachables,
-since they currently do not use them, but if that changes, the related procs must also change.
+	This system is incredibly robust and can be used for anything from single bullet carbines to high-end energy
+	weapons. So long as the steps are followed, it will work without issue. Some guns ignore active attachables,
+	since they currently do not use them, but if that changes, the related procs must also change.
 
-~N
+	~N
 
+	TODO:
+
+	Add more muzzle flashes and guns sounds. Energy weapons, spear launcher, and taser for example.
+	Add some two handed sprites for SMGs that can use a grip.
+	Add more guns, or unique guns. The framework should be there.
 */
 
 //----------------------------------------------------------
@@ -70,6 +77,21 @@ since they currently do not use them, but if that changes, the related procs mus
 			//							  \\
 			//						   	  \\
 //----------------------------------------------------------
+
+/obj/item/weapon/gun/AltClick(var/mob/user)
+	if(burst_toggled && burst_firing) return
+
+	if(!ishuman(user)) return
+
+	if(!user.canmove || user.stat || user.restrained() || !user.loc || !isturf(user.loc))
+		user << "Not right now."
+		return
+
+	user << "You toggle the safety [trigger_safety ? "<b>off</b>" : "<b>on</b>"]."
+	playsound(usr,'sound/machines/click.ogg', 15, 1)
+	trigger_safety = !trigger_safety
+	return
+
 /obj/item/weapon/gun/mob_can_equip(var/mob/user as mob, slot)
 	//Cannot equip wielded items or items burst firing.
 	if(is_bursting || burst_firing) return
@@ -361,12 +383,9 @@ should be alright.
 		usr << "This weapon does not have a burst fire mode."
 		return
 
-	playsound(src.loc,'sound/machines/click.ogg', 50, 1)
+	usr << "\icon[src] You [burst_toggled ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode."
+	playsound(usr,'sound/machines/click.ogg', 50, 1)
 	burst_toggled = !burst_toggled
-	if(burst_toggled)
-		usr << "\icon[src] You <B>enable</b> the [src]'s burst fire mode."
-	else
-		usr << "\icon[src] You <B>disable</b> the [src]'s burst fire mode."
 
 	return
 

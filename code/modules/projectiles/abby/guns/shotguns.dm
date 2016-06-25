@@ -58,8 +58,6 @@ Since all shotguns share ammo types, the gun path is going to be the same for al
 	reload_sound = 'sound/weapons/shotgun_shell_insert.ogg'
 	accuracy = 10
 	slot_flags = SLOT_BACK
-	reload_type = HANDFUL //All shotguns reload via handfuls.
-	handle_casing = HOLD_CASINGS
 	autoejector = 0 // It doesn't do this.
 	var/casing_types[] = list()// Our list of what to fire and when, refers to the ammo datum paths.
 
@@ -135,7 +133,6 @@ Since all shotguns share ammo types, the gun path is going to be the same for al
 	mag_type = "/obj/item/ammo_magazine/shotgun/buckshot"
 	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/double"
 	fire_sound = 'sound/weapons/shotgun_heavy.ogg'
-	handle_casing = HOLD_CASINGS
 	fire_delay = 6
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 21
@@ -176,7 +173,6 @@ Since all shotguns share ammo types, the gun path is going to be the same for al
 	icon_wielded = "m37-w"
 	item_state = "m37"
 	fire_sound = 'sound/weapons/shotgun.ogg'
-	handle_casing = CYCLE_CASINGS
 	fire_delay = 26
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 18

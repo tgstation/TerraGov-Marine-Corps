@@ -10,7 +10,7 @@
 	slot_flags = SLOT_BELT
 	w_class = 3
 	fire_sound = 'sound/weapons/servicepistol.ogg'
-	handle_casing = EJECT_CASINGS
+	eject_casings = 1
 
 	New()
 		..()
@@ -179,7 +179,7 @@
 	fire_sound = 'sound/weapons/44mag.ogg'
 	mag_type = "/obj/item/ammo_magazine/pistol/m1911"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
-	handle_casing = CLEAR_CASINGS
+	eject_casings = 0
 	fire_delay = 2
 	force = 1
 	recoil = 0

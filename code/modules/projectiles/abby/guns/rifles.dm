@@ -204,7 +204,7 @@
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
 	fire_sound = 'sound/weapons/heavyrifle.ogg'
-	handle_casing = EJECT_CASINGS
+	eject_casings = 1
 	fire_delay = 6
 	recoil = 0
 	muzzle_pixel_x = 32
@@ -246,6 +246,7 @@
 	desc = "A marksman variant of the MAR-40 rifle, with a new stock, barrel, and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
 	icon_state = "VSS"
 	icon_empty = "VSS_empty"
+	can_pointblank = 0
 	origin_tech = "combat=5;materials=3;syndicate=5"
 	icon_wielded = "SVD-w"
 	item_state = "mar40"

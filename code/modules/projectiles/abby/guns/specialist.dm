@@ -128,7 +128,6 @@
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	can_pointblank = 0 //Cannot pointblank, too big.
 	mag_type_internal = "/obj/item/ammo_magazine/smartgun_integrated"
-	reload_type = INTEGRATED
 	w_class = 5.0
 	force = 20.0
 	twohanded = 1
@@ -149,19 +148,22 @@
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety on.
 
+	examine()
+		..()
+		usr << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
+
 	proc/toggle_restriction(var/mob/user as mob) //Works like reloading the gun. We don't actually change the ammo though.
-		playsound(src.loc,reload_sound, 50, 1)
-		restriction_toggled = !restriction_toggled
+		user << "\icon[src] You [restriction_toggled ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "not harm allies"]."
+		playsound(src.loc,'sound/machines/click.ogg', 50, 1)
 		if(restriction_toggled)
-			user << "\icon[src] You <B>enable</b> the [src]'s fire restriction. You will not harm allies."
-			ammo.damage = 28
-			ammo.skips_marines = 1
-			ammo.armor_pen = 5
-		else
-			user << "\icon[src] You <B>disable</b> the [src]'s fire restriction. You will harm anyone in your way."
 			ammo.damage = 33
 			ammo.skips_marines = 0
 			ammo.armor_pen = 10
+		else
+			ammo.damage = 28
+			ammo.skips_marines = 1
+			ammo.armor_pen = 5
+		restriction_toggled = !restriction_toggled
 		return
 
 	unique_action(var/mob/living/carbon/human/user as mob)
@@ -171,7 +173,7 @@
 		if(!ishuman(user)) return
 		var/mob/living/carbon/human/smart_gunner = user
 		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
-			user << "\red *click*"
+			click_empty(user)
 			return
 		return ..()
 

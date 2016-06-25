@@ -204,6 +204,7 @@ They're all essentially identical when it comes to actually getting the job done
 			new_handful.default_ammo = source.default_ammo
 			new_handful.icon_type = source.icon_type
 			new_handful.gun_type = source.gun_type
+			new_handful.handful_type = source.handful_type
 			new_handful.update_icon() // Let's get it updated.
 
 			current_rounds -= S
@@ -220,6 +221,12 @@ They're all essentially identical when it comes to actually getting the job done
 
 			source.update_icon() //Update the other one.
 		return S //Give the number created.
+
+	proc/match_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target)
+		target.caliber = source.caliber
+		target.default_ammo = source.default_ammo
+		target.gun_type = source.gun_type
+		target.handful_type = source.handful_type
 
 //----------------------------------------------------------------//
 //Now for handfuls, which follow their own rules and have some special differences from regular boxes.
@@ -326,15 +333,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 //Making child objects so that locate() and istype() doesn't screw up.
 /obj/item/ammo_casing/bullet
 
-/obj/item/ammo_casing/slug
-	name = "slug casing"
+/obj/item/ammo_casing/shell
+	name = "spent shell"
 	icon_state = "gshell_"
-	number_of_states = 3
-/obj/item/ammo_casing/buckshot
-	name = "buckshot casing"
-	icon_state = "bshell_"
-	number_of_states = 3
-/obj/item/ammo_casing/islug
-	name = "incendiary slug casing"
-	icon_state = "ishell_"
-	number_of_states = 3

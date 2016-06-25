@@ -10,8 +10,8 @@
 	var/hand_reload_sound = 'sound/weapons/revolver_load3.ogg'
 	cocked_sound = 'sound/weapons/revolver_spun.ogg'
 	unload_sound = 'sound/weapons/revolver_unload.ogg'
-	reload_type = HANDFUL & SPEEDLOADER // Either handfuls or a speedloader.
-	handle_casing = HOLD_CASINGS
+	var/spin_sound = 'sound/effects/spin.ogg'
+	var/thud_sound = 'sound/effects/thud.ogg'
 
 	New()
 		..() //Do all that other stuff.
@@ -100,10 +100,11 @@
 		if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
 			if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
 				replace_ammo(user, magazine) //We are going to replace the ammo just in case.
+				current_mag.match_ammo(magazine,current_mag)
 				current_mag.transfer_ammo(magazine,current_mag,user,1) //Handful can get deleted, so we can't check through it.
 				add_to_cylinder(user)
 			//If bullets still remain in the gun, we want to check if the actual ammo matches.
-			else if(current_mag.default_ammo == magazine.default_ammo) //Ammo datums match, let's see if they are compatible.
+			else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
 				if(current_mag.transfer_ammo(magazine,current_mag,user,1)) //If the magazine is deleted, we're still fine.
 					add_to_cylinder(user)
 			else //Not the right kind of ammo.
@@ -113,6 +114,7 @@
 				if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
 					if(current_mag.transfer_ammo(magazine,current_mag,user,magazine.current_rounds))//Make sure we're successful.
 						replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
+						current_mag.match_ammo(magazine,current_mag)
 						replace_cylinder(current_mag.current_rounds)
 						if(user) playsound(src, reload_sound, 80, 1) // Reloading via speedloader.
 				else
@@ -190,54 +192,131 @@
 
 	proc/revolver_trick(var/mob/living/carbon/human/user as mob)
 		var/chance = -5
-		if(user.health <6)
-			chance = 0
-		else
-			chance = chance + user.health
+		chance = user.health < 6 ? 0 : user.health - 5
 
-		//add something about pain too, maybe unjuries.
-		//user.health < 6 ? chance = 0 : chance = chance + user.health
+		//Pain is largely ignored, since it deals its own effects on the mob. We're just concerned with health.
+		//And this proc will only deal with humans for now.
 
 		if(prob(chance))
-			switch(rand(1,5))
+			switch(rand(1,8))
 				if(1)
-					user.visible_message("\The [user] deftly flicks and spins \the [src]!")
-					user << "\blue You flick and spin \the [src]!"
+					playsound(user, spin_sound, 50, 1)
+					user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
 					animation_spin(src, "left", 1, 1)
+					spawn(3)
+						playsound(user, thud_sound, 50, 1)
 				if(2)
-					user.visible_message("\The [user] deftly flicks and spins \the [src]!")
-					user << "\blue You flick and spin \the [src]!"
+					playsound(user, spin_sound, 50, 1)
+					user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
 					animation_spin(src, "right", 1, 1)
+					spawn(3)
+						playsound(user, thud_sound, 50, 1)
 				if(3)
-					user.visible_message("\The [user] throws \the [src] in to the air and catches it!")
-					user << "\blue You throw and catch \the [src]. Nice!"
+					var/layer = MOB_LAYER+0.1
+					var/image/trick = image(icon,user,icon_state,layer)
+					animation_flick(trick, 1)
+					invisibility = 100
+					for(var/mob/M in viewers(user))
+						M << trick
+					spawn(5)
+						del(trick)
+						invisibility = 0
+						playsound(user, thud_sound, 50, 1)
+					user.visible_message("\The [user] throws \the [src] in to the air and catches it!", "\blue You throw and catch \the [src]. Nice!")
 				if(4)
-					user.visible_message("\The [user] deftly flicks and spins \the [src]!")
-					user << "\blue You flick and spin \the [src]!"
+					playsound(user, spin_sound, 50, 1)
+					user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
 					animation_spin(src, "right", 1, 1)
-					animation_spin(src, "left", 1, 1)
+					spawn(1)
+						animation_spin(src, "left", 1, 1)
+						playsound(user, spin_sound, 50, 1)
+					spawn(3)
+						playsound(user, thud_sound, 50, 1)
 				if(5)
-					spawn(0)
-						animation_spin(src, "right", 1, 1)
-					user.visible_message("\The [user] deftly flicks \the [src] and tosses it into the air!")
-					user << "\blue You flick and toss \the [src] into the air!"
-					if(user.get_inactive_hand())
-						user.visible_message("\The [user] catches \the [src] with the same hand!")
-						user << "\blue You catch \the [src] as it spins in to your hand!"
+					user.visible_message("\The [user] deftly flicks \the [src] and tosses it into the air!","\blue You flick and toss \the [src] into the air!")
+					var/layer = MOB_LAYER+0.1
+					var/image/trick = image(icon,user,icon_state,layer)
+					animation_flick(trick, 1)
+					invisibility = 100
+					animation_spin(src, "right", 1, 1)
+					for(var/mob/M in viewers(user))
+						M << trick
+					spawn(5)
+						del(trick)
+						invisibility = 0
+						playsound(user, thud_sound, 50, 1)
+						if(user.get_inactive_hand())
+							user.visible_message("\The [user] catches \the [src] with the same hand!","\blue You catch \the [src] as it spins in to your hand!")
+						else
+							user.visible_message("\The [user] catches \the [src] with his other hand!","\blue You snatch \the [src] with your other hand! Awesome!")
+							user.drop_from_inventory(src)
+							user.put_in_inactive_hand(src)
+							user.swap_hand()
+							user.update_inv_l_hand(0)
+							user.update_inv_r_hand()
+				if(6)
+					if(istype(user.get_inactive_hand(),/obj/item/weapon/gun/revolver) )
+						var/obj/item/weapon/gun/revolver/double = user.get_inactive_hand()
+						playsound(user, spin_sound, 50, 1)
+						user.visible_message("\The [user] deftly flicks and spins \the [src] and \the [double]!","\blue You flick and spin \the [src] and \the [double]!")
+						animation_spin(src, "left", 1, 1)
+						animation_spin(double, "left", 1, 1)
+						spawn(3)
+							playsound(user, thud_sound, 50, 1)
 					else
-						user.visible_message("\The [user] catches \the [src] with his other hand!")
-						user << "\blue You snatch \the [src] with your other hand! Awesome!"
-						user.put_in_inactive_hand(src)
-						user.update_inv_l_hand(0)
-						user.update_inv_r_hand()
-			//	if(6)
-			//	if(7)
-			//	if(8)
+						playsound(user, spin_sound, 50, 1)
+						user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
+						animation_spin(src, "left", 1, 1)
+						spawn(3)
+							playsound(user, thud_sound, 50, 1)
+				if(7)
+					if(istype(user.get_inactive_hand(),/obj/item/weapon/gun/revolver) )
+						var/obj/item/weapon/gun/revolver/double = user.get_inactive_hand()
+						playsound(user, spin_sound, 50, 1)
+						user.visible_message("\The [user] deftly flicks and spins \the [src] and \the [double]!","\blue You flick and spin \the [src] and \the [double]!")
+						animation_spin(src, "right", 1, 1)
+						animation_spin(double, "right", 1, 1)
+						spawn(3)
+							playsound(user, thud_sound, 50, 1)
+					else
+						playsound(user, spin_sound, 50, 1)
+						user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
+						animation_spin(src, "right", 1, 1)
+						spawn(3)
+							playsound(user, thud_sound, 50, 1)
+				if(8)
+					var/layer = MOB_LAYER+0.1
+					if(istype(user.get_inactive_hand(),/obj/item/weapon/gun/revolver))
+						var/obj/item/weapon/gun/revolver/double = user.get_inactive_hand()
+						var/image/trick = image(double.icon,user,double.icon_state,layer)
+						animation_flick(trick, 1)
+						double.invisibility = 100
+						for(var/mob/M in viewers(user))
+							M << trick
+						spawn(5)
+							del(trick)
+							double.invisibility = 0
+							playsound(user, thud_sound, 50, 1)
+						user.visible_message("\The [user] throws \the [double] in to the air and catches it!", "\blue You throw and catch \the [double]. Nice!")
+					else
+						var/image/trick = image(icon,user,icon_state,layer)
+						animation_flick(trick, 1)
+						invisibility = 100
+						for(var/mob/M in viewers(user))
+							M << trick
+						spawn(5)
+							del(trick)
+							invisibility = 0
+							playsound(user, thud_sound, 50, 1)
+						user.visible_message("\The [user] throws \the [src] in to the air and catches it!", "\blue You throw and catch \the [src]. Nice!")
+
+
 			//	if(9)
 			//	if(10)
 		else
-			user << "You fumble with \the [src] like an idiot... Uncool."
 			if(prob(30))
+				user << "You fumble with \the [src] like an idiot... Uncool."
+			else
 				user.visible_message("<b> \The [user] fumbles with \the [src] like a huge idiot!</b>")
 		return
 
@@ -332,7 +411,7 @@
 	found_on_russians = 1
 
 //-------------------------------------------------------
-//375 REVOLVER
+//357 REVOLVER
 
 /obj/item/ammo_magazine/revolver/small
 	name = "Revolver Speed Loader (.357)"
@@ -370,6 +449,9 @@
 	under_pixel_x = 20
 	under_pixel_y = 15
 	found_on_mercs = 1
+
+	unique_action(var/mob/user as mob)
+		revolver_trick(user)
 
 //-------------------------------------------------------
 //BURST REVOLVER

@@ -846,16 +846,19 @@
 	icon_state = "speargun-3"
 	icon_empty = "speargun-0"
 	item_state = "predspeargun"
+	muzzle_flash = null // TO DO, add a decent one.
 	origin_tech = "combat=7;materials=7"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
-	mouthshoot = 1                         // No suiciding with this weapon, causes runtimes.
+	can_pointblank = 0
+	energy_based = 1
+	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	fire_delay = 5
 	var/fired = 0
-	slot_flags = SLOT_BELT|SLOT_BACK
 	var/spikes = 12
 	var/max_spikes = 12
 	var/last_regen
+	unacidable = 1
 
 	Del()
 		processing_objects.Remove(src)
@@ -872,27 +875,19 @@
 		ammo = new /datum/ammo/yautja_spike()
 		processing_objects.Add(src)
 		last_regen = world.time
+		verbs -= /obj/item/weapon/gun/verb/field_strip //We don't want these to show since they're useless.
+		verbs -= /obj/item/weapon/gun/verb/toggle_burst
+		verbs -= /obj/item/weapon/gun/verb/empty_mag
+		verbs -= /obj/item/weapon/gun/verb/activate_attachment
+		verbs -= /obj/item/weapon/gun/verb/use_unique_action
+
+	AltClick() //No safety on these.
+		return
 
 	examine()
 		..()
-		usr << "It currently has [spikes] / [max_spikes] spikes."
-
-	load_into_chamber()
-		if(spikes <= 0)	return 0
-		if(!isYautja(usr)) return 0
-
-		var/obj/item/projectile/P = new(src) //New bullet!
-
-		in_chamber = null
-		spikes--
-
-		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
-		P.name = P.ammo.name
-		P.icon_state = P.ammo.icon_state //Make it look fancy.
-		P.damage = P.ammo.damage //For reverse lookups.
-		P.damage_type = P.ammo.damage_type
-		in_chamber = P
-		return 1
+		if(isYautja(usr))
+			usr << "It currently has [spikes] / [max_spikes] spikes."
 
 	update_icon()
 		if(spikes <= 0)
@@ -901,6 +896,164 @@
 			icon_state = initial(icon_state)
 		return
 
+	able_to_fire(var/mob/user as mob)
+		if(!isYautja(user))
+			user << "\red You have no idea how this thing works!"
+			return
+
+		return ..()
+
+	load_into_chamber()
+		if(spikes > 0)
+			spikes--
+			in_chamber = create_bullet(ammo)
+			return in_chamber
+		return
+
+	reload_into_chamber(var/mob/user as mob)
+		update_icon()
+		return 1
+
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+		del(projectile_to_fire)
+		if(refund)
+			spikes++
+		return 1
+
+	reload()
+		return
+
+	unload()
+		return
+
+	make_casing()
+		return
+
+/obj/item/weapon/gun/launcher/plasmarifle
+	name = "Yautja Plasma Rifle"
+	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "spike-0"
+	item_state = "spikelauncher"
+	origin_tech = "combat=8;materials=7;bluespace=6"
+	fire_sound = 'sound/weapons/plasma_shot.ogg'
+	can_pointblank = 0
+	energy_based = 1
+	muzzle_flash = null // TO DO, add a decent one.
+	zoomdevicename = "scope"
+	w_class = 5
+	fire_delay = 10
+	var/fired = 0
+	slot_flags = SLOT_BACK
+	var/last_regen
+	var/charge_time = 0
+	accuracy = 50
+	unacidable = 1
+
+	Del()
+		processing_objects.Remove(src)
+		..()
+
+	process()
+		if(charge_time < 100)
+			charge_time++
+			if(charge_time == 99)
+				if(usr) usr << "\blue \The [src] hums as it achieves maximum charge."
+
+	New()
+		..()
+		ammo = new /datum/ammo/energy/yautja/rifle()
+		processing_objects.Add(src)
+		last_regen = world.time
+		verbs -= /obj/item/weapon/gun/verb/field_strip
+		verbs -= /obj/item/weapon/gun/verb/toggle_burst
+		verbs -= /obj/item/weapon/gun/verb/empty_mag
+		verbs -= /obj/item/weapon/gun/verb/activate_attachment
+
+	AltClick()
+		return
+
+	examine()
+		..()
+		if(isYautja(usr))
+			usr << "It currently has [charge_time] / 100 charge."
+
+	update_icon()
+		return
+
+	unique_action()
+		if(!isYautja(usr))
+			usr << "\red You have no idea how this thing works!"
+			return
+		..()
+		zoom()
+		return
+
+	able_to_fire(var/mob/user as mob)
+		if(!isYautja(user))
+			user << "\red You have no idea how this thing works!"
+			return
+
+		return ..()
+
+	load_into_chamber()
+
+		var/obj/item/projectile/P = new(src) //New bullet!
+
+		P.ammo = ammo
+		P.name = P.ammo.name
+
+		if(charge_time < 15)
+			P.icon_state = "ion"
+			P.ammo.shell_speed = 2
+			P.ammo.weaken = 2
+		else
+			P.icon_state = "bluespace"
+			P.ammo.shell_speed = 1
+			P.ammo.weaken = 0
+
+		P.damage = P.ammo.damage + charge_time
+		P.ammo.accuracy = accuracy + charge_time
+		P.damage_type = P.ammo.damage_type
+		P.SetLuminosity(1)
+		in_chamber = P
+		charge_time = round(charge_time / 2)
+		return in_chamber
+
+	reload_into_chamber(var/mob/user as mob)
+		update_icon()
+		return 1
+
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+		del(projectile_to_fire)
+		if(refund)
+			charge_time *= 2
+		return 1
+
+	attack_self(mob/user as mob)
+		if(!isYautja(user))
+			return ..()
+
+		if(charge_time > 10)
+			user.visible_message("\blue You feel a strange surge of energy in the area.","\blue You release the rifle battery's energy.")
+			var/obj/item/clothing/gloves/yautja/Y = user:gloves
+			if(Y && Y.charge < Y.charge_max)
+				Y.charge += charge_time * 2
+				if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
+				charge_time = 0
+				user << "Your bracers absorb some of the released energy."
+		else
+			user << "The weapon's not charged enough with ambient energy."
+		return
+
+	reload()
+		return
+
+	unload()
+		return
+
+	make_casing()
+		return
 
 /obj/item/weapon/melee/yautja_chain
 	name = "Yautja Chainwhip"
@@ -1072,94 +1225,6 @@
 				..() //Do it again! CRIT!
 
 		return
-
-/obj/item/weapon/gun/launcher/plasmarifle
-	name = "Yautja Plasma Rifle"
-	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
-	icon = 'icons/Predator/items.dmi'
-	icon_state = "spike-0"
-	item_state = "spikelauncher"
-	origin_tech = "combat=8;materials=7;bluespace=6"
-	fire_sound = 'sound/weapons/plasma_shot.ogg'
-	zoomdevicename = "scope"
-	w_class = 5
-	fire_delay = 10
-	var/fired = 0
-	slot_flags = SLOT_BACK
-	var/last_regen
-	var/charge_time = 0
-	accuracy = 50
-	unacidable = 1
-
-	verb/scope()
-		set category = "Yautja"
-		set name = "Use Scope"
-		set popup_menu = 1
-
-		zoom()
-
-	Del()
-		processing_objects.Remove(src)
-		..()
-
-	process()
-		if(charge_time < 100)
-			charge_time++
-			if(charge_time == 99)
-				if(usr) usr << "\blue [src] hums as it achieves maximum charge."
-
-	New()
-		..()
-		ammo = new /datum/ammo/energy/yautja/rifle()
-		processing_objects.Add(src)
-		last_regen = world.time
-
-	examine()
-		..()
-		usr << "It currently has [charge_time] / 100 charge."
-
-	load_into_chamber()
-		if(!isYautja(usr)) return 0
-
-		var/obj/item/projectile/P = new(src) //New bullet!
-		in_chamber = null
-
-		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
-		P.name = P.ammo.name
-
-		if(charge_time < 15)
-			P.icon_state = "ion"
-			P.ammo.shell_speed = 2
-			P.ammo.weaken = 2
-		else
-			P.icon_state = "bluespace"
-			P.ammo.shell_speed = 1
-			P.ammo.weaken = 0
-
-		P.damage = P.ammo.damage + charge_time
-		P.ammo.accuracy = accuracy + charge_time
-		P.damage_type = P.ammo.damage_type
-		in_chamber = P
-		charge_time = round(charge_time / 2)
-		P.SetLuminosity(1)
-		return 1
-
-	attack_self(mob/user as mob)
-		if(!isYautja(user))
-			return ..()
-
-		if(charge_time > 10)
-			user.visible_message("\blue You feel a strange surge of energy in the area.","\blue You release the rifle battery's energy.")
-			var/obj/item/clothing/gloves/yautja/Y = user:gloves
-			if(Y && Y.charge < Y.charge_max)
-				Y.charge += charge_time * 2
-				if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
-				charge_time = 0
-				user << "Your bracers absorb some of the released energy."
-		else
-			user << "The weapon's not charged enough with ambient energy."
-		return
-
 
 /obj/item/weapon/grenade/spawnergrenade/hellhound
 	name = "hellhound caller"

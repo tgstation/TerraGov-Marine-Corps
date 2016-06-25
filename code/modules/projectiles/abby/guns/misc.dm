@@ -6,45 +6,59 @@
 	icon_state = "taser"
 	icon_empty = "taser0"
 	item_state = null	//so the human update icon uses the icon_state instead.
+	muzzle_flash = null //TO DO.
+	can_pointblank = 0
+	energy_based = 1
 	fire_sound = 'sound/weapons/Taser.ogg'
-	origin_tech = "combat=2;materials=1"
+	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 40000)
-	var/obj/item/weapon/cell/cell
-	var/charge_cost = 20
+	var/obj/item/weapon/cell/cell //1000 power.
+	var/charge_cost = 100 //10 shots.
 	fire_delay = 10
 	recoil = 0
 
-	emp_act(severity)
-		cell.use(round(cell.maxcharge / severity))
-		update_icon()
-		..()
-
 	New()
 		..()
-		cell = new /obj/item/weapon/cell/high(src) //Initialize our junk.
+		cell = new /obj/item/weapon/cell(src) //Initialize our junk.
 		ammo = new /datum/ammo/energy/taser()
-
-	load_into_chamber()
-		if(!cell || cell.charge - charge_cost < 0)
-			return 0
-
-		if(in_chamber) return 1 //Already set!
-
-		cell.charge -= charge_cost
-		var/obj/item/projectile/P = new(src) //New bullet!
-		P.ammo = src.ammo //Share the ammo type. This does all the heavy lifting.
-		P.name = P.ammo.name
-		P.icon_state = P.ammo.icon_state //Make it look fancy.
-		in_chamber = P
-		P.damage = P.ammo.damage //For reverse lookups.
-		P.damage_type = P.damage_type
-		return 1
 
 	update_icon()
 		if(!cell || cell.charge - charge_cost < 0)
 			icon_state = icon_empty
 		else
 			icon_state = initial(icon_state)
+		return
+
+	emp_act(severity)
+		cell.use(round(cell.maxcharge / severity))
+		update_icon()
+		..()
+
+	load_into_chamber()
+		if(!cell || cell.charge - charge_cost < 0)
+			return
+
+		cell.charge -= charge_cost
+		in_chamber = create_bullet(ammo)
+		return in_chamber
+
+	reload_into_chamber()
+		update_icon()
+		return 1
+
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+		del(projectile_to_fire)
+		if(refund)
+			cell.charge += charge_cost
+		return 1
+
+	reload()
+		return
+
+	unload()
+		return
+
+	make_casing()
 		return
 
 //-------------------------------------------------------
@@ -67,10 +81,11 @@
 	icon_state = "chimp70"
 	item_state = "chimp70"
 	icon_empty = "chimp70_empty"
+	can_pointblank = 0
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	mag_type = "/obj/item/ammo_magazine/pistol/chimp"
 	fire_sound = 'sound/weapons/chimp70.ogg'
-	handle_casing = CLEAR_CASINGS
+	eject_casings = 0
 	fire_delay = 3
 	burst_delay = 2
 	burst_amount = 6
@@ -87,6 +102,7 @@
 	icon_empty = "flaregun"
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/flaregun.ogg'
+	can_pointblank = 0
 	origin_tech = "combat=1;materials=2"
 	default_ammo = ""
 	var/num_flares = 1
@@ -98,47 +114,59 @@
 		..()
 		ammo = new /datum/ammo/flare()
 
-	load_into_chamber()
-		if(num_flares <= 0)
-			return 0
-
-		if(in_chamber) return 1
-
-		var/obj/item/projectile/P = new(src) //New bullet!
-		P.ammo = src.ammo
-		P.name = P.ammo.name
-		P.icon_state = P.ammo.icon_state
-		in_chamber = P
-		P.damage = P.ammo.damage
-		P.damage_type = P.damage_type
-		P.SetLuminosity(4)
-		return 1
-
 	update_icon()
-		if(num_flares <= 0 && icon_empty)
+		if(!num_flares && icon_empty)
 			icon_state = icon_empty
 		else
 			icon_state = initial(icon_state)
 		return
 
+	load_into_chamber()
+		if(num_flares)
+			in_chamber = create_bullet(ammo)
+			in_chamber.SetLuminosity(4)
+			num_flares--
+			return in_chamber
+		return
+
+	reload_into_chamber()
+		update_icon()
+		return 1
+
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+		del(projectile_to_fire)
+		if(refund)
+			num_flares++
+		return 1
+
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I,/obj/item/device/flashlight/flare))
+			var/obj/item/device/flashlight/flare/flare = I
 			if(num_flares >= max_flares)
 				user << "It's already full."
 				return
 
-			if(I:on)
-				I:turn_off()
-				processing_objects -= I
+			if(flare.on)
+				user << "\The [flare] is already active. Can't load it now."
+				return
 
 			num_flares++
-			user.drop_from_inventory(I)
+			user.drop_from_inventory(flare)
 			sleep(-1)
-			del(I)
+			del(flare)
 			user << "\blue You insert the flare."
 			return
 
 		return ..()
+
+	reload()
+		return
+
+	unload()
+		return
+
+	make_casing()
+		return
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
@@ -167,7 +195,7 @@
 	origin_tech = "combat=7;materials=5"
 	mag_type = "/obj/item/ammo_magazine/minigun"
 	fire_sound = 'sound/weapons/minigun.ogg'
-	handle_casing = EJECT_CASINGS
+	eject_casings = 1
 	autoejector = 0 // Harder to reload.
 	twohanded = 1
 	w_class = 5

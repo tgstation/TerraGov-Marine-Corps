@@ -1,7 +1,7 @@
 /obj/item/weapon/gun/smg
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
-	handle_casing = EJECT_CASINGS
+	eject_casings = 1
 	slot_flags = SLOT_BELT
 	force = 8
 	w_class = 4
@@ -46,7 +46,7 @@
 	icon_empty = "smg_empty"
 	item_state = "m39"
 	mag_type = "/obj/item/ammo_magazine/smg/m39"
-	handle_casing = CLEAR_CASINGS
+	eject_casings = 0
 	muzzle_pixel_x = 30
 	muzzle_pixel_y = 20
 	rail_pixel_x = 11

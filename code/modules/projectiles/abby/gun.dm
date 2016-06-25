@@ -1,26 +1,3 @@
-/*
-I took the idea from Baystation projectiles, since handling casings can be really annoying.
-Relates to the handle_casing variable for the ammo boxes. Four ways to handle casings.
-We either keep them in the cylinder, eject them every shot, pump them out,
-or don't worry about them. ~N
-*/
-#define CLEAR_CASINGS	0 //This is actual caseless ammo, doesn't bother making casings. Default for most marine guns.
-#define EJECT_CASINGS	1 //Throw out the casing with every shot, simple.
-#define HOLD_CASINGS	2 //This adds to the casings_to_eject every shot.
-#define CYCLE_CASINGS	3 //Keep only a single casing on record, to eject with the next pump.
-
-/*
-Also inspired by Baystation.
-There are four main ways to reload a gun. The magazine, which is counted as the default,
-the handful of shells/bullets and is a single click for single bullet, and the speedloader
-method that only works if the gun is completely empty (kind of like a mag).
-Integrated feed system have their own thing.
-*/
-#define MAGAZINE 		1	//Regular ammo mags, the default for all guns and the most common method.
-#define SPEEDLOADER 	2	//The gun takes a speedloader. Revolvers do this, but they also take handfuls.
-#define HANDFUL			4	//The gun only accepts handfuls. This is a shotgun and revolver thing.
-#define INTEGRATED		8	//Smartgun, or anything else with an ammo belt feed system.
-
 /obj/item/weapon/gun
 	name = "gun"
 	desc = "Its a gun. It's pretty terrible, though."
@@ -65,8 +42,9 @@ Integrated feed system have their own thing.
 	var/mag_type = null  //The default magazine loaded into a projectile weapon for reverse lookups. Leave this null to do your own thing.
 	var/mag_type_internal = null //If the weapon has an internal magazine, this is the way to do it. This will be used on New() if it exists.
 	var/default_ammo = "/datum/ammo" //For stuff that doesn't use mags. Just fire it.
-	var/reload_type = MAGAZINE //What sort of reload does it use? Defaults to mags.
-	var/handle_casing = CLEAR_CASINGS //What does the casing actually do? Revolvers hold casings, etc. Each gun will behave differently.
+	var/trigger_safety = 0 //Off by default. If it's on, you can't fire.
+	var/energy_based = 0 //Off by default. If the gun doesn't use ammo but recharges somehow, toggle this on.
+	var/eject_casings = 0 //Off by default.
 
 	var/silenced = 0
 	var/recoil = 0
@@ -198,46 +176,24 @@ Integrated feed system have their own thing.
 			overlays += I
 
 	examine()
-		..()
-		if(current_mag && current_mag.current_rounds > 0)
-			if(ammo_counter || ( reload_type == INTEGRATED ) )
-				usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
+		..() //Might need to do a better check in the future.
+		if(!energy_based)
+			if(current_mag && current_mag.current_rounds > 0)
+				if(ammo_counter || istype(src, /obj/item/weapon/gun/smartgun)) //Quick adjustment for smartguns.
+					usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
+				else
+					usr << "It's loaded."
 			else
-				usr << "It's loaded."
-		else
-			usr << "It's unloaded."
+				usr << "It's unloaded."
 
-		if(rail)
-			usr << "It has \icon[rail] [rail.name] mounted on the top."
-		if(muzzle)
-			usr << "It has \icon[muzzle] [muzzle.name] mounted on the front."
-		if(under)
-			usr << "It has \icon[under] [under.name] mounted underneath."
-		if(stock)
-			usr << "It has \icon[stock] [stock.name] for a stock."
-
-/*
-	AltClick(var/mob/user)
-		if(!ishuman(user))
-			return
-
-		if(!user.canmove || user.stat || user.restrained()) //I need to make this a general mob sanity check.
-			user << "Not right now."
-			return
-
-		var/mob/living/carbon/human/M = user
-
-		if(M.get_active_hand() != src && !M.get_inactive_hand() != src)
-			M << "You have to be holding the smartgun!"
-			return //not holding it
-		else
-
-		return
-
-	unique_action(var/mob/living/carbon/human/user as mob)
-		toggle_safety()
-		return
-*/
+			if(rail)
+				usr << "It has \icon[rail] [rail.name] mounted on the top."
+			if(muzzle)
+				usr << "It has \icon[muzzle] [muzzle.name] mounted on the front."
+			if(under)
+				usr << "It has \icon[under] [under.name] mounted underneath."
+			if(stock)
+				usr << "It has \icon[stock] [stock.name] for a stock."
 
 //----------------------------------------------------------
 			//							        \\
@@ -292,58 +248,38 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			user << "You have to hold \the [src] to reload!"
 			return
 
-	//Adding returns so we don't update_icon() when we don't need to. Only update_icon() when something changes.
-	switch(reload_type)
-		if(MAGAZINE)
-			if(!istype(src,text2path(magazine.gun_type)))
-				if(user) user << "That magazine doesn't fit in there!"
-				return
+	if(!istype(src,text2path(magazine.gun_type)))
+		if(user) user << "That magazine doesn't fit in there!"
+		return
 
-			if(!isnull(current_mag) && current_mag.loc == src)
-				if(user) user << "It's still got something loaded."
-				return
+	if(!isnull(current_mag) && current_mag.loc == src)
+		if(user) user << "It's still got something loaded."
+		return
 
+	else
+		if(user)
+			user << "You begin reloading \the [src.name]. Hold still!"
+			if(do_after(user,magazine.reload_delay))
+				user.drop_from_inventory(magazine) //Click!
+				current_mag = magazine
+				magazine.loc = src //Jam that sucker in there.
+				replace_ammo(user,magazine)
+				if(!in_chamber)
+					load_into_chamber()
+					if(cocked_sound)
+						spawn(3)
+							playsound(user, cocked_sound, 100, 1)
+				user << "\blue You load \the [magazine] into \the [src]!"
+				if(reload_sound) playsound(user, reload_sound, 100, 1)
 			else
-				if(user)
-					user << "You begin reloading \the [src.name]. Hold still!"
-					if(do_after(user,magazine.reload_delay))
-						user.drop_from_inventory(magazine) //Click!
-						current_mag = magazine
-						magazine.loc = src //Jam that sucker in there.
-						replace_ammo(user,magazine)
-						if(!in_chamber)
-							load_into_chamber()
-							if(cocked_sound)
-								spawn(3)
-									playsound(user, cocked_sound, 100, 1)
-						user << "\blue You load \the [magazine] into \the [src]!"
-						if(reload_sound) playsound(user, reload_sound, 100, 1)
-					else
-						user << "Your reload was interrupted."
-						return
-				else
-					current_mag = magazine
-					magazine.loc = src
-					replace_ammo(,magazine)
-					if(!in_chamber)
-						load_into_chamber(1)
-
-		if(HANDFUL) //DEBUG
-			if(istype(magazine, /obj/item/ammo_magazine/handful))
-				if( current_mag.current_rounds!=current_mag.max_rounds ) //We actually have some rounds to transfer.
-					burst_firing = 0
-					burst_toggled = 0
-					is_bursting = 0
-					active_attachable = null
-
-					current_mag.transfer_ammo(magazine,current_mag,user,1)
-
-					if(user) playsound(user, reload_sound, 100, 1)
-				else
-					user << "\The [current_mag] is already full."
-
-		if(INTEGRATED) //They have their own snowflake reload, don't take mags.
-			return
+				user << "Your reload was interrupted."
+				return
+		else
+			current_mag = magazine
+			magazine.loc = src
+			replace_ammo(,magazine)
+			if(!in_chamber)
+				load_into_chamber(1)
 
 	update_icon()
 	return 1
@@ -357,39 +293,16 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(user) user << "It's already empty or doesn't need to be unloaded."
 		return
 
-	//Switches are far, far more efficient than if chains.
-	switch(reload_type)
-		if(MAGAZINE)
-			if(user)
-				if(!user.put_in_active_hand(current_mag) && !user.put_in_inactive_hand(current_mag))
-					current_mag.loc = get_turf(src)
-			else
-				current_mag.loc = get_turf(src)
-			playsound(src, unload_sound, 20, 1)
-			if(user) user << "\blue You unload the magazine from \the [src]."
-			make_casing(1) //override for ejecting the mag.
-			current_mag.update_icon()
-			current_mag = null
-
-		if(HANDFUL) //Only shotties will use this. //DEBUG
-			//It will unload all the live ammo into a handful.
-			playsound(src, unload_sound, 20, 1)
-			if(user) user << "\blue You remove the shells from \the [src]."
-			switch(handle_casing)
-				if(HOLD_CASINGS) //For the double shotty.
-					make_casing(1)
-					current_mag.create_handful(current_mag, user)
-
-				if(CYCLE_CASINGS) //For the pump.
-					return //DEBUG TO DO
-
-				if(EJECT_CASINGS) //Everything else.
-					if(current_mag.current_rounds > current_mag.handful_max_rounds) // Do it twice.
-						current_mag.create_handful(current_mag, user)
-					current_mag.create_handful(current_mag, user)
-
-		if(INTEGRATED) //Can't unload these at all, so we just abort. Easy.
-			return
+	if(user)
+		if(!user.put_in_active_hand(current_mag) && !user.put_in_inactive_hand(current_mag))
+			current_mag.loc = get_turf(src)
+	else
+		current_mag.loc = get_turf(src)
+	playsound(src, unload_sound, 20, 1)
+	if(user) user << "\blue You unload the magazine from \the [src]."
+	make_casing(1) //override for ejecting the mag.
+	current_mag.update_icon()
+	current_mag = null
 
 	update_icon()
 	return
@@ -397,18 +310,17 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Since reloading and casings are closely related, placing this here ~N
 /obj/item/weapon/gun/proc/make_casing(var/casing_override) //casing_override is for things like unload() instead of going through Fire().
 	var/sound_to_play = pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
-	//spawn(0) //Parallel processing. //DEBUG
-	switch(handle_casing) //No case for caseless ammo as nothing happens.
-		if(EJECT_CASINGS)
-			if(!casing_override)
-				//This is far, far faster.
-				var/turf/current_turf = get_turf(src)
-				var/obj/item/ammo_casing/bullet/casing = locate() in current_turf
-				if(!casing)
-					casing = new(current_turf) //Don't need to do anything else.
-				else
-					casing.casings += 1
-					casing.update_icon()
+
+	if(eject_casings)
+		//This is far, far faster.
+		var/turf/current_turf = get_turf(src)
+		var/obj/item/ammo_casing/bullet/casing = locate() in current_turf
+		if(!casing)
+			casing = new(current_turf) //Don't need to do anything else.
+		else
+			casing.casings += 1
+			casing.update_icon()
+		playsound(current_turf, sound_to_play, 20, 1)
 	return
 
 //----------------------------------------------------------
@@ -441,7 +353,6 @@ and you're good to go.
 		active_attachable = null
 
 	if(in_chamber && !active_attachable) //If we have a round chambered and no attachable, we're good to go.
-		world << "load_into_chamber() returned 1"// DEBUG
 		return in_chamber //Already set!
 
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
@@ -729,8 +640,12 @@ and you're good to go.
 	if(burst_toggled && burst_firing)
 		return
 
-	if (!user.IsAdvancedToolUser())
+	if(!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
+		return
+
+	if(trigger_safety)
+		user << "\red The safety is on!"
 		return
 
 	if(world.time >= last_fired + fire_delay + extra_delay) //If not, check the last time it was fired.
