@@ -26,9 +26,7 @@
 	body += "<br><br>"
 
 	for(var/text in CLFaxes)
-		body += "<a href='?_src_=holder;CentcommFaxView=\ref[text]'>view message</a>"
-		var/obj/machinery/faxmachine/F = locate(CLFaxes[text])
-		if(F) body += "   <a href='?src=holder;SolGovFaxReply=\"null\";originfax=\ref[F]'>RPLY</a>"
+		body += text
 		body += "<br><br>"
 
 	body += "<br><br></body></html>"
@@ -45,9 +43,7 @@
 	body += "<br><br>"
 
 	for(var/text in USCMFaxes)
-		body += "<a href='?_src_=holder;CentcommFaxView=\ref[text]'>view message</a>"
-		var/obj/machinery/faxmachine/F = locate(USCMFaxes[text])
-		if(F) body += "   <a href='?src=holder;CentCommFaxReply=\"null\";originfax=\ref[F]'>RPLY</a>"
+		body += text
 		body += "<br><br>"
 
 	body += "<br><br></body></html>"
