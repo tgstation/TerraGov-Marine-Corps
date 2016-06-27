@@ -228,8 +228,8 @@ proc/show_skill_window(var/mob/user, var/mob/living/carbon/human/M)
 	user << browse(HTML, "window=show_skills;size=600x800")
 	return
 
-mob/living/carbon/human/verb/show_skills()
-	set category = "IC"
-	set name = "Show Own Skills"
-
-	show_skill_window(src, src)
+// mob/living/carbon/human/verb/show_skills()
+// 	set category = "IC"
+// 	set name = "Show Own Skills"
+//
+// 	show_skill_window(src, src)
