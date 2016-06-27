@@ -41,6 +41,10 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
 	This must return positive to continue the fire cycle.
 
+	ready_in_chamber() //If the load_into_chamber is identical to the base outside of the actual bullet getting loaded,
+	then you can use this in order to save on overrides. This primarily goes for anything that uses attachments like
+	any standard firing cycle (attachables that fire through the firing cycle).
+
 	reload_into_chamber() //The is the back action of the fire cycle that tells the gun to do all the stuff it needs
 	to in order to prepare for the next fire cycle. This will be called if the gun fired successfully, per bullet.
 	This is also where the gun will make a casing. So if your gun doesn't handle casings the regular way, modify it.
@@ -244,7 +248,7 @@ should be alright.
 
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 	if(twohanded && in_hand != src) //It has to be held if it's a two hander.
-		user << "\blue Try holding \the [src] before you attempt to modify it."
+		user << "Try holding \the [src] before you attempt to modify it."
 		return
 
 	//Checks if they can attach the thing in the first place, like with fixed attachments.

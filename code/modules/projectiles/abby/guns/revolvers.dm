@@ -17,6 +17,14 @@
 		..() //Do all that other stuff.
 		replace_cylinder(current_mag.current_rounds)
 
+	examine()
+		..()
+
+		if(current_mag.cylinder_closed)
+			usr << "It's closed."
+		else
+			usr << "It's open with [current_mag.current_rounds] round\s loaded."
+
 	update_icon() //Special snowflake update icon.
 		if(isnull(icon_empty)) return
 		if(current_mag.cylinder_closed)
@@ -159,15 +167,20 @@
 			return
 		return ..()
 
-	load_into_chamber()
-		if(active_attachable)
-			active_attachable = null
-
-		if(current_mag && current_mag.current_rounds > 0)
+	ready_in_chamber()
+		if(current_mag.current_rounds > 0)
 			if( current_mag.cylinder_contents[current_mag.cylinder_position] == "bullet")
 				current_mag.current_rounds-- //Subtract the round from the mag.
 				in_chamber = create_bullet(ammo)
 				return in_chamber
+		return
+
+	load_into_chamber()
+		if(active_attachable)
+			active_attachable = null
+
+		if(ready_in_chamber())
+			return in_chamber
 
 		//If we fail to return to chamber the round, we just move the firing pin some.
 		rotate_cylinder()

@@ -808,9 +808,11 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 		return
 
 	examine()
-		..()
 		if(isYautja(usr))
+			..()
 			usr << "It currently has [spikes] / [max_spikes] spikes."
+		else
+			usr << "Looks like some kind of...mechanical donut."
 
 	update_icon()
 		if(spikes <= 0)
@@ -897,9 +899,11 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 		return
 
 	examine()
-		..()
 		if(isYautja(usr))
+			..()
 			usr << "It currently has [charge_time] / 100 charge."
+		else
+			usr << "This thing looks like an alien rifle of some kind. Strange."
 
 	update_icon()
 		return

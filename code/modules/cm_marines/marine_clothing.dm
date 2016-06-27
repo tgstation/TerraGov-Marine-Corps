@@ -499,7 +499,7 @@
 	w_class = 4
 	storage_slots = 8
 	max_combined_w_class = 9
-	max_w_class = 3
+	max_w_class = 2
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
 		"/obj/item/weapon/combat_knife",
@@ -509,8 +509,7 @@
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine",
-		"/obj/item/weapon/melee/baton"
+		"/obj/item/device/mine"
 		)
 
 /obj/item/weapon/storage/belt/security/MP

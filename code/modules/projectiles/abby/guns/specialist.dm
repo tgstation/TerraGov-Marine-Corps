@@ -150,6 +150,11 @@
 
 	examine()
 		..()
+
+		if(current_mag.current_rounds)
+			usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
+		else
+			usr << "It's dry."
 		usr << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
 
 	proc/toggle_restriction(var/mob/user as mob) //Works like reloading the gun. We don't actually change the ammo though.
@@ -181,11 +186,7 @@
 		if(active_attachable)
 			active_attachable = null
 
-		if(current_mag && current_mag.current_rounds > 0)
-			current_mag.current_rounds-- //Subtract the round from the mag.
-			in_chamber = create_bullet(ammo)
-			return in_chamber
-		return
+		return ready_in_chamber()
 
 	reload_into_chamber(var/mob/user as mob)
 		var/mob/living/carbon/human/smart_gunner = user
@@ -312,6 +313,14 @@
 		puff = new /datum/effect/effect/system/smoke_spread()
 		puff.attach(src)
 
+	examine()
+		..()
+
+		if(current_mag.current_rounds)
+			usr << "It's ready to rocket."
+		else
+			usr << "It's empty."
+
 	able_to_fire(var/mob/user as mob)
 		if(user)
 			var/turf/current_turf = get_turf(user)
@@ -325,11 +334,7 @@
 		if(active_attachable)
 			active_attachable = null
 
-		if(current_mag && current_mag.current_rounds > 0)
-			current_mag.current_rounds-- //Subtract the round from the mag.
-			in_chamber = create_bullet(ammo)
-			return in_chamber
-		return
+		return ready_in_chamber()
 
 	reload_into_chamber(var/mob/user as mob)
 		sleep(1)

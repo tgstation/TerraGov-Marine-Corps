@@ -166,7 +166,7 @@ They're all essentially identical when it comes to getting the job done.
 			usr << "\The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 	attack_hand(mob/user as mob)
-		if(caliber == "12g" || istype(src,/obj/item/ammo_magazine/revolver)) //If it's a box of shotgun shells or a speedloader.
+		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //If it's a box of shotgun shells or a speedloader.
 			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
 			if( in_hand == src ) //Have to be holding it in the hand.
 				if (current_rounds > 0)
@@ -351,9 +351,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 		switch(casings) //This is how we get the actual icon to show. It's a switch, so it's hilariously fast.
 			if(1,2) dir = casings
-			if(3,4,5) dir = casings+1
+			if(3,4,5)
+				dir = casings+1
+				w_class = 2 //Slightly heavier.
 			if(6,7,8) dir = casings+2
-			if(9,10) dir = casings-8
+			if(9,10)
+				dir = casings-8
+				w_class = 3 //Can't put it in your pockets and stuff.
 			if(11,12,13) dir = casings-7
 			if(14,15,16) dir = casings-6
 		return
@@ -364,4 +368,4 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammo_casing/shell
 	name = "spent shell"
 	icon_state = "shell_"
-	number_of_states = 1
+	number_of_states = 5

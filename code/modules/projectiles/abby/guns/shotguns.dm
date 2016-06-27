@@ -65,7 +65,6 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun
 	origin_tech = "combat=4;materials=3"
 	w_class = 4
-	mag_type = "/obj/item/ammo_magazine/shotgun"
 	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal"
 	recoil = 2
 	force = 14.0
@@ -87,6 +86,17 @@ can cause issues with ammo types getting mixed up during the burst.
 		replace_tube(current_mag.current_rounds) //Populate the chamber.
 		ammo_buffer1 = new /datum/ammo/bullet/shotgun() //Load the buffer. Shotguns will always have a buffer.
 
+	update_icon()
+		if(isnull(icon_empty)) return
+		if(!in_chamber) //If it doesn't have something chambered, it's empty.
+			icon_state = icon_empty
+		else
+			icon_state = initial(icon_state)
+		update_attachables() //This will cut existing overlays
+		if(current_mag && !isnull(current_mag.bonus_overlay))
+			var/image/I = new(current_mag.icon,current_mag.bonus_overlay) //Mag adds an overlay
+			overlays += I
+
 	proc/replace_tube(var/number_to_replace)
 		current_mag.tube_contents = list()
 		current_mag.tube_contents.len = current_mag.max_rounds
@@ -100,13 +110,15 @@ can cause issues with ammo types getting mixed up during the burst.
 		return
 
 	proc/add_to_tube(var/mob/user as mob,var/selection) //Shells are added forward.
-		if(current_mag.current_rounds == 1) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
-			update_icon()					//is to account for that. So one rounds means it was just loaded.
-			spawn(3)
-				if(user && cocked_sound) playsound(user, cocked_sound, 100, 1)
 
 		current_mag.tube_position++ //We move the position up when loading ammo. New rounds are always fired next, in order loaded.
 		current_mag.tube_contents[current_mag.tube_position] = selection //Just moves up one, unless the mag is full.
+
+		if(current_mag.current_rounds == 1 && !in_chamber) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
+			update_icon()					//It was just loaded.
+			ready_in_chamber()
+			spawn(3)
+				if(user && cocked_sound) playsound(user, cocked_sound, 100, 1)
 
 		if(user) playsound(user, reload_sound, 100, 1)
 		return 1
@@ -170,7 +182,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 		unload_shell(user)
 
-		if(!current_mag.current_rounds)
+		if(!current_mag.current_rounds && !in_chamber)
 			update_icon()
 
 	proc/unload_shell(var/mob/user)
@@ -260,28 +272,17 @@ can cause issues with ammo types getting mixed up during the burst.
 
 		return
 
-	load_into_chamber()
-		if(active_attachable && active_attachable.passive)
-			active_attachable = null
-
-		if(active_attachable)
-			if(active_attachable.ammo_type && active_attachable.current_ammo > 0)
-				active_attachable.current_ammo--
-				return create_bullet(active_attachable.ammo)
-			else
-				if(usr) usr << "\red \The [active_attachable.name] is empty!"
-				active_attachable = null
-				return
-
-		else //We're not using the active attachable, we must use the internal tube instead. Let's do it.
-			if(current_mag && current_mag.current_rounds > 0)
-				var/datum/ammo/buffer = shotgun_alt_fire ? ammo_buffer1 : ammo
-
-				if( select_ammunition(current_mag.tube_contents[current_mag.tube_position],buffer) )
-					in_chamber = create_bullet(buffer)
-					return in_chamber
-
-		return //We can't make a projectile without a mag or active attachable.
+	ready_in_chamber()
+		var/datum/ammo/buffer = shotgun_alt_fire ? ammo_buffer1 : ammo
+		if(current_mag && current_mag.current_rounds > 0)
+			if( select_ammunition(current_mag.tube_contents[current_mag.tube_position],buffer) )
+				in_chamber = create_bullet(buffer)
+				current_mag.current_rounds-- //Subtract the round here, because we don't chamber rounds.
+				current_mag.tube_contents[current_mag.tube_position] = "empty"
+				current_mag.tube_position-- //Moves the position down.
+				shotgun_alt_fire = !shotgun_alt_fire
+				return in_chamber
+		return
 
 	reload_into_chamber(var/mob/user as mob)
 		if(active_attachable)
@@ -291,11 +292,8 @@ can cause issues with ammo types getting mixed up during the burst.
 			in_chamber = null
 
 		if(!active_attachable) //Time to move the tube position.
-			current_mag.current_rounds-- //Subtract the round here, because we don't chamber rounds.
-			current_mag.tube_contents[current_mag.tube_position] = "empty"
-			current_mag.tube_position-- //Moves the position down.
-			shotgun_alt_fire = !shotgun_alt_fire
-			if(!current_mag.current_rounds)
+			ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
+			if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
 				update_icon()
 		else
 			if(!active_attachable.continuous)
@@ -305,6 +303,9 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //-------------------------------------------------------
 
+/obj/item/ammo_magazine/shotgun/internal/merc
+	max_rounds = 5
+
 /obj/item/weapon/gun/shotgun/merc
 	name = "\improper Custom Built Shotgun"
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
@@ -313,6 +314,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "rspshotgun"
 	origin_tech = "combat=4;materials=2"
 	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
+	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/merc"
 	fire_delay = 10
 	muzzle_pixel_x = 31
 	muzzle_pixel_y = 19
@@ -326,7 +328,20 @@ can cause issues with ammo types getting mixed up during the burst.
 	found_on_mercs = 1
 	twohanded = 0
 
+	New()
+		..()
+		load_into_chamber()
+
+	examine()
+		..()
+
+		if(in_chamber)
+			usr << "It has a chambered round."
+
 //-------------------------------------------------------
+
+/obj/item/ammo_magazine/shotgun/internal/combat
+	max_rounds = 6
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 Tactical Shotgun"
@@ -337,6 +352,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_wielded = "cshotgun-w"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
+	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/combat"
 	fire_delay = 12
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 19
@@ -352,6 +368,13 @@ can cause issues with ammo types getting mixed up during the burst.
 		G.icon_state = "" //Gun already has a better one
 		G.Attach(src)
 		update_attachables()
+		load_into_chamber()
+
+	examine()
+		..()
+
+		if(in_chamber)
+			usr << "It has a chambered round."
 
 //-------------------------------------------------------
 
@@ -381,6 +404,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	found_on_mercs = 1
 
 
+	examine()
+		..()
+
+		if(current_mag.tube_closed)
+			usr << "It's closed."
+		else
+			usr << "It's open with [current_mag.current_rounds] shell\s loaded."
+
 	//Turns out it has some attachments.
 	update_icon()
 		if(isnull(icon_empty)) return
@@ -393,6 +424,13 @@ can cause issues with ammo types getting mixed up during the burst.
 	check_tube_position()
 		if(current_mag.tube_closed)
 			return
+		return 1
+
+	add_to_tube(var/mob/user as mob,var/selection) //Load it on the go, nothing chambered.
+		current_mag.tube_position++
+		current_mag.tube_contents[current_mag.tube_position] = selection
+
+		if(user) playsound(user, reload_sound, 100, 1)
 		return 1
 
 	able_to_fire(var/mob/user as mob)
@@ -414,7 +452,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	load_into_chamber()
 		//Trimming down the unnecessary stuff.
-
+		//This doesn't chamber, creates a bullet on the go.
 		if(active_attachable && active_attachable.passive)
 			active_attachable = null
 
@@ -423,15 +461,21 @@ can cause issues with ammo types getting mixed up during the burst.
 
 			if( select_ammunition(current_mag.tube_contents[current_mag.tube_position],buffer) )
 				in_chamber = create_bullet(buffer)
+				current_mag.current_rounds--
 				return in_chamber
 
 		return //We can't make a projectile without a mag or active attachable.
+
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+		del(projectile_to_fire)
+		if(refund)
+			current_mag.current_rounds++
+		return 1
 
 	reload_into_chamber(var/mob/user as mob)
 		make_casing(type_of_casings, eject_casings)
 		in_chamber = null
 
-		current_mag.current_rounds--
 		current_mag.tube_contents[current_mag.tube_position] = "empty"
 		current_mag.tube_position--
 		shotgun_alt_fire = !shotgun_alt_fire
@@ -462,25 +506,26 @@ can cause issues with ammo types getting mixed up during the burst.
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/ammo_magazine/shotgun/internal/pump
+	max_rounds = 7
 
 /obj/item/weapon/gun/shotgun/pump
 	name = "\improper M37A2 Pump Shotgun"
 	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Alt click or use the weapon tab to pump it."
 	icon_state = "m37"
-	icon_empty = "m37_empty"
+	icon_empty = "m37" //Pump shotguns don't really have 'empty' states.
 	icon_wielded = "m37-w"
 	item_state = "m37"
 	mag_type_internal = "/obj/item/ammo_magazine/shotgun/internal/pump"
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	var/pump_sound = 'sound/weapons/shotgunpump.ogg'
-	fire_delay = 26
+	fire_delay = 20
 	muzzle_pixel_x = 33
 	muzzle_pixel_y = 18
 	rail_pixel_x = 10
 	rail_pixel_y = 21
 	under_pixel_x = 20
 	under_pixel_y = 14
-	var/pump_delay = 20 //Higher means longer delay.
+	var/pump_delay = 15 //Higher means longer delay.
 	var/recent_pump = 0
 
 	New()
@@ -490,32 +535,41 @@ can cause issues with ammo types getting mixed up during the burst.
 	unique_action(var/mob/user as mob)
 		pump_shotgun(user)
 
-	//More overrides.
-	load_into_chamber()
-		if(active_attachable && active_attachable.passive)
-			active_attachable = null
+	ready_in_chamber() //If there wasn't a shell loaded through pump, this returns null.
+		return
 
-		if(in_chamber && !active_attachable) //Since pumping actually loads the shell into the chamber, pretty self explanatory.
-			return in_chamber
+	//Same as double barrel. We don't want to do anything else here.
+	add_to_tube(var/mob/user as mob,var/selection) //Load it on the go, nothing chambered.
+		current_mag.tube_position++
+		current_mag.tube_contents[current_mag.tube_position] = selection
 
-		if(active_attachable) //Otherwise we can check for an attachable.
-			if(active_attachable.ammo_type && active_attachable.current_ammo > 0)
-				active_attachable.current_ammo--
-				return create_bullet(active_attachable.ammo)
-			else
-				if(usr) usr << "\red \The [active_attachable.name] is empty!"
-				active_attachable = null
-				return
-		return //If we're not using an active attachable, and there is nothing chambered, time to go back.
+		if(user) playsound(user, reload_sound, 100, 1)
+		return 1
+
+/*
+Moves the ready_in_chamber to it's own proc.
+If the Fire() cycle doesn't find a chambered round with no active attachable, it will return null.
+Which is what we want, since the gun shouldn't fire unless something was chambered.
+*/
+	proc/ready_through_pump()
+		if(current_mag && current_mag.current_rounds > 0)
+			if( select_ammunition(current_mag.tube_contents[current_mag.tube_position],ammo) )
+				in_chamber = create_bullet(ammo)
+				current_mag.current_rounds--
+				current_mag.tube_contents[current_mag.tube_position] = "empty"
+				current_mag.tube_position--
+				return in_chamber
 
 	//More or less chambers the round instead of load_into_chamber(). Also ejects used casings.
 	proc/pump_shotgun(var/mob/user as mob)	//We can't fire bursts with pumps, so no need for a buffer.
 		if(recent_pump) return //Don't spam it.
 
-		if(current_mag && current_mag.current_rounds > 0)
-			if( select_ammunition(current_mag.tube_contents[current_mag.tube_position],ammo) )
-				in_chamber = create_bullet(ammo)
-				return in_chamber
+		if(in_chamber) //We don't want them to pump out loaded rounds.
+			if(user) user << "\red It's already chambered with a round!"
+			return
+
+		if(!in_chamber)
+			ready_through_pump()
 
 		if(current_mag.used_casings)
 			current_mag.used_casings--
@@ -523,8 +577,9 @@ can cause issues with ammo types getting mixed up during the burst.
 
 		playsound(user, pump_sound, 70, 1)
 		spawn(pump_delay) //Spawn delays the next pump, so they're not spamming it.
-			recent_pump = 0
+			recent_pump = !recent_pump
 
+		recent_pump = !recent_pump
 		return //We can't make a projectile without a mag or active attachable.
 
 	reload_into_chamber(var/mob/user as mob)
@@ -534,18 +589,13 @@ can cause issues with ammo types getting mixed up during the burst.
 			current_mag.used_casings++ //The shell was fired successfully. Add it to used.
 
 		if(!active_attachable) //Time to move the tube position.
-			current_mag.current_rounds-- //Subtract the round here, because we don't chamber rounds.
-			current_mag.tube_contents[current_mag.tube_position] = "empty"
-			current_mag.tube_position-- //Moves the position down.
-			shotgun_alt_fire = !shotgun_alt_fire
-			if(!current_mag.current_rounds)
+			if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
 				update_icon()
 		else
 			if(!active_attachable.continuous)
 				active_attachable = null
 
 		return 1
-
 
 //-------------------------------------------------------
 

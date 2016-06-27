@@ -178,15 +178,7 @@
 
 	examine()
 		..() //Might need to do a better check in the future.
-		if(!energy_based)
-			if(current_mag && current_mag.current_rounds > 0)
-				if(ammo_counter || istype(src, /obj/item/weapon/gun/smartgun)) //Quick adjustment for smartguns.
-					usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
-				else
-					usr << "It's loaded."
-			else
-				usr << "It's unloaded."
-
+		if(!energy_based) //If they are not energy based. Energy based weapons don't bother with all of this.
 			if(rail)
 				usr << "It has \icon[rail] [rail.name] mounted on the top."
 			if(muzzle)
@@ -195,6 +187,14 @@
 				usr << "It has \icon[under] [under.name] mounted underneath."
 			if(stock)
 				usr << "It has \icon[stock] [stock.name] for a stock."
+			if(!mag_type_internal) //If they have an internal mag they will have their own examine override.
+				if(current_mag && current_mag.current_rounds > 0)
+					if(ammo_counter)
+						usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
+					else
+						usr << "It's loaded."
+				else
+					usr << "It's unloaded."
 
 //----------------------------------------------------------
 			//							        \\
@@ -266,7 +266,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 				magazine.loc = src //Jam that sucker in there.
 				replace_ammo(user,magazine)
 				if(!in_chamber)
-					load_into_chamber()
+					ready_in_chamber()
 					if(cocked_sound)
 						spawn(3)
 							playsound(user, cocked_sound, 100, 1)
@@ -371,12 +371,16 @@ and you're good to go.
 			return
 
 	else //We're not using the active attachable, we must use the active mag if there is one.
-		if(current_mag && current_mag.current_rounds > 0)
-			current_mag.current_rounds-- //Subtract the round from the mag.
-			in_chamber = create_bullet(ammo)
-			return in_chamber
+		return ready_in_chamber()
 
 	return //We can't make a projectile without a mag or active attachable.
+
+/obj/item/weapon/gun/proc/ready_in_chamber()
+	if(current_mag && current_mag.current_rounds > 0)
+		current_mag.current_rounds-- //Subtract the round from the mag.
+		in_chamber = create_bullet(ammo)
+		return in_chamber
+	return
 
 /obj/item/weapon/gun/proc/create_bullet(var/datum/ammo/chambered)
 	if(!chambered || isnull(chambered))
@@ -408,9 +412,7 @@ and you're good to go.
 
 	if(!active_attachable) //We don't need to check for the mag if an attachment was used to shoot.
 		if(current_mag) //If there is no mag, we can't reload.
-			if(current_mag.current_rounds > 0) //We can't load more rounds into the chamber without a mag.
-				current_mag.current_rounds-- //Subtract the round from the mag.
-				in_chamber = create_bullet(ammo)
+			ready_in_chamber()
 			if(current_mag.current_rounds <= 0 && autoejector) // This is where the magazine is auto-ejected.
 				if(user)
 					playsound(user, empty_sound, 50, 1)

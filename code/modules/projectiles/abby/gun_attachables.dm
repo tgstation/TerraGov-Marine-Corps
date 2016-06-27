@@ -650,7 +650,7 @@ attachments.
 		if(current_ammo > 0)
 			var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
 			playsound(user.loc,shoot_sound, 50, 1)
-			message_admins("[key_name_admin(user)] fired an underslung grenade launcher.")
+			message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
 			log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 			G.active = 1
 			G.icon_state = initial(icon_state) + "_active"
@@ -680,8 +680,8 @@ attachments.
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/shotgun/pump)
-	ammo_capacity = 6
-	current_ammo = 6
+	ammo_capacity = 5
+	current_ammo = 5
 	ammo_type = "/datum/ammo/bullet/shotgun/slug" //buckshot
 	slot = "under"
 	shoot_sound = 'sound/weapons/shotgun.ogg'
