@@ -129,34 +129,66 @@
 	accuracy = -5
 	armor_pen = -5
 
-//Slugs.
+/*
+As explained in the shotgun document, all shotguns use the same
+ammo to actually fire the projectile. However, we do need the
+different ammo types here for easier referencing as well as to
+properly deal with handfuls transferring rounds. Also, attachables
+use the ammo types directly.
+
+/datum/ammo/bullet/shotgun is what all shotguns spawn with.
+*/
+//======================================================
 /datum/ammo/bullet/shotgun
-	name = "shotgun slug"
-	damage = 70
-	damage_bleed = 7 //Loses 7 damage every turf.
-	accurate_range = 4
-	max_range = 12
-	casing_type = "/obj/item/ammo_casing/shotgun"
 	shell_speed = 1
+
+	do_at_max_range(obj/item/projectile/P)
+		if(effect_type == "buckshot")
+			burst(get_turf(P),P)
+			del(P)
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		if(effect_type == "buckshot") burst(get_turf(M),P)
+		knockback(M,P)
+
+/datum/ammo/bullet/shotgun/slug
+	name = "shotgun slug"
+	effect_type = "slug"
+	damage = 65 //High damage.
+	max_range = 12
+	armor_pen = 20 //Good armor pen.
+	shell_speed = 1
+
+	do_at_max_range(obj/item/projectile/P)
+		return
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		knockback(M,P)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
+	effect_type = "islug"
 	damage = 50
-	damage_bleed = 5 //Loses 7 damage every turf.
-	accurate_range = 4
+	//damage_bleed = 5 //Loses 5 damage every turf. No.
+	//accurate_range = 4 //I can just shoot a rifle instead.
 	max_range = 12
-	casing_type = "/obj/item/ammo_casing/shotgun/red"
+	armor_pen = 15
 	incendiary = 1
 	damage_type = BURN
 
+	do_at_max_range(obj/item/projectile/P)
+		return
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		knockback(M,P)
+
 /datum/ammo/bullet/shotgun/buckshot
 	name = "buckshot"
-	damage = 25
-	damage_bleed = 5 //Loses 5 damage every turf.
+	effect_type = "buckshot"
+	damage = 100 //Incredible damage up close, very quick fallout thereafter.
+	damage_bleed = 20 //Loses 20 damage every turf.
 	accurate_range = 4
-	max_range = 4
+	max_range = 4 //Travels only four tiles.
 	icon_state = "buckshot"
-	casing_type = "/obj/item/ammo_casing/shotgun/green"
+	armor_pen = 0
 	bonus_projectiles = 4
 
 	do_at_max_range(obj/item/projectile/P)
@@ -165,6 +197,7 @@
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P)
+		knockback(M,P)
 
 /obj/effect/buckshot_blast
 	name = "buckshot"
@@ -181,6 +214,8 @@
 		spawn(5)
 			del(src)
 			return
+
+//======================================================
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
@@ -229,6 +264,18 @@
 	armor_pen = 5
 	accuracy = 50
 	accurate_range = 6
+
+/datum/ammo/bullet/smartgun/dirty //This thing is extremely nasty.
+	irradiate = 1
+	agony = 1
+	damage = 35 // Slightly more damage than regular smartgun.
+	skips_marines = 0
+	armor_pen = 25 // Ouch.
+	shrapnel_chance = 65 // High chance of shrapnel tearing up your insides.
+	damage_type = BRUTE
+
+/datum/ammo/energy
+	ping = null //no bounce off. We can have one later.
 
 /datum/ammo/energy/taser
 	name = "taser bolt"
@@ -291,6 +338,14 @@
 	accurate_range = 6
 	max_range = 12
 
+/datum/ammo/bullet/minigun
+	name = "minigun bullet"
+	damage = 50
+	armor_pen = 10
+	accuracy = -5
+	accurate_range = 6
+	max_range = 12
+
 /datum/ammo/energy/emitter
 	name = "emitter bolt"
 	icon_state = "emitter"
@@ -301,12 +356,13 @@
 /datum/ammo/xeno/spit
 	name = "acid spit"
 	icon_state = "toxin"
-	damage = 0
+	ping = "ping_x"
+	damage = 1
 	ignores_armor = 0
 	damage_type = TOX
 	accuracy = 10
 	skips_xenos = 1
-	stun = 2
+	stun = 1
 	weaken = 2
 	shell_speed = 1
 
@@ -343,6 +399,7 @@
 /datum/ammo/bullet/pistol/mankey
 	name = "monkey"
 	icon_state = "monkey1"
+	ping = null //no bounce off.
 	incendiary = 1
 	shell_speed = 1
 	ignores_armor = 1
@@ -359,6 +416,7 @@
 /datum/ammo/boiler_gas
 	name = "glob"
 	icon_state = "acid"
+	ping = "ping_x"
 	incendiary = 1
 	shell_speed = 1
 	ignores_armor = 1
@@ -390,6 +448,7 @@
 	damage = 50
 	stun = 1
 	weaken = 1
+	damage_type = TOX
 
 	drop_nade(turf/T)
 		var/obj/item/weapon/grenade/xeno/G = new (T)
@@ -399,6 +458,7 @@
 
 /datum/ammo/flare
 	name = "flare"
+	ping = null //no bounce off.
 	damage = 15
 	damage_type = BURN
 	incendiary = 1
@@ -430,6 +490,7 @@
 
 /datum/ammo/yautja_spike
 	name = "alloy spike"
+	ping = "ping_s"
 	damage = 40
 	icon_state = "MSpearFlight"
 	damage_type = BRUTE
@@ -442,6 +503,7 @@
 /datum/ammo/rocket
 	name = "high explosive rocket"
 	icon_state = "missile"
+	ping = null //no bounce off.
 	accuracy = 10
 	accurate_range = 25
 	max_range = 25

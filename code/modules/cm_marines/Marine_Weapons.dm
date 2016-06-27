@@ -155,39 +155,44 @@
 
 		if(isnull(mygun) || !mygun || !istype(mygun))
 			user << "You must be holding an M56 Smartgun to begin the reload process."
-			return 0
+			return
 		if(rounds_remaining < 1)
 			user << "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!"
-			return 0
+			return
 		if(!pcell)
 			user << "Your powerpack doesn't have a battery! Slap one in there!"
-			return 0
-		if(reloading) return 0
+			return
+
+		mygun.shells_fired_now = 0 //If you attempt a reload, the shells reset. Also prevents double reload if you fire off another 20 bullets while it's loading.
+
+		if(reloading)
+			return
 		if(pcell.charge <= 50)
-			user << "Your powerpack's battery is too drained! Get a new one!"
-			return 0
+			user << "Your powerpack's battery is too drained! Get a new battery and install it!"
+			return
 
 		reloading = 1
 		user.visible_message("[user.name] begin feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
 		if(do_after(user,50))
 			pcell.charge -= 50
-			var/existing_rounds = 0
-			if(!mygun.current_mag)
+			if(!mygun.current_mag) //This shouldn't happen, since the mag can't be ejected. Good safety, I guess.
 				var/obj/item/ammo_magazine/smartgun_integrated/A = new(mygun)
 				mygun.current_mag = A
-			else
-				existing_rounds = mygun.current_mag.current_rounds
 
-			user << "You finish loading [mygun.current_mag.max_rounds - existing_rounds] shells into the M56 Smartgun. Ready to rumble!"
-			reloading = 0
+			var/rounds_to_reload = min(rounds_remaining, (mygun.current_mag.max_rounds - mygun.current_mag.current_rounds)) //Get the smaller value.
+
+			mygun.current_mag.current_rounds += rounds_to_reload
+			rounds_remaining -= rounds_to_reload
+
+			user << "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!"
 			playsound(user, 'sound/weapons/unload.ogg', 50, 1)
-			mygun.current_mag.current_rounds = mygun.current_mag.max_rounds //Refill that shit.
-			rounds_remaining -= (mygun.current_mag.max_rounds - existing_rounds)
+
+			reloading = 0
 			return 1
 		else
 			user << "Your reloading was interrupted!"
 			reloading = 0
-			return 0
+			return
 		return 1
 
 	attackby(var/obj/item/A as obj, mob/user as mob)
@@ -208,7 +213,7 @@
 
 		if (get_dist(usr, src) <= 1)
 			if(pcell)
-				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 200."
+				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 250."
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "M42 Scout Sight"
@@ -238,7 +243,7 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/sniper(src)
+			new /obj/item/weapon/gun/rifle/sniper(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)

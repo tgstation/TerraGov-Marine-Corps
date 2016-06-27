@@ -217,6 +217,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
+
 /obj/item/weapon/butterfly/katana
 	name = "katana"
 	desc = "A ancient weapon from Japan."

@@ -221,18 +221,9 @@
 					anchored = 0
 		return
 
-//Vending exploit. - Not exploit, being turned into feature. - Apophis
-//Deletes the old object and creates a new one in the vendor,
-//thus fixing broken helmets and replensishing autoinjectors in seconds.
+	else if(panel_open)
+		stock(W,user)
 
-	else if(src.panel_open)
-
-		for(var/datum/data/vending_product/R in product_records)
-			if(istype(W, R.product_path) && !istype(W,/obj/item/weapon/storage)) //Nice try, specialists/engis
-				stock(R, user)
-				del(W)
-
-	else
 		..()
 
 /obj/machinery/vending/proc/scan_card(var/obj/item/weapon/card/I)
@@ -567,12 +558,22 @@
 
 	src.updateUsrDialog()
 
-/obj/machinery/vending/proc/stock(var/datum/data/vending_product/R, var/mob/user)
-	if(src.panel_open)
-		user << "\blue You stock the [src] with \a [R.product_name]"
-		R.amount++
+/obj/machinery/vending/proc/stock(var/obj/item_to_stock, var/mob/user)
+	var/datum/data/vending_product/R //Let's try with a new datum.
+	 //More accurate comparison between absolute paths.
+	for(R in product_records)
+		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/weapon/storage)) //Nice try, specialists/engis
+			if( istype(item_to_stock, /obj/item/weapon/gun) ) //If it's a gun, we want to unwield it.
+				var/obj/item/weapon/gun/to_unwield = item_to_stock
+				to_unwield.unwield(user) //It will return if it can't be unwielded.
 
-	src.updateUsrDialog()
+			del(item_to_stock)
+			user.update_inv_l_hand(0) //Update those hands.
+			user.update_inv_r_hand()
+			user << "\blue You stock the [src] with \a [R.product_name]"
+			R.amount++
+			updateUsrDialog()
+			return //We found our item, no reason to go on.
 
 /obj/machinery/vending/process()
 	if(stat & (BROKEN|NOPOWER))

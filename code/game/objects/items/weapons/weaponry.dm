@@ -121,7 +121,7 @@
 
 /obj/item/weapon/katana
 	name = "katana"
-	desc = "Woefully underpowered in D20"
+	desc = "A finely made Japanese sword, expertly crafted by a dedicated weaponsmith. It has some foreign letters carved into the hilt."
 	icon_state = "katana"
 	item_state = "katana"
 	flags = FPRINT | TABLEPASS | CONDUCT
@@ -139,6 +139,20 @@
 
 /obj/item/weapon/katana/IsShield()
 		return 1
+
+//To do: replace the toys.
+/obj/item/weapon/katana/replica
+	name = "replica katana"
+	desc = "A cheap knock-off commonly found in regular knife stores. Can still do some damage."
+	icon_state = "katana"
+	item_state = "katana"
+	flags = FPRINT | TABLEPASS | CONDUCT
+	slot_flags = SLOT_BELT | SLOT_BACK
+	force = 27
+	throwforce = 7
+
+	IsShield()
+		return
 
 /obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)

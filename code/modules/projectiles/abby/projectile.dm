@@ -1,3 +1,4 @@
+//We need to check for if(ammo) when running anything related to it. This is the number one reason these procs runtime.
 
 //The actual bullet objects.
 /obj/item/projectile
@@ -10,6 +11,7 @@
 	flags = FPRINT | TABLEPASS
 	pass_flags = PASSTABLE | PASSGRILLE
 	mouse_opacity = 0
+	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
 
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
@@ -67,7 +69,7 @@
 		return
 
 	proc/get_accuracy()
-		var/acc = 85 //Base accuracy.
+		var/acc = 85 //Base accuracy. Can be taken from the marine/whoever fires the bullet in the future.
 		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
 			return acc
 
@@ -105,12 +107,13 @@
 				else
 					hit_chance -= 10
 
-			if(ammo.skips_marines && ishuman(target))
+			//We want to check for ammo here in case there isn't any. Otherwise it can and will runtime.
+			if(ammo && ammo.skips_marines && ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(H.get_marine_id())
 					return -1 //Pass straight through.
 
-			if(ammo.skips_xenos && isXeno(target)) return -1 //Mostly some spits.
+			if(ammo && ammo.skips_xenos && isXeno(target)) return -1 //Mostly some spits.
 
 			if(istype(target,/mob/living/carbon/human) && istype(shooter,/mob/living/carbon/human))
 				if(target:faction == shooter:faction || target:m_intent == "walk") //Humans can aim around their buddies to an extent.
@@ -172,6 +175,7 @@
 		var/turf/next_turf
 		in_flight = 1
 		var/this_iteration = 0
+		invisibility = 0 // Let's make it visible again.
 		spawn()
 			for(next_turf in path)
 				if(!src || !loc)
@@ -180,9 +184,11 @@
 				if(!in_flight) return
 
 				if(distance_travelled >= range)
-					ammo.do_at_max_range(src)
-					in_flight = 0
-					if(src) del(src)
+					if(ammo) //Fixes a runtime for null ammo, when fired from attachments.
+						ammo.do_at_max_range(src)
+					if(src)
+						in_flight = 0
+						del(src)
 					return
 
 				if(scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
@@ -192,6 +198,7 @@
 					return
 
 				src.loc = next_turf
+				//invisibility = 0 // Bullet is now travelling and is visible.
 				each_turf()
 
 				dist_since_sleep++
@@ -289,11 +296,11 @@
 		return 0 //Found nothing.
 
 
-
+//This is where the bullet bounces off.
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
-	if(!P || isnull(P)) return
+	if(!P || isnull(P) || !P.ammo || !P.ammo.ping) return
 
-	var/image/ping = image('icons/obj/projectiles.dmi',src,"ping",10) //Layer 10, above most things but not the HUD.
+	var/image/ping = image('icons/obj/projectiles.dmi',src,P.ammo.ping,10) //Layer 10, above most things but not the HUD.
 	var/angle = round(rand(1,359))
 	ping.pixel_x += rand(-6,6)
 	ping.pixel_y += rand(-6,6)
@@ -553,6 +560,7 @@
 	return 1
 
 //Hitting an object. These are too numerous so they're staying in their files.
+//Why are there special cases listed here? Oh well, whatever. ~N
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P,get_turf(src),src.layer) && density)
 		src.bullet_ping(P)
@@ -562,7 +570,7 @@
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
 	src.bullet_ping(P)
-	health -= round(P.damage/10)
+	health -= round(P.damage/2)
 	if (health < 0)
 		visible_message("<span class='warning'>[src] breaks down!</span>")
 		destroy()
