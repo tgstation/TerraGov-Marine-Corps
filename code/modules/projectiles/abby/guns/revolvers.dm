@@ -7,9 +7,9 @@
 	autoejector = 0 // Revolvers don't auto eject.
 	fire_sound = 'sound/weapons/44mag.ogg'
 	reload_sound = 'sound/weapons/revolver_cocked.ogg'
-	var/hand_reload_sound = 'sound/weapons/revolver_load3.ogg'
 	cocked_sound = 'sound/weapons/revolver_spun.ogg'
 	unload_sound = 'sound/weapons/revolver_unload.ogg'
+	var/hand_reload_sound = 'sound/weapons/revolver_load3.ogg'
 	var/spin_sound = 'sound/effects/spin.ogg'
 	var/thud_sound = 'sound/effects/thud.ogg'
 
@@ -45,7 +45,7 @@
 				current_mag.cylinder_contents[i] = "empty"
 			else
 				current_mag.cylinder_contents[i] = "bullet"
-		current_mag.cylinder_position = number_to_replace
+		current_mag.cylinder_position = max(1,number_to_replace)
 		return
 
 	proc/empty_cylinder()
@@ -56,24 +56,22 @@
 	//The cylinder is always emptied out before a reload takes place.
 	proc/add_to_cylinder(var/mob/user as mob) //Bullets are added forward.
 		//First we're going to try and replace the current bullet.
-		if(current_mag.cylinder_contents[current_mag.cylinder_position] == "empty")
+		if(!current_mag.current_rounds)
 			current_mag.cylinder_contents[current_mag.cylinder_position] = "bullet"
 
-		//Failing that, we'll try to replace the next bullet in line.
-		else if( (current_mag.cylinder_position + 1) > current_mag.max_rounds  && current_mag.cylinder_contents[1] == "empty")
-			current_mag.cylinder_contents[1] = "bullet"
-			current_mag.cylinder_position = 1
-
-		else if( current_mag.cylinder_contents[current_mag.cylinder_position + 1] == "empty" )
-			current_mag.cylinder_contents[current_mag.cylinder_position + 1] = "bullet"
-			current_mag.cylinder_position++
+		else//Failing that, we'll try to replace the next bullet in line.
+			if( (current_mag.cylinder_position + 1) > current_mag.max_rounds)
+				current_mag.cylinder_contents[1] = "bullet"
+				current_mag.cylinder_position = 1
+			else
+				current_mag.cylinder_contents[current_mag.cylinder_position + 1] = "bullet"
+				current_mag.cylinder_position++
 
 		if(user) playsound(user, hand_reload_sound, 100, 1)
-		return
+		return 1
 
 	reload(var/mob/user = null, var/obj/item/ammo_magazine/magazine)
 		if(burst_toggled && burst_firing)
-			world << "Triggered burst return."
 			return
 
 		if(!magazine || !istype(magazine))
@@ -116,7 +114,7 @@
 						replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
 						current_mag.match_ammo(magazine,current_mag)
 						replace_cylinder(current_mag.current_rounds)
-						if(user) playsound(src, reload_sound, 80, 1) // Reloading via speedloader.
+						if(user) playsound(user, reload_sound, 80, 1) // Reloading via speedloader.
 				else
 					if(user) user << "That [magazine] doesn't fit!"
 			else
@@ -190,6 +188,8 @@
 	unique_action(var/mob/living/carbon/human/user as mob)
 		spin_cylinder(user)
 
+
+	//HEAVILY WIP. Just something to mess around with.
 	proc/revolver_trick(var/mob/living/carbon/human/user as mob)
 		var/chance = -5
 		chance = user.health < 6 ? 0 : user.health - 5

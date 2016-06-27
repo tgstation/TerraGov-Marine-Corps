@@ -36,7 +36,7 @@
 	*/
 	var/datum/ammo/ammo = null //The default ammo datum when a round is chambered. Null means it probably does its own thing.
 	var/datum/ammo/ammo_buffer1 = null
-	var/datum/ammo/ammo_buffer2 = null
+	var/datum/ammo/ammo_buffer2 = null //Not currently used.
 
 	var/obj/item/ammo_magazine/current_mag = null //What magazine is currently loaded?
 	var/mag_type = null  //The default magazine loaded into a projectile weapon for reverse lookups. Leave this null to do your own thing.
@@ -44,6 +44,7 @@
 	var/default_ammo = "/datum/ammo" //For stuff that doesn't use mags. Just fire it.
 	var/trigger_safety = 0 //Off by default. If it's on, you can't fire.
 	var/energy_based = 0 //Off by default. If the gun doesn't use ammo but recharges somehow, toggle this on.
+	var/type_of_casings = "bullet" //bullets by default.
 	var/eject_casings = 0 //Off by default.
 
 	var/silenced = 0
@@ -286,21 +287,20 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
-/obj/item/weapon/gun/proc/unload(var/mob/user as mob, var/reload_override = 0) //Override for reloading mags after shooting.
+/obj/item/weapon/gun/proc/unload(var/mob/user as mob, var/reload_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst.
 	if(burst_toggled && burst_firing && !reload_override) return
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
 		if(user) user << "It's already empty or doesn't need to be unloaded."
 		return
 
-	if(user)
-		if(!user.put_in_active_hand(current_mag) && !user.put_in_inactive_hand(current_mag))
-			current_mag.loc = get_turf(src)
+	if(current_mag.current_rounds <= 0 || !user) //If it's empty or there's no user,
+		current_mag.loc = get_turf(src) //Drop it on the ground.
 	else
-		current_mag.loc = get_turf(src)
+		user.put_in_hands(current_mag)
+
 	playsound(src, unload_sound, 20, 1)
 	if(user) user << "\blue You unload the magazine from \the [src]."
-	make_casing(1) //override for ejecting the mag.
 	current_mag.update_icon()
 	current_mag = null
 
@@ -308,15 +308,20 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	return
 
 //Since reloading and casings are closely related, placing this here ~N
-/obj/item/weapon/gun/proc/make_casing(var/casing_override) //casing_override is for things like unload() instead of going through Fire().
-	var/sound_to_play = pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
-
-	if(eject_casings)
-		//This is far, far faster.
+/obj/item/weapon/gun/proc/make_casing(var/casing_type = "bullet",var/handle_casings = 0) //Bullets are the default, handle casings is set to discard them.
+	if(handle_casings)
+		var/sound_to_play = pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
+		if(casing_type == "shell")
+			sound_to_play = 'sound/weapons/shotgun_shell.ogg'
 		var/turf/current_turf = get_turf(src)
-		var/obj/item/ammo_casing/bullet/casing = locate() in current_turf
+		var/C = text2path("/obj/item/ammo_casing/[casing_type]")
+		var/obj/item/ammo_casing/casing = locate(C) in current_turf
 		if(!casing)
-			casing = new(current_turf) //Don't need to do anything else.
+			switch(casing_type)
+				if("bullet")
+					new /obj/item/ammo_casing/bullet(current_turf)
+				if("shell")
+					new /obj/item/ammo_casing/shell(current_turf)
 		else
 			casing.casings += 1
 			casing.update_icon()
@@ -396,9 +401,9 @@ and you're good to go.
 	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
 	*/
 	if(active_attachable)
-		make_casing() // Attachables can drop their own casings.
+		make_casing(active_attachable.type_of_casings, active_attachable.eject_casings) // Attachables can drop their own casings.
 	else
-		make_casing() // Drop a casing if needed.
+		make_casing(type_of_casings, eject_casings) // Drop a casing if needed.
 		in_chamber = null //If we didn't fire from attachable, let's set this so the next pass doesn't think it still exists.
 
 	if(!active_attachable) //We don't need to check for the mag if an attachment was used to shoot.
@@ -533,8 +538,6 @@ and you're good to go.
 		if(get_turf(target) != get_turf(user))
 			if(recoil > 0 && ishuman(user))
 				shake_camera(user, recoil + 1, recoil)
-			spawn(1) ////This is to make the projectile not appear underneath the character when fired.
-				projectile_to_fire.invisibility = 0 // If it still exists, let's make it visible again.
 
 			//This is where the projectile leave the barrel and deals with projectile code only.
 			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -577,10 +580,13 @@ and you're good to go.
 					var/obj/item/projectile/projectile_to_fire = load_into_chamber()
 					if(projectile_to_fire) //We actually have a projectile, let's move on.
 						user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
-						if(silenced)
-							playsound(user, fire_sound, 10, 1)
+						if(active_attachable && active_attachable.shoot_sound)
+							playsound(user, active_attachable.shoot_sound, 50, 1)
 						else
-							playsound(user, fire_sound, 50, 1)
+							if(silenced)
+								playsound(user, fire_sound, 10, 1)
+							else
+								playsound(user, fire_sound, 50, 1)
 
 						shake_camera(user, recoil + 2, recoil + 1) //Give it some shake.
 

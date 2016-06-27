@@ -129,36 +129,65 @@
 	accuracy = -5
 	armor_pen = -5
 
-//Slugs.
+/*
+As explained in the shotgun document, all shotguns use the same
+ammo to actually fire the projectile. However, we do need the
+different ammo types here for easier referencing as well as to
+properly deal with handfuls transferring rounds. Also, attachables
+use the ammo types directly.
+
+/datum/ammo/bullet/shotgun is what all shotguns spawn with.
+*/
+//======================================================
 /datum/ammo/bullet/shotgun
+	shell_speed = 1
+
+	do_at_max_range(obj/item/projectile/P)
+		if(effect_type == "buckshot")
+			burst(get_turf(P),P)
+			del(P)
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		if(effect_type == "buckshot") burst(get_turf(M),P)
+		knockback(M,P)
+
+/datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
+	effect_type = "slug"
 	damage = 65 //High damage.
-	//damage_bleed = 7 //Loses 7 damage every turf. No.
-	//accurate_range = 4 //Slugs are like bullets, they travel the same.
 	max_range = 12
 	armor_pen = 20 //Good armor pen.
-	casing_type = "/obj/item/ammo_casing/shotgun"
 	shell_speed = 1
+
+	do_at_max_range(obj/item/projectile/P)
+		return
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		knockback(M,P)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
+	effect_type = "islug"
 	damage = 50
 	//damage_bleed = 5 //Loses 5 damage every turf. No.
-	//accurate_range = 4
+	//accurate_range = 4 //I can just shoot a rifle instead.
 	max_range = 12
-	casing_type = "/obj/item/ammo_casing/shotgun/red"
-	armor_pen = 10
+	armor_pen = 15
 	incendiary = 1
 	damage_type = BURN
 
+	do_at_max_range(obj/item/projectile/P)
+		return
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		knockback(M,P)
+
 /datum/ammo/bullet/shotgun/buckshot
 	name = "buckshot"
+	effect_type = "buckshot"
 	damage = 100 //Incredible damage up close, very quick fallout thereafter.
 	damage_bleed = 20 //Loses 20 damage every turf.
 	accurate_range = 4
 	max_range = 4 //Travels only four tiles.
 	icon_state = "buckshot"
-	casing_type = "/obj/item/ammo_casing/shotgun/green"
 	armor_pen = 0
 	bonus_projectiles = 4
 
@@ -168,6 +197,7 @@
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P)
+		knockback(M,P)
 
 /obj/effect/buckshot_blast
 	name = "buckshot"
@@ -184,6 +214,8 @@
 		spawn(5)
 			del(src)
 			return
+
+//======================================================
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
@@ -243,7 +275,7 @@
 	damage_type = BRUTE
 
 /datum/ammo/energy
-	ping = null //no bounce off.
+	ping = null //no bounce off. We can have one later.
 
 /datum/ammo/energy/taser
 	name = "taser bolt"

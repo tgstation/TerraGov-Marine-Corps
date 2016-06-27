@@ -62,6 +62,9 @@ attachments.
 	var/continuous = 0 //Shootable attachments normally swap back after 1 shot.
 	var/passive = 1 //Can't actually be an active attachable, but might still be activatible.
 	var/can_be_removed = 1
+	//Same deal as guns here.
+	var/type_of_casings = "bullet" //bullets by default.
+	var/eject_casings = 0 //Off by default.
 
 	New() //Let's make sure if something needs an ammo type, it spawns with one.
 		..()
@@ -627,6 +630,7 @@ attachments.
 	ammo_capacity = 2
 	current_ammo = 2
 	slot = "under"
+	shoot_sound = 'sound/weapons/grenade_shot.ogg'
 	passive = 0 //This tells the gun that this needs to remain "active" until fired.
 	can_activate = 1
 
@@ -645,7 +649,7 @@ attachments.
 	fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 		if(current_ammo > 0)
 			var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
-			playsound(user.loc,'sound/weapons/grenade_shot.ogg', 50, 1)
+			playsound(user.loc,shoot_sound, 50, 1)
 			message_admins("[key_name_admin(user)] fired an underslung grenade launcher.")
 			log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 			G.active = 1
@@ -674,16 +678,19 @@ attachments.
 						/obj/item/weapon/gun/rifle/m41a/original,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/carbine)
+						/obj/item/weapon/gun/rifle/mar40/carbine,
+						/obj/item/weapon/gun/shotgun/pump)
 	ammo_capacity = 6
 	current_ammo = 6
-	ammo_type = "/datum/ammo/bullet/shotgun/buckshot" //buckshot
+	ammo_type = "/datum/ammo/bullet/shotgun/slug" //buckshot
 	slot = "under"
 	shoot_sound = 'sound/weapons/shotgun.ogg'
 	passive = 0
 	continuous = 1
 	projectile_based = 1 //Uses the projectile system.
 	can_activate = 1
+	type_of_casings = "shell"
+	eject_casings = 1
 
 	examine()
 		..()

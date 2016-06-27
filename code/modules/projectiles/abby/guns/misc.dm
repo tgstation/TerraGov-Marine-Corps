@@ -12,7 +12,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 40000)
-	var/obj/item/weapon/cell/cell //1000 power.
+	var/obj/item/weapon/cell/cell //1000 power, so you don't need to wait an hour to charge.
 	var/charge_cost = 100 //10 shots.
 	fire_delay = 10
 	recoil = 0
@@ -195,6 +195,7 @@
 	origin_tech = "combat=7;materials=5"
 	mag_type = "/obj/item/ammo_magazine/minigun"
 	fire_sound = 'sound/weapons/minigun.ogg'
+	cocked_sound = 'sound/weapons/gun_cocked.ogg'
 	eject_casings = 1
 	autoejector = 0 // Harder to reload.
 	twohanded = 1
@@ -213,5 +214,9 @@
 	burst_amount = 5
 	accuracy = -20 //It's not very accurate.
 	//Not found on mercs or russians.
+
+	New()
+		..()
+		load_into_chamber()
 
 //-------------------------------------------------------

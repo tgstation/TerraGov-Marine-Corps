@@ -437,8 +437,8 @@
 			var/turf/T = get_turf(victim)
 			if(istype(T))
 				victim.apply_damage(50,BRUTE,"chest")
-				explosion(T, 1, 4, 7, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby.
-				if(src) del(src)
+				explosion(T, 1, 4, 7, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby. //Not enough ~N
+				if(victim) victim.gib() //Adding one more safety.
 
 	verb/activate_suicide()
 		set name = "Final Countdown (!)"
@@ -546,6 +546,28 @@
 		for(var/obj/item/weapon/grenade/spawnergrenade/smartdisc/D in range(10))
 			D.throw_at(usr,10,1,usr)
 
+//Fix for screwy overlays for plasma caster muzzle flash.
+//REMOVE THIS LATER vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	proc/muzzle_flash(var/angle,var/mob/user as mob,var/obj/item/weapon/gun/plasma_caster/caster)
+		if(prob(65)) //Not all the time.
+			var/layer = MOB_LAYER-0.1
+			if(user && user.dir == SOUTH) //Sigh
+				layer = MOB_LAYER+0.1
+
+			var/image/flash = image('icons/obj/projectiles.dmi',user,caster.muzzle_flash,layer)
+
+			var/matrix/rotate = matrix() //Change the flash angle.
+			rotate.Translate(0,5)
+			rotate.Turn(angle)
+			flash.transform = rotate
+
+			for(var/mob/M in viewers(user))
+				M << flash
+
+			spawn(3) //Worst that can happen is the flash not being deleted if the parent is null.
+				del(flash)
+//REMOVE THIS LATER ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 /obj/item/clothing/gloves/yautja/proc/translate()
 	set name = "Translator"
 	set desc = "Emit a message from your bracer to those nearby."
@@ -612,8 +634,12 @@
 	name = "Yautja Plasma Caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
+	muzzle_flash = null // TO DO, add a decent one.
+	can_pointblank = 0
+	energy_based = 1
 	canremove = 0
 	w_class = 5
+	force = 0 //Yeah... Need to remove hitting people with it.
 	fire_delay = 3
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
@@ -623,6 +649,11 @@
 
 	New()
 		ammo = new /datum/ammo/energy/yautja()
+		verbs -= /obj/item/weapon/gun/verb/field_strip
+		verbs -= /obj/item/weapon/gun/verb/toggle_burst
+		verbs -= /obj/item/weapon/gun/verb/empty_mag
+		verbs -= /obj/item/weapon/gun/verb/activate_attachment
+		verbs -= /obj/item/weapon/gun/verb/use_unique_action
 		..()
 
 	Del()
@@ -637,7 +668,7 @@
 				mode = 0
 				charge_cost = 30
 				fire_sound = 'sound/weapons/lasercannonfire.ogg'
-				user << "\red \The [src.name] is now set to fire light plasma bolts."
+				user << "\red \The [src] is now set to fire light plasma bolts."
 				ammo.name = "plasma bolt"
 				ammo.icon_state = "ion"
 				ammo.damage = 5
@@ -649,195 +680,87 @@
 				mode = 1
 				charge_cost = 100
 				fire_sound = 'sound/weapons/emitter2.ogg'
-				user << "\red \The [src.name] is now set to fire medium plasma blasts."
+				user << "\red \The [src] is now set to fire medium plasma blasts."
 				fire_delay = 16
 				ammo.name = "plasma blast"
 				ammo.icon_state = "pulse1"
 				ammo.damage = 25
 				ammo.stun = 0
 				ammo.weaken = 0
-				ammo.shell_speed = 2 //Lil faster
+				ammo.shell_speed = 3 //Lil faster
 			if(1)
 				mode = 2
 				charge_cost = 300
 				fire_delay = 100
 				fire_sound = 'sound/weapons/pulse.ogg'
-				user << "\red \The [src.name] is now set to fire heavy plasma spheres."
+				user << "\red \The [src] is now set to fire heavy plasma spheres."
 				ammo.name = "plasma eradication sphere"
 				ammo.icon_state = "bluespace"
 				ammo.damage = 30
 				ammo.stun = 0
 				ammo.weaken = 0
-				ammo.shell_speed = 1
+				ammo.shell_speed = 4
 		return
 
-	dropped(var/mob/living/carbon/human/mob)
+	dropped(var/mob/living/carbon/human/user)
 		..()
-		mob << "The plasma caster deactivates."
-		playsound(mob,'sound/weapons/plasmacaster_off.ogg', 40, 1)
+		user << "The plasma caster deactivates."
+		playsound(user,'sound/weapons/plasmacaster_off.ogg', 40, 1)
 		del(src)
 		return
 
-	load_into_chamber()
-		if(in_chamber)	return 1
-		if(!source)	return 0
-		if(!ammo)	return 0
-		if(!usr) return 0 //somehow
-		if(!source.drain_power(usr,charge_cost)) return 0
-		in_chamber = new /obj/item/projectile(src)
-		in_chamber.ammo = ammo
-		in_chamber.damage = ammo.damage
-		in_chamber.damage_type = ammo.damage_type
-		in_chamber.icon_state = ammo.icon_state
-		in_chamber.dir = usr.dir
-		return 1
-
-	afterattack(atom/target, mob/user , flag)
-		if(ishuman(user))
-			var/mob/living/carbon/human/M = user
-			if(M.species && M.species == "Yautja")
-				if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves/yautja))
-					var/obj/item/clothing/gloves/yautja/Y = M.gloves
-					var/perc_charge = (Y.charge / Y.charge_max * 100)
-					M.update_power_display(perc_charge)
-		return ..()
-
-//Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
-/obj/item/weapon/storage/backpack/yautja
-	name = "Yautja Hunting Pouch"
-	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
-	icon = 'icons/Predator/items.dmi'
-	icon_state = "beltbag"
-	item_state = "beltbag"
-	slot_flags = SLOT_BELT
-	max_w_class = 3
-	storage_slots = 10
-	max_combined_w_class = 30
-
-/obj/item/clothing/glasses/night/yautja
-	name = "Bio-mask Nightvision"
-	desc = "A vision overlay generated by the Bio-Mask. Used for low-light conditions."
-	icon = 'icons/Predator/items.dmi'
-	icon_state = "visor_nvg"
-	item_state = "securityhud"
-	darkness_view = 5 //Not quite as good as regular NVG.
-	canremove = 0
-
-	New()
-		..()
-		overlay = null  //Stops the green overlay.
-
-/obj/item/clothing/glasses/thermal/yautja
-	name = "Bio-mask Thermal"
-	desc = "A vision overlay generated by the Bio-Mask. Used to sense the heat of prey."
-	icon = 'icons/Predator/items.dmi'
-	icon_state = "visor_thermal"
-	item_state = "securityhud"
-	vision_flags = SEE_MOBS
-	invisa_view = 2
-	canremove = 0
-
-/obj/item/clothing/glasses/meson/yautja
-	name = "Bio-mask X-ray"
-	desc = "A vision overlay generated by the Bio-Mask. Used to see through objects."
-	icon = 'icons/Predator/items.dmi'
-	icon_state = "visor_meson"
-	item_state = "securityhud"
-	vision_flags = SEE_TURFS
-	canremove = 0
-
-/obj/item/weapon/legcuffs/yautja
-	name = "Yautja Mine"
-	throw_speed = 2
-	throw_range = 2
-	icon = 'icons/Predator/items.dmi'
-	icon_state = "yauttrap0"
-	desc = "A bizarre Yautja device used for trapping and killing prey."
-	var/armed = 0
-	breakouttime = 600 // 1 minute
-	layer = 2.8 //Goes under weeds.
-
-	dropped(var/mob/living/carbon/human/mob) //Changes to "camouflaged" icons based on where it was dropped.
-		..()
-		if(armed)
-			if(isturf(mob.loc))
-				if(istype(mob.loc,/turf/unsimulated/floor/gm/dirt))
-					icon_state = "yauttrapdirt"
-				else if (istype(mob.loc,/turf/unsimulated/floor/gm/grass))
-					icon_state = "yauttrapgrass"
-				else
-					icon_state = "yauttrap1"
-
-/obj/item/weapon/legcuffs/yautja/attack_self(mob/user as mob)
-	..()
-	if(ishuman(user) && !user.stat && !user.restrained())
-		armed = !armed
-		icon_state = "yauttrap[armed]"
-		user << "<span class='notice'>\The [src] is now [armed ? "armed" : "disarmed"]</span>"
-
-/obj/item/weapon/legcuffs/yautja/Crossed(AM as mob|obj)
-	if(armed)
-		if(iscarbon(AM))
-			if(isturf(src.loc))
-				var/mob/living/carbon/H = AM
-				if(isYautja(H))
-					H << "You carefully avoid stepping on the trap."
-					return
-				if(H.m_intent == "run")
-					armed = 0
-					icon_state = "yauttrap0"
-					H.legcuffed = src
-					src.loc = H
-					H.update_inv_legcuffed()
-					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
-					H << "\icon[src] \red <B>You step on \the [src]!</B>"
-					H.Weaken(4)
-					if(ishuman(H))
-						H.emote("scream")
-					feedback_add_details("handcuffs","B")
-					for(var/mob/O in viewers(H, null))
-						if(O == H)
-							continue
-						O.show_message("\icon[src] \red <B>[H] steps on \the [src].</B>", 1)
-		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
-			armed = 0
-			var/mob/living/simple_animal/SA = AM
-			SA.health -= 20
-	..()
-
-//Yautja channel. Has to delete stock encryption key so we don't receive sulaco channel.
-/obj/item/device/radio/headset/yautja
-	name = "Yautja vox caster"
-	desc = "A strange Yautja device used for projecting the Yautja's voice to the others in its pack. Similar in function to a standard human radio."
-	icon_state = "cargo_headset"
-	item_state = "headset"
-	frequency = 1214
-	unacidable = 1
-
-	New()
-		..()
-		del(keyslot1)
-		keyslot1 = new /obj/item/device/encryptionkey/yautja
-		syndie = 1
-		recalculateChannels()
-
-	talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
-		if(!isYautja(M)) //Nope.
-			M << "You try to talk into the headset, but just get a horrible shrieking in your ears."
-			return
-
-		for(var/mob/living/carbon/hellhound/H in player_list)
-			if(istype(H) && !H.stat)
-				H << "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'."
-
-		..()
+	AltClick() //No safety on these.
 		return
 
-/obj/item/device/encryptionkey/yautja
-	name = "Yautja Encryption Key"
-	desc = "An encyption key for a radio headset.  Contains cypherkeys."
-	icon_state = "cypherkey"
-	channels = list("Yautja" = 1)
+	able_to_fire(var/mob/user as mob)
+		if(!source)	return
+		if(!isYautja(user))
+			user << "\red You have no idea how this thing works!"
+			return
+
+		return ..()
+
+	load_into_chamber()
+		if(source.drain_power(usr,charge_cost))
+			in_chamber = create_bullet(ammo)
+			return in_chamber
+		return
+
+	reload_into_chamber(var/mob/user/carbon/human/user as mob)
+		return 1
+
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+		del(projectile_to_fire)
+		if(refund)
+			source.charge += charge_cost
+			var/perc = source.charge / source.charge_max * 100
+			var/mob/living/carbon/human/user = usr
+			user.update_power_display(perc)
+		return 1
+
+	reload()
+		return
+
+	unload()
+		return
+
+	make_casing()
+		return
+
+/*
+Sigh. Because these things are auto deleted on drop, you can fire the gun and then have it get deleted.
+Which means that THIS proc never finishes deleting the muzzle flash after spawn(). Since the src is now
+null. Until plasma casters are reworked to be less stupid, this is a temporary fix. ~N
+*/
+//REMOVE THIS LATER vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	muzzle_flash(var/angle,var/mob/user as mob|obj)
+		if(!muzzle_flash || isnull(angle)) return
+
+		if(!istype(user) || !istype(user.loc,/turf)) return
+
+		source.muzzle_flash(angle,user,src)
+
+//REMOVE THIS LATER ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 /obj/item/weapon/gun/launcher/speargun
 	name = "Yautja Speargun"
@@ -1009,7 +932,7 @@
 			P.ammo.weaken = 2
 		else
 			P.icon_state = "bluespace"
-			P.ammo.shell_speed = 1
+			P.ammo.shell_speed = 4
 			P.ammo.weaken = 0
 
 		P.damage = P.ammo.damage + charge_time
@@ -1054,6 +977,143 @@
 
 	make_casing()
 		return
+
+//Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
+/obj/item/weapon/storage/backpack/yautja
+	name = "Yautja Hunting Pouch"
+	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "beltbag"
+	item_state = "beltbag"
+	slot_flags = SLOT_BELT
+	max_w_class = 3
+	storage_slots = 10
+	max_combined_w_class = 30
+
+/obj/item/clothing/glasses/night/yautja
+	name = "Bio-mask Nightvision"
+	desc = "A vision overlay generated by the Bio-Mask. Used for low-light conditions."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "visor_nvg"
+	item_state = "securityhud"
+	darkness_view = 5 //Not quite as good as regular NVG.
+	canremove = 0
+
+	New()
+		..()
+		overlay = null  //Stops the green overlay.
+
+/obj/item/clothing/glasses/thermal/yautja
+	name = "Bio-mask Thermal"
+	desc = "A vision overlay generated by the Bio-Mask. Used to sense the heat of prey."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "visor_thermal"
+	item_state = "securityhud"
+	vision_flags = SEE_MOBS
+	invisa_view = 2
+	canremove = 0
+
+/obj/item/clothing/glasses/meson/yautja
+	name = "Bio-mask X-ray"
+	desc = "A vision overlay generated by the Bio-Mask. Used to see through objects."
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "visor_meson"
+	item_state = "securityhud"
+	vision_flags = SEE_TURFS
+	canremove = 0
+
+/obj/item/weapon/legcuffs/yautja
+	name = "Yautja Mine"
+	throw_speed = 2
+	throw_range = 2
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "yauttrap0"
+	desc = "A bizarre Yautja device used for trapping and killing prey."
+	var/armed = 0
+	breakouttime = 600 // 1 minute
+	layer = 2.8 //Goes under weeds.
+
+	dropped(var/mob/living/carbon/human/mob) //Changes to "camouflaged" icons based on where it was dropped.
+		..()
+		if(armed)
+			if(isturf(mob.loc))
+				if(istype(mob.loc,/turf/unsimulated/floor/gm/dirt))
+					icon_state = "yauttrapdirt"
+				else if (istype(mob.loc,/turf/unsimulated/floor/gm/grass))
+					icon_state = "yauttrapgrass"
+				else
+					icon_state = "yauttrap1"
+
+/obj/item/weapon/legcuffs/yautja/attack_self(mob/user as mob)
+	..()
+	if(ishuman(user) && !user.stat && !user.restrained())
+		armed = !armed
+		icon_state = "yauttrap[armed]"
+		user << "<span class='notice'>\The [src] is now [armed ? "armed" : "disarmed"]</span>"
+
+/obj/item/weapon/legcuffs/yautja/Crossed(AM as mob|obj)
+	if(armed)
+		if(iscarbon(AM))
+			if(isturf(src.loc))
+				var/mob/living/carbon/H = AM
+				if(isYautja(H))
+					H << "You carefully avoid stepping on the trap."
+					return
+				if(H.m_intent == "run")
+					armed = 0
+					icon_state = "yauttrap0"
+					H.legcuffed = src
+					src.loc = H
+					H.update_inv_legcuffed()
+					playsound(H,'sound/weapons/tablehit1.ogg', 50, 1)
+					H << "\icon[src] \red <B>You step on \the [src]!</B>"
+					H.Weaken(4)
+					if(ishuman(H))
+						H.emote("scream")
+					feedback_add_details("handcuffs","B")
+					for(var/mob/O in viewers(H, null))
+						if(O == H)
+							continue
+						O.show_message("\icon[src] \red <B>[H] steps on \the [src].</B>", 1)
+		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
+			armed = 0
+			var/mob/living/simple_animal/SA = AM
+			SA.health -= 20
+	..()
+
+//Yautja channel. Has to delete stock encryption key so we don't receive sulaco channel.
+/obj/item/device/radio/headset/yautja
+	name = "Yautja vox caster"
+	desc = "A strange Yautja device used for projecting the Yautja's voice to the others in its pack. Similar in function to a standard human radio."
+	icon_state = "cargo_headset"
+	item_state = "headset"
+	frequency = 1214
+	unacidable = 1
+
+	New()
+		..()
+		del(keyslot1)
+		keyslot1 = new /obj/item/device/encryptionkey/yautja
+		syndie = 1
+		recalculateChannels()
+
+	talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
+		if(!isYautja(M)) //Nope.
+			M << "You try to talk into the headset, but just get a horrible shrieking in your ears."
+			return
+
+		for(var/mob/living/carbon/hellhound/H in player_list)
+			if(istype(H) && !H.stat)
+				H << "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'."
+
+		..()
+		return
+
+/obj/item/device/encryptionkey/yautja
+	name = "Yautja Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains cypherkeys."
+	icon_state = "cypherkey"
+	channels = list("Yautja" = 1)
 
 /obj/item/weapon/melee/yautja_chain
 	name = "Yautja Chainwhip"

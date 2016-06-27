@@ -175,6 +175,7 @@
 		var/turf/next_turf
 		in_flight = 1
 		var/this_iteration = 0
+		invisibility = 0 // Let's make it visible again.
 		spawn()
 			for(next_turf in path)
 				if(!src || !loc)
@@ -559,6 +560,7 @@
 	return 1
 
 //Hitting an object. These are too numerous so they're staying in their files.
+//Why are there special cases listed here? Oh well, whatever. ~N
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P,get_turf(src),src.layer) && density)
 		src.bullet_ping(P)
@@ -568,7 +570,7 @@
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
 	src.bullet_ping(P)
-	health -= round(P.damage/10)
+	health -= round(P.damage/2)
 	if (health < 0)
 		visible_message("<span class='warning'>[src] breaks down!</span>")
 		destroy()

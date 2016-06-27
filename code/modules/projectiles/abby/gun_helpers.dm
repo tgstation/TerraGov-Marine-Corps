@@ -62,6 +62,9 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 	weapons. So long as the steps are followed, it will work without issue. Some guns ignore active attachables,
 	since they currently do not use them, but if that changes, the related procs must also change.
 
+	Energy guns, or guns that don't really use magazines, can gut this system a bit. You can see examples in
+	predator weapons or the taser.
+
 	~N
 
 	TODO:
@@ -69,6 +72,8 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 	Add more muzzle flashes and guns sounds. Energy weapons, spear launcher, and taser for example.
 	Add some two handed sprites for SMGs that can use a grip.
 	Add more guns, or unique guns. The framework should be there.
+	Add ping for energy guns like the taser and plasma caster.
+	Redo the plasma caster muzzle flash safety...
 */
 
 //----------------------------------------------------------

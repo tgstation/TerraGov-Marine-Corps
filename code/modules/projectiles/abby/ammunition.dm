@@ -25,13 +25,13 @@
 	var/shrapnel_chance = 0
 	var/icon = 'icons/obj/projectiles.dmi'
 	var/icon_state = "bullet"
+	var/effect_type = "bullet" //For shotguns shooting different ammo types. Can be used elsewhere too.
 	var/ping = "ping_b" //The icon that is displayed when the bullet bounces off something.
 	var/ignores_armor = 0 //Use this on tasers, not on bullets. Use armor pen for that.
 
 	var/max_range = 30 //This will de-increment a counter on the bullet.
 	var/accurate_range = 7 //After this distance, accuracy suffers badly unless zoomed.
 	var/damage_bleed = 1 //How much damage the bullet loses per turf traveled, very high for shotguns. //Not anymore ~N.
-	var/casing_type = "/obj/item/ammo_casing"
 	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
 	var/bonus_projectiles = 0 //Seems to be only set for buckshot, and not actually used. I might need to take a look into this. ~N
 	var/never_scatters = 0 //Never wanders
@@ -54,16 +54,37 @@
 	proc/on_hit_obj(var/obj/O, var/obj/item/projectile/P) //Special effects when hitting objects.
 		return
 
+	proc/knockback(var/mob/M,var/obj/item/projectile/P)
+		if(!M || M == P.firer) return
+
+		if(P.distance_travelled > 2) shake_camera(M, 2, 1) //Two tiles away or more, basically.
+
+		else //One tile away or less.
+			shake_camera(M, 3, 4)
+			if(istype(M,/mob/living))
+				if(istype(M,/mob/living/carbon/Xenomorph))
+					var/mob/living/carbon/Xenomorph/target = M
+					if(target.big_xeno) return //Big xenos are not affected.
+					target.apply_effects(0,1) //Smaller ones just get shaken.
+					target << "\red You are shaken by the sudden impact!"
+				else
+					var/mob/living/target = M
+					target.apply_effects(2,2) //Humans get stunned a bit.
+					target << "\red The blast knocks you off your feet!"
+			step_away(M,P)
+
 	proc/burst(var/atom/target,var/obj/item/projectile/P,var/message = "buckshot")
 		if(!target) return
 
 		for(var/mob/living/carbon/M in range(1,target))
+			if(P.firer == M)
+				continue
 			M.visible_message("\red [M] is hit by [message]!","\red You are hit by </b>[message]</b>!")
 			M.apply_damage(rand(5,25),BRUTE)
 
 /*
 Boxes of ammo. Certain weapons have internal boxes of ammo that cannot be removed and function as part of the weapon.
-They're all essentially identical when it comes to actually getting the job done.
+They're all essentially identical when it comes to getting the job done.
 */
 /obj/item/ammo_magazine
 	name = "generic ammo"
@@ -83,6 +104,7 @@ They're all essentially identical when it comes to actually getting the job done
 	throw_range = 6
 	var/default_ammo = "/datum/ammo"
 	var/caliber = ".44" // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
+	var/caliber_type = "bullet" //What the actual thing is. Used by shotguns to determine what to fire.
 	var/max_rounds = 7 //How many rounds can it hold?
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/gun_type = "/obj/item/weapon/gun" //What type of gun does it fit in? Must be currently a gun. (see : gun reload proc)
@@ -90,6 +112,7 @@ They're all essentially identical when it comes to actually getting the job done
 	var/null_ammo = 0 //Set this to 0 to have a non-ammo-datum-using magazine without generating errors.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
+	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 
 	//For the handful method of reloading. Not used for regular mags.
 	var/handful_type = "Bullets" // "Bullets" or "Shells" or "Slugs" or "Incendiary Slugs"
@@ -98,8 +121,12 @@ They're all essentially identical when it comes to actually getting the job done
 	//For revolvers.
 	var/cylinder_contents[] //What is actually in the cylinder. Initiated on New().
 	var/cylinder_position = 1 //Where the firing pin is located. We don't rotate the cylinder, just move the pin.
-	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 	var/cylinder_closed = 1 //Starts out closed.
+
+	//For shotguns. No real need for two sets of variables that serve similar function, but it helps to tell them apart.
+	var/tube_contents[] //Initiated on New().
+	var/tube_position = 1
+	var/tube_closed = 0 //For the double barrel, more or less, everything else doesn't use it.
 
 	/*
 	Current rounds are set to -1 by default.
@@ -189,8 +216,8 @@ They're all essentially identical when it comes to actually getting the job done
 		return S // We return the number transferred if it was successful.
 
 	//This will attempt to place the ammo in the user's hand if possible.
-	proc/create_handful(var/obj/item/ammo_magazine/source, var/mob/user as mob)
-		var/S = 0
+	proc/create_handful(var/obj/item/ammo_magazine/source, var/mob/user as mob, var/transfer_amount)
+		var/S
 		if (source.current_rounds > 0)
 			var/obj/item/ammo_magazine/handful/new_handful = new()
 
@@ -198,8 +225,9 @@ They're all essentially identical when it comes to actually getting the job done
 			new_handful.desc = "A handful of rounds to reload on the go."
 			new_handful.icon_state = source.icon_type
 			new_handful.caliber = source.caliber
+			new_handful.caliber_type = source.caliber_type
 			new_handful.max_rounds = source.handful_max_rounds
-			S = min(source.current_rounds, new_handful.max_rounds)
+			S = transfer_amount ? min(source.current_rounds, transfer_amount) : min(source.current_rounds, new_handful.max_rounds)
 			new_handful.current_rounds = S
 			new_handful.default_ammo = source.default_ammo
 			new_handful.icon_type = source.icon_type
@@ -335,4 +363,5 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammo_casing/shell
 	name = "spent shell"
-	icon_state = "gshell_"
+	icon_state = "shell_"
+	number_of_states = 1

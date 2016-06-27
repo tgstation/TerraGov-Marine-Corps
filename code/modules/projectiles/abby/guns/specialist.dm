@@ -235,6 +235,7 @@
 	name = "High Explosive Rocket"
 	desc = "A rocket tube for an M83 SADAR rocket. Activate it without a missile inside to receive some materials."
 	caliber = "rocket"
+	caliber_type = "rocket"
 	icon_state = "rocket_tube"
 	icon_empty = "rocket_tube_empty"
 	origin_tech = "combat=3;materials=3"

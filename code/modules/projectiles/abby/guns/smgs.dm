@@ -1,4 +1,6 @@
 /obj/item/weapon/gun/smg
+	reload_sound = 'sound/weapons/rifle_reload.ogg' //Could use a unique sound.
+	cocked_sound = 'sound/weapons/rifle_cocked.ogg'
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	eject_casings = 1
