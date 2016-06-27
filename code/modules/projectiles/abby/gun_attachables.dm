@@ -594,7 +594,7 @@
 		if(current_ammo > 0)
 			var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
 			playsound(user.loc,'sound/weapons/grenadelaunch.ogg', 50, 1)
-			message_admins("[key_name_admin(user)] fired an underslung grenade launcher.")
+			message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
 			log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 			G.active = 1
 			G.icon_state = initial(icon_state) + "_active"
@@ -780,4 +780,3 @@
 	guns_allowed = list(/obj/item/weapon/gun/smartgun)
 	slot = "muzzle"
 	can_be_removed = 0
-

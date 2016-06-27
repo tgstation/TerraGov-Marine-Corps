@@ -216,11 +216,13 @@
 /obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	visible_message("<span class='danger'>[M] slashes at the [src]!</span>")
 	update_health()
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
+	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	visible_message("<span class='danger'>[M] slices [src] apart!</span>")
 	destroy()
 
@@ -348,7 +350,7 @@
 		M << "\blue You slice through the metal foam wall."
 		for(var/mob/O in oviewers(M))
 			if ((O.client && !( O.blinded )))
-				O << "\red [M] slice through the foamed metal."
+				O << "\red [M] slices through the foamed metal."
 		del(src)
 		return
 	else

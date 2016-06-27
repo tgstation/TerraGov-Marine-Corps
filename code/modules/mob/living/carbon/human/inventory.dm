@@ -136,7 +136,7 @@
 		if(istype(W,/obj/item/clothing/mask/facehugger))
 			var/obj/item/clothing/mask/facehugger/F = W
 			if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
-				visible_message("\red [F] frantically claws at [src]'s face!","\red [F] frantically crawls at your face! Auugh!")
+				visible_message("\red [F] frantically claws at [src]'s face!","\red [F] frantically claws at your face! Auugh!")
 				adjustBruteLossByPart(25,"head")
 		wear_mask = null
 		success = 1

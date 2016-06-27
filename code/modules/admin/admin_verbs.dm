@@ -78,8 +78,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_changekey,
 	// /datum/admins/proc/show_skills,
 	// /client/proc/check_customitem_activity,
-	/client/proc/man_up,
-	/client/proc/global_man_up,
+	// /client/proc/man_up,
+	// /client/proc/global_man_up,
 	/client/proc/response_team, // Response Teams admin verb
 //	/client/proc/toggle_antagHUD_use,
 //	/client/proc/toggle_antagHUD_restrictions,
@@ -283,7 +283,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
 	/proc/release,
-	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  ¯\_("/)_/¯
+	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  ï¿½\_("/)_/ï¿½
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes
 )
@@ -871,7 +871,7 @@ var/list/admin_verbs_mentor = list(
 	else
 		usr << "You now won't get debug log messages"
 
-
+/* Commenting this stupid shit out
 /client/proc/man_up(mob/T as mob in mob_list)
 	set category = "Fun"
 	set name = "Man Up"
@@ -894,7 +894,7 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
-
+*/
 
 /client/proc/change_security_level()
 	set name = "Set security level"
