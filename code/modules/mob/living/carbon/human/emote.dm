@@ -10,7 +10,6 @@
 		act = copytext(act,1,length(act))
 
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
-	//var/m_type = 1
 
 	for (var/obj/item/weapon/implant/I in src)
 		if (I.implanted)
@@ -51,14 +50,21 @@
 						message = "<B>[src]</B> bows."
 				m_type = 1
 
-			// if ("burp")
-			// 	if(!has_species(src,"Yautja"))
-			// 		message = "<B>[src]</B> burps."
-			// 		m_type = 1
-			// 		if(rand(0,100) < 70)
-			// 			playsound(src.loc, 'sound/misc/burp_short.ogg', 50, 0)
-			// 		else
-			// 			playsound(src.loc, 'sound/misc/burp_long.ogg', 50, 0)
+			if ("burp")
+				if(!burped)
+					message = "<B>[src]</B> burps."
+					m_type = 1
+					if(rand(0,100) < 70)
+						playsound(src.loc, 'sound/misc/burp_short.ogg', 50, 0)
+					else
+						playsound(src.loc, 'sound/misc/burp_long.ogg', 50, 0)
+					burped = 1
+					spawn(6000)
+						burped = 0
+				else
+					src << "You strain yourself. Ouch!"
+					src.halloss += 10
+					return
 
 			if ("chuckle")
 				if(miming)
@@ -73,12 +79,19 @@
 						m_type = 2
 
 			if ("clap")
-				if (!src.restrained())
-					message = "<B>[src]</B> claps."
-					m_type = 2
-					if(miming)
-						m_type = 1
-					playsound(src.loc, 'sound/misc/clap.ogg', 50, 0)
+				if(!clapped)
+					if (!src.restrained())
+						message = "<B>[src]</B> claps."
+						m_type = 2
+						if(miming)
+							m_type = 1
+						playsound(src.loc, 'sound/misc/clap.ogg', 50, 0)
+						clapped = 1
+						spawn(600)
+							clapped = 0
+				else
+					src << "You just did that. Wait a while."
+					return
 
 			if ("collapse")
 				Paralyse(2)
@@ -110,14 +123,21 @@
 				src.sleeping += 10 //Short-short nap
 				m_type = 1
 
-			// if ("fart")
-			// 	if(!has_species(src,"Yautja"))
-			// 		message = "<B>[src]</B> farts."
-			// 		m_type = 1
-			// 		if(rand(0,100) < 70)
-			// 			playsound(src.loc, 'sound/misc/fart_short.ogg', 50, 0)
-			// 		else
-			// 			playsound(src.loc, 'sound/misc/fart_long.ogg', 50, 0)
+			if ("fart")
+				if(!farted)
+					message = "<B>[src]</B> farts."
+					m_type = 1
+					farted = 1
+					if(rand(0,100) < 50)
+						playsound(src.loc, 'sound/misc/fart_short.ogg', 50, 0)
+					else
+						playsound(src.loc, 'sound/misc/fart_long.ogg', 50, 0)
+					spawn(6000)
+						farted = 0
+				else
+					src << "You strain yourself. Ouch!"
+					src.halloss += 10
+					return
 
 			if ("frown")
 				message = "<B>[src]</B> frowns."
@@ -162,12 +182,19 @@
 					message = "<B>[src]</B> glares."
 
 			if ("golfclap")
-				if (!src.restrained())
-					message = "<B>[src]</B> claps, clearly unimpressed."
-					m_type = 2
-					if(miming)
-						m_type = 1
-					playsound(src.loc, 'sound/misc/golfclap.ogg', 50, 0)
+				if(!golfclapped)
+					if (!src.restrained())
+						message = "<B>[src]</B> claps, clearly unimpressed."
+						m_type = 2
+						if(miming)
+							m_type = 1
+						playsound(src.loc, 'sound/misc/golfclap.ogg', 50, 0)
+						golfclapped = 1
+						spawn(600)
+							golfclapped = 0
+				else
+					src << "You just did that. Wait a while."
+					return
 
 			if ("grin")
 				message = "<B>[src]</B> grins."
@@ -247,16 +274,23 @@
 						m_type = 1
 
 			if ("medic")
-				if (!muzzled && !stat)
-					message = "<B>[src] calls for a medic!</b>"
-					m_type = 1
-					if(src.gender == "male")
-						if(rand(0,100) < 95)
-							playsound(src.loc, 'sound/misc/medic_male.ogg', 30, 0)
+				if(!medicd)
+					if (!muzzled && !stat)
+						message = "<B>[src] calls for a medic!</b>"
+						m_type = 1
+						if(src.gender == "male")
+							if(rand(0,100) < 95)
+								playsound(src.loc, 'sound/misc/medic_male.ogg', 30, 0)
+							else
+								playsound(src.loc, 'sound/misc/medic_male2.ogg', 30, 0)
 						else
-							playsound(src.loc, 'sound/misc/medic_male2.ogg', 30, 0)
-					else
-						playsound(src.loc, 'sound/misc/medic_female.ogg', 30, 0)
+							playsound(src.loc, 'sound/misc/medic_female.ogg', 30, 0)
+						medicd = 1
+						spawn(600)
+							medicd = 0
+				else
+					src << "You just did that. Wait a while."
+					return
 
 			if ("mumble")
 				message = "<B>[src]</B> mumbles."
@@ -368,7 +402,7 @@
 
 			if ("help")
 				if (has_species(src,"Human"))
-					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: red;'>red</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>bow-(mob name), chuckle, <span style='color: red;'>clap</span>, collapse, cough, eyebrow, faint, frown, gasp, giggle, glare-(mob name), <span style='color: red;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), laugh, look-(mob name), <span style='color: red;'>medic</span>, mumble, nod, point, <span style='color: red;'>salute</span>, shakehead, shrug, sigh, signal-#1-10, smile, stare-(mob name), wave, yawn</b><br>"
+					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: red;'>red</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>bow-(mob name), <span style='color: red;'>burp</span>, chuckle, <span style='color: red;'>clap</span>, collapse, cough, eyebrow, faint, <span style='color: red;'>fart</span>, frown, gasp, giggle, glare-(mob name), <span style='color: red;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), laugh, look-(mob name), <span style='color: red;'>medic</span>, mumble, nod, point, <span style='color: red;'>salute</span>, shakehead, shrug, sigh, signal-#1-10, smile, stare-(mob name), wave, yawn</b><br>"
 
 			else
 				src << "\blue Unusable emote '[act]'. Say *help for a list of emotes."
@@ -446,6 +480,13 @@
 	set category = "IC"
 
 	pose =  copytext(sanitize(input(usr, "This is [src]. \He is...", "Pose", null)  as text), 1, MAX_MESSAGE_LEN)
+
+/mob/living/carbon/verb/show_emotes()
+	set name = "Emotes"
+	set desc = "Displays a list of usable emotes."
+	set category = "IC"
+
+	usr.say("*help")
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
