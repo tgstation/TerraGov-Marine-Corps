@@ -23,7 +23,7 @@
 		if(isXenoLarva(src) && src.a_intent != "help")
 			src.a_intent = "help"
 
-		if(jelly && jellyGrow < jellyMax && client)
+		if(jelly && jellyGrow < jellyMax && client && is_queen_alive())
 			jellyGrow++
 			if(jellyGrow == jellyMax-1)
 				src << "\green You feel the royal jelly swirl in your veins.."
@@ -208,9 +208,9 @@
 
 	if ((blind && stat != 2))
 		if ((blinded))
-			blind.layer = 18
+			blind.plane = 0
 		else
-			blind.layer = 0
+			blind.plane = -80
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
@@ -319,7 +319,11 @@
 /mob/living/carbon/Xenomorph/death(gibbed)
 	if(!gibbed)
 		icon_state = "[caste] Dead"
-	playsound(loc, 'sound/voice/alien_death.ogg', 50, 1, 1)
+	if(rand(0,100) < 50)
+		playsound(loc, 'sound/voice/alien_death.ogg', 50, 1, 1)
+	else
+		playsound(loc, 'sound/voice/alien_death2.ogg', 50, 1, 1)
+
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
 		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
 		xeno_message("The slashing of hosts is now permitted!",2)

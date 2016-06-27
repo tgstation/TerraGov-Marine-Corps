@@ -66,7 +66,7 @@
 	layer = MOB_LAYER - 0.1 //So people stand on corpses
 
 	if(blind && client)
-		blind.layer = 0
+		blind.plane = 0
 
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 	see_in_dark = 8

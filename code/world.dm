@@ -172,7 +172,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		C.received_irc_pm = world.time
 		C.irc_admin = input["sender"]
 
-		C << 'sound/effects/adminhelp.ogg'
+		C << 'sound/effects/adminhelp_new.ogg'
 		C << message
 
 
@@ -300,7 +300,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; <b>USS Sulaco</b> | <b>Planet LV-624/Deadulus Prison</b>"
+		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; <b>USS Sulaco</b> | <b>Planet LV-624</b>"
 		s += "<br>Hosted by <b>Apophis</b>"
 		s += "<br><img src=\"http://i.imgur.com/VSucCrP.jpg\"></a><br>"
 

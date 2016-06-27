@@ -328,7 +328,10 @@
 			return
 
 		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
-
+		if(rand(0,100) < 50)
+			playsound(src.loc, 'sound/voice/alien_spitacid.ogg', 60, 1)
+		else
+			playsound(src.loc, 'sound/voice/alien_spitacid2.ogg', 60, 1)
 		var/obj/item/projectile/A = new(Turf)
 		A.permutated.Add(src)
 		A.def_zone = get_organ_target()
