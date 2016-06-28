@@ -146,7 +146,7 @@
 	accuracy = 5
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
-	var/restriction_toggled = 1 //Begin with the safety on.
+//	var/restriction_toggled = 1 //Begin with the safety on.
 
 	examine()
 		..()
@@ -155,8 +155,9 @@
 			usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
 		else
 			usr << "It's dry."
-		usr << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
+//		usr << "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"]."
 
+/*
 	proc/toggle_restriction(var/mob/user as mob) //Works like reloading the gun. We don't actually change the ammo though.
 		user << "\icon[src] You [restriction_toggled ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "not harm allies"]."
 		playsound(src.loc,'sound/machines/click.ogg', 50, 1)
@@ -170,9 +171,10 @@
 			ammo.armor_pen = 5
 		restriction_toggled = !restriction_toggled
 		return
-
+*/
 	unique_action(var/mob/living/carbon/human/user as mob)
-		toggle_restriction(user)
+//		toggle_restriction(user)
+		return
 
 	able_to_fire(var/mob/user as mob)
 		if(!ishuman(user)) return
@@ -222,7 +224,7 @@
 	name = "\improper M57D 'Dirty' Smartgun"
 	desc = "The actual firearm in the 4-piece M57D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. Otherwise identical to the M56."
 	origin_tech = "combat=7;materials=5"
-	restriction_toggled = 0
+//	restriction_toggled = 0
 	mag_type_internal = "/obj/item/ammo_magazine/smartgun_integrated/dirty"
 	accuracy = 10 //Slightly more accurate.
 

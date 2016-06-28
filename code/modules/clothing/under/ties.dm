@@ -320,7 +320,7 @@
 	icon_state = "webbing"
 	item_color = "webbing"
 	w_class = 3
-	var/slots = 4
+	var/slots = 3
 	var/obj/item/weapon/storage/internal/hold
 
 /obj/item/clothing/tie/storage/New()
