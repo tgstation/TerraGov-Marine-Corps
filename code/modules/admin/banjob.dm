@@ -26,14 +26,21 @@ var/jobban_keylist[0]		//to store the keys & ranks
 			if(config.usewhitelist && !check_whitelist(M))
 				return "Whitelisted Job"
 
-		for (var/s in jobban_keylist)
-			if( findtext(s,"[M.ckey] - [rank]") == 1 )
-				var/startpos = findtext(s, "## ")+3
-				if(startpos && startpos<length(s))
-					var/text = copytext(s, startpos, 0)
-					if(text)
-						return text
-				return "Reason Unspecified"
+		var/target = "[M.ckey] - [rank]"
+
+		var/regex/r1 = new("(.*) ## (.*)", "i")
+		var/regex/r2 = new("(.*) - (.*)", "i")
+
+		finding_jobban: //It feels cheap to use this syntax, but it works, dammit
+			for(var/s in jobban_keylist)
+
+				if(r1.Find(s))
+					if(r1.group[1] == target)
+						return r1.group[2]
+					continue finding_jobban //Start the next element in the for loop
+				else if(r2.Find(s)) //Broaden our search to not having a reason
+					if((r2.group[1] == M.ckey) && (r2.group[2] == rank)) return "Reason Unspecified"
+
 	return 0
 
 /*
