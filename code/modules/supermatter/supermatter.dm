@@ -244,7 +244,9 @@
 		//adjusted range so that a power of 300 (pretty high) results in 8 tiles, roughly the distance from the core to the engine monitoring room.
 
 		for(var/mob/living/l in range(src, round(sqrt(power / 5))))
-			var/rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
+			var/rads = 0
+			if(l.loc = src.loc) rads = (power/10) //SOMEHOW mobs were on the same turf as the SM, so just give rads like they are on the next tile
+			else rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
 			l.apply_effect(rads, IRRADIATE)
 
 			power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation

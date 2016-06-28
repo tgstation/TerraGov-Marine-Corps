@@ -1332,6 +1332,9 @@
 		var/mob/M = locate(href_list["adminplayeropts"])
 		show_player_panel(M)
 
+	else if(href_list["playerpanelextended"])
+		player_panel_extended()
+
 	else if(href_list["adminplayerobservejump"])
 		if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))	return
 
@@ -1524,6 +1527,8 @@
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
 		if(!input)	return
 
+		USCMFaxes.Add(input)
+
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
 		for(var/obj/machinery/faxmachine/F in machines)
@@ -1563,6 +1568,8 @@
 
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Weyland Yutani", "") as message|null
 		if(!input)	return
+
+		CLFaxes.Add(input) //Add replies so that mods know what the hell is goin on with the RP
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
