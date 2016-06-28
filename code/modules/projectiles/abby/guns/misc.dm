@@ -12,14 +12,14 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 40000)
-	var/obj/item/weapon/cell/cell //1000 power, so you don't need to wait an hour to charge.
-	var/charge_cost = 100 //10 shots.
+	var/obj/item/weapon/cell/high/cell //10000 power.
+	var/charge_cost = 100 //100 shots.
 	fire_delay = 10
 	recoil = 0
 
 	New()
 		..()
-		cell = new /obj/item/weapon/cell(src) //Initialize our junk.
+		cell = new /obj/item/weapon/cell/high(src) //Initialize our junk.
 		ammo = new /datum/ammo/energy/taser()
 
 	update_icon()
@@ -33,6 +33,16 @@
 		cell.use(round(cell.maxcharge / severity))
 		update_icon()
 		..()
+
+	able_to_fire(var/mob/living/carbon/human/user as mob)
+		if(..()) //Let's check all that other stuff first.
+			if(istype(user))
+				var/obj/item/weapon/card/id/card = user.wear_id
+				if(istype(card) && card.assignment == "Military Police") //We can check for access, but only MPs have access to it.
+					return 1
+
+		user << "\red \The [src] is ID locked!"
+		return
 
 	load_into_chamber()
 		if(!cell || cell.charge - charge_cost < 0)

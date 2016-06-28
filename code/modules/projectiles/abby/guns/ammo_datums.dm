@@ -282,10 +282,24 @@ use the ammo types directly.
 	icon_state = "stun"
 	damage = 0
 	ignores_armor = 1
-	stun = 5
-	weaken = 5
 	damage_type = OXY
 	shell_speed = 1
+
+	//This is sort of a workaround for now. There are better ways of doing this ~N.
+	on_hit_mob(var/mob/M, var/obj/item/projectile/P)
+		if(isliving(M))
+			var/mob/living/target = M
+			if(isYautja(target) || isXeno(target) ) return //Not on aliens.
+			if(target.mind && target.mind.special_role)
+				switch(target.mind.special_role) //Switches are still better than evaluating this twice.
+					if("IRON BEARS") //These antags can shrug off tasers so they are not shut down.
+						target.apply_effects(1,1) //Barely affected.
+						return
+					if("DEATH SQUAD")
+						target.apply_effects(0,1) //Almost unaffacted.
+						return
+			target.apply_effects(8,8) //Buffed a bit.
+		return
 
 /datum/ammo/energy/yautja
 	name = "plasma bolt"

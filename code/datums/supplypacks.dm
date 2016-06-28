@@ -123,7 +123,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/clothing/tie/storage/webbing,
 					/obj/item/clothing/tie/storage/webbing,
 					/obj/item/clothing/tie/storage/webbing,
-					/obj/item/clothing/tie/storage)
+					/obj/item/clothing/tie/storage/webbing)
 	cost = 40
 	containertype = /obj/structure/closet/crate
 	containername = "Webbing crate"

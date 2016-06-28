@@ -110,7 +110,7 @@
 			//We want to check for ammo here in case there isn't any. Otherwise it can and will runtime.
 			if(ammo && ammo.skips_marines && ishuman(target))
 				var/mob/living/carbon/human/H = target
-				if(H.get_marine_id())
+				if(H.get_target_lock())
 					return -1 //Pass straight through.
 
 			if(ammo && ammo.skips_xenos && isXeno(target)) return -1 //Mostly some spits.

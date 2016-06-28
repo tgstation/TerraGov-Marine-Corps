@@ -510,7 +510,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump
 	name = "\improper M37A2 Pump Shotgun"
-	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Alt click or use the weapon tab to pump it."
+	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
 	icon_state = "m37"
 	icon_empty = "m37" //Pump shotguns don't really have 'empty' states.
 	icon_wielded = "m37-w"

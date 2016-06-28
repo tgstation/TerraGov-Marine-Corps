@@ -92,4 +92,9 @@
 		healthcheck()
 		return
 
-
+//Quick destroyed case.
+/obj/structure/displaycase/destroyed
+	icon_state = "glassboxb0"
+	health = 0
+	occupied = 0
+	destroyed = 1

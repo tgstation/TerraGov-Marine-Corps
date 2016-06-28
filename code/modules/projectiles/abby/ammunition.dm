@@ -61,16 +61,17 @@
 
 		else //One tile away or less.
 			shake_camera(M, 3, 4)
-			if(istype(M,/mob/living))
-				if(istype(M,/mob/living/carbon/Xenomorph))
+			if(isliving(M)) //This is pretty ugly, but what can you do.
+				if(isXeno(M))
 					var/mob/living/carbon/Xenomorph/target = M
 					if(target.big_xeno) return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
 					target << "\red You are shaken by the sudden impact!"
 				else
-					var/mob/living/target = M
-					target.apply_effects(2,2) //Humans get stunned a bit.
-					target << "\red The blast knocks you off your feet!"
+					if(!isYautja(M)) //Not predators.
+						var/mob/living/target = M
+						target.apply_effects(1,2) //Humans get stunned a bit.
+						target << "\red The blast knocks you off your feet!"
 			step_away(M,P)
 
 	proc/burst(var/atom/target,var/obj/item/projectile/P,var/message = "buckshot")
