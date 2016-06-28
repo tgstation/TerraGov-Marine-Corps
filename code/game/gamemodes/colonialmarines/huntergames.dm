@@ -25,7 +25,6 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/clothing/suit/storage/marine,\
 								/obj/item/clothing/head/helmet/marine,\
 								/obj/item/clothing/gloves/specialist,\
-								/obj/item/weapon/gun/taser,\
 								/obj/item/weapon/gun/pistol/vp70,\
 								/obj/item/weapon/gun/rifle/m41a/scoped,\
 								/obj/item/weapon/gun/rifle/lmg,\
