@@ -842,7 +842,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 		regenerate_icons()
 	else if( lying != lying_prev )
 		update_icons()
-		update_fire() //Maybe fixes fire overlay problems
+		if(istype(src, /mob/living))
+			var/mob/living/L = src
+			L.update_fire() //Maybe fixes fire overlay problems
 
 	return canmove
 
