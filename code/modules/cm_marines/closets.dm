@@ -26,18 +26,20 @@
 		if(special_equipment)
 			switch(gamemode)
 				if("Ice Colony")
+
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
 					new /obj/item/clothing/mask/rebreather/scarf(src)
 					new /obj/item/weapon/storage/belt/marine(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/marine/snow(src)
+					new /obj/item/clothing/shoes/marine(src)
 				else
+
 					new /obj/item/clothing/under/marine_jumpsuit(src)
 					new /obj/item/weapon/storage/belt/marine(src)
 					new /obj/item/clothing/head/helmet/marine(src)
 					new /obj/item/clothing/suit/storage/marine(src)
-
-
+					new /obj/item/clothing/shoes/marine(src)
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
@@ -173,9 +175,7 @@
 
 	New()
 		spawn(5)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/alpha(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/malpha(src)
 
 

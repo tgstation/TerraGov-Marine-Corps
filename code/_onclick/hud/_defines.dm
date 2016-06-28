@@ -66,10 +66,10 @@
 #define ui_gun3 "13:26,4:7"
 #define ui_gun_select "14:28,3:7"
 
-#define ui_gun_eject 		"15:12,4:7"
-#define ui_gun_attachment 	"14:12,4:7"
-#define ui_gun_burst 		"13:12,4:7"
-
+#define ui_gun_burst 		"12:-8,1:+5"
+#define ui_gun_eject 		"12:-12,1:+5"
+#define ui_gun_attachment 	"12:-10,1:+5"
+#define ui_gun_unique 		"12:-11,1:+3"
 
 //Upper-middle right (damage indicators)
 #define ui_toxin "14:28,13:27"

@@ -316,7 +316,6 @@
 	mymob.use_attachment.icon_state = "gun_attach"
 	mymob.use_attachment.name = "Activate weapon attachment"
 	mymob.use_attachment.screen_loc = ui_gun_attachment
-	mymob.use_attachment.screen_loc = "15:-6,5:+5" //Pixel perfect.
 	hud_elements |= mymob.use_attachment
 
 	mymob.eject_mag = new /obj/screen()
@@ -324,7 +323,6 @@
 	mymob.eject_mag.icon_state = "gun_loaded"
 	mymob.eject_mag.name = "Eject magazine"
 	mymob.eject_mag.screen_loc = ui_gun_eject
-	mymob.eject_mag.screen_loc = "15:-8,5:+5"
 	hud_elements |= mymob.eject_mag
 
 	mymob.toggle_burst = new /obj/screen()
@@ -332,15 +330,13 @@
 	mymob.toggle_burst.icon_state = "gun_burst"
 	mymob.toggle_burst.name = "Toggle burst fire"
 	mymob.toggle_burst.screen_loc = ui_gun_burst
-	mymob.toggle_burst.screen_loc = "15:-4,5:+5"
 	hud_elements |= mymob.toggle_burst
 
 	mymob.unique_action = new /obj/screen()
 	mymob.unique_action.icon = ui_style
 	mymob.unique_action.icon_state = "gun_unique"
 	mymob.unique_action.name = "Use unique action"
-	mymob.unique_action.screen_loc = ui_gun_burst
-	mymob.unique_action.screen_loc = "15:-7,5:+3"
+	mymob.unique_action.screen_loc = ui_gun_unique
 	hud_elements |= mymob.unique_action
 
 	mymob.blind = new /obj/screen()

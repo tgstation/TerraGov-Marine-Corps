@@ -146,7 +146,6 @@
 
 	make_casing()
 		var/sound_to_play = pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
-		//Hilariously faster than the example above and doesn't crash.
 		if(current_mag.used_casings) //We have some spent casings to eject.
 			var/turf/current_turf = get_turf(src) //Figure out the turf we're on.
 			var/obj/item/ammo_casing/bullet/casing = locate() in current_turf //Could cause issues if there are a lot of objects.
