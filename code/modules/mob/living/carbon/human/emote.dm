@@ -50,21 +50,21 @@
 						message = "<B>[src]</B> bows."
 				m_type = 1
 
-			if ("burp")
-				if(!burped)
-					message = "<B>[src]</B> burps."
-					m_type = 1
-					if(rand(0,100) < 70)
-						playsound(src.loc, 'sound/misc/burp_short.ogg', 50, 0)
-					else
-						playsound(src.loc, 'sound/misc/burp_long.ogg', 50, 0)
-					burped = 1
-					spawn(6000)
-						burped = 0
-				else
-					src << "You strain yourself. Ouch!"
-					src.halloss += 10
-					return
+			// if ("burp")
+			// 	if(!burped)
+			// 		message = "<B>[src]</B> burps."
+			// 		m_type = 1
+			// 		if(rand(0,100) < 70)
+			// 			playsound(src.loc, 'sound/misc/burp_short.ogg', 50, 0)
+			// 		else
+			// 			playsound(src.loc, 'sound/misc/burp_long.ogg', 50, 0)
+			// 		burped = 1
+			// 		spawn(6000)
+			// 			burped = 0
+			// 	else
+			// 		src << "You strain yourself. Ouch!"
+			// 		src.halloss += 10
+			// 		return
 
 			if ("chuckle")
 				if(miming)
@@ -123,21 +123,21 @@
 				src.sleeping += 10 //Short-short nap
 				m_type = 1
 
-			if ("fart")
-				if(!farted)
-					message = "<B>[src]</B> farts."
-					m_type = 1
-					farted = 1
-					if(rand(0,100) < 50)
-						playsound(src.loc, 'sound/misc/fart_short.ogg', 50, 0)
-					else
-						playsound(src.loc, 'sound/misc/fart_long.ogg', 50, 0)
-					spawn(6000)
-						farted = 0
-				else
-					src << "You strain yourself. Ouch!"
-					src.halloss += 10
-					return
+			// if ("fart")
+			// 	if(!farted)
+			// 		message = "<B>[src]</B> farts."
+			// 		m_type = 1
+			// 		farted = 1
+			// 		if(rand(0,100) < 50)
+			// 			playsound(src.loc, 'sound/misc/fart_short.ogg', 50, 0)
+			// 		else
+			// 			playsound(src.loc, 'sound/misc/fart_long.ogg', 50, 0)
+			// 		spawn(6000)
+			// 			farted = 0
+			// 	else
+			// 		src << "You strain yourself. Ouch!"
+			// 		src.halloss += 10
+			// 		return
 
 			if ("frown")
 				message = "<B>[src]</B> frowns."
@@ -402,7 +402,7 @@
 
 			if ("help")
 				if (has_species(src,"Human"))
-					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: red;'>red</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>bow-(mob name), <span style='color: red;'>burp</span>, chuckle, <span style='color: red;'>clap</span>, collapse, cough, eyebrow, faint, <span style='color: red;'>fart</span>, frown, gasp, giggle, glare-(mob name), <span style='color: red;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), laugh, look-(mob name), <span style='color: red;'>medic</span>, mumble, nod, point, <span style='color: red;'>salute</span>, shakehead, shrug, sigh, signal-#1-10, smile, stare-(mob name), wave, yawn</b><br>"
+					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: red;'>red</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>bow-(mob name), chuckle, <span style='color: red;'>clap</span>, collapse, cough, eyebrow, faint, frown, gasp, giggle, glare-(mob name), <span style='color: red;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), laugh, look-(mob name), <span style='color: red;'>medic</span>, mumble, nod, point, <span style='color: red;'>salute</span>, shakehead, shrug, sigh, signal-#1-10, smile, stare-(mob name), wave, yawn</b><br>"
 
 			else
 				src << "\blue Unusable emote '[act]'. Say *help for a list of emotes."
