@@ -177,9 +177,8 @@ They're all essentially identical when it comes to getting the job done.
 		return ..() //Do normal stuff.
 
 	//We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(caliber == "12g" || istype(src,/obj/item/ammo_magazine/revolver)) //Same deal.
-			var/obj/item/ammo_magazine/handful/transfer_from = I
+	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user as mob)
+		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //Same deal.
 			if(istype(transfer_from)) // We have a handful.
 				var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
 				if( in_hand == src ) //It has to be held.
@@ -293,13 +292,12 @@ bullets/shells. ~N
 	If the default ammo isn't the same, then you can't do much with it.
 	If it is the same and the other stack isn't full, transfer an amount (default 1) to the other stack.
 	*/
-	attackby(obj/item/I as obj, mob/user as mob)
-		var/obj/item/ammo_magazine/handful/transfer_from = I
+	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user as mob)
 		if(istype(transfer_from)) // We have a handful. They don't need to hold it.
 			if(default_ammo == transfer_from.default_ammo) //Has to match.
 				transfer_ammo(transfer_from,src,user) // Transfer it from currently held to src, this item, message user.
 			else
-				user << "\blue Those aren't the same rounds. Better not mix them up."
+				user << "Those aren't the same rounds. Better not mix them up."
 		return
 
 
