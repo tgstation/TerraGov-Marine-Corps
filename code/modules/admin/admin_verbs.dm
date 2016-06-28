@@ -45,6 +45,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_create_centcom_report, //Messages from USCM command.
 	/client/proc/cmd_admin_create_MOTHER_report,  //Allows creation of IC reports by the ships AI
+	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/client/proc/check_words,			/*displays cult-words*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/client/proc/check_antagonists,
@@ -282,6 +283,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
+	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/proc/release,
 	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  �\_("/)_/�
 	/datum/admins/proc/viewCLFaxes,

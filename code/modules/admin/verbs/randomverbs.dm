@@ -630,7 +630,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		src << "Only administrators may use this command."
 		return
 	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.", "What?", "") as message|null
-	var/customname = "Queen Mother Status Update"
+	var/customname = "Queen Mother Psychic Directive"
 	if(!input)
 		return
 
