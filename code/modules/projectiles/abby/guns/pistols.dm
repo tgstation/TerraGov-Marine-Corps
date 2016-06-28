@@ -46,8 +46,8 @@
 	name = "Extended Pistol Magazine (9mm)"
 	default_ammo = "/datum/ammo/bullet/pistol"
 	max_rounds = 22
-	icon_state = ".45e"
-	icon_empty = ".45e0"
+	icon_state = "9mm_mag"
+	icon_empty = "9mm_mag0"
 	bonus_overlay = "pistol_mag"
 
 /obj/item/weapon/gun/pistol/m4a3
