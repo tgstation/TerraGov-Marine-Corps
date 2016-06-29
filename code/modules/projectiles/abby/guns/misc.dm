@@ -7,8 +7,8 @@
 	icon_empty = "taser0"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	muzzle_flash = null //TO DO.
+	unusual_design = 1
 	can_pointblank = 0
-	energy_based = 1
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 40000)
@@ -112,9 +112,9 @@
 	icon_empty = "flaregun"
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/flaregun.ogg'
+	unusual_design = 1
 	can_pointblank = 0
 	origin_tech = "combat=1;materials=2"
-	default_ammo = ""
 	var/num_flares = 1
 	var/max_flares = 1
 	fire_delay = 30
@@ -123,6 +123,11 @@
 	New()
 		..()
 		ammo = new /datum/ammo/flare()
+
+	examine()
+		..()
+		if(num_flares)
+			usr << "It has a flare loaded."
 
 	update_icon()
 		if(!num_flares && icon_empty)
@@ -172,7 +177,16 @@
 	reload()
 		return
 
-	unload()
+	unload(var/mob/user)
+		if(num_flares)
+			var/obj/item/device/flashlight/flare/new_flare = new()
+			if(user) user.put_in_hands(new_flare)
+			else new_flare.loc = get_turf(src)
+			num_flares--
+			if(user) user << "\blue You unload a flare from \the [src]."
+			update_icon()
+		else
+			if(user) user << "It's empty."
 		return
 
 	make_casing()

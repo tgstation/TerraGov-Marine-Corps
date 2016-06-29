@@ -232,6 +232,114 @@
 		return
 
 //-------------------------------------------------------
+//GRENADE LAUNCHER
+
+/obj/item/weapon/gun/m92
+	name = "M92 grenade launcher"
+	desc = "A heavy, 5-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
+	icon_state = "m92"
+	icon_wielded = "riotgun"
+	item_state = "riotgun" //Ugh replace this plz
+	origin_tech = "combat=5;materials=5"
+	matter = list("metal" = 80000)
+	unusual_design = 1
+	w_class = 4.0
+	throw_speed = 2
+	throw_range = 10
+	force = 5.0
+	twohanded = 1
+	can_pointblank = 0
+	fire_sound = 'sound/weapons/armbomb.ogg'
+	cocked_sound = 'sound/weapons/grenadelaunch.ogg'
+	fire_delay = 22
+	var/list/grenades = new/list()
+	var/max_grenades = 6
+
+	New()
+		..()
+		spawn(1) //Load er up!
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/incendiary(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+			grenades += new /obj/item/weapon/grenade/explosive(src)
+
+	examine()
+		set src in view()
+		..()
+		if(grenades.len)
+			if (!(usr in view(2)) && usr!=src.loc) return
+			usr << "\blue It is loaded with [grenades.len] / [max_grenades] Grenades."
+
+	attackby(obj/item/I as obj, mob/user as mob)
+		if((istype(I, /obj/item/weapon/grenade)))
+			if(grenades.len < max_grenades)
+				user.drop_item()
+				I.loc = src
+				grenades += I
+				user << "\blue You put \the [I] in the grenade launcher."
+				user << "\blue Now storing: [grenades.len] / [max_grenades] grenades."
+			else
+				user << "\red The grenade launcher cannot hold more grenades."
+
+	afterattack(atom/target, mob/user , flag)
+		if(able_to_fire(user))
+			if(get_dist(target,user) <= 2)
+				usr << "\red The grenade launcher beeps a warning noise. You are too close!"
+				return
+
+			if(grenades.len)
+				spawn(0) fire_grenade(target,user)
+				playsound(user.loc, cocked_sound, 50, 1)
+			else
+				user << "\red The grenade launcher is empty."
+		return
+
+	proc/fire_grenade(atom/target, mob/user)
+		for(var/mob/O in viewers(world.view, user))
+			O.show_message(text("\red [] fired a grenade!", user), 1)
+		user << "\red You fire the grenade launcher!"
+		var/obj/item/weapon/grenade/F = grenades[1]
+		grenades -= F
+		F.loc = user.loc
+		F.throw_range = 20
+		F.throw_at(target, 20, 2, user)
+		if(F) //Apparently it can get deleted before the next thing takes place, so it run times.
+			message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
+			log_game("[key_name_admin(user)] used a grenade ([src.name]).")
+			F.active = 1
+			F.icon_state = initial(icon_state) + "_active"
+			playsound(F.loc, fire_sound, 50, 1)
+			spawn(10)
+				if(F) //If somehow got deleted since then <--- It can get deleted immediately, apparently.
+					F.prime()
+
+	//Doesn't use most of any of these. Listed for reference.
+	load_into_chamber()
+		return
+
+	reload_into_chamber()
+		return
+
+	reload()
+		return
+
+	unload(var/mob/user)
+		if(grenades.len)
+			var/obj/item/weapon/grenade/nade = grenades[grenades.len] //Grab the last one.
+			if(user)
+				user.put_in_hands(nade)
+				playsound(user, unload_sound, 20, 1)
+			else nade.loc = get_turf(src)
+			grenades -= nade
+		else
+			if(user) user << "It's empty."
+		return
+
+	make_casing()
+		return
+
+//-------------------------------------------------------
 //SADAR
 
 /obj/item/ammo_magazine/rocket_tube

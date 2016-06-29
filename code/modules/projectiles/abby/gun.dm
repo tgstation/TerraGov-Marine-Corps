@@ -23,7 +23,8 @@
 	var/unload_sound = 'sound/weapons/flipblade.ogg'
 	var/empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
-	var/can_pointblank = 1
+	var/unusual_design = 0 //Off by default. If the gun doesn't really use standard rules somehow, toggle this on.
+	var/can_pointblank = 1 //Can it pointblank? Applies to suicide.
 	var/obj/item/projectile/in_chamber = null //What is currently in the chamber. Most guns will want something in the chamber upon creation.
 
 	/*
@@ -43,7 +44,6 @@
 	var/mag_type_internal = null //If the weapon has an internal magazine, this is the way to do it. This will be used on New() if it exists.
 	var/default_ammo = "/datum/ammo" //For stuff that doesn't use mags. Just fire it.
 	var/trigger_safety = 0 //Off by default. If it's on, you can't fire.
-	var/energy_based = 0 //Off by default. If the gun doesn't use ammo but recharges somehow, toggle this on.
 	var/type_of_casings = "bullet" //bullets by default.
 	var/eject_casings = 0 //Off by default.
 
@@ -178,7 +178,7 @@
 
 	examine()
 		..() //Might need to do a better check in the future.
-		if(!energy_based) //If they are not energy based. Energy based weapons don't bother with all of this.
+		if(!unusual_design) //If they don't follow standard gun rules, all of this doesn't apply.
 			if(rail)
 				usr << "It has \icon[rail] [rail.name] mounted on the top."
 			if(muzzle)
@@ -187,7 +187,7 @@
 				usr << "It has \icon[under] [under.name] mounted underneath."
 			if(stock)
 				usr << "It has \icon[stock] [stock.name] for a stock."
-			if(!mag_type_internal) //If they have an internal mag they will have their own examine override.
+			if(!mag_type_internal) //Internal mags and the like have their own stuff set.
 				if(current_mag && current_mag.current_rounds > 0)
 					if(ammo_counter)
 						usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."

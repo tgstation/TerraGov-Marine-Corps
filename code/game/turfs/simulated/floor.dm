@@ -92,6 +92,10 @@ var/list/wood_icons = list("wood","wood-broken")
 		burn_tile()
 	return
 
+/turf/simulated/floor/proc/take_damage()
+	break_tile()
+	return
+
 /turf/simulated/floor/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	var/dir_to = get_dir(src, adj_turf)
 
