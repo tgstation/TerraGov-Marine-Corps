@@ -491,6 +491,62 @@
 
 //BELT
 
+/obj/item/weapon/storage/belt/gun
+	name = "pistol belt"
+	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
+	icon_state = "marinebelt"
+	item_state = "marine"//Could likely use a better one. WIP
+	use_sound = "rustle" //Could use a better one, WIP.
+	w_class = 4
+	storage_slots = 4
+	max_combined_w_class = 6
+	max_w_class = 2
+	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
+	var/holds_guns_max = 2 //How many guns can it hold? Default is one.
+	can_hold = list(
+		"/obj/item/weapon/gun/pistol",
+		"/obj/item/ammo_magazine/pistol"
+		)
+
+	update_icon()
+		if(holds_guns_now) //So it has a gun, let's make an icon.
+			item_state = item_state //WIP
+		return
+
+	//There are only two things here that can be inserted, and they are mutually exclusive. We only track the gun.
+	can_be_inserted(obj/item/W as obj, stop_messages = 0)
+		if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
+			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
+				if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
+					if(!stop_messages) usr << "<span class='notice'>\The [src] already holds a gun.<span>"
+					return //Nothing else to do.
+				holds_guns_now++ //Slide it in.
+				update_icon()
+			else //Must be ammo.
+		//We have slots open for the gun, so in total we should have storage_slogs - guns_max in slots, plus whatever is already in the belt.
+				if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
+					if(!stop_messages) usr << "<span class='notice'>\The [src] can't hold any more magazines.<span>"
+					return
+		return 1
+
+	remove_from_storage(obj/item/W as obj)
+		if(..() ) //Same deal, this will handle things.
+			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
+				holds_guns_now-- //Remove it.
+				update_icon() //Update.
+			return 1
+		return
+
+/obj/item/weapon/storage/belt/gun/revolver
+	name = "pistol belt"
+	desc = "A belt-holster assembly that allows one to hold a revolver and two magazines."
+	can_hold = list(
+		"/obj/item/weapon/gun/revolver",
+		"/obj/item/ammo_magazine/revolver"
+		)
+
+
+//Probably want to remove the gun from the marine belt.
 /obj/item/weapon/storage/belt/marine
 	name = "marine belt"
 	desc = "A standard issue toolbelt for USCM military forces. Put your ammo in here."

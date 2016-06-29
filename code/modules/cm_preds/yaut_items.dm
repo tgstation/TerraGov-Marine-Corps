@@ -635,8 +635,8 @@
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	muzzle_flash = null // TO DO, add a decent one.
+	unusual_design = 1
 	can_pointblank = 0
-	energy_based = 1
 	canremove = 0
 	w_class = 5
 	force = 0 //Yeah... Need to remove hitting people with it.
@@ -772,8 +772,8 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	muzzle_flash = null // TO DO, add a decent one.
 	origin_tech = "combat=7;materials=7"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
+	unusual_design = 1
 	can_pointblank = 0
-	energy_based = 1
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	fire_delay = 5
@@ -862,8 +862,8 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	item_state = "spikelauncher"
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	fire_sound = 'sound/weapons/plasma_shot.ogg'
+	unusual_design = 1
 	can_pointblank = 0
-	energy_based = 1
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
 	w_class = 5
