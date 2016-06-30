@@ -14,6 +14,7 @@
 	var/agony = 0
 	var/skips_marines = 0
 	var/skips_xenos = 0
+	var/explosive = 0 //Sadars and boiler bombs. If you target a turf, it will explode on that turf if possible.
 	var/accuracy = 0
 
 	var/damage = 0

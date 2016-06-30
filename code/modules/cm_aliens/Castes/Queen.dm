@@ -69,24 +69,23 @@
 
 	if(!check_state()) return
 
-	var/turf/T = src.loc
-
-	if(!istype(T) || isnull(T))
-		src << "You can't do that here."
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf || !istype(current_turf))
 		return
 
-	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src)) //Turn em off for now
-		src << "There's already an egg or royal jelly here."
-		return
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
-	if(!locate(/obj/effect/alien/weeds) in T)
+	if(!alien_weeds)
 		src << "Your eggs wouldn't grow well enough here. Lay them on resin."
+		return
+
+	if(!check_alien_construction(current_turf))
 		return
 
 	if(check_plasma(100)) //New plasma check proc, removes/updates plasma automagically
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>\The [src] has laid an egg!</B>"), 1)
-		new /obj/effect/alien/egg(T)
+		new /obj/effect/alien/egg(current_turf)
 	return
 
 /obj/royaljelly
@@ -124,24 +123,23 @@
 	if(!check_state())
 		return
 
-	var/turf/T = src.loc
-
-	if(!istype(T) || isnull(T))
-		src << "You can't do that here."
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf || !istype(current_turf))
 		return
 
-	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src))
-		src << "There's already an egg or royal jelly here."
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+
+	if(!alien_weeds)
+		src << "Your jelly would rot here. Squirt it on resin."
 		return
 
-	if(!locate(/obj/effect/alien/weeds) in T)
-		src << "Your jelly would rot here. Lay them on resin."
+	if(!check_alien_construction(current_turf))
 		return
 
 	if(check_plasma(350)) //New plasma check proc, removes/updates plasma automagically
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>\The [src] squirts out a greenish blob of jelly.</B>"), 1)
-		new /obj/royaljelly(T)
+		new /obj/royaljelly(current_turf)
 	return
 
 /mob/living/carbon/Xenomorph/Queen/proc/screech()

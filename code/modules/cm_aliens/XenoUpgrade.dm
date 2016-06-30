@@ -189,7 +189,7 @@
 				tackle_chance = 60
 				speed = 1.4
 			if("Carrier")
-				src << "/red Throw a hugger, to get your hugger upgrades."
+				src << "\green Throw a hugger to get your hugger upgrades."
 				melee_damage_lower = 25
 				melee_damage_upper = 35
 				health = 200
@@ -377,7 +377,7 @@
 				tackle_chance = 70
 				speed = 1.3
 			if("Carrier")
-				src << "/red Throw a hugger, to get your hugger upgrades."
+				src << "\green Throw a hugger to get your hugger upgrades."
 				melee_damage_lower = 30
 				melee_damage_upper = 40
 				health = 220
@@ -425,7 +425,7 @@
 		jellyMax = 0
 		switch(caste)
 			if("Runner")
-				src << "\red You are the fastest assassin of all time.  Your speed is unmatched."
+				src << "\green You are the fastest assassin of all time.  Your speed is unmatched."
 				melee_damage_lower = 25
 				melee_damage_upper = 35
 				health = 140
@@ -441,7 +441,7 @@
 				tacklemax = 5
 				tackle_chance = 70
 			if("Hunter")
-				src << "\red You are the epitome of the hunter.  Few can stand against you in open combat."
+				src << "\green You are the epitome of the hunter.  Few can stand against you in open combat."
 				melee_damage_lower = 50
 				melee_damage_upper = 60
 				health = 250
@@ -457,7 +457,7 @@
 				tacklemax = 6
 				tackle_chance = 65
 			if("Ravager")
-				src << "\red You are death incarnate.  All will tremble before you..."
+				src << "\green You are death incarnate.  All will tremble before you..."
 				melee_damage_lower = 80
 				melee_damage_upper = 100
 				health = 350
@@ -472,7 +472,7 @@
 				tacklemax = 10
 				tackle_chance = 95
 			if("Crusher")
-				src << "\red You are the physical manifestation of a Tank.  Almost nothing can harm you."
+				src << "\green You are the physical manifestation of a Tank.  Almost nothing can harm you."
 				melee_damage_lower = 35
 				melee_damage_upper = 45
 				tacklemin = 5
@@ -487,7 +487,7 @@
 				speed = -0.1
 				armor_deflection = 95
 			if("Sentinel")
-				src << "\red You are the stun master.  Your stunning is legendary and causes massive quantities of salt."
+				src << "\green You are the stun master.  Your stunning is legendary and causes massive quantities of salt."
 				melee_damage_lower = 25
 				melee_damage_upper = 35
 				health = 200
@@ -503,7 +503,7 @@
 				tackle_chance = 60
 				speed = -0.6
 			if("Spitter")
-				src << "\red You are a master of ranged stuns and damage.  Go fourth and generate salt."
+				src << "\green You are a master of ranged stuns and damage.  Go fourth and generate salt."
 				melee_damage_lower = 35
 				melee_damage_upper = 45
 				health = 250
@@ -519,7 +519,7 @@
 				tackle_chance = 75
 				speed = -0.2
 			if("Boiler")
-				src << "You are the master of ranged artillary.  Bring death from above."
+				src << "\green You are the master of ranged artillary.  Bring death from above."
 				melee_damage_lower = 35
 				melee_damage_upper = 45
 				health = 250
@@ -535,7 +535,7 @@
 				tackle_chance = 80
 				speed = 0.8
 			if("Praetorian")
-				src << "\red You are the strongest range fighter around.  Your spit is devestating and you can fire nearly a constant stream."
+				src << "\green You are the strongest range fighter around.  Your spit is devestating and you can fire nearly a constant stream."
 				melee_damage_lower = 40
 				melee_damage_upper = 50
 				health = 270
@@ -551,7 +551,7 @@
 				tackle_chance = 85
 				speed = 1.3
 			if("Hivelord")
-				src <<"\red You are the builder of walls.  Ensure that the marines are the ones who pay for them."
+				src <<"\green You are the builder of walls.  Ensure that the marines are the ones who pay for them."
 				melee_damage_lower = 20
 				melee_damage_upper = 30
 				health = 300
@@ -566,8 +566,8 @@
 				tackle_chance = 80
 				speed = 1.2
 			if("Carrier")
-				src <<"\red You are the master of huggers.  Throw them like baseballs at the marines!"
-				src << "/red Throw a hugger, to get your hugger upgrades."
+				src <<"\green You are the master of huggers.  Throw them like baseballs at the marines!"
+				src << "\green Throw a hugger to get your hugger upgrades."
 				melee_damage_lower = 35
 				melee_damage_upper = 45
 				health = 250
@@ -585,7 +585,7 @@
 				name = "Ancient Empress"
 				real_name = name
 				src.mind.name  = real_name
-				src << "\red You are the Alpha and the Omega...  The beginning and the end..."
+				src << "\green You are the Alpha and the Omega...  The beginning and the end..."
 				melee_damage_lower = 70
 				melee_damage_upper = 90
 				health = 400

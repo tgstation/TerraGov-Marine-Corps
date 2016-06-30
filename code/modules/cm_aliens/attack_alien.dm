@@ -484,11 +484,12 @@
 		return
 
 	if(isXenoLarva(M)) return
-
+/*
+//I don't know why this was added. I am changing it back. All apcs are unacidable, that's why you slash them instead. ~N
 	if(unacidable)
 		M << "This one's too reinforced for you to damage."
 		return
-
+*/
 	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 	var/allcut = 1

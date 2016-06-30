@@ -170,15 +170,14 @@
 	return
 
 /obj/item/stack/proc/use(var/used)
-	if (amount < used)
+	if (used > amount) //If it's larger than what we have, no go.
 		return 0
 	amount -= used
 	if (amount <= 0)
-		var/oldsrc = src
-		src = null //dont kill proc after del()
 		if(usr)
-			usr.before_take_item(oldsrc)
-		del(oldsrc)
+			usr.before_take_item(src)
+		spawn(1) //Did they not have spawn back in the day? Pff.
+			del(src)
 	return 1
 
 /obj/item/stack/proc/add(var/extra)

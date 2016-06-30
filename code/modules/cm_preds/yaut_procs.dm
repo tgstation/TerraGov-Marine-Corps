@@ -170,7 +170,7 @@
 		var/mother_1 = input("And the last piece of equipment?:","Item 2 (of 2)") as null|anything in other
 		var/obj/item/clothing/gloves/yautja/Y = src.gloves
 		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry (it's okai abbi)
-		switch(msel)
+		switch(msel) //This isn't okay. What the actual hell is this. Why not just make a gauntlet variable instead? Why a mob variable...
 			if("The Lumbering Glaive")
 				new /obj/item/weapon/twohanded/glaive(src.loc)
 			if("The Rending Chain-Whip")
