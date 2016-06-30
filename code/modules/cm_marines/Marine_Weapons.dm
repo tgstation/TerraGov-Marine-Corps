@@ -31,7 +31,7 @@
 					F.loc = get_turf(src)
 				del(src) //Delete da old knife
 			else
-				user << "<span class='notice'>This cable coil appears to be empty.</span>"
+				user << "<span class='notice'>You don't have enough cable for that.</span>"
 				return
 		else
 			..()

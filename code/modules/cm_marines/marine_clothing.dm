@@ -548,7 +548,7 @@
 
 //Probably want to remove the gun from the marine belt.
 /obj/item/weapon/storage/belt/marine
-	name = "marine belt"
+	name = "m276 load belt"
 	desc = "A standard issue toolbelt for USCM military forces. Put your ammo in here."
 	icon_state = "marinebelt"
 	item_state = "marine"//Could likely use a better one.

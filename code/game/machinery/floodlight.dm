@@ -114,3 +114,19 @@
 				cell = W
 				user << "You insert the power cell."
 	updateicon()
+
+//Magical floodlight that cannot be destroyed or interacted with.
+/obj/machinery/floodlight/landing
+	name = "Landing Light"
+	desc = "A powerful light stationed near landing zones to provide better visibility."
+	icon_state = "flood01"
+	on = 1
+	in_use = 1
+	luminosity = 5
+	use_power = 0
+
+	attack_hand()
+		return
+
+	attackby()
+		return

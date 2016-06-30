@@ -448,16 +448,14 @@
 
 	reload_into_chamber(var/mob/user as mob)
 		sleep(1)
-		var/directions = pick(1,2,4,8)
-		var/direct[] = list()
+		var/smoke_dir = user.dir
 		if(user)
-			switch(user.dir) //We want the opposite of their direction.
+			switch(smoke_dir) //We want the opposite of their direction.
 				if(2,8)
-					directions = user.dir / 2
+					smoke_dir /= 2
 				if(1,4)
-					directions = user.dir * 2
-		direct += directions
-		puff.set_up(1,direct)
+					smoke_dir *= 2
+		puff.set_up(1,,,smoke_dir)
 		puff.start()
 		return 1
 

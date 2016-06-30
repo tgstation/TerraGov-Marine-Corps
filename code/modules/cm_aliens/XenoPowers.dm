@@ -96,7 +96,7 @@
 		return
 
 	if(locate(/obj/effect/alien/weeds/node) in T)
-		src << "There's a pod here already.!"
+		src << "There's a pod here already!"
 		return
 
 	if(check_plasma(75))
@@ -213,51 +213,33 @@
 		src << "\green You have transferred [amount] plasma to [M]. You now have [src.storedplasma]."
 	return
 
-/mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE
+/mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE <---There's a name I haven't heard in a while. ~N
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Alien"
 
 	if(!check_state())	return
 
-	if(!is_weedable(loc))
-		src << "Bad place for a garden!"
-		return
-
-	var/turf/T = loc
-	var/turf/T2 = null
-	if(!T || !istype(T)) //logic
-		return
-
-	if(!locate(/obj/effect/alien/weeds) in T)
-		src << "You can only shape on weeds. Find some resin before you start building!"
-		return
-	if(locate(/obj/structure/mineral_door) in T || locate(/obj/effect/alien/resin) in T)
-		src << "There's something built here already."
-		return
-	if(locate(/obj/structure/stool/) in T)
-		src << "There's something here already."
-		return
-
 	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
 
 	if(!choice || choice == "cancel")
 		return
 
-	T2 = loc
-
-	if(T != T2 || !isturf(T2))
-		src << "You have to stand still when making your selection."
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf || !istype(current_turf))
 		return
-	//Another check, in case someone built where they were standing somehow.
-	if(!locate(/obj/effect/alien/weeds) in T2)
+
+	if(!is_weedable(current_turf))
+		src << "Bad place for a garden!"
+		return
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+
+	if(!alien_weeds)
 		src << "You can only shape on weeds. Find some resin before you start building!"
 		return
-	if(locate(/obj/structure/mineral_door) in T2 || locate(/obj/effect/alien/resin) in T2)
-		src << "There's something built here already."
-		return
-	if(locate(/obj/structure/stool) in T)
-		src << "There's something here already."
+
+	if(!check_alien_construction(current_turf))
 		return
 
 	if(!check_plasma(75))
@@ -270,15 +252,15 @@
 
 	switch(choice)
 		if("resin door")
-			new /obj/structure/mineral_door/resin(T)
+			new /obj/structure/mineral_door/resin(current_turf)
 		if("resin wall")
-			new /obj/effect/alien/resin/wall(T)
+			new /obj/effect/alien/resin/wall(current_turf)
 		if("resin membrane")
-			new /obj/effect/alien/resin/membrane(T)
+			new /obj/effect/alien/resin/membrane(current_turf)
 		if("resin nest")
-			new /obj/structure/stool/bed/nest(T)
+			new /obj/structure/stool/bed/nest(current_turf)
 		if("sticky resin")
-			new /obj/effect/alien/resin/sticky(T)
+			new /obj/effect/alien/resin/sticky(current_turf)
 	return
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
