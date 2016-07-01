@@ -702,4 +702,10 @@
 	if(alien_jelly || alien_egg)
 		src << "There's already an egg or royal jelly here."
 		return
+
+	var/obj/item/clothing/mask/facehugger/alien_hugger = locate() in current_turf
+	if(alien_hugger)
+		src << "There is a little one here already. Best move it."
+		return
+
 	return 1

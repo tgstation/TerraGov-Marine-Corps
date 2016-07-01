@@ -1205,11 +1205,10 @@ datum/mind
 
 		return (duration <= world.time - brigged_since)
 
-
-
-
 //Initialisation procs
-/mob/living/proc/mind_initialize()
+
+
+/mob/proc/mind_initialize()
 	if(mind)
 		mind.key = key
 	else
@@ -1219,6 +1218,15 @@ datum/mind
 			ticker.minds += mind
 		else
 			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
+	if(!mind.name)	mind.name = real_name
+	mind.current = src
+
+/mob/dead/mind_initialize()
+	if(mind)
+		mind.key = key
+	else
+		mind = new /datum/mind(key)
+		mind.original = src
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
 
