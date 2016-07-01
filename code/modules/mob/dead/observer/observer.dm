@@ -25,6 +25,11 @@
 	universal_speak = 1
 	var/atom/movable/following = null
 
+/mob/dead/observer/Del()
+	if(mind) //Don't need a mind, really.
+		del(mind)
+	..()
+
 /mob/dead/observer/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
@@ -70,11 +75,10 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	..()
-	if(is_alien_whitelisted(src,"Yautja") && ticker && ticker.mode && istype(ticker.mode,/datum/game_mode/colonialmarines))
-		if(ticker.mode:is_pred_round)
-			spawn(20)
-				src << "\red It is a PREDATOR ROUND! Use Join The Hunt to enlist!"
-				return
+	if(ticker && ticker.mode && ticker.mode.pred_round_status)
+		spawn(20)
+			src << "\red This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!"
+			return
 
 
 
@@ -738,90 +742,51 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/join_as_yautja()
 	set category = "Ghost"
-	set name = "Join as Predator"
+	set name = "Join the Hunt"
 	set desc = "If you are whitelisted, and it is the right type of round, join in."
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
 		usr << "\red The game hasn't started yet!"
 		return
 
-	if(!istype(ticker.mode,/datum/game_mode/colonialmarines))
-		usr << "Gamemode mismatch. Consider asking an Admin to spawn you."
-		return
-
 	if (!usr.stat || !client) // Make sure we're an observer
-		// usr << "!usr.stat"
 		return
 
-	if (usr != src)
-		// usr << "usr != src"
-		return 0 // Something is terribly wrong
-
-	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing aliens and cannot spawn as a Predator."
+	if (usr != src)  // This shouldn't happen.
 		return
 
-	if(!is_alien_whitelisted(usr,"Yautja") && !is_alien_whitelisted(usr,"Yautja Elder"))
-		usr << "You are not whitelisted."
+	var/datum/game_mode/predator_round = ticker.mode
+
+	if(!predator_round.pred_round_status)
+		usr << "There is no Hunt this round. Maybe the next one."
 		return
 
-	if(ticker.mode:is_pred_round == 0)
-		usr << "You are whitelisted, but there are no hunts this round. Maybe if you prayed real hard an Admin could spawn you in."
-		return
-
-	if(ticker.mode:numpreds >= 3)
-		usr << "Already full up. There can only be 3 per round."
-		return
-
-	if((src.client && src.client.was_a_predator))
-		usr << "You already were a Yautja! Give someone else a chance."
-		return
-
-	var/I
-
-	for(I in ticker.mode.pred_keys)
-		if(uppertext(I) == uppertext(usr.key)) //case doesn't matter.
-			usr << "You already were Yautja, you bum."
+	var/i
+	for(i in predator_round.pred_keys)
+		if(key == i)
+			usr << "You already were a Yautja! Give someone else a chance."
 			return
 
-	var/mob/old = src
-	var/mob/living/carbon/human/M = new(pick(pred_spawn))
-	M.key = src.key
+	if(!is_alien_whitelisted(usr,"Yautja") && !is_alien_whitelisted(usr,"Yautja Elder"))
+		usr << "You are not whitelisted. You may apply on the forums to be whitelisted as a predator."
+		return
 
-	M.set_species("Yautja")
-	if(src.client && src.client.prefs) //Fuckit, one of these must be right.
-		M.real_name = src.client.prefs.predator_name
-		M.gender = src.client.prefs.predator_gender
-	else if(M.client && M.client.prefs)
-		if(M.client.prefs.predator_gender)
-			if(M.client.prefs.predator_gender == "male")
-				M.gender = "male"
-			else
-				M.gender = "female"
-		else
-			M.gender = "male"
+	if(!is_alien_whitelisted(usr,"Yautja Elder"))
+		if(predator_round.pred_current_num >= predator_round.pred_maximum_num)
+			usr << "Only three predators may spawn per round, but Elders are excluded."
+			return
 
-		M.real_name = M.client.prefs.predator_name
+	if(!mind) mind_initialize() //Give them a new mind if they didn't have one before.
+	mind.current = src //To be sure.
 
-	if(!M.gender) M.gender = "male"
-	M.update_icons()
-	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
-	message_admins("[src] ([src.key]) joined as Yautja, [M.real_name].")
+	var/datum/mind/pred_mind = mind //Temporary variable.
+	src = null //We're going to finish the proc and delete the ghost if we're successful.
+	var/mob/living/carbon/human/new_predator = transform_predator(pred_mind) //Initialized and ready.
+	if(!new_predator) //Something went wrong.
+		return
 
-	if(is_alien_whitelisted(M,"Yautja Elder"))
-		M.real_name = "Elder [M.real_name]"
-		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
-		M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
-		M << "<B>You come equipped as an Elder should, with bonus glaive and heavy armor.</b>"
-
-	ticker.mode.predators += M.mind
-	ticker.mode.pred_keys += usr.key
-	ticker.mode:numpreds++
-	M.mind.assigned_role = "MODE"
-	M.mind.special_role = "Predator"
-	if(M.client) M.client.was_a_predator = 1
-	if(old) del(old) //Wipe the old ghost.
-	return
+	log_admin("[src] [new_predator.key], became a new Yautja, [new_predator.real_name].")
+	message_admins("[src] ([new_predator.key]) joined as Yautja, [new_predator.real_name].")
 
 /mob/dead/verb/drop_vote()
 	set category = "Ghost"

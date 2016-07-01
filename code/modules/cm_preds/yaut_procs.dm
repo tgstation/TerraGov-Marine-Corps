@@ -160,17 +160,23 @@
 	if(pred_bought)
 		return
 
-	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. Would you like to proceed, Yautja?","Sure?","Begin the Hunt","No, not now")
+	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. If you cancel at any point, you will not claim your equipment.","Sure?","Begin the Hunt","No, not now")
 	if(sure == "Begin the Hunt")
 		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
 		var/list/other = list("The Fleeting Speargun", "The Brutal Plasma Rifle", "The Purifying Smart-Disc","The Enhanced Bracer")//, "The Clever Hologram")
 
 		var/msel = input("Which weapon shall you use on your hunt?:","Melee Weapon") as null|anything in melee
+		if(!msel) return //We don't want them to cancel out then get nothing.
 		var/mother_0 = input("Which secondary gear shall you take?","Item 1 (of 2)") as null|anything in other
+		if(!mother_0) return
 		var/mother_1 = input("And the last piece of equipment?:","Item 2 (of 2)") as null|anything in other
+		if(!mother_1) return
+
+		if(pred_bought) return //Tried to run it several times in the same loop. That's not happening.
+
 		var/obj/item/clothing/gloves/yautja/Y = src.gloves
-		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry (it's okai abbi)
-		switch(msel) //This isn't okay. What the actual hell is this. Why not just make a gauntlet variable instead? Why a mob variable...
+		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry (it's okai abbi) //This should be a gauntlet variable.
+		switch(msel)
 			if("The Lumbering Glaive")
 				new /obj/item/weapon/twohanded/glaive(src.loc)
 			if("The Rending Chain-Whip")
@@ -181,6 +187,7 @@
 				new /obj/item/weapon/melee/yautja_scythe(src.loc)
 			if("The Adaptive Combi-Stick")
 				new /obj/item/weapon/melee/combistick(src.loc)
+
 		switch(mother_0)
 			if("The Fleeting Speargun")
 				new /obj/item/weapon/gun/launcher/speargun(src.loc)
@@ -220,79 +227,77 @@
 	var/list/players = list()
 
 	for(var/mob/player in player_list)
-		if(!player.client) continue
-		if(isYautja(player)) continue
-		if(readied)
-			if(!istype(player,/mob/new_player)) continue
-			if(!player:ready) continue
+		if(!player.client) continue //No client. DCed.
+		if(isYautja(player)) continue //Already a predator. Might be dead, who knows.
+		if(readied) //Ready check for new players.
+			var/mob/new_player/new_pred = player
+			if(!istype(new_pred)) continue //Have to be a new player here.
+			if(!new_pred.ready) continue //Have to be ready.
 		else
-			if(!istype(player,/mob/dead)) continue
+			if(!istype(player,/mob/dead)) continue //Otherwise we just want to grab the ghosts.
 
 		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
-			if(!player.client) //Just to be safe.
-				continue
-
 			if(!player.client.prefs)
 				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
 
 			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
-				if(player.mind)
-					players += player.mind
-				else if(player.key)
-					player.mind = new /datum/mind(player.key)
-					players += player.mind
+				if(!player.mind) //They have to have a key if they have a client.
+					player.mind_initialize() //Will work on ghosts too, but won't add them to active minds.
+				players += player.mind
 	return players
 
-/proc/transform_predator(var/datum/mind/ghost)
+/proc/transform_predator(var/datum/mind/ghost_mind)
 
-	var/mob/H = ghost.current
-	var/mob/living/carbon/human/newmob
+	var/mob/living/carbon/human/new_predator
 
-	newmob = new (pick(pred_spawn))
+	if( is_alien_whitelisted(ghost_mind.current,"Yautja Elder") ) new_predator = new (pick(pred_elder_spawn))
+	else new_predator = new (pick(pred_spawn))
 
-	newmob.key = ghost.key
-	if(!newmob.key)
-		message_admins("Warning: null client in transform_predator, key: [H.key]")
-		del(newmob)
+	new_predator.key = ghost_mind.key //This will initialize their mind.
+
+	if(!new_predator.key) //Something went wrong.
+		message_admins("\red <b>Warning</b>: null client in transform_predator, key: [new_predator.key]")
+		del(new_predator)
 		return
 
-	newmob.set_species("Yautja")
+	new_predator.set_species("Yautja")
 
-	if(newmob.client.prefs)
-		newmob.real_name = newmob.client.prefs.predator_name
-		newmob.gender = newmob.client.prefs.predator_gender
-		newmob.client.was_a_predator = 1
+	if(new_predator.client.prefs) //They should have these set, but it's possible they don't have them.
+		new_predator.real_name = new_predator.client.prefs.predator_name
+		new_predator.gender = new_predator.client.prefs.predator_gender
 	else
-		newmob.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
-		newmob.gender = "male"
+		new_predator.client.prefs = new /datum/preferences(new_predator.client) //Let's give them one.
+		new_predator.gender = "male"
 
-	newmob.mind.assigned_role = "MODE" //This should be "ghost" at this point.
-	newmob.mind.special_role = "Predator"
+	if(!new_predator.real_name) //In case they don't have a name set or no prefs, there's a name.
+		new_predator.real_name = "Le'pro"
+		new_predator << "<b>\red You forgot to set your name in your preferences. Please do so next time.</b>"
 
-	newmob.update_icons()
-	if(is_alien_whitelisted(newmob,"Yautja Elder"))
-		newmob.real_name = "Elder [newmob.real_name]"
-		newmob.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
-		newmob.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
+	if(is_alien_whitelisted(new_predator,"Yautja Elder"))
+		new_predator.real_name = "Elder [new_predator.real_name]"
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(new_predator), slot_wear_suit)
+		new_predator.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(new_predator), slot_l_hand)
+
 		spawn(10)
-			newmob << "\red <B> Welcome Elder!</B>"
-			newmob << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
-			newmob << "That does not mean you can't go out and show the youngsters how it's done, though.."
+			new_predator << "\red <B> Welcome Elder!</B>"
+			new_predator << "You are responsible for the well-being of your pupils. Hunting is secondary in priority."
+			new_predator << "That does not mean you can't go out and show the youngsters how it's done."
+			new_predator << "<B>You come equipped as an Elder should, with a bonus glaive and heavy armor.</b>"
+	else
+		spawn(12)
+			new_predator << "You are <B>Yautja</b>, a great and noble predator!"
+			new_predator << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
+			new_predator << "Hunt at your discretion, yet be observant rather than violent."
+			new_predator << "And above all, listen to your Elders!"
 
+	new_predator.mind.assigned_role = "MODE"
+	new_predator.mind.special_role = "Predator"
+	new_predator.update_icons()
 
-	spawn(12)
-		newmob << "You are <B>Yautja</b>, a great and noble predator!"
-		newmob << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
-		newmob << "Use your hellhounds to scout and test your opponents."
-		newmob << "Hunt at your discretion, yet be observant rather than violent."
-		newmob << "And above all, listen to your elders!"
+	if(ticker && ticker.mode) //Let's get them set up.
+		var/datum/game_mode/predator_round = ticker.mode
+		predator_round.initialize_predator(new_predator)
 
-	if(ticker && ticker.mode)
-		if(!(ghost in ticker.mode.predators))
-			ticker.mode.predators += ghost
+	if(ghost_mind.current) del(ghost_mind.current) //Get rid of the old body if it still exists.
 
-	ticker.mode.pred_keys += newmob.key
-	newmob.is_pred = 1
-
-	if(H) del(H)
-	return 1
+	return new_predator

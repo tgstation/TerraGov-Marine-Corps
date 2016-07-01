@@ -447,22 +447,28 @@
 
 		if(!usr) return
 		var/mob/living/carbon/human/M = usr
+		if(!istype(M)) return
 		if(M.stat == DEAD)
 			usr << "Little too late for that now!"
 			return
-		if(!istype(M)) return
 		if(!isYautja(usr))
 			usr << "You have no idea how to work these things."
 			return
-		if(!M.stat) //We're conscious, first look for another dead yautja to blow up.
-			for(var/mob/living/carbon/human/victim in oview(1))
-				if(victim && isYautja(victim) && victim.stat == DEAD)
-					if(victim.gloves && istype(victim.gloves,/obj/item/clothing/gloves/yautja))
-						if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
-							var/obj/item/clothing/gloves/yautja/G = victim.gloves
-							G.explodey()
-							M.visible_message("\red [M] presses a few buttons on [victim]'s wrist bracer.","\red You activate the timer. May [victim]'s final hunt be swift.")
-							return
+
+		var/obj/item/weapon/grab/grabbing = M.get_active_hand()
+		if(istype(grabbing))
+			var/mob/living/carbon/human/comrade = grabbing.affecting
+			if(isYautja(comrade) && comrade.stat == DEAD)
+				var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
+				if(istype(bracer))
+					if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
+						bracer.explodey(comrade)
+						M.visible_message("\red [M] presses a few buttons on [comrade]'s wrist bracer.","\red You activate the timer. May [comrade]'s final hunt be swift.")
+				else
+					M << "Your fallen comrade does not have a bracer. <b>Report this to your elder so that it's fixed.</b>"
+			else
+				M << "You can only activate the bracer of another yautja, and they must have fallen in the Hunt."
+			return
 
 		if(!M.stat)
 			M << "You can only do this when unconscious, you coward. Go hunting and die gloriously."
@@ -524,10 +530,6 @@
 		if(!isYautja(usr))
 			usr << "You have no idea how to work these things."
 			return
-
-		if(usr.get_active_hand())
-			usr << "Your active hand must be empty."
-			return 0
 
 		if(inject_timer)
 			usr << "Your bracers need some time to recuperate first."

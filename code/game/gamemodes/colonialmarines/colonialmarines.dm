@@ -1,10 +1,55 @@
 /datum/game_mode
 	var/list/datum/mind/aliens = list()
 	var/list/datum/mind/survivors = list()
-	var/queen_death_timer = 0
 	var/list/datum/mind/predators = list()
 	var/list/datum/mind/hellhounds = list()
+	var/queen_death_timer = 0
 	var/pred_keys = list()
+	var/pred_current_num = 0 //How many are there now?
+	var/pred_maximum_num = 3 //How many are possible? Does not count elders.
+	var/pred_round_status = 0 //Is it actually a predator round?
+	var/pred_round_chance = 20 //%
+
+	proc/initialize_predator(var/mob/living/carbon/human/new_predator)
+		predators += new_predator.mind //Add them to the proper list.
+		pred_keys += new_predator.key //Add their key.
+		if(!is_alien_whitelisted(new_predator,"Yautja Elder")) pred_current_num++ //If they are not an elder, tick up the max.
+
+	proc/initialize_starting_predator_list()
+		if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
+			pred_round_status = 1 //It is now a predator round.
+			var/list/datum/mind/possible_predators = get_whitelisted_predators() //Grabs whitelisted preds who are ready at game start.
+			var/i = pred_maximum_num //Only three can actually join at round start, the rest can late join. This shouldn't usually happen anyway.
+			while(i>0)
+				if(!possible_predators.len)
+					break
+				var/datum/mind/new_pred = pick(possible_predators)
+				if(!istype(new_pred)) continue
+				possible_predators -= new_pred
+				predators += new_pred
+				new_pred.assigned_role = "MODE" //So they are not chosen later for another role.
+				i--
+
+	proc/initialize_post_predator_list()
+		var/temp_pred_list[] = predators //We don't want to use the actual predator list as it will be overriden.
+		predators = list() //Empty it. The temporary minds we used aren't going to be used much longer.
+		for(var/datum/mind/new_pred in temp_pred_list)
+			if(!istype(new_pred)) continue
+			transform_predator(new_pred)
+
+	proc/force_predator_spawn() //Forces the spawn and doesn't count this against mode total.
+		var/possible_predators[] = get_whitelisted_predators(0) //0 = not care about ready state
+		var/i = pred_maximum_num
+		while(i > 0)
+			if(!possible_predators.len)
+				break
+			else
+				var/datum/mind/new_pred = pick(possible_predators)
+				if(!istype(new_pred)) continue
+				if(transform_predator(new_pred)) //If it actually was successful.
+					possible_predators -= new_pred //Remove from list.
+					i--
+				else continue //If not, let's continue.
 
 /datum/game_mode/colonialmarines
 	name = "Colonial Marines"
@@ -17,10 +62,6 @@
 	var/numaliens = 0
 	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/pred_chance = 5 //1 in <x>, "5" = 20% chance
-	var/is_pred_round = 0
-	var/numpreds = 0
-
 
 /* Pre-pre-startup */
 //We have to be really careful that we don't pick() from null lists.
@@ -32,28 +73,13 @@
 	numaliens = Clamp((readyplayers/5), 1, 14) //(n, minimum aliens, maximum aliens)
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
-	var/list/datum/mind/possible_predators = get_whitelisted_predators()
 
 
 	if(possible_aliens.len==0)
 		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
 		return 0
 
-	if(round(rand(1,pred_chance)) == 1) //Just make sure we have enough.
-		is_pred_round = 1
-		while(numpreds < 3)
-			if(!possible_predators.len)
-				break
-			else
-				var/datum/mind/new_pred = pick(possible_predators)
-				possible_predators -= new_pred
-				predators += new_pred
-				numpreds--
-				new_pred.assigned_role = "MODE"
-				new_pred.special_role = "Predator"
-	else
-		is_pred_round = 0
-
+	initialize_starting_predator_list()
 
 	for(var/datum/mind/A in possible_aliens) //We have to clean out the predators who've been picked already.
 		if(A.assigned_role == "MODE")
@@ -107,8 +133,9 @@
 				S.assigned_role = "MODE"
 				S.special_role = "Survivor"
 
-	return 1
 
+
+	return 1
 /datum/game_mode/colonialmarines/announce()
 	world << "<B>The current game mode is - Colonial Marines!</B>"
 
@@ -138,8 +165,7 @@
 	for(var/datum/mind/survivor in survivors) //Build and move to the survivors.
 		transform_survivor(survivor)
 
-	for(var/datum/mind/pred in predators) //Build and move to the survivors.
-		transform_predator(pred)
+	initialize_post_predator_list()
 
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
@@ -335,7 +361,7 @@ var/list/toldstory = list()
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H) //Prevent any runtime errors
 			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space) && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
-				if(H.species != "Yautja") // Preds don't count in round end.
+				if(!isYautja(H)) // Preds don't count in round end.
 					human_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("ERROR! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
@@ -394,7 +420,6 @@ var/list/toldstory = list()
 		return 1
 
 	return 0
-
 
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relevant information stated//

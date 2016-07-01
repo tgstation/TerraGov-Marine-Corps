@@ -23,8 +23,6 @@
 	var/donator = 0
 	var/adminhelped = 0
 
-	var/was_a_predator = 0
-
 		///////////////
 		//SOUND STUFF//
 		///////////////

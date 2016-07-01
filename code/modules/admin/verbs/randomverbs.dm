@@ -514,6 +514,31 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
 
+
+//Added for testing purposes. Blast from the past seeing Respawn Character. ~N
+/datum/admins/proc/force_predator_round()
+	set category = "Special Verbs"
+	set name = "Force Predator Round"
+	set desc = "Force a predator round for the round type. Only works on Colonial Marines."
+
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	var/datum/game_mode/predator_round = ticker.mode
+
+	if(!predator_round.pred_round_status)
+		predator_round.pred_round_status = 1
+		usr << "The Hunt is now enabled."
+	else
+		usr << "The Hunt is already in progress."
+		return
+
+	feedback_add_details("admin_verb","FPRED")
+	log_admin("[key_name(usr)] admin-forced a predator round.")
+	message_admins("\blue [key_name_admin(usr)] admin-forced a predator round.", 1)
+	return
+
 /client/proc/cmd_admin_add_freeform_ai_law()
 	set category = "Fun"
 	set name = "Add Custom AI law"

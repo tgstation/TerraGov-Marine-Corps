@@ -7,7 +7,6 @@
 
 	var/list/hud_list[9]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-	var/is_pred = 0 //This is to prevent assholes from teleporting to the Pred ship
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
