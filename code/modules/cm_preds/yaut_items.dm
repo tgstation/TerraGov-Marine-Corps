@@ -635,8 +635,8 @@
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	muzzle_flash = null // TO DO, add a decent one.
+	unusual_design = 1
 	can_pointblank = 0
-	energy_based = 1
 	canremove = 0
 	w_class = 5
 	force = 0 //Yeah... Need to remove hitting people with it.
@@ -772,8 +772,8 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	muzzle_flash = null // TO DO, add a decent one.
 	origin_tech = "combat=7;materials=7"
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
+	unusual_design = 1
 	can_pointblank = 0
-	energy_based = 1
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	fire_delay = 5
@@ -862,8 +862,8 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	item_state = "spikelauncher"
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	fire_sound = 'sound/weapons/plasma_shot.ogg'
+	unusual_design = 1
 	can_pointblank = 0
-	energy_based = 1
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
 	w_class = 5
@@ -1119,6 +1119,7 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	icon_state = "cypherkey"
 	channels = list("Yautja" = 1)
 
+//I need to go over these weapons and balance them out later. Right now they're pretty all over the place.
 /obj/item/weapon/melee/yautja_chain
 	name = "Yautja Chainwhip"
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
@@ -1126,7 +1127,7 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	item_state = "chain"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
-	force = 28
+	force = 35
 	throwforce = 12
 	w_class = 3
 	unacidable = 1
@@ -1136,13 +1137,13 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 
 	attack(mob/target as mob, mob/living/user as mob)
 		if(user.zone_sel.selecting == "r_leg" || user.zone_sel.selecting == "l_leg" || user.zone_sel.selecting == "l_foot" || user.zone_sel.selecting == "r_foot")
-			if(prob(30) && !target.lying)
+			if(prob(35) && !target.lying)
 				if(isXeno(target))
 					if(target:big_xeno) //Can't trip the big ones.
 						return ..()
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1, -1)
 				user.visible_message("<span class = 'warning'>\The [src] lashes out and [target] goes down!</span>","<span class='warning'><b>You trip [target]!</span></b>")
-				target.Weaken(4)
+				target.Weaken(5)
 		return ..()
 
 /obj/item/weapon/melee/yautja_knife
@@ -1224,6 +1225,7 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
+	edge = 1
 	force = 45 //More damage than other weapons like it. Considering how "strong" this sword is supposed to be, 38 damage was laughable.
 	w_class = 4.0
 	throwforce = 18
@@ -1472,7 +1474,7 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 			return
 		var/mob/living/carbon/human/H = user
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
-		if(!H.is_pred)
+		if(!isYautja(H))
 			user << "The screen angrily flashes three times..."
 			playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
 			spawn(30)

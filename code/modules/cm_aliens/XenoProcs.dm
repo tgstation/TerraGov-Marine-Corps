@@ -686,3 +686,20 @@
 		src:zoom_timer = 0
 	zoom_turf = null
 	return
+
+/mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
+	var/obj/structure/mineral_door/alien_door = locate() in current_turf
+	var/obj/effect/alien/resin/alien_construct = locate() in current_turf
+	var/obj/structure/stool/chair = locate() in current_turf
+
+	if(alien_door || alien_construct || chair)
+		src << "There's something built here already."
+		return
+
+	var/obj/royaljelly/alien_jelly = locate() in current_turf
+	var/obj/effect/alien/egg/alien_egg = locate() in current_turf
+
+	if(alien_jelly || alien_egg)
+		src << "There's already an egg or royal jelly here."
+		return
+	return 1

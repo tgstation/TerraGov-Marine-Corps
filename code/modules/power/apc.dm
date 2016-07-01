@@ -857,6 +857,8 @@
 			if (src.aidisabled == 0)
 				src.aidisabled = 1
 			src.updateDialog()
+	if(isXeno(usr)) //So aliens don't see this when they cut all of the wires.
+		return
 	src.interact(usr)
 	updateUsrDialog()
 //		if(APC_WIRE_IDSCAN)		nothing happens when you cut this wire, add in something if you want whatever

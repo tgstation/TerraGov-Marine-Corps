@@ -173,9 +173,9 @@
 		var/dist_since_sleep = 5 //Just so we always see the bullet.
 		var/turf/current_turf = get_turf(src)
 		var/turf/next_turf
-		in_flight = 1
 		var/this_iteration = 0
-		invisibility = 0 // Let's make it visible again.
+		var/already_visible = 0
+		in_flight = 1
 		spawn()
 			for(next_turf in path)
 				if(!src || !loc)
@@ -198,7 +198,6 @@
 					return
 
 				src.loc = next_turf
-				//invisibility = 0 // Bullet is now travelling and is visible.
 				each_turf()
 
 				dist_since_sleep++
@@ -208,6 +207,9 @@
 					sleep(1)
 
 				current_turf = get_turf(src)
+				if(!already_visible && current_turf != starting)
+					invisibility = 0 //Let there be light (visibility).
+					already_visible = 1 //Don't need to check the turfs anymore.
 				if(this_iteration == path.len)
 					next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 					if(current_turf && next_turf)
@@ -246,13 +248,18 @@
 		follow_flightpath(speed,change_x,change_y,range) //pyew!
 
 	proc/scan_a_turf(var/turf/T)
-		if(!istype(T)) return 0
-		if(T.density) //Shit, we hit a wall.
+		if(!istype(T)) return //Not a turf. Back out.
+		if(T.density) //Hit a wall, back out.
 			if(ammo) ammo.on_hit_turf(T,src)
 			if(T) T.bullet_act(src)
 			return 1
-		if(firer && T == firer.loc) return 0 //Never.
-		if(!T.contents.len) return 0 //Nothing here.
+		if(firer && T == firer.loc) return //Is it our turf? Continue on if it is.
+		if(ammo && ammo.explosive) //Let's check to see if this turf is our intended target.
+			if(T == original) //Looks like it's our intended target.
+				ammo.on_hit_turf(T,src)
+				if(T) T.bullet_act(src)
+				return 1
+		if(!T.contents.len) return //Nothing here.
 		if(isnull(src)) return 1 //??
 		for(var/atom/A in T)
 			if(!A || A == src || A == firer || A in permutated) continue
@@ -262,14 +269,10 @@
 				A.bullet_act(src)
 				continue
 
-			if(isturf(A))
-				if(istype(A,/turf/space)) return 1 //no space flight sorry
-				if(!A.density) continue
-				if(ammo) ammo.on_hit_turf(A,src)
-				if(A) A.bullet_act(src) //Turf could blow up before the hit
-				return 1
+			//Don't need to check for turfs inside turfs. Turfs can't be in turfs.
+			//The space flight check never worked anyway, because T.contents.len above would cancel it.
 
-			else if(isobj(A))
+			if(isobj(A))
 				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad too
 					continue
 
@@ -300,24 +303,25 @@
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
 	if(!P || isnull(P) || !P.ammo || !P.ammo.ping) return
 
-	var/image/ping = image('icons/obj/projectiles.dmi',src,P.ammo.ping,10) //Layer 10, above most things but not the HUD.
-	var/angle = round(rand(1,359))
-	ping.pixel_x += rand(-6,6)
-	ping.pixel_y += rand(-6,6)
+	if(prob(65)) //Optimization.
+		var/image/ping = image('icons/obj/projectiles.dmi',src,P.ammo.ping,10) //Layer 10, above most things but not the HUD.
+		var/angle = round(rand(1,359))
+		ping.pixel_x += rand(-6,6)
+		ping.pixel_y += rand(-6,6)
 
-	if(P.firer && prob(60))
-		angle = round(Get_Angle(P.firer,src))
+		if(P.firer && prob(60))
+			angle = round(Get_Angle(P.firer,src))
 
-	var/matrix/rotate = matrix()
+		var/matrix/rotate = matrix()
 
-	rotate.Turn(angle)
-	ping.transform = rotate
+		rotate.Turn(angle)
+		ping.transform = rotate
 
-	for(var/mob/M in viewers(src))
-		M << ping
+		for(var/mob/M in viewers(src))
+			M << ping
 
-	sleep(3)
-	del(ping)
+		spawn(3)
+			del(ping)
 
 /atom/proc/bullet_act(obj/item/projectile/P)
 	return density

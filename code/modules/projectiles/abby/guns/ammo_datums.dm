@@ -431,6 +431,7 @@ use the ammo types directly.
 	name = "glob"
 	icon_state = "acid"
 	ping = "ping_x"
+	explosive = 1
 	incendiary = 1
 	shell_speed = 1
 	ignores_armor = 1
@@ -518,6 +519,7 @@ use the ammo types directly.
 	name = "high explosive rocket"
 	icon_state = "missile"
 	ping = null //no bounce off.
+	explosive = 1
 	accuracy = 10
 	accurate_range = 25
 	max_range = 25

@@ -92,14 +92,6 @@ macro "macro"
 		command = "quick-equip"
 		is-disabled = false
 	elem 
-		name = "CTRL+F"
-		command = "a-intent left"
-		is-disabled = false
-	elem 
-		name = "CTRL+G"
-		command = "a-intent right"
-		is-disabled = false
-	elem 
 		name = "CTRL+Q"
 		command = ".northwest"
 		is-disabled = false
@@ -296,22 +288,6 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
-		is-disabled = false
-	elem 
-		name = "F"
-		command = "a-intent left"
-		is-disabled = false
-	elem 
-		name = "CTRL+F"
-		command = "a-intent left"
-		is-disabled = false
-	elem 
-		name = "G"
-		command = "a-intent right"
-		is-disabled = false
-	elem 
-		name = "CTRL+G"
-		command = "a-intent right"
 		is-disabled = false
 	elem 
 		name = "H"
@@ -857,6 +833,8 @@ window "chemdispenser"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 	elem "eject"
 		type = BUTTON
 		pos = 264,4
@@ -1023,6 +1001,8 @@ window "chemdispenser"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 	elem "child1"
 		type = CHILD
 		pos = 0,40
@@ -1144,6 +1124,8 @@ window "chemdispenser_reagents"
 		keep-aspect = false
 		align = center
 		text-wrap = false
+		allow-html = false
+		letterbox = true
 
 window "mainwindow"
 	elem "mainwindow"
@@ -1503,7 +1485,7 @@ window "rpane"
 		font-size = 0
 		font-style = ""
 		text-color = #000000
-		background-color = #8CFFA4
+		background-color = #8cffa4
 		is-visible = true
 		is-disabled = false
 		is-transparent = false
