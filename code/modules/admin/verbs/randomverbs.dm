@@ -525,11 +525,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "\red The game hasn't started yet!"
 		return
 
-	var/datum/game_mode/colonialmarines/predator_round = ticker.mode
-
-	if(!istype(predator_round))
-		usr << "This is not the right game mode."
-		return
+	var/datum/game_mode/predator_round = ticker.mode
 
 	if(!predator_round.pred_round_status)
 		predator_round.pred_round_status = 1
