@@ -91,7 +91,7 @@
 		command_announcement.Announce("An admiral at Centcom has inherited an old manor from his great uncle.  There hasn't been any contact for some time, so the marines have been deployed to investigate...", "USS Sulaco")
 
 
-/datum/game_mode/Halloween/proc/transform_xeno(var/datum/mind/ghost)
+/datum/game_mode/Halloween/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn_HH))
 	new_xeno.amount_grown = 100
@@ -109,7 +109,7 @@
 		del(original)
 
 //Start the Survivor players. This must go post-setup so we already have a body.
-/datum/game_mode/Halloween/proc/transform_survivor(var/datum/mind/ghost)
+/datum/game_mode/Halloween/transform_survivor(var/datum/mind/ghost)
 
 	var/mob/living/carbon/human/H = ghost.current
 

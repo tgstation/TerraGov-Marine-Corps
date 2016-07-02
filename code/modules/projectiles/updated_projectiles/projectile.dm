@@ -75,13 +75,8 @@
 
 		acc += ammo.accuracy //Add the ammo's accuracy bonus/pens
 
-		if(istype(shot_from,/obj/item/weapon/gun)) //Does our gun exist? If so, add attachable bonuses.
+		if(istype(shot_from,/obj/item/weapon/gun)) //Does our gun exist? If so, add the bonus for it.
 			var/obj/item/weapon/gun/gun = shot_from
-			if(gun.rail && gun.rail.accuracy_mod) acc += gun.rail.accuracy_mod
-			if(gun.muzzle && gun.muzzle.accuracy_mod) acc += gun.muzzle.accuracy_mod
-			if(gun.under && gun.under.accuracy_mod) acc += gun.under.accuracy_mod
-			if(gun.stock && gun.stock.accuracy_mod) acc += gun.stock.accuracy_mod
-
 			acc += gun.accuracy
 
 		//These should all be 0 if the bullet is still in the barrel.
@@ -232,6 +227,10 @@
 		if(F) permutated.Add(F) //Don't hit the shooter (firer)
 		shot_from = S
 		in_flight = 1
+
+		//If we have the the right kind of ammo, we can fire several projectiles at once.
+		if(ammo && ammo.bonus_projectiles)
+			ammo.multiple_projectiles(src, range, speed)
 
 		path = getline2(starting,target_turf)
 

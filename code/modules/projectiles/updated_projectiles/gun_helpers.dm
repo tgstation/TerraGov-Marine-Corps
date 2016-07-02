@@ -236,45 +236,12 @@ should be alright.
 	if(burst_toggled && burst_firing) return
 
 	if(istype(I,/obj/item/ammo_magazine))
-		reload(user,I)
-		return
+		if(check_inactive_hand(user))
+			reload(user,I)
 
-	if(!istype(I,/obj/item/attachable)) return
-
-	var/obj/item/attachable/A = I
-	if(!(src.type in A.guns_allowed))
-		user << "\The [A] doesn't fit on [src]."
-		return
-
-	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
-	if(twohanded && in_hand != src) //It has to be held if it's a two hander.
-		user << "Try holding \the [src] before you attempt to modify it."
-		return
-
-	//Checks if they can attach the thing in the first place, like with fixed attachments.
-	var/can_attach = 1
-	switch(A.slot)
-		if("rail")
-			if(rail && rail.can_be_removed == 0) can_attach = 0
-		if("muzzle")
-			if(muzzle && muzzle.can_be_removed == 0) can_attach = 0
-		if("under")
-			if(under && under.can_be_removed == 0) can_attach = 0
-		if("stock")
-			if(stock && stock.can_be_removed == 0) can_attach = 0
-
-	if(!can_attach)
-		user << "The attachment on [src]'s [A.slot] cannot be removed."
-		return
-
-	user.visible_message("\blue [user] begins field-modifying their [src]..","\blue You begin field modifying \the [src].")
-	if(do_after(user,60))
-		user.visible_message("\blue [user] attaches \the [A] to \the [src].","\blue You attach \the [A] to \the [src].")
-		user.drop_item(A)
-		A.Attach(src)
-		update_attachables()
-		if(reload_sound)
-			playsound(user, reload_sound, 100, 1)
+	else if(istype(I,/obj/item/attachable))
+		if(check_inactive_hand(user))
+			attach_to_gun(user,I)
 	return
 
 //----------------------------------------------------------
@@ -287,6 +254,23 @@ should be alright.
 /obj/item/weapon/gun/proc/unique_action(var/mob/M) //Anything unique the gun can do, like pump or spin or whatever.
 	return
 
+/obj/item/weapon/gun/proc/check_inactive_hand(var/mob/user)
+	if(user)
+		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
+		if( in_hand != src ) //It has to be held.
+			user << "You have to hold \the [src] to do that!"
+			return
+	return 1
+
+/obj/item/weapon/gun/proc/check_both_hands(var/mob/user)
+	if(user)
+		var/obj/item/weapon/gun/in_handL = user.l_hand
+		var/obj/item/weapon/gun/in_handR = user.r_hand
+		if( in_handL != src && in_handR != src ) //It has to be held.
+			user << "You have to hold \the [src] to do that!"
+			return
+	return 1
+
 /obj/item/weapon/gun/proc/has_attachment(var/A)
 	if(!A)
 		return
@@ -295,6 +279,36 @@ should be alright.
 	if(istype(rail,A)) return 1
 	if(istype(stock,A)) return 1
 	return
+
+/obj/item/weapon/gun/proc/attach_to_gun(var/mob/user, var/obj/item/attachable/attachment)
+	if(!(src.type in attachment.guns_allowed))
+		user << "\The [attachment] doesn't fit on [src]."
+		return
+
+	//Checks if they can attach the thing in the first place, like with fixed attachments.
+	var/can_attach = 1
+	switch(attachment.slot)
+		if("rail")
+			if(rail && rail.can_be_removed == 0) can_attach = 0
+		if("muzzle")
+			if(muzzle && muzzle.can_be_removed == 0) can_attach = 0
+		if("under")
+			if(under && under.can_be_removed == 0) can_attach = 0
+		if("stock")
+			if(stock && stock.can_be_removed == 0) can_attach = 0
+
+	if(!can_attach)
+		user << "The attachment on [src]'s [attachment.slot] cannot be removed."
+		return
+
+	user.visible_message("\blue [user] begins field-modifying their [src].","\blue You begin field modifying \the [src].")
+	if(do_after(user,60))
+		user.visible_message("\blue [user] attaches \the [attachment] to \the [src].","\blue You attach \the [attachment] to \the [src].")
+		user.drop_item(attachment)
+		attachment.Attach(src)
+		update_attachables()
+		if(reload_sound)
+			playsound(user, reload_sound, 100, 1)
 
 /obj/item/weapon/gun/proc/update_attachables()
 	overlays.Cut()
@@ -331,6 +345,15 @@ should be alright.
 		I.pixel_y = src.under_pixel_y - stock.pixel_shift_y
 		overlays += I
 
+/obj/item/weapon/gun/proc/update_force_list()
+	switch(force)
+		if(-50 to 15) //Unlikely to ever be -50, but just to be safe.
+			attack_verb = list("struck", "hit", "bashed")
+		if(16 to 35)
+			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+		else //Greater than 35
+			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
+
 //----------------------------------------------------------
 					//				   \\
 					// GUN VERBS PROCS \\
@@ -349,6 +372,8 @@ should be alright.
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
 		usr << "Not right now."
 		return
+
+	if(!check_both_hands(usr)) return
 
 	if(!rail && !muzzle && !under && !stock)
 		usr << "This weapon has no attachables. You can only field strip enhanced weapons."
@@ -392,6 +417,8 @@ should be alright.
 		usr << "This weapon does not have a burst fire mode."
 		return
 
+	if(!check_both_hands(usr)) return
+
 	usr << "\icon[src] You [burst_toggled ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode."
 	playsound(usr,'sound/machines/click.ogg', 50, 1)
 	burst_toggled = !burst_toggled
@@ -412,6 +439,8 @@ should be alright.
 		usr << "Not right now."
 		return
 
+	if(!check_both_hands(usr)) return
+
 	unload(usr)
 
 	return
@@ -430,6 +459,8 @@ should be alright.
 		usr << "Not right now."
 		return
 
+	if(!check_both_hands(usr)) return
+
 	unique_action(usr)
 
 	return
@@ -447,6 +478,8 @@ should be alright.
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
 		usr << "Not right now."
 		return
+
+	if(!check_both_hands(usr)) return
 
 	var/list/usable_attachments = list() //Basic list of attachments to compare later.
 	if(rail && rail.can_activate) usable_attachments[rail.name] = rail

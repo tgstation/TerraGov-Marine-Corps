@@ -90,11 +90,6 @@
 			if(user) user << "That [magazine.name] is empty!"
 			return
 
-		if(user)
-			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-			if( in_hand != src )
-				user << "You have to hold \the [src] to reload!"
-				return
 		if(current_mag.cylinder_closed)
 			if(user) user << "You can't load anything when the cylinder is closed!"
 			return

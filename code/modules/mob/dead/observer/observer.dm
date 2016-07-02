@@ -25,11 +25,6 @@
 	universal_speak = 1
 	var/atom/movable/following = null
 
-/mob/dead/observer/Del()
-	if(mind) //Don't need a mind, really.
-		del(mind)
-	..()
-
 /mob/dead/observer/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
@@ -781,7 +776,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/datum/mind/pred_mind = mind //Temporary variable.
 	src = null //We're going to finish the proc and delete the ghost if we're successful.
-	var/mob/living/carbon/human/new_predator = transform_predator(pred_mind) //Initialized and ready.
+	var/mob/living/carbon/human/new_predator = predator_round.transform_predator(pred_mind) //Initialized and ready.
 	if(!new_predator) //Something went wrong.
 		return
 
