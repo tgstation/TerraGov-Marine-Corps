@@ -90,7 +90,7 @@
 	var/burst_delay = 0 //The delay in between shots. Lower = less delay = faster.
 
 	icon_action_button = null //Adds it to the quick-icon list
-	var/accuracy = 0 //Flat bonus/penalty due to the gun itself.
+	var/accuracy = 0 //The bullet checks for this when rolling to hit (getting the accuracy of a successful collision).
 	var/dam_bonus = 0 //Flat bonus/penalty to bullet damage due to the gun itself.
 	var/ammo_counter = 0 //M39s and M41s have this. True or false.
 	var/autoejector = 1 //Automatically ejects spent magazines. Defaults to yes. True or false.
@@ -125,6 +125,8 @@
 
 		if(burst_delay == 0 && burst_amount > 0) //Okay.
 			burst_delay = round(2 * fire_delay / 3) //2/3rds of single shot firing rate.
+
+		update_force_list() //This gives the gun some unique verbs for attacking.
 
 	Del()
 		if(flashlight_on && ismob(src.loc))
@@ -242,12 +244,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(magazine.current_rounds <= 0)
 		if(user) user << "That [magazine.name] is empty!"
 		return
-
-	if(user)
-		var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-		if( in_hand != src ) //It has to be held.
-			user << "You have to hold \the [src] to reload!"
-			return
 
 	if(!istype(src,text2path(magazine.gun_type)))
 		if(user) user << "That magazine doesn't fit in there!"

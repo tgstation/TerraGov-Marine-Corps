@@ -28,24 +28,23 @@ attachments.
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
 	var/list/guns_allowed = list() //what weapons can it be attached to? Note that it must be the FULL path, not parents.
-	var/accuracy_mod = 0 //Modifier to firing accuracy % - FLAT
-	var/ranged_dmg_mod = 100 //Modifier to ranged damage - PERCENTAGE / 100
-	var/melee_mod = 100 //Modifier to melee damage - PERCENTAGE / 100
-	var/w_class_mod = 0 //Modifier to weapon's weight class -- FLAT
 
-	//var/list/loaded = list() //Stores an attachable's internal contents, ie. grenades
-	var/ammo_type = null //Which type of ammo it uses. If it's not a datum, it'll be a seperate object.
-	var/datum/ammo/ammo = null //Turning this into a New(), since otherwise attachables don't work right. ~N
-	var/ammo_capacity = 0 //How much ammo it can store
-	var/current_ammo = 0
-	var/shoot_sound = null //Sound to play when firing it alternately
-	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
+	/*
+	Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws up with the calculations,
+	and can mean that the order you attach something/detach something will matter in the final number. It's also completely
+	inaccurate. Don't worry if force is ever negative, it won't runtime.
+	*/
+	//These bonuses are applied only as the gun fires a projectile.
+	var/ranged_dmg_mod = 100 //Modifier to ranged damage - PERCENTAGE / 100 <--- The only one that must be calculated as the bullet is fired.
 
+	//These are flat bonuses applied and are passive.
+	var/accuracy_mod = 0 //Modifier to firing accuracy.
+	var/melee_mod = 0 //Changing to a flat number so this actually doesn't screw up the calculations.
+	var/w_class_mod = 0 //Modifier to weapon's weight class.
 	var/twohanded_mod = 0 //If 1, removes two handed, if 2, adds two-handed.
 	var/recoil_mod = 0 //If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
 	var/silence_mod = 0 //Adds silenced to weapon
 	var/light_mod = 0 //Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
-
 	var/delay_mod = 0 //Changes firing delay. Cannot go below 0.
 	var/burst_mod = 0 //Changes burst rate. 1 == 0.
 	var/size_mod = 0 //Increases the weight class
@@ -58,13 +57,22 @@ attachments.
 	*/
 	var/can_activate = 0
 	var/activation_sound = 'sound/machines/click.ogg'
-	var/projectile_based = 0 //Does this thing use the projectile cycle to fire? Defaults to no.
 	var/continuous = 0 //Shootable attachments normally swap back after 1 shot.
 	var/passive = 1 //Can't actually be an active attachable, but might still be activatible.
-	var/can_be_removed = 1
-	//Same deal as guns here.
+	var/can_be_removed = 1 //This is a check for special attachments that shouldn't be removed.
+
+	//Some attachments may be fired. So here are the variables related to that.
+	var/ammo_type = null //Which type of ammo it uses. If it's not a datum, it'll be a seperate object.
+	var/datum/ammo/ammo = null //Turning this into a New(), since otherwise attachables don't work right. ~N
+	var/projectile_based = 0 //Does this thing use the projectile cycle to fire? Defaults to no.
+	var/ammo_capacity = 0 //How much ammo it can store
+	var/current_ammo = 0
+	var/shoot_sound = null //Sound to play when firing it alternately
+	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
 	var/type_of_casings = "bullet" //bullets by default.
 	var/eject_casings = 0 //Off by default.
+
+
 
 	New() //Let's make sure if something needs an ammo type, it spawns with one.
 		..()
@@ -79,6 +87,15 @@ attachments.
 
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
+
+		/*
+		This does not check if the attachment can be removed.
+		Instead of checking individual attachments, I simply removed
+		the specific guns for the specific attachments so you can't
+		attempt the process in the first place if a slot can't be
+		removed on a gun. can_be_removed is instead used when they
+		try to strip the gun.
+		*/
 		switch(slot)
 			if("rail")
 				if(G.rail) G.rail.Detach(G)
@@ -98,71 +115,54 @@ attachments.
 			M.drop_item(src)
 		loc = G
 
-		//Now deal with static, non-coded modifiers.
-		if(melee_mod != 100)
-			G.force = (G.force * melee_mod / 100)
-//			if(melee_mod >= 200)
-//				G.attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
-//			if(melee_mod > 100 && melee_mod < 200 )
-//				G.attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
-//			else if (melee_mod <= 100)
-//				G.attack_verb = list("struck", "hit", "bashed")
+		G.accuracy += accuracy_mod
+		G.w_class += w_class_mod
+		G.fire_delay += delay_mod
+		G.burst_amount += burst_mod
+		G.recoil += recoil_mod
+		G.force += melee_mod
 
-		if(w_class_mod != 0) G.w_class += w_class_mod
-//		if(istype(G,/obj/item/weapon/gun/projectile))
-//			if(capacity_mod != 100) G:max_shells = (G:max_shells * capacity_mod / 100)
-		if(recoil_mod)
-			G.recoil += recoil_mod
+		G.update_force_list() //This updates the gun to use proper force verbs.
+
 		if(twohanded_mod == 1) G.twohanded = 1
 		if(twohanded_mod == 2) G.twohanded = 0
 		if(silence_mod) G.silenced = 1
-		if(light_mod)
-			G.flash_lum = light_mod
-		if(delay_mod)
-			G.fire_delay += delay_mod
-		if(burst_mod)
-			G.burst_amount += burst_mod
-		if(size_mod)
-			G.w_class += size_mod
+		if(light_mod) G.flash_lum = light_mod
 
 	proc/Detach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
-		if(G.zoom)
-			G.zoom()
+		if(G.zoom) G.zoom() //Remove zooming out.
 
-		if(slot == "rail" && G.rail == src)
-			G.rail.loc = get_turf(G)
-			G.rail = null
-		if(slot == "muzzle" && G.muzzle == src)
-			G.muzzle.loc = get_turf(G)
-			G.muzzle = null
-		if(slot == "under" && G.under == src)
-			G.under.loc = get_turf(G)
-			G.under = null
-		if(slot == "stock" && G.stock == src)
-			G.stock.loc = get_turf(G)
-			G.stock = null
+		switch(slot) //I am removing checks for the attachment being src.
+			if("rail") //If it's being called on by this proc, it has to be that attachment. ~N
+				G.rail.loc = get_turf(G)
+				G.rail = null
+			if("muzzle")
+				G.muzzle.loc = get_turf(G)
+				G.muzzle = null
+			if("under")
+				G.under.loc = get_turf(G)
+				G.under = null
+			if("stock")
+				G.stock.loc = get_turf(G)
+				G.stock = null
 
 		G.unwield()
 
 		if(G.active_attachable == src)
 			G.active_attachable = null
 
-		//Now deal with static, non-coded modifiers.
-		if(melee_mod != 100)
-			G.force = initial(G.force)
-//			G.attack_verb = list("struck", "hit", "bashed")
-		if(w_class_mod != 0) G.w_class -= w_class_mod
-//		if(istype(G,/obj/item/weapon/gun/projectile))
-//			if(capacity_mod != 100)
-//				var/obj/item/weapon/gun/projectile/P = G
-//				P.max_shells = initial(P.max_shells)
-		if(recoil_mod) G.recoil = initial(G.recoil)
+		G.accuracy -= accuracy_mod
+		G.w_class -= w_class_mod
+		G.fire_delay -= delay_mod
+		G.burst_amount -= burst_mod
+		G.recoil -= recoil_mod
+		G.force -= melee_mod
+
+		G.update_force_list()
+
 		if(twohanded_mod) G.twohanded = initial(G.twohanded)
 		if(silence_mod) G.silenced = initial(G.silenced)
-		if(delay_mod)
-			G.fire_delay = initial(G.fire_delay)
-			G.burst_amount = initial(G.burst_amount)
 		if(light_mod)  //Remember to turn the lights off
 			if(G.flashlight_on && G.flash_lum)
 				if(!ismob(G.loc))
@@ -172,7 +172,6 @@ attachments.
 					M.SetLuminosity(-light_mod) //Lights are on and we removed the flashlight, so turn it off
 			G.flash_lum = initial(G.flash_lum)
 			G.flashlight_on = 0
-		if(burst_mod) G.burst_amount = initial(G.burst_amount)
 
 	proc/activate_attachment(var/atom/target, var/mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
 		return
@@ -215,7 +214,7 @@ attachments.
 	name = "bayonet"
 	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually."
 	icon_state = "bayonet"
-	force = 18
+	force = 20
 	throwforce = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
@@ -227,7 +226,7 @@ attachments.
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/double
 	)
-	melee_mod = 250 //30 brute for those 3 guns, normally do 10
+	melee_mod = 20 //35 for a rifle, comparable to 37 before. 40 with the stock, comparable to 42.
 	accuracy_mod = -10
 	slot = "muzzle"
 
@@ -406,7 +405,7 @@ attachments.
 	accuracy_mod = 30
 	slot = "under"
 	w_class_mod = 2
-	melee_mod = 50 //50% melee damage. Can't swing it around as easily.
+	melee_mod = -10
 	delay_mod = 1
 
 /obj/item/attachable/extended_barrel
@@ -564,7 +563,7 @@ attachments.
 	accuracy_mod = 10
 	recoil_mod = -1
 	slot = "stock"
-	melee_mod = 115
+	melee_mod = 5
 	size_mod = 2
 	delay_mod = 6
 	pixel_shift_x = 30
@@ -591,7 +590,7 @@ attachments.
 	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
 	accuracy_mod = 15
-	melee_mod = 110
+	melee_mod = 5
 	size_mod = 1
 	delay_mod = 6
 	icon_state = "riflestock"
@@ -604,7 +603,7 @@ attachments.
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
 	slot = "stock"
 	accuracy_mod = 20
-	melee_mod = 90
+	melee_mod = -5
 	size_mod = 1
 	delay_mod = 6
 	w_class_mod = 2

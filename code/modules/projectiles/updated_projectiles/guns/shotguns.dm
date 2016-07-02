@@ -144,6 +144,7 @@ can cause issues with ammo types getting mixed up during the burst.
 				buffer.bonus_projectiles = 0
 				buffer.incendiary = 0
 				buffer.damage_type = BRUTE
+				buffer.bonus_projectiles = 0
 
 			if("islug")
 				buffer.name = "incendiary slug"
@@ -157,6 +158,7 @@ can cause issues with ammo types getting mixed up during the burst.
 				buffer.bonus_projectiles = 0
 				buffer.incendiary = 1
 				buffer.damage_type = BURN
+				buffer.bonus_projectiles = 0
 
 			if("buckshot")
 				buffer.name = "buckshot"
@@ -170,6 +172,7 @@ can cause issues with ammo types getting mixed up during the burst.
 				buffer.bonus_projectiles = 4
 				buffer.incendiary = 0
 				buffer.damage_type = BRUTE
+				buffer.bonus_projectiles = 2
 
 			else
 				return //If it's something else, it's empty, but this shouldn't happen.
@@ -245,12 +248,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
 			if(user) user << "You can't use that to reload!"
 			return
-
-		if(user)
-			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-			if( in_hand != src ) //It has to be held.
-				user << "You have to hold \the [src] to reload!"
-				return
 
 		if(!check_tube_position()) //For the double barrel.
 			if(user) user << "\The [src] has to be open!"

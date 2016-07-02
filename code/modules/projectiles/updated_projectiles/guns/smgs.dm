@@ -58,6 +58,7 @@
 	burst_amount = 3
 	fire_delay = 3
 	burst_delay = 2
+	ammo_counter = 1
 
 	New()
 		..()

@@ -111,7 +111,7 @@
 		command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva�s Snowball\", on border ice world \"Ifrit\". A response team from the USS Sulaco will be dispatched shortly to investigate.", "USS Sulaco")
 
 
-/datum/game_mode/ice_colony/proc/transform_xeno(var/datum/mind/ghost)
+/datum/game_mode/ice_colony/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn_ice_colony))
 	new_xeno.amount_grown = 200
@@ -129,7 +129,7 @@
 		del(original)
 
 //Start the Survivor players. This must go post-setup so we already have a body.
-/datum/game_mode/ice_colony/proc/transform_survivor(var/datum/mind/ghost)
+/datum/game_mode/ice_colony/transform_survivor(var/datum/mind/ghost)
 
 	var/mob/living/carbon/human/H = ghost.current
 

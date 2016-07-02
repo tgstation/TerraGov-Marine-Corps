@@ -479,12 +479,6 @@
 			return
 
 		if(user)
-			var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
-			if( in_hand != src ) //It has to be held.
-				user << "You have to hold \the [src] to reload!"
-				return
-
-		if(user)
 			user << "You begin reloading \the [src]. Hold still!"
 			if(do_after(user,current_mag.reload_delay))
 				user.drop_from_inventory(rocket)
