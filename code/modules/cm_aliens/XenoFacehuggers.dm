@@ -262,10 +262,11 @@ var/const/MAX_ACTIVE_TIME = 200
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
 		target.update_inv_wear_mask()
-		if(target.gender == "male")
-			playsound(src.loc, 'sound/misc/facehugged_male.ogg', 50, 0)
-		if(target.gender == "female")
-			playsound(src.loc, 'sound/misc/facehugged_female.ogg', 50, 0)
+		if(ishuman(target))
+			if(target.gender == "male")
+				playsound(src.loc, 'sound/misc/facehugged_male.ogg', 50, 0)
+			if(target.gender == "female")
+				playsound(src.loc, 'sound/misc/facehugged_female.ogg', 50, 0)
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/12) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
