@@ -755,6 +755,8 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 		return 0
 	if(numticks == 0)
 		return 0
+	var/mob/living/L
+	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
 
 	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
@@ -766,6 +768,8 @@ proc/anim(turf/location as turf,target as mob|obj,a_icon,a_icon_state as text,fl
 
 
 		if(!user || user.stat || user.weakened || user.stunned || user.loc != original_loc || get_turf(user) != original_turf)
+			return 0
+		if(L && L.health < config.health_threshold_crit) //For some reason going into crit doesn't trigger the above things
 			return 0
 		if(needhand && !(user.get_active_hand() == holding))	//Sometimes you don't want the user to have to keep their active hand
 			return 0
