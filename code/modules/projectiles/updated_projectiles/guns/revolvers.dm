@@ -193,7 +193,8 @@
 		return 1
 
 	unique_action(var/mob/living/carbon/human/user as mob)
-		spin_cylinder(user)
+		return
+		//spin_cylinder(user) //Nope.
 
 
 	//HEAVILY WIP. Just something to mess around with.
