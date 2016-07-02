@@ -1527,7 +1527,7 @@
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
 		if(!input)	return
 
-		USCMFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]>\[view reply at [world.timeofday]\]</a>")
+		USCMFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]'>\[view reply at [world.timeofday]\]</a>")
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
@@ -1569,7 +1569,7 @@
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Weyland Yutani", "") as message|null
 		if(!input)	return
 
-		CLFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]>\[view reply at [world.timeofday]\]</a>") //Add replies so that mods know what the hell is goin on with the RP
+		CLFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]'>\[view reply at [world.timeofday]\]</a>") //Add replies so that mods know what the hell is goin on with the RP
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 

@@ -110,7 +110,7 @@
 		src << "\red The hive can't support another Tier 2 alien, either upgrade or wait for either more aliens to be born or someone to die..."
 		return
 	else if(tier == 2 && (tierC/totalXenos)> 0.25 && caste != "Queen")
-		src << "\red The hive can't support another Tier 3 alien, wait until someone stronge dies or upgrade."
+		src << "\red The hive can't support another Tier 3 alien, wait until someone stronger dies or upgrades."
 		return
 	else src << "\green Looks like the hive can support your evolution!"
 
