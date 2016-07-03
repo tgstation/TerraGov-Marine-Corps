@@ -495,6 +495,7 @@
 	name = "pistol belt"
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
 	icon_state = "marinebelt"
+	var/icon_closed = null //Empty for now.
 	item_state = "marine"//Could likely use a better one. WIP
 	use_sound = "rustle" //Could use a better one, WIP.
 	w_class = 4
@@ -503,37 +504,51 @@
 	max_w_class = 2
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 2 //How many guns can it hold? Default is one.
+	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
 		"/obj/item/ammo_magazine/pistol"
 		)
 
-	update_icon()
+	proc/update_icon_special() //Update icon is called from within the other storage procs, and we don't want that.
 		if(holds_guns_now) //So it has a gun, let's make an icon.
-			item_state = item_state //WIP
+			var/image/I = new(current_gun.icon, current_gun.icon_state)
+			var/matrix/M = matrix()
+			M.Turn(90) //Clockwise.
+			I.transform = M
+			icon_state = icon_closed
+			underlays += I
+		else
+			underlays.Cut()
+			icon_state = initial(icon_state)
 		return
 
 	//There are only two things here that can be inserted, and they are mutually exclusive. We only track the gun.
-	can_be_inserted(obj/item/W as obj, stop_messages = 0)
+	can_be_inserted(obj/item/W as obj, stop_messages = 0) //We don't need to stop messages, but it can be left in.
 		if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
 			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
 				if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
 					if(!stop_messages) usr << "<span class='notice'>\The [src] already holds a gun.<span>"
 					return //Nothing else to do.
 				holds_guns_now++ //Slide it in.
-				update_icon()
+				if(!current_gun) //If there's no active gun, we want to make this our icon.
+					current_gun = W
+				update_icon_special()
 			else //Must be ammo.
-		//We have slots open for the gun, so in total we should have storage_slogs - guns_max in slots, plus whatever is already in the belt.
+		//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
 				if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
 					if(!stop_messages) usr << "<span class='notice'>\The [src] can't hold any more magazines.<span>"
 					return
-		return 1
+			return 1
+		return
 
 	remove_from_storage(obj/item/W as obj)
 		if(..() ) //Same deal, this will handle things.
 			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
 				holds_guns_now-- //Remove it.
-				update_icon() //Update.
+				if(W == current_gun)
+					current_gun = null
+				update_icon_special() //Update.
 			return 1
 		return
 
@@ -545,6 +560,21 @@
 		"/obj/item/ammo_magazine/revolver"
 		)
 
+/obj/item/weapon/storage/belt/gun/m4a3
+	name = "m4a3 duty belt"
+	desc = "A belt-holster assembly that allows one to carry the m4a3 comfortably secure with two magazines of ammunition."
+	icon_state = "M4A3_holster_0"
+	icon_closed = "M4A3_holster_1"
+	storage_slots = 3
+	holds_guns_max = 1
+	can_hold = list(
+		"/obj/item/weapon/gun/pistol/m4a3",
+		"/obj/item/ammo_magazine/pistol",
+		"/obj/item/ammo_magazine/pistol/hp",
+		"/obj/item/ammo_magazine/pistol/ap",
+		"/obj/item/ammo_magazine/pistol/incendiary",
+		"/obj/item/ammo_magazine/pistol/extended"
+		)
 
 //Probably want to remove the gun from the marine belt.
 /obj/item/weapon/storage/belt/marine
@@ -555,7 +585,6 @@
 	w_class = 4
 	storage_slots = 8
 	max_combined_w_class = 9
-	max_w_class = 2
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
 		"/obj/item/weapon/combat_knife",
