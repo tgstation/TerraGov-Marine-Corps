@@ -42,6 +42,7 @@
 			if(user)
 				user << "\blue You spin the cylinder."
 				playsound(user, cocked_sound, 70, 1)
+			playing_RR = !playing_RR //Sets to play RR. Unlocks when you empty the gun.
 		return
 
 	proc/replace_cylinder(var/number_to_replace)
@@ -133,6 +134,7 @@
 			empty_cylinder()
 			current_mag.create_handful(current_mag, user)
 			current_mag.cylinder_closed = !current_mag.cylinder_closed
+			playing_RR = !playing_RR
 		else
 			current_mag.cylinder_closed = !current_mag.cylinder_closed
 		if(user) playsound(src, unload_sound, 40, 1)

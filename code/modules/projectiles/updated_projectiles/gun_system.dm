@@ -53,6 +53,7 @@
 	var/tmp/list/mob/living/target //List of who yer targeting.
 	var/tmp/lock_time = -100
 	var/tmp/mouthshoot = 0 ///To stop people from suiciding twice... >.>
+	var/playing_RR = 0 //God help you if you do this. Only used by revolvers, but tracked for all guns just for simplicty.
 	var/automatic = 0 //Used to determine if you can target multiple people.
 	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
@@ -587,13 +588,21 @@ and you're good to go.
 								playsound(user, fire_sound, 50, 1)
 
 						shake_camera(user, recoil + 2, recoil + 1) //Give it some shake.
-
-						if (projectile_to_fire.damage_type != HALLOSS)
-							user.apply_damage(projectile_to_fire.damage*2.5, projectile_to_fire.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp=1)
-							user.death()
+						if(!playing_RR)
+							if (projectile_to_fire.damage_type != HALLOSS)
+								user.apply_damage(projectile_to_fire.damage*2.5, projectile_to_fire.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp=1)
+								user.death()
+							else
+								user << "<span class = 'notice'>Ow...</span>"
+								user.apply_effect(110,AGONY,0)
 						else
-							user << "<span class = 'notice'>Ow...</span>"
-							user.apply_effect(110,AGONY,0)
+							user.apply_damage(projectile_to_fire.damage*3, projectile_to_fire.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp=1)
+							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
+							user.death()
+							user << "<b> Your life flashes before you as your spirit is torn from your body!</b>"
+							var/mob/dead/observer/ghost = user.ghostize(0) //No return.
+							if(ghost)
+								ghost.timeofdeath = world.time	//For respawn purposes, even if unused.
 
 						if(!delete_bullet(projectile_to_fire)) del(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
 						reload_into_chamber(user) //Reload the sucker.
