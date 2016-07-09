@@ -16,6 +16,7 @@
 
 /obj/machinery/computer/cloning/New()
 	..()
+	req_access = list(access_sulaco_medbay)
 	spawn(5)
 		updatemodules()
 		return
@@ -76,6 +77,9 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/cloning/attack_hand(mob/user as mob)
+	if(!src.allowed(user))
+		user << "\red Access denied."
+		return
 	user.set_machine(src)
 	add_fingerprint(user)
 
