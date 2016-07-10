@@ -37,7 +37,6 @@
 #define FILE_DIR "icons/NTOS/battery_icons"
 #define FILE_DIR "icons/obj"
 #define FILE_DIR "icons/obj/assemblies"
-#define FILE_DIR "icons/obj/atmospherics-UNUSED"
 #define FILE_DIR "icons/obj/clothing"
 #define FILE_DIR "icons/obj/clothing/species"
 #define FILE_DIR "icons/obj/clothing/species/skrell"
@@ -58,7 +57,9 @@
 #define FILE_DIR "icons/vending_icons"
 #define FILE_DIR "icons/Xeno"
 #define FILE_DIR "icons/Xeno/Archived"
-#define FILE_DIR "icons/Xeno/BACKUP"
+#define FILE_DIR "icons/Xeno/BACKUP 11JUN16"
+#define FILE_DIR "icons/Xeno/NEW ICONS"
+#define FILE_DIR "icons/Xeno/NEW ICONS/FINALS"
 #define FILE_DIR "maps"
 #define FILE_DIR "maps/overmap"
 #define FILE_DIR "maps/overmap/bearcat"
@@ -1564,5 +1565,3 @@
 #include "maps\Z.04.SulacoBottom.dmm"
 #include "maps\Z.05.Space.dmm"
 // END_INCLUDE
-
-
