@@ -250,7 +250,7 @@
 
 //Drop Pods
 /area/shuttle/drop1
-	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg', 'sound/ambience/song_game.ogg')
+	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg')
 
 /area/shuttle/drop1/sulaco
 	name = "\improper Dropship 1"
@@ -328,4 +328,3 @@
 /area/shuttle/distress_arrive_3
 	name = "\improper Distress Shuttle"
 	icon_state = "away"
-

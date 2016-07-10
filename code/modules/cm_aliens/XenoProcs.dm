@@ -485,7 +485,10 @@
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
-					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+					if(rand(0,100) < 70)
+						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+					else
+						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
 				spawn(1)
 					src.frozen = 0
 
@@ -497,7 +500,10 @@
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
-					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+					if(rand(0,100) < 70)
+						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+					else
+						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
 				spawn(15)
 					src.frozen = 0
 
@@ -688,3 +694,26 @@
 		src:zoom_timer = 0
 	zoom_turf = null
 	return
+
+/mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
+	var/obj/structure/mineral_door/alien_door = locate() in current_turf
+	var/obj/effect/alien/resin/alien_construct = locate() in current_turf
+	var/obj/structure/stool/chair = locate() in current_turf
+
+	if(alien_door || alien_construct || chair)
+		src << "There's something built here already."
+		return
+
+	var/obj/royaljelly/alien_jelly = locate() in current_turf
+	var/obj/effect/alien/egg/alien_egg = locate() in current_turf
+
+	if(alien_jelly || alien_egg)
+		src << "There's already an egg or royal jelly here."
+		return
+
+	var/obj/item/clothing/mask/facehugger/alien_hugger = locate() in current_turf
+	if(alien_hugger)
+		src << "There is a little one here already. Best move it."
+		return
+
+	return 1

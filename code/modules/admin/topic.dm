@@ -834,6 +834,55 @@
 			if("Cancel")
 				return
 
+	else if(href_list["lazyban"])
+		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
+
+		var/mob/M = locate(href_list["lazyban"])
+		if(!ismob(M)) return
+
+		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
+
+		if(!M.ckey)
+			usr << "\red <B>Warning: Mob ckey for [M.name] not found.</b>"
+			return
+
+		var/mins = 0
+		var/reason = ""
+
+		switch(alert("Reason?", , "Disobeying staff", "Arguing with staff", "EORG", "Cancel"))
+			if("Disobeying staff")
+				mins = 4320
+				reason = "Expressly disobeying staff"
+			if("Arguing with staff")
+				mins = 4320
+				reason = "Needlessly talking back and/or arguing with staff members"
+			if("EORG")
+				switch(alert("Which offense?", ,"1st", "2nd", "3rd or more"))
+					if("1st") mins = 1440
+					if("2nd") mins = 2880
+					if("3rd or more") mins = 10080
+				reason = "EORG"
+			if("Cancel")
+				return
+		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
+		ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
+		M << "\red This is a temporary ban, it will be removed in [mins] minutes."
+		M << "\blue This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section."
+		M << "\blue If you make sure to mention that this was a one-click ban, MadSnailDisease will personally double-check this code for you."
+		if(config.banappeals)
+			M << "\blue The ban appeal forums are located here: [config.banappeals]"
+		else
+			M << "\blue Unfortunately, no ban appeals URL has been set."
+		feedback_inc("ban_tmp", 1)
+		DB_ban_record(BANTYPE_TEMP, M, mins, reason)
+		feedback_inc("ban_tmp_mins", mins)
+		log_admin("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
+		notes_add(M.ckey, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [reason]", usr)
+		del(M.client)
+
+
 	else if(href_list["mute"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
 
@@ -1289,6 +1338,9 @@
 		var/mob/M = locate(href_list["adminplayeropts"])
 		show_player_panel(M)
 
+	else if(href_list["playerpanelextended"])
+		player_panel_extended()
+
 	else if(href_list["adminplayerobservejump"])
 		if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))	return
 
@@ -1481,6 +1533,8 @@
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
 		if(!input)	return
 
+		USCMFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]'>\[view reply at [world.timeofday]\]</a>")
+
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
 		for(var/obj/machinery/faxmachine/F in machines)
@@ -1520,6 +1574,8 @@
 
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Weyland Yutani", "") as message|null
 		if(!input)	return
+
+		CLFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]'>\[view reply at [world.timeofday]\]</a>") //Add replies so that mods know what the hell is goin on with the RP
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
@@ -1830,12 +1886,6 @@
 				log_admin("[key_name(usr)] spawned an alien infestation", 1)
 				message_admins("\blue [key_name_admin(usr)] attempted an alien infestation", 1)
 				new /datum/event/alien_infestation
-			if("borers")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","Borers")
-				log_admin("[key_name(usr)] spawned a cortical borer infestation.", 1)
-				message_admins("\blue [key_name_admin(usr)] spawned a cortical borer infestation.", 1)
-				new /datum/event/borer_infestation
 
 /*			if("power")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -2756,6 +2806,9 @@
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
 
+		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
+		src.viewUnheardAhelps() //This SHOULD refresh the page
+
 	if(href_list["NOPE"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
 		var/mob/ref_person = locate(href_list["NOPE"])
 		if(!istype(ref_person))
@@ -2770,6 +2823,9 @@
 				X << msg
 
 		ref_person << msgplayer //send a message to the player when the Admin clicks "Mark"
+
+		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
+		src.viewUnheardAhelps() //This SHOULD refresh the page
 
 	// if(href_list["retarded"]) // Their message is fucking stupid
 	// 	var/mob/ref_person = locate(href_list["retarded"])

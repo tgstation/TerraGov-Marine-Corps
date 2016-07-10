@@ -1531,8 +1531,8 @@
 						else
 							bodytemp.icon_state = "temp0"
 			if(blind)
-				if(blinded)		blind.layer = 18
-				else			blind.layer = 0
+				if(blinded)		blind.plane = 0
+				else			blind.plane = -80
 
 			if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
 				if(glasses)					//to every /obj/item
@@ -1789,13 +1789,6 @@
 			holder2.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
-		else if(has_brain_worms())
-			var/mob/living/simple_animal/borer/B = has_brain_worms()
-			if(B.controlling)
-				holder.icon_state = "hudbrainworm"
-			else
-				holder.icon_state = "hudhealthy"
-			holder2.icon_state = "hudbrainworm"
 		else
 			holder.icon_state = "hudhealthy"
 			if(virus2.len)

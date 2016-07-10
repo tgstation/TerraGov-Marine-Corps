@@ -13,7 +13,7 @@
 	special_equipment = 1
 
 	New()
-		spawn(5)
+		spawn(5) //This isn't used, just a parent item.
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
@@ -26,17 +26,20 @@
 		if(special_equipment)
 			switch(gamemode)
 				if("Ice Colony")
+
 					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
+					new /obj/item/clothing/mask/rebreather/scarf(src)
+					new /obj/item/weapon/storage/belt/marine(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/marine/snow(src)
-					new /obj/item/clothing/mask/rebreather/scarf(src)
-
+					new /obj/item/clothing/shoes/marine(src)
 				else
+
 					new /obj/item/clothing/under/marine_jumpsuit(src)
+					new /obj/item/weapon/storage/belt/marine(src)
 					new /obj/item/clothing/head/helmet/marine(src)
 					new /obj/item/clothing/suit/storage/marine(src)
-
-
+					new /obj/item/clothing/shoes/marine(src)
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
@@ -172,9 +175,7 @@
 
 	New()
 		spawn(5)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/alpha(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/malpha(src)
 
 
@@ -191,9 +192,7 @@
 
 	New()
 		spawn(6)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/bravo(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/mbravo(src)
 
 
@@ -211,9 +210,7 @@
 
 	New()
 		spawn(7)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/charlie(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/mcharlie(src)
 
 
@@ -230,9 +227,7 @@
 
 	New()
 		spawn(8)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/delta(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/mdelta(src)
 
 

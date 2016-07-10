@@ -1,10 +1,10 @@
-//Xenomorph - Queen- Colonial Marines - Apophis775 - Last Edit: 20MAY2016
+//Xenomorph - Queen- Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
 /mob/living/carbon/Xenomorph/Queen
 	caste = "Queen"
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/xeno/Colonial_Queen.dmi'
+	icon = 'icons/xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
 //	pass_flags = PASSTABLE
 	melee_damage_lower = 30
@@ -25,14 +25,18 @@
 	plasma_gain = 30
 	is_intelligent = 1
 	speed = 1
-	jellyMax = 0
+	jelly = 1
+	jellyMax = 800
 	adjust_pixel_x = -16
-	adjust_pixel_y = -6
-	adjust_size_x = 0.9
-	adjust_size_y = 0.85
+	// adjust_pixel_y = -6
+	// adjust_size_x = 0.9
+	// adjust_size_y = 0.85
 	fire_immune = 1
 	big_xeno = 1
+	jelly = 1
 	armor_deflection = 75
+	tier = 0 //Queen doesn't count towards population limit.
+	upgrade = 0
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
@@ -65,24 +69,23 @@
 
 	if(!check_state()) return
 
-	var/turf/T = src.loc
-
-	if(!istype(T) || isnull(T))
-		src << "You can't do that here."
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf || !istype(current_turf))
 		return
 
-	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src)) //Turn em off for now
-		src << "There's already an egg or royal jelly here."
-		return
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
-	if(!locate(/obj/effect/alien/weeds) in T)
+	if(!alien_weeds)
 		src << "Your eggs wouldn't grow well enough here. Lay them on resin."
+		return
+
+	if(!check_alien_construction(current_turf))
 		return
 
 	if(check_plasma(100)) //New plasma check proc, removes/updates plasma automagically
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>\The [src] has laid an egg!</B>"), 1)
-		new /obj/effect/alien/egg(T)
+		new /obj/effect/alien/egg(current_turf)
 	return
 
 /obj/royaljelly
@@ -120,24 +123,23 @@
 	if(!check_state())
 		return
 
-	var/turf/T = src.loc
-
-	if(!istype(T) || isnull(T))
-		src << "You can't do that here."
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf || !istype(current_turf))
 		return
 
-	if(locate(/obj/effect/alien/egg) in get_turf(src) || locate(/obj/royaljelly) in get_turf(src))
-		src << "There's already an egg or royal jelly here."
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+
+	if(!alien_weeds)
+		src << "Your jelly would rot here. Squirt it on resin."
 		return
 
-	if(!locate(/obj/effect/alien/weeds) in T)
-		src << "Your jelly would rot here. Lay them on resin."
+	if(!check_alien_construction(current_turf))
 		return
 
 	if(check_plasma(350)) //New plasma check proc, removes/updates plasma automagically
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>\The [src] squirts out a greenish blob of jelly.</B>"), 1)
-		new /obj/royaljelly(T)
+		new /obj/royaljelly(current_turf)
 	return
 
 /mob/living/carbon/Xenomorph/Queen/proc/screech()
@@ -272,6 +274,7 @@
 		if(!istype(M,/mob/living/carbon/Xenomorph))
 			continue
 		M << "[queensWord]"
+		playsound(M, "queen", 50, 0)
 
 	log_admin("[key_name(src)] has created a Word of the Queen report:")
 	log_admin("[queensWord]")

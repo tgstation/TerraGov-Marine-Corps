@@ -9,7 +9,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/melee/defibrillator)
+	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/gun/taser)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -72,18 +72,19 @@ obj/machinery/recharger/process()
 	if(!charging)
 		update_use_power(1)
 		icon_state = icon_state_idle
+	//This is an awful check. Holy cow.
 	else
-		/*if(istype(charging, /obj/item/weapon/gun/energy))
-			var/obj/item/weapon/gun/energy/E = charging
-			if(!E.power_supply.fully_charged())
+		if(istype(charging, /obj/item/weapon/gun/taser))
+			var/obj/item/weapon/gun/taser/E = charging
+			if(!E.cell.fully_charged())
 				icon_state = icon_state_charging
-				E.power_supply.give(active_power_usage*CELLRATE)
+				E.cell.give(active_power_usage*CELLRATE)
 				update_use_power(2)
 			else
 				icon_state = icon_state_charged
 				update_use_power(1)
 			return
-*/
+
 		if(istype(charging, /obj/item/weapon/melee/baton))
 			var/obj/item/weapon/melee/baton/B = charging
 			if(B.bcell)
@@ -121,6 +122,7 @@ obj/machinery/recharger/process()
 				update_use_power(1)
 			return
 
+		/* Disable defib recharging
 		if(istype(charging, /obj/item/weapon/melee/defibrillator))
 			var/obj/item/weapon/melee/defibrillator/D = charging
 			if(D.dcell)
@@ -135,6 +137,7 @@ obj/machinery/recharger/process()
 				icon_state = icon_state_idle
 				update_use_power(1)
 			return
+		*/
 
 obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)

@@ -831,7 +831,8 @@
 			src << "<spawn class='warning'>You feel like you are about to throw up!"
 			spawn(100)	//and you have 10 more for mad dash to the bucket
 				Stun(5)
-
+				if(stat == 2) //One last corpse check
+					return
 				src.visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!")
 				playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 

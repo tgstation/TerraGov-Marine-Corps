@@ -217,6 +217,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 
+
 /obj/item/weapon/butterfly/katana
 	name = "katana"
 	desc = "A ancient weapon from Japan."
@@ -232,3 +233,45 @@
 	icon = 'icons/mob/back.dmi'
 	item_state = "powerpackp"
 	icon_state = "powerpackp"
+
+/obj/item/clothing/head/helmet/durag/jungle
+	name = "Marksman Cowl"
+	desc = "A cowl worn to conceal the face of a marksman in the jungle"
+	icon_state = "duragG"
+	item_state = "duragG"
+
+/obj/item/clothing/suit/storage/marine/sniper/jungle
+	name = "M3 Pattern Marksman Armor"
+	icon_state = "marine_sniperG"
+	item_state = "marine_sniperG"
+
+/obj/item/weapon/gun/rifle/sniper/jungle
+	icon_state = "M42cG"
+	icon_empty = "M42cG_empty"
+	item_state = "m42aG"
+
+/obj/item/weapon/storage/box/m42c_system_Jungle
+	name = "M42C Scoped Rifle system (Marksman Set)"
+	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 10
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/weapon/gun/rifle/sniper/jungle(src)
+			new /obj/item/clothing/glasses/m42_goggles(src)
+			new /obj/item/ammo_magazine/sniper(src)
+			new /obj/item/ammo_magazine/sniper(src)
+			new /obj/item/ammo_magazine/sniper/incendiary(src)
+			new /obj/item/ammo_magazine/sniper/incendiary(src)
+			new /obj/item/ammo_magazine/sniper/flak(src)
+			new /obj/item/weapon/facepaint/sniper(src)
+			new /obj/item/weapon/storage/backpack/smock(src)
+			new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
+			new /obj/item/clothing/head/helmet/durag/jungle(src)

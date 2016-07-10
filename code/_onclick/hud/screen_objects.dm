@@ -473,9 +473,7 @@
 				usr << "You need your gun in your active hand to do that!"
 				return
 			if(iscarbon(usr))
-				var/mob/living/user = usr
-				if(!user.stat)
-					G.activate_attachment()
+				G.activate_attachment()
 
 		if("Eject magazine")
 			var/obj/item/weapon/gun/G = usr.equipped()
@@ -483,9 +481,7 @@
 				usr << "You need your gun in your active hand to do that!"
 				return
 			if(iscarbon(usr))
-				var/mob/living/user = usr
-				if(!user.stat)
-					G.empty_mag()
+				G.empty_mag()
 
 		if("Toggle burst fire")
 			var/obj/item/weapon/gun/G = usr.equipped()
@@ -493,11 +489,15 @@
 				usr << "You need your gun in your active hand to do that!"
 				return
 			if(iscarbon(usr))
-				var/mob/living/user = usr
-				if(!user.stat)
-					G.toggle_burst()
+				G.toggle_burst()
 
-
+		if("Use unique action")
+			var/obj/item/weapon/gun/G = usr.equipped()
+			if(!istype(G,/obj/item/weapon/gun))
+				usr << "You need your gun in your active hand to do that!"
+				return
+			if(iscarbon(usr))
+				G.use_unique_action()
 	return 1
 
 /obj/screen/inventory/Click()

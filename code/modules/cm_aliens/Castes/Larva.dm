@@ -1,5 +1,5 @@
-//Xenomorph - Larva - Colonial Marines - Apophis775 - Last Edit: 24JAN2015
-//Nope, added stuff by Abby - including Update Icons
+//Xenomorph - Larva - Colonial Marines - Apophis775 - Last Edit: 11JUN16
+
 
 /mob/living/carbon/Xenomorph/Larva
 	name = "Alien Larva"
@@ -21,6 +21,8 @@
 	pass_flags = PASSTABLE
 	speed = -1.2 //Zoom!
 	away_timer = 300
+	tier = 0  //Larva's don't count towards Pop limits
+	upgrade = -2
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl

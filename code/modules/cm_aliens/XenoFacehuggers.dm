@@ -262,6 +262,11 @@ var/const/MAX_ACTIVE_TIME = 200
 		target.equip_to_slot(src, slot_wear_mask)
 		target.contents += src // Monkey sanity check - Snapshot
 		target.update_inv_wear_mask()
+		if(ishuman(target))
+			if(target.gender == "male")
+				playsound(src.loc, 'sound/misc/facehugged_male.ogg', 50, 0)
+			if(target.gender == "female")
+				playsound(src.loc, 'sound/misc/facehugged_female.ogg', 50, 0)
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/12) //THIS MIGHT NEED TWEAKS
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
@@ -337,9 +342,10 @@ var/const/MAX_ACTIVE_TIME = 200
 	icon_state = "[initial(icon_state)]_dead"
 	stat = DEAD
 
-	src.visible_message("\icon[src] \red <B>The [src] curls up into a ball!</b>")
+	src.visible_message("\icon[src] \red <B>[src] curls up into a ball!</b>")
+	playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 100, 1)
 	spawn(3000) //3 minute timer for it to decay
-		src.visible_message("\icon[src] \red <B>The dead [src] decays into a mass of acid and chitin.</b>")
+		src.visible_message("\icon[src] \red <B>[src] decays into a mass of acid and chitin.</b>")
 		if(ismob(src.loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 			var/mob/M = src.loc
 			M.drop_from_inventory(src)
@@ -377,4 +383,3 @@ var/const/MAX_ACTIVE_TIME = 200
 		if(M.wear_mask) return 0
 
 	return 1
-

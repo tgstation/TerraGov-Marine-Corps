@@ -31,7 +31,7 @@
 					F.loc = get_turf(src)
 				del(src) //Delete da old knife
 			else
-				user << "<span class='notice'>This cable coil appears to be empty.</span>"
+				user << "<span class='notice'>You don't have enough cable for that.</span>"
 				return
 		else
 			..()
@@ -155,39 +155,44 @@
 
 		if(isnull(mygun) || !mygun || !istype(mygun))
 			user << "You must be holding an M56 Smartgun to begin the reload process."
-			return 0
+			return
 		if(rounds_remaining < 1)
 			user << "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!"
-			return 0
+			return
 		if(!pcell)
 			user << "Your powerpack doesn't have a battery! Slap one in there!"
-			return 0
-		if(reloading) return 0
+			return
+
+		mygun.shells_fired_now = 0 //If you attempt a reload, the shells reset. Also prevents double reload if you fire off another 20 bullets while it's loading.
+
+		if(reloading)
+			return
 		if(pcell.charge <= 50)
-			user << "Your powerpack's battery is too drained! Get a new one!"
-			return 0
+			user << "Your powerpack's battery is too drained! Get a new battery and install it!"
+			return
 
 		reloading = 1
 		user.visible_message("[user.name] begin feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
 		if(do_after(user,50))
 			pcell.charge -= 50
-			var/existing_rounds = 0
-			if(!mygun.current_mag)
+			if(!mygun.current_mag) //This shouldn't happen, since the mag can't be ejected. Good safety, I guess.
 				var/obj/item/ammo_magazine/smartgun_integrated/A = new(mygun)
 				mygun.current_mag = A
-			else
-				existing_rounds = mygun.current_mag.current_rounds
 
-			user << "You finish loading [mygun.current_mag.max_rounds - existing_rounds] shells into the M56 Smartgun. Ready to rumble!"
-			reloading = 0
+			var/rounds_to_reload = min(rounds_remaining, (mygun.current_mag.max_rounds - mygun.current_mag.current_rounds)) //Get the smaller value.
+
+			mygun.current_mag.current_rounds += rounds_to_reload
+			rounds_remaining -= rounds_to_reload
+
+			user << "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!"
 			playsound(user, 'sound/weapons/unload.ogg', 50, 1)
-			mygun.current_mag.current_rounds = mygun.current_mag.max_rounds //Refill that shit.
-			rounds_remaining -= (mygun.current_mag.max_rounds - existing_rounds)
+
+			reloading = 0
 			return 1
 		else
 			user << "Your reloading was interrupted!"
 			reloading = 0
-			return 0
+			return
 		return 1
 
 	attackby(var/obj/item/A as obj, mob/user as mob)
@@ -208,7 +213,7 @@
 
 		if (get_dist(usr, src) <= 1)
 			if(pcell)
-				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 200."
+				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 250."
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "M42 Scout Sight"
@@ -225,7 +230,7 @@
 		overlay = null  //Stops the overlay.
 
 /obj/item/weapon/storage/box/m42c_system
-	name = "M42C Scoped Rifle system"
+	name = "M42C Scoped Rifle system (Recon Set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -238,14 +243,14 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/sniper(src)
+			new /obj/item/weapon/gun/rifle/sniper(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/weapon/facepaint/sniper(src)
+			new /obj/item/device/binoculars(src)
 			new /obj/item/weapon/storage/backpack/smock(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
@@ -258,82 +263,6 @@
 				new /obj/item/clothing/suit/storage/marine/sniper(src)
 				new /obj/item/clothing/head/helmet/durag(src)
 		..()
-
-/obj/item/weapon/gun/m92
-	name = "M92 grenade launcher"
-	desc = "A heavy, 5-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
-	icon_state = "m92"
-	icon_wielded = "riotgun"
-	item_state = "riotgun" //Ugh replace this plz
-	w_class = 4.0
-	throw_speed = 2
-	throw_range = 10
-	force = 5.0
-	var/list/grenades = new/list()
-	var/max_grenades = 6
-	twohanded = 1
-	mag_type = null //Does not use magazines.
-
-	New()
-		..()
-		spawn(1) //Load er up!
-			grenades += new /obj/item/weapon/grenade/explosive(src)
-			grenades += new /obj/item/weapon/grenade/explosive(src)
-			grenades += new /obj/item/weapon/grenade/incendiary(src)
-			grenades += new /obj/item/weapon/grenade/explosive(src)
-			grenades += new /obj/item/weapon/grenade/explosive(src)
-
-	examine()
-		set src in view()
-		..()
-		if(grenades.len)
-			if (!(usr in view(2)) && usr!=src.loc) return
-			usr << "\icon[src] Grenade launcher:"
-			usr << "\blue [grenades.len] / [max_grenades] Grenades."
-
-	attackby(obj/item/I as obj, mob/user as mob)
-		if((istype(I, /obj/item/weapon/grenade)))
-			if(grenades.len < max_grenades)
-				user.drop_item()
-				I.loc = src
-				grenades += I
-				user << "\blue You put the [I] in the grenade launcher."
-				user << "\blue Now storing: [grenades.len] / [max_grenades] grenades."
-			else
-				usr << "\red The grenade launcher cannot hold more grenades."
-
-	afterattack(atom/target, mob/user , flag)
-		if(get_dist(target,user) <= 2)
-			usr << "\red The grenade launcher beeps a warning noise. You are too close!"
-			return
-
-		if(!wielded)
-			user << "\red You need two hands to fire this!"
-			return
-
-		if(grenades.len)
-			spawn(0) fire_grenade(target,user)
-			playsound(user.loc, 'sound/weapons/grenadelaunch.ogg', 50, 1)
-		else
-			usr << "\red The grenade launcher is empty."
-
-	proc/fire_grenade(atom/target, mob/user)
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("\red [] fired a grenade!", user), 1)
-		user << "\red You fire the grenade launcher!"
-		var/obj/item/weapon/grenade/F = grenades[1]
-		grenades -= F
-		F.loc = user.loc
-		F.throw_range = 20
-		F.throw_at(target, 20, 2, user)
-		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
-		log_game("[key_name_admin(user)] used a grenade ([src.name]).")
-		F.active = 1
-		F.icon_state = initial(icon_state) + "_active"
-		playsound(F.loc, 'sound/weapons/armbomb.ogg', 50, 1)
-		spawn(10)
-			if(F) //If somehow got deleted since then
-				F.prime()
 
 /obj/item/weapon/storage/box/grenade_system
 	name = "M92 Grenade Launcher case"

@@ -28,8 +28,8 @@
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 40,
 					/obj/item/ammo_magazine/rifle/ap = 5,
-					/obj/item/ammo_magazine/shotgun = 20,
-					/obj/item/ammo_magazine/shotgun/buckshot = 20,
+					/obj/item/ammo_magazine/shotgun = 8,
+					/obj/item/ammo_magazine/shotgun/buckshot = 8,
 
 					/obj/item/weapon/combat_knife = 20,
 					/obj/item/weapon/storage/belt/knifepouch = 5,
@@ -294,6 +294,7 @@
 					/obj/item/weapon/storage/box/rocket_system = 1,
 					/obj/item/weapon/storage/box/grenade_system = 1,
 					/obj/item/weapon/storage/box/m42c_system = 1,
+					/obj/item/weapon/storage/box/m42c_system_Jungle = 1,
 					/obj/item/weapon/storage/box/m56_system = 1,
 					/obj/item/weapon/storage/box/heavy_armor = 1
 			)
@@ -351,6 +352,7 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 
+						/obj/item/attachable/scope = 0,
 						/obj/item/attachable/flashlight = 20,
 						/obj/item/attachable/reddot = 10,
 						/obj/item/attachable/magnetic_harness = 8,
@@ -361,9 +363,9 @@
 						/obj/item/attachable/bipod = 4,
 						/obj/item/attachable/burstfire_assembly = 2,
 
-						/obj/item/attachable/compensator/stock = 3,
-						/obj/item/attachable/compensator/riflestock = 3 ,
-						/obj/item/attachable/compensator/revolverstock = 3,
+						/obj/item/attachable/stock/shotgun = 3,
+						/obj/item/attachable/stock/rifle = 3 ,
+						/obj/item/attachable/stock/revolver = 3,
 
 						/obj/item/attachable/grenade = 5,
 						/obj/item/attachable/shotgun = 3,

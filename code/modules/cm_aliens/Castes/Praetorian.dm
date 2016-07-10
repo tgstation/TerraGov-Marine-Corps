@@ -1,4 +1,5 @@
-//Praetorian Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
+//Praetorian Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+
 /mob/living/carbon/Xenomorph/Praetorian
 	caste = "Praetorian"
 	name = "Praetorian"
@@ -15,9 +16,10 @@
 	storedplasma = 200
 	plasma_gain = 25
 	maxplasma = 800
-	jellyMax = 0
+	jellyMax = 800
 	spit_delay = 20
 	speed = 1.7
+	jelly = 1
 	adjust_pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
@@ -26,7 +28,8 @@
 	evolves_to = list()
 	armor_deflection = 60
 	big_xeno = 1
-
+	tier = 3
+	upgrade = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/transfer_plasma,

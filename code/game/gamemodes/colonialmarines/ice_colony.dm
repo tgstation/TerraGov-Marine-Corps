@@ -3,80 +3,21 @@
 /datum/game_mode/ice_colony
 	name = "Ice Colony"
 	config_tag = "Ice Colony"
-	required_players = 1
+	required_players = 1 //Need at least one player, but really we need 2.
+	xeno_required_num = 1 //Need at least one xeno.
 	var/checkwin_counter = 0
 	var/finished = 0
-	var/humansurvivors = 0
-	var/aliensurvivors = 0
-	var/numaliens = 0
-	var/numsurvivors = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-
 
 /* Pre-pre-startup */
 //We have to be really careful that we don't pick() from null lists.
 //So use list.len as much as possible before a pick() for logic checks.
 /datum/game_mode/ice_colony/can_start()
-
-	// Alien number scales to player number (preferred). Swap these to test solo.
-	var/readyplayers = num_players()
-	numaliens = Clamp((readyplayers/4), 1, 14) //(n, minimum, maximum)
-
-	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
-	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
-
-	if(possible_aliens.len==0)
-		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
-		return 0
-
-	while(numaliens > 0)
-		if(!possible_aliens.len) //Ran out of aliens! Abort!
-			numaliens = 0
-		else
-			var/datum/mind/new_alien = pick(possible_aliens)
-			if(numaliens > 0 && !new_alien) //We ran out of total alien candidates!
-				numaliens = 0
-			else
-				aliens += new_alien
-				possible_aliens -= new_alien
-				numaliens--
-
-	if(!aliens.len) //Our list is empty! This shouldn't EVER happen. Abort!
-		world << "<h2 style=\"color:red\">Something is messed up with the alien generator - no alien candidates found. Aborting.</h2>"
-		return 0
-
-	for(var/datum/mind/A in aliens)
-		A.assigned_role = "MODE"
-		A.special_role = "Alien"
-
-	// Handle Survivors
-	//First make sure we have ANY candidates. There might be none.
-	if(possible_survivors.len)
-		for(var/datum/mind/X in possible_survivors) //Strip out any xenos first so we don't double-dip.
-			if(X.assigned_role == "MODE")
-				possible_survivors -= X
-
-		numsurvivors = Clamp((readyplayers/7), 0, 5) //(n, minimum, maximum)
-		if(possible_survivors.len) //We may have stripped out all the contendors, so check again.
-			while(numsurvivors > 0)
-				if(!possible_survivors.len) //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
-					numsurvivors = 0
-				else
-					var/datum/mind/new_survivor = pick(possible_survivors)
-					if(numsurvivors > 0 && !new_survivor) //We ran out of survivors!
-						numsurvivors = 0
-					else
-						survivors += new_survivor
-						possible_survivors -= new_survivor
-						numsurvivors--
-
-	//Unlike the alien list, survivor lists CAN be empty. It's really unlikely though
-	if(survivors.len)
-		for(var/datum/mind/S in survivors)
-			if(S.assigned_role != "MODE") //Make sure it's not already here.
-				S.assigned_role = "MODE"
-				S.special_role = "Survivor"
-
+	initialize_special_clamps()
+	initialize_starting_predator_list()
+	if(!initialize_starting_xenomorph_list())
+		return
+	initialize_starting_survivor_list()
 	return 1
 
 /datum/game_mode/ice_colony/announce()
@@ -98,12 +39,9 @@
 //We move it later with transform_survivor but they might flicker at any start_loc spawn landmark effects then disappear.
 //Xenos and survivors should not spawn anywhere until we transform them.
 /datum/game_mode/ice_colony/post_setup()
-
-	for(var/datum/mind/alien in aliens) //Build and move the xenos.
-		transform_xeno(alien)
-
-	for(var/datum/mind/survivor in survivors) //Build and move to the survivors.
-		transform_survivor(survivor)
+	initialize_post_predator_list()
+	initialize_post_xenomorph_list()
+	initialize_post_survivor_list()
 
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
@@ -111,7 +49,7 @@
 		command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva�s Snowball\", on border ice world \"Ifrit\". A response team from the USS Sulaco will be dispatched shortly to investigate.", "USS Sulaco")
 
 
-/datum/game_mode/ice_colony/proc/transform_xeno(var/datum/mind/ghost)
+/datum/game_mode/ice_colony/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn_ice_colony))
 	new_xeno.amount_grown = 200
@@ -129,7 +67,7 @@
 		del(original)
 
 //Start the Survivor players. This must go post-setup so we already have a body.
-/datum/game_mode/ice_colony/proc/transform_survivor(var/datum/mind/ghost)
+/datum/game_mode/ice_colony/transform_survivor(var/datum/mind/ghost)
 
 	var/mob/living/carbon/human/H = ghost.current
 
@@ -179,7 +117,7 @@
 	//Give them some information
 	spawn(4)
 		H << "<h2>You are a survivor!</h2>"
-		H << "\blue You are a survivor of the attack on the Daedalus Prison facility. You worked or lived in the prison, and managed to avoid the alien attacks.. until now."
+		H << "\blue You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now."
 		H << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
 		H << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
 	return 1

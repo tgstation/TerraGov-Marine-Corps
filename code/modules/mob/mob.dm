@@ -842,6 +842,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 		regenerate_icons()
 	else if( lying != lying_prev )
 		update_icons()
+		if(istype(src, /mob/living))
+			var/mob/living/L = src
+			L.update_fire() //Maybe fixes fire overlay problems
 
 	return canmove
 
@@ -1100,14 +1103,6 @@ mob/proc/yank_out_object()
 		AdjustParalysis(-1)
 	return paralysis
 
-//Check for brain worms in head.
-/mob/proc/has_brain_worms()
-
-	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
-			return I
-
-	return 0
 
 /mob/proc/updateicon()
 	return

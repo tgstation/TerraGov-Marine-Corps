@@ -1,4 +1,5 @@
-//Hunter Code - Colonial Marines - Last Edit: Apophis775 - 27MAY16
+//Hunter Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+
 /mob/living/carbon/Xenomorph/Hunter
 	caste = "Hunter"
 	name = "Hunter"
@@ -12,13 +13,15 @@
 	plasma_gain = 8
 	maxplasma = 100
 	jellyMax = 500
+	jelly = 1
 	caste_desc = "A fast, powerful front line combatant."
 	speed = -1.4 //Not as fast as runners, but faster than other xenos
 	evolves_to = list("Ravager", "Crusher")
 	charge_type = 1 //Pounce - Hunter
 	armor_deflection = 32
 	attack_delay = -2
-
+	tier = 2
+	upgrade = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

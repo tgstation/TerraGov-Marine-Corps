@@ -42,6 +42,14 @@ CONTAINS
 				del(src)
 			..()
 
+	bullet_act(var/obj/item/projectile/P)
+		bullet_ping(P)
+		health -= round(P.damage/2) //Not that durable.
+		if (health <= 0)
+			visible_message("<span class='warning'>[src] breaks down!</span>")
+			destroy()
+		return 1
+
 	ex_act(severity)
 		switch(severity)
 			if(1.0)

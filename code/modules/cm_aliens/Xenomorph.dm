@@ -5,6 +5,7 @@
 //This is so they can be easily transferred between them without copypasta
 
 //All this stuff was written by Absynth.
+//Edited by Apop - 11JUN16
 
 
 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
@@ -90,8 +91,8 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
+	var/upgrade = -1  //This will track their upgrade level.  Once they can no longer upgrade, it will set to -1
 	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
-
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
@@ -146,7 +147,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
 		if(caste != "Queen")//This needed to be moved here because the re-naming was happening faster than the transfer. - Apop
 			nicknumber = rand(1,999)
-			name = "[caste] ([nicknumber])"
+			name = "Young [caste] ([nicknumber])"
 			real_name = name
 		if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
 			src.mind.assigned_role = "MODE"

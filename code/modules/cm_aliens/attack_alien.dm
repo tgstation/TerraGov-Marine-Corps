@@ -216,11 +216,13 @@
 /obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	visible_message("<span class='danger'>[M] slashes at the [src]!</span>")
 	update_health()
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
+	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	visible_message("<span class='danger'>[M] slices [src] apart!</span>")
 	destroy()
 
@@ -348,7 +350,7 @@
 		M << "\blue You slice through the metal foam wall."
 		for(var/mob/O in oviewers(M))
 			if ((O.client && !( O.blinded )))
-				O << "\red [M] slice through the foamed metal."
+				O << "\red [M] slices through the foamed metal."
 		del(src)
 		return
 	else
@@ -468,8 +470,9 @@
 	if(M.is_intelligent)
 		attack_hand(M)
 		if(alerted >0)
-			command_announcement.Announce("Unknown Biological Entity has access the Shuttle Console.", "RED ALERT:", new_sound = 'sound/misc/ALARM.ogg')
+			command_announcement.Announce("Unknown biological entity has accessed a shuttle console.", "RED ALERT:", new_sound = 'sound/misc/queen_alarm.ogg')
 			alerted--
+			M << "\red <b>A loud alarm erupts from the console! The fleshy hosts must know that you can access it!</b>"
 	else
 		..()
 	return
@@ -481,11 +484,12 @@
 		return
 
 	if(isXenoLarva(M)) return
-
+/*
+//I don't know why this was added. I am changing it back. All apcs are unacidable, that's why you slash them instead. ~N
 	if(unacidable)
 		M << "This one's too reinforced for you to damage."
 		return
-
+*/
 	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 	var/allcut = 1

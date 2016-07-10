@@ -314,7 +314,8 @@
 									linked_lathe.reagents.remove_reagent(M, being_built.materials[M])
 
 						if(being_built.build_path)
-							var/obj/new_item = new being_built.build_path(src)
+							var/buildPath = text2path(being_built.build_path)
+							var/obj/new_item = new buildPath(src)
 							if( new_item.type == /obj/item/weapon/storage/backpack/holding )
 								new_item.investigate_log("built by [key]","singulo")
 							new_item.reliability = being_built.reliability

@@ -193,29 +193,6 @@
 	else
 		..(speaker,message)
 
-/datum/language/corticalborer
-	name = "Cortical Link"
-	desc = "Cortical borers possess a strange link between their tiny minds."
-	speech_verb = "sings"
-	ask_verb = "sings"
-	exclaim_verb = "sings"
-	colour = "alien"
-	key = "x"
-	flags = RESTRICTED | HIVEMIND
-
-/datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-
-	var/mob/living/simple_animal/borer/B
-
-	if(istype(speaker,/mob/living/carbon))
-		var/mob/living/carbon/M = speaker
-		B = M.has_brain_worms()
-	else if(istype(speaker,/mob/living/simple_animal/borer))
-		B = speaker
-
-	if(B)
-		speaker_mask = B.truename
-	..(speaker,message,speaker_mask)
 
 /datum/language/binary
 	name = "Robot Talk"

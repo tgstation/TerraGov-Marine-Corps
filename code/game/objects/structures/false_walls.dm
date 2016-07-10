@@ -103,7 +103,7 @@
 		if( istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT:welding )
-				if(!mineral)
+				if(!mineral || mineral == "metal") //Mineral metal walls don't exist
 					T.ChangeTurf(/turf/simulated/wall)
 				else
 					T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))

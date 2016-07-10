@@ -951,10 +951,7 @@
 								/obj/item/attachable/bipod,
 								/obj/item/attachable/shotgun,
 								/obj/item/attachable/flamer,
-								/obj/item/attachable/burstfire_assembly,
-								/obj/item/attachable/compensator/revolverstock,
-								/obj/item/attachable/compensator/riflestock,
-								/obj/item/attachable/compensator/stock)
+								/obj/item/attachable/burstfire_assembly)
 
 			if(2)//Random Melee Crate
 				choosemax = rand(10,20)
@@ -1067,12 +1064,7 @@
 									/obj/item/ammo_magazine/shotgun,
 									/obj/item/ammo_magazine/shotgun/buckshot,
 									/obj/item/ammo_magazine/shotgun/buckshot,
-									/obj/item/ammo_magazine/shotgun/incendiary,
-									/obj/item/ammo_magazine/shotgun/double,
-									/obj/item/ammo_magazine/shotgun/cmb,
-									/obj/item/ammo_magazine/shotgun/cmb,
-									/obj/item/ammo_magazine/shotgun/buckshot/cmb,
-									/obj/item/ammo_magazine/shotgun/incendiary/cmb)
+									/obj/item/ammo_magazine/shotgun/incendiary)
 
 			if(15 to 18)//Random Secondary Ammo
 				choosemax = rand(50,60)

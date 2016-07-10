@@ -332,13 +332,20 @@
 	mymob.toggle_burst.screen_loc = ui_gun_burst
 	hud_elements |= mymob.toggle_burst
 
+	mymob.unique_action = new /obj/screen()
+	mymob.unique_action.icon = ui_style
+	mymob.unique_action.icon_state = "gun_unique"
+	mymob.unique_action.name = "Use unique action"
+	mymob.unique_action.screen_loc = ui_gun_unique
+	hud_elements |= mymob.unique_action
+
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
 	mymob.blind.mouse_opacity = 0
-	mymob.blind.layer = 0
+	mymob.blind.plane = -80
 	hud_elements |= mymob.blind
 
 	mymob.damageoverlay = new /obj/screen()

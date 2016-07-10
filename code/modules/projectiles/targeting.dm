@@ -203,9 +203,12 @@ mob/living/proc/NotTargeted(var/obj/item/weapon/gun/I)
 			M << 'sound/weapons/TargetOff.ogg'
 	if(!isnull(targeted_by))
 		targeted_by -= I
-	I.target.Remove(src) //De-target them
+
+	if(I.target)//To prevent runtimes. This whole thing is such an awful mess. Might come back to later, sigh. ~N
+		I.target.Remove(src) //De-target them
 	if(!I.target.len)
-		del(I.target)
+		del(I.target) //What the hell.
+
 	var/mob/living/T = I.loc //Remove the targeting icons
 	if(T && ismob(T) && !I.target)
 		T.client.remove_gun_icons()
@@ -275,7 +278,8 @@ client/verb/AllowTargetMove()
 	else
 		usr << "Target may no longer move."
 		target_can_run = 0
-		del(usr.gun_run_icon)	//no need for icon for running permission
+		screen -= usr.gun_run_icon
+		//del(usr.gun_run_icon)	//no need for icon for running permission
 
 	//Updating walking permission button
 	if(usr.gun_move_icon)

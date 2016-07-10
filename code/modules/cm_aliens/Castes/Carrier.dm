@@ -1,8 +1,10 @@
+//Carrier Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
 /mob/living/carbon/Xenomorph/Carrier
 	caste = "Carrier"
 	name = "Carrier"
 	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
+	icon = 'icons/xeno/2x2_Xenos.dmi' //They are now like, 2x2
 	icon_state = "Carrier Walking"
 	melee_damage_lower = 20
 	melee_damage_upper = 30
@@ -13,17 +15,23 @@
 	maxHealth = 175
 	storedplasma = 50
 	maxplasma = 250
-	jellyMax = 0
+	jelly = 1
+	jellyMax = 800
 	plasma_gain = 8
 	evolves_to = list() //Add more here seperated by commas
 	caste_desc = "A carrier of huggies."
-	adjust_size_x = 1.1
-	adjust_size_y = 1.2
 	var/huggers_max = 6
-	adjust_pixel_y = 3
 	var/huggers_cur = 0
 	var/throwspeed = 1
 	var/threw_a_hugger = 0
+	var/hugger_delay = 40
+	tier = 3
+	upgrade = 0
+	adjust_pixel_x = -16 //Needed for 2x2
+	// adjust_pixel_y = -6  //Needed for 2x2
+	// adjust_size_x = 0.8  //Needed for 2x2
+	// adjust_size_y = 0.75  //Needed for 2x2
+
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -57,6 +65,16 @@
 	set category = "Alien"
 
 	if(!check_state())	return
+	//This shit didn't wanna go into the upgrade area...
+	if(upgrade == 1)
+		huggers_max = 7
+		hugger_delay = 30
+	if(upgrade == 2)
+		huggers_max = 8
+		hugger_delay = 20
+	if(upgrade == 3)
+		huggers_max = 10
+		hugger_delay = 10
 
 	var/mob/living/carbon/Xenomorph/Carrier/X = src
 	if(!istype(X))
@@ -81,7 +99,7 @@
 			newthrow.throw_at(T, 5, X.throwspeed)
 			// src << "You throw a facehugger at [T]."
 			visible_message("\red <B>[src] throws something towards [T]!</B>")
-			spawn(40)
+			spawn(hugger_delay)
 				X.threw_a_hugger = 0
 		else
 			src << "\blue You cannot throw at nothing!"

@@ -328,16 +328,16 @@
 	return
 
 /obj/item/stack/cable_coil/use(var/used)
-	. = ..()
-	updateicon()
-	update_wclass()
-	return
+	if( ..() )
+		updateicon()
+		update_wclass()
+		return 1
 
 /obj/item/stack/cable_coil/add(var/extra)
-	. = ..()
-	updateicon()
-	update_wclass()
-	return
+	if( ..() )
+		updateicon()
+		update_wclass()
+		return 1
 
 // called when cable_coil is clicked on a turf/simulated/floor
 

@@ -332,9 +332,7 @@
 			message_admins("Aborting distress beacon, not enough candidates: found [candidates.len].", 1)
 			ticker.mode.waiting_for_candidates = 0
 			ticker.mode.has_called_emergency = 0
-			members = null
 			members = list() //Empty the members list.
-			candidates = null
 			candidates = list()
 			command_announcement.Announce("The distress signal got no response.", "Distress Beacon")
 			ticker.mode.distress_cooldown = 1
@@ -363,6 +361,7 @@
 						for(var/datum/mind/I in candidates)
 							if(I.current)
 								I.current << "You didn't get selected to join the distress team. Better luck next time!"
+
 
 			command_announcement.Announce(dispatch_message, "Distress Beacon")
 			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
@@ -564,7 +563,7 @@
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/sniper(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)

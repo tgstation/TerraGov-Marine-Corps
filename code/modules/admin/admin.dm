@@ -20,6 +20,15 @@ var/global/floorIsLava = 0
 				var/msg = rendered
 				C << msg
 
+/proc/msg_admin_ff(var/text)
+	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
+	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
+	for(var/client/C in admins)
+		if(R_MOD & C.holder.rights)
+			if(C.prefs.toggles & CHAT_FFATTACKLOGS)
+				var/msg = rendered
+				C << msg
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
@@ -59,6 +68,7 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
+		<A href='?src=\ref[src];lazyban=\ref[M]'>LazyBan</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
 		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}
@@ -1264,8 +1274,53 @@ var/global/floorIsLava = 0
 
 	return
 
-//
-//
-//ALL DONE
-//*********************************************************************************************************
-//
+/datum/admins/proc/fix_breach()
+	set category = "Debug"
+	set desc = "Stand over the tile you want to fix and use this verb to build a floor or wall."
+	set name = "Fix Breach"
+
+	// new /turf/simulated/wall/r_wall(usr.loc) - Not working. Air still escapes.
+
+	if(istype(usr.loc, /turf/space))
+		usr << "Placing a floor..."
+		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
+		return
+
+	if(istype(usr.loc, /turf/simulated/floor))
+		usr << "Placing a wall..."
+		usr.loc:ChangeTurf(/turf/simulated/wall/sulaco)
+		return
+
+	if(istype(usr.loc, /turf/simulated/wall/sulaco))
+		usr << "Placing a floor..."
+		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
+		return
+
+	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
+	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+
+	return
+
+/datum/admins/proc/fix_air()
+	set category = "Debug"
+	set desc = "Fix air in the room you're standing in."
+	set name = "Fix Air"
+
+	var/turf/T = usr.loc
+	if(!isturf(T)) return
+	var/datum/gas_mixture/GM = new
+
+	if(!GM)	return
+
+	// GM.adjust(20, 0, 80, 0, null)
+
+	// T.oxygen = 20
+	// T.nitrogen = 80
+	// T.carbon_dioxide = 0
+	// T.phoron = 0
+	// T.temperature = 293
+
+	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
+	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+
+	return

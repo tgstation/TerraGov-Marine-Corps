@@ -543,7 +543,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"Dutch Merc (Leader)",
 		"Business Person",
 		"UPP Spy",
-		"Standard Space Gear")
+		"Standard Space Gear",
+		"Fleet Admiral")
 
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
 	if (isnull(dresscode))
@@ -925,7 +926,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(M), slot_wear_mask)
 			J.Topic(null, list("stat" = 1))
 
-/*
 		if("Fleet Admiral") //Renamed from Soviet Admiral
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/hgpiratecap(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), slot_shoes)
@@ -944,9 +944,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.assignment = "Fleet Admiral"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
-			W.access = list()
-			W.access = get_all_accesses()
-			W.access += get_all_centcom_access()
+
+/*
+
 
 		if ("tournament gangster") //gangster are supposed to fight each other. --rastaf0
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/det(M), slot_w_uniform)
@@ -1397,26 +1397,17 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /client/proc/spawn_predators()
 	set category = "Debug"
 	set name = "Spawn Preds"
-	set desc = "Do it!"
+	set desc = "This allows you to spawn predators outside of predator rounds. They can join the hunt manually during a predator round instead."
 
-	if(!ticker)
+	if(!ticker || !ticker.mode)
 		alert("Wait until the game starts.")
 		return
 
 	var/sure = alert("Are you sure you want to force-spawn predators into the game?","Sure?","Yes","No")
 	if(sure == "No") return
 
-	var/list/datum/mind/possible_predators = get_whitelisted_predators(0) //0 = not care about ready state
-	var/numpreds = 3
-	while(numpreds > 0)
-		if(!possible_predators.len)
-			numpreds = 0
-		else
-			var/datum/mind/new_pred = pick(possible_predators)
-			if(!istype(new_pred)) continue
-			possible_predators -= new_pred
-			numpreds--
-			transform_predator(new_pred)
+	var/datum/game_mode/predator_round = ticker.mode //For the round itself.
+	predator_round.force_predator_spawn()
 
-	message_admins("[key_name_admin(src)] used spawn predators!")
+	message_admins("[key_name_admin(src)] used <b>spawn predators!</b>")
 	return
