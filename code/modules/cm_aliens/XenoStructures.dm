@@ -203,9 +203,9 @@
 
 			new /obj/effect/alien/weeds(T, linked_node)
 
-		spawn(600)
-			if(linked_node)
-				goto direction_loop
+		// spawn(600) // Not very performance-friendly
+		// 	if(linked_node)
+		// 		goto direction_loop
 
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
