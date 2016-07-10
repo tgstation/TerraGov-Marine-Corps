@@ -294,6 +294,7 @@
 					/obj/item/weapon/storage/box/rocket_system = 1,
 					/obj/item/weapon/storage/box/grenade_system = 1,
 					/obj/item/weapon/storage/box/m42c_system = 1,
+					/obj/item/weapon/storage/box/m42c_system_Jungle = 1,
 					/obj/item/weapon/storage/box/m56_system = 1,
 					/obj/item/weapon/storage/box/heavy_armor = 1
 			)
