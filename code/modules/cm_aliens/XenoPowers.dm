@@ -135,7 +135,11 @@
 		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 2, src) //victim, distance, speed
 		spawn(6)
-			pass_flags = initial(pass_flags)//Reset the passtable.
+			if(!hardcore)
+				pass_flags = initial(pass_flags)//Reset the passtable.
+			else
+				pass_flags = 0 //Reset the passtable.
+
 		spawn(usedPounce)
 			usedPounce = 0
 			src << "You get ready to pounce again."

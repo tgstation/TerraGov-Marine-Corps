@@ -13,6 +13,10 @@
 	var tierB = 0.0 //Tier 2
 	var tierC = 0.0 //Tier 3
 
+	if(hardcore)
+		src << "\red Nuh-uh"
+		return
+
 	if(jobban_isbanned(src,"Alien"))
 		src << "\red You are jobbanned from Aliens and cannot evolve. How did you even become an alien?"
 		return
@@ -91,16 +95,20 @@
 		return
 
 	if(caste == "Queen") // Special case for dealing with queenae
-		if(storedplasma >= 500)
-			if(is_queen_alive())
-				src << "\red There is already a queen."
+		if(!hardcore)
+			if(storedplasma >= 500)
+				if(is_queen_alive())
+					src << "\red There is already a queen."
+					return
+			else
+				src << "You require more plasma! Currently at: [storedplasma] / 500."
+				return
+
+			if(ticker && ticker.mode && ticker.mode.queen_death_timer)
+				src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
 				return
 		else
-			src << "You require more plasma! Currently at: [storedplasma] / 500."
-			return
-
-		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
-			src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
+			src << "\red Nuh-uhh."
 			return
 
 

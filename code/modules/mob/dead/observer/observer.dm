@@ -629,14 +629,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		pluralcheck = " [deathtimeminutes] minutes and"
 	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 
-	if (deathtime < 3000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Xeno - Ignored for Admins, cause we're special
-		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "\red You must wait 5 minutes before rejoining the game!"
-		return
+	//Whiskey Outpost gamemode ignores those two timed checks
+	if(ticker && !istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+		if (deathtime < 3000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Xeno - Ignored for Admins, cause we're special
+			usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
+			usr << "\red You must wait 5 minutes before rejoining the game!"
+			return
 
-	if(L.away_timer < 300) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
-		usr << "\red That player hasn't been away long enough. Please wait [300 - L.away_timer] more seconds."
-		return
+		if(L.away_timer < 300) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
+			usr << "\red That player hasn't been away long enough. Please wait [300 - L.away_timer] more seconds."
+			return
 
 	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this [L]?", "Confirmation", "Yes", "No") == "Yes")
 

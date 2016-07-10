@@ -282,6 +282,9 @@
 			var/mob/living/carbon/Xenomorph/X = M
 			X.updatehealth()
 		M.show_message(text("\red You are burned!"),1)
+		if(istype(M,/mob/living/carbon/Xenomorph)) //alyumss
+			var/mob/living/carbon/Xenomorph/X = M
+			X.updatehealth()
 
 	//This is shitty and inefficient, but the /alien/ parent obj doesn't have health.. sigh.
 	for(var/obj/effect/alien/weeds/W in loc)  //Melt dem weeds
@@ -301,6 +304,10 @@
 		if(istype(N)) //Just for safety
 			N.health -= (30 + (firelevel * 3))
 			N.healthcheck()
+	for(var/obj/structure/bush/B in loc)  //Bushes of love
+		if(istype(B)) //Just for safety
+			B.health -= firelevel + 15
+			B.healthcheck()
 	for(var/obj/item/clothing/mask/facehugger/H in loc) //Melt dem huggers
 		if(istype(H))
 //			H.health -= (firelevel + 5) //No need for a health check, just kill them
@@ -340,6 +347,9 @@
 			var/mob/living/carbon/Xenomorph/X = M
 			X.updatehealth()
 		M.show_message(text("\red Auuugh! You are roasted by the flamethrower!"), 1)
+		if(istype(M,/mob/living/carbon/Xenomorph)) //alyumss
+			var/mob/living/carbon/Xenomorph/X = M
+			X.updatehealth()
 	return
 
 /obj/item/weapon/flamethrower/full/New(var/loc)

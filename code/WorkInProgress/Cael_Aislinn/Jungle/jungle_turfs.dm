@@ -7,7 +7,29 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
 	icon_state = "grass1"
 	var/icon_spawn_state = "grass1"
-	luminosity = 3
+
+	attackby(var/obj/item/I, var/mob/user)
+		//Light Stick
+		if(I && istype(I, /obj/item/lightstick))
+			var/obj/item/lightstick/L = I
+			if(locate(/obj/item/lightstick) in get_turf(src))
+				user << "There's already a [L]  at this position!"
+				return
+
+			user << "Now planting \the [L]."
+			if(!do_after(user,20))
+				return
+
+			user.visible_message("\blue[user.name] planted \the [L] into [src].")
+			L.anchored = 1
+			L.icon_state = "lightstick_[L.s_color][L.anchored]"
+			user.drop_item()
+			L.x = x
+			L.y = y
+			L.pixel_x += rand(-5,5)
+			L.pixel_y += rand(-5,5)
+			L.SetLuminosity(2)
+			playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 
 	New()
 		icon_state = icon_spawn_state
@@ -44,11 +66,11 @@
 
 /turf/unsimulated/jungle/path
 	bushes_spawn = 0
-	name = "wet grass"
-	desc = "thick, long wet grass"
+	name = "dirt"
+	desc = "it is very dirty."
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
 	icon_state = "grass_path"
-	icon_spawn_state = "grass2"
+	icon_spawn_state = "dirt"
 
 	New()
 		..()
@@ -176,53 +198,62 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "phoron0"
 	var/mineral = "phoron"
-	
+
 
 // Joshuu's Additions
 /turf/unsimulated/jungle/dirt
 	name = "dirt"
-	desc = ""
+	desc = "It's very dirty"
 	icon_state = "dirt"
+	icon_spawn_state = "dirt"
 
 /turf/unsimulated/jungle/dirtGrass1
 	name = "dirtgrass1"
-	desc = ""
+	desc = "Dirt with grass patches"
 	icon_state = "grass_half1"
+	icon_spawn_state = "grass_half1"
 
 /turf/unsimulated/jungle/dirtGrass2
 	name = "dirtgrass2"
-	desc = ""
+	desc = "Dirt with grass patches"
 	icon_state = "grass_half2"
+	icon_spawn_state = "grass_half2"
 
 /turf/unsimulated/jungle/dirtGrass3
 	name = "dirtgrass3"
-	desc = ""
+	desc = "Dirt with grass patches"
 	icon_state = "grass_half3"
+	icon_spawn_state = "grass_half3"
 
 /turf/unsimulated/jungle/dirtGrass4
 	name = "dirtgrass4"
-	desc = ""
+	desc = "Dirt with grass patches"
 	icon_state = "grass_half4"
+	icon_spawn_state = "grass_half4"
 
 /turf/unsimulated/jungle/dirtGrassCorner1
 	name = "dirtGrassCorner1"
-	desc = ""
+	desc = "Dirt with grass patches"
 	icon_state = "grass_corner1"
+	icon_spawn_state = "grass_corner1"
 
 /turf/unsimulated/jungle/dirtGrassCorner2
 	name = "dirtGrassCorner2"
-	desc = ""
+	desc = "Dirt with grass patches"
 	icon_state = "grass_corner2"
+	icon_spawn_state = "grass_corner2"
 
 /turf/unsimulated/jungle/dirtGrassCorner3
 	name = "dirtGrassCorner3"
 	desc = ""
 	icon_state = "grass_corner3"
+	icon_spawn_state = "grass_corner3"
 
 /turf/unsimulated/jungle/dirtGrassCorner4
 	name = "dirtGrassCorner4"
-	desc = ""
+	desc = "Dirt with grass patches"
 	icon_state = "grass_corner4"
+	icon_spawn_state = "grass_corner4"
 
 
 /turf/simulated/jungle

@@ -144,6 +144,14 @@
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
+	if(locate(/obj/structure/bush) in src.loc) //Bushes slows you down
+		var/obj/structure/bush/B = locate(/obj/structure/bush) in src.loc
+		if(!B.stump)
+			if(prob(20*tier))
+				var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
+				playsound(src.loc, sound, 50, 1)
+
+
 	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
 			tally -= 0.5
