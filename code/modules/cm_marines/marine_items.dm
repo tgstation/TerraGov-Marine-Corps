@@ -583,14 +583,14 @@
 	item_state = "map"
 	author = "Weyland Yutani"
 	title = "Lazarus Landing Map"
-
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
 	dat = {"
 
 		<html><head>
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src='http://www.colonial-marines.com/wiki/images/thumb/6/6f/LV624.png/800px-LV624.png' frameborder="0" id="main_frame"></iframe>
+		<img src="LV624.png" alt="Map">
 		</body>
 
 		</html>
@@ -605,7 +605,7 @@
 	item_state = "map"
 	author = "Weyland Yutani"
 	title = "Whiskey Outpost Map"
-
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
 	dat = {"
 
 		<html><head>
@@ -619,7 +619,8 @@
 		<b>Red:</b>    Threat<br>
 		<b>Yellow:</b> Potential Threat<br><br>
 		<b>Whiskey Outpost Tactical Map:</b>
-		<iframe width='100%' height='97%' src='https://gyazo.com/d4d2b7bc112bf650b0440caad70f4d2b.png' frameborder="0" id="main_frame"></iframe>
+		<br>
+		<img src="whiskey_outpost.png" alt="Map">
 		</body>
 
 		</html>
