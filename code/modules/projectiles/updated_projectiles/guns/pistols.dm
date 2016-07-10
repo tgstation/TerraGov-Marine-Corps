@@ -70,7 +70,7 @@
 
 	New()
 		..()
-		icon_state = pick("colt1","colt2")
+		icon_state = pick("colt1","colt1")
 
 //-------------------------------------------------------
 //DEAGLE
