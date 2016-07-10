@@ -484,7 +484,7 @@
 	default_language = "Sainja"
 	unarmed_type = /datum/unarmed_attack/punch
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	blood_color = "#005500"
+	blood_color = "#20d450"
 	flesh_color = "#907E4A"
 	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
 	speech_chance = 100

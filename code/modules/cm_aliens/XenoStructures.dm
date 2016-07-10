@@ -763,16 +763,16 @@
 //Alien blood effects.
 /obj/effect/decal/cleanable/blood/xeno
 	name = "sizzling blood"
-	desc = "It's green and acidic. It looks like... <i>blood?</i>"
+	desc = "It's yellow and acidic. It looks like... <i>blood?</i>"
 	icon = 'icons/effects/blood.dmi'
-	basecolor = "#05EE05"
+	basecolor = "#dbcd79"
 
 /obj/effect/decal/cleanable/blood/gibs/xeno
 	name = "steaming gibs"
 	desc = "Gnarly..."
 	icon_state = "xgib1"
 	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6")
-	basecolor = "#05EE05"
+	basecolor = "#dbcd79"
 
 /obj/effect/decal/cleanable/blood/gibs/xeno/update_icon()
 	color = "#FFFFFF"
@@ -793,4 +793,4 @@
 	random_icon_states = list("xgibmid1", "xgibmid2", "xgibmid3")
 
 /obj/effect/decal/cleanable/blood/xtracks
-	basecolor = "#05EE05"
+	basecolor = "#dbcd79"
