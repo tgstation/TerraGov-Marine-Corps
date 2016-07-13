@@ -357,14 +357,17 @@
 /mob/living/carbon/Xenomorph/death(gibbed)
 	if(!gibbed)
 		icon_state = "[caste] Dead"
-	if(rand(0,100) < 50)
-		playsound(loc, 'sound/voice/alien_death.ogg', 50, 1, 1)
+	if(!istype(src, /mob/living/carbon/Xenomorph/Queen))
+		if(rand(0,100) < 50)
+			playsound(loc, 'sound/voice/alien_death.ogg', 50, 1, 1)
+		else
+			playsound(loc, 'sound/voice/alien_death2.ogg', 50, 1, 1)
 	else
-		playsound(loc, 'sound/voice/alien_death2.ogg', 50, 1, 1)
+		playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
-		xeno_message("The slashing of hosts is now permitted!",2)
+		xeno_message("<br>A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
+		xeno_message("The slashing of hosts is now permitted!<br>",2)
 		slashing_allowed = 1
 		if(ticker && ticker.mode)
 			ticker.mode.queen_death_timer = queen_time // 5 minutes. Defined in Xenomorph.dm
