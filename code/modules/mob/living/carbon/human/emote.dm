@@ -116,6 +116,10 @@
 						message = "<B>[src]</B> makes a strong noise."
 						m_type = 2
 
+			if ("drool")
+				message = "<B>[src]</B> drools."
+				m_type = 1
+
 			if ("eyebrow")
 				message = "<B>[src]</B> raises an eyebrow."
 				m_type = 1
@@ -296,6 +300,10 @@
 					src << "You just did that. Wait a while."
 					return
 
+			if ("moan")
+				message = "<B>[src]</B> moans."
+				m_type = 1
+
 			if ("mumble")
 				message = "<B>[src]</B> mumbles."
 				m_type = 2
@@ -396,6 +404,10 @@
 				else
 					message = "<B>[src]</B> stares."
 
+			if ("twitch")
+				message = "<B>[src]</B> twitches."
+				m_type = 1
+
 			if ("wave")
 				message = "<B>[src]</B> waves."
 				m_type = 1
@@ -417,6 +429,7 @@
 					<span style='color: green;'>clap</span>, \
 					collapse, \
 					cough, \
+					drool, \
 					eyebrow, \
 					faint, \
 					frown, \
@@ -432,6 +445,7 @@
 					look-(mob name), \
 					me, \
 					<span style='color: green;'>medic</span>, \
+					moan, \
 					mumble, \
 					nod, \
 					point, \
@@ -443,6 +457,7 @@
 					signal-#1-10, \
 					smile, \
 					stare-(mob name), \
+					twitch, \
 					wave, \
 					yawn</b><br>"
 
