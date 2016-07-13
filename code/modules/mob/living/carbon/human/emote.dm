@@ -33,6 +33,10 @@
 					return
 				return custom_emote(m_type, message)
 
+			if ("blink")
+				message = "<B>[src]</B> blinks."
+				m_type = 1
+
 			if ("bow")
 				if (!src.buckled)
 					var/M = null
@@ -339,6 +343,10 @@
 					playsound(src.loc, 'sound/misc/salute.ogg', 50, 1)
 				m_type = 1
 
+			if("scream")
+				message = "<B>[src]</B> screams!"
+				m_type = 1
+
 			if("shakehead")
 				message = "<B>[src]</B> shakes \his head."
 				m_type = 1
@@ -402,7 +410,41 @@
 
 			if ("help")
 				if (has_species(src,"Human"))
-					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: red;'>red</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>bow-(mob name), chuckle, <span style='color: red;'>clap</span>, collapse, cough, eyebrow, faint, frown, gasp, giggle, glare-(mob name), <span style='color: red;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), laugh, look-(mob name), <span style='color: red;'>medic</span>, mumble, nod, point, <span style='color: red;'>salute</span>, shakehead, shrug, sigh, signal-#1-10, smile, stare-(mob name), wave, yawn</b><br>"
+					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br> \
+					blink, \
+					bow-(mob name), \
+					chuckle, \
+					<span style='color: green;'>clap</span>, \
+					collapse, \
+					cough, \
+					eyebrow, \
+					faint, \
+					frown, \
+					gasp, \
+					giggle, \
+					glare-(mob name), \
+					<span style='color: green;'>golfclap</span>, \
+					grin, \
+					grumble, \
+					handshake, \
+					hug-(mob name), \
+					laugh, \
+					look-(mob name), \
+					me, \
+					<span style='color: green;'>medic</span>, \
+					mumble, \
+					nod, \
+					point, \
+					<span style='color: green;'>salute</span>, \
+					scream, \
+					shakehead, \
+					shrug, \
+					sigh, \
+					signal-#1-10, \
+					smile, \
+					stare-(mob name), \
+					wave, \
+					yawn</b><br>"
 
 			else
 				src << "\blue Unusable emote '[act]'. Say *help for a list of emotes."
@@ -410,6 +452,18 @@
 
 	if(has_species(src,"Yautja"))
 		switch(act)
+			if ("me")
+				if (src.client)
+					if (client.prefs.muted & MUTE_IC)
+						src << "\red You cannot send IC messages (muted)."
+						return
+					if (src.client.handle_spam_prevention(message,MUTE_IC))
+						return
+				if (stat)
+					return
+				if(!(message))
+					return
+				return custom_emote(m_type, message)
 			if ("anytime")
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_anytime.ogg', 100, 0)
@@ -445,7 +499,16 @@
 						playsound(src.loc, 'sound/voice/pred_roar2.ogg', 100, 1)
 			if ("help")
 				if (has_species(src,"Yautja"))
-					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>anytime, click, iseeyou, laugh1, laugh2, laugh3, overhere, roar</b><br>"
+					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
+					<span style='color: green;'>anytime</span>, \
+					<span style='color: green;'>click</span>, \
+					<span style='color: green;'>iseeyou</span>, \
+					<span style='color: green;'>laugh1</span>, \
+					<span style='color: green;'>laugh2</span>, \
+					<span style='color: green;'>laugh3</span>, \
+					me, \
+					<span style='color: green;'>overhere</span>, \
+					<span style='color: green;'>roar</span></b><br>"
 
 			else
 				src << "\blue Unusable emote '[act]'. Say *help for a list of emotes."
@@ -480,13 +543,6 @@
 	set category = "IC"
 
 	pose =  copytext(sanitize(input(usr, "This is [src]. \He is...", "Pose", null)  as text), 1, MAX_MESSAGE_LEN)
-
-/mob/living/carbon/verb/show_emotes()
-	set name = "Emotes"
-	set desc = "Displays a list of usable emotes."
-	set category = "IC"
-
-	usr.say("*help")
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"

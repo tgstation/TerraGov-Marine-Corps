@@ -15,7 +15,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		usr.talked = 2
 		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
 		if(usr.chatWarn >10)
-			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn].  Mute them and find out whats going on.")
+			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn]. ")
 		spawn(usr.chatWarn*10)
 			usr.talked = 0
 			usr << "\blue You may now speak again."
@@ -127,7 +127,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		usr.talked = 2
 		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
 		if(usr.chatWarn >10)
-			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn].  Mute them and find out whats going on.")
+			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn]. ")
 		spawn(usr.chatWarn*10)
 			usr.talked = 0
 			usr << "\blue You may now speak again."

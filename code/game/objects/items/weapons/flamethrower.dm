@@ -292,6 +292,9 @@
 			W.health -= (30 + (firelevel * 3))
 			if(W.health < 0)
 				del(W) //Just deleterize it
+	for(var/obj/effect/plantsegment/P in loc)  //Kudzu vines
+		if(istype(P)) //Just for safety
+			del(P) //Just deleterize it
 	for(var/obj/effect/alien/resin/R in loc)  //Melt dem resins
 		if(istype(R)) //Just for safety
 			R.health -= (30 + (firelevel * 3))
