@@ -512,6 +512,9 @@
 						playsound(src.loc, 'sound/voice/pred_roar1.ogg', 100, 1)
 					else
 						playsound(src.loc, 'sound/voice/pred_roar2.ogg', 100, 1)
+			if ("turnaround")
+				m_type = 1
+				playsound(src.loc, 'sound/voice/pred_turnaround.ogg', 100, 0)
 			if ("help")
 				if (has_species(src,"Yautja"))
 					src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
@@ -523,6 +526,7 @@
 					<span style='color: green;'>laugh3</span>, \
 					me, \
 					<span style='color: green;'>overhere</span>, \
+					<span style='color: green;'>turnaround</span>, \
 					<span style='color: green;'>roar</span></b><br>"
 
 			else
