@@ -249,7 +249,7 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
-		ammo = new /datum/ammo/bullet/turret()
+		ammo = ammo_list["autocannon bullet"]
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
@@ -679,7 +679,7 @@
 
 	visible_message("\The [src] is hit by the [Proj.name]!")
 
-	if(Proj.ammo && istype(Proj.ammo, /datum/ammo/xeno/spit)) //Fix for xenomorph spit doing baby damage.
+	if(istype(Proj.ammo, /datum/ammo/xeno)) //Fix for xenomorph spit doing baby damage.
 		update_health(round(Proj.damage / 3))
 	else
 		update_health(round(Proj.damage / 10))
@@ -715,11 +715,12 @@
 	if(in_chamber) return 1 //Already set!
 	if(!on || !cell || rounds == 0 || stat == 1) return 0
 
-	var/obj/item/projectile/P = new(src.loc) //New bullet!
+	var/obj/item/projectile/P = rnew(/obj/item/projectile,src.loc) //New bullet!
 	P.ammo = ammo //Share the ammo type. This does all the heavy lifting.
 	P.name = P.ammo.name
 	P.icon_state = P.ammo.icon_state //Make it look fancy.
 	P.damage = P.ammo.damage //For reverse lookups.
+	P.accuracy += P.ammo.accuracy
 	P.damage_type = P.damage_type
 	in_chamber = P
 	return 1
@@ -801,6 +802,7 @@
 
 //Mostly taken from gun code.
 /obj/machinery/marine_turret/proc/muzzle_flash(var/angle)
+	set waitfor = 0
 	if(isnull(angle)) return
 
 	if(prob(65))
@@ -815,9 +817,7 @@
 
 		for(var/mob/M in viewers(src))
 			M << flash
-
-		spawn(3)
-			del(flash)
+		cdel(flash,,3)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
@@ -831,6 +831,8 @@
 	var/blocked = 0
 
 	for(var/mob/living/carbon/C in oview(range,src))
+		if(C.stat) continue //No unconscious/deads.
+
 		if(ishuman(C) && !isYautja(C)) //Predators are not recognized.
 			var/mob/living/carbon/human/H = C
 			var/obj/item/device/pda/pda_check = H.wear_id
@@ -845,8 +847,6 @@
 			ID_check = H.r_hand
 			if( istype(H.r_hand, ID_check) || ( istype(H.r_hand, pda_check) && pda_check.id ) ) //Check right hand.
 				continue
-
-		if(C.stat) continue //No unconscious/deads.
 
 		if(dir_locked) //We're dir locked and facing the right way.
 			var/angle = get_dir(src,C)
@@ -974,4 +974,4 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
-		ammo = new /datum/ammo/bullet/turret()
+		ammo = ammo_list["autocannon bullet"]

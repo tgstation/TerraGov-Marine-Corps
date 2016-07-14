@@ -61,13 +61,19 @@ attachments.
 	var/passive = 1 //Can't actually be an active attachable, but might still be activatible.
 	var/can_be_removed = 1 //This is a check for special attachments that shouldn't be removed.
 
+	//These are bipod specifics, but they function well enough in other scenarios if needed.
+	var/obj/structure/firing_support = null //Used by the bipod/other support to see if the gun can fire better.
+	var/turf/firing_turf = null //I don't really need to make these null, but it helps to differentiate.
+	var/firing_direction //What direction the user must be facing to get the bonus.
+	var/firing_flipped = 2 //Default is 2, 0 means the table isn't flipped. 1 means it is. 2 means it's not a table so we don't care.
+
 	//Some attachments may be fired. So here are the variables related to that.
 	var/ammo_type = null //Which type of ammo it uses. If it's not a datum, it'll be a seperate object.
 	var/datum/ammo/ammo = null //Turning this into a New(), since otherwise attachables don't work right. ~N
 	var/projectile_based = 0 //Does this thing use the projectile cycle to fire? Defaults to no.
 	var/ammo_capacity = 0 //How much ammo it can store
 	var/current_ammo = 0
-	var/shoot_sound = null //Sound to play when firing it alternately
+	var/fire_sound = null //Sound to play when firing it alternately
 	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
 	var/type_of_casings = "bullet" //bullets by default.
 	var/eject_casings = 0 //Off by default.
@@ -76,14 +82,16 @@ attachments.
 
 	New() //Let's make sure if something needs an ammo type, it spawns with one.
 		..()
-		if(ammo_type) //We have a string.
+		if(ammo_type)
 			var/ammopath = text2path(ammo_type) //Convert it.
 			if(ispath(ammopath)) //Is it a path?
 				ammo = new ammopath() //Link it up.
 
-	Del() //We want to delete this.
-		if(ammo) del(ammo)
-		..()
+	Dispose()
+		. = ..()
+		ammo = null
+		firing_support = null
+		firing_turf = null
 
 	proc/Attach(var/obj/item/weapon/gun/G)
 		if(!istype(G)) return //Guns only
@@ -124,9 +132,14 @@ attachments.
 
 		G.update_force_list() //This updates the gun to use proper force verbs.
 
-		if(twohanded_mod == 1) G.twohanded = 1
-		if(twohanded_mod == 2) G.twohanded = 0
-		if(silence_mod) G.silenced = 1
+		switch(twohanded_mod)
+			if(1) G.gun_features |= GUN_TWOHANDED
+			if(2) G.gun_features &= ~GUN_TWOHANDED
+
+		if(silence_mod)
+			G.gun_features |= GUN_SILENCED
+			G.muzzle_flash = null
+			G.fire_sound = pick('sound/weapons/silenced_shot1.ogg','sound/weapons/silenced_shot2.ogg')
 		if(light_mod) G.flash_lum = light_mod
 
 	proc/Detach(var/obj/item/weapon/gun/G)
@@ -141,6 +154,9 @@ attachments.
 				G.muzzle.loc = get_turf(G)
 				G.muzzle = null
 			if("under")
+				var/obj/item/attachable/bipod/current_bipod = G.under
+				if(istype(current_bipod))
+					current_bipod.leave_position()
 				G.under.loc = get_turf(G)
 				G.under = null
 			if("stock")
@@ -161,23 +177,123 @@ attachments.
 
 		G.update_force_list()
 
-		if(twohanded_mod) G.twohanded = initial(G.twohanded)
-		if(silence_mod) G.silenced = initial(G.silenced)
+		//We need to know if the gun was originally two handed.
+		var/temp_flags = initial(G.gun_features)
+		switch(twohanded_mod) //Not as quick as just initial()ing it, but pretty fast regardless.
+			if(1) //We added the two handed mod.
+				if( !(temp_flags & GUN_TWOHANDED) ) G.gun_features &= ~GUN_TWOHANDED//Gun wasn't two handed initially.
+			if(2) //We removed the two handed mod.
+				if(temp_flags & GUN_TWOHANDED) G.gun_features |= GUN_TWOHANDED //Gun was two handed before.
+
+		if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
+			G.gun_features &= ~GUN_SILENCED
+			G.muzzle_flash = initial(G.muzzle_flash)
+			G.fire_sound = initial(G.fire_sound)
 		if(light_mod)  //Remember to turn the lights off
-			if(G.flashlight_on && G.flash_lum)
-				if(!ismob(G.loc))
-					G.SetLuminosity(0)
-				else
+			if( (G.gun_features & GUN_FLASHLIGHT_ON) && G.flash_lum)
+				if(ismob(G.loc))
 					var/mob/M = G.loc
 					M.SetLuminosity(-light_mod) //Lights are on and we removed the flashlight, so turn it off
+				else G.SetLuminosity(0)
+
 			G.flash_lum = initial(G.flash_lum)
-			G.flashlight_on = 0
+			G.gun_features &= ~GUN_FLASHLIGHT_ON
 
 	proc/activate_attachment(var/atom/target, var/mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
 		return
 
 	proc/fire_attachment(var/atom/target,var/obj/item/weapon/gun/gun, var/mob/user) //For actually shooting those guns.
 		return
+
+	proc/get_into_position(mob/living/user, obj/structure/support_structure, turf/active_turf, flipped = 2)
+		user << "\blue You find a good location to place the bipod near \the [support_structure]! You can fire your gun steady so long as you remain here."
+		firing_support = support_structure
+		firing_turf = active_turf
+		firing_direction = user.dir
+		firing_flipped = flipped
+
+	proc/leave_position(mob/living/user)
+		firing_support = null
+		firing_turf = null
+		firing_direction = null
+		firing_flipped = 2
+		if(user) user << "You get ready to find another firing position."
+
+	proc/establish_position(obj/item/weapon/gun, mob/living/user)
+		var/turf/active_turf = get_turf(src)
+		if(!active_turf) return
+
+		//Define our basic structures to type check for later.
+		var/obj/structure/support_structure //Something basic we're going to look for.
+		var/obj/structure/table/support_table //In case it's a table, which complicates matters.
+		var/obj/structure/m_barricade/support_barricade //In case it's a barricade.
+
+		for(var/obj/Q in active_turf) //We're going to check the turf we're on first.
+			support_structure = Q
+			if(!istype(support_structure)) continue //Not a structure.
+			if(support_structure.throwpass) //Can we throw over it? If so, this is what we want.
+				support_table = Q
+				if(istype(support_table)) //Is it a table?
+					//If it's flipped and we are facing the right direction. Or it's not flipped.
+					if( !support_table.flipped || (support_table.flipped && support_table.dir == user.dir) )
+						get_into_position(user, support_table, active_turf, support_table.flipped)
+						return 1
+					else continue //It's a table flipped, but it's not facing our way.
+				support_barricade = Q
+				//We're on something, its direction doesn't matter. If it's a metal barricade, direction does matter.
+				if( (istype(support_barricade) && support_barricade.dir == user.dir) || !istype(support_barricade) )
+					get_into_position(user, support_structure, active_turf)
+					return 1
+
+		//Second part of the proc.
+		var/turf/inactive_turf //We didn't find anything out our turf, so now we look through the adjacent turf.
+		switch(user.dir)
+			if(1)
+				inactive_turf = locate(active_turf.x,active_turf.y+1,active_turf.z)
+			if(2)
+				inactive_turf = locate(active_turf.x,active_turf.y-1,active_turf.z)
+			if(4)
+				inactive_turf = locate(active_turf.x+1,active_turf.y,active_turf.z)
+			if(8)
+				inactive_turf = locate(active_turf.x-1,active_turf.y,active_turf.z)
+		if(!inactive_turf) return //We didn't find an adjacent turf somehow.
+		for(var/obj/Q  in inactive_turf)
+			support_structure = Q
+			if(!istype(support_structure)) continue
+			if(support_structure.throwpass) //We have the right kind of structure.
+				support_barricade = Q
+				if(istype(support_barricade)) continue //We don't care about metal barricades.
+				support_table = Q
+				if(istype(support_table)) //If it's a table, we need to determine a few things.
+					if(support_table.flipped) continue //We don't care about flipped tables.
+					else get_into_position(user, support_table, active_turf, support_table.flipped)
+				else //Not a table but still fits the criteria? Okay.
+					get_into_position(user, support_structure, active_turf)
+				return 1
+
+	proc/check_position(obj/item/weapon/gun, mob/living/user)
+		if(firing_turf == user.loc && firing_direction == user.dir) //We're in business.
+			var/obj/structure/table/support_table
+			var/obj/structure/m_barricade/support_barricade
+			switch(firing_flipped)
+				if(0) //It's a table, and it wasn't flipped when we got into position.
+					support_table = firing_support
+					if(support_table.flipped) //It was flipped.
+						leave_position()
+						return
+				if(1) //has to be either a flipped table or metal barricade.
+					support_table = firing_support
+					support_barricade = firing_support
+					if(istype(support_table)) //It is a table.
+						if(!support_table.flipped || support_table.dir != user.dir) //Either it was flipped or directions don't match.
+							leave_position()
+							return
+					else if(istype(support_barricade)) //It is a metal barriade.
+						if(support_barricade.dir != user.dir) //Directions don't match.
+							leave_position()
+							return
+			return 1 //If the no cases are out, we're good to go.
+		leave_position(user) //Looks like we haven't returned yet, so it's time to leave the position.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
@@ -201,7 +317,10 @@ attachments.
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70
 						)
-	accuracy_mod = -5
+
+	accuracy_mod = 10
+	ranged_dmg_mod = 95
+	recoil_mod = -1
 	slot = "muzzle"
 	silence_mod = 1
 	pixel_shift_y = 16
@@ -239,7 +358,7 @@ attachments.
 			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 			if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 				F.loc = src.loc
-			del(src) //Delete da old bayonet
+			cdel(src) //Delete da old bayonet
 		else
 			..()
 	pixel_shift_x = 14 //Bellow the muzzle.
@@ -257,7 +376,7 @@ attachments.
 						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/smg/m39/elite,
 						/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/c99,
@@ -290,7 +409,7 @@ attachments.
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
-						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/smg/m39/elite,
 						/obj/item/weapon/gun/shotgun/combat,
@@ -313,9 +432,9 @@ attachments.
 						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/rifle/sniper,
+						/obj/item/weapon/gun/rifle/sniper/M42A,
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
@@ -345,7 +464,7 @@ attachments.
 						/obj/item/weapon/gun/pistol/vp78,
 						/obj/item/weapon/gun/pistol/vp70,
 						/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/revolver,
 						/obj/item/weapon/gun/revolver/cmb,
@@ -364,14 +483,11 @@ attachments.
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		flashlight_on = !flashlight_on
-		var/positive = 1
-		if(!flashlight_on)
-			positive = 0
 		if(user && src.loc.loc == user)
-			user.SetLuminosity(light_mod * positive)
+			user.SetLuminosity(light_mod * flashlight_on)
 		else if(target)
-			target.SetLuminosity(light_mod * positive)
-		target.flashlight_on = flashlight_on
+			target.SetLuminosity(light_mod * flashlight_on)
+		target.gun_features ^= GUN_FLASHLIGHT_ON
 		target.update_attachables()
 		return 0
 
@@ -384,7 +500,7 @@ attachments.
 			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 			if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 				F.loc = src.loc
-			del(src) //Delete da old flashlight
+			cdel(src) //Delete da old flashlight
 		else
 			..()
 
@@ -397,16 +513,23 @@ attachments.
 						/obj/item/weapon/gun/rifle/m41a/scoped,
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/rifle/sniper
+						/obj/item/weapon/gun/rifle/sniper/M42A
 					)
-	recoil_mod = -1
-	accuracy_mod = 30
 	slot = "under"
 	w_class_mod = 2
 	melee_mod = -10
 	delay_mod = 1
+	passive = 1
+	can_activate = 1
+
+	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
+		if(firing_support) //Let's see if we can find one.
+			if(!check_position(target,user)) return 1//Our positions didn't match, so we're canceling and notifying the user.
+		else
+			if(establish_position(target,user)) return 1//We successfully established a position and are backing out.
+		return
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
@@ -540,7 +663,7 @@ attachments.
 						/obj/item/weapon/gun/smg/m39,
 						/obj/item/weapon/gun/smg/m39/elite,
 						/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/svd,
+						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/skorpion,
@@ -583,7 +706,7 @@ attachments.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	can_be_removed = 0 //This weapon shouldn't have the stock removed, considering it has one in the base sprite.
-	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/sniper/svd)
 
 /obj/item/attachable/stock/rifle
 	name = "M41A Marksman Stock"
@@ -629,7 +752,7 @@ attachments.
 	ammo_capacity = 2
 	current_ammo = 2
 	slot = "under"
-	shoot_sound = 'sound/weapons/grenade_shot.ogg'
+	fire_sound = 'sound/weapons/grenade_shot.ogg'
 	passive = 0 //This tells the gun that this needs to remain "active" until fired.
 	can_activate = 1
 
@@ -648,7 +771,7 @@ attachments.
 	fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 		if(current_ammo > 0)
 			var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
-			playsound(user.loc,shoot_sound, 50, 1)
+			playsound(user.loc,fire_sound, 50, 1)
 			message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
 			log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 			G.active = 1
@@ -681,9 +804,9 @@ attachments.
 						/obj/item/weapon/gun/shotgun/pump)
 	ammo_capacity = 5
 	current_ammo = 5
-	ammo_type = "/datum/ammo/bullet/shotgun/slug" //buckshot
+	ammo_type = "shotgun slug"
 	slot = "under"
-	shoot_sound = 'sound/weapons/shotgun.ogg'
+	fire_sound = 'sound/weapons/shotgun.ogg'
 	passive = 0
 	continuous = 1
 	projectile_based = 1 //Uses the projectile system.
@@ -720,7 +843,7 @@ attachments.
 	ammo_capacity = 20
 	current_ammo = 20
 	slot = "under"
-	shoot_sound = 'sound/weapons/flamethrower_shoot.ogg'
+	fire_sound = 'sound/weapons/flamethrower_shoot.ogg'
 	passive = 0
 	can_activate = 1
 
@@ -804,7 +927,7 @@ attachments.
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/p90,
-						/obj/item/weapon/gun/rifle/sniper)
+						/obj/item/weapon/gun/rifle/sniper/M42A)
 	slot = "rail"
 	passive = 1
 	can_activate = 1
@@ -816,11 +939,19 @@ attachments.
 		target.zoom(11,12,user)
 		return 1
 
+/obj/item/attachable/scope/slavic
+	icon_state = "slavicscope"
+	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/sniper/svd,
+						/obj/item/weapon/gun/rifle/mar40/carbine)
+	delay_mod = 11
+	accuracy_mod = 45
+
 /obj/item/attachable/slavicbarrel
 	name = "sniper barrel"
 	icon_state = "slavicbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
-	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40/svd)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/sniper/svd)
 	slot = "muzzle"
 	accuracy_mod = 5
 	ranged_dmg_mod = 150
@@ -832,21 +963,11 @@ attachments.
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
-	guns_allowed = list(/obj/item/weapon/gun/rifle/sniper)
+	guns_allowed = list(/obj/item/weapon/gun/rifle/sniper/M42A)
 	slot = "muzzle"
 	accuracy_mod = 10
 	ranged_dmg_mod = 110
 	can_be_removed = 0
-
-/obj/item/attachable/scope/slavic
-	icon_state = "slavicscope"
-	guns_allowed = list(/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/svd,
-						/obj/item/weapon/gun/rifle/mar40/carbine)
-	delay_mod = 9
-	accuracy_mod = 50
-	burst_mod = -1
-
 
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"

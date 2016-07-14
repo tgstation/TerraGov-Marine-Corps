@@ -449,7 +449,7 @@
 				storedplasma = 0
 				plasma_gain = 20
 				maxplasma = 300
-				caste_desc = "A completly unmatched hunter.  No, not even the Yautja can match it."
+				caste_desc = "A completly unmatched hunter.  No, not even the Yautja can match you."
 				speed = -1.5
 				armor_deflection = 50
 				attack_delay = -3
@@ -519,7 +519,7 @@
 				tackle_chance = 75
 				speed = -0.2
 			if("Boiler")
-				src << "\green You are the master of ranged artillary.  Bring death from above."
+				src << "\green You are the master of ranged artillery.  Bring death from above."
 				melee_damage_lower = 35
 				melee_damage_upper = 45
 				health = 250
@@ -544,7 +544,7 @@
 				plasma_gain = 50
 				maxplasma = 1000
 				spit_delay = 0
-				caste_desc = "It's mouth looks like a minigun..."
+				caste_desc = "Its mouth looks like a minigun..."
 				armor_deflection = 75
 				tacklemin = 7
 				tacklemax = 10

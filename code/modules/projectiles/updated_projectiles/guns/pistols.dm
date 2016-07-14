@@ -11,6 +11,7 @@
 	w_class = 3
 	fire_sound = 'sound/weapons/servicepistol.ogg'
 	eject_casings = 1
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK //For easy reference.
 
 	New()
 		..()
@@ -25,26 +26,28 @@
 	icon_state = ".45a"
 	icon_empty = ".45a0"
 	max_rounds = 12
-	default_ammo = "/datum/ammo/bullet/pistol"
+	default_ammo = "pistol bullet"
 	gun_type = "/obj/item/weapon/gun/pistol/m4a3"
 	handful_type = "Bullets (9mm)"
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "Hollowpoint Pistol Mag (9mm)"
-	default_ammo = "/datum/ammo/bullet/pistol/hollow"
+	default_ammo = "hollowpoint pistol bullet"
+	handful_type = "Hollowpoint Bullets (9mm)"
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "AP Pistol Mag (9mm)"
-	default_ammo = "/datum/ammo/bullet/pistol/ap"
+	default_ammo = "AP pistol bullet"
+	handful_type = "AP Bullets (9mm)"
 
 /obj/item/ammo_magazine/pistol/incendiary
 	name = "Incendiary Pistol Magazine (9mm)"
-	default_ammo = "/datum/ammo/bullet/pistol/incendiary"
+	default_ammo = "incendiary pistol bullet"
+	handful_type = "Incendiary Bullets (9mm)"
 	max_rounds = 10
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "Extended Pistol Magazine (9mm)"
-	default_ammo = "/datum/ammo/bullet/pistol"
 	max_rounds = 22
 	icon_state = "9mm_mag"
 	icon_empty = "9mm_mag0"
@@ -58,26 +61,19 @@
 	mag_type = "/obj/item/ammo_magazine/pistol"
 	fire_sound = 'sound/weapons/servicepistol.ogg'
 	fire_delay = 2
-	recoil = 0
 	w_class = 2
 	force = 6
-	muzzle_pixel_x = 28
-	muzzle_pixel_y = 20
-	rail_pixel_x = 10
-	rail_pixel_y = 22
-	under_pixel_x = 21
-	under_pixel_y = 17
 
 	New()
 		..()
-		icon_state = pick("colt1","colt2")
+		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17)
 
 //-------------------------------------------------------
 //DEAGLE
 
 /obj/item/ammo_magazine/pistol/heavy
 	name = "Heavy Pistol Magazine (.50)"
-	default_ammo = "/datum/ammo/bullet/pistol/heavy"
+	default_ammo = "heavy pistol bullet"
 	caliber = ".50"
 	icon_state = "T38"
 	icon_empty = "T38-0"
@@ -97,30 +93,25 @@
 	fire_delay = 9
 	force = 13
 	recoil = 2
-	muzzle_pixel_x = 31
-	muzzle_pixel_y = 21
-	rail_pixel_x = 9
-	rail_pixel_y = 23
-	under_pixel_x = 20
-	under_pixel_y = 17
-	found_on_mercs = 1
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
 		..() //Pick some variant sprites.
 		icon_state = pick("deagle","deagleg","deaglecamo")
+		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17)
 
 //-------------------------------------------------------
 //MAUSER MERC PISTOL
 
 /obj/item/ammo_magazine/pistol/c99
 	name = "PK-9 Pistol Magazine (9mm HP)"
-	default_ammo = "/datum/ammo/bullet/pistol/hollow"
+	default_ammo = "hollowpoint pistol bullet"
 	handful_type = "9mm"
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 16
 	gun_type = "/obj/item/weapon/gun/pistol/c99"
-	handful_type = "HP Bullets (9mm)"
+	handful_type = "Hollowpoint Bullets (9mm)"
 
 /obj/item/weapon/gun/pistol/c99
 	name = "\improper Korovin PK-9 Pistol"
@@ -133,18 +124,11 @@
 	fire_sound = 'sound/weapons/p08.ogg'
 	fire_delay = 3
 	force = 6
-	recoil = 0
-	muzzle_pixel_x = 30
-	muzzle_pixel_y = 19
-	rail_pixel_x = 10
-	rail_pixel_y = 22
-	under_pixel_x = 21
-	under_pixel_y = 18
-	found_on_mercs = 1
-	found_on_russians = 0
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()//Making the gun have an invisible silencer since it's supposed to have one.
 		..()
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18)
 		var/obj/item/attachable/suppressor/S = new(src)
 		S.icon_state = ""
 		S.can_be_removed = 0
@@ -152,16 +136,16 @@
 		update_attachables()
 
 /obj/item/weapon/gun/pistol/c99/russian
-	found_on_russians = 1
-	found_on_mercs = 0
 	icon_state = "russianp08"
 	item_state = "russianp08"
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_RUSSIANS
+
 //-------------------------------------------------------
 //HIGH TECH PISTOL
 
 /obj/item/ammo_magazine/pistol/m1911
 	name = "M1911 Pulse Pistol Magazine (.40 Caseless)"
-	default_ammo = "/datum/ammo/bullet/pistol/heavy"
+	default_ammo = "heavy pistol bullet"
 	caliber = ".40 Caseless"
 	icon_state = "45-10"
 	icon_empty = "45-0"
@@ -181,23 +165,18 @@
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
 	eject_casings = 0
 	fire_delay = 2
-	force = 1
-	recoil = 0
-	muzzle_pixel_x = 28
-	muzzle_pixel_y = 20
-	rail_pixel_x = 10
-	rail_pixel_y = 22
-	under_pixel_x = 21
-	under_pixel_y = 17
-	found_on_mercs = 1
-	found_on_russians = 1
+	force = 9
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17)
 
 //-------------------------------------------------------
 //GENERIC .32 PISTOL
 
 /obj/item/ammo_magazine/pistol/automatic
 	name = "Automatic Pistol Mag (.32)"
-	default_ammo = "/datum/ammo/bullet/pistol"
 	caliber = ".32"
 	icon_state = "9x"
 	icon_empty = "9x0"
@@ -216,21 +195,18 @@
 	burst_amount = 2
 	burst_delay = 1
 	recoil = 1
-	force = 5
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 20
-	rail_pixel_x = 8
-	rail_pixel_y = 22
-	under_pixel_x = 22
-	under_pixel_y = 17
-	found_on_mercs = 1
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17)
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
 
 /obj/item/ammo_magazine/pistol/holdout
 	name = "Pistol Magazine (.22)"
-	default_ammo = "/datum/ammo/bullet/pistol/tiny"
+	default_ammo = "light pistol bullet"
 	caliber = ".22"
 	icon_state = "9x"
 	icon_empty = "9x0"
@@ -247,23 +223,20 @@
 	mag_type = "/obj/item/ammo_magazine/pistol/holdout"
 	fire_sound = 'sound/weapons/holdout.ogg'
 	fire_delay = 1
-	recoil = 0
 	w_class = 1
 	force = 2
-	muzzle_pixel_x = 25
-	muzzle_pixel_y = 20
-	rail_pixel_x = 12
-	rail_pixel_y = 22
-	under_pixel_x = 17
-	under_pixel_y = 15
-	found_on_mercs = 1
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15)
 
 //-------------------------------------------------------
 //.45 MARSHALS PISTOL
 
 /obj/item/ammo_magazine/pistol/highpower
 	name = "CMB Pistol Magazine (.45)"
-	default_ammo = "/datum/ammo/bullet/pistol/ap"
+	default_ammo = "AP pistol bullet"
 	caliber = ".45"
 	icon_state = "9x"
 	icon_empty = "9x0"
@@ -278,25 +251,22 @@
 	item_state = "highpower"
 	mag_type = "/obj/item/ammo_magazine/pistol/highpower"
 	fire_sound = 'sound/weapons/automag.ogg'
+	dam_bonus = 12
 	fire_delay = 15
 	recoil = 1
-	w_class = 3
 	force = 10
-	muzzle_pixel_x = 27
-	muzzle_pixel_y = 20
-	rail_pixel_x = 8
-	rail_pixel_y = 22
-	under_pixel_x = 16
-	under_pixel_y = 15
-	found_on_mercs = 1
-	dam_bonus = 20 //She a beefy pistol meng
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 16, "under_y" = 15)
 
 //-------------------------------------------------------
 //VP70
 
 /obj/item/ammo_magazine/pistol/vp70
 	name = "VP70 AP Magazine (9mm)"
-	default_ammo = "/datum/ammo/bullet/pistol/ap"
+	default_ammo = "AP pistol bullet"
 	caliber = "9mm"
 	icon_state = "45-10"
 	icon_empty = "45-0"
@@ -312,48 +282,40 @@
 	origin_tech = "combat=4;materials=3"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp70"
 	fire_sound = 'sound/weapons/vp70.ogg'
-	fire_delay = 6
+	dam_bonus = 18
 	burst_amount = 3
 	burst_delay = 3
-	recoil = 0
-	w_class = 3
 	force = 8
-	muzzle_pixel_x = 31
-	muzzle_pixel_y = 20
-	rail_pixel_x = 11
-	rail_pixel_y = 22
-	under_pixel_x = 21
-	under_pixel_y = 16
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16)
 
 //-------------------------------------------------------
 //VP78
 
 /obj/item/ammo_magazine/pistol/vp78
-	name = "VP78 Magazine (9mm Spec)"
-	default_ammo = "/datum/ammo/bullet/pistol/incendiary/vp78"
-	caliber = "9mm Spec"
+	name = "VP78 Magazine (9mm SH)"
+	default_ammo = "squash-head pistol bullet"
+	caliber = "9mm SH"
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 18
 	gun_type = "/obj/item/weapon/gun/pistol/vp78"
-	handful_type = "Bullets (9mm Spec)"
+	handful_type = "Bullets (9mm SH)"
 
 /obj/item/weapon/gun/pistol/vp78
 	name = "\improper VP78 Pistol"
-	desc = "A massive formidable automatic handgun chambered in 9mm Special rounds. These will light targets on fire. Inscribed on the side is, 'Smells like napalm'. Commonly seen in the hands of wealthy Weyland Yutani members."
+	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Weyland Yutani members."
 	icon_state = "VP78"
 	item_state = "vp78"
 	mag_type = "/obj/item/ammo_magazine/pistol/vp78"
 	fire_sound = 'sound/weapons/pistol_large.ogg'
-	fire_delay = 6
 	burst_amount = 3
 	burst_delay = 3
 	recoil = 1
-	w_class = 3
 	force = 8
-	muzzle_pixel_x = 30
-	muzzle_pixel_y = 21
-	rail_pixel_x = 9
-	rail_pixel_y = 24
-	under_pixel_x = 23
-	under_pixel_y = 13
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13)

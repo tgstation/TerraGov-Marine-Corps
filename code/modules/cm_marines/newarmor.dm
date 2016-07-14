@@ -37,7 +37,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	name = "M10 Pattern Marine Helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
-	armor = list(melee = 65, bullet = 85, laser = 50,energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
 	flags = FPRINT|TABLEPASS
 	anti_hug = 1
@@ -74,7 +74,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 90, laser = 50, energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/weapon/tank/emergency_oxygen,
@@ -162,7 +162,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "xarmor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	slowdown = 1
-	armor = list(melee = 95, bullet = 100, laser = 80, energy = 90, bomb = 75, bio = 20, rad = 10)
+	armor = list(melee = 95, bullet = 95, laser = 80, energy = 80, bomb = 75, bio = 20, rad = 20)
 	var/injections = 2
 	unacidable = 1
 	allowed = list(/obj/item/weapon/gun,
@@ -216,7 +216,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "xhelm"
 	desc = "The B18 Helmet that goes along with the B18 Defensive armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	armor = list(melee = 95, bullet = 100, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 95, bullet = 90, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
 	anti_hug = 3
 	unacidable = 1
 
@@ -226,7 +226,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "brown"
 	item_state = "browngloves"
 	item_color="brown"
-	armor = list(melee = 95, bullet = 100, laser = 70,energy = 60, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 90, bullet = 85, laser = 75, energy = 60, bomb = 45, bio = 15, rad = 15)
 	unacidable = 1
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
@@ -259,7 +259,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "M11 Pattern Leader Helmet"
 	icon_state = "xhelm"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
-	armor = list(melee = 75, bullet = 90, laser = 70,energy = 50, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	anti_hug = 2
 	var/obj/machinery/camera/camera
 
@@ -283,7 +283,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
 	icon_state = "7"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	armor = list(melee = 45, bullet = 85, laser = 70, energy = 40, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
 	allowed = list(
 					/obj/item/weapon/gun,
 					/obj/item/device/binoculars,
@@ -302,7 +302,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 /obj/item/clothing/suit/storage/marine/MP
 	icon_state = "mp"
-	armor = list(melee = 40, bullet = 90, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	name = "M2 Pattern MP Armor"
 	desc = "A standard Colonial Marines M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 
@@ -407,7 +407,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A custom modified set of M3 armor designed for recon missions."
 	icon_state = "marine_sniper"
 	item_state = "marine_sniper"
-	armor = list(melee = 70, bullet = 75, laser = 50,energy = 20, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 
 
 /obj/item/clothing/head/helmet/durag
@@ -416,6 +416,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon = 'icons/obj/clothing/hats.dmi'
 	item_state = "durag"
 	icon_state = "durag"
-	armor = list(melee = 5, bullet = 5, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
 	min_cold_protection_temperature = 220
 	cold_protection = HEAD

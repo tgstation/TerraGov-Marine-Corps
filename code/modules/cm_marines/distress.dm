@@ -29,7 +29,7 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/rifle/mar40,
 		/obj/item/weapon/gun/rifle/mar40/carbine,
-		/obj/item/weapon/gun/rifle/mar40/svd,
+		/obj/item/weapon/gun/rifle/sniper/svd,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/p90)
@@ -83,7 +83,7 @@
 		/obj/item/weapon/gun/rifle/mar40/carbine,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/smg/ppsh,
-		/obj/item/weapon/gun/rifle/mar40/svd)
+		/obj/item/weapon/gun/rifle/sniper/svd)
 
 	var/gunpath
 	if(!sidearm)
@@ -563,7 +563,7 @@
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/M42A(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)

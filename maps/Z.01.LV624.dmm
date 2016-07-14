@@ -94,7 +94,7 @@
 "bP" = (/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/caves/central3)
 "bQ" = (/obj/machinery/constructable_frame{icon_state = "box_1"},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/lv624/ground/sand6)
 "bR" = (/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/lv624/ground/sand6)
-"bS" = (/obj/structure/foamedmetal{layer = 3.5},/obj/item/weapon/gun/rifle/mar40/svd,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/lv624/ground/sand6)
+"bS" = (/obj/structure/foamedmetal{layer = 3.5},/obj/item/weapon/gun/rifle/sniper/svd,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/lv624/ground/sand6)
 "bT" = (/turf/simulated/mineral,/area/lv624/ground/caves/east1)
 "bU" = (/obj/effect/alien/resin/membrane,/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/caves/west1)
 "bV" = (/obj/structure/stool/bed/chair{dir = 4},/obj/effect/spider/stickyweb,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/lv624/ground/sand6)

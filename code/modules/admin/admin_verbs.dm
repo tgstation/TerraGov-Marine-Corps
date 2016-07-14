@@ -165,6 +165,10 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/toggledebuglogs,
 	/client/proc/spawn_predators,
+	/datum/proc/ta_diagnose,
+	/datum/proc/ra_diagnose,
+	/datum/proc/ta_purge,
+	/datum/proc/ra_purge
 	// /client/proc/SDQL_query,
 	// /client/proc/SDQL2_query,
 	)

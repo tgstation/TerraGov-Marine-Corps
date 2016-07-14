@@ -18,7 +18,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
-	armor = list(melee = 50, bullet = 25, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
@@ -52,7 +52,7 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 10, bullet = 90, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/laserproof

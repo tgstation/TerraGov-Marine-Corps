@@ -36,7 +36,7 @@
 	icon_override = 'icons/Predator/items.dmi'
 	name = "Yautja Clan Mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
-	armor = list(melee = 80, bullet = 95, laser = 70,energy = 60, bomb = 65, bio = 100, rad = 100)
+	armor = list(melee = 80, bullet = 95, laser = 70, energy = 70, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
 	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
@@ -110,7 +110,7 @@
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 65, bullet = 80, laser = 40, energy = 50, bomb = 40, bio = 50, rad = 50)
+	armor = list(melee = 70, bullet = 80, laser = 55, energy = 65, bomb = 65, bio = 50, rad = 50)
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/harpoon, /obj/item/weapon/twohanded)
@@ -121,7 +121,7 @@
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 69, bullet = 90, laser = 65, energy = 50, bomb = 40, bio = 70, rad = 50)
+	armor = list(melee = 80, bullet = 90, laser = 65, energy = 70, bomb = 70, bio = 70, rad = 50)
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
@@ -220,7 +220,7 @@
 	permeability_coefficient = 0.01
 	flags = NOSLIP
 	body_parts_covered = FEET|LEGS
-	armor = list(melee = 80, bullet = 90, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
+	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -242,7 +242,7 @@
 	item_color = "mesh_shirt"
 	item_state = "mesh_shirt"
 	has_sensor = 0
-	armor = list(melee = 5, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	siemens_coefficient = 0.9
 	species_restricted = null
 
@@ -262,7 +262,7 @@
 	permeability_coefficient = 0.05
 	canremove = 0
 	body_parts_covered = HANDS|ARMS
-	armor = list(melee = 80, bullet = 80, laser = 30,energy = 15, bomb = 50, bio = 30, rad = 30)
+	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 30, rad = 30)
 	unacidable = 1
 	var/charge = 2000
 	var/charge_max = 2000
@@ -404,13 +404,17 @@
 			if(R && istype(R))
 				found = 1
 				usr.r_hand = null
-				if(R) del(R)
-				usr.update_inv_r_hand()
+				if(R)
+					M.remove_from_mob(R)
+					cdel(R)
+				M.update_inv_r_hand()
 			if(L && istype(L))
 				found = 1
 				usr.l_hand = null
-				if(L) del(L)
-				usr.update_inv_l_hand()
+				if(L)
+					M.remove_from_mob(L)
+					cdel(L)
+				M.update_inv_l_hand()
 			if(found)
 				usr << "You deactivate your plasma caster."
 				playsound(src,'sound/weapons/plasmacaster_off.ogg', 40, 1)
@@ -548,28 +552,6 @@
 		for(var/obj/item/weapon/grenade/spawnergrenade/smartdisc/D in range(10))
 			D.throw_at(usr,10,1,usr)
 
-//Fix for screwy overlays for plasma caster muzzle flash.
-//REMOVE THIS LATER vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	proc/muzzle_flash(var/angle,var/mob/user as mob,var/obj/item/weapon/gun/plasma_caster/caster)
-		if(prob(65)) //Not all the time.
-			var/layer = MOB_LAYER-0.1
-			if(user && user.dir == SOUTH) //Sigh
-				layer = MOB_LAYER+0.1
-
-			var/image/flash = image('icons/obj/projectiles.dmi',user,caster.muzzle_flash,layer)
-
-			var/matrix/rotate = matrix() //Change the flash angle.
-			rotate.Translate(0,5)
-			rotate.Turn(angle)
-			flash.transform = rotate
-
-			for(var/mob/M in viewers(user))
-				M << flash
-
-			spawn(3) //Worst that can happen is the flash not being deleted if the parent is null.
-				del(flash)
-//REMOVE THIS LATER ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 /obj/item/clothing/gloves/yautja/proc/translate()
 	set name = "Translator"
 	set desc = "Emit a message from your bracer to those nearby."
@@ -636,9 +618,8 @@
 	name = "Yautja Plasma Caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
+	default_ammo = "plasma bolt"
 	muzzle_flash = null // TO DO, add a decent one.
-	unusual_design = 1
-	can_pointblank = 0
 	canremove = 0
 	w_class = 5
 	force = 0 //Yeah... Need to remove hitting people with it.
@@ -648,67 +629,50 @@
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	accuracy = 10
+	gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
-		ammo = new /datum/ammo/energy/yautja()
+		..()
 		verbs -= /obj/item/weapon/gun/verb/field_strip
 		verbs -= /obj/item/weapon/gun/verb/toggle_burst
 		verbs -= /obj/item/weapon/gun/verb/empty_mag
 		verbs -= /obj/item/weapon/gun/verb/activate_attachment
 		verbs -= /obj/item/weapon/gun/verb/use_unique_action
-		..()
 
-	Del()
-		del(ammo)
-		ammo = null
+	Dispose()
+		. = ..()
 		source = null
-		return ..()
 
 	attack_self(mob/living/user as mob)
 		switch(mode)
 			if(2)
 				mode = 0
 				charge_cost = 30
+				fire_delay = 5
 				fire_sound = 'sound/weapons/lasercannonfire.ogg'
 				user << "\red \The [src] is now set to fire light plasma bolts."
-				ammo.name = "plasma bolt"
-				ammo.icon_state = "ion"
-				ammo.damage = 5
-				ammo.stun = 2
-				ammo.weaken = 2
-				fire_delay = 5
-				ammo.shell_speed = 1
+				ammo = ammo_list["plasma bolt"]
 			if(0)
 				mode = 1
 				charge_cost = 100
+				fire_delay = 16
 				fire_sound = 'sound/weapons/emitter2.ogg'
 				user << "\red \The [src] is now set to fire medium plasma blasts."
-				fire_delay = 16
-				ammo.name = "plasma blast"
-				ammo.icon_state = "pulse1"
-				ammo.damage = 25
-				ammo.stun = 0
-				ammo.weaken = 0
-				ammo.shell_speed = 3 //Lil faster
+				ammo = ammo_list["plasma blast"]
 			if(1)
 				mode = 2
 				charge_cost = 300
 				fire_delay = 100
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "\red \The [src] is now set to fire heavy plasma spheres."
-				ammo.name = "plasma eradication sphere"
-				ammo.icon_state = "bluespace"
-				ammo.damage = 30
-				ammo.stun = 0
-				ammo.weaken = 0
-				ammo.shell_speed = 4
+				ammo = ammo_list["plasma eradication sphere"]
 		return
 
 	dropped(var/mob/living/carbon/human/user)
 		..()
 		user << "The plasma caster deactivates."
 		playsound(user,'sound/weapons/plasmacaster_off.ogg', 40, 1)
-		del(src)
+		cdel(src)
 		return
 
 	AltClick() //No safety on these.
@@ -726,17 +690,16 @@
 		if(source.drain_power(usr,charge_cost))
 			in_chamber = create_bullet(ammo)
 			return in_chamber
-		return
 
 	reload_into_chamber(var/mob/user/carbon/human/user as mob)
 		return 1
 
-	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
-		del(projectile_to_fire)
+	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+		cdel(projectile_to_fire)
 		if(refund)
 			source.charge += charge_cost
 			var/perc = source.charge / source.charge_max * 100
-			var/mob/living/carbon/human/user = usr
+			var/mob/living/carbon/human/user = usr //Hacky...
 			user.update_power_display(perc)
 		return 1
 
@@ -749,21 +712,6 @@
 	make_casing()
 		return
 
-/*
-Sigh. Because these things are auto deleted on drop, you can fire the gun and then have it get deleted.
-Which means that THIS proc never finishes deleting the muzzle flash after spawn(). Since the src is now
-null. Until plasma casters are reworked to be less stupid, this is a temporary fix. ~N
-*/
-//REMOVE THIS LATER vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	muzzle_flash(var/angle,var/mob/user as mob|obj)
-		if(!muzzle_flash || isnull(angle)) return
-
-		if(!istype(user) || !istype(user.loc,/turf)) return
-
-		source.muzzle_flash(angle,user,src)
-
-//REMOVE THIS LATER ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 /obj/item/weapon/gun/launcher/speargun
 	name = "Yautja Speargun"
 	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
@@ -773,21 +721,20 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	item_state = "predspeargun"
 	muzzle_flash = null // TO DO, add a decent one.
 	origin_tech = "combat=7;materials=7"
+	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
-	unusual_design = 1
-	can_pointblank = 0
+	default_ammo = "alloy spike"
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	fire_delay = 5
-	var/fired = 0
 	var/spikes = 12
 	var/max_spikes = 12
 	var/last_regen
-	unacidable = 1
+	gun_features = GUN_UNUSUAL_DESIGN
 
-	Del()
+	Dispose()
+		. = ..()
 		processing_objects.Remove(src)
-		..()
 
 	process()
 		if(spikes < max_spikes && world.time > last_regen + 100 && prob(70))
@@ -797,7 +744,6 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 
 	New()
 		..()
-		ammo = new /datum/ammo/yautja_spike()
 		processing_objects.Add(src)
 		last_regen = world.time
 		verbs -= /obj/item/weapon/gun/verb/field_strip //We don't want these to show since they're useless.
@@ -813,17 +759,12 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 		if(isYautja(usr))
 			..()
 			usr << "It currently has [spikes] / [max_spikes] spikes."
-		else
-			usr << "Looks like some kind of...mechanical donut."
+		else usr << "Looks like some kind of...mechanical donut."
 
 	update_icon()
-		if(spikes <= 0)
-			icon_state = icon_empty
-		else
-			icon_state = initial(icon_state)
-		return
+		icon_state = spikes >0 ? initial(icon_state) : icon_empty
 
-	able_to_fire(var/mob/user as mob)
+	able_to_fire(mob/user)
 		if(!isYautja(user))
 			user << "\red You have no idea how this thing works!"
 			return
@@ -832,19 +773,17 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 
 	load_into_chamber()
 		if(spikes > 0)
-			spikes--
 			in_chamber = create_bullet(ammo)
+			spikes--
 			return in_chamber
-		return
 
-	reload_into_chamber(var/mob/user as mob)
+	reload_into_chamber(mob/user)
 		update_icon()
 		return 1
 
-	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
-		del(projectile_to_fire)
-		if(refund)
-			spikes++
+	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+		cdel(projectile_to_fire)
+		if(refund) spikes++
 		return 1
 
 	reload()
@@ -863,23 +802,22 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 	icon_state = "spike-0"
 	item_state = "spikelauncher"
 	origin_tech = "combat=8;materials=7;bluespace=6"
+	unacidable = 1
 	fire_sound = 'sound/weapons/plasma_shot.ogg'
-	unusual_design = 1
-	can_pointblank = 0
+	default_ammo = "plasma rifle bolt"
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
-	w_class = 5
-	fire_delay = 10
-	var/fired = 0
 	slot_flags = SLOT_BACK
+	w_class = 5
+	accuracy = 50
+	fire_delay = 10
 	var/last_regen
 	var/charge_time = 0
-	accuracy = 50
-	unacidable = 1
+	gun_features = GUN_UNUSUAL_DESIGN
 
-	Del()
+	Dispose()
+		. = ..()
 		processing_objects.Remove(src)
-		..()
 
 	process()
 		if(charge_time < 100)
@@ -889,7 +827,6 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 
 	New()
 		..()
-		ammo = new /datum/ammo/energy/yautja/rifle()
 		processing_objects.Add(src)
 		last_regen = world.time
 		verbs -= /obj/item/weapon/gun/verb/field_strip
@@ -904,19 +841,17 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 		if(isYautja(usr))
 			..()
 			usr << "It currently has [charge_time] / 100 charge."
-		else
-			usr << "This thing looks like an alien rifle of some kind. Strange."
+		else usr << "This thing looks like an alien rifle of some kind. Strange."
 
 	update_icon()
 		return
 
-	unique_action()
+	unique_action(mob/user)
 		if(!isYautja(usr))
-			usr << "\red You have no idea how this thing works!"
+			user << "\red You have no idea how this thing works!"
 			return
 		..()
 		zoom()
-		return
 
 	able_to_fire(var/mob/user as mob)
 		if(!isYautja(user))
@@ -926,24 +861,11 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 		return ..()
 
 	load_into_chamber()
-
-		var/obj/item/projectile/P = new(src) //New bullet!
-
-		P.ammo = ammo
-		P.name = P.ammo.name
-
-		if(charge_time < 15)
-			P.icon_state = "ion"
-			P.ammo.shell_speed = 2
-			P.ammo.weaken = 2
-		else
-			P.icon_state = "bluespace"
-			P.ammo.shell_speed = 4
-			P.ammo.weaken = 0
-
+		if(charge_time < 15) ammo = ammo_list["plasma rifle bolt"]
+		else ammo = ammo_list["plasma rifle blast"]
+		var/obj/item/projectile/P = create_bullet(ammo)
 		P.damage = P.ammo.damage + charge_time
 		P.ammo.accuracy = accuracy + charge_time
-		P.damage_type = P.ammo.damage_type
 		P.SetLuminosity(1)
 		in_chamber = P
 		charge_time = round(charge_time / 2)
@@ -953,10 +875,9 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 		update_icon()
 		return 1
 
-	delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
-		del(projectile_to_fire)
-		if(refund)
-			charge_time *= 2
+	delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+		cdel(projectile_to_fire)
+		if(refund) charge_time *= 2
 		return 1
 
 	attack_self(mob/user as mob)
@@ -971,9 +892,7 @@ null. Until plasma casters are reworked to be less stupid, this is a temporary f
 				if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
 				charge_time = 0
 				user << "Your bracers absorb some of the released energy."
-		else
-			user << "The weapon's not charged enough with ambient energy."
-		return
+		else user << "The weapon's not charged enough with ambient energy."
 
 	reload()
 		return

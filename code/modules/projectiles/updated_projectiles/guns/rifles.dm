@@ -4,11 +4,12 @@
 	reload_sound = 'sound/weapons/rifle_reload.ogg'
 	cocked_sound = 'sound/weapons/rifle_cocked.ogg'
 	origin_tech = "combat=4;materials=3"
-	twohanded = 1
 	slot_flags = SLOT_BACK
 	w_class = 4
 	force = 15
 	burst_amount = 2
+	burst_delay = 2
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED
 
 	New()
 		..()
@@ -23,7 +24,7 @@
 	caliber = "10mm"
 	icon_state = "m309a"
 	icon_empty = "m309a0"
-	default_ammo = "/datum/ammo/bullet/rifle"
+	default_ammo = "rifle bullet"
 	max_rounds = 30
 	gun_type = "/obj/item/weapon/gun/rifle/m41a"
 	handful_type = "Bullets (10mm)"
@@ -37,13 +38,13 @@
 /obj/item/ammo_magazine/rifle/incendiary
 	name = "Pulse Rifle Incendiary Magazine (10mm)"
 	desc = "A 10mm assault rifle magazine."
-	default_ammo = "/datum/ammo/bullet/rifle/incendiary"
+	default_ammo = "incendiary rifle bullet"
 	handful_type = "Incendiary Bullets (10mm)"
 
 /obj/item/ammo_magazine/rifle/ap
 	name = "Pulse Rifle AP Magazine (10mm)"
 	desc = "A 10mm armor piercing magazine."
-	default_ammo = "/datum/ammo/bullet/rifle/ap"
+	default_ammo = "AP rifle bullet"
 	handful_type = "AP Bullets (10mm)"
 
 /obj/item/weapon/gun/rifle/m41a
@@ -56,19 +57,12 @@
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 	mag_type = "/obj/item/ammo_magazine/rifle"
 	fire_delay = 4
-	recoil = 0
 	burst_amount = 3
-	burst_delay = 2
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 18
-	rail_pixel_x = 12
-	rail_pixel_y = 23
-	under_pixel_x = 24
-	under_pixel_y = 13
-	ammo_counter = 1
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_AMMO_COUNTER
 
 	New()
 		..()
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13)
 		var/obj/item/attachable/grenade/G = new(src)
 		G.Attach(src)
 		update_attachables()
@@ -97,9 +91,8 @@
 	item_state = "s_m41a"
 	fire_sound = 'sound/weapons/m41a_2.ogg'
 	mag_type = "/obj/item/ammo_magazine/rifle/original"
-	fire_delay = 6
 	burst_amount = 4
-	accuracy = 10
+	accuracy = 5
 	dam_bonus = 5
 
 //-------------------------------------------------------
@@ -108,7 +101,7 @@
 /obj/item/ammo_magazine/rifle/marksman
 	name = "M41A/M Marksman Magazine (10mm)"
 	desc = "A 10mm marksman rifle magazine."
-	default_ammo = "/datum/ammo/bullet/rifle/marksman"
+	default_ammo = "marksman rifle bullet"
 	gun_type = "/obj/item/weapon/gun/rifle/m41a/scoped"
 	handful_type = "Marksman Bullets (10mm)"
 
@@ -121,32 +114,21 @@
 	origin_tech = "combat=5;materials=4"
 	mag_type = "/obj/item/ammo_magazine/rifle/marksman"
 	force = 16
-	twohanded = 1
 	fire_delay = 5
 	recoil = 1
-	burst_amount = 0
-	accuracy = 15
-	under_pixel_x = 24
-	under_pixel_y = 13
+	burst_amount = 1
+	accuracy = 10
 
 	New()
+		..()
 		var/obj/item/attachable/scope/S = new(src)
 		S.Attach(src)
 		var/obj/item/attachable/stock/rifle/Q = new(src)
 		Q.Attach(src)
-
+		under.Detach(src)
+		cdel(under)
+		under = null
 		update_attachables()
-
-		//Have to do all this stuff manually since we don't want the m41 underbarrel grenade launcher installed.
-		var/magpath = text2path(mag_type)
-		if(magpath)
-			current_mag = new magpath(src)
-			current_mag.current_rounds = current_mag.max_rounds //Eh. For now they can always start full.
-			var/ammopath = text2path(current_mag.default_ammo)
-			if(ammopath)
-				ammo = new ammopath()
-		if(burst_delay == 0 && burst_amount > 0) //Okay.
-			burst_delay = fire_delay / 2
 
 //-------------------------------------------------------
 //M41A PMC VARIANT
@@ -154,7 +136,7 @@
 /obj/item/ammo_magazine/rifle/elite
 	name = "M41A/2 AP Magazine (10mm)"
 	desc = "A 10mm rifle magazine."
-	default_ammo = "/datum/ammo/bullet/rifle/ap"
+	default_ammo = "AP rifle bullet"
 	gun_type = "/obj/item/weapon/gun/rifle/m41a/elite"
 	handful_type = "AP Bullets (10mm)"
 	max_rounds = 40
@@ -172,6 +154,7 @@
 	burst_amount = 3
 	accuracy = 35
 	dam_bonus = 15
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
 
 
 //-------------------------------------------------------
@@ -183,7 +166,7 @@
 	caliber = "12mm"
 	icon_state = "5.56"
 	icon_empty = "5.56"
-	default_ammo = "/datum/ammo/bullet/rifle/mar40"
+	default_ammo = "heavy rifle bullet"
 	max_rounds = 40
 	gun_type = "/obj/item/weapon/gun/rifle/mar40"
 	handful_type = "Bullets (12mm)"
@@ -205,19 +188,13 @@
 	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
 	fire_sound = 'sound/weapons/heavyrifle.ogg'
 	eject_casings = 1
-	fire_delay = 6
-	recoil = 0
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 17
-	rail_pixel_x = 13
-	rail_pixel_y = 19
-	under_pixel_x = 24
-	under_pixel_y = 13
-	burst_amount = 4
-	burst_delay = 2
 	accuracy = -12
-	found_on_mercs = 1
-	found_on_russians = 1
+	burst_amount = 4
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_ON_MERCS | GUN_ON_RUSSIANS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13)
 
 /obj/item/weapon/gun/rifle/mar40/carbine
 	name = "\improper MAR-30 Battle Carbine"
@@ -227,41 +204,8 @@
 	icon_wielded = "shortrsprifle-w"
 	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
 	item_state = "mar40short"
-	fire_delay = 5
 	accuracy = -16
-
-/obj/item/ammo_magazine/rifle/mar40/svd
-	name = "SVD Magazine (7.62×54mmR)"
-	desc = "A 12mm marksman rifle magazine."
-	caliber = "7.62×54mmR"
-	icon_state = "a762"
-	icon_empty = "a762-0"
-	default_ammo = "/datum/ammo/bullet/rifle/marksman"
-	max_rounds = 30
-	gun_type = "/obj/item/weapon/gun/rifle/mar40/svd"
-	handful_type = "Marksman Bullets (7.62×54mmR)"
-
-/obj/item/weapon/gun/rifle/mar40/svd
-	name = "\improper SVD Dragunov-033"
-	desc = "A marksman variant of the MAR-40 rifle, with a new stock, barrel, and scope. Finely crafted in 2133 by someone probably illiterate. Fires 12mm rounds and can use MAR-40 magazines."
-	icon_state = "VSS"
-	icon_empty = "VSS_empty"
-	can_pointblank = 0
-	origin_tech = "combat=5;materials=3;syndicate=5"
-	icon_wielded = "SVD-w"
-	item_state = "mar40"
-	fire_sound = 'sound/weapons/automag.ogg'
-	accuracy = 0
-
-	New()
-		..()
-		var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
-		S.Attach(src)
-		S = new /obj/item/attachable/slavicbarrel(src)
-		S.Attach(src)
-		S = new /obj/item/attachable/stock/slavic(src)
-		S.Attach(src)
-		update_attachables()
+	fire_delay = 5
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -271,7 +215,6 @@
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "a762"
 	icon_empty = "a762-0"
-	default_ammo = "/datum/ammo/bullet/rifle"
 	max_rounds = 100
 	gun_type = "/obj/item/weapon/gun/rifle/lmg"
 
@@ -285,18 +228,14 @@
 	origin_tech = "combat=5;materials=4"
 	mag_type = "/obj/item/ammo_magazine/rifle/lmg"
 	fire_sound = 'sound/weapons/gunshot_rifle.ogg' //Change
-	fire_delay = 4
-	recoil = 0
-	muzzle_pixel_x = 33
-	muzzle_pixel_y = 19
-	rail_pixel_x = 10
-	rail_pixel_y = 24
-	under_pixel_x = 24
-	under_pixel_y = 12
-	burst_amount = 4
 	accuracy = -25
-	found_on_mercs = 1
-	found_on_russians = 0
+	fire_delay = 4
+	burst_amount = 4
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_AMMO_COUNTER | GUN_ON_MERCS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 24, "under_x" = 24, "under_y" = 12)
 
 //-------------------------------------------------------
 

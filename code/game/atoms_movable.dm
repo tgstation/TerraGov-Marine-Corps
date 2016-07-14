@@ -14,6 +14,18 @@
 	var/moved_recently = 0
 	var/mob/pulledby = null
 
+
+//===========================================================================
+/atom/movable/Dispose()
+	. = ..()
+	src.loc = null //First thing to do so we move into null space.
+	for(var/atom/movable/I in contents) cdel(I)
+	if(pulledby) pulledby.stop_pulling()
+
+/atom/movable/Recycle()
+	return
+//===========================================================================
+
 /atom/movable/Move()
 	var/atom/A = src.loc
 	. = ..()

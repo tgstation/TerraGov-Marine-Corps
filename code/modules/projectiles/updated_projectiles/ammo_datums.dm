@@ -1,7 +1,24 @@
+//Bitflag defines are in setup.dm. Referenced here.
+/*
+#define AMMO_REGULAR 		0
+#define AMMO_EXPLOSIVE 		1
+#define AMMO_XENO_ACID 		2
+#define AMMO_XENO_TOX		4
+#define AMMO_ENERGY 		8
+#define AMMO_ROCKET			16
+#define AMMO_INCENDIARY		32
+#define AMMO_SKIPS_HUMANS	64
+#define AMMO_SKIPS_ALIENS 	128
+#define AMMO_IS_SILENCED 	256
+#define AMMO_NO_SCATTER 	512
+#define AMMO_IGNORE_ARMOR	1024
+*/
+
 /datum/ammo
 	var/name = "generic bullet"
-
-	var/obj/item/current_gun = null //Where's our home base?
+	var/icon = 'icons/obj/projectiles.dmi'
+	var/icon_state = "bullet"
+	var/ping = "ping_b" //The icon that is displayed when the bullet bounces off something.
 
 	var/stun = 0
 	var/weaken = 0
@@ -11,30 +28,19 @@
 	var/eyeblur = 0
 	var/drowsy = 0
 	var/agony = 0
-	var/skips_marines = 0
-	var/skips_xenos = 0
-	var/explosive = 0 //Sadars and boiler bombs. If you target a turf, it will explode on that turf if possible.
+
 	var/accuracy = 0
-
-	var/damage = 0
-	var/damage_type = BRUTE
-
-	var/armor_pen = 0
-	var/incendiary = 0
-	var/silenced = 0
-	var/shrapnel_chance = 0
-	var/icon = 'icons/obj/projectiles.dmi'
-	var/icon_state = "bullet"
-	var/effect_type = "bullet" //For shotguns shooting different ammo types. Can be used elsewhere too.
-	var/ping = "ping_b" //The icon that is displayed when the bullet bounces off something.
-	var/ignores_armor = 0 //Use this on tasers, not on bullets. Use armor pen for that.
-
-	var/max_range = 30 //This will de-increment a counter on the bullet.
 	var/accurate_range = 7 //After this distance, accuracy suffers badly unless zoomed.
+	var/max_range = 30 //This will de-increment a counter on the bullet.
+	var/damage = 0
 	var/damage_bleed = 1 //How much damage the bullet loses per turf traveled, very high for shotguns. //Not anymore ~N.
+	var/damage_type = BRUTE
+	var/armor_pen = 0
+	var/shrapnel_chance = 0
 	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
+
 	var/bonus_projectiles = 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
-	var/never_scatters = 0 //Never wanders
+	var/ammo_behavior = AMMO_REGULAR //Nothing special about it.
 
 	proc/do_at_half_range(var/obj/item/projectile/P)
 		return
@@ -56,8 +62,6 @@
 
 	proc/knockback(var/mob/M,var/obj/item/projectile/P)
 		if(!M || M == P.firer) return
-		if(P.name != name) return //If it's a bonus projectile.
-
 		if(P.distance_travelled > 2) shake_camera(M, 2, 1) //Two tiles away or more, basically.
 
 		else //One tile away or less.
@@ -77,7 +81,6 @@
 
 	proc/burst(var/atom/target,var/obj/item/projectile/P,var/damage_type = BRUTE)
 		if(!target) return
-		if(P.name != name) return //If it's a bonus projectile.
 		for(var/mob/living/carbon/M in range(1,target))
 			if(P.firer == M)
 				continue
@@ -85,28 +88,27 @@
 			M.apply_damage(rand(5,25),damage_type)
 
 	proc/multiple_projectiles(var/obj/item/projectile/original_P, range, speed)
-		if(original_P.name == name) //If it's already a bonus projectile, no point.
-			var/i
-			for(i = 0 to bonus_projectiles) //Want to run this for the number of bonus projectiles.
-				spawn(0) //We want to spawn this so the bullet doesn't slow down.
-					var/scatter_x = rand(-2,2) //We want to scatter them more than normal here.
-					var/scatter_y = rand(-2,2)
-					var/turf/new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
-					if(!istype(new_target) || isnull(new_target)) continue	//If we didn't find anything, make another pass.
-					var/obj/item/projectile/P = new(original_P.shot_from)
-					P.ammo = src
-					P.name = "additional " + name //To make sure we're not triggering effects we don't want.
-					P.icon_state = icon_state
-					P.damage = ( original_P.damage - (damage_bleed * 1.5) ) //These don't do the same damage.
-					P.damage_type = damage_type
-					P.original = new_target
-					P.fire_at(new_target,original_P.firer,original_P.shot_from,range,speed) //Fire!
+		set waitfor = 0
+		var/i
+		for(i = 0 to bonus_projectiles) //Want to run this for the number of bonus projectiles.
+			var/scatter_x = rand(-1,1)
+			var/scatter_y = rand(-1,1)
+			var/turf/new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
+			if(!istype(new_target) || isnull(new_target)) continue	//If we didn't find anything, make another pass.
+			var/obj/item/projectile/P = rnew(/obj/item/projectile,original_P.shot_from)
+			P.ammo = ammo_list["additional buckshot"]
+			P.name = P.ammo.name
+			P.icon_state = P.ammo.icon_state
+			P.damage = P.ammo.damage //These do not benefit from gun accuracy/damage.
+			P.accuracy += P.ammo.accuracy
+			P.damage_type = P.ammo.damage_type
+			P.original = new_target
+			P.fire_at(new_target,original_P.firer,original_P.shot_from,range,speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
-	proc/stun_living(var/mob/M, var/obj/item/projectile/P) //Taser proc to stun folks.
-		if(isliving(M))
-			var/mob/living/target = M
-			if(isYautja(target) || isXeno(target) ) return //Not on aliens.
+	proc/stun_living(var/mob/living/target, var/obj/item/projectile/P) //Taser proc to stun folks.
+		if(istype(target))
+			if( isYautja(target) || isXeno(target) ) return //Not on aliens.
 			if(target.mind && target.mind.special_role)
 				switch(target.mind.special_role) //Switches are still better than evaluating this twice.
 					if("IRON BEARS") //These antags can shrug off tasers so they are not shut down.
@@ -116,7 +118,6 @@
 						target.apply_effects(0,1) //Almost unaffacted.
 						return
 			target.apply_effects(8,8) //Buffed a bit.
-		return
 
 	proc/drop_flame(var/turf/T)
 		if(!istype(T)) return
@@ -125,14 +126,26 @@
 		processing_objects.Add(F)
 		F.firelevel = 20 //mama mia she a hot one!
 
+/*
+//================================================
+					Default Ammo
+//================================================
+*/
+//Only when things screw up do we use this as a placeholder.
 /datum/ammo/bullet
-	name = "bullet"
+	name = "default bullet"
 	damage = 10
 	damage_type = BRUTE
 	accurate_range = 6
 	shrapnel_chance = 10
 	icon_state = "bullet"
-	shell_speed = 2 //Hmmmmmmm.
+	shell_speed = 2
+
+/*
+//================================================
+					Pistol Ammo
+//================================================
+*/
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
@@ -140,7 +153,7 @@
 	accuracy = -5 //Not very accurate.
 
 /datum/ammo/bullet/pistol/tiny
-	name = ".22 bullet"
+	name = "light pistol bullet"
 	damage = 15
 	accuracy = -5 //Not very accurate.
 
@@ -170,28 +183,51 @@
 	damage_type = BURN
 	accuracy = 10
 	shrapnel_chance = 0
-	incendiary = 1
+	ammo_behavior = AMMO_INCENDIARY
 
-/datum/ammo/bullet/pistol/incendiary/vp78
-	name = "VP78 round"
+/datum/ammo/bullet/pistol/squash
+	name = "squash-head pistol bullet"
 	damage = 30
+	accuracy = 15
+	shrapnel_chance = 25
+
+/datum/ammo/bullet/pistol/mankey
+	name = "live monkey"
+	icon_state = "monkey1"
+	ping = null //no bounce off.
+	shell_speed = 1
+	damage_type = BURN
+	damage = 10
+	stun = 5
+	weaken = 3
+	ammo_behavior = AMMO_INCENDIARY | AMMO_IGNORE_ARMOR
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
+			P.visible_message("\The [src] chimpers furiously!")
+			new /mob/living/carbon/monkey(P.loc)
+
+/*
+//================================================
+					SMG Ammo
+//================================================
+*/
 
 /datum/ammo/bullet/smg
-	name = "submachinegun bullet"
+	name = "SMG bullet"
 	damage = 25
 	accurate_range = 5
 
 /datum/ammo/bullet/smg/ap
-	name = "AP submachinegun bullet"
+	name = "AP SMG bullet"
 	damage = 22
 	armor_pen = 30
 
-/datum/ammo/bullet/smg/ludicrous
-	name = "submachinegun bullet"
-	damage = 30
-	armor_pen = 30
-	accuracy = 15
-	shell_speed = 2 //Faster!
+/*
+//================================================
+					Revolver Ammo
+//================================================
+*/
 
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
@@ -200,25 +236,32 @@
 	accuracy = -15
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
+/datum/ammo/bullet/revolver/small
+	name = "small revolver bullet"
+	damage = 25
+	armor_pen = 1
+
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
 	damage = 30
 	accuracy = 15
+	accurate_range = 8
 	stun = 1
 	armor_pen = -10
 	shrapnel_chance = 0
 	damage_bleed = 0
 
-/datum/ammo/bullet/revolver/small
-	name = "revolver bullet"
-	damage = 25
-	armor_pen = 1
-
 /datum/ammo/bullet/revolver/heavy
+	name = "heavy revolver bullet"
 	damage = 45
 	armor_pen = 10
 	accuracy = -10
-	stun = 1 //Knockdown! Doesn't work on xenos though.
+
+/*
+//================================================
+					Rifle Ammo
+//================================================
+*/
 
 /datum/ammo/bullet/rifle
 	name = "rifle bullet"
@@ -228,11 +271,10 @@
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	damage = 35
-	incendiary = 1
 	accuracy = -5
 	shrapnel_chance = 0
-	armor_pen = 15
 	damage_type = BURN
+	ammo_behavior = AMMO_INCENDIARY
 
 /datum/ammo/bullet/rifle/marksman
 	name = "marksman rifle bullet"
@@ -241,61 +283,44 @@
 	armor_pen = 10
 	shrapnel_chance = 0
 	damage_bleed = 0
-	shell_speed = 2
 
 /datum/ammo/bullet/rifle/ap
-	name = "armor-piercing rifle bullet"
+	name = "AP rifle bullet"
 	damage = 35
 	accuracy = 20
 	armor_pen = 15
 
 /datum/ammo/bullet/rifle/mar40
+	name = "heavy rifle bullet"
 	damage = 50
 	accuracy = -5
 	armor_pen = -5
 
 /*
-As explained in the shotgun document, all shotguns use the same
-ammo to actually fire the projectile. However, we do need the
-different ammo types here for easier referencing as well as to
-properly deal with handfuls transferring rounds. Also, attachables
-use the ammo types directly.
-
-/datum/ammo/bullet/shotgun is what all shotguns spawn with.
+//================================================
+					Shotgun Ammo
+//================================================
 */
-//======================================================
+
 /datum/ammo/bullet/shotgun
-	shell_speed = 1
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(effect_type == "islug") burst(get_turf(M),P,damage_type)
-		knockback(M,P)
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(effect_type == "islug") burst(get_turf(P),P,damage_type)
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(effect_type == "islug") burst(get_turf(T),P,damage_type)
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
-	effect_type = "slug"
 	damage = 65 //High damage.
 	max_range = 12
-	armor_pen = 20 //Good armor pen.
-	shell_speed = 1
+	armor_pen = 22 //Good armor pen.
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
-	effect_type = "islug"
 	damage = 48 //Less damage than a normal slug, but has burst and burn.
 	max_range = 12
-	armor_pen = 15
-	incendiary = 1
+	accuracy = -5
+	armor_pen = 5
 	damage_type = BURN
+	ammo_behavior = AMMO_INCENDIARY
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P,damage_type)
@@ -308,304 +333,124 @@ use the ammo types directly.
 		burst(get_turf(T),P,damage_type)
 
 /datum/ammo/bullet/shotgun/buckshot
-	name = "buckshot"
-	effect_type = "buckshot"
-	damage = 100 //Massive damage up close, very quick fallout thereafter.
-	damage_bleed = 20 //Loses 20 damage every turf.
+	name = "shotgun buckshot"
+	damage = 90 //Massive damage up close, very quick fallout thereafter.
+	damage_bleed = 17 //90 PB, 73, 56, 39, 22, 5 <--- Max range.
 	accurate_range = 4
-	max_range = 4 //Travels only four tiles.
+	max_range = 5
 	icon_state = "buckshot"
-	armor_pen = 0
 	bonus_projectiles = 2 //Shoots an extra two projectiles in a wide spread.
-
+	shell_speed = 1
+	/*
+	Point blanking doesn't actually make bonus projectiles, but firing within one turf does.
+	2-3 tiles away is the optimal range. 1-2 tiles away also triggers the knockback, and has
+	a greater chance of landing bonus projectiles. Anything past 3 tiles will be minimally
+	damaged. But then you should probably start using slugs.
+	*/
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		knockback(M,P)
+		if(P.name != "additional buckshot") knockback(M,P)
 
-//======================================================
+/datum/ammo/bullet/shotgun/buckshot/extra
+	name = "additional buckshot"
+	damage = 65
+	damage_bleed = 16 //49, 33, 17, 1
+	max_range = 4
+	bonus_projectiles = 0
+/*
+//================================================
+					Sniper Ammo
+//================================================
+*/
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
-	damage = 75
+	damage = 80
 	accurate_range = 20
 	max_range = 30
 	armor_pen = 50
 	damage_bleed = 0
 	accuracy = 15
-	shell_speed = 2
+	shell_speed = 3
+	ammo_behavior = AMMO_NO_SCATTER
 
 /datum/ammo/bullet/sniper/incendiary
-	name = "incendiary shell"
+	name = "incendiary sniper bullet"
 	damage = 58
 	accurate_range = 15
 	max_range = 25
 	armor_pen = 30
 	accuracy = 0
-	incendiary = 1
 	damage_type = BURN
+	ammo_behavior = AMMO_NO_SCATTER | AMMO_INCENDIARY
 
 /datum/ammo/bullet/sniper/flak
-	name = "flak shell"
-	damage = 45
+	name = "flak sniper bullet"
+	damage = 55
 	accurate_range = 12
 	max_range = 24
-	armor_pen = 5
+	armor_pen = 15
 	accuracy = -10
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P,damage_type)
 
 /datum/ammo/bullet/sniper/elite
-	name = "supersonic bullet"
+	name = "supersonic sniper bullet"
 	damage = 160
 	accurate_range = 30
 	max_range = 30
 	armor_pen = 50
 	accuracy = 55
-	shell_speed = 3
+	shell_speed = 4
+
+/*
+//================================================
+					Special Ammo
+//================================================
+*/
 
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
 	damage = 28
-	skips_marines = 1
 	armor_pen = 5
 	accuracy = 50
-	accurate_range = 6
+	ammo_behavior = AMMO_SKIPS_HUMANS
 
 /datum/ammo/bullet/smartgun/dirty //This thing is extremely nasty.
+	name = "irradiated smartgun bullet"
 	irradiate = 1 //Free rads.
 	agony = 1
 	damage = 35 // Slightly more damage than regular smartgun.
-	skips_marines = 0
 	armor_pen = 25 // Ouch.
 	shrapnel_chance = 65 // High chance of shrapnel tearing up your insides.
 	damage_type = BRUTE
-
-/datum/ammo/energy
-	ping = null //no bounce off. We can have one later.
-
-/datum/ammo/energy/taser
-	name = "taser bolt"
-	icon_state = "stun"
-	damage = 0
-	ignores_armor = 1
-	damage_type = OXY
-	shell_speed = 1
-
-	on_hit_mob(mob/M, obj/item/projectile/P)
-		stun_living(M,P)
-
-/datum/ammo/energy/yautja
-	name = "plasma bolt"
-	icon_state = "ion"
-	damage = 5
-	damage_type = BURN
-	ignores_armor = 1
-	stun = 2
-	weaken = 2
-	shell_speed = 1
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(P.damage > 25)
-			explosion(get_turf(P.loc), -1, -1, 2, 2)
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(P.damage > 25)
-			explosion(T, -1, -1, 2, 2)
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(P.damage > 25)
-			explosion(get_turf(P.loc), -1, -1, 2, 2)
-
-/datum/ammo/energy/yautja/rifle
-	damage = 10
-	stun = 0
-	weaken = 0
-	shell_speed = 2
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(M && !M.stat && P.damage > 25)
-			M.Weaken(4)
-			step_rand(M)
-			playsound(M.loc, 'sound/weapons/pulse.ogg', 70, 1)
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		if(P.damage > 25)
-			explosion(T, -1, -1, 2, -1)
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		if(P.damage > 25)
-			explosion(get_turf(P.loc), -1, -1, 2, -1)
+	ammo_behavior = AMMO_REGULAR
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	damage = 50
-	skips_marines = 1
 	armor_pen = 5
-	accuracy = 50
-	accurate_range = 6
+	accuracy = 25
 	max_range = 12
+	ammo_behavior = AMMO_SKIPS_HUMANS
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
 	damage = 50
 	armor_pen = 10
 	accuracy = -5
-	accurate_range = 6
-	max_range = 12
+	shrapnel_chance = 22
 
-/datum/ammo/energy/emitter
-	name = "emitter bolt"
-	icon_state = "emitter"
-	damage = 30
-	ignores_armor = 1
-	damage_type = BURN
-
-/datum/ammo/xeno/spit
-	name = "acid spit"
-	icon_state = "toxin"
-	ping = "ping_x"
-	damage = 1
-	ignores_armor = 0
-	damage_type = TOX
-	accuracy = 10
-	skips_xenos = 1
-	stun = 1
-	weaken = 2
-	shell_speed = 1
-
-/datum/ammo/flamethrower
-	name = "flame"
-	icon_state = "pulse0"
-	damage = 50
-	damage_type = BURN
-	ignores_armor = 1
-	shell_speed = 1
-	incendiary = 1
-	max_range = 5
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		drop_flame(get_turf(P))
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		drop_flame(get_turf(P))
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_flame(get_turf(P))
-
-	do_at_max_range(obj/item/projectile/P)
-		drop_flame(get_turf(P))
-
-//all of my keks, i give them to you
-/datum/ammo/bullet/pistol/mankey
-	name = "monkey"
-	icon_state = "monkey1"
-	ping = null //no bounce off.
-	incendiary = 1
-	shell_speed = 1
-	ignores_armor = 1
-	damage_type = TOX
-	damage = 10
-	stun = 5
-	weaken = 3
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
-			P.visible_message("\The [src] chimpers furiously!")
-			new /mob/living/carbon/monkey(P.loc)
-
-/datum/ammo/boiler_gas
-	name = "glob"
-	icon_state = "acid"
-	ping = "ping_x"
-	explosive = 1
-	incendiary = 1
-	shell_speed = 1
-	ignores_armor = 1
-	skips_xenos = 1
-	damage_type = TOX
-	damage = 1
-	stun = 20
-	weaken = 20 //If this bad boy hits you directly, watch out.
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	do_at_max_range(obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	proc/drop_nade(var/turf/T)
-		var/obj/item/weapon/grenade/xeno_weaken/G = new (T)
-		G.visible_message("\green <B>A glob of acid falls from the sky!</b>")
-		G.prime()
-		return
-
-/datum/ammo/boiler_gas/corrosive
-	damage = 50
-	stun = 1
-	weaken = 1
-	damage_type = TOX
-
-	drop_nade(turf/T)
-		var/obj/item/weapon/grenade/xeno/G = new (T)
-		G.visible_message("\green <B>A glob of acid falls from the sky!</b>")
-		G.prime()
-		return
-
-/datum/ammo/flare
-	name = "flare"
-	ping = null //no bounce off.
-	damage = 15
-	damage_type = BURN
-	incendiary = 1
-	accuracy = 15
-	max_range = 15
-	shell_speed = 1
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	do_at_max_range(obj/item/projectile/P)
-		drop_nade(get_turf(P))
-
-	proc/drop_nade(var/turf/T)
-		var/obj/item/device/flashlight/flare/G = new (T)
-		G.visible_message("\blue <B>A [G] bursts into brilliant light nearby!</b>")
-		G.on = 1
-		processing_objects += G
-		G.icon_state = "flare-on"
-		G.damtype = "fire"
-		G.SetLuminosity(G.brightness_on)
-		return
-
-/datum/ammo/yautja_spike
-	name = "alloy spike"
-	ping = "ping_s"
-	damage = 40
-	icon_state = "MSpearFlight"
-	damage_type = BRUTE
-	accuracy = 50
-	max_range = 30
-	accurate_range = 20
-	shell_speed = 2
-	armor_pen = 20
+/*
+//================================================
+					Rocket Ammo
+//================================================
+*/
 
 /datum/ammo/rocket
 	name = "high explosive rocket"
 	icon_state = "missile"
 	ping = null //no bounce off.
-	explosive = 1
 	accuracy = 10
 	accurate_range = 25
 	max_range = 25
@@ -613,6 +458,7 @@ use the ammo types directly.
 	damage_type = BRUTE  //Bonk!
 	shell_speed = 1
 	damage_bleed = 0
+	ammo_behavior = AMMO_EXPLOSIVE | AMMO_ROCKET
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 3, 4)
@@ -632,6 +478,7 @@ use the ammo types directly.
 	damage_type = BRUTE  //Bonk!
 	armor_pen = 100
 	damage_bleed = 0
+	ammo_behavior = AMMO_ROCKET
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 1, 4)
@@ -650,7 +497,7 @@ use the ammo types directly.
 	damage = 90
 	damage_type = BURN
 	max_range = 18
-	incendiary = 1
+	ammo_behavior = AMMO_ROCKET | AMMO_INCENDIARY
 
 	drop_flame(var/turf/T)
 		if(!istype(T)) return
@@ -684,6 +531,7 @@ use the ammo types directly.
 	name = "thermobaric rocket"
 	damage = 200
 	max_range = 30
+	ammo_behavior = AMMO_ROCKET
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_flame(get_turf(M))
@@ -700,3 +548,242 @@ use the ammo types directly.
 	do_at_max_range(obj/item/projectile/P)
 		drop_flame(get_turf(P))
 		explosion(P.loc,  -1, 2, 3, 4)
+
+/*
+//================================================
+					Energy Ammo
+//================================================
+*/
+
+/datum/ammo/energy
+	ping = null //no bounce off. We can have one later.
+	damage_type = BURN
+	ammo_behavior = AMMO_ENERGY
+
+/datum/ammo/energy/emitter //Damage is determined in emitter.dm
+	name = "emitter bolt"
+	icon_state = "emitter"
+	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_ARMOR
+
+/datum/ammo/energy/taser
+	name = "taser bolt"
+	icon_state = "stun"
+	damage_type = OXY
+	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_ARMOR //Not that ignoring armor will do anything.
+
+	on_hit_mob(mob/M, obj/item/projectile/P)
+		stun_living(M,P)
+
+/datum/ammo/energy/yautja
+	accurate_range = 10
+	shell_speed = 2
+
+/datum/ammo/energy/yautja/caster/bolt
+	name = "plasma bolt"
+	icon_state = "ion"
+	damage = 5
+	stun = 2
+	weaken = 2
+
+/datum/ammo/energy/yautja/caster/blast
+	name = "plasma blast"
+	icon_state = "pulse1"
+	damage = 25
+	shell_speed = 3
+
+/datum/ammo/energy/yautja/caster/sphere
+	name = "plasma eradication sphere"
+	icon_state = "bluespace"
+	damage = 30
+	shell_speed = 4
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		explosion(get_turf(P.loc), -1, -1, 2, 2)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		explosion(T, -1, -1, 2, 2)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		explosion(get_turf(P.loc), -1, -1, 2, 2)
+
+/datum/ammo/energy/yautja/rifle
+	damage = 10
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		if(M && !M.stat && P.damage > 25)
+			M.Weaken(4)
+			step_rand(M)
+			playsound(M.loc, 'sound/weapons/pulse.ogg', 70, 1)
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		if(P.damage > 25)
+			explosion(T, -1, -1, 2, -1)
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		if(P.damage > 25)
+			explosion(get_turf(P.loc), -1, -1, 2, -1)
+
+/datum/ammo/energy/yautja/rifle/bolt
+	name = "plasma rifle bolt"
+	icon_state = "ion"
+	weaken = 2
+
+/datum/ammo/energy/yautja/rifle/blast
+	name = "plasma rifle blast"
+	icon_state = "bluespace"
+	shell_speed = 3
+
+/*
+//================================================
+					Xeno Acids
+//================================================
+*/
+/datum/ammo/xeno
+	icon_state = "toxin"
+	ping = "ping_x"
+	damage_type = TOX
+	damage = 0
+	accuracy = 10
+	shell_speed = 1
+	ammo_behavior = AMMO_XENO_ACID | AMMO_SKIPS_ALIENS
+
+/datum/ammo/xeno/toxin
+	name = "neurotoxic spit"
+	stun = 1
+	weaken = 2
+	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS
+
+/datum/ammo/xeno/toxin/medium //Spitter
+	name = "neurotoxic spatter"
+	stun = 2
+	weaken = 3
+	shell_speed = 2
+
+/datum/ammo/xeno/toxin/heavy //Praetorian
+	name = "neurotoxic splash"
+	stun = 3
+	weaken = 4
+
+/datum/ammo/xeno/acid
+	icon_state = "neurotoxin"
+	name = "acid spit"
+	damage_type = BURN
+	damage = 20
+
+/datum/ammo/xeno/acid/medium
+	name = "acid spatter"
+	damage = 30
+	shell_speed = 2
+
+/datum/ammo/xeno/acid/heavy
+	name = "acid splash"
+	damage = 45
+
+/datum/ammo/xeno/boiler_gas
+	name = "glob of gas"
+	icon_state = "acid"
+	ping = "ping_x"
+	stun = 20
+	weaken = 20 //If this bad boy hits you directly, watch out.
+	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_ARMOR
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	proc/drop_nade(var/turf/T)
+		var/obj/item/weapon/grenade/xeno_weaken/G = new (T)
+		G.visible_message("\green <B>A glob of gas falls from the sky!</b>")
+		G.prime()
+		return
+
+/datum/ammo/xeno/boiler_gas/corrosive
+	name = "glob of acid"
+	damage = 50
+	stun = 1
+	weaken = 1
+	damage_type = BURN
+	ammo_behavior = AMMO_XENO_ACID | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_ARMOR | AMMO_INCENDIARY
+
+	drop_nade(turf/T)
+		var/obj/item/weapon/grenade/xeno/G = new (T)
+		G.visible_message("\green <B>A glob of acid falls from the sky!</b>")
+		G.prime()
+		return
+
+/*
+//================================================
+					Misc Ammo
+//================================================
+*/
+
+/datum/ammo/alloy_spike
+	name = "alloy spike"
+	ping = "ping_s"
+	damage = 40
+	icon_state = "MSpearFlight"
+	damage_type = BRUTE
+	accuracy = 50
+	max_range = 12
+	accurate_range = 10
+	armor_pen = 50
+	shrapnel_chance = 68
+
+/datum/ammo/flamethrower
+	name = "flame"
+	icon_state = "pulse0"
+	damage = 50
+	damage_type = BURN
+	max_range = 5
+	ammo_behavior = AMMO_INCENDIARY | AMMO_IGNORE_ARMOR
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_flame(get_turf(P))
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_flame(get_turf(P))
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_flame(get_turf(P))
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_flame(get_turf(P))
+
+/datum/ammo/flare
+	name = "flare"
+	ping = null //no bounce off.
+	damage = 15
+	damage_type = BURN
+	accuracy = 15
+	max_range = 15
+	ammo_behavior = AMMO_INCENDIARY
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	do_at_max_range(obj/item/projectile/P)
+		drop_nade(get_turf(P))
+
+	proc/drop_nade(var/turf/T)
+		var/obj/item/device/flashlight/flare/G = new (T)
+		G.visible_message("\blue <B>A [G] bursts into brilliant light nearby!</b>")
+		G.on = 1
+		processing_objects += G
+		G.icon_state = "flare-on"
+		G.damtype = "fire"
+		G.SetLuminosity(G.brightness_on)
+		return

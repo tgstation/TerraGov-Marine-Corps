@@ -48,7 +48,7 @@
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "bear_armor"
 	icon_state = "bear_armor"
-	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+	armor = list(melee = 70, bullet = 70, laser = 50, energy = 60, bomb = 50, bio = 10, rad = 10)
 
 /obj/item/clothing/mask/gas/Bear
 	name = "Tactical Balaclava"
@@ -66,7 +66,7 @@
 	item_state = "ushankadown"
 	flags_inv = HIDEEARS
 	anti_hug = 4
-	armor = list(melee = 70, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+	armor = list(melee = 65, bullet = 65, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	min_cold_protection_temperature = 220
 	cold_protection = HEAD
 
@@ -88,7 +88,7 @@
 	flags = FPRINT | TABLEPASS | BLOCKHAIR
 	siemens_coefficient = 2.0
 	anti_hug = 5
-	armor = list(melee = 90, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 
 
 /obj/item/clothing/under/marine_jumpsuit/PMC/green
@@ -149,7 +149,7 @@
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
-	armor = list(melee = 90, bullet = 90, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 90, bullet = 65, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
 	anti_hug = 2
 
 /obj/item/clothing/head/helmet/marine/PMC/dutch/cap
@@ -174,14 +174,14 @@
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_sniper"
 	icon_state = "pmc_sniper"
-	armor = list(melee = 60, bullet = 70, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+	armor = list(melee = 60, bullet = 70, laser = 50, energy = 60, bomb = 65, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/PMC/sniper
 	name = "PMC Sniper Helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	item_state = "pmc_sniper_hat"
 	icon_state = "pmc_sniper_hat"
-
+	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/weapon/claymore/mercsword
 	name = "Combat Sword"

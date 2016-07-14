@@ -198,7 +198,7 @@ mob/living/proc/Targeted(var/obj/item/weapon/gun/I) //Self explanitory.
 			sleep(1)
 
 mob/living/proc/NotTargeted(var/obj/item/weapon/gun/I)
-	if(!I.silenced)
+	if( !(I.gun_features & GUN_SILENCED) )
 		for(var/mob/living/M in viewers(src))
 			M << 'sound/weapons/TargetOff.ogg'
 	if(!isnull(targeted_by))

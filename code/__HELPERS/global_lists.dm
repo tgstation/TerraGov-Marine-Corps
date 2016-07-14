@@ -20,6 +20,7 @@ var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
+var/global/list/ammo_list = list()					//list of all ammo types. Used by guns to tell the projectile how to act.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 //Languages/species/whitelist.
@@ -122,6 +123,13 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 
 		if(S.flags & IS_WHITELISTED)
 			whitelisted_species += S.name
+
+	//Our ammo stuff is initialized here.
+	var/blacklist[] = list(/datum/ammo,/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
+	paths = typesof(/datum/ammo) - blacklist
+	for(var/T in paths)
+		var/datum/ammo/A = new T
+		ammo_list[A.name] = A
 
 	return 1
 

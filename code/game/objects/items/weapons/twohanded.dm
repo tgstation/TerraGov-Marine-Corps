@@ -13,6 +13,8 @@
 //This rewrite means we don't have two variables for EVERY item which are used only by a few weapons.
 //It also tidies stuff up elsewhere.
 
+//What is this garbage. Jeez, Carn. Probably than it was, so you get a pass.
+
 /*
  * Twohanded
  */
@@ -85,8 +87,7 @@
 			playsound(src.loc, unwieldsound, 50, 1)
 
 		var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
-		if(O && istype(O))
-			O.unwield()
+		if(O && istype(O)) O.unwield()
 		return
 
 	else //Trying to wield it
@@ -98,7 +99,7 @@
 		if (src.wieldsound)
 			playsound(src.loc, wieldsound, 50, 1)
 
-		var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+		var/obj/item/weapon/twohanded/offhand/O = rnew(/obj/item/weapon/twohanded/offhand, user) ////Let's reserve his other hand~
 		O.name = "[initial(name)] - offhand"
 		O.desc = "Your second grip on the [initial(name)]"
 		user.put_in_inactive_hand(O)
@@ -109,13 +110,12 @@
 	w_class = 5.0
 	icon_state = "offhand"
 	name = "offhand"
-	destroy_on_drop = 1
 
 	unwield()
-		if(!usr)
-			del(src)
+		if(!usr) //<---- Wow, really?
+			cdel(src)
 			return
-		var/mob/living/carbon/user = usr
+		var/mob/living/carbon/user = usr //How would you know if they are the user?
 
 		if(src == user.get_active_hand()) //Are we holding the offhand?
 			var/obj/item/weapon/twohanded/O = user.get_inactive_hand()
@@ -124,11 +124,12 @@
 			var/obj/item/weapon/gun/G = user.get_inactive_hand()
 			if(istype(G))
 				G.unwield()
-		del(src)
+		user.remove_from_mob(src)
+		cdel(src)
 
 	wield()
-		if(!usr)
-			del(src)
+		if(!usr) //This is awful.
+			cdel(src)
 			return
 		var/mob/living/carbon/user = usr
 
@@ -139,7 +140,15 @@
 			var/obj/item/weapon/gun/G = user.get_inactive_hand()
 			if(istype(G))
 				G.unwield()
-		del(src)
+		user.remove_from_mob(src)
+		cdel(src)
+
+	Dispose()
+		..()
+		return TA_REVIVE_ME //So we can recycle this garbage.
+
+	dropped(mob/user as mob)
+		cdel(src)
 
 /*
  * Fireaxe

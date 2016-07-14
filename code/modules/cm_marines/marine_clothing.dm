@@ -41,7 +41,7 @@
 /obj/item/clothing/head/soft/marine
 	name = "marine sergeant cap"
 	desc = "It's a soft cap made from advanced ballistic-resistant fibres. Fails to prevent lumps in the head."
-	armor = list(melee = 50, bullet = 80, laser = 50,energy = 10, bomb = 50, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
 	icon_state = "greysoft"
 	item_color = "grey"
 
@@ -73,7 +73,7 @@
 /obj/item/clothing/head/beret/marine
 	name = "marine officer beret"
 	desc = "A beret with the ensign insignia emblazoned on it. It radiates respect and authority."
-	armor = list(melee = 50, bullet = 100, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
+	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
 	icon_state = "beret_badge"
 
 /obj/item/clothing/head/beret/marine/commander
@@ -279,7 +279,7 @@
 /obj/item/clothing/suit/storage/marine/officer
 	name = "officer jacket"
 	desc = "The leather is fake, but the style is real."
-	armor = list(melee = 60, bullet = 90, laser = 60, energy = 20, bomb = 25, bio = 10, rad = 10)
+	armor = list(melee = 60, bullet = 50, laser = 45, energy = 20, bomb = 25, bio = 10, rad = 10)
 	icon_state = "leatherjack"
 	item_state = "leatherjack"
 	item_color = "leatherjack"
@@ -287,7 +287,7 @@
 /obj/item/clothing/suit/storage/marine/officer/commander
 	name = "commander jacket"
 	desc = "This single item cost as much as a brand new space station. Remember to drywash."
-	armor = list(melee = 80, bullet = 90, laser = 60, energy = 60, bomb = 100, bio = 100, rad = 100)
+	armor = list(melee = 65, bullet = 65, laser = 55, energy = 35, bomb = 40, bio = 25, rad = 25)
 	icon_state = "capjacket"
 	item_state = "bio_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -302,7 +302,7 @@
 /obj/item/clothing/suit/storage/marine/officer/technical
 	name = "tech officer coat"
 	desc = "Made to resist high radiation, bio-hazards, explosions, and coffee spills."
-	armor = list(melee = 10, bullet = 80, laser = 10, energy = 10, bomb = 100, bio = 100, rad = 100)
+	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 60, bio = 100, rad = 100)
 	icon_state = "johnny"
 	item_state = "johnny"
 
@@ -312,7 +312,7 @@
 	icon_state = "riot"
 	item_state = "swat_suit"
 	slowdown = 3
-	armor = list(melee = 70, bullet = 80, laser = 60, energy = 30, bomb = 35, bio = 10, rad = 10)
+	armor = list(melee = 70, bullet = 45, laser = 35, energy = 20, bomb = 35, bio = 10, rad = 10)
 
 //GLOVES
 /obj/item/clothing/gloves/marine
@@ -327,7 +327,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	body_parts_covered = HANDS
-	armor = list(melee = 60, bullet = 50, laser = 20,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 
 /obj/item/clothing/gloves/marine/alpha
 	name = "alpha squad gloves"
@@ -379,7 +379,7 @@
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	armor = list(melee = 60, bullet = 80, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
+	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	body_parts_covered = FEET
 	cold_protection = FEET
 	min_cold_protection_temperature = 200
@@ -424,7 +424,7 @@
 	name = "chief officer shoes"
 	desc = "Only a small amount of monkeys, kittens, and orphans were killed in making this."
 	icon_state = "laceups"
-	armor = list(melee = 50, bullet = 90, laser = 50,energy = 50, bomb = 50, bio = 50, rad = 50)
+	armor = list(melee = 50, bullet = 50, laser = 25,energy = 25, bomb = 20, bio = 20, rad = 10)
 	flags = NOSLIP
 	siemens_coefficient = 0.6
 
@@ -499,11 +499,11 @@
 	item_state = "marine"//Could likely use a better one. WIP
 	use_sound = "rustle" //Could use a better one, WIP.
 	w_class = 4
-	storage_slots = 4
+	storage_slots = 3
 	max_combined_w_class = 6
 	max_w_class = 2
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
-	var/holds_guns_max = 2 //How many guns can it hold? Default is one.
+	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
@@ -512,18 +512,23 @@
 
 	proc/update_icon_special() //Update icon is called from within the other storage procs, and we don't want that.
 		if(holds_guns_now) //So it has a gun, let's make an icon.
-			var/image/I = new(current_gun.icon, current_gun.icon_state)
-			var/matrix/M = matrix()
-			M.Turn(90) //Clockwise.
-			I.transform = M
-			icon_state = icon_closed
-			underlays += I
+			/*
+			This is sort of a workaround; displaying an icon as an underlay doesn't properly display the
+			the thing in all instances. Alt+click is one example where it fails. Same with right click.
+			This is still pretty fast, might actually be better than creating a matrix then rotating.
+			*/
+			var/icon/I = new(current_gun.icon, current_gun.icon_state) //New icon object.
+			var/image/I2 = new(initial(icon),icon_closed) //New image to serve as an overlay.
+			I.Turn(90) //Clockwise.
+			icon = I
+			overlays += I2
 		else
-			underlays.Cut()
+			overlays.Cut()
+			icon = initial(icon)
 			icon_state = initial(icon_state)
 		return
 
-	//There are only two things here that can be inserted, and they are mutually exclusive. We only track the gun.
+	//There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
 	can_be_inserted(obj/item/W as obj, stop_messages = 0) //We don't need to stop messages, but it can be left in.
 		if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
 			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
@@ -565,8 +570,6 @@
 	desc = "A belt-holster assembly that allows one to carry the m4a3 comfortably secure with two magazines of ammunition."
 	icon_state = "M4A3_holster_0"
 	icon_closed = "M4A3_holster_1"
-	storage_slots = 3
-	holds_guns_max = 1
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
 		"/obj/item/ammo_magazine/pistol",
@@ -789,7 +792,7 @@
 	icon_state = "marshal"
 	item_state = "marshal"
 	item_color = "marshal"
-	armor = list(melee = 15, bullet = 25, laser = 15,energy = 5, bomb = 5, bio = 0, rad = 0)
+	armor = list(melee = 15, bullet = 15, laser = 15,energy = 5, bomb = 5, bio = 0, rad = 0)
 
 /obj/item/clothing/under/colonist
 	name = "Colonist Uniform"

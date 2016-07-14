@@ -57,7 +57,7 @@
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
-		bomb_ammo = new /datum/ammo/boiler_gas() //Set up the bombard ammo type.
+		bomb_ammo = ammo_list["glob of gas"]
 
 	Del()
 		SetLuminosity(0)
@@ -117,18 +117,8 @@
 
 	if(!check_state()) return
 
-	if(!istype(bomb_ammo,/datum/ammo/boiler_gas/corrosive))
-		src << "\blue You will now fire corrosive gas. This is lethal!"
-		if(bomb_ammo) del(bomb_ammo)
-		bomb_ammo = new /datum/ammo/boiler_gas/corrosive()
-		return
-	else //This also checks for null ammo.
-		src << "\blue You will now fire neurotoxic gas. This is nonlethal."
-		if(bomb_ammo) del(bomb_ammo)
-		bomb_ammo = new /datum/ammo/boiler_gas()
-		return
-
-	return
+	src << "\blue You will now fire [bomb_ammo.name == "glob of gas" ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]"
+	bomb_ammo = bomb_ammo.name == "glob of gas" ? ammo_list["glob of acid"] : ammo_list["glob of gas"]
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bombard()
 	set name = "Bombard (200-250)"
@@ -228,11 +218,13 @@
 		bomb_turf = null
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
 
-		var/obj/item/projectile/P = new(src.loc)
+		var/obj/item/projectile/P = rnew(/obj/item/projectile,src.loc)
 		P.ammo = bomb_ammo
+		P.name = P.ammo.name
 		P.icon_state = P.ammo.icon_state
 		P.damage = P.ammo.damage
 		P.damage_type = P.ammo.damage_type
+		P.accuracy += P.ammo.accuracy
 		P.fire_at(target,src,null,P.ammo.max_range,P.ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 60, 1)
 

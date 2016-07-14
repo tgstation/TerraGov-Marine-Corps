@@ -41,118 +41,78 @@
 
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
-//	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
+	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
 	var/distance_travelled = 0
 	var/in_flight = 0
-	var/saved = 0
 	var/flight_check = 50
 	var/scatter_chance = 20
 
-	Del()
-		path = null
-		permutated = null
+	Dispose()
+		..()
+		in_flight = 0
+		ammo = null
+		shot_from = null
+		original = null
 		target_turf = null
 		starting = null
-		return ..()
+		permutated = list()
+		path = list()
+		return TA_REVIVE_ME
 
-	proc/each_turf()
-		distance_travelled++
-		if(ammo)
-			if(distance_travelled == round(ammo.max_range / 2) && loc)
-				ammo.do_at_half_range(src)
-			if(istype(ammo,/datum/ammo/rocket))
-				if(distance_travelled > 3 && ammo.shell_speed == 1) //No need to set it EVERY turf.
-					ammo.shell_speed = 2
-				else if (distance_travelled > 11 && ammo.shell_speed < 3)
-					ammo.shell_speed = 3
-		return
+	Recycle()
+		var/blacklist[] = list("ammo","name","desc","icon_state","damage","damage_type","in_flight","shot_from","original","target_turf","starting", "permutated","path")
+		. = ..() + blacklist
 
 	proc/get_accuracy()
-		var/acc = 85 //Base accuracy. Can be taken from the marine/whoever fires the bullet in the future.
-		if(!ammo) //Oh, it's not a bullet? Or something? Let's leave.
-			return acc
-
-		acc += ammo.accuracy //Add the ammo's accuracy bonus/pens
-
-		if(istype(shot_from,/obj/item/weapon/gun)) //Does our gun exist? If so, add the bonus for it.
-			var/obj/item/weapon/gun/gun = shot_from
-			acc += gun.accuracy
-
-		//These should all be 0 if the bullet is still in the barrel.
+		var/acc = accuracy //We want a temporary variable so accuracy doesn't rise every time the bullet misses.
 		if(ammo.accurate_range + rand(0,3) < distance_travelled) //Determine ranged accuracy
 			acc -= (distance_travelled * 5) //-5% accuracy per turf
-		else if (distance_travelled <= 2)
-			acc += 25 //Big bonus for point blanks.
-
-		if(acc < 5) acc = 5 //There's always some chance.
+		else if (distance_travelled <= 2) acc += 25 //Big bonus for point blanks.
+		acc = max(5,acc)//There's always some chance.
 		return acc
 
-	//The attack roll. Returns -1 for an IFF-based miss (smartgun), 0 on a regular miss, 1 on a hit.
-	proc/roll_to_hit(var/atom/shooter,var/atom/target)
+	proc/roll_to_hit_mob(var/atom/shooter,var/mob/living/target)
 		var/hit_chance = get_accuracy() //Get the bullet's pure accuracy.
-		if(target == shooter) return -1
+		if(target.lying && target.stat) hit_chance += 15 //Bonus hit against unconscious people.
 
-		if(istype(target,/mob/living))
-			var/mob/living/T = target
-			if(T.lying && T.stat) hit_chance += 15 //Bonus hit against unconscious people.
-			if(istype(T,/mob/living/carbon/Xenomorph))
-				if(T:big_xeno)
-					hit_chance += 10
-				else
-					hit_chance -= 10
+		if(ishuman(target))
+			var/mob/living/carbon/human/target_human = target
+			if( ammo.ammo_behavior & AMMO_SKIPS_HUMANS && target_human.get_target_lock() ) return
+			var/mob/living/carbon/human/shooter_human = shooter
+			if( istype(shooter_human) && (shooter_human.faction == target_human.faction || target_human.m_intent == "walk") ) hit_chance -= 15
+		else if(isXeno(target))
+			if(ammo.ammo_behavior & AMMO_SKIPS_ALIENS) return
+			var/mob/living/carbon/Xenomorph/target_xeno = target
+			if(target_xeno.big_xeno)	hit_chance += 10
+			else						hit_chance -= 10
 
-			//We want to check for ammo here in case there isn't any. Otherwise it can and will runtime.
-			if(ammo && ammo.skips_marines && ishuman(target))
-				var/mob/living/carbon/human/H = target
-				if(H.get_target_lock())
-					return -1 //Pass straight through.
+		if(isliving(shooter))
+			var/mob/living/shooter_living = shooter
+			if( !can_see(shooter_living,target) ) hit_chance -= 15 //Can't see the target
+			hit_chance -= round((shooter_living.maxHealth - shooter_living.health) / 4) //Less chance to hit when injured.
 
-			if(ammo && ammo.skips_xenos && isXeno(target)) return -1 //Mostly some spits.
+		var/hit_roll
+		var/i = 2
+		while(--i >= 0) //This runs twice if necessary.
+			hit_roll = rand(0,100) //Our randomly generated roll.
+			if(hit_roll < 25) def_zone = pick(base_miss_chance)
+			hit_chance -= base_miss_chance[def_zone] //Reduce accuracy based on spot.
 
-			if(istype(target,/mob/living/carbon/human) && istype(shooter,/mob/living/carbon/human))
-				if(target:faction == shooter:faction || target:m_intent == "walk") //Humans can aim around their buddies to an extent.
-					hit_chance -= 15
+			if(hit_chance > hit_roll) return 1 //Hit.
+			if(hit_chance < (hit_roll - 20) ) break //Outright miss.
+			def_zone 	= pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+			hit_chance -= 10 //If you missed once, the next go around will be harder to hit.
+		if (!target.lying) target.visible_message("\blue \The [src] misses \the [target]!","\blue \The [src] narrowly misses you!")
 
-			if(ismob(shooter))
-				if(!can_see(shooter,target)) //Can't see the target
-					hit_chance -= 15
-				hit_chance -= round((shooter:maxHealth - shooter:health) / 4)
-
-			var/hit_roll = rand(0,100) //Our randomly generated roll.
-			if(hit_roll < 25)
-				def_zone = pick(base_miss_chance)
-
-			hit_chance -= base_miss_chance[def_zone] //Reduce accuracy based on spot
-
-			if(hit_chance < hit_roll - 20) //Mega miss!
-				if (!target:lying) target.visible_message("\blue \The [src] misses \the [target]!","\blue \The [src] narrowly misses you!")
-				return -1
-			else if (hit_chance > hit_roll) //You hit!
-				return 1
-			else
-				//You got lucky buddy, you got a second try! Pick a random organ instead.
-				if(saved)
-					return -1
-				def_zone = pick(base_miss_chance)
-				saved = 1
-				return roll_to_hit(shooter,target) //Let's try this again.
-		else if (isobj(target))
-		//Deal with some special cases.
-			if((istype(target,/obj/structure/table) && target:flipped) || istype(target,/obj/structure/m_barricade))
-				var/chance = 0
-				if(dir == reverse_direction(target.dir))
-					chance = 95
-				else if(dir == target.dir)
-					chance = 1
-				else
-					chance = 20
-				if(prob(chance))
-					return 1
-				else
-					return 0
-
-		return 0
+	proc/roll_to_hit_obj(var/atom/shooter,var/obj/target)
+		var/obj/structure/table/target_table = target
+		if( (istype(target_table) && target_table.flipped) || istype(target,/obj/structure/m_barricade))
+			var/chance = 0
+			if(dir == reverse_direction(target.dir)) chance = 95
+			else if(dir == target.dir) chance = 1
+			else chance = 20
+			if(prob(chance)) return 1
 
 	Bumped(atom/A as mob|obj|turf|area)
 		if(A && !A in permutated)
@@ -162,6 +122,19 @@
 		if(AM && !AM in permutated)
 			scan_a_turf(get_turf(AM))
 
+	proc/each_turf(speed = 1)
+		var/new_speed = speed
+		distance_travelled++
+		if(invisibility && distance_travelled > 1) invisibility = 0 //Let there be light (visibility).
+		if(distance_travelled == round(ammo.max_range / 2) && loc) ammo.do_at_half_range(src)
+		if(ammo.ammo_behavior & AMMO_ROCKET) //Just rockets for now. Not all explosive ammo will travel like this.
+			switch(speed) //Get more speed the longer it travels. Travels pretty quick at full swing.
+				if(1)
+					if(distance_travelled > 2) new_speed++
+				if(2)
+					if(distance_travelled > 8) new_speed++
+		return new_speed //Need for speed.
+
 	proc/follow_flightpath(var/speed = 1, var/change_x, var/change_y, var/range) //Everytime we reach the end of the turf list, we slap a new one and keep going.
 		set waitfor = 0
 
@@ -169,49 +142,40 @@
 		var/turf/current_turf = get_turf(src)
 		var/turf/next_turf
 		var/this_iteration = 0
-		var/already_visible = 0
 		in_flight = 1
-		spawn()
-			for(next_turf in path)
-				if(!src || !loc)
-					return
+		for(next_turf in path)
+			if(!src || !loc)
+				return
 
-				if(!in_flight) return
+			if(!in_flight) return
 
-				if(distance_travelled >= range)
-					if(ammo) //Fixes a runtime for null ammo, when fired from attachments.
-						ammo.do_at_max_range(src)
-					if(src)
-						in_flight = 0
-						del(src)
-					return
+			if(distance_travelled >= range)
+				ammo.do_at_max_range(src)
+				if(src) cdel(src)
+				return
 
-				if(scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
-					in_flight = 0
-					sleep(0)
-					if(src) del(src)
-					return
+			if(scan_a_turf(next_turf) == 1) //We hit something! Get out of all of this.
+				in_flight = 0
+				sleep(0)
+				if(src) cdel(src)
+				return
 
-				src.loc = next_turf
-				each_turf()
+			src.loc = next_turf
+			speed = each_turf(speed) //To properly get new sadar speed, among other things.
 
-				dist_since_sleep++
-				this_iteration++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(1)
+			dist_since_sleep++
+			this_iteration++
+			if(dist_since_sleep >= speed)
+				dist_since_sleep = 0
+				sleep(1)
 
-				current_turf = get_turf(src)
-				if(!already_visible && current_turf != starting)
-					invisibility = 0 //Let there be light (visibility).
-					already_visible = 1 //Don't need to check the turfs anymore.
-				if(this_iteration == path.len)
-					next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
-					if(current_turf && next_turf)
-						path = null
-						path = getline2(current_turf,next_turf) //Build a new flight path.
-						if(path.len && src)
-							follow_flightpath(speed, change_x, change_y, range) //Onwards!
+			current_turf = get_turf(src)
+			if(this_iteration == path.len)
+				next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
+				if(current_turf && next_turf)
+					path = getline2(current_turf,next_turf) //Build a new flight path.
+					if(path.len && src)
+						follow_flightpath(speed, change_x, change_y, range) //Onwards!
 
 //Target, firer, shot from. Ie the gun
 	proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -229,15 +193,13 @@
 		in_flight = 1
 
 		//If we have the the right kind of ammo, we can fire several projectiles at once.
-		if(ammo && ammo.bonus_projectiles)
-			ammo.multiple_projectiles(src, range, speed)
+		if(ammo.bonus_projectiles) ammo.multiple_projectiles(src, range, speed)
 
 		path = getline2(starting,target_turf)
 
 		var/change_x = target_turf.x - starting.x
 		var/change_y = target_turf.y - starting.y
 
-//		var/dist_since_sleep = 0
 		var/angle = round(Get_Angle(starting,target_turf))
 
 		var/matrix/rotate = matrix() //Change the bullet angle.
@@ -249,15 +211,14 @@
 	proc/scan_a_turf(var/turf/T)
 		if(!istype(T)) return //Not a turf. Back out.
 		if(T.density) //Hit a wall, back out.
-			if(ammo) ammo.on_hit_turf(T,src)
+			ammo.on_hit_turf(T,src)
 			if(T) T.bullet_act(src)
 			return 1
 		if(firer && T == firer.loc) return //Is it our turf? Continue on if it is.
-		if(ammo && ammo.explosive) //Let's check to see if this turf is our intended target.
-			if(T == original) //Looks like it's our intended target.
-				ammo.on_hit_turf(T,src)
-				if(T) T.bullet_act(src)
-				return 1
+		if(ammo.ammo_behavior & AMMO_EXPLOSIVE && T == target_turf) //Explosive ammo always explodes on the turf of the clicked target.
+			ammo.on_hit_turf(T,src)
+			if(T) T.bullet_act(src)
+			return 1
 		if(!T.contents.len) return //Nothing here.
 		if(isnull(src)) return 1 //??
 		for(var/atom/A in T)
@@ -266,17 +227,17 @@
 			//TODO: Make this a var
 			if(A == original && istype(A,/obj/item/clothing/mask/facehugger)) //Shoot that fucker!
 				A.bullet_act(src)
-				continue
+				return 1
 
 			//Don't need to check for turfs inside turfs. Turfs can't be in turfs.
 			//The space flight check never worked anyway, because T.contents.len above would cancel it.
 
 			if(isobj(A))
-				if(istype(A,/obj/structure/window) && (ammo && istype(ammo,/datum/ammo/energy))) //this is bad too
+				if(istype(A,/obj/structure/window) && (ammo.ammo_behavior & AMMO_ENERGY))
 					continue
 
 				if(A == original && istype(A,/obj/effect/alien/egg)) //Specifically clicking on eggs
-					if(ammo) ammo.on_hit_obj(A,src)
+					ammo.on_hit_obj(A,src)
 					if(A) A.bullet_act(src)
 					return 1
 
@@ -284,24 +245,24 @@
 					continue
 
 				//Scan for tables, barricades, and other assorted larger nonsense
-				if(roll_to_hit(firer,A) == 1 || (A.throwpass == 0 && A.layer >= 3))
-					if(ammo) ammo.on_hit_obj(A,src)
+				if( (A.throwpass == 0 && A.layer >= 3) || roll_to_hit_obj(firer,A) == 1 )
+					ammo.on_hit_obj(A,src)
 					if(A) A.bullet_act(src)
 					return 1
 
 			else if(ismob(A))
-				if(istype(A,/mob/living) && roll_to_hit(firer,A) == 1 && (A:lying == 0 || A == original))
-					if(ammo) ammo.on_hit_mob(A,src)
+				if( isliving(A) && roll_to_hit_mob(firer,A) == 1 && (A:lying == 0 || A == original))
+					ammo.on_hit_mob(A,src)
 					if(A) A.bullet_act(src)
 					return 1
 
-		return 0 //Found nothing.
+		return //Found nothing.
 
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(var/obj/item/projectile/P)
-	if(!P || isnull(P) || !P.ammo || !P.ammo.ping) return
-
+	set waitfor = 0
+	if(!P || isnull(P) || !P.ammo.ping) return
 	if(prob(65)) //Optimization.
 		var/image/ping = image('icons/obj/projectiles.dmi',src,P.ammo.ping,10) //Layer 10, above most things but not the HUD.
 		var/angle = round(rand(1,359))
@@ -319,22 +280,21 @@
 		for(var/mob/M in viewers(src))
 			M << ping
 
-		spawn(3)
-			del(ping)
+		cdel(ping,,3)
 
 /atom/proc/bullet_act(obj/item/projectile/P)
 	return density
 
 /mob/proc/bullet_message(obj/item/projectile/P)
-	if(!P || !P.ammo) return
+	if(!P) return
 
-	if(P.ammo.silenced)
+	if(P.ammo.ammo_behavior & AMMO_IS_SILENCED)
 		src << "\red You've been shot in the [parse_zone(P.def_zone)] by \the [P.name]!"
 	else
 		visible_message("\red [name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!")
 
 	var/mob/firingMob = P.firer
-	if(firingMob && ishuman(firingMob) && ishuman(src) && !firingMob.mind.special_role && src.mind && !src.mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
+	if(firingMob && ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && src.mind && !src.mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
 		attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
 		P.firer:attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
 		msg_admin_ff("[P.firer] ([P.firer:ckey]) shot [src] ([src.ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>) (<a href='?priv_msg=\ref[P.firer]'>PM</a>)")
@@ -354,114 +314,110 @@
 	return 0
 
 /mob/living/bullet_act(obj/item/projectile/P)
-	if(!P || !istype(P) || !P.ammo) return 0 //Somehow. Just some logic.
+	if(!P || !istype(P)) return 0 //Somehow. Just some logic.
 
-	var/damage = P.damage - (P.distance_travelled * P.ammo.damage_bleed)
-	if(damage < 0) damage = 0 //NO HEALING
-
+	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) )
 
 	if(stat != DEAD) //Not on deads please
 		//Apply happy funtime effects! Based on the ammo datum attached to the bullet.
 		apply_effects(P.ammo.stun,P.ammo.weaken,P.ammo.paralyze,P.ammo.irradiate,P.ammo.stutter,P.ammo.eyeblur,P.ammo.drowsy,P.ammo.agony)
 
-	if(src && P && damage > 0)
-		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
-
-	if(!src || !P || !P.ammo) return 0
+	if(damage) apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
 
 	bullet_message(P)
 
-	if(P && P.ammo && damage > 0 && P.ammo.incendiary)
+	if(damage && P.ammo.ammo_behavior & AMMO_INCENDIARY)
 		adjust_fire_stacks(rand(6,10))
 		IgniteMob()
 //		emote("scream")
 		src << "\red <B>You burst into flames!! Stop drop and roll!</b>"
 	return 1
 
+/*
+Fixed and rewritten. For best results, the defender's combined armor for an area should not exceed 100.
+If it does, it's going to be really hard to damage them with anything less than an armor penetrating
+sniper rifle or something similar. I suppose that's to be expected though.
+Normal range for a defender's bullet resist should be something around 30-50. ~N
+*/
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P)
-	if(!P || !istype(P) || !P.ammo) return 0 //Somehow. Just some logic.
+	if(!P || !istype(P)) return // Could happen if the object is somehow deleted in the interim.
 
 	flash_weak_pain()
 
-	var/damage = P.damage - (P.distance_travelled * P.ammo.damage_bleed)
-	if(damage < 0) damage = 0 //NO HEALING
+	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) )
+	world << "Initial damage is: <b>[damage]</b>."
 
 	//Any projectile can decloak a predator. It does defeat one free bullet though.
 	if(gloves)
 		var/obj/item/clothing/gloves/yautja/Y = gloves
 		if(istype(Y) && Y.cloaked && rand(0,100) < 20 )
 			Y.decloak(src)
-			return 0
+			return
 
 	var/datum/organ/external/organ = get_organ(check_zone(P.def_zone)) //Let's finally get what organ we actually hit.
 
-	if(!organ) return 0//Nope. Gotta shoot something!
+	if(!organ) return//Nope. Gotta shoot something!
 
-	//Run armor check
-	//Shields
-	if(check_shields(20 + P.ammo.accuracy, "the [P.name]"))
+	//Shields //No, you can't block rockets.
+	if( !(P.ammo.ammo_behavior & AMMO_ROCKET) && check_shields(20 + P.ammo.accuracy, "the [P.name]") )
 		P.ammo.on_shield_block(src)
-		src.bullet_ping(P)
+		bullet_ping(P)
 		return 1
 
-	var/armor = 0 //Why are damage types different from armor types? Who the fuck knows. Let's merge them anyway.
-	var/absorbed = 0
+	//Run armor check. We won't bother if there is no damage being done.
+	if( damage > 0  && !(P.ammo.ammo_behavior & AMMO_IGNORE_ARMOR) )
+		var/armor //Damage types don't correspond to armor types. We are thus merging them.
+		switch(P.damage_type)
+			if(BRUTE) armor = getarmor_organ(organ, "bullet")
+			if(TOX) armor = getarmor_organ(organ, "bio")
+			if(BURN)
+				if(P.ammo.ammo_behavior & AMMO_ENERGY)	armor = getarmor_organ(organ, "energy") //Special case.
+				else 							  	 	armor = getarmor_organ(organ, "laser")
+			else armor = getarmor_organ(organ, "energy") //Likely won't be used, but left for reference.
+		world << "Initial armor is: <b>[armor]</b>."
+		armor -= P.ammo.armor_pen //Minus armor penetration from the bullet.
+		world << "Adjusted armor after penetration is: <b>[armor]</b>."
 
-	if(!P.ammo.ignores_armor)
-		if(P.damage_type == "BRUTE")
-			armor = getarmor_organ(organ, "bullet")
-		else if(P.damage_type == "TOX") //Mostly some acid spits. These use "BIO" armor value from now on.
-			armor = getarmor_organ(organ, "bio")
-		else if(P.damage_type == "BURN")  //Sizzle!
-			armor = getarmor_organ(organ, "laser")
-		else
-			armor = getarmor_organ(organ, "energy") //Everything else. Bullet act should probably not use this except for exotic bullets.
+		if(armor > 0) //Armor check. We should have some to continue.
+			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
+			 soaked. Small caliber firearms aren't really effective against combat armor.*/
+			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
+			damage 			-= prob(rand(5,10)) ? 0 : armor_soak //Chance that you won't soak the initial amount.
+			armor			-= armor_soak * 2 //If you still have armor left over, you generally should, we subtract the soak.
+											  //This gives smaller calibers a chance to actually deal damage.
+			world << "Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b>."
+			var/i = 0
+			while(armor > 0 && i++ < 2) //Going twice. Armor has to exist to continue. Post increment.
+				if(prob(armor))
+					armor_soak 	 = round(damage / 2)  //Cut it in half.
+					armor 		-= armor_soak * 2
+					damage 		-= armor_soak
+					world << "Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b>."
+				else break //If we failed to block the damage, it's time to get out of the loop.
+			if(i) src << "\blue Your armor [ i == 2  ? "absorbs the force of \the [P]!" : "\blue softens the impact of \the [P]!"]
+			damage = damage > 0 ? damage : 0 //No negative damage.
 
-		armor -= P.ammo.armor_pen
+	if(stat != DEAD && ( damage || P.ammo.ammo_behavior & AMMO_XENO_TOX ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
+		//Predators are immune to these effects to cut down on the stun spam.
+		if(!isYautja(src)) apply_effects(P.ammo.stun,P.ammo.weaken,P.ammo.paralyze,P.ammo.irradiate,P.ammo.stutter,P.ammo.eyeblur,P.ammo.drowsy,P.ammo.agony)
 
-		if(armor > 0) damage = damage - (damage * armor / 100)
+	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
 
-		if(damage < 0) damage = 0
-
-		if(damage > 0 && prob(armor)) //Yay we absorbed more!
-			damage = damage - round(damage / 2)
-			absorbed = 1
-			if(damage > 0 && prob(armor - 20)) //Let's go one more time.
-				damage = damage - round(damage / 2) //Nice!
-				absorbed = 2
-
-			if(absorbed == 1 && !stat)
-				src << "\red Your armor softens the impact of \the [P]!"
-			else if (absorbed == 2 && !stat)
-				src << "\red Your armor absorbs the force of \the [P]!"
-
-		if(damage < 0) damage = 0
-
-	if(stat != DEAD && absorbed <= 1) //Not on deads please
-		//Apply happy funtime effects! Based on the ammo datum attached to the bullet.
-		apply_effects(P.ammo.stun,P.ammo.weaken,P.ammo.paralyze,P.ammo.irradiate,P.ammo.stutter,P.ammo.eyeblur,P.ammo.drowsy,P.ammo.agony)
-
-	if(src && P && damage > 0)
+	if(damage)
 		apply_damage(damage, P.damage_type, P.def_zone)
-
-	bullet_message(P)
-
-	if (P && P.ammo && src && absorbed == 0 && damage > 0 && P.ammo.shrapnel_chance > 0)
-		if(prob(P.ammo.shrapnel_chance + round(damage / 10)))
-			embed_shrapnel(P,organ)
-
-	if(P.ammo && damage > 0 && absorbed == 0 && P.ammo.incendiary)
-		adjust_fire_stacks(rand(6,11))
-		IgniteMob()
-		emote("scream")
-		src << "\red <B>You burst into flames!! Stop drop and roll!</b>"
+		if(P.ammo.shrapnel_chance > 0 && prob(P.ammo.shrapnel_chance + round(damage / 10) ) ) embed_shrapnel(P,organ)
+		if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
+			adjust_fire_stacks(rand(6,11))
+			IgniteMob()
+		//	emote("scream")
+			src << "\red <b>You burst into flames!! Stop drop and roll!</b>"
 
 	return 1
 
 /mob/living/carbon/human/proc/embed_shrapnel(var/obj/item/projectile/P, var/datum/organ/external/organ)
 	var/obj/item/weapon/shard/shrapnel/SP = new()
 	SP.name = "[P.name] shrapnel"
-	SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
+	SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
 	SP.loc = organ
 	organ.embed(SP)
 	if(!stat)
@@ -470,54 +426,53 @@
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	if(!istype(P) || isnull(P.ammo) || !P) return 0
+	if(!P || !istype(P)) return
 
 	flash_weak_pain()
 
-	var/damage = P.damage - (P.distance_travelled * P.ammo.damage_bleed)
-	if(damage < 0) damage = 0 //NO HEALING
+	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) ) //Has to be at least zero, no negatives.
+	world << "Initial damage is: <b>[damage]</b>."
 
-	var/armor = armor_deflection - P.ammo.armor_pen
+	var/armor = armor_deflection - P.ammo.armor_pen //Initial armor.
+	if( damage && !(P.ammo.ammo_behavior & AMMO_IGNORE_ARMOR) ) //No point in these checks if there is no damage.
+		armor += guard_aura ? (guard_aura * 3) : 0 //Bonus armor from pheroes.
+		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances. Crushers get a lot of armor, with a base of 95 at ancient status.
+			var/mob/living/carbon/Xenomorph/Crusher/current_crusher = src
+			armor += round(current_crusher.momentum / 3) //Some armor deflection when charging.
+			if(P.dir == current_crusher.dir) armor = max(0, armor - 70) //Both facing same way -- ie. shooting from behind.
+			else if(P.dir == reverse_direction(current_crusher.dir)) armor += 45//We are facing the bullet.
+			//Otherwise use the standard armor deflection for crushers.
+			world << "Adjusted crusher armor is: <b>[armor]</b>."
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances - more depending on facing.
-		armor += (src:momentum / 3) //Up to +15% armor deflection all-around when charging.
-		if(P.dir == src.dir) //Both facing same way -- ie. shooting from behind.
-			armor -= 70 //Ouch.
-		else if(P.dir == reverse_direction(src.dir)) //We are facing the bullet.
-			armor += 45
-		//Otherwise use the standard armor deflection for crushers.
+		world << "Adjusted armor is: <b>[armor]</b>."
+		var/armor_pass 	 = round( ( armor * damage ) / 100 )
+		armor			-= prob(rand(5,10)) ? 0 : armor_pass //Small chance to completely ignore armor reduction.
+		world << "Armor after initial soak is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b>."
 
-	if(guard_aura) //Yay bonus armor!
-		armor += (guard_aura * 3)
-	if(P.ammo.ignores_armor) armor = 0 //Nope
-
-	if(prob(armor - damage))
-		src.bullet_ping(P)
+	armor = armor < 0 ? 0 : armor
+	if( !damage || prob(armor) )
+		bullet_ping(P)
 		visible_message("\blue The [src]'s thick exoskeleton deflects \the [P]!","\blue Your thick exoskeleton deflected \the [P]!")
 		return 1
 
-	bullet_message(P)
-	if(P && P.ammo && P.ammo.incendiary)
-		if(fire_immune)
-			src << "You shrug off some persistent flames."
+	bullet_message(P) //Message us about the damage, since it was inflicted.
+
+	apply_damage(damage,P.damage_type, P.def_zone)	//Deal the damage.
+	if(!stat && prob(5 + round(damage / 4)))
+		var/pain_emote = prob(70) ? "hiss" : "roar"
+		emote(pain_emote)
+	if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
+		if(fire_immune) src << "\green You shrug off some persistent flames."
 		else
 			adjust_fire_stacks(rand(2,6) + round(damage / 8))
 			IgniteMob()
-			src.visible_message("\red <B>\The [src] bursts into flames!</b>","\red <B>You burst into flames!! Auuugh! Stop drop and roll!</b>")
-
-	if(src && P && damage > 0)
-		apply_damage(damage,P.damage_type, P.def_zone)	//Deal the damage.
-		if(prob(5 + round(damage / 4)) && !stat)
-			if(prob(70))
-				emote("hiss")
-			else
-				emote("roar")
-
+			visible_message("\red <B>\The [src] bursts into flames!</b>","\red <B>You burst into flames!! Auuugh! Stop drop and roll!</b>")
 	updatehealth()
+
 	return 1
 
 /turf/bullet_act(obj/item/projectile/P)
-	if(!src.density || !P || !P.ammo || isnull(P))
+	if(!src.density || !P || isnull(P))
 		return 0 //It's just an empty turf
 
 	src.bullet_ping(P)
@@ -532,10 +487,12 @@
 
 	if(mobs_list.len)
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
-		if(istype(picked_mob) && P.firer && P.roll_to_hit(P.firer,picked_mob) == 1)
+		if(istype(picked_mob) && P.firer && P.roll_to_hit_mob(P.firer,picked_mob) == 1)
 			picked_mob.bullet_act(P)
 			return 1
 /*
+	//This is probably going to create lag, so I'm leaving it commented out. Maybe in the future we can enable this.
+	//Right now extra effects like ping and muzzle flash are the greatest resource hogs when it comes to the fire cycle.
 	if(P && src.can_bullets && src.bullet_holes < 5 ) //Pop a bullet hole on that fucker. 5 max per turf
 		var/image/I = image('icons/effects/effects.dmi',src,"dent")
 		I.pixel_x = P.p_x
@@ -555,21 +512,20 @@
 
 	if(D < 1) return 0
 
-	if(P.damage_type == "BRUTE") D = round(D/5) //Bullets do much less to walls and such.
-	if(P.damage_type == "TOX") return 0
+	switch(P.damage_type)
+		if(BRUTE,BURN) D = round(D/5) //Bullets do much less to walls and such.
+		else return
 	take_damage(P.damage)
-	if(prob(30 + D))
-		P.visible_message("\The [src] is damaged by [P]!")
+	if(prob(30 + D)) P.visible_message("\The [src] is damaged by [P]!")
 	return 1
 
 //Hitting an object. These are too numerous so they're staying in their files.
 //Why are there special cases listed here? Oh well, whatever. ~N
 /obj/bullet_act(obj/item/projectile/P)
 	if(!CanPass(P,get_turf(src),src.layer) && density)
-		src.bullet_ping(P)
+		bullet_ping(P)
 		return 1
-	else
-		return 0
+	else return
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
 	src.bullet_ping(P)

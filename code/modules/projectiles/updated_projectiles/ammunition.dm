@@ -21,7 +21,6 @@ They're all essentially identical when it comes to getting the job done.
 	throw_range = 6
 	var/default_ammo = "/datum/ammo"
 	var/caliber = ".44" // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
-	var/caliber_type = "bullet" //What the actual thing is. Used by shotguns to determine what to fire.
 	var/max_rounds = 7 //How many rounds can it hold?
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/gun_type = "/obj/item/weapon/gun" //What type of gun does it fit in? Must be currently a gun. (see : gun reload proc)
@@ -34,16 +33,6 @@ They're all essentially identical when it comes to getting the job done.
 	//For the handful method of reloading. Not used for regular mags.
 	var/handful_type = "Bullets" // "Bullets" or "Shells" or "Slugs" or "Incendiary Slugs"
 	var/handful_max_rounds = 8 // Tell a handful of how many rounds to make when it defaults.
-
-	//For revolvers.
-	var/cylinder_contents[] //What is actually in the cylinder. Initiated on New().
-	var/cylinder_position = 1 //Where the firing pin is located. We don't rotate the cylinder, just move the pin.
-	var/cylinder_closed = 1 //Starts out closed.
-
-	//For shotguns. No real need for two sets of variables that serve similar function, but it helps to tell them apart.
-	var/tube_contents[] //Initiated on New().
-	var/tube_position = 1
-	var/tube_closed = 0 //For the double barrel, more or less, everything else doesn't use it.
 
 	/*
 	Current rounds are set to -1 by default.
@@ -58,29 +47,21 @@ They're all essentially identical when it comes to getting the job done.
 
 	New()
 		..()
-		if(isnull(default_ammo) || null_ammo) //None!
-			icon_state = icon_empty
-			current_rounds = 0
-			desc = desc && "\nThis one is empty."
-			return
-
 		if(current_rounds == -1) //This actually works now. Amazing.
 			current_rounds = max_rounds
-		return
+		update_icon()
 
 	update_icon()
-		if(current_rounds <= 0 && icon_empty)
-			icon_state = icon_empty
-		else
-			icon_state = initial(icon_state)
+		if(current_rounds <= 0 && icon_empty) 	icon_state = icon_empty
+		else							 		icon_state = initial(icon_state)
+
 
 	examine()
 		..()
 		// It should never have negative ammo after spawn. If it does, we need to know about it.
-		if(current_rounds < 0)
-			usr << "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
-		else
-			usr << "\The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
+		if(current_rounds < 0) 	usr << "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
+		else 					usr << "\The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
+
 
 	attack_hand(mob/user as mob)
 		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //If it's a box of shotgun shells or a speedloader.
@@ -89,26 +70,22 @@ They're all essentially identical when it comes to getting the job done.
 				if (current_rounds > 0)
 					create_handful(src,user)
 					return
-				else
-					user << "\The [src] is empty. Nothing to grab."
+				else user << "\The [src] is empty. Nothing to grab."
 		return ..() //Do normal stuff.
 
 	//We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user as mob)
+	attackby(var/obj/item/ammo_magazine/handful/transfer_from, mob/user)
 		if(istype(src,/obj/item/ammo_magazine/shotgun) || istype(src,/obj/item/ammo_magazine/revolver)) //Same deal.
 			if(istype(transfer_from)) // We have a handful.
 				var/obj/item/ammo_magazine/in_hand = user.get_inactive_hand()
 				if( in_hand == src ) //It has to be held.
 					if(default_ammo == transfer_from.default_ammo)
 						transfer_ammo(transfer_from,src,user,transfer_from.current_rounds) // This takes care of the rest.
-					else
-						user << "Those aren't the same rounds. Better not mix them up."
-				else
-					user << "Try holding \the [src] before you attempt to restock it."
-		return
+					else user << "Those aren't the same rounds. Better not mix them up."
+				else user << "Try holding \the [src] before you attempt to restock it."
 
 	//Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
-	proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,var/mob/user as mob,var/transfer_amount = 1)
+	proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,mob/user,transfer_amount = 1)
 		if( target.current_rounds == target.max_rounds ) //Does the target mag actually need reloading?
 			if(user) user << "\The [target] is already full."
 			return
@@ -122,26 +99,24 @@ They're all essentially identical when it comes to getting the job done.
 		target.current_rounds += S
 		//if(user) user << "\blue You transfer [S] round\s from \the [source] to \the [target]."
 		if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
-			del(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 			if(user)
+				user.remove_from_mob(source)
 				user.update_inv_l_hand(0) //In case we will get in hand icons.
 				user.update_inv_r_hand()
-		else
-			source.update_icon()
+			cdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
+		else source.update_icon()
 		target.update_icon()
 		return S // We return the number transferred if it was successful.
 
 	//This will attempt to place the ammo in the user's hand if possible.
-	proc/create_handful(var/obj/item/ammo_magazine/source, var/mob/user as mob, var/transfer_amount)
+	proc/create_handful(var/obj/item/ammo_magazine/source, mob/user, transfer_amount)
 		var/S
 		if (source.current_rounds > 0)
-			var/obj/item/ammo_magazine/handful/new_handful = new()
-
+			var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
 			new_handful.name = "Handful of [source.handful_type]"
 			new_handful.desc = "A handful of rounds to reload on the go."
 			new_handful.icon_state = source.icon_type
 			new_handful.caliber = source.caliber
-			new_handful.caliber_type = source.caliber_type
 			new_handful.max_rounds = source.handful_max_rounds
 			S = transfer_amount ? min(source.current_rounds, transfer_amount) : min(source.current_rounds, new_handful.max_rounds)
 			new_handful.current_rounds = S
@@ -158,11 +133,9 @@ They're all essentially identical when it comes to getting the job done.
 				if(!user.put_in_active_hand(new_handful) && !user.put_in_inactive_hand(new_handful))
 					new_handful.loc = get_turf(user)
 					user << "\blue You remove <b>[S]</b> round\s from \the [source]."
-				else
-					user << "\blue You grab <b>[S]</b> round\s from \the [source]."
-			else
-				new_handful.loc = get_turf(src)
+				else user << "\blue You grab <b>[S]</b> round\s from \the [source]."
 
+			else new_handful.loc = get_turf(src)
 			source.update_icon() //Update the other one.
 		return S //Give the number created.
 
@@ -171,6 +144,15 @@ They're all essentially identical when it comes to getting the job done.
 		target.default_ammo = source.default_ammo
 		target.gun_type = source.gun_type
 		target.handful_type = source.handful_type
+
+//Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
+/obj/item/ammo_magazine/internal
+	name = "Internal Chamber"
+	desc = "You should not be able to examine it."
+	//For revolvers and shotguns.
+	var/chamber_contents[] //What is actually in the chamber. Initiated on New().
+	var/chamber_position = 1 //Where the firing pin is located. We usually move this instead of the contents.
+	var/chamber_closed = 1 //Starts out closed. Depends on firearm.
 
 //----------------------------------------------------------------//
 //Now for handfuls, which follow their own rules and have some special differences from regular boxes.
@@ -191,6 +173,14 @@ bullets/shells. ~N
 	origin_tech = "combat=1'materials=1"
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
+
+	Dispose()
+		..()
+		return TA_REVIVE_ME
+
+	Recycle()
+		var/blacklist[] = list("name","desc","icon_state","caliber","caliber_type","max_rounds","current_rounds","default_ammo","icon_type","gun_type","handful_type")
+		. = ..() + blacklist
 
 	update_icon() //Handles the icon itself as well as some bonus things.
 		var/I = current_rounds*5000 // For the metal.
@@ -213,10 +203,7 @@ bullets/shells. ~N
 		if(istype(transfer_from)) // We have a handful. They don't need to hold it.
 			if(default_ammo == transfer_from.default_ammo) //Has to match.
 				transfer_ammo(transfer_from,src,user) // Transfer it from currently held to src, this item, message user.
-			else
-				user << "Those aren't the same rounds. Better not mix them up."
-		return
-
+			else user << "Those aren't the same rounds. Better not mix them up."
 
 //----------------------------------------------------------------//
 
@@ -240,6 +227,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	flags = FPRINT | TABLEPASS | CONDUCT
 	throwforce = 1
 	w_class = 1.0
+	layer = OBJ_LAYER - 0.1 //Below other objects but above weeds.
 	dir = 1 //Always north when it spawns.
 	var/casings = 1 //This is manipulated in the procs that use these.
 	var/casing_pile = 0
@@ -253,7 +241,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		pixel_y = rand(-2.0, 2)
 		var/current_state = rand(1,number_of_states) //We pick one of these.
 		icon_state += "[current_state]" //Set the icon to it.
-		return
 
 	//This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
 	update_icon()
@@ -275,7 +262,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				w_class = 3 //Can't put it in your pockets and stuff.
 			if(11,12,13) dir = casings-7
 			if(14,15,16) dir = casings-6
-		return
 
 //Making child objects so that locate() and istype() doesn't screw up.
 /obj/item/ammo_casing/bullet

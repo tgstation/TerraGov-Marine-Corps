@@ -27,10 +27,10 @@
 
 	New()
 		..()
-		ammo = new()
+		ammo = ammo_list["emitter bolt"]
 
 	Del()
-		del(ammo)
+		ammo = null
 		..()
 
 
@@ -138,14 +138,12 @@
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-		var/obj/item/projectile/A = new ( src.loc )
-
-		A.ammo = ammo //This stuff is normally done in load_into_chamber.
+		var/obj/item/projectile/A = rnew(/obj/item/projectile,src.loc)
+		A.ammo = ammo
 		A.name = A.ammo.name
-		A.icon_state = A.ammo.icon_state //Make it look fancy.
-		A.damage_type = A.damage_type //Burn it
+		A.icon_state = A.ammo.icon_state
+		A.damage_type = A.ammo.damage_type
 		A.dir = dir
-
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
 
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
@@ -168,7 +166,7 @@
 			del(A)
 			return
 
-		A.fire_at(target,src,src,30,1) //Range, speed. Emitter shots are slow.
+		A.fire_at(target,src,src,30,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.
 		return //That's it!
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)

@@ -382,7 +382,7 @@
 					/obj/item/weapon/gun/pistol/kt42,
 					/obj/item/weapon/gun/rifle/mar40,
 					/obj/item/weapon/gun/rifle/mar40/carbine,
-					/obj/item/weapon/gun/rifle/mar40/svd,
+					/obj/item/weapon/gun/rifle/sniper/svd,
 					/obj/item/weapon/gun/smg/ppsh
 				)
 

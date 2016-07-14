@@ -898,3 +898,47 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 // Reagent metabolism defines.
 #define FOOD_METABOLISM 0.4
 #define ALCOHOL_METABOLISM 0.1
+
+/*
+Trash Authority Directives
+Defines for when we need to give commands to the trash authority in how to handle trash.
+These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) would tell the TA to throw the atom into the recycler.
+*/
+#define TA_TRASH_ME		1 //Trash it.
+#define TA_REVIVE_ME	2 //Not killing this one, instead adding it to the recycler. Call this on bullets, for example.
+#define TA_PURGE_ME		3 //Purge it, but later. Not different from adding it to queue regularly as the trash authority will incinerate it when possible.
+#define TA_PURGE_ME_NOW	4 //Purge it immediately. Generally don't want to use this.
+#define TA_IGNORE_ME	5 //Ignore this atom, don't do anything with it. In case the atom will die on its own or something.
+					 	  //Shouldn't usually use this as garbage collection is far better.
+
+//Ammo defines for gun/projectile related things.
+#define AMMO_REGULAR 		0
+#define AMMO_EXPLOSIVE 		1
+#define AMMO_XENO_ACID 		2
+#define AMMO_XENO_TOX		4
+#define AMMO_ENERGY 		8
+#define AMMO_ROCKET			16
+#define AMMO_INCENDIARY		32
+#define AMMO_SKIPS_HUMANS	64
+#define AMMO_SKIPS_ALIENS 	128
+#define AMMO_IS_SILENCED 	256
+#define AMMO_NO_SCATTER 	512
+#define AMMO_IGNORE_ARMOR	1024
+
+//Gun defines for the gun functions.
+#define GUN_CAN_POINTBLANK		1
+#define GUN_TRIGGER_SAFETY		2
+#define GUN_UNUSUAL_DESIGN		4
+#define GUN_TWOHANDED			8
+#define GUN_WIELDED				16
+#define GUN_SILENCED			32
+#define GUN_AUTOMATIC			64
+#define GUN_ALT_FIRE			128
+#define GUN_AUTO_EJECTOR		256
+#define GUN_AMMO_COUNTER		512
+#define GUN_BURST_ON			1024
+#define GUN_BURST_FIRING		2048
+#define GUN_FLASHLIGHT_ON		4095
+#define GUN_ON_MERCS			8192
+#define GUN_ON_RUSSIANS			16384
+#define GUN_WY_RESTRICTED		32768

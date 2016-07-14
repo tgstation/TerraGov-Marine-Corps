@@ -142,7 +142,7 @@
 	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/wielded_item = get_inactive_hand()
 		if(istype(wielded_item)) //So it's an offhand.
-			if( ( istype(item_in_hand, /obj/item/weapon/twohanded) || istype(item_in_hand, /obj/item/weapon/gun) ) && item_in_hand:wielded ) //If it's a gun or whatever.
+			if( ( istype(item_in_hand, /obj/item/weapon/twohanded) && item_in_hand:wielded ) || ( istype(item_in_hand, /obj/item/weapon/gun) && item_in_hand:gun_features & GUN_WIELDED) ) //If it's a gun or whatever.
 				usr << "<span class='warning'>Your other hand is too busy holding the [wielded_item.name]</span>"
 				return
 			else

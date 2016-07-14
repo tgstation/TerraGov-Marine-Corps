@@ -122,7 +122,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	blood_overlay_type = "armor"
-	armor = list(melee = 55, bullet = 75, laser = 30, energy = 0, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 0, rad = 0)
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen,
 					/obj/item/device/flashlight,
 					/obj/item/ammo_magazine,
@@ -176,7 +176,7 @@
 		if(do_after(user,50))
 			pcell.charge -= 50
 			if(!mygun.current_mag) //This shouldn't happen, since the mag can't be ejected. Good safety, I guess.
-				var/obj/item/ammo_magazine/smartgun_integrated/A = new(mygun)
+				var/obj/item/ammo_magazine/internal/smartgun/A = new(mygun)
 				mygun.current_mag = A
 
 			var/rounds_to_reload = min(rounds_remaining, (mygun.current_mag.max_rounds - mygun.current_mag.current_rounds)) //Get the smaller value.
@@ -243,7 +243,7 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/rifle/sniper(src)
+			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)
@@ -299,11 +299,11 @@
 		..()
 		spawn(1)
 			new /obj/item/weapon/gun/rocketlauncher(src)
-			new /obj/item/ammo_magazine/rocket_tube(src)
-			new /obj/item/ammo_magazine/rocket_tube(src)
-			new /obj/item/ammo_magazine/rocket_tube/ap(src)
-			new /obj/item/ammo_magazine/rocket_tube/ap(src)
-			new /obj/item/ammo_magazine/rocket_tube/wp(src)
+			new /obj/item/ammo_magazine/rocket(src)
+			new /obj/item/ammo_magazine/rocket(src)
+			new /obj/item/ammo_magazine/rocket/ap(src)
+			new /obj/item/ammo_magazine/rocket/ap(src)
+			new /obj/item/ammo_magazine/rocket/wp(src)
 
 /obj/item/weapon/tank/phoron/m240
 	name = "M240 Fuel tank"

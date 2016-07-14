@@ -38,40 +38,13 @@
 
 	if(!check_plasma(20)) return
 
-	if(!spit_type)
-		src << "You will now spit corrosive acid globs."
-		spit_type = 1
-		ammo.icon_state = "neurotoxin"
-		ammo.damage = 20
-		ammo.damage_type = BURN
-		ammo.stun = 0
-		ammo.weaken = 0
-		ammo.shell_speed = 1
-		spit_delay = (initial(spit_delay) - 10) // Down from +20 to -10.  This should be sort of the base alien "ranged" attack.  Also, Praes/Spitters get lolshit for melee damage
-		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-			//Bigger and badder!
-			ammo.damage += 25
-		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-			ammo.damage += 10
-			ammo.shell_speed = 2 //Super fast!
-	else
-		src << "You will now spit stunning neurotoxin instead of acid."
-		spit_type = 0
-		ammo.icon_state = "toxin"
-		ammo.damage = 1
-		ammo.damage_type = TOX
-		ammo.stun = 1
-		ammo.weaken = 2
-		ammo.shell_speed = 1
-		spit_delay = initial(spit_delay)
-		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-			//Bigger and badder!
-			ammo.stun += 2
-			ammo.weaken += 2
-		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-			ammo.stun += 1
-			ammo.weaken += 1
-			ammo.shell_speed = 2 //Super fast!
+	src << "You will now spit [spit_type ? "stunning neurotoxin instead of acid.":"corrosive acid globs."]"
+	// Down from +20 to -10.  This should be sort of the base alien "ranged" attack.  Also, Praes/Spitters get lolshit for melee damage
+	spit_delay = spit_type ? initial(spit_delay) : (initial(spit_delay) - 10)
+	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))   ammo = spit_type ? ammo_list["neurotoxic splash"] : ammo_list["acid splash"]
+	else if(istype(src,/mob/living/carbon/Xenomorph/Spitter)) ammo = spit_type ? ammo_list["neurotoxic spatter"] : ammo_list["acid spatter"]
+	else 													  ammo = spit_type ? ammo_list["neurotoxic spit"] : ammo_list["acid spit"]
+	spit_type = !spit_type
 	return
 
 /mob/living/carbon/Xenomorph/proc/plant()
@@ -314,14 +287,16 @@
 			playsound(src.loc, 'sound/voice/alien_spitacid.ogg', 60, 1)
 		else
 			playsound(src.loc, 'sound/voice/alien_spitacid2.ogg', 60, 1)
-		var/obj/item/projectile/A = new(Turf)
+		var/obj/item/projectile/A = rnew(/obj/item/projectile,Turf)
 		A.permutated.Add(src)
 		A.def_zone = get_organ_target()
-		A.ammo = ammo //This always must be set.
+		A.ammo = ammo
+		A.name = A.ammo.name
 		A.icon = A.ammo.icon
 		A.icon_state = A.ammo.icon_state
 		A.damage = A.ammo.damage
 		A.damage_type = A.ammo.damage_type
+		A.accuracy += A.ammo.accuracy
 
 		spawn()
 			A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed) //Ptui!

@@ -7,8 +7,10 @@
 	slot_flags = SLOT_BELT
 	force = 8
 	w_class = 4
-	recoil = 0
-	twohanded = 0
+	fire_delay = 4
+	burst_delay = 2
+	burst_amount = 3
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK
 
 	New()
 		..()
@@ -17,7 +19,7 @@
 //-------------------------------------------------------
 /obj/item/ammo_magazine/smg
 	name = "default SMG magazine"
-	default_ammo = "/datum/ammo/bullet/smg"
+	default_ammo = "SMG bullet"
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 30
@@ -29,7 +31,6 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 35
-	default_ammo = "/datum/ammo/bullet/smg"
 	gun_type = "/obj/item/weapon/gun/smg/m39"
 	handful_type = "Bullets (9mm Caseless)"
 
@@ -49,19 +50,12 @@
 	item_state = "m39"
 	mag_type = "/obj/item/ammo_magazine/smg/m39"
 	eject_casings = 0
-	muzzle_pixel_x = 30
-	muzzle_pixel_y = 20
-	rail_pixel_x = 11
-	rail_pixel_y = 22
-	under_pixel_x = 24
-	under_pixel_y = 16
-	burst_amount = 3
 	fire_delay = 3
-	burst_delay = 2
-	ammo_counter = 1
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
 
 	New()
 		..()
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 24, "under_y" = 16)
 		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
 			if(icon_state == "smg") //Only change this one
 				icon_state = "smg_pmc"
@@ -76,7 +70,7 @@
 	caliber = "9mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
-	default_ammo = "/datum/ammo/bullet/smg/ap"
+	default_ammo = "AP SMG bullet"
 	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
 	handful_type = "AP Bullets (9mm Caseless)"
 	max_rounds = 45
@@ -88,17 +82,19 @@
 	icon_empty = "smg_pmc_empty"
 	item_state = "m39_pmc"
 	origin_tech = "combat=6;materials=5"
-	burst_amount = 3
 	mag_type = "/obj/item/ammo_magazine/smg/elite"
 	accuracy = 15
 	dam_bonus = 15
+	fire_delay = 4
+	burst_delay = 1
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
 
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/mp7
 	name = "MP27 Magazine (4.6mm)"
-	desc = "A 9mm special magazine."
-	default_ammo = "/datum/ammo/bullet/smg/ap"
+	desc = "A 4.6mm magazine for the MP7."
+	default_ammo = "AP SMG bullet"
 	caliber = "4.6mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
@@ -114,26 +110,21 @@
 	item_state = "mp7"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/smg_light.ogg'
-	fire_delay = 4
 	mag_type = "/obj/item/ammo_magazine/smg/mp7"
-	muzzle_pixel_x = 33
-	muzzle_pixel_y = 18
-	rail_pixel_x = 12
-	rail_pixel_y = 21
-	under_pixel_x = 28
-	under_pixel_y = 17
-	burst_amount = 4
-	burst_delay = 2
 	accuracy = 5
-	found_on_mercs = 1
 	dam_bonus = 15
+	burst_amount = 4
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17)
 
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/skorpion
 	name = "Skorpion Magazine (.32)"
 	desc = "A .32 caliber magazine for the Skorpion."
-	default_ammo = "/datum/ammo/bullet/smg"
 	caliber = ".32"
 	icon_state = "12mm"
 	icon_empty = "12mm0"
@@ -149,27 +140,21 @@
 	item_state = "skorpion"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/skorpion.ogg'
-	fire_delay = 3
 	mag_type = "/obj/item/ammo_magazine/smg/skorpion"
-	muzzle_pixel_x = 29
-	muzzle_pixel_y = 18
-	rail_pixel_x = 12
-	rail_pixel_y = 22
-	under_pixel_x = 23
-	under_pixel_y = 15
-	burst_amount = 3
-	burst_delay = 2
-	accuracy = 8
-	found_on_mercs = 1
-	found_on_russians = 1
 	dam_bonus = 10
+	accuracy = 8
+	fire_delay = 3
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15)
 
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/ppsh
 	name = "PPSh-17b Drum Magazine (7.62mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
-	default_ammo = "/datum/ammo/bullet/smg"
 	caliber = "7.62mm"
 	icon_state = "darts-0" //Dumb
 	icon_empty = "darts-0"
@@ -177,42 +162,29 @@
 	gun_type = "/obj/item/weapon/gun/smg/ppsh"
 	handful_type = "Bullets (7.62mm)"
 
-/obj/item/ammo_magazine/smg/ppsh/extended
-	name = "PPSh-17b Magazine (7.62mm)"
-	desc = "A standard 7.62mm magazine for the PPSh submachinegun."
-	icon_state = "darts-0" //Dumb
-	icon_empty = "darts-0"
-	max_rounds = 35
-	bonus_overlay = "ppsh_mag"
-
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b Submachinegun"
-	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere. This one has a 71-round drum magazine."
+	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere."
 	icon_state = "ppsh"
 	icon_empty = "ppsh_empty"
 	item_state = "ppsh"
 	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
-	autoejector = 0 // Drum mag, hard to eject.
-	fire_delay = 6
 	mag_type = "/obj/item/ammo_magazine/smg/ppsh"
-	muzzle_pixel_x = 33
-	muzzle_pixel_y = 17
-	rail_pixel_x = 15
-	rail_pixel_y = 19
-	under_pixel_x = 26
-	under_pixel_y = 15
-	burst_amount = 3
-	burst_delay = 1
 	accuracy = -8
-	found_on_russians = 1
+	fire_delay = 6
+	burst_delay = 1
+	gun_features = GUN_CAN_POINTBLANK | GUN_ON_RUSSIANS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15)
 
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/uzi
 	name = "Mac-15 Magazine (9mm)"
 	desc = "A magazine for the MAC-15."
-	default_ammo = "/datum/ammo/bullet/smg"
 	caliber = "9mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
@@ -228,25 +200,22 @@
 	item_state = "mini-uzi"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/uzi.ogg'
-	fire_delay = 4
 	mag_type = "/obj/item/ammo_magazine/smg/uzi"
-	muzzle_pixel_x = 32
-	muzzle_pixel_y = 19
-	rail_pixel_x = 11
-	rail_pixel_y = 22
-	under_pixel_x = 22
-	under_pixel_y = 16
-	burst_amount = 4
-	burst_delay = 1
-	found_on_mercs = 1
 	dam_bonus = -5
+	burst_delay = 1
+	burst_amount = 4
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16)
 
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/smg/p90
 	name = "P90 Magazine (5.7mm)"
 	desc = "A magazine for the P90 SMG."
-	default_ammo = "/datum/ammo/bullet/smg/ludicrous"
+	default_ammo = "AP SMG bullet"
 	caliber = "5.7mm"
 	icon_state = "763"
 	icon_empty = "763-0"
@@ -262,17 +231,14 @@
 	item_state = "p90"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/p90.ogg'
-	fire_delay = 5
 	mag_type = "/obj/item/ammo_magazine/smg/p90"
-	muzzle_pixel_x = 33
-	muzzle_pixel_y = 18
-	rail_pixel_x = 18
-	rail_pixel_y = 20
-	under_pixel_x = 22
-	under_pixel_y = 16
-	burst_amount = 3
-	burst_delay = 2
-	accuracy = 12
-	found_on_mercs = 1
+	dam_bonus = 8
+	accuracy = 27
+	fire_delay = 5
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16)
 
 //-------------------------------------------------------

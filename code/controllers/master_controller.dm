@@ -141,6 +141,7 @@ datum/controller/game_controller/proc/process()
 				var/start_time = world.timeofday
 				controller_iteration++
 
+				TrashAuthority.EmptyTrash()
 				vote.process()
 				transfer_controller.process()
 				shuttle_controller.process()
