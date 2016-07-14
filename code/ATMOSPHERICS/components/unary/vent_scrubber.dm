@@ -132,6 +132,7 @@
 		last_power_draw = 0
 		return 0
 
+	if(!loc) return
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	var/power_draw = -1

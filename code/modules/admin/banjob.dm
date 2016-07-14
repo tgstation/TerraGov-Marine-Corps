@@ -6,12 +6,37 @@ var/jobban_keylist[0]		//to store the keys & ranks
 /proc/jobban_fullban(mob/M, rank, reason)
 	if (!M || !M.key) return
 	jobban_keylist.Add(text("[M.ckey] - [rank] ## [reason]"))
-	jobban_savebanfile()
+	sort_jobbans() //This is actually pretty inefficient, but its better than alternatives
 
 /proc/jobban_client_fullban(ckey, rank)
 	if (!ckey || !rank) return
 	jobban_keylist.Add(text("[ckey] - [rank]"))
+	sort_jobbans() //This is actually pretty inefficient, but its better than alternatives
+
+/proc/sort_jobbans()
+	jobban_keylist = sortList(jobban_keylist)
 	jobban_savebanfile()
+
+//Takes a list of ckeys to check and a rank
+//Returns contents of the list that are not banned
+//Does not care about reason
+/proc/jobban_isbanned_list(var/list/L, var/rank)
+	if(L.len && rank)
+
+		var/regex/r1 = new("(.*) - (.*)")
+		var/value = 1
+		L = sortList(L) //Alphabetize it
+
+		for(var/string in jobban_keylist)
+			if(!r1.Find(string)) continue //Something is broken. ABORT
+			if(text2ascii(L[value]) > text2ascii(r1.group[1])) value++ //we have passed it alphabetically, use next element
+			if(value == L.len + 1) break //We've done everything, don't waste more time on this. +1 because we increment in the previous line
+			if(L[value] == r1.group[1]) //Ckey matches
+				if(r1.group[2] == rank) L.Remove(L[value]) //Rank matches, he's b&
+
+		return L
+
+	return 0
 
 //returns a reason if M is banned from rank, returns 0 otherwise
 /proc/jobban_isbanned(mob/M, rank)
@@ -26,21 +51,14 @@ var/jobban_keylist[0]		//to store the keys & ranks
 			if(config.usewhitelist && !check_whitelist(M))
 				return "Whitelisted Job"
 
-		var/target = "[M.ckey] - [rank]"
-
-		var/regex/r1 = new("(.*) ## (.*)", "i")
-		var/regex/r2 = new("(.*) - (.*)", "i")
-
-		finding_jobban: //It feels cheap to use this syntax, but it works, dammit
-			for(var/s in jobban_keylist)
-
-				if(r1.Find(s))
-					if(r1.group[1] == target)
-						return r1.group[2]
-					continue finding_jobban //Start the next element in the for loop
-				else if(r2.Find(s)) //Broaden our search to not having a reason
-					if((r2.group[1] == M.ckey) && (r2.group[2] == rank)) return "Reason Unspecified"
-
+		for (var/s in jobban_keylist)
+			if( findtext(s,"[M.ckey] - [rank]") == 1 )
+				var/startpos = findtext(s, "## ")+3
+				if(startpos && startpos<length(s))
+					var/text = copytext(s, startpos, 0)
+					if(text)
+						return text
+				return "Reason Unspecified"
 	return 0
 
 /*
@@ -59,6 +77,7 @@ DEBUG
 
 /hook/startup/proc/loadJobBans()
 	jobban_loadbanfile()
+	sort_jobbans() //Just in case it got screwed with elsewhere
 	return 1
 
 /proc/jobban_loadbanfile()

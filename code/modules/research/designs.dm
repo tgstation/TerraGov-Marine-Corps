@@ -78,23 +78,23 @@ datum/design/seccamera
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/security"
 
-datum/design/aicore
-	name = "Circuit Design (AI Core)"
-	desc = "Allows for the construction of circuit boards used to build new AI cores."
-	id = "aicore"
-	req_tech = list("programming" = 4, "biotech" = 3)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/aicore"
-
-datum/design/aiupload
-	name = "Circuit Design (AI Upload)"
-	desc = "Allows for the construction of circuit boards used to build an AI Upload Console."
-	id = "aiupload"
-	req_tech = list("programming" = 4)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/aiupload"
+// datum/design/aicore
+// 	name = "Circuit Design (AI Core)"
+// 	desc = "Allows for the construction of circuit boards used to build new AI cores."
+// 	id = "aicore"
+// 	req_tech = list("programming" = 4, "biotech" = 3)
+// 	build_type = IMPRINTER
+// 	materials = list("$glass" = 2000, "sacid" = 20)
+// 	build_path = "/obj/item/weapon/circuitboard/aicore"
+//
+// datum/design/aiupload
+// 	name = "Circuit Design (AI Upload)"
+// 	desc = "Allows for the construction of circuit boards used to build an AI Upload Console."
+// 	id = "aiupload"
+// 	req_tech = list("programming" = 4)
+// 	build_type = IMPRINTER
+// 	materials = list("$glass" = 2000, "sacid" = 20)
+// 	build_path = "/obj/item/weapon/circuitboard/aiupload"
 
 datum/design/borgupload
 	name = "Circuit Design (Cyborg Upload)"
@@ -368,14 +368,14 @@ datum/design/message_monitor
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/message_monitor"
 
-datum/design/aifixer
-	name = "Circuit Design (AI Integrity Restorer)"
-	desc = "Allows for the construction of circuit boards used to build an AI Integrity Restorer."
-	id = "aifixer"
-	req_tech = list("programming" = 3, "biotech" = 2)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/aifixer"
+// datum/design/aifixer
+// 	name = "Circuit Design (AI Integrity Restorer)"
+// 	desc = "Allows for the construction of circuit boards used to build an AI Integrity Restorer."
+// 	id = "aifixer"
+// 	req_tech = list("programming" = 3, "biotech" = 2)
+// 	build_type = IMPRINTER
+// 	materials = list("$glass" = 2000, "sacid" = 20)
+// 	build_path = "/obj/item/weapon/circuitboard/aifixer"
 
 // VERY VERY EXPENSIVE (needs diamonds and stuff)
 datum/design/smes_cell
@@ -1517,7 +1517,7 @@ datum/design/nuclear_gun
 	reliability_base = 76
 	build_path = "/obj/item/weapon/gun/energy/gun/nuclear"
 	locked = 1*/
-
+/*
 datum/design/stunrevolver
 	name = "Stun Revolver"
 	desc = "The prize of the Head of Security."
@@ -1526,7 +1526,7 @@ datum/design/stunrevolver
 	build_type = PROTOLATHE
 	materials = list("$metal" = 4000)
 	build_path = "/obj/item/weapon/gun/energy/stunrevolver"
-	locked = 1
+	locked = 1*/
 /*
 datum/design/lasercannon
 	name = "Laser Cannon"
@@ -1624,14 +1624,14 @@ datum/design/ammo_9mm
 	materials = list("$metal" = 3750, "$silver" = 100)
 	build_path = "/obj/item/ammo_magazine/c9mm"
 */
-datum/design/stunshell
-	name = "Stun Shell"
-	desc = "A stunning shell for a shotgun."
-	id = "stunshell"
-	req_tech = list("combat" = 3, "materials" = 3)
-	build_type = PROTOLATHE
-	materials = list("$metal" = 4000)
-	build_path = "/obj/item/ammo_casing/shotgun/stunshell"
+// datum/design/stunshell
+// 	name = "Stun Shell"
+// 	desc = "A stunning shell for a shotgun."
+// 	id = "stunshell"
+// 	req_tech = list("combat" = 3, "materials" = 3)
+// 	build_type = PROTOLATHE
+// 	materials = list("$metal" = 4000)
+// 	build_path = "/obj/item/ammo_casing/shotgun/stunshell"
 
 /*datum/design/phoronpistol
 	name = "phoron pistol"

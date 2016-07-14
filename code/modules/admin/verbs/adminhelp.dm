@@ -27,7 +27,8 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		// Adminhelp cooldown
 		src.verbs -= /client/verb/adminhelp
 		spawn(1200)
-			src.verbs += /client/verb/adminhelp
+			if(src)
+				src.verbs += /client/verb/adminhelp
 
 	if(selected_type == "Suggestion / Bug Report")
 		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our forum.",,"Go to Suggestions forum","Go to Bugs forum","Cancel"))

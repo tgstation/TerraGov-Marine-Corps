@@ -63,7 +63,13 @@
 						dir = i
 						sleep(1)
 		if("help")
-			src << "Available emotes: *roar, *growl, *hiss, *tail, *dance"
+			src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
+			dance, \
+			<span style='color: green;'>growl</span>, \
+			<span style='color: green;'>hiss</span>, \
+			me, \
+			<span style='color: green;'>roar</span>, \
+			<span style='color: green;'>tail</span></b><br>"
 		else
 			src << text("Invalid Emote: []", act)
 	if ((message && src.stat == 0))

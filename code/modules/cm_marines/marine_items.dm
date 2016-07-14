@@ -583,18 +583,46 @@
 	item_state = "map"
 	author = "Weyland Yutani"
 	title = "Lazarus Landing Map"
-
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
 	dat = {"
 
 		<html><head>
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src='http://www.colonial-marines.com/wiki/images/thumb/6/6f/LV624.png/800px-LV624.png' frameborder="0" id="main_frame"></iframe>
+		<img src="LV624.png" alt="Map">
 		</body>
 
 		</html>
 
 		"}
 
+/obj/item/weapon/book/manual/whiskey_outpost_map
+	name = "Whiskey Outpost Map"
+	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	author = "Weyland Yutani"
+	title = "Whiskey Outpost Map"
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
+	dat = {"
 
+		<html><head>
+		</head>
+
+		<body>
+		<b>Purple:</b> Supply Drops<br>
+		<b>Orange:</b> Tcomms Tower and APC<br>
+		<b>LBlue:</b>  Recycler<br>
+		<b>DBlue:</b>  Defensive Positions<br>
+		<b>Red:</b>    Threat<br>
+		<b>Yellow:</b> Potential Threat<br><br>
+		<b>Whiskey Outpost Tactical Map:</b>
+		<br>
+		<img src="whiskey_outpost.png" alt="Map">
+		</body>
+
+		</html>
+
+		"}

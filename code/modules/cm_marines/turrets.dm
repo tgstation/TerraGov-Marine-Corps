@@ -151,6 +151,7 @@
 				return
 			user << "You begin installing the reinforced plating.."
 			if(do_after(user,50))
+				if(!M) return
 				if(M.amount >= 10)
 					has_plates = 1
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)

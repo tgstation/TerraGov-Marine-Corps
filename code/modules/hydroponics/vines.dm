@@ -43,6 +43,7 @@
 		if(/obj/item/weapon/hatchet) del src
 		if(/obj/item/weapon/melee/energy) del src
 		if(/obj/item/weapon/pickaxe/plasmacutter) del src
+		if(/obj/item/weapon/combat_knife) del src
 
 		// Less effective weapons
 		if(/obj/item/weapon/wirecutters)
@@ -366,6 +367,7 @@
 		growth_queue -= SV
 
 		SV.life()
+		if(!SV) continue
 
 		if(SV.energy < 2) //If tile isn't fully grown
 			var/chance

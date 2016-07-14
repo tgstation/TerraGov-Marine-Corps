@@ -316,10 +316,13 @@ proc/isInSight(var/atom/A, var/atom/B)
 // Same as above but for alien candidates.
 //Rewritten by Abby, little more simplified.
 /proc/get_alien_candidates()
-	var/list/candidates = list() //List of candidate KEYS
+	var/list/ckeys = list() //List of candidate ckeys
+	var/list/candidates = list() //Holds the things to return
 	for(var/mob/dead/observer/G in player_list)
-		if(jobban_isbanned(G,"Alien"))
-			continue
+		ckeys.Add(G.ckey)
+	ckeys = jobban_isbanned_list(ckeys, "Alien")
+	for(var/mob/dead/observer/G in player_list) //We eliminated all of the banned people, but then we have to make sure they want to be an alium
+		if(!(G.ckey in ckeys)) continue //He got booted in the jobban check
 		if(G.client && G.client.prefs.be_special & BE_ALIEN)
 			if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + 5)
 				candidates += G.key

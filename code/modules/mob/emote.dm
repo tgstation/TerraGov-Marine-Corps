@@ -105,3 +105,10 @@
 
 			else if(M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // Show the emote to regular ghosts with deadchat toggled on
 				M.show_message(message, 2)
+
+/mob/living/carbon/verb/show_emotes()
+	set name = "Emotes"
+	set desc = "Displays a list of usable emotes."
+	set category = "IC"
+
+	usr.say("*help")

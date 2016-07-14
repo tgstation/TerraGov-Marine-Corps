@@ -6,9 +6,8 @@
 	icon_state = "camo"
 	flags = FPRINT | TABLEPASS
 	w_class = 1.0
+	var/uses = 10
 	var/colour = "green"
-
-
 
 /obj/item/weapon/facepaint/green
 	name = "green facepaint"
@@ -46,6 +45,7 @@
 								 "<span class='notice'>You begin professionally slapping the \the [src] on your face. Perfect!</span>")
 			H.lip_style = colour
 			H.update_body()
+			uses--
 		else
 			user.visible_message("<span class='warning'>[user] begins to do [H]'s face with \the [src].</span>", \
 								 "<span class='notice'>You begin to apply \the [src].</span>")
@@ -54,6 +54,10 @@
 									 "<span class='notice'>You apply \the [src].</span>")
 				H.lip_style = colour
 				H.update_body()
+				uses--
+	if(!uses)
+		del(src)
+
 	else
 		user << "<span class='notice'>Where are the lips on that?</span>"
 

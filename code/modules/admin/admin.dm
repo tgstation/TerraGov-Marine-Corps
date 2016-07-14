@@ -88,7 +88,8 @@ var/global/floorIsLava = 0
 
 	body += {"<br><br>
 		<A href='?src=\ref[src];jumpto=\ref[M]'><b>Jump to</b></A> |
-		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A>
+		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A> |
+		<A href='?src=\ref[src];sendmob=\ref[M]'>Send To</A>
 		<br><br>
 		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
 		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
@@ -1273,8 +1274,53 @@ var/global/floorIsLava = 0
 
 	return
 
-//
-//
-//ALL DONE
-//*********************************************************************************************************
-//
+/datum/admins/proc/fix_breach()
+	set category = "Debug"
+	set desc = "Stand over the tile you want to fix and use this verb to build a floor or wall."
+	set name = "Fix Breach"
+
+	// new /turf/simulated/wall/r_wall(usr.loc) - Not working. Air still escapes.
+
+	if(istype(usr.loc, /turf/space))
+		usr << "Placing a floor..."
+		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
+		return
+
+	if(istype(usr.loc, /turf/simulated/floor))
+		usr << "Placing a wall..."
+		usr.loc:ChangeTurf(/turf/simulated/wall/sulaco)
+		return
+
+	if(istype(usr.loc, /turf/simulated/wall/sulaco))
+		usr << "Placing a floor..."
+		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
+		return
+
+	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
+	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+
+	return
+
+/datum/admins/proc/fix_air()
+	set category = "Debug"
+	set desc = "Fix air in the room you're standing in."
+	set name = "Fix Air"
+
+	var/turf/T = usr.loc
+	if(!isturf(T)) return
+	var/datum/gas_mixture/GM = new
+
+	if(!GM)	return
+
+	// GM.adjust(20, 0, 80, 0, null)
+
+	// T.oxygen = 20
+	// T.nitrogen = 80
+	// T.carbon_dioxide = 0
+	// T.phoron = 0
+	// T.temperature = 293
+
+	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
+	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+
+	return

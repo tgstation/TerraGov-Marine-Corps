@@ -230,7 +230,7 @@
 		overlay = null  //Stops the overlay.
 
 /obj/item/weapon/storage/box/m42c_system
-	name = "M42C Scoped Rifle system"
+	name = "M42C Scoped Rifle system (Recon Set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -250,7 +250,7 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/weapon/facepaint/sniper(src)
+			new /obj/item/device/binoculars(src)
 			new /obj/item/weapon/storage/backpack/smock(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
