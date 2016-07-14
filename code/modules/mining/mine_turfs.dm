@@ -216,6 +216,7 @@
 			while(next_rock > 100)
 				next_rock -= 100
 				var/obj/item/weapon/ore/O = new(src)
+				if(!geologic_data) return
 				geologic_data.UpdateNearbyArtifactInfo(src)
 				O.geologic_data = geologic_data
 

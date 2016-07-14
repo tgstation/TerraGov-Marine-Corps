@@ -101,8 +101,8 @@ var/global/normal_ooc_colour = "#002eb8"
 			*/
 	usr.talked = 1
 	spawn (5)
-		if (usr.talked ==2)
-			return
+		if(!usr) return
+		if (usr.talked ==2) return
 		usr.talked = 0
 
 /client/proc/set_ooc(newColor as color)
