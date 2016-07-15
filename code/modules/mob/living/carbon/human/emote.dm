@@ -116,6 +116,10 @@
 					message = "<B>[src]</B> makes a strong noise."
 					m_type = 2
 
+		if ("cry")
+			message = "<B>[src]</B> cries."
+			m_type = 1
+
 		if ("drool")
 			message = "<B>[src]</B> drools."
 			m_type = 1
