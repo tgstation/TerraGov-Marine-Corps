@@ -392,6 +392,10 @@
 			message = "<B>[src]</B> smiles."
 			m_type = 1
 
+		if ("snore")
+			message = "<B>[src]</B> snores."
+			m_type = 1
+
 		if ("stare")
 			var/M = null
 			if (param)
@@ -458,6 +462,7 @@
 			sigh, \
 			signal-#1-10, \
 			smile, \
+			snore, \
 			stare-(mob name), \
 			twitch, \
 			wave, \
