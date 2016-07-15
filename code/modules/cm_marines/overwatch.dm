@@ -507,6 +507,7 @@
 	send_to_squad("Supply Drop Incoming!")
 	current_squad.sbeacon.visible_message("\blue The beacon begins to beep!")
 	spawn(100)
+		if(!current_squad) return
 		if(current_squad.sbeacon)
 			del(current_squad.sbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.sbeacon = null
