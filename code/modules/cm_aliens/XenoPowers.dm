@@ -530,11 +530,9 @@
 		if(do_after(src,40))
 			src.visible_message("\red [src] continues securing [victim] with resin..","\red You continue securing [victim] with resin.. almost there.")
 		if(do_after(src,80))
-			if(victim.handcuffed && !victim.legcuffed)
-				victim.legcuffed = new /obj/item/weapon/legcuffs/xeno(victim)
-				src.visible_message("\red <B>[src] finishes binding [victim]'s legs.</b>","\red <B>You finish binding [victim]'s legs!</b>")
-			else if(!victim.handcuffed)
+			if(!victim.handcuffed)
 				victim.handcuffed = new /obj/item/weapon/handcuffs/xeno(victim)
+				victim.xenoCuffed = 1
 				src.visible_message("\red <B>[src] finishes securing [victim]'s arms.</b>","\red <B>You finish securing [victim]'s arms!</b>")
 			else
 				src << "Looks like someone secured them before you!"

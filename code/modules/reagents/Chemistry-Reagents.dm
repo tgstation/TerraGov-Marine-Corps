@@ -20,7 +20,7 @@ datum
 		var/nutriment_factor = 0
 		var/custom_metabolism = REAGENTS_METABOLISM
 		var/overdose = 0
-		var/overdose_dam = 0//Handeled by heart damage
+		var/overdose_dam = 1//Handeled by heart damage
 		var/scannable = 0 //shows up on health analyzers
 		//var/list/viruses = list()
 		var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
@@ -75,6 +75,8 @@ datum
 				if( (overdose > 0) && (volume >= overdose))//Overdosing, wooo
 					M.adjustToxLoss(overdose_dam)
 				holder.remove_reagent(src.id, custom_metabolism) //By default it slowly disappears.
+				if(volume > (overdose*2))
+					M.adjustToxLoss((overdose_dam*(volume/overdose))*10)//Super fuck people up if they take hundreds of chems.
 				return
 
 			on_move(var/mob/M)
@@ -759,7 +761,7 @@ datum
 			color = "#C8A5DC"
 			overdose = 30
 			scannable = 1
-			custom_metabolism = 0.025 // Lasts 10 minutes for 15 units
+			custom_metabolism = 0.1 // Lasts 10 minutes for 15 units
 
 			on_mob_life(var/mob/living/M as mob)
 				if(volume > overdose)
