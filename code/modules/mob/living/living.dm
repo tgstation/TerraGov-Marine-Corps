@@ -599,7 +599,7 @@
 
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
-		var/mob/living/carbon/CM = L
+		var/mob/living/carbon/human/CM = L
 		if(CM.on_fire && CM.canmove && !weakened)
 			CM.fire_stacks -= rand(3,6)
 			CM.weakened = 4
@@ -621,7 +621,6 @@
 				var/mob/living/carbon/human/H = CM
 				if(H.species.can_shred(H))
 					can_break_cuffs = 1
-
 			if(can_break_cuffs) //Don't want to do a lot of logic gating here.
 				usr << "\red You attempt to break your handcuffs. (This will take around 5 seconds and you need to stand still)"
 				for(var/mob/O in viewers(CM))
@@ -641,10 +640,21 @@
 				var/obj/item/weapon/handcuffs/HC = CM.handcuffed
 				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
-				if(istype(HC)) //If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
-					breakouttime = HC.breakouttime
+				if(istype(HC, /obj/item/weapon/handcuffs/xeno))
+					breakouttime = 300
+					displaytime = "Half a"
+					CM << "\red You attempt to remove \the [HC]. (This will take around half a minute and you need to stand still)"
+					spawn (breakouttime)
+						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
+							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
+						CM << "\blue You successfully remove \the [CM.handcuffed]."
+						CM.drop_from_inventory(CM.handcuffed)
+						return
+
+
+				else if(istype(HC))
 					displaytime = breakouttime / 600 //Minutes
-				CM << "\red You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)"
+				CM << "\red You attempt to remove \the [HC]. (This will take around [displaytime] minute(s) and you need to stand still)"
 				for(var/mob/O in viewers(CM))
 					O.show_message( "\red <B>[usr] attempts to remove \the [HC]!</B>", 1)
 				spawn(0)
@@ -655,7 +665,6 @@
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.handcuffed]."
 						CM.drop_from_inventory(CM.handcuffed)
-
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
