@@ -27,7 +27,7 @@
 	icon_empty = ".45a0"
 	max_rounds = 12
 	default_ammo = "pistol bullet"
-	gun_type = "/obj/item/weapon/gun/pistol/m4a3"
+	gun_type = /obj/item/weapon/gun/pistol/m4a3
 	handful_type = "Bullets (9mm)"
 
 /obj/item/ammo_magazine/pistol/hp
@@ -58,8 +58,8 @@
 	desc = "An M4A3 Colt Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds."
 	icon_state = "colt1"
 	item_state = "m4a3"
-	mag_type = "/obj/item/ammo_magazine/pistol"
 	fire_sound = 'sound/weapons/servicepistol.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol
 	fire_delay = 2
 	w_class = 2
 	force = 6
@@ -78,7 +78,7 @@
 	icon_state = "T38"
 	icon_empty = "T38-0"
 	max_rounds = 12
-	gun_type = "/obj/item/weapon/gun/pistol/heavy"
+	gun_type = /obj/item/weapon/gun/pistol/heavy
 	handful_type = "Bullets (.50)"
 
 //Captain's vintage pistol.
@@ -88,8 +88,7 @@
 	icon_state = "deagle"
 	item_state = "deagle"
 	fire_sound = 'sound/weapons/44mag.ogg'
-	mag_type = "/obj/item/ammo_magazine/pistol/heavy"
-	fire_sound = 'sound/weapons/pistol_large.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/heavy
 	fire_delay = 9
 	force = 13
 	recoil = 2
@@ -110,7 +109,7 @@
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 16
-	gun_type = "/obj/item/weapon/gun/pistol/c99"
+	gun_type = /obj/item/weapon/gun/pistol/c99
 	handful_type = "Hollowpoint Bullets (9mm)"
 
 /obj/item/weapon/gun/pistol/c99
@@ -120,8 +119,7 @@
 	item_state = "p08"
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/p08.ogg'
-	mag_type = "/obj/item/ammo_magazine/pistol/c99"
-	fire_sound = 'sound/weapons/p08.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/c99
 	fire_delay = 3
 	force = 6
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
@@ -150,7 +148,7 @@
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 12
-	gun_type = "/obj/item/weapon/gun/pistol/m1911"
+	gun_type = /obj/item/weapon/gun/pistol/m1911
 	handful_type = "Bullets (.40 Caseless)"
 
 /obj/item/weapon/gun/pistol/m1911
@@ -160,9 +158,8 @@
 	icon_empty = "m1911-p0"
 	item_state = "m4a3"
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/44mag.ogg'
-	mag_type = "/obj/item/ammo_magazine/pistol/m1911"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/m1911
 	eject_casings = 0
 	fire_delay = 2
 	force = 9
@@ -181,16 +178,16 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 21
-	gun_type = "/obj/item/weapon/gun/pistol/kt42"
+	gun_type = /obj/item/weapon/gun/pistol/kt42
 	handful_type = "Bullets (.32)"
 
 /obj/item/weapon/gun/pistol/kt42
 	name = "\improper KT-42 Automag"
 	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. It is a simple, rapid firing 32 calibre pistol."
 	icon_state = "autopistol"
-	item_state = "autopistol" //Invisible in hand.
-	mag_type = "/obj/item/ammo_magazine/pistol/automatic"
+	item_state = "autopistol"
 	fire_sound = 'sound/weapons/automag.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/automatic
 	fire_delay = 4
 	burst_amount = 2
 	burst_delay = 1
@@ -211,7 +208,7 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 5
-	gun_type = "/obj/item/weapon/gun/pistol/holdout"
+	gun_type = /obj/item/weapon/gun/pistol/holdout
 	handful_type = "Bullets (.22)"
 
 /obj/item/weapon/gun/pistol/holdout
@@ -220,8 +217,8 @@
 	icon_state = "holdout_pistol"
 	item_state = "holdout"
 	origin_tech = "combat=2;materials=1"
-	mag_type = "/obj/item/ammo_magazine/pistol/holdout"
 	fire_sound = 'sound/weapons/holdout.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/holdout
 	fire_delay = 1
 	w_class = 1
 	force = 2
@@ -241,7 +238,7 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 9
-	gun_type = "/obj/item/weapon/gun/pistol/highpower"
+	gun_type = /obj/item/weapon/gun/pistol/highpower
 	handful_type = "Bullets (.45)"
 
 /obj/item/weapon/gun/pistol/highpower
@@ -249,8 +246,8 @@
 	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in .45 caliber rounds. Used for centuries by law enforcement and criminals alike."
 	icon_state = "highpower"
 	item_state = "highpower"
-	mag_type = "/obj/item/ammo_magazine/pistol/highpower"
 	fire_sound = 'sound/weapons/automag.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/highpower
 	dam_bonus = 12
 	fire_delay = 15
 	recoil = 1
@@ -271,7 +268,7 @@
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 9
-	gun_type = "/obj/item/weapon/gun/pistol/vp70"
+	gun_type = /obj/item/weapon/gun/pistol/vp70
 	handful_type = "AP Bullets (9mm)"
 
 /obj/item/weapon/gun/pistol/vp70
@@ -280,8 +277,8 @@
 	icon_state = "vp70"
 	item_state = "vp70"
 	origin_tech = "combat=4;materials=3"
-	mag_type = "/obj/item/ammo_magazine/pistol/vp70"
 	fire_sound = 'sound/weapons/vp70.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/vp70
 	dam_bonus = 18
 	burst_amount = 3
 	burst_delay = 3
@@ -301,7 +298,7 @@
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 18
-	gun_type = "/obj/item/weapon/gun/pistol/vp78"
+	gun_type = /obj/item/weapon/gun/pistol/vp78
 	handful_type = "Bullets (9mm SH)"
 
 /obj/item/weapon/gun/pistol/vp78
@@ -309,8 +306,8 @@
 	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Weyland Yutani members."
 	icon_state = "VP78"
 	item_state = "vp78"
-	mag_type = "/obj/item/ammo_magazine/pistol/vp78"
 	fire_sound = 'sound/weapons/pistol_large.ogg'
+	mag_type = /obj/item/ammo_magazine/pistol/vp78
 	burst_amount = 3
 	burst_delay = 3
 	recoil = 1

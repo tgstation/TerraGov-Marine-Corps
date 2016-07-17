@@ -143,16 +143,17 @@ Items and objects that are very hard to get to and do not affect balance.
 /obj/item/weapon/gun/rocketlauncher/nobugs //Fires dummy rockets, like a toy gun
 	name = "BUG ROCKER rocket launcher"
 	desc = "Where did this come from? <b>NO BUGS</b>"
-	mag_type = "/obj/item/ammo_magazine/internal/rocket/nobugs"
+	mag_type = /obj/item/ammo_magazine/internal/rocket/nobugs
 
 /obj/item/ammo_magazine/rocket/nobugs
 	name = "BUG ROCKER Rocket Tube"
 	desc = "Where did this come from? <b>NO BUGS</b>"
-	default_ammo = "/datum/ammo/rocket/nobugs"
+	default_ammo = "NO BUGS rocket"
 	caliber = "toy rocket"
 
 /obj/item/ammo_magazine/internal/rocket/nobugs
-	default_ammo = "/datum/ammo/rocket/nobugs"
+	default_ammo = "NO BUGS rocket"
+	gun_type = /obj/item/weapon/gun/rocketlauncher/nobugs
 
 /datum/ammo/rocket/nobugs
 	name = "NO BUGS rocket"

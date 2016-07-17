@@ -482,13 +482,14 @@
 	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
-	unarmed_type = /datum/unarmed_attack/punch
+	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	blood_color = "#20d450"
 	flesh_color = "#907E4A"
 	speech_sounds = list('sound/voice/pred_click1.ogg', 'sound/voice/pred_click2.ogg')
 	speech_chance = 100
 	hud_type = /datum/hud_data/yautja
+	death_message = "clicks in agony and falls still, motionless and completely lifeless..."
 	darksight = 5
 	slowdown = -0.8
 
@@ -574,6 +575,10 @@
 /datum/unarmed_attack/punch
 	attack_verb = list("punch")
 	damage = 3
+
+/datum/unarmed_attack/punch/strong
+	attack_verb = list("punch","bust","jab")
+	damage = 10
 
 /datum/unarmed_attack/diona
 	attack_verb = list("lash", "bludgeon")

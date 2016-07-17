@@ -93,207 +93,198 @@ attachments.
 		firing_support = null
 		firing_turf = null
 
-	proc/Attach(var/obj/item/weapon/gun/G)
-		if(!istype(G)) return //Guns only
+/obj/item/attachable/proc/Attach(var/obj/item/weapon/gun/G)
+	if(!istype(G)) return //Guns only
 
-		/*
-		This does not check if the attachment can be removed.
-		Instead of checking individual attachments, I simply removed
-		the specific guns for the specific attachments so you can't
-		attempt the process in the first place if a slot can't be
-		removed on a gun. can_be_removed is instead used when they
-		try to strip the gun.
-		*/
-		switch(slot)
-			if("rail")
-				if(G.rail) G.rail.Detach(G)
-				G.rail = src
-			if("muzzle")
-				if(G.muzzle) G.muzzle.Detach(G)
-				G.muzzle = src
-			if("under")
-				if(G.under) G.under.Detach(G)
-				G.under = src
-			if("stock")
-				if(G.stock) G.stock.Detach(G)
-				G.stock = src
+	/*
+	This does not check if the attachment can be removed.
+	Instead of checking individual attachments, I simply removed
+	the specific guns for the specific attachments so you can't
+	attempt the process in the first place if a slot can't be
+	removed on a gun. can_be_removed is instead used when they
+	try to strip the gun.
+	*/
+	switch(slot)
+		if("rail")
+			if(G.rail) G.rail.Detach(G)
+			G.rail = src
+		if("muzzle")
+			if(G.muzzle) G.muzzle.Detach(G)
+			G.muzzle = src
+		if("under")
+			if(G.under) G.under.Detach(G)
+			G.under = src
+		if("stock")
+			if(G.stock) G.stock.Detach(G)
+			G.stock = src
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/M = src.loc
-			M.drop_item(src)
-		loc = G
+	if(ishuman(loc))
+		var/mob/living/carbon/human/M = src.loc
+		M.drop_item(src)
+	loc = G
 
-		G.accuracy += accuracy_mod
-		G.w_class += w_class_mod
-		G.fire_delay += delay_mod
-		G.burst_amount += burst_mod
-		G.recoil += recoil_mod
-		G.force += melee_mod
+	G.accuracy += accuracy_mod
+	G.w_class += w_class_mod
+	G.fire_delay += delay_mod
+	G.burst_amount += burst_mod
+	G.recoil += recoil_mod
+	G.force += melee_mod
 
-		G.update_force_list() //This updates the gun to use proper force verbs.
+	G.update_force_list() //This updates the gun to use proper force verbs.
 
-		switch(twohanded_mod)
-			if(1) G.gun_features |= GUN_TWOHANDED
-			if(2) G.gun_features &= ~GUN_TWOHANDED
+	switch(twohanded_mod)
+		if(1) G.flags |= TWOHANDED //Add two handed flag.
+		if(2) G.flags &= ~TWOHANDED //Remove two handed flag.
 
-		if(silence_mod)
-			G.gun_features |= GUN_SILENCED
-			G.muzzle_flash = null
-			G.fire_sound = pick('sound/weapons/silenced_shot1.ogg','sound/weapons/silenced_shot2.ogg')
-		if(light_mod) G.flash_lum = light_mod
+	if(silence_mod)
+		G.gun_features |= GUN_SILENCED
+		G.muzzle_flash = null
+		G.fire_sound = pick('sound/weapons/silenced_shot1.ogg','sound/weapons/silenced_shot2.ogg')
 
-	proc/Detach(var/obj/item/weapon/gun/G)
-		if(!istype(G)) return //Guns only
-		if(G.zoom) G.zoom() //Remove zooming out.
+/obj/item/attachable/proc/Detach(var/obj/item/weapon/gun/G)
+	if(!istype(G)) return //Guns only
+	if(G.zoom) G.zoom() //Remove zooming out.
 
-		switch(slot) //I am removing checks for the attachment being src.
-			if("rail") //If it's being called on by this proc, it has to be that attachment. ~N
-				G.rail.loc = get_turf(G)
-				G.rail = null
-			if("muzzle")
-				G.muzzle.loc = get_turf(G)
-				G.muzzle = null
-			if("under")
-				var/obj/item/attachable/bipod/current_bipod = G.under
-				if(istype(current_bipod))
-					current_bipod.leave_position()
-				G.under.loc = get_turf(G)
-				G.under = null
-			if("stock")
-				G.stock.loc = get_turf(G)
-				G.stock = null
+	switch(slot) //I am removing checks for the attachment being src.
+		if("rail") //If it's being called on by this proc, it has to be that attachment. ~N
+			G.rail = null
+		if("muzzle")
+			G.muzzle = null
+		if("under")
+			var/obj/item/attachable/bipod/current_bipod = G.under
+			if(istype(current_bipod))
+				current_bipod.leave_position()
+			G.under = null
+		if("stock")
+			G.stock = null
 
-		G.unwield()
+	if(G.active_attachable == src)
+		G.active_attachable = null
 
-		if(G.active_attachable == src)
-			G.active_attachable = null
+	G.accuracy -= accuracy_mod
+	G.w_class -= w_class_mod
+	G.fire_delay -= delay_mod
+	G.burst_amount -= burst_mod
+	G.recoil -= recoil_mod
+	G.force -= melee_mod
 
-		G.accuracy -= accuracy_mod
-		G.w_class -= w_class_mod
-		G.fire_delay -= delay_mod
-		G.burst_amount -= burst_mod
-		G.recoil -= recoil_mod
-		G.force -= melee_mod
+	G.update_force_list()
 
-		G.update_force_list()
+	//We need to know if the gun was originally two handed.
+	var/temp_flags = initial(G.flags)
+	switch(twohanded_mod) //Not as quick as just initial()ing it, but pretty fast regardless.
+		if(1) //We added the two handed mod.
+			if( !(temp_flags & TWOHANDED) ) G.flags &= ~TWOHANDED//Gun wasn't two handed initially.
+		if(2) //We removed the two handed mod.
+			if(temp_flags & TWOHANDED) G.flags |= TWOHANDED //Gun was two handed before.
 
-		//We need to know if the gun was originally two handed.
-		var/temp_flags = initial(G.gun_features)
-		switch(twohanded_mod) //Not as quick as just initial()ing it, but pretty fast regardless.
-			if(1) //We added the two handed mod.
-				if( !(temp_flags & GUN_TWOHANDED) ) G.gun_features &= ~GUN_TWOHANDED//Gun wasn't two handed initially.
-			if(2) //We removed the two handed mod.
-				if(temp_flags & GUN_TWOHANDED) G.gun_features |= GUN_TWOHANDED //Gun was two handed before.
+	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
+		G.gun_features &= ~GUN_SILENCED
+		G.muzzle_flash = initial(G.muzzle_flash)
+		G.fire_sound = initial(G.fire_sound)
+	if(light_mod)  //Remember to turn the lights off
+		if(G.gun_features & GUN_FLASHLIGHT_ON)
+			var/atom/movable/light_source = ismob(G.loc) ? G.loc : G
+			light_source.SetLuminosity(-light_mod)
+		G.gun_features &= ~GUN_FLASHLIGHT_ON
 
-		if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
-			G.gun_features &= ~GUN_SILENCED
-			G.muzzle_flash = initial(G.muzzle_flash)
-			G.fire_sound = initial(G.fire_sound)
-		if(light_mod)  //Remember to turn the lights off
-			if( (G.gun_features & GUN_FLASHLIGHT_ON) && G.flash_lum)
-				if(ismob(G.loc))
-					var/mob/M = G.loc
-					M.SetLuminosity(-light_mod) //Lights are on and we removed the flashlight, so turn it off
-				else G.SetLuminosity(0)
+	loc = get_turf(G)
 
-			G.flash_lum = initial(G.flash_lum)
-			G.gun_features &= ~GUN_FLASHLIGHT_ON
+/obj/item/attachable/proc/activate_attachment(var/atom/target, var/mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
+	return
 
-	proc/activate_attachment(var/atom/target, var/mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
-		return
+/obj/item/attachable/proc/fire_attachment(var/atom/target,var/obj/item/weapon/gun/gun, var/mob/user) //For actually shooting those guns.
+	return
 
-	proc/fire_attachment(var/atom/target,var/obj/item/weapon/gun/gun, var/mob/user) //For actually shooting those guns.
-		return
+/obj/item/attachable/proc/get_into_position(mob/living/user, obj/structure/support_structure, turf/active_turf, flipped = 2)
+	user << "\blue You find a good location to place the bipod near \the [support_structure]! You can fire your gun steady so long as you remain here."
+	firing_support = support_structure
+	firing_turf = active_turf
+	firing_direction = user.dir
+	firing_flipped = flipped
 
-	proc/get_into_position(mob/living/user, obj/structure/support_structure, turf/active_turf, flipped = 2)
-		user << "\blue You find a good location to place the bipod near \the [support_structure]! You can fire your gun steady so long as you remain here."
-		firing_support = support_structure
-		firing_turf = active_turf
-		firing_direction = user.dir
-		firing_flipped = flipped
+/obj/item/attachable/proc/leave_position(mob/living/user)
+	firing_support = null
+	firing_turf = null
+	firing_direction = null
+	firing_flipped = 2
+	if(user) user << "<span class='notice'>You get ready to find another firing position.</span>"
 
-	proc/leave_position(mob/living/user)
-		firing_support = null
-		firing_turf = null
-		firing_direction = null
-		firing_flipped = 2
-		if(user) user << "You get ready to find another firing position."
+/obj/item/attachable/proc/establish_position(obj/item/weapon/gun, mob/living/user)
+	var/turf/active_turf = get_turf(src)
+	if(!active_turf) return
 
-	proc/establish_position(obj/item/weapon/gun, mob/living/user)
-		var/turf/active_turf = get_turf(src)
-		if(!active_turf) return
+	//Define our basic structures to type check for later.
+	var/obj/structure/support_structure //Something basic we're going to look for.
+	var/obj/structure/table/support_table //In case it's a table, which complicates matters.
+	var/obj/structure/m_barricade/support_barricade //In case it's a barricade.
 
-		//Define our basic structures to type check for later.
-		var/obj/structure/support_structure //Something basic we're going to look for.
-		var/obj/structure/table/support_table //In case it's a table, which complicates matters.
-		var/obj/structure/m_barricade/support_barricade //In case it's a barricade.
-
-		for(var/obj/Q in active_turf) //We're going to check the turf we're on first.
-			support_structure = Q
-			if(!istype(support_structure)) continue //Not a structure.
-			if(support_structure.throwpass) //Can we throw over it? If so, this is what we want.
-				support_table = Q
-				if(istype(support_table)) //Is it a table?
-					//If it's flipped and we are facing the right direction. Or it's not flipped.
-					if( !support_table.flipped || (support_table.flipped && support_table.dir == user.dir) )
-						get_into_position(user, support_table, active_turf, support_table.flipped)
-						return 1
-					else continue //It's a table flipped, but it's not facing our way.
-				support_barricade = Q
-				//We're on something, its direction doesn't matter. If it's a metal barricade, direction does matter.
-				if( (istype(support_barricade) && support_barricade.dir == user.dir) || !istype(support_barricade) )
-					get_into_position(user, support_structure, active_turf)
+	for(var/obj/Q in active_turf) //We're going to check the turf we're on first.
+		support_structure = Q
+		if(!istype(support_structure)) continue //Not a structure.
+		if(support_structure.throwpass) //Can we throw over it? If so, this is what we want.
+			support_table = Q
+			if(istype(support_table)) //Is it a table?
+				//If it's flipped and we are facing the right direction. Or it's not flipped.
+				if( !support_table.flipped || (support_table.flipped && support_table.dir == user.dir) )
+					get_into_position(user, support_table, active_turf, support_table.flipped)
 					return 1
-
-		//Second part of the proc.
-		var/turf/inactive_turf //We didn't find anything out our turf, so now we look through the adjacent turf.
-		switch(user.dir)
-			if(1)
-				inactive_turf = locate(active_turf.x,active_turf.y+1,active_turf.z)
-			if(2)
-				inactive_turf = locate(active_turf.x,active_turf.y-1,active_turf.z)
-			if(4)
-				inactive_turf = locate(active_turf.x+1,active_turf.y,active_turf.z)
-			if(8)
-				inactive_turf = locate(active_turf.x-1,active_turf.y,active_turf.z)
-		if(!inactive_turf) return //We didn't find an adjacent turf somehow.
-		for(var/obj/Q  in inactive_turf)
-			support_structure = Q
-			if(!istype(support_structure)) continue
-			if(support_structure.throwpass) //We have the right kind of structure.
-				support_barricade = Q
-				if(istype(support_barricade)) continue //We don't care about metal barricades.
-				support_table = Q
-				if(istype(support_table)) //If it's a table, we need to determine a few things.
-					if(support_table.flipped) continue //We don't care about flipped tables.
-					else get_into_position(user, support_table, active_turf, support_table.flipped)
-				else //Not a table but still fits the criteria? Okay.
-					get_into_position(user, support_structure, active_turf)
+				else continue //It's a table flipped, but it's not facing our way.
+			support_barricade = Q
+			//We're on something, its direction doesn't matter. If it's a metal barricade, direction does matter.
+			if( (istype(support_barricade) && support_barricade.dir == user.dir) || !istype(support_barricade) )
+				get_into_position(user, support_structure, active_turf)
 				return 1
 
-	proc/check_position(obj/item/weapon/gun, mob/living/user)
-		if(firing_turf == user.loc && firing_direction == user.dir) //We're in business.
-			var/obj/structure/table/support_table
-			var/obj/structure/m_barricade/support_barricade
-			switch(firing_flipped)
-				if(0) //It's a table, and it wasn't flipped when we got into position.
-					support_table = firing_support
-					if(support_table.flipped) //It was flipped.
+	//Second part of the proc.
+	var/turf/inactive_turf //We didn't find anything out our turf, so now we look through the adjacent turf.
+	switch(user.dir)
+		if(1)
+			inactive_turf = locate(active_turf.x,active_turf.y+1,active_turf.z)
+		if(2)
+			inactive_turf = locate(active_turf.x,active_turf.y-1,active_turf.z)
+		if(4)
+			inactive_turf = locate(active_turf.x+1,active_turf.y,active_turf.z)
+		if(8)
+			inactive_turf = locate(active_turf.x-1,active_turf.y,active_turf.z)
+	if(!inactive_turf) return //We didn't find an adjacent turf somehow.
+	for(var/obj/Q  in inactive_turf)
+		support_structure = Q
+		if(!istype(support_structure)) continue
+		if(support_structure.throwpass) //We have the right kind of structure.
+			support_barricade = Q
+			if(istype(support_barricade)) continue //We don't care about metal barricades.
+			support_table = Q
+			if(istype(support_table)) //If it's a table, we need to determine a few things.
+				if(support_table.flipped) continue //We don't care about flipped tables.
+				else get_into_position(user, support_table, active_turf, support_table.flipped)
+			else //Not a table but still fits the criteria? Okay.
+				get_into_position(user, support_structure, active_turf)
+			return 1
+
+/obj/item/attachable/proc/check_position(obj/item/weapon/gun, mob/living/user)
+	if(firing_turf == user.loc && firing_direction == user.dir) //We're in business.
+		var/obj/structure/table/support_table
+		var/obj/structure/m_barricade/support_barricade
+		switch(firing_flipped)
+			if(0) //It's a table, and it wasn't flipped when we got into position.
+				support_table = firing_support
+				if(support_table.flipped) //It was flipped.
+					leave_position()
+					return
+			if(1) //has to be either a flipped table or metal barricade.
+				support_table = firing_support
+				support_barricade = firing_support
+				if(istype(support_table)) //It is a table.
+					if(!support_table.flipped || support_table.dir != user.dir) //Either it was flipped or directions don't match.
 						leave_position()
 						return
-				if(1) //has to be either a flipped table or metal barricade.
-					support_table = firing_support
-					support_barricade = firing_support
-					if(istype(support_table)) //It is a table.
-						if(!support_table.flipped || support_table.dir != user.dir) //Either it was flipped or directions don't match.
-							leave_position()
-							return
-					else if(istype(support_barricade)) //It is a metal barriade.
-						if(support_barricade.dir != user.dir) //Directions don't match.
-							leave_position()
-							return
-			return 1 //If the no cases are out, we're good to go.
-		leave_position(user) //Looks like we haven't returned yet, so it's time to leave the position.
+				else if(istype(support_barricade)) //It is a metal barriade.
+					if(support_barricade.dir != user.dir) //Directions don't match.
+						leave_position()
+						return
+		return 1 //If the no cases are out, we're good to go.
+	leave_position(user) //Looks like we haven't returned yet, so it's time to leave the position.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
@@ -351,7 +342,7 @@ attachments.
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I,/obj/item/weapon/screwdriver))
-			user << "You modify the bayonet back into a combat knife."
+			user << "<span class='notice'>You modify the bayonet back into a combat knife.</span>"
 			if(src.loc == user)
 				user.drop_from_inventory(src)
 			var/obj/item/weapon/combat_knife/F = new(src.loc)
@@ -370,7 +361,7 @@ attachments.
 	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does greatly increase weapon accuracy."
 	icon_state = "reddot"
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
-						/obj/item/weapon/gun/rifle/m41a/original,
+						/obj/item/weapon/gun/rifle/m41aMK1,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/smg/m39,
@@ -477,29 +468,24 @@ attachments.
 					)
 	light_mod = 5
 	slot = "rail"
-	var/flashlight_on = 0
 	can_activate = 1 //This is needed on all activateable attachments.
 	passive = 1
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
-		flashlight_on = !flashlight_on
-		if(user && src.loc.loc == user)
-			user.SetLuminosity(light_mod * flashlight_on)
-		else if(target)
-			target.SetLuminosity(light_mod * flashlight_on)
-		target.gun_features ^= GUN_FLASHLIGHT_ON
-		target.update_attachables()
-		return 0
+		if(target)
+			var/flashlight_on = (target.gun_features & GUN_FLASHLIGHT_ON) ? -1 : 1
+			var/atom/movable/light_source =  user ? user : target
+			light_source.SetLuminosity(light_mod * flashlight_on)
+			target.gun_features ^= GUN_FLASHLIGHT_ON
+			target.update_attachables()
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I,/obj/item/weapon/screwdriver))
-			user << "You modify the rail flashlight back into a normal flashlight."
+			user << "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>"
 			if(src.loc == user)
 				user.drop_from_inventory(src)
 			var/obj/item/device/flashlight/F = new(src.loc)
 			user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-			if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-				F.loc = src.loc
 			cdel(src) //Delete da old flashlight
 		else
 			..()
@@ -742,7 +728,7 @@ attachments.
 	icon_state = "grenade"
 	w_class = 4.0
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
-						/obj/item/weapon/gun/rifle/m41a/original,
+						/obj/item/weapon/gun/rifle/m41aMK1,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
@@ -785,7 +771,7 @@ attachments.
 			return 1
 		else
 
-			if(user) user << "\icon[gun] The [src.name] is empty!"
+			if(user) user << "<span class='warning'>\icon[gun] The [src.name] is empty!</span>"
 			if(gun.active_attachable == src)
 				gun.active_attachable = null
 			return 1
@@ -797,7 +783,7 @@ attachments.
 	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. It cannot be reloaded."
 	w_class = 4.0
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
-						/obj/item/weapon/gun/rifle/m41a/original,
+						/obj/item/weapon/gun/rifle/m41aMK1,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
@@ -833,7 +819,7 @@ attachments.
 	desc = "A weapon-mounted flamethrower attachment.\nIt is designed for short bursts and must be discarded after it is empty."
 	w_class = 4.0
 	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
-						/obj/item/weapon/gun/rifle/m41a/original,
+						/obj/item/weapon/gun/rifle/m41aMK1,
 						/obj/item/weapon/gun/rifle/m41a/elite,
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
@@ -855,22 +841,22 @@ attachments.
 			usr << "It looks spent."
 
 	activate_attachment(atom/target,mob/living/carbon/user)
-		user << "\blue Your next shot will unleash a burst of flame from the [src.name]."
+		user << "<span class='notice'>Your next shot will unleash a burst of flame from the [src.name].</span>"
 		return 1
 
 	fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+		set waitfor = 0
 		if(get_dist(user,target) <= 0)
-			user << "Too close to fire the attached flamethrower!"
+			user << "<span class='warning'>Too close to fire the attached flamethrower!</span>"
 			return 1
 
-		if(current_ammo > 0)
+		if(current_ammo)
 			var/list/turf/turfs = getline2(user,target)
 			var/distance = 0
 			var/obj/structure/window/W
 			var/turf/T
 			playsound(src.loc, 'sound/weapons/flamethrower_2.ogg', 80, 1)
-			for(T in turfs)
-				distance++
+			for(T in turfs, distance++)
 				if(T == user.loc) continue
 				if(current_ammo == 0) break
 				if(distance > 6) break
@@ -889,7 +875,7 @@ attachments.
 				flame_turf(T,user)
 				sleep(1)
 		else
-			if(user) user << "\icon[gun] The [src.name] is empty!"
+			if(user) user << "<span class='warning'>\icon[gun] The [src.name] is empty!</span>"
 			if(gun.active_attachable == src)
 				gun.active_attachable = null
 		return 1
@@ -913,7 +899,7 @@ attachments.
 				if(istype(M:wear_suit, /obj/item/clothing/suit/fire) || istype(M:wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 					continue
 			M.adjustFireLoss(rand(20,50))  //fwoom!
-			M << "\red Augh! You are roasted by the flames!"
+			M << "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>" ]Augh! You are roasted by the flames!"
 
 		return 1
 

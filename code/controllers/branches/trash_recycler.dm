@@ -52,7 +52,7 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 			. = new fetch_type(arglist(directive)) //Give us a an argument list.
 		else
 			. = new fetch_type(directive) //Give us a loc.
-	//	world << "Had to create a new atom. Could not get from shelf."
+		//world << "Had to create a new atom. Could not get from shelf."
 	else
 		var/datum/fetched = popleft(recycling[fetch_type]) //Get us the oldest element to reuse.
 		fetched.ta_directive = null //Reset this, in case we need to dispose of it later.
@@ -65,7 +65,7 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 		else 					fetched.New(directive)
 		recycle_count++
 		. = fetched
-	//	world << "Was able to pull product from shelf."
+		//world << "Was able to pull product from shelf."
 
 /*
 loc is reset through cdel, which is how things get into the recycler in the first place (how they should anyway),
@@ -93,7 +93,7 @@ so there's honestly not too much to do here.
 		var/blacklist[] = excluded_variables + product.Recycle() //Let's combine these so we know what to exclude in the following step.
 		blacklist &= product.vars //We need to get the items they have in common only, as this is what we need to remove.
 		gathered_variables[product.type] = product.vars ^ blacklist //Then we remove the incommon items. Easy.
-	//	world << "Successfully notated [product.type]."
+		//world << "Successfully notated [product.type]."
 
 		for(var/I in gathered_variables[product.type])
 			if(islist(product.vars[I])) gathered_variables[product.type][I] = list() //We reset it to empty if it's a list.

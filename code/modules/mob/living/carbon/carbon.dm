@@ -133,20 +133,13 @@
 
 
 /mob/living/carbon/proc/swap_hand()
-	var/obj/item/item_in_hand = src.get_active_hand()
-	/*
-	Adding some safeties here. We usually wouldn't run into a case of a null variable because if the
-	the item was wielded with the icon in the off hand, it wouldn't be going anywhere. But it's possible
-	the icon wasn't properly dropped. So to account for that, safeties. ~N
-	*/
-	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/weapon/twohanded/offhand/wielded_item = get_inactive_hand()
-		if(istype(wielded_item)) //So it's an offhand.
-			if( ( istype(item_in_hand, /obj/item/weapon/twohanded) && item_in_hand:wielded ) || ( istype(item_in_hand, /obj/item/weapon/gun) && item_in_hand:gun_features & GUN_WIELDED) ) //If it's a gun or whatever.
-				usr << "<span class='warning'>Your other hand is too busy holding the [wielded_item.name]</span>"
-				return
-			else
-				wielded_item.unwield() //Get rid of it.
+	var/obj/item/item_in_hand = get_active_hand()
+	if(item_in_hand && (item_in_hand.flags & WIELDED)) //this segment checks if the item in your hand is twohanded.
+		var/obj/item/wielded_item = get_inactive_hand()
+		if(wielded_item.flags & WIELDED)
+			usr << "<span class='warning'>Your other hand is too busy holding the [wielded_item.name]</span>" //So it's an offhand.
+			return
+		else wielded_item.unwield(src) //Get rid of it.
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use

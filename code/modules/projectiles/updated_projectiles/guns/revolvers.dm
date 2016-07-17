@@ -39,62 +39,63 @@
 		icon_state = current_mag.chamber_closed ? initial(icon_state) : icon_empty
 		update_attachables() //This will cut existing overlays
 
-	proc/rotate_cylinder(mob/user) //Cylinder moves backward.
-		current_mag.chamber_position = ( current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1 )
+/obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
+	current_mag.chamber_position = ( current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1 )
 
-	proc/spin_cylinder(mob/user)
-		if(current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
-			current_mag.chamber_position = rand(1,current_mag.max_rounds)
-			user << "\blue You spin the cylinder."
-			playsound(user, cocked_sound, 70, 1)
-			russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
+/obj/item/weapon/gun/revolver/proc/spin_cylinder(mob/user)
+	if(current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
+		current_mag.chamber_position = rand(1,current_mag.max_rounds)
+		user << "\blue You spin the cylinder."
+		playsound(user, cocked_sound, 70, 1)
+		russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 
-	proc/replace_cylinder(var/number_to_replace)
-		current_mag.chamber_contents = list()
-		current_mag.chamber_contents.len = current_mag.max_rounds
-		var/i
-		for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
-			if(i > number_to_replace) 	current_mag.chamber_contents[i] = "empty"
-			else 						current_mag.chamber_contents[i] = "bullet"
-		current_mag.chamber_position = max(1,number_to_replace)
+/obj/item/weapon/gun/revolver/proc/replace_cylinder(var/number_to_replace)
+	current_mag.chamber_contents = list()
+	current_mag.chamber_contents.len = current_mag.max_rounds
+	var/i
+	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
+		if(i > number_to_replace) 	current_mag.chamber_contents[i] = "empty"
+		else 						current_mag.chamber_contents[i] = "bullet"
+	current_mag.chamber_position = max(1,number_to_replace)
 
-	proc/empty_cylinder()
-		var/i
-		for(i = 1 to current_mag.max_rounds)
-			current_mag.chamber_contents[i] = "empty"
+/obj/item/weapon/gun/revolver/proc/empty_cylinder()
+	var/i
+	for(i = 1 to current_mag.max_rounds)
+		current_mag.chamber_contents[i] = "empty"
 
-	//The cylinder is always emptied out before a reload takes place.
-	proc/add_to_cylinder(mob/user) //Bullets are added forward.
-		//First we're going to try and replace the current bullet.
-		if(!current_mag.current_rounds) current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
-		else//Failing that, we'll try to replace the next bullet in line.
-			if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
-				current_mag.chamber_contents[1] = "bullet"
-				current_mag.chamber_position = 1
-			else
-				current_mag.chamber_contents[current_mag.chamber_position + 1] = "bullet"
-				current_mag.chamber_position++
+//The cylinder is always emptied out before a reload takes place.
+/obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
+	//First we're going to try and replace the current bullet.
+	if(!current_mag.current_rounds) current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
+	else//Failing that, we'll try to replace the next bullet in line.
+		if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
+			current_mag.chamber_contents[1] = "bullet"
+			current_mag.chamber_position = 1
+		else
+			current_mag.chamber_contents[current_mag.chamber_position + 1] = "bullet"
+			current_mag.chamber_position++
 
-		playsound(user, hand_reload_sound, 100, 1)
-		return 1
+	playsound(user, hand_reload_sound, 100, 1)
+	return 1
 
+/obj/item/weapon/gun/revolver
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
 		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 		if(!magazine || !istype(magazine))
-			user << "That's not gonna work!"
+			user << "<span class='warning'>That's not gonna work!</span>"
 			return
 
 		if(magazine.current_rounds <= 0)
-			user << "That [magazine.name] is empty!"
+			user << "<span class='warning'>That [magazine.name] is empty!</span>"
 			return
 
 		if(current_mag.chamber_closed)
-			user << "You can't load anything when the cylinder is closed!"
+			user << "<span class='warning'>You can't load anything when the cylinder is closed!</span>"
 			return
 
 		if(current_mag.current_rounds == current_mag.max_rounds)
-			user << "It's already full!"
+			user << "<span class='warning'>It's already full!</span>"
 			return
 
 		if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
@@ -115,14 +116,14 @@
 						current_mag.match_ammo(magazine,current_mag)
 						replace_cylinder(current_mag.current_rounds)
 						playsound(user, reload_sound, 80, 1) // Reloading via speedloader.
-				else 	user << "That [magazine] doesn't fit!"
-			else 		user << "You can't load a speedloader when there's something in the cylinder!"
+				else 	user << "<span class='warning'>That [magazine] doesn't fit!</span>"
+			else 		user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
 
 	unload(mob/user)
 		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 		if(current_mag.chamber_closed) //If it's actually closed.
-			user << "\blue You clear the cylinder of \the [src]."
+			user << "<span class='notice'>You clear the cylinder of \the [src].</span>"
 			make_casing(type_of_casings,1)
 			empty_cylinder()
 			current_mag.create_handful(current_mag, user)
@@ -141,7 +142,7 @@
 
 	able_to_fire(mob/user)
 		if(!current_mag.chamber_closed)
-			user << "\red Close the cylinder!"
+			user << "<span class='warning'>Close the cylinder!</span>"
 			return
 		return ..()
 
@@ -171,91 +172,91 @@
 	unique_action(mob/user)
 		spin_cylinder(user)
 
-	proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
-		set waitfor = 0
-		playsound(user, spin_sound, 50, 1)
-		if(double)
-			user.visible_message("\The [user] deftly flicks and spins \the [src] and \the [double]!","\blue You flick and spin \the [src] and \the [double]!")
-			animation_wrist_flick(double, 1)
-		else user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
+/obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
+	set waitfor = 0
+	playsound(user, spin_sound, 50, 1)
+	if(double)
+		user.visible_message("\The [user] deftly flicks and spins \the [src] and \the [double]!","\blue You flick and spin \the [src] and \the [double]!")
+		animation_wrist_flick(double, 1)
+	else user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
 
-		animation_wrist_flick(src, direction)
-		sleep(3)
-		if(loc && user) playsound(user, thud_sound, 50, 1)
+	animation_wrist_flick(src, direction)
+	sleep(3)
+	if(loc && user) playsound(user, thud_sound, 50, 1)
 
-	proc/revolver_throw_catch(mob/living/carbon/human/user)
-		set waitfor = 0
-		user.visible_message("\The [user] deftly flicks \the [src] and tosses it into the air!","\blue You flick and toss \the [src] into the air!")
-		var/layer = MOB_LAYER+0.1
-		var/image/trick = image(icon,user,icon_state,layer)
-		switch(pick(1,2))
-			if(1) animation_toss_snatch(trick)
-			if(2) animation_toss_flick(trick, pick(1,-1))
+/obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
+	set waitfor = 0
+	user.visible_message("\The [user] deftly flicks \the [src] and tosses it into the air!","\blue You flick and toss \the [src] into the air!")
+	var/layer = MOB_LAYER+0.1
+	var/image/trick = image(icon,user,icon_state,layer)
+	switch(pick(1,2))
+		if(1) animation_toss_snatch(trick)
+		if(2) animation_toss_flick(trick, pick(1,-1))
 
-		invisibility = 100
-		for(var/mob/M in viewers(user))
-			M << trick
-		sleep(5)
-		trick.loc = null
-		if(loc && user)
-			invisibility = 0
-			playsound(user, thud_sound, 50, 1)
-			if(user.get_inactive_hand())
-				user.visible_message("\The [user] catches \the [src] with the same hand!","\blue You catch \the [src] as it spins in to your hand!")
-			else
-				user.visible_message("\The [user] catches \the [src] with his other hand!","\blue You snatch \the [src] with your other hand! Awesome!")
-				user.remove_from_mob(src)
-				user.put_in_inactive_hand(src)
-				user.swap_hand()
-				user.update_inv_l_hand(0)
-				user.update_inv_r_hand()
-
-	proc/revolver_trick(mob/living/carbon/human/user)
-		if(world.time < (recent_trick + trick_delay) ) return //Don't spam it.
-		if(!istype(user)) return //Not human.
-		var/chance = -5
-		chance = user.health < 6 ? 0 : user.health - 5
-
-		//Pain is largely ignored, since it deals its own effects on the mob. We're just concerned with health.
-		//And this proc will only deal with humans for now.
-
-		var/obj/item/weapon/gun/revolver/double = user.get_inactive_hand()
-		if(prob(chance))
-			switch(rand(1,8))
-				if(1)
-					revolver_basic_spin(user, -1)
-				if(2)
-					revolver_basic_spin(user, 1)
-				if(3)
-					revolver_throw_catch(user)
-				if(4)
-					revolver_basic_spin(user, 1)
-				if(5)
-					//???????????
-				if(6)
-					if(istype(double))
-						revolver_basic_spin(user, 1, double)
-					else
-						revolver_basic_spin(user, -1)
-				if(7)
-					if(istype(double))
-						revolver_basic_spin(user, -1, double)
-					else
-						revolver_basic_spin(user, 1)
-				if(8)
-					if(istype(double))
-						spawn(0)
-							double.revolver_throw_catch(user)
-						revolver_throw_catch(user)
-					else
-						revolver_throw_catch(user)
+	invisibility = 100
+	for(var/mob/M in viewers(user))
+		M << trick
+	sleep(5)
+	trick.loc = null
+	if(loc && user)
+		invisibility = 0
+		playsound(user, thud_sound, 50, 1)
+		if(user.get_inactive_hand())
+			user.visible_message("\The [user] catches \the [src] with the same hand!","\blue You catch \the [src] as it spins in to your hand!")
 		else
-			if(prob(10))
-				user << "You fumble with \the [src] like an idiot... Uncool."
-			else
-				user.visible_message("<b> \The [user] fumbles with \the [src] like a huge idiot!</b>")
+			user.visible_message("\The [user] catches \the [src] with his other hand!","\blue You snatch \the [src] with your other hand! Awesome!")
+			user.remove_from_mob(src)
+			user.put_in_inactive_hand(src)
+			user.swap_hand()
+			user.update_inv_l_hand(0)
+			user.update_inv_r_hand()
 
-		recent_trick = world.time //Turn on the delay for the next trick.
+/obj/item/weapon/gun/revolver/proc/revolver_trick(mob/living/carbon/human/user)
+	if(world.time < (recent_trick + trick_delay) ) return //Don't spam it.
+	if(!istype(user)) return //Not human.
+	var/chance = -5
+	chance = user.health < 6 ? 0 : user.health - 5
+
+	//Pain is largely ignored, since it deals its own effects on the mob. We're just concerned with health.
+	//And this proc will only deal with humans for now.
+
+	var/obj/item/weapon/gun/revolver/double = user.get_inactive_hand()
+	if(prob(chance))
+		switch(rand(1,8))
+			if(1)
+				revolver_basic_spin(user, -1)
+			if(2)
+				revolver_basic_spin(user, 1)
+			if(3)
+				revolver_throw_catch(user)
+			if(4)
+				revolver_basic_spin(user, 1)
+			if(5)
+				//???????????
+			if(6)
+				if(istype(double))
+					revolver_basic_spin(user, 1, double)
+				else
+					revolver_basic_spin(user, -1)
+			if(7)
+				if(istype(double))
+					revolver_basic_spin(user, -1, double)
+				else
+					revolver_basic_spin(user, 1)
+			if(8)
+				if(istype(double))
+					spawn(0)
+						double.revolver_throw_catch(user)
+					revolver_throw_catch(user)
+				else
+					revolver_throw_catch(user)
+	else
+		if(prob(10))
+			user << "You fumble with \the [src] like an idiot... Uncool."
+		else
+			user.visible_message("<b> \The [user] fumbles with \the [src] like a huge idiot!</b>")
+
+	recent_trick = world.time //Turn on the delay for the next trick.
 
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER
@@ -268,7 +269,7 @@
 	icon_state = "38"
 	icon_empty = "38-0"
 	max_rounds = 7
-	gun_type = "/obj/item/weapon/gun/revolver"
+	gun_type = /obj/item/weapon/gun/revolver
 	handful_type = "Bullets (.44)"
 
 /obj/item/ammo_magazine/revolver/marksman
@@ -287,8 +288,8 @@
 	icon_state = "44"
 	icon_empty = "44_dry"
 	item_state = "44"
-	mag_type = "/obj/item/ammo_magazine/internal/revolver/m44"
 	fire_sound = 'sound/weapons/44mag.ogg'
+	mag_type = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 
 	New()
@@ -304,7 +305,7 @@
 	icon_state = "T38"
 	icon_empty = "T38-0"
 	max_rounds = 8
-	gun_type = "/obj/item/weapon/gun/revolver/upp"
+	gun_type = /obj/item/weapon/gun/revolver/upp
 	handful_type = "Bullets (7.62mm)"
 
 /obj/item/ammo_magazine/internal/revolver/upp
@@ -319,8 +320,8 @@
 	icon_empty = "revolver_dry"
 	item_state = "revolver"
 	origin_tech = "combat=3;materials=1;syndicate=3"
-	mag_type = "/obj/item/ammo_magazine/internal/revolver/upp"
 	fire_sound = 'sound/weapons/pistol_medium.ogg'
+	mag_type = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 10
 	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
@@ -338,7 +339,7 @@
 	icon_state = "38"
 	icon_empty = "38-0"
 	max_rounds = 7
-	gun_type = "/obj/item/weapon/gun/revolver/small"
+	gun_type = /obj/item/weapon/gun/revolver/small
 	handful_type = "Bullets (.357)"
 
 /obj/item/ammo_magazine/internal/revolver/small
@@ -352,8 +353,8 @@
 	icon_state = "357"
 	icon_empty = "357_dry"
 	item_state = "revolver"
-	mag_type = "/obj/item/ammo_magazine/internal/revolver/small"
 	fire_sound = 'sound/weapons/pistol_medium.ogg'
+	mag_type = /obj/item/ammo_magazine/internal/revolver/small
 	fire_delay = 3
 	recoil = 0
 	force = 6
@@ -376,7 +377,7 @@
 	icon_state = "T38"
 	icon_empty = "T38-0"
 	max_rounds = 8
-	gun_type = "/obj/item/weapon/gun/revolver/mateba"
+	gun_type = /obj/item/weapon/gun/revolver/mateba
 	handful_type = "Bullets (.454)"
 
 /obj/item/ammo_magazine/internal/revolver/mateba
@@ -392,8 +393,8 @@
 	icon_empty = "mateba_dry"
 	item_state = "mateba"
 	origin_tech = "combat=4;materials=3"
-	mag_type = "/obj/item/ammo_magazine/internal/revolver/mateba"
 	fire_sound = 'sound/weapons/mateba.ogg'
+	mag_type = /obj/item/ammo_magazine/internal/revolver/mateba
 	burst_amount = 2
 	burst_delay = 4
 	force = 15
@@ -413,7 +414,7 @@
 	icon_state = "38"
 	icon_empty = "38-0"
 	max_rounds = 6
-	gun_type = "/obj/item/weapon/gun/revolver/cmb"
+	gun_type = /obj/item/weapon/gun/revolver/cmb
 	handful_type = "Bullets (.357)"
 
 /obj/item/ammo_magazine/internal/revolver/cmb
@@ -428,8 +429,8 @@
 	icon_state = "CMB"
 	icon_empty = "CMB_dry"
 	item_state = "cmbpistol"
-	mag_type = "/obj/item/ammo_magazine/internal/revolver/cmb"
 	fire_sound = 'sound/weapons/44mag2.ogg'
+	mag_type = /obj/item/ammo_magazine/internal/revolver/cmb
 	fire_delay = 12
 	burst_amount = 3
 	burst_delay = 6

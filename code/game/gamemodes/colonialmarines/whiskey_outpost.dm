@@ -987,10 +987,10 @@
 									/obj/item/weapon/grenade/incendiary,
 									/obj/item/weapon/grenade/incendiary,
 									/obj/item/weapon/grenade/incendiary,
-									/obj/item/ammo_magazine/rocket_tube,
-									/obj/item/ammo_magazine/rocket_tube,
-									/obj/item/ammo_magazine/rocket_tube/ap,
-									/obj/item/ammo_magazine/rocket_tube/wp,
+									/obj/item/ammo_magazine/rocket,
+									/obj/item/ammo_magazine/rocket,
+									/obj/item/ammo_magazine/rocket/ap,
+									/obj/item/ammo_magazine/rocket/wp,
 									/obj/item/weapon/plastique)
 
 
@@ -1005,7 +1005,7 @@
 									/obj/item/weapon/gun/rifle/mar40,
 									/obj/item/weapon/gun/rifle/mar40,
 									/obj/item/weapon/gun/rifle/mar40/carbine,
-									/obj/item/weapon/gun/rifle/mar40/svd,
+									/obj/item/weapon/gun/rifle/sniper/svd,
 									/obj/item/weapon/gun/rifle/lmg,
 									/obj/item/weapon/gun/shotgun/combat,
 									/obj/item/weapon/gun/shotgun/merc,
@@ -1058,7 +1058,7 @@
 									/obj/item/ammo_magazine/rifle/mar40,
 									/obj/item/ammo_magazine/rifle/mar40,
 									/obj/item/ammo_magazine/rifle/mar40/extended,
-									/obj/item/ammo_magazine/rifle/mar40/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
 									/obj/item/ammo_magazine/rifle/lmg,
 									/obj/item/ammo_magazine/shotgun,
 									/obj/item/ammo_magazine/shotgun,
@@ -1098,7 +1098,6 @@
 									/obj/item/ammo_magazine/smg/mp7,
 									/obj/item/ammo_magazine/smg/skorpion,
 									/obj/item/ammo_magazine/smg/ppsh,
-									/obj/item/ammo_magazine/smg/ppsh/extended,
 									/obj/item/ammo_magazine/smg/uzi,
 									/obj/item/ammo_magazine/smg/p90)
 

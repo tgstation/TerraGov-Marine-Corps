@@ -31,7 +31,7 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 35
-	gun_type = "/obj/item/weapon/gun/smg/m39"
+	gun_type = /obj/item/weapon/gun/smg/m39
 	handful_type = "Bullets (9mm Caseless)"
 
 /obj/item/ammo_magazine/smg/m39/extended
@@ -48,7 +48,7 @@
 	icon_state = "smg"
 	icon_empty = "smg_empty"
 	item_state = "m39"
-	mag_type = "/obj/item/ammo_magazine/smg/m39"
+	mag_type = /obj/item/ammo_magazine/smg/m39
 	eject_casings = 0
 	fire_delay = 3
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
@@ -71,7 +71,7 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	default_ammo = "AP SMG bullet"
-	gun_type = "/obj/item/weapon/gun/smg/m39/elite"
+	gun_type = /obj/item/weapon/gun/smg/m39/elite
 	handful_type = "AP Bullets (9mm Caseless)"
 	max_rounds = 45
 
@@ -82,7 +82,7 @@
 	icon_empty = "smg_pmc_empty"
 	item_state = "m39_pmc"
 	origin_tech = "combat=6;materials=5"
-	mag_type = "/obj/item/ammo_magazine/smg/elite"
+	mag_type = /obj/item/ammo_magazine/smg/elite
 	accuracy = 15
 	dam_bonus = 15
 	fire_delay = 4
@@ -98,7 +98,7 @@
 	caliber = "4.6mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
-	gun_type = "/obj/item/weapon/gun/smg/mp7"
+	gun_type = /obj/item/weapon/gun/smg/mp7
 	handful_type = "Bullets (4.6mm)"
 	max_rounds = 40
 
@@ -110,7 +110,7 @@
 	item_state = "mp7"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/smg_light.ogg'
-	mag_type = "/obj/item/ammo_magazine/smg/mp7"
+	mag_type = /obj/item/ammo_magazine/smg/mp7
 	accuracy = 5
 	dam_bonus = 15
 	burst_amount = 4
@@ -128,7 +128,7 @@
 	caliber = ".32"
 	icon_state = "12mm"
 	icon_empty = "12mm0"
-	gun_type = "/obj/item/weapon/gun/smg/skorpion"
+	gun_type = /obj/item/weapon/gun/smg/skorpion
 	handful_type = "Bullets (.32)"
 	max_rounds = 20
 
@@ -140,7 +140,7 @@
 	item_state = "skorpion"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/skorpion.ogg'
-	mag_type = "/obj/item/ammo_magazine/smg/skorpion"
+	mag_type = /obj/item/ammo_magazine/smg/skorpion
 	dam_bonus = 10
 	accuracy = 8
 	fire_delay = 3
@@ -159,7 +159,7 @@
 	icon_state = "darts-0" //Dumb
 	icon_empty = "darts-0"
 	max_rounds = 71
-	gun_type = "/obj/item/weapon/gun/smg/ppsh"
+	gun_type = /obj/item/weapon/gun/smg/ppsh
 	handful_type = "Bullets (7.62mm)"
 
 /obj/item/weapon/gun/smg/ppsh
@@ -170,7 +170,7 @@
 	item_state = "ppsh"
 	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
-	mag_type = "/obj/item/ammo_magazine/smg/ppsh"
+	mag_type = /obj/item/ammo_magazine/smg/ppsh
 	accuracy = -8
 	fire_delay = 6
 	burst_delay = 1
@@ -189,7 +189,7 @@
 	icon_state = "9x"
 	icon_empty = "9x0"
 	max_rounds = 50
-	gun_type = "/obj/item/weapon/gun/smg/uzi"
+	gun_type = /obj/item/weapon/gun/smg/uzi
 	handful_type = "Bullets (9mm)"
 
 /obj/item/weapon/gun/smg/uzi
@@ -200,7 +200,7 @@
 	item_state = "mini-uzi"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/uzi.ogg'
-	mag_type = "/obj/item/ammo_magazine/smg/uzi"
+	mag_type = /obj/item/ammo_magazine/smg/uzi
 	dam_bonus = -5
 	burst_delay = 1
 	burst_amount = 4
@@ -220,7 +220,7 @@
 	icon_state = "763"
 	icon_empty = "763-0"
 	max_rounds = 50
-	gun_type = "/obj/item/weapon/gun/smg/p90"
+	gun_type = /obj/item/weapon/gun/smg/p90
 	handful_type = "Bullets (5.7mm)"
 
 /obj/item/weapon/gun/smg/p90
@@ -231,7 +231,7 @@
 	item_state = "p90"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/p90.ogg'
-	mag_type = "/obj/item/ammo_magazine/smg/p90"
+	mag_type = /obj/item/ammo_magazine/smg/p90
 	dam_bonus = 8
 	accuracy = 27
 	fire_delay = 5

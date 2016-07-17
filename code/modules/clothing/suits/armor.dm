@@ -10,16 +10,6 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 
-
-/obj/item/clothing/suit/armor/vest
-	name = "armor"
-	desc = "An armored vest that protects against some damage."
-	icon_state = "armor"
-	item_state = "armor"
-	blood_overlay_type = "armor"
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
-	armor = list(melee = 50, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
-
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
 	desc = "An armored vest that protects against some damage. This one has a Weyland-Yutani corporate badge."
@@ -32,28 +22,6 @@
 	icon_state = "warden_jacket"
 	item_state = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
-
-/obj/item/clothing/suit/armor/riot
-	name = "Riot Suit"
-	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
-	icon_state = "riot"
-	item_state = "swat_suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
-	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
-	siemens_coefficient = 0.5
-
-
-/obj/item/clothing/suit/armor/bulletproof
-	name = "Bulletproof Vest"
-	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
-	icon_state = "bulletproof"
-	item_state = "armor"
-	blood_overlay_type = "armor"
-	armor = list(melee = 30, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
-	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/laserproof
 	name = "Ablative Armor Vest"

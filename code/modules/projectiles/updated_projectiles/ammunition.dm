@@ -7,9 +7,10 @@ They're all essentially identical when it comes to getting the job done.
 	name = "generic ammo"
 	desc = "A box of ammo"
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = ""
-	var/icon_empty = ""
-	var/icon_spent = "casing" //The sort of casing it leaves behind.
+	icon_state = null
+	var/icon_empty = null
+	var/icon_type = "bullet" //Used for updating the icon when it creates casings.
+	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = ""
@@ -19,15 +20,12 @@ They're all essentially identical when it comes to getting the job done.
 	w_class = 1.0
 	throw_speed = 2
 	throw_range = 6
-	var/default_ammo = "/datum/ammo"
-	var/caliber = ".44" // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
-	var/max_rounds = 7 //How many rounds can it hold?
+	var/default_ammo = "default bullet"
+	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
-	var/gun_type = "/obj/item/weapon/gun" //What type of gun does it fit in? Must be currently a gun. (see : gun reload proc)
-	var/icon_type = "bullet" //Used for updating the icon when it creates casings.
-	var/null_ammo = 0 //Set this to 0 to have a non-ammo-datum-using magazine without generating errors.
+	var/max_rounds = 7 //How many rounds can it hold?
+	var/gun_type = null //Path of the gun that it fits. Ammo will fit any of the parent guns as well.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
-	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 
 	//For the handful method of reloading. Not used for regular mags.
@@ -84,66 +82,62 @@ They're all essentially identical when it comes to getting the job done.
 					else user << "Those aren't the same rounds. Better not mix them up."
 				else user << "Try holding \the [src] before you attempt to restock it."
 
-	//Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
-	proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,mob/user,transfer_amount = 1)
-		if( target.current_rounds == target.max_rounds ) //Does the target mag actually need reloading?
-			if(user) user << "\The [target] is already full."
-			return
+//Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
+/obj/item/ammo_magazine/proc/transfer_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target,mob/user,transfer_amount = 1)
+	if( target.current_rounds == target.max_rounds ) //Does the target mag actually need reloading?
+		user << "\The [target] is already full."
+		return
 
-		if(source.caliber != target.caliber) //Are they the same caliber?
-			if(user) user << "The rounds don't match up. Better not mix them up."
-			return
+	if(source.caliber != target.caliber) //Are they the same caliber?
+		user << "The rounds don't match up. Better not mix them up."
+		return
 
-		var/S = min(transfer_amount, target.max_rounds - target.current_rounds)
-		source.current_rounds -= S
-		target.current_rounds += S
-		//if(user) user << "\blue You transfer [S] round\s from \the [source] to \the [target]."
-		if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
-			if(user)
-				user.remove_from_mob(source)
-				user.update_inv_l_hand(0) //In case we will get in hand icons.
-				user.update_inv_r_hand()
-			cdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
-		else source.update_icon()
-		target.update_icon()
-		return S // We return the number transferred if it was successful.
+	var/S = min(transfer_amount, target.max_rounds - target.current_rounds)
+	source.current_rounds -= S
+	target.current_rounds += S
+	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
+		if(user)
+			user.remove_from_mob(source)
+			user.update_inv_l_hand(0) //In case we will get in hand icons.
+			user.update_inv_r_hand()
+		cdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
+	else source.update_icon()
+	target.update_icon()
+	return S // We return the number transferred if it was successful.
 
-	//This will attempt to place the ammo in the user's hand if possible.
-	proc/create_handful(var/obj/item/ammo_magazine/source, mob/user, transfer_amount)
-		var/S
-		if (source.current_rounds > 0)
-			var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
-			new_handful.name = "Handful of [source.handful_type]"
-			new_handful.desc = "A handful of rounds to reload on the go."
-			new_handful.icon_state = source.icon_type
-			new_handful.caliber = source.caliber
-			new_handful.max_rounds = source.handful_max_rounds
-			S = transfer_amount ? min(source.current_rounds, transfer_amount) : min(source.current_rounds, new_handful.max_rounds)
-			new_handful.current_rounds = S
-			new_handful.default_ammo = source.default_ammo
-			new_handful.icon_type = source.icon_type
-			new_handful.gun_type = source.gun_type
-			new_handful.handful_type = source.handful_type
-			new_handful.update_icon() // Let's get it updated.
+//This will attempt to place the ammo in the user's hand if possible.
+/obj/item/ammo_magazine/proc/create_handful(var/obj/item/ammo_magazine/source, mob/user, transfer_amount)
+	var/S
+	if (source.current_rounds > 0)
+		var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
+		new_handful.name = "Handful of [source.handful_type]"
+		new_handful.desc = "A handful of rounds to reload on the go."
+		new_handful.icon_state = source.icon_type
+		new_handful.caliber = source.caliber
+		new_handful.max_rounds = source.handful_max_rounds
+		S = transfer_amount ? min(source.current_rounds, transfer_amount) : min(source.current_rounds, new_handful.max_rounds)
+		new_handful.current_rounds = S
+		new_handful.default_ammo = source.default_ammo
+		new_handful.icon_type = source.icon_type
+		new_handful.gun_type = source.gun_type
+		new_handful.handful_type = source.handful_type
+		new_handful.update_icon() // Let's get it updated.
 
-			current_rounds -= S
+		current_rounds -= S
 
-			if(user)
-				//fingerprints are added here.
-				if(!user.put_in_active_hand(new_handful) && !user.put_in_inactive_hand(new_handful))
-					new_handful.loc = get_turf(user)
-					user << "\blue You remove <b>[S]</b> round\s from \the [source]."
-				else user << "\blue You grab <b>[S]</b> round\s from \the [source]."
+		if(user)
+			user.put_in_hands(new_handful)
+			user << "<span class='notice'>You grab <b>[S]</b> round\s from \the [source].</span>"
 
-			else new_handful.loc = get_turf(src)
-			source.update_icon() //Update the other one.
-		return S //Give the number created.
+		else new_handful.loc = get_turf(src)
+		source.update_icon() //Update the other one.
+	return S //Give the number created.
 
-	proc/match_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target)
-		target.caliber = source.caliber
-		target.default_ammo = source.default_ammo
-		target.gun_type = source.gun_type
-		target.handful_type = source.handful_type
+/obj/item/ammo_magazine/proc/match_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target)
+	target.caliber = source.caliber
+	target.default_ammo = source.default_ammo
+	target.gun_type = source.gun_type
+	target.handful_type = source.handful_type
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
 /obj/item/ammo_magazine/internal

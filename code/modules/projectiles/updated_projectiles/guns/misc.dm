@@ -39,7 +39,7 @@
 				if(istype(card) && card.assignment == "Military Police") //We can check for access, but only MPs have access to it.
 					return 1
 				else
-					user << "\red \The [src] is ID locked!"
+					user << "<span class='warning'>\The [src] is ID locked!</span>"
 		return
 
 	load_into_chamber()
@@ -81,7 +81,7 @@
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	matter = list("metal" = 100000)
 	max_rounds = 300
-	gun_type = "/obj/item/weapon/gun/pistol/chimp"
+	gun_type = /obj/item/weapon/gun/pistol/chimp
 	handful_type = "Bullets (.70M)"
 
 /obj/item/weapon/gun/pistol/chimp
@@ -91,7 +91,7 @@
 	item_state = "chimp70"
 	icon_empty = "chimp70_empty"
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
-	mag_type = "/obj/item/ammo_magazine/pistol/chimp"
+	mag_type = /obj/item/ammo_magazine/pistol/chimp
 	fire_sound = 'sound/weapons/chimp70.ogg'
 	eject_casings = 0
 	fire_delay = 3
@@ -122,7 +122,7 @@
 	examine()
 		..()
 		if(num_flares)
-			usr << "It has a flare loaded."
+			usr << "<span class='warning'>It has a flare loaded!</span>"
 
 	update_icon()
 		if(!num_flares && icon_empty)
@@ -158,14 +158,14 @@
 				return
 
 			if(flare.on)
-				user << "\The [flare] is already active. Can't load it now."
+				user << "<span class='warning'>\The [flare] is already active. Can't load it now!</span>"
 				return
 
 			num_flares++
-			user.drop_from_inventory(flare)
+			user.remove_from_mob(flare)
 			sleep(-1)
 			del(flare)
-			user << "\blue You insert the flare."
+			user << "<span class='notice'>You insert the flare.</span>"
 			return
 
 		return ..()
@@ -179,10 +179,10 @@
 			if(user) user.put_in_hands(new_flare)
 			else new_flare.loc = get_turf(src)
 			num_flares--
-			if(user) user << "\blue You unload a flare from \the [src]."
+			if(user) user << "<span class='notice'>You unload a flare from \the [src].</span>"
 			update_icon()
 		else
-			if(user) user << "It's empty."
+			if(user) user << "<span class='warning'>It's empty!</span>"
 		return
 
 	make_casing()
@@ -202,7 +202,7 @@
 	default_ammo = "minigun bullet"
 	max_rounds = 300
 	reload_delay = 24 //Hard to reload.
-	gun_type = "/obj/item/weapon/gun/minigun"
+	gun_type = /obj/item/weapon/gun/minigun
 	handful_type = "Bullets (.37.62×51mm)"
 
 /obj/item/weapon/gun/minigun
@@ -213,9 +213,9 @@
 	item_state = "painless"
 	icon_wielded = "painless-w"
 	origin_tech = "combat=7;materials=5"
-	mag_type = "/obj/item/ammo_magazine/minigun"
 	fire_sound = 'sound/weapons/minigun.ogg'
 	cocked_sound = 'sound/weapons/gun_cocked.ogg'
+	mag_type = /obj/item/ammo_magazine/minigun
 	eject_casings = 1
 	w_class = 5
 	force = 20
@@ -224,7 +224,7 @@
 	fire_delay = 5
 	recoil = 2 //Good amount of recoil.
 	accuracy = -20 //It's not very accurate.
-	gun_features = GUN_TWOHANDED
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
 
 	New()
 		..()

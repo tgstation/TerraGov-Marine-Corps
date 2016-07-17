@@ -1,7 +1,5 @@
 ////SS13 DONATOR CUSTOM ITEM STORAGE ZONE OF MAGICAL HAPPINESS APOPHIS - LAST UPDATE - 14JUN2016
 
-
-
 //  EXO-SUITS/ARMORS COSMETICS  ////////////////////////////////////////////////
 
 //SUIT TEMPLATE (for armor/exosuit)  ONLY TAKE NAME, DESC, ICON_STATE, AND ITEM_STATE.  Make a copy of those, and put the ckey of the person at the end after fluff
@@ -14,12 +12,10 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_override = 'icons/mob/suit_0.dmi'  //Don't fuck with this in the future please.
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = 220
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 	//AND THIS LINE
 //END SUIT TEMPLATE
-
-
 
 /obj/item/clothing/suit/storage/marine/fluff/santa
 	name = "Santa's suit"
@@ -390,10 +386,9 @@
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_override = 'icons/mob/head_0.dmi'
-	min_cold_protection_temperature = 220
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	//AND THIS LINE
 //END HEAD TEMPLATE
-
 
 /obj/item/clothing/head/helmet/marine/fluff/santahat
 	name = "Santa's hat"
@@ -735,6 +730,19 @@
 	//AND THIS LINE
 //END UNIFORM TEMPLATE
 
+/obj/item/clothing/under/marine/fluff/marinemedic
+	name = "Marine Medic jumpsuit"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has medical markings. "
+	icon_state = "marine_medic"
+	item_state = "marine_medic_s"
+	item_color = "marine_medic"
+
+/obj/item/clothing/under/marine/fluff/marineengineer
+	name = "Marine Technician jumpsuit"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has engineer markings. "
+	icon_state = "marine_engineer"
+	item_state = "marine_engineer_s"
+	item_color = "marine_engineer"
 
 /obj/item/clothing/under/marine/fluff/turtleneck
 	name = "Black Ops Turtleneck"
@@ -1188,4 +1196,3 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 		..()
 	else
 		user << "<span class='notice'>\The [src] straight out REFUSES to be lit by anything other than a purple zippo.</span>"
-

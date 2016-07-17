@@ -53,21 +53,22 @@
 #define BODYTEMP_HEAT_DAMAGE_LIMIT 360.15 // The limit the human body can take before it starts taking damage from heat.
 #define BODYTEMP_COLD_DAMAGE_LIMIT 260.15 // The limit the human body can take before it starts taking damage from coldness.
 
-#define SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE 2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
-#define SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
-#define SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE 5000	//These need better heat protect, but not as good heat protect as firesuits.
-#define FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE 30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
-#define FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 30000 //for fire helmet quality items (red and white hardhats)
-#define HELMET_MIN_COLD_PROTECTION_TEMPERATURE 225	//For normal helmets
-#define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 600	//For normal helmets
-#define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 250	//For armor
-#define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 600	//For armor
+#define SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
+#define SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
+#define SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		5000	//These need better heat protect, but not as good heat protect as firesuits.
+#define FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
+#define FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	30000 //for fire helmet quality items (red and white hardhats)
+#define HELMET_MIN_COLD_PROTECTION_TEMPERATURE 			250	//For normal helmets
+#define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
+#define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			250	//For armor
+#define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
 
-#define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 2.0	//For some gloves (black and)
-#define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 1500		//For some gloves
-#define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 2.0	//For gloves
-#define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 1500		//For gloves
+#define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
+#define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves
+#define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For gloves
+#define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For gloves
 
+#define ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE 		220 //For the ice planet map protection from the elements.
 
 #define PRESSURE_DAMAGE_COEFFICIENT 4 //The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
 #define MAX_HIGH_PRESSURE_DAMAGE 4	//This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(
@@ -169,6 +170,19 @@ var/MAX_EXPLOSION_RANGE = 14
 
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 
+//DAMAGE CALCULATION DEFINES
+/*
+If you are wondering what point these values have,
+they should also transfer over to various forms of combat.
+Assuming those forms of combat will exist in the future.
+*/
+#define CRITICAL_CHANCE_LOW		   5   //This is the lower boundry of a critical.
+#define CRITICAL_CHANCE_HIGH	   10  //This is the upper boundry of a critical.
+#define BASE_ARMOR_RESIST_LOW 	   1.3 //This is the initial multiple * after soaking damage.
+#define BASE_ARMOR_RESIST_HIGH     1.7 //This is the derived multiple * after soaking damgage again.
+
+
+
 
 //ITEM INVENTORY SLOT BITMASKS
 #define SLOT_OCLOTHING 1
@@ -187,42 +201,59 @@ var/MAX_EXPLOSION_RANGE = 14
 #define SLOT_TWOEARS 8192
 #define SLOT_LEGS = 16384
 
+
 //FLAGS BITMASK
-#define STOPSPRESSUREDMAGE 1	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
-                                //To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
-#define TABLEPASS 2			// can pass by a table or rack
+/*
+Some bitmasks share flags, but that's okay. They can't realistically have the same flags set for the same thing in some cases,
+so the values are successfully doubled-up. Ie, a chemistry box won't need to cover facial hair. If an item shares a
+bitflags set to the same number, then it could be a problem. Be careful when doubling up with that in mind. The initial six
+flags at the top are the "do not touch" flags, as they can be transferred from any item. The rest are situational.
+	65536 is as high as you can go with these. You don't want to double down on the same class of item.
+~N
+*/
 
-#define MASKINTERNALS	8	// mask allows internals
-//#define SUITSPACE		8	// suit protects against space
+//DO NOT TOUCH==========================================================================================
+#define TABLEPASS 				1		// can pass by a table or rack
+#define FPRINT					2		// takes a fingerprint
+#define CONDUCT					4		// conducts electricity (metal etc.)
+#define ON_BORDER				8		// item has priority to check when entering or leaving
+#define NOBLOODY				16		// used to items if they don't want to get a blood overlay
+#define PHORONGUARD 			32		// Does not get contaminated by phoron.
+//DO NOT TOUCH==========================================================================================
 
-#define USEDELAY 	16		// 1 second extra delay on use (Can be used once every 2s)
-#define NODELAY 	32768	// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
-#define NOSHIELD	32		// weapon not affected by shield
-#define CONDUCT		64		// conducts electricity (metal etc.)
-#define FPRINT		256		// takes a fingerprint
-#define ON_BORDER	512		// item has priority to check when entering or leaving
-#define NOBLUDGEON  4  // when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOBLOODY	2048	// used to items if they don't want to get a blood overlay
+//WEAPON ONLY===========================================================================================
+#define TWOHANDED				64
+#define WIELDED					128
+//WEAPON ONLY===========================================================================================
 
-#define GLASSESCOVERSEYES	1024
-#define MASKCOVERSEYES		1024		// get rid of some of the other retardation in these flags
-#define HEADCOVERSEYES		1024		// feel free to realloc these numbers for other purposes
-#define MASKCOVERSMOUTH		2048		// on other items, these are just for mask/head
-#define HEADCOVERSMOUTH		2048
+//MELEE ONLY============================================================================================
+#define NODELAY 				256		// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
+#define USEDELAY 				512		// 1 second extra delay on use (Can be used once every 2s)
+#define NOBLUDGEON  			1024	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOSHIELD				2048	// weapon not affected by shield
+//MELEE ONLY============================================================================================
 
-#define THICKMATERIAL 1024		//From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body. (NOTE: flag shared with NOSLIP for shoes)
-#define NOSLIP		1024 		//prevents from slipping on wet floors, in space etc
+//HOLDERS ONLY==========================================================================================
+#define OPENCONTAINER			4096	//is an open container for chemistry purposes
+#define	NOREACT					8192 	//Reagents dont' react inside this container.
+//HOLDERS ONLY==========================================================================================
 
-#define OPENCONTAINER	4096	// is an open container for chemistry purposes
-
-#define BLOCK_GAS_SMOKE_EFFECT 8192	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
-#define ONESIZEFITSALL 8192
-#define PHORONGUARD 16384			//Does not get contaminated by phoron.
-
-#define	NOREACT		16384 			//Reagents dont' react inside this container.
-
-#define BLOCKHEADHAIR 4             // temporarily removes the user's hair overlay. Leaves facial hair.
-#define BLOCKHAIR	32768			// temporarily removes the user's hair, facial and otherwise.
+//CLOTHING ONLY=========================================================================================
+										//To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
+#define STOPSPRESSUREDMAGE 		256		//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
+#define MASKINTERNALS			512		//mask allows internals
+#define THICKMATERIAL 			1024		//From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body. (NOTE: flag shared with NOSLIP for shoes)
+#define NOSLIP					1024 	//prevents from slipping on wet floors, in space etc
+#define GLASSESCOVERSEYES		1024
+#define MASKCOVERSEYES			1024	// get rid of some of the other retardation in these flags
+#define HEADCOVERSEYES			1024	// feel free to realloc these numbers for other purposes
+#define MASKCOVERSMOUTH			2048	// on other items, these are just for mask/head
+#define HEADCOVERSMOUTH			2048
+#define BLOCKHEADHAIR 			4096    // temporarily removes the user's hair overlay. Leaves facial hair.
+#define BLOCKHAIR				8192	// temporarily removes the user's hair, facial and otherwise.
+#define BLOCK_GAS_SMOKE_EFFECT 	16384	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
+#define ONESIZEFITSALL 			16384
+//CLOTHING ONLY=========================================================================================
 
 //flags for pass_flags
 #define PASSTABLE	1
@@ -232,7 +263,6 @@ var/MAX_EXPLOSION_RANGE = 14
 
 //turf-only flags
 #define NOJAUNT		1
-
 
 //Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 #define HIDEGLOVES		1	//APPLIES ONLY TO THE EXTERIOR SUIT!!
@@ -928,20 +958,18 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define AMMO_NO_SCATTER 	512
 #define AMMO_IGNORE_ARMOR	1024
 
-//Gun defines for the gun functions.
+//Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1
 #define GUN_TRIGGER_SAFETY		2
 #define GUN_UNUSUAL_DESIGN		4
-#define GUN_TWOHANDED			8
-#define GUN_WIELDED				16
-#define GUN_SILENCED			32
-#define GUN_AUTOMATIC			64
-#define GUN_ALT_FIRE			128
-#define GUN_AUTO_EJECTOR		256
-#define GUN_AMMO_COUNTER		512
-#define GUN_BURST_ON			1024
-#define GUN_BURST_FIRING		2048
-#define GUN_FLASHLIGHT_ON		4095
-#define GUN_ON_MERCS			8192
-#define GUN_ON_RUSSIANS			16384
-#define GUN_WY_RESTRICTED		32768
+#define GUN_SILENCED			8
+#define GUN_AUTOMATIC			16
+#define GUN_ALT_FIRE			32
+#define GUN_AUTO_EJECTOR		64
+#define GUN_AMMO_COUNTER		128
+#define GUN_BURST_ON			256
+#define GUN_BURST_FIRING		512
+#define GUN_FLASHLIGHT_ON		1024
+#define GUN_ON_MERCS			2048
+#define GUN_ON_RUSSIANS			4096
+#define GUN_WY_RESTRICTED		8192

@@ -101,37 +101,42 @@ On the map:
 
 
 //Misc channels
-var/const/SYND_FREQ = 1213
-var/const/YAUT_FREQ = 1214
-var/const/ERT_FREQ = 1345
-var/const/DTH_FREQ = 1341
-var/const/AI_FREQ = 1447
+var/const/SYND_FREQ 	= 1213
+var/const/YAUT_FREQ 	= 1214
+var/const/PMC_FREQ 		= 1235
+var/const/DUT_FREQ 		= 1340
+var/const/ERT_FREQ 		= 1342
+var/const/RUS_FREQ		= 1338
+var/const/DTH_FREQ 		= 1344
+var/const/AI_FREQ 		= 1447
 
 //Sulaco department channels
-var/const/PUB_FREQ = 1461
+var/const/PUB_FREQ 		= 1461
 
-var/const/COMM_FREQ = 1353
-var/const/MED_FREQ = 1355
-var/const/ENG_FREQ = 1357
-var/const/SEC_FREQ = 1359
-var/const/SUP_FREQ = 1354
+var/const/COMM_FREQ 	= 1353
+var/const/MED_FREQ 		= 1355
+var/const/ENG_FREQ 		= 1357
+var/const/SEC_FREQ 		= 1359
+var/const/SUP_FREQ 		= 1354
 
 //Marine channels
-var/const/ALPHA_FREQ = 1361
-var/const/BRAVO_FREQ = 1363
-var/const/CHARLIE_FREQ = 1365
-var/const/DELTA_FREQ = 1367
+var/const/ALPHA_FREQ 	= 1361
+var/const/BRAVO_FREQ 	= 1363
+var/const/CHARLIE_FREQ 	= 1365
+var/const/DELTA_FREQ 	= 1367
 
 //Civilian channels
-var/const/CIV_GEN_FREQ = 1469
+var/const/CIV_GEN_FREQ 	= 1469
 var/const/CIV_COMM_FREQ = 1471
-
 
 var/list/radiochannels = list(
 	"Response Team" = ERT_FREQ,
-	"Special Ops" 	= DTH_FREQ,
 	"Syndicate" 	= SYND_FREQ,
 	"Yautja" 		= YAUT_FREQ,
+	"WY PMC" 		= PMC_FREQ,
+	"SpecOps" 		= DTH_FREQ,
+	"Spetsnaz" 		= RUS_FREQ,
+	"D.Dozen"		= DUT_FREQ,
 
 	"Sulaco"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,
@@ -150,10 +155,10 @@ var/list/radiochannels = list(
 )
 
 // central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
+var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
 
 // Antag channels, i.e. Syndicate
-var/list/ANTAG_FREQS = list(SYND_FREQ, YAUT_FREQ)
+var/list/ANTAG_FREQS = list(SYND_FREQ, RUS_FREQ)
 
 //Depts - just used for colors in headset.dm
 var/list/DEPT_FREQS = list(MED_FREQ, ENG_FREQ, SEC_FREQ, ERT_FREQ, SYND_FREQ, DTH_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, ALPHA_FREQ, BRAVO_FREQ,CHARLIE_FREQ, DELTA_FREQ, SUP_FREQ)

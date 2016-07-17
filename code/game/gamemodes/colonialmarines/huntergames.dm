@@ -29,9 +29,8 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/weapon/gun/rifle/m41a/scoped,\
 								/obj/item/weapon/gun/rifle/lmg,\
 								/obj/item/weapon/gun/shotgun/combat,\
-								/obj/item/weapon/gun/rifle/sniper/M42A,
-								/obj/item/clothing/head/helmet/marine/PMC/commando,\
-								/obj/item/clothing/shoes/PMC
+								/obj/item/weapon/gun/rifle/sniper/M42A,\
+								/obj/item/weapon/gun/pistol/vp78
 								)
 
 var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
@@ -39,6 +38,10 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/clothing/suit/armor/yautja,\
 								/obj/item/clothing/suit/armor/yautja/full,\
 								/obj/item/clothing/shoes/yautja,\
+								/obj/item/clothing/head/helmet/marine/PMC/commando,\
+								/obj/item/clothing/shoes/PMC/commando,\
+								/obj/item/clothing/gloves/PMC/commando,\
+								/obj/item/clothing/suit/storage/marine/PMCarmor/commando,\
 								/obj/item/weapon/melee/yautja_chain,\
 								/obj/item/weapon/melee/yautja_knife,\
 								/obj/item/weapon/melee/yautja_scythe,\
@@ -48,11 +51,9 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/storage/box/rocket_system,\
 								/obj/item/weapon/storage/box/grenade_system,\
 								/obj/item/weapon/storage/box/m42c_system,\
-								/obj/item/clothing/suit/storage/marine/PMCarmor/commando,\
 								/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc,\
 								/obj/item/clothing/head/helmet/marine/PMC/heavypmc,\
 								/obj/item/weapon/gun/minigun,\
-								/obj/item/weapon/gun/pistol/vp78,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
 								/obj/item/weapon/gun/rifle/sniper/elite,
 								/obj/item/weapon/gun/rocketlauncher/quad)

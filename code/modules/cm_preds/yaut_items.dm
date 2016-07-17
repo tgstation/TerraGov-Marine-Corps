@@ -2,32 +2,33 @@
 //They can't, however, activate any of the special functions.
 
 /obj/item/weapon/twohanded/glaive
+	name = "Yautja War Glaive"
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "glaive"
 	item_state = "glaive"
-	name = "Yautja War Glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
-	force = 38
+	force = 28
 	w_class = 4.0
 	slot_flags = SLOT_BACK
-	force_unwielded = 28
 	force_wielded = 60
 	throwforce = 50
 	throw_speed = 3
 	edge = 1
-	sharp = 0
-	flags = NOSHIELD
+	sharp = 1
+	flags = FPRINT | TABLEPASS | NOSHIELD | TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1
 	attack_speed = 12 //Default is 7.
 
 /obj/item/weapon/twohanded/glaive/update_icon()
-	if(wielded)
-		item_state = "glaive-wield"
-	else
-		item_state = "glaive"
-	return
+	item_state = (flags & WIELDED) ? "glaive-wield" : "glaive"
+
+/obj/item/weapon/twohanded/glaive/damaged
+	name = "Damaged War Glaive"
+	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
+	force = 18
+	force_wielded = 28
 
 /obj/item/clothing/head/helmet/space/yautja
 	icon = 'icons/Predator/items.dmi'
@@ -111,9 +112,21 @@
 	icon_override = 'icons/Predator/items.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(melee = 70, bullet = 80, laser = 55, energy = 65, bomb = 65, bio = 50, rad = 50)
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.1
 	slowdown = 0
-	allowed = list(/obj/item/weapon/harpoon, /obj/item/weapon/twohanded)
+	allowed = list(/obj/item/weapon/harpoon, //Don't ask me why this thing couldn't hold these items before... ~N
+			/obj/item/weapon/gun/launcher/speargun,
+			/obj/item/weapon/gun/launcher/plasmarifle,
+			/obj/item/weapon/melee/yautja_chain,
+			/obj/item/weapon/melee/yautja_knife,
+			/obj/item/weapon/melee/yautja_sword,
+			/obj/item/weapon/melee/yautja_scythe,
+			/obj/item/weapon/melee/combistick,
+			/obj/item/weapon/twohanded/glaive)
 	unacidable = 1
 
 /obj/item/clothing/suit/armor/yautja/full
@@ -122,6 +135,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
 	armor = list(melee = 80, bullet = 90, laser = 65, energy = 70, bomb = 70, bio = 70, rad = 50)
+
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
@@ -222,9 +236,9 @@
 	body_parts_covered = FEET|LEGS
 	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
-	cold_protection = FEET
+	cold_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET
+	heat_protection = FEET|LEGS
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
@@ -261,8 +275,12 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	canremove = 0
-	body_parts_covered = HANDS|ARMS
+	body_parts_covered = HANDS
 	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 30, rad = 30)
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	unacidable = 1
 	var/charge = 2000
 	var/charge_max = 2000
@@ -716,8 +734,7 @@
 	name = "Yautja Speargun"
 	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "speargun-3"
-	icon_empty = "speargun-0"
+	icon_state = "predspeargun"
 	item_state = "predspeargun"
 	muzzle_flash = null // TO DO, add a decent one.
 	origin_tech = "combat=7;materials=7"
@@ -730,10 +747,12 @@
 	var/spikes = 12
 	var/max_spikes = 12
 	var/last_regen
+	var/image/ammo_overlay = null //overlay image.
 	gun_features = GUN_UNUSUAL_DESIGN
 
 	Dispose()
 		. = ..()
+		ammo_overlay = null
 		processing_objects.Remove(src)
 
 	process()
@@ -746,6 +765,8 @@
 		..()
 		processing_objects.Add(src)
 		last_regen = world.time
+		ammo_overlay = new(icon, icon_state = icon_state + "3")
+		overlays += ammo_overlay
 		verbs -= /obj/item/weapon/gun/verb/field_strip //We don't want these to show since they're useless.
 		verbs -= /obj/item/weapon/gun/verb/toggle_burst
 		verbs -= /obj/item/weapon/gun/verb/empty_mag
@@ -762,7 +783,9 @@
 		else usr << "Looks like some kind of...mechanical donut."
 
 	update_icon()
-		icon_state = spikes >0 ? initial(icon_state) : icon_empty
+		overlays -= ammo_overlay
+		ammo_overlay.icon_state = spikes <=1 ? null : icon_state + "[round(spikes/4, 1)]"
+		overlays += ammo_overlay
 
 	able_to_fire(mob/user)
 		if(!isYautja(user))
@@ -799,7 +822,7 @@
 	name = "Yautja Plasma Rifle"
 	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "spike-0"
+	icon_state = "spikelauncher"
 	item_state = "spikelauncher"
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
@@ -811,24 +834,28 @@
 	w_class = 5
 	accuracy = 50
 	fire_delay = 10
-	var/last_regen
 	var/charge_time = 0
+	var/last_regen = 0
+	var/image/ammo_overlay = null
 	gun_features = GUN_UNUSUAL_DESIGN
 
 	Dispose()
 		. = ..()
+		ammo_overlay = null
 		processing_objects.Remove(src)
 
 	process()
 		if(charge_time < 100)
 			charge_time++
 			if(charge_time == 99)
-				if(usr) usr << "\blue \The [src] hums as it achieves maximum charge."
+				if(ismob(loc)) loc << "\blue \The [src] hums as it achieves maximum charge."
+			update_icon()
 
 	New()
 		..()
 		processing_objects.Add(src)
 		last_regen = world.time
+		ammo_overlay = new(icon, icon_state = null)
 		verbs -= /obj/item/weapon/gun/verb/field_strip
 		verbs -= /obj/item/weapon/gun/verb/toggle_burst
 		verbs -= /obj/item/weapon/gun/verb/empty_mag
@@ -844,7 +871,11 @@
 		else usr << "This thing looks like an alien rifle of some kind. Strange."
 
 	update_icon()
-		return
+		if(last_regen < charge_time + 20 || last_regen > charge_time || charge_time > 95)
+			overlays -= ammo_overlay
+			ammo_overlay.icon_state = charge_time <=15 ? null : icon_state + "[round(charge_time/33, 1)]"
+			overlays += ammo_overlay
+			last_regen = charge_time
 
 	unique_action(mob/user)
 		if(!isYautja(usr))
@@ -892,6 +923,7 @@
 				if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
 				charge_time = 0
 				user << "Your bracers absorb some of the released energy."
+				update_icon()
 		else user << "The weapon's not charged enough with ambient energy."
 
 	reload()
@@ -1012,17 +1044,16 @@
 	desc = "A strange Yautja device used for projecting the Yautja's voice to the others in its pack. Similar in function to a standard human radio."
 	icon_state = "cargo_headset"
 	item_state = "headset"
-	frequency = 1214
+	frequency = CIV_GEN_FREQ
 	unacidable = 1
 
 	New()
 		..()
 		del(keyslot1)
 		keyslot1 = new /obj/item/device/encryptionkey/yautja
-		syndie = 1
 		recalculateChannels()
 
-	talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
+	talk_into(mob/living/M as mob, message, channel, var/verb = "commands", var/datum/language/speaking = "Sainja")
 		if(!isYautja(M)) //Nope.
 			M << "You try to talk into the headset, but just get a horrible shrieking in your ears."
 			return
@@ -1030,13 +1061,14 @@
 		for(var/mob/living/carbon/hellhound/H in player_list)
 			if(istype(H) && !H.stat)
 				H << "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'."
-
 		..()
+
+	attackby()
 		return
 
 /obj/item/device/encryptionkey/yautja
 	name = "Yautja Encryption Key"
-	desc = "An encyption key for a radio headset.  Contains cypherkeys."
+	desc = "A complicated encryption device."
 	icon_state = "cypherkey"
 	channels = list("Yautja" = 1)
 
@@ -1141,7 +1173,7 @@
 	name = "Yautja Hunting Blade"
 	desc = "An expertly crafted Yautja blade carried by hunters who wish to fight up close. Razor sharp, and capable of cutting flesh into ribbons. Commonly carried by aggresive and lethal hunters."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "predsword"
+	icon_state = "clansword"
 	item_state = "clansword"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BACK
@@ -1181,7 +1213,7 @@
 	icon_state = "predscythe"
 	item_state = "scythe0"
 	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BELT
 	sharp = 1
 	force = 32
 	w_class = 4.0
@@ -1189,6 +1221,9 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unacidable = 1
+
+	New()
+	 icon_state = pick("predscythe","predscythe_alt")
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
 		if(!isYautja(user))
@@ -1312,7 +1347,7 @@
 	name = "Yautja Combi-Stick"
 	desc = "A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool. A common sight in Yautja packs due to its versatility."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "combi"
+	icon_state = "combilong"
 	item_state = "combilong"
 	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BACK
@@ -1335,8 +1370,9 @@
 		user.visible_message("\red With a flick of their wrist, [user] extends their [src].",\
 		"\red You extend the combi-stick.",\
 		"You hear an ominous click.")
-		icon_state = "combi"
-		item_state = "combilong"
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		slot_flags = initial(slot_flags)
 		w_class = 4
 		force = 28
 		throwforce = initial(throwforce)
@@ -1344,10 +1380,21 @@
 		timer = 1
 		spawn(10)
 			timer = 0
+
+		if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
+			overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
+
+			var/icon/I = new /icon(src.icon, src.icon_state)
+			I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
+			I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY)
+			blood_overlay = I
+
+			overlays += blood_overlay
 	else
 		user << "\blue You collapse the combi-stick for storage."
 		icon_state = "combi_sheathed"
 		item_state = "combishort"
+		slot_flags = SLOT_POCKET
 		w_class = 1
 		force = 0
 		throwforce = initial(throwforce) - 50
@@ -1355,6 +1402,7 @@
 		timer = 1
 		spawn(10)
 			timer = 0
+		overlays.Cut()
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -1363,16 +1411,6 @@
 
 	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 	add_fingerprint(user)
-
-	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
-		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
-
-		var/icon/I = new /icon(src.icon, src.icon_state)
-		I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
-		I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY)
-		blood_overlay = I
-
-		overlays += blood_overlay
 
 	return
 

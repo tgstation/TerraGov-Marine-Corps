@@ -9,7 +9,8 @@
 	force = 15
 	burst_amount = 2
 	burst_delay = 2
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK
 
 	New()
 		..()
@@ -26,7 +27,7 @@
 	icon_empty = "m309a0"
 	default_ammo = "rifle bullet"
 	max_rounds = 30
-	gun_type = "/obj/item/weapon/gun/rifle/m41a"
+	gun_type = /obj/item/weapon/gun/rifle/m41a
 	handful_type = "Bullets (10mm)"
 
 /obj/item/ammo_magazine/rifle/extended
@@ -55,10 +56,11 @@
 	icon_wielded = "m41a-w"
 	item_state = "m41a"
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
-	mag_type = "/obj/item/ammo_magazine/rifle"
+	mag_type = /obj/item/ammo_magazine/rifle
 	fire_delay = 4
 	burst_amount = 3
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_AMMO_COUNTER
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
 
 	New()
 		..()
@@ -76,13 +78,13 @@
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
-/obj/item/ammo_magazine/rifle/original
+/obj/item/ammo_magazine/rifle/m41aMK1
 	name = "M41 Standard Magazine (10mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	max_rounds = 95
-	gun_type = "/obj/item/weapon/gun/rifle/m41a/original"
+	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
 
-/obj/item/weapon/gun/rifle/m41a/original
+/obj/item/weapon/gun/rifle/m41aMK1
 	name = "\improper M41A Pulse Rifle"
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10mm special ammunition."
 	icon_state = "s_m41a" //Placeholder.
@@ -90,10 +92,16 @@
 	icon_wielded = "s_m41a-w"
 	item_state = "s_m41a"
 	fire_sound = 'sound/weapons/m41a_2.ogg'
-	mag_type = "/obj/item/ammo_magazine/rifle/original"
+	mag_type = /obj/item/ammo_magazine/rifle/m41aMK1
 	burst_amount = 4
 	accuracy = 5
 	dam_bonus = 5
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
+
+	New()
+		..()
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13)
 
 //-------------------------------------------------------
 //M41A MARKSMAN VARIANT
@@ -102,7 +110,7 @@
 	name = "M41A/M Marksman Magazine (10mm)"
 	desc = "A 10mm marksman rifle magazine."
 	default_ammo = "marksman rifle bullet"
-	gun_type = "/obj/item/weapon/gun/rifle/m41a/scoped"
+	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
 	handful_type = "Marksman Bullets (10mm)"
 
 /obj/item/weapon/gun/rifle/m41a/scoped
@@ -112,7 +120,7 @@
 	icon_empty = "m41b0"
 	item_state = "m41a"
 	origin_tech = "combat=5;materials=4"
-	mag_type = "/obj/item/ammo_magazine/rifle/marksman"
+	mag_type = /obj/item/ammo_magazine/rifle/marksman
 	force = 16
 	fire_delay = 5
 	recoil = 1
@@ -137,7 +145,7 @@
 	name = "M41A/2 AP Magazine (10mm)"
 	desc = "A 10mm rifle magazine."
 	default_ammo = "AP rifle bullet"
-	gun_type = "/obj/item/weapon/gun/rifle/m41a/elite"
+	gun_type = /obj/item/weapon/gun/rifle/m41a/elite
 	handful_type = "AP Bullets (10mm)"
 	max_rounds = 40
 
@@ -149,12 +157,13 @@
 	item_state = "pmc_m41a"
 	icon_wielded = "pmc_m41a-w"
 	origin_tech = "combat=7;materials=5"
-	mag_type = "/obj/item/ammo_magazine/rifle/elite"
+	mag_type = /obj/item/ammo_magazine/rifle/elite
 	fire_delay = 7
 	burst_amount = 3
 	accuracy = 35
 	dam_bonus = 15
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
 
 
 //-------------------------------------------------------
@@ -168,7 +177,7 @@
 	icon_empty = "5.56"
 	default_ammo = "heavy rifle bullet"
 	max_rounds = 40
-	gun_type = "/obj/item/weapon/gun/rifle/mar40"
+	gun_type = /obj/item/weapon/gun/rifle/mar40
 	handful_type = "Bullets (12mm)"
 
 /obj/item/ammo_magazine/rifle/mar40/extended
@@ -185,12 +194,13 @@
 	icon_wielded = "mar40-w"
 	item_state = "mar40"
 	origin_tech = "combat=4;materials=2;syndicate=4"
-	mag_type = "/obj/item/ammo_magazine/rifle/mar40"
 	fire_sound = 'sound/weapons/heavyrifle.ogg'
+	mag_type = /obj/item/ammo_magazine/rifle/mar40
 	eject_casings = 1
 	accuracy = -12
 	burst_amount = 4
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_ON_MERCS | GUN_ON_RUSSIANS
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
 	New()
 		..()
@@ -216,7 +226,7 @@
 	icon_state = "a762"
 	icon_empty = "a762-0"
 	max_rounds = 100
-	gun_type = "/obj/item/weapon/gun/rifle/lmg"
+	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 /obj/item/weapon/gun/rifle/lmg
 	name = "\improper M41AE2 Heavy Pulse Rifle"
@@ -226,12 +236,13 @@
 	item_state = "rsplmg"
 	icon_wielded = "rsplmg-w"
 	origin_tech = "combat=5;materials=4"
-	mag_type = "/obj/item/ammo_magazine/rifle/lmg"
 	fire_sound = 'sound/weapons/gunshot_rifle.ogg' //Change
+	mag_type = /obj/item/ammo_magazine/rifle/lmg
 	accuracy = -25
 	fire_delay = 4
 	burst_amount = 4
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_AMMO_COUNTER | GUN_ON_MERCS
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_ON_MERCS
 
 	New()
 		..()

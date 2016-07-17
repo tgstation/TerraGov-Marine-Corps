@@ -7,6 +7,22 @@ ERROR CODE I1: projectile malfunctioned while firing. <------------ Right before
 ERROR CODE I2: null ammo while load_into_chamber() <------------- Somehow the ammo datum is missing or something. We need to figure out how that happened.
 ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammunition only. Ammunition should never have negative rounds on spawn.
 
+DEFINES in setup.dm, referenced here.
+#define GUN_CAN_POINTBLANK		1
+#define GUN_TRIGGER_SAFETY		2
+#define GUN_UNUSUAL_DESIGN		4
+#define GUN_SILENCED			8
+#define GUN_AUTOMATIC			16
+#define GUN_ALT_FIRE			32
+#define GUN_AUTO_EJECTOR		64
+#define GUN_AMMO_COUNTER		128
+#define GUN_BURST_ON			256
+#define GUN_BURST_FIRING		512
+#define GUN_FLASHLIGHT_ON		1024
+#define GUN_ON_MERCS			2048
+#define GUN_ON_RUSSIANS			4096
+#define GUN_WY_RESTRICTED		8192
+
 	NOTES
 
 
@@ -85,9 +101,14 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 	TODO:
 
 	Add more muzzle flashes and gun sounds. Energy weapons, spear launcher, and taser for example.
-	Add some two handed sprites for SMGs that can use a grip.
 	Add more guns, or unique guns. The framework should be there.
 	Add ping for energy guns like the taser and plasma caster.
+	Move pred check for damage effects into the actual predator files instead of the usual.
+	Move the mind checks for damage and stun to actual files, or rework it somehow.
+	Make the following flags do something: GUN_ON_RUSSIANS GUN_ON_MERCS GUN_ALT_FIRE do something.
+	The first two are for the distress weapon randomizier which was never implemented as far as I know,
+	the other one is for any weapon that has alternating fire modes. Shoot once, then change up, etc.
+	No guns currently use it, but it could exist in the future if wanted.
 */
 
 //----------------------------------------------------------
@@ -106,40 +127,40 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 		user << "Not right now."
 		return
 
-	user << "You toggle the safety [gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"]."
+	user << "<span class='notice'>You toggle the safety [gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
 	playsound(usr,'sound/machines/click.ogg', 15, 1)
 	gun_features ^= GUN_TRIGGER_SAFETY
 	return
 
-/obj/item/weapon/gun/mob_can_equip(var/mob/user as mob, slot)
+/obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
-	if(is_bursting || gun_features & GUN_BURST_FIRING) return
+	if(gun_features & GUN_BURST_FIRING) return
 	unwield(user)
 	return ..()
 
-/obj/item/weapon/gun/attack_hand(mob/user as mob)
+/obj/item/weapon/gun/attack_hand(mob/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
-	if( in_hand == src && gun_features & GUN_TWOHANDED ) unload(user)//It has to be held if it's a two hander.
+	if( in_hand == src && (flags & TWOHANDED) ) unload(user)//It has to be held if it's a two hander.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) ) usr << "\red The [src] clanks on the ground."
+	if( harness_check(thrower) ) usr << "<span class='warning'>The [src] clanks on the ground.</span>"
 	else ..()
 
 /*
 Note: pickup and dropped on weapons must have both the ..() to update zoom AND twohanded,
 As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
 */
-/obj/item/weapon/gun/dropped(mob/user as mob)
+/obj/item/weapon/gun/dropped(mob/user)
 	..()
 
 	stop_aim()
 	if (user && user.client)
 		user.client.remove_gun_icons()
 
-	if(gun_features & GUN_FLASHLIGHT_ON && src.loc != user)
-		user.SetLuminosity(-flash_lum)
-		SetLuminosity(flash_lum)
+	if(gun_features & GUN_FLASHLIGHT_ON)
+		user.SetLuminosity(-rail.light_mod)
+		SetLuminosity(rail.light_mod)
 
 	unwield(user)
 	harness_check(user)
@@ -147,8 +168,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
 
-	if(gun_features & GUN_FLASHLIGHT_ON && src.loc != user)
-		user.SetLuminosity(flash_lum)
+	if(gun_features & GUN_FLASHLIGHT_ON)
+		user.SetLuminosity(rail.light_mod)
 		SetLuminosity(0)
 
 	unwield(user)
@@ -158,7 +179,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		switch(user.mind.assigned_role)
 			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
 		if(user.mind.special_role == "DEATH SQUAD") return 1
-	user << "\red \The [src] flashes a warning sign indicating unauthorized use!"
+	user << "<span class='warning'>\The [src] flashes a warning sign indicating unauthorized use!</span>"
 
 /*
 Here we have throwing and dropping related procs.
@@ -182,17 +203,17 @@ should be alright.
 		if(isnull(user.s_store) && isturf(src.loc))
 			var/obj/item/I = user.wear_suit
 			user.equip_to_slot_if_possible(src,slot_s_store)
-			if(user.s_store == src) user << "\red The [src] snaps into place on [I]."
+			if(user.s_store == src) user << "<span class='warning'>\The [src] snaps into place on [I].</span>"
 			user.update_inv_s_store()
 
-/obj/item/weapon/gun/attack_self(mob/user as mob)
+/obj/item/weapon/gun/attack_self(mob/user)
 	if (target)
 		lower_aim()
 		return
 
 	//There are only two ways to interact here.
-	if(gun_features & GUN_TWOHANDED)
-		if(gun_features & GUN_WIELDED) unwield(user)//Trying to unwield it
+	if(flags & TWOHANDED)
+		if(flags & WIELDED) unwield(user)//Trying to unwield it
 		else wield(user)//Trying to wield it
 	else unload(user)//We just unload it.
 
@@ -209,44 +230,12 @@ should be alright.
 		if(check_inactive_hand(user)) attach_to_gun(user,I)
 
 //Unless the user is not present, you always want to pass user as mob for wield/unwield. But you don't have to, I guess.
-/obj/item/weapon/gun/proc/wield(mob/user)
-	if( !(gun_features & GUN_TWOHANDED) || (gun_features & GUN_WIELDED) ) return
+/obj/item/weapon/gun/wield(mob/user)
+	if(!..()) return
+	item_state = icon_wielded ? icon_wielded : initial(item_state) + "-w"
 
-	if(user && user.get_inactive_hand())
-		user << "<span class='warning'>You need your other hand to be empty.</span>"
-		return
-
-	gun_features ^= GUN_WIELDED
-
-	name = "[initial(name)] (Wielded)"
-	if(!isnull(icon_wielded)) item_state = icon_wielded
-	else item_state = "[initial(item_state)]-w"
-
-	if(user && ishuman(user))
-		var/mob/living/carbon/human/wielder = user
-		wielder << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
-		var/obj/item/weapon/twohanded/offhand/O = rnew(/obj/item/weapon/twohanded/offhand, wielder)
-		O.wielded = 1
-		O.name = "[initial(name)] - offhand"
-		O.desc = "Your second grip on the [initial(name)]"
-		wielder.put_in_inactive_hand(O)
-		wielder.update_inv_l_hand(0)
-		wielder.update_inv_r_hand()
-
-/obj/item/weapon/gun/proc/unwield(mob/user)
-	if( !(gun_features & GUN_TWOHANDED) || !(gun_features & GUN_WIELDED) ) return //If we're not actually carrying it with both hands or it's a one handed weapon.
-
-	gun_features ^= GUN_WIELDED
-
-	name = "[initial(name)]"
-	item_state = "[initial(item_state)]"
-	if(user && ishuman(user))
-		user << "<span class='notice'>You are now carrying the [name] with one hand.</span>"
-		var/mob/living/carbon/human/wielder = user
-		wielder.update_inv_l_hand(0) //Updating invs is more efficient than updating the entire icon set.
-		wielder.update_inv_r_hand()
-		var/obj/item/weapon/twohanded/O = wielder.get_inactive_hand()
-		if(istype(O)) O.unwield()
+/obj/item/weapon/gun/unwield(mob/user)
+	..()
 
 //----------------------------------------------------------
 				//						 \\
@@ -262,7 +251,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 		if( in_hand != src ) //It has to be held.
-			user << "You have to hold \the [src] to do that!"
+			user << "<span class='warning'>You have to hold \the [src] to do that!</span>"
 			return
 	return 1
 
@@ -271,7 +260,7 @@ should be alright.
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
 		if( in_handL != src && in_handR != src ) //It has to be held.
-			user << "You have to hold \the [src] to do that!"
+			user << "<span class='warning'>You have to hold \the [src] to do that!</span>"
 			return
 	return 1
 
@@ -284,7 +273,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/attach_to_gun(var/mob/user, var/obj/item/attachable/attachment)
 	if( !(type in attachment.guns_allowed) )
-		user << "\The [attachment] doesn't fit on [src]."
+		user << "<span class='warning'>\The [attachment] doesn't fit on [src]!</span>"
 		return
 
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
@@ -300,12 +289,12 @@ should be alright.
 			if(stock && stock.can_be_removed == 0) can_attach = 0
 
 	if(!can_attach)
-		user << "The attachment on [src]'s [attachment.slot] cannot be removed."
+		user << "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>"
 		return
 
-	user.visible_message("\blue [user] begins field-modifying their [src].","\blue You begin field modifying \the [src].")
+	user << "<span class='notice'>You begin field modifying \the [src]...</span>"
 	if(do_after(user,60))
-		user.visible_message("\blue [user] attaches \the [attachment] to \the [src].","\blue You attach \the [attachment] to \the [src].")
+		user << "<span class='notice'>You attach \the [attachment] to \the [src].</span>"
 		user.drop_item(attachment)
 		attachment.Attach(src)
 		update_attachables()
@@ -378,10 +367,10 @@ should be alright.
 	if(!check_both_hands(usr)) return
 
 	if(!rail && !muzzle && !under && !stock)
-		usr << "This weapon has no attachables. You can only field strip enhanced weapons."
+		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
 		return
 
-	usr.visible_message("\blue [usr] begins field stripping their [src].","\blue You begin field-stripping your [src].")
+	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
 	if(!do_after(usr,40))
 		return
 
@@ -418,12 +407,12 @@ should be alright.
 	//Burst of 1 doesn't mean anything. The weapon will only fire once regardless.
 	//Just a good safety to have all weapons that can equip a scope with 1 burst_amount.
 	if(burst_amount < 2)
-		usr << "This weapon does not have a burst fire mode."
+		usr << "<span class='warning'>This weapon does not have a burst fire mode!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
 
-	usr << "\icon[src] You [gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode."
+	usr << "<span class='notice'>\icon[src] You [gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode.</span>"
 	playsound(usr,'sound/machines/click.ogg', 50, 1)
 	gun_features ^= GUN_BURST_ON
 
@@ -438,7 +427,7 @@ should be alright.
 	if(!ishuman(usr)) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "Not right now."
+		usr << "<span class='warning'>Not right now!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
@@ -456,7 +445,7 @@ should be alright.
 	if(!ishuman(usr)) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "Not right now."
+		usr << "<span class='warning'>Not right now!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
@@ -474,7 +463,7 @@ should be alright.
 	if(!ishuman(usr)) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "Not right now."
+		usr << "<span class='warning'>Not right now!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
@@ -490,12 +479,12 @@ should be alright.
 	if(muzzle && muzzle.can_activate) usable_attachments[muzzle.name] = muzzle
 
 	if(usable_attachments.len <= 0) //No usable attachments.
-		usr << "This weapon does not have any attachments."
+		usr << "<span class='warning'>This weapon does not have any attachments!</span>"
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
 		if(active_attachable && !active_attachable.passive) //In case the attach is passive like the flashlight/scope.
-			usr << "You disable the [active_attachable.name]."
+			usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
 			playsound(src.loc,active_attachable.activation_sound, 50, 1)
 			active_attachable = null
 			return
@@ -516,7 +505,7 @@ should be alright.
 
 		if(!choice || choice == "Cancel" || choice == "Cancel Active")
 			if(active_attachable  && !active_attachable.passive)
-				usr << "You disable the [active_attachable.name]."
+				usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
 				playsound(usr,active_attachable.activation_sound, 50, 1)
 				active_attachable = null
 				return
@@ -525,10 +514,10 @@ should be alright.
 		if(activate_this && activate_this.loc == src) active_attachable = activate_this //If it still exists at all and held on the gun.
 
 		if(!active_attachable)
-			usr << "Nothing happened!"
+			usr << "<span class='warning'>Nothing happened!</span>"
 			return
 
-	usr << "You toggle the [active_attachable.name]."
+	usr << "<span class='notice'>You toggle the [active_attachable.name].</span>"
 	active_attachable.activate_attachment(src,usr)
 	playsound(src.loc,active_attachable.activation_sound, 50, 1)
 
@@ -596,17 +585,3 @@ else if(!casing_override)//So we're not reloading/emptying, we're firing the gun
 	//I would add a check here for attachables, but you can't fit the masterkey on a revolver/shotgun.
 	current_mag.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
 */
-
-/mob/living/carbon/human/verb/check_overall_protection()
-	name = "Get Armor Value"
-	tab = "Debug"
-	desc = "Shows the armor value of the bullet category."
-
-	var/datum/organ/external/organ
-	var/armor = 0
-	var/counter = 0
-	for(var/i in organs_by_name)
-		armor = getarmor_organ(organs_by_name[i], "bullet")
-		src << "<b>[i]</b> is protected with <b>[armor]</b> armor against bullets."
-		counter += armor
-	src << "The overall armor score is: <b>[counter]</b>."

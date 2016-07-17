@@ -112,10 +112,6 @@
 	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
-	if(istype(src,/obj/item/weapon/twohanded/offhand)) //Wield icons get force deleted.
-		src:unwield()
-		return
-
 	src.throwing = 1
 	src.thrower = thrower
 	src.throw_source = get_turf(src)	//store the origin turf

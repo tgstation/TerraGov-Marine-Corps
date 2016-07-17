@@ -11,10 +11,9 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "Box of Shotgun Slugs"
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "shells"
-	icon_spent = "gshell"
 	default_ammo = "shotgun slug"
 	caliber = "12g" //All shotgun rounds are 12g right now.
-	gun_type = "/obj/item/weapon/gun/shotgun"
+	gun_type = /obj/item/weapon/gun/shotgun
 	handful_type = "Slugs"
 	icon_type = "shell_s"
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
@@ -25,7 +24,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "Box of Incendiary Slugs"
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
-	icon_spent = "ishell"
 	default_ammo = "incendiary slug"
 	handful_type = "Incendiary Slugs"
 	icon_type = "shell_i"
@@ -34,7 +32,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "Box of Buckshot Shells"
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
 	icon_state = "beanbag"
-	icon_spent = "bshell"
 	default_ammo = "shotgun buckshot"
 	handful_type = "Buckshot"
 	icon_type = "shell_b"
@@ -75,7 +72,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	type_of_casings = "shell"
 	eject_casings = 1
 	accuracy = 10
-	gun_features = GUN_CAN_POINTBLANK | GUN_TWOHANDED
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_CAN_POINTBLANK
 
 	New()
 		..()
@@ -86,90 +84,91 @@ can cause issues with ammo types getting mixed up during the burst.
 		icon_state = in_chamber ? initial(icon_state) : icon_empty
 		update_attachables() //This will cut existing overlays
 
-	proc/replace_tube(number_to_replace)
-		current_mag.chamber_contents = list()
-		current_mag.chamber_contents.len = current_mag.max_rounds
-		var/i
-		for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the tube.
-			if(i > number_to_replace) 	current_mag.chamber_contents[i] = "empty"
-			else 						current_mag.chamber_contents[i] = current_mag.default_ammo
-		current_mag.chamber_position = current_mag.current_rounds //The position is always in the beginning [1]. It can move from there.
+/obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
+	current_mag.chamber_contents = list()
+	current_mag.chamber_contents.len = current_mag.max_rounds
+	var/i
+	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the tube.
+		if(i > number_to_replace) 	current_mag.chamber_contents[i] = "empty"
+		else 						current_mag.chamber_contents[i] = current_mag.default_ammo
+	current_mag.chamber_position = current_mag.current_rounds //The position is always in the beginning [1]. It can move from there.
 
-	proc/add_to_tube(mob/user,selection) //Shells are added forward.
-		current_mag.chamber_position++ //We move the position up when loading ammo. New rounds are always fired next, in order loaded.
-		current_mag.chamber_contents[current_mag.chamber_position] = selection //Just moves up one, unless the mag is full.
-		if(current_mag.current_rounds == 1 && !in_chamber) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
-			update_icon()					//It was just loaded.
-			ready_in_chamber()
-			cock_gun(user)
-		if(user) playsound(user, reload_sound, 100, 1)
-		return 1
+/obj/item/weapon/gun/shotgun/proc/add_to_tube(mob/user,selection) //Shells are added forward.
+	current_mag.chamber_position++ //We move the position up when loading ammo. New rounds are always fired next, in order loaded.
+	current_mag.chamber_contents[current_mag.chamber_position] = selection //Just moves up one, unless the mag is full.
+	if(current_mag.current_rounds == 1 && !in_chamber) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
+		update_icon()					//It was just loaded.
+		ready_in_chamber()
+		cock_gun(user)
+	if(user) playsound(user, reload_sound, 100, 1)
+	return 1
 
-	proc/empty_chamber(mob/user)
-		if(current_mag.current_rounds <= 0)
-			if(user) user << "\The [src] is already empty."
-			return
+/obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
+	if(current_mag.current_rounds <= 0)
+		if(user) user << "<span class='warning'>\The [src] is already empty.</span>"
+		return
 
-		unload_shell(user)
-		if(!current_mag.current_rounds && !in_chamber) update_icon()
+	unload_shell(user)
+	if(!current_mag.current_rounds && !in_chamber) update_icon()
 
-	proc/unload_shell(mob/user)
-		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(current_mag.chamber_contents[current_mag.chamber_position])
+/obj/item/weapon/gun/shotgun/proc/unload_shell(mob/user)
+	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(current_mag.chamber_contents[current_mag.chamber_position])
 
-		if(user)
-			user.put_in_hands(new_handful)
-			playsound(user, reload_sound, 60, 1)
-		else new_handful.loc = get_turf(src)
+	if(user)
+		user.put_in_hands(new_handful)
+		playsound(user, reload_sound, 60, 1)
+	else new_handful.loc = get_turf(src)
 
-		current_mag.current_rounds--
-		current_mag.chamber_contents[current_mag.chamber_position] = "empty"
-		current_mag.chamber_position--
-		return 1
+	current_mag.current_rounds--
+	current_mag.chamber_contents[current_mag.chamber_position] = "empty"
+	current_mag.chamber_position--
+	return 1
 
 		//While there is a much smaller way to do this,
 		//this is the most resource efficient way to do it.
-	proc/retrieve_shell(selection)
-		var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
-		var/handful_t //handful_type, based on shell.
-		var/handful_i //icon
+/obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
+	var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
+	var/handful_t //handful_type, based on shell.
+	var/handful_i //icon
 
-		switch(selection)
-			if("shotgun slug")
-				handful_t = "Slugs"
-				handful_i = "shell_s"
-			if("incendiary slug")
-				handful_t = "Incendiary Slugs"
-				handful_i = "shell_i"
-			if("shotgun buckshot")
-				handful_t = "Buckshot"
-				handful_i = "shell_b"
+	switch(selection)
+		if("shotgun slug")
+			handful_t = "Slugs"
+			handful_i = "shell_s"
+		if("incendiary slug")
+			handful_t = "Incendiary Slugs"
+			handful_i = "shell_i"
+		if("shotgun buckshot")
+			handful_t = "Buckshot"
+			handful_i = "shell_b"
 
-		new_handful.name = "Handful of [handful_t]"
-		new_handful.desc = "A handful of rounds to reload on the go."
-		new_handful.icon_state = handful_i
-		new_handful.caliber = "12g"
-		new_handful.max_rounds = 5
-		new_handful.current_rounds = 1
-		new_handful.default_ammo = selection
-		new_handful.icon_type = handful_i
-		new_handful.gun_type = "/obj/item/weapon/gun/shotgun"
-		new_handful.handful_type = handful_t
-		new_handful.update_icon() // Let's get it updated.
+	new_handful.name = "Handful of [handful_t]"
+	new_handful.desc = "A handful of rounds to reload on the go."
+	new_handful.icon_state = handful_i
+	new_handful.caliber = "12g"
+	new_handful.max_rounds = 5
+	new_handful.current_rounds = 1
+	new_handful.default_ammo = selection
+	new_handful.icon_type = handful_i
+	new_handful.gun_type = /obj/item/weapon/gun/shotgun
+	new_handful.handful_type = handful_t
+	new_handful.update_icon() // Let's get it updated.
 
-		return new_handful
+	return new_handful
 
-	proc/check_chamber_position()
-		return 1
+/obj/item/weapon/gun/shotgun/proc/check_chamber_position()
+	return 1
 
+/obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
 		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
-			user << "You can't use that to reload!"
+			user << "<span class='warning'>You can't use that to reload!</span>"
 			return
 
 		if(!check_chamber_position()) //For the double barrel.
-			user << "\The [src] has to be open!"
+			user << "<span class='warning'>\The [src] has to be open!</span>"
 			return
 
 		//From here we know they are using shotgun type ammo and reloading via handful.
@@ -184,15 +183,16 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 		empty_chamber(user)
 
-	proc/ready_shotgun_tube()
-		if(current_mag.current_rounds > 0)
-			ammo = ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
-			in_chamber = create_bullet(ammo)
-			current_mag.current_rounds--
-			current_mag.chamber_contents[current_mag.chamber_position] = "empty"
-			current_mag.chamber_position--
-			return in_chamber
+/obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
+	if(current_mag.current_rounds > 0)
+		ammo = ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
+		in_chamber = create_bullet(ammo)
+		current_mag.current_rounds--
+		current_mag.chamber_contents[current_mag.chamber_position] = "empty"
+		current_mag.chamber_position--
+		return in_chamber
 
+/obj/item/weapon/gun/shotgun
 	ready_in_chamber()
 		return ready_shotgun_tube()
 
@@ -223,7 +223,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "rspshotgun"
 	origin_tech = "combat=4;materials=2"
 	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
-	mag_type = "/obj/item/ammo_magazine/internal/shotgun/merc"
+	mag_type = /obj/item/ammo_magazine/internal/shotgun/merc
 	accuracy = -10
 	fire_delay = 10
 	burst_amount = 2
@@ -253,7 +253,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_wielded = "cshotgun-w"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
-	mag_type = "/obj/item/ammo_magazine/internal/shotgun/combat"
+	mag_type = /obj/item/ammo_magazine/internal/shotgun/combat
 	fire_delay = 12
 
 	New()
@@ -285,12 +285,13 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "dshotgun"
 	icon_wielded = "dshotgun-w"
 	origin_tech = "combat=4;materials=2"
-	mag_type = "/obj/item/ammo_magazine/internal/shotgun/double"
+	mag_type = /obj/item/ammo_magazine/internal/shotgun/double
 	fire_sound = 'sound/weapons/shotgun_heavy.ogg'
 	cocked_sound = null //We don't want this.
 	eject_casings = 0
 	fire_delay = 6
-	gun_features = GUN_CAN_POINTBLANK | GUN_TWOHANDED | GUN_ON_MERCS
+	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
 		..()
@@ -397,7 +398,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_empty = "m37" //Pump shotguns don't really have 'empty' states.
 	icon_wielded = "m37-w"
 	item_state = "m37"
-	mag_type = "/obj/item/ammo_magazine/internal/shotgun/pump"
+	mag_type = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	var/pump_sound = 'sound/weapons/shotgunpump.ogg'
 	fire_delay = 20
@@ -426,23 +427,24 @@ can cause issues with ammo types getting mixed up during the burst.
 	Which is what we want, since the gun shouldn't fire unless something was chambered.
 	*/
 
-	//More or less chambers the round instead of load_into_chamber(). Also ejects used casings.
-	proc/pump_shotgun(mob/user)	//We can't fire bursts with pumps.
-		if(world.time < (recent_pump + pump_delay) ) return //Don't spam it.
+//More or less chambers the round instead of load_into_chamber(). Also ejects used casings.
+/obj/item/weapon/gun/shotgun/pump/proc/pump_shotgun(mob/user)	//We can't fire bursts with pumps.
+	if(world.time < (recent_pump + pump_delay) ) return //Don't spam it.
 
-		if(in_chamber) //We don't want them to pump out loaded rounds.
-			user << "\red It's already chambered with a round!"
-			return
+	if(in_chamber) //We don't want them to pump out loaded rounds.
+		user << "<span class='warning'>It's already chambered with a round!</span>"
+		return
 
-		if(!in_chamber) ready_shotgun_tube()
+	if(!in_chamber) ready_shotgun_tube()
 
-		if(current_mag.used_casings)
-			current_mag.used_casings--
-			make_casing(type_of_casings, eject_casings)
+	if(current_mag.used_casings)
+		current_mag.used_casings--
+		make_casing(type_of_casings, eject_casings)
 
-		playsound(user, pump_sound, 70, 1)
-		recent_pump = world.time
+	playsound(user, pump_sound, 70, 1)
+	recent_pump = world.time
 
+/obj/item/weapon/gun/shotgun/pump
 	reload_into_chamber(mob/user)
 		if(active_attachable) make_casing(active_attachable.type_of_casings, active_attachable.eject_casings)
 		else
@@ -468,8 +470,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_empty = "CMBshotgun"
 	item_state = "CMBshotgun"
 	icon_wielded = "CMBshotgun-w"
-	mag_type = "/obj/item/ammo_magazine/internal/shotgun/pump/CMB"
 	fire_sound = 'sound/weapons/shotgun_small.ogg'
+	mag_type = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	fire_delay = 16
 
 	New()

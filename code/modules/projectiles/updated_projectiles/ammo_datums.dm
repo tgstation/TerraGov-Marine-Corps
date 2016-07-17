@@ -71,12 +71,12 @@
 					var/mob/living/carbon/Xenomorph/target = M
 					if(target.big_xeno) return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
-					target << "\red You are shaken by the sudden impact!"
+					target << "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
 				else
 					if(!isYautja(M)) //Not predators.
 						var/mob/living/target = M
 						target.apply_effects(1,2) //Humans get stunned a bit.
-						target << "\red The blast knocks you off your feet!"
+						target << "<span class='highdanger'>The blast knocks you off your feet!</span>"
 			step_away(M,P)
 
 	proc/burst(var/atom/target,var/obj/item/projectile/P,var/damage_type = BRUTE)
@@ -84,7 +84,7 @@
 		for(var/mob/living/carbon/M in range(1,target))
 			if(P.firer == M)
 				continue
-			M.visible_message("\red [M] is hit by backlash from \a [P.name]!","\red You are hit by backlash from \a </b>[P.name]</b>!")
+			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
 			M.apply_damage(rand(5,25),damage_type)
 
 	proc/multiple_projectiles(var/obj/item/projectile/original_P, range, speed)
@@ -204,7 +204,7 @@
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
-			P.visible_message("\The [src] chimpers furiously!")
+			P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
 			new /mob/living/carbon/monkey(P.loc)
 
 /*
@@ -513,7 +513,7 @@
 			if(M.stat == DEAD) continue
 			M.adjust_fire_stacks(rand(5,25))
 			M.IgniteMob()
-			M.visible_message("\red [M] bursts into flames!","\red <B>You burst into flames!</b>")
+			M.visible_message("<span class='danger'>[M] bursts into flames!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_flame(get_turf(M))
@@ -701,7 +701,7 @@
 
 	proc/drop_nade(var/turf/T)
 		var/obj/item/weapon/grenade/xeno_weaken/G = new (T)
-		G.visible_message("\green <B>A glob of gas falls from the sky!</b>")
+		G.visible_message("<span class='danger'>A glob of gas falls from the sky!</span>")
 		G.prime()
 		return
 
@@ -715,7 +715,7 @@
 
 	drop_nade(turf/T)
 		var/obj/item/weapon/grenade/xeno/G = new (T)
-		G.visible_message("\green <B>A glob of acid falls from the sky!</b>")
+		G.visible_message("<span class='danger'>A glob of acid falls from the sky!</span>")
 		G.prime()
 		return
 
@@ -780,7 +780,7 @@
 
 	proc/drop_nade(var/turf/T)
 		var/obj/item/device/flashlight/flare/G = new (T)
-		G.visible_message("\blue <B>A [G] bursts into brilliant light nearby!</b>")
+		G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
 		G.on = 1
 		processing_objects += G
 		G.icon_state = "flare-on"
