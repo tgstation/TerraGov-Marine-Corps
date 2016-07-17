@@ -525,11 +525,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	//log_admin("[key_name(src)] has alienized [M.key].")
 	var/list/dresspacks = list(
 		"strip",
-		"USCM Cyro",
+		"USCM Cryo",
 		"USCM Private",
 		"USCM Specialist (Smartgunner)",
 		"USCM Specialist (Armor)",
-		"USCM Second-Lieutenant",
+		"USCM Second-Lieutenant (BO)",
 		"USCM First-Lieutenant (XO)",
 		"USCM Captain (CO)",
 		"USCM Officer (USCM Command)",
@@ -563,7 +563,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	switch(dresscode)
 		if ("strip")
 			//do nothing
-		if("USCM Cyro")
+		if("USCM Cryo")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
 
@@ -659,7 +659,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
-		if("USCM Second-Lieutenant")
+		if("USCM Second-Lieutenant (BO)")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
@@ -1358,7 +1358,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	M.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", 1)
+	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1)
 	return
 
 /client/proc/startSinglo()

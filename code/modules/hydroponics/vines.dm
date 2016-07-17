@@ -103,13 +103,14 @@
 						"<span class='notice'>You untangle [src] from around yourself.</span>",\
 						"<span class='warning'>You hear shredding and ripping.</span>")
 			unbuckle()
+			return 1
 		else
 			var/text = pick("rips","tears","pulls")
 			user.visible_message(\
 				"<span class='notice'>[user.name] [text] at [src].</span>",\
 				"<span class='notice'>You [text] at [src].</span>",\
 				"<span class='warning'>You hear shredding and ripping.</span>")
-	return
+	return 0
 
 /obj/effect/plantsegment/proc/grow()
 

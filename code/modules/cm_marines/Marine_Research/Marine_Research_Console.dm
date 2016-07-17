@@ -4,6 +4,8 @@
 //Future machines will also be controlled from this.
 //Basically, this is a rehashed RD console.
 //FYI:  All the marine research weapons, still use the r_n_d class.  Don't see a reason to make another one, and this will let the w-y system link with Legacy.
+#define	IMPRINTER	1	//For circuits. Uses glass/chemicals.
+#define PROTOLATHE	2	//New stuff. Uses glass/metal/chemicals
 
 /obj/machinery/computer/WYresearch
 	name = "R&D Console"
@@ -667,8 +669,8 @@
 			dat += "<B>Material Amount:</B> [linked_lathe.TotalMaterials()] cm<sup>3</sup> (MAX: [linked_lathe.max_material_storage])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			for(var/datum/design/D in files.known_designs)
-			/*	if(!(D.build_type & PROTOLATHE))//Giving an undefined va error.  It might be related to Data/Design Disks.
-					continue*/
+				if(!(D.build_type & PROTOLATHE))//Giving an undefined va error.  It might be related to Data/Design Disks.
+					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = 1
 				for(var/M in D.materials)
@@ -773,8 +775,8 @@
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 
 			for(var/datum/design/D in files.known_designs)
-			/*	if(!(D.build_type & IMPRINTER))//Giving an undefined va error.  It might be related to Data/Design Disks.
-					continue*/
+				if(!(D.build_type & IMPRINTER))
+					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = 1
 				for(var/M in D.materials)
