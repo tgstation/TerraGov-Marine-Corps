@@ -31,7 +31,7 @@ list will reference it. Even if it's somehow deleted in the interim, it doesn't 
 	if(!fetch_type || !ispath(fetch_type)) return
 	return RecycleAuthority.FetchProduct(fetch_type, directive)
 
-#define RA_PRODUCT_SPACE 100 //I might expand this per individual types based on need.
+#define RA_PRODUCT_SPACE 50 //I might expand this per individual types based on need.
 							 //Right now it applies to every category.
 
 var/global/datum/authority/branch/recycle/RecycleAuthority = new()
@@ -77,7 +77,12 @@ so there's honestly not too much to do here.
 	//This shouldn't happen, unless you call through RecycleProduct instead of cdel.
 	if(product in recycling[product.type]) return //If the item is already on the shelf. Somehow.
 	if( isnull(recycling[product.type]) ) recycling[product.type] = list() //Slap on a new list to reference the whatever.
-	if(purging || length(recycling[product.type]) >= shelf_space) TrashAuthority.DeliverTrash(product) //We're just gonna get rid of it.
+	if(purging || length(recycling[product.type]) >= shelf_space)
+		TrashAuthority.DeliverTrash(product) //We're just gonna get rid of it.
+		log_debug("RA: trashed the product instead of recycling. Current shelf length is: <b>[length(recycling[product.type])]</b>")
+		if(length(recycling[product.type]) > shelf_space)
+			shelf_space += 10
+			log_debug("Increasing RA shelf space. Current maximum space: <b>[shelf_space]</b>")
 
 	StockProduct(product)
 
@@ -126,6 +131,7 @@ You can also return the entire list of variables if you reset them manually. Not
 
 	usr << "Currently processed: <b>[RecycleAuthority.recycle_count]</b> products."
 	usr << "Currently storing: <b>[RecycleAuthority.recycling.len]</b> item categories."
+	log_debug("RA: Currently processed: <b>[RecycleAuthority.recycle_count]</b> products. Currently storing: <b>[RecycleAuthority.recycling.len]</b> item categories.")
 
 /datum/proc/ra_purge()
 	set category = "Debug"
@@ -134,3 +140,4 @@ You can also return the entire list of variables if you reset them manually. Not
 
 	RecycleAuthority.purging = !RecycleAuthority.purging
 	usr << "\red RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]"
+	log_debug("RA: <b>[usr.key]</b> used the purge toggle.")

@@ -51,7 +51,7 @@
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14)
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = "" //Let's make it invisible. The sprite already has one.
-		S.can_be_removed = 0
+		S.attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
@@ -94,19 +94,25 @@
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15)
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = "pmcscope"
-		S.can_be_removed = 0
+		S.attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
 		update_attachables()
 
-	afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
-		..()
-		if(istype(user,/mob/living/carbon/human))
-			if(user.lying == 0 && !istype(user:wear_suit,/obj/item/clothing/suit/storage/marine/PMCarmor/commando) && !istype(user:wear_suit,/obj/item/clothing/suit/storage/marine/PMCarmor))
-				user.visible_message("<span class='warning'>[user] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
-				user.Weaken(5)
-
+	simulate_recoil(var/total_recoil = 0, var/mob/user, atom/target)
+		. = ..()
+		if(.)
+			var/mob/living/carbon/human/PMC_sniper = user
+			var/o_x = target.x < user.x ? -1 : 1
+			var/o_y = target.y < user.y ? -1 : 1
+			var/new_x = target.x == user.x ? user.x : user.x + o_x
+			var/new_y = target.y == user.y ? user.y : user.y + o_y
+			var/near_target = locate(new_x,new_y,target.z)
+			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/PMCarmor))
+				PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
+				step_away(PMC_sniper,near_target)
+				PMC_sniper.Weaken(5)
 
 /obj/item/ammo_magazine/rifle/sniper/svd
 	name = "SVD Magazine (7.62x54mmR)"
@@ -223,13 +229,11 @@
 		return ready_in_chamber()
 
 	reload_into_chamber(mob/user)
-		set waitfor = 0
 		var/mob/living/carbon/human/smart_gunner = user
 		var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
 		if(power_pack) //I don't know how it would break, but it is possible.
 			if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
-				sleep(1)
-				if(power_pack && power_pack.loc) power_pack.attack_self(smart_gunner)
+				auto_reload(smart_gunner, power_pack)
 			else shells_fired_now++
 
 		return current_mag.current_rounds
@@ -247,6 +251,12 @@
 
 	make_casing()
 		return
+
+/obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, var/obj/item/smartgun_powerpack/power_pack)
+	set waitfor = 0
+	sleep(5)
+	if(power_pack && power_pack.loc)
+		power_pack.attack_self(smart_gunner)
 
 /obj/item/ammo_magazine/internal/smartgun/dirty
 	default_ammo = "irradiated smartgun bullet"
@@ -342,10 +352,11 @@
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it run times.
-		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
+		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from \a ([name]).")
 		log_game("[key_name_admin(user)] used a grenade ([name]).")
+		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
-		F.icon_state = initial(icon_state) + "_active"
+		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
 		if(F && F.loc) F.prime()

@@ -170,20 +170,6 @@ var/MAX_EXPLOSION_RANGE = 14
 
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 
-//DAMAGE CALCULATION DEFINES
-/*
-If you are wondering what point these values have,
-they should also transfer over to various forms of combat.
-Assuming those forms of combat will exist in the future.
-*/
-#define CRITICAL_CHANCE_LOW		   5   //This is the lower boundry of a critical.
-#define CRITICAL_CHANCE_HIGH	   10  //This is the upper boundry of a critical.
-#define BASE_ARMOR_RESIST_LOW 	   1.3 //This is the initial multiple * after soaking damage.
-#define BASE_ARMOR_RESIST_HIGH     1.7 //This is the derived multiple * after soaking damgage again.
-
-
-
-
 //ITEM INVENTORY SLOT BITMASKS
 #define SLOT_OCLOTHING 1
 #define SLOT_ICLOTHING 2
@@ -465,6 +451,18 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Bluh shields
 
+//DAMAGE CALCULATION DEFINES
+/*
+If you are wondering what point these values have,
+they should also transfer over to various forms of combat.
+Assuming those forms of combat will exist in the future.
+*/
+#define CRITICAL_CHANCE_LOW		   4   //This is the lower boundry of a critical.
+#define CRITICAL_CHANCE_HIGH	   9  //This is the upper boundry of a critical.
+#define BASE_ARMOR_RESIST_LOW 	   1.3 //This is the initial multiple * after soaking damage.
+#define BASE_ARMOR_RESIST_HIGH     1.7 //This is the derived multiple * after soaking damgage again.
+#define XENO_ARMOR_RESIST_LOW 	   0.7 //Xenos use this as a lower boundary for soaking damage or adding more armor.
+#define XENO_ARMOR_RESIST_HIGH     1.4 //Xenos use this as the upper boundary for deflecting damage on their second pass.
 
 //Damage things	//TODO: merge these down to reduce on defines
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
@@ -957,6 +955,7 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define AMMO_IS_SILENCED 	256
 #define AMMO_NO_SCATTER 	512
 #define AMMO_IGNORE_ARMOR	1024
+#define AMMO_IGNORE_RESIST	2048
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1
@@ -973,3 +972,10 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define GUN_ON_MERCS			2048
 #define GUN_ON_RUSSIANS			4096
 #define GUN_WY_RESTRICTED		8192
+
+//Gun attachable related flags.
+#define ATTACH_PASSIVE		1
+#define ATTACH_REMOVABLE	2
+#define ATTACH_CONTINUOUS	4
+#define ATTACH_ACTIVATION	8
+#define ATTACH_PROJECTILE	16

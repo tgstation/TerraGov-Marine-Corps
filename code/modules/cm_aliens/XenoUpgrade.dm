@@ -74,7 +74,7 @@
 				jellyMax = 800
 				caste_desc = "A fast, powerful front line combatant.  It looks a little more dangerous..."
 				speed = -1.4
-				armor_deflection = 40
+				armor_deflection = 25
 				attack_delay = -2
 				tacklemin = 3
 				tacklemax = 5
@@ -90,7 +90,7 @@
 				jellyMax = 1600
 				caste_desc = "A brutal, devastating front-line attacker.  It looks a little more dangerous..."
 				speed = -1.2
-				armor_deflection = 80
+				armor_deflection = 60
 				tacklemin = 4
 				tacklemax = 8
 				tackle_chance = 85
@@ -108,7 +108,7 @@
 				jellyMax = 1600
 				caste_desc = "A huge tanky xenomorph.  It looks a little more dangerous..."
 				speed = 0.5
-				armor_deflection = 85
+				armor_deflection = 70
 			if("Sentinel")
 				melee_damage_lower = 15
 				melee_damage_upper = 25
@@ -136,7 +136,7 @@
 				jellyMax = 800
 				spit_delay = 20
 				caste_desc = "A ranged damage dealer.  It looks a little more dangerous..."
-				armor_deflection = 25
+				armor_deflection = 20
 				tacklemin = 3
 				tacklemax = 5
 				tackle_chance = 60
@@ -168,7 +168,7 @@
 				jellyMax = 1600
 				spit_delay = 15
 				caste_desc = "A giant ranged monster...   It looks a little more dangerous..."
-				armor_deflection = 65
+				armor_deflection = 50
 				tacklemin = 5
 				tacklemax = 8
 				tackle_chance = 75
@@ -217,7 +217,7 @@
 				plasma_gain = 40
 				jellyMax = 1600
 				caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
-				armor_deflection = 85
+				armor_deflection = 65
 				tacklemin = 5
 				tacklemax = 7
 				tackle_chance = 85
@@ -262,7 +262,7 @@
 				jellyMax = 1600
 				caste_desc = "A fast, powerful front line combatant.  It looks pretty strong..."
 				speed = -1.5
-				armor_deflection = 50
+				armor_deflection = 30
 				attack_delay = -3
 				tacklemin = 4
 				tacklemax = 6
@@ -278,7 +278,7 @@
 				jellyMax = 3200
 				caste_desc = "A brutal, devastating front-line attacker.  It looks pretty strong..."
 				speed = -1.3
-				armor_deflection = 80
+				armor_deflection = 65
 				tacklemin = 5
 				tacklemax = 9
 				tackle_chance = 90
@@ -296,7 +296,7 @@
 				jellyMax = 3200
 				caste_desc = "A huge tanky xenomorph.  It looks pretty strong..."
 				speed = 0.1
-				armor_deflection = 90
+				armor_deflection = 75
 			if("Sentinel")
 				melee_damage_lower = 20
 				melee_damage_upper = 30
@@ -324,7 +324,7 @@
 				jellyMax = 1600
 				spit_delay = 15
 				caste_desc = "A ranged damage dealer.  It looks pretty strong..."
-				armor_deflection = 30
+				armor_deflection = 25
 				tacklemin = 4
 				tacklemax = 6
 				tackle_chance = 70
@@ -356,7 +356,7 @@
 				jellyMax = 3200
 				spit_delay = 10
 				caste_desc = "A giant ranged monster...   It looks pretty strong..."
-				armor_deflection = 70
+				armor_deflection = 55
 				tacklemin = 6
 				tacklemax = 9
 				tackle_chance = 80
@@ -405,7 +405,7 @@
 				plasma_gain = 50
 				jellyMax = 3200
 				caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets..."
-				armor_deflection = 90
+				armor_deflection = 70
 				tacklemin = 6
 				tacklemax = 9
 				tackle_chance = 90
@@ -451,7 +451,7 @@
 				maxplasma = 300
 				caste_desc = "A completly unmatched hunter.  No, not even the Yautja can match you."
 				speed = -1.5
-				armor_deflection = 50
+				armor_deflection = 40
 				attack_delay = -3
 				tacklemin = 4
 				tacklemax = 6
@@ -467,7 +467,7 @@
 				maxplasma = 200
 				caste_desc = "As I walk through the valley of the shadow of death..."
 				speed = -1.1
-				armor_deflection = 90
+				armor_deflection = 70
 				tacklemin = 6
 				tacklemax = 10
 				tackle_chance = 95
@@ -485,7 +485,7 @@
 				maxplasma = 400
 				caste_desc = "It always has the right of way..."
 				speed = -0.1
-				armor_deflection = 95
+				armor_deflection = 85
 			if("Sentinel")
 				src << "\green You are the stun master.  Your stunning is legendary and causes massive quantities of salt."
 				melee_damage_lower = 25
@@ -545,7 +545,7 @@
 				maxplasma = 1000
 				spit_delay = 0
 				caste_desc = "Its mouth looks like a minigun..."
-				armor_deflection = 75
+				armor_deflection = 60
 				tacklemin = 7
 				tacklemax = 10
 				tackle_chance = 85
@@ -594,7 +594,7 @@
 				maxplasma = 1000
 				plasma_gain = 50
 				caste_desc = "The most perfect Xeno form imaginable."
-				armor_deflection = 95
+				armor_deflection = 80
 				tacklemin = 7
 				tacklemax = 10
 				tackle_chance = 95

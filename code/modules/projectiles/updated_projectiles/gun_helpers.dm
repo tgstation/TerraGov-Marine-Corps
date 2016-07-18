@@ -280,13 +280,13 @@ should be alright.
 	var/can_attach = 1
 	switch(attachment.slot)
 		if("rail")
-			if(rail && rail.can_be_removed == 0) can_attach = 0
+			if(rail && !(rail.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("muzzle")
-			if(muzzle && muzzle.can_be_removed == 0) can_attach = 0
+			if(muzzle && !(muzzle.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("under")
-			if(under && under.can_be_removed == 0) can_attach = 0
+			if(under && !(under.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("stock")
-			if(stock && stock.can_be_removed == 0) can_attach = 0
+			if(stock && !(stock.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 
 	if(!can_attach)
 		user << "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>"
@@ -374,17 +374,17 @@ should be alright.
 	if(!do_after(usr,40))
 		return
 
-	if(rail && rail.can_be_removed)
-		usr << "You remove the weapon's [rail]."
+	if(rail && (rail.attach_features & ATTACH_REMOVABLE) )
+		usr << "<span class='notice'>You remove the weapon's [rail].</span>"
 		rail.Detach(src)
-	if(muzzle && muzzle.can_be_removed)
-		usr << "You remove the weapon's [muzzle]."
+	if(muzzle && (muzzle.attach_features & ATTACH_REMOVABLE) )
+		usr << "<span class='notice'>You remove the weapon's [muzzle].</span>"
 		muzzle.Detach(src)
-	if(under && under.can_be_removed)
-		usr << "You remove the weapon's [under]."
+	if(under && (under.attach_features & ATTACH_REMOVABLE) )
+		usr << "<span class='notice'>You remove the weapon's [under].</span>"
 		under.Detach(src)
-	if(stock && stock.can_be_removed)
-		usr << "You remove the weapon's [stock]."
+	if(stock && (stock.attach_features & ATTACH_REMOVABLE))
+		usr << "<span class='notice'>You remove the weapon's [stock].</span>"
 		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)
@@ -469,21 +469,21 @@ should be alright.
 	if(!check_both_hands(usr)) return
 
 	var/list/usable_attachments = list() //Basic list of attachments to compare later.
-	if(rail && rail.can_activate) usable_attachments[rail.name] = rail
-	if(under && under.can_activate)
+	if(rail && (rail.attach_features & ATTACH_ACTIVATION) ) usable_attachments[rail.name] = rail
+	if(under && (under.attach_features & ATTACH_ACTIVATION) )
 		if(istype(under, /obj/item/attachable/bipod)) //Specific case for bipods. Can be revised later if necessary.
 			if(under.activate_attachment(src,usr)) return
 		else usable_attachments[under.name] = under
 
-	if(stock  && stock.can_activate) usable_attachments[stock.name] = stock
-	if(muzzle && muzzle.can_activate) usable_attachments[muzzle.name] = muzzle
+	if(stock  && (stock.attach_features & ATTACH_ACTIVATION) ) usable_attachments[stock.name] = stock
+	if(muzzle && (muzzle.attach_features & ATTACH_ACTIVATION) ) usable_attachments[muzzle.name] = muzzle
 
 	if(usable_attachments.len <= 0) //No usable attachments.
 		usr << "<span class='warning'>This weapon does not have any attachments!</span>"
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
-		if(active_attachable && !active_attachable.passive) //In case the attach is passive like the flashlight/scope.
+		if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) ) //In case the attach is passive like the flashlight/scope.
 			usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
 			playsound(src.loc,active_attachable.activation_sound, 50, 1)
 			active_attachable = null
@@ -504,7 +504,7 @@ should be alright.
 		if(!usr.client || src.loc != usr) return//Dropped or something.
 
 		if(!choice || choice == "Cancel" || choice == "Cancel Active")
-			if(active_attachable  && !active_attachable.passive)
+			if(active_attachable  && !(active_attachable.attach_features & ATTACH_PASSIVE) )
 				usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
 				playsound(usr,active_attachable.activation_sound, 50, 1)
 				active_attachable = null

@@ -12,6 +12,7 @@
 #define AMMO_IS_SILENCED 	256
 #define AMMO_NO_SCATTER 	512
 #define AMMO_IGNORE_ARMOR	1024
+#define AMMO_IGNORE_RESIST	2048
 */
 
 /datum/ammo
@@ -20,24 +21,24 @@
 	var/icon_state = "bullet"
 	var/ping = "ping_b" //The icon that is displayed when the bullet bounces off something.
 
-	var/stun = 0
-	var/weaken = 0
-	var/paralyze = 0
-	var/irradiate = 0
-	var/stutter = 0
-	var/eyeblur = 0
-	var/drowsy = 0
-	var/agony = 0
+	var/stun 		= 0
+	var/weaken 		= 0
+	var/paralyze 	= 0
+	var/irradiate 	= 0
+	var/stutter 	= 0
+	var/eyeblur 	= 0
+	var/drowsy 		= 0
+	var/agony 		= 0
 
-	var/accuracy = 0
-	var/accurate_range = 7 //After this distance, accuracy suffers badly unless zoomed.
-	var/max_range = 30 //This will de-increment a counter on the bullet.
-	var/damage = 0
-	var/damage_bleed = 1 //How much damage the bullet loses per turf traveled, very high for shotguns. //Not anymore ~N.
-	var/damage_type = BRUTE
-	var/armor_pen = 0
+	var/accuracy 		= 0
+	var/accurate_range 	= 7 //After this distance, accuracy suffers badly unless zoomed.
+	var/max_range 		= 30 //This will de-increment a counter on the bullet.
+	var/damage 			= 0
+	var/damage_bleed 	= 1 //How much damage the bullet loses per turf traveled, very high for shotguns. //Not anymore ~N.
+	var/damage_type 	= BRUTE
+	var/armor_pen 		= 0
 	var/shrapnel_chance = 0
-	var/shell_speed = 1 //This is the default projectile speed: x turfs per 1 second.
+	var/shell_speed 	= 1 //This is the default projectile speed: x turfs per 1 second.
 
 	var/bonus_projectiles = 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
 	var/ammo_behavior = AMMO_REGULAR //Nothing special about it.
@@ -288,7 +289,7 @@
 	name = "AP rifle bullet"
 	damage = 35
 	accuracy = 20
-	armor_pen = 15
+	armor_pen = 20
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
@@ -306,9 +307,9 @@
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
-	damage = 65 //High damage.
+	damage = 60 //High damage.
 	max_range = 12
-	armor_pen = 22 //Good armor pen.
+	armor_pen = 25 //Good armor pen.
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
@@ -318,7 +319,7 @@
 	damage = 48 //Less damage than a normal slug, but has burst and burn.
 	max_range = 12
 	accuracy = -5
-	armor_pen = 5
+	armor_pen = 10
 	damage_type = BURN
 	ammo_behavior = AMMO_INCENDIARY
 
@@ -348,14 +349,18 @@
 	damaged. But then you should probably start using slugs.
 	*/
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(P.name != "additional buckshot") knockback(M,P)
+		knockback(M,P)
 
-/datum/ammo/bullet/shotgun/buckshot/extra
+/datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	damage = 65
 	damage_bleed = 16 //49, 33, 17, 1
+	accurate_range = 4
 	max_range = 4
-	bonus_projectiles = 0
+	icon_state = "buckshot"
+	shell_speed = 1
+
+
 /*
 //================================================
 					Sniper Ammo
@@ -569,7 +574,7 @@
 	name = "taser bolt"
 	icon_state = "stun"
 	damage_type = OXY
-	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_ARMOR //Not that ignoring armor will do anything.
+	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_RESIST //Not that ignoring will do much right now.
 
 	on_hit_mob(mob/M, obj/item/projectile/P)
 		stun_living(M,P)
@@ -584,6 +589,7 @@
 	damage = 5
 	stun = 2
 	weaken = 2
+	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_RESIST
 
 /datum/ammo/energy/yautja/caster/blast
 	name = "plasma blast"
@@ -627,6 +633,7 @@
 	name = "plasma rifle bolt"
 	icon_state = "ion"
 	weaken = 2
+	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_RESIST
 
 /datum/ammo/energy/yautja/rifle/blast
 	name = "plasma rifle blast"
@@ -649,9 +656,10 @@
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
+	damage_bleed = 0
 	stun = 1
 	weaken = 2
-	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS
+	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS | AMMO_IGNORE_RESIST
 
 /datum/ammo/xeno/toxin/medium //Spitter
 	name = "neurotoxic spatter"
@@ -685,7 +693,7 @@
 	ping = "ping_x"
 	stun = 20
 	weaken = 20 //If this bad boy hits you directly, watch out.
-	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_ARMOR
+	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_RESIST
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_nade(get_turf(P))

@@ -207,7 +207,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
 				update_icon()
 		else
-			if(!active_attachable.continuous) active_attachable = null
+			if( !(active_attachable.attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
 		return 1
 
 //-------------------------------------------------------
@@ -260,7 +260,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		..()
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16)
 		var/obj/item/attachable/grenade/G = new(src)
-		G.can_be_removed = 0
+		G.attach_features &= ~ATTACH_REMOVABLE
 		G.icon_state = "" //Gun already has a better one
 		G.Attach(src)
 		update_attachables()
@@ -343,7 +343,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	load_into_chamber()
 		//Trimming down the unnecessary stuff.
 		//This doesn't chamber, creates a bullet on the go.
-		if(active_attachable && active_attachable.passive) active_attachable = null
+		if(active_attachable && (active_attachable.attach_features & ATTACH_PASSIVE) ) active_attachable = null
 		if(current_mag.current_rounds > 0)
 			ammo = ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
 			in_chamber = create_bullet(ammo)
@@ -454,7 +454,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(!active_attachable) //Time to move the tube position.
 			if(!current_mag.current_rounds && !in_chamber) update_icon()//No rounds, nothing chambered.
 		else
-			if(!active_attachable.continuous) active_attachable = null
+			if( !(active_attachable.attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
 
 		return 1
 

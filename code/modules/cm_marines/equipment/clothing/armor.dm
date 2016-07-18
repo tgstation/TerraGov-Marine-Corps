@@ -280,6 +280,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/PMC/PMC.dmi'
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 90, bio = 100, rad = 100)
 	unacidable = 1
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 //===========================//DISTRESS\\================================\\
 //=======================================================================\\

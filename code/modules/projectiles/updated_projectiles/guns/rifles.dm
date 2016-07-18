@@ -133,9 +133,9 @@
 		S.Attach(src)
 		var/obj/item/attachable/stock/rifle/Q = new(src)
 		Q.Attach(src)
-		under.Detach(src)
-		cdel(under)
-		under = null
+		var/obj/item/attachable/G = under //We'll need this in a sec.
+		G.Detach(src) //This will null the attachment slot.
+		cdel(G) //So without a temp variable, this wouldn't work.
 		update_attachables()
 
 //-------------------------------------------------------

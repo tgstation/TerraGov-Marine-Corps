@@ -257,6 +257,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
+	/datum/admins/proc/fix_breach,
 	/proc/possess,
 	/proc/release
 	)

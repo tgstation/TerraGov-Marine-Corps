@@ -12,6 +12,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	mouse_opacity = 0
 	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
+	//appearance_flags = LONG_GLIDE
 
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
@@ -81,6 +82,7 @@
 	return acc
 
 /obj/item/projectile/proc/roll_to_hit_mob(var/atom/shooter,var/mob/living/target)
+	permutated += target //Don't want to hit them again, no matter what the outcome.
 	var/hit_chance = get_accuracy() //Get the bullet's pure accuracy.
 	if(target.lying && target.stat) hit_chance += 15 //Bonus hit against unconscious people.
 
@@ -103,19 +105,24 @@
 	var/hit_roll
 	var/critical_miss = rand(CRITICAL_CHANCE_LOW,CRITICAL_CHANCE_HIGH)
 	var/i = 0
-	while(++i <= 2) //This runs twice if necessary.
-		hit_roll = rand(0,100) //Our randomly generated roll.
-		if(hit_roll < 25) def_zone = pick(base_miss_chance)
-		hit_chance -= base_miss_chance[def_zone] //Reduce accuracy based on spot.
+	while(++i <= 2 && hit_chance > 0) //This runs twice if necessary.
+		hit_roll 					= rand(0,100) //Our randomly generated roll.
+		if(hit_roll < 25) def_zone 	= pick(base_miss_chance)
+		hit_chance 				   -= base_miss_chance[def_zone] //Reduce accuracy based on spot.
 
-		if( i > 1 && prob(critical_miss) ) break //Critical miss on the second go around.
-		if(hit_chance > hit_roll) return 1 //Hit.
-		if( hit_chance < (hit_roll - 20) ) break //Outright miss.
-		def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
-		hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
+		switch(i)
+			if(1)
+				if(hit_chance > hit_roll) 			return 1 //Hit
+				if( hit_chance < (hit_roll - 20) ) 	break //Outright miss.
+				def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+				hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
+			if(2)
+				if(prob(critical_miss) ) 			break //Critical miss on the second go around.
+				if(hit_chance > hit_roll) 			return 1
 	if (!target.lying) target.visible_message("<span class='avoidharm'>\The [src] misses \the [target]!</span>","<span class='avoidharm'>\The [src] narrowly misses you!</span>")
 
 /obj/item/projectile/proc/roll_to_hit_obj(var/atom/shooter,var/obj/target)
+	permutated += target
 	var/obj/structure/table/target_table = target
 	if( (istype(target_table) && target_table.flipped) || istype(target,/obj/structure/m_barricade) )
 		var/chance = 0
@@ -159,7 +166,7 @@
 			cdel(src)
 			return
 
-		src.loc = next_turf
+		loc = next_turf
 		speed = each_turf(speed)
 
 		this_iteration++
@@ -208,12 +215,12 @@
 	if(!istype(T)) return //Not a turf. Back out.
 	if(T.density) //Hit a wall, back out.
 		ammo.on_hit_turf(T,src)
-		if(T) T.bullet_act(src)
+		if(T && T.loc) T.bullet_act(src)
 		return 1
 	if(firer && T == firer.loc) return //Is it our turf? Continue on if it is.
 	if(ammo.ammo_behavior & AMMO_EXPLOSIVE && T == target_turf) //Explosive ammo always explodes on the turf of the clicked target.
 		ammo.on_hit_turf(T,src)
-		if(T) T.bullet_act(src)
+		if(T && T.loc) T.bullet_act(src)
 		return 1
 	if(!T.contents.len) return //Nothing here.
 	for(var/atom/A in T)
@@ -286,22 +293,24 @@
 	else
 		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>")
 
-	var/mob/firingMob = P.firer
-	if(firingMob && ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && src.mind && !src.mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
-		attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
-		P.firer:attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
-		msg_admin_ff("[P.firer] ([P.firer:ckey]) shot [src] ([src.ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>) (<a href='?priv_msg=\ref[P.firer]'>PM</a>)")
-	else if(istype(P.firer, /mob))
-		attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
-		P.firer:attack_log += "\[[time_stamp()]\] <b>[P.firer]/[P.firer:ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
-		msg_admin_attack("[P.firer] ([P.firer:ckey]) shot [src] ([src.ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>)")
-	else if(P.firer)
-		attack_log += "\[[time_stamp()]\] <b>[P.firer]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
-		msg_admin_attack("[P.firer] shot [src] ([src.ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>)")
+	if(ismob(P.firer))
+		var/mob/firingMob = P.firer
+		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
+			attack_log += "\[[time_stamp()]\] <b>[firingMob]/[firingMob.ckey]</b> shot <b>[src]/[ckey]</b> with a <b>[P]</b>"
+			P.firer:attack_log += "\[[time_stamp()]\] <b>[firingMob]/[firingMob.ckey]</b> shot <b>[src]/[ckey]</b> with a <b>[P]</b>"
+			msg_admin_ff("[firingMob] ([firingMob.ckey]) shot [src] ([ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>) (<a href='?priv_msg=\ref[firingMob]'>PM</a>)")
+		else
+			attack_log += "\[[time_stamp()]\] <b>[firingMob]/[firingMob.ckey]</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
+			P.firer:attack_log += "\[[time_stamp()]\] <b>[firingMob]/[firingMob.ckey]</b> shot <b>[src]/[ckey]</b> with a <b>[P]</b>"
+			msg_admin_attack("[firingMob] ([firingMob.ckey]) shot [src] ([ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>)")
+		return
+
+	if(P.firer)
+		attack_log += "\[[time_stamp()]\] <b>[P.firer]</b> shot <b>[src]/[ckey]</b> with a <b>[P]</b>"
+		msg_admin_attack("[P.firer] shot [src] ([ckey]) with a [P] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>)")
 	else
-		attack_log += "\[[time_stamp()]\] <b>SOMETHING??</b> shot <b>[src]/[src.ckey]</b> with a <b>[P]</b>"
-		msg_admin_attack("SOMETHING?? shot [src] ([src.ckey]) with a [P])")
-	return
+		attack_log += "\[[time_stamp()]\] <b>SOMETHING??</b> shot <b>[src]/[ckey]</b> with a <b>[P]</b>"
+		msg_admin_attack("SOMETHING?? shot [src] ([ckey]) with a [P])")
 
 /mob/dead/bullet_act(/obj/item/projectile/P)
 	return
@@ -322,7 +331,7 @@
 	if(damage && P.ammo.ammo_behavior & AMMO_INCENDIARY)
 		adjust_fire_stacks(rand(6,10))
 		IgniteMob()
-//		emote("scream")
+		emote("scream")
 		src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
 	return 1
 
@@ -393,7 +402,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			if(i || damage <= 5) src << "\blue Your armor [ i == 2 ? "absorbs the force of \the [P]!" : "softens the impact of \the [P]!" ]"
 			damage = damage > 0 ? damage : 0 //No negative damage.
 
-	if(stat != DEAD && ( damage || P.ammo.ammo_behavior & AMMO_XENO_TOX ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
+	if(stat != DEAD && ( damage || (P.ammo.ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
 		if(!isYautja(src)) apply_effects(P.ammo.stun,P.ammo.weaken,P.ammo.paralyze,P.ammo.irradiate,P.ammo.stutter,P.ammo.eyeblur,P.ammo.drowsy,P.ammo.agony)
 
@@ -405,7 +414,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
 			IgniteMob()
-		//	emote("scream")
+			emote("scream")
 			src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
 
 	return 1
@@ -429,29 +438,43 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) ) //Has to be at least zero, no negatives.
 	//world << "Initial damage is: <b>[damage]</b>."
 
-	var/armor = armor_deflection - P.ammo.armor_pen //Initial armor.
+	var/armor 		= armor_deflection - P.ammo.armor_pen //Initial armor.
+	var/armor_pass 	= 0
 	if( damage && !(P.ammo.ammo_behavior & AMMO_IGNORE_ARMOR) ) //No point in these checks if there is no damage.
-		armor += guard_aura ? (guard_aura * 3) : 0 //Bonus armor from pheroes.
+		armor += guard_aura ? (guard_aura * 5) : 0 //Bonus armor from pheroes.
 		if(istype(src,/mob/living/carbon/Xenomorph/Crusher)) //Crusher resistances. Crushers get a lot of armor, with a base of 95 at ancient status.
 			var/mob/living/carbon/Xenomorph/Crusher/current_crusher = src
 			armor += round(current_crusher.momentum / 3) //Some armor deflection when charging.
-			if(P.dir == current_crusher.dir) armor = max(0, armor - 70) //Both facing same way -- ie. shooting from behind.
-			else if(P.dir == reverse_direction(current_crusher.dir)) armor += 45//We are facing the bullet.
+			if(P.dir == current_crusher.dir) armor = max(0, armor - (armor_deflection * XENO_ARMOR_RESIST_LOW) ) //Both facing same way -- ie. shooting from behind.
+			else if(P.dir == reverse_direction(current_crusher.dir)) armor += round(armor_deflection * XENO_ARMOR_RESIST_LOW) //We are facing the bullet.
 			//Otherwise use the standard armor deflection for crushers.
 			//world << "Adjusted crusher armor is: <b>[armor]</b>."
 
 		//world << "Adjusted armor is: <b>[armor]</b>."
-		var/armor_pass 	 = round( ( armor * damage ) / 100 )
-		armor			-= prob(rand(5,10)) ? 0 : armor_pass //Small chance to completely ignore armor reduction.
-	//	world << "Armor after initial soak is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b>."
+		var/critical_hit	 = rand(CRITICAL_CHANCE_LOW,CRITICAL_CHANCE_HIGH)
+		armor_pass 	 	 	 = round( ( armor * damage * XENO_ARMOR_RESIST_LOW ) / 100 )
+		armor				-= prob(critical_hit) ? round(armor/2) : armor_pass //Small chance to completely ignore armor.
+		//world << "Armor after initial soak is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b>."
 
 	armor = armor < 0 ? 0 : armor
-	if( !damage || prob(armor) )
+
+	if(damage)
+		var/i = 0
+		while(armor > 0 && ++i <= 2)
+			if(prob(armor))
+				damage = 0
+				break
+			else
+				armor_pass	 = damage * XENO_ARMOR_RESIST_HIGH
+				armor 		-= armor_pass//One more chance, with a lower armor value.
+			//world << "Armor after first pass is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b>."
+
+	if(!damage)
 		bullet_ping(P)
 		visible_message("<span class='avoidharm'>The [src]'s thick exoskeleton deflects \the [P]!</span>","<span class='avoidharm'>Your thick exoskeleton deflected \the [P]!</span>")
 		return 1
 
-	bullet_message(P) //Message us about the damage, since it was inflicted.
+	bullet_message(P) //Message us about the bullet, since damage was inflicted.
 
 	apply_damage(damage,P.damage_type, P.def_zone)	//Deal the damage.
 	if(!stat && prob(5 + round(damage / 4)))
@@ -462,14 +485,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		else
 			adjust_fire_stacks(rand(2,6) + round(damage / 8))
 			IgniteMob()
-			visible_message("<span class='danger'>\The [src] bursts into flames!</span>","<span class='xenodanger'>You burst into flames!! Auuugh! Stop drop and roll!</span>")
+			visible_message("<span class='danger'>\The [src] bursts into flames!</span>","<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
 	updatehealth()
 
 	return 1
 
 /turf/bullet_act(obj/item/projectile/P)
-	if(!P || !density)
-		return //It's just an empty turf
+	if(!P || !density) return //It's just an empty turf
 
 	bullet_ping(P)
 
@@ -483,7 +505,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(mobs_list.len)
 		var/mob/living/picked_mob = pick(mobs_list) //Hit a mob, if there is one.
-		if(istype(picked_mob) && P.firer && P.roll_to_hit_mob(P.firer,picked_mob) == 1)
+		if(istype(picked_mob) && P.firer && P.roll_to_hit_mob(P.firer,picked_mob))
 			picked_mob.bullet_act(P)
 			return 1
 /*
@@ -521,7 +543,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(!CanPass(P,get_turf(src),src.layer) && density)
 		bullet_ping(P)
 		return 1
-	else return
 
 /obj/structure/table/bullet_act(obj/item/projectile/P)
 	src.bullet_ping(P)
@@ -550,5 +571,3 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(dy == 0) //above or below you
 		if(dx == -1 || dx == 1)
 			return 1
-
-	return 0

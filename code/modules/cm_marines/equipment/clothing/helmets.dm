@@ -16,7 +16,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	item_state = "helmet"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES
+	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|BLOCKHEADHAIR
 	armor = list(melee = 82, bullet = 15, laser = 5, energy = 5, bomb = 5, bio = 2, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
@@ -172,6 +172,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "A helmet worn by PMC Marksmen"
 	item_state = "pmc_sniper_hat"
 	icon_state = "pmc_sniper_hat"
+	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHAIR
 	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/PMC/heavypmc
@@ -179,7 +180,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "A modification of the standard Armat Systems M3 armor."
 	item_state = "heavy_helmet"
 	icon_state = "heavy_helmet"
-	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHEADHAIR
+	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHAIR
 	anti_hug = 4
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
 
@@ -190,9 +191,12 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_helmet"
 	icon_override = 'icons/PMC/PMC.dmi'
+	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHAIR|BLOCK_GAS_SMOKE_EFFECT
 	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	anti_hug = 6
 	unacidable = 1
+	cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 //==========================//DISTRESS\\=================================\\
 //=======================================================================\\

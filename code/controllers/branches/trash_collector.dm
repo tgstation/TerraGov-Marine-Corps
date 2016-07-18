@@ -171,6 +171,7 @@ Otherwise it will add it to queue for later hard deletion.
 			var/deletion_time = TrashAuthority.cannot_trash[I]
 			usr << "<b>[TrashAuthority.cannot_trash[I]]</b> deleted at:[TrashAuthority.cannot_trash[deletion_time]]."
 	else usr << "\blue Empty!"
+	log_debug("TA: Currently processed: <b>[TrashAuthority.soft_del_count]</b> soft deletions and <b>[TrashAuthority.hard_del_count]</b> hard deletions.")
 
 /datum/proc/ta_purge()
 	set category = "Debug"
@@ -179,4 +180,5 @@ Otherwise it will add it to queue for later hard deletion.
 
 	TrashAuthority.purging = !TrashAuthority.purging
 	usr << "\red TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]"
+	log_debug("TA: <b>[usr.key]</b> used the purge toggle.")
 

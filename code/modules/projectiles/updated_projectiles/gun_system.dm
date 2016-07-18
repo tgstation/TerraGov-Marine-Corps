@@ -149,6 +149,7 @@
 /obj/item/weapon/gun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
 		user << "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading."
+		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
 		ammo = ammo_list["default bullet"] //Looks like we're defaulting it.
 	else ammo = ammo_list[magazine.default_ammo]
 
@@ -269,14 +270,14 @@ and you're good to go.
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
 	//If it's something like a flashlight, we turn it off. If it's an actual fire and forget one, we need to keep going.
-	if(active_attachable && active_attachable.passive) active_attachable = null
+	if(active_attachable && (active_attachable.attach_features & ATTACH_PASSIVE) ) active_attachable = null
  	//If we have a round chambered and no attachable, we're good to go.
 	if(in_chamber && !active_attachable) return in_chamber //Already set!
 
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
 	if(active_attachable)
-		if(active_attachable.ammo_type && active_attachable.current_ammo > 0) //If it's still got ammo and stuff.
-			active_attachable.current_ammo--
+		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
+			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
 		else
 			user << "<span class='warning'>\The [active_attachable.name] is empty!</span>"
@@ -293,6 +294,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/create_bullet(datum/ammo/chambered)
 	if(!chambered || isnull(chambered))
 		usr << "Something has gone horribly wrong. Ahelp the following: ERROR CODE I2: null ammo while create_bullet()"
+		log_debug("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
 		chambered = ammo_list["default bullet"] //Slap on a default bullet if somehow ammo wasn't passed.
 
 	var/obj/item/projectile/P = rnew(/obj/item/projectile,src) //New bullet!
@@ -326,14 +328,14 @@ and you're good to go.
 				playsound(current_loc, empty_sound, 50, 1)
 
 	// Shouldn't be called on, but in case something that uses Fire() is added that is toggled.
-	else if(!active_attachable.continuous) active_attachable = null // Set it to null for next activation. Again, this isn't really going to happen.
+	else if( !(active_attachable.attach_features & ATTACH_CONTINUOUS) ) active_attachable = null // Set it to null for next activation. Again, this isn't really going to happen.
 
 	return in_chamber //Returns the projectile if it's actually successful.
 
 /obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
 		cdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
-		if(refund) active_attachable.current_ammo++ //Refund the bullet.
+		if(refund) active_attachable.current_rounds++ //Refund the bullet.
 		return 1
 
 /obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
@@ -364,11 +366,11 @@ and you're good to go.
 	This is where the grenade launcher and flame thrower function as attachments.
 	This is also a general check to see if the attachment can fire in the first place.
 	*/
-	if(active_attachable && !active_attachable.passive) //Attachment activated and isn't a flashlight or something.
+	if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) ) //Attachment activated and isn't a flashlight or something.
 		gun_features &= ~GUN_BURST_ON //We don't want to mess with burst while this is on.
-		if(!active_attachable.projectile_based) //If it's unique projectile, this is where we fire it.
+		if( !(active_attachable.attach_features & ATTACH_PROJECTILE) ) //If it's unique projectile, this is where we fire it.
 			active_attachable.fire_attachment(target,src,user) //Fire it.
-			if(active_attachable.current_ammo <= 0) click_empty(user) //If it's empty, let them know.
+			if(active_attachable.current_rounds <= 0) click_empty(user) //If it's empty, let them know.
 			active_attachable = null //Set it to null anyway, it's done.
 			return
 			//If there's more to the attachment, it will be processed farther down, through in_chamber and regular bullet act.
@@ -440,12 +442,12 @@ and you're good to go.
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj) || isnull(projectile_to_fire))
 			user << "Your gun is malfunctioning. Ahelp the following: ERROR CODE I1: projectile malfunctioned while firing."
+			log_debug("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
 			gun_features &= ~GUN_BURST_FIRING
 			return
 
 		if(get_turf(target) != get_turf(user))
-			var/total_recoil = recoil+recoil_comp
-			if(total_recoil > 0 && ishuman(user)) shake_camera(user, total_recoil + 1, total_recoil)
+			simulate_recoil(recoil+recoil_comp, user, target)
 
 			//This is where the projectile leaves the barrel and deals with projectile code only.
 			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -480,7 +482,7 @@ and you're good to go.
 				mouthshoot = 1
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger...</span>")
 				if(do_after(user, 40))
-					if(active_attachable && !active_attachable.projectile_based)
+					if(active_attachable && !(active_attachable.attach_features & ATTACH_PROJECTILE))
 						active_attachable = null //We're not firing off a nade into our mouth.
 					var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 					if(projectile_to_fire) //We actually have a projectile, let's move on.
@@ -520,7 +522,7 @@ and you're good to go.
 			gun_features &= ~GUN_BURST_FIRING
 			//Point blanking simulates firing the bullet proper but without actually firing it.
 			if(able_to_fire(user)) //If you can't fire the gun in the first place, we're just going to hit them with it.
-				if(active_attachable && !active_attachable.projectile_based) active_attachable = null//No way.
+				if(active_attachable && !(active_attachable.attach_features & ATTACH_PROJECTILE)) active_attachable = null//No way.
 				var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 				if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 					projectile_to_fire.damage *= 1.1 //Multiply the damage for point blank.
@@ -549,7 +551,7 @@ and you're good to go.
 	Removed ishuman() check. There is no reason for it, as it just eats up more processing, and adding fingerprints during the fire cycle is silly.
 	Consequently, predators are able to fire while cloaked.
 	*/
-	if(user)
+	if(ismob(user)) //Could be an object firing the gun.
 		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 		if(!user.IsAdvancedToolUser())
@@ -560,23 +562,24 @@ and you're good to go.
 			user << "<span class='warning'>The safety is on!</span>"
 			return
 
-		if( (gun_features & GUN_WY_RESTRICTED) && !wy_allowed_check(user) ) return
-
-		if(world.time >= last_fired + fire_delay + extra_delay) //If not, check the last time it was fired.
-			extra_delay = 0
-			last_fired = world.time
-		else
-			if (world.time % 3) //to prevent spam
-				user << "<span class='warning'>[src] is not ready to fire again!</span>"
-			return
-
-		//I pray an object doesn't fire off a two handed weapon, since that would be...problematic.
 		if(flags & TWOHANDED) //If we're not holding the weapon with both hands when we should.
 			var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand() //We have to check for this though, since the offhand can drop due to arm malfs, etc.
 			if(!istype(O))
 				unwield(user)
 				user << "<span class='warning'>You need a more secure grip to fire this weapon!"
 				return
+
+		if( (gun_features & GUN_WY_RESTRICTED) && !wy_allowed_check(user) ) return
+
+		//Has to be on the bottom of the stack to prevent delay when failing to fire the weapon for the first time.
+		//Can also set last_fired through New(), but honestly there's not much point to it.
+		if(world.time >= last_fired + fire_delay + extra_delay) //If not, check the last time it was fired.
+			extra_delay = 0
+			last_fired = world.time
+		else
+			if (world.time % 3) user << "<span class='warning'>[src] is not ready to fire again!</span>" //to prevent spam
+			return
+
 	return 1
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
@@ -592,7 +595,7 @@ and you're good to go.
 	var/actual_sound = fire_sound
 	var/sound_volume = gun_features & GUN_SILENCED ? 20 : 50
 	projectile_to_fire.accuracy += accuracy //We're going to throw in the gun's accuracy.
-	if(!active_attachable || active_attachable.passive) //We don't want all of these to affect attachables.
+	if(!active_attachable || (active_attachable.attach_features & ATTACH_PASSIVE) ) //We don't want all of these to affect attachables.
 		//Various bonuses begin here.
 		if(rail && rail.ranged_dmg_mod) projectile_to_fire.damage = round(projectile_to_fire.damage * rail.ranged_dmg_mod / 100)
 		if(muzzle && muzzle.ranged_dmg_mod) projectile_to_fire.damage = round(projectile_to_fire.damage * muzzle.ranged_dmg_mod / 100)
@@ -618,6 +621,11 @@ and you're good to go.
 			else
 				user << "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>"
 	return 1
+
+/obj/item/weapon/gun/proc/simulate_recoil(var/total_recoil = 0, mob/user, atom/target)
+	if(total_recoil > 0 && ishuman(user))
+		shake_camera(user, total_recoil + 1, total_recoil)
+		return 1
 
 /obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user as mob|obj)
 	set waitfor = 0 //No need to wait on this one.

@@ -18,7 +18,7 @@
 	jelly = 1
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
-	armor_deflection = 20
+	armor_deflection = 15
 	tier = 2
 	upgrade = 0
 	inherent_verbs = list(

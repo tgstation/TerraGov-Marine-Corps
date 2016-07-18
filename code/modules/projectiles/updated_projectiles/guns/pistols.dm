@@ -129,7 +129,7 @@
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18)
 		var/obj/item/attachable/suppressor/S = new(src)
 		S.icon_state = ""
-		S.can_be_removed = 0
+		S.attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		update_attachables()
 

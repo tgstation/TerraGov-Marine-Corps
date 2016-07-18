@@ -107,7 +107,7 @@
 			//If bullets still remain in the gun, we want to check if the actual ammo matches.
 			else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
 				if(current_mag.transfer_ammo(magazine,current_mag,user,1)) add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-			else 		user << "\The [current_mag] is already loaded with some other ammo. Better not mix them up."//Not the right kind of ammo.
+			else 		user << "\The [current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]"//Not the right kind of ammo.
 		else //So if it's not a handful, it's an actual speedloader.
 			if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
 				if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
@@ -269,7 +269,7 @@
 	icon_state = "38"
 	icon_empty = "38-0"
 	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/revolver
+	gun_type = /obj/item/weapon/gun/revolver/m44
 	handful_type = "Bullets (.44)"
 
 /obj/item/ammo_magazine/revolver/marksman
@@ -280,6 +280,7 @@
 
 /obj/item/ammo_magazine/internal/revolver/m44
 	caliber = ".44"
+	gun_type = /obj/item/weapon/gun/revolver/m44
 	handful_type = "Bullets (.44)"
 
 /obj/item/weapon/gun/revolver/m44
@@ -311,6 +312,7 @@
 /obj/item/ammo_magazine/internal/revolver/upp
 	caliber = "7.62mm"
 	max_rounds = 8
+	gun_type = /obj/item/weapon/gun/revolver/upp
 	handful_type = "Bullets (7.62mm)"
 
 /obj/item/weapon/gun/revolver/upp
@@ -345,6 +347,7 @@
 /obj/item/ammo_magazine/internal/revolver/small
 	default_ammo = "small revolver bullet"
 	caliber = ".357"
+	gun_type = /obj/item/weapon/gun/revolver/small
 	handful_type = "Bullets (.357)"
 
 /obj/item/weapon/gun/revolver/small
@@ -384,6 +387,7 @@
 	default_ammo = "heavy revolver bullet"
 	caliber = ".454"
 	max_rounds = 8
+	gun_type = /obj/item/weapon/gun/revolver/mateba
 	handful_type = "Bullets (.454)"
 
 /obj/item/weapon/gun/revolver/mateba
@@ -421,6 +425,7 @@
 	default_ammo = "small revolver bullet"
 	caliber = ".357"
 	max_rounds = 6
+	gun_type = /obj/item/weapon/gun/revolver/cmb
 	handful_type = "Bullets (.357)"
 
 /obj/item/weapon/gun/revolver/cmb

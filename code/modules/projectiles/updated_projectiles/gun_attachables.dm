@@ -11,7 +11,15 @@ Muzzle attachments should connect to the barrel, not sit under or above it. The 
 Underrail attachments should just fit snugly, that's about it. Stocks are factored on underrail offsets.
 Do not edit pixel_shift_x / y unless you really know what you're doing. Editing them can mess up all of the
 attachments.
-~N */
+~N
+
+Defined in setup.dm.
+#define ATTACH_PASSIVE		1
+#define ATTACH_REMOVABLE	2
+#define ATTACH_CONTINUOUS	4
+#define ATTACH_ACTIVATION	8
+#define ATTACH_PROJECTILE	16
+*/
 
 /obj/item/attachable
 	name = "attachable item"
@@ -41,7 +49,6 @@ attachments.
 	var/accuracy_mod = 0 //Modifier to firing accuracy.
 	var/melee_mod = 0 //Changing to a flat number so this actually doesn't screw up the calculations.
 	var/w_class_mod = 0 //Modifier to weapon's weight class.
-	var/twohanded_mod = 0 //If 1, removes two handed, if 2, adds two-handed.
 	var/recoil_mod = 0 //If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.
 	var/silence_mod = 0 //Adds silenced to weapon
 	var/light_mod = 0 //Adds an x-brightness flashlight to the weapon, which can be toggled on and off.
@@ -49,17 +56,17 @@ attachments.
 	var/burst_mod = 0 //Changes burst rate. 1 == 0.
 	var/size_mod = 0 //Increases the weight class
 
+	//This is a special case.
+	var/twohanded_mod = 0 //If 1, removes two handed, if 2, adds two-handed.
+
 	/*
 	This is where activation begins. Attachments that activate can be passive (like a scope),
 	or they can be active like a shotgun or grenade launcher. Attachments may be continuous,
 	or they fire so long as you can activate them, or single fire. That is where they deactivate
 	after one pass.
 	*/
-	var/can_activate = 0
 	var/activation_sound = 'sound/machines/click.ogg'
-	var/continuous = 0 //Shootable attachments normally swap back after 1 shot.
-	var/passive = 1 //Can't actually be an active attachable, but might still be activatible.
-	var/can_be_removed = 1 //This is a check for special attachments that shouldn't be removed.
+	var/fire_sound = null //Sound to play when firing it alternately
 
 	//These are bipod specifics, but they function well enough in other scenarios if needed.
 	var/obj/structure/firing_support = null //Used by the bipod/other support to see if the gun can fire better.
@@ -68,24 +75,20 @@ attachments.
 	var/firing_flipped = 2 //Default is 2, 0 means the table isn't flipped. 1 means it is. 2 means it's not a table so we don't care.
 
 	//Some attachments may be fired. So here are the variables related to that.
-	var/ammo_type = null //Which type of ammo it uses. If it's not a datum, it'll be a seperate object.
+	var/default_ammo = null //Which type of ammo it uses. If it's not a datum, it'll be a seperate object.
 	var/datum/ammo/ammo = null //Turning this into a New(), since otherwise attachables don't work right. ~N
-	var/projectile_based = 0 //Does this thing use the projectile cycle to fire? Defaults to no.
-	var/ammo_capacity = 0 //How much ammo it can store
-	var/current_ammo = 0
-	var/fire_sound = null //Sound to play when firing it alternately
-	var/spew_range = 0 //Determines # of tiles distance the flamethrower can exhale.
+	var/current_rounds = 0 //How much it has.
+	var/max_rounds = 0 //How much ammo it can store
+	var/max_range = 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/type_of_casings = "bullet" //bullets by default.
 	var/eject_casings = 0 //Off by default.
 
+	var/attach_features = ATTACH_PASSIVE | ATTACH_REMOVABLE
 
 
 	New() //Let's make sure if something needs an ammo type, it spawns with one.
 		..()
-		if(ammo_type)
-			var/ammopath = text2path(ammo_type) //Convert it.
-			if(ispath(ammopath)) //Is it a path?
-				ammo = new ammopath() //Link it up.
+		if(default_ammo) ammo = ammo_list[default_ammo]
 
 	Dispose()
 		. = ..()
@@ -468,8 +471,7 @@ attachments.
 					)
 	light_mod = 5
 	slot = "rail"
-	can_activate = 1 //This is needed on all activateable attachments.
-	passive = 1
+	attach_features = ATTACH_PASSIVE | ATTACH_REMOVABLE | ATTACH_ACTIVATION
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		if(target)
@@ -507,8 +509,7 @@ attachments.
 	w_class_mod = 2
 	melee_mod = -10
 	delay_mod = 1
-	passive = 1
-	can_activate = 1
+	attach_features = ATTACH_PASSIVE | ATTACH_REMOVABLE | ATTACH_ACTIVATION
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		if(firing_support) //Let's see if we can find one.
@@ -691,8 +692,8 @@ attachments.
 	icon_state = "slavicstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	can_be_removed = 0 //This weapon shouldn't have the stock removed, considering it has one in the base sprite.
 	guns_allowed = list(/obj/item/weapon/gun/rifle/sniper/svd)
+	attach_features = ATTACH_PASSIVE
 
 /obj/item/attachable/stock/rifle
 	name = "M41A Marksman Stock"
@@ -735,82 +736,47 @@ attachments.
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump
 						)
-	ammo_capacity = 2
-	current_ammo = 2
+	current_rounds = 2
+	max_rounds = 2
+	max_range = 7
 	slot = "under"
 	fire_sound = 'sound/weapons/grenade_shot.ogg'
-	passive = 0 //This tells the gun that this needs to remain "active" until fired.
-	can_activate = 1
+	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION
 
 	examine()
 		..()
-		if(current_ammo > 0)
-			usr << "It's still got some punch left."
-		else
-			usr << "It looks spent."
+		if(current_rounds > 0) 	usr << "It's still got some punch left."
+		else 					usr << "It looks spent."
+
 
 	//"Readying" the gun for the grenade launch is not needed. Just point & click
 	activate_attachment(atom/target,mob/living/user)
-		user << "\blue Your next shot will fire an explosive grenade."
+		user << "<span class='notice'>Your next shot will fire an explosive grenade.</span>"
 		return 1
 
 	fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
-		if(current_ammo > 0)
-			var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
-			playsound(user.loc,fire_sound, 50, 1)
-			message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
-			log_game("[key_name_admin(user)] used an underslung grenade launcher.")
-			G.active = 1
-			G.icon_state = initial(icon_state) + "_active"
-			G.throw_range = 20
-			G.throw_at(target, 20, 2, user)
-			current_ammo--
-			spawn(15) //~1 second.
-				if(G) //If somehow got deleted since then
-					G.prime()
-			return 1
-		else
-
-			if(user) user << "<span class='warning'>\icon[gun] The [src.name] is empty!</span>"
-			if(gun.active_attachable == src)
-				gun.active_attachable = null
+		if(get_dist(user,target) > max_range)
+			user << "<span class='warning'>Too far to fire the attachment!</span>"
 			return 1
 
+		if(current_rounds > 0) prime_grenade(target,gun,user)
+		else user << "<span class='warning'>\icon[gun] The [src.name] is empty!</span>"
 
-/obj/item/attachable/shotgun
-	name = "masterkey shotgun"
-	icon_state = "masterkey"
-	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. It cannot be reloaded."
-	w_class = 4.0
-	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
-						/obj/item/weapon/gun/rifle/m41aMK1,
-						/obj/item/weapon/gun/rifle/m41a/elite,
-						/obj/item/weapon/gun/rifle/mar40,
-						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/shotgun/pump)
-	ammo_capacity = 5
-	current_ammo = 5
-	ammo_type = "shotgun slug"
-	slot = "under"
-	fire_sound = 'sound/weapons/shotgun.ogg'
-	passive = 0
-	continuous = 1
-	projectile_based = 1 //Uses the projectile system.
-	can_activate = 1
-	type_of_casings = "shell"
-	eject_casings = 1
-
-	examine()
-		..()
-		if(current_ammo > 0)
-			usr << "It's still got some shells left."
-		else
-			usr << "It looks spent."
-
-	//Because it's got an ammo_type, everything is taken care of when the gun shoots. It more or less just uses the attachment instead.
-	activate_attachment(atom/target,mob/living/carbon/user)
-		user << "\blue You will now shoot shotgun shells from the [src.name]."
 		return 1
+
+/obj/item/attachable/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
+	set waitfor = 0
+	var/obj/item/weapon/grenade/explosive/G = new(get_turf(gun))
+	playsound(user.loc,fire_sound, 50, 1)
+	message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
+	log_game("[key_name_admin(user)] used an underslung grenade launcher.")
+	G.active = 1
+	G.icon_state = "grenade_active"
+	G.throw_range = max_range
+	G.throw_at(target, max_range, 2, user)
+	current_rounds--
+	sleep(15)
+	if(G && G.loc) G.prime()
 
 //"ammo/flamethrower" is a bullet, but the actual process is handled through fire_attachment, linked through Fire().
 /obj/item/attachable/flamer
@@ -826,81 +792,102 @@ attachments.
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb)
-	ammo_capacity = 20
-	current_ammo = 20
+	current_rounds = 20
+	max_rounds = 20
+	max_range = 5
 	slot = "under"
 	fire_sound = 'sound/weapons/flamethrower_shoot.ogg'
-	passive = 0
-	can_activate = 1
+	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION
 
 	examine()
 		..()
-		if(current_ammo > 0)
-			usr << "It's still got some flame left."
-		else
-			usr << "It looks spent."
+		if(current_rounds > 0) usr << "It's still got some flame left."
+		else usr << "It looks spent."
 
 	activate_attachment(atom/target,mob/living/carbon/user)
-		user << "<span class='notice'>Your next shot will unleash a burst of flame from the [src.name].</span>"
+		user << "<span class='notice'>Your next shot will unleash a burst of flame from \the [src].</span>"
 		return 1
 
 	fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
-		set waitfor = 0
-		if(get_dist(user,target) <= 0)
-			user << "<span class='warning'>Too close to fire the attached flamethrower!</span>"
+		if(get_dist(user,target) > max_range+3)
+			user << "<span class='warning'>Too far to fire the attachment!</span>"
 			return 1
 
-		if(current_ammo)
-			var/list/turf/turfs = getline2(user,target)
-			var/distance = 0
-			var/obj/structure/window/W
-			var/turf/T
-			playsound(src.loc, 'sound/weapons/flamethrower_2.ogg', 80, 1)
-			for(T in turfs, distance++)
-				if(T == user.loc) continue
-				if(current_ammo == 0) break
-				if(distance > 6) break
-				if(DirBlocked(T,usr.dir))
-					break
-				else if(DirBlocked(T,turn(usr.dir,180)))
-					break
-				if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/structure/mineral_door/resin,T) || locate(/obj/effect/alien/resin/membrane,T))
-					break
-				W = locate() in T
-				if(W)
-					if(W.is_full_window()) break
-					if(W.dir == src.dir)
-						break
-				current_ammo--
-				flame_turf(T,user)
-				sleep(1)
-		else
-			if(user) user << "<span class='warning'>\icon[gun] The [src.name] is empty!</span>"
-			if(gun.active_attachable == src)
-				gun.active_attachable = null
+		if(current_rounds) unleash_flame(target, user)
+		else user << "<span class='warning'>\icon[gun] \The [src] is empty!</span>"
+
 		return 1
 
-	proc/flame_turf(var/turf/T,var/mob/user)
-		if(!istype(T)) return 0
+/obj/item/attachable/flamer/proc/unleash_flame(atom/target, mob/living/user)
+	set waitfor = 0
+	var/list/turf/turfs = getline2(user,target)
+	var/distance = 0
+	var/obj/structure/window/W
+	var/turf/T
+	playsound(user, 'sound/weapons/flamethrower_2.ogg', 80, 1)
+	for(T in turfs)
+		if(T == user.loc) 			continue
+		if(!current_rounds) 		break
+		if(distance >= max_range) 	break
+		if(DirBlocked(T,user.dir))  break
+		else if(DirBlocked(T,turn(user.dir,180))) break
+		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/structure/mineral_door/resin,T) || locate(/obj/effect/alien/resin/membrane,T)) break
+		W = locate() in T
+		if(W)
+			if(W.is_full_window()) 	break
+			if(W.dir == user.dir) 	break
+		current_rounds--
+		flame_turf(T,user)
+		distance++
+		sleep(1)
 
-		if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-			var/obj/flamer_fire/F =  new/obj/flamer_fire(T)
-			processing_objects.Add(F)
-		else
-			return 0
+/obj/item/attachable/flamer/proc/flame_turf(var/turf/T,var/mob/user)
+	if(!istype(T)) return
 
-		for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
-			if(M.stat == DEAD) continue
-			if(M == user) continue
+	if(!locate(/obj/flamer_fire) in T) // No stacking flames!
+		var/obj/flamer_fire/F =  new/obj/flamer_fire(T)
+		processing_objects.Add(F)
+	else return
 
-			if(istype(M,/mob/living/carbon/Xenomorph))
-				if(M:fire_immune) continue
-			if(istype(M,/mob/living/carbon/human))
-				if(istype(M:wear_suit, /obj/item/clothing/suit/fire) || istype(M:wear_suit,/obj/item/clothing/suit/space/rig/atmos))
-					continue
-			M.adjustFireLoss(rand(20,50))  //fwoom!
-			M << "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>" ]Augh! You are roasted by the flames!"
+	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
+		if(M.stat == DEAD)		continue
 
+		if(istype(M,/mob/living/carbon/Xenomorph))
+			if(M:fire_immune) 	continue
+		if(istype(M,/mob/living/carbon/human))
+			if(istype(M:wear_suit, /obj/item/clothing/suit/fire) || istype(M:wear_suit,/obj/item/clothing/suit/space/rig/atmos)) continue
+
+		M.adjustFireLoss(rand(20,50))  //fwoom!
+		M << "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!"
+
+/obj/item/attachable/shotgun
+	name = "masterkey shotgun"
+	icon_state = "masterkey"
+	desc = "A weapon-mounted, four-shot shotgun. Mostly used in emergencies. It cannot be reloaded."
+	w_class = 4.0
+	guns_allowed = list(/obj/item/weapon/gun/rifle/m41a,
+						/obj/item/weapon/gun/rifle/m41aMK1,
+						/obj/item/weapon/gun/rifle/m41a/elite,
+						/obj/item/weapon/gun/rifle/mar40,
+						/obj/item/weapon/gun/rifle/mar40/carbine,
+						/obj/item/weapon/gun/shotgun/pump)
+	max_rounds = 5
+	current_rounds = 5
+	default_ammo = "shotgun slug"
+	slot = "under"
+	fire_sound = 'sound/weapons/shotgun.ogg'
+	type_of_casings = "shell"
+	eject_casings = 1
+	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION | ATTACH_CONTINUOUS | ATTACH_PROJECTILE
+
+	examine()
+		..()
+		if(current_rounds > 0) 	usr << "It's still got some shells left."
+		else 					usr << "It looks spent."
+
+	//Because it's got an ammo_type, everything is taken care of when the gun shoots. It more or less just uses the attachment instead.
+	activate_attachment(atom/target,mob/living/carbon/user)
+		user << "<span class='notice'>You will now shoot shotgun shells from the [src.name].</span>"
 		return 1
 
 /obj/item/attachable/scope
@@ -915,11 +902,11 @@ attachments.
 						/obj/item/weapon/gun/smg/p90,
 						/obj/item/weapon/gun/rifle/sniper/M42A)
 	slot = "rail"
-	passive = 1
-	can_activate = 1
 	delay_mod = 6
 	accuracy_mod = 50
 	burst_mod = -1
+	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION | ATTACH_PASSIVE
+
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
 		target.zoom(11,12,user)
@@ -941,9 +928,9 @@ attachments.
 	slot = "muzzle"
 	accuracy_mod = 5
 	ranged_dmg_mod = 150
-	can_be_removed = 0
 	pixel_shift_x = 20
 	pixel_shift_y = 16
+	attach_features = ATTACH_PASSIVE
 
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
@@ -953,7 +940,7 @@ attachments.
 	slot = "muzzle"
 	accuracy_mod = 10
 	ranged_dmg_mod = 110
-	can_be_removed = 0
+	attach_features = ATTACH_PASSIVE
 
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"
@@ -961,5 +948,5 @@ attachments.
 	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
 	guns_allowed = list(/obj/item/weapon/gun/smartgun)
 	slot = "muzzle"
-	can_be_removed = 0
+	attach_features = ATTACH_PASSIVE
 

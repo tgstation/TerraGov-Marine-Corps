@@ -63,7 +63,7 @@
 
 /obj/item/weapon/claymore/mercsword
 	name = "Combat Sword"
-	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharped to deal massive damage."
+	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "sword"
 	force = 39

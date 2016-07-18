@@ -45,20 +45,21 @@ They're all essentially identical when it comes to getting the job done.
 
 	New()
 		..()
-		if(current_rounds == -1) //This actually works now. Amazing.
-			current_rounds = max_rounds
+		if(current_rounds == -1) current_rounds = max_rounds//This actually works now. Amazing.
 		update_icon()
 
 	update_icon()
 		if(current_rounds <= 0 && icon_empty) 	icon_state = icon_empty
 		else							 		icon_state = initial(icon_state)
 
-
 	examine()
 		..()
 		// It should never have negative ammo after spawn. If it does, we need to know about it.
-		if(current_rounds < 0) 	usr << "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
-		else 					usr << "\The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
+		if(current_rounds < 0)
+			usr<< "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine."
+			log_debug("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
+		else
+			usr << "\The [src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 
 	attack_hand(mob/user as mob)
