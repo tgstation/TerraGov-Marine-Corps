@@ -75,8 +75,8 @@ datum
 				if( (overdose > 0) && (volume >= overdose))//Overdosing, wooo
 					M.adjustToxLoss(overdose_dam)
 				holder.remove_reagent(src.id, custom_metabolism) //By default it slowly disappears.
-				if(volume > (overdose*2))
-					M.adjustToxLoss((overdose_dam*(volume/overdose))*10)//Super fuck people up if they take hundreds of chems.
+				if(volume > (overdose*2) && overdose && overdose_dam) //Makes sure that there's actually an overdose or overdose damage to deal
+					M.adjustToxLoss(overdose_dam*(volume/overdose))//Super fuck people up if they take hundreds of chems.
 				return
 
 			on_move(var/mob/M)
@@ -1405,6 +1405,10 @@ datum
 			description = "A chemical designed to quickly stop internal bleeding"
 			reagent_state = LIQUID
 			color = "#CC00FF"
+			overdose = 2
+			overdose_dam = 30//Quick-clot overdoses will pretty much fuck you up
+			scannable = 1 //scannable now.  HUZZAH.
+			custom_metabolism = 0.1
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
 				M.take_organ_damage(1*REM, 0)

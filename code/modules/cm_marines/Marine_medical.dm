@@ -18,14 +18,14 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
 	name = "Quick Clot"
-	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly."
-	amount_per_transfer_from_this = 5
-	volume = 5
+	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once in 10 seconds."
+	amount_per_transfer_from_this = 1
+	volume = 1
 
 	New()
 		..()
 		spawn(1)
-			reagents.add_reagent("quickclot", 5)
+			reagents.add_reagent("quickclot", 1)
 			update_icon()
 		return
 
