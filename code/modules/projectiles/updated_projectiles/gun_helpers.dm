@@ -2,10 +2,26 @@
 ERROR CODES AND WHAT THEY MEAN:
 
 
-ERROR CODE A1: null.ammopath while reloading. <------------ Only appears when reloading a weapon and switching the .ammo. Somehow the argument passed a null.ammo.
+ERROR CODE A1: null ammo while reloading. <------------ Only appears when reloading a weapon and switching the .ammo. Somehow the argument passed a null.ammo.
 ERROR CODE I1: projectile malfunctioned while firing. <------------ Right before the bullet is fired, the actual bullet isn't present or isn't a bullet.
 ERROR CODE I2: null ammo while load_into_chamber() <------------- Somehow the ammo datum is missing or something. We need to figure out how that happened.
 ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammunition only. Ammunition should never have negative rounds on spawn.
+
+DEFINES in setup.dm, referenced here.
+#define GUN_CAN_POINTBLANK		1
+#define GUN_TRIGGER_SAFETY		2
+#define GUN_UNUSUAL_DESIGN		4
+#define GUN_SILENCED			8
+#define GUN_AUTOMATIC			16
+#define GUN_ALT_FIRE			32
+#define GUN_AUTO_EJECTOR		64
+#define GUN_AMMO_COUNTER		128
+#define GUN_BURST_ON			256
+#define GUN_BURST_FIRING		512
+#define GUN_FLASHLIGHT_ON		1024
+#define GUN_ON_MERCS			2048
+#define GUN_ON_RUSSIANS			4096
+#define GUN_WY_RESTRICTED		8192
 
 	NOTES
 
@@ -69,15 +85,30 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 	Energy guns, or guns that don't really use magazines, can gut this system a bit. You can see examples in
 	predator weapons or the taser.
 
+	Ammo is loaded dynamically based on parent type through a global list. It is located in global_lists.dm under
+	__HELPERS. So never create new() datums, as the datum should just be referenced through the global list instead.
+	This cuts down on unnecessary overhead, and makes bullets always have an ammo type, even if the parent weapon is
+	somehow deleted or some such. Null ammo in the projectile flight stage shoulder NEVER exist. If it does, something
+	has gone wrong elsewhere and should be looked at. Do not simply add if(ammo) checks. If the system is working correctly,
+	you will never need them.
+
+	The guns also have bitflags for various functions, so refer to those in case you want to create something unique.
+	They're all pretty straight forward; silenced comes from attachments only, so don't try to set it as the default.
+	If you want a silenced gun, attach a silencer to it that cannot be removed.
+
 	~N
 
 	TODO:
 
-	Add more muzzle flashes and guns sounds. Energy weapons, spear launcher, and taser for example.
-	Add some two handed sprites for SMGs that can use a grip.
+	Add more muzzle flashes and gun sounds. Energy weapons, spear launcher, and taser for example.
 	Add more guns, or unique guns. The framework should be there.
 	Add ping for energy guns like the taser and plasma caster.
-	Redo the plasma caster muzzle flash safety...
+	Move pred check for damage effects into the actual predator files instead of the usual.
+	Move the mind checks for damage and stun to actual files, or rework it somehow.
+	Make the following flags do something: GUN_ON_RUSSIANS GUN_ON_MERCS GUN_ALT_FIRE do something.
+	The first two are for the distress weapon randomizier which was never implemented as far as I know,
+	the other one is for any weapon that has alternating fire modes. Shoot once, then change up, etc.
+	No guns currently use it, but it could exist in the future if wanted.
 */
 
 //----------------------------------------------------------
@@ -88,7 +119,7 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/AltClick(var/mob/user)
-	if(burst_toggled && burst_firing) return
+	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 	if(!ishuman(user)) return
 
@@ -96,65 +127,59 @@ ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammu
 		user << "Not right now."
 		return
 
-	user << "You toggle the safety [trigger_safety ? "<b>off</b>" : "<b>on</b>"]."
+	user << "<span class='notice'>You toggle the safety [gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
 	playsound(usr,'sound/machines/click.ogg', 15, 1)
-	trigger_safety = !trigger_safety
+	gun_features ^= GUN_TRIGGER_SAFETY
 	return
 
-/obj/item/weapon/gun/mob_can_equip(var/mob/user as mob, slot)
+/obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
-	if(is_bursting || burst_firing) return
+	if(gun_features & GUN_BURST_FIRING) return
 	unwield(user)
 	return ..()
 
-/obj/item/weapon/gun/attack_hand(mob/user as mob)
+/obj/item/weapon/gun/attack_hand(mob/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
-	if( in_hand == src && twohanded ) //It has to be held if it's a two hander.
-		unload(user)
+	if( in_hand == src && (flags & TWOHANDED) ) unload(user)//It has to be held if it's a two hander.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) )
-		usr << "\red The [src] clanks on the ground."
-		return
+	if( harness_check(thrower) ) usr << "<span class='warning'>The [src] clanks on the ground.</span>"
 	else ..()
 
 /*
 Note: pickup and dropped on weapons must have both the ..() to update zoom AND twohanded,
 As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
 */
-/obj/item/weapon/gun/dropped(mob/user as mob)
+/obj/item/weapon/gun/dropped(mob/user)
 	..()
 
 	stop_aim()
 	if (user && user.client)
 		user.client.remove_gun_icons()
 
-	if(flashlight_on && src.loc != user)
-		user.SetLuminosity(-flash_lum)
-		SetLuminosity(flash_lum)
-
-	if(harness_check(user))
-		var/mob/living/carbon/human/owner = user
-		spawn(3)
-			if(owner)
-				if(isnull(owner.s_store) && isturf(src.loc))
-					var/obj/item/I = owner.wear_suit
-					owner.equip_to_slot_if_possible(src,slot_s_store)
-					if(owner.s_store == src) user << "\red The [src] snaps into place on [I]."
-					owner.update_inv_s_store()
+	if(gun_features & GUN_FLASHLIGHT_ON)
+		user.SetLuminosity(-rail.light_mod)
+		SetLuminosity(rail.light_mod)
 
 	unwield(user)
+	harness_check(user)
 
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
 
-	if(flashlight_on && src.loc != user)
-		user.SetLuminosity(flash_lum)
+	if(gun_features & GUN_FLASHLIGHT_ON)
+		user.SetLuminosity(rail.light_mod)
 		SetLuminosity(0)
 
 	unwield(user)
-	return
+
+/obj/item/weapon/gun/proc/wy_allowed_check(var/mob/living/carbon/human/user)
+	if(istype(user) && user.mind)
+		switch(user.mind.assigned_role)
+			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
+		if(user.mind.special_role == "DEATH SQUAD") return 1
+	user << "<span class='warning'>\The [src] flashes a warning sign indicating unauthorized use!</span>"
 
 /*
 Here we have throwing and dropping related procs.
@@ -162,87 +187,55 @@ This should fix some issues with throwing mag harnessed guns when
 they're not supposed to be thrown. Either way, this fix
 should be alright.
 */
-/obj/item/weapon/gun/proc/harness_check(mob/user as mob)
+/obj/item/weapon/gun/proc/harness_check(mob/user)
 	if(user && ishuman(user))
 		var/mob/living/carbon/human/owner = user
 		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
 			var/obj/item/I = owner.wear_suit
 			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+				harness_return(user)
 				return 1
-	return
 
-/obj/item/weapon/gun/attack_self(mob/user as mob)
+/obj/item/weapon/gun/proc/harness_return(var/mob/living/carbon/human/user)
+	set waitfor = 0
+	sleep(3)
+	if(loc && user)
+		if(isnull(user.s_store) && isturf(src.loc))
+			var/obj/item/I = user.wear_suit
+			user.equip_to_slot_if_possible(src,slot_s_store)
+			if(user.s_store == src) user << "<span class='warning'>\The [src] snaps into place on [I].</span>"
+			user.update_inv_s_store()
+
+/obj/item/weapon/gun/attack_self(mob/user)
 	if (target)
 		lower_aim()
 		return
 
 	//There are only two ways to interact here.
-	if(twohanded)
-		if(wielded) //Trying to unwield it
-			unwield(user)
+	if(flags & TWOHANDED)
+		if(flags & WIELDED) unwield(user)//Trying to unwield it
+		else wield(user)//Trying to wield it
+	else unload(user)//We just unload it.
 
-		else //Trying to wield it
-			wield(user)
-
-	else //We just unload it.
-		unload(user)
-	return
-
-//Unless the user is not present, you always want to pass user as mob for wield/unwield. But you don't have to, I guess.
-/obj/item/weapon/gun/proc/wield(mob/user as mob)
-	if(!twohanded || wielded) return
-
-	if(user && user.get_inactive_hand())
-		user << "<span class='warning'>You need your other hand to be empty.</span>"
-		return
-
-	wielded = !wielded
-
-	name = "[initial(name)] (Wielded)"
-	if(!isnull(icon_wielded))
-		item_state = icon_wielded
-	else
-		item_state = "[initial(item_state)]-w"
-	if(user && ishuman(user))
-		var/mob/living/carbon/human/wielder = user
-		wielder << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
-		var/obj/item/weapon/twohanded/offhand/O = new(wielder) ////Let's reserve his other hand~
-		O.wielded = 1
-		O.name = "[initial(name)] - offhand"
-		O.desc = "Your second grip on the [initial(name)]"
-		wielder.put_in_inactive_hand(O)
-		wielder.update_inv_l_hand(0)
-		wielder.update_inv_r_hand()
-
-/obj/item/weapon/gun/proc/unwield(mob/user as mob)
-	if(!twohanded || !wielded) return //If we're not actually carrying it with both hands or it's a one handed weapon.
-
-	wielded = !wielded
-
-	name = "[initial(name)]"
-	item_state = "[initial(item_state)]"
-	if(user && ishuman(user))
-		user << "<span class='notice'>You are now carrying the [name] with one hand.</span>"
-		var/mob/living/carbon/human/wielder = user
-		wielder.update_inv_l_hand(0) //Updating invs is more efficient than updating the entire icon set.
-		wielder.update_inv_r_hand()
-		var/obj/item/weapon/twohanded/O = wielder.get_inactive_hand()
-		if(istype(O))
-			O.unwield()
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
-	if(burst_toggled && burst_firing) return
+	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 	if(istype(I,/obj/item/ammo_magazine))
-		if(check_inactive_hand(user))
-			reload(user,I)
+		if(check_inactive_hand(user)) reload(user,I)
 
 	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
-	return
+		if(check_inactive_hand(user)) attach_to_gun(user,I)
+
+//Unless the user is not present, you always want to pass user as mob for wield/unwield. But you don't have to, I guess.
+/obj/item/weapon/gun/wield(mob/user)
+	if(!..()) return
+	item_state = icon_wielded ? icon_wielded : initial(item_state) + "-w"
+
+/obj/item/weapon/gun/unwield(mob/user)
+	..()
 
 //----------------------------------------------------------
 				//						 \\
@@ -251,14 +244,14 @@ should be alright.
 				//						 \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/unique_action(var/mob/M) //Anything unique the gun can do, like pump or spin or whatever.
+/obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
 	return
 
 /obj/item/weapon/gun/proc/check_inactive_hand(var/mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 		if( in_hand != src ) //It has to be held.
-			user << "You have to hold \the [src] to do that!"
+			user << "<span class='warning'>You have to hold \the [src] to do that!</span>"
 			return
 	return 1
 
@@ -267,83 +260,81 @@ should be alright.
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
 		if( in_handL != src && in_handR != src ) //It has to be held.
-			user << "You have to hold \the [src] to do that!"
+			user << "<span class='warning'>You have to hold \the [src] to do that!</span>"
 			return
 	return 1
 
 /obj/item/weapon/gun/proc/has_attachment(var/A)
-	if(!A)
-		return
+	if(!A) return
 	if(istype(muzzle,A)) return 1
 	if(istype(under,A)) return 1
 	if(istype(rail,A)) return 1
 	if(istype(stock,A)) return 1
-	return
 
 /obj/item/weapon/gun/proc/attach_to_gun(var/mob/user, var/obj/item/attachable/attachment)
-	if(!(src.type in attachment.guns_allowed))
-		user << "\The [attachment] doesn't fit on [src]."
+	if( !(type in attachment.guns_allowed) )
+		user << "<span class='warning'>\The [attachment] doesn't fit on [src]!</span>"
 		return
 
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
 	var/can_attach = 1
 	switch(attachment.slot)
 		if("rail")
-			if(rail && rail.can_be_removed == 0) can_attach = 0
+			if(rail && !(rail.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("muzzle")
-			if(muzzle && muzzle.can_be_removed == 0) can_attach = 0
+			if(muzzle && !(muzzle.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("under")
-			if(under && under.can_be_removed == 0) can_attach = 0
+			if(under && !(under.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("stock")
-			if(stock && stock.can_be_removed == 0) can_attach = 0
+			if(stock && !(stock.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 
 	if(!can_attach)
-		user << "The attachment on [src]'s [attachment.slot] cannot be removed."
+		user << "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>"
 		return
 
-	user.visible_message("\blue [user] begins field-modifying their [src].","\blue You begin field modifying \the [src].")
+	user << "<span class='notice'>You begin field modifying \the [src]...</span>"
 	if(do_after(user,60))
-		user.visible_message("\blue [user] attaches \the [attachment] to \the [src].","\blue You attach \the [attachment] to \the [src].")
+		user << "<span class='notice'>You attach \the [attachment] to \the [src].</span>"
 		user.drop_item(attachment)
 		attachment.Attach(src)
 		update_attachables()
-		if(reload_sound)
-			playsound(user, reload_sound, 100, 1)
+		playsound(user,'sound/machines/click.ogg', 50, 1)
 
 /obj/item/weapon/gun/proc/update_attachables()
 	overlays.Cut()
-	if(rail)
-		var/flash = 0
-		var/image/I
-		if(rail.light_mod) //Currently only rail-mounted flashlights.
-			if(flashlight_on)
-				I = new(rail.icon, "[rail.icon_state]-on")
-				I.icon_state = "[rail.icon_state]-on"
-				flash = 1
-		if(!flash)
-			I = new(rail.icon, rail.icon_state)
-			I.icon_state = rail.icon_state
-		I.pixel_x = src.rail_pixel_x - rail.pixel_shift_x
-		I.pixel_y = src.rail_pixel_y - rail.pixel_shift_y
-		overlays += I
-	if(muzzle)
-		var/image/I = new(muzzle.icon, muzzle.icon_state)
-		I.icon_state = muzzle.icon_state
-		I.pixel_x = src.muzzle_pixel_x - muzzle.pixel_shift_x
-		I.pixel_y = src.muzzle_pixel_y - muzzle.pixel_shift_y
-		overlays += I
-	if(under)
-		var/image/I = new(under.icon, under.icon_state)
-		I.icon_state = under.icon_state
-		I.pixel_x = src.under_pixel_x - under.pixel_shift_x
-		I.pixel_y = src.under_pixel_y - under.pixel_shift_y
-		overlays += I
-	if(stock)
-		var/image/I = new(stock.icon, stock.icon_state)
-		I.icon_state = stock.icon_state
-		I.pixel_x = src.under_pixel_x - stock.pixel_shift_x
-		I.pixel_y = src.under_pixel_y - stock.pixel_shift_y
-		overlays += I
+	if(attachable_offset)
+		if(rail)
+			var/flash = 0
+			var/image/I
+			if(rail.light_mod) //Currently only rail-mounted flashlights.
+				if(gun_features & GUN_FLASHLIGHT_ON)
+					I = new(rail.icon, "[rail.icon_state]-on")
+					I.icon_state = "[rail.icon_state]-on"
+					flash = 1
+			if(!flash)
+				I = new(rail.icon, rail.icon_state)
+				I.icon_state = rail.icon_state
+			I.pixel_x = attachable_offset["rail_x"] - rail.pixel_shift_x
+			I.pixel_y = attachable_offset["rail_y"] - rail.pixel_shift_y
+			overlays += I
+		if(muzzle)
+			var/image/I = new(muzzle.icon, muzzle.icon_state)
+			I.icon_state = muzzle.icon_state
+			I.pixel_x = attachable_offset["muzzle_x"] - muzzle.pixel_shift_x
+			I.pixel_y = attachable_offset["muzzle_y"] - muzzle.pixel_shift_y
+			overlays += I
+		if(under)
+			var/image/I = new(under.icon, under.icon_state)
+			I.icon_state = under.icon_state
+			I.pixel_x = attachable_offset["under_x"] - under.pixel_shift_x
+			I.pixel_y = attachable_offset["under_y"] - under.pixel_shift_y
+			overlays += I
+		if(stock)
+			var/image/I = new(stock.icon, stock.icon_state)
+			I.icon_state = stock.icon_state
+			I.pixel_x = attachable_offset["under_x"] - stock.pixel_shift_x
+			I.pixel_y = attachable_offset["under_y"] - stock.pixel_shift_y
+			overlays += I
 
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
@@ -367,7 +358,7 @@ should be alright.
 	set desc = "Remove all attachables from a weapon."
 	set src in usr
 
-	if(burst_toggled && burst_firing) return
+	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
 		usr << "Not right now."
@@ -376,24 +367,24 @@ should be alright.
 	if(!check_both_hands(usr)) return
 
 	if(!rail && !muzzle && !under && !stock)
-		usr << "This weapon has no attachables. You can only field strip enhanced weapons."
+		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
 		return
 
-	usr.visible_message("\blue [usr] begins field stripping their [src].","\blue You begin field-stripping your [src].")
+	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"
 	if(!do_after(usr,40))
 		return
 
-	if(rail && rail.can_be_removed)
-		usr << "You remove the weapon's [rail]."
+	if(rail && (rail.attach_features & ATTACH_REMOVABLE) )
+		usr << "<span class='notice'>You remove the weapon's [rail].</span>"
 		rail.Detach(src)
-	if(muzzle && muzzle.can_be_removed)
-		usr << "You remove the weapon's [muzzle]."
+	if(muzzle && (muzzle.attach_features & ATTACH_REMOVABLE) )
+		usr << "<span class='notice'>You remove the weapon's [muzzle].</span>"
 		muzzle.Detach(src)
-	if(under && under.can_be_removed)
-		usr << "You remove the weapon's [under]."
+	if(under && (under.attach_features & ATTACH_REMOVABLE) )
+		usr << "<span class='notice'>You remove the weapon's [under].</span>"
 		under.Detach(src)
-	if(stock && stock.can_be_removed)
-		usr << "You remove the weapon's [stock]."
+	if(stock && (stock.attach_features & ATTACH_REMOVABLE))
+		usr << "<span class='notice'>You remove the weapon's [stock].</span>"
 		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)
@@ -405,7 +396,7 @@ should be alright.
 	set desc = "Toggle on or off your weapon burst mode, if it has one. Greatly reduces accuracy."
 	set src in usr
 
-	if(burst_firing) return //We don't want to mess with this WHILE the gun is firing.
+	if(gun_features & GUN_BURST_FIRING) return //We don't want to mess with this WHILE the gun is firing.
 
 	if(!ishuman(usr)) return
 
@@ -413,17 +404,17 @@ should be alright.
 		usr << "Not right now."
 		return
 
-	if(!burst_amount)
-		usr << "This weapon does not have a burst fire mode."
+	//Burst of 1 doesn't mean anything. The weapon will only fire once regardless.
+	//Just a good safety to have all weapons that can equip a scope with 1 burst_amount.
+	if(burst_amount < 2)
+		usr << "<span class='warning'>This weapon does not have a burst fire mode!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
 
-	usr << "\icon[src] You [burst_toggled ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode."
+	usr << "<span class='notice'>\icon[src] You [gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode.</span>"
 	playsound(usr,'sound/machines/click.ogg', 50, 1)
-	burst_toggled = !burst_toggled
-
-	return
+	gun_features ^= GUN_BURST_ON
 
 /obj/item/weapon/gun/verb/empty_mag()
 	set category = "Weapons"
@@ -431,19 +422,17 @@ should be alright.
 	set desc = "Remove the magazine from your current gun and drop it on the ground."
 	set src in usr
 
-	if(burst_toggled && burst_firing) return
+	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 	if(!ishuman(usr)) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "Not right now."
+		usr << "<span class='warning'>Not right now!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
 
 	unload(usr)
-
-	return
 
 /obj/item/weapon/gun/verb/use_unique_action()
 	set category = "Weapons"
@@ -451,19 +440,17 @@ should be alright.
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 	set src in usr
 
-	if(burst_toggled && burst_firing) return
+	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 	if(!ishuman(usr)) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "Not right now."
+		usr << "<span class='warning'>Not right now!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
 
 	unique_action(usr)
-
-	return
 
 /obj/item/weapon/gun/verb/activate_attachment()
 	set category = "Weapons"
@@ -471,29 +458,33 @@ should be alright.
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 	set src in usr
 
-	if(burst_toggled && burst_firing) return
+	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
 
 	if(!ishuman(usr)) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc || !isturf(usr.loc))
-		usr << "Not right now."
+		usr << "<span class='warning'>Not right now!</span>"
 		return
 
 	if(!check_both_hands(usr)) return
 
 	var/list/usable_attachments = list() //Basic list of attachments to compare later.
-	if(rail && rail.can_activate) usable_attachments[rail.name] = rail
-	if(under && under.can_activate) usable_attachments[under.name] = under
-	if(stock  && stock.can_activate) usable_attachments[stock.name] = stock
-	if(muzzle && muzzle.can_activate) usable_attachments[muzzle.name] = muzzle
+	if(rail && (rail.attach_features & ATTACH_ACTIVATION) ) usable_attachments[rail.name] = rail
+	if(under && (under.attach_features & ATTACH_ACTIVATION) )
+		if(istype(under, /obj/item/attachable/bipod)) //Specific case for bipods. Can be revised later if necessary.
+			if(under.activate_attachment(src,usr)) return
+		else usable_attachments[under.name] = under
+
+	if(stock  && (stock.attach_features & ATTACH_ACTIVATION) ) usable_attachments[stock.name] = stock
+	if(muzzle && (muzzle.attach_features & ATTACH_ACTIVATION) ) usable_attachments[muzzle.name] = muzzle
 
 	if(usable_attachments.len <= 0) //No usable attachments.
-		usr << "This weapon does not have any attachments."
+		usr << "<span class='warning'>This weapon does not have any attachments!</span>"
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
-		if(active_attachable && !active_attachable.passive) //In case the attach is passive like the flashlight/scope.
-			usr << "You disable the [active_attachable.name]."
+		if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) ) //In case the attach is passive like the flashlight/scope.
+			usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
 			playsound(src.loc,active_attachable.activation_sound, 50, 1)
 			active_attachable = null
 			return
@@ -503,38 +494,32 @@ should be alright.
 
 	else
 		var/list/attachment_names = list() //Name list, since otherwise we would reference the object path itself in the choice menu.
-		for(var/attachment_found in usable_attachments)
-			attachment_names += attachment_found
-		if(active_attachable)
-			attachment_names += "Cancel Active"
-		else
-			attachment_names += "Cancel"
+		for(var/attachment_found in usable_attachments) attachment_names += attachment_found
+		if(active_attachable) attachment_names += "Cancel Active"
+		else attachment_names += "Cancel"
 
 		//If you click on anything but the attachment name, it'll cancel anything active.
 		var/choice = input("Which attachment to activate?") as null|anything in attachment_names
 
-		if(src.loc != usr) //Dropped or something.
-			return
+		if(!usr.client || src.loc != usr) return//Dropped or something.
 
 		if(!choice || choice == "Cancel" || choice == "Cancel Active")
-			if(active_attachable  && !active_attachable.passive)
-				usr << "You disable the [active_attachable.name]."
-				playsound(src.loc,active_attachable.activation_sound, 50, 1)
+			if(active_attachable  && !(active_attachable.attach_features & ATTACH_PASSIVE) )
+				usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
+				playsound(usr,active_attachable.activation_sound, 50, 1)
 				active_attachable = null
 				return
 
 		var/obj/item/attachable/activate_this = usable_attachments[choice]
-		if(activate_this && activate_this.loc == src) //If it still exists at all and held on the gun.
-			active_attachable = activate_this
+		if(activate_this && activate_this.loc == src) active_attachable = activate_this //If it still exists at all and held on the gun.
 
 		if(!active_attachable)
-			usr << "Nothing happened!"
+			usr << "<span class='warning'>Nothing happened!</span>"
 			return
 
-	usr << "You toggle the [active_attachable.name]."
+	usr << "<span class='notice'>You toggle the [active_attachable.name].</span>"
 	active_attachable.activate_attachment(src,usr)
 	playsound(src.loc,active_attachable.activation_sound, 50, 1)
-	return
 
 
 //----------------------------------------------------------

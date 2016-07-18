@@ -21,7 +21,7 @@
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.5
 	evolves_to = list()
-	armor_deflection = 80
+	armor_deflection = 65
 	tier = 3
 	upgrade = 0
 	var/charge_dir = 0

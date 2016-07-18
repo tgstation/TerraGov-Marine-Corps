@@ -113,8 +113,8 @@
 		//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 		if(W.zoom)
 			W.zoom()
-		if(istype(W,/obj/item/weapon/gun) || istype(W,/obj/item/weapon/twohanded))
-			W:unwield()
+		if(W.flags & TWOHANDED)
+			W.unwield(src)
 	return 1
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
@@ -823,12 +823,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	if(lying)
 		density = 0
-		//Deal with two handed stuff before the drop. Sometimes doesn't clear the drop properly when being pounced etc
-		if(src.r_hand && (istype(src.r_hand,/obj/item/weapon/gun) || istype(src.r_hand,/obj/item/weapon/twohanded) ))
-			r_hand:unwield()
-		if(src.l_hand && (istype(src.l_hand,/obj/item/weapon/gun) || istype(src.l_hand,/obj/item/weapon/twohanded) ))
-			l_hand:unwield()
-
 		drop_l_hand()
 		drop_r_hand()
 	else

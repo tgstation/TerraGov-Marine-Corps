@@ -212,12 +212,12 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/explosive_ammo_crate
 	name = "Explosive Ammo crate (SADAR rockets)"
 	contains = list(
-					/obj/item/ammo_magazine/rocket_tube,
-					/obj/item/ammo_magazine/rocket_tube,
-					/obj/item/ammo_magazine/rocket_tube/ap,
-					/obj/item/ammo_magazine/rocket_tube/ap,
-					/obj/item/ammo_magazine/rocket_tube/wp,
-					/obj/item/ammo_magazine/rocket_tube/wp
+					/obj/item/ammo_magazine/rocket,
+					/obj/item/ammo_magazine/rocket,
+					/obj/item/ammo_magazine/rocket/ap,
+					/obj/item/ammo_magazine/rocket/ap,
+					/obj/item/ammo_magazine/rocket/wp,
+					/obj/item/ammo_magazine/rocket/wp
 				)
 	cost = 30
 	containertype = /obj/structure/closet/crate

@@ -26,7 +26,7 @@
 //	adjust_size_y = 0.85
 	caste_desc = "Ptui!"
 	evolves_to = list()
-	armor_deflection = 60
+	armor_deflection = 45
 	big_xeno = 1
 	tier = 3
 	upgrade = 0

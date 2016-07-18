@@ -165,6 +165,10 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/toggledebuglogs,
 	/client/proc/spawn_predators,
+	/datum/proc/ta_diagnose,
+	/datum/proc/ra_diagnose,
+	/datum/proc/ta_purge,
+	/datum/proc/ra_purge
 	// /client/proc/SDQL_query,
 	// /client/proc/SDQL2_query,
 	)
@@ -253,6 +257,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
+	/datum/admins/proc/fix_breach,
 	/proc/possess,
 	/proc/release
 	)

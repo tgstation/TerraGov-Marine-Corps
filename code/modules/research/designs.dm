@@ -1557,7 +1557,7 @@ datum/design/chemsprayer
 	materials = list("$metal" = 5000, "$glass" = 1000)
 	reliability_base = 100
 	build_path = "/obj/item/weapon/reagent_containers/spray/chemsprayer"
-
+/*
 datum/design/rapidsyringe
 	name = "Rapid Syringe Gun"
 	desc = "A gun that fires many syringes."
@@ -1565,7 +1565,7 @@ datum/design/rapidsyringe
 	req_tech = list("combat" = 3, "materials" = 3, "engineering" = 3, "biotech" = 2)
 	build_type = PROTOLATHE
 	materials = list("$metal" = 5000, "$glass" = 1000)
-	build_path = "/obj/item/weapon/gun/syringe/rapidsyringe"
+	build_path = "/obj/item/weapon/gun/syringe/rapidsyringe"*/
 /*
 datum/design/largecrossbow
 	name = "Energy Crossbow"

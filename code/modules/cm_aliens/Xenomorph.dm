@@ -117,15 +117,9 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-	ammo = new /datum/ammo/xeno/spit() //Set up the initial spit projectile datum. It defaults to stun.
-	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-		//Bigger and badder!
-		ammo.stun += 2
-		ammo.weaken += 2
-	else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-		ammo.stun += 1
-		ammo.weaken += 1
-		ammo.shell_speed = 2 //Super fast!
+	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))   ammo = ammo_list["neurotoxic splash"]
+	else if(istype(src,/mob/living/carbon/Xenomorph/Spitter)) ammo = ammo_list["neurotoxic spatter"]
+	else 													  ammo = ammo_list["neurotoxic spit"]
 
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R

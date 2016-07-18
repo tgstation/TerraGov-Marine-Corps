@@ -213,7 +213,7 @@
 
 		if(istype(C,/obj/item/weapon/twohanded/fireaxe))
 			var/obj/item/weapon/twohanded/fireaxe/F = C
-			if(!F.wielded)
+			if(!(F.flags & WIELDED))
 				return
 
 		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\

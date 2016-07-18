@@ -4,24 +4,30 @@ Just make sure to add animations that you make here so that they may be re-used.
 functions so that other people won't have to wonder what it actually does.
 */
 
-//This animation spins the icon left or right, and can be used for anything.
-//Change the looping number for a repeat of the animation. 1 for two loops.
-/proc/animation_spin(var/atom/A, var/direction = "left", var/time = 1, var/looping = -1)
-	if (!istype(A))
-		return
+/*
+This is something like a gun spin, where the user spins it in the hand.
+Instead of being uniform, it starts out a littler slower, goes fast in the middle, then slows down again.
+4 ticks * 5 = 2.0 seconds. Doesn't loop on default, and spins right.
+*/
+/proc/animation_wrist_flick(var/atom/A, direction = 1, loop_num = 0) //-1 for a left spin.
+	animate(A, transform = turn(matrix(), 120 * direction), time = 1, loop = loop_num, easing = SINE_EASING | EASE_IN)
+	animate(transform = turn(matrix(), 240 * direction), time = 1)
+	animate(transform = null, time = 2, easing = SINE_EASING | EASE_OUT)
 
-	var/matrix/M = A.transform
-	var/turn = -90
-	if (direction != "left")
-		turn = 90
+//Makes it look like the user threw something in the air (north) and then caught it.
+/proc/animation_toss_snatch(var/atom/A)
+	A.transform *= 0.75
+	animate(A, alpha = 185, pixel_x = rand(-4,4), pixel_y = 18, pixel_z = 0, time = 3)
+	animate(alpha = 185, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 
-	animate(A, transform = matrix(M, turn, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = looping)
-	animate(transform = matrix(M, turn, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = looping)
-	animate(transform = matrix(M, turn, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = looping)
-	animate(transform = matrix(M, turn, MATRIX_ROTATE | MATRIX_MODIFY), time = time, loop = looping)
-	return
+//Combines the flick and the toss to have the item spin in the air.
+/proc/animation_toss_flick(var/atom/A, direction = 1)
+	A.transform *= 0.75
+	animate(A, transform = turn(matrix(), 120 * direction), alpha = 185, pixel_x = rand(-4,4), pixel_y = 18, time = 3, easing = SINE_EASING | EASE_IN)
+	animate(transform = turn(matrix(), 240 * direction), alpha = 185, pixel_x = 0, pixel_y = 0, time = 2)
 
-/proc/animation_flick(var/atom/A, var/direction = 1)
+//This does a fade out drop from a direction, like a hit of some kind.
+/proc/animation_strike(var/atom/A, var/direction = 1)
 	A.transform *= 0.75
 	switch(direction)
 		if(1)
@@ -33,20 +39,4 @@ functions so that other people won't have to wonder what it actually does.
 		if(8)
 			A.pixel_x -= 18
 
-	animate(A, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
-
-/proc/animation_flick_spin(var/atom/A, var/direction = 1, var/turn = 360, var/looping = 0)
-	var/matrix/M = A.transform
-	A.transform *= 0.75
-	switch(direction)
-		if(1)
-			A.pixel_y += 18
-		if(2)
-			A.pixel_y -= 18
-		if(4)
-			A.pixel_x += 18
-		if(8)
-			A.pixel_x -= 18
-
-	animate(A, transform = matrix(M, turn, MATRIX_ROTATE | MATRIX_MODIFY), time = 3, loop = looping)
 	animate(A, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)

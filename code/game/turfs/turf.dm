@@ -41,6 +41,10 @@
 			return
 	return
 
+/turf/Dispose()
+	..()
+	return TA_PURGE_ME_NOW
+
 /turf/ex_act(severity)
 	return 0
 

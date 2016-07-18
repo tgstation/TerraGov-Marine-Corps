@@ -28,7 +28,7 @@
 	var/CHARGECOOLDOWN = 120
 	charge_type = 2 //Claw at end of charge
 	fire_immune = 1
-	armor_deflection = 70
+	armor_deflection = 55
 	big_xeno = 1
 	attack_delay = -2
 	tier = 3

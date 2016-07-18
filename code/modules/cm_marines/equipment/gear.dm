@@ -20,18 +20,6 @@
 			attachable = 1
 			usr << "\red You screw open the side panel on [src], which can now be attached!"
 	return
-/*
-/obj/item/weapon/gun/projectile/Assault/attackby(var/obj/item/A as obj, mob/user as mob)
-	if(istype(A, /obj/item/device/flashlight/combat))
-		var/obj/item/device/flashlight/combat/F = A
-		if(F.attachable)
-			src.contents += A
-			user << "\red You attach [A] to [src]."
-			haslight = 1
-			del(A)
-	return
-*/
-
 
 //MARINE ENCRYPTION KEYS
 
@@ -101,6 +89,28 @@
 	icon_state = "rob_cypherkey"
 	channels = list("MP" = 1)
 
+//PMCs
+/obj/item/device/encryptionkey/dutch
+	name = "Dutch's Dozen Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
+	channels = list("D.Dozen" = 1)
+
+/obj/item/device/encryptionkey/PMC
+	name = "Weyland Yutani Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
+	channels = list("WY PMC" = 1)
+
+/obj/item/device/encryptionkey/bears
+	name = "Iron Bears Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
+	syndie = 1
+	channels = list("Spetsnaz" = 1)
+
+/obj/item/device/encryptionkey/commando
+	name = "WY Commando Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
+	channels = list("SpecOps" = 1)
+
 //MARINE HEADSETS
 
 /obj/item/device/radio/headset/mcom
@@ -109,7 +119,7 @@
 	icon_state = "med_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mcom
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/malphal
 	name = "marine alpha leader radio headset"
@@ -117,7 +127,7 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/malphal
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/malpha
 	name = "marine alpha radio headset"
@@ -125,7 +135,7 @@
 	icon_state = "sec_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/malp
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/mbravol
 	name = "marine bravo leader radio headset"
@@ -133,7 +143,7 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mbravol
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/mbravo
 	name = "marine bravo radio headset"
@@ -141,14 +151,14 @@
 	icon_state = "eng_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mbra
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/msulaco
 	name = "marine radio headset"
 	desc = "A standard Sulaco radio headset"
 	icon_state = "cargo_headset"
 	item_state = "headset"
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/mcharliel
 	name = "marine charlie leader radio headset"
@@ -156,7 +166,7 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mcharliel
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/mcharlie
 	name = "marine charlie radio headset"
@@ -164,7 +174,7 @@
 	icon_state = "rob_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mcha
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/mdeltal
 	name = "marine delta leader radio headset"
@@ -172,7 +182,7 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mdeltal
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/mdelta
 	name = "marine delta radio headset"
@@ -180,7 +190,7 @@
 	icon_state = "com_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mdel
-	frequency = 1461
+	frequency = PUB_FREQ
 
 /obj/item/device/radio/headset/mmpo
 	name = "marine military police radio headset"
@@ -188,97 +198,52 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	keyslot2 = new /obj/item/device/encryptionkey/mmpo
-	frequency = 1461
+	frequency = PUB_FREQ
 
+//Distress headsets.
+/obj/item/device/radio/headset/distress
+	name = "operative headset"
+	desc = "A special headset used by small groups of trained operatives. Use :h to talk on a private channel."
+	frequency = PUB_FREQ
 
+/obj/item/device/radio/headset/distress/dutch
+	name = "Dutch's Dozen headset"
+	New()
+		..()
+		keyslot2 = new /obj/item/device/encryptionkey/dutch
+		recalculateChannels()
+
+/obj/item/device/radio/headset/distress/PMC
+	name = "PMC headset"
+	New()
+		..()
+		keyslot2 = new /obj/item/device/encryptionkey/PMC
+		keyslot3 = new /obj/item/device/radio/headset/mcom
+		recalculateChannels()
+
+/obj/item/device/radio/headset/distress/bears
+	name = "Iron Bear headset"
+	frequency = CIV_GEN_FREQ
+	New()
+		..()
+		del(keyslot1)
+		keyslot1 = new /obj/item/device/encryptionkey/bears
+		recalculateChannels()
+
+/obj/item/device/radio/headset/distress/commando
+	name = "Commando headset"
+	New()
+		..()
+		keyslot2 = new /obj/item/device/encryptionkey/commando
+		keyslot3 = new /obj/item/device/radio/headset/mcom
+		recalculateChannels()
 
 //MARINE RADIO
 
 /obj/item/device/radio/marine
-	frequency = 1461
-
-//MARINE CONTAINERS
-/*
-/obj/item/weapon/storage/box/beanbags
-	name = "box of beanbag shells"
-	desc = "A box of 12 gauge beanbag rounds. Manufactured by Armat Systems for prison guard and police use in non-lethal pacification."
-	icon_state = "box"
-	storage_slots = 14
-	can_hold = list(
-		"/obj/item/ammo_casing/shotgun",
-		)
-	New()
-		..()
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
+	frequency = PUB_FREQ
 
 
-/obj/item/weapon/storage/box/shotguns
-	name = "box of shotgun shells"
-	desc = "A box of standard issue high-powered 12 gauge buckshot rounds. Manufactured by Armat Systems for military and civilian use."
-	icon_state = "shells"
-	w_class = 2
-	storage_slots = 14
-	can_hold = list(
-		"/obj/item/ammo_casing/shotgun",
-		)
-
-	New()
-		..()
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-
-/obj/item/weapon/storage/box/incendiary
-	name = "box of shotgun shells"
-	desc = "A box of incednairy rounds. Manufactured by Armat Systems for military and civilian use."
-	icon_state = "incendiary"
-	w_class = 2
-	storage_slots = 14
-	can_hold = list(
-		"/obj/item/ammo_casing/shotgun",
-		)
-
-	New()
-		..()
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-		new /obj/item/ammo_casing/shotgun/incendiary(src)
-*/
 /obj/item/weapon/storage/box/explosive_mines
 	name = "mine box"
 	desc = "A secure box holding anti-personel proximity mines"
@@ -382,7 +347,7 @@
 					/obj/item/weapon/gun/pistol/kt42,
 					/obj/item/weapon/gun/rifle/mar40,
 					/obj/item/weapon/gun/rifle/mar40/carbine,
-					/obj/item/weapon/gun/rifle/mar40/svd,
+					/obj/item/weapon/gun/rifle/sniper/svd,
 					/obj/item/weapon/gun/smg/ppsh
 				)
 
@@ -537,7 +502,30 @@
 		reagents.add_reagent("nutriment", 10)
 		bitesize = 2
 
+/obj/item/weapon/storage/box/pizza
+	name = "Food Delivery Box"
+	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
 
+	New()
+		..()
+		pixel_y = rand(-3,3)
+		pixel_x = rand(-3,3)
+		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
+		new /obj/item/weapon/reagent_containers/food/snacks/donkpocket(src)
+		var/randsnack
+		for(var/i = 1 to 3)
+			randsnack = rand(0,5)
+			switch(randsnack)
+				if(0)
+					new /obj/item/weapon/reagent_containers/food/snacks/fries(src)
+				if(1)
+					new /obj/item/weapon/reagent_containers/food/snacks/cheesyfries(src)
+				if(2)
+					new /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger(src)
+				if(4)
+					new /obj/item/weapon/reagent_containers/food/snacks/taco(src)
+				if(5)
+					new /obj/item/weapon/reagent_containers/food/snacks/hotdog(src)
 
 /obj/item/weapon/paper/janitor
 	name = "Crumbled paper"

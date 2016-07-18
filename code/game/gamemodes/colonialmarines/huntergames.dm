@@ -29,9 +29,8 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/weapon/gun/rifle/m41a/scoped,\
 								/obj/item/weapon/gun/rifle/lmg,\
 								/obj/item/weapon/gun/shotgun/combat,\
-								/obj/item/weapon/gun/rifle/sniper,
-								/obj/item/clothing/head/helmet/marine/PMC/commando,\
-								/obj/item/clothing/shoes/PMC
+								/obj/item/weapon/gun/rifle/sniper/M42A,\
+								/obj/item/weapon/gun/pistol/vp78
 								)
 
 var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
@@ -39,6 +38,10 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/clothing/suit/armor/yautja,\
 								/obj/item/clothing/suit/armor/yautja/full,\
 								/obj/item/clothing/shoes/yautja,\
+								/obj/item/clothing/head/helmet/marine/PMC/commando,\
+								/obj/item/clothing/shoes/PMC/commando,\
+								/obj/item/clothing/gloves/PMC/commando,\
+								/obj/item/clothing/suit/storage/marine/PMCarmor/commando,\
 								/obj/item/weapon/melee/yautja_chain,\
 								/obj/item/weapon/melee/yautja_knife,\
 								/obj/item/weapon/melee/yautja_scythe,\
@@ -48,11 +51,9 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/storage/box/rocket_system,\
 								/obj/item/weapon/storage/box/grenade_system,\
 								/obj/item/weapon/storage/box/m42c_system,\
-								/obj/item/clothing/suit/storage/marine/PMCarmor/commando,\
 								/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc,\
 								/obj/item/clothing/head/helmet/marine/PMC/heavypmc,\
 								/obj/item/weapon/gun/minigun,\
-								/obj/item/weapon/gun/pistol/vp78,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
 								/obj/item/weapon/gun/rifle/sniper/elite,
 								/obj/item/weapon/gun/rocketlauncher/quad)
@@ -314,7 +315,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			else
 				var/mob/living/carbon/human/winner = pick(supply_votes) //Way it works is, more votes = more odds of winning. But not guaranteed.
 				if(istype(winner) && !winner.stat)
-					world << "The spectator and Predator votes have been talled, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!"
+					world << "The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!"
 					world << sound('sound/effects/alert.ogg')
 					world << "The package will shortly be dropped off at: [get_area(winner.loc)]."
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
@@ -445,11 +446,12 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	else
 		objtype = pick(crap_items)
 
+	var/obj/item/weapon/gun/possible_gun = new objtype()
 	if(in_crate)
 		var/crate = new /obj/structure/closet/crate(T)
-		new objtype(crate)
+		possible_gun.loc = crate
+	else possible_gun.loc = T
 
-	else
-		new objtype(T)
+	if(istype(possible_gun)) possible_gun &= ~GUN_WY_RESTRICTED //We don't want these restrictions on during HG.
 
 	return

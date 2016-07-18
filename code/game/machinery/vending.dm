@@ -563,10 +563,8 @@
 	 //More accurate comparison between absolute paths.
 	for(R in product_records)
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/weapon/storage)) //Nice try, specialists/engis
-			if( istype(item_to_stock, /obj/item/weapon/gun) ) //If it's a gun, we want to unwield it.
-				var/obj/item/weapon/gun/to_unwield = item_to_stock
-				to_unwield.unwield(user) //It will return if it can't be unwielded.
-
+			var/obj/item/twohanded = item_to_stock
+			if(istype(twohanded) && (twohanded.flags & TWOHANDED) ) twohanded.unwield(user)
 			del(item_to_stock)
 			user.update_inv_l_hand(0) //Update those hands.
 			user.update_inv_r_hand()

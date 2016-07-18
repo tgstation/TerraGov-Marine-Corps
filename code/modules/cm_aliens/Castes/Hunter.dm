@@ -18,7 +18,7 @@
 	speed = -1.4 //Not as fast as runners, but faster than other xenos
 	evolves_to = list("Ravager", "Crusher")
 	charge_type = 1 //Pounce - Hunter
-	armor_deflection = 32
+	armor_deflection = 20
 	attack_delay = -2
 	tier = 2
 	upgrade = 0

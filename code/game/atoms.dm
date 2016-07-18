@@ -22,6 +22,22 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+/*
+We actually care what this returns, since it can return different directives.
+Not specifically here, but in other variations of this. As a general safety,
+Make sure the return value equals the return value of the parent so that the
+directive is properly returned.
+*/
+//===========================================================================
+/atom/Dispose()
+	. = ..()
+	if(reagents) cdel(reagents)
+
+/atom/Recycle()
+	return
+
+//===========================================================================
+
 /atom/proc/assume_air(datum/gas_mixture/giver)
 	return null
 
