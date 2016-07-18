@@ -125,6 +125,7 @@
 				tacklemax = 5
 				tackle_chance = 60
 				speed = -0.6
+				spit_type = 0
 			if("Spitter")
 				melee_damage_lower = 20
 				melee_damage_upper = 30
@@ -141,6 +142,7 @@
 				tacklemax = 5
 				tackle_chance = 60
 				speed = 0
+				spit_type = 0
 			if("Boiler")
 				melee_damage_lower = 20
 				melee_damage_upper = 25
@@ -173,6 +175,7 @@
 				tacklemax = 8
 				tackle_chance = 75
 				speed = 1.6
+				spit_type = 0
 			if("Hivelord")
 				melee_damage_lower = 15
 				melee_damage_upper = 20
@@ -313,6 +316,7 @@
 				tacklemax = 6
 				tackle_chance = 60
 				speed = -0.6
+				spit_type = 0
 			if("Spitter")
 				melee_damage_lower = 25
 				melee_damage_upper = 35
@@ -329,6 +333,7 @@
 				tacklemax = 6
 				tackle_chance = 70
 				speed = -0.1
+				spit_type = 0
 			if("Boiler")
 				melee_damage_lower = 30
 				melee_damage_upper = 35
@@ -361,6 +366,7 @@
 				tacklemax = 9
 				tackle_chance = 80
 				speed = 1.5
+				spit_type = 0
 			if("Hivelord")
 				melee_damage_lower = 15
 				melee_damage_upper = 20
@@ -502,6 +508,7 @@
 				tacklemax = 6
 				tackle_chance = 60
 				speed = -0.6
+				spit_type = 0
 			if("Spitter")
 				src << "\green You are a master of ranged stuns and damage.  Go fourth and generate salt."
 				melee_damage_lower = 35
@@ -518,6 +525,7 @@
 				tacklemax = 7
 				tackle_chance = 75
 				speed = -0.2
+				spit_type = 0
 			if("Boiler")
 				src << "\green You are the master of ranged artillery.  Bring death from above."
 				melee_damage_lower = 35
@@ -550,6 +558,7 @@
 				tacklemax = 10
 				tackle_chance = 85
 				speed = 1.3
+				spit_type = 0
 			if("Hivelord")
 				src <<"\green You are the builder of walls.  Ensure that the marines are the ones who pay for them."
 				melee_damage_lower = 20
