@@ -40,10 +40,10 @@
 
 	src << "You will now spit [spit_type ? "stunning neurotoxin instead of acid.":"corrosive acid globs."]"
 	// Down from +20 to -10.  This should be sort of the base alien "ranged" attack.  Also, Praes/Spitters get lolshit for melee damage
-	spit_delay = spit_type ? initial(spit_delay) : (initial(spit_delay) - 10)
-	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))   ammo = spit_type ? ammo_list["neurotoxic splash"] : ammo_list["acid splash"]
+	spit_delay = spit_type ? spit_delay - 10 : spit_delay + 10 //This will make sure aliens don't slow down when switching spits.
+	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))   ammo = spit_type ? ammo_list["neurotoxic splash"]  : ammo_list["acid splash"]
 	else if(istype(src,/mob/living/carbon/Xenomorph/Spitter)) ammo = spit_type ? ammo_list["neurotoxic spatter"] : ammo_list["acid spatter"]
-	else 													  ammo = spit_type ? ammo_list["neurotoxic spit"] : ammo_list["acid spit"]
+	else 													  ammo = spit_type ? ammo_list["neurotoxic spit"]  	 : ammo_list["acid spit"]
 	spit_type = !spit_type
 	return
 
