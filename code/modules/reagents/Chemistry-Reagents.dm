@@ -1408,7 +1408,7 @@ datum
 			overdose = 4
 			overdose_dam = 30//Quick-clot overdoses will pretty much fuck you up
 			scannable = 1 //scannable now.  HUZZAH.
-			custom_metabolism = 1
+			custom_metabolism = 0.1
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
 				M.take_organ_damage(1*REM, 0)
