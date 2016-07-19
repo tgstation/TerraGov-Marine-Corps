@@ -31,7 +31,7 @@ list will reference it. Even if it's somehow deleted in the interim, it doesn't 
 	if(!fetch_type || !ispath(fetch_type)) return
 	return RecycleAuthority.FetchProduct(fetch_type, directive)
 
-#define RA_PRODUCT_SPACE 50 //I might expand this per individual types based on need.
+#define RA_PRODUCT_SPACE 40 //I might expand this per individual types based on need.
 							 //Right now it applies to every category.
 
 var/global/datum/authority/branch/recycle/RecycleAuthority = new()
@@ -48,24 +48,31 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 
 /datum/authority/branch/recycle/proc/FetchProduct(fetch_type, directive)
 	if( isnull(recycling[fetch_type]) || !length(recycling[fetch_type]) ) //If we don't have a fetch type stored, or the stored list has no length.
-		if(islist(directive))
-			. = new fetch_type(arglist(directive)) //Give us a an argument list.
-		else
-			. = new fetch_type(directive) //Give us a loc.
-		//world << "Had to create a new atom. Could not get from shelf."
-	else
-		var/datum/fetched = popleft(recycling[fetch_type]) //Get us the oldest element to reuse.
-		fetched.ta_directive = null //Reset this, in case we need to dispose of it later.
+		. = FetchFromNew(fetch_type, directive)
+	else . = FetchFromShelf(fetch_type, directive)
 
-		var/atom/movable/fetched_atom
-		if(istype(fetched, /atom/movable)) fetched_atom = fetched //Only atom movable has a loc.
-		if(fetched_atom)
-			fetched_atom.loc = islist(directive) ? directive[1] : directive
-		if(islist(directive)) 	fetched.New(arglist(directive))
-		else 					fetched.New(directive)
-		recycle_count++
-		. = fetched
-		//world << "Was able to pull product from shelf."
+/datum/authority/branch/recycle/proc/FetchFromNew(fetch_type, directive)
+	if(islist(directive)) 	. = new fetch_type(arglist(directive)) //Give us a an argument list.
+	else 					. = new fetch_type(directive) //Give us a loc.
+	//world << "Had to create a new atom. Could not get from shelf."
+
+/datum/authority/branch/recycle/proc/FetchFromShelf(fetch_type, directive)
+	var/datum/fetched = popleft(recycling[fetch_type]) //Get us the oldest element to reuse.
+	if(!fetched) //This shouldn't happen, but the system is not optimized enough to eliminate the outlier cases...
+		log_debug("RA: FetchFromShelf returned a null item: [fetch_type] and it was somehow deleted in the interim. Pulling from new instead.")
+		return FetchFromNew(fetch_type, directive)
+
+	fetched.ta_directive = null //Reset this, in case we need to dispose of it later, though it should still be recycled in most cases.
+
+	var/atom/movable/fetched_atom
+	if(istype(fetched, /atom/movable)) fetched_atom = fetched //Only atom movable has a loc.
+	if(fetched_atom)		fetched_atom.loc = islist(directive) ? directive[1] : directive
+
+	if(islist(directive)) 	fetched.New(arglist(directive))
+	else 					fetched.New(directive)
+	. = fetched
+	recycle_count++
+	//world << "Was able to pull product from shelf."
 
 /*
 loc is reset through cdel, which is how things get into the recycler in the first place (how they should anyway),
