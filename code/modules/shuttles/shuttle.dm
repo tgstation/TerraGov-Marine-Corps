@@ -62,8 +62,12 @@
 		moving_status = SHUTTLE_IDLE
 
 
-		spawn(1200) // 2 minutes in deciseconds
-			recharging = 0
+		if(!iselevator)
+			spawn(1200) // 2 minutes in deciseconds
+				recharging = 0
+		if(iselevator)
+			spawn(150)
+				recharging = 0
 
 /* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
 /datum/shuttle/proc/toggle_doors(var/close_doors, var/bolt_doors, var/area/whatArea)
