@@ -107,8 +107,8 @@
 	flag = SULCARG
 	department_flag = ENGI
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Requisitions Officer, the Commander"
 	selection_color = "#BAAFD9"
 	access = list(access_sulaco_cargo)
