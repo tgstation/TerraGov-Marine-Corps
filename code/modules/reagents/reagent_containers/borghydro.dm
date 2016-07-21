@@ -19,10 +19,10 @@
 	//var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "anti_toxin", "inaprovaline", "spaceacillin")
 
 /obj/item/weapon/reagent_containers/borghypo/surgeon
-	reagent_ids = list("bicaridine", "inaprovaline", "dexalin")
+	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "bicaridine", "dexalin", "spaceacillin", "anti_toxin", "quickclot")
 
 /obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol")
+	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "bicaridine", "dexalin", "spaceacillin", "anti_toxin", "quickclot")
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()

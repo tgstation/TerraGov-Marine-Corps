@@ -447,15 +447,15 @@
 		usr.set_machine(src)
 		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
 
-			if(istype(usr,/mob/living/silicon))
-				if(istype(usr,/mob/living/silicon/robot))
-					var/mob/living/silicon/robot/R = usr
-					if(!(R.module && istype(R.module,/obj/item/weapon/robot_module/butler) ))
-						usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
-						return
-				else
-					usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
-					return
+			// if(istype(usr,/mob/living/silicon))
+			// 	if(istype(usr,/mob/living/silicon/robot))
+			// 		var/mob/living/silicon/robot/R = usr
+			// 		if(!(R.module && istype(R.module,/obj/item/weapon/robot_module/butler) ))
+			// 			usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
+			// 			return
+			// 	else
+			// 		usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
+			// 		return
 
 			if ((!src.allowed(usr)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
 				usr << "\red Access denied." //Unless emagged of course
