@@ -83,8 +83,8 @@
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || (H.glasses && H.glasses.flags & GLASSESCOVERSEYES)))
-			user << "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags & HEADCOVERSEYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) ? "mask": "glasses"] first.</span>"
+		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags_inv & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inv & COVEREYES) || (H.glasses && H.glasses.flags_inv & COVEREYES)))
+			user << "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inv & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inv & COVEREYES) ? "mask": "glasses"] first.</span>"
 			return
 
 		if(M == user)	//they're using it on themselves

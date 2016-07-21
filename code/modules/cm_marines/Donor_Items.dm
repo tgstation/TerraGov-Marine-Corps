@@ -557,7 +557,6 @@
 	desc = "Disclaimer: Probably doesn't provide infinite ammo.  UNIQUE DONOR ITEM"
 	icon_state = "headband_u"
 	item_state = "headband_u"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 
 /obj/item/clothing/head/helmet/marine/fluff/LEO
 	name = "Leo's Helm"

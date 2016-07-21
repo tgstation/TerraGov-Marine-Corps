@@ -134,9 +134,9 @@
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES
+	flags = FPRINT | TABLEPASS
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
-	flags_inv = HIDEEARS
+	flags_inv = HIDEEARS | COVEREYES
 	body_parts_covered = 0
 	siemens_coefficient = 0.8
 

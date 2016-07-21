@@ -109,7 +109,7 @@
 			var/new_x = target.x == user.x ? user.x : user.x + o_x
 			var/new_y = target.y == user.y ? user.y : user.y + o_y
 			var/near_target = locate(new_x,new_y,target.z)
-			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/PMCarmor))
+			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/smartgunner/gunner) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 				PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 				step_away(PMC_sniper,near_target)
 				PMC_sniper.Weaken(5)
@@ -219,7 +219,7 @@
 	able_to_fire(mob/user)
 		if(!ishuman(user)) return
 		var/mob/living/carbon/human/smart_gunner = user
-		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
+		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/smartgunner) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
 			click_empty(smart_gunner)
 			return
 		return ..()

@@ -226,7 +226,7 @@
 		if(H.mind.assigned_role == "Squad Leader")
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), slot_head)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/marine_leader_armor(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), slot_wear_suit)
 
 			//SPESHUL EQUIPMENT
 			//Machete

@@ -328,16 +328,13 @@
 				)
 	New()
 		spawn(1)
-			while(num_things)
-				if(!num_things)
-					break
-				num_things--
-				var/guntype = pick(stuff)
-				var/obj/item/weapon/gun/thing = new guntype(src)
-				var/magpath = text2path(thing.mag_type)
-				if(magpath)
-					new magpath(src)
-					new magpath(src) //2 spare mags for each, if it has one
+			var/i = 0
+			while(++i <= 2)
+				var/gun_type = pick(stuff)
+				var/obj/item/weapon/gun/new_gun = new gun_type(src)
+				if(new_gun.mag_type)
+					new new_gun.mag_type(src)
+					new new_gun.mag_type(src)
 
 /obj/structure/largecrate/guns/russian
 	num_things = 1

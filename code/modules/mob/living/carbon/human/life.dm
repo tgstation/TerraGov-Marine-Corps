@@ -146,7 +146,7 @@
 
 	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
 
-	if(wear_suit && (wear_suit.flags & STOPSPRESSUREDMAGE) && head && (head.flags & STOPSPRESSUREDMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
+	if(wear_suit && (wear_suit.flags_inv & NOPRESSUREDMAGE) && head && (head.flags_inv & NOPRESSUREDMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
 		pressure_adjustment_coefficient = 0
 
 		// Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure protection.
@@ -388,13 +388,13 @@
 					// Handle filtering
 					var/block = 0
 					if(wear_mask)
-						if(wear_mask.flags & BLOCK_GAS_SMOKE_EFFECT)
+						if(wear_mask.flags_inv & BLOCKGASEFFECT)
 							block = 1
 					if(glasses)
-						if(glasses.flags & BLOCK_GAS_SMOKE_EFFECT)
+						if(glasses.flags_inv & BLOCKGASEFFECT)
 							block = 1
 					if(head)
-						if(head.flags & BLOCK_GAS_SMOKE_EFFECT)
+						if(head.flags_inv & BLOCKGASEFFECT)
 							block = 1
 
 					if(!block)
@@ -429,7 +429,7 @@
 		if(internal)
 			if (!contents.Find(internal))
 				internal = null
-			if (!wear_mask || !(wear_mask.flags & MASKINTERNALS) )
+			if (!wear_mask || !(wear_mask.flags_inv & ALLOWINTERNALS) )
 				internal = null
 			if(internal)
 				return internal.remove_air_volume(volume_needed)

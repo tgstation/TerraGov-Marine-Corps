@@ -110,7 +110,7 @@
 		update_inv_glasses()
 	else if (W == head)
 		head = null
-		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR)|| (W.flags_inv & HIDEMASK))
+		if((W.flags_inv & HIDEALLHAIR) || (W.flags_inv & HIDETOPHAIR)|| (W.flags_inv & HIDEMASK))
 			update_hair(0)	//rebuild hair
 			update_inv_ears(0)
 			update_inv_wear_mask(0)
@@ -140,7 +140,7 @@
 				adjustBruteLossByPart(25,"head")
 		wear_mask = null
 		success = 1
-		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR))
+		if((W.flags_inv & HIDEALLHAIR) || (W.flags_inv & HIDETOPHAIR))
 			update_hair(0)	//rebuild hair
 			update_inv_ears(0)
 		if(internal)
@@ -221,7 +221,7 @@
 			update_inv_back(redraw_mob)
 		if(slot_wear_mask)
 			src.wear_mask = W
-			if((wear_mask.flags & BLOCKHAIR) || (wear_mask.flags & BLOCKHEADHAIR))
+			if((wear_mask.flags_inv & HIDEALLHAIR) || (wear_mask.flags_inv & HIDETOPHAIR))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 			W.equipped(src, slot)
@@ -277,7 +277,7 @@
 			update_inv_gloves(redraw_mob)
 		if(slot_head)
 			src.head = W
-			if((head.flags & BLOCKHAIR) || (head.flags & BLOCKHEADHAIR) || (head.flags_inv & HIDEMASK))
+			if((head.flags_inv & HIDEALLHAIR) || (head.flags_inv & HIDETOPHAIR) || (head.flags_inv & HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)

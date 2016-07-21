@@ -1288,10 +1288,10 @@
 
 	switch(target_zone)
 		if("head")
-			if(head && head.flags & THICKMATERIAL)
+			if(head && head.flags_inv & BLOCKSHARPOBJ)
 				. = 0
 		else
-			if(wear_suit && wear_suit.flags & THICKMATERIAL)
+			if(wear_suit && wear_suit.flags_inv & BLOCKSHARPOBJ)
 				. = 0
 	if(!. && error_msg && user)
  		// Might need re-wording.

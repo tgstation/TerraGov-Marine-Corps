@@ -190,76 +190,76 @@ var/MAX_EXPLOSION_RANGE = 14
 
 //FLAGS BITMASK
 /*
-Some bitmasks share flags, but that's okay. They can't realistically have the same flags set for the same thing in some cases,
-so the values are successfully doubled-up. Ie, a chemistry box won't need to cover facial hair. If an item shares a
-bitflags set to the same number, then it could be a problem. Be careful when doubling up with that in mind. The initial six
-flags at the top are the "do not touch" flags, as they can be transferred from any item. The rest are situational.
-	65536 is as high as you can go with these. You don't want to double down on the same class of item.
+Cleaned these up a lot. Everything that applies to equipment is in flags_inv instead of
+flags. So I had to manually go through and reset all of the flags. Regular item flags
+should all be unique more or less. flags_inv can double up.
 ~N
 */
 
-//DO NOT TOUCH==========================================================================================
-#define TABLEPASS 				1		// can pass by a table or rack
-#define FPRINT					2		// takes a fingerprint
-#define CONDUCT					4		// conducts electricity (metal etc.)
-#define ON_BORDER				8		// item has priority to check when entering or leaving
-#define NOBLOODY				16		// used to items if they don't want to get a blood overlay
-#define PHORONGUARD 			32		// Does not get contaminated by phoron.
-//DO NOT TOUCH==========================================================================================
+//turf-only flags
+#define NOJAUNT		1
 
-//WEAPON ONLY===========================================================================================
-#define TWOHANDED				64
-#define WIELDED					128
-//WEAPON ONLY===========================================================================================
-
-//MELEE ONLY============================================================================================
-#define NODELAY 				256		// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
-#define USEDELAY 				512		// 1 second extra delay on use (Can be used once every 2s)
-#define NOBLUDGEON  			1024	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				2048	// weapon not affected by shield
-//MELEE ONLY============================================================================================
-
-//HOLDERS ONLY==========================================================================================
-#define OPENCONTAINER			4096	//is an open container for chemistry purposes
-#define	NOREACT					8192 	//Reagents dont' react inside this container.
-//HOLDERS ONLY==========================================================================================
-
-//CLOTHING ONLY=========================================================================================
-										//To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
-#define STOPSPRESSUREDMAGE 		256		//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
-#define MASKINTERNALS			512		//mask allows internals
-#define THICKMATERIAL 			1024		//From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body. (NOTE: flag shared with NOSLIP for shoes)
-#define NOSLIP					1024 	//prevents from slipping on wet floors, in space etc
-#define GLASSESCOVERSEYES		1024
-#define MASKCOVERSEYES			1024	// get rid of some of the other retardation in these flags
-#define HEADCOVERSEYES			1024	// feel free to realloc these numbers for other purposes
-#define MASKCOVERSMOUTH			2048	// on other items, these are just for mask/head
-#define HEADCOVERSMOUTH			2048
-#define BLOCKHEADHAIR 			4096    // temporarily removes the user's hair overlay. Leaves facial hair.
-#define BLOCKHAIR				8192	// temporarily removes the user's hair, facial and otherwise.
-#define BLOCK_GAS_SMOKE_EFFECT 	16384	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
-#define ONESIZEFITSALL 			16384
-//CLOTHING ONLY=========================================================================================
-
-//flags for pass_flags
+//PASS FLAGS
 #define PASSTABLE	1
 #define PASSGLASS	2
 #define PASSGRILLE	4
 #define PASSBLOB	8
 
-//turf-only flags
-#define NOJAUNT		1
+//FLAGS
+//==========================================================================================
+#define TABLEPASS 				1		// can pass by a table or rack
+#define FPRINT					2		// takes a fingerprint
+#define CONDUCT					4		// conducts electricity (metal etc.)
+#define ON_BORDER				8		// item has priority to check when entering or leaving
+#define NOBLOODY				16		// used to items if they don't want to get a blood overlay
+//==========================================================================================
+#define TWOHANDED				32
+#define WIELDED					64
+#define NOBLUDGEON  			128		// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOSHIELD				256		// weapon not affected by shield
+//==========================================================================================
+#define OPENCONTAINER			1024	//is an open container for chemistry purposes
+#define	NOREACT					2048	//Reagents dont' react inside this container.
+//==========================================================================================
 
+//FLAGS_INV
 //Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
+//It also determines a few other things now, and doesn't just apply to clothing. ~N
+#define BLOCKPHORON 	65536		// Does not get contaminated by phoron.
+
+//SUIT ONLY============================================================================================
 #define HIDEGLOVES		1	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 #define HIDESUITSTORAGE	2	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 #define HIDEJUMPSUIT	4	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 #define HIDESHOES		8	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDETAIL 		16	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDEMASK	1	//APPLIES ONLY TO HELMETS/MASKS!!
-#define HIDEEARS	2	//APPLIES ONLY TO HELMETS/MASKS!! (ears means headsets and such)
-#define HIDEEYES	4	//APPLIES ONLY TO HELMETS/MASKS!! (eyes means glasses)
-#define HIDEFACE	8	//APPLIES ONLY TO HELMETS/MASKS!! Dictates whether we appear as unknown.
+//HIDELOWHAIR			16  //Could potentially do this.
+#define HIDETAIL 		32	//APPLIES ONLY TO THE EXTERIOR SUIT!!
+#define BLOCKSHARPOBJ 	64  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body. (NOTE: flag shared with NOSLIP for shoes)
+//COVERMOUTH			256
+//SUIT ONLY============================================================================================
+
+//HELMET AND MASK======================================================================================
+#define HIDEMASK		1	//APPLIES ONLY TO HELMETS/MASKS!!
+#define HIDEEARS		2	//APPLIES ONLY TO HELMETS/MASKS!! (ears means headsets and such)
+#define HIDEEYES		4	//APPLIES ONLY TO HELMETS/MASKS!! (eyes means glasses)
+#define HIDEFACE		8	//APPLIES ONLY TO HELMETS/MASKS!! Dictates whether we appear as unknown.
+#define HIDELOWHAIR		16	// temporarily removes the user's facial hair overlay.
+#define HIDETOPHAIR		32	// temporarily removes the user's hair overlay. Leaves facial hair.
+#define HIDEALLHAIR		64	// temporarily removes the user's hair, facial and otherwise.
+#define COVEREYES		128 // Covers the eyes/protects them.
+#define COVERMOUTH		256 // Covers the mouth.
+#define ALLOWINTERNALS	512	//mask allows internals
+#define BLOCKGASEFFECT	1024 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+//HELMET AND MASK======================================================================================
+
+//SUITS AND HELMETS====================================================================================
+//To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
+#define NOPRESSUREDMAGE 4096 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
+//SUITS AND HELMETS====================================================================================
+
+//SHOES ONLY===========================================================================================
+#define NOSLIPPING		1	//prevents from slipping on wet floors, in space etc
+//SHOES ONLY===========================================================================================
 
 //slots
 #define slot_back 1

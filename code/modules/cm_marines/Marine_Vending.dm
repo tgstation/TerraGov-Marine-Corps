@@ -310,7 +310,7 @@
 	special_equipment = 1
 
 	products = list(
-						///obj/item/clothing/suit/storage/marine/marine_leader_armor = 1,
+						///obj/item/clothing/suit/storage/marine/leader = 1,
 						///obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/device/squad_beacon = 3,
@@ -329,11 +329,11 @@
 			var/list/products2 = list()
 			switch(gamemode)
 				if("Ice Colony")
-					products2 = list(/obj/item/clothing/suit/storage/marine/marine_leader_armor/snow = 1,
+					products2 = list(/obj/item/clothing/suit/storage/marine/leader/snow = 1,
 									/obj/item/clothing/head/helmet/marine/leader/snow = 1)
 
 				else
-					products2 = list(/obj/item/clothing/suit/storage/marine/marine_leader_armor = 1,
+					products2 = list(/obj/item/clothing/suit/storage/marine/leader = 1,
 									/obj/item/clothing/head/helmet/marine/leader = 1)
 
 			src.build_inventory(products2)//Add them to the products list

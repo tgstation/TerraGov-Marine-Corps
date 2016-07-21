@@ -39,10 +39,9 @@
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
 	armor = list(melee = 80, bullet = 95, laser = 70, energy = 70, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
-	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | NOPRESSUREDMAGE | BLOCKSHARPOBJ
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 	unacidable = 1
 
@@ -232,7 +231,7 @@
 //	item_state = "yautja"
 	unacidable = 1
 	permeability_coefficient = 0.01
-	flags = NOSLIP
+	flags_inv = NOSLIPPING
 	body_parts_covered = FEET|LEGS
 	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
@@ -640,13 +639,14 @@
 	muzzle_flash = null // TO DO, add a decent one.
 	canremove = 0
 	w_class = 5
-	force = 0 //Yeah... Need to remove hitting people with it.
+	force = 0
 	fire_delay = 3
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	accuracy = 10
+	flags = FPRINT | TABLEPASS | CONDUCT | NOBLUDGEON //Can't buldgeon with this.
 	gun_features = GUN_UNUSUAL_DESIGN
 
 	New()

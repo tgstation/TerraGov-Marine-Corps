@@ -288,7 +288,7 @@
 	if(isYautja(M) && prob(75))
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(40))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(40))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
@@ -364,7 +364,7 @@
 	if(M.stat)
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(75))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(75))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else

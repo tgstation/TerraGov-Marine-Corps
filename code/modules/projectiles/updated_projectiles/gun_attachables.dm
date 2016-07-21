@@ -503,7 +503,8 @@ Defined in setup.dm.
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/rifle/sniper/M42A
+						/obj/item/weapon/gun/rifle/sniper/M42A,
+						/obj/item/weapon/gun/rifle/sniper/M42A/jungle
 					)
 	slot = "under"
 	w_class_mod = 2
@@ -615,7 +616,7 @@ Defined in setup.dm.
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
-						/obj/item/weapon/gun/shotgun/double
+						/obj/item/weapon/gun/shotgun/merc
 					)
 	pixel_shift_x = 17
 

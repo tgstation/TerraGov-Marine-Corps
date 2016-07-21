@@ -72,10 +72,10 @@
 				return 1
 //			if(M.health < -75)	return 0
 
-			if((M.head && (M.head.flags & HEADCOVERSMOUTH)) || (M.wear_mask && (M.wear_mask.flags & MASKCOVERSMOUTH)))
+			if((M.head && (M.head.flags_inv & COVERMOUTH)) || (M.wear_mask && (M.wear_mask.flags_inv & COVERMOUTH)))
 				M << "\blue <B>Remove your mask!</B>"
 				return 0
-			if((head && (head.flags & HEADCOVERSMOUTH)) || (wear_mask && (wear_mask.flags & MASKCOVERSMOUTH)))
+			if((head && (head.flags_inv & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inv & COVERMOUTH)))
 				M << "\blue <B>Remove his mask!</B>"
 				return 0
 

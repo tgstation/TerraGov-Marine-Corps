@@ -285,7 +285,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
 	..()
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS))
 		return
 	else
 		if (prob(20))
@@ -359,7 +359,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/phosphorus/affect(var/mob/living/carbon/M)
 	..()
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS))
 		return
 	else
 		if (prob(20))
@@ -627,7 +627,7 @@ steam.start() -- spawns the effect
 
 	if (istype(AM, /mob/living/carbon))
 		var/mob/M =	AM
-		if (istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags&NOSLIP) || M.buckled)
+		if (istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inv&NOSLIPPING) || M.buckled)
 			return
 
 		M.stop_pulling()

@@ -247,7 +247,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	name = "M3 Pattern Squad Leader crate"
 	contains = list(
 					/obj/item/clothing/head/helmet/marine/leader,
-					/obj/item/clothing/suit/storage/marine/marine_leader_armor
+					/obj/item/clothing/suit/storage/marine/leader
 				)
 	cost = 40
 	containertype = /obj/structure/closet/crate

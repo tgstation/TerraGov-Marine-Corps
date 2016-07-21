@@ -9,7 +9,24 @@ into helmets.dm*/
 //=======================================================================\\
 
 //==========================//SOFT CAPS\\================================\\
+
 //=======================================================================\\
+
+/obj/item/clothing/head
+	name = "head"
+	icon = 'icons/obj/clothing/hats.dmi'
+	body_parts_covered = HEAD
+	slot_flags = SLOT_HEAD
+	flags = FPRINT | TABLEPASS
+	w_class = 2.0
+	var/anti_hug = 0
+
+/obj/item/clothing/head/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_head()
+
+///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/head/cmbandana
 	name = "USCM Bandana (Green)"
@@ -19,7 +36,7 @@ into helmets.dm*/
 	item_state = "band"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band"
-	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+	flags_inv = HIDETOPHAIR
 
 /obj/item/clothing/head/cmbandana/tan
 	name = "USCM Bandana (Tan)"
@@ -27,7 +44,6 @@ into helmets.dm*/
 	item_state = "band2"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band2"
-	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
 
 /obj/item/clothing/head/cmberet
 	name = "USCM Beret"
@@ -37,7 +53,6 @@ into helmets.dm*/
 	item_state = "beret"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "beret"
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/cmberet/tan
 	icon_state = "berettan"
@@ -57,7 +72,6 @@ into helmets.dm*/
 	item_state = "headband"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "headband"
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/headband/red
 	icon_state = "headbandred"
@@ -72,7 +86,6 @@ into helmets.dm*/
 	item_state = "headset"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "headset"
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/cmcap
 	name = "USCM Cap"
@@ -82,7 +95,6 @@ into helmets.dm*/
 	item_state = "cap"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "cap"
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/cmcap/ro
 	name = "USCM Officer Cap"
@@ -109,9 +121,10 @@ into helmets.dm*/
 /obj/item/clothing/head/soft/marine
 	name = "marine sergeant cap"
 	desc = "It's a soft cap made from advanced ballistic-resistant fibres. Fails to prevent lumps in the head."
-	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
 	icon_state = "greysoft"
 	item_color = "grey"
+	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
+	flags_inv = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/soft/marine/alpha
 	name = "alpha squad sergeant cap"
@@ -144,8 +157,9 @@ into helmets.dm*/
 /obj/item/clothing/head/beret/marine
 	name = "marine officer beret"
 	desc = "A beret with the ensign insignia emblazoned on it. It radiates respect and authority."
-	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
 	icon_state = "beret_badge"
+	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
+	flags_inv = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/commander
 	name = "marine commander beret"
@@ -166,5 +180,32 @@ into helmets.dm*/
 	name = "logistics officer beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "hosberet"
+
+//==========================//PROTECTIVE\\===============================\\
+//=======================================================================\\
+
+/obj/item/clothing/head/ushanka
+	name = "ushanka"
+	desc = "Perfect for winter in Siberia, da?"
+	icon_state = "ushankadown"
+	item_state = "ushankadown"
+	armor = list(melee = 35, bullet = 35, laser = 20, energy = 10, bomb = 10, bio = 0, rad = 0)
+	cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
+	anti_hug = 1
+
+/obj/item/clothing/head/bearpelt
+	name = "bear pelt hat"
+	desc = "Fuzzy."
+	icon_state = "bearpelt"
+	item_state = "bearpelt"
+	siemens_coefficient = 2.0
+	anti_hug = 5
+	body_parts_covered = HEAD|UPPER_TORSO|ARMS
+	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
+	cold_protection = HEAD|UPPER_TORSO|ARMS
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 

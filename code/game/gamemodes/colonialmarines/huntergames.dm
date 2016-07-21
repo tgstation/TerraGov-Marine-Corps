@@ -24,7 +24,7 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/attachable/flamer,\
 								/obj/item/clothing/suit/storage/marine,\
 								/obj/item/clothing/head/helmet/marine,\
-								/obj/item/clothing/gloves/specialist,\
+								/obj/item/clothing/gloves/marine/specialist,\
 								/obj/item/weapon/gun/pistol/vp70,\
 								/obj/item/weapon/gun/rifle/m41a/scoped,\
 								/obj/item/weapon/gun/rifle/lmg,\
@@ -38,10 +38,10 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/clothing/suit/armor/yautja,\
 								/obj/item/clothing/suit/armor/yautja/full,\
 								/obj/item/clothing/shoes/yautja,\
-								/obj/item/clothing/head/helmet/marine/PMC/commando,\
-								/obj/item/clothing/shoes/PMC/commando,\
-								/obj/item/clothing/gloves/PMC/commando,\
-								/obj/item/clothing/suit/storage/marine/PMCarmor/commando,\
+								/obj/item/clothing/head/helmet/marine/veteran/PMC/commando,\
+								/obj/item/clothing/shoes/veteran/PMC/commando,\
+								/obj/item/clothing/gloves/marine/veteran/PMC/commando,\
+								/obj/item/clothing/suit/storage/marine/veteran/PMC/commando,\
 								/obj/item/weapon/melee/yautja_chain,\
 								/obj/item/weapon/melee/yautja_knife,\
 								/obj/item/weapon/melee/yautja_scythe,\
@@ -51,8 +51,8 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/storage/box/rocket_system,\
 								/obj/item/weapon/storage/box/grenade_system,\
 								/obj/item/weapon/storage/box/m42c_system,\
-								/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc,\
-								/obj/item/clothing/head/helmet/marine/PMC/heavypmc,\
+								/obj/item/clothing/suit/storage/smartgunner/gunner,\
+								/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner,\
 								/obj/item/weapon/gun/minigun,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
 								/obj/item/weapon/gun/rifle/sniper/elite,
@@ -252,7 +252,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		if(4) //PMC!
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask(H), slot_wear_mask)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), slot_wear_mask)
 		if(5) //Merc!
 			if(prob(80))
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/dutch(H), slot_w_uniform)

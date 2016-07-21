@@ -37,18 +37,28 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 //============================//MISC\\===================================\\
 //=======================================================================\\
 
+/obj/item/clothing/suit/armor
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO
+	flags = FPRINT | TABLEPASS
+	flags_inv = BLOCKSHARPOBJ
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+	heat_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.6
+	allowed = null //Should be a list of paths.
+
 /obj/item/clothing/suit/armor/vest
-	name = "armor"
+	name = "armored vest"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
 	body_parts_covered = UPPER_TORSO
 	armor = list(melee = 50, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/bulletproof
-	name = "Bulletproof Vest"
+	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
 	item_state = "armor"
@@ -58,21 +68,21 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/riot
-	name = "Riot Suit"
+	name = "riot suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = HIDEJUMPSUIT | BLOCKSHARPOBJ
 	siemens_coefficient = 0.5
 
 //===========================//MARINES\\=================================\\
 //=======================================================================\\
 
 /obj/item/clothing/suit/armor/riot/marine
-	name = "M5 Riot Control Armor"
+	name = "M5 riot control armor"
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
 	icon_state = "riot"
 	item_state = "swat_suit"
@@ -80,16 +90,16 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 70, bullet = 45, laser = 35, energy = 20, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine
-	name = "M3 Pattern Marine Armor"
+	name = "M3 pattern marine armor"
 	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "1"
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
@@ -98,15 +108,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
-		/obj/item/ammo_casing/,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/flamethrower/full,
+		/obj/item/weapon/flamethrower,
+		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife)
 	var/ArmorVariation
 	var/brightness_on = 5
@@ -116,45 +124,57 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 
 /obj/item/clothing/suit/storage/marine/snow
-	name = "M3 Pattern Marine Snow Armor"
+	name = "M3 pattern marine snow armor"
 	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage. It's extremely thick insulation can protect the wearer from extreme temperatures down to 220K (-53°C)."
 	icon_state = "s_1"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/storage/marine/MP
-	name = "M2 Pattern MP Armor"
+	name = "M2 pattern MP armor"
 	desc = "A standard Colonial Marines M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/flamethrower,
+		/obj/item/weapon/combat_knife)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
-	name = "M3 Pattern Officer Armor"
+	name = "M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
 
 /obj/item/clothing/suit/storage/marine/sniper
-	name = "M3 Pattern Recon Armor"
+	name = "M3 pattern recon armor"
 	desc = "A custom modified set of M3 armor designed for recon missions."
 	icon_state = "marine_sniper"
 	item_state = "marine_sniper"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/suit/storage/marine/sniper/jungle
-	name = "M3 Pattern Marksman Armor"
+	name = "M3 pattern marksman armor"
 	icon_state = "marine_sniperG"
 	item_state = "marine_sniperG"
 
 /obj/item/clothing/suit/storage/marine/sniper/snow
-	name = "M3 Pattern Sniper Snow Armor"
+	name = "M3 pattern sniper snow armor"
 	icon_state = "s_marine_sniper" //NEEDS ICON
 	item_state = "s_marine_sniper"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/suit/storage/marine_smartgun_armor
+/obj/item/clothing/suit/storage/smartgunner
 	name = "M56 combat harness"
+	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "8"
 	item_state = "armor"
@@ -162,10 +182,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 	cold_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	blood_overlay_type = "armor"
 	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 0, rad = 0)
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen,
@@ -175,41 +194,25 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun)
 
-/obj/item/clothing/suit/storage/marine_smartgun_armor/snow
-	name = "M56 Combat Snow Harness"
+/obj/item/clothing/suit/storage/smartgunner/snow
+	name = "M56 combat snow harness"
 	icon_state = "s_8"
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/suit/storage/marine/marine_leader_armor
-	name = "B12 Pattern Leader Armor"
+/obj/item/clothing/suit/storage/marine/leader
+	name = "B12 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Designed in a lovely forest green. Use it to toggle the built-in flashlight."
 	icon_state = "7"
 	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
-	allowed = list(
-					/obj/item/weapon/gun,
-					/obj/item/device/binoculars,
-					/obj/item/weapon/tank/emergency_oxygen,
-					/obj/item/device/flashlight,
-					/obj/item/ammo_magazine,
-					/obj/item/ammo_casing,
-					/obj/item/weapon/melee/baton,
-					/obj/item/weapon/handcuffs,
-					/obj/item/weapon/storage/fancy/cigarettes,
-					/obj/item/weapon/flame/lighter,
-					/obj/item/weapon/grenade,
-					/obj/item/weapon/combat_knife,
-					/obj/item/weapon/claymore/mercsword/machete,
-					/obj/item/weapon/storage/bible)
 
-/obj/item/clothing/suit/storage/marine/marine_leader_armor/snow
-	name = "B12 Pattern Leader Snow Armor"
+/obj/item/clothing/suit/storage/marine/leader/snow
+	name = "B12 pattern leader snow armor"
 	icon_state = "s_7"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/suit/storage/marine/marine_spec_armor
-	name = "B18 Defensive Armor"
+/obj/item/clothing/suit/storage/marine/specialist
+	name = "B18 defensive armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
 	icon_state = "xarmor"
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
@@ -218,18 +221,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	armor = list(melee = 95, bullet = 110, laser = 80, energy = 80, bomb = 75, bio = 20, rad = 20)
 	var/injections = 2
 	unacidable = 1
-	allowed = list(/obj/item/weapon/gun,
-					/obj/item/weapon/tank/emergency_oxygen,
-					/obj/item/device/flashlight,
-					/obj/item/ammo_magazine,
-					/obj/item/ammo_casing,
-					/obj/item/weapon/flamethrower,
-					/obj/item/device/mine,
-					/obj/item/weapon/claymore/mercsword/machete,
-					/obj/item/weapon/combat_knife)
 
-/obj/item/clothing/suit/storage/marine/marine_spec_armor/snow
-	name = "B18 Defensive Snow Armor"
+/obj/item/clothing/suit/storage/marine/specialist/snow
+	name = "B18 defensive snow armor"
 	icon_state = "s_xarmor"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
@@ -237,22 +231,38 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 
-/obj/item/clothing/suit/storage/marine/PMCarmor
-	name = "M4 Pattern PMC Armor"
+/obj/item/clothing/suit/storage/marine/veteran/PMC
+	name = "M4 pattern PMC armor"
 	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "armor"
 	icon_state = "pmc_armor"
 	armor = list(melee = 55, bullet = 62, laser = 42, energy = 38, bomb = 40, bio = 15, rad = 15)
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/grenade,
+		/obj/item/weapon/storage/bible,
+		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/flamethrower,
+		/obj/item/weapon/combat_knife)
 
-/obj/item/clothing/suit/storage/marine/PMCarmor/leader
-	name = "M4 Pattern PMC Armor"
+/obj/item/clothing/suit/storage/marine/veteran/PMC/leader
+	name = "M4 pattern PMC leader armor"
 	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "officer_armor"
 
-/obj/item/clothing/suit/storage/marine/PMCarmor/sniper
+/obj/item/clothing/suit/storage/marine/veteran/PMC/sniper
+	name = "M4 pattern PMC sniper armor"
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_sniper"
@@ -260,8 +270,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 60, bullet = 70, laser = 50, energy = 60, bomb = 65, bio = 10, rad = 10)
 
-/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc
-	name = "PMC Gunner Armor"
+/obj/item/clothing/suit/storage/smartgunner/gunner
+	name = "PMC gunner armor"
 	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
@@ -270,24 +280,24 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_color = "bear_jumpsuit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 85, bullet = 85, laser = 55, energy = 65, bomb = 70, bio = 20, rad = 20)
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/suit/storage/marine/PMCarmor/commando
-	name = "PMC Commando Armor"
-	desc = "A heavily armored suit built by a subsidiary of Weyland Yutani for elite commandos. It is a fully self-contained system and is heavily corrosion resistant."
+/obj/item/clothing/suit/storage/marine/veteran/PMC/commando
+	name = "PMC commando armor"
+	desc = "A heavily armored suit built by who-knows-what for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "commando_armor"
 	icon_state = "commando_armor"
 	icon_override = 'icons/PMC/PMC.dmi'
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 90, bio = 100, rad = 100)
 	unacidable = 1
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 //===========================//DISTRESS\\================================\\
 //=======================================================================\\
 
-/obj/item/clothing/suit/storage/marine/PMCarmor/Bear
-	name = "H1 Iron Bears Vest"
+/obj/item/clothing/suit/storage/marine/veteran/bear
+	name = "H1 Iron Bears vest"
 	desc = "A protective vest worn by Iron Bears mercenaries."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
@@ -295,10 +305,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "bear_armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 70, laser = 50, energy = 60, bomb = 50, bio = 10, rad = 10)
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/suit/storage/marine/PMCarmor/dutch
-	name = "Armored Vest"
-	desc = "A protective vest"
+/obj/item/clothing/suit/storage/marine/veteran/dutch
+	name = "armored vest"
+	desc = "A protective vest worn by some seriously experienced mercs."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "dutch_armor"
@@ -386,7 +398,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		update_clothing_icon()
 		return 1
 
-/obj/item/clothing/suit/storage/marine/marine_spec_armor/verb/inject()
+/obj/item/clothing/suit/storage/marine/specialist/verb/inject()
 	set name = "Create Injector"
 	set category = "Object"
 	set src in usr

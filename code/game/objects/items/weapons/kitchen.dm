@@ -325,7 +325,7 @@
 
 
 
-	if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || (H.glasses && H.glasses.flags & GLASSESCOVERSEYES)))
+	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inv & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inv & COVEREYES) ) || (H.glasses && (H.glasses.flags & COVEREYES) )))
 		M << "\red You get slammed in the face with the tray, against your mask!"
 		if(prob(33))
 			src.add_blood(H)

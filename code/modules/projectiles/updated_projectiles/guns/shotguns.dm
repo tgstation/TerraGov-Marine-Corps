@@ -228,6 +228,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_delay = 10
 	burst_amount = 2
 	burst_delay = 2
+	flags = FPRINT | TABLEPASS | CONDUCT
 	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
@@ -290,7 +291,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	cocked_sound = null //We don't want this.
 	eject_casings = 0
 	fire_delay = 6
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
 	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
@@ -379,6 +379,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy = -20
 	fire_delay = 3
 	dam_bonus = 15
+	flags = FPRINT | TABLEPASS | CONDUCT
 	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
@@ -473,6 +474,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/shotgun_small.ogg'
 	mag_type = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	fire_delay = 16
+	pump_delay = 12
 
 	New()
 		..()

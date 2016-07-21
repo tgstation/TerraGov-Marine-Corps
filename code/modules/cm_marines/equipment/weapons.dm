@@ -78,8 +78,6 @@
 	force = 35
 	slot_flags = SLOT_BACK
 	w_class = 4.0
-	flags = NOSHIELD
-
 
 /obj/item/weapon/storage/box/m56_system
 	name = "M56 smartgun system"
@@ -97,12 +95,12 @@
 			if(istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
 				new /obj/item/smartgun_powerpack(src)
-				new /obj/item/clothing/suit/storage/marine_smartgun_armor/snow(src)
+				new /obj/item/clothing/suit/storage/smartgunner/snow(src)
 				new /obj/item/weapon/gun/smartgun(src)
 			else
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
 				new /obj/item/smartgun_powerpack(src)
-				new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
+				new /obj/item/clothing/suit/storage/smartgunner(src)
 				new /obj/item/weapon/gun/smartgun(src)
 			opened = 1
 		..()
@@ -214,13 +212,13 @@
 
 	open(var/mob/user as mob)
 		if(!opened)
-			new /obj/item/clothing/gloves/specialist(src)
+			new /obj/item/clothing/gloves/marine/specialist(src)
 			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
-				new /obj/item/clothing/suit/storage/marine/marine_spec_armor/snow(src)
-				new /obj/item/clothing/head/helmet/marine/heavy/snow(src)
+				new /obj/item/clothing/suit/storage/marine/specialist/snow(src)
+				new /obj/item/clothing/head/helmet/marine/specialist/snow(src)
 			else
-				new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
-				new /obj/item/clothing/head/helmet/marine/heavy(src)
+				new /obj/item/clothing/suit/storage/marine/specialist(src)
+				new /obj/item/clothing/head/helmet/marine/specialist(src)
 			opened = 1
 		..()
 
