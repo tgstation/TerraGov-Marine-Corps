@@ -79,7 +79,10 @@
 
 	if(href_list["move"])
 		if(shuttle.recharging) // Prevent the shuttle from moving again until it finishes recharging. This could be made to look better by using the shuttle computer's visual UI.
-			usr << "The [shuttle.iselevator? "elevator" : "shuttle"] requires 2 minutes to recharge."
+			if(shuttle.iselevator)
+				usr << "The elevator is loading and unloading.  Please wait for 15 seconds."
+			else
+				usr << "The [shuttle.iselevator? "elevator" : "shuttle"] requires 2 minutes to recharge."
 			return
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work

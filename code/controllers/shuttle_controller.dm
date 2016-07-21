@@ -191,7 +191,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Elevator I
 	shuttle = new()
 	shuttle.location = 0
-	shuttle.warmup_time = 10
+	shuttle.warmup_time = 2
 	shuttle.area_offsite = locate(/area/shuttle/elevator1/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator1/ground)
 	shuttle.area_transition = locate(/area/shuttle/elevator1/transit)
@@ -199,7 +199,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 //	shuttle.dock_target_station = "escape_dock"
 //	shuttle.dock_target_offsite = "centcom_dock"
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = 20
+	shuttle.move_time = 5
 	shuttle.iselevator = 1
 	shuttles["Elevator 1"] = shuttle
 	process_shuttles += shuttle
@@ -207,12 +207,12 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Elevator II
 	shuttle = new()
 	shuttle.location = 0
-	shuttle.warmup_time = 10
+	shuttle.warmup_time = 2
 	shuttle.area_offsite = locate(/area/shuttle/elevator2/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator2/ground)
 	shuttle.area_transition = locate(/area/shuttle/elevator2/transit)
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = 20
+	shuttle.move_time = 5
 	shuttle.iselevator = 1
 	shuttles["Elevator 2"] = shuttle
 	process_shuttles += shuttle

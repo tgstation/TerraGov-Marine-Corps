@@ -624,7 +624,7 @@
 	New()
 		..()
 		spawn(1)
-			reagents.add_reagent("quickclot", 5)
+			reagents.add_reagent("quickclot", 3)
 			reagents.add_reagent("thwei", 30)
 		return
 
