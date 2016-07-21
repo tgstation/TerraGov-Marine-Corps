@@ -1516,7 +1516,7 @@ datum
 			description = "An all-purpose antiviral agent."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
-			custom_metabolism = 0.05
+			custom_metabolism = 0.01
 			overdose = REAGENTS_OVERDOSE
 			scannable = 1
 
