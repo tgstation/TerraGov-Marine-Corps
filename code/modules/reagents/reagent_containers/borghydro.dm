@@ -12,17 +12,17 @@
 	var/mode = 1
 	var/charge_cost = 50
 	var/charge_tick = 0
-	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
+	var/recharge_time = 2 //Time it takes for shots to recharge (in seconds)
 
 	var/list/datum/reagents/reagent_list = list()
 	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "spaceacillin")
 	//var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "anti_toxin", "inaprovaline", "spaceacillin")
 
 /obj/item/weapon/reagent_containers/borghypo/surgeon
-	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "bicaridine", "dexalin", "spaceacillin", "anti_toxin", "quickclot")
+	reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalin", "anti_toxin", "inaprovaline", "tramadol", "spaceacillin", "quickclot")
 
 /obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol", "bicaridine", "dexalin", "spaceacillin", "anti_toxin", "quickclot")
+	reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalin", "anti_toxin", "inaprovaline", "tramadol", "spaceacillin", "quickclot")
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()
@@ -109,6 +109,7 @@
 		if(R)
 			usr << "\blue It currently has [R.volume] units of [R.name] stored."
 			empty = 0
-
+	var/datum/reagent/RS = chemical_reagents_list[reagent_ids[mode]]
+	usr << "\blue Synthesizer is set to '[RS.name]'."
 	if(empty)
 		usr << "\blue It is currently empty. Allow some time for the internal syntheszier to produce more."
