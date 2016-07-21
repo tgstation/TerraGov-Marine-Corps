@@ -58,11 +58,11 @@
 	var/emergency_color = "#D9D900"
 
 	var/grav_pulling = 0
-	var/pull_radius = 14
+	var/pull_radius = 20
 
 	var/emergency_issued = 0
 
-	var/explosion_power = 8
+	var/explosion_power = 16 //Previously 8.  This should take out the rear of the Sulaco if they let it explode like Idiots.
 
 	var/lastwarning = 0                        // Time in 1/10th of seconds since the last sent warning
 	var/power = 0
