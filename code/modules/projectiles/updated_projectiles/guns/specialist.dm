@@ -40,7 +40,7 @@
 	force = 12
 	recoil = 1
 	zoomdevicename = "scope"
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR
 
 	New()
@@ -82,7 +82,7 @@
 	force = 17
 	recoil = 10
 	zoomdevicename = "scope"
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_WY_RESTRICTED
 
 	New()
@@ -133,7 +133,7 @@
 	eject_casings = 1
 	recoil = 1
 	burst_amount = 2
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
 	New()
@@ -176,7 +176,7 @@
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 //	var/restriction_toggled = 1 //Begin with the safety on.
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_INTERNAL_MAG
 
 
@@ -291,7 +291,7 @@
 	fire_delay = 22
 	var/list/grenades = new/list()
 	var/max_grenades = 6
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
@@ -445,7 +445,7 @@
 	force = 15
 	fire_delay = 10
 	recoil = 3
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_INTERNAL_MAG
 	var/datum/effect/effect/system/smoke_spread/puff
 

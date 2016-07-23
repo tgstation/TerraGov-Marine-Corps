@@ -87,7 +87,6 @@
 	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
-	flags = FPRINT|TABLEPASS
 	flags_inv = 0
 	body_parts_covered = 0
 

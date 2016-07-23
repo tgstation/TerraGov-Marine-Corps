@@ -56,7 +56,7 @@
 	item_state = "m4a3"
 	fire_sound = 'sound/weapons/servicepistol.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol
-	fire_delay = 2
+	fire_delay = 7
 	w_class = 2
 	force = 6
 
@@ -69,7 +69,9 @@
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one is crested with an elephant-tusk ivory grip and has a slide carefully polished by a team of orphan children. Looks important."
 	icon_state = "colt2"
 	item_state = "COlt"
+	fire_delay = 5
 	damage = 7
+
 
 //-------------------------------------------------------
 //DEAGLE

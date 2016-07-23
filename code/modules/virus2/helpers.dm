@@ -47,7 +47,7 @@ proc/get_infection_chance(var/mob/living/carbon/M, var/vector = "Airborne")
 //Checks if table-passing table can reach target (5 tile radius)
 proc/airborne_can_reach(turf/source, turf/target)
 	var/obj/dummy = new(source)
-	dummy.flags = FPRINT | TABLEPASS
+	dummy.flags = FPRINT | NOINTERACT
 	dummy.pass_flags = PASSTABLE
 
 	for(var/i=0, i<5, i++) if(!step_towards(dummy, target)) break

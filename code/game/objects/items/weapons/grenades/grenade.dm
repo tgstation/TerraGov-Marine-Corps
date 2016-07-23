@@ -7,7 +7,7 @@
 	item_state = "flashbang"
 	throw_speed = 3
 	throw_range = 7
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	var/active = 0
 	var/det_time = 50

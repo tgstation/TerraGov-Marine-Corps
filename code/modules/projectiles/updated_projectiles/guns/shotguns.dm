@@ -67,7 +67,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	type_of_casings = "shell"
 	eject_casings = 1
 	accuracy = 10
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG
 
 	New()
@@ -217,7 +217,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_delay = 10
 	burst_amount = 2
 	burst_delay = 2
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
@@ -368,7 +368,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy = -20
 	fire_delay = 3
 	damage = 15
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()

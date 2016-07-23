@@ -9,7 +9,7 @@
 	force = 15
 	burst_amount = 2
 	burst_delay = 2
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK
 
 	New()
@@ -56,7 +56,7 @@
 	mag_type = /obj/item/ammo_magazine/rifle
 	fire_delay = 4
 	burst_amount = 3
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
 
 	New()
@@ -93,7 +93,7 @@
 	burst_amount = 4
 	accuracy = 5
 	damage = 5
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
 
 	New()
@@ -157,7 +157,7 @@
 	burst_amount = 3
 	accuracy = 35
 	damage = 15
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
 
 
@@ -193,7 +193,7 @@
 	eject_casings = 1
 	accuracy = -12
 	burst_amount = 4
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
 	New()
@@ -235,7 +235,7 @@
 	accuracy = -25
 	fire_delay = 4
 	burst_amount = 4
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_ON_MERCS
 
 	New()

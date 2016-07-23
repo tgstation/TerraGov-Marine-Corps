@@ -3,7 +3,7 @@
 	desc = "A handheld emergency defibrillator, used to bring people back from the brink of death or put them there."
 	icon_state = "defib_full"
 	item_state = "defib"
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT | NOBLUDGEON
 	slot_flags = SLOT_BELT
 	force = 5
 	throwforce = 5

@@ -3,7 +3,6 @@
 	name = "breath mask"
 	icon_state = "breath"
 	item_state = "breath"
-	flags = FPRINT | TABLEPASS
 	flags_inv = COVERMOUTH | ALLOWINTERNALS
 	body_parts_covered = 0
 	w_class = 2

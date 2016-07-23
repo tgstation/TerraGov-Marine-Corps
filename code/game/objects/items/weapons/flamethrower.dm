@@ -4,7 +4,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "flamethrowerbase"
 	item_state = "flamer"
-	flags = FPRINT | TABLEPASS| CONDUCT
+	flags = FPRINT | CONDUCT
 	force = 3.0
 	throwforce = 10.0
 	throw_speed = 1

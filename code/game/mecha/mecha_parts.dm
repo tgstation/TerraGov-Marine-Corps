@@ -7,7 +7,7 @@
 	icon = 'icons/mecha/mech_construct.dmi'
 	icon_state = "blank"
 	w_class = 5
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	origin_tech = "programming=2;materials=2"
 	var/construction_time = 100
 	var/list/construction_cost = list("metal"=20000,"glass"=5000)
@@ -357,7 +357,7 @@
 	icon_state = "std_mod"
 	item_state = "electronic"
 	board_type = "other"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	force = 5.0
 	w_class = 2.0
 	throwforce = 5.0

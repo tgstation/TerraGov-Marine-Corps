@@ -15,7 +15,7 @@
 	throw_speed = 3
 	edge = 1
 	sharp = 1
-	flags = FPRINT | TABLEPASS | NOSHIELD | TWOHANDED
+	flags = FPRINT | CONDUCT | NOSHIELD | TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1
@@ -646,7 +646,7 @@
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	accuracy = 10
-	flags = FPRINT | TABLEPASS | CONDUCT | NOBLUDGEON //Can't buldgeon with this.
+	flags = FPRINT | CONDUCT | NOBLUDGEON //Can't buldgeon with this.
 	gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
@@ -1078,7 +1078,7 @@
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
 	icon_state = "whip"
 	item_state = "chain"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	force = 35
 	throwforce = 12
@@ -1105,7 +1105,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predknife"
 	item_state = "knife"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_POCKET
 	sharp = 1
 	force = 24
@@ -1175,7 +1175,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "clansword"
 	item_state = "clansword"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
 	edge = 1
@@ -1212,7 +1212,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predscythe"
 	item_state = "scythe0"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	sharp = 1
 	force = 32
@@ -1349,7 +1349,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "combilong"
 	item_state = "combilong"
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 4
 	force = 32
@@ -1420,7 +1420,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "teleporter"
 	origin_tech = "materials=7;bluespace=7;engineering=7"
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT
 	w_class = 2
 	force = 1
 	throwforce = 1

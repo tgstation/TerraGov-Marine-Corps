@@ -17,7 +17,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "helmet"
 	item_state = "helmet"
 	armor = list(melee = 50, bullet = 15, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	flags_inv = HIDEEARS | HIDEEYES | COVEREYES | BLOCKSHARPOBJ
 	cold_protection = HEAD
 	heat_protection = HEAD
@@ -56,7 +56,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "spec"
 	item_color = "spec"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
-	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/specrag/snow
@@ -72,7 +71,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "durag"
 	icon_state = "durag"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
-	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/durag/jungle
@@ -160,7 +158,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "pmc_hat"
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags = FPRINT | TABLEPASS
 	flags_inv = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
@@ -177,7 +174,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "pmc_sniper_hat"
 	icon_state = "pmc_sniper_hat"
 	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
-	flags = FPRINT | TABLEPASS | CONDUCT
 	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | HIDEMASK | COVEREYES | COVERMOUTH | HIDEALLHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
@@ -186,7 +182,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "heavy_helmet"
 	icon_state = "heavy_helmet"
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
-	flags = FPRINT | TABLEPASS | CONDUCT
 	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | HIDEMASK | COVEREYES | COVERMOUTH | HIDEALLHAIR | BLOCKSHARPOBJ
 	anti_hug = 4
 
@@ -198,7 +193,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "commando_helmet"
 	icon_override = 'icons/PMC/PMC.dmi'
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
-	flags = FPRINT | TABLEPASS | CONDUCT
 	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | HIDEMASK | COVEREYES | COVERMOUTH | HIDEALLHAIR | BLOCKSHARPOBJ | BLOCKGASEFFECT
 	anti_hug = 6
 	unacidable = 1
@@ -219,14 +213,12 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	name = "\improper Dutch's Dozen cap"
 	item_state = "dutch_cap"
 	icon_state = "dutch_cap"
-	flags = FPRINT | TABLEPASS | CONDUCT
 	flags_inv = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/band
 	name = "\improper Dutch's Dozen band"
 	item_state = "dutch_band"
 	icon_state = "dutch_band"
-	flags = FPRINT | TABLEPASS | CONDUCT
 	flags_inv = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/marine/veteran/bear

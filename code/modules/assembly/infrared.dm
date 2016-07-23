@@ -168,8 +168,7 @@
 	var/visible = 0.0
 	var/left = null
 	anchored = 1.0
-	flags = TABLEPASS
-
+	flags = NOINTERACT
 
 /obj/effect/beam/i_beam/proc/hit()
 	//world << "beam \ref[src]: hit"

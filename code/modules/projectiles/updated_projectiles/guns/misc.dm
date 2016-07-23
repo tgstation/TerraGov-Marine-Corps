@@ -213,7 +213,7 @@
 	fire_delay = 5
 	recoil = 2 //Good amount of recoil.
 	accuracy = -20 //It's not very accurate.
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 
 	New()
 		..()

@@ -17,7 +17,8 @@ into helmets.dm*/
 	icon = 'icons/obj/clothing/hats.dmi'
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
-	flags = FPRINT | TABLEPASS
+	pass_flags = PASSTABLE
+	flags = FPRINT
 	w_class = 2.0
 	var/anti_hug = 0
 

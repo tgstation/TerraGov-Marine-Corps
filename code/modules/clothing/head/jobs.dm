@@ -51,7 +51,6 @@
 	name = "beret"
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
-	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 

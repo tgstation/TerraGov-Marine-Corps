@@ -30,7 +30,7 @@ Defined in setup.dm.
 	var/pixel_shift_x = 16 //Determines the amount of pixels to move the icon state for the overlay.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
-	flags =  FPRINT | TABLEPASS | CONDUCT
+	flags =  FPRINT | CONDUCT
 	matter = list("metal" = 2000)
 	w_class = 2.0
 	force = 1.0

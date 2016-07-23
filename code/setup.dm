@@ -206,20 +206,25 @@ should all be unique more or less. flags_inv can double up.
 #define PASSBLOB	8
 
 //FLAGS
+#define NOFLAGS					0		//Nothing.
+
 //==========================================================================================
-#define TABLEPASS 				1		// can pass by a table or rack
-#define FPRINT					2		// takes a fingerprint
-#define CONDUCT					4		// conducts electricity (metal etc.)
-#define ON_BORDER				8		// item has priority to check when entering or leaving
-#define NOBLOODY				16		// used to items if they don't want to get a blood overlay
+#define NODROP					1		// Cannot be dropped at all, only deleted.
+#define NOINTERACT				2		// Despite being an item, you can't interact with it normally.
+#define NOBLOODY				4		// Don't want a blood overlay on this one.
+#define DELONDROP				8		// Deletes on drop instead of falling on the floor.
+#define FPRINT					16		// takes a fingerprint
+#define CONDUCT					32		// conducts electricity (metal etc.)
+#define ON_BORDER				64		// item has priority to check when entering or leaving
+//Reserved space for any general flags here.
 //==========================================================================================
-#define TWOHANDED				32
-#define WIELDED					64
-#define NOBLUDGEON  			128		// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				256		// weapon not affected by shield
+#define	NOREACT					1024	//Reagents dont' react inside this container.
+#define OPENCONTAINER			2048	//is an open container for chemistry purposes
 //==========================================================================================
-#define OPENCONTAINER			1024	//is an open container for chemistry purposes
-#define	NOREACT					2048	//Reagents dont' react inside this container.
+#define NOBLUDGEON  			4096	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOSHIELD				8192		// weapon not affected by shield
+#define TWOHANDED				16384		// The item is twohanded.
+#define WIELDED					32768		// The item is wielded with both hands.
 //==========================================================================================
 
 //FLAGS_INV
@@ -232,7 +237,7 @@ should all be unique more or less. flags_inv can double up.
 #define HIDESUITSTORAGE	2	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 #define HIDEJUMPSUIT	4	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 #define HIDESHOES		8	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-//HIDELOWHAIR			16  //Can do this.
+//HIDELOWHAIR			16  //Can do this now.
 #define HIDETAIL 		32	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 //COVERMOUTH			256 //Can potentially do this.
 //SUIT ONLY============================================================================================

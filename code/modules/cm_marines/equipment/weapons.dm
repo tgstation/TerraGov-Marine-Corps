@@ -4,7 +4,7 @@
 	icon_state = "combat_knife"
 	item_state = "knife"
 	desc = "The standard issue combat knife issued to Colonial Marines soldiers. You can slide this knife into your boots."
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	sharp = 1
 	force = 25
 	w_class = 1.0
@@ -44,7 +44,7 @@
 	icon='icons/obj/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	sharp = 1
 	force = 10
 	w_class = 1.0
@@ -111,7 +111,7 @@
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
 	item_state = "armor"
-	flags = FPRINT | CONDUCT | TABLEPASS
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 5.0
 	var/obj/item/weapon/cell/pcell = null
@@ -347,8 +347,6 @@
 	icon_state = "grenade_ex"
 	det_time = 40
 	item_state = "grenade_ex"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
 	dangerous = 1
 
 	prime()
@@ -377,7 +375,6 @@
 	icon_state = "large_grenade"
 	det_time = 40
 	item_state = "flashbang"
-	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BELT
 	dangerous = 1
 
@@ -411,8 +408,6 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	icon_state = "flashbang"
 	det_time = 20
 	item_state = "flashbang"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 
 	New()
@@ -446,8 +441,6 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	icon_state = "flashbang"
 	det_time = 20
 	item_state = "flashbang"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
 	var/datum/effect/effect/system/smoke_spread/phosphorus/smoke
 	dangerous = 1
 
@@ -490,7 +483,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	throw_range = 6
 	throw_speed = 3
 	unacidable = 1
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT
 
 	var/triggered = 0
 	var/triggertype = "explosive" //Calls that proc

@@ -18,6 +18,8 @@ include jackets and regular suits, not armor.*/
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
 	body_parts_covered = HEAD
+	pass_flags = PASSTABLE
+	flags = FPRINT
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
@@ -38,7 +40,6 @@ include jackets and regular suits, not armor.*/
 	item_state = "rebreather"
 	w_class = 2
 	body_parts_covered = 0
-	flags = FPRINT | TABLEPASS
 	flags_inv = COVERMOUTH | HIDELOWHAIR
 
 /obj/item/clothing/mask/rebreather/scarf
@@ -52,7 +53,6 @@ include jackets and regular suits, not armor.*/
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
-	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
 	body_parts_covered = FACE|EYES
 	w_class = 3.0
@@ -111,7 +111,8 @@ include jackets and regular suits, not armor.*/
 	name = "under"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
-	flags = FPRINT | TABLEPASS
+	pass_flags = PASSTABLE
+	flags = FPRINT
 	slot_flags = SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3

@@ -95,7 +95,7 @@
 	w_class = 5.0
 	icon_state = "offhand"
 	name = "offhand"
-	flags = TWOHANDED | WIELDED
+	flags = DELONDROP | TWOHANDED | WIELDED
 
 	unwield(var/mob/user)
 		user.remove_from_mob(src)
@@ -131,7 +131,7 @@
 	edge = 1
 	w_class = 4.0
 	slot_flags = SLOT_BACK
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	force_wielded = 40
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
@@ -163,7 +163,7 @@
 	force_wielded = 30
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
-	flags = FPRINT | TABLEPASS | NOSHIELD | TWOHANDED
+	flags = FPRINT | NOSHIELD | NOBLOODY | TWOHANDED
 	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
@@ -203,7 +203,7 @@
 	throw_speed = 3
 	edge = 1
 	sharp = 1
-	flags = FPRINT | TABLEPASS | NOSHIELD | TWOHANDED
+	flags = FPRINT | NOSHIELD | TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 

@@ -38,9 +38,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 //=======================================================================\\
 
 /obj/item/clothing/suit/armor
-	body_parts_covered = UPPER_TORSO | LOWER_TORSO
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT
 	flags_inv = BLOCKSHARPOBJ
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
@@ -96,6 +96,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "1"
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
+	flags = FPRINT | CONDUCT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS

@@ -62,7 +62,7 @@
 	var/attachable_offset[] = null //Is a list, see examples of from the other filse. Initiated on New() because lists don't initial() properly.
 	var/obj/item/attachable/active_attachable = null //This will link to one of the above four, or remain null.
 
-	flags 			 = FPRINT | TABLEPASS | CONDUCT
+	flags 			 = FPRINT | CONDUCT
 	var/gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK
 
 

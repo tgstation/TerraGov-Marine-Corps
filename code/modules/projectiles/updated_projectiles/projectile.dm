@@ -8,8 +8,7 @@
 	density = 0
 	unacidable = 1
 	anchored = 1
-	flags = FPRINT | TABLEPASS
-	pass_flags = PASSTABLE | PASSGRILLE
+	flags = NOINTERACT
 	mouse_opacity = 0
 	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
 

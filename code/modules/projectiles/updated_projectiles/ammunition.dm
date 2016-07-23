@@ -11,7 +11,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/icon_empty = null
 	var/icon_type = "bullet" //Used for updating the icon when it creates casings.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = ""
 	matter = list("metal" = 50000)
@@ -212,7 +212,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	desc = "Empty and useless now."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "casing_"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	throwforce = 1
 	w_class = 1.0
 	layer = OBJ_LAYER - 0.1 //Below other objects but above weeds.
