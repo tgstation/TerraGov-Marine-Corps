@@ -24,13 +24,9 @@ They're all essentially identical when it comes to getting the job done.
 	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/max_rounds = 7 //How many rounds can it hold?
-	var/gun_type = null //Path of the gun that it fits. Ammo will fit any of the parent guns as well.
+	var/gun_type = null //Path of the gun that it fits. Mags will fit any of the parent guns as well, so make sure you want this.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
-
-	//For the handful method of reloading. Not used for regular mags.
-	var/handful_type = "Bullets" // "Bullets" or "Shells" or "Slugs" or "Incendiary Slugs"
-	var/handful_max_rounds = 8 // Tell a handful of how many rounds to make when it defaults.
 
 	/*
 	Current rounds are set to -1 by default.
@@ -111,17 +107,15 @@ They're all essentially identical when it comes to getting the job done.
 	var/S
 	if (source.current_rounds > 0)
 		var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
-		new_handful.name = "Handful of [source.handful_type]"
-		new_handful.desc = "A handful of rounds to reload on the go."
+		new_handful.name = "handful of [default_ammo + "s "+ "([caliber])"]"
 		new_handful.icon_state = source.icon_type
 		new_handful.caliber = source.caliber
-		new_handful.max_rounds = source.handful_max_rounds
+		new_handful.max_rounds = caliber == "12g" ? 5 : 8
 		S = transfer_amount ? min(source.current_rounds, transfer_amount) : min(source.current_rounds, new_handful.max_rounds)
 		new_handful.current_rounds = S
 		new_handful.default_ammo = source.default_ammo
 		new_handful.icon_type = source.icon_type
 		new_handful.gun_type = source.gun_type
-		new_handful.handful_type = source.handful_type
 		new_handful.update_icon() // Let's get it updated.
 
 		current_rounds -= S
@@ -138,11 +132,10 @@ They're all essentially identical when it comes to getting the job done.
 	target.caliber = source.caliber
 	target.default_ammo = source.default_ammo
 	target.gun_type = source.gun_type
-	target.handful_type = source.handful_type
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
 /obj/item/ammo_magazine/internal
-	name = "Internal Chamber"
+	name = "internal chamber"
 	desc = "You should not be able to examine it."
 	//For revolvers and shotguns.
 	var/chamber_contents[] //What is actually in the chamber. Initiated on New().
@@ -162,7 +155,7 @@ bullets/shells. ~N
 
 /obj/item/ammo_magazine/handful
 	name = "generic handful"
-	desc = "A handful of ammunition."
+	desc = "A handful of rounds to reload on the go."
 	matter = list("metal" = 5000) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	slot_flags = null // It only fits into pockets and such.
 	origin_tech = "combat=1'materials=1"
@@ -174,7 +167,7 @@ bullets/shells. ~N
 		return TA_REVIVE_ME
 
 	Recycle()
-		var/blacklist[] = list("name","desc","icon_state","caliber","caliber_type","max_rounds","current_rounds","default_ammo","icon_type","gun_type","handful_type")
+		var/blacklist[] = list("name","desc","icon_state","caliber","max_rounds","current_rounds","default_ammo","icon_type","gun_type")
 		. = ..() + blacklist
 
 	update_icon() //Handles the icon itself as well as some bonus things.

@@ -36,15 +36,11 @@
 		if(..()) //Let's check all that other stuff first.
 			if(istype(user))
 				var/obj/item/weapon/card/id/card = user.wear_id
-				if(istype(card) && card.assignment == "Military Police") //We can check for access, but only MPs have access to it.
-					return 1
-				else
-					user << "<span class='warning'>\The [src] is ID locked!</span>"
-		return
+				if(istype(card) && card.assignment == "Military Police") return 1//We can check for access, but only MPs have access to it.
+				else user << "<span class='warning'>\The [src] is ID locked!</span>"
 
 	load_into_chamber()
-		if(!cell || cell.charge - charge_cost < 0)
-			return
+		if(!cell || cell.charge - charge_cost < 0) return
 
 		cell.charge -= charge_cost
 		in_chamber = create_bullet(ammo)
@@ -73,7 +69,7 @@
 //-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 /obj/item/ammo_magazine/pistol/chimp
-	name = "CHIMP70 Magazine (.70M)"
+	name = "\improper CHIMP70 magazine (.70M)"
 	default_ammo = "live monkey"
 	caliber = ".70M"
 	icon_state = "monkey1"
@@ -82,10 +78,9 @@
 	matter = list("metal" = 100000)
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp
-	handful_type = "Bullets (.70M)"
 
 /obj/item/weapon/gun/pistol/chimp
-	name = "\improper CHIMP70 Pistol"
+	name = "\improper CHIMP70 pistol"
 	desc = "A powerful sidearm issed mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "chimp70"
 	item_state = "chimp70"
@@ -100,7 +95,7 @@
 	recoil = 0
 	w_class = 3
 	force = 8
-	gun_features = GUN_AUTO_EJECTOR
+	gun_features = GUN_AUTO_EJECTOR | GUN_WY_RESTRICTED
 
 //-------------------------------------------------------
 
@@ -125,11 +120,8 @@
 			usr << "<span class='warning'>It has a flare loaded!</span>"
 
 	update_icon()
-		if(!num_flares && icon_empty)
-			icon_state = icon_empty
-		else
-			icon_state = initial(icon_state)
-		return
+		if(!num_flares && icon_empty) icon_state = icon_empty
+		else icon_state = initial(icon_state)
 
 	load_into_chamber()
 		if(num_flares)
@@ -137,7 +129,6 @@
 			in_chamber.SetLuminosity(4)
 			num_flares--
 			return in_chamber
-		return
 
 	reload_into_chamber()
 		update_icon()
@@ -146,8 +137,7 @@
 	delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
 		cdel(projectile_to_fire)
 
-		if(refund)
-			num_flares++
+		if(refund) num_flares++
 		return 1
 
 	attackby(obj/item/I as obj, mob/user as mob)
@@ -192,7 +182,7 @@
 //This gun is very powerful, but also has a kick.
 
 /obj/item/ammo_magazine/minigun
-	name = "Rotating Ammo Drum (7.62x51mm)"
+	name = "rotating ammo drum (7.62x51mm)"
 	desc = "A huge ammo drum for a huge gun."
 	caliber = "7.62×51mm"
 	icon_state = "a762"
@@ -203,7 +193,6 @@
 	max_rounds = 300
 	reload_delay = 24 //Hard to reload.
 	gun_type = /obj/item/weapon/gun/minigun
-	handful_type = "Bullets (.37.62×51mm)"
 
 /obj/item/weapon/gun/minigun
 	name = "\improper Ol' Painless"

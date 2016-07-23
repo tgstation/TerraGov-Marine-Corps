@@ -761,11 +761,11 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 
 /datum/supply_packs/marine_outfits
 	contains = list(
-					/obj/item/clothing/under/marine_jumpsuit,
-					/obj/item/clothing/under/marine_jumpsuit,
-					/obj/item/clothing/under/marine_jumpsuit,
-					/obj/item/clothing/under/marine_jumpsuit,
-					/obj/item/clothing/under/marine_jumpsuit,
+					/obj/item/clothing/under/marine,
+					/obj/item/clothing/under/marine,
+					/obj/item/clothing/under/marine,
+					/obj/item/clothing/under/marine,
+					/obj/item/clothing/under/marine,
 					/obj/item/weapon/storage/belt/marine,
 					/obj/item/weapon/storage/belt/marine,
 					/obj/item/weapon/storage/belt/marine,

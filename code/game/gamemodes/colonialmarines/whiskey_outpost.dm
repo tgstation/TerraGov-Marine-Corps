@@ -123,7 +123,7 @@
 		H = M
 		if(H.contents.len)
 			for(var/I in H.contents)//Delete the cryo uniform
-				if(istype(I,/obj/item/clothing/under/marine_underoos))
+				if(istype(I,/obj/item/clothing/under/marine/underoos))
 					del(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander
@@ -224,7 +224,7 @@
 
 		//SQUAD LEADER
 		if(H.mind.assigned_role == "Squad Leader")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), slot_wear_suit)
 
@@ -327,7 +327,7 @@
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
 
 			//SPESHUL EQUIPMENT
 			//Webbing
@@ -341,7 +341,7 @@
 
 		//SQUAD MARINE
 		else
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), slot_belt)

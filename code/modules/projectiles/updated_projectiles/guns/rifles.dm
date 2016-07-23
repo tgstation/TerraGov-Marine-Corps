@@ -20,7 +20,7 @@
 //M41A PULSE RIFLE
 
 /obj/item/ammo_magazine/rifle
-	name = "Pulse Rifle Magazine (10mm)"
+	name = "pulse rifle magazine (10mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = "10mm"
 	icon_state = "m309a"
@@ -28,28 +28,25 @@
 	default_ammo = "rifle bullet"
 	max_rounds = 30
 	gun_type = /obj/item/weapon/gun/rifle/m41a
-	handful_type = "Bullets (10mm)"
 
 /obj/item/ammo_magazine/rifle/extended
-	name = "Pulse Rifle Extended Magazine (10mm)"
+	name = "pulse rifle extended magazine (10mm)"
 	desc = "A 10mm assault extended rifle magazine."
 	max_rounds = 70
 	bonus_overlay = "m41a_exmag"
 
 /obj/item/ammo_magazine/rifle/incendiary
-	name = "Pulse Rifle Incendiary Magazine (10mm)"
+	name = "pulse rifle incendiary magazine (10mm)"
 	desc = "A 10mm assault rifle magazine."
 	default_ammo = "incendiary rifle bullet"
-	handful_type = "Incendiary Bullets (10mm)"
 
 /obj/item/ammo_magazine/rifle/ap
-	name = "Pulse Rifle AP Magazine (10mm)"
+	name = "\improper pulse rifle AP magazine (10mm)"
 	desc = "A 10mm armor piercing magazine."
 	default_ammo = "AP rifle bullet"
-	handful_type = "AP Bullets (10mm)"
 
 /obj/item/weapon/gun/rifle/m41a
-	name = "\improper M41A Pulse Rifle MK2"
+	name = "\improper M41A pulse rifle MK2"
 	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10mm special ammunition."
 	icon_state = "m41a"
 	icon_empty = "m41a0"
@@ -79,13 +76,13 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41aMK1
-	name = "M41 Standard Magazine (10mm)"
+	name = "\improper M41 standard magazine (10mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
 
 /obj/item/weapon/gun/rifle/m41aMK1
-	name = "\improper M41A Pulse Rifle"
+	name = "\improper M41A pulse rifle"
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10mm special ammunition."
 	icon_state = "s_m41a" //Placeholder.
 	icon_empty = "s_m41a0"
@@ -95,7 +92,7 @@
 	mag_type = /obj/item/ammo_magazine/rifle/m41aMK1
 	burst_amount = 4
 	accuracy = 5
-	dam_bonus = 5
+	damage = 5
 	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
 
@@ -107,14 +104,13 @@
 //M41A MARKSMAN VARIANT
 
 /obj/item/ammo_magazine/rifle/marksman
-	name = "M41A/M Marksman Magazine (10mm)"
+	name = "\improper M41A/M marksman magazine (10mm)"
 	desc = "A 10mm marksman rifle magazine."
 	default_ammo = "marksman rifle bullet"
 	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
-	handful_type = "Marksman Bullets (10mm)"
 
 /obj/item/weapon/gun/rifle/m41a/scoped
-	name = "\improper M41A/M Marksman Rifle"
+	name = "\improper M41A/M marksman rifle"
 	desc = "An advanced prototype pulse rifle based on the tried and true M41A Pulse Rifle MK2. Uses any standard M41 magazine and is equipped with rail scope."
 	icon_state = "m41b"
 	icon_empty = "m41b0"
@@ -142,15 +138,14 @@
 //M41A PMC VARIANT
 
 /obj/item/ammo_magazine/rifle/elite
-	name = "M41A/2 AP Magazine (10mm)"
+	name = "\improper M41A/2 AP magazine (10mm)"
 	desc = "A 10mm rifle magazine."
 	default_ammo = "AP rifle bullet"
 	gun_type = /obj/item/weapon/gun/rifle/m41a/elite
-	handful_type = "AP Bullets (10mm)"
 	max_rounds = 40
 
 /obj/item/weapon/gun/rifle/m41a/elite
-	name = "\improper M41A/2 Battle Rifle"
+	name = "\improper M41A/2 battle rifle"
 	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle MK2. Given only to elite units."
 	icon_state = "pmc_m41a"
 	icon_empty = "pmc_m41a0"
@@ -161,7 +156,7 @@
 	fire_delay = 7
 	burst_amount = 3
 	accuracy = 35
-	dam_bonus = 15
+	damage = 15
 	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
 
@@ -170,7 +165,7 @@
 //MAR-40 AK CLONE
 
 /obj/item/ammo_magazine/rifle/mar40
-	name = "Ammo Magazine (12mm)"
+	name = "ammo magazine (12mm)"
 	desc = "A 12mm magazine for the MAR series of firearms."
 	caliber = "12mm"
 	icon_state = "5.56"
@@ -178,16 +173,15 @@
 	default_ammo = "heavy rifle bullet"
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/mar40
-	handful_type = "Bullets (12mm)"
 
 /obj/item/ammo_magazine/rifle/mar40/extended
-	name = "Extended Magazine (12mm)"
+	name = "extended magazine (12mm)"
 	desc = "A 12mm MAR magazine."
 	max_rounds = 60
 	bonus_overlay = "mar40_mag"
 
 /obj/item/weapon/gun/rifle/mar40
-	name = "\improper MAR-40 Battle Rifle"
+	name = "\improper MAR-40 battle rifle"
 	desc = "A cheap, reliable assault rifle chambered in 12mm. Commonly found in the hands of criminals or mercenaries, or in the hands of the UPP or Iron Bears."
 	icon_state = "rsprifle"
 	icon_empty = "rsprifle0"
@@ -207,7 +201,7 @@
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13)
 
 /obj/item/weapon/gun/rifle/mar40/carbine
-	name = "\improper MAR-30 Battle Carbine"
+	name = "\improper MAR-30 battle carbine"
 	desc = "A cheap, reliable assault rifle chambered in 12mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "shortrsprifle"
 	icon_empty = "shortrsprifle0"
@@ -221,7 +215,7 @@
 //M41AE2 HEAVY PULSE RIFLE
 
 /obj/item/ammo_magazine/rifle/lmg
-	name = "Heavy Pulse Rifle Ammo Box"
+	name = "heavy pulse rifle ammo box"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "a762"
 	icon_empty = "a762-0"
@@ -229,7 +223,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 /obj/item/weapon/gun/rifle/lmg
-	name = "\improper M41AE2 Heavy Pulse Rifle"
+	name = "\improper M41AE2 heavy pulse rifle"
 	desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing among USCM scout platoons and in mercenary companies. Like it's smaller brother, the M41A MK2, the M41AE2 is chambered in 10mm."
 	icon_state = "rsplmg"
 	icon_empty = "rsplmg0"

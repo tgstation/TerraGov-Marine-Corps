@@ -413,7 +413,7 @@
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
-	if(Proj.damage_type == BURN)
+	if(Proj.ammo.damage_type == BURN)
 		health -= round(Proj.damage * 0.3)
 	..()
 	healthcheck()

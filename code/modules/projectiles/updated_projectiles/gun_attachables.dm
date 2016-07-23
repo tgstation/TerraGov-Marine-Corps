@@ -901,7 +901,7 @@ Defined in setup.dm.
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/p90,
-						/obj/item/weapon/gun/rifle/sniper/M42A)
+						/obj/item/weapon/gun/revolver/m44)
 	slot = "rail"
 	delay_mod = 6
 	accuracy_mod = 50

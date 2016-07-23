@@ -29,7 +29,7 @@ into helmets.dm*/
 ///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/head/cmbandana
-	name = "USCM Bandana (Green)"
+	name = "\improper USCM bandana (green)"
 	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "band"
@@ -39,14 +39,14 @@ into helmets.dm*/
 	flags_inv = HIDETOPHAIR
 
 /obj/item/clothing/head/cmbandana/tan
-	name = "USCM Bandana (Tan)"
+	name = "\improper USCM bandana (tan)"
 	icon_state = "band2"
 	item_state = "band2"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band2"
 
 /obj/item/clothing/head/cmberet
-	name = "USCM Beret"
+	name = "\improper USCM beret"
 	desc = "A hat typically worn by the field-officers of the USCM. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "beret"
@@ -65,7 +65,7 @@ into helmets.dm*/
 	item_color = "beretred"
 
 /obj/item/clothing/head/headband
-	name = "USCM Headband"
+	name = "\improper USCM headband"
 	desc = "A rag typically worn by the less-orthodox weapons operators in the USCM. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "headband"
@@ -79,7 +79,7 @@ into helmets.dm*/
 	item_color = "headbandred"
 
 /obj/item/clothing/head/headset
-	name = "USCM Headset"
+	name = "\improper USCM headset"
 	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "headset"
@@ -88,7 +88,7 @@ into helmets.dm*/
 	item_color = "headset"
 
 /obj/item/clothing/head/cmcap
-	name = "USCM Cap"
+	name = "\improper USCM cap"
 	desc = "A casual cap occasionally  worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "cap"
@@ -97,21 +97,21 @@ into helmets.dm*/
 	item_color = "cap"
 
 /obj/item/clothing/head/cmcap/ro
-	name = "USCM Officer Cap"
+	name = "\improper USCM officer cap"
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon_state = "rocap"
 	item_state = "rocap"
 	item_color = "rocap"
 
 /obj/item/clothing/head/cmcap/req
-	name = "USCM Requisition Cap"
+	name = "\improper USCM requisition cap"
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon_state = "cargocap"
 	item_state = "cargocap"
 	item_color = "cargocap"
 
 /obj/item/clothing/head/soft/ro_cap
-	name = "Requisition officer cap"
+	name = "\improper requisition officer cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 	item_state = "cargocap"

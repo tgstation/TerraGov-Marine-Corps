@@ -26,13 +26,22 @@
 
 /obj/item/proc/wield(var/mob/user)
 	if( !(flags & TWOHANDED) || (flags & WIELDED) ) return
-	if(user && user.get_inactive_hand())
+
+	if(user.get_inactive_hand())
 		user << "<span class='warning'>You need your other hand to be empty!</span>"
 		return
-	flags 			^= WIELDED
-	var/item_name 	 = initial(name)
-	name 			 = "[item_name] (Wielded)"
-	place_offhand(user,item_name)
+
+	if(ishuman(user))
+		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
+		var/mob/living/carbon/human/wielder = user
+		var/datum/organ/external/hand = wielder.organs_by_name[check_hand]
+		if( !istype(hand) || !hand.is_usable() )
+			user << "<span class='warning'>Your other hand can't hold \the [src]!</span>"
+			return
+
+	flags 	   ^= WIELDED
+	name 		= "[initial(name)] (Wielded)"
+	place_offhand(user,initial(name))
 	return 1
 
 /obj/item/proc/unwield(mob/user)
@@ -44,22 +53,20 @@
 	return 1
 
 /obj/item/proc/place_offhand(var/mob/user,item_name)
-	if(user && ismob(user))
-		user << "<span class='notice'>You grab \the [item_name] with both hands.</span>"
-		var/obj/item/weapon/twohanded/offhand/offhand = rnew(/obj/item/weapon/twohanded/offhand, user)
-		offhand.name = "[item_name] - offhand"
-		offhand.desc = "Your second grip on the [item_name]"
-		user.put_in_inactive_hand(offhand)
-		user.update_inv_l_hand(0)
-		user.update_inv_r_hand()
+	user << "<span class='notice'>You grab \the [item_name] with both hands.</span>"
+	var/obj/item/weapon/twohanded/offhand/offhand = rnew(/obj/item/weapon/twohanded/offhand, user)
+	offhand.name = "[item_name] - offhand"
+	offhand.desc = "Your second grip on the [item_name]"
+	user.put_in_inactive_hand(offhand)
+	user.update_inv_l_hand(0)
+	user.update_inv_r_hand()
 
 /obj/item/proc/remove_offhand(var/mob/user)
-	if(user && ismob(user))
-		user << "<span class='notice'>You are now carrying \the [name] with one hand.</span>"
-		var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_hand()
-		if(istype(offhand)) offhand.unwield(user)
-		user.update_inv_l_hand(0)
-		user.update_inv_r_hand()
+	user << "<span class='notice'>You are now carrying \the [name] with one hand.</span>"
+	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_hand()
+	if(istype(offhand)) offhand.unwield(user)
+	user.update_inv_l_hand(0)
+	user.update_inv_r_hand()
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	if(!..()) return
@@ -75,6 +82,7 @@
 	update_icon()
 
 /obj/item/weapon/twohanded/attack_self(mob/user)
+	..()
 	if(ismonkey(user))
 		user << "<span class='warning'>It's too heavy for you to wield fully!</span>"
 		return
@@ -90,7 +98,7 @@
 	flags = TWOHANDED | WIELDED
 
 	unwield(var/mob/user)
-		if(user) user.remove_from_mob(src)
+		user.remove_from_mob(src)
 		cdel(src)
 
 	wield()
@@ -104,11 +112,13 @@
 		var/blacklist[] = list("name","w_class","desc","flags","icon_state")
 		. = ..() + blacklist
 
-	dropped()
-		cdel(src)
+	dropped(mob/user)
+		..()
+		//This hand should be holding the main weapon. If everything worked correctly, it should not be wielded.
+		//If it is, looks like we got our hand torn off or something.
+		var/obj/item/main_hand = user.get_active_hand()
+		if(main_hand) main_hand.unwield(user)
 
-	throw_at() //It will run dropped with throw_at, but we're just making sure location will be nulled.
-		loc = null
 /*
  * Fireaxe
  */

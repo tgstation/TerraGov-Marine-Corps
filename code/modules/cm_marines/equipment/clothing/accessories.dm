@@ -10,7 +10,7 @@
 //=======================================================================\\
 
 /obj/item/weapon/storage/backpack/marine
-	name = "USCM Infantry Backpack"
+	name = "\improper USCM infantry backpack"
 	desc = "The standard-issue backpack of the USCM forces."
 	icon_state = "marinepack"
 	item_state = "backpack"
@@ -18,43 +18,43 @@
 	max_combined_w_class = 21   //Capacity of the backpack
 
 /obj/item/weapon/storage/backpack/marine/medic
-	name = "USCM Medic Backpack"
+	name = "\improper USCM medic backpack"
 	desc = "The standard-issue backpack worn by USCM Medics."
 	icon_state = "marinepack-medic"
 	item_state = "marinepack-medic"
 
 /obj/item/weapon/storage/backpack/marine/tech
-	name = "USCM Technician Backpack"
+	name = "\improper USCM technician backpack"
 	desc = "The standard-issue backpack worn by USCM Technicians."
 	icon_state = "marinepack-tech"
 	item_state = "marinepack-tech"
 
 /obj/item/weapon/storage/backpack/marine/smock
-	name = "Sniper's Smock"
+	name = "sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
 	item_state = "smock"
 
 /obj/item/weapon/storage/backpack/marinesatchel
-	name = "USCM Infantry Satchel"
+	name = "\improper USCM infantry satchel"
 	desc = "A heavy-duty satchel carried by some USCM soldiers."
 	icon_state = "marinepack2"
 	item_state = "marinepack2"
 
 /obj/item/weapon/storage/backpack/marinesatchel/medic
-	name = "USCM Medic Satchel"
+	name = "\improper USCM medic satchel"
 	desc = "A heavy-duty satchel carried by some USCM Medics."
 	icon_state = "marinepack-medic2"
 	item_state = "marinepack-medic"
 
 /obj/item/weapon/storage/backpack/marinesatchel/tech
-	name = "USCM Technician Satchel"
+	name = "\improper USCM technician satchel"
 	desc = "A heavy-duty satchel carried by some USCM Technicians."
 	icon_state = "marinepack-tech2"
 	item_state = "marinepack-tech2"
 
 /obj/item/weapon/storage/backpack/marinesatchel/commando
-	name = "Commando Bag"
+	name = "\improper commando bag"
 	desc = "A heavy-duty bag carried by Weyland Yutani Commandos."
 	icon_state = "marinepack-tech3"
 	item_state = "marinepack-tech3"
@@ -100,11 +100,13 @@
 			icon = I
 			overlays += I2
 			item_state = "holster1"
+			//update_inv_belt()
 		else
 			overlays.Cut()
 			icon = initial(icon)
 			icon_state = initial(icon_state)
 			item_state = initial(item_state)
+			//update_inv_belt()
 
 	//There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
 	can_be_inserted(obj/item/W as obj, stop_messages = 0) //We don't need to stop messages, but it can be left in.
@@ -177,7 +179,7 @@
 		)
 
 /obj/item/weapon/storage/belt/security/MP
-	name = "MP Belt"
+	name = "\improper MP belt"
 	desc = "Can hold Military Police Equipment."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
@@ -216,7 +218,7 @@
 	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/weapon/storage/belt/knifepouch
-	name="Knife Rig"
+	name="knife rig"
 	desc="Storage for your sharp toys"
 	icon_state="securitybelt" // temp
 	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
@@ -261,7 +263,7 @@
 //=======================================================================\\
 
 /obj/item/clothing/glasses/night/m56_goggles
-	name = "M56 head mounted sight"
+	name = "\improper M56 head mounted sight"
 	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range imager, allowing for view of terrain."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"
@@ -288,7 +290,7 @@
 	overlay = global_hud.thermal
 
 /obj/item/clothing/glasses/m42_goggles
-	name = "M42 Scout Sight"
+	name = "\improper M42 scout sight"
 	desc = "A headset and goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "m56_goggles"

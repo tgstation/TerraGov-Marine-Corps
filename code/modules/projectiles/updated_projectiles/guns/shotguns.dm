@@ -8,34 +8,29 @@ you're looking back on the different shotgun projectiles available. In short of 
 one type of shotgun ammo, but I think it helps in referencing it. ~N
 */
 /obj/item/ammo_magazine/shotgun
-	name = "Box of Shotgun Slugs"
+	name = "box of shotgun slugs"
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "shells"
 	default_ammo = "shotgun slug"
 	caliber = "12g" //All shotgun rounds are 12g right now.
 	gun_type = /obj/item/weapon/gun/shotgun
-	handful_type = "Slugs"
 	icon_type = "shell_s"
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
 	w_class = 3 // Can't throw it in your pocket, friend.
-	handful_max_rounds = 5
 
 /obj/item/ammo_magazine/shotgun/incendiary
-	name = "Box of Incendiary Slugs"
+	name = "box of incendiary slugs"
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
 	default_ammo = "incendiary slug"
-	handful_type = "Incendiary Slugs"
 	icon_type = "shell_i"
 
 /obj/item/ammo_magazine/shotgun/buckshot
-	name = "Box of Buckshot Shells"
+	name = "box of buckshot shells"
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
 	icon_state = "beanbag"
 	default_ammo = "shotgun buckshot"
-	handful_type = "Buckshot"
 	icon_type = "shell_b"
-
 
 //-------------------------------------------------------
 
@@ -45,7 +40,7 @@ Since all shotguns share ammo types, the gun path is going to be the same for al
 also doesn't really matter. You can only reload them with handfuls.
 */
 /obj/item/ammo_magazine/internal/shotgun
-	name = "Shotgun Tube"
+	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
 	default_ammo = "shotgun slug"
 	caliber = "12g"
@@ -73,7 +68,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	eject_casings = 1
 	accuracy = 10
 	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
-	gun_features = GUN_CAN_POINTBLANK
+	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG
 
 	New()
 		..()
@@ -128,22 +123,17 @@ can cause issues with ammo types getting mixed up during the burst.
 		//this is the most resource efficient way to do it.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
-	var/handful_t //handful_type, based on shell.
 	var/handful_i //icon
 
 	switch(selection)
 		if("shotgun slug")
-			handful_t = "Slugs"
 			handful_i = "shell_s"
 		if("incendiary slug")
-			handful_t = "Incendiary Slugs"
 			handful_i = "shell_i"
 		if("shotgun buckshot")
-			handful_t = "Buckshot"
 			handful_i = "shell_b"
 
-	new_handful.name = "Handful of [handful_t]"
-	new_handful.desc = "A handful of rounds to reload on the go."
+	new_handful.name = "handful of [default_ammo + "s "+ "(12g)"]"
 	new_handful.icon_state = handful_i
 	new_handful.caliber = "12g"
 	new_handful.max_rounds = 5
@@ -151,7 +141,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	new_handful.default_ammo = selection
 	new_handful.icon_type = handful_i
 	new_handful.gun_type = /obj/item/weapon/gun/shotgun
-	new_handful.handful_type = handful_t
 	new_handful.update_icon() // Let's get it updated.
 
 	return new_handful
@@ -216,7 +205,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	max_rounds = 5
 
 /obj/item/weapon/gun/shotgun/merc
-	name = "\improper Custom Built Shotgun"
+	name = "custom built shotgun"
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
 	icon_state = "rspshotgun"
 	icon_empty = "rspshotgun0"
@@ -229,7 +218,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	burst_amount = 2
 	burst_delay = 2
 	flags = FPRINT | TABLEPASS | CONDUCT
-	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
 		..()
@@ -246,7 +235,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	max_rounds = 6
 
 /obj/item/weapon/gun/shotgun/combat
-	name = "\improper MK221 Tactical Shotgun"
+	name = "\improper MK221 tactical shotgun"
 	desc = "The Weyland-Yutani MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
 	icon_state = "cshotgun"
 	icon_empty = "cshotgun"
@@ -279,7 +268,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	chamber_closed = 1 //Starts out with a closed tube.
 
 /obj/item/weapon/gun/shotgun/double
-	name = "\improper Double Barrel Shotgun"
+	name = "double barrel shotgun"
 	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
 	icon_state = "dshotgun"
 	icon_empty = "dshotgun0"
@@ -291,7 +280,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	cocked_sound = null //We don't want this.
 	eject_casings = 0
 	fire_delay = 6
-	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
 		..()
@@ -370,7 +359,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		return 1
 
 /obj/item/weapon/gun/shotgun/double/sawn
-	name = "\improper Sawn-Off Shotgun"
+	name = "sawn-off shotgun"
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
 	icon_state = "sawnshotgun"
 	icon_empty = "sawnshotgun0"
@@ -378,9 +367,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	slot_flags = SLOT_BELT
 	accuracy = -20
 	fire_delay = 3
-	dam_bonus = 15
+	damage = 15
 	flags = FPRINT | TABLEPASS | CONDUCT
-	gun_features = GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
 		..()
@@ -393,7 +382,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	max_rounds = 7
 
 /obj/item/weapon/gun/shotgun/pump
-	name = "\improper M37A2 Pump Shotgun"
+	name = "\improper M37A2 pump shotgun"
 	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
 	icon_state = "m37"
 	icon_empty = "m37" //Pump shotguns don't really have 'empty' states.
@@ -465,7 +454,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	max_rounds = 4
 
 /obj/item/weapon/gun/shotgun/pump/cmb
-	name = "\improper HG 37-12 Pump Shotgun"
+	name = "\improper HG 37-12 pump shotgun"
 	desc = "A four-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
 	icon_state = "CMBshotgun"
 	icon_empty = "CMBshotgun"

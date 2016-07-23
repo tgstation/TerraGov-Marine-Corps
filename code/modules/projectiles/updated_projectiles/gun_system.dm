@@ -3,9 +3,9 @@
 	desc = "Its a gun. It's pretty terrible, though."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = ""
-	var/icon_wielded = null
-	var/icon_empty = null
-	var/muzzle_flash = "muzzle_flash"
+	var/icon_wielded 	= null
+	var/icon_empty 		= null
+	var/muzzle_flash 	= "muzzle_flash"
 	item_state = "gun"
 	matter = list("metal" = 75000)
 	origin_tech = "combat=1" //Guns generally have their own unique levels.
@@ -24,41 +24,40 @@
 	var/cocked_sound 	= null
 
 	var/datum/ammo/ammo = null //How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
-	var/default_ammo = null //For stuff that doesn't use mags, we default to this.
+	var/default_ammo 	= null //For stuff that doesn't use mags, we default to this.
 	var/obj/item/projectile/in_chamber = null //What is currently in the chamber. Most guns will want something in the chamber upon creation.
-	//Ammo mags may or may not be internal, though the difference is a few additional variables. If they are not internal, don't call
-	//on those unique vars.
+	/*Ammo mags may or may not be internal, though the difference is a few additional variables. If they are not internal, don't call
+	on those unique vars. This is done for quicker pathing. Just keep in mind most mags aren't internal, though some are.*/
 	var/obj/item/ammo_magazine/internal/current_mag = null
-	var/mag_type = null  //The default magazine loaded into a projectile weapon for reverse lookups. Leave this null to do your own thing.
-	var/type_of_casings = "bullet" //bullets by default.
+	var/mag_type 		= null  //The default magazine path loaded into a projectile weapon for reverse lookups. Leave this null to do your own thing.
+	var/type_of_casings = "bullet" //bullets by default, but can be "shell"
 	var/eject_casings 	= 0 //Does not by default.
 
 	//Basic stats.
-	var/accuracy 		= 0 //The bullet checks for this when rolling to hit (getting the accuracy of a successful collision).
-	var/dam_bonus 		= 0 //Flat bonus/penalty to bullet damage due to the gun itself.
-	var/recoil 			= 0
-	var/fire_delay 		= 6 // For regular shots, how long to wait before firing again.
-	var/extra_delay 	= 0 // When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
-	var/last_fired 		= 0 // When it was last fired, related to world.time.
+	var/accuracy 		= 0 //This is applied to the bullet when fired, since attachments can influence it.
+	var/damage 			= 0 //Flat bonus/penalty to bullet damage due to the gun itself. Applied when the bullet is created. Attachment bonuses are applied when fired.
+	var/recoil 			= 0 //Screen shake when the weapon is fired.
+	var/fire_delay 		= 6 //For regular shots, how long to wait before firing again.
+	var/last_fired 		= 0 //When it was last fired, related to world.time.
 
 	//Burst fire.
 	var/burst_amount 	= 1 //How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 0 //The delay in between shots. Lower = less delay = faster.
+	var/extra_delay 	= 0 //When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 
 	//Targeting.
 	var/tmp/list/mob/living/target //List of who yer targeting.
 	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
 	var/tmp/lock_time 		= -100
-	var/tmp/mouthshoot 		= 0 ///To stop people from suiciding twice... >.>
 	var/automatic 			= 0 //Used to determine if you can target multiple people.
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/firerate 			= 0 	//0 for keep shooting until aim is lowered
 						//1 for one bullet after tarrget moves and aim is lowered
 	//Attachments.
-	var/obj/item/attachable/muzzle = null //Attachable slots. Only one item per slot.
-	var/obj/item/attachable/rail = null
-	var/obj/item/attachable/under = null
-	var/obj/item/attachable/stock = null
+	var/obj/item/attachable/muzzle 	= null //Attachable slots. Only one item per slot.
+	var/obj/item/attachable/rail 	= null
+	var/obj/item/attachable/under 	= null
+	var/obj/item/attachable/stock 	= null
 	//Stocks do not have their own offsets, use under instead. I could change this in the future, for now it's not needed. ~N.
 	var/attachable_offset[] = null //Is a list, see examples of from the other filse. Initiated on New() because lists don't initial() properly.
 	var/obj/item/attachable/active_attachable = null //This will link to one of the above four, or remain null.
@@ -144,7 +143,6 @@
 			//							        \\
 			//						   	        \\
 //----------------------------------------------------------
-
 
 /obj/item/weapon/gun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
@@ -241,7 +239,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(!casing) //No casing on the ground?
 			casing = new new_casing(current_turf)
 			num_of_casings--
-			playsound(current_turf, sound_to_play, 20, 1)
+			playsound(current_turf, sound_to_play, 20, 1) //Played again if necessary.
 		if(num_of_casings) //Still have some.
 			casing.casings += num_of_casings
 			casing.update_icon()
@@ -302,9 +300,8 @@ and you're good to go.
 	P.name = P.ammo.name
 	P.icon_state = P.ammo.icon_state //Make it look fancy.
 	P.damage = P.ammo.damage
-	P.damage += dam_bonus
+	P.damage += damage
 	P.accuracy += P.ammo.accuracy
-	P.damage_type = P.ammo.damage_type
 	return P
 
 //This proc is needed for firearms that chamber rounds after firing.
@@ -476,10 +473,9 @@ and you're good to go.
 
 /obj/item/weapon/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(gun_features & GUN_CAN_POINTBLANK) // If it can't point blank, you can't suicide and such.
-		if(mouthshoot) return
 		if(M == user && user.zone_sel.selecting == "mouth")
 			if(able_to_fire(user))
-				mouthshoot = 1
+				gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger...</span>")
 				if(do_after(user, 40))
 					if(active_attachable && !(active_attachable.attach_features & ATTACH_PROJECTILE))
@@ -495,18 +491,18 @@ and you're good to go.
 
 						var/obj/item/weapon/gun/revolver/current_revolver = src
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
-							user.apply_damage(projectile_to_fire.damage*3, projectile_to_fire.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp=1)
+							user.apply_damage(projectile_to_fire.damage*3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp=1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
 							user << "<span class='highdanger'>Your life flashes before you as your spirit is torn from your body!</span>"
 							var/mob/dead/observer/ghost = user.ghostize(0) //No return.
 							if(ghost) ghost.timeofdeath = world.time	//For respawn purposes, even if unused.
 						else
-							if (projectile_to_fire.damage_type == HALLOSS)
+							if (projectile_to_fire.ammo.damage_type == HALLOSS)
 								user << "<span class = 'notice'>Ow...</span>"
 								user.apply_effect(110,AGONY,0)
 							else
-								user.apply_damage(projectile_to_fire.damage*2.5, projectile_to_fire.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp=1)
+								user.apply_damage(projectile_to_fire.damage*2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp=1)
 								user.apply_damage(100, OXY)
 								user.death()
 
@@ -515,7 +511,7 @@ and you're good to go.
 
 					else click_empty(user)//If there's no projectile, we can't do much.
 				else M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
-				mouthshoot = !mouthshoot //Reset this.
+				gun_features ^= GUN_CAN_POINTBLANK //Reset this.
 			return
 
 		else if(user.a_intent == "hurt") //Point blanking doesn't actually fire the projectile. No reason to.
@@ -607,8 +603,7 @@ and you're good to go.
 
 	if(user) //The gun only messages when fired by a user.
 		projectile_to_fire.firer = user
-		if(isliving(user))
-			projectile_to_fire.def_zone = user.zone_sel.selecting
+		if(isliving(user)) projectile_to_fire.def_zone = user.zone_sel.selecting
 		projectile_to_fire.dir = user.dir
 		playsound(user, actual_sound, sound_volume, 1)
 		if(i == 1)

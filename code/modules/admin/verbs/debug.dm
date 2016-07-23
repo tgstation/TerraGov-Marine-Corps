@@ -564,7 +564,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if ("strip")
 			//do nothing
 		if("USCM Cryo")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
 
 			var/obj/item/weapon/card/id/W = new(M)
@@ -575,7 +575,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
 		if("USCM Private")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
@@ -593,7 +593,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
 		if("USCM Specialist (Smartgunner)")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/smartgunner(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
@@ -612,7 +612,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
 		if("USCM Combat Synth (Smartgunner)")
-			var/obj/item/clothing/under/marine_jumpsuit/J = new(M)
+			var/obj/item/clothing/under/marine/J = new(M)
 			J.icon_state = ""
 			J.item_color = ""
 			M.equip_to_slot_or_del(J, slot_w_uniform)
@@ -641,7 +641,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.set_species("Machine")
 
 		if("USCM Specialist (Armor)")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
@@ -711,7 +711,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("Weyland-Yutani PMC (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), slot_head)
@@ -743,7 +743,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("Weyland-Yutani PMC (Leader)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/leader(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), slot_head)
@@ -774,7 +774,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Weyland-Yutani PMC (Gunner)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/smartgunner/gunner(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
@@ -798,7 +798,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("Weyland-Yutani PMC (Sniper)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), slot_head)
@@ -831,7 +831,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Weyland-Yutani PMC (Commando)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), slot_l_ear)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), slot_head)
@@ -912,7 +912,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("Iron Bear (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
@@ -940,7 +940,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("Iron Bear (Leader)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
@@ -962,7 +962,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("Dutch Merc (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/dutch2(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch/ranger(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
@@ -986,7 +986,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("Dutch Merc (Leader)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/dutch(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(M), slot_w_uniform)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/cap(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)

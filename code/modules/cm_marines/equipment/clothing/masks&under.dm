@@ -31,12 +31,6 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
 
-/obj/item/clothing/mask/rebreather/scarf
-	name = "heat absorbent coif"
-	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
-	icon_state = "coif"
-	item_state = "coif"
-
 /obj/item/clothing/mask/rebreather
 	name = "rebreather"
 	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
@@ -45,14 +39,21 @@ include jackets and regular suits, not armor.*/
 	w_class = 2
 	body_parts_covered = 0
 	flags = FPRINT | TABLEPASS
-	flags_inv = COVERMOUTH
+	flags_inv = COVERMOUTH | HIDELOWHAIR
+
+/obj/item/clothing/mask/rebreather/scarf
+	name = "heat absorbent coif"
+	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
+	icon_state = "coif"
+	item_state = "coif"
+	flags_inv = COVERMOUTH | HIDEALLHAIR
 
 /obj/item/clothing/mask/gas
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	flags = FPRINT | TABLEPASS
-	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES| ALLOWINTERNALS | BLOCKGASEFFECT
+	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
 	body_parts_covered = FACE|EYES
 	w_class = 3.0
 	item_state = "gas_alt"
@@ -76,7 +77,7 @@ include jackets and regular suits, not armor.*/
 	return filtered
 
 /obj/item/clothing/mask/gas/PMC
-	name = "M8 pattern armored balaclava"
+	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
@@ -84,9 +85,10 @@ include jackets and regular suits, not armor.*/
 	icon_state = "pmc_mask"
 	anti_hug = 3
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
+	flags_inv = HIDEEARS | HIDEFACE | COVERMOUTH | ALLOWINTERNALS | HIDEALLHAIR | BLOCKGASEFFECT
 
 /obj/item/clothing/mask/gas/PMC/leader
-	name = "M8 pattern armored balaclava"
+	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_mask"
@@ -126,42 +128,38 @@ include jackets and regular suits, not armor.*/
 	var/basecolor
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 
-/obj/item/clothing/under/marine_underoos
-	name = "marine underpants"
-	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Wear this into battle if you have no self-respect."
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	siemens_coefficient = 0.9
-	icon_state = "marine_underpants"
-	item_state = "marine_underpants"
-	item_color = "marine_underpants"
-	has_sensor = 1
-	slowdown = 3
-
-/obj/item/clothing/under/marine_jumpsuit
-	name = "USCM uniform"
+/obj/item/clothing/under/marine
+	name = "\improper USCM uniform"
 	desc = "The issue uniform for the USCM forces. It is weaved with light kevlar plates that protect against light impacts and light-caliber rounds."
 	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
-	has_sensor = 3
-	sensor_mode = 3
 
-/obj/item/clothing/under/marine_jumpsuit/snow
-	name = "USCM snow uniform"
+/obj/item/clothing/under/marine/underoos
+	name = "marine underpants"
+	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Find an actual uniform and change out."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	icon_state = "marine_underpants"
+	item_state = "marine_underpants"
+	item_color = "marine_underpants"
+	slowdown = 3
+
+/obj/item/clothing/under/marine/snow
+	name = "\improper USCM snow uniform"
 	icon_state = "marine_jumpsuit_snow"
 	item_state = "marine_jumpsuit_snow"
 	item_color = "marine_jumpsuit_snow"
 
 /obj/item/clothing/under/marine/fluff/marineengineer/snow
-	name = "USCM engineer snow uniform"
+	name = "\improper USCM engineer snow uniform"
 	icon_state = "marine_engineer_snow"
 	item_state = "marine_engineer_snow"
 	item_color = "marine_engineer_snow"
 
 /obj/item/clothing/under/marine/fluff/marinemedic/snow
-	name = "USCM medic snow uniform"
+	name = "\improper USCM medic snow uniform"
 	icon_state = "marine_medic_snow"
 	item_state = "marine_medic_snow"
 	item_color = "marine_medic_snow"
@@ -170,7 +168,7 @@ include jackets and regular suits, not armor.*/
 //=======================================================================\\
 
 /obj/item/clothing/under/rank/chef/exec
-	name = "Weyland Yutani suit"
+	name = "\improper Weyland Yutani suit"
 	desc = "A formal white undersuit."
 
 /obj/item/clothing/under/rank/ro_suit
@@ -179,10 +177,9 @@ include jackets and regular suits, not armor.*/
 	icon_state = "RO_jumpsuit"
 	item_state = "RO_jumpsuit"
 	item_color = "RO_jumpsuit"
-	has_sensor = 1
 
 /obj/item/clothing/suit/storage/RO
-	name = "RO jacket"
+	name = "\improper RO jacket"
 	desc = "A green jacket worn by crew on the Sulaco. The back has the flag of the United Americas on it."
 	icon_state = "RO_jacket"
 	item_state = "RO_jacket"
@@ -261,8 +258,8 @@ include jackets and regular suits, not armor.*/
 //=========================//RESPONDERS\\================================\\
 //=======================================================================\\
 
-/obj/item/clothing/under/marine_jumpsuit/PMC
-	name = "PMC uniform"
+/obj/item/clothing/under/marine/veteran/PMC
+	name = "\improper PMC uniform"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit."
 	icon = 'icons/PMC/PMC.dmi'
 	//icon_override = 'icons/PMC/PMC.dmi'
@@ -271,44 +268,45 @@ include jackets and regular suits, not armor.*/
 	item_color = "pmc_jumpsuit"
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
-/obj/item/clothing/under/marine_jumpsuit/PMC/leader
-	name = "PMC command uniform"
+/obj/item/clothing/under/marine/veteran/PMC/leader
+	name = "\improper PMC command uniform"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	item_state = "officer_jumpsuit"
 	item_color = "officer_jumpsuit"
 
-/obj/item/clothing/under/marine_jumpsuit/PMC/Bear
-	name = "Iron Bear uniform"
-	desc = "A uniform worn by Iron Bears mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "bear_jumpsuit"
-	item_state = "bear_jumpsuit"
-	item_color = "bear_jumpsuit"
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/dutch
-	name = "Dutch's Dozen uniform"
-	desc = "A uniform worn by the mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "dutch_jumpsuit"
-	item_state = "dutch_jumpsuit"
-	item_color = "dutch_jumpsuit"
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/dutch2
-	name = "Dutch's Dozen uniform"
-	desc = "A uniform worn by the mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "dutch_jumpsuit2"
-	item_state = "dutch_jumpsuit2"
-	item_color = "dutch_jumpsuit2"
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/commando
-	name = "PMC commando uniform"
-	desc = "An armored uniform worn by Weyland Yutani elite commandos."
+/obj/item/clothing/under/marine/veteran/PMC/commando
+	name = "\improper PMC commando uniform"
+	desc = "An armored uniform worn by Weyland Yutani elite commandos. It is well protected while remaining light and comfortable."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_jumpsuit"
 	item_state = "commando_jumpsuit"
 	item_color = "commando_jumpsuit"
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 20, bomb = 10, bio = 10, rad = 10)
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/bear
+	name = "\improper Iron Bear uniform"
+	desc = "A uniform worn by Iron Bears mercenaries in the service of Mother Russia. Smells a little like an actual bear."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "bear_jumpsuit"
+	item_state = "bear_jumpsuit"
+	item_color = "bear_jumpsuit"
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/dutch
+	name = "\improper Dutch's Dozen uniform"
+	desc = "A comfortable uniform worn by the Dutch's Dozen mercenaries. It's seen some definite wear and tear, but is still in good condition."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit"
+	item_state = "dutch_jumpsuit"
+	item_color = "dutch_jumpsuit"
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/dutch/ranger
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit2"
+	item_state = "dutch_jumpsuit2"
+	item_color = "dutch_jumpsuit2"
 
 //===========================//CIVILIANS\\===============================\\
 //=======================================================================\\
@@ -319,6 +317,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "redshirt2"
 	item_state = "r_suit"
 	item_color = "redshirt2"
+	has_sensor = 0
 
 /obj/item/clothing/under/colonist
 	name = "colonist uniform"
@@ -326,6 +325,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "colonist"
 	item_state = "colonist"
 	item_color = "colonist"
+	has_sensor = 0
 
 /obj/item/clothing/under/CM_uniform
 	name = "colonial marshal uniform"
@@ -334,9 +334,10 @@ include jackets and regular suits, not armor.*/
 	item_state = "marshal"
 	item_color = "marshal"
 	armor = list(melee = 15, bullet = 15, laser = 15,energy = 5, bomb = 5, bio = 0, rad = 0)
+	has_sensor = 0
 
 /obj/item/clothing/suit/storage/CMB
-	name = "CMB jacket"
+	name = "\improper CMB jacket"
 	desc = "A green jacket worn by crew on the Colonial Marshals."
 	icon_state = "CMB_jacket"
 	item_state = "CMB_jacket"
@@ -349,7 +350,6 @@ include jackets and regular suits, not armor.*/
 	icon_state = "liaison_regular"
 	item_state = "liaison_regular"
 	item_color = "liaison_regular"
-	has_sensor = 1
 
 /obj/item/clothing/under/liaison_suit/outing
 	name = "liaison's outfit"
@@ -463,15 +463,16 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/under/examine()
 	set src in view()
 	..()
-	switch(src.sensor_mode)
-		if(0)
-			usr << "Its sensors appear to be disabled."
-		if(1)
-			usr << "Its binary life sensors appear to be enabled."
-		if(2)
-			usr << "Its vital tracker appears to be enabled."
-		if(3)
-			usr << "Its vital tracker and tracking beacon appear to be enabled."
+	if(has_sensor)
+		switch(src.sensor_mode)
+			if(0)
+				usr << "Its sensors appear to be disabled."
+			if(1)
+				usr << "Its binary life sensors appear to be enabled."
+			if(2)
+				usr << "Its vital tracker appears to be enabled."
+			if(3)
+				usr << "Its vital tracker and tracking beacon appear to be enabled."
 	if(hastie)
 		usr << "\A [hastie] is clipped to it."
 

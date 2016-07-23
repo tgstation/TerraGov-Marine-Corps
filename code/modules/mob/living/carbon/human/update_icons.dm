@@ -418,7 +418,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 	//base icons
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
 
-	if(f_style)
+	if(f_style && !(wear_suit && (wear_suit.flags_inv & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inv & HIDELOWHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && src.species.name in facial_hair_style.species_allowed)
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -748,6 +748,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 				standing.overlays += scratchy
 			//Update helmet contents overlay
 			if(head.contents.len)
+				//This needs to be replaced with a better system.
 				for(var/obj/I in head.contents)
 					if(!isnull(I) && I in head.contents)
 						//Cigar Packs

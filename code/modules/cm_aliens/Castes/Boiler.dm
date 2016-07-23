@@ -223,7 +223,6 @@
 		P.name = P.ammo.name
 		P.icon_state = P.ammo.icon_state
 		P.damage = P.ammo.damage
-		P.damage_type = P.ammo.damage_type
 		P.accuracy += P.ammo.accuracy
 		P.fire_at(target,src,null,P.ammo.max_range,P.ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 60, 1)

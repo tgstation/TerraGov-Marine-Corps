@@ -232,10 +232,9 @@ should all be unique more or less. flags_inv can double up.
 #define HIDESUITSTORAGE	2	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 #define HIDEJUMPSUIT	4	//APPLIES ONLY TO THE EXTERIOR SUIT!!
 #define HIDESHOES		8	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-//HIDELOWHAIR			16  //Could potentially do this.
+//HIDELOWHAIR			16  //Can do this.
 #define HIDETAIL 		32	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define BLOCKSHARPOBJ 	64  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body. (NOTE: flag shared with NOSLIP for shoes)
-//COVERMOUTH			256
+//COVERMOUTH			256 //Can potentially do this.
 //SUIT ONLY============================================================================================
 
 //HELMET AND MASK======================================================================================
@@ -254,7 +253,8 @@ should all be unique more or less. flags_inv can double up.
 
 //SUITS AND HELMETS====================================================================================
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
-#define NOPRESSUREDMAGE 4096 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
+#define BLOCKSHARPOBJ 	2048  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define NOPRESSUREDMAGE 4096 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
 //SHOES ONLY===========================================================================================
@@ -283,8 +283,6 @@ should all be unique more or less. flags_inv can double up.
 #define slot_legcuffed 19
 #define slot_r_ear 20
 #define slot_legs 21
-
-//Cant seem to find a mob bitflags area other than the powers one
 
 // bitflags for clothing parts
 #define HEAD			1
@@ -455,10 +453,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 /*
 If you are wondering what point these values have,
 they should also transfer over to various forms of combat.
-Assuming those forms of combat will exist in the future.
+Assuming those forms of combat will exist in the future, but
+for right now they exist for shooting guns at things.
 */
 #define CRITICAL_CHANCE_LOW		   4   //This is the lower boundry of a critical.
-#define CRITICAL_CHANCE_HIGH	   9  //This is the upper boundry of a critical.
+#define CRITICAL_CHANCE_HIGH	   9   //This is the upper boundry of a critical.
 #define BASE_ARMOR_RESIST_LOW 	   1.3 //This is the initial multiple * after soaking damage.
 #define BASE_ARMOR_RESIST_HIGH     1.7 //This is the derived multiple * after soaking damgage again.
 #define XENO_ARMOR_RESIST_LOW 	   0.7 //Xenos use this as a lower boundary for soaking damage or adding more armor.
@@ -943,19 +942,20 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 					 	  //Shouldn't usually use this as garbage collection is far better.
 
 //Ammo defines for gun/projectile related things.
-#define AMMO_REGULAR 		0
+#define AMMO_REGULAR 		0 //Just as a reminder.
 #define AMMO_EXPLOSIVE 		1
 #define AMMO_XENO_ACID 		2
 #define AMMO_XENO_TOX		4
 #define AMMO_ENERGY 		8
 #define AMMO_ROCKET			16
-#define AMMO_INCENDIARY		32
-#define AMMO_SKIPS_HUMANS	64
-#define AMMO_SKIPS_ALIENS 	128
-#define AMMO_IS_SILENCED 	256
-#define AMMO_NO_SCATTER 	512
-#define AMMO_IGNORE_ARMOR	1024
-#define AMMO_IGNORE_RESIST	2048
+#define AMMO_SNIPER			32
+#define AMMO_INCENDIARY		64
+#define AMMO_SKIPS_HUMANS	128
+#define AMMO_SKIPS_ALIENS 	256
+#define AMMO_IS_SILENCED 	512 //Unused right now.
+#define AMMO_NO_SCATTER 	1024
+#define AMMO_IGNORE_ARMOR	2048
+#define AMMO_IGNORE_RESIST	4096
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1
@@ -963,14 +963,14 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define GUN_UNUSUAL_DESIGN		4
 #define GUN_SILENCED			8
 #define GUN_AUTOMATIC			16
-#define GUN_ALT_FIRE			32
+#define GUN_INTERNAL_MAG		32 //Unused right now.
 #define GUN_AUTO_EJECTOR		64
 #define GUN_AMMO_COUNTER		128
 #define GUN_BURST_ON			256
 #define GUN_BURST_FIRING		512
 #define GUN_FLASHLIGHT_ON		1024
-#define GUN_ON_MERCS			2048
-#define GUN_ON_RUSSIANS			4096
+#define GUN_ON_MERCS			2048 //Unused right now.
+#define GUN_ON_RUSSIANS			4096 //Unused right now.
 #define GUN_WY_RESTRICTED		8192
 
 //Gun attachable related flags.

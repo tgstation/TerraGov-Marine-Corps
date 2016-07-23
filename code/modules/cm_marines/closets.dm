@@ -19,7 +19,7 @@
 			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/shoes/marine(src)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/clothing/under/marine(src)
 		return
 
 	select_gamemode_equipment(gamemode = "")
@@ -27,7 +27,7 @@
 			switch(gamemode)
 				if("Ice Colony")
 
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
+					new /obj/item/clothing/under/marine/snow(src)
 					new /obj/item/clothing/mask/rebreather/scarf(src)
 					new /obj/item/weapon/storage/belt/marine(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
@@ -35,7 +35,7 @@
 					new /obj/item/clothing/shoes/marine(src)
 				else
 
-					new /obj/item/clothing/under/marine_jumpsuit(src)
+					new /obj/item/clothing/under/marine(src)
 					new /obj/item/weapon/storage/belt/marine(src)
 					new /obj/item/clothing/head/helmet/marine(src)
 					new /obj/item/clothing/suit/storage/marine(src)
@@ -248,7 +248,7 @@
 		if(special_equipment)
 			switch(gamemode)
 				if("Ice Colony")
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
+					new /obj/item/clothing/under/marine/snow(src)
 					new /obj/item/clothing/head/helmet/marine/snow(src)
 					new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 					new /obj/item/clothing/mask/rebreather/scarf(src)
@@ -303,7 +303,7 @@
 	New()
 		..()
 		for(var/c, c<5, c++)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/clothing/under/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/clothing/shoes/marine(src)
