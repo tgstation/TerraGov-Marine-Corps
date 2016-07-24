@@ -538,7 +538,7 @@
 	force = 5.0
 	throwforce = 3.0
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	var/working = 0
 	var/mode = 0

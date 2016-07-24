@@ -389,7 +389,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/clr = "g"
 	w_class = 1
 	throwforce = 4
-	flags = TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	attack_verb = list("burnt", "singed")
 

@@ -24,7 +24,7 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								/obj/item/attachable/flamer,\
 								/obj/item/clothing/suit/storage/marine,\
 								/obj/item/clothing/head/helmet/marine,\
-								/obj/item/clothing/gloves/specialist,\
+								/obj/item/clothing/gloves/marine/specialist,\
 								/obj/item/weapon/gun/pistol/vp70,\
 								/obj/item/weapon/gun/rifle/m41a/scoped,\
 								/obj/item/weapon/gun/rifle/lmg,\
@@ -38,10 +38,10 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/clothing/suit/armor/yautja,\
 								/obj/item/clothing/suit/armor/yautja/full,\
 								/obj/item/clothing/shoes/yautja,\
-								/obj/item/clothing/head/helmet/marine/PMC/commando,\
-								/obj/item/clothing/shoes/PMC/commando,\
-								/obj/item/clothing/gloves/PMC/commando,\
-								/obj/item/clothing/suit/storage/marine/PMCarmor/commando,\
+								/obj/item/clothing/head/helmet/marine/veteran/PMC/commando,\
+								/obj/item/clothing/shoes/veteran/PMC/commando,\
+								/obj/item/clothing/gloves/marine/veteran/PMC/commando,\
+								/obj/item/clothing/suit/storage/marine/veteran/PMC/commando,\
 								/obj/item/weapon/melee/yautja_chain,\
 								/obj/item/weapon/melee/yautja_knife,\
 								/obj/item/weapon/melee/yautja_scythe,\
@@ -51,8 +51,8 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/storage/box/rocket_system,\
 								/obj/item/weapon/storage/box/grenade_system,\
 								/obj/item/weapon/storage/box/m42c_system,\
-								/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc,\
-								/obj/item/clothing/head/helmet/marine/PMC/heavypmc,\
+								/obj/item/clothing/suit/storage/smartgunner/gunner,\
+								/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner,\
 								/obj/item/weapon/gun/minigun,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
 								/obj/item/weapon/gun/rifle/sniper/elite,
@@ -176,6 +176,8 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			contestants += M
 			spawn_contestant(M)
 
+	if(config) config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
+
 	for(var/turf/T in crap_spawns)
 		place_drop(T,"crap",0)
 
@@ -236,9 +238,9 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	switch(randjob)
 		if(0) //colonial marine
 			if(prob(50))
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
 			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_underoos(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		if(1) //MP
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), slot_w_uniform)
@@ -250,12 +252,12 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
 		if(4) //PMC!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMCmask(H), slot_wear_mask)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), slot_wear_mask)
 		if(5) //Merc!
 			if(prob(80))
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/dutch(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(H), slot_w_uniform)
 			else
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), slot_w_uniform)
 			if(prob(50))
@@ -267,13 +269,13 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			else
 				M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 		if(6)//BEARS!!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/Bear(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 			H.remove_language("English")
 			H.remove_language("Sol Common")
 			H.add_language("Russian")
 		if(7) //PMC Commando!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC/commando(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		if(8) //Assassin!
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), slot_w_uniform)
@@ -436,22 +438,20 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 
 	if(in_crate == 0 && prob(15) && (OT == "good" || OT == "god")) in_crate = 1
 
-	if(isnull(OT) || OT == "")
-		OT = "crap"
+	if(!OT) OT = "crap"
 
-	if(OT == "god")
-		objtype = pick(god_items)
-	else if (OT == "good")
-		objtype = pick(good_items)
-	else
-		objtype = pick(crap_items)
+	switch(OT)
+		if("god") objtype = pick(god_items)
+		if("good") objtype = pick(good_items)
+		else objtype = pick(crap_items)
 
-	var/obj/item/weapon/gun/possible_gun = new objtype()
+	var/crate
+	var/location
 	if(in_crate)
-		var/crate = new /obj/structure/closet/crate(T)
-		possible_gun.loc = crate
-	else possible_gun.loc = T
-
-	if(istype(possible_gun)) possible_gun &= ~GUN_WY_RESTRICTED //We don't want these restrictions on during HG.
+		crate = new /obj/structure/closet/crate(T)
+		location = crate
+	else location = T
+ 	//location = isnull(crate) ? T : crate
+	new objtype(location)
 
 	return

@@ -42,8 +42,8 @@
 					/obj/item/weapon/storage/belt/marine = 5,
 //					/obj/item/clothing/head/helmet/marine = 5,
 					/obj/item/clothing/shoes/marine = 5,
-//					/obj/item/clothing/under/marine_jumpsuit =5
-//					/obj/item/clothing/under/marine_jumpsuit/snow = 15,
+//					/obj/item/clothing/under/marine =5
+//					/obj/item/clothing/under/marine/snow = 15,
 //					/obj/item/clothing/suit/storage/marine/snow = 15,
 //					/obj/item/clothing/head/helmet/marine/snow = 15,
 //					/obj/item/clothing/mask/rebreather = 15,
@@ -64,14 +64,14 @@
 			var/list/products2 = list()
 			switch(gamemode)
 				if("Ice Colony")
-					products2 = list(/obj/item/clothing/under/marine_jumpsuit/snow = 10,
+					products2 = list(/obj/item/clothing/under/marine/snow = 10,
 									/obj/item/clothing/suit/storage/marine/snow = 10,
 									/obj/item/clothing/head/helmet/marine/snow = 10,
 									/obj/item/clothing/mask/rebreather/scarf = 10,
 									/obj/item/device/radio = 5
 									)
 				else
-					products2 = list(/obj/item/clothing/under/marine_jumpsuit = 10,
+					products2 = list(/obj/item/clothing/under/marine = 10,
 									/obj/item/clothing/suit/storage/marine = 10,
 									/obj/item/clothing/head/helmet/marine = 10
 									)
@@ -310,7 +310,7 @@
 	special_equipment = 1
 
 	products = list(
-						///obj/item/clothing/suit/storage/marine/marine_leader_armor = 1,
+						///obj/item/clothing/suit/storage/marine/leader = 1,
 						///obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/device/squad_beacon = 3,
@@ -329,11 +329,11 @@
 			var/list/products2 = list()
 			switch(gamemode)
 				if("Ice Colony")
-					products2 = list(/obj/item/clothing/suit/storage/marine/marine_leader_armor/snow = 1,
+					products2 = list(/obj/item/clothing/suit/storage/marine/leader/snow = 1,
 									/obj/item/clothing/head/helmet/marine/leader/snow = 1)
 
 				else
-					products2 = list(/obj/item/clothing/suit/storage/marine/marine_leader_armor = 1,
+					products2 = list(/obj/item/clothing/suit/storage/marine/leader = 1,
 									/obj/item/clothing/head/helmet/marine/leader = 1)
 
 			src.build_inventory(products2)//Add them to the products list

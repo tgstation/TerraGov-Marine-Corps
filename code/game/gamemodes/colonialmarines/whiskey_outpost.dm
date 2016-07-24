@@ -123,7 +123,7 @@
 		H = M
 		if(H.contents.len)
 			for(var/I in H.contents)//Delete the cryo uniform
-				if(istype(I,/obj/item/clothing/under/marine_underoos))
+				if(istype(I,/obj/item/clothing/under/marine/underoos))
 					del(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander
@@ -224,9 +224,9 @@
 
 		//SQUAD LEADER
 		if(H.mind.assigned_role == "Squad Leader")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), slot_head)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/marine_leader_armor(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), slot_wear_suit)
 
 			//SPESHUL EQUIPMENT
 			//Machete
@@ -327,7 +327,7 @@
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
 
 			//SPESHUL EQUIPMENT
 			//Webbing
@@ -341,7 +341,7 @@
 
 		//SQUAD MARINE
 		else
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), slot_belt)
@@ -1054,7 +1054,7 @@
 									/obj/item/ammo_magazine/rifle/incendiary,
 									/obj/item/ammo_magazine/rifle/ap,
 									/obj/item/ammo_magazine/rifle/marksman,
-									/obj/item/ammo_magazine/rifle/elite,
+									/obj/item/ammo_magazine/rifle/ap/elite,
 									/obj/item/ammo_magazine/rifle/mar40,
 									/obj/item/ammo_magazine/rifle/mar40,
 									/obj/item/ammo_magazine/rifle/mar40/extended,
@@ -1094,7 +1094,7 @@
 									/obj/item/ammo_magazine/smg/m39,
 									/obj/item/ammo_magazine/smg/m39,
 									/obj/item/ammo_magazine/smg/m39/extended,
-									/obj/item/ammo_magazine/smg/elite,
+									/obj/item/ammo_magazine/smg/m39/ap,
 									/obj/item/ammo_magazine/smg/mp7,
 									/obj/item/ammo_magazine/smg/skorpion,
 									/obj/item/ammo_magazine/smg/ppsh,

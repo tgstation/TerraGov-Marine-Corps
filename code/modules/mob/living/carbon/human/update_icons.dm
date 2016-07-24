@@ -411,14 +411,14 @@ proc/get_damage_icon_part(damage_state, body_part)
 		return
 
 	//masks and helmets can obscure our hair.
-	if( (head && (head.flags & BLOCKHAIR)) || (wear_mask && (wear_mask.flags & BLOCKHAIR)))
+	if( (head && (head.flags_inv & HIDEALLHAIR)) || (wear_mask && (wear_mask.flags_inv & HIDEALLHAIR)))
 		if(update_icons)   update_icons()
 		return
 
 	//base icons
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
 
-	if(f_style)
+	if(f_style && !(wear_suit && (wear_suit.flags_inv & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inv & HIDELOWHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && src.species.name in facial_hair_style.species_allowed)
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -427,7 +427,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
-	if(h_style && !(head && (head.flags & BLOCKHEADHAIR)))
+	if(h_style && !(head && (head.flags_inv & HIDETOPHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
 		if(hair_style && src.species.name in hair_style.species_allowed)
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
@@ -647,7 +647,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 /mob/living/carbon/human/update_inv_ears(var/update_icons=1)
 	overlays_standing[EARS_LAYER] = null
-	if( (head && (head.flags & (BLOCKHAIR | BLOCKHEADHAIR))) || (wear_mask && (wear_mask.flags & (BLOCKHAIR | BLOCKHEADHAIR))))
+	if( (head && (head.flags_inv & (HIDEALLHAIR | HIDETOPHAIR))) || (wear_mask && (wear_mask.flags_inv & (HIDEALLHAIR | HIDETOPHAIR))))
 		if(update_icons)   update_icons()
 		return
 
@@ -748,6 +748,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 				standing.overlays += scratchy
 			//Update helmet contents overlay
 			if(head.contents.len)
+				//This needs to be replaced with a better system.
 				for(var/obj/I in head.contents)
 					if(!isnull(I) && I in head.contents)
 						//Cigar Packs

@@ -4,7 +4,6 @@
 	name = "\improper CentComm. hat"
 	icon_state = "centcom"
 	desc = "It's good to be emperor."
-	flags = FPRINT|TABLEPASS
 	item_state = "centhat"
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
@@ -14,7 +13,6 @@
 	icon_state = "hairflower"
 	desc = "Smells nice."
 	item_state = "hairflower"
-	flags = FPRINT|TABLEPASS
 	body_parts_covered = 0
 
 /obj/item/clothing/head/powdered_wig
@@ -28,7 +26,6 @@
 	desc = "It's an amish looking hat."
 	icon_state = "tophat"
 	item_state = "that"
-	flags = FPRINT|TABLEPASS
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
@@ -36,21 +33,18 @@
 	name = "redcoat's hat"
 	icon_state = "redcoat"
 	desc = "<i>'I guess it's a redhead.'</i>"
-	flags = FPRINT | TABLEPASS
 	body_parts_covered = 0
 
 /obj/item/clothing/head/mailman
 	name = "station cap"
 	icon_state = "mailman"
 	desc = "<i>Choo-choo</i>!"
-	flags = FPRINT | TABLEPASS
 	body_parts_covered = 0
 
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
 	desc = "These were once used by Plague doctors. They're pretty much useless."
 	icon_state = "plaguedoctor"
-	flags = FPRINT | TABLEPASS
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
@@ -59,14 +53,13 @@
 	name = "hastur's hood"
 	desc = "It's unspeakably stylish"
 	icon_state = "hasturhood"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|BLOCKHAIR
+	flags_inv = HIDEEARS | HIDEALLHAIR | COVEREYES
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
 	desc = "It allows quick identification of trained medical personnel."
 	icon_state = "nursehat"
-	flags = FPRINT|TABLEPASS
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
@@ -75,8 +68,7 @@
 	icon_state = "syndicate"
 	item_state = "syndicate"
 	desc = "A plastic replica of a syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	flags = FPRINT | TABLEPASS | BLOCKHAIR
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE | HIDEALLHAIR | COVEREYES | COVERMOUTH
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
 	anti_hug = 1
@@ -85,7 +77,7 @@
 	name = "cueball helmet"
 	desc = "A large, featureless white orb mean to be worn on your head. How do you even see out of this thing?"
 	icon_state = "cueball"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE | HIDEALLHAIR | COVEREYES | COVERMOUTH
 	item_state="cueball"
 	flags_inv = 0
 	body_parts_covered = HEAD|FACE|EYES
@@ -95,7 +87,6 @@
 	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
-	flags = FPRINT|TABLEPASS
 	flags_inv = 0
 	body_parts_covered = 0
 
@@ -104,8 +95,7 @@
 	desc = "A helmet made out of a box."
 	icon_state = "cardborg_h"
 	item_state = "cardborg_h"
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | HEADCOVERSMOUTH
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH  | COVEREYES | HIDEALLHAIR
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/head/justice
@@ -113,7 +103,7 @@
 	desc = "fight for what's righteous!"
 	icon_state = "justicered"
 	item_state = "justicered"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH|BLOCKHAIR
+	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH  | COVEREYES | HIDEALLHAIR
 
 /obj/item/clothing/head/justice/blue
 	icon_state = "justiceblue"
@@ -135,7 +125,6 @@
 	name = "rabbit ears"
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
 	icon_state = "bunny"
-	flags = FPRINT | TABLEPASS
 	body_parts_covered = 0
 
 /obj/item/clothing/head/flatcap
@@ -171,7 +160,6 @@
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
 	item_state = "bowler"
-	flags = FPRINT | TABLEPASS
 	body_parts_covered = 0
 
 //stylish bs12 hats
@@ -181,7 +169,6 @@
 	icon_state = "bowler_hat"
 	item_state = "bowler_hat"
 	desc = "For the gentleman of distinction."
-	flags = FPRINT|TABLEPASS
 	body_parts_covered = 0
 
 /obj/item/clothing/head/beaverhat
@@ -189,35 +176,30 @@
 	icon_state = "beaver_hat"
 	item_state = "beaver_hat"
 	desc = "Soft felt makes this hat both comfortable and elegant."
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/boaterhat
 	name = "boater hat"
 	icon_state = "boater_hat"
 	item_state = "boater_hat"
 	desc = "The ultimate in summer fashion."
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/fedora
 	name = "\improper fedora"
 	icon_state = "fedora"
 	item_state = "fedora"
 	desc = "A sharp, stylish hat."
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/feathertrilby
 	name = "\improper feather trilby"
 	icon_state = "feather_trilby"
 	item_state = "feather_trilby"
 	desc = "A sharp, stylish hat with a feather."
-	flags = FPRINT|TABLEPASS
 
 /obj/item/clothing/head/fez
 	name = "\improper fez"
 	icon_state = "fez"
 	item_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
-	flags = FPRINT|TABLEPASS
 
 //end bs12 hats
 
@@ -226,7 +208,7 @@
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
 	item_state = "witch"
-	flags = FPRINT | TABLEPASS | BLOCKHAIR
+	flags_inv = HIDEALLHAIR
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/head/chicken
@@ -234,7 +216,7 @@
 	desc = "Bkaw!"
 	icon_state = "chickenhead"
 	item_state = "chickensuit"
-	flags = FPRINT | TABLEPASS | BLOCKHAIR
+	flags_inv = HIDEALLHAIR
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
 
@@ -243,8 +225,7 @@
 	icon_state = "xenos"
 	item_state = "xenos_helm"
 	desc = "A helmet made out of chitinous alien hide."
-	flags = FPRINT | TABLEPASS | BLOCKHAIR
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE | HIDEALLHAIR | COVERMOUTH | COVEREYES | BLOCKSHARPOBJ
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
 	anti_hug = 10 //Lel

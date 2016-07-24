@@ -133,11 +133,11 @@
 
 
 /mob/living/carbon/proc/swap_hand()
-	var/obj/item/item_in_hand = get_active_hand()
-	if(item_in_hand && (item_in_hand.flags & WIELDED)) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/wielded_item = get_inactive_hand()
-		if(wielded_item.flags & WIELDED)
-			usr << "<span class='warning'>Your other hand is too busy holding the [wielded_item.name]</span>" //So it's an offhand.
+	var/obj/item/wielded_item = get_active_hand()
+	if(wielded_item && (wielded_item.flags & WIELDED)) //this segment checks if the item in your hand is twohanded.
+		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_hand()
+		if(offhand && (offhand.flags & WIELDED))
+			src << "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>" //So it's an offhand.
 			return
 		else wielded_item.unwield(src) //Get rid of it.
 	src.hand = !( src.hand )

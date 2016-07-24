@@ -129,6 +129,7 @@
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	icon_action_button = "action_welding_g"
+	flags_inv = COVEREYES | HIDEEYES
 	var/up = 0
 
 /obj/item/clothing/glasses/welding/attack_self()
@@ -143,15 +144,13 @@
 	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(src.up)
 			src.up = !src.up
-			src.flags |= GLASSESCOVERSEYES
-			flags_inv |= HIDEEYES
+			flags_inv |= (COVEREYES | HIDEEYES)
 			body_parts_covered |= EYES
 			icon_state = initial(icon_state)
 			usr << "You flip \the [src] down to protect your eyes."
 		else
 			src.up = !src.up
-			src.flags &= ~HEADCOVERSEYES
-			flags_inv &= ~HIDEEYES
+			flags_inv &= ~(COVEREYES | HIDEEYES)
 			body_parts_covered &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push \the [src] up out of your face."

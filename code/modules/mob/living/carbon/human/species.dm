@@ -480,7 +480,7 @@
 	icobase = 'icons/mob/human_races/r_predator.dmi'
 	deform = 'icons/mob/human_races/r_predator.dmi'
 	brute_mod = 0.33 //Beefy!
-	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN //Hmm, let's see if this does anything
+	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN | NO_SCAN | NO_POISON //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
 	unarmed_type = /datum/unarmed_attack/punch/strong

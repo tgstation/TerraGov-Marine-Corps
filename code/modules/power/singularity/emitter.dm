@@ -142,7 +142,6 @@
 		A.ammo = ammo
 		A.name = A.ammo.name
 		A.icon_state = A.ammo.icon_state
-		A.damage_type = A.ammo.damage_type
 		A.dir = dir
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
 

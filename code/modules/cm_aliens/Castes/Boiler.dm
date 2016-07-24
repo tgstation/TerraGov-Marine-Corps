@@ -223,7 +223,6 @@
 		P.name = P.ammo.name
 		P.icon_state = P.ammo.icon_state
 		P.damage = P.ammo.damage
-		P.damage_type = P.ammo.damage_type
 		P.accuracy += P.ammo.accuracy
 		P.fire_at(target,src,null,P.ammo.max_range,P.ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 60, 1)
@@ -288,7 +287,7 @@
 	if(isYautja(M) && prob(75))
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(40))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(40))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
@@ -364,7 +363,7 @@
 	if(M.stat)
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(75))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(75))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
