@@ -214,9 +214,13 @@
 	recoil = 2 //Good amount of recoil.
 	accuracy = -20 //It's not very accurate.
 	flags = FPRINT | CONDUCT | TWOHANDED
+	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_BURST_ON
 
 	New()
 		..()
 		load_into_chamber()
+
+	toggle_burst()
+		usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
 
 //-------------------------------------------------------

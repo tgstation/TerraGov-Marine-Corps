@@ -173,7 +173,7 @@
 	shrapnel_chance = 50 //50% likely to generate shrapnel on impact.
 
 /datum/ammo/bullet/pistol/ap
-	name = "AP pistol bullet"
+	name = "armor-piercing pistol bullet"
 	damage = 17
 	accuracy = 8
 	armor_pen = NORM_ARMOR_PENETRATION
@@ -196,9 +196,11 @@
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
-	damage = 30
+	damage = 50
 	accuracy = 15
-	shrapnel_chance = 25
+	armor_pen = LOW_ARMOR_PENETRATION + 5
+	shrapnel_chance = 20
+	agony = 2
 
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
@@ -223,12 +225,12 @@
 */
 
 /datum/ammo/bullet/smg
-	name = "SMG bullet"
+	name = "submachinegun bullet"
 	damage = 25
 	accurate_range = 5
 
 /datum/ammo/bullet/smg/ap
-	name = "AP SMG bullet"
+	name = "armor-piercing submachinegun bullet"
 	damage = 22
 	armor_pen = NORM_ARMOR_PENETRATION
 
@@ -265,6 +267,12 @@
 	armor_pen = MIN_ARMOR_PENETRATION
 	accuracy = -10
 
+/datum/ammo/bullet/revolver/highimpact
+	name = "high-impact revolver bullet"
+	damage = 55
+	armor_pen = LOW_ARMOR_PENETRATION - 5
+	weaken = 2
+
 /*
 //================================================
 					Rifle Ammo
@@ -293,7 +301,7 @@
 	damage_bleed = 0
 
 /datum/ammo/bullet/rifle/ap
-	name = "AP rifle bullet"
+	name = "armor-piercing rifle bullet"
 	damage = 35
 	accuracy = 20
 	armor_pen = NORM_ARMOR_PENETRATION - 5

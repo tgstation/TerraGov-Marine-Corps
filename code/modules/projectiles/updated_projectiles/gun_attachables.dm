@@ -133,6 +133,7 @@ Defined in setup.dm.
 	G.recoil += recoil_mod
 	G.force += melee_mod
 
+	if(G.burst_amount <= 1) G.gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
 	G.update_force_list() //This updates the gun to use proper force verbs.
 
 	switch(twohanded_mod)

@@ -200,6 +200,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		return 1
 
 //-------------------------------------------------------
+//GENERIC MERC SHOTGUN //Not really based on anything.
 
 /obj/item/ammo_magazine/internal/shotgun/merc
 	max_rounds = 5
@@ -230,9 +231,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(in_chamber) usr << "It has a chambered round."
 
 //-------------------------------------------------------
+//TACTICAL SHOTGUN
 
 /obj/item/ammo_magazine/internal/shotgun/combat
-	max_rounds = 6
+	max_rounds = 8
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
@@ -261,6 +263,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(in_chamber) usr << "It has a chambered round."
 
 //-------------------------------------------------------
+//DOUBLE SHOTTY
 
 /obj/item/ammo_magazine/internal/shotgun/double //For a double barrel.
 	default_ammo = "shotgun buckshot"
@@ -376,10 +379,11 @@ can cause issues with ammo types getting mixed up during the burst.
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16)
 
 //-------------------------------------------------------
+//PUMP SHOTGUN
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/ammo_magazine/internal/shotgun/pump
-	max_rounds = 7
+	max_rounds = 8
 
 /obj/item/weapon/gun/shotgun/pump
 	name = "\improper M37A2 pump shotgun"
@@ -449,6 +453,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		return 1
 
 //-------------------------------------------------------
+//SHOTGUN FROM ISOLATION
 
 /obj/item/ammo_magazine/internal/shotgun/pump/CMB //The only cycle method.
 	max_rounds = 4

@@ -2,7 +2,7 @@
 /obj/item/ammo_magazine/internal/revolver
 	name = "revolver cylinder"
 	default_ammo = "revolver bullet"
-	max_rounds = 7
+	max_rounds = 6
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
@@ -259,10 +259,10 @@
 	recent_trick = world.time //Turn on the delay for the next trick.
 
 //-------------------------------------------------------
-//M44 MAGNUM REVOLVER
+//M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
 
 /obj/item/ammo_magazine/revolver
-	name = "revolver speed loader (.44)"
+	name = "\improper M44 magnum speed loader (.44)"
 	default_ammo = "revolver bullet"
 	slot_flags = null
 	caliber = ".44"
@@ -272,17 +272,18 @@
 	gun_type = /obj/item/weapon/gun/revolver/m44
 
 /obj/item/ammo_magazine/revolver/marksman
-	name = "marksman speed loader (.44)"
+	name = "\improper M44 marksman speed loader (.44)"
 	default_ammo = "slimline revolver bullet"
 	caliber = ".44"
 
 /obj/item/ammo_magazine/internal/revolver/m44
 	caliber = ".44"
+	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/m44
 
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M44 combat revolver"
-	desc = "A bulky 44-calibre revolver, occasionally carried by assault troops and officers in the Colonial Marines. Uses 44 Magnum rounds."
+	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Colonial Marines, as well civilian law enforcement. Uses .44 Magnum rounds."
 	icon_state = "44"
 	icon_empty = "44_dry"
 	item_state = "44"
@@ -295,19 +296,18 @@
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 23, "under_x" = 22, "under_y" = 19)
 
 //-------------------------------------------------------
-//RUSSIAN REVOLVER
+//RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
 
 /obj/item/ammo_magazine/revolver/upp
-	name = "revolver speed loader (7.62mm)"
+	name = "\improper N-Y speed loader (7.62mm)"
 	caliber = "7.62mm"
 	icon_state = "T38"
 	icon_empty = "T38-0"
-	max_rounds = 8
+	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/ammo_magazine/internal/revolver/upp
 	caliber = "7.62mm"
-	max_rounds = 8
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/weapon/gun/revolver/upp
@@ -327,15 +327,15 @@
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19)
 
 //-------------------------------------------------------
-//357 REVOLVER
+//357 REVOLVER //Based on the generic S&W 357.
 
 /obj/item/ammo_magazine/revolver/small
-	name = "revolver speed loader (.357)"
+	name = "\improper S&W speed loader (.357)"
 	default_ammo = "small revolver bullet"
 	caliber = ".357"
 	icon_state = "38"
 	icon_empty = "38-0"
-	max_rounds = 7
+	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/small
 
 /obj/item/ammo_magazine/internal/revolver/small
@@ -345,7 +345,7 @@
 
 /obj/item/weapon/gun/revolver/small
 	name = "\improper S&W .357 revolver"
-	desc = "A lean 357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
+	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
 	icon_state = "357"
 	icon_empty = "357_dry"
 	item_state = "revolver"
@@ -364,21 +364,20 @@
 		revolver_trick(user)
 
 //-------------------------------------------------------
-//BURST REVOLVER
+//BURST REVOLVER //Mateba is pretty well known. The cylinder folds up instead of to the side.
 
 /obj/item/ammo_magazine/revolver/mateba
-	name = "revolver speed loader (.454)"
-	default_ammo = "heavy revolver bullet"
+	name = "\improper Mateba speed loader (.454)"
+	default_ammo = "high-impact revolver bullet"
 	caliber = ".454"
 	icon_state = "T38"
 	icon_empty = "T38-0"
-	max_rounds = 8
+	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/ammo_magazine/internal/revolver/mateba
-	default_ammo = "heavy revolver bullet"
+	default_ammo = "high-impact revolver bullet"
 	caliber = ".454"
-	max_rounds = 8
 	gun_type = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/weapon/gun/revolver/mateba
@@ -390,6 +389,7 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/mateba.ogg'
 	mag_type = /obj/item/ammo_magazine/internal/revolver/mateba
+	damage = 5
 	burst_amount = 2
 	burst_delay = 4
 	force = 15
@@ -400,10 +400,10 @@
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15)
 
 //-------------------------------------------------------
-//MARSHALS REVOLVER
+//MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 
 /obj/item/ammo_magazine/revolver/cmb
-	name = "revolver speed loader (.357)"
+	name = "\improper Spearhead speed loader (.357)"
 	default_ammo = "small revolver bullet"
 	caliber = ".357"
 	icon_state = "38"
@@ -414,17 +414,17 @@
 /obj/item/ammo_magazine/internal/revolver/cmb
 	default_ammo = "small revolver bullet"
 	caliber = ".357"
-	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB Spearhead autorevolver"
-	desc = "A powerful automatic revolver chambered in .357. Commonly issued to Colonial Marshals and has a burst mode."
+	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
 	icon_state = "CMB"
 	icon_empty = "CMB_dry"
 	item_state = "cmbpistol"
 	fire_sound = 'sound/weapons/44mag2.ogg'
 	mag_type = /obj/item/ammo_magazine/internal/revolver/cmb
+	damage = 5
 	fire_delay = 12
 	burst_amount = 3
 	burst_delay = 6

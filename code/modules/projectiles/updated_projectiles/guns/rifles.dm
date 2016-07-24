@@ -17,33 +17,44 @@
 		load_into_chamber()
 
 //-------------------------------------------------------
-//M41A PULSE RIFLE
+//M41A PULSE RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle
-	name = "pulse rifle magazine (10mm)"
+	name = "\improper M41A magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
-	caliber = "10mm"
+	caliber = "10×24mm"
 	icon_state = "m309a"
 	icon_empty = "m309a0"
 	default_ammo = "rifle bullet"
-	max_rounds = 30
+	max_rounds = 30 //Should be 40.
 	gun_type = /obj/item/weapon/gun/rifle/m41a
 
 /obj/item/ammo_magazine/rifle/extended
-	name = "pulse rifle extended magazine (10mm)"
+	name = "\improper M41A extended magazine (10x24mm)"
 	desc = "A 10mm assault extended rifle magazine."
-	max_rounds = 70
+	max_rounds = 60
 	bonus_overlay = "m41a_exmag"
 
 /obj/item/ammo_magazine/rifle/incendiary
-	name = "pulse rifle incendiary magazine (10mm)"
+	name = "\improper M41A incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	default_ammo = "incendiary rifle bullet"
 
 /obj/item/ammo_magazine/rifle/ap
-	name = "\improper pulse rifle AP magazine (10mm)"
+	name = "\improper M41A AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
-	default_ammo = "AP rifle bullet"
+	default_ammo = "armor-piercing rifle bullet"
+
+/obj/item/ammo_magazine/rifle/ap/elite
+	max_rounds = 40
+
+/obj/item/ammo_magazine/rifle/marksman
+	name = "\improper M41A marksman magazine (10x24mm)"
+	desc = "A 10mm marksman rifle magazine."
+	default_ammo = "marksman rifle bullet"
+
+//-------------------------------------------------------
+//M41A PULSE RIFLE
 
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A pulse rifle MK2"
@@ -76,7 +87,7 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41aMK1
-	name = "\improper M41 standard magazine (10mm)"
+	name = "\improper M41aMK1 magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
@@ -102,12 +113,6 @@
 
 //-------------------------------------------------------
 //M41A MARKSMAN VARIANT
-
-/obj/item/ammo_magazine/rifle/marksman
-	name = "\improper M41A/M marksman magazine (10mm)"
-	desc = "A 10mm marksman rifle magazine."
-	default_ammo = "marksman rifle bullet"
-	gun_type = /obj/item/weapon/gun/rifle/m41a/scoped
 
 /obj/item/weapon/gun/rifle/m41a/scoped
 	name = "\improper M41A/M marksman rifle"
@@ -137,13 +142,6 @@
 //-------------------------------------------------------
 //M41A PMC VARIANT
 
-/obj/item/ammo_magazine/rifle/elite
-	name = "\improper M41A/2 AP magazine (10mm)"
-	desc = "A 10mm rifle magazine."
-	default_ammo = "AP rifle bullet"
-	gun_type = /obj/item/weapon/gun/rifle/m41a/elite
-	max_rounds = 40
-
 /obj/item/weapon/gun/rifle/m41a/elite
 	name = "\improper M41A/2 battle rifle"
 	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle MK2. Given only to elite units."
@@ -152,7 +150,7 @@
 	item_state = "pmc_m41a"
 	icon_wielded = "pmc_m41a-w"
 	origin_tech = "combat=7;materials=5"
-	mag_type = /obj/item/ammo_magazine/rifle/elite
+	mag_type = /obj/item/ammo_magazine/rifle/ap/elite
 	fire_delay = 7
 	burst_amount = 3
 	accuracy = 35
@@ -162,12 +160,12 @@
 
 
 //-------------------------------------------------------
-//MAR-40 AK CLONE
+//MAR-40 AK CLONE //AK47 and FN FAL together as one.
 
 /obj/item/ammo_magazine/rifle/mar40
-	name = "ammo magazine (12mm)"
+	name = "\improper MAR magazine (7.62x39mm)"
 	desc = "A 12mm magazine for the MAR series of firearms."
-	caliber = "12mm"
+	caliber = " 7.62×39mm"
 	icon_state = "5.56"
 	icon_empty = "5.56"
 	default_ammo = "heavy rifle bullet"
@@ -175,7 +173,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/mar40
 
 /obj/item/ammo_magazine/rifle/mar40/extended
-	name = "extended magazine (12mm)"
+	name = "\improper MAR extended magazine (7.62x39mm)"
 	desc = "A 12mm MAR magazine."
 	max_rounds = 60
 	bonus_overlay = "mar40_mag"
@@ -215,11 +213,11 @@
 //M41AE2 HEAVY PULSE RIFLE
 
 /obj/item/ammo_magazine/rifle/lmg
-	name = "heavy pulse rifle ammo box"
+	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "a762"
 	icon_empty = "a762-0"
-	max_rounds = 100
+	max_rounds = 100 //Should be a 300 box.
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 /obj/item/weapon/gun/rifle/lmg

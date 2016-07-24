@@ -70,12 +70,12 @@
 
 /obj/item/projectile/proc/get_accuracy()
 	var/acc = accuracy //We want a temporary variable so accuracy doesn't rise every time the bullet misses.
-	world << "Base accuracy is <b>[acc]</b>"
+	//world << "Base accuracy is <b>[acc]</b>"
 	if(distance_travelled <= (ammo.accurate_range + rand(0,2)) ) //Less to or equal.
 		if(ammo.ammo_behavior & AMMO_SNIPER) 	acc -= (ammo.max_range - distance_travelled) * 4.8
 		else if(distance_travelled <= 2)		acc += 25
 	else acc -= (ammo.ammo_behavior & AMMO_SNIPER) ? (distance_travelled * 1.3) : (distance_travelled * 5)
-	world << "Final accuracy is <b>[acc]</b>"
+	//world << "Final accuracy is <b>[acc]</b>"
 	return max(5,acc) //There's always some chance.
 
 /obj/item/projectile/proc/roll_to_hit_mob(var/atom/shooter,var/mob/living/target)

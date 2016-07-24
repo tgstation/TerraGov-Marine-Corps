@@ -21,7 +21,7 @@
 //M4A3 PISTOL
 
 /obj/item/ammo_magazine/pistol
-	name = "\improper M4A3 pistol magazine (9mm)"
+	name = "\improper M4A3 magazine (9mm)"
 	caliber = "9mm"
 	icon_state = ".45a"
 	icon_empty = ".45a0"
@@ -30,20 +30,19 @@
 	gun_type = /obj/item/weapon/gun/pistol/m4a3
 
 /obj/item/ammo_magazine/pistol/hp
-	name = "hollowpoint pistol magazine (9mm)"
+	name = "\improper M4A3 hollowpoint magazine (9mm)"
 	default_ammo = "hollowpoint pistol bullet"
 
 /obj/item/ammo_magazine/pistol/ap
-	name = "\improper AP pistol magazine (9mm)"
-	default_ammo = "AP pistol bullet"
+	name = "\improper M4A3 AP magazine (9mm)"
+	default_ammo = "armor-piercing pistol bullet"
 
 /obj/item/ammo_magazine/pistol/incendiary
-	name = "incendiary pistol magazine (9mm)"
+	name = "\improper M4A3 incendiary magazine (9mm)"
 	default_ammo = "incendiary pistol bullet"
-	max_rounds = 10
 
 /obj/item/ammo_magazine/pistol/extended
-	name = "extended pistol magazine (9mm)"
+	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 22
 	icon_state = "9mm_mag"
 	icon_empty = "9mm_mag0"
@@ -69,30 +68,31 @@
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one is crested with an elephant-tusk ivory grip and has a slide carefully polished by a team of orphan children. Looks important."
 	icon_state = "colt2"
 	item_state = "COlt"
-	fire_delay = 5
 	damage = 7
+	fire_delay = 5
 
 
 //-------------------------------------------------------
-//DEAGLE
+//DEAGLE //This one is obvious.
 
 /obj/item/ammo_magazine/pistol/heavy
-	name = "heavy pistol magazine (.50)"
+	name = "\improper Desert Eagle magazine (.50)"
 	default_ammo = "heavy pistol bullet"
 	caliber = ".50"
 	icon_state = "T38"
 	icon_empty = "T38-0"
-	max_rounds = 12
+	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/heavy
 
 //Captain's vintage pistol.
 /obj/item/weapon/gun/pistol/heavy
 	name = "\improper vintage Desert Eagle"
-	desc = "A bulky 50 caliber pistol with a serious kick. This one is engraved, 'Peace through superior firepower.'"
+	desc = "A bulky 50 caliber pistol with a serious kick, probably taken from some museum somewhere. This one is engraved, 'Peace through superior firepower.'"
 	icon_state = "deagle"
 	item_state = "deagle"
 	fire_sound = 'sound/weapons/44mag.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/heavy
+	damage = 10 //Youch.
 	fire_delay = 9
 	force = 13
 	recoil = 2
@@ -104,25 +104,26 @@
 		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17)
 
 //-------------------------------------------------------
-//MAUSER MERC PISTOL
+//MAUSER MERC PISTOL //Inspired by the Makarov.
 
 /obj/item/ammo_magazine/pistol/c99
-	name = "\improper PK-9 pistol magazine (9mm HP)"
+	name = "\improper PK-9 magazine (9mmM)"
 	default_ammo = "hollowpoint pistol bullet"
+	caliber = ".9mmM"
 	icon_state = "45-10"
 	icon_empty = "45-0"
-	max_rounds = 16
+	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
 
 /obj/item/weapon/gun/pistol/c99
 	name = "\improper Korovin PK-9 pistol"
-	desc = "An updated variant of an russian old design, dating back to from the 19th century. Commonly found among mercenary companies due to its reliability, but also issued to armed forces. Comes pre-loaded with hollowpoint rounds and features an integrated silencer."
+	desc = "An updated variant of an old Russian design, dating back to from the 19th century. Commonly found among mercenary companies due to its reliability, but also issued to armed forces. Features extended magazine capacity and an integrated silencer."
 	icon_state = "p08"
 	item_state = "p08"
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/p08.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/c99
-	fire_delay = 3
+	fire_delay = 5
 	force = 6
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
@@ -141,28 +142,27 @@
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_RUSSIANS
 
 //-------------------------------------------------------
-//HIGH TECH PISTOL
+//HIGH TECH PISTOL //Inspired by the 1911
 
 /obj/item/ammo_magazine/pistol/m1911
-	name = "\improper M1911 pulse pistol magazine (.40 Caseless)"
+	name = "\improper M4A3 magazine (.45)"
 	default_ammo = "heavy pistol bullet"
-	caliber = ".40 Caseless"
+	caliber = ".45"
 	icon_state = "45-10"
 	icon_empty = "45-0"
-	max_rounds = 12
+	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/weapon/gun/pistol/m1911
-	name = "\improper M1911 pulse pistol"
-	desc = "A modern variant of an old design, using the same technology found in the M41 series of Pulse Rifles."
+	name = "\improper M4A3 service pistol (.45)"
+	desc = "A standard M4A3 chambered in .45 rounds. Has a smaller magazine capacity, but packs a better punch."
 	icon_state = "m1911-p"
 	icon_empty = "m1911-p0"
 	item_state = "m4a3"
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/m1911
-	eject_casings = 0
-	fire_delay = 2
+	fire_delay = 7
 	force = 9
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
@@ -171,26 +171,25 @@
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17)
 
 //-------------------------------------------------------
-//GENERIC .32 PISTOL
+//GENERIC .32 PISTOL //Inspired by the .44 Auto Mag pistol
 
 /obj/item/ammo_magazine/pistol/automatic
-	name = "automatic pistol magazine (.32)"
+	name = "\improper KT-42 magazine (.44)"
+	default_ammo = "heavy pistol bullet"
 	caliber = ".32"
 	icon_state = "9x"
 	icon_empty = "9x0"
-	max_rounds = 21
+	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/kt42
 
 /obj/item/weapon/gun/pistol/kt42
 	name = "\improper KT-42 automag"
-	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. It is a simple, rapid firing 32 calibre pistol."
+	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. You can't go wrong with this handcannon."
 	icon_state = "autopistol"
 	item_state = "autopistol"
 	fire_sound = 'sound/weapons/automag.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/automatic
-	fire_delay = 4
-	burst_amount = 2
-	burst_delay = 1
+	fire_delay = 10
 	recoil = 1
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
@@ -202,7 +201,7 @@
 //PIZZACHIMP PROTECTION
 
 /obj/item/ammo_magazine/pistol/holdout
-	name = "pistol magazine (.22)"
+	name = "tiny pistol magazine (.22)"
 	default_ammo = "light pistol bullet"
 	caliber = ".22"
 	icon_state = "9x"
@@ -212,13 +211,13 @@
 
 /obj/item/weapon/gun/pistol/holdout
 	name = "holdout pistol"
-	desc = "A tiny 22-calibre pistol meant for hiding in hard-to-reach areas."
+	desc = "A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from."
 	icon_state = "holdout_pistol"
 	item_state = "holdout"
 	origin_tech = "combat=2;materials=1"
 	fire_sound = 'sound/weapons/holdout.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/holdout
-	fire_delay = 1
+	fire_delay = 2
 	w_class = 1
 	force = 2
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
@@ -228,26 +227,25 @@
 		attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15)
 
 //-------------------------------------------------------
-//.45 MARSHALS PISTOL
+//.45 MARSHALS PISTOL //Inspired by the Browning Hipower
 
 /obj/item/ammo_magazine/pistol/highpower
-	name = "\improper CMB pistol magazine (.45)"
-	default_ammo = "AP pistol bullet"
-	caliber = ".45"
+	name = "\improper Highpower magazine (9mm)"
+	default_ammo = "armor-piercing pistol bullet"
+	caliber = "9mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
-	max_rounds = 9
+	max_rounds = 13
 	gun_type = /obj/item/weapon/gun/pistol/highpower
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper Highpower automag"
-	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in .45 caliber rounds. Used for centuries by law enforcement and criminals alike."
+	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in armor piercing 9mm caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
 	fire_sound = 'sound/weapons/automag.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/highpower
-	damage = 12
-	fire_delay = 15
+	damage = 7
 	recoil = 1
 	force = 10
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
@@ -257,26 +255,26 @@
 		attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 16, "under_y" = 15)
 
 //-------------------------------------------------------
-//VP70
+//VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
 
 /obj/item/ammo_magazine/pistol/vp70
-	name = "\improper VP70 AP magazine (9mm)"
-	default_ammo = "AP pistol bullet"
+	name = "\improper 88M4 AP magazine (9mm)"
+	default_ammo = "armor-piercing pistol bullet"
 	caliber = "9mm"
 	icon_state = "45-10"
 	icon_empty = "45-0"
-	max_rounds = 9
+	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp70
 
 /obj/item/weapon/gun/pistol/vp70
-	name = "\improper VP70 pistol"
-	desc = "A powerful sidearm issed mainly to Weyland Yutani response teams. Fires 9mm armor piercing rounds and is capable of 3-round burst."
+	name = "\improper 88 Mod 4 combat pistol"
+	desc = "A powerful sidearm issed mainly to Weyland Yutani response teams, based on the original vp70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst."
 	icon_state = "vp70"
 	item_state = "vp70"
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/vp70.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/vp70
-	damage = 18
+	damage = 13
 	burst_amount = 3
 	burst_delay = 3
 	force = 8
@@ -289,9 +287,9 @@
 //VP78
 
 /obj/item/ammo_magazine/pistol/vp78
-	name = "\improper VP78 magazine (9mm SH)"
+	name = "\improper VP78 magazine (9mm)"
 	default_ammo = "squash-head pistol bullet"
-	caliber = "9mm SH"
+	caliber = "9mm"
 	icon_state = "45-10"
 	icon_empty = "45-0"
 	max_rounds = 18
@@ -304,6 +302,7 @@
 	item_state = "vp78"
 	fire_sound = 'sound/weapons/pistol_large.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol/vp78
+	fire_delay = 9
 	burst_amount = 3
 	burst_delay = 3
 	recoil = 1

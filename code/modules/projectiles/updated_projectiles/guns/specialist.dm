@@ -8,17 +8,17 @@
 	caliber = "10×28mm Caseless"
 	icon_state = "75"
 	icon_empty = "75-0"
-	max_rounds = 7
+	max_rounds = 7 // Should be 15.
 	default_ammo = "sniper bullet"
 	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
 	reload_delay = 3
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper M42A incendiary magazine (10x28mm caseless)"
+	name = "\improper M42A incendiary magazine (10x28mm)"
 	default_ammo = "incendiary sniper bullet"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "\improper M42A flak magazine (10x28mm caseless)"
+	name = "\improper M42A flak magazine (10x28mm)"
 	default_ammo = "flak sniper bullet"
 	icon_state = "a762"
 	icon_empty = "a762-0"
@@ -60,15 +60,15 @@
 	item_state = "m42aG"
 
 /obj/item/ammo_magazine/sniper/elite
-	name = "\improper M42C marksman magazine (12.7x99mm Caseless)"
+	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = "supersonic sniper bullet"
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
-	caliber = "12.7×99mm Caseless"
-	max_rounds = 9
+	caliber = "10×99mm"
+	max_rounds = 6
 
 /obj/item/weapon/gun/rifle/sniper/elite
 	name = "\improper M42C anti-tank sniper rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Weyland-Armat chambered in the heaviest ammo available, 12.7×99mm Caseless."
+	desc = "A high end mag-rail heavy sniper rifle from Weyland-Armat chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "pmcM42c"
 	icon_empty = "pmcM42c_empty"
 	item_state = "m42a"  //placeholder!!
@@ -110,14 +110,15 @@
 				step_away(PMC_sniper,near_target)
 				PMC_sniper.Weaken(5)
 
+//SVD //Based on the actual Dragunov sniper rifle.
 /obj/item/ammo_magazine/rifle/sniper/svd
 	name = "\improper SVD magazine (7.62x54mmR)"
-	desc = "A 12mm marksman rifle magazine."
+	desc = "A large caliber magazine for the SVD sniper rifle."
 	caliber = "7.62×54mmR"
 	icon_state = "a762"
 	icon_empty = "a762-0"
-	default_ammo = "marksman rifle bullet"
-	max_rounds = 30
+	default_ammo = "sniper bullet"
+	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
 
 /obj/item/weapon/gun/rifle/sniper/svd
@@ -131,7 +132,9 @@
 	fire_sound = 'sound/weapons/automag.ogg'
 	mag_type = /obj/item/ammo_magazine/rifle/sniper/svd
 	eject_casings = 1
+	accuracy = -25
 	recoil = 1
+	fire_delay = 25
 	burst_amount = 2
 	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_ON_MERCS | GUN_ON_RUSSIANS
@@ -151,10 +154,10 @@
 //SMARTGUN
 /obj/item/ammo_magazine/internal/smartgun
 	name = "integrated smartgun belt"
-	caliber = "10×28mm Caseless"
+	caliber = "10×28mm"
 	icon_state = ".45a"
 	icon_empty = ".45a0"
-	max_rounds = 50
+	max_rounds = 50 //Should be 500 in total.
 	default_ammo = "smartgun bullet"
 
 //Come get some.

@@ -363,8 +363,9 @@ and you're good to go.
 	This is where the grenade launcher and flame thrower function as attachments.
 	This is also a general check to see if the attachment can fire in the first place.
 	*/
+	var/check_for_attachment_fire = 0
 	if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) ) //Attachment activated and isn't a flashlight or something.
-		gun_features &= ~GUN_BURST_ON //We don't want to mess with burst while this is on.
+		check_for_attachment_fire = 1
 		if( !(active_attachable.attach_features & ATTACH_PROJECTILE) ) //If it's unique projectile, this is where we fire it.
 			active_attachable.fire_attachment(target,src,user) //Fire it.
 			if(active_attachable.current_rounds <= 0) click_empty(user) //If it's empty, let them know.
@@ -380,7 +381,7 @@ and you're good to go.
 
 	//Number of bullets based on burst. If an active attachable is shooting, bursting is always zero.
 	var/bullets_fired = 1
-	if(gun_features & GUN_BURST_ON && burst_amount > 0)
+	if(!check_for_attachment_fire && gun_features & GUN_BURST_ON && burst_amount > 1)
 		bullets_fired = burst_amount
 		gun_features |= GUN_BURST_FIRING
 

@@ -501,9 +501,9 @@
 
 	if(rand(0,2) != 0)//Usually, m39 elite.
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M), slot_l_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/elite(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_l_hand)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
+		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
 	else //Rarely, they get an elite m41.
 		M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
 		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/incendiary(M), slot_l_hand)
@@ -912,8 +912,8 @@
 				if(1)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/elite
-					new /obj/item/ammo_magazine/smg/elite
+					new /obj/item/ammo_magazine/smg/m39/ap
+					new /obj/item/ammo_magazine/smg/m39/ap
 					continue
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
@@ -969,8 +969,8 @@
 				if(1)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
 					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/elite
-					new /obj/item/ammo_magazine/smg/elite
+					new /obj/item/ammo_magazine/smg/m39/ap
+					new /obj/item/ammo_magazine/smg/m39/ap
 					continue
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
@@ -1323,11 +1323,11 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_r_store)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
 
 	var/obj/item/weapon/card/id/W = new(src)
@@ -1356,11 +1356,11 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_r_store)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap/elite(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
 
 	var/obj/item/weapon/card/id/W = new(src)
