@@ -479,6 +479,8 @@
 
 	if(!check_state()) return
 
+	if(!istype(victim,/mob/living/carbon/human)) return // Runtime fix for attempting to secure Monkeys, which don't need to be cuffed anyway
+
 	if(!victim)
 		var/list/victims = list()
 		for(var/mob/living/carbon/human/C in view(2))
