@@ -32,10 +32,10 @@
 				return
 			if(!(message))
 				return
-			return custom_emote(m_type, message)
+			return custom_emote(m_type, "[message]")
 
 		if ("blink")
-			message = "<B>[src]</B> blinks."
+			message = "<B>[comm_paygrade][src]</B> blinks."
 			m_type = 1
 
 		if ("bow")
@@ -50,9 +50,9 @@
 					param = null
 
 				if (param)
-					message = "<B>[src]</B> bows to [param]."
+					message = "<B>[comm_paygrade][src]</B> bows to [param]."
 				else
-					message = "<B>[src]</B> bows."
+					message = "<B>[comm_paygrade][src]</B> bows."
 			m_type = 1
 
 		// if ("burp")
@@ -73,20 +73,20 @@
 
 		if ("chuckle")
 			if(miming)
-				message = "<B>[src]</B> appears to chuckle."
+				message = "<B>[comm_paygrade][src]</B> appears to chuckle."
 				m_type = 1
 			else
 				if (!muzzled)
-					message = "<B>[src]</B> chuckles."
+					message = "<B>[comm_paygrade][src]</B> chuckles."
 					m_type = 2
 				else
-					message = "<B>[src]</B> makes a noise."
+					message = "<B>[comm_paygrade][src]</B> makes a noise."
 					m_type = 2
 
 		if ("clap")
 			if(!clapped)
 				if (!src.restrained())
-					message = "<B>[src]</B> claps."
+					message = "<B>[comm_paygrade][src]</B> claps."
 					m_type = 2
 					if(miming)
 						m_type = 1
@@ -100,37 +100,37 @@
 
 		if ("collapse")
 			Paralyse(2)
-			message = "<B>[src]</B> collapses!"
+			message = "<B>[comm_paygrade][src]</B> collapses!"
 			m_type = 2
 			if(miming)
 				m_type = 1
 
 		if ("cough")
 			if(miming)
-				message = "<B>[src]</B> appears to cough!"
+				message = "<B>[comm_paygrade][src]</B> appears to cough!"
 				m_type = 1
 			else
 				if (!muzzled)
-					message = "<B>[src]</B> coughs!"
+					message = "<B>[comm_paygrade][src]</B> coughs!"
 					m_type = 2
 				else
-					message = "<B>[src]</B> makes a strong noise."
+					message = "<B>[comm_paygrade][src]</B> makes a strong noise."
 					m_type = 2
 
 		if ("cry")
-			message = "<B>[src]</B> cries."
+			message = "<B>[comm_paygrade][src]</B> cries."
 			m_type = 1
 
 		if ("drool")
-			message = "<B>[src]</B> drools."
+			message = "<B>[comm_paygrade][src]</B> drools."
 			m_type = 1
 
 		if ("eyebrow")
-			message = "<B>[src]</B> raises an eyebrow."
+			message = "<B>[comm_paygrade][src]</B> raises an eyebrow."
 			m_type = 1
 
 		if ("faint")
-			message = "<B>[src]</B> faints!"
+			message = "<B>[comm_paygrade][src]</B> faints!"
 			if(src.sleeping)
 				return //Can't faint while asleep
 			src.sleeping += 10 //Short-short nap
@@ -153,31 +153,31 @@
 		// 		return
 
 		if ("frown")
-			message = "<B>[src]</B> frowns."
+			message = "<B>[comm_paygrade][src]</B> frowns."
 			m_type = 1
 
 		if ("gasp")
 			if(miming)
-				message = "<B>[src]</B> appears to be gasping!"
+				message = "<B>[comm_paygrade][src]</B> appears to be gasping!"
 				m_type = 1
 			else
 				if (!muzzled)
-					message = "<B>[src]</B> gasps!"
+					message = "<B>[comm_paygrade][src]</B> gasps!"
 					m_type = 2
 				else
-					message = "<B>[src]</B> makes a weak noise."
+					message = "<B>[comm_paygrade][src]</B> makes a weak noise."
 					m_type = 2
 
 		if ("giggle")
 			if(miming)
-				message = "<B>[src]</B> giggles silently!"
+				message = "<B>[comm_paygrade][src]</B> giggles silently!"
 				m_type = 1
 			else
 				if (!muzzled)
-					message = "<B>[src]</B> giggles."
+					message = "<B>[comm_paygrade][src]</B> giggles."
 					m_type = 2
 				else
-					message = "<B>[src]</B> makes a noise."
+					message = "<B>[comm_paygrade][src]</B> makes a noise."
 					m_type = 2
 
 		if ("glare")
@@ -190,14 +190,14 @@
 			if (!M)
 				param = null
 			if (param)
-				message = "<B>[src]</B> glares at [param]."
+				message = "<B>[comm_paygrade][src]</B> glares at [param]."
 			else
-				message = "<B>[src]</B> glares."
+				message = "<B>[comm_paygrade][src]</B> glares."
 
 		if ("golfclap")
 			if(!golfclapped)
 				if (!src.restrained())
-					message = "<B>[src]</B> claps, clearly unimpressed."
+					message = "<B>[comm_paygrade][src]</B> claps, clearly unimpressed."
 					m_type = 2
 					if(miming)
 						m_type = 1
@@ -210,18 +210,18 @@
 				return
 
 		if ("grin")
-			message = "<B>[src]</B> grins."
+			message = "<B>[comm_paygrade][src]</B> grins."
 			m_type = 1
 
 		if ("grumble")
 			if(miming)
-				message = "<B>[src]</B> grumbles."
+				message = "<B>[comm_paygrade][src]</B> grumbles."
 				m_type = 1
 			if (!muzzled)
-				message = "<B>[src]</B> grumbles."
+				message = "<B>[comm_paygrade][src]</B> grumbles."
 				m_type = 2
 			else
-				message = "<B>[src]</B> makes a noise."
+				message = "<B>[comm_paygrade][src]</B> makes a noise."
 				m_type = 2
 
 		if ("handshake")
@@ -238,9 +238,9 @@
 
 				if (M)
 					if (M.canmove && !M.r_hand && !M.restrained())
-						message = "<B>[src]</B> shakes hands with [M]."
+						message = "<B>[comm_paygrade][src]</B> shakes hands with [M]."
 					else
-						message = "<B>[src]</B> holds out \his hand to [M]."
+						message = "<B>[comm_paygrade][src]</B> holds out \his hand to [M]."
 
 		if("hug")
 			m_type = 1
@@ -255,20 +255,20 @@
 					M = null
 
 				if (M)
-					message = "<B>[src]</B> hugs [M]."
+					message = "<B>[comm_paygrade][src]</B> hugs [M]."
 				else
-					message = "<B>[src]</B> hugs \himself."
+					message = "<B>[comm_paygrade][src]</B> hugs \himself."
 
 		if ("laugh")
 			if(miming)
-				message = "<B>[src]</B> acts out a laugh."
+				message = "<B>[comm_paygrade][src]</B> acts out a laugh."
 				m_type = 1
 			else
 				if (!muzzled)
-					message = "<B>[src]</B> laughs!"
+					message = "<B>[comm_paygrade][src]</B> laughs!"
 					m_type = 2
 				else
-					message = "<B>[src]</B> makes a noise."
+					message = "<B>[comm_paygrade][src]</B> makes a noise."
 					m_type = 2
 
 		if ("look")
@@ -281,9 +281,9 @@
 					if (!M)
 						param = null
 					if (param)
-						message = "<B>[src]</B> looks at [param]."
+						message = "<B>[comm_paygrade][src]</B> looks at [param]."
 					else
-						message = "<B>[src]</B> looks."
+						message = "<B>[comm_paygrade][src]</B> looks."
 					m_type = 1
 
 		if ("medic")
@@ -292,7 +292,7 @@
 				return
 			if(!medicd)
 				if (!muzzled && !stat)
-					message = "<B>[src] calls for a medic!</b>"
+					message = "<B>[comm_paygrade][src] calls for a medic!</b>"
 					m_type = 1
 					if(src.gender == "male")
 						if(rand(0,100) < 95)
@@ -309,17 +309,17 @@
 				return
 
 		if ("moan")
-			message = "<B>[src]</B> moans."
+			message = "<B>[comm_paygrade][src]</B> moans."
 			m_type = 1
 
 		if ("mumble")
-			message = "<B>[src]</B> mumbles."
+			message = "<B>[comm_paygrade][src]</B> mumbles."
 			m_type = 2
 			if(miming)
 				m_type = 1
 
 		if ("nod")
-			message = "<B>[src]</B> nods."
+			message = "<B>[comm_paygrade][src]</B> nods."
 			m_type = 1
 
 		if ("point")
@@ -332,12 +332,12 @@
 							break
 
 				if (!M)
-					message = "<B>[src]</B> points."
+					message = "<B>[comm_paygrade][src]</B> points."
 				else
 					M.point()
 
 				if (M)
-					message = "<B>[src]</B> points to [M]."
+					message = "<B>[comm_paygrade][src]</B> points to [M]."
 				else
 			m_type = 1
 
@@ -353,34 +353,34 @@
 					param = null
 
 				if (param)
-					message = "<B>[src]</B> salutes to [param]."
+					message = "<B>[comm_paygrade][src]</B> salutes to [param]."
 				else
-					message = "<B>[src]</b> salutes."
+					message = "<B>[comm_paygrade][src]</b> salutes."
 				playsound(src.loc, 'sound/misc/salute.ogg', 50, 1)
 			m_type = 1
 
 		if("scream")
-			message = "<B>[src]</B> screams!"
+			message = "<B>[comm_paygrade][src]</B> screams!"
 			m_type = 1
 
 		if("shakehead")
-			message = "<B>[src]</B> shakes \his head."
+			message = "<B>[comm_paygrade][src]</B> shakes \his head."
 			m_type = 1
 
 		if ("shrug")
-			message = "<B>[src]</B> shrugs."
+			message = "<B>[comm_paygrade][src]</B> shrugs."
 			m_type = 1
 
 		if ("sigh")
 			if(miming)
-				message = "<B>[src]</B> sighs."
+				message = "<B>[comm_paygrade][src]</B> sighs."
 				m_type = 1
 			else
 				if (!muzzled)
-					message = "<B>[src]</B> sighs."
+					message = "<B>[comm_paygrade][src]</B> sighs."
 					m_type = 2
 				else
-					message = "<B>[src]</B> makes a weak noise."
+					message = "<B>[comm_paygrade][src]</B> makes a weak noise."
 					m_type = 2
 
 		if ("signal")
@@ -388,17 +388,17 @@
 				var/t1 = round(text2num(param))
 				if (isnum(t1))
 					if (t1 <= 5 && (!src.r_hand || !src.l_hand))
-						message = "<B>[src]</B> raises [t1] finger\s."
+						message = "<B>[comm_paygrade][src]</B> raises [t1] finger\s."
 					else if (t1 <= 10 && (!src.r_hand && !src.l_hand))
-						message = "<B>[src]</B> raises [t1] finger\s."
+						message = "<B>[comm_paygrade][src]</B> raises [t1] finger\s."
 			m_type = 1
 
 		if ("smile")
-			message = "<B>[src]</B> smiles."
+			message = "<B>[comm_paygrade][src]</B> smiles."
 			m_type = 1
 
 		if ("snore")
-			message = "<B>[src]</B> snores."
+			message = "<B>[comm_paygrade][src]</B> snores."
 			m_type = 1
 
 		if ("stare")
@@ -412,21 +412,21 @@
 				param = null
 
 			if (param)
-				message = "<B>[src]</B> stares at [param]."
+				message = "<B>[comm_paygrade][src]</B> stares at [param]."
 			else
-				message = "<B>[src]</B> stares."
+				message = "<B>[comm_paygrade][src]</B> stares."
 
 		if ("twitch")
-			message = "<B>[src]</B> twitches."
+			message = "<B>[comm_paygrade][src]</B> twitches."
 			m_type = 1
 
 		if ("wave")
-			message = "<B>[src]</B> waves."
+			message = "<B>[comm_paygrade][src]</B> waves."
 			m_type = 1
 
 		if ("yawn")
 			if (!muzzled)
-				message = "<B>[src]</B> yawns."
+				message = "<B>[comm_paygrade][src]</B> yawns."
 				m_type = 2
 				if(miming)
 					m_type = 1
@@ -537,8 +537,6 @@
 
 	if (message)
 		log_emote("[name]/[key] : [message]")
-		if(comm_paygrade && comm_paygrade != "")
-			message = "<B>[comm_paygrade]</B>[message]"
 
  //Hearing gasp and such every five seconds is not good emotes were not global for a reason.
  // Maybe some people are okay with that.
