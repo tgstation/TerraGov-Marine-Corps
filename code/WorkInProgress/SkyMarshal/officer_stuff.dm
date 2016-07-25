@@ -5,13 +5,11 @@
 	name = "officers beret"
 	desc = "A black beret adorned with a silver kite shield and an engraved sword of the W-Y security forces, announcing to the world that the wearer is a defender of W-Y."
 	icon_state = "centcomofficerberet"
-	flags = FPRINT | TABLEPASS
 
 /obj/item/clothing/head/beret/centcom/captain
 	name = "captains beret"
 	desc = "A white beret adorned with a cobalt kite shield with an engraved sword of the W-Y security forces, worn only by those captaining a vessel of the W-Y Navy."
 	icon_state = "centcomcaptain"
-	flags = FPRINT | TABLEPASS
 
 /obj/item/clothing/shoes/centcom
 	name = "dress shoes"

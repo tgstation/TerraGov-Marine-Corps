@@ -85,6 +85,7 @@
 	return 0
 
 
+//Need to make this proc obsolete.
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W && istype(W))
 		if(!Target)
@@ -96,7 +97,8 @@
 		if(W)
 			W.dropped(src)
 
-		if(!W) return 1 // self destroying objects (tk, grabs)
+		if(!W || !W.loc) return 1 // self destroying objects (tk, grabs)
+
 		W.layer = initial(W.layer)
 
 		if(isturf(Target) && !isnull(Target))

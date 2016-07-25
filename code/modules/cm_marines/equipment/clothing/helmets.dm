@@ -1,7 +1,7 @@
 //===========================//HELMETS\\=================================\\
 //=======================================================================\\
 
-/*Any headwear that has anti-hug properties should go in here. Other headwear,
+/*Any helmet with antihug properties should go in here. Other headwear,
 protective or not, should go in to hats.dm. Try to rank them by overall protection.*/
 
 //=======================================================================\\
@@ -11,27 +11,36 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 //=============================//MISC\\==================================\\
 //=======================================================================\\
 
+/obj/item/clothing/head/helmet
+	name = "helmet"
+	desc = "Standard Security gear. Protects the head from impacts."
+	icon_state = "helmet"
+	item_state = "helmet"
+	armor = list(melee = 50, bullet = 15, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	flags = FPRINT | CONDUCT
+	flags_inv = HIDEEARS | HIDEEYES | COVEREYES | BLOCKSHARPOBJ
+	cold_protection = HEAD
+	heat_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+	w_class = 5
+	anti_hug = 1
+
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	item_state = "helmet"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|BLOCKHEADHAIR
 	armor = list(melee = 82, bullet = 15, laser = 5, energy = 5, bomb = 5, bio = 2, rad = 0)
-	flags_inv = HIDEEARS
-	siemens_coefficient = 0.7
-	anti_hug = 1
+	flags_inv = HIDEEARS | HIDEEYES | COVEREYES | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/augment
-	name = "Augment Array"
+	name = "augment array"
 	desc = "A helmet with optical and cranial augments coupled to it."
 	icon_state = "v62"
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES
 	item_state = "v62"
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
-	flags_inv = HIDEEARS|HIDEEYES
-	cold_protection = HEAD
-	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
 	anti_hug = 3
 
@@ -39,7 +48,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 //=======================================================================\\
 
 /obj/item/clothing/head/helmet/specrag
-	name = "Specialist head-rag"
+	name = "specialist head-rag"
 	desc = "A hat worn by heavy-weapons operators to block sweat."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_override = 'icons/Marine/marine_armor.dmi'
@@ -47,16 +56,13 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "spec"
 	item_color = "spec"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
-	anti_hug = 1
-	w_class = 5
-	flags = FPRINT|TABLEPASS|BLOCKHEADHAIR
+	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/specrag/snow
 	icon_state = "s_spec"
 	item_state = "s_spec"
 	item_color = "s_spec"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	cold_protection = HEAD
 
 /obj/item/clothing/head/helmet/durag
 	name = "durag"
@@ -65,61 +71,56 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	item_state = "durag"
 	icon_state = "durag"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
-	w_class = 5
-	anti_hug = 1
+	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/durag/jungle
-	name = "Marksman Cowl"
+	name = "marksman cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragG"
 	item_state = "duragG"
 
 /obj/item/clothing/head/helmet/marine
+	name = "\improper M10 Pattern Marine Helmet"
+	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "helmet"
 	item_state = "helmet"
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	name = "M10 Pattern Marine Helmet"
-	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
+	flags_inv = HIDEEARS | BLOCKSHARPOBJ
 	health = 5
-	flags = FPRINT|TABLEPASS
-	anti_hug = 1
-	w_class = 5
 	var/hug_damage = 0
 
 /obj/item/clothing/head/helmet/marine/snow
-	name = "M10 Pattern Marine Snow Helmet"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	name = "\improper M10 pattern marine snow helmet"
 	icon_state = "helmet_snow"
 	item_state = "helmet_snow"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine/tech
-	name = "M10 Technician Helmet"
+	name = "\improper M10 technician helmet"
 	icon_state = "helmet-tech"
 	item_color = "helmet-tech"
 
 /obj/item/clothing/head/helmet/marine/tech/snow
-	name = "M10 Technician Snow Helmet"
+	name = "\improper M10 technician snow helmet"
 	icon_state = "s_helmet-tech"
 	item_color = "s_helmet-tech"
-	cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine/medic
-	name = "M10 Medic Helmet"
+	name = "\improper M10 medic helmet"
 	icon_state = "helmet-medic"
 	item_color = "helmet-medic"
 
 /obj/item/clothing/head/helmet/marine/medic/snow
-	name = "M10 Medic Snow Helmet"
+	name = "\improper M10 medic snow helmet"
 	icon_state = "s_helmet-medic" //NEEDS ICON
 	item_color = "s_helmet-medic"
-	cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine/leader
-	name = "M11 Pattern Leader Helmet"
+	name = "\improper M11 pattern leader helmet"
 	icon_state = "xhelm"
 	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
@@ -127,130 +128,109 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	var/obj/machinery/camera/camera
 
 /obj/item/clothing/head/helmet/marine/leader/snow
-	name = "M11 Pattern Leader Snow Helmet"
+	name = "\improper M11 pattern leader snow helmet"
 	icon_state = "s_xhelm"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	cold_protection = HEAD
 
-/obj/item/clothing/head/helmet/marine/heavy
-	name = "B18 Helmet"
+/obj/item/clothing/head/helmet/marine/specialist
+	name = "\improper B18 helmet"
 	icon_state = "xhelm"
-	desc = "The B18 Helmet that goes along with the B18 Defensive armor. It's heavy, reinforced, and protects more of the face."
+	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	armor = list(melee = 95, bullet = 105, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
 	anti_hug = 3
 	unacidable = 1
 
-/obj/item/clothing/head/helmet/marine/heavy/snow
-	name = "B18 Snow Helmet"
+/obj/item/clothing/head/helmet/marine/specialist/snow
+	name = "\improper B18 snow helmet"
 	icon_state = "s_xhelm"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	cold_protection = HEAD
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 
-/obj/item/clothing/head/helmet/marine/PMC
-	name = "PMC tactical cap"
+/obj/item/clothing/head/helmet/marine/veteran/PMC
+	name = "\improper PMC tactical cap"
 	desc = "A protective cap made from flexable kevlar. Standard issue for most security forms in the place of a helmet."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "helmet"
 	icon_state = "pmc_hat"
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inv = BLOCKSHARPOBJ
 
-/obj/item/clothing/head/helmet/marine/PMC/leader
-	name = "PMC Beret"
+/obj/item/clothing/head/helmet/marine/veteran/PMC/leader
+	name = "\improper PMC beret"
 	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_hat"
 	icon_state = "officer_hat"
 	anti_hug = 3
 
-/obj/item/clothing/head/helmet/marine/PMC/sniper
-	name = "PMC Sniper Helmet"
+/obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
+	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	item_state = "pmc_sniper_hat"
 	icon_state = "pmc_sniper_hat"
-	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHAIR
 	armor = list(melee = 55, bullet = 65, laser = 45, energy = 55, bomb = 60, bio = 10, rad = 10)
+	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | HIDEMASK | COVEREYES | COVERMOUTH | HIDEALLHAIR | BLOCKSHARPOBJ
 
-/obj/item/clothing/head/helmet/marine/PMC/heavypmc
-	name = "PMC Gunner Helmet"
+/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
+	name = "\improper PMC gunner helmet"
 	desc = "A modification of the standard Armat Systems M3 armor."
 	item_state = "heavy_helmet"
 	icon_state = "heavy_helmet"
-	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHAIR
-	anti_hug = 4
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
+	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | HIDEMASK | COVEREYES | COVERMOUTH | HIDEALLHAIR | BLOCKSHARPOBJ
+	anti_hug = 4
 
-/obj/item/clothing/head/helmet/marine/PMC/commando
-	name = "PMC Commando Helmet"
+/obj/item/clothing/head/helmet/marine/veteran/PMC/commando
+	name = "\improper PMC commando helmet"
 	desc = "A fully enclosed, armored helmet made for Weyland Yutani elite commandos."
 	item_state = "commando_helmet"
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_helmet"
 	icon_override = 'icons/PMC/PMC.dmi'
-	flags = FPRINT|TABLEPASS|HEADCOVERSMOUTH|BLOCKHAIR|BLOCK_GAS_SMOKE_EFFECT
-	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
+	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
+	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | HIDEMASK | COVEREYES | COVERMOUTH | HIDEALLHAIR | BLOCKSHARPOBJ | BLOCKGASEFFECT
 	anti_hug = 6
 	unacidable = 1
-	cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 //==========================//DISTRESS\\=================================\\
 //=======================================================================\\
 
-/obj/item/clothing/head/helmet/marine/PMC/dutch
-	name = "Dutch's Dozen Helmet"
-	desc = "A protective helmet"
+/obj/item/clothing/head/helmet/marine/veteran/dutch
+	name = "\improper Dutch's Dozen helmet"
+	desc = "A protective helmet worn by some seriously experienced mercs."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
 	armor = list(melee = 70, bullet = 70, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 
-/obj/item/clothing/head/helmet/marine/PMC/dutch/cap
+/obj/item/clothing/head/helmet/marine/veteran/dutch/cap
+	name = "\improper Dutch's Dozen cap"
 	item_state = "dutch_cap"
 	icon_state = "dutch_cap"
+	flags_inv = BLOCKSHARPOBJ
 
-/obj/item/clothing/head/helmet/marine/PMC/dutch/band
+/obj/item/clothing/head/helmet/marine/veteran/dutch/band
+	name = "\improper Dutch's Dozen band"
 	item_state = "dutch_band"
 	icon_state = "dutch_band"
+	flags_inv = BLOCKSHARPOBJ
 
-/obj/item/clothing/head/helmet/marine/PMC/bearmask
-	name = "Iron Bear Helm"
+/obj/item/clothing/head/helmet/marine/veteran/bear
+	name = "\improper Iron Bear helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "dutch_helmet"
 	icon_state = "dutch_helmet"
 	armor = list(melee = 90, bullet = 65, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	anti_hug = 2
-
-/obj/item/clothing/head/ushanka
-	name = "ushanka"
-	desc = "Perfect for winter in Siberia, da?"
-	icon_state = "ushankadown"
-	item_state = "ushankadown"
-	flags_inv = HIDEEARS
-	anti_hug = 4
-	armor = list(melee = 65, bullet = 65, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
-	cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-
-/obj/item/clothing/head/bearpelt
-	name = "bear pelt hat"
-	desc = "Fuzzy."
-	icon_state = "bearpelt"
-	item_state = "bearpelt"
-	flags = FPRINT | TABLEPASS | BLOCKHAIR
-	siemens_coefficient = 2.0
-	anti_hug = 5
-	body_parts_covered = HEAD|UPPER_TORSO|ARMS
-	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
-	cold_protection = HEAD|UPPER_TORSO|ARMS
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 //==========================//HELMET PROCS\\=============================\\
 //=======================================================================\\

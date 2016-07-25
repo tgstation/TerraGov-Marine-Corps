@@ -30,7 +30,7 @@ Defined in setup.dm.
 	var/pixel_shift_x = 16 //Determines the amount of pixels to move the icon state for the overlay.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
-	flags =  FPRINT | TABLEPASS | CONDUCT
+	flags =  FPRINT | CONDUCT
 	matter = list("metal" = 2000)
 	w_class = 2.0
 	force = 1.0
@@ -133,6 +133,7 @@ Defined in setup.dm.
 	G.recoil += recoil_mod
 	G.force += melee_mod
 
+	if(G.burst_amount <= 1) G.gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
 	G.update_force_list() //This updates the gun to use proper force verbs.
 
 	switch(twohanded_mod)
@@ -503,7 +504,8 @@ Defined in setup.dm.
 						/obj/item/weapon/gun/rifle/mar40,
 						/obj/item/weapon/gun/rifle/sniper/svd,
 						/obj/item/weapon/gun/rifle/mar40/carbine,
-						/obj/item/weapon/gun/rifle/sniper/M42A
+						/obj/item/weapon/gun/rifle/sniper/M42A,
+						/obj/item/weapon/gun/rifle/sniper/M42A/jungle
 					)
 	slot = "under"
 	w_class_mod = 2
@@ -615,7 +617,7 @@ Defined in setup.dm.
 						/obj/item/weapon/gun/shotgun/pump,
 						/obj/item/weapon/gun/shotgun/combat,
 						/obj/item/weapon/gun/shotgun/pump/cmb,
-						/obj/item/weapon/gun/shotgun/double
+						/obj/item/weapon/gun/shotgun/merc
 					)
 	pixel_shift_x = 17
 
@@ -900,7 +902,7 @@ Defined in setup.dm.
 						/obj/item/weapon/gun/rifle/lmg,
 						/obj/item/weapon/gun/smg/mp7,
 						/obj/item/weapon/gun/smg/p90,
-						/obj/item/weapon/gun/rifle/sniper/M42A)
+						/obj/item/weapon/gun/revolver/m44)
 	slot = "rail"
 	delay_mod = 6
 	accuracy_mod = 50

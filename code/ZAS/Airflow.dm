@@ -24,7 +24,7 @@ mob/living/carbon/metroid/airflow_stun()
 
 mob/living/carbon/human/airflow_stun()
 	if(shoes)
-		if(shoes.flags & NOSLIP) return 0
+		if(shoes.flags_inv & NOSLIPPING) return 0
 	..()
 
 atom/movable/proc/check_airflow_movable(n)
@@ -78,7 +78,7 @@ obj/item/check_airflow_movable(n)
 		if(istype(src, /mob/living/carbon/human))
 			if(src:buckled)
 				return
-			if(src:shoes && src:shoes.flags & NOSLIP)
+			if(src:shoes && src:shoes.flags_inv & NOSLIPPING)
 				return
 		src << "\red You are sucked away by airflow!"
 	var/airflow_falloff = 9 - sqrt((x - airflow_dest.x) ** 2 + (y - airflow_dest.y) ** 2)
@@ -142,7 +142,7 @@ obj/item/check_airflow_movable(n)
 				return
 			if(src:shoes)
 				if(istype(src:shoes, /obj/item/clothing/shoes/magboots))
-					if(src:shoes.flags & NOSLIP)
+					if(src:shoes.flags_inv & NOSLIPPING)
 						return
 		src << "\red You are pushed away by airflow!"
 		last_airflow = world.time

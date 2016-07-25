@@ -3,32 +3,29 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "M42A Scoped Rifle Magazine (10x28mm Caseless)"
+	name = "\improper M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10×28mm Caseless"
 	icon_state = "75"
 	icon_empty = "75-0"
-	max_rounds = 7
+	max_rounds = 7 // Should be 15.
 	default_ammo = "sniper bullet"
 	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
-	handful_type = "Bullets (10×28mm Caseless)"
 	reload_delay = 3
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "M42A Incendiary Magazine (10x28mm Caseless)"
+	name = "\improper M42A incendiary magazine (10x28mm)"
 	default_ammo = "incendiary sniper bullet"
-	handful_type = "Incendiary Bullets (10×28mm Caseless)"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "M42A Flak Magazine (10x28mm Caseless)"
+	name = "\improper M42A flak magazine (10x28mm)"
 	default_ammo = "flak sniper bullet"
-	handful_type = "Flak Bullets (10×28mm Caseless)"
 	icon_state = "a762"
 	icon_empty = "a762-0"
 
 //Pow! Headshot.
 /obj/item/weapon/gun/rifle/sniper/M42A
-	name = "\improper M42A Scoped Rifle"
+	name = "\improper M42A scoped rifle"
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 7-round magazine.\n'Peace Through Superior Firepower'"
 	icon_state = "M42c"
 	icon_empty = "M42c_empty"
@@ -43,7 +40,7 @@
 	force = 12
 	recoil = 1
 	zoomdevicename = "scope"
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR
 
 	New()
@@ -63,16 +60,15 @@
 	item_state = "m42aG"
 
 /obj/item/ammo_magazine/sniper/elite
-	name = "M42C Magazine (12.7x99mm Caseless)"
+	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = "supersonic sniper bullet"
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
-	caliber = "12.7×99mm Caseless"
-	max_rounds = 9
-	handful_type = "Bullets (12.7×99mm Caseless)"
+	caliber = "10×99mm"
+	max_rounds = 6
 
 /obj/item/weapon/gun/rifle/sniper/elite
-	name = "\improper M42C Anti-Tank Sniper Rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Weyland-Armat chambered in the heaviest ammo available, 12.7×99mm Caseless."
+	name = "\improper M42C anti-tank sniper rifle"
+	desc = "A high end mag-rail heavy sniper rifle from Weyland-Armat chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "pmcM42c"
 	icon_empty = "pmcM42c_empty"
 	item_state = "m42a"  //placeholder!!
@@ -86,7 +82,7 @@
 	force = 17
 	recoil = 10
 	zoomdevicename = "scope"
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_WY_RESTRICTED
 
 	New()
@@ -109,25 +105,25 @@
 			var/new_x = target.x == user.x ? user.x : user.x + o_x
 			var/new_y = target.y == user.y ? user.y : user.y + o_y
 			var/near_target = locate(new_x,new_y,target.z)
-			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor/heavypmc) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/PMCarmor))
+			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/smartgunner/gunner) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 				PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 				step_away(PMC_sniper,near_target)
 				PMC_sniper.Weaken(5)
 
+//SVD //Based on the actual Dragunov sniper rifle.
 /obj/item/ammo_magazine/rifle/sniper/svd
-	name = "SVD Magazine (7.62x54mmR)"
-	desc = "A 12mm marksman rifle magazine."
+	name = "\improper SVD magazine (7.62x54mmR)"
+	desc = "A large caliber magazine for the SVD sniper rifle."
 	caliber = "7.62×54mmR"
 	icon_state = "a762"
 	icon_empty = "a762-0"
-	default_ammo = "marksman rifle bullet"
-	max_rounds = 30
+	default_ammo = "sniper bullet"
+	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
-	handful_type = "Marksman Bullets (7.62×54mmR)"
 
 /obj/item/weapon/gun/rifle/sniper/svd
-	name = "\improper SVD Dragunov-033"
-	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. Finely crafted in 2133 by someone probably illiterate. Fires 7.62×54mmR rounds."
+	name = "\improper SVD Dragunov-033 sniper rifle"
+	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62×54mmR rounds."
 	icon_state = "VSS"
 	icon_empty = "VSS_empty"
 	origin_tech = "combat=5;materials=3;syndicate=5"
@@ -136,9 +132,11 @@
 	fire_sound = 'sound/weapons/automag.ogg'
 	mag_type = /obj/item/ammo_magazine/rifle/sniper/svd
 	eject_casings = 1
+	accuracy = -25
 	recoil = 1
+	fire_delay = 25
 	burst_amount = 2
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_AUTO_EJECTOR | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
 	New()
@@ -155,17 +153,16 @@
 //-------------------------------------------------------
 //SMARTGUN
 /obj/item/ammo_magazine/internal/smartgun
-	name = "Integrated Smartgun Belt"
-	caliber = "10×28mm Caseless"
+	name = "integrated smartgun belt"
+	caliber = "10×28mm"
 	icon_state = ".45a"
 	icon_empty = ".45a0"
-	max_rounds = 50
+	max_rounds = 50 //Should be 500 in total.
 	default_ammo = "smartgun bullet"
-	handful_type = "Bullets (10×28mm Caseless)"
 
 //Come get some.
 /obj/item/weapon/gun/smartgun
-	name = "\improper M56 Smartgun"
+	name = "\improper M56 smartgun"
 	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a Powerpack. Click the powerpack icon in the top left to reload."
 	icon_state = "m56"
 	item_state = "m56"
@@ -182,7 +179,8 @@
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 //	var/restriction_toggled = 1 //Begin with the safety on.
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
+	gun_features = GUN_INTERNAL_MAG
 
 
 	New()
@@ -219,7 +217,7 @@
 	able_to_fire(mob/user)
 		if(!ishuman(user)) return
 		var/mob/living/carbon/human/smart_gunner = user
-		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine_smartgun_armor) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
+		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/smartgunner) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
 			click_empty(smart_gunner)
 			return
 		return ..()
@@ -264,13 +262,13 @@
 
 //Cannot be upgraded.
 /obj/item/weapon/gun/smartgun/dirty
-	name = "\improper M57D 'Dirty' Smartgun"
+	name = "\improper M57D 'dirty' smartgun"
 	desc = "The actual firearm in the 4-piece M57D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way. Otherwise identical to the M56."
 	origin_tech = "combat=7;materials=5"
 //	restriction_toggled = 0
 	mag_type = /obj/item/ammo_magazine/internal/smartgun/dirty
 	accuracy = 10 //Slightly more accurate.
-	gun_features = GUN_WY_RESTRICTED
+	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
 
 
 	unique_action() //Cannot toggle restrictions. It has none.
@@ -280,7 +278,7 @@
 //GRENADE LAUNCHER
 
 /obj/item/weapon/gun/m92
-	name = "M92 grenade launcher"
+	name = "\improper M92 grenade launcher"
 	desc = "A heavy, 5-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
 	icon_state = "m92"
 	icon_wielded = "riotgun"
@@ -296,7 +294,7 @@
 	fire_delay = 22
 	var/list/grenades = new/list()
 	var/max_grenades = 6
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
@@ -389,7 +387,7 @@
 //SADAR
 
 /obj/item/ammo_magazine/rocket
-	name = "High Explosive Rocket"
+	name = "high explosive rocket"
 	desc = "A rocket tube for an M83 SADAR rocket. Activate it without a missile inside to receive some materials."
 	caliber = "rocket"
 	icon_state = "rocket_tube"
@@ -417,19 +415,19 @@
 		if(current_rounds <= 0) name = "Empty Rocket Frame"
 
 /obj/item/ammo_magazine/rocket/ap
-	name = "Anti Tank Rocket"
+	name = "anti-tank rocket"
 	icon_state = "rocket_tube_ap"
 	default_ammo = "anti-armor rocket"
 	desc = "A tube for an AP rocket - the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
 
 /obj/item/ammo_magazine/rocket/wp
-	name = "Phosphorous Rocket"
+	name = "phosphorous rocket"
 	icon_state = "rocket_tube_wp"
 	default_ammo = "white phosphorous rocket"
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
 /obj/item/ammo_magazine/internal/rocket
-	name = "Internal Tube"
+	name = "internal tube"
 	desc = "The internal tube of a M83 SADAR."
 	caliber = "rocket"
 	default_ammo = "high explosive rocket"
@@ -437,7 +435,7 @@
 	reload_delay = 60
 
 /obj/item/weapon/gun/rocketlauncher
-	name = "M83 SADAR rocket launcher"
+	name = "\improper M83 SADAR rocket launcher"
 	desc = "The M83 SADAR is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the SADAR is a dangerous weapon with a variety of combat uses."
 	icon_state = "M83sadar"
 	item_state = "rocket"
@@ -445,13 +443,13 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 100000)
 	mag_type = /obj/item/ammo_magazine/internal/rocket
-	flags =  FPRINT | TABLEPASS | CONDUCT
 	slot_flags = 0
 	w_class = 5
 	force = 15
 	fire_delay = 10
 	recoil = 3
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
+	flags = FPRINT | CONDUCT | TWOHANDED
+	gun_features = GUN_INTERNAL_MAG
 	var/datum/effect/effect/system/smoke_spread/puff
 
 	New()
@@ -546,7 +544,7 @@
 //SADARS MEAN FUCKING COUSIN
 
 /obj/item/ammo_magazine/rocket/quad
-	name = "Thermobaric Rocket Array"
+	name = "thermobaric rocket array"
 	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "rocket_tube4"
@@ -564,7 +562,7 @@
 	max_rounds = 4
 
 /obj/item/weapon/gun/rocketlauncher/quad
-	name = "M83AM Thermobaric Launcher"
+	name = "\improper M83AM thermobaric launcher"
 	desc = "The M83AM is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "quaddar"
 	item_state = "rocket4"
@@ -575,5 +573,4 @@
 	burst_amount = 4
 	burst_delay = 4
 	accuracy = -20
-	flags = FPRINT | TABLEPASS | CONDUCT | TWOHANDED
-	gun_features = GUN_WY_RESTRICTED
+	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED

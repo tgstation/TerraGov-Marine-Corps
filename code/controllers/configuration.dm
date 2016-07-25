@@ -119,6 +119,7 @@
 	var/revival_brain_life = -1
 
 	var/use_loyalty_implants = 0
+	var/remove_gun_restrictions = 0
 
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
@@ -397,7 +398,7 @@
 
 				if("kick_inactive")
 					config.kick_inactive = 1
-					
+
 				if("show_mods")
 					config.show_mods = 1
 
@@ -578,7 +579,8 @@
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
-
+				if("remove_gun_restrictions")
+					config.remove_gun_restrictions = 1
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 

@@ -8,18 +8,15 @@
 	density = 0
 	unacidable = 1
 	anchored = 1
-	flags = FPRINT | TABLEPASS
-	pass_flags = PASSTABLE | PASSGRILLE
+	flags = NOINTERACT
 	mouse_opacity = 0
 	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
-	//appearance_flags = LONG_GLIDE
 
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
 	var/bumped = 0		//Prevents it from hitting more than one guy at once
 	var/def_zone = ""	//Aiming at
 	var/atom/firer = null//Who shot it
-	var/silenced = 0	//Attack message
 
 	var/yo = null
 	var/xo = null
@@ -32,7 +29,6 @@
 	var/turf/starting = null // the projectile's starting turf
 
 	var/list/turf/path = list()
-
 	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
 
 	var/paused = 0 //For suspending projectiles. Neat idea! Stolen shamelessly from TG.
@@ -40,13 +36,11 @@
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
 
-	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
+	var/damage = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
 	var/distance_travelled = 0
 	var/in_flight = 0
-	var/flight_check = 50
 	var/scatter_chance = 20
 
 	Dispose()
@@ -62,7 +56,7 @@
 		return TA_REVIVE_ME
 
 	Recycle()
-		var/blacklist[] = list("ammo","name","desc","icon_state","damage","damage_type","in_flight","shot_from","original","target_turf","starting", "permutated","path")
+		var/blacklist[] = list("ammo","name","desc","icon_state","damage","in_flight","shot_from","original","target_turf","starting", "permutated","path")
 		. = ..() + blacklist
 
 	Bumped(atom/A as mob|obj|turf|area)
@@ -73,13 +67,16 @@
 		if(AM && !AM in permutated)
 			scan_a_turf(get_turf(AM))
 
+
 /obj/item/projectile/proc/get_accuracy()
 	var/acc = accuracy //We want a temporary variable so accuracy doesn't rise every time the bullet misses.
-	if(ammo.accurate_range + rand(0,3) < distance_travelled) //Determine ranged accuracy
-		acc -= (distance_travelled * 5) //-5% accuracy per turf
-	else if (distance_travelled <= 2) acc += 25 //Big bonus for point blanks.
-	acc = max(5,acc)//There's always some chance.
-	return acc
+	//world << "Base accuracy is <b>[acc]</b>"
+	if(distance_travelled <= (ammo.accurate_range + rand(0,2)) ) //Less to or equal.
+		if(ammo.ammo_behavior & AMMO_SNIPER) 	acc -= (ammo.max_range - distance_travelled) * 4.8
+		else if(distance_travelled <= 2)		acc += 25
+	else acc -= (ammo.ammo_behavior & AMMO_SNIPER) ? (distance_travelled * 1.3) : (distance_travelled * 5)
+	//world << "Final accuracy is <b>[acc]</b>"
+	return max(5,acc) //There's always some chance.
 
 /obj/item/projectile/proc/roll_to_hit_mob(var/atom/shooter,var/mob/living/target)
 	permutated += target //Don't want to hit them again, no matter what the outcome.
@@ -171,6 +168,9 @@
 
 		this_iteration++
 		if(++dist_since_sleep >= speed)
+			//TO DO: Adjust flight position every time we see the projectile.
+			//I wonder if I can leave sleep out and just have it stall based on adjustment proc.
+			//Might still be too fast though.
 			dist_since_sleep = 0
 			sleep(1)
 
@@ -189,7 +189,9 @@
 	starting = get_turf(src)
 	if(starting != loc) loc = starting //Put us on the turf, if we're not.
 	target_turf = get_turf(target)
-	if(starting == target_turf) return//What? We can't fire at our own turf.
+	if(!target_turf || target_turf == starting) //This shouldn't happen, but it can.
+		cdel(src)
+		return
 	firer = F
 	if(F) permutated.Add(F) //Don't hit the shooter (firer)
 	shot_from = S
@@ -265,15 +267,11 @@
 	if(!P || !P.ammo.ping) return
 	if(prob(65)) //Optimization.
 		var/image/ping = image('icons/obj/projectiles.dmi',src,P.ammo.ping,10) //Layer 10, above most things but not the HUD.
-		var/angle = round(rand(1,359))
+		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
 		ping.pixel_x += rand(-6,6)
 		ping.pixel_y += rand(-6,6)
 
-		if(P.firer && prob(60))
-			angle = round(Get_Angle(P.firer,src))
-
 		var/matrix/rotate = matrix()
-
 		rotate.Turn(angle)
 		ping.transform = rotate
 
@@ -352,16 +350,20 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	//Any projectile can decloak a predator. It does defeat one free bullet though.
 	if(gloves)
 		var/obj/item/clothing/gloves/yautja/Y = gloves
-		if(istype(Y) && Y.cloaked && rand(0,100) < 20 )
-			Y.decloak(src)
-			return
+		if(istype(Y) && Y.cloaked)
+			if( P.ammo.ammo_behavior & (AMMO_ROCKET | AMMO_ENERGY | AMMO_XENO_ACID) ) //<--- These will auto uncloak.
+				Y.decloak(src) //Continue on to damage.
+			else if(rand(0,100) < 20)
+				Y.decloak(src)
+				return //Absorb one free bullet.
+			//Else we're moving on to damage.
 
 	var/datum/organ/external/organ = get_organ(check_zone(P.def_zone)) //Let's finally get what organ we actually hit.
 
 	if(!organ) return//Nope. Gotta shoot something!
 
 	//Shields //No, you can't block rockets.
-	if( !(P.ammo.ammo_behavior & AMMO_ROCKET) && check_shields(20 + P.ammo.accuracy, "the [P.name]") )
+	if( !(P.ammo.ammo_behavior & AMMO_ROCKET) && check_shields(damage, "\the [P.name]") )
 		P.ammo.on_shield_block(src)
 		bullet_ping(P)
 		return 1
@@ -369,13 +371,11 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	//Run armor check. We won't bother if there is no damage being done.
 	if( damage > 0  && !(P.ammo.ammo_behavior & AMMO_IGNORE_ARMOR) )
 		var/armor //Damage types don't correspond to armor types. We are thus merging them.
-		switch(P.damage_type)
-			if(BRUTE) armor = getarmor_organ(organ, "bullet")
-			if(TOX) armor = getarmor_organ(organ, "bio")
-			if(BURN)
-				if(P.ammo.ammo_behavior & AMMO_ENERGY)	armor = getarmor_organ(organ, "energy") //Special case.
-				else 							  	 	armor = getarmor_organ(organ, "laser")
-			else armor = getarmor_organ(organ, "energy") //Likely won't be used, but left for reference.
+		switch(P.ammo.damage_type)
+			if(BRUTE) armor = P.ammo.ammo_behavior & AMMO_ROCKET ? getarmor_organ(organ, "bomb") : getarmor_organ(organ, "bullet")
+			if(BURN) armor = P.ammo.ammo_behavior & AMMO_ENERGY ? getarmor_organ(organ, "energy") : getarmor_organ(organ, "laser")
+			if(TOX, OXY, CLONE) armor = getarmor_organ(organ, "bio")
+			else armor = getarmor_organ(organ, "energy") //Won't be used, but just in case.
 		//world << "Initial armor is: <b>[armor]</b>."
 		armor -= P.ammo.armor_pen //Minus armor penetration from the bullet.
 		//world << "Adjusted armor after penetration is: <b>[armor]</b>."
@@ -409,7 +409,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
 
 	if(damage)
-		apply_damage(damage, P.damage_type, P.def_zone)
+		apply_damage(damage, P.ammo.damage_type, P.def_zone)
 		if(P.ammo.shrapnel_chance > 0 && prob(P.ammo.shrapnel_chance + round(damage / 10) ) ) embed_shrapnel(P,organ)
 		if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
@@ -476,7 +476,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	bullet_message(P) //Message us about the bullet, since damage was inflicted.
 
-	apply_damage(damage,P.damage_type, P.def_zone)	//Deal the damage.
+	apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
 	if(!stat && prob(5 + round(damage / 4)))
 		var/pain_emote = prob(70) ? "hiss" : "roar"
 		emote(pain_emote)
@@ -530,7 +530,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(D < 1) return
 
-	switch(P.damage_type)
+	switch(P.ammo.damage_type)
 		if(BRUTE,BURN) D = round(D/5) //Bullets do much less to walls and such.
 		else return
 	take_damage(P.damage)

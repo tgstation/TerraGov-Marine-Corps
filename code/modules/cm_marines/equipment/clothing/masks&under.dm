@@ -13,23 +13,71 @@ include jackets and regular suits, not armor.*/
 //===========================//MASKS\\===================================\\
 //=======================================================================\\
 
+//Mask
+/obj/item/clothing/mask
+	name = "mask"
+	icon = 'icons/obj/clothing/masks.dmi'
+	body_parts_covered = HEAD
+	pass_flags = PASSTABLE
+	flags = FPRINT
+	slot_flags = SLOT_MASK
+	body_parts_covered = FACE|EYES
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
+	var/anti_hug = 0
+
+/obj/item/clothing/mask/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_wear_mask()
+
+/obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
+	return
+
 /obj/item/clothing/mask/rebreather
-	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
 	name = "rebreather"
+	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
 	icon_state = "rebreather"
 	item_state = "rebreather"
-	flags = FPRINT | TABLEPASS | MASKCOVERSMOUTH
-	body_parts_covered = 0
 	w_class = 2
+	body_parts_covered = 0
+	flags_inv = COVERMOUTH | HIDELOWHAIR
 
 /obj/item/clothing/mask/rebreather/scarf
+	name = "heat absorbent coif"
 	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
-	name = "Heat Absorbent Coif"
 	icon_state = "coif"
 	item_state = "coif"
+	flags_inv = COVERMOUTH | HIDEALLHAIR
 
-/obj/item/clothing/mask/gas/PMCmask
-	name = "M8 Pattern Armored balaclava"
+/obj/item/clothing/mask/gas
+	name = "gas mask"
+	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
+	icon_state = "gas_alt"
+	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
+	body_parts_covered = FACE|EYES
+	w_class = 3.0
+	item_state = "gas_alt"
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
+	siemens_coefficient = 0.9
+	var/gas_filter_strength = 1			//For gas mask filters
+	var/list/filtered_gases = list("phoron", "sleeping_agent")
+
+/obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
+	var/datum/gas_mixture/filtered = new
+
+	for(var/g in filtered_gases)
+		if(air.gas[g])
+			filtered.gas[g] = air.gas[g] * gas_filter_strength
+			air.gas[g] -= filtered.gas[g]
+
+	air.update_values()
+	filtered.update_values()
+
+	return filtered
+
+/obj/item/clothing/mask/gas/PMC
+	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_override = 'icons/PMC/PMC.dmi'
@@ -37,16 +85,17 @@ include jackets and regular suits, not armor.*/
 	icon_state = "pmc_mask"
 	anti_hug = 3
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
+	flags_inv = HIDEEARS | HIDEFACE | COVERMOUTH | ALLOWINTERNALS | HIDEALLHAIR | BLOCKGASEFFECT
 
-/obj/item/clothing/mask/gas/PMCmask/leader
-	name = "M8 Pattern Armored balaclava"
+/obj/item/clothing/mask/gas/PMC/leader
+	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "officer_mask"
 	icon_state = "officer_mask"
 
-/obj/item/clothing/mask/gas/Bear
-	name = "Tactical Balaclava"
+/obj/item/clothing/mask/gas/bear
+	name = "tactical balaclava"
 	desc = "A superior balaclava worn by the Iron Bears."
 	icon = 'icons/PMC/PMC.dmi'
 	item_state = "bear_mask"
@@ -57,44 +106,61 @@ include jackets and regular suits, not armor.*/
 //=========================//MARINES\\===================================\\
 //=======================================================================\\
 
-/obj/item/clothing/under/marine_underoos
-	name = "marine underpants"
-	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Wear this into battle if you have no self-respect."
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	flags = FPRINT | TABLEPASS
-	siemens_coefficient = 0.9
-	icon_state = "marine_underpants"
-	item_state = "marine_underpants"
-	item_color = "marine_underpants"
-	has_sensor = 1
-	slowdown = 3
+/obj/item/clothing/under
+	icon = 'icons/obj/clothing/uniforms.dmi'
+	name = "under"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	permeability_coefficient = 0.90
+	pass_flags = PASSTABLE
+	flags = FPRINT
+	slot_flags = SLOT_ICLOTHING
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	w_class = 3
+	var/has_sensor = 1//For the crew computer 2 = unable to change mode
+	var/sensor_mode = 3
+		/*
+		1 = Report living/dead
+		2 = Report detailed damages
+		3 = Report location
+		*/
+	var/obj/item/clothing/tie/hastie = null
+	var/displays_id = 1
+	var/rolled_down = 0
+	var/basecolor
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 
-/obj/item/clothing/under/marine_jumpsuit
-	name = "USCM Uniform"
+/obj/item/clothing/under/marine
+	name = "\improper USCM uniform"
 	desc = "The issue uniform for the USCM forces. It is weaved with light kevlar plates that protect against light impacts and light-caliber rounds."
 	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
-	flags = FPRINT | TABLEPASS
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
-	has_sensor = 3
-	sensor_mode = 3
 
-/obj/item/clothing/under/marine_jumpsuit/snow
-	name = "USCM Snow Uniform"
+/obj/item/clothing/under/marine/underoos
+	name = "marine underpants"
+	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Find an actual uniform and change out."
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	icon_state = "marine_underpants"
+	item_state = "marine_underpants"
+	item_color = "marine_underpants"
+	slowdown = 3
+
+/obj/item/clothing/under/marine/snow
+	name = "\improper USCM snow uniform"
 	icon_state = "marine_jumpsuit_snow"
 	item_state = "marine_jumpsuit_snow"
 	item_color = "marine_jumpsuit_snow"
 
 /obj/item/clothing/under/marine/fluff/marineengineer/snow
-	name = "Marine Engineer Snow Uniform"
+	name = "\improper USCM engineer snow uniform"
 	icon_state = "marine_engineer_snow"
 	item_state = "marine_engineer_snow"
 	item_color = "marine_engineer_snow"
 
 /obj/item/clothing/under/marine/fluff/marinemedic/snow
-	name = "Marine Medic Snow Uniform"
+	name = "\improper USCM medic snow uniform"
 	icon_state = "marine_medic_snow"
 	item_state = "marine_medic_snow"
 	item_color = "marine_medic_snow"
@@ -103,19 +169,18 @@ include jackets and regular suits, not armor.*/
 //=======================================================================\\
 
 /obj/item/clothing/under/rank/chef/exec
-	name = "Weyland Yutani suit"
+	name = "\improper Weyland Yutani suit"
 	desc = "A formal white undersuit."
 
 /obj/item/clothing/under/rank/ro_suit
-	name = "Requisition officer suit."
+	name = "requisition officer suit."
 	desc = "A nicely-fitting military suit for a requisition officer."
 	icon_state = "RO_jumpsuit"
 	item_state = "RO_jumpsuit"
 	item_color = "RO_jumpsuit"
-	has_sensor = 1
 
 /obj/item/clothing/suit/storage/RO
-	name = "RO Jacket"
+	name = "\improper RO jacket"
 	desc = "A green jacket worn by crew on the Sulaco. The back has the flag of the United Americas on it."
 	icon_state = "RO_jacket"
 	item_state = "RO_jacket"
@@ -147,21 +212,21 @@ include jackets and regular suits, not armor.*/
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/bridge
-	name = "Bridge Officer uniform"
+	name = "bridge officer uniform"
 	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec
-	name = "Executive Officer uniform"
+	name = "executive officer uniform"
 	desc = "A uniform typically worn by a First-lieutenant in the USCM. The Executive Officer is the second in-charge of the USCM forces onboard the USS Sulaco."
 	icon_state = "XO_jumpsuit"
 	item_state = "XO_jumpsuit"
 	item_color = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command
-	name = "Commander Uniform"
+	name = "commander uniform"
 	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled."
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
@@ -184,7 +249,7 @@ include jackets and regular suits, not armor.*/
 	item_color = "E_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/researcher
-	name = "Researcher clothes"
+	name = "researcher clothes"
 	desc = "A simple set of civilian clothes worn by researchers. "
 	armor = list(melee = 0, bullet = 0, laser = 15,energy = 10, bomb = 0, bio = 10, rad = 10)
 	icon_state = "research_jumpsuit"
@@ -194,8 +259,8 @@ include jackets and regular suits, not armor.*/
 //=========================//RESPONDERS\\================================\\
 //=======================================================================\\
 
-/obj/item/clothing/under/marine_jumpsuit/PMC
-	name = "PMC uniform"
+/obj/item/clothing/under/marine/veteran/PMC
+	name = "\improper PMC uniform"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit."
 	icon = 'icons/PMC/PMC.dmi'
 	//icon_override = 'icons/PMC/PMC.dmi'
@@ -204,44 +269,45 @@ include jackets and regular suits, not armor.*/
 	item_color = "pmc_jumpsuit"
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
-/obj/item/clothing/under/marine_jumpsuit/PMC/leader
-	name = "PMC command uniform"
+/obj/item/clothing/under/marine/veteran/PMC/leader
+	name = "\improper PMC command uniform"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	item_state = "officer_jumpsuit"
 	item_color = "officer_jumpsuit"
 
-/obj/item/clothing/under/marine_jumpsuit/PMC/Bear
-	name = "Iron Bear Uniform"
-	desc = "A uniform worn by Iron Bears mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "bear_jumpsuit"
-	item_state = "bear_jumpsuit"
-	item_color = "bear_jumpsuit"
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/dutch
-	name = "Dutch's Dozen Uniform"
-	desc = "A uniform worn by the mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "dutch_jumpsuit"
-	item_state = "dutch_jumpsuit"
-	item_color = "dutch_jumpsuit"
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/dutch2
-	name = "Dutch's Dozen Uniform"
-	desc = "A uniform worn by the mercenaries"
-	icon = 'icons/PMC/PMC.dmi'
-	icon_state = "dutch_jumpsuit2"
-	item_state = "dutch_jumpsuit2"
-	item_color = "dutch_jumpsuit2"
-
-/obj/item/clothing/under/marine_jumpsuit/PMC/commando
-	name = "PMC Commando Uniform"
-	desc = "An armored uniform worn by Weyland Yutani elite commandos."
+/obj/item/clothing/under/marine/veteran/PMC/commando
+	name = "\improper PMC commando uniform"
+	desc = "An armored uniform worn by Weyland Yutani elite commandos. It is well protected while remaining light and comfortable."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "commando_jumpsuit"
 	item_state = "commando_jumpsuit"
 	item_color = "commando_jumpsuit"
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 20, bomb = 10, bio = 10, rad = 10)
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/bear
+	name = "\improper Iron Bear uniform"
+	desc = "A uniform worn by Iron Bears mercenaries in the service of Mother Russia. Smells a little like an actual bear."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "bear_jumpsuit"
+	item_state = "bear_jumpsuit"
+	item_color = "bear_jumpsuit"
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/dutch
+	name = "\improper Dutch's Dozen uniform"
+	desc = "A comfortable uniform worn by the Dutch's Dozen mercenaries. It's seen some definite wear and tear, but is still in good condition."
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit"
+	item_state = "dutch_jumpsuit"
+	item_color = "dutch_jumpsuit"
+	has_sensor = 0
+
+/obj/item/clothing/under/marine/veteran/dutch/ranger
+	icon = 'icons/PMC/PMC.dmi'
+	icon_state = "dutch_jumpsuit2"
+	item_state = "dutch_jumpsuit2"
+	item_color = "dutch_jumpsuit2"
 
 //===========================//CIVILIANS\\===============================\\
 //=======================================================================\\
@@ -252,24 +318,27 @@ include jackets and regular suits, not armor.*/
 	icon_state = "redshirt2"
 	item_state = "r_suit"
 	item_color = "redshirt2"
+	has_sensor = 0
 
 /obj/item/clothing/under/colonist
-	name = "Colonist Uniform"
+	name = "colonist uniform"
 	desc = "A stylish grey-green jumpsuit - standard issue for colonists."
 	icon_state = "colonist"
 	item_state = "colonist"
 	item_color = "colonist"
+	has_sensor = 0
 
 /obj/item/clothing/under/CM_uniform
-	name = "Colonial Marshal Uniform"
+	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
 	item_state = "marshal"
 	item_color = "marshal"
 	armor = list(melee = 15, bullet = 15, laser = 15,energy = 5, bomb = 5, bio = 0, rad = 0)
+	has_sensor = 0
 
 /obj/item/clothing/suit/storage/CMB
-	name = "CMB Jacket"
+	name = "\improper CMB jacket"
 	desc = "A green jacket worn by crew on the Colonial Marshals."
 	icon_state = "CMB_jacket"
 	item_state = "CMB_jacket"
@@ -277,36 +346,35 @@ include jackets and regular suits, not armor.*/
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/under/liaison_suit
+	name = "liaison's tan suit"
 	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Specically crafted to make you look like a prick."
-	name = "Liaison's Tan Suit"
 	icon_state = "liaison_regular"
 	item_state = "liaison_regular"
 	item_color = "liaison_regular"
-	has_sensor = 1
 
 /obj/item/clothing/under/liaison_suit/outing
+	name = "liaison's outfit"
 	desc = "A casual outfit consisting of a collared shirt and a vest. Looks like something you might wear on the weekends, or on a visit to a derelict colony."
-	name = "Liaison's Outfit"
 	icon_state = "liaison_outing"
 	item_state = "liaison_outing"
 	item_color = "liaison_outing"
 
 /obj/item/clothing/under/liaison_suit/formal
+	name = "liaison's white suit"
 	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Weyland-Yutani corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
-	name = "Liaison's White Suit"
 	icon_state = "liaison_formal"
 	item_state = "liaison_formal"
 	item_color = "liaison_formal"
 
 /obj/item/clothing/under/liaison_suit/suspenders
+	name = "liaison's attire"
 	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
-	name = "Liaison's Attire"
 	icon_state = "liaison_suspenders"
 	item_state = "liaison_suspenders"
 	item_color = "liaison_suspenders"
 
 /obj/item/clothing/suit/storage/snow_suit
-	name = "Snow Suit"
+	name = "snow suit"
 	desc = "A standard snow suit. It can protect the wearer from extreme temperatures down to 220K (-53°C)."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "snowsuit_alpha"
@@ -318,11 +386,185 @@ include jackets and regular suits, not armor.*/
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/storage/snow_suit/doctor
-	name = "Doctor's Snow Suit"
+	name = "doctor's snow suit"
 	icon_state = "snowsuit_doctor"
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/snow_suit/engineer
-	name = "Engineer's Snow Suit"
+	name = "engineer's snow suit"
 	icon_state = "snowsuit_engineer"
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
+
+
+//==========================//UNDER PROCS\\=============================\\
+//=======================================================================\\
+
+/obj/item/clothing/under/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_w_uniform()
+
+/obj/item/clothing/under/attackby(obj/item/I, mob/user)
+	if(hastie)
+		hastie.attackby(I, user)
+		return
+
+	if(!hastie && istype(I, /obj/item/clothing/tie))
+		user.drop_item()
+		hastie = I
+		hastie.on_attached(src, user)
+
+		if(istype(loc, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = loc
+			H.update_inv_w_uniform()
+
+		return
+
+	if(src.loc == user && istype(I,/obj/item/clothing/under) && src != I)
+		if(istype(user,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = user
+			if(H.w_uniform == src)
+				H.u_equip(src)
+				if(H.equip_to_appropriate_slot(I))
+					H.put_in_active_hand(src)
+					H.update_icons()
+
+	..()
+
+/obj/item/clothing/under/attack_hand(mob/user as mob)
+	//only forward to the attached accessory if the clothing is equipped (not in a storage)
+	if(hastie && src.loc == user)
+		hastie.attack_hand(user)
+		return
+
+	if ((ishuman(usr) || ismonkey(usr)) && src.loc == user)	//make it harder to accidentally undress yourself
+		return
+
+	..()
+
+/obj/item/clothing/under/MouseDrop(obj/over_object as obj)
+	if (ishuman(usr) || ismonkey(usr))
+		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
+		if (!(src.loc == usr))
+			return
+
+		if (!( usr.restrained() ) && !( usr.stat ))
+			if(over_object)
+				switch(over_object.name)
+					if("r_hand")
+						usr.u_equip(src)
+						usr.put_in_r_hand(src)
+					if("l_hand")
+						usr.u_equip(src)
+						usr.put_in_l_hand(src)
+				src.add_fingerprint(usr)
+			return
+	return
+
+/obj/item/clothing/under/examine()
+	set src in view()
+	..()
+	if(has_sensor)
+		switch(src.sensor_mode)
+			if(0)
+				usr << "Its sensors appear to be disabled."
+			if(1)
+				usr << "Its binary life sensors appear to be enabled."
+			if(2)
+				usr << "Its vital tracker appears to be enabled."
+			if(3)
+				usr << "Its vital tracker and tracking beacon appear to be enabled."
+	if(hastie)
+		usr << "\A [hastie] is clipped to it."
+
+/obj/item/clothing/under/proc/set_sensors(mob/usr as mob)
+	var/mob/M = usr
+	if (istype(M, /mob/dead/)) return
+	if (usr.stat || usr.restrained()) return
+	if(has_sensor >= 2)
+		usr << "The controls are locked."
+		return 0
+	if(has_sensor <= 0)
+		usr << "This suit does not have any sensors."
+		return 0
+
+	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
+	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
+	if(get_dist(usr, src) > 1)
+		usr << "You have moved too far away."
+		return
+	sensor_mode = modes.Find(switchMode) - 1
+
+	if (src.loc == usr)
+		switch(sensor_mode)
+			if(0)
+				usr << "You disable your suit's remote sensing equipment."
+			if(1)
+				usr << "Your suit will now report whether you are live or dead."
+			if(2)
+				usr << "Your suit will now report your vital lifesigns."
+			if(3)
+				usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
+	else if (istype(src.loc, /mob))
+		switch(sensor_mode)
+			if(0)
+				for(var/mob/V in viewers(usr, 1))
+					V.show_message("\red [usr] disables [src.loc]'s remote sensing equipment.", 1)
+			if(1)
+				for(var/mob/V in viewers(usr, 1))
+					V.show_message("[usr] turns [src.loc]'s remote sensors to binary.", 1)
+			if(2)
+				for(var/mob/V in viewers(usr, 1))
+					V.show_message("[usr] sets [src.loc]'s sensors to track vitals.", 1)
+			if(3)
+				for(var/mob/V in viewers(usr, 1))
+					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
+
+/obj/item/clothing/under/verb/toggle()
+	set name = "Toggle Suit Sensors"
+	set category = "Object"
+	set src in usr
+	set_sensors(usr)
+	..()
+
+/obj/item/clothing/under/verb/rollsuit()
+	set name = "Roll Down Jumpsuit"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	if(copytext(item_color,-2) != "_d")
+		basecolor = item_color
+	if(basecolor + "_d_s" in icon_states('icons/mob/uniform_0.dmi'))
+		body_parts_covered = "[basecolor]" ? LEGS|LOWER_TORSO : UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+		item_color = item_color == "[basecolor]" ? "[basecolor]_d" : "[basecolor]"
+		update_clothing_icon()
+	else
+		usr << "<span class='notice'>You cannot roll down the uniform!</span>"
+
+/obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
+	if(!hastie)
+		return
+
+	hastie.on_removed(user)
+	hastie = null
+	update_clothing_icon()
+
+/obj/item/clothing/under/verb/removetie()
+	set name = "Remove Accessory"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	src.remove_accessory(usr)
+
+/obj/item/clothing/under/rank/New()
+	sensor_mode = pick(0,1,2,3)
+	..()
+
+/obj/item/clothing/under/emp_act(severity)
+	if (hastie)
+		hastie.emp_act(severity)
+	..()

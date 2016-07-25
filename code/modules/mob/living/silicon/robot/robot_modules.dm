@@ -4,7 +4,7 @@
 	icon_state = "std_module"
 	w_class = 100.0
 	item_state = "electronic"
-	flags = FPRINT|TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	var/channels = list()
 	var/list/modules = list()
 	var/obj/item/emag = null
@@ -103,6 +103,8 @@
 		src.modules += new /obj/item/weapon/extinguisher/mini(src)
 		src.modules += new /obj/item/stack/medical/advanced/bruise_pack(src)
 		src.modules += new /obj/item/stack/nanopaste(src)
+		src.modules += new /obj/item/weapon/weldingtool/largetank(src)
+		src.modules += new /obj/item/borg/stun(src)
 
 		src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 
@@ -119,9 +121,9 @@
 /obj/item/weapon/robot_module/crisis
 	name = "crisis robot module"
 	stacktypes = list(
-		/obj/item/stack/medical/ointment = 5,
-		/obj/item/stack/medical/bruise_pack = 5,
-		/obj/item/stack/medical/splint = 5
+		/obj/item/stack/medical/ointment = 15,
+		/obj/item/stack/medical/advanced/bruise_pack = 15,
+		/obj/item/stack/medical/splint = 15
 		)
 
 	New()
@@ -132,13 +134,16 @@
 		src.modules += new /obj/item/device/reagent_scanner/adv(src)
 		src.modules += new /obj/item/roller_holder(src)
 		src.modules += new /obj/item/stack/medical/ointment(src)
-		src.modules += new /obj/item/stack/medical/bruise_pack(src)
+		src.modules += new /obj/item/stack/medical/advanced/bruise_pack(src)
 		src.modules += new /obj/item/stack/medical/splint(src)
 		src.modules += new /obj/item/weapon/reagent_containers/borghypo/crisis(src)
 		src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 		src.modules += new /obj/item/weapon/reagent_containers/robodropper(src)
 		src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 		src.modules += new /obj/item/weapon/extinguisher/mini(src)
+		src.modules += new /obj/item/weapon/reagent_containers/spray/cleaner(src)
+		src.modules += new /obj/item/weapon/weldingtool/largetank(src)
+		src.modules += new /obj/item/borg/stun(src)
 
 		src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 
@@ -154,6 +159,9 @@
 		S.mode = initial(S.mode)
 		S.desc = initial(S.desc)
 		S.update_icon()
+
+	var/obj/item/weapon/reagent_containers/spray/cleaner/C = locate() in src.modules
+	C.reagents.add_reagent("cleaner", C.volume)
 
 	if(src.emag)
 		var/obj/item/weapon/reagent_containers/spray/PS = src.emag
@@ -212,8 +220,7 @@
 		src.modules += new /obj/item/weapon/gripper(src)
 		src.modules += new /obj/item/weapon/matter_decompiler(src)
 		src.modules += new /obj/item/device/lightreplacer(src)
-
-		src.emag = new /obj/item/borg/stun(src)
+		src.modules += new /obj/item/borg/stun(src)
 
 		for(var/T in stacktypes)
 			var/obj/item/stack/sheet/W = new T(src)
@@ -221,6 +228,12 @@
 			src.modules += W
 
 		return
+
+/obj/item/weapon/robot_module/engineering/respawn_consumable(var/mob/living/silicon/robot/R)
+	var/obj/item/device/lightreplacer/L = locate() in src.modules
+	L.uses = L.max_uses
+
+	..()
 
 /obj/item/weapon/robot_module/security
 	name = "security robot module"

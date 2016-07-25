@@ -4,7 +4,7 @@
 //MARINE COMBAT LIGHT
 
 /obj/item/device/flashlight/combat
-	name = "Combat Flashlight"
+	name = "combat flashlight"
 	desc = "A Flashlight designed to be held in the hand, or attached to a rifle"
 	icon_state = "flashlight"
 	item_state = "flashlight"
@@ -24,7 +24,7 @@
 //MARINE ENCRYPTION KEYS
 
 /obj/item/device/encryptionkey/mcom
-	name = "Marine Command Radio Encryption Key"
+	name = "\improper Marine Command radio encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = 1, "MP" = 1, "Alpha" = 0, "Bravo" = 0, "Charlie" = 0, "Delta" = 0, "Engi" = 1, "MedSci" = 1, "Req" = 1 )
@@ -36,78 +36,78 @@
 	channels = list("Hazteam Echo" = 1)
 */
 /obj/item/device/encryptionkey/malphal
-	name = "Alpha Leader Encryption Key"
+	name = "\improper Alpha Leader encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "hop_cypherkey"
 	channels = list("Alpha" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/mbravol
-	name = "Bravo Leader Encryption Key"
+	name = "\improper Bravo Leader encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "hop_cypherkey"
 	channels = list("Bravo" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/mcharliel
-	name = "Charlie Leader Encryption Key"
+	name = "\improper Charlie Leader encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "hop_cypherkey"
 	channels = list("Charlie" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/mdeltal
-	name = "Delta Leader Encryption Key"
+	name = "\improper Delta Leader encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "hop_cypherkey"
 	channels = list("Delta" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/malp
-	name = "Alpha Squad Radio Encryption Key"
+	name = "\improper Alpha Squad radio encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "eng_cypherkey"
 	channels = list("Alpha" = 1)
 
 /obj/item/device/encryptionkey/mbra
-	name = "Bravo Squad Radio Encryption Key"
+	name = "\improper Bravo Squad radio encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "cypherkey"
 	channels = list("Bravo" = 1)
 
 /obj/item/device/encryptionkey/mcha
-	name = "Charlie Squad Radio Encryption Key"
+	name = "\improper Charlie Squad radio encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "sci_cypherkey"
 	channels = list("Charlie" = 1)
 
 /obj/item/device/encryptionkey/mdel
-	name = "Delta Squad Radio Encryption Key"
+	name = "\improper Delta Squad radio encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "hos_cypherkey"
 	channels = list("Delta" = 1)
 
 /obj/item/device/encryptionkey/mmpo
-	name = "Military Police Radio Encryption Key"
+	name = "\improper Military Police radio encryption key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "rob_cypherkey"
 	channels = list("MP" = 1)
 
 //PMCs
 /obj/item/device/encryptionkey/dutch
-	name = "Dutch's Dozen Encryption Key"
+	name = "\improper Dutch's Dozen encryption key"
 	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
 	channels = list("D.Dozen" = 1)
 
 /obj/item/device/encryptionkey/PMC
-	name = "Weyland Yutani Encryption Key"
+	name = "\improper Weyland Yutani encryption key"
 	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
 	channels = list("WY PMC" = 1)
 
 /obj/item/device/encryptionkey/bears
-	name = "Iron Bears Encryption Key"
+	name = "\improper Iron Bears encryption key"
 	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
 	syndie = 1
 	channels = list("Spetsnaz" = 1)
 
 /obj/item/device/encryptionkey/commando
-	name = "WY Commando Encryption Key"
+	name = "\improper WY commando encryption key"
 	desc = "An encyption key for a radio headset.  Contains unique cypherkeys."
 	channels = list("SpecOps" = 1)
 
@@ -273,7 +273,7 @@
 		return
 
 /obj/structure/broken_apc
-	name = "M577 Armored Personnel Carrier"
+	name = "\improper M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
 	anchored = 1
 	opacity = 1
@@ -297,8 +297,8 @@
 						/obj/item/weapon/weldingtool,
 						/obj/item/weapon/wirecutters,
 						/obj/item/device/analyzer,
-						/obj/item/clothing/under/marine_jumpsuit,
-						/obj/item/clothing/under/marine_underoos,
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/under/marine/underoos,
 						/obj/item/clothing/shoes/marine)
 
 	New()
@@ -313,65 +313,68 @@
 				new thing(src)
 
 /obj/structure/largecrate/guns
-	name = "USCM firearms crate (x3)" //Doubling up stuff on the list will just make it twice as likely.
-	var/num_things = 3
-	var/list/stuff = list(	/obj/item/weapon/gun/pistol/m4a3,
-					/obj/item/weapon/gun/pistol/m4a3,
-					/obj/item/weapon/gun/revolver/m44,
-					/obj/item/weapon/gun/rifle/m41a,
-					/obj/item/weapon/gun/rifle/m41a,
-					/obj/item/weapon/gun/shotgun/pump,
-					/obj/item/weapon/gun/smg/m39,
-					/obj/item/weapon/gun/smg/m39,
-					/obj/item/weapon/gun/rifle/m41a/scoped,
-					/obj/item/weapon/gun/rifle/lmg
+	name = "\improper USCM firearms crate (x3)"
+	var/num_guns = 3
+	var/num_mags = 2
+	var/list/stuff = list(
+					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,
+					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,
+					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver,
+					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
+					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
+					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
+					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
+					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
+					/obj/item/weapon/gun/rifle/m41a/scoped = /obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg
 				)
 	New()
 		spawn(1)
-			while(num_things)
-				if(!num_things)
-					break
-				num_things--
-				var/guntype = pick(stuff)
-				var/obj/item/weapon/gun/thing = new guntype(src)
-				var/magpath = text2path(thing.mag_type)
-				if(magpath)
-					new magpath(src)
-					new magpath(src) //2 spare mags for each, if it has one
+			var/gun_type
+			var/i = 0
+			while(++i <= num_guns)
+				gun_type = pick(stuff)
+				new gun_type(src)
+				var/obj/item/ammo_magazine/new_mag = stuff[gun_type]
+				var/m = 0
+				while(++m <= num_mags)
+					new new_mag(src)
 
 /obj/structure/largecrate/guns/russian
-	num_things = 1
-	name = "Nagant-Yamasaki firearm crate"
-	stuff = list(	/obj/item/weapon/gun/revolver/upp,
-					/obj/item/weapon/gun/pistol/c99,
-					/obj/item/weapon/gun/pistol/kt42,
-					/obj/item/weapon/gun/rifle/mar40,
-					/obj/item/weapon/gun/rifle/mar40/carbine,
-					/obj/item/weapon/gun/rifle/sniper/svd,
-					/obj/item/weapon/gun/smg/ppsh
+	num_guns = 1
+	num_mags = 1
+	name = "\improper Nagant-Yamasaki firearm crate"
+	stuff = list(	/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
+					/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
+					/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
+					/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
+					/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40/extended,
+					/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/rifle/sniper/svd,
+					/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh
 				)
 
 /obj/structure/largecrate/guns/merc
-	num_things = 1
-	name = "Black market firearm crate"
-	stuff = list(	/obj/item/weapon/gun/pistol/holdout,
-					/obj/item/weapon/gun/pistol/highpower,
-					/obj/item/weapon/gun/pistol/m1911,
-					/obj/item/weapon/gun/pistol/vp70,
-					/obj/item/weapon/gun/pistol/heavy,
-					/obj/item/weapon/gun/revolver/small,
-					/obj/item/weapon/gun/revolver/cmb,
-					/obj/item/weapon/gun/shotgun/merc,
-					/obj/item/weapon/gun/shotgun/pump/cmb,
-					/obj/item/weapon/gun/shotgun/double,
-					/obj/item/weapon/gun/smg/mp7,
-					/obj/item/weapon/gun/smg/skorpion,
-					/obj/item/weapon/gun/smg/uzi,
-					/obj/item/weapon/gun/smg/p90
+	num_guns = 1
+	num_mags = 1
+	name = "\improper Black market firearm crate"
+	stuff = list(	/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
+					/obj/item/weapon/gun/pistol/highpower = /obj/item/ammo_magazine/pistol/highpower,
+					/obj/item/weapon/gun/pistol/m1911 = /obj/item/ammo_magazine/pistol/m1911,
+					/obj/item/weapon/gun/pistol/vp70 = /obj/item/ammo_magazine/pistol/vp70,
+					/obj/item/weapon/gun/pistol/heavy = /obj/item/ammo_magazine/pistol/heavy,
+					/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
+					/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
+					/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun,
+					/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
+					/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/weapon/gun/smg/mp7 = /obj/item/ammo_magazine/smg/mp7,
+					/obj/item/weapon/gun/smg/skorpion = /obj/item/ammo_magazine/smg/skorpion,
+					/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi,
+					/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90
 				)
 
 /obj/item/weapon/storage/box/uscm_mre
-	name = "USCM Meal Ready to Eat"
+	name = "\improper USCM meal ready to eat"
 	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
 
@@ -409,10 +412,10 @@
 		bitesize = 4
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack
-	name = "Generic MRE Pack"
+	name = "\improper generic MRE pack"
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1
-	name = "USCM MRE (cornbread)"
+	name = "\improper USCM MRE (cornbread)"
 	desc = "A tray of standard USCM rations. Stale cornbread, tomato paste and some green goop fill this tray."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
@@ -423,7 +426,7 @@
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2
-	name = "USCM MRE (pork)"
+	name = "\improper USCM MRE (pork)"
 	desc = "A tray of standard USCM rations. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
 	icon_state = "MREb"
 
@@ -433,7 +436,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3
-	name = "USCM MRE (pasta)"
+	name = "\improper USCM MRE (pasta)"
 	desc = "A tray of standard USCM rations. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
 	icon_state = "MREc"
 
@@ -443,7 +446,7 @@
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4
-	name = "USCM MRE (pizza)"
+	name = "\improper USCM MRE (pizza)"
 	desc = "A tray of standard USCM rations. Cold pizza, wet greenbeans and a shitty egg fill this tray. Get something other than pizza, lardass."
 	icon_state = "MREd"
 
@@ -453,7 +456,7 @@
 		bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5
-	name = "USCM MRE (chicken)"
+	name = "\improper USCM MRE (chicken)"
 	desc = "A tray of standard USCM rations. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
 	icon_state = "MREe"
 
@@ -463,7 +466,7 @@
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6
-	name = "USCM MRE (tofu)"
+	name = "\improper USCM MRE (tofu)"
 	desc = "The USCM doesn't serve tofu you grass sucking hippie. The flag signifies your defeat."
 	icon_state = "MREf"
 
@@ -473,7 +476,7 @@
 		bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1
-	name = "Xmas MRE:Sugar cookies"
+	name = "\improper Xmas MRE:sugar cookies"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
 
@@ -483,7 +486,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2
-	name = "Xmas MRE:Gingerbread cookie"
+	name = "\improper Xmas MRE:gingerbread cookie"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
 
@@ -493,7 +496,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3
-	name = "Xmas MRE:Fruitcake"
+	name = "\improper Xmas MRE:fruitcake"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
 
@@ -503,7 +506,7 @@
 		bitesize = 2
 
 /obj/item/weapon/storage/box/pizza
-	name = "Food Delivery Box"
+	name = "food delivery box"
 	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
 
 	New()
@@ -528,14 +531,14 @@
 					new /obj/item/weapon/reagent_containers/food/snacks/hotdog(src)
 
 /obj/item/weapon/paper/janitor
-	name = "Crumbled paper"
+	name = "crumbled paper"
 	icon_state = "pamphlet"
 	info = "In loving memory of Cub Johnson."
 
 
 
 /obj/item/weapon/storage/box/wy_mre
-	name = "Weyland-Yutani Brand MRE"
+	name = "\improper Weyland-Yutani brand MRE"
 	desc = "A prepackaged, long-lasting food box from Weyland Yutani Industries.\nOn the box is the Weyland Yutani logo, with a slogan surrounding it: \n<b>WEYLAND-YUTANI. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
 	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks")
@@ -564,7 +567,7 @@
 
 
 /obj/item/weapon/book/manual/lazarus_landing_map
-	name = "Lazarus Landing Map"
+	name = "\improper Lazarus landing map"
 	desc = "A satellite printout of the Lazarus Landing colony."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "map"
@@ -586,7 +589,7 @@
 		"}
 
 /obj/item/weapon/book/manual/whiskey_outpost_map
-	name = "Whiskey Outpost Map"
+	name = "\improper Whiskey Outpost map"
 	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "map"

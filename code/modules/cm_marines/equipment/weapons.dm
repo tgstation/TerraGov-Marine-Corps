@@ -1,10 +1,10 @@
 /obj/item/weapon/combat_knife
-	name = "\improper Marine Combat Knife"
+	name = "marine combat knife"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "knife"
 	desc = "The standard issue combat knife issued to Colonial Marines soldiers. You can slide this knife into your boots."
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	sharp = 1
 	force = 25
 	w_class = 1.0
@@ -40,11 +40,11 @@
 		return (BRUTELOSS)
 
 /obj/item/weapon/throwing_knife
-	name ="Throwing Knife"
+	name ="throwing knife"
 	icon='icons/obj/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	sharp = 1
 	force = 10
 	w_class = 1.0
@@ -62,14 +62,14 @@
 	force = 50
 
 /obj/item/weapon/claymore/mercsword
-	name = "Combat Sword"
+	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "sword"
 	force = 39
 
 /obj/item/weapon/claymore/mercsword/machete
-	name = "M2132 Machete"
+	name = "\improper M2132 machete"
 	desc = "Latest issue of the USCM Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "machete"
@@ -78,11 +78,9 @@
 	force = 35
 	slot_flags = SLOT_BACK
 	w_class = 4.0
-	flags = NOSHIELD
-
 
 /obj/item/weapon/storage/box/m56_system
-	name = "M56 smartgun system"
+	name = "\improper M56 smartgun system"
 	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
@@ -97,23 +95,23 @@
 			if(istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
 				new /obj/item/smartgun_powerpack(src)
-				new /obj/item/clothing/suit/storage/marine_smartgun_armor/snow(src)
+				new /obj/item/clothing/suit/storage/smartgunner/snow(src)
 				new /obj/item/weapon/gun/smartgun(src)
 			else
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
 				new /obj/item/smartgun_powerpack(src)
-				new /obj/item/clothing/suit/storage/marine_smartgun_armor(src)
+				new /obj/item/clothing/suit/storage/smartgunner(src)
 				new /obj/item/weapon/gun/smartgun(src)
 			opened = 1
 		..()
 
 /obj/item/smartgun_powerpack
-	name = "M56 powerpack"
+	name = "\improper M56 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
 	item_state = "armor"
-	flags = FPRINT | CONDUCT | TABLEPASS
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 5.0
 	var/obj/item/weapon/cell/pcell = null
@@ -203,7 +201,7 @@
 	icon_state = "powerpackp"
 
 /obj/item/weapon/storage/box/heavy_armor
-	name = "B-Series Defensive Armor crate"
+	name = "\improper B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
@@ -214,18 +212,18 @@
 
 	open(var/mob/user as mob)
 		if(!opened)
-			new /obj/item/clothing/gloves/specialist(src)
+			new /obj/item/clothing/gloves/marine/specialist(src)
 			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
-				new /obj/item/clothing/suit/storage/marine/marine_spec_armor/snow(src)
-				new /obj/item/clothing/head/helmet/marine/heavy/snow(src)
+				new /obj/item/clothing/suit/storage/marine/specialist/snow(src)
+				new /obj/item/clothing/head/helmet/marine/specialist/snow(src)
 			else
-				new /obj/item/clothing/suit/storage/marine/marine_spec_armor(src)
-				new /obj/item/clothing/head/helmet/marine/heavy(src)
+				new /obj/item/clothing/suit/storage/marine/specialist(src)
+				new /obj/item/clothing/head/helmet/marine/specialist(src)
 			opened = 1
 		..()
 
 /obj/item/weapon/storage/box/m42c_system
-	name = "M42C Scoped Rifle system (Recon Set)"
+	name = "\improper M42C scoped rifle system (recon set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -260,7 +258,7 @@
 		..()
 
 /obj/item/weapon/storage/box/m42c_system_Jungle
-	name = "M42C Scoped Rifle system (Marksman Set)"
+	name = "\improper M42C scoped rifle system (marksman set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -295,7 +293,7 @@
 		..()
 
 /obj/item/weapon/storage/box/grenade_system
-	name = "M92 Grenade Launcher case"
+	name = "\improper M92 grenade launcher case"
 	desc = "A large case containing a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
@@ -315,7 +313,7 @@
 
 
 /obj/item/weapon/storage/box/rocket_system
-	name = "M83 Rocket Launcher crate"
+	name = "\improper M83 rocket launcher crate"
 	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
@@ -336,21 +334,19 @@
 			new /obj/item/ammo_magazine/rocket/wp(src)
 
 /obj/item/weapon/tank/phoron/m240
-	name = "M240 Fuel tank"
+	name = "\improper M240 fuel tank"
 	desc = "A fuel tank of powerful sticky-fire chemicals for use in the M240 Incinerator unit. Handle with care."
 	icon_state = "flametank"
 
 
 ///***GRENADES***///
 /obj/item/weapon/grenade/explosive
-	desc = "It is set to detonate in 4 seconds."
 	name = "frag grenade"
+	desc = "It is set to detonate in 4 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade_ex"
 	det_time = 40
 	item_state = "grenade_ex"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
 	dangerous = 1
 
 	prime()
@@ -373,13 +369,12 @@
 		return
 
 /obj/item/weapon/grenade/incendiary
-	desc = "It is set to detonate in 4 seconds."
 	name = "incendiary grenade"
+	desc = "It is set to detonate in 4 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "large_grenade"
 	det_time = 40
 	item_state = "flashbang"
-	flags = FPRINT | TABLEPASS
 	slot_flags = SLOT_BELT
 	dangerous = 1
 
@@ -407,14 +402,12 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 
 /obj/item/weapon/grenade/smokebomb
-	desc = "It is set to detonate in 2 seconds."
 	name = "smoke bomb"
+	desc = "It is set to detonate in 2 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "flashbang"
 	det_time = 20
 	item_state = "flashbang"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 
 	New()
@@ -442,14 +435,12 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 		return
 
 /obj/item/weapon/grenade/phosphorus
-	desc = "It is set to detonate in 2 seconds."
 	name = "smoke bomb"
+	desc = "It is set to detonate in 2 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "flashbang"
 	det_time = 20
 	item_state = "flashbang"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
 	var/datum/effect/effect/system/smoke_spread/phosphorus/smoke
 	dangerous = 1
 
@@ -481,7 +472,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 ///***MINES***///
 /obj/item/device/mine
-	name = "Proximity Mine"
+	name = "proximity mine"
 	desc = "An anti-personnel mine. Useful for setting traps or for area denial. "
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "mine"
@@ -492,7 +483,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	throw_range = 6
 	throw_speed = 3
 	unacidable = 1
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT
 
 	var/triggered = 0
 	var/triggertype = "explosive" //Calls that proc

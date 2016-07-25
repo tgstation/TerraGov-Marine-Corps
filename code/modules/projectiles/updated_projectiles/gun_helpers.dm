@@ -5,7 +5,7 @@ ERROR CODES AND WHAT THEY MEAN:
 ERROR CODE A1: null ammo while reloading. <------------ Only appears when reloading a weapon and switching the .ammo. Somehow the argument passed a null.ammo.
 ERROR CODE I1: projectile malfunctioned while firing. <------------ Right before the bullet is fired, the actual bullet isn't present or isn't a bullet.
 ERROR CODE I2: null ammo while load_into_chamber() <------------- Somehow the ammo datum is missing or something. We need to figure out how that happened.
-ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammunition only. Ammunition should never have negative rounds on spawn.
+ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammunition only. Ammunition should never have negative rounds after spawn.
 
 DEFINES in setup.dm, referenced here.
 #define GUN_CAN_POINTBLANK		1
@@ -13,7 +13,7 @@ DEFINES in setup.dm, referenced here.
 #define GUN_UNUSUAL_DESIGN		4
 #define GUN_SILENCED			8
 #define GUN_AUTOMATIC			16
-#define GUN_ALT_FIRE			32
+#define GUN_INTERNAL_MAG		32
 #define GUN_AUTO_EJECTOR		64
 #define GUN_AMMO_COUNTER		128
 #define GUN_BURST_ON			256
@@ -36,7 +36,7 @@ DEFINES in setup.dm, referenced here.
 	Guns, on the front end, function off a three tier process. To successfully create some unique gun
 	that has a special method of firing, you need to override these procs.
 
-	New() //You can typically leave this one alone, unless you need for the gun to do something on spawn.
+	New() //You can typically leave this one alone unless you need for the gun to do something on spawn.
 	Guns that use the regular system of chamber fire should load_into_chamber() on New().
 
 	reload() //If the gun doesn't use the normal methods of reloading, like revolvers or shotguns which use
@@ -73,7 +73,7 @@ DEFINES in setup.dm, referenced here.
 	like with the mentioned point blanking/suicide.
 
 
-	Other procs are pretty self explanatory, and what is listed above is what you should usually cahnge for unusual
+	Other procs are pretty self explanatory, and what is listed above is what you should usually change for unusual
 	cases. So long as the gun can return true on able_to_fire() then move on to load_into_chamber() and finally
 	reload_into_chamber(), you're in good shape. Those three procs basically make up the fire cycle, and if they
 	function correctly, everything else will follow.
@@ -94,7 +94,7 @@ DEFINES in setup.dm, referenced here.
 
 	The guns also have bitflags for various functions, so refer to those in case you want to create something unique.
 	They're all pretty straight forward; silenced comes from attachments only, so don't try to set it as the default.
-	If you want a silenced gun, attach a silencer to it that cannot be removed.
+	If you want a silenced gun, attach a silencer to it on New() that cannot be removed.
 
 	~N
 
@@ -105,10 +105,8 @@ DEFINES in setup.dm, referenced here.
 	Add ping for energy guns like the taser and plasma caster.
 	Move pred check for damage effects into the actual predator files instead of the usual.
 	Move the mind checks for damage and stun to actual files, or rework it somehow.
-	Make the following flags do something: GUN_ON_RUSSIANS GUN_ON_MERCS GUN_ALT_FIRE do something.
-	The first two are for the distress weapon randomizier which was never implemented as far as I know,
-	the other one is for any weapon that has alternating fire modes. Shoot once, then change up, etc.
-	No guns currently use it, but it could exist in the future if wanted.
+	Make the following flags do something: GUN_ON_RUSSIANS GUN_ON_MERCS.
+	These two are for the distress weapon randomizier that was never implemented as far as I know,
 */
 
 //----------------------------------------------------------
@@ -175,6 +173,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	unwield(user)
 
 /obj/item/weapon/gun/proc/wy_allowed_check(var/mob/living/carbon/human/user)
+	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
+
 	if(istype(user) && user.mind)
 		switch(user.mind.assigned_role)
 			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
@@ -192,7 +192,7 @@ should be alright.
 		var/mob/living/carbon/human/owner = user
 		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
 			var/obj/item/I = owner.wear_suit
-			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I,/obj/item/clothing/suit/storage/marine_smartgun_armor))
+			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I,/obj/item/clothing/suit/storage/smartgunner))
 				harness_return(user)
 				return 1
 
@@ -207,6 +207,7 @@ should be alright.
 			user.update_inv_s_store()
 
 /obj/item/weapon/gun/attack_self(mob/user)
+	..()
 	if (target)
 		lower_aim()
 		return

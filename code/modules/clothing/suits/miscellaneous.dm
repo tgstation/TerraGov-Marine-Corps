@@ -36,7 +36,6 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
-	flags = FPRINT | TABLEPASS
 	body_parts_covered = UPPER_TORSO|ARMS
 
 
@@ -45,7 +44,6 @@
 	desc = "Yarr."
 	icon_state = "hgpirate"
 	item_state = "hgpirate"
-	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 60, bullet = 90, laser = 60, energy = 20, bomb = 25, bio = 10, rad = 10)
@@ -56,7 +54,7 @@
 	desc = "Suit for a cyborg costume."
 	icon_state = "death"
 	item_state = "death"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
@@ -66,37 +64,29 @@
 	desc = "A heavy great coat"
 	icon_state = "nazi"
 	item_state = "nazi"
-	flags = FPRINT | TABLEPASS
-
 
 /obj/item/clothing/suit/johnny_coat
 	name = "johnny~~ coat"
 	desc = "Johnny~~"
 	icon_state = "johnny"
 	item_state = "johnny"
-	flags = FPRINT | TABLEPASS
-
 
 /obj/item/clothing/suit/justice
 	name = "justice suit"
 	desc = "This pretty much looks ridiculous."
 	icon_state = "justice"
 	item_state = "justice"
-	flags = FPRINT | TABLEPASS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
-
 
 /obj/item/clothing/suit/judgerobe
 	name = "judge's robe"
 	desc = "This robe commands authority."
 	icon_state = "judge"
 	item_state = "judge"
-	flags = FPRINT | TABLEPASS
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
 	flags_inv = HIDEJUMPSUIT
-
 
 /obj/item/clothing/suit/wcoat
 	name = "waistcoat"
@@ -121,7 +111,6 @@
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = 3
-	flags = FPRINT | TABLEPASS
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
@@ -246,21 +235,18 @@
 	desc = "A long, thick black leather coat."
 	icon_state = "leathercoat"
 	item_state = "leathercoat"
-	flags = FPRINT | TABLEPASS
 
 /obj/item/clothing/suit/browncoat
 	name = "brown leather coat"
 	desc = "A long, brown leather coat."
 	icon_state = "browncoat"
 	item_state = "browncoat"
-	flags = FPRINT | TABLEPASS
 
 /obj/item/clothing/suit/neocoat
 	name = "black coat"
 	desc = "A flowing, black coat."
 	icon_state = "neocoat"
 	item_state = "neocoat"
-	flags = FPRINT | TABLEPASS
 
 //stripper
 /obj/item/clothing/under/stripper
@@ -372,7 +358,6 @@
 	desc = "A well-worn WW2 leather bomber jacket."
 	icon_state = "bomber"
 	item_state = "bomber"
-	flags = FPRINT | TABLEPASS
 	body_parts_covered = UPPER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C

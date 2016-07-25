@@ -3,7 +3,7 @@
 	desc = "To stop that awful noise."
 	icon_state = "muzzle"
 	item_state = "muzzle"
-	flags = FPRINT|TABLEPASS|MASKCOVERSMOUTH
+	flags_inv = COVERMOUTH
 	body_parts_covered = 0
 	w_class = 2
 	gas_transfer_coefficient = 0.90
@@ -23,7 +23,7 @@
 	icon_state = "sterile"
 	item_state = "sterile"
 	w_class = 2
-	flags = FPRINT|TABLEPASS|MASKCOVERSMOUTH
+	flags_inv = COVERMOUTH
 	body_parts_covered = 0
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
@@ -33,7 +33,6 @@
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."
 	icon_state = "fake-moustache"
-	flags = FPRINT|TABLEPASS
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
 
@@ -41,7 +40,6 @@
 	name = "Snorkel"
 	desc = "For the Swimming Savant."
 	icon_state = "snorkel"
-	flags = FPRINT|TABLEPASS
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
 
@@ -52,7 +50,7 @@
 	desc = "A blue neck scarf."
 	icon_state = "blueneckscarf"
 	item_state = "blueneckscarf"
-	flags = FPRINT|TABLEPASS|MASKCOVERSMOUTH
+	flags_inv = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -61,7 +59,7 @@
 	desc = "A red and white checkered neck scarf."
 	icon_state = "redwhite_scarf"
 	item_state = "redwhite_scarf"
-	flags = FPRINT|TABLEPASS|MASKCOVERSMOUTH
+	flags_inv = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -70,7 +68,7 @@
 	desc = "A green neck scarf."
 	icon_state = "green_scarf"
 	item_state = "green_scarf"
-	flags = FPRINT|TABLEPASS|MASKCOVERSMOUTH
+	flags_inv = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -79,7 +77,7 @@
 	desc = "A stealthy, dark scarf."
 	icon_state = "ninja_scarf"
 	item_state = "ninja_scarf"
-	flags = FPRINT|TABLEPASS|MASKCOVERSMOUTH
+	flags_inv = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 	siemens_coefficient = 0
@@ -89,8 +87,7 @@
 	desc = "A rubber pig mask."
 	icon_state = "pig"
 	item_state = "pig"
-	flags = FPRINT|TABLEPASS|BLOCKHAIR
-	flags_inv = HIDEFACE
+	flags_inv = HIDEFACE | HIDEALLHAIR | HIDEEYES | HIDEEARS | COVERMOUTH | COVEREYES
 	w_class = 2
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
@@ -100,8 +97,7 @@
 	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
 	icon_state = "horsehead"
 	item_state = "horsehead"
-	flags = FPRINT|TABLEPASS|BLOCKHAIR
-	flags_inv = HIDEFACE
+	flags_inv = HIDEFACE | HIDEALLHAIR | HIDEEYES | HIDEEARS | COVERMOUTH | COVEREYES
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = 2
 	var/voicechange = 0

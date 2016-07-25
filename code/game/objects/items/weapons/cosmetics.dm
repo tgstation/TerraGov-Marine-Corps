@@ -4,7 +4,6 @@
 	desc = "Paint, for your face. Who woulda thought?."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "camo"
-	flags = FPRINT | TABLEPASS
 	w_class = 1.0
 	var/uses = 10
 	var/colour = "green"

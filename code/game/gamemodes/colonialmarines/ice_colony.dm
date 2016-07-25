@@ -102,7 +102,7 @@
 		/*if(3) //Prisoner
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)*/
 		if(3) //Security
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine_jumpsuit/PMC(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), slot_wear_suit)
@@ -148,13 +148,13 @@
 //It does NOT check for valid species or marines. vs. survivors.
 /datum/game_mode/ice_colony/proc/count_humans()
 	var/human_count = 0
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in player_list)
 		if(H) //Prevent any runtime errors
-			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
-				if(H.species != "Yautja") // Preds don't count in round end.
+			if(istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space) && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome) && !istype(get_area(H.loc),/area/shuttle/distress_start))
+				if(!isYautja(H)) // Preds don't count in round end.
 					human_count += 1 //Add them to the amount of people who're alive.
 		else
-			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
+			log_debug("ERROR! NULL MOB IN LIVING MOB LIST! COUNT_HUMANS()")
 
 	return human_count
 
@@ -163,9 +163,9 @@
 //Played by a person, is not dead, is not in a closet, is not in space.
 /datum/game_mode/ice_colony/proc/count_xenos()
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in player_list)
 		if(X) //Prevent any runtime errors
-			if(X.client && istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
+			if(istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space) && !istype(get_area(X.loc),/area/shuttle/distress_start)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_XENOS()")

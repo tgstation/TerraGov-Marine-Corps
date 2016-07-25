@@ -2,7 +2,7 @@
 //They can't, however, activate any of the special functions.
 
 /obj/item/weapon/twohanded/glaive
-	name = "Yautja War Glaive"
+	name = "war glaive"
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "glaive"
 	item_state = "glaive"
@@ -15,7 +15,7 @@
 	throw_speed = 3
 	edge = 1
 	sharp = 1
-	flags = FPRINT | TABLEPASS | NOSHIELD | TWOHANDED
+	flags = FPRINT | CONDUCT | NOSHIELD | TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1
@@ -25,24 +25,23 @@
 	item_state = (flags & WIELDED) ? "glaive-wield" : "glaive"
 
 /obj/item/weapon/twohanded/glaive/damaged
-	name = "Damaged War Glaive"
+	name = "war glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
 	force = 18
 	force_wielded = 28
 
 /obj/item/clothing/head/helmet/space/yautja
+	name = "clan mask"
+	desc = "A beautifully designed metallic face mask, both ornate and functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "pred_mask1"
 	item_state = "helmet"
 	icon_override = 'icons/Predator/items.dmi'
-	name = "Yautja Clan Mask"
-	desc = "A beautifully designed metallic face mask, both ornate and functional."
 	armor = list(melee = 80, bullet = 95, laser = 70, energy = 70, bomb = 65, bio = 100, rad = 100)
 	anti_hug = 100
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES|HEADCOVERSMOUTH
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
-	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
+	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | NOPRESSUREDMAGE | BLOCKSHARPOBJ
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 	unacidable = 1
 
@@ -104,7 +103,7 @@
 				mob.update_inv_glasses()
 
 /obj/item/clothing/suit/armor/yautja
-	name = "Yautja Clan Armor"
+	name = "clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "halfarmor"
@@ -130,7 +129,7 @@
 	unacidable = 1
 
 /obj/item/clothing/suit/armor/yautja/full
-	name = "Yautja Heavy Clan Armor"
+	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
@@ -139,7 +138,7 @@
 	slowdown = 1
 
 /obj/item/weapon/harpoon/yautja
-	name = "Yautja Harpoon"
+	name = "large harpoon"
 	desc = "A huge metal spike, with a hook at the end. It's carved with mysterious alien writing."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spike"
@@ -152,7 +151,7 @@
 	sharp = 1
 
 /obj/item/weapon/wristblades
-	name = "Yautja Wrist Blades"
+	name = "wrist blades"
 	desc = "A pair of huge, serrated blades extending from a metal gauntlet."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "wrist"
@@ -213,7 +212,7 @@
 				D.open(1)
 
 /obj/item/weapon/wristblades/scimitar
-	name = "Yautja Wrist Scimitar"
+	name = "wrist scimitar"
 	desc = "An enormous serrated blade that extends from the gauntlet."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "scim"
@@ -224,7 +223,7 @@
 
 
 /obj/item/clothing/shoes/yautja
-	name = "Yautja Armored Boots"
+	name = "clan greaves"
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "y-boots"
 	icon_override = 'icons/Predator/items.dmi'
@@ -232,7 +231,7 @@
 //	item_state = "yautja"
 	unacidable = 1
 	permeability_coefficient = 0.01
-	flags = NOSLIP
+	flags_inv = NOSLIPPING
 	body_parts_covered = FEET|LEGS
 	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
@@ -248,7 +247,7 @@
 			icon_state = "y-boots2"
 
 /obj/item/clothing/under/chainshirt
-	name = "Yautja Mesh"
+	name = "body mesh"
 	icon = 'icons/Predator/items.dmi'
 	desc = "A set of very fine chainlink in a meshwork for comfort and utility."
 	icon_state = "mesh_shirt"
@@ -261,7 +260,7 @@
 	species_restricted = null
 
 /obj/item/clothing/gloves/yautja
-	name = "Yautja Bracers"
+	name = "clan bracers"
 	desc = "An extremely complex, yet simple-to-operate set of armored bracers worn by the Yautja. It has many functions, activate them to use some."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "bracer"
@@ -613,7 +612,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/yautja
-	name = "Yautja Crystal"
+	name = "unusual crysal"
 	desc = "A strange glowing crystal with a spike at one end."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "crystal"
@@ -633,20 +632,21 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "plasma"
 	item_state = "plasma_wear"
-	name = "Yautja Plasma Caster"
+	name = "plasma caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
 	default_ammo = "plasma bolt"
 	muzzle_flash = null // TO DO, add a decent one.
 	canremove = 0
 	w_class = 5
-	force = 0 //Yeah... Need to remove hitting people with it.
+	force = 0
 	fire_delay = 3
 	var/obj/item/clothing/gloves/yautja/source = null
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	accuracy = 10
+	flags = FPRINT | CONDUCT | NOBLUDGEON //Can't buldgeon with this.
 	gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
@@ -731,7 +731,7 @@
 		return
 
 /obj/item/weapon/gun/launcher/speargun
-	name = "Yautja Speargun"
+	name = "heavy speargun"
 	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predspeargun"
@@ -819,7 +819,7 @@
 		return
 
 /obj/item/weapon/gun/launcher/plasmarifle
-	name = "Yautja Plasma Rifle"
+	name = "plasma rifle"
 	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "spikelauncher"
@@ -937,7 +937,7 @@
 
 //Yes, it's a backpack that goes on the belt. I want the backpack noises. Deal with it (tm)
 /obj/item/weapon/storage/backpack/yautja
-	name = "Yautja Hunting Pouch"
+	name = "hunting pouch"
 	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "beltbag"
@@ -948,7 +948,7 @@
 	max_combined_w_class = 30
 
 /obj/item/clothing/glasses/night/yautja
-	name = "Bio-mask Nightvision"
+	name = "bio-mask nightvision"
 	desc = "A vision overlay generated by the Bio-Mask. Used for low-light conditions."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "visor_nvg"
@@ -961,7 +961,7 @@
 		overlay = null  //Stops the green overlay.
 
 /obj/item/clothing/glasses/thermal/yautja
-	name = "Bio-mask Thermal"
+	name = "bio-mask thermal"
 	desc = "A vision overlay generated by the Bio-Mask. Used to sense the heat of prey."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "visor_thermal"
@@ -971,7 +971,7 @@
 	canremove = 0
 
 /obj/item/clothing/glasses/meson/yautja
-	name = "Bio-mask X-ray"
+	name = "bio-mask x-ray"
 	desc = "A vision overlay generated by the Bio-Mask. Used to see through objects."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "visor_meson"
@@ -980,7 +980,7 @@
 	canremove = 0
 
 /obj/item/weapon/legcuffs/yautja
-	name = "Yautja Mine"
+	name = "hunting trap"
 	throw_speed = 2
 	throw_range = 2
 	icon = 'icons/Predator/items.dmi'
@@ -1040,7 +1040,7 @@
 
 //Yautja channel. Has to delete stock encryption key so we don't receive sulaco channel.
 /obj/item/device/radio/headset/yautja
-	name = "Yautja vox caster"
+	name = "vox caster"
 	desc = "A strange Yautja device used for projecting the Yautja's voice to the others in its pack. Similar in function to a standard human radio."
 	icon_state = "cargo_headset"
 	item_state = "headset"
@@ -1067,18 +1067,18 @@
 		return
 
 /obj/item/device/encryptionkey/yautja
-	name = "Yautja Encryption Key"
+	name = "\improper Yautja encryption key"
 	desc = "A complicated encryption device."
 	icon_state = "cypherkey"
 	channels = list("Yautja" = 1)
 
 //I need to go over these weapons and balance them out later. Right now they're pretty all over the place.
 /obj/item/weapon/melee/yautja_chain
-	name = "Yautja Chainwhip"
+	name = "chainwhip"
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
 	icon_state = "whip"
 	item_state = "chain"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	force = 35
 	throwforce = 12
@@ -1100,12 +1100,12 @@
 		return ..()
 
 /obj/item/weapon/melee/yautja_knife
-	name = "Yautja Ceremonial Dagger"
+	name = "ceremonial dagger"
 	desc = "A viciously sharp dagger enscribed with ancient Yautja markings. Smells thickly of blood. Carried by some hunters."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predknife"
 	item_state = "knife"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_POCKET
 	sharp = 1
 	force = 24
@@ -1170,12 +1170,12 @@
 		return
 
 /obj/item/weapon/melee/yautja_sword
-	name = "Yautja Hunting Blade"
+	name = "clan sword"
 	desc = "An expertly crafted Yautja blade carried by hunters who wish to fight up close. Razor sharp, and capable of cutting flesh into ribbons. Commonly carried by aggresive and lethal hunters."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "clansword"
 	item_state = "clansword"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BACK
 	sharp = 1
 	edge = 1
@@ -1207,12 +1207,12 @@
 			user.make_dizzy(50)
 
 /obj/item/weapon/melee/yautja_scythe
-	name = "Yautja Double War Scythe"
+	name = "double war scythe"
 	desc = "A huge, incredibly sharp double blade used for hunting dangerous prey. This weapon is commonly carried by Yautja who wish to disable and slice apart their foes.."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predscythe"
 	item_state = "scythe0"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
 	sharp = 1
 	force = 32
@@ -1344,12 +1344,12 @@
 
 //Telescopic baton
 /obj/item/weapon/melee/combistick
-	name = "Yautja Combi-Stick"
+	name = "combi-stick"
 	desc = "A compact yet deadly personal weapon. Can be concealed when folded. Functions well as a throwing weapon or defensive tool. A common sight in Yautja packs due to its versatility."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "combilong"
 	item_state = "combilong"
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 4
 	force = 32
@@ -1415,12 +1415,12 @@
 	return
 
 /obj/item/device/yautja_teleporter
-	name = "Yautja relay"
+	name = "relay beacon"
 	desc = "A device covered in Yautja writing. It whirrs and beeps every couple of seconds."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "teleporter"
 	origin_tech = "materials=7;bluespace=7;engineering=7"
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT | CONDUCT
 	w_class = 2
 	force = 1
 	throwforce = 1

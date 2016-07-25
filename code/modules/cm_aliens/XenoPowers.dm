@@ -299,11 +299,9 @@
 		A.icon = A.ammo.icon
 		A.icon_state = A.ammo.icon_state
 		A.damage = A.ammo.damage
-		A.damage_type = A.ammo.damage_type
 		A.accuracy += A.ammo.accuracy
 
-		spawn()
-			A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed) //Ptui!
+		A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed) //Ptui!
 //		src.next_move += 2 //Lags you out a bit, spitting.
 		has_spat = 1
 		spawn(spit_delay)
@@ -480,6 +478,8 @@
 	if(last_special > world.time) return
 
 	if(!check_state()) return
+
+	if(!istype(victim,/mob/living/carbon/human)) return // Runtime fix for attempting to secure Monkeys, which don't need to be cuffed anyway
 
 	if(!victim)
 		var/list/victims = list()

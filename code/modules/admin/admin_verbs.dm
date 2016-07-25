@@ -73,6 +73,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
 	/client/proc/change_security_level, /* Changes alert levels*/
+	/client/proc/toggle_gun_restrictions,
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
 	/datum/admins/proc/admin_force_distress,
@@ -916,3 +917,18 @@ var/list/admin_verbs_mentor = list(
 	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
+
+/client/proc/toggle_gun_restrictions()
+	set name = "Toggle Gun Restrictions"
+	set desc = "Toggling to on will allow anyone to use restricted WY superguns. Leave this alone unless you know what you're doing."
+	set category = "Server"
+
+	if(!holder)	return
+	if(config)
+		if(config.remove_gun_restrictions)
+			src << "<b>Enabled gun restrictions.</b>"
+			message_admins("Admin [key_name_admin(usr)] has enabled WY gun restrictions.", 1)
+		else
+			src << "<b>Disabled gun restrictions.</b>"
+			message_admins("Admin [key_name_admin(usr)] has disabled WY gun restrictions.", 1)
+		config.remove_gun_restrictions = !config.remove_gun_restrictions

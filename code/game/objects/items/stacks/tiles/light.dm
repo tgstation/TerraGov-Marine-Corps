@@ -8,7 +8,6 @@
 	throwforce = 5.0
 	throw_speed = 5
 	throw_range = 20
-	flags = FPRINT | TABLEPASS | CONDUCT
 	max_amount = 60
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
 	var/on = 1

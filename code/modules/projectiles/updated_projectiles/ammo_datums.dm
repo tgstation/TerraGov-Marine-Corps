@@ -6,14 +6,23 @@
 #define AMMO_XENO_TOX		4
 #define AMMO_ENERGY 		8
 #define AMMO_ROCKET			16
-#define AMMO_INCENDIARY		32
-#define AMMO_SKIPS_HUMANS	64
-#define AMMO_SKIPS_ALIENS 	128
-#define AMMO_IS_SILENCED 	256
-#define AMMO_NO_SCATTER 	512
-#define AMMO_IGNORE_ARMOR	1024
-#define AMMO_IGNORE_RESIST	2048
+#define AMMO_SNIPER			32
+#define AMMO_INCENDIARY		64
+#define AMMO_SKIPS_HUMANS	128
+#define AMMO_SKIPS_ALIENS 	256
+#define AMMO_IS_SILENCED 	512
+#define AMMO_NO_SCATTER 	1024
+#define AMMO_IGNORE_ARMOR	2048
+#define AMMO_IGNORE_RESIST	4096
 */
+
+//Good to standardize this.
+#define NEG_ARMOR_PENETRATION	-10
+#define MIN_ARMOR_PENETRATION	10
+#define LOW_ARMOR_PENETRATION	20
+#define NORM_ARMOR_PENETRATION	30
+#define HIGH_ARMOR_PENETRATION	50
+#define MAX_ARMOR_PENETRATION	90
 
 /datum/ammo
 	var/name = "generic bullet"
@@ -35,7 +44,7 @@
 	var/max_range 		= 30 //This will de-increment a counter on the bullet.
 	var/damage 			= 0
 	var/damage_bleed 	= 1 //How much damage the bullet loses per turf traveled, very high for shotguns. //Not anymore ~N.
-	var/damage_type 	= BRUTE
+	var/damage_type 	= BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/armor_pen 		= 0
 	var/shrapnel_chance = 0
 	var/shell_speed 	= 1 //This is the default projectile speed: x turfs per 1 second.
@@ -82,11 +91,11 @@
 
 	proc/burst(var/atom/target,var/obj/item/projectile/P,var/damage_type = BRUTE)
 		if(!target) return
-		for(var/mob/living/carbon/M in range(1,target))
+		for(var/mob/living/carbon/M in orange(1,target))
 			if(P.firer == M)
 				continue
 			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
-			M.apply_damage(rand(5,25),damage_type)
+			M.apply_damage(rand(5,P.damage/2),damage_type)
 
 	proc/multiple_projectiles(var/obj/item/projectile/original_P, range, speed)
 		set waitfor = 0
@@ -102,7 +111,6 @@
 			P.icon_state = P.ammo.icon_state
 			P.damage = P.ammo.damage //These do not benefit from gun accuracy/damage.
 			P.accuracy += P.ammo.accuracy
-			P.damage_type = P.ammo.damage_type
 			P.original = new_target
 			P.fire_at(new_target,original_P.firer,original_P.shot_from,range,speed) //Fire!
 
@@ -165,17 +173,17 @@
 	shrapnel_chance = 50 //50% likely to generate shrapnel on impact.
 
 /datum/ammo/bullet/pistol/ap
-	name = "AP pistol bullet"
+	name = "armor-piercing pistol bullet"
 	damage = 17
 	accuracy = 8
-	armor_pen = 30
+	armor_pen = NORM_ARMOR_PENETRATION
 	shrapnel_chance = 0
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
 	damage = 35
 	accuracy = -10
-	armor_pen = 5
+	armor_pen = MIN_ARMOR_PENETRATION - 5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/incendiary
@@ -188,9 +196,11 @@
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
-	damage = 30
+	damage = 50
 	accuracy = 15
-	shrapnel_chance = 25
+	armor_pen = LOW_ARMOR_PENETRATION + 5
+	shrapnel_chance = 20
+	agony = 2
 
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
@@ -215,14 +225,14 @@
 */
 
 /datum/ammo/bullet/smg
-	name = "SMG bullet"
+	name = "submachinegun bullet"
 	damage = 25
 	accurate_range = 5
 
 /datum/ammo/bullet/smg/ap
-	name = "AP SMG bullet"
+	name = "armor-piercing submachinegun bullet"
 	damage = 22
-	armor_pen = 30
+	armor_pen = NORM_ARMOR_PENETRATION
 
 /*
 //================================================
@@ -233,14 +243,13 @@
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
 	damage = 35
-	armor_pen = 3
+	armor_pen = MIN_ARMOR_PENETRATION - 5
 	accuracy = -15
 	stun = 1 //Knockdown! Doesn't work on xenos though.
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
 	damage = 25
-	armor_pen = 1
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
@@ -248,15 +257,21 @@
 	accuracy = 15
 	accurate_range = 8
 	stun = 1
-	armor_pen = -10
+	armor_pen = NEG_ARMOR_PENETRATION
 	shrapnel_chance = 0
 	damage_bleed = 0
 
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
 	damage = 45
-	armor_pen = 10
+	armor_pen = MIN_ARMOR_PENETRATION
 	accuracy = -10
+
+/datum/ammo/bullet/revolver/highimpact
+	name = "high-impact revolver bullet"
+	damage = 55
+	armor_pen = LOW_ARMOR_PENETRATION - 5
+	weaken = 2
 
 /*
 //================================================
@@ -281,21 +296,21 @@
 	name = "marksman rifle bullet"
 	damage = 54
 	accuracy = 20
-	armor_pen = 10
+	armor_pen = MIN_ARMOR_PENETRATION
 	shrapnel_chance = 0
 	damage_bleed = 0
 
 /datum/ammo/bullet/rifle/ap
-	name = "AP rifle bullet"
+	name = "armor-piercing rifle bullet"
 	damage = 35
 	accuracy = 20
-	armor_pen = 20
+	armor_pen = NORM_ARMOR_PENETRATION - 5
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
-	damage = 50
+	damage = 48
 	accuracy = -5
-	armor_pen = -5
+	armor_pen = NEG_ARMOR_PENETRATION + 5
 
 /*
 //================================================
@@ -307,9 +322,9 @@
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
-	damage = 60 //High damage.
+	damage = 58 //High damage.
 	max_range = 12
-	armor_pen = 25 //Good armor pen.
+	armor_pen = LOW_ARMOR_PENETRATION
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
@@ -319,7 +334,7 @@
 	damage = 48 //Less damage than a normal slug, but has burst and burn.
 	max_range = 12
 	accuracy = -5
-	armor_pen = 10
+	armor_pen = MIN_ARMOR_PENETRATION
 	damage_type = BURN
 	ammo_behavior = AMMO_INCENDIARY
 
@@ -370,30 +385,28 @@
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
 	damage = 80
-	accurate_range = 20
-	max_range = 30
-	armor_pen = 50
+	accurate_range = 3 //Works in reverse. You have a lower chance to hit if the target is close.
+	max_range = 30 //Otherwise, the bullet is fairly accurate even at max range.
+	armor_pen = HIGH_ARMOR_PENETRATION
 	damage_bleed = 0
 	accuracy = 15
 	shell_speed = 3
-	ammo_behavior = AMMO_NO_SCATTER
+	ammo_behavior = AMMO_NO_SCATTER | AMMO_SNIPER
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
-	damage = 58
-	accurate_range = 15
+	damage = 60
 	max_range = 25
-	armor_pen = 30
+	armor_pen = NORM_ARMOR_PENETRATION
 	accuracy = 0
 	damage_type = BURN
-	ammo_behavior = AMMO_NO_SCATTER | AMMO_INCENDIARY
+	ammo_behavior = AMMO_NO_SCATTER | AMMO_INCENDIARY | AMMO_SNIPER
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak sniper bullet"
 	damage = 55
-	accurate_range = 12
 	max_range = 24
-	armor_pen = 15
+	armor_pen = LOW_ARMOR_PENETRATION - 5
 	accuracy = -10
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
@@ -402,9 +415,6 @@
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
 	damage = 160
-	accurate_range = 30
-	max_range = 30
-	armor_pen = 50
 	accuracy = 55
 	shell_speed = 4
 
@@ -417,7 +427,7 @@
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
 	damage = 28
-	armor_pen = 5
+	armor_pen = MIN_ARMOR_PENETRATION
 	accuracy = 50
 	ammo_behavior = AMMO_SKIPS_HUMANS
 
@@ -426,7 +436,7 @@
 	irradiate = 1 //Free rads.
 	agony = 1
 	damage = 35 // Slightly more damage than regular smartgun.
-	armor_pen = 25 // Ouch.
+	armor_pen = NORM_ARMOR_PENETRATION
 	shrapnel_chance = 65 // High chance of shrapnel tearing up your insides.
 	damage_type = BRUTE
 	ammo_behavior = AMMO_REGULAR
@@ -434,7 +444,7 @@
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	damage = 50
-	armor_pen = 5
+	armor_pen = MIN_ARMOR_PENETRATION - 5
 	accuracy = 25
 	max_range = 12
 	ammo_behavior = AMMO_SKIPS_HUMANS
@@ -442,7 +452,7 @@
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
 	damage = 50
-	armor_pen = 10
+	armor_pen = MIN_ARMOR_PENETRATION
 	accuracy = -5
 	shrapnel_chance = 22
 
@@ -481,7 +491,7 @@
 	name = "anti-armor rocket"
 	damage = 160
 	damage_type = BRUTE  //Bonk!
-	armor_pen = 100
+	armor_pen = MAX_ARMOR_PENETRATION
 	damage_bleed = 0
 	ammo_behavior = AMMO_ROCKET
 
@@ -678,6 +688,9 @@
 	damage_type = BURN
 	damage = 20
 
+	on_shield_block(mob/M, obj/item/projectile/P)
+		burst(M,P,damage_type)
+
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
 	damage = 30
@@ -721,6 +734,9 @@
 	damage_type = BURN
 	ammo_behavior = AMMO_XENO_ACID | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_ARMOR | AMMO_INCENDIARY
 
+	on_shield_block(mob/M, obj/item/projectile/P)
+		burst(M,P,damage_type)
+
 	drop_nade(turf/T)
 		var/obj/item/weapon/grenade/xeno/G = new (T)
 		G.visible_message("<span class='danger'>A glob of acid falls from the sky!</span>")
@@ -742,7 +758,7 @@
 	accuracy = 50
 	max_range = 12
 	accurate_range = 10
-	armor_pen = 50
+	armor_pen = HIGH_ARMOR_PENETRATION
 	shrapnel_chance = 68
 
 /datum/ammo/flamethrower
@@ -795,3 +811,10 @@
 		G.damtype = "fire"
 		G.SetLuminosity(G.brightness_on)
 		return
+
+#undef NEG_ARMOR_PENETRATION
+#undef MIN_ARMOR_PENETRATION
+#undef LOW_ARMOR_PENETRATION
+#undef NORM_ARMOR_PENETRATION
+#undef HIGH_ARMOR_PENETRATION
+#undef MAX_ARMOR_PENETRATION
