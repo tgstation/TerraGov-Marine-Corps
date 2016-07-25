@@ -2,6 +2,7 @@
 /datum/job/sul_cmo
 	title = "Chief Medical Officer"
 	comm_title = "CMO"
+	paygrade = -1
 	flag = SULCMO
 	department_flag = MEDSCI
 	faction = "Station"
@@ -32,6 +33,7 @@
 /datum/job/sul_doc
 	title = "Doctor"
 	comm_title = "Doc"
+	paygrade = -1
 	flag = SULDOC
 	department_flag = MEDSCI
 	faction = "Station"

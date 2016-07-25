@@ -2,6 +2,7 @@
 /datum/job/military_police
 	title = "Military Police"
 	comm_title = "MP"
+	paygrade = 7
 	flag = MPOLICE
 	department_flag = COMMAND
 	faction = "Station"

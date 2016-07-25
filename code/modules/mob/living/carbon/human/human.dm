@@ -385,6 +385,110 @@
 		return if_no_id
 	return
 
+//gets paygrade from ID
+//paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 2 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
+/mob/living/carbon/human/proc/get_paygrade(size,var/no_id = "")
+	if(species && species.name == "Yautja") return ""
+	var/obj/item/weapon/card/id/id = wear_id
+	if(istype(id))
+		switch(id.paygrade)
+			if(-1)
+				switch(size)
+					if(1) return "Dr. "
+					if(2) return "Doctor"
+			if(0)
+				switch(size)
+					if(1) return ""
+					if(2) return ""
+			if(1)
+				switch(size)
+					if(1) return "PVT "
+					if(2) return "Private"
+			if(2)
+				switch(size)
+					if(1) return "PFC "
+					if(2) return "Private First Class"
+			if(3)
+				switch(size)
+					if(1) return "LCPL "
+					if(2) return "Lance Corporal"
+			if(4)
+				switch(size)
+					if(1) return "CPL "
+					if(2) return "Corporal"
+			if(5)
+				switch(size)
+					if(1) return "SGT "
+					if(2) return "Sergeant"
+			if(6)
+				switch(size)
+					if(1) return "TSGT "
+					if(2) return "Technical Sergeant"
+			if(7)
+				switch(size)
+					if(1) return "SSGT "
+					if(2) return "Staff Sergeant"
+			if(8)
+				switch(size)
+					if(1) return "SFC "
+					if(2) return "Sergeant First Class"
+			if(9)
+				switch(size)
+					if(1) return "MSGT "
+					if(2) return "Master Sergeant"
+			if(10)
+				switch(size)
+					if(1) return "FSGT "
+					if(2) return "First Sergeant"
+			if(11)
+				switch(size)
+					if(1) return "SGM "
+					if(2) return "Sergeant Major"
+			if(12)
+				switch(size)
+					if(1) return "CSGM "
+					if(2) return "Command Sergeant Major"
+			if(13)
+				switch(size)
+					if(1) return "ENS "
+					if(2) return "Ensign"
+			if(14)
+				switch(size)
+					if(1) return "LT "
+					if(2) return "Lieutenant"
+			if(15)
+				switch(size)
+					if(1) return "LCDR "
+					if(2) return "Lieutenant Commander"
+			if(16)
+				switch(size)
+					if(1) return "CDR "
+					if(2) return "Commander"
+			if(17)
+				switch(size)
+					if(1) return "CPT "
+					if(2) return "Captain"
+			if(18)
+				switch(size)
+					if(1) return "RADM "
+					if(2) return "Rear Admiral"
+			if(19)
+				switch(size)
+					if(1) return "ADM "
+					if(2) return "Admiral"
+			if(20)
+				switch(size)
+					if(1) return "FADM "
+					if(2) return "Fleet Admiral"
+			if(21)
+				switch(size)
+					if(1) return "SMR "
+					if(2) return "Sky Marshal"
+			else
+				return no_id
+	else
+		return no_id
+
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
 	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible

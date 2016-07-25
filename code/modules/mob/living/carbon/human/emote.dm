@@ -1,5 +1,6 @@
 /mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
 	var/param = null
+	var/comm_paygrade = get_paygrade(1)
 
 	if (findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
@@ -534,11 +535,10 @@
 		else
 			src << "\blue Unusable emote '[act]'. Say *help for a list of emotes."
 
-
-
-
 	if (message)
 		log_emote("[name]/[key] : [message]")
+		if(comm_paygrade && comm_paygrade != "")
+			message = "<B>[comm_paygrade]</B>[message]"
 
  //Hearing gasp and such every five seconds is not good emotes were not global for a reason.
  // Maybe some people are okay with that.

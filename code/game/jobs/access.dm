@@ -529,6 +529,57 @@ proc/get_all_job_icons() //For all existing HUD icons
 		"Military Police"
 		)
 
+/proc/get_paygrades(i)
+	switch(i)
+		if(-1)
+			return "Doctor"
+		if(0)
+			return "Civilian"
+		if(1)
+			return "Private"
+		if(2)
+			return "Private First Class"
+		if(3)
+			return "Lance Corporal"
+		if(4)
+			return "Corporal"
+		if(5)
+			return "Sergeant"
+		if(6)
+			return "Technical Sergeant"
+		if(7)
+			return "Staff Sergeant"
+		if(8)
+			return "Sergeant First Class"
+		if(9)
+			return "Master Sergeant"
+		if(10)
+			return "First Sergeant"
+		if(11)
+			return "Sergeant Major"
+		if(12)
+			return "Command Sergeant Major"
+		if(13)
+			return "Ensign"
+		if(14)
+			return "Lieutenant"
+		if(15)
+			return "Lieutenant Commander"
+		if(16)
+			return "Commander"
+		if(17)
+			return "Captain"
+		if(18)
+			return "Rear Admiral"
+		if(19)
+			return "Admiral"
+		if(20)
+			return "Fleet Admiral"
+		if(21)
+			return "Sky Marshal"
+
+
+
 /*
 /proc/get_marine_access(job)
 	switch(job)

@@ -27,6 +27,7 @@
 		return
 
 	var/style = "body"
+	var/comm_paygrade = ""
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
@@ -47,6 +48,7 @@
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
+		comm_paygrade = H.get_paygrade(1)
 
 	if(italics)
 		message = "<i>[message]</i>"
@@ -65,9 +67,9 @@
 		if(speaker == src)
 			src << "<span class='warning'>You cannot hear yourself speak!</span>"
 		else
-			src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
+			src << "<span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
-		src << "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
+		src << "<span class='game say'><span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 			src.playsound_local(source, speech_sound, sound_vol, 1)
@@ -81,6 +83,7 @@
 	if(sleeping || stat==1) //If unconscious or sleeping
 		hear_sleep(message)
 		return
+	var/comm_paygrade = ""
 
 	var/track = null
 
@@ -111,6 +114,7 @@
 
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
+		comm_paygrade = H.get_paygrade(1)
 		if(H.voice)
 			speaker_name = H.voice
 
@@ -134,21 +138,29 @@
 				if(I)
 					impersonating = I
 					jobname = impersonating.get_assignment()
+					comm_paygrade = impersonating.get_paygrade(1)
 				else
 					jobname = "Unknown"
+					comm_paygrade = ""
 			else
 				jobname = H.get_assignment()
+				comm_paygrade = H.get_paygrade(1)
 
 		else if (iscarbon(speaker)) // Nonhuman carbon mob
 			jobname = "No id"
+			comm_paygrade = ""
 		else if (isAI(speaker))
 			jobname = "AI"
+			comm_paygrade = ""
 		else if (isrobot(speaker))
 			jobname = "Cyborg"
+			comm_paygrade = ""
 		else if (istype(speaker, /mob/living/silicon/pai))
 			jobname = "Personal AI"
+			comm_paygrade = ""
 		else
 			jobname = "Unknown"
+			comm_paygrade = ""
 
 		if(changed_voice)
 			if(impersonating)
@@ -168,23 +180,27 @@
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
 	else if(track)
 		if(!command)
-			src << "[part_a][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
+			src << "[part_a][comm_paygrade][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
 		else
-			src << "<font size='[command]'>[part_a][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span></font>"
+			src << "<font size='[command]'>[part_a][comm_paygrade][track][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span></font>"
 	else
 		if(!command)
-			src << "[part_a][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
+			src << "[part_a][comm_paygrade][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span>"
 		else
-			src << "<font size = '[command]'>[part_a][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span></font>"
+			src << "<font size = '[command]'>[part_a][comm_paygrade][speaker_name][part_b][verb], <span class=\"[style]\">\"[message]\"</span></span></span></font>"
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
+	var/comm_paygrade = ""
 	if(!client)
 		return
+	if(ishuman(speaker))
+		var/mob/living/carbon/human/H = speaker
+		comm_paygrade = H.get_paygrade(1)
 
 	if(say_understands(speaker, language))
-		message = "<B>[src]</B> [verb], \"[message]\""
+		message = "<B>[comm_paygrade][src]</B> [verb], \"[message]\""
 	else
-		message = "<B>[src]</B> [verb]."
+		message = "<B>[comm_paygrade][src]</B> [verb]."
 
 	if(src.status_flags & PASSEMOTES)
 		for(var/obj/item/weapon/holder/H in src.contents)

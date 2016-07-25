@@ -4,6 +4,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/captain
 	title = "Commander"
 	comm_title = "CO"
+	paygrade = 16
 	flag = COMMANDER
 	department_flag = COMMAND
 	faction = "Station"
@@ -46,6 +47,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/executive_officer
 	title = "Executive Officer"
 	comm_title = "XO"
+	paygrade = 15
 	flag = EXECUTIVE
 	department_flag = COMMAND
 	faction = "Station"
@@ -79,6 +81,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/bridge_officer
 	title = "Bridge Officer"
 	comm_title = "BO"
+	paygrade = 14
 	flag = BRIDGE
 	department_flag = COMMAND
 	faction = "Station"
@@ -133,6 +136,3 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			H << "Your primary job is to observe and report back your findings to Weyland Yutani. You still must follow normal rules unless told otherwise."
 			H << "Use your office fax machine to communicate with them or to acquire new directives, if they are feeling generous."
 		return 1
-
-
-

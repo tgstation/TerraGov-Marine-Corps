@@ -2468,10 +2468,10 @@
 				else alert("For some reason there's a ticker, but not a game mode")
 			if("manifest")
 				var/dat = "<B>Showing Crew Manifest.</B><HR>"
-				dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th></tr>"
+				dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th><th>Paygrade</th></tr>"
 				for(var/mob/living/carbon/human/H in mob_list)
 					if(H.ckey)
-						dat += text("<tr><td>[]</td><td>[]</td></tr>", H.name, H.get_assignment())
+						dat += text("<tr><td>[]</td><td>[]</td><td>[]</td></tr>", H.name, H.get_assignment(), H.get_paygrade(2))
 				dat += "</table>"
 				usr << browse(dat, "window=manifest;size=440x410")
 			if("check_antagonist")
