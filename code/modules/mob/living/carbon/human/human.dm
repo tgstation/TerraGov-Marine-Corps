@@ -392,98 +392,29 @@
 	var/obj/item/weapon/card/id/id = wear_id
 	if(istype(id))
 		switch(id.paygrade)
-			if(-1)
-				switch(size)
-					if(1) return "Dr. "
-					if(2) return "Doctor"
-			if(0)
-				switch(size)
-					if(1) return ""
-					if(2) return ""
-			if(1)
-				switch(size)
-					if(1) return "PVT "
-					if(2) return "Private"
-			if(2)
-				switch(size)
-					if(1) return "PFC "
-					if(2) return "Private First Class"
-			if(3)
-				switch(size)
-					if(1) return "LCPL "
-					if(2) return "Lance Corporal"
-			if(4)
-				switch(size)
-					if(1) return "CPL "
-					if(2) return "Corporal"
-			if(5)
-				switch(size)
-					if(1) return "SGT "
-					if(2) return "Sergeant"
-			if(6)
-				switch(size)
-					if(1) return "TSGT "
-					if(2) return "Technical Sergeant"
-			if(7)
-				switch(size)
-					if(1) return "SSGT "
-					if(2) return "Staff Sergeant"
-			if(8)
-				switch(size)
-					if(1) return "SFC "
-					if(2) return "Sergeant First Class"
-			if(9)
-				switch(size)
-					if(1) return "MSGT "
-					if(2) return "Master Sergeant"
-			if(10)
-				switch(size)
-					if(1) return "FSGT "
-					if(2) return "First Sergeant"
-			if(11)
-				switch(size)
-					if(1) return "SGM "
-					if(2) return "Sergeant Major"
-			if(12)
-				switch(size)
-					if(1) return "CSGM "
-					if(2) return "Command Sergeant Major"
-			if(13)
-				switch(size)
-					if(1) return "ENS "
-					if(2) return "Ensign"
-			if(14)
-				switch(size)
-					if(1) return "LT "
-					if(2) return "Lieutenant"
-			if(15)
-				switch(size)
-					if(1) return "LCDR "
-					if(2) return "Lieutenant Commander"
-			if(16)
-				switch(size)
-					if(1) return "CDR "
-					if(2) return "Commander"
-			if(17)
-				switch(size)
-					if(1) return "CPT "
-					if(2) return "Captain"
-			if(18)
-				switch(size)
-					if(1) return "RADM "
-					if(2) return "Rear Admiral"
-			if(19)
-				switch(size)
-					if(1) return "ADM "
-					if(2) return "Admiral"
-			if(20)
-				switch(size)
-					if(1) return "FADM "
-					if(2) return "Fleet Admiral"
-			if(21)
-				switch(size)
-					if(1) return "SMR "
-					if(2) return "Sky Marshal"
+			if(-1) . = size ? "Dr. " : "Doctor"
+			if(0) . = size ? "" : ""
+			if(1) . = size ? "PVT " : "Private"
+			if(2) . = size ? "PFC " : "Private First Class"
+			if(3) . = size ? "LCPL " : "Lance Corporal"
+			if(4) . = size ? "CPL " : "Corporal"
+			if(5) . = size ? "SGT " : "Sergeant"
+			if(6) . = size ? "TSGT " : "Technical Sergeant"
+			if(7) . = size ? "SSGT " : "Staff Sergeant"
+			if(8) . = size ? "SFC " : "Sergeant First Class"
+			if(9) . = size ? "MSGT " : "Master Sergeant"
+			if(10) . = size ? "FSGT " : "First Sergeant"
+			if(11) . = size ? "SGM " : "Sergeant Major"
+			if(12) . = size ? "CSGM " : "Command Sergeant Major"
+			if(13) . = size ? "ENS " : "Ensign"
+			if(14) . = size ? "LT " : "Lieutenant"
+			if(15) . = size ? "LCDR " : "Lieutenant Commander"
+			if(16) . = size ? "CDR " : "Commander"
+			if(17) . = size ? "CPT " : "Captain"
+			if(18) . = size ? "RADM " : "Rear Admiral"
+			if(19) . = size ? "ADM " : "Admiral"
+			if(20) . = size ? "FADM " : "Fleet Admiral"
+			if(21) . = size ? "SMR " : "Sky Marshal"
 			else
 				return no_id
 	else
