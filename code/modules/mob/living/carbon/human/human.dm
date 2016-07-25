@@ -386,8 +386,8 @@
 	return
 
 //gets paygrade from ID
-//paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 2 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
-/mob/living/carbon/human/proc/get_paygrade(size,var/no_id = "")
+//paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
+/mob/living/carbon/human/proc/get_paygrade(size = 1,var/no_id = "")
 	if(species && species.name == "Yautja") return ""
 	var/obj/item/weapon/card/id/id = wear_id
 	if(istype(id))

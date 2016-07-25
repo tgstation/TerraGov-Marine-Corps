@@ -48,7 +48,7 @@
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
-		comm_paygrade = H.get_paygrade(1)
+		comm_paygrade = H.get_paygrade()
 
 	if(italics)
 		message = "<i>[message]</i>"
@@ -114,7 +114,7 @@
 
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
-		comm_paygrade = H.get_paygrade(1)
+		comm_paygrade = H.get_paygrade()
 		if(H.voice)
 			speaker_name = H.voice
 
@@ -138,13 +138,13 @@
 				if(I)
 					impersonating = I
 					jobname = impersonating.get_assignment()
-					comm_paygrade = impersonating.get_paygrade(1)
+					comm_paygrade = impersonating.get_paygrade()
 				else
 					jobname = "Unknown"
 					comm_paygrade = ""
 			else
 				jobname = H.get_assignment()
-				comm_paygrade = H.get_paygrade(1)
+				comm_paygrade = H.get_paygrade()
 
 		else if (iscarbon(speaker)) // Nonhuman carbon mob
 			jobname = "No id"
@@ -195,7 +195,7 @@
 		return
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
-		comm_paygrade = H.get_paygrade(1)
+		comm_paygrade = H.get_paygrade()
 
 	if(say_understands(speaker, language))
 		message = "<B>[comm_paygrade][src]</B> [verb], \"[message]\""

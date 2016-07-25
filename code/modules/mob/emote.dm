@@ -6,7 +6,7 @@
 		return
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
-		comm_paygrade = H.get_paygrade(1)
+		comm_paygrade = H.get_paygrade()
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 	if(m_type == 2 && muzzled) return
 
