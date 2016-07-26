@@ -64,6 +64,7 @@
 /datum/job/sul_res
 	title = "Researcher"
 	comm_title = "Rsr"
+	paygrade = -1
 	flag = SULRES
 	department_flag = MEDSCI
 	faction = "Station"
