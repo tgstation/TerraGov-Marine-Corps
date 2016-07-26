@@ -271,7 +271,7 @@
 
 
 	for(var/mob/M in player_list)
-		if(!istype(M,/mob/living/carbon/Xenomorph))
+		if(istype(M,/mob/living/carbon/human))
 			continue
 		M << "[queensWord]"
 		playsound(M, "queen", 50, 0)
