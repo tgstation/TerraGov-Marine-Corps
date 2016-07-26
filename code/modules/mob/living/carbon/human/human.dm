@@ -399,7 +399,7 @@
 		else
 			switch(id.paygrade)
 				if(-1) . = size ? "Dr. " : "Doctor"
-				if(0) . = size ? "" : ""
+				if(0) . = size ? "" : "Civilian"
 				if(1) . = size ? "PVT " : "Private"
 				if(2) . = size ? "PFC " : "Private First Class"
 				if(3) . = size ? "LCPL " : "Lance Corporal"
