@@ -391,32 +391,38 @@
 	if(species && species.name == "Yautja") return ""
 	var/obj/item/weapon/card/id/id = wear_id
 	if(istype(id))
-		switch(id.paygrade)
-			if(-1) . = size ? "Dr. " : "Doctor"
-			if(0) . = size ? "" : ""
-			if(1) . = size ? "PVT " : "Private"
-			if(2) . = size ? "PFC " : "Private First Class"
-			if(3) . = size ? "LCPL " : "Lance Corporal"
-			if(4) . = size ? "CPL " : "Corporal"
-			if(5) . = size ? "SGT " : "Sergeant"
-			if(6) . = size ? "TSGT " : "Technical Sergeant"
-			if(7) . = size ? "SSGT " : "Staff Sergeant"
-			if(8) . = size ? "SFC " : "Sergeant First Class"
-			if(9) . = size ? "MSGT " : "Master Sergeant"
-			if(10) . = size ? "FSGT " : "First Sergeant"
-			if(11) . = size ? "SGM " : "Sergeant Major"
-			if(12) . = size ? "CSGM " : "Command Sergeant Major"
-			if(13) . = size ? "ENS " : "Ensign"
-			if(14) . = size ? "LT " : "Lieutenant"
-			if(15) . = size ? "LCDR " : "Lieutenant Commander"
-			if(16) . = size ? "CDR " : "Commander"
-			if(17) . = size ? "CPT " : "Captain"
-			if(18) . = size ? "RADM " : "Rear Admiral"
-			if(19) . = size ? "ADM " : "Admiral"
-			if(20) . = size ? "FADM " : "Fleet Admiral"
-			if(21) . = size ? "SMR " : "Sky Marshal"
+		if(id.assignment == "Corporate Liaison")
+			if(size == 1)
+		 		. = gender == "female" ? "Ms. " : "Mr. "
 			else
-				return no_id
+				return "Junior Executive"
+		else
+			switch(id.paygrade)
+				if(-1) . = size ? "Dr. " : "Doctor"
+				if(0) . = size ? "" : ""
+				if(1) . = size ? "PVT " : "Private"
+				if(2) . = size ? "PFC " : "Private First Class"
+				if(3) . = size ? "LCPL " : "Lance Corporal"
+				if(4) . = size ? "CPL " : "Corporal"
+				if(5) . = size ? "SGT " : "Sergeant"
+				if(6) . = size ? "TSGT " : "Technical Sergeant"
+				if(7) . = size ? "SSGT " : "Staff Sergeant"
+				if(8) . = size ? "SFC " : "Sergeant First Class"
+				if(9) . = size ? "MSGT " : "Master Sergeant"
+				if(10) . = size ? "FSGT " : "First Sergeant"
+				if(11) . = size ? "SGM " : "Sergeant Major"
+				if(12) . = size ? "CSGM " : "Command Sergeant Major"
+				if(13) . = size ? "ENS " : "Ensign"
+				if(14) . = size ? "LT " : "Lieutenant"
+				if(15) . = size ? "LCDR " : "Lieutenant Commander"
+				if(16) . = size ? "CDR " : "Commander"
+				if(17) . = size ? "CPT " : "Captain"
+				if(18) . = size ? "RADM " : "Rear Admiral"
+				if(19) . = size ? "ADM " : "Admiral"
+				if(20) . = size ? "FADM " : "Fleet Admiral"
+				if(21) . = size ? "SMR " : "Sky Marshal"
+				else
+					return no_id
 	else
 		return no_id
 
