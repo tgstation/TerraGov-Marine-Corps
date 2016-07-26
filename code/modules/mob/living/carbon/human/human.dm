@@ -392,8 +392,7 @@
 	var/obj/item/weapon/card/id/id = wear_id
 	if(istype(id))
 		if(id.assignment == "Corporate Liaison")
-			if(size == 1)
-		 		. = gender == "female" ? "Ms. " : "Mr. "
+			if(size == 1) . = gender == "female" ? "Ms. " : "Mr. "
 			else
 				return "Junior Executive"
 		else
