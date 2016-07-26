@@ -38,15 +38,15 @@ var/list/department_radio_keys = list(
 
 	  //kinda localization -- rastaf0
 	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
-	  ":ê" = "right ear",	"#ê" = "right ear",		".ê" = "right ear",
-	  ":ä" = "left ear",	"#ä" = "left ear",		".ä" = "left ear",
-	  ":ø" = "intercom",	"#ø" = "intercom",		".ø" = "intercom",
-	  ":ð" = "department",	"#ð" = "department",	".ð" = "department",
-	  ":ñ" = "Command",		"#ñ" = "Command",		".ñ" = "Command",
-	  ":ü" = "Medical",		"#ü" = "Medical",		".ü" = "Medical",
-	  ":ó" = "Engineering",	"#ó" = "Engineering",	".ó" = "Engineering",
-	  ":ö" = "whisper",		"#ö" = "whisper",		".ö" = "whisper",
-	  ":å" = "Syndicate",	"#å" = "Syndicate",		".å" = "Syndicate",
+	  ":ï¿½" = "right ear",	"#ï¿½" = "right ear",		".ï¿½" = "right ear",
+	  ":ï¿½" = "left ear",	"#ï¿½" = "left ear",		".ï¿½" = "left ear",
+	  ":ï¿½" = "intercom",	"#ï¿½" = "intercom",		".ï¿½" = "intercom",
+	  ":ï¿½" = "department",	"#ï¿½" = "department",	".ï¿½" = "department",
+	  ":ï¿½" = "Command",		"#ï¿½" = "Command",		".ï¿½" = "Command",
+	  ":ï¿½" = "Medical",		"#ï¿½" = "Medical",		".ï¿½" = "Medical",
+	  ":ï¿½" = "Engineering",	"#ï¿½" = "Engineering",	".ï¿½" = "Engineering",
+	  ":ï¿½" = "whisper",		"#ï¿½" = "whisper",		".ï¿½" = "whisper",
+	  ":ï¿½" = "Syndicate",	"#ï¿½" = "Syndicate",		".ï¿½" = "Syndicate",
 )
 
 /mob/living/proc/binarycheck()
@@ -132,7 +132,8 @@ var/list/department_radio_keys = list(
 
 	for(var/mob/M in listening)
 		if(!M.stat)
-			M << speech_bubble
+			if(src.stat != DEAD)
+				M << speech_bubble
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
 	var/fail = 10

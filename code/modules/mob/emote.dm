@@ -1,10 +1,12 @@
 // All mobs should have custom emote, really..
 /mob/proc/custom_emote(var/m_type=1,var/message = null)
-
+	var/comm_paygrade = ""
 	if(stat || !use_me && usr == src)
 		usr << "You are unable to emote."
 		return
-
+	if(istype(src, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		comm_paygrade = H.get_paygrade()
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 	if(m_type == 2 && muzzled) return
 
@@ -14,7 +16,7 @@
 	else
 		input = message
 	if(input)
-		message = "<B>[src]</B> [input]"
+		message = "<B>[comm_paygrade][src]</B> [input]"
 	else
 		return
 

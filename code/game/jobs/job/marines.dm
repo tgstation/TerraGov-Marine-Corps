@@ -4,6 +4,7 @@
 /datum/job/squadleader
 	title = "Squad Leader"
 	comm_title = "SL"
+	paygrade = 7
 	flag = SQUADLE
 	department_flag = MARINES
 	faction = "Station"
@@ -24,6 +25,7 @@
 /datum/job/squadengineer
 	title = "Squad Engineer"
 	comm_title = "Eng"
+	paygrade = 4
 	flag = SQUADEN
 	department_flag = MARINES
 	faction = "Station"
@@ -43,6 +45,7 @@
 /datum/job/squadmedic
 	title = "Squad Medic"
 	comm_title = "Med"
+	paygrade = 4
 	flag = SQUADME
 	department_flag = MARINES
 	faction = "Station"
@@ -62,6 +65,7 @@
 /datum/job/squadspecial
 	title = "Squad Specialist"
 	comm_title = "Spc"
+	paygrade = 5
 	flag = SQUADSP
 	department_flag = MARINES
 	faction = "Station"
@@ -82,6 +86,7 @@
 /datum/job/squadmarine
 	title = "Squad Marine"
 	comm_title = "Mar"
+	paygrade = 2
 	flag = SQUADMA
 	department_flag = MARINES
 	faction = "Station"

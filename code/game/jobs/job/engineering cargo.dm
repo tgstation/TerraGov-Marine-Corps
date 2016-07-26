@@ -2,6 +2,7 @@
 /datum/job/sul_ce
 	title = "Chief Engineer"
 	comm_title = "CE"
+	paygrade = 15
 	flag = SULCE
 	department_flag = ENGI
 	faction = "Station"
@@ -36,6 +37,7 @@
 /datum/job/sul_eng
 	title = "Maintenance Tech"
 	comm_title = "MT"
+	paygrade = 6
 	flag = SULENG
 	department_flag = ENGI
 	faction = "Station"
@@ -70,6 +72,7 @@
 /datum/job/req_officer
 	title = "Requisitions Officer"
 	comm_title = "RO"
+	paygrade = 13
 	flag = REQUI
 	department_flag = COMMAND
 	faction = "Station"
@@ -104,6 +107,7 @@
 /datum/job/sul_cargo
 	title = "Cargo Technician"
 	comm_title = "CT"
+	paygrade = 5
 	flag = SULCARG
 	department_flag = ENGI
 	faction = "Station"

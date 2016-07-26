@@ -385,6 +385,47 @@
 		return if_no_id
 	return
 
+//gets paygrade from ID
+//paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
+/mob/living/carbon/human/proc/get_paygrade(size = 1,var/no_id = "")
+	if(species && species.name == "Yautja") return ""
+	var/obj/item/weapon/card/id/id = wear_id
+	if(istype(id))
+		if(id.assignment == "Corporate Liaison")
+			if(size == 1)
+		 		. = gender == "female" ? "Ms. " : "Mr. "
+			else
+				return "Junior Executive"
+		else
+			switch(id.paygrade)
+				if(-1) . = size ? "Dr. " : "Doctor"
+				if(0) . = size ? "" : "Civilian"
+				if(1) . = size ? "PVT " : "Private"
+				if(2) . = size ? "PFC " : "Private First Class"
+				if(3) . = size ? "LCPL " : "Lance Corporal"
+				if(4) . = size ? "CPL " : "Corporal"
+				if(5) . = size ? "SGT " : "Sergeant"
+				if(6) . = size ? "TSGT " : "Technical Sergeant"
+				if(7) . = size ? "SSGT " : "Staff Sergeant"
+				if(8) . = size ? "SFC " : "Sergeant First Class"
+				if(9) . = size ? "MSGT " : "Master Sergeant"
+				if(10) . = size ? "FSGT " : "First Sergeant"
+				if(11) . = size ? "SGM " : "Sergeant Major"
+				if(12) . = size ? "CSGM " : "Command Sergeant Major"
+				if(13) . = size ? "ENS " : "Ensign"
+				if(14) . = size ? "LT " : "Lieutenant"
+				if(15) . = size ? "LCDR " : "Lieutenant Commander"
+				if(16) . = size ? "CDR " : "Commander"
+				if(17) . = size ? "CPT " : "Captain"
+				if(18) . = size ? "RADM " : "Rear Admiral"
+				if(19) . = size ? "ADM " : "Admiral"
+				if(20) . = size ? "FADM " : "Fleet Admiral"
+				if(21) . = size ? "SMR " : "Sky Marshal"
+				else
+					return no_id
+	else
+		return no_id
+
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
 	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible

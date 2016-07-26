@@ -600,6 +600,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			else
 				C = new job.idtype(H)
 				C.access = job.get_access()
+				C.paygrade = job.paygrade
 		else
 			C = new /obj/item/weapon/card/id(H)
 		if(C)
