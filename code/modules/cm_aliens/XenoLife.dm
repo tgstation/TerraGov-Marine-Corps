@@ -31,14 +31,12 @@
 
 		//Status updates, death etc.
 		handle_regular_status_updates()
-//		updatehealth() //It already updates each handle_regular_status_updates() update
 		update_canmove()
 		handle_statuses() //Deals with stunned, etc
 		update_icons()
-		if(loc)
-			handle_environment(loc.return_air())
-		if(client)
-			handle_regular_hud_updates()
+		if(loc) handle_environment(loc.return_air())
+		if(client) handle_regular_hud_updates()
+
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
 
@@ -78,39 +76,40 @@
 				readying_tail = 20
 				src << "\blue Your tail is now fully poised to impale some unfortunate target."
 
-		if(health > 0) //Just to be safe
-			blinded = 0
+		if(stat != DEAD)
+			if(health > 0) //Just to be safe
+				blinded = 0
 
-		ear_deaf = 0 //All this stuff is prob unnecessary
-		ear_damage = 0
-		eye_blind = 0
-		eye_blurry = 0
+			ear_deaf = 0 //All this stuff is prob unnecessary
+			ear_damage = 0
+			eye_blind = 0
+			eye_blurry = 0
 
-		if(weakened)
-			weakened--
+			if(weakened)
+				weakened--
 
-		if(paralysis) //If they're down, make sure they are actually down.
-			AdjustParalysis(-3)
-			blinded = 1
-			stat = UNCONSCIOUS
-			if(halloss > 0)
+			if(paralysis) //If they're down, make sure they are actually down.
+				AdjustParalysis(-3)
+				blinded = 1
+				stat = UNCONSCIOUS
+				if(halloss > 0)
+					adjustHalLoss(-3)
+			else if(sleeping)
 				adjustHalLoss(-3)
-		else if(sleeping)
-			adjustHalLoss(-3)
-			if (mind)
-				if((mind.active && client != null) || immune_to_ssd)
-					sleeping = max(sleeping-1, 0)
-			blinded = 1
-			stat = UNCONSCIOUS
-		else if(resting)
-			blinded = 0
-			if(halloss > 0)
-				adjustHalLoss(-3)
-		else
-			stat = CONSCIOUS
-			blinded = 0
-			if(halloss > 0)
-				adjustHalLoss(-1)
+				if (mind)
+					if((mind.active && client != null) || immune_to_ssd)
+						sleeping = max(sleeping-1, 0)
+				blinded = 1
+				stat = UNCONSCIOUS
+			else if(resting)
+				blinded = 0
+				if(halloss > 0)
+					adjustHalLoss(-3)
+			else
+				stat = CONSCIOUS
+				blinded = 0
+				if(halloss > 0)
+					adjustHalLoss(-1)
 
 		if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !stat) //Handle crusher stuff.
 			var/mob/living/carbon/Xenomorph/Crusher/X = src
@@ -145,6 +144,7 @@
 							M.adjustFireLoss(1)
 							if(prob(10))
 								M << "\green <b>You are burned by stomach acids!</b>"
+						M.updatehealth()
 					if(M.acid_damage > 240)
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
@@ -277,7 +277,7 @@
 		if(current_aura)
 			storedplasma -= 5
 
-		// START HARDCORE
+		// START HARDCORE //This needs to be removed.
 	else if(!is_robotic && hardcore)//Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health > 0)
@@ -322,7 +322,6 @@
 		if(readying_tail)
 			readying_tail =0
 			src << "You feel your tail relax."
-	return
 
 /mob/living/carbon/Xenomorph/gib()
 	if (stat != 2) //Prevents double deaths and whatnot when gibbed
@@ -355,38 +354,28 @@
 	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
-	if(!gibbed)
-		icon_state = "[caste] Dead"
-	if(!istype(src, /mob/living/carbon/Xenomorph/Queen))
-		if(rand(0,100) < 50)
-			playsound(loc, 'sound/voice/alien_death.ogg', 50, 1, 1)
-		else
-			playsound(loc, 'sound/voice/alien_death2.ogg', 50, 1, 1)
-	else
-		playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
+	var/msg = !is_robotic ? "lets out a waning guttural screech, green blood bubbling from its maw." : "begins to shudder, and the lights go out in its eyes as it lies still."
+	. = ..(gibbed,msg)
+	if(!.) return
+
+	if(!gibbed) icon_state = "[caste] Dead"
+	var/sount_to_play = pick(1,2) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg'
+	if(!istype(src, /mob/living/carbon/Xenomorph/Queen)) playsound(loc, sount_to_play, 50, 1, 1)
+	else playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-		xeno_message("<br>A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
-		xeno_message("The slashing of hosts is now permitted!<br>",2)
+		xeno_message("<span class='xenodanger'>A great tremor runs through the hive as the Queen is slain. Vengeance!</span>",3)
+		xeno_message("<span class='danger'>The slashing of hosts is now permitted!</span>",2)
 		slashing_allowed = 1
 		if(ticker && ticker.mode)
 			ticker.mode.queen_death_timer = queen_time // 5 minutes. Defined in Xenomorph.dm
 	else
 		var/area/A = get_area(src)
-		if(A)
-			xeno_message("Hive: A [src.name] has <b>died</b> at [sanitize(A.name)]!",3)
-		else
-			xeno_message("Hive: A [src.name] has <b>died!</b>",3)
+		xeno_message("<span class='xenonotice'>Hive: A [name] has <b>died</b>[A? " at [sanitize(A.name)]":""]!</span>",3)
 
-	for(var/atom/movable/M in src)
-		if(M in src.stomach_contents)
-			src.stomach_contents.Remove(M)
-		M.loc = src.loc
-
-	if(!is_robotic)
-		return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
-	else
-		return ..(gibbed,"begins to shudder, and the lights go out in its eyes as it lies still.")
+	for(var/atom/movable/A in stomach_contents)
+		stomach_contents -= A
+		A.loc = loc
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null
@@ -427,4 +416,3 @@
 		blinded = 1
 		silent = 0
 		see_in_dark = 8
-		return
