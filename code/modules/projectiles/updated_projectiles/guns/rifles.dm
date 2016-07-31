@@ -78,8 +78,8 @@
 		update_attachables()
 		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
 			if(icon_state == "m41a") //Only change this one
-				icon_state = "s_m41a"
 				icon_empty = "s_m41a0"
+				icon_state = "s_m41a"
 				icon_wielded = "s_m41a-w"
 				item_state = "s_m41a"
 
@@ -95,10 +95,10 @@
 /obj/item/weapon/gun/rifle/m41aMK1
 	name = "\improper M41A pulse rifle"
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10mm special ammunition."
-	icon_state = "s_m41a" //Placeholder.
-	icon_empty = "s_m41a0"
-	icon_wielded = "s_m41a-w"
-	item_state = "s_m41a"
+	icon_state = "m41a" //Placeholder.
+	icon_empty = "m41a0"
+	icon_wielded = "m41a-w"
+	item_state = "m41a"
 	fire_sound = 'sound/weapons/m41a_2.ogg'
 	mag_type = /obj/item/ammo_magazine/rifle/m41aMK1
 	burst_amount = 4

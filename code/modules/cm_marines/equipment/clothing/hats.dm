@@ -27,6 +27,8 @@ into helmets.dm*/
 		var/mob/M = src.loc
 		M.update_inv_head()
 
+
+
 ///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/head/cmbandana
@@ -38,6 +40,14 @@ into helmets.dm*/
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band"
 	flags_inv = HIDETOPHAIR
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "band") //Only change this one
+				name = "\improper USCM bandana (snow)"
+				icon_state = "s_band"
+				item_state = "s_band"
+				item_color = "s_band"
 
 /obj/item/clothing/head/cmbandana/tan
 	name = "\improper USCM bandana (tan)"
@@ -45,6 +55,14 @@ into helmets.dm*/
 	item_state = "band2"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band2"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "band2") //Only change this one
+				name = "\improper USCM bandana (snow)"
+				icon_state = "s_band"
+				item_state = "s_band"
+				item_color = "s_band"
 
 /obj/item/clothing/head/cmberet
 	name = "\improper USCM beret"
@@ -54,11 +72,25 @@ into helmets.dm*/
 	item_state = "beret"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "beret"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "beret") //Only change this one
+				icon_state = "s_beret"
+				item_state = "s_beret"
+				item_color = "s_beret"
 
 /obj/item/clothing/head/cmberet/tan
 	icon_state = "berettan"
 	item_state = "berettan"
 	item_color = "berettan"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "berettan") //Only change this one
+				icon_state = "s_beret"
+				item_state = "s_beret"
+				item_color = "s_beret"
 
 /obj/item/clothing/head/cmberet/red
 	icon_state = "beretred"
@@ -73,11 +105,29 @@ into helmets.dm*/
 	item_state = "headband"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "headband"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "headband") //Only change this one
+				name = "\improper USCM Ushanka"
+				desc = "Worn during cold operations by idiots"
+				icon_state = "ushanka"
+				item_state = "ushanka"
+				item_color = "ushanka"
 
 /obj/item/clothing/head/headband/red
 	icon_state = "headbandred"
 	item_state = "headbandred"
 	item_color = "headbandred"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "headbandred") //Only change this one
+				name = "\improper USCM Ushanka"
+				desc = "Worn during cold operations by idiots"
+				icon_state = "ushanka"
+				item_state = "ushanka"
+				item_color = "ushanka"
 
 /obj/item/clothing/head/headset
 	name = "\improper USCM headset"
@@ -96,23 +146,30 @@ into helmets.dm*/
 	item_state = "cap"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "cap"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "cap") //Only change this one
+				icon_state = "s_cap"
+				item_state = "s_cap"
+				item_color = "s_cap"
 
 /obj/item/clothing/head/cmcap/ro
-	name = "\improper USCM officer cap"
+	name = "\improper USCM Officer cap"
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon_state = "rocap"
 	item_state = "rocap"
 	item_color = "rocap"
 
 /obj/item/clothing/head/cmcap/req
-	name = "\improper USCM requisition cap"
+	name = "\improper USCM Requisition cap"
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon_state = "cargocap"
 	item_state = "cargocap"
 	item_color = "cargocap"
 
 /obj/item/clothing/head/soft/ro_cap
-	name = "\improper requisition officer cap"
+	name = "\improper Requisition Officer cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 	item_state = "cargocap"

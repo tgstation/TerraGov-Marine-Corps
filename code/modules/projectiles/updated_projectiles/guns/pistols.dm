@@ -52,6 +52,7 @@
 	name = "\improper M4A3 service pistol"
 	desc = "An M4A3 Colt Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds."
 	icon_state = "colt1"
+	icon_empty = "colt1-0"
 	item_state = "m4a3"
 	fire_sound = 'sound/weapons/servicepistol.ogg'
 	mag_type = /obj/item/ammo_magazine/pistol
@@ -62,11 +63,17 @@
 	New()
 		..()
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17)
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "colt1") //Only change this one
+				icon_state = "colt3"
+				icon_empty = "colt3-0" //Pump shotguns don't really have 'empty' states.
+				item_state = "m4a3S"
 
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one is crested with an elephant-tusk ivory grip and has a slide carefully polished by a team of orphan children. Looks important."
 	icon_state = "colt2"
+	icon_empty = "colt2-0"
 	item_state = "COlt"
 	damage = 7
 	fire_delay = 5
@@ -268,7 +275,7 @@
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper 88 Mod 4 combat pistol"
-	desc = "A powerful sidearm issed mainly to Weyland Yutani response teams, based on the original vp70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst."
+	desc = "A powerful sidearm issed mainly to Weyland Yutani response teams, but issued to the USCM in small numbers, based on the original vp70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst."
 	icon_state = "vp70"
 	item_state = "vp70"
 	origin_tech = "combat=4;materials=3"
