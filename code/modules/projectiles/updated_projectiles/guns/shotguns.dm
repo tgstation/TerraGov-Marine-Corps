@@ -402,6 +402,12 @@ can cause issues with ammo types getting mixed up during the burst.
 	New()
 		..()
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14)
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "m37") //Only change this one
+				icon_state = "m37S"
+				icon_empty = "m37S" //Pump shotguns don't really have 'empty' states.
+				icon_wielded = "m37S-w"
+				item_state = "m37S"
 
 	unique_action(mob/user)
 		pump_shotgun(user)
@@ -451,6 +457,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			if( !(active_attachable.attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
 
 		return 1
+
 
 //-------------------------------------------------------
 //SHOTGUN FROM ISOLATION

@@ -1,9 +1,9 @@
 /obj/item/weapon/combat_knife
-	name = "marine combat knife"
+	name = "M11 Combat Bayonet"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "knife"
-	desc = "The standard issue combat knife issued to Colonial Marines soldiers. You can slide this knife into your boots."
+	desc = "The standard issue combat bayonet issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
 	flags = FPRINT | CONDUCT
 	sharp = 1
 	force = 25
@@ -40,7 +40,7 @@
 		return (BRUTELOSS)
 
 /obj/item/weapon/throwing_knife
-	name ="throwing knife"
+	name ="M11 Throwing Knife"
 	icon='icons/obj/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
@@ -94,7 +94,7 @@
 		if(!opened)
 			if(istype(ticker.mode,/datum/game_mode/ice_colony))
 				new /obj/item/clothing/glasses/night/m56_goggles(src)
-				new /obj/item/smartgun_powerpack(src)
+				new /obj/item/smartgun_powerpack/snow(src)
 				new /obj/item/clothing/suit/storage/smartgunner/snow(src)
 				new /obj/item/weapon/gun/smartgun(src)
 			else
@@ -200,6 +200,11 @@
 	item_state = "powerpackp"
 	icon_state = "powerpackp"
 
+/obj/item/smartgun_powerpack/snow
+	icon = 'icons/mob/back.dmi'
+	item_state = "s_powerpack"
+	icon_state = "s_powerpack"
+
 /obj/item/weapon/storage/box/heavy_armor
 	name = "\improper B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
@@ -236,7 +241,6 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)
@@ -245,16 +249,23 @@
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/device/binoculars(src)
 			new /obj/item/weapon/storage/backpack/marine/smock(src)
+			new /obj/item/weapon/gun/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
 			opened = 1
 			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
+				new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
 				new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
 				new /obj/item/clothing/head/helmet/marine/snow(src)
+
 			else
+				new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 				new /obj/item/clothing/suit/storage/marine/sniper(src)
 				new /obj/item/clothing/head/helmet/durag(src)
+				new /obj/item/weapon/facepaint/sniper(src)
 		..()
 
 /obj/item/weapon/storage/box/m42c_system_Jungle
@@ -271,25 +282,30 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)
+			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
-			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/weapon/facepaint/sniper(src)
-			new /obj/item/weapon/storage/backpack/marine/smock(src)
 
 	open(var/mob/user as mob)
 		if(!opened)
 			opened = 1
 			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
-				new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
-				new /obj/item/clothing/head/helmet/marine/snow(src)
+				new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
+				new /obj/item/clothing/under/marine/snow/sniper(src)
+				new /obj/item/clothing/suit/storage/marine/sniper/snow/marksman(src)
+				new /obj/item/clothing/head/helmet/durag/jungle/snow(src)
+				new /obj/item/weapon/storage/backpack/marinesatchel(src)
+				new /obj/item/bodybag/snowtarp(src)
+
 			else
+				new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
 				new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
 				new /obj/item/clothing/head/helmet/durag/jungle(src)
+				new /obj/item/weapon/facepaint/sniper(src)
+				new /obj/item/weapon/storage/backpack/marine/smock(src)
+				new /obj/item/bodybag/jungletarp(src)
 		..()
 
 /obj/item/weapon/storage/box/grenade_system
@@ -298,7 +314,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
 	w_class = 5
-	storage_slots = 2
+	storage_slots = 4
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -309,7 +325,7 @@
 			new /obj/item/weapon/gun/m92(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
-			new /obj/item/weapon/storage/belt/grenade(src)
+			//new /obj/item/weapon/storage/belt/grenade(src)
 
 
 /obj/item/weapon/storage/box/rocket_system
@@ -341,8 +357,8 @@
 
 ///***GRENADES***///
 /obj/item/weapon/grenade/explosive
-	name = "frag grenade"
-	desc = "It is set to detonate in 4 seconds."
+	name = "M15 Fragmentation Grenade"
+	desc = "An outdated USCM Fragmentation Grenade. With decades of service in the USCM, the old M15 Fragmentation Grenade is slowly being relaced with the M40 HEDP.It is set to detonate in 4 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade_ex"
 	det_time = 40
@@ -365,6 +381,18 @@
 	prime()
 		spawn(0)
 			explosion(src.loc,-1,-1,3)
+			del(src)
+		return
+
+/obj/item/weapon/grenade/explosive/m40
+	name = "M40 HEDP Grenade"
+	desc = "A small, but deceptively strong fragmentation grenade that has been phasing out the M15 Fragmentation Grenades. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	icon_state = "grenade"
+	item_state = "grenade"
+
+	prime()
+		spawn(0)
+			explosion(src.loc,-1,-1,2.5)
 			del(src)
 		return
 

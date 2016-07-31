@@ -264,6 +264,26 @@
 		new /obj/item/device/mine(src)
 		return
 
+/obj/item/weapon/storage/box/m94
+	name = "M94 Marking Flare Pouch"
+	desc = "A packet of four M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
+	icon_state = "m94"
+	w_class = 2
+	storage_slots = 4
+	can_hold = list(
+		"/obj/item/device/flashlight/flare"
+		)
+
+	New()
+		..()
+		contents = list()
+		sleep(1)
+		new /obj/item/device/flashlight/flare(src)
+		new /obj/item/device/flashlight/flare(src)
+		new /obj/item/device/flashlight/flare(src)
+		new /obj/item/device/flashlight/flare(src)
+		return
+
 /obj/item/weapon/coin/marine
 	name = "marine specialist weapon token"
 	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
@@ -564,6 +584,50 @@
 				new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
 			if(5)
 				new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
+
+/obj/item/bodybag/jungletarp
+	name = "V1 Thermal-Dapening Tarp (Folded)"
+	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "jungletarp_folded"
+	w_class = 3.0
+
+	attack_self(mob/user)
+		var/obj/structure/closet/body_bag/jungletarp/R = new /obj/structure/closet/body_bag/jungletarp(user.loc)
+		R.add_fingerprint(user)
+		del(src)
+
+/obj/item/bodybag/snowtarp
+	name = "V1 Thermal-Dapening Tarp (Folded)"
+	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "snowtarp_folded"
+	w_class = 3.0
+
+	attack_self(mob/user)
+		var/obj/structure/closet/body_bag/jungletarp/snow/R = new /obj/structure/closet/body_bag/jungletarp/snow(user.loc)
+		R.add_fingerprint(user)
+		del(src)
+
+/obj/structure/closet/body_bag/jungletarp
+	name = "V1 Thermal-Dapening Tarp"
+	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "jungletarp_closed"
+	icon_closed = "jungletarp_closed"
+	icon_opened = "jungletarp_open"
+	open_sound = 'sound/effects/vegetation_walk_1.ogg'
+	close_sound = 'sound/effects/vegetation_walk_2.ogg'
+	item_path = /obj/item/bodybag/jungletarp
+	anchored = 1
+
+
+
+/obj/structure/closet/body_bag/jungletarp/snow
+	icon_state = "snowtarp_closed"
+	icon_closed = "snowtarp_closed"
+	icon_opened = "snowtarp_open"
+	item_path = /obj/item/bodybag/snowtarp
 
 
 /obj/item/weapon/book/manual/lazarus_landing_map

@@ -16,42 +16,85 @@
 	item_state = "backpack"
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "marinepack") //Only change this one
+				item_state = "backpack_s"
+				icon_state = "marinepack_s"
 
 /obj/item/weapon/storage/backpack/marine/medic
 	name = "\improper USCM medic backpack"
 	desc = "The standard-issue backpack worn by USCM Medics."
 	icon_state = "marinepack-medic"
 	item_state = "marinepack-medic"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "marinepack-medic") //Only change this one
+				item_state = "marinepack-medic_s"
+				icon_state = "marinepack-medic_s"
+
 
 /obj/item/weapon/storage/backpack/marine/tech
 	name = "\improper USCM technician backpack"
 	desc = "The standard-issue backpack worn by USCM Technicians."
 	icon_state = "marinepack-tech"
 	item_state = "marinepack-tech"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "marinepack-tech") //Only change this one
+				item_state = "marinepack-tech_s"
+				icon_state = "marinepack-tech_s"
 
 /obj/item/weapon/storage/backpack/marine/smock
 	name = "sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
 	item_state = "smock"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "smock") //Only change this one
+				item_state = "smock_s"
+				icon_state = "smock_s"
 
 /obj/item/weapon/storage/backpack/marinesatchel
 	name = "\improper USCM infantry satchel"
 	desc = "A heavy-duty satchel carried by some USCM soldiers."
 	icon_state = "marinepack2"
 	item_state = "marinepack2"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "marinepack2") //Only change this one
+				item_state = "marinepack2_s"
+				icon_state = "marinepack2_s"
 
-/obj/item/weapon/storage/backpack/marinesatchel/medic
+/obj/item/weapon/storage/backpack/medicsatchel
 	name = "\improper USCM medic satchel"
 	desc = "A heavy-duty satchel carried by some USCM Medics."
-	icon_state = "marinepack-medic2"
-	item_state = "marinepack-medic"
+	icon_state = "marinepack2"
+	item_state = "marinepackmedic2"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "marinepack2") //Only change this one
+				item_state = "marinepackmedic2_s"
+				icon_state = "marinepack2_s"
 
-/obj/item/weapon/storage/backpack/marinesatchel/tech
+/obj/item/weapon/storage/backpack/techsatchel
 	name = "\improper USCM technician satchel"
 	desc = "A heavy-duty satchel carried by some USCM Technicians."
-	icon_state = "marinepack-tech2"
-	item_state = "marinepack-tech2"
+	icon_state = "marinepack2"
+	item_state = "marinepacktech2"
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "marinepack2") //Only change this one
+				item_state = "marinepacktech2_s"
+				icon_state = "marinepack2_s"
 
 /obj/item/weapon/storage/backpack/marinesatchel/commando
 	name = "\improper commando bag"
@@ -144,8 +187,8 @@
 		)
 
 /obj/item/weapon/storage/belt/gun/m4a3
-	name = "m4a3 duty belt"
-	desc = "A belt-holster assembly that allows one to carry the m4a3 comfortably secure with two magazines of ammunition."
+	name = "M276 Pattern M4a3 Holster Rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains two side pouches that can store two spare 9mm magazines."
 	icon_state = "M4A3_holster_0"
 	icon_closed = "M4A3_holster_1"
 	can_hold = list(
@@ -156,34 +199,51 @@
 		"/obj/item/ammo_magazine/pistol/incendiary",
 		"/obj/item/ammo_magazine/pistol/extended"
 		)
+	/*
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "M4A3_holster_0") //Only change this one
+				icon_state = "M4A3_holster_0_s"
+				icon_closed = "M4A3_holster_1_s"
+				item_state = "holster1_s"
+	*/
 
-//Probably want to remove the gun from the marine belt.
 /obj/item/weapon/storage/belt/marine
-	name = "m276 load belt"
-	desc = "A standard issue toolbelt for USCM military forces. Put your ammo in here."
+	name = "M276 Pattern Ammo Load Rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition carrying operations."
 	icon_state = "marinebelt"
-	item_state = "marine"//Could likely use a better one.
+	item_state = "marine"
 	w_class = 4
-	storage_slots = 8
-	max_combined_w_class = 9
+	storage_slots = 6
+	max_combined_w_class = 12
 	can_hold = list(
-		"/obj/item/weapon/gun/pistol",
+		//"/obj/item/weapon/gun/pistol",
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
+		"/obj/item/weapon/storage/box/m94",
 		"/obj/item/device/flash",
 		"/obj/item/ammo_magazine",
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
-		"/obj/item/device/mine"
+		"/obj/item/device/mine",
+		"/obj/item/weapon/reagent_containers/food/snacks",
+		"/obj/item/ammo_magazine/shotgun"
 		)
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "marinebelt") //Only change this one
+				icon_state = "marinebelt_s"
+				item_state = "marine_s"
 
 /obj/item/weapon/storage/belt/security/MP
-	name = "\improper MP belt"
-	desc = "Can hold Military Police Equipment."
+	name = "\improper M276 Pattern Military Police Rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
 	icon_state = "securitybelt"
-	item_state = "security"//Could likely use a better one.
-	storage_slots = 7
+	item_state = "marine_s"
+	storage_slots = 6
 	max_w_class = 3
 	max_combined_w_class = 30
 	can_hold = list(
@@ -193,7 +253,6 @@
 		"/obj/item/device/flash",
 		"/obj/item/clothing/glasses",
 		"/obj/item/weapon/gun/taser",
-		"/obj/item/weapon/gun/pistol",
 		"/obj/item/weapon/melee/baton",
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/weapon/combat_knife",
@@ -218,28 +277,34 @@
 	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/weapon/storage/belt/knifepouch
-	name="knife rig"
-	desc="Storage for your sharp toys"
-	icon_state="securitybelt" // temp
-	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
+	name="M276 Pattern Knife Rig"
+	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
+	icon_state="knife-rig"
+	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
 	w_class = 3
-	storage_slots = 3
+	storage_slots = 4
 	max_w_class = 1
 	max_combined_w_class=3
 
 	can_hold=list("/obj/item/weapon/throwing_knife")
+	New()
+		..()
+		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
+			if(icon_state == "knife-rig") //Only change this one
+				icon_state = "knife-rig_s"
+				item_state = "marine_s"
 
 /obj/item/weapon/storage/belt/grenade
-	name="grenade bandolier"
-	desc="Storage for your exploding toys."
+	name="M276 Pattern M40 HEDP Rig"
+	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
-	item_state="security" // aslo temp, maybe somebody update these icons with better ones?
+	item_state="marine_s"
 	w_class = 4
 	storage_slots = 8
 	max_w_class = 3
 	max_combined_w_class = 24
 
-	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb","/obj/item/weapon/grenade/")
+	can_hold=list("/obj/item/weapon/grenade/explosive/m40, /obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb","/obj/item/weapon/grenade/")
 
 	New()
 		..()
@@ -248,13 +313,14 @@
 			new /obj/item/weapon/grenade/incendiary(src)
 			new /obj/item/weapon/grenade/incendiary(src)
 			new /obj/item/weapon/grenade/incendiary(src)
-			new /obj/item/weapon/grenade/explosive(src)
-			new /obj/item/weapon/grenade/explosive(src)
-			new /obj/item/weapon/grenade/explosive(src)
-			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive/m40(src)
+			new /obj/item/weapon/grenade/explosive/m40(src)
+			new /obj/item/weapon/grenade/explosive/m40(src)
+			new /obj/item/weapon/grenade/explosive/m40(src)
 
 /obj/item/weapon/storage/belt/knifepouch/New()
 	..()
+	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)

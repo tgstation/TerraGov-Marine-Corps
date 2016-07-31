@@ -59,6 +59,11 @@
 	icon_empty = "M42cG_empty"
 	item_state = "m42aG"
 
+/obj/item/weapon/gun/rifle/sniper/M42A/snow
+	icon_state = "M42cS"
+	icon_empty = "M42cS_empty"
+	item_state = "m42aS"
+
 /obj/item/ammo_magazine/sniper/elite
 	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = "supersonic sniper bullet"
@@ -574,3 +579,9 @@
 	burst_delay = 4
 	accuracy = -20
 	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
+
+/obj/item/weapon/flamethrower/full/M240
+	name = "\improper M240 Incinerator Unit"
+	desc = "A carbine-style flamethrower carried by the USCM in close quarters engagements. It is especially effective against soft-targets and in situations where area denial is important."
+	flags = FPRINT | CONDUCT | TWOHANDED
+

@@ -591,7 +591,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
 
 	var/obj/item/weapon/card/id/W = new(src)

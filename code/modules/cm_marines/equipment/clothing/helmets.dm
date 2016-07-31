@@ -74,10 +74,17 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/durag/jungle
-	name = "marksman cowl"
+	name = "M8 Marksman Cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragG"
 	item_state = "duragG"
+
+/obj/item/clothing/head/helmet/durag/jungle/snow
+	desc = "M6 Marksman Hood"
+	desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
+	icon_state = "duragS"
+	item_state = "duragS"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine
 	name = "\improper M10 Pattern Marine Helmet"
@@ -96,6 +103,12 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_state = "helmet_snow"
 	item_state = "helmet_snow"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	New()
+		..()
+		var/helmet_color = rand(1,4)
+		if(helmet_color == 4)
+			icon_state = "helmet_snow2"
+			item_state = "helmet_snow2"
 
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
