@@ -265,7 +265,7 @@
 		return
 
 /obj/item/weapon/storage/box/m94
-	name = "M94 Marking Flare Pouch"
+	name = "\improper M94 Marking Flare Pouch"
 	desc = "A packet of four M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
 	icon_state = "m94"
 	w_class = 2
@@ -586,7 +586,7 @@
 				new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(src)
 
 /obj/item/bodybag/jungletarp
-	name = "V1 Thermal-Dapening Tarp (Folded)"
+	name = "\improper V1 Thermal-Dapening Tarp (Folded)"
 	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
@@ -598,7 +598,7 @@
 		del(src)
 
 /obj/item/bodybag/snowtarp
-	name = "V1 Thermal-Dapening Tarp (Folded)"
+	name = "\improper V1 Thermal-Dapening Tarp (Folded)"
 	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"
@@ -610,7 +610,7 @@
 		del(src)
 
 /obj/structure/closet/body_bag/jungletarp
-	name = "V1 Thermal-Dapening Tarp"
+	name = "\improper V1 Thermal-Dapening Tarp"
 	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"

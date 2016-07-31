@@ -1,5 +1,5 @@
 /obj/item/weapon/combat_knife
-	name = "M11 Combat Bayonet"
+	name = "\improper M11 Combat Bayonet"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "knife"
@@ -40,7 +40,7 @@
 		return (BRUTELOSS)
 
 /obj/item/weapon/throwing_knife
-	name ="M11 Throwing Knife"
+	name ="\improper M11 Throwing Knife"
 	icon='icons/obj/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
