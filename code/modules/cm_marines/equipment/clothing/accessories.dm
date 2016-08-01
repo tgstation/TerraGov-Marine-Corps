@@ -49,7 +49,7 @@
 				icon_state = "marinepack-tech_s"
 
 /obj/item/weapon/storage/backpack/marine/smock
-	name = "sniper's smock"
+	name = "\improper M3 Sniper's Smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
 	item_state = "smock"
@@ -187,7 +187,7 @@
 		)
 
 /obj/item/weapon/storage/belt/gun/m4a3
-	name = "M276 Pattern M4a3 Holster Rig"
+	name = "\improper M276 Pattern M4a3 Holster Rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains two side pouches that can store two spare 9mm magazines."
 	icon_state = "M4A3_holster_0"
 	icon_closed = "M4A3_holster_1"
@@ -210,7 +210,7 @@
 	*/
 
 /obj/item/weapon/storage/belt/marine
-	name = "M276 Pattern Ammo Load Rig"
+	name = "\improper M276 Pattern Ammo Load Rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition carrying operations."
 	icon_state = "marinebelt"
 	item_state = "marine"
@@ -277,7 +277,7 @@
 	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/weapon/storage/belt/knifepouch
-	name="M276 Pattern Knife Rig"
+	name="\improper M276 Pattern Knife Rig"
 	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knife-rig"
 	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
@@ -294,8 +294,15 @@
 				icon_state = "knife-rig_s"
 				item_state = "marine_s"
 
+/obj/item/weapon/storage/belt/knifepouch/New()
+	..()
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/weapon/throwing_knife(src)
+
 /obj/item/weapon/storage/belt/grenade
-	name="M276 Pattern M40 HEDP Rig"
+	name="\improper M276 Pattern M40 HEDP Rig"
 	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
 	item_state="marine_s"
@@ -304,7 +311,7 @@
 	max_w_class = 3
 	max_combined_w_class = 24
 
-	can_hold=list("/obj/item/weapon/grenade/explosive/m40, /obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb","/obj/item/weapon/grenade/")
+	can_hold=list("/obj/item/weapon/grenade/explosive", "/obj/item/weapon/grenade/incendiary", "/obj/item/weapon/grenade/smokebomb","/obj/item/weapon/grenade/, /obj/item/weapon/grenade/phosphorus")
 
 	New()
 		..()
@@ -313,17 +320,10 @@
 			new /obj/item/weapon/grenade/incendiary(src)
 			new /obj/item/weapon/grenade/incendiary(src)
 			new /obj/item/weapon/grenade/incendiary(src)
-			new /obj/item/weapon/grenade/explosive/m40(src)
-			new /obj/item/weapon/grenade/explosive/m40(src)
-			new /obj/item/weapon/grenade/explosive/m40(src)
-			new /obj/item/weapon/grenade/explosive/m40(src)
-
-/obj/item/weapon/storage/belt/knifepouch/New()
-	..()
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
+			new /obj/item/weapon/grenade/explosive(src)
 
 //============================//GOGGLES\\================================\\
 //=======================================================================\\

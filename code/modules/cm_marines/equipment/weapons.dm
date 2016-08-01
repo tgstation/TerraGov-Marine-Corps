@@ -357,12 +357,12 @@
 
 ///***GRENADES***///
 /obj/item/weapon/grenade/explosive
-	name = "M15 Fragmentation Grenade"
-	desc = "An outdated USCM Fragmentation Grenade. With decades of service in the USCM, the old M15 Fragmentation Grenade is slowly being relaced with the M40 HEDP.It is set to detonate in 4 seconds."
+	name = "\improper M40 HEDP Grenade"
+	desc = "A small, but deceptively strong fragmentation grenade that has been phasing out the M15 Fragmentation Grenades. Capable of being loaded in the M92 Launcher, or thrown by hand."
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "grenade_ex"
+	icon_state = "grenade"
 	det_time = 40
-	item_state = "grenade_ex"
+	item_state = "grenade"
 	dangerous = 1
 
 	prime()
@@ -385,10 +385,10 @@
 		return
 
 /obj/item/weapon/grenade/explosive/m40
-	name = "M40 HEDP Grenade"
-	desc = "A small, but deceptively strong fragmentation grenade that has been phasing out the M15 Fragmentation Grenades. Capable of being loaded in the M92 Launcher, or thrown by hand."
-	icon_state = "grenade"
-	item_state = "grenade"
+	name = "\improper M15 Fragmentation Grenade"
+	desc = "An outdated USCM Fragmentation Grenade. With decades of service in the USCM, the old M15 Fragmentation Grenade is slowly being relaced with the slightly safer M40 HEDP.It is set to detonate in 4 seconds."
+	icon_state = "grenade_ex"
+	item_state = "grenade_ex"
 
 	prime()
 		spawn(0)
@@ -397,12 +397,12 @@
 		return
 
 /obj/item/weapon/grenade/incendiary
-	name = "incendiary grenade"
-	desc = "It is set to detonate in 4 seconds."
+	name = "\improper M40 HIDP Incendiary grenade"
+	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "large_grenade"
+	icon_state = "grenade_fire"
 	det_time = 40
-	item_state = "flashbang"
+	item_state = "grenade_fire"
 	slot_flags = SLOT_BELT
 	dangerous = 1
 
@@ -430,12 +430,12 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 
 /obj/item/weapon/grenade/smokebomb
-	name = "smoke bomb"
-	desc = "It is set to detonate in 2 seconds."
+	name = "\improper M40 HSDP Smoke Grenade"
+	desc = "The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "flashbang"
+	icon_state = "grenade_smoke"
 	det_time = 20
-	item_state = "flashbang"
+	item_state = "grenade_smoke"
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 
 	New()
@@ -463,12 +463,12 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 		return
 
 /obj/item/weapon/grenade/phosphorus
-	name = "smoke bomb"
-	desc = "It is set to detonate in 2 seconds."
+	name = "\improper M40 HPDP Grenade"
+	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
 	icon = 'icons/obj/grenade.dmi'
-	icon_state = "flashbang"
+	icon_state = "grenade_phos"
 	det_time = 20
-	item_state = "flashbang"
+	item_state = "grenade_phos"
 	var/datum/effect/effect/system/smoke_spread/phosphorus/smoke
 	dangerous = 1
 
@@ -500,8 +500,8 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 ///***MINES***///
 /obj/item/device/mine
-	name = "proximity mine"
-	desc = "An anti-personnel mine. Useful for setting traps or for area denial. "
+	name = "\improper M20 Claymore Anti-Personnel Mine"
+	desc = "The M20 Claymore is a proximity triggered anti-presonnel mine designed by Armat Systems for use by the United States Colonial Marines."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "mine"
 	force = 5.0
