@@ -710,8 +710,8 @@
 	item_state = "kailas_helmet"
 
 /obj/item/clothing/head/helmet/marine/fluff/edgelord
-	name = "Custom overwatch radio helmet"
-	desc = "Gives you superior control over the radios.  DONOR ITEM"
+	name = "Operator Cap"
+	desc = "A sturdy brown USCM cap with an attached radio headset. This one has the name 'Mann' printed on the back.  DONOR ITEM"
 	icon_state = "edgelord_cap"
 	item_state = "edgelord_cap"
 
