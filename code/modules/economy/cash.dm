@@ -1,6 +1,6 @@
 /obj/item/weapon/spacecash
-	name = "0 Thaler"
-	desc = "It's worth 0 Thalers."
+	name = "0 Dollars"
+	desc = "You have no dollars."
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
@@ -36,13 +36,13 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(bundle)
 			h_user.put_in_hands(bundle)
-		user << "<span class='notice'>You add [src.worth] Thalers worth of money to the bundles.<br>It holds [bundle.worth] Thalers now.</span>"
+		user << "<span class='notice'>You add [src.worth] Dollars worth of money to the bundles.<br>It holds [bundle.worth] Thalers now.</span>"
 		del(src)
 
 /obj/item/weapon/spacecash/bundle
-	name = "pile of thalers"
+	name = "/improper Stack of Dollars"
 	icon_state = ""
-	desc = "They are worth 0 Thalers."
+	desc = "They are worth 0 Dollars."
 	worth = 0
 
 /obj/item/weapon/spacecash/bundle/update_icon()
@@ -66,10 +66,10 @@
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
 		src.overlays += banknote
-	src.desc = "They are worth [worth] Thalers."
+	src.desc = "They are worth [worth] Dollars."
 
 /obj/item/weapon/spacecash/bundle/attack_self()
-	var/amount = input(usr, "How many Thalers do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+	var/amount = input(usr, "How many Dollars do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(Clamp(amount, 0, src.worth))
 	if(amount==0) return 0
 
@@ -90,51 +90,51 @@
 		del(src)
 
 /obj/item/weapon/spacecash/c1
-	name = "1 Thaler"
+	name = "1 Dollar Bill"
 	icon_state = "spacecash1"
-	desc = "It's worth 1 credit."
+	desc = "A single US Government minted one dollar bill. It has a picture of George Washington printed on it. Makes most people of english origin cry, but isn't worth very much. Could probably get you half a hot-dog in some systems. "
 	worth = 1
 
 /obj/item/weapon/spacecash/c10
-	name = "10 Thaler"
+	name = "10 Dollar Bill"
 	icon_state = "spacecash10"
-	desc = "It's worth 10 Thalers."
+	desc = "A single US Government minted ten dollar bill. It has a picture of Alexander Hamilton on it, federal bank enthusiast, and victim of a terrible griefing incident. Could probably pay for a meal at a cheap restaurant, before tax and tip."
 	worth = 10
 
 /obj/item/weapon/spacecash/c20
-	name = "20 Thaler"
+	name = "20 Dollar Bill"
 	icon_state = "spacecash20"
-	desc = "It's worth 20 Thalers."
+	desc = "A single US Government minted twenty dollar bill. It has a picture of Andrew Jackson on it, famed hero of the War of 1812 and slayer of indigenous peoples everywhere. Could probably afford you a nice 2-course meal at the local colony steakhouse."
 	worth = 20
 
 /obj/item/weapon/spacecash/c50
-	name = "50 Thaler"
+	name = "50 Dollar Bill"
 	icon_state = "spacecash50"
-	desc = "It's worth 50 Thalers."
+	desc = "A single US Government minted fifty dollar bill. It has a picture of Ulysses S. Grant, a man known for expendable troop tactics in the civil war, and probable distant relative of Bill Carson. You could probably buy the whole bar a beer with this, assuming there are 4 other people in the bar."
 	worth = 50
 
 /obj/item/weapon/spacecash/c100
-	name = "100 Thaler"
+	name = "100 Dollar Bill"
 	icon_state = "spacecash100"
-	desc = "It's worth 100 Thalers."
+	desc = "A single US Government minted hundred dollar bill. It has a picture of Ben Franklin, lightning kite extraordinaire. You could probably pay for an entire day of shore leave activities with this, provided you aren't careless. (which you are)"
 	worth = 100
 
 /obj/item/weapon/spacecash/c200
-	name = "200 Thaler"
+	name = "200 Dollars"
 	icon_state = "spacecash200"
-	desc = "It's worth 200 Thalers."
+	desc = "Two US Government minted hundred dollar bills. They both have pictures of Ben Franklin on them. Both Bens look at you expectedly and passionately from different angles."
 	worth = 200
 
 /obj/item/weapon/spacecash/c500
-	name = "500 Thaler"
+	name = "500 Dollars"
 	icon_state = "spacecash500"
-	desc = "It's worth 500 Thalers."
+	desc = "Five US Government minted hundred dollar bills. All of them have pictures of Ben Franklin on them. They all eagarly glare at you, making you feel as if you owe them something. "
 	worth = 500
 
 /obj/item/weapon/spacecash/c1000
-	name = "1000 Thaler"
+	name = "1000 Dollars"
 	icon_state = "spacecash1000"
-	desc = "It's worth 1000 Thalers."
+	desc = "Ten US Government minted hundred dollar bills. Every single damn one of them has Ben Fucking Franklin on them. The court of Bens sit inpatiently, as if each one thought they alone belonged to you. This coven of angry Bens have all since learned about your relations with the other Bens, and they want answers."
 	worth = 1000
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
@@ -152,9 +152,9 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	return
 
 /obj/item/weapon/spacecash/ewallet
-	name = "Charge card"
+	name = "/improper Weyland Yutani Cash Card"
 	icon_state = "efundcard"
-	desc = "A card that holds an amount of money."
+	desc = "A Weyland Yutani backed cash card that holds an amount of money."
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
 
 /obj/item/weapon/spacecash/ewallet/examine()
