@@ -316,7 +316,6 @@ datum/preferences
 	dat += "<br><table><tr><td><b>Body</b> "
 	dat += "(<a href='?_src_=prefs;preference=all;task=random'>&reg;</A>)"
 	dat += "<br>"
-	dat += "Species: <a href='byond://?src=\ref[user];preference=species;task=input'>[species]</a><br>"
 	// dat += "Secondary Language:<br><a href='byond://?src=\ref[user];preference=language;task=input'>[language]</a><br>"
 	dat += "Blood Type: <a href='byond://?src=\ref[user];preference=b_type;task=input'>[b_type]</a><br>"
 	dat += "Skin Tone: <a href='?_src_=prefs;preference=s_tone;task=input'>[-s_tone + 35]/220<br></a>"
@@ -1140,7 +1139,7 @@ datum/preferences
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 					if(new_age)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
-				if("species")
+				/*if("species")
 
 					var/list/new_species = list("Human")
 					var/prev_species = species
@@ -1201,7 +1200,7 @@ datum/preferences
 						g_hair = 0//hex2num(copytext(new_hair, 4, 6))
 						b_hair = 0//hex2num(copytext(new_hair, 6, 8))
 
-						s_tone = 0
+						s_tone = 0*/
 
 				if("language")
 					var/languages_available
