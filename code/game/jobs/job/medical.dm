@@ -37,8 +37,8 @@
 	flag = SULDOC
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
 	access = list(access_sulaco_medbay, access_sulaco_chemistry)

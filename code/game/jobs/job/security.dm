@@ -6,8 +6,8 @@
 	flag = MPOLICE
 	department_flag = COMMAND
 	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the commander"
 	selection_color = "#ffdddd"
 	access = list(access_sulaco_brig, access_sulaco_bridge)
