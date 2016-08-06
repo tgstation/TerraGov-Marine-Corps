@@ -70,66 +70,6 @@
 		user << "\blue You hit the floor with the [src]."
 		call(/obj/effect/rune/proc/revealrunes)(src)
 
-/obj/item/weapon/claymore
-	name = "claymore"
-	desc = "What are you standing around staring at this for? Get to killing!"
-	icon_state = "claymore"
-	item_state = "claymore"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
-	force = 40
-	throwforce = 10
-	sharp = 1
-	edge = 1
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	IsShield()
-		return 1
-
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return(BRUTELOSS)
-
-/obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return ..()
-
-/obj/item/weapon/katana
-	name = "katana"
-	desc = "A finely made Japanese sword, expertly crafted by a dedicated weaponsmith. It has some foreign letters carved into the hilt."
-	icon_state = "katana"
-	item_state = "katana"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT | SLOT_BACK
-	force = 40
-	throwforce = 10
-	sharp = 1
-	edge = 1
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>"
-		return(BRUTELOSS)
-
-/obj/item/weapon/katana/IsShield()
-		return 1
-
-//To do: replace the toys.
-/obj/item/weapon/katana/replica
-	name = "replica katana"
-	desc = "A cheap knock-off commonly found in regular knife stores. Can still do some damage."
-	force = 27
-	throwforce = 7
-
-	IsShield()
-		return
-
-/obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return ..()
-
 /obj/item/weapon/harpoon
 	name = "harpoon"
 	sharp = 1

@@ -11,45 +11,48 @@
 #define AMMO_SKIPS_HUMANS	128
 #define AMMO_SKIPS_ALIENS 	256
 #define AMMO_IS_SILENCED 	512
-#define AMMO_NO_SCATTER 	1024
-#define AMMO_IGNORE_ARMOR	2048
-#define AMMO_IGNORE_RESIST	4096
+#define AMMO_IGNORE_ARMOR	1024
+#define AMMO_IGNORE_RESIST	2048
 */
 
-//Good to standardize this.
-#define NEG_ARMOR_PENETRATION	-10
-#define MIN_ARMOR_PENETRATION	10
-#define LOW_ARMOR_PENETRATION	20
-#define NORM_ARMOR_PENETRATION	30
-#define HIGH_ARMOR_PENETRATION	50
-#define MAX_ARMOR_PENETRATION	90
-
 /datum/ammo
-	var/name = "generic bullet"
-	var/icon = 'icons/obj/projectiles.dmi'
-	var/icon_state = "bullet"
-	var/ping = "ping_b" //The icon that is displayed when the bullet bounces off something.
+	var/name 		= "generic bullet"
+	var/icon 		= 'icons/obj/projectiles.dmi'
+	var/icon_state 	= "bullet"
+	var/ping 		= "ping_b" //The icon that is displayed when the bullet bounces off something.
+	var/sound_hit[] //When it deals damage.
+	var/sound_armor[] //When it's blocked by human armor.
+	var/sound_miss[] //When it misses someone.
+	var/sound_bounce[] //When it bounces off something.
 
-	var/stun 		= 0
-	var/weaken 		= 0
-	var/paralyze 	= 0
-	var/irradiate 	= 0
-	var/stutter 	= 0
-	var/eyeblur 	= 0
-	var/drowsy 		= 0
-	var/agony 		= 0
+	var/accuracy 			= 0 //This is added to the bullet's base accuracy.
+	var/accuracy_var_low	= 0 //How much the accuracy varies when fired.
+	var/accuracy_var_high	= 0
+	var/accurate_range 		= 0 //For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
+	var/max_range 			= 0 //This will de-increment a counter on the bullet.
+	var/scatter  			= 0 //How much the ammo scatters when burst fired, added to gun scatter, along with other mods.
+	var/damage 				= 0 //This is the base damage of the bullet as it is fired.
+	var/damage_var_low		= 0 //Same as with accuracy variance.
+	var/damage_var_high		= 0
+	var/damage_bleed 		= 0 //How much damage the bullet loses per turf traveled.
+	var/damage_type 		= BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
+	var/penetration			= 0 //How much armor it ignores before calculations take place.
+	var/shrapnel_chance 	= 0 //The % chance it will imbed in a human.
+	var/shell_speed 		= 0 //How fast the projectile moves.
+	var/bonus_projectiles 	= 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
+	var/debilitate[]		= null //stun,weaken,paralyze,irradiate,stutter,eyeblur,drowsy,agony
 
-	var/accuracy 		= 0
-	var/accurate_range 	= 7 //After this distance, accuracy suffers badly unless zoomed.
-	var/max_range 		= 30 //This will de-increment a counter on the bullet.
-	var/damage 			= 0
-	var/damage_bleed 	= 1 //How much damage the bullet loses per turf traveled, very high for shotguns. //Not anymore ~N.
-	var/damage_type 	= BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
-	var/armor_pen 		= 0
-	var/shrapnel_chance = 0
-	var/shell_speed 	= 1 //This is the default projectile speed: x turfs per 1 second.
+	New()
+		accuracy 			= config.min_hit_accuracy //This is added to the bullet's base accuracy.
+		accuracy_var_low	= config.min_proj_variance //How much the accuracy varies when fired.
+		accuracy_var_high	= config.min_proj_variance
+		accurate_range 		= config.close_shell_range //For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
+		max_range 			= config.norm_shell_range //This will de-increment a counter on the bullet.
+		damage_var_low		= config.min_proj_variance //Same as with accuracy variance.
+		damage_var_low		= config.min_proj_variance
+		damage_bleed 		= config.reg_damage_bleed //How much damage the bullet loses per turf traveled.
+		shell_speed 		= config.slow_shell_speed //How fast the projectile moves.
 
-	var/bonus_projectiles = 0 //How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together.
 	var/ammo_behavior = AMMO_REGULAR //Nothing special about it.
 
 	proc/do_at_half_range(var/obj/item/projectile/P)
@@ -72,7 +75,7 @@
 
 	proc/knockback(var/mob/M,var/obj/item/projectile/P)
 		if(!M || M == P.firer) return
-		if(P.distance_travelled > 2) shake_camera(M, 2, 1) //Two tiles away or more, basically.
+		if(P.distance_travelled > 2 || M.lying) shake_camera(M, 2, 1) //Two tiles away or more, basically.
 
 		else //One tile away or less.
 			shake_camera(M, 3, 4)
@@ -89,8 +92,8 @@
 						target << "<span class='highdanger'>The blast knocks you off your feet!</span>"
 			step_away(M,P)
 
-	proc/burst(var/atom/target,var/obj/item/projectile/P,var/damage_type = BRUTE)
-		if(!target) return
+	proc/burst(var/atom/target,var/obj/item/projectile/P,damage_type = BRUTE)
+		if(!target || !P) return
 		for(var/mob/living/carbon/M in orange(1,target))
 			if(P.firer == M)
 				continue
@@ -105,12 +108,8 @@
 			var/scatter_y = rand(-1,1)
 			var/turf/new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
 			if(!istype(new_target) || isnull(new_target)) continue	//If we didn't find anything, make another pass.
-			var/obj/item/projectile/P = rnew(/obj/item/projectile,original_P.shot_from)
-			P.ammo = ammo_list["additional buckshot"]
-			P.name = P.ammo.name
-			P.icon_state = P.ammo.icon_state
-			P.damage = P.ammo.damage //These do not benefit from gun accuracy/damage.
-			P.accuracy += P.ammo.accuracy
+			var/obj/item/projectile/P = rnew(/obj/item/projectile, original_P.shot_from)
+			P.generate_bullet(ammo_list["additional buckshot"]) //No bonus damage or anything.
 			P.original = new_target
 			P.fire_at(new_target,original_P.firer,original_P.shot_from,range,speed) //Fire!
 
@@ -143,12 +142,31 @@
 //Only when things screw up do we use this as a placeholder.
 /datum/ammo/bullet
 	name = "default bullet"
-	damage = 10
-	damage_type = BRUTE
-	accurate_range = 6
-	shrapnel_chance = 10
 	icon_state = "bullet"
-	shell_speed = 2
+	sound_hit 	 = list('sound/bullets/bullet_impact1.ogg',
+						'sound/bullets/bullet_impact2.ogg',
+						'sound/bullets/bullet_impact1.ogg')
+	sound_armor  = list('sound/bullets/bullet_armor1.ogg',
+						'sound/bullets/bullet_armor2.ogg',
+						'sound/bullets/bullet_armor3.ogg',
+						'sound/bullets/bullet_armor4.ogg')
+	sound_miss	 = list('sound/bullets/bullet_miss1.ogg',
+						'sound/bullets/bullet_miss2.ogg',
+						'sound/bullets/bullet_miss3.ogg',
+						'sound/bullets/bullet_miss3.ogg')
+	sound_bounce = list('sound/bullets/bullet_ricochet1.ogg',
+						'sound/bullets/bullet_ricochet2.ogg',
+						'sound/bullets/bullet_ricochet3.ogg',
+						'sound/bullets/bullet_ricochet4.ogg',
+						'sound/bullets/bullet_ricochet5.ogg',
+						'sound/bullets/bullet_ricochet6.ogg',
+						'sound/bullets/bullet_ricochet7.ogg',
+						'sound/bullets/bullet_ricochet8.ogg')
+	New()
+		..()
+		damage = config.base_hit_damage
+		shrapnel_chance = config.low_shrapnel_chance
+		shell_speed = config.reg_shell_speed
 
 /*
 //================================================
@@ -158,81 +176,76 @@
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
-	damage = 22
-	accuracy = -5 //Not very accurate.
+	New()
+		..()
+		damage = config.mlow_hit_damage
+		accuracy = -config.low_hit_accuracy
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
-	damage = 15
-	accuracy = -5 //Not very accurate.
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
-	damage = 17
-	accuracy = -10
-	shrapnel_chance = 50 //50% likely to generate shrapnel on impact.
+	New()
+		..()
+		accuracy = -config.med_hit_accuracy
+		shrapnel_chance = config.high_shrapnel_chance
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
-	damage = 17
-	accuracy = 8
-	armor_pen = NORM_ARMOR_PENETRATION
-	shrapnel_chance = 0
+	New()
+		..()
+		accuracy = config.low_hit_accuracy
+		penetration= config.med_armor_penetration
+		shrapnel_chance = config.med_shrapnel_chance
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
-	damage = 35
-	accuracy = -10
-	armor_pen = MIN_ARMOR_PENETRATION - 5
-	shrapnel_chance = 25
+	New()
+		..()
+		accuracy = -config.med_hit_accuracy
+		accuracy_var_low = config.med_proj_variance
+		damage = config.lmed_hit_damage
+		penetration= config.min_armor_penetration
+		shrapnel_chance = config.med_shrapnel_chance
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
-	damage = 20
 	damage_type = BURN
-	accuracy = 10
 	shrapnel_chance = 0
 	ammo_behavior = AMMO_INCENDIARY
+	New()
+		..()
+		accuracy = config.med_hit_accuracy
+		damage = config.mlow_hit_damage
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
-	damage = 50
-	accuracy = 15
-	armor_pen = LOW_ARMOR_PENETRATION + 5
-	shrapnel_chance = 20
-	agony = 2
+	debilitate = list(0,0,0,0,0,0,0,2)
+	New()
+		..()
+		accuracy = config.med_hit_accuracy
+		damage = config.med_hit_damage
+		penetration= config.low_armor_penetration
+		shrapnel_chance = config.med_shrapnel_chance
 
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
 	icon_state = "monkey1"
 	ping = null //no bounce off.
-	shell_speed = 1
 	damage_type = BURN
-	damage = 10
-	stun = 5
-	weaken = 3
+	debilitate = list(4,4,0,0,0,0,0,0)
 	ammo_behavior = AMMO_INCENDIARY | AMMO_IGNORE_ARMOR
+	New()
+		..()
+		damage = config.min_hit_damage
+		damage_var_high = config.high_proj_variance
+		shell_speed = config.slow_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
 			P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
 			new /mob/living/carbon/monkey(P.loc)
-
-/*
-//================================================
-					SMG Ammo
-//================================================
-*/
-
-/datum/ammo/bullet/smg
-	name = "submachinegun bullet"
-	damage = 25
-	accurate_range = 5
-
-/datum/ammo/bullet/smg/ap
-	name = "armor-piercing submachinegun bullet"
-	damage = 22
-	armor_pen = NORM_ARMOR_PENETRATION
 
 /*
 //================================================
@@ -242,36 +255,74 @@
 
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
-	damage = 35
-	armor_pen = MIN_ARMOR_PENETRATION - 5
-	accuracy = -15
-	stun = 1 //Knockdown! Doesn't work on xenos though.
+	debilitate = list(1,0,0,0,0,0,0,0)
+	New()
+		..()
+		accuracy = -config.med_hit_accuracy
+		damage = config.lmed_hit_damage
+		penetration= config.min_armor_penetration
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
-	damage = 25
+	New()
+		..()
+		damage = config.low_hit_damage
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
-	damage = 30
-	accuracy = 15
-	accurate_range = 8
-	stun = 1
-	armor_pen = NEG_ARMOR_PENETRATION
 	shrapnel_chance = 0
 	damage_bleed = 0
+	New()
+		..()
+		accuracy = config.med_hit_accuracy
+		accurate_range = config.short_shell_range
+		scatter = -config.low_scatter_value
+		damage = config.low_hit_damage
+		penetration = -config.mlow_armor_penetration
 
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
-	damage = 45
-	armor_pen = MIN_ARMOR_PENETRATION
-	accuracy = -10
+	New()
+		..()
+		damage = config.med_hit_damage
+		penetration= config.min_armor_penetration
+		accuracy = -config.med_hit_accuracy
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
-	damage = 55
-	armor_pen = LOW_ARMOR_PENETRATION - 5
-	weaken = 2
+	debilitate = list(0,2,0,0,0,1,0,0)
+	New()
+		..()
+		accuracy_var_high = config.max_proj_variance
+		damage = config.hmed_hit_damage
+		damage_var_low = config.low_proj_variance
+		damage_var_high = config.med_proj_variance
+		penetration= config.mlow_armor_penetration
+
+/*
+//================================================
+					SMG Ammo
+//================================================
+*/
+
+/datum/ammo/bullet/smg
+	name = "submachinegun bullet"
+	New()
+		..()
+		accuracy_var_low = config.med_proj_variance
+		accuracy_var_high = config.med_proj_variance
+		damage = config.low_hit_damage
+		damage_var_low = config.med_proj_variance
+		damage_var_high = config.high_proj_variance
+		accurate_range = config.close_shell_range
+
+/datum/ammo/bullet/smg/ap
+	name = "armor-piercing submachinegun bullet"
+	New()
+		..()
+		scatter = config.min_scatter_value
+		damage = config.mlow_hit_damage
+		penetration= config.med_armor_penetration
 
 /*
 //================================================
@@ -281,36 +332,45 @@
 
 /datum/ammo/bullet/rifle
 	name = "rifle bullet"
-	damage = 40
-	accurate_range = 10
-
-/datum/ammo/bullet/rifle/incendiary
-	name = "incendiary rifle bullet"
-	damage = 35
-	accuracy = -5
-	shrapnel_chance = 0
-	damage_type = BURN
-	ammo_behavior = AMMO_INCENDIARY
-
-/datum/ammo/bullet/rifle/marksman
-	name = "marksman rifle bullet"
-	damage = 54
-	accuracy = 20
-	armor_pen = MIN_ARMOR_PENETRATION
-	shrapnel_chance = 0
-	damage_bleed = 0
+	New()
+		..()
+		accurate_range = config.short_shell_range
+		damage = config.lmed_hit_damage
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
-	damage = 35
-	accuracy = 20
-	armor_pen = NORM_ARMOR_PENETRATION - 5
+	New()
+		..()
+		accuracy = config.hmed_hit_accuracy
+		penetration = config.med_armor_penetration
+
+/datum/ammo/bullet/rifle/incendiary
+	name = "incendiary rifle bullet"
+	damage_type = BURN
+	shrapnel_chance = 0
+	ammo_behavior = AMMO_INCENDIARY
+	New()
+		..()
+		accuracy = -config.low_hit_accuracy
+
+/datum/ammo/bullet/rifle/marksman
+	name = "marksman rifle bullet"
+	shrapnel_chance = 0
+	damage_bleed = 0
+	New()
+		..()
+		damage = config.hmed_hit_damage
+		accuracy = config.hmed_hit_accuracy
+		scatter = -config.low_scatter_value
+		penetration= config.min_armor_penetration
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
-	damage = 48
-	accuracy = -5
-	armor_pen = NEG_ARMOR_PENETRATION + 5
+	New()
+		..()
+		accuracy = -config.low_hit_accuracy
+		damage = config.med_hit_damage
+		penetration= -config.mlow_armor_penetration
 
 /*
 //================================================
@@ -322,21 +382,25 @@
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
-	damage = 58 //High damage.
-	max_range = 12
-	armor_pen = LOW_ARMOR_PENETRATION
+	New()
+		..()
+		max_range = config.short_shell_range
+		damage = config.hmed_hit_damage
+		penetration= config.low_armor_penetration
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
-	damage = 48 //Less damage than a normal slug, but has burst and burn.
-	max_range = 12
-	accuracy = -5
-	armor_pen = MIN_ARMOR_PENETRATION
 	damage_type = BURN
 	ammo_behavior = AMMO_INCENDIARY
+	New()
+		..()
+		accuracy = -config.low_hit_accuracy
+		max_range = config.short_shell_range
+		damage = config.med_hit_damage
+		penetration= config.min_armor_penetration
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P,damage_type)
@@ -350,30 +414,35 @@
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot"
-	damage = 90 //Massive damage up close, very quick fallout thereafter.
-	damage_bleed = 17 //90 PB, 73, 56, 39, 22, 5 <--- Max range.
-	accurate_range = 4
-	max_range = 5
 	icon_state = "buckshot"
-	bonus_projectiles = 2 //Shoots an extra two projectiles in a wide spread.
-	shell_speed = 1
-	/*
-	Point blanking doesn't actually make bonus projectiles, but firing within one turf does.
-	2-3 tiles away is the optimal range. 1-2 tiles away also triggers the knockback, and has
-	a greater chance of landing bonus projectiles. Anything past 3 tiles will be minimally
-	damaged. But then you should probably start using slugs.
-	*/
+	New()
+		..()
+		accuracy_var_low = config.high_proj_variance
+		accuracy_var_high = config.high_proj_variance
+		accurate_range = config.min_shell_range
+		max_range = config.close_shell_range
+		damage = config.max_hit_damage
+		damage_var_high = config.high_proj_variance
+		damage_bleed = config.buckshot_damage_bleed
+		bonus_projectiles = config.low_proj_extra
+		shell_speed = config.slow_shell_speed
+
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		knockback(M,P)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
-	damage = 65
-	damage_bleed = 16 //49, 33, 17, 1
-	accurate_range = 4
-	max_range = 4
 	icon_state = "buckshot"
-	shell_speed = 1
+	New()
+		..()
+		accuracy_var_low = config.high_proj_variance
+		accuracy_var_high = config.high_proj_variance
+		accurate_range = config.min_shell_range
+		max_range = config.min_shell_range
+		damage = config.high_hit_damage
+		damage_var_high = config.high_proj_variance
+		damage_bleed = config.extra_damage_bleed
+		shell_speed = config.slow_shell_speed
 
 
 /*
@@ -384,39 +453,52 @@
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
-	damage = 80
-	accurate_range = 3 //Works in reverse. You have a lower chance to hit if the target is close.
-	max_range = 30 //Otherwise, the bullet is fairly accurate even at max range.
-	armor_pen = HIGH_ARMOR_PENETRATION
 	damage_bleed = 0
-	accuracy = 15
-	shell_speed = 3
-	ammo_behavior = AMMO_NO_SCATTER | AMMO_SNIPER
+	ammo_behavior = AMMO_SNIPER
+	New()
+		..()
+		accuracy = config.med_hit_accuracy
+		accurate_range = config.min_shell_range
+		max_range = config.max_shell_range
+		scatter = -config.med_scatter_value
+		damage = config.mhigh_hit_damage
+		penetration= config.high_armor_penetration
+		shell_speed = config.fast_shell_speed
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
-	damage = 60
-	max_range = 25
-	armor_pen = NORM_ARMOR_PENETRATION
 	accuracy = 0
 	damage_type = BURN
-	ammo_behavior = AMMO_NO_SCATTER | AMMO_INCENDIARY | AMMO_SNIPER
+	ammo_behavior = AMMO_INCENDIARY | AMMO_SNIPER
+	New()
+		..()
+		accuracy_var_high = config.med_proj_variance
+		max_range = config.norm_shell_range
+		scatter = config.low_scatter_value
+		damage = config.hmed_hit_damage
+		penetration= config.low_armor_penetration
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak sniper bullet"
-	damage = 55
-	max_range = 24
-	armor_pen = LOW_ARMOR_PENETRATION - 5
-	accuracy = -10
+	New()
+		..()
+		accuracy = -config.low_hit_accuracy
+		max_range = config.norm_shell_range
+		scatter = config.low_scatter_value
+		damage = config.hmed_hit_damage
+		damage_var_high = config.low_proj_variance
+		penetration= -config.mlow_armor_penetration
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P,damage_type)
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
-	damage = 160
-	accuracy = 55
-	shell_speed = 4
+	New()
+		..()
+		accuracy = config.max_hit_accuracy
+		damage = config.ultra_hit_damage
+		shell_speed = config.super_shell_speed
 
 /*
 //================================================
@@ -426,35 +508,47 @@
 
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
-	damage = 28
-	armor_pen = MIN_ARMOR_PENETRATION
-	accuracy = 50
 	ammo_behavior = AMMO_SKIPS_HUMANS
+	New()
+		..()
+		accuracy = config.max_hit_accuracy
+		accurate_range = config.short_shell_range
+		damage = config.low_hit_damage
+		penetration= config.mlow_armor_penetration
 
-/datum/ammo/bullet/smartgun/dirty //This thing is extremely nasty.
+/datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
-	irradiate = 1 //Free rads.
-	agony = 1
-	damage = 35 // Slightly more damage than regular smartgun.
-	armor_pen = NORM_ARMOR_PENETRATION
-	shrapnel_chance = 65 // High chance of shrapnel tearing up your insides.
-	damage_type = BRUTE
+	debilitate = list(0,0,0,3,0,0,0,1)
 	ammo_behavior = AMMO_REGULAR
+	New()
+		..()
+		damage = config.lmed_hit_damage
+		penetration= config.med_armor_penetration
+		shrapnel_chance = config.max_shrapnel_chance
+
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
-	damage = 50
-	armor_pen = MIN_ARMOR_PENETRATION - 5
-	accuracy = 25
-	max_range = 12
 	ammo_behavior = AMMO_SKIPS_HUMANS
+	New()
+		..()
+		accurate_range = config.short_shell_range
+		max_range = config.short_shell_range
+		damage = config.med_hit_damage
+		penetration= config.mlow_armor_penetration
+		accuracy = config.high_hit_accuracy
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
-	damage = 50
-	armor_pen = MIN_ARMOR_PENETRATION
-	accuracy = -5
-	shrapnel_chance = 22
+	New()
+		..()
+		accuracy = -config.low_hit_accuracy
+		accuracy_var_low = config.low_proj_variance
+		accuracy_var_high = config.low_proj_variance
+		accurate_range = config.short_shell_range
+		damage = config.med_hit_damage
+		penetration= config.low_armor_penetration
+		shrapnel_chance = config.med_shrapnel_chance
 
 /*
 //================================================
@@ -466,14 +560,16 @@
 	name = "high explosive rocket"
 	icon_state = "missile"
 	ping = null //no bounce off.
-	accuracy = 10
-	accurate_range = 25
-	max_range = 25
-	damage = 15
-	damage_type = BRUTE  //Bonk!
-	shell_speed = 1
+	sound_bounce	= list('sound/bullets/rocket_ricochet1.ogg','sound/bullets/rocket_ricochet2.ogg','sound/bullets/rocket_ricochet3.ogg')
 	damage_bleed = 0
 	ammo_behavior = AMMO_EXPLOSIVE | AMMO_ROCKET
+	New()
+		..()
+		accuracy = config.low_hit_accuracy
+		accurate_range = config.norm_shell_range
+		max_range = config.long_shell_range
+		damage = config.min_hit_damage
+		shell_speed = config.slow_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 3, 4)
@@ -489,11 +585,16 @@
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
-	damage = 160
-	damage_type = BRUTE  //Bonk!
-	armor_pen = MAX_ARMOR_PENETRATION
 	damage_bleed = 0
 	ammo_behavior = AMMO_ROCKET
+	New()
+		..()
+		accuracy = -config.min_hit_accuracy
+		accuracy_var_low = config.med_proj_variance
+		accurate_range = config.short_shell_range
+		max_range = config.norm_shell_range
+		damage = config.ultra_hit_damage
+		penetration= config.max_armor_penetration
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 1, 4)
@@ -505,14 +606,18 @@
 		explosion(T,  -1, 1, 1, 4)
 
 	do_at_max_range(obj/item/projectile/P)
-		explosion(P.loc,  -1, 1, 1, 4)
+		explosion(get_turf(P),  -1, 1, 1, 4)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
-	damage = 90
-	damage_type = BURN
-	max_range = 18
 	ammo_behavior = AMMO_ROCKET | AMMO_INCENDIARY
+	damage_type = BURN
+	New()
+		..()
+		accuracy_var_low = config.med_proj_variance
+		accurate_range = config.short_shell_range
+		damage = config.super_hit_damage
+		max_range = config.norm_shell_range
 
 	drop_flame(var/turf/T)
 		if(!istype(T)) return
@@ -537,16 +642,18 @@
 		drop_flame(get_turf(O))
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_flame(get_turf(T))
+		drop_flame(T)
 
 	do_at_max_range(obj/item/projectile/P)
 		drop_flame(get_turf(P))
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
-	damage = 200
-	max_range = 30
 	ammo_behavior = AMMO_ROCKET
+	New()
+		..()
+		damage = config.ultra_hit_damage
+		max_range = config.long_shell_range
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_flame(get_turf(M))
@@ -557,7 +664,7 @@
 		explosion(P.loc,  -1, 2, 3, 4)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_flame(get_turf(T))
+		drop_flame(T)
 		explosion(P.loc,  -1, 2, 3, 4)
 
 	do_at_max_range(obj/item/projectile/P)
@@ -572,8 +679,15 @@
 
 /datum/ammo/energy
 	ping = null //no bounce off. We can have one later.
+	sound_hit 	 	= list('sound/bullets/energy_impact1.ogg')
+	sound_miss		= list('sound/bullets/energy_miss1.ogg')
+	sound_bounce	= list('sound/bullets/energy_ricochet1.ogg')
+
 	damage_type = BURN
 	ammo_behavior = AMMO_ENERGY
+	New()
+		..()
+		accuracy = config.hmed_hit_accuracy
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"
@@ -590,28 +704,35 @@
 		stun_living(M,P)
 
 /datum/ammo/energy/yautja
-	accurate_range = 10
-	shell_speed = 2
+	New()
+		..()
+		accurate_range = config.short_shell_range
+		shell_speed = config.reg_shell_speed
 
 /datum/ammo/energy/yautja/caster/bolt
 	name = "plasma bolt"
 	icon_state = "ion"
-	damage = 5
-	stun = 2
-	weaken = 2
+	debilitate = list(2,2,0,0,0,1,0,0)
 	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_RESIST
+	New()
+		..()
+		damage = config.base_hit_damage
 
 /datum/ammo/energy/yautja/caster/blast
 	name = "plasma blast"
 	icon_state = "pulse1"
-	damage = 25
-	shell_speed = 3
+	New()
+		..()
+		damage = config.low_hit_damage
+		shell_speed = config.fast_shell_speed
 
 /datum/ammo/energy/yautja/caster/sphere
 	name = "plasma eradication sphere"
 	icon_state = "bluespace"
-	damage = 30
-	shell_speed = 4
+	New()
+		..()
+		damage = config.lmed_hit_damage
+		shell_speed = config.super_shell_speed
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		explosion(get_turf(P.loc), -1, -1, 2, 2)
@@ -623,12 +744,13 @@
 		explosion(get_turf(P.loc), -1, -1, 2, 2)
 
 /datum/ammo/energy/yautja/rifle
-	damage = 10
+	New()
+		..()
+		damage = config.base_hit_damage
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		if(M && !M.stat && P.damage > 25)
-			M.Weaken(4)
-			step_rand(M)
+		if(P.damage > 25)
+			knockback(M,P)
 			playsound(M.loc, 'sound/weapons/pulse.ogg', 70, 1)
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
@@ -637,76 +759,99 @@
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
 		if(P.damage > 25)
-			explosion(get_turf(P.loc), -1, -1, 2, -1)
+			explosion(get_turf(P), -1, -1, 2, -1)
 
 /datum/ammo/energy/yautja/rifle/bolt
 	name = "plasma rifle bolt"
 	icon_state = "ion"
-	weaken = 2
+	debilitate = list(0,2,0,0,0,0,0,0)
 	ammo_behavior = AMMO_ENERGY | AMMO_IGNORE_RESIST
 
 /datum/ammo/energy/yautja/rifle/blast
 	name = "plasma rifle blast"
 	icon_state = "bluespace"
-	shell_speed = 3
+	New()
+		..()
+		shell_speed = config.fast_shell_speed
 
 /*
 //================================================
-					Xeno Acids
+					Xeno Spits
 //================================================
 */
 /datum/ammo/xeno
 	icon_state = "toxin"
 	ping = "ping_x"
 	damage_type = TOX
-	damage = 0
-	accuracy = 10
-	shell_speed = 1
-	ammo_behavior = AMMO_XENO_ACID | AMMO_SKIPS_ALIENS
+	ammo_behavior = AMMO_XENO_ACID
+	New()
+		..()
+		accuracy = config.med_hit_accuracy
+		accuracy_var_low = config.low_proj_variance
+		accuracy_var_high = config.low_proj_variance
+		max_range = config.short_shell_range
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	damage_bleed = 0
-	stun = 1
-	weaken = 2
-	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS | AMMO_IGNORE_RESIST
+	debilitate = list(1,2,0,0,0,0,0,0)
+	ammo_behavior = AMMO_XENO_TOX | AMMO_IGNORE_RESIST
+	New()
+		..()
+		max_range = config.close_shell_range
 
 /datum/ammo/xeno/toxin/medium //Spitter
 	name = "neurotoxic spatter"
-	stun = 2
-	weaken = 3
-	shell_speed = 2
+	debilitate = list(2,3,0,0,1,2,0,0)
+	New()
+		..()
+		shell_speed = config.reg_shell_speed
+		accuracy_var_low = config.high_proj_variance
+		accuracy_var_high = config.high_proj_variance
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	stun = 3
-	weaken = 4
+	debilitate = list(3,4,0,0,3,5,0,0)
 
 /datum/ammo/xeno/acid
 	icon_state = "neurotoxin"
 	name = "acid spit"
+	sound_hit 	 = list('sound/bullets/acid_impact1.ogg')
 	damage_type = BURN
-	damage = 20
+	New()
+		..()
+		damage = config.mlow_hit_damage
 
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 30
-	shell_speed = 2
+	New()
+		..()
+		damage = config.low_hit_damage
+		damage_var_low = config.low_proj_variance
+		damage_var_high = config.med_proj_variance
+		shell_speed = config.reg_shell_speed
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	damage = 45
+	New()
+		..()
+		damage = config.med_hit_damage
+		damage_var_low = config.med_proj_variance
+		damage_var_high = config.high_proj_variance
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
 	icon_state = "acid"
 	ping = "ping_x"
-	stun = 20
-	weaken = 20 //If this bad boy hits you directly, watch out.
+	debilitate = list(19,21,0,0,11,12,0,0)
 	ammo_behavior = AMMO_XENO_TOX | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_RESIST
+	New()
+		..()
+		accuracy_var_high = config.max_proj_variance
+		max_range = config.long_shell_range
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -715,7 +860,7 @@
 		drop_nade(get_turf(P))
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_nade(get_turf(P))
+		drop_nade(T)
 
 	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -724,15 +869,17 @@
 		var/obj/item/weapon/grenade/xeno_weaken/G = new (T)
 		G.visible_message("<span class='danger'>A glob of gas falls from the sky!</span>")
 		G.prime()
-		return
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
-	damage = 50
-	stun = 1
-	weaken = 1
-	damage_type = BURN
+	sound_hit 	 = list('sound/bullets/acid_impact1.ogg')
+	debilitate = list(1,1,0,0,1,1,0,0)
 	ammo_behavior = AMMO_XENO_ACID | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_ARMOR | AMMO_INCENDIARY
+	New()
+		..()
+		damage = config.med_hit_damage
+		damage_var_high = config.max_proj_variance
+		damage_type = config.hmed_hit_damage
 
 	on_shield_block(mob/M, obj/item/projectile/P)
 		burst(M,P,damage_type)
@@ -741,7 +888,6 @@
 		var/obj/item/weapon/grenade/xeno/G = new (T)
 		G.visible_message("<span class='danger'>A glob of acid falls from the sky!</span>")
 		G.prime()
-		return
 
 /*
 //================================================
@@ -752,22 +898,28 @@
 /datum/ammo/alloy_spike
 	name = "alloy spike"
 	ping = "ping_s"
-	damage = 40
 	icon_state = "MSpearFlight"
-	damage_type = BRUTE
-	accuracy = 50
-	max_range = 12
-	accurate_range = 10
-	armor_pen = HIGH_ARMOR_PENETRATION
-	shrapnel_chance = 68
+	sound_hit 	 	= list('sound/bullets/spear_impact1.ogg')
+	sound_armor	 	= list('sound/bullets/spear_armor1.ogg')
+	sound_bounce	= list('sound/bullets/spear_ricochet1.ogg','sound/bullets/spear_ricochet2.ogg')
+	New()
+		..()
+		accuracy = config.max_hit_accuracy
+		accurate_range = config.short_shell_range
+		max_range = config.short_shell_range
+		damage = config.lmed_hit_damage
+		penetration= config.high_armor_penetration
+		shrapnel_chance = config.max_shrapnel_chance
 
 /datum/ammo/flamethrower
 	name = "flame"
 	icon_state = "pulse0"
-	damage = 50
 	damage_type = BURN
-	max_range = 5
 	ammo_behavior = AMMO_INCENDIARY | AMMO_IGNORE_ARMOR
+	New()
+		..()
+		max_range = config.close_shell_range
+		damage = config.med_hit_damage
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_flame(get_turf(P))
@@ -784,11 +936,13 @@
 /datum/ammo/flare
 	name = "flare"
 	ping = null //no bounce off.
-	damage = 15
 	damage_type = BURN
-	accuracy = 15
-	max_range = 15
 	ammo_behavior = AMMO_INCENDIARY
+	New()
+		..()
+		damage = config.min_hit_damage
+		accuracy = config.med_hit_accuracy
+		max_range = config.short_shell_range
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -797,7 +951,7 @@
 		drop_nade(get_turf(P))
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
-		drop_nade(get_turf(P))
+		drop_nade(T)
 
 	do_at_max_range(obj/item/projectile/P)
 		drop_nade(get_turf(P))
@@ -810,11 +964,3 @@
 		G.icon_state = "flare-on"
 		G.damtype = "fire"
 		G.SetLuminosity(G.brightness_on)
-		return
-
-#undef NEG_ARMOR_PENETRATION
-#undef MIN_ARMOR_PENETRATION
-#undef LOW_ARMOR_PENETRATION
-#undef NORM_ARMOR_PENETRATION
-#undef HIGH_ARMOR_PENETRATION
-#undef MAX_ARMOR_PENETRATION

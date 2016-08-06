@@ -20,7 +20,7 @@
 	spit_delay = 20
 	speed = 1.7
 	jelly = 1
-	adjust_pixel_x = -16
+	pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
 //	adjust_size_y = 0.85

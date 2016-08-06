@@ -57,6 +57,7 @@ h1.alert, h2.alert		{color: #000000;}
 
 .rose					{color: #ff5050;}
 .info					{color: #0000CC;}
+.debuginfo				{color: #493D26;	font-style: italic;}
 .notice					{color: #000099;}
 .xenonotice				{color: #2a623d;}
 .boldnotice				{color: #000099;	font-weight: bold;}

@@ -25,7 +25,7 @@
 		unwield(user)
 
 /obj/item/proc/wield(var/mob/user)
-	if( !(flags & TWOHANDED) || (flags & WIELDED) ) return
+	if( !(flags & TWOHANDED) || flags & WIELDED ) return
 
 	if(user.get_inactive_hand())
 		user << "<span class='warning'>You need your other hand to be empty!</span>"
@@ -36,50 +36,50 @@
 		var/mob/living/carbon/human/wielder = user
 		var/datum/organ/external/hand = wielder.organs_by_name[check_hand]
 		if( !istype(hand) || !hand.is_usable() )
-			user << "<span class='warning'>Your other hand can't hold \the [src]!</span>"
+			user << "<span class='warning'>Your other hand can't hold [src]!</span>"
 			return
 
 	flags 	   ^= WIELDED
-	name 		= "[initial(name)] (Wielded)"
+	name 	   += " (Wielded)"
+	item_state += "_w"
 	place_offhand(user,initial(name))
 	return 1
 
 /obj/item/proc/unwield(mob/user)
-	if( !(flags & TWOHANDED) || !(flags & WIELDED) ) return //If we're not actually carrying it with both hands or it's a one handed weapon.
+	if( (flags | TWOHANDED | WIELDED) != flags) return //Have to be actually a twohander and wielded.
 	flags 	   ^= WIELDED
-	name 	 	= initial(name)
-	item_state 	= initial(item_state)
+	name 	    = copytext(name,1,-10)
+	item_state  = copytext(item_state,1,-2)
 	remove_offhand(user)
 	return 1
 
 /obj/item/proc/place_offhand(var/mob/user,item_name)
-	user << "<span class='notice'>You grab \the [item_name] with both hands.</span>"
+	user << "<span class='notice'>You grab [item_name] with both hands.</span>"
 	var/obj/item/weapon/twohanded/offhand/offhand = rnew(/obj/item/weapon/twohanded/offhand, user)
 	offhand.name = "[item_name] - offhand"
-	offhand.desc = "Your second grip on the [item_name]"
+	offhand.desc = "Your second grip on the [item_name]."
 	user.put_in_inactive_hand(offhand)
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
 
 /obj/item/proc/remove_offhand(var/mob/user)
-	user << "<span class='notice'>You are now carrying \the [name] with one hand.</span>"
+	user << "<span class='notice'>You are now carrying [name] with one hand.</span>"
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_hand()
 	if(istype(offhand)) offhand.unwield(user)
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
 
 /obj/item/weapon/twohanded/wield(mob/user)
-	if(!..()) return
+	. = ..()
+	if(!.) return
 	if(wieldsound) playsound(user, wieldsound, 50, 1)
-	force 			 = force_wielded
-	item_state 		 = initial(item_state) + "-w"
-	update_icon()
+	force 		= force_wielded
 
 /obj/item/weapon/twohanded/unwield(mob/user)
-	if(!..()) return
+	. = ..()
+	if(!.) return
 	if(unwieldsound) playsound(user, unwieldsound, 50, 1)
 	force 	 	= initial(force)
-	update_icon()
 
 /obj/item/weapon/twohanded/attack_self(mob/user)
 	..()
@@ -123,9 +123,10 @@
  * Fireaxe
  */
 /obj/item/weapon/twohanded/fireaxe
-	icon_state = "fireaxe0"
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
+	icon_state = "fireaxe"
+	item_state = "fireaxe"
 	force = 10
 	sharp = 1
 	edge = 1
@@ -135,26 +136,20 @@
 	force_wielded = 40
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
-/obj/item/weapon/twohanded/fireaxe/update_icon()  //Currently only here to fuck with the on-mob icons.
-	var/wielded = (flags & WIELDED) ? 1 : 0
-	icon_state = "fireaxe[wielded]"
-	item_state = "fireaxe[wielded]"
-	return
-
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(A && (flags & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
 		del(A)
 
-
 /*
  * Double-Bladed Energy Swords - Cheridan
  */
 /obj/item/weapon/twohanded/dualsaber
-	icon_state = "dualsaber0"
 	name = "double-bladed energy sword"
 	desc = "Handle with care."
+	icon_state = "dualsaber"
+	item_state = "dualsaber"
 	force = 3
 	throwforce = 5.0
 	throw_speed = 1
@@ -169,16 +164,10 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/weapon/twohanded/dualsaber/update_icon()
-	var/wielded = (flags & WIELDED) ? 1 : 0
-	icon_state = "dualsaber[wielded]"
-	item_state = "dualsaber[wielded]"
-	return
-
 /obj/item/weapon/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
 	..()
 	if((CLUMSY in user.mutations) && (flags & WIELDED) &&prob(40))
-		user << "<span class='highdanger'>You twirl around a bit before losing your balance and impaling yourself on the [src].</span>"
+		user << "<span class='highdanger'>You twirl around a bit before losing your balance and impaling yourself on [src].</span>"
 		user.take_organ_damage(20,25)
 		return
 	if((flags & WIELDED) && prob(50))
@@ -190,11 +179,22 @@
 /obj/item/weapon/twohanded/dualsaber/IsShield()
 	if(flags & WIELDED) return 1
 
+/obj/item/weapon/twohanded/dualsaber/wield(mob/user)
+	. = ..()
+	if(!.) return
+	icon_state += "_w"
+
+/obj/item/weapon/twohanded/dualsaber/unwield(mob/user)
+	. = ..()
+	if(!.) return
+	icon_state -= "_w"
+
 //spears, bay edition
 /obj/item/weapon/twohanded/spear
-	icon_state = "spearglass0"
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
+	icon_state = "spearglass"
+	item_state = "spearglass"
 	force = 14
 	w_class = 4.0
 	slot_flags = SLOT_BACK
@@ -206,9 +206,4 @@
 	flags = FPRINT | NOSHIELD | TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
-
-/obj/item/weapon/twohanded/spear/update_icon()
-	var/wielded = (flags & WIELDED) ? 1 : 0
-	item_state = "spearglass[wielded]"
-	return
 

@@ -74,20 +74,20 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/durag/jungle
-	name = "M8 Marksman Cowl"
+	name = "\improper M8 marksman cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragG"
 	item_state = "duragG"
 
-/obj/item/clothing/head/helmet/durag/jungle/snow
-	desc = "M6 Marksman Hood"
+/obj/item/clothing/head/helmet/durag/snow
+	desc = "\improper M6 marksman hood"
 	desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
 	icon_state = "duragS"
 	item_state = "duragS"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine
-	name = "\improper M10 Pattern Marine Helmet"
+	name = "\improper M10 pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "helmet"
@@ -207,7 +207,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	icon_override = 'icons/PMC/PMC.dmi'
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | HIDEMASK | COVEREYES | COVERMOUTH | HIDEALLHAIR | BLOCKSHARPOBJ | BLOCKGASEFFECT
-	anti_hug = 6
+	anti_hug = 8
 	unacidable = 1
 
 //==========================//DISTRESS\\=================================\\

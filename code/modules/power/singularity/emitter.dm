@@ -138,12 +138,8 @@
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-		var/obj/item/projectile/A = rnew(/obj/item/projectile,src.loc)
-		A.ammo = ammo
-		A.name = A.ammo.name
-		A.icon_state = A.ammo.icon_state
-		A.dir = dir
-		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
+		var/obj/item/projectile/A = rnew(/obj/item/projectile, loc)
+		A.generate_bullet(ammo, round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER))
 
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
 		var/turf/T = get_turf(src)
@@ -161,8 +157,7 @@
 			target = locate(T.x,T.y+3,T.z)
 
 		if(!target) //Off the edge of the map somehow.
-			A.ammo = null
-			del(A)
+			cdel(A)
 			return
 
 		A.fire_at(target,src,src,30,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.

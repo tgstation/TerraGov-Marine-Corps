@@ -20,7 +20,7 @@
 	var/up = 0
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags = FPRINT | CONDUCT
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | BLOCKSHARPOBJ
+	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | BLOCKSHARPOBJ
 	body_parts_covered = HEAD|FACE|EYES
 	icon_action_button = "action_welding"
 	siemens_coefficient = 0.9
@@ -38,19 +38,18 @@
 	set src in usr
 
 	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(src.up)
-			src.up = !src.up
-			flags_inv |= HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH
+		if(up)
+			flags_inv |= HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | BLOCKSHARPOBJ
 			icon_state = initial(icon_state)
 			usr << "You flip the [src] down to protect your eyes."
 			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
-			src.up = !src.up
-			flags_inv &= ~(HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH)
+			flags_inv &= ~(HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | BLOCKSHARPOBJ)
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push the [src] up out of your face."
 			hug_memory = anti_hug
 			anti_hug = 0
+		up = !up
 
 		update_clothing_icon()	//so our mob-overlays update
 

@@ -110,7 +110,7 @@ datum/preferences
 	var/job_marines_low = 0
 
 	//Keeps track of preferrence for not getting any wanted jobs
-	var/alternate_option = 0
+	var/alternate_option = 1 //Be a marine.
 
 	var/used_skillpoints = 0
 	var/skill_specialization = null

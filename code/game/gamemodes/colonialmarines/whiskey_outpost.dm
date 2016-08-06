@@ -94,6 +94,8 @@
 	lobby_time = world.time
 	var/mob/M
 
+	if(config) config.remove_gun_restrictions = 1
+
 	for(M in mob_list)
 		if(M.client && istype(M,/mob/living/carbon/human))
 			players += M
@@ -141,7 +143,7 @@
 	//COMMANDER
 	if(H.mind.special_role == "WO_COM")
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), slot_wear_suit)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
@@ -1054,7 +1056,7 @@
 									/obj/item/ammo_magazine/rifle/incendiary,
 									/obj/item/ammo_magazine/rifle/ap,
 									/obj/item/ammo_magazine/rifle/marksman,
-									/obj/item/ammo_magazine/rifle/ap/elite,
+									/obj/item/ammo_magazine/rifle/ap,
 									/obj/item/ammo_magazine/rifle/mar40,
 									/obj/item/ammo_magazine/rifle/mar40,
 									/obj/item/ammo_magazine/rifle/mar40/extended,

@@ -509,7 +509,7 @@
 		return
 
 	if(Proj.ammo.damage_type == HALLOSS)
-		use_power(Proj.ammo.agony * 5)
+		use_power(Proj.ammo.max_range * 5)
 
 	if(Proj.ammo.damage > 0)
 		src.take_damage(Proj.ammo.damage)

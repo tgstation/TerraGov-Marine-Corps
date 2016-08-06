@@ -680,7 +680,7 @@
 
 	visible_message("\The [src] is hit by the [Proj.name]!")
 
-	if(istype(Proj.ammo, /datum/ammo/xeno)) //Fix for xenomorph spit doing baby damage.
+	if(Proj.ammo.ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
 		update_health(round(Proj.damage / 3))
 	else
 		update_health(round(Proj.damage / 10))
@@ -711,18 +711,11 @@
 	return
 
 /obj/machinery/marine_turret/proc/load_into_chamber()
-	if(!ammo) return 0 //Our ammo datum is missing. We need one, and it should have set when we reloaded, so, abort.
-
 	if(in_chamber) return 1 //Already set!
 	if(!on || !cell || rounds == 0 || stat == 1) return 0
 
-	var/obj/item/projectile/P = rnew(/obj/item/projectile,src.loc) //New bullet!
-	P.ammo = ammo //Share the ammo type. This does all the heavy lifting.
-	P.name = P.ammo.name
-	P.icon_state = P.ammo.icon_state //Make it look fancy.
-	P.damage = P.ammo.damage //For reverse lookups.
-	P.accuracy += P.ammo.accuracy
-	in_chamber = P
+	in_chamber = rnew(/obj/item/projectile, loc) //New bullet!
+	in_chamber.generate_bullet(ammo)
 	return 1
 
 /obj/machinery/marine_turret/proc/process_shot()
@@ -784,7 +777,7 @@
 			else		dir = WEST
 
 	if(load_into_chamber() == 1)
-		if(istype(in_chamber,/obj/item/projectile) && in_chamber.ammo == ammo)
+		if(istype(in_chamber,/obj/item/projectile))
 			in_chamber.original = target
 			in_chamber.dir = src.dir
 			in_chamber.def_zone = pick("chest","chest","chest","head")

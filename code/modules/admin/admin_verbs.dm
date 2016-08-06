@@ -74,6 +74,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggledrones,
 	/client/proc/change_security_level, /* Changes alert levels*/
 	/client/proc/toggle_gun_restrictions,
+	/client/proc/adjust_weapon_mult,
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
 	/datum/admins/proc/admin_force_distress,
@@ -928,7 +929,25 @@ var/list/admin_verbs_mentor = list(
 		if(config.remove_gun_restrictions)
 			src << "<b>Enabled gun restrictions.</b>"
 			message_admins("Admin [key_name_admin(usr)] has enabled WY gun restrictions.", 1)
+			log_admin("[key_name(src)] enabled WY gun restrictions.")
 		else
 			src << "<b>Disabled gun restrictions.</b>"
 			message_admins("Admin [key_name_admin(usr)] has disabled WY gun restrictions.", 1)
+			log_admin("[key_name(src)] disabled WY gun restrictions.")
 		config.remove_gun_restrictions = !config.remove_gun_restrictions
+
+/client/proc/adjust_weapon_mult()
+	set name = "Adjust Weapon Multiplier"
+	set desc = "Using this allow to change how much accuracy and damage are changed. 1 is the normal number, anything higher will increase damage and/or accuracy."
+	set category = "Server"
+
+	if(!holder)	return
+	if(config)
+		var/acc = input("Select the new accuracy and damage multipliers.","ACCURACY MULTIPLIER", 1) as num
+		var/dam = input("Select the new accuracy and damage multipliers.","DAMAGE MULTIPLIER", 1) as num
+		if(acc && dam)
+			config.proj_base_accuracy_mult = acc * 0.01
+			config.proj_base_damage_mult = dam * 0.01
+			message_admins("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
+			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
+

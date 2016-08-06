@@ -539,7 +539,7 @@
 	if(!istype(M) || M.stat || M.health < 1) return
 	var/tunnel_time = 40
 
-	if(M.adjust_pixel_x && !istype(M,/mob/living/carbon/Xenomorph/Runner)) //Big xenos take WAY longer
+	if(M.big_xeno) //Big xenos take WAY longer
 		tunnel_time = 120
 
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva)) //Larva can zip through near-instantly, they are wormlike after all

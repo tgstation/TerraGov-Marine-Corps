@@ -20,7 +20,7 @@
 	jellyMax = 800
 	spit_delay = 40
 	speed = 1.2 //faster from 1.5
-	adjust_pixel_x = -16
+	pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
 //	adjust_size_y = 0.8

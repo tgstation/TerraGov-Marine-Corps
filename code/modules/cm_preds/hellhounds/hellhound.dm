@@ -115,7 +115,7 @@
 		visible_message("[src] growls at [X].", "You growl at [X].")
 		return
 	else if(a_intent == "disarm")
-		if (!(X.paralysis ) && !(X.big_xeno) && !(X.adjust_pixel_x))
+		if (!(X.paralysis ) && !(X.big_xeno))
 			if(prob(40))
 				X.Paralyse(4)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

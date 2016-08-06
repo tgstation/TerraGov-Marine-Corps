@@ -55,7 +55,8 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner,\
 								/obj/item/weapon/gun/minigun,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\
-								/obj/item/weapon/gun/rifle/sniper/elite,
+								/obj/item/weapon/gun/smg/m39/elite,\
+								/obj/item/weapon/gun/rifle/sniper/elite,\
 								/obj/item/weapon/gun/rocketlauncher/quad)
 
 var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
@@ -92,7 +93,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 								/obj/item/weapon/storage/backpack/satchel,\
 								/obj/item/weapon/claymore/mercsword,\
 								/obj/item/weapon/claymore/mercsword/machete,\
-								/obj/item/weapon/storage/backpack/marinesatchel/commando,\
+								/obj/item/weapon/storage/backpack/commando,\
 								/obj/item/clothing/suit/storage/CMB,\
 								/obj/item/weapon/grenade/explosive,\
 								/obj/item/weapon/grenade/incendiary,\

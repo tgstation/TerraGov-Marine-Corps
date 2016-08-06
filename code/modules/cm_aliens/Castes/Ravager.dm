@@ -33,7 +33,7 @@
 	attack_delay = -2
 	tier = 3
 	upgrade = 0
-	adjust_pixel_x = -16
+	pixel_x = -16
 	// adjust_pixel_y = -6
 	// adjust_size_x = 0.8
 	// adjust_size_y = 0.75

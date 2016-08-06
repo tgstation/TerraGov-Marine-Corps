@@ -19,33 +19,29 @@
 	var/trick_delay = 6
 	var/recent_trick //So they're not spamming tricks.
 	var/russian_roulette = 0 //God help you if you do this.
-	fire_delay = 8
-	recoil = 1
+	type_of_casings = "bullet"
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG
 
 	New()
 		..() //Do all that other stuff.
+		fire_delay = config.med_fire_delay*2
+		recoil = config.min_recoil_value
 		replace_cylinder(current_mag.current_rounds)
 
 	examine()
 		..()
-
-		if(current_mag.chamber_closed) 	usr << "It's closed."
-		else 							usr << "It's open with [current_mag.current_rounds] round\s loaded."
-
+		usr << "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]"
 
 	update_icon() //Special snowflake update icon.
-		if(isnull(icon_empty)) return
-		icon_state = current_mag.chamber_closed ? initial(icon_state) : icon_empty
-		update_attachables() //This will cut existing overlays
+		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_e"
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
-	current_mag.chamber_position = ( current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1 )
+	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1
 
 /obj/item/weapon/gun/revolver/proc/spin_cylinder(mob/user)
 	if(current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
 		current_mag.chamber_position = rand(1,current_mag.max_rounds)
-		user << "\blue You spin the cylinder."
+		user << "<span class='notice'>You spin the cylinder.</span>"
 		playsound(user, cocked_sound, 70, 1)
 		russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 
@@ -54,8 +50,7 @@
 	current_mag.chamber_contents.len = current_mag.max_rounds
 	var/i
 	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
-		if(i > number_to_replace) 	current_mag.chamber_contents[i] = "empty"
-		else 						current_mag.chamber_contents[i] = "bullet"
+		current_mag.chamber_contents[i] = i > number_to_replace ? "empty" : "bullet"
 	current_mag.chamber_position = max(1,number_to_replace)
 
 /obj/item/weapon/gun/revolver/proc/empty_cylinder()
@@ -80,7 +75,7 @@
 
 /obj/item/weapon/gun/revolver
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 		if(!magazine || !istype(magazine))
 			user << "<span class='warning'>That's not gonna work!</span>"
@@ -107,7 +102,7 @@
 			//If bullets still remain in the gun, we want to check if the actual ammo matches.
 			else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
 				if(current_mag.transfer_ammo(magazine,current_mag,user,1)) add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-			else 		user << "\The [current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]"//Not the right kind of ammo.
+			else 		user << "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]"//Not the right kind of ammo.
 		else //So if it's not a handful, it's an actual speedloader.
 			if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
 				if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
@@ -120,13 +115,13 @@
 			else 		user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
 
 	unload(mob/user)
-		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 		if(current_mag.chamber_closed) //If it's actually closed.
-			user << "<span class='notice'>You clear the cylinder of \the [src].</span>"
-			make_casing(type_of_casings,1)
+			user << "<span class='notice'>You clear the cylinder of [src].</span>"
+			make_casing(type_of_casings)
 			empty_cylinder()
-			current_mag.create_handful(current_mag, user)
+			current_mag.create_handful(user)
 			current_mag.chamber_closed = !current_mag.chamber_closed
 			russian_roulette = !russian_roulette //Resets the RR variable.
 		else
@@ -137,7 +132,7 @@
 
 	make_casing()
 		if(current_mag.used_casings)
-			..()
+			. = ..()
 			current_mag.used_casings = 0 //Always dump out everything.
 
 	able_to_fire(mob/user)
@@ -176,9 +171,9 @@
 	set waitfor = 0
 	playsound(user, spin_sound, 50, 1)
 	if(double)
-		user.visible_message("\The [user] deftly flicks and spins \the [src] and \the [double]!","\blue You flick and spin \the [src] and \the [double]!")
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!","\blue You flick and spin [src] and [double]!")
 		animation_wrist_flick(double, 1)
-	else user.visible_message("\The [user] deftly flicks and spins \the [src]!","\blue You flick and spin \the [src]!")
+	else user.visible_message("[user] deftly flicks and spins [src]!","\blue You flick and spin [src]!")
 
 	animation_wrist_flick(src, direction)
 	sleep(3)
@@ -186,7 +181,7 @@
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("\The [user] deftly flicks \the [src] and tosses it into the air!","\blue You flick and toss \the [src] into the air!")
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","\blue You flick and toss [src] into the air!")
 	var/layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,layer)
 	switch(pick(1,2))
@@ -202,9 +197,9 @@
 		invisibility = 0
 		playsound(user, thud_sound, 50, 1)
 		if(user.get_inactive_hand())
-			user.visible_message("\The [user] catches \the [src] with the same hand!","\blue You catch \the [src] as it spins in to your hand!")
+			user.visible_message("[user] catches [src] with the same hand!","\blue You catch [src] as it spins in to your hand!")
 		else
-			user.visible_message("\The [user] catches \the [src] with his other hand!","\blue You snatch \the [src] with your other hand! Awesome!")
+			user.visible_message("[user] catches [src] with his other hand!","\blue You snatch [src] with your other hand! Awesome!")
 			user.remove_from_mob(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
@@ -234,15 +229,12 @@
 			if(5)
 				//???????????
 			if(6)
-				if(istype(double))
-					revolver_basic_spin(user, 1, double)
-				else
-					revolver_basic_spin(user, -1)
+				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
+				revolver_basic_spin(arglist(arguments))
+
 			if(7)
-				if(istype(double))
-					revolver_basic_spin(user, -1, double)
-				else
-					revolver_basic_spin(user, 1)
+				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
+				revolver_basic_spin(arglist(arguments))
 			if(8)
 				if(istype(double))
 					spawn(0)
@@ -251,10 +243,8 @@
 				else
 					revolver_throw_catch(user)
 	else
-		if(prob(10))
-			user << "You fumble with \the [src] like an idiot... Uncool."
-		else
-			user.visible_message("<b> \The [user] fumbles with \the [src] like a huge idiot!</b>")
+		if(prob(10)) user << "<span class='warning'>You fumble with [src] like an idiot... Uncool.</span>"
+		else user.visible_message("<span class='info'><b>[user]</b> fumbles with [src] like a huge idiot!</span>")
 
 	recent_trick = world.time //Turn on the delay for the next trick.
 
@@ -285,15 +275,22 @@
 	name = "\improper M44 combat revolver"
 	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Colonial Marines, as well civilian law enforcement. Uses .44 Magnum rounds."
 	icon_state = "44"
-	icon_empty = "44_dry"
 	item_state = "44"
-	fire_sound = 'sound/weapons/44mag.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/revolver/m44
+	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/stock/revolver,
+						/obj/item/attachable/scope)
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 23, "under_x" = 22, "under_y" = 19)
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 23, "under_x" = 22, "under_y" = 19, "stock_x" = 22, "stock_y" = 19)
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
@@ -313,18 +310,20 @@
 /obj/item/weapon/gun/revolver/upp
 	name = "\improper N-Y 7.62mm revolver"
 	desc = "The Nagant-Yamasaki 7.62 is an effective killing machine designed by a consortion of shady Not-Americans. It is frequently found in the hands of criminals or mercenaries."
-	icon_state = "revolver"
-	icon_empty = "revolver_dry"
-	item_state = "revolver"
+	icon_state = "ny762"
+	item_state = "ny762"
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/pistol_medium.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/revolver/upp
+	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 10
+	attachable_allowed = list(
+						/obj/item/attachable/compensator)
+
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19)
+		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 //-------------------------------------------------------
 //357 REVOLVER //Based on the generic S&W 357.
@@ -346,19 +345,18 @@
 /obj/item/weapon/gun/revolver/small
 	name = "\improper S&W .357 revolver"
 	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
-	icon_state = "357"
-	icon_empty = "357_dry"
-	item_state = "revolver"
+	icon_state = "sw357"
+	item_state = "ny762" //PLACEHOLDER
 	fire_sound = 'sound/weapons/pistol_medium.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/revolver/small
-	fire_delay = 3
-	recoil = 0
+	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15)
+		fire_delay = config.low_fire_delay
+		recoil = 0
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 	unique_action(mob/user)
 		revolver_trick(user)
@@ -384,20 +382,26 @@
 	name = "\improper Mateba autorevolver"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds."
 	icon_state = "mateba"
-	icon_empty = "mateba_dry"
 	item_state = "mateba"
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/mateba.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/revolver/mateba
-	damage = 5
-	burst_amount = 2
-	burst_delay = 4
+	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/compensator)
+
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_RUSSIANS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15)
+		damage += config.min_hit_damage_mult
+		burst_amount = config.low_burst_value
+		burst_delay = config.med_fire_delay
+		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
@@ -419,17 +423,23 @@
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB Spearhead autorevolver"
 	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
-	icon_state = "CMB"
-	icon_empty = "CMB_dry"
-	item_state = "cmbpistol"
+	icon_state = "spearhead"
+	item_state = "spearhead"
 	fire_sound = 'sound/weapons/44mag2.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/revolver/cmb
-	damage = 5
-	fire_delay = 12
-	burst_amount = 3
-	burst_delay = 6
+	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/compensator)
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18)
+		damage += config.min_hit_damage_mult
+		fire_delay = config.mhigh_fire_delay*2
+		burst_amount = config.med_burst_value
+		burst_delay = config.high_fire_delay
+		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)

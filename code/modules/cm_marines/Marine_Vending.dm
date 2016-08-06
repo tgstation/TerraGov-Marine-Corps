@@ -13,7 +13,6 @@
 	req_access_txt = "0"
 	req_one_access = null
 	req_one_access_txt = "9;2;21"
-	special_equipment = 1
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -26,7 +25,7 @@
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
-					/obj/item/ammo_magazine/rifle = 40,
+					/obj/item/ammo_magazine/rifle = 22,
 					/obj/item/ammo_magazine/rifle/ap = 5,
 					/obj/item/ammo_magazine/shotgun = 8,
 					/obj/item/ammo_magazine/shotgun/buckshot = 8,
@@ -35,49 +34,106 @@
 					/obj/item/weapon/storage/belt/knifepouch = 5,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/weapon/storage/box/m94 = 5,
-					///obj/item/device/flashlight/flare = 30,
 					/obj/item/device/flashlight/ = 5,
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/device/radio/headset/msulaco = 5,
-//					/obj/item/clothing/suit/storage/marine = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
-//					/obj/item/clothing/head/helmet/marine = 5,
-					/obj/item/clothing/shoes/marine = 5,
-//					/obj/item/clothing/under/marine =5
-//					/obj/item/clothing/under/marine/snow = 15,
-//					/obj/item/clothing/suit/storage/marine/snow = 15,
-//					/obj/item/clothing/head/helmet/marine/snow = 15,
-//					/obj/item/clothing/mask/rebreather = 15,
-//					/obj/item/device/radio = 10
+					/obj/item/clothing/shoes/marine = 5
 					)
 
-	contraband = list(/*bj/item/weapon/storage/fancy/donut_box = 5,
-					/obj/item/ammo_magazine/a357 = 5,
-					/obj/item/ammo_magazine/a50 = 5,*/
-					)
-	premium = list(
-//				/obj/item/ammo_magazine/a762 = 5,
-				)
+	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
+						/obj/item/ammo_magazine/smg/m39/ap = 2,
+						/obj/item/ammo_magazine/pistol/ap = 2)
+
+	premium = list(/obj/item/ammo_magazine/shotgun/incendiary = 1,)
+
 	prices = list()
 
-	select_gamemode_equipment(gamemode = "")
-		if(special_equipment)
-			var/list/products2 = list()
-			switch(gamemode)
-				if("Ice Colony")
-					products2 = list(/obj/item/clothing/under/marine/snow = 10,
-									/obj/item/clothing/suit/storage/marine/snow = 10,
-									/obj/item/clothing/head/helmet/marine/snow = 10,
-									/obj/item/clothing/mask/rebreather/scarf = 10,
-									/obj/item/device/radio = 5
-									)
-				else
-					products2 = list(/obj/item/clothing/under/marine = 10,
-									/obj/item/clothing/suit/storage/marine = 10,
-									/obj/item/clothing/head/helmet/marine = 10
-									)
+	select_gamemode_equipment(gamemode)
+		var/products2[]
+		switch(gamemode)
+			if("Ice Colony")	products2 = list(/obj/item/clothing/under/marine/snow = 10,
+								/obj/item/clothing/suit/storage/marine/snow = 10,
+								/obj/item/clothing/head/helmet/marine/snow = 10,
+								/obj/item/clothing/mask/rebreather/scarf = 10,
+								/obj/item/device/radio = 5)
 
-			src.build_inventory(products2)//Add them to the list
+			else				products2 = list(/obj/item/clothing/under/marine = 10,
+								/obj/item/clothing/suit/storage/marine = 10,
+								/obj/item/clothing/head/helmet/marine = 10)
+		build_inventory(products2)
+
+/obj/machinery/vending/marine/cargo_ammo
+	name = "\improper ColMarTech automated armaments vendor"
+	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
+	products = list(
+					/obj/item/weapon/storage/backpack/marine = 10,
+					/obj/item/weapon/storage/belt/marine = 10,
+					/obj/item/weapon/gun/pistol/m4a3 = 5,
+					/obj/item/weapon/gun/pistol/m1911 = 1,
+					/obj/item/weapon/gun/revolver/m44 = 5,
+					/obj/item/weapon/gun/smg/m39 = 10,
+					/obj/item/weapon/gun/smg/m39/elite = 0,
+					/obj/item/weapon/gun/rifle/m41a = 10,
+					/obj/item/weapon/gun/rifle/m41a/elite = 0,
+					/obj/item/weapon/gun/rifle/m41aMK1 = 0,
+					/obj/item/weapon/gun/rifle/m41a/scoped = 0,
+					/obj/item/weapon/gun/rifle/lmg = 0,
+					/obj/item/weapon/gun/shotgun/pump = 5,
+					/obj/item/weapon/gun/shotgun/combat = 0,
+					/obj/item/device/mine = 0,
+					/obj/item/weapon/grenade/explosive = 0,
+					/obj/item/weapon/grenade/explosive/m40 = 0,
+					/obj/item/weapon/grenade/incendiary = 0,
+					/obj/item/weapon/grenade/smokebomb = 0,
+					/obj/item/weapon/grenade/phosphorus = 0,
+					/obj/item/ammo_magazine/rocket = 0,
+					/obj/item/ammo_magazine/rocket/ap = 0,
+					/obj/item/ammo_magazine/rocket/wp = 0,
+					/obj/item/weapon/storage/box/m94 = 5,
+					/obj/item/device/flashlight/ = 5
+					)
+
+	contraband = list()
+	premium = list()
+	prices = list()
+	select_gamemode_equipment()
+
+/obj/machinery/vending/marine/cargo_guns
+	name = "\improper ColMarTech automated munition vendor"
+	desc = "A automated rack hooked up to a small supply of ammo magazines."
+	products = list(
+					/obj/item/ammo_magazine/pistol = 10,
+					/obj/item/ammo_magazine/pistol/hp = 0,
+					/obj/item/ammo_magazine/pistol/ap = 0,
+					/obj/item/ammo_magazine/pistol/incendiary = 0,
+					/obj/item/ammo_magazine/pistol/extended = 0,
+					/obj/item/ammo_magazine/pistol/m1911 = 0,
+					/obj/item/ammo_magazine/revolver = 10,
+					/obj/item/ammo_magazine/revolver/marksman = 0,
+					/obj/item/ammo_magazine/smg/m39 = 15,
+					/obj/item/ammo_magazine/smg/m39/ap = 0,
+					/obj/item/ammo_magazine/smg/m39/extended = 0,
+					/obj/item/ammo_magazine/rifle = 15,
+					/obj/item/ammo_magazine/rifle/extended = 0,
+					/obj/item/ammo_magazine/rifle/incendiary = 0,
+					/obj/item/ammo_magazine/rifle/ap = 0,
+					/obj/item/ammo_magazine/rifle/marksman = 0,
+					/obj/item/ammo_magazine/rifle/m41aMK1 = 0,
+					/obj/item/ammo_magazine/rifle/lmg = 0,
+					/obj/item/ammo_magazine/shotgun = 5,
+					/obj/item/ammo_magazine/shotgun/buckshot = 5,
+					/obj/item/ammo_magazine/shotgun/incendiary = 0,
+					/obj/item/ammo_magazine/sniper = 0,
+					/obj/item/ammo_magazine/sniper/incendiary = 0,
+					/obj/item/ammo_magazine/sniper/flak = 0,
+					/obj/item/smartgun_powerpack = 0
+					)
+
+	contraband = list()
+	premium = list()
+	prices = list()
+	select_gamemode_equipment()
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
@@ -153,21 +209,16 @@
 					/obj/item/weapon/reagent_containers/blood/OPlus = 5, /obj/item/weapon/reagent_containers/blood/OMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/empty = 10)
 
-	contraband= list()
-	prices = list()
-	premium = list()
-
 
 /obj/machinery/vending/marine_engi
 	name = "ColMarTech Engineer Vendor"
 	desc = "A marine engineering equipment vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
-	special_equipment = 1
 	products = list(
 					//	/obj/item/clothing/under/marine/fluff/marineengineer = 3,
 						/obj/item/weapon/storage/backpack/marine/tech = 4,
-						/obj/item/weapon/storage/backpack/techsatchel = 2,
+						/obj/item/weapon/storage/backpack/marine/satchel/tech = 2,
 						/obj/item/clothing/tie/storage/webbing = 3,
 						/obj/item/device/encryptionkey/headset_eng = 3,
 						/obj/item/weapon/storage/box/sentry = 1,
@@ -177,7 +228,6 @@
 						/obj/item/device/multitool = 4,
 						/obj/item/weapon/grenade/incendiary = 2,
 						/obj/item/weapon/storage/box/explosive_mines = 1,
-						//obj/item/weapon/storage/backpack/industrial = 3,
 						/obj/item/clothing/glasses/welding = 3,
 						/obj/item/weapon/plastique = 4,
 						/obj/item/device/lightreplacer = 2,
@@ -186,24 +236,20 @@
 						/obj/item/weapon/airalarm_electronics = 10,
 						/obj/item/weapon/cell/high = 10
 					)
-	contraband = list()
-	premium = list()
-	prices = list()
 
-	select_gamemode_equipment(gamemode = "")
-		if(special_equipment)
-			var/list/products2 = list()
-			var/list/contraband2 = list()
-			switch(gamemode)
-				if("Ice Colony")
-					products2 = list(/obj/item/clothing/under/marine/fluff/marineengineer/snow = 3)
-					contraband2 = list(/obj/item/clothing/head/helmet/marine/tech/snow = 2)
-				else
-					products2 = list(/obj/item/clothing/under/marine/fluff/marineengineer = 3)
-					contraband2 = list(/obj/item/clothing/head/helmet/marine/tech = 2)
+	select_gamemode_equipment(gamemode)
+		var/products2[]
+		var/contraband2[]
+		switch(gamemode)
+			if("Ice Colony")
+				products2 = list(/obj/item/clothing/under/marine/fluff/marineengineer/snow = 3)
+				contraband2 = list(/obj/item/clothing/head/helmet/marine/tech/snow = 2)
+			else
+				products2 = list(/obj/item/clothing/under/marine/fluff/marineengineer = 3)
+				contraband2 = list(/obj/item/clothing/head/helmet/marine/tech = 2)
 
-			src.build_inventory(products2)//Add them to the products list
-			src.build_inventory(contraband2,1)//Add them to the hidden list
+		build_inventory(products2)//Add them to the products list
+		build_inventory(contraband2,1)//Add them to the hidden list
 
 /obj/machinery/vending/marine_medic
 	name = "ColMarTech Medic Vendor"
@@ -212,17 +258,12 @@
 	req_access = list(access_marine_medprep)
 	icon_state = "med"
 	icon_deny = "med-deny"
-	special_equipment = 1
 
 	products = list(
-					//	/obj/item/clothing/tie/storage/webbing = 2,  Replaced with the fancy new COMBAT LIFESAVER KIT
-						///obj/item/clothing/under/marine/fluff/marinemedic = 3,
 						/obj/item/weapon/storage/backpack/marine/medic = 4,
-						/obj/item/weapon/storage/backpack/medicsatchel = 2,
+						/obj/item/weapon/storage/backpack/marine/satchel/medic = 2,
 						/obj/item/device/encryptionkey/headset_med = 3,
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
-						//obj/item/weapon/storage/backpack/medic = 3,
-						//obj/item/weapon/storage/backpack/satchel_med = 3,
 						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
 						/obj/item/weapon/melee/defibrillator = 3,
@@ -250,26 +291,20 @@
 						/obj/item/weapon/storage/firstaid/regular = 4,
 						/obj/item/weapon/storage/firstaid/adv = 3
 					)
-	contraband = list(
-					///obj/item/clothing/head/helmet/marine/medic = 2
-			)
-	premium = list()
-	prices = list()
 
-	select_gamemode_equipment(gamemode = "")
-		if(special_equipment)
-			var/list/products2 = list()
-			var/list/contraband2 = list()
-			switch(gamemode)
-				if("Ice Colony")
-					products2 = list(/obj/item/clothing/under/marine/fluff/marinemedic/snow = 3)
-					contraband2 = list(/obj/item/clothing/head/helmet/marine/medic/snow = 2)
-				else
-					products2 = list(/obj/item/clothing/under/marine/fluff/marinemedic = 3)
-					contraband2 = list(/obj/item/clothing/head/helmet/marine/medic = 2)
+	select_gamemode_equipment(gamemode)
+		var/products2[]
+		var/contraband2[]
+		switch(gamemode)
+			if("Ice Colony")
+				products2 = list(/obj/item/clothing/under/marine/fluff/marinemedic/snow = 3)
+				contraband2 = list(/obj/item/clothing/head/helmet/marine/medic/snow = 2)
+			else
+				products2 = list(/obj/item/clothing/under/marine/fluff/marinemedic = 3)
+				contraband2 = list(/obj/item/clothing/head/helmet/marine/medic = 2)
 
-			src.build_inventory(products2)//Add them to the products list
-			src.build_inventory(contraband2,1)//Add them to the hidden list
+		build_inventory(products2)//Add them to the products list
+		build_inventory(contraband2,1)//Add them to the hidden list
 
 /obj/machinery/vending/marine_special
 	name = "ColMarTech Specialist Vendor"
@@ -308,36 +343,25 @@
 	req_access = list(access_marine_leader)
 	icon_state = "tool"
 	icon_deny = "tool-deny"
-	special_equipment = 1
 
 	products = list(
-						///obj/item/clothing/suit/storage/marine/leader = 1,
-						///obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/device/squad_beacon = 3,
 						/obj/item/device/squad_beacon/bomb = 1,
 						/obj/item/weapon/plastique = 1,
 						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
-						/obj/item/weapon/storage/backpack/marinesatchel = 2,
+						/obj/item/weapon/storage/backpack/marine/satchel = 2
 					)
-	contraband = list()
-	premium = list()
-	prices = list()
 
-	select_gamemode_equipment(gamemode = "")
-		if(special_equipment)
-			var/list/products2 = list()
-			switch(gamemode)
-				if("Ice Colony")
-					products2 = list(/obj/item/clothing/suit/storage/marine/leader/snow = 1,
-									/obj/item/clothing/head/helmet/marine/leader/snow = 1)
-
-				else
-					products2 = list(/obj/item/clothing/suit/storage/marine/leader = 1,
-									/obj/item/clothing/head/helmet/marine/leader = 1)
-
-			src.build_inventory(products2)//Add them to the products list
+	select_gamemode_equipment(gamemode)
+		var/products2[]
+		switch(gamemode)
+			if("Ice Colony")	products2 = list(/obj/item/clothing/suit/storage/marine/leader/snow = 1,
+								/obj/item/clothing/head/helmet/marine/leader/snow = 1)
+			else 				products2 = list(/obj/item/clothing/suit/storage/marine/leader = 1,
+								/obj/item/clothing/head/helmet/marine/leader = 1)
+		build_inventory(products2)//Add them to the products list
 
 /obj/machinery/vending/attachments
 	name = "Armat Systems Attachments Vendor"
@@ -376,6 +400,3 @@
 						/obj/item/weapon/claymore/mercsword/machete = 5
 
 					)
-	contraband = list()
-	premium = list()
-	prices = list()

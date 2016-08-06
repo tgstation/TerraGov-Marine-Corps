@@ -248,15 +248,13 @@
 
 	if(!check_state())	return
 
-	if(has_spat)
-		usr << "You must wait for your neurotoxin glands to refill."
+	if(!isturf(loc))
+		src << "You can't spit from here!"
 		return
 
-	if(!isturf(usr.loc))
-		usr << "You can't spit from here!"
+	if(has_spat + spit_delay >= world.time)
+		src << "You must wait for your neurotoxin glands to refill."
 		return
-
-	if(!ammo) return
 
 	if(!T)
 		var/list/victims = list()
@@ -265,51 +263,34 @@
 				victims += C
 		victims += "Cancel"
 		T = input(src, "Who should you spit towards?") as null|anything in victims
-	if(T == "Cancel")
-		return
+
+	if(!client || !loc || T == "Cancel") return
 
 	if(T)
-		if(spit_type)
-			if(!check_plasma(100))
-				return
-		else
-			if(!check_plasma(50))
-				return
+		if(!check_plasma(spit_type?100:50)) return
 
-		var/turf/Turf = get_turf(src)
-		var/turf/Target_Turf = get_turf(T)
+		var/turf/current_turf = get_turf(src)
 
-		if(!Target_Turf || !Turf)
-			return
+		if(!current_turf) return
 
-		if(Turf == Target_Turf)
-			src << "Too close!"
-			return
+		visible_message("<span class='danger'>\The [src] spits at [T]!</span>","<span class='danger'>You spit at [T]!</span>" )
+		var/sound_to_play = pick(1,2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
+		playsound(src.loc, sound_to_play, 60, 1)
 
-		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
-		if(rand(0,100) < 50)
-			playsound(src.loc, 'sound/voice/alien_spitacid.ogg', 60, 1)
-		else
-			playsound(src.loc, 'sound/voice/alien_spitacid2.ogg', 60, 1)
-		var/obj/item/projectile/A = rnew(/obj/item/projectile,Turf)
-		A.permutated.Add(src)
+		var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
+		A.generate_bullet(ammo)
+		A.permutated += src
 		A.def_zone = get_organ_target()
-		A.ammo = ammo
-		A.name = A.ammo.name
-		A.icon = A.ammo.icon
-		A.icon_state = A.ammo.icon_state
-		A.damage = A.ammo.damage
-		A.accuracy += A.ammo.accuracy
+		A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed)
+		has_spat = world.time
+		cooldown_notification(spit_delay,"spit")
+	else src << "You cannot spit at nothing!"
 
-		A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed) //Ptui!
-//		src.next_move += 2 //Lags you out a bit, spitting.
-		has_spat = 1
-		spawn(spit_delay)
-			has_spat = 0
-			src << "You feel your glands swell with ichor. You can spit again."
-	else
-		src << "You cannot spit at nothing!"
-	return
+/mob/living/carbon/Xenomorph/proc/cooldown_notification(cooldown, message)
+	set waitfor = 0
+	sleep(cooldown)
+	switch(message)
+		if("spit") src << "You feel your glands swell with ichor. You can spit again."
 
 //Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
 //The acid items are stored in XenoProcs.

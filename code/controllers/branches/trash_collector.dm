@@ -5,7 +5,7 @@
 #define TA_PURGE_ME		3 //Purge it, but later. Not different from adding it to queue regularly as the trash authority will incinerate it when possible.
 #define TA_PURGE_ME_NOW	4 //Purge it immediately. Generally don't want to use this.
 #define TA_IGNORE_ME	5 //Ignore this atom, don't do anything with it. In case the atom will die on its own or something.
-					 	  //Shouldn't usually use this as garbage collection is far better.
+					 	  //Shouldn't usually use this as garbage collection is far better, but you might want an immortal atom.
 */
 	/*
 	This is the main trash collector that should be collecting, sorting, and then deleting information.
@@ -26,6 +26,8 @@
 
 	If I ever do a master controller, it would be called the governing authority. ~N
 	*/
+
+#define DEBUG_TA_AUTHORITY 0
 
 var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the actual process called on.
 /datum/var/ta_directive //This is used in reference to deletion later in the process to accurately sweep stuff away.
@@ -49,35 +51,15 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 		var/directive = garbage.Dispose(override)
 		if(!directive) directive = TA_TRASH_ME
 		switch(directive)
-			if(TA_IGNORE_ME)   //Nothing
+			if(TA_IGNORE_ME)   //Nothing.
 			if(TA_REVIVE_ME)
 				RecycleAuthority.RecycleTrash(garbage)
-			//	world << "Sending [garbage.type] to the recycler."
+				#if DEBUG_TA_AUTHORITY
+				world << "<span class='debuginfo'>Sending [garbage.type] to the recycler.</span>"
+				#endif
 			if(TA_PURGE_ME_NOW) TrashAuthority.PurgeTrash(garbage)
 			else 				TrashAuthority.DeliverTrash(garbage) //If it returned anything else.
 	return
-
-/*
-Individual atoms will need to modify this proc and call ..() after. Null all references to other atoms before getting rid of it.
-This makes sure the BYOND garbage collector does its job properly. As mentioned in the atoms.dm, these procs should always
-. = ..() so that the right directive is returned unless you manually override it with a different return. Even though the
-default action is to add to queue, you may want to hard delete instead. Like the case with turfs. You don't need to call
-cdel on anything in contents, like gun attachments. They are automtically cdel'd, so just null references instead and do
-anything additional that may be required.
-You will find the individual Dispose() calls in the various /atom  /atom/movable /obj /turf /mob files.
-
-Override exists for any specific behavior you may want to happen. For example, you may want to force delete something instead
-of adding it queue in some circumstances but not others.
-
-TO DO: Implement more support for /mob.
-*/
-/datum/proc/Dispose(override = 0) //This is the proc parent of how atoms get rid of trash.
-	tag = null //Can't have one of these and still be garbage collected. Same for key in mobs, which will be added to that subtype.
-	return TA_TRASH_ME
-
-/image/Dispose()
-	. = ..()
-	loc = null
 
 /datum/authority/branch/trash
 	name = "Trash Authority"
@@ -153,6 +135,23 @@ Otherwise it will add it to queue for later hard deletion.
 		hard_del_count++
 	else
 		purge_trash += garbage //Since we're getting rid of it, no reason to carry additional data.
+/*
+Individual atoms will need to modify this proc and call ..() after. Null all references to other atoms before getting rid of it.
+This makes sure the BYOND garbage collector does its job properly. As mentioned in the atoms.dm, these procs should always
+. = ..() so that the right directive is returned unless you manually override it with a different return. Even though the
+default action is to add to queue, you may want to hard delete instead. Like the case with turfs. You don't need to call
+cdel on anything in contents, like gun attachments. They are automtically cdel'd, so just null references instead and do
+anything additional that may be required.
+You will find the individual Dispose() calls in the various /atom  /atom/movable /obj /turf /mob files.
+
+Override exists for any specific behavior you may want to happen. For example, you may want to force delete something instead
+of adding it queue in some circumstances but not others.
+
+TO DO: Implement more support for /mob.
+*/
+/datum/proc/Dispose(override = 0) //This is the proc parent of how atoms get rid of trash.
+	tag = null //Can't have one of these and still be garbage collected. Same for key in mobs, which will be added to that subtype.
+	return TA_TRASH_ME
 
 //======================================================
 //======================================================
@@ -182,3 +181,4 @@ Otherwise it will add it to queue for later hard deletion.
 	usr << "\red TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]"
 	log_debug("TA: <b>[usr.key]</b> used the purge toggle.")
 
+#undef DEBUG_TA_AUTHORITY

@@ -40,3 +40,13 @@ Instead of being uniform, it starts out a littler slower, goes fast in the middl
 			A.pixel_x -= 18
 
 	animate(A, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+
+/proc/animation_flash_color(var/atom/A, var/flash_color = "#FF0000", var/speed = 3) //Flashes red on default.
+	animate(A, color = flash_color, time = speed)
+	animate(color = "#FFFFFF", time = speed)
+
+/proc/animatation_displace_reset(var/atom/A, var/x_n = 2, var/y_n = 2, var/speed = 3)
+	var/x_o = initial(A.pixel_x)
+	var/y_o = initial(A.pixel_y)
+	animate(A, pixel_x = x_o+rand(-x_n, x_n), pixel_y = y_o+rand(-y_n, y_n), time = speed, easing = ELASTIC_EASING | EASE_IN)
+	animate(pixel_x = x_o, pixel_y = y_o, time = speed, easing = CIRCULAR_EASING | EASE_OUT)

@@ -48,6 +48,8 @@ include jackets and regular suits, not armor.*/
 	icon_state = "coif"
 	item_state = "coif"
 	flags_inv = COVERMOUTH | HIDEALLHAIR
+	cold_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/mask/gas
 	name = "gas mask"
@@ -166,7 +168,7 @@ include jackets and regular suits, not armor.*/
 	item_color = "marine_medic_snow"
 
 /obj/item/clothing/under/marine/snow/sniper
-	name = "\improper USCM Sniper uniform"
+	name = "\improper USCM sniper uniform"
 	icon_state = "marine_sniper_snow"
 	item_state = "marine_sniper_snow"
 	item_color = "marine_sniper_snow"

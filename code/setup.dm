@@ -454,20 +454,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Bluh shields
 
-//DAMAGE CALCULATION DEFINES
-/*
-If you are wondering what point these values have,
-they should also transfer over to various forms of combat.
-Assuming those forms of combat will exist in the future, but
-for right now they exist for shooting guns at things.
-*/
-#define CRITICAL_CHANCE_LOW		   4   //This is the lower boundry of a critical.
-#define CRITICAL_CHANCE_HIGH	   9   //This is the upper boundry of a critical.
-#define BASE_ARMOR_RESIST_LOW 	   1.3 //This is the initial multiple * after soaking damage.
-#define BASE_ARMOR_RESIST_HIGH     1.7 //This is the derived multiple * after soaking damgage again.
-#define XENO_ARMOR_RESIST_LOW 	   0.7 //Xenos use this as a lower boundary for soaking damage or adding more armor.
-#define XENO_ARMOR_RESIST_HIGH     1.4 //Xenos use this as the upper boundary for deflecting damage on their second pass.
-
 //Damage things	//TODO: merge these down to reduce on defines
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE		"brute"
@@ -958,9 +944,8 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define AMMO_SKIPS_HUMANS	128
 #define AMMO_SKIPS_ALIENS 	256
 #define AMMO_IS_SILENCED 	512 //Unused right now.
-#define AMMO_NO_SCATTER 	1024
-#define AMMO_IGNORE_ARMOR	2048
-#define AMMO_IGNORE_RESIST	4096
+#define AMMO_IGNORE_ARMOR	1024
+#define AMMO_IGNORE_RESIST	2048
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1
@@ -968,7 +953,7 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define GUN_UNUSUAL_DESIGN		4
 #define GUN_SILENCED			8
 #define GUN_AUTOMATIC			16
-#define GUN_INTERNAL_MAG		32 //Unused right now.
+#define GUN_INTERNAL_MAG		32
 #define GUN_AUTO_EJECTOR		64
 #define GUN_AMMO_COUNTER		128
 #define GUN_BURST_ON			256

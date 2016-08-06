@@ -102,38 +102,6 @@
 
 	var/forbid_singulo_possession = 0
 
-	//game_options.txt configs
-
-	var/health_threshold_softcrit = 0
-	var/health_threshold_crit = 0
-	var/health_threshold_dead = -100
-
-	var/organ_health_multiplier = 1
-	var/organ_regeneration_multiplier = 1
-
-	var/bones_can_break = 0
-	var/limbs_can_break = 0
-
-	var/revival_pod_plants = 1
-	var/revival_cloning = 1
-	var/revival_brain_life = -1
-
-	var/use_loyalty_implants = 0
-	var/remove_gun_restrictions = 0
-
-	//Used for modifying movement speed for mobs.
-	//Unversal modifiers
-	var/run_speed = 0
-	var/walk_speed = 0
-
-	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
-	var/animal_delay = 0
-
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
@@ -179,410 +147,359 @@
 
 	for(var/t in Lines)
 		if(!t)	continue
-
 		t = trim(t)
-		if (length(t) == 0)
-			continue
-		else if (copytext(t, 1, 2) == "#")
-			continue
+		if (!length(t)) continue
+		else if (copytext(t, 1, 2) == "#") continue
 
 		var/pos = findtext(t, " ")
-		var/name = null
-		var/value = null
+		var/name
+		var/value
 
 		if (pos)
 			name = lowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
-		else
-			name = lowertext(t)
+		else name = lowertext(t)
 
-		if (!name)
-			continue
+		if (!name) continue
+		if(!value) log_misc("Unknown value for setting [name] in [filename].")
+		value = text2num(value)
 
-		if(type == "config")
-			switch (name)
-				if ("resource_urls")
-					config.resource_urls = text2list(value, " ")
+		switch(type)
+			if("config") initilize_configuration(name,value)
+			if("game_options") initialize_game_options(name, value)
+			if("combat_defines") initialize_combat_defines(name, value)
 
-				if ("admin_legacy_system")
-					config.admin_legacy_system = 1
+/datum/configuration/proc/initilize_configuration(name,value)
+	switch (name)
+		if ("resource_urls")
+			config.resource_urls = text2list(value, " ")
 
-				if ("ban_legacy_system")
-					config.ban_legacy_system = 1
+		if ("admin_legacy_system")
+			config.admin_legacy_system = 1
 
-				if ("use_age_restriction_for_jobs")
-					config.use_age_restriction_for_jobs = 1
+		if ("ban_legacy_system")
+			config.ban_legacy_system = 1
 
-				if ("jobs_have_minimal_access")
-					config.jobs_have_minimal_access = 1
+		if ("use_age_restriction_for_jobs")
+			config.use_age_restriction_for_jobs = 1
 
-				if ("use_recursive_explosions")
-					use_recursive_explosions = 1
+		if ("jobs_have_minimal_access")
+			config.jobs_have_minimal_access = 1
 
-				if ("log_ooc")
-					config.log_ooc = 1
+		if ("use_recursive_explosions")
+			use_recursive_explosions = 1
 
-				if ("log_access")
-					config.log_access = 1
+		if ("log_ooc")
+			config.log_ooc = 1
 
-				if ("sql_enabled")
-					config.sql_enabled = text2num(value)
+		if ("log_access")
+			config.log_access = 1
 
-				if ("log_say")
-					config.log_say = 1
+		if ("sql_enabled")
+			config.sql_enabled = text2num(value)
 
-				if ("debug_paranoid")
-					config.debugparanoid = 1
+		if ("log_say")
+			config.log_say = 1
 
-				if ("log_admin")
-					config.log_admin = 1
+		if ("debug_paranoid")
+			config.debugparanoid = 1
 
-				if ("log_debug")
-					config.log_debug = text2num(value)
+		if ("log_admin")
+			config.log_admin = 1
 
-				if ("log_game")
-					config.log_game = 1
+		if ("log_debug")
+			config.log_debug = text2num(value)
 
-				if ("log_vote")
-					config.log_vote = 1
+		if ("log_game")
+			config.log_game = 1
 
-				if ("log_whisper")
-					config.log_whisper = 1
+		if ("log_vote")
+			config.log_vote = 1
 
-				if ("log_attack")
-					config.log_attack = 1
+		if ("log_whisper")
+			config.log_whisper = 1
 
-				if ("log_emote")
-					config.log_emote = 1
+		if ("log_attack")
+			config.log_attack = 1
 
-				if ("log_adminchat")
-					config.log_adminchat = 1
+		if ("log_emote")
+			config.log_emote = 1
 
-				if ("log_adminwarn")
-					config.log_adminwarn = 1
+		if ("log_adminchat")
+			config.log_adminchat = 1
 
-				if ("log_pda")
-					config.log_pda = 1
+		if ("log_adminwarn")
+			config.log_adminwarn = 1
 
-				if ("log_hrefs")
-					config.log_hrefs = 1
+		if ("log_pda")
+			config.log_pda = 1
 
-				if ("log_runtime")
-					config.log_runtime = 1
+		if ("log_hrefs")
+			config.log_hrefs = 1
 
-				if ("mentors")
-					config.mods_are_mentors = 1
+		if ("log_runtime")
+			config.log_runtime = 1
 
-				if("allow_admin_ooccolor")
-					config.allow_admin_ooccolor = 1
+		if ("mentors")
+			config.mods_are_mentors = 1
 
-				if ("allow_vote_restart")
-					config.allow_vote_restart = 1
+		if("allow_admin_ooccolor")
+			config.allow_admin_ooccolor = 1
 
-				if ("allow_vote_mode")
-					config.allow_vote_mode = 1
+		if ("allow_vote_restart")
+			config.allow_vote_restart = 1
 
-				if ("allow_admin_jump")
-					config.allow_admin_jump = 1
+		if ("allow_vote_mode")
+			config.allow_vote_mode = 1
 
-				if("allow_admin_rev")
-					config.allow_admin_rev = 1
+		if ("allow_admin_jump")
+			config.allow_admin_jump = 1
 
-				if ("allow_admin_spawning")
-					config.allow_admin_spawning = 1
+		if("allow_admin_rev")
+			config.allow_admin_rev = 1
 
-				if ("no_dead_vote")
-					config.vote_no_dead = 1
+		if ("allow_admin_spawning")
+			config.allow_admin_spawning = 1
 
-				if ("default_no_vote")
-					config.vote_no_default = 1
+		if ("no_dead_vote")
+			config.vote_no_dead = 1
 
-				if ("vote_delay")
-					config.vote_delay = text2num(value)
+		if ("default_no_vote")
+			config.vote_no_default = 1
 
-				if ("vote_period")
-					config.vote_period = text2num(value)
+		if ("vote_delay")
+			config.vote_delay = text2num(value)
 
-				if ("vote_autotransfer_initial")
-					config.vote_autotransfer_initial = text2num(value)
+		if ("vote_period")
+			config.vote_period = text2num(value)
 
-				if ("vote_autotransfer_interval")
-					config.vote_autotransfer_interval = text2num(value)
+		if ("vote_autotransfer_initial")
+			config.vote_autotransfer_initial = text2num(value)
 
-				if ("vote_autogamemode_timeleft")
-					config.vote_autogamemode_timeleft = text2num(value)
+		if ("vote_autotransfer_interval")
+			config.vote_autotransfer_interval = text2num(value)
 
-				if("ert_admin_only")
-					config.ert_admin_call_only = 1
+		if ("vote_autogamemode_timeleft")
+			config.vote_autogamemode_timeleft = text2num(value)
 
-				if ("allow_ai")
-					config.allow_ai = 1
+		if("ert_admin_only")
+			config.ert_admin_call_only = 1
 
-				if ("autooocmute")
-					config.autooocmute = 1
+		if ("allow_ai")
+			config.allow_ai = 1
+
+		if ("autooocmute")
+			config.autooocmute = 1
 
 //				if ("authentication")
 //					config.enable_authentication = 1
 
-				if ("norespawn")
-					config.respawn = 0
+		if ("norespawn")
+			config.respawn = 0
 
-				if ("servername")
-					config.server_name = value
+		if ("servername")
+			config.server_name = value
 
-				if ("serversuffix")
-					config.server_suffix = 1
+		if ("serversuffix")
+			config.server_suffix = 1
 
-				if ("nudge_script_path")
-					config.nudge_script_path = value
+		if ("nudge_script_path")
+			config.nudge_script_path = value
 
-				if ("hostedby")
-					config.hostedby = value
+		if ("hostedby")
+			config.hostedby = value
 
-				if ("server")
-					config.server = value
+		if ("server")
+			config.server = value
 
-				if ("banappeals")
-					config.banappeals = value
+		if ("banappeals")
+			config.banappeals = value
 
-				if ("wikiurl")
-					config.wikiurl = value
+		if ("wikiurl")
+			config.wikiurl = value
 
-				if ("forumurl")
-					config.forumurl = value
+		if ("forumurl")
+			config.forumurl = value
 
-				if ("rulesurl")
-					config.rulesurl = value
+		if ("rulesurl")
+			config.rulesurl = value
 
-				if ("guest_jobban")
-					config.guest_jobban = 1
+		if ("guest_jobban")
+			config.guest_jobban = 1
 
-				if ("guest_ban")
-					guests_allowed = 0
+		if ("guest_ban")
+			guests_allowed = 0
 
-				if ("usewhitelist")
-					config.usewhitelist = 1
+		if ("usewhitelist")
+			config.usewhitelist = 1
 
-				if ("feature_object_spell_system")
-					config.feature_object_spell_system = 1
+		if ("feature_object_spell_system")
+			config.feature_object_spell_system = 1
 
-				if ("allow_metadata")
-					config.allow_Metadata = 1
+		if ("allow_metadata")
+			config.allow_Metadata = 1
 
-				if ("traitor_scaling")
-					config.traitor_scaling = 1
+		if ("traitor_scaling")
+			config.traitor_scaling = 1
 
-				if ("objectives_disabled")
-					config.objectives_disabled = 1
+		if ("objectives_disabled")
+			config.objectives_disabled = 1
 
-				if("protect_roles_from_antagonist")
-					config.protect_roles_from_antagonist = 1
+		if("protect_roles_from_antagonist")
+			config.protect_roles_from_antagonist = 1
 
-				if ("probability")
-					var/prob_pos = findtext(value, " ")
-					var/prob_name = null
-					var/prob_value = null
+		if ("probability")
+			var/prob_pos = findtext(value, " ")
+			var/prob_name = null
+			var/prob_value = null
 
-					if (prob_pos)
-						prob_name = lowertext(copytext(value, 1, prob_pos))
-						prob_value = copytext(value, prob_pos + 1)
-						if (prob_name in config.modes)
-							config.probabilities[prob_name] = text2num(prob_value)
-						else
-							log_misc("Unknown game mode probability configuration definition: [prob_name].")
-					else
-						log_misc("Incorrect probability configuration definition: [prob_name]  [prob_value].")
-
-				if("allow_random_events")
-					config.allow_random_events = 1
-
-				if("kick_inactive")
-					config.kick_inactive = 1
-
-				if("show_mods")
-					config.show_mods = 1
-
-				if("show_mentors")
-					config.show_mentors = 1
-
-				if("load_jobs_from_txt")
-					load_jobs_from_txt = 1
-
-				if("alert_red_upto")
-					config.alert_desc_red_upto = value
-
-				if("alert_red_downto")
-					config.alert_desc_red_downto = value
-
-				if("alert_blue_downto")
-					config.alert_desc_blue_downto = value
-
-				if("alert_blue_upto")
-					config.alert_desc_blue_upto = value
-
-				if("alert_green")
-					config.alert_desc_green = value
-
-				if("alert_delta")
-					config.alert_desc_delta = value
-
-				if("forbid_singulo_possession")
-					forbid_singulo_possession = 1
-
-				if("popup_admin_pm")
-					config.popup_admin_pm = 1
-
-				if("allow_holidays")
-					Holiday = 1
-
-				if("use_irc_bot")
-					use_irc_bot = 1
-
-				if("ticklag")
-					Ticklag = text2num(value)
-
-				if("allow_antag_hud")
-					config.antag_hud_allowed = 1
-				if("antag_hud_restricted")
-					config.antag_hud_restricted = 1
-
-				if("socket_talk")
-					socket_talk = text2num(value)
-
-				if("tickcomp")
-					Tickcomp = 1
-
-				if("humans_need_surnames")
-					humans_need_surnames = 1
-
-				if("tor_ban")
-					ToRban = 1
-
-				if("automute_on")
-					automute_on = 1
-
-				if("usealienwhitelist")
-					usealienwhitelist = 1
-
-				if("alien_player_ratio")
-					limitalienplayers = 1
-					alien_to_human_ratio = text2num(value)
-
-				if("assistant_maint")
-					config.assistant_maint = 1
-
-				if("gateway_delay")
-					config.gateway_delay = text2num(value)
-
-				if("continuous_rounds")
-					config.continous_rounds = 1
-
-				if("ghost_interaction")
-					config.ghost_interaction = 1
-
-				if("disable_player_mice")
-					config.disable_player_mice = 1
-
-				if("uneducated_mice")
-					config.uneducated_mice = 1
-
-				if("comms_password")
-					config.comms_password = value
-
-				if("irc_bot_host")
-					config.irc_bot_host = value
-
-				if("main_irc")
-					config.main_irc = value
-
-				if("admin_irc")
-					config.admin_irc = value
-
-				if("python_path")
-					if(value)
-						config.python_path = value
-					else
-						if(world.system_type == UNIX)
-							config.python_path = "/usr/bin/env python2"
-						else //probably windows, if not this should work anyway
-							config.python_path = "python"
-
-				if("use_lib_nudge")
-					config.use_lib_nudge = 1
-
-				if("allow_cult_ghostwriter")
-					config.cult_ghostwriter = 1
-
-				if("req_cult_ghostwriter")
-					config.cult_ghostwriter_req_cultists = text2num(value)
-
-				if("allow_drone_spawn")
-					config.allow_drone_spawn = text2num(value)
-
-				if("drone_build_time")
-					config.drone_build_time = text2num(value)
-
-				if("max_maint_drones")
-					config.max_maint_drones = text2num(value)
-
-				if("use_overmap")
-					config.use_overmap = 1
-
+			if (prob_pos)
+				prob_name = lowertext(copytext(value, 1, prob_pos))
+				prob_value = copytext(value, prob_pos + 1)
+				if (prob_name in config.modes)
+					config.probabilities[prob_name] = text2num(prob_value)
 				else
-					log_misc("Unknown setting in configuration: '[name]'")
+					log_misc("Unknown game mode probability configuration definition: [prob_name].")
+			else
+				log_misc("Incorrect probability configuration definition: [prob_name]  [prob_value].")
 
-		else if(type == "game_options")
-			if(!value)
-				log_misc("Unknown value for setting [name] in [filename].")
-			value = text2num(value)
+		if("allow_random_events")
+			config.allow_random_events = 1
 
-			switch(name)
-				if("health_threshold_crit")
-					config.health_threshold_crit = value
-				if("health_threshold_softcrit")
-					config.health_threshold_softcrit = value
-				if("health_threshold_dead")
-					config.health_threshold_dead = value
-				if("revival_pod_plants")
-					config.revival_pod_plants = value
-				if("revival_cloning")
-					config.revival_cloning = value
-				if("revival_brain_life")
-					config.revival_brain_life = value
-				if("organ_health_multiplier")
-					config.organ_health_multiplier = value / 100
-				if("organ_regeneration_multiplier")
-					config.organ_regeneration_multiplier = value / 100
-				if("bones_can_break")
-					config.bones_can_break = value
-				if("limbs_can_break")
-					config.limbs_can_break = value
+		if("kick_inactive")
+			config.kick_inactive = 1
 
-				if("run_speed")
-					config.run_speed = value
-				if("walk_speed")
-					config.walk_speed = value
+		if("show_mods")
+			config.show_mods = 1
 
-				if("human_delay")
-					config.human_delay = value
-				if("robot_delay")
-					config.robot_delay = value
-				if("monkey_delay")
-					config.monkey_delay = value
-				if("alien_delay")
-					config.alien_delay = value
-				if("slime_delay")
-					config.slime_delay = value
-				if("animal_delay")
-					config.animal_delay = value
+		if("show_mentors")
+			config.show_mentors = 1
 
+		if("load_jobs_from_txt")
+			load_jobs_from_txt = 1
 
-				if("use_loyalty_implants")
-					config.use_loyalty_implants = 1
-				if("remove_gun_restrictions")
-					config.remove_gun_restrictions = 1
-				else
-					log_misc("Unknown setting in configuration: '[name]'")
+		if("alert_red_upto")
+			config.alert_desc_red_upto = value
+
+		if("alert_red_downto")
+			config.alert_desc_red_downto = value
+
+		if("alert_blue_downto")
+			config.alert_desc_blue_downto = value
+
+		if("alert_blue_upto")
+			config.alert_desc_blue_upto = value
+
+		if("alert_green")
+			config.alert_desc_green = value
+
+		if("alert_delta")
+			config.alert_desc_delta = value
+
+		if("forbid_singulo_possession")
+			forbid_singulo_possession = 1
+
+		if("popup_admin_pm")
+			config.popup_admin_pm = 1
+
+		if("allow_holidays")
+			Holiday = 1
+
+		if("use_irc_bot")
+			use_irc_bot = 1
+
+		if("ticklag")
+			Ticklag = text2num(value)
+
+		if("allow_antag_hud")
+			config.antag_hud_allowed = 1
+		if("antag_hud_restricted")
+			config.antag_hud_restricted = 1
+
+		if("socket_talk")
+			socket_talk = text2num(value)
+
+		if("tickcomp")
+			Tickcomp = 1
+
+		if("humans_need_surnames")
+			humans_need_surnames = 1
+
+		if("tor_ban")
+			ToRban = 1
+
+		if("automute_on")
+			automute_on = 1
+
+		if("usealienwhitelist")
+			usealienwhitelist = 1
+
+		if("alien_player_ratio")
+			limitalienplayers = 1
+			alien_to_human_ratio = text2num(value)
+
+		if("assistant_maint")
+			config.assistant_maint = 1
+
+		if("gateway_delay")
+			config.gateway_delay = text2num(value)
+
+		if("continuous_rounds")
+			config.continous_rounds = 1
+
+		if("ghost_interaction")
+			config.ghost_interaction = 1
+
+		if("disable_player_mice")
+			config.disable_player_mice = 1
+
+		if("uneducated_mice")
+			config.uneducated_mice = 1
+
+		if("comms_password")
+			config.comms_password = value
+
+		if("irc_bot_host")
+			config.irc_bot_host = value
+
+		if("main_irc")
+			config.main_irc = value
+
+		if("admin_irc")
+			config.admin_irc = value
+
+		if("python_path")
+			if(value)
+				config.python_path = value
+			else
+				if(world.system_type == UNIX)
+					config.python_path = "/usr/bin/env python2"
+				else //probably windows, if not this should work anyway
+					config.python_path = "python"
+
+		if("use_lib_nudge")
+			config.use_lib_nudge = 1
+
+		if("allow_cult_ghostwriter")
+			config.cult_ghostwriter = 1
+
+		if("req_cult_ghostwriter")
+			config.cult_ghostwriter_req_cultists = text2num(value)
+
+		if("allow_drone_spawn")
+			config.allow_drone_spawn = text2num(value)
+
+		if("drone_build_time")
+			config.drone_build_time = text2num(value)
+
+		if("max_maint_drones")
+			config.max_maint_drones = text2num(value)
+
+		if("use_overmap")
+			config.use_overmap = 1
+
+		else
+			log_misc("Unknown setting in configuration: '[name]'")
 
 /datum/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)

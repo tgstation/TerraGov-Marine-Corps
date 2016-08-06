@@ -143,7 +143,7 @@ Items and objects that are very hard to get to and do not affect balance.
 /obj/item/weapon/gun/rocketlauncher/nobugs //Fires dummy rockets, like a toy gun
 	name = "\improper BUG ROCKER rocket launcher"
 	desc = "Where did this come from? <b>NO BUGS</b>"
-	mag_type = /obj/item/ammo_magazine/internal/rocket/nobugs
+	current_mag = /obj/item/ammo_magazine/internal/rocket/nobugs
 
 /obj/item/ammo_magazine/rocket/nobugs
 	name = "\improper BUG ROCKER rocket tube"

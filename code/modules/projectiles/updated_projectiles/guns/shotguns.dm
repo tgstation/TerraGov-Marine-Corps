@@ -14,7 +14,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	default_ammo = "shotgun slug"
 	caliber = "12g" //All shotgun rounds are 12g right now.
 	gun_type = /obj/item/weapon/gun/shotgun
-	icon_type = "shell_s"
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
 	w_class = 3 // Can't throw it in your pocket, friend.
 
@@ -23,14 +22,12 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
 	default_ammo = "incendiary slug"
-	icon_type = "shell_i"
 
 /obj/item/ammo_magazine/shotgun/buckshot
 	name = "box of buckshot shells"
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
 	icon_state = "beanbag"
 	default_ammo = "shotgun buckshot"
-	icon_type = "shell_b"
 
 //-------------------------------------------------------
 
@@ -57,7 +54,6 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun
 	origin_tech = "combat=4;materials=3"
 	w_class = 4
-	recoil = 2
 	force = 14.0
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	reload_sound = 'sound/weapons/shotgun_shell_insert.ogg'
@@ -65,27 +61,25 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/opened_sound = 'sound/weapons/shotgun_open2.ogg'
 	slot_flags = SLOT_BACK
 	type_of_casings = "shell"
-	eject_casings = 1
-	accuracy = 10
+	accuracy = 1.15
 	flags = FPRINT | CONDUCT | TWOHANDED
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG
 
 	New()
 		..()
+		accuracy += config.low_hit_accuracy_mult
+		recoil = config.low_recoil_value
 		replace_tube(current_mag.current_rounds) //Populate the chamber.
 
-	update_icon()
-		if(isnull(icon_empty)) return
-		icon_state = in_chamber ? initial(icon_state) : icon_empty
-		update_attachables() //This will cut existing overlays
+	update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
+		return
 
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
 	var/i
 	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the tube.
-		if(i > number_to_replace) 	current_mag.chamber_contents[i] = "empty"
-		else 						current_mag.chamber_contents[i] = current_mag.default_ammo
+		current_mag.chamber_contents[i] = i > number_to_replace ? "empty" : current_mag.default_ammo
 	current_mag.chamber_position = current_mag.current_rounds //The position is always in the beginning [1]. It can move from there.
 
 /obj/item/weapon/gun/shotgun/proc/add_to_tube(mob/user,selection) //Shells are added forward.
@@ -100,7 +94,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
 	if(current_mag.current_rounds <= 0)
-		if(user) user << "<span class='warning'>\The [src] is already empty.</span>"
+		if(user) user << "<span class='warning'>[src] is already empty.</span>"
 		return
 
 	unload_shell(user)
@@ -123,26 +117,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		//this is the most resource efficient way to do it.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
 	var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
-	var/handful_i //icon
-
-	switch(selection)
-		if("shotgun slug")
-			handful_i = "shell_s"
-		if("incendiary slug")
-			handful_i = "shell_i"
-		if("shotgun buckshot")
-			handful_i = "shell_b"
-
-	new_handful.name = "handful of [default_ammo + "s "+ "(12g)"]"
-	new_handful.icon_state = handful_i
-	new_handful.caliber = "12g"
-	new_handful.max_rounds = 5
-	new_handful.current_rounds = 1
-	new_handful.default_ammo = selection
-	new_handful.icon_type = handful_i
-	new_handful.gun_type = /obj/item/weapon/gun/shotgun
-	new_handful.update_icon() // Let's get it updated.
-
+	new_handful.generate_handful(selection, "12g", 5, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
 /obj/item/weapon/gun/shotgun/proc/check_chamber_position()
@@ -150,14 +125,14 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
 			user << "<span class='warning'>You can't use that to reload!</span>"
 			return
 
 		if(!check_chamber_position()) //For the double barrel.
-			user << "<span class='warning'>\The [src] has to be open!</span>"
+			user << "<span class='warning'>[src] has to be open!</span>"
 			return
 
 		//From here we know they are using shotgun type ammo and reloading via handful.
@@ -169,7 +144,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			update_icon()
 
 	unload(mob/user as mob)
-		if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 		empty_chamber(user)
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
@@ -186,9 +161,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		return ready_shotgun_tube()
 
 	reload_into_chamber(var/mob/user as mob)
-		if(active_attachable) make_casing(active_attachable.type_of_casings, active_attachable.eject_casings)
+		if(active_attachable) make_casing(active_attachable.type_of_casings)
 		else
-			make_casing(type_of_casings, eject_casings)
+			make_casing(type_of_casings)
 			in_chamber = null
 
 		if(!active_attachable) //Time to move the tube position.
@@ -208,22 +183,24 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/merc
 	name = "custom built shotgun"
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
-	icon_state = "rspshotgun"
-	icon_empty = "rspshotgun0"
-	item_state = "rspshotgun"
+	icon_state = "cshotgun"
+	item_state = "cshotgun"
 	origin_tech = "combat=4;materials=2"
 	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/shotgun/merc
-	accuracy = -10
-	fire_delay = 10
-	burst_amount = 2
-	burst_delay = 2
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
 	flags = FPRINT | CONDUCT
+	attachable_allowed = list(
+						/obj/item/attachable/compensator)
+
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14)
+		accuracy -= config.high_hit_accuracy_mult
+		fire_delay = config.high_fire_delay*2
+		burst_amount = config.low_burst_value
+		burst_delay = config.mlow_fire_delay
+		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
 		load_into_chamber()
 
 	examine()
@@ -234,28 +211,32 @@ can cause issues with ammo types getting mixed up during the burst.
 //TACTICAL SHOTGUN
 
 /obj/item/ammo_magazine/internal/shotgun/combat
-	max_rounds = 8
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
 	desc = "The Weyland-Yutani MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
-	icon_state = "cshotgun"
-	icon_empty = "cshotgun"
-	item_state = "cshotgun"
-	icon_wielded = "cshotgun-w"
+	icon_state = "mk221"
+	item_state = "mk221"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/shotgun/combat
-	fire_delay = 12
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness)
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16)
+		fire_delay = config.mhigh_fire_delay*2
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 		var/obj/item/attachable/grenade/G = new(src)
 		G.attach_features &= ~ATTACH_REMOVABLE
 		G.icon_state = "" //Gun already has a better one
 		G.Attach(src)
-		update_attachables()
+		update_attachable(G.slot)
 		load_into_chamber()
 
 	examine()
@@ -274,24 +255,27 @@ can cause issues with ammo types getting mixed up during the burst.
 	name = "double barrel shotgun"
 	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
 	icon_state = "dshotgun"
-	icon_empty = "dshotgun0"
 	item_state = "dshotgun"
-	icon_wielded = "dshotgun-w"
 	origin_tech = "combat=4;materials=2"
-	mag_type = /obj/item/ammo_magazine/internal/shotgun/double
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
 	fire_sound = 'sound/weapons/shotgun_heavy.ogg'
 	cocked_sound = null //We don't want this.
-	eject_casings = 0
-	fire_delay = 6
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness)
+
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16)
+		fire_delay = config.mlow_fire_delay
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	examine()
 		..()
-
 		if(current_mag.chamber_closed) usr << "It's closed."
 		else usr << "It's open with [current_mag.current_rounds] shell\s loaded."
 
@@ -300,9 +284,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	//Turns out it has some attachments.
 	update_icon()
-		if(isnull(icon_empty)) return
-		icon_state = current_mag.chamber_closed ? initial(icon_state) : icon_empty
-		update_attachables()
+		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_e"
 
 	check_chamber_position()
 		if(current_mag.chamber_closed) return
@@ -326,7 +308,7 @@ can cause issues with ammo types getting mixed up during the burst.
 				var/i
 				for(i = 1 to current_mag.current_rounds)
 					unload_shell(user)
-			make_casing(type_of_casings,1)
+			make_casing(type_of_casings)
 
 		current_mag.chamber_closed = !current_mag.chamber_closed
 		update_icon()
@@ -358,56 +340,60 @@ can cause issues with ammo types getting mixed up during the burst.
 		current_mag.chamber_contents[current_mag.chamber_position] = "empty"
 		current_mag.chamber_position--
 		current_mag.used_casings++
-		if(!current_mag.current_rounds) update_icon()
 		return 1
 
 /obj/item/weapon/gun/shotgun/double/sawn
 	name = "sawn-off shotgun"
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
-	icon_state = "sawnshotgun"
-	icon_empty = "sawnshotgun0"
-	item_state = "sawnshotgun"
+	icon_state = "sshotgun"
+	item_state = "sshotgun"
 	slot_flags = SLOT_BELT
-	accuracy = -20
-	fire_delay = 3
-	damage = 15
 	flags = FPRINT | CONDUCT
+	attachable_allowed = list()
 	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16)
+		accuracy -= config.high_hit_accuracy_mult
+		damage += config.high_hit_damage_mult
+		recoil = config.med_recoil_value
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 //-------------------------------------------------------
 //PUMP SHOTGUN
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/ammo_magazine/internal/shotgun/pump
-	max_rounds = 8
 
 /obj/item/weapon/gun/shotgun/pump
 	name = "\improper M37A2 pump shotgun"
 	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
 	icon_state = "m37"
-	icon_empty = "m37" //Pump shotguns don't really have 'empty' states.
-	icon_wielded = "m37-w"
 	item_state = "m37"
-	mag_type = /obj/item/ammo_magazine/internal/shotgun/pump
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	var/pump_sound = 'sound/weapons/shotgunpump.ogg'
-	fire_delay = 20
-	var/pump_delay = 15 //Higher means longer delay.
+	var/pump_delay //Higher means longer delay.
 	var/recent_pump //world.time to see when they last pumped it.
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/foregrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/flamer,
+						/obj/item/attachable/stock/shotgun)
 
 	New()
 		..()
+		fire_delay = config.med_fire_delay*5
+		pump_delay = config.max_fire_delay*2
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14)
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "m37") //Only change this one
-				icon_state = "m37S"
-				icon_empty = "m37S" //Pump shotguns don't really have 'empty' states.
-				icon_wielded = "m37S-w"
-				item_state = "m37S"
+		select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 
 	unique_action(mob/user)
 		pump_shotgun(user)
@@ -439,14 +425,14 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	if(current_mag.used_casings)
 		current_mag.used_casings--
-		make_casing(type_of_casings, eject_casings)
+		make_casing(type_of_casings)
 
 	playsound(user, pump_sound, 70, 1)
 	recent_pump = world.time
 
 /obj/item/weapon/gun/shotgun/pump
 	reload_into_chamber(mob/user)
-		if(active_attachable) make_casing(active_attachable.type_of_casings, active_attachable.eject_casings)
+		if(active_attachable) make_casing(active_attachable.type_of_casings)
 		else
 			current_mag.used_casings++ //The shell was fired successfully. Add it to used.
 			in_chamber = null
@@ -468,17 +454,23 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/cmb
 	name = "\improper HG 37-12 pump shotgun"
 	desc = "A four-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
-	icon_state = "CMBshotgun"
-	icon_empty = "CMBshotgun"
-	item_state = "CMBshotgun"
-	icon_wielded = "CMBshotgun-w"
+	icon_state = "hg3712"
+	item_state = "hg3712"
 	fire_sound = 'sound/weapons/shotgun_small.ogg'
-	mag_type = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
-	fire_delay = 16
-	pump_delay = 12
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/flamer)
+
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17)
+		fire_delay = config.med_fire_delay*4
+		pump_delay = config.mhigh_fire_delay*2
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
 
 //-------------------------------------------------------

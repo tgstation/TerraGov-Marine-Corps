@@ -102,6 +102,18 @@
 
 	src.loc = T
 
+/*Global item proc for all of your unique item skin needs. Works with any
+item, and will cahnge the skin to whatever you specify here. You can also
+manually override the icon with a unique skin if wanted, for the outlier
+cases.*/
+/obj/item/proc/select_gamemode_skin(expected_type, override_icon_state)
+	if(ticker && ticker.mode && type == expected_type)
+		switch(ticker.mode.name)
+			if("Ice Colony")
+				icon_state = override_icon_state ? override_icon_state : "s_" + icon_state
+		item_state = icon_state
+		item_color = icon_state
+
 /obj/item/examine()
 	set src in view()
 

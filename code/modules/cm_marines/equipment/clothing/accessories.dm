@@ -13,100 +13,54 @@
 	name = "\improper USCM infantry backpack"
 	desc = "The standard-issue backpack of the USCM forces."
 	icon_state = "marinepack"
-	item_state = "backpack"
 	max_w_class = 3    //  Largest item that can be placed into the backpack
 	max_combined_w_class = 21   //Capacity of the backpack
+
 	New()
 		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "marinepack") //Only change this one
-				item_state = "backpack_s"
-				icon_state = "marinepack_s"
+		select_gamemode_skin(type)
 
 /obj/item/weapon/storage/backpack/marine/medic
 	name = "\improper USCM medic backpack"
-	desc = "The standard-issue backpack worn by USCM Medics."
-	icon_state = "marinepack-medic"
-	item_state = "marinepack-medic"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "marinepack-medic") //Only change this one
-				item_state = "marinepack-medic_s"
-				icon_state = "marinepack-medic_s"
-
+	desc = "The standard-issue backpack worn by USCM medics."
+	icon_state = "marinepackm"
 
 /obj/item/weapon/storage/backpack/marine/tech
 	name = "\improper USCM technician backpack"
-	desc = "The standard-issue backpack worn by USCM Technicians."
-	icon_state = "marinepack-tech"
-	item_state = "marinepack-tech"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "marinepack-tech") //Only change this one
-				item_state = "marinepack-tech_s"
-				icon_state = "marinepack-tech_s"
+	desc = "The standard-issue backpack worn by USCM technicians."
+	icon_state = "marinepackt"
 
-/obj/item/weapon/storage/backpack/marine/smock
-	name = "\improper M3 Sniper's Smock"
-	desc = "A specially designed smock with pockets for all your sniper needs."
-	icon_state = "smock"
-	item_state = "smock"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "smock") //Only change this one
-				item_state = "smock_s"
-				icon_state = "smock_s"
-
-/obj/item/weapon/storage/backpack/marinesatchel
+/obj/item/weapon/storage/backpack/marine/satchel
 	name = "\improper USCM infantry satchel"
 	desc = "A heavy-duty satchel carried by some USCM soldiers."
-	icon_state = "marinepack2"
-	item_state = "marinepack2"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "marinepack2") //Only change this one
-				item_state = "marinepack2_s"
-				icon_state = "marinepack2_s"
+	icon_state = "marinesat"
 
-/obj/item/weapon/storage/backpack/medicsatchel
+/obj/item/weapon/storage/backpack/marine/satchel/medic
 	name = "\improper USCM medic satchel"
-	desc = "A heavy-duty satchel carried by some USCM Medics."
-	icon_state = "marinepack2"
-	item_state = "marinepackmedic2"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "marinepack2") //Only change this one
-				item_state = "marinepackmedic2_s"
-				icon_state = "marinepack2_s"
+	desc = "A heavy-duty satchel carried by some USCM medics."
+	icon_state = "marinesatm"
 
-/obj/item/weapon/storage/backpack/techsatchel
+/obj/item/weapon/storage/backpack/marine/satchel/tech
 	name = "\improper USCM technician satchel"
-	desc = "A heavy-duty satchel carried by some USCM Technicians."
-	icon_state = "marinepack2"
-	item_state = "marinepacktech2"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "marinepack2") //Only change this one
-				item_state = "marinepacktech2_s"
-				icon_state = "marinepack2_s"
+	desc = "A heavy-duty satchel carried by some USCM technicians."
+	icon_state = "marinesatt"
 
-/obj/item/weapon/storage/backpack/marinesatchel/commando
-	name = "\improper commando bag"
-	desc = "A heavy-duty bag carried by Weyland Yutani Commandos."
-	icon_state = "marinepack-tech3"
-	item_state = "marinepack-tech3"
+/obj/item/weapon/storage/backpack/marine/smock
+	name = "\improper M3 sniper's smock"
+	desc = "A specially designed smock with pockets for all your sniper needs."
+	icon_state = "smock"
+
+/obj/item/weapon/storage/backpack/commando
+	name = "commando bag"
+	desc = "A heavy-duty bag carried by Weyland Yutani commandos."
+	icon_state = "commandopack"
+	storage_slots = 10
+	max_combined_w_class = 30
 
 /obj/item/weapon/storage/backpack/mcommander
 	name = "marine commander backpack"
 	desc = "The contents of this backpack are top secret."
 	icon_state = "marinepack"
-	item_state = "marinepack" //Placeholder
 
 //============================//BELTS\\==================================\\
 //=======================================================================\\
@@ -187,7 +141,7 @@
 		)
 
 /obj/item/weapon/storage/belt/gun/m4a3
-	name = "\improper M276 Pattern M4a3 Holster Rig"
+	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains two side pouches that can store two spare 9mm magazines."
 	icon_state = "M4A3_holster_0"
 	icon_closed = "M4A3_holster_1"
@@ -199,21 +153,11 @@
 		"/obj/item/ammo_magazine/pistol/incendiary",
 		"/obj/item/ammo_magazine/pistol/extended"
 		)
-	/*
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "M4A3_holster_0") //Only change this one
-				icon_state = "M4A3_holster_0_s"
-				icon_closed = "M4A3_holster_1_s"
-				item_state = "holster1_s"
-	*/
 
 /obj/item/weapon/storage/belt/marine
-	name = "\improper M276 Pattern Ammo Load Rig"
+	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition carrying operations."
 	icon_state = "marinebelt"
-	item_state = "marine"
 	w_class = 4
 	storage_slots = 6
 	max_combined_w_class = 12
@@ -233,16 +177,13 @@
 		)
 	New()
 		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "marinebelt") //Only change this one
-				icon_state = "marinebelt_s"
-				item_state = "marine_s"
+		select_gamemode_skin(type)
 
 /obj/item/weapon/storage/belt/security/MP
-	name = "\improper M276 Pattern Military Police Rig"
+	name = "\improper M276 pattern military police rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
 	icon_state = "securitybelt"
-	item_state = "marine_s"
+	item_state = "s_marine"
 	storage_slots = 6
 	max_w_class = 3
 	max_combined_w_class = 30
@@ -277,7 +218,7 @@
 	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/weapon/storage/belt/knifepouch
-	name="\improper M276 Pattern Knife Rig"
+	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knife-rig"
 	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
@@ -289,23 +230,18 @@
 	can_hold=list("/obj/item/weapon/throwing_knife")
 	New()
 		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "knife-rig") //Only change this one
-				icon_state = "knife-rig_s"
-				item_state = "marine_s"
-
-/obj/item/weapon/storage/belt/knifepouch/New()
-	..()
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
+		select_gamemode_skin(type)
+		item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
+		new /obj/item/weapon/throwing_knife(src)
+		new /obj/item/weapon/throwing_knife(src)
+		new /obj/item/weapon/throwing_knife(src)
+		new /obj/item/weapon/throwing_knife(src)
 
 /obj/item/weapon/storage/belt/grenade
-	name="\improper M276 Pattern M40 HEDP Rig"
+	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
-	item_state="marine_s"
+	item_state="s_marine"
 	w_class = 4
 	storage_slots = 8
 	max_w_class = 3
@@ -326,7 +262,7 @@
 			new /obj/item/weapon/grenade/explosive(src)
 
 /obj/item/weapon/storage/sparepouch
-	name="\improper G8 General Utility pouch"
+	name="\improper G8 general utility pouch"
 	desc="A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor to provide additional storage. Unfortunately, this pouch uses the same securing system as most Armat platform weaponry, and thus only one can be clipped to the M3 Pattern Armor."
 	storage_slots = 3
 	w_class = 4
@@ -337,6 +273,33 @@
 
 //============================//GOGGLES\\================================\\
 //=======================================================================\\
+
+///////////////////////////////////////////////////////////////////////
+//Glasses
+/*
+SEE_SELF  // can see self, no matter what
+SEE_MOBS  // can see all mobs, no matter what
+SEE_OBJS  // can see all objs, no matter what
+SEE_TURFS // can see all turfs (and areas), no matter what
+SEE_PIXELS// if an object is located on an unlit area, but some of its pixels are
+          // in a lit area (via pixel_x,y or smooth movement), can see those pixels
+BLIND     // can't see anything
+*/
+/obj/item/clothing/glasses
+	name = "glasses"
+	icon = 'icons/obj/clothing/glasses.dmi'
+	w_class = 2.0
+	flags_inv = COVEREYES
+	slot_flags = SLOT_EYES
+	var/vision_flags = 0
+	var/darkness_view = 0//Base human is 2
+	var/invisa_view = 0
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
+
+/obj/item/clothing/glasses/update_clothing_icon()
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_glasses()
 
 /obj/item/clothing/glasses/night/m56_goggles
 	name = "\improper M56 head mounted sight"

@@ -33,8 +33,8 @@
 	big_xeno = 1
 	var/is_charging = 1
 
-	adjust_pixel_x = -16
-	adjust_pixel_y = -3
+	pixel_x = -16
+	pixel_y = -3
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

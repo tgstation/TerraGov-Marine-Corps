@@ -10,17 +10,23 @@
 	cocked_sound = 'sound/weapons/rifle_cocked.ogg'
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
-	eject_casings = 1
+	type_of_casings = "bullet"
 	slot_flags = SLOT_BELT
 	force = 8
 	w_class = 4
-	fire_delay = 4
-	burst_delay = 2
-	burst_amount = 3
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness)
+
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK
 
 	New()
 		..()
+		fire_delay = config.med_fire_delay
+		burst_delay = config.mlow_fire_delay
+		burst_amount = config.med_burst_value
 		load_into_chamber()
 
 //-------------------------------------------------------
@@ -32,8 +38,14 @@
 	caliber = "10×20mm"
 	icon_state = "9x"
 	icon_empty = "9x0"
-	max_rounds = 35 //Should be 48
+	max_rounds = 48
 	gun_type = /obj/item/weapon/gun/smg/m39
+
+/obj/item/ammo_magazine/smg/m39/ap
+	name = "\improper M39 AP magazine (10x20mm)"
+	icon_state = "9x"
+	icon_empty = "9x0"
+	default_ammo = "armor-piercing submachinegun bullet"
 
 /obj/item/ammo_magazine/smg/m39/extended
 	name = "\improper M39 extended magazine (10x20mm)"
@@ -42,53 +54,52 @@
 	max_rounds = 72
 	bonus_overlay = "m39_mag"
 
-/obj/item/ammo_magazine/smg/m39/ap
-	name = "\improper M39 AP magazine (10x20mm)"
-	caliber = "9mm"
-	icon_state = "9x"
-	icon_empty = "9x0"
-	default_ammo = "armor-piercing submachinegun bullet"
-	gun_type = /obj/item/weapon/gun/smg/m39/elite
-	max_rounds = 48
-
 //-------------------------------------------------------
 //M39 SMG
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
 	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 9mm rounds in a 35 round magazine."
-	icon_state = "smg"
-	icon_empty = "smg_empty"
+	icon_state = "m39"
 	item_state = "m39"
-	mag_type = /obj/item/ammo_magazine/smg/m39
-	eject_casings = 0
-	fire_delay = 3
+	current_mag = /obj/item/ammo_magazine/smg/m39
+	type_of_casings = null
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/foregrip,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness)
+
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 24, "under_y" = 16)
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "smg") //Only change this one
-				icon_state = "smg_pmc"
-				icon_empty = "smg_pmc_empty"
-				item_state = "m39_pmc"
+		fire_delay = config.low_fire_delay
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
+		select_gamemode_skin(/obj/item/weapon/gun/smg/m39)
 
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 submachinegun"
 	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 9mm rounds and is used by elite troops."
-	icon_state = "smg_pmc"
-	icon_empty = "smg_pmc_empty"
-	item_state = "m39_pmc"
+	icon_state = "m39b2"
+	item_state = "m39b2"
 	origin_tech = "combat=6;materials=5"
-	mag_type = /obj/item/ammo_magazine/smg/m39/ap
-	accuracy = 15
-	damage = 15
-	fire_delay = 4
-	burst_delay = 1
+	current_mag = /obj/item/ammo_magazine/smg/m39/ap
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
+
+	New()
+		..()
+		accuracy += config.med_hit_accuracy_mult
+		damage += config.max_hit_damage_mult
+		burst_delay = config.min_fire_delay
+		burst_amount = config.high_burst_value
 
 //-------------------------------------------------------
 
@@ -106,19 +117,26 @@
 	name = "\improper MP27 submachinegun"
 	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
 	icon_state = "mp7"
-	icon_empty = "mp7_empty"
 	item_state = "mp7"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/smg_light.ogg'
-	mag_type = /obj/item/ammo_magazine/smg/mp7
-	accuracy = 5
-	damage = 15
-	burst_amount = 4
+	current_mag = /obj/item/ammo_magazine/smg/mp7
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope)
+
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17)
+		accuracy += config.min_hit_accuracy_mult
+		damage += config.high_hit_damage_mult
+		scatter += config.low_scatter_value
+		burst_amount = config.high_burst_value
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
@@ -136,19 +154,18 @@
 	name = "\improper Skorpion submachinegun"
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20 round magazine."
 	icon_state = "skorpion"
-	icon_empty = "skorpion_empty"
 	item_state = "skorpion"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/skorpion.ogg'
-	mag_type = /obj/item/ammo_magazine/smg/skorpion
-	accuracy = 8
-	damage = 10
-	fire_delay = 3
+	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15)
+		accuracy += config.min_hit_accuracy_mult
+		damage += config.hmed_hit_damage_mult
+		fire_delay = config.low_fire_delay
+		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 //-------------------------------------------------------
 //PPSH //Based on the PPSh-41.
@@ -169,20 +186,20 @@
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
 	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere."
-	icon_state = "ppsh"
-	icon_empty = "ppsh_empty"
-	item_state = "ppsh"
+	icon_state = "ppsh17b"
+	item_state = "ppsh17b"
 	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
-	mag_type = /obj/item/ammo_magazine/smg/ppsh
-	accuracy = -8
-	fire_delay = 6
-	burst_delay = 1
+	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	gun_features = GUN_CAN_POINTBLANK | GUN_ON_RUSSIANS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15)
+		accuracy -= config.min_hit_accuracy_mult
+		scatter += config.low_scatter_value
+		fire_delay = config.mhigh_fire_delay
+		burst_delay = config.min_fire_delay
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
@@ -191,28 +208,28 @@
 	name = "\improper Mac-15 magazine (9mm)"
 	desc = "A magazine for the MAC-15."
 	caliber = "9mm"
-	icon_state = "9x"
-	icon_empty = "9x0"
+	icon_state = "mac15"
+	icon_empty = "mac15"
 	max_rounds = 32 //Can also be 20, 25, 40, and 50.
 	gun_type = /obj/item/weapon/gun/smg/uzi
 
 /obj/item/weapon/gun/smg/uzi
 	name = "\improper MAC-15 submachinegun"
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower."
-	icon_state = "mini-uzi"
-	icon_empty = "mini-uzi_empty"
-	item_state = "mini-uzi"
+	icon_state = "mac15"
+	item_state = "mac15"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/uzi.ogg'
-	mag_type = /obj/item/ammo_magazine/smg/uzi
-	damage = -5
-	burst_delay = 1
-	burst_amount = 4
+	current_mag = /obj/item/ammo_magazine/smg/uzi
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16)
+		damage -= config.min_hit_damage_mult
+		scatter += config.med_scatter_value
+		burst_delay = config.min_fire_delay
+		burst_amount = config.high_burst_value
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90
@@ -230,19 +247,23 @@
 /obj/item/weapon/gun/smg/p90
 	name = "\improper FN FP9000 Submachinegun"
 	desc = "An archaic design, but one that's stood the test of time. Fires fast armor piercing rounds."
-	icon_state = "p90"
-	icon_empty = "p90_empty"
-	item_state = "p90"
+	icon_state = "FP9000"
+	item_state = "FP9000"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/p90.ogg'
-	mag_type = /obj/item/ammo_magazine/smg/p90
-	accuracy = 27
-	damage = 8
-	fire_delay = 5
+	current_mag = /obj/item/ammo_magazine/smg/p90
+
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/scope)
+
 	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16)
+		accuracy += config.high_hit_accuracy_mult
+		damage += config.low_hit_damage_mult
+		fire_delay = config.high_fire_delay
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 //-------------------------------------------------------

@@ -28,11 +28,10 @@ into helmets.dm*/
 		M.update_inv_head()
 
 
-
 ///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/head/cmbandana
-	name = "\improper USCM bandana (green)"
+	name = "\improper USCM bandana"
 	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "band"
@@ -42,27 +41,13 @@ into helmets.dm*/
 	flags_inv = HIDETOPHAIR
 	New()
 		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "band") //Only change this one
-				name = "\improper USCM bandana (snow)"
-				icon_state = "s_band"
-				item_state = "s_band"
-				item_color = "s_band"
+		select_gamemode_skin(type, "s_band")
 
 /obj/item/clothing/head/cmbandana/tan
-	name = "\improper USCM bandana (tan)"
 	icon_state = "band2"
 	item_state = "band2"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band2"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "band2") //Only change this one
-				name = "\improper USCM bandana (snow)"
-				icon_state = "s_band"
-				item_state = "s_band"
-				item_color = "s_band"
 
 /obj/item/clothing/head/cmberet
 	name = "\improper USCM beret"
@@ -74,23 +59,12 @@ into helmets.dm*/
 	item_color = "beret"
 	New()
 		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "beret") //Only change this one
-				icon_state = "s_beret"
-				item_state = "s_beret"
-				item_color = "s_beret"
+		select_gamemode_skin(/obj/item/clothing/head/cmberet, "s_beret")
 
 /obj/item/clothing/head/cmberet/tan
 	icon_state = "berettan"
 	item_state = "berettan"
 	item_color = "berettan"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "berettan") //Only change this one
-				icon_state = "s_beret"
-				item_state = "s_beret"
-				item_color = "s_beret"
 
 /obj/item/clothing/head/cmberet/red
 	icon_state = "beretred"
@@ -107,27 +81,19 @@ into helmets.dm*/
 	item_color = "headband"
 	New()
 		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "headband") //Only change this one
-				name = "\improper USCM Ushanka"
-				desc = "Worn during cold operations by idiots"
-				icon_state = "ushanka"
-				item_state = "ushanka"
-				item_color = "ushanka"
+		select_gamemode_skin(type, "ushanka")
+		switch(icon_state)
+			if("ushanka") //Weird case, since the item basically transforms into another item.
+				name = "\improper USCM ushanka"
+				desc = "Worn during cold operations by idiots."
+				cold_protection = HEAD
+				min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+				flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
 /obj/item/clothing/head/headband/red
 	icon_state = "headbandred"
 	item_state = "headbandred"
 	item_color = "headbandred"
-	New()
-		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "headbandred") //Only change this one
-				name = "\improper USCM Ushanka"
-				desc = "Worn during cold operations by idiots"
-				icon_state = "ushanka"
-				item_state = "ushanka"
-				item_color = "ushanka"
 
 /obj/item/clothing/head/headset
 	name = "\improper USCM headset"
@@ -148,28 +114,24 @@ into helmets.dm*/
 	item_color = "cap"
 	New()
 		..()
-		if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony)) //Snow camo
-			if(icon_state == "cap") //Only change this one
-				icon_state = "s_cap"
-				item_state = "s_cap"
-				item_color = "s_cap"
+		select_gamemode_skin(/obj/item/clothing/head/cmcap)
 
 /obj/item/clothing/head/cmcap/ro
-	name = "\improper USCM Officer cap"
+	name = "\improper USCM officer cap"
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon_state = "rocap"
 	item_state = "rocap"
 	item_color = "rocap"
 
 /obj/item/clothing/head/cmcap/req
-	name = "\improper USCM Requisition cap"
+	name = "\improper USCM requisition cap"
 	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
 	icon_state = "cargocap"
 	item_state = "cargocap"
 	item_color = "cargocap"
 
 /obj/item/clothing/head/soft/ro_cap
-	name = "\improper Requisition Officer cap"
+	name = "\improper requisition officer cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 	item_state = "cargocap"
@@ -259,7 +221,7 @@ into helmets.dm*/
 	icon_state = "bearpelt"
 	item_state = "bearpelt"
 	siemens_coefficient = 2.0
-	anti_hug = 5
+	anti_hug = 4
 	body_parts_covered = HEAD|UPPER_TORSO|ARMS
 	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	cold_protection = HEAD|UPPER_TORSO|ARMS

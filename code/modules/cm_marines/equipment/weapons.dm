@@ -1,5 +1,5 @@
 /obj/item/weapon/combat_knife
-	name = "\improper M11 Combat Bayonet"
+	name = "\improper M11 combat bayonet"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "knife"
@@ -40,7 +40,7 @@
 		return (BRUTELOSS)
 
 /obj/item/weapon/throwing_knife
-	name ="\improper M11 Throwing Knife"
+	name ="\improper M11 throwing knife"
 	icon='icons/obj/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
@@ -55,11 +55,23 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	slot_flags = SLOT_POCKET
 
-/obj/item/weapon/butterfly/katana
-	name = "katana"
-	desc = "A ancient weapon from Japan."
-	icon_state = "samurai"
-	force = 50
+/obj/item/weapon/claymore
+	name = "claymore"
+	desc = "What are you standing around staring at this for? Get to killing!"
+	icon_state = "claymore"
+	item_state = "claymore"
+	flags = FPRINT | CONDUCT
+	slot_flags = SLOT_BELT
+	force = 40
+	throwforce = 10
+	sharp = 1
+	edge = 1
+	w_class = 3
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+	suicide_act(mob/user)
+		viewers(user) << "\red <b>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</b>"
+		return(BRUTELOSS)
 
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
@@ -79,29 +91,67 @@
 	slot_flags = SLOT_BACK
 	w_class = 4.0
 
+/obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	return ..()
+
+/obj/item/weapon/katana
+	name = "katana"
+	desc = "A finely made Japanese sword, expertly crafted by a dedicated weaponsmith. It has some foreign letters carved into the hilt."
+	icon_state = "katana"
+	item_state = "katana"
+	flags = FPRINT | CONDUCT
+	slot_flags = SLOT_BELT | SLOT_BACK
+	force = 40
+	throwforce = 10
+	sharp = 1
+	edge = 1
+	w_class = 3
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+	suicide_act(mob/user)
+		viewers(user) << "\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>"
+		return(BRUTELOSS)
+
+//To do: replace the toys.
+/obj/item/weapon/katana/replica
+	name = "replica katana"
+	desc = "A cheap knock-off commonly found in regular knife stores. Can still do some damage."
+	force = 27
+	throwforce = 7
+
+/obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	return ..()
+
+/obj/item/weapon/butterfly/katana
+	name = "katana"
+	desc = "A ancient weapon from Japan."
+	icon_state = "samurai"
+	force = 50
+
 /obj/item/weapon/storage/box/m56_system
 	name = "\improper M56 smartgun system"
 	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = 5
-	storage_slots = 5
+	storage_slots = 4
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
 	open(var/mob/user as mob)
 		if(!opened)
-			if(istype(ticker.mode,/datum/game_mode/ice_colony))
-				new /obj/item/clothing/glasses/night/m56_goggles(src)
-				new /obj/item/smartgun_powerpack/snow(src)
-				new /obj/item/clothing/suit/storage/smartgunner/snow(src)
-				new /obj/item/weapon/gun/smartgun(src)
-			else
-				new /obj/item/clothing/glasses/night/m56_goggles(src)
-				new /obj/item/smartgun_powerpack(src)
-				new /obj/item/clothing/suit/storage/smartgunner(src)
-				new /obj/item/weapon/gun/smartgun(src)
+			new /obj/item/clothing/glasses/night/m56_goggles(src)
+			new /obj/item/weapon/gun/smartgun(src)
+			new /obj/item/smartgun_powerpack(src)
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
+						new /obj/item/clothing/suit/storage/smartgunner/snow(src)
+					else
+						new /obj/item/clothing/suit/storage/smartgunner(src)
 			opened = 1
 		..()
 
@@ -110,7 +160,7 @@
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
-	item_state = "armor"
+	item_state = "powerpack"
 	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 5.0
@@ -120,8 +170,9 @@
 	var/reloading = 0
 
 	New()
-		spawn(1)
-			pcell = new /obj/item/weapon/cell(src)
+		..()
+		select_gamemode_skin(/obj/item/smartgun_powerpack)
+		pcell = new /obj/item/weapon/cell(src)
 
 	attack_self(mob/user)
 		if(!ishuman(user) || user.stat) return 0
@@ -190,6 +241,11 @@
 			if(pcell)
 				usr << "A small gauge in the corner reads: Ammo: [rounds_remaining] / 250."
 
+/obj/item/smartgun_powerpack/snow
+	icon = 'icons/mob/back.dmi'
+	item_state = "s_powerpack"
+	icon_state = "s_powerpack"
+
 /obj/item/smartgun_powerpack/fancy
 	icon = 'icons/mob/back.dmi'
 	item_state = "powerpackw"
@@ -200,30 +256,27 @@
 	item_state = "powerpackp"
 	icon_state = "powerpackp"
 
-/obj/item/smartgun_powerpack/snow
-	icon = 'icons/mob/back.dmi'
-	item_state = "s_powerpack"
-	icon_state = "s_powerpack"
-
 /obj/item/weapon/storage/box/heavy_armor
 	name = "\improper B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
 	w_class = 5
-	storage_slots = 2
+	storage_slots = 3
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
 	open(var/mob/user as mob)
 		if(!opened)
 			new /obj/item/clothing/gloves/marine/specialist(src)
-			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
-				new /obj/item/clothing/suit/storage/marine/specialist/snow(src)
-				new /obj/item/clothing/head/helmet/marine/specialist/snow(src)
-			else
-				new /obj/item/clothing/suit/storage/marine/specialist(src)
-				new /obj/item/clothing/head/helmet/marine/specialist(src)
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
+						new /obj/item/clothing/suit/storage/marine/specialist/snow(src)
+						new /obj/item/clothing/head/helmet/marine/specialist/snow(src)
+					else
+						new /obj/item/clothing/suit/storage/marine/specialist(src)
+						new /obj/item/clothing/head/helmet/marine/specialist(src)
 			opened = 1
 		..()
 
@@ -233,7 +286,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 10
+	storage_slots = 12
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -243,8 +296,6 @@
 		spawn(1)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/device/binoculars(src)
@@ -256,16 +307,17 @@
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
 			opened = 1
-			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
-				new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
-				new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
-				new /obj/item/clothing/head/helmet/marine/snow(src)
-
-			else
-				new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-				new /obj/item/clothing/suit/storage/marine/sniper(src)
-				new /obj/item/clothing/head/helmet/durag(src)
-				new /obj/item/weapon/facepaint/sniper(src)
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
+						new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
+						new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
+						new /obj/item/clothing/head/helmet/marine/snow(src)
+					else
+						new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+						new /obj/item/clothing/suit/storage/marine/sniper(src)
+						new /obj/item/clothing/head/helmet/durag(src)
+						new /obj/item/weapon/facepaint/sniper(src)
 		..()
 
 /obj/item/weapon/storage/box/m42c_system_Jungle
@@ -274,7 +326,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 10
+	storage_slots = 9
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -285,27 +337,27 @@
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)
-			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 
 	open(var/mob/user as mob)
 		if(!opened)
 			opened = 1
-			if(ticker && istype(ticker.mode,/datum/game_mode/ice_colony))
-				new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
-				new /obj/item/clothing/under/marine/snow/sniper(src)
-				new /obj/item/clothing/suit/storage/marine/sniper/snow/marksman(src)
-				new /obj/item/clothing/head/helmet/durag/jungle/snow(src)
-				new /obj/item/weapon/storage/backpack/marinesatchel(src)
-				new /obj/item/bodybag/snowtarp(src)
-
-			else
-				new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
-				new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
-				new /obj/item/clothing/head/helmet/durag/jungle(src)
-				new /obj/item/weapon/facepaint/sniper(src)
-				new /obj/item/weapon/storage/backpack/marine/smock(src)
-				new /obj/item/bodybag/jungletarp(src)
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
+						new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
+						new /obj/item/clothing/under/marine/snow/sniper(src)
+						new /obj/item/clothing/suit/storage/marine/sniper/snow/marksman(src)
+						new /obj/item/clothing/head/helmet/durag/snow(src)
+						new /obj/item/weapon/storage/backpack/marine/satchel(src)
+						new /obj/item/bodybag/tarp/snow(src)
+					else
+						new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
+						new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
+						new /obj/item/clothing/head/helmet/durag/jungle(src)
+						new /obj/item/weapon/facepaint/sniper(src)
+						new /obj/item/weapon/storage/backpack/marine/smock(src)
+						new /obj/item/bodybag/tarp(src)
 		..()
 
 /obj/item/weapon/storage/box/grenade_system
@@ -314,7 +366,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
 	w_class = 5
-	storage_slots = 4
+	storage_slots = 3
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -325,7 +377,6 @@
 			new /obj/item/weapon/gun/m92(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
-			//new /obj/item/weapon/storage/belt/grenade(src)
 
 
 /obj/item/weapon/storage/box/rocket_system
@@ -334,7 +385,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	w_class = 5
-	storage_slots = 7
+	storage_slots = 6
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -357,7 +408,7 @@
 
 ///***GRENADES***///
 /obj/item/weapon/grenade/explosive
-	name = "\improper M40 HEDP Grenade"
+	name = "\improper M40 HEDP grenade"
 	desc = "A small, but deceptively strong fragmentation grenade that has been phasing out the M15 Fragmentation Grenades. Capable of being loaded in the M92 Launcher, or thrown by hand."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade"
@@ -385,7 +436,7 @@
 		return
 
 /obj/item/weapon/grenade/explosive/m40
-	name = "\improper M15 Fragmentation Grenade"
+	name = "\improper M15 fragmentation grenade"
 	desc = "An outdated USCM Fragmentation Grenade. With decades of service in the USCM, the old M15 Fragmentation Grenade is slowly being relaced with the slightly safer M40 HEDP.It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
@@ -397,7 +448,7 @@
 		return
 
 /obj/item/weapon/grenade/incendiary
-	name = "\improper M40 HIDP Incendiary grenade"
+	name = "\improper M40 HIDP incendiary grenade"
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade_fire"
@@ -430,7 +481,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 
 /obj/item/weapon/grenade/smokebomb
-	name = "\improper M40 HSDP Smoke Grenade"
+	name = "\improper M40 HSDP smoke grenade"
 	desc = "The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade_smoke"
@@ -463,7 +514,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 		return
 
 /obj/item/weapon/grenade/phosphorus
-	name = "\improper M40 HPDP Grenade"
+	name = "\improper M40 HPDP grenade"
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade_phos"
@@ -500,7 +551,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 ///***MINES***///
 /obj/item/device/mine
-	name = "\improper M20 Claymore Anti-Personnel Mine"
+	name = "\improper M20 Claymore anti-personnel mine"
 	desc = "The M20 Claymore is a proximity triggered anti-presonnel mine designed by Armat Systems for use by the United States Colonial Marines."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "mine"

@@ -117,7 +117,7 @@ DEFINES in setup.dm, referenced here.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/AltClick(var/mob/user)
-	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features || gun_features & GUN_UNUSUAL_DESIGN) return
 
 	if(!ishuman(user)) return
 
@@ -179,7 +179,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		switch(user.mind.assigned_role)
 			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
 		if(user.mind.special_role == "DEATH SQUAD") return 1
-	user << "<span class='warning'>\The [src] flashes a warning sign indicating unauthorized use!</span>"
+	user << "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>"
 
 /*
 Here we have throwing and dropping related procs.
@@ -203,7 +203,7 @@ should be alright.
 		if(isnull(user.s_store) && isturf(src.loc))
 			var/obj/item/I = user.wear_suit
 			user.equip_to_slot_if_possible(src,slot_s_store)
-			if(user.s_store == src) user << "<span class='warning'>\The [src] snaps into place on [I].</span>"
+			if(user.s_store == src) user << "<span class='warning'>[src] snaps into place on [I].</span>"
 			user.update_inv_s_store()
 
 /obj/item/weapon/gun/attack_self(mob/user)
@@ -218,25 +218,16 @@ should be alright.
 		else wield(user)//Trying to wield it
 	else unload(user)//We just unload it.
 
-
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
-	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 	if(istype(I,/obj/item/ammo_magazine))
 		if(check_inactive_hand(user)) reload(user,I)
 
 	else if(istype(I,/obj/item/attachable))
 		if(check_inactive_hand(user)) attach_to_gun(user,I)
-
-//Unless the user is not present, you always want to pass user as mob for wield/unwield. But you don't have to, I guess.
-/obj/item/weapon/gun/wield(mob/user)
-	if(!..()) return
-	item_state = icon_wielded ? icon_wielded : initial(item_state) + "-w"
-
-/obj/item/weapon/gun/unwield(mob/user)
-	..()
 
 //----------------------------------------------------------
 				//						 \\
@@ -252,7 +243,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 		if( in_hand != src ) //It has to be held.
-			user << "<span class='warning'>You have to hold \the [src] to do that!</span>"
+			user << "<span class='warning'>You have to hold [src] to do that!</span>"
 			return
 	return 1
 
@@ -261,7 +252,7 @@ should be alright.
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
 		if( in_handL != src && in_handR != src ) //It has to be held.
-			user << "<span class='warning'>You have to hold \the [src] to do that!</span>"
+			user << "<span class='warning'>You have to hold [src] to do that!</span>"
 			return
 	return 1
 
@@ -273,8 +264,8 @@ should be alright.
 	if(istype(stock,A)) return 1
 
 /obj/item/weapon/gun/proc/attach_to_gun(var/mob/user, var/obj/item/attachable/attachment)
-	if( !(type in attachment.guns_allowed) )
-		user << "<span class='warning'>\The [attachment] doesn't fit on [src]!</span>"
+	if( !(attachment.type in attachable_allowed) )
+		user << "<span class='warning'>[attachment] doesn't fit on [src]!</span>"
 		return
 
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
@@ -293,58 +284,66 @@ should be alright.
 		user << "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>"
 		return
 
-	user << "<span class='notice'>You begin field modifying \the [src]...</span>"
+	user << "<span class='notice'>You begin field modifying [src]...</span>"
 	if(do_after(user,60))
-		user << "<span class='notice'>You attach \the [attachment] to \the [src].</span>"
+		user << "<span class='notice'>You attach [attachment] to [src].</span>"
 		user.drop_item(attachment)
 		attachment.Attach(src)
-		update_attachables()
+		update_attachable(attachment.slot)
 		playsound(user,'sound/machines/click.ogg', 50, 1)
 
-/obj/item/weapon/gun/proc/update_attachables()
-	overlays.Cut()
+/obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
+	//overlays.Cut()
+	if(attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
+		update_overlays(muzzle, "muzzle")
+		update_overlays(stock, "stock")
+		update_overlays(under, "under")
+		update_overlays(rail, "rail")
+
+/obj/item/weapon/gun/proc/update_attachable(attachable) //Updates individually.
 	if(attachable_offset)
-		if(rail)
-			var/flash = 0
-			var/image/I
-			if(rail.light_mod) //Currently only rail-mounted flashlights.
-				if(gun_features & GUN_FLASHLIGHT_ON)
-					I = new(rail.icon, "[rail.icon_state]-on")
-					I.icon_state = "[rail.icon_state]-on"
-					flash = 1
-			if(!flash)
-				I = new(rail.icon, rail.icon_state)
-				I.icon_state = rail.icon_state
-			I.pixel_x = attachable_offset["rail_x"] - rail.pixel_shift_x
-			I.pixel_y = attachable_offset["rail_y"] - rail.pixel_shift_y
-			overlays += I
-		if(muzzle)
-			var/image/I = new(muzzle.icon, muzzle.icon_state)
-			I.icon_state = muzzle.icon_state
-			I.pixel_x = attachable_offset["muzzle_x"] - muzzle.pixel_shift_x
-			I.pixel_y = attachable_offset["muzzle_y"] - muzzle.pixel_shift_y
-			overlays += I
-		if(under)
-			var/image/I = new(under.icon, under.icon_state)
-			I.icon_state = under.icon_state
-			I.pixel_x = attachable_offset["under_x"] - under.pixel_shift_x
-			I.pixel_y = attachable_offset["under_y"] - under.pixel_shift_y
-			overlays += I
-		if(stock)
-			var/image/I = new(stock.icon, stock.icon_state)
-			I.icon_state = stock.icon_state
-			I.pixel_x = attachable_offset["under_x"] - stock.pixel_shift_x
-			I.pixel_y = attachable_offset["under_y"] - stock.pixel_shift_y
-			overlays += I
+		switch(attachable)
+			if("muzzle") update_overlays(muzzle, attachable)
+			if("stock") update_overlays(stock, attachable)
+			if("under") update_overlays(under, attachable)
+			if("rail") update_overlays(rail, attachable)
+
+/obj/item/weapon/gun/proc/update_overlays(var/obj/item/attachable/A, slot)
+	overlays -= attachable_overlays[slot]
+	cdel(attachable_overlays[slot])
+	if(A) //Only updates if the attachment exists for that slot.
+		//var/directives[] = list(A.icon,src, ( (slot == "rail" && gun_features & GUN_FLASHLIGHT_ON) ? "[A.icon_state]-on" : A.icon_state ))
+		var/image/reusable/I = rnew(/image/reusable)
+		I.generate_image(A.icon,src, ( (slot == "rail" && gun_features & GUN_FLASHLIGHT_ON) ? "[A.icon_state]-on" : A.icon_state ))
+		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
+		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
+		attachable_overlays[slot] = I
+		overlays += I
+
+/obj/item/weapon/gun/proc/update_mag_overlay()
+	overlays -= attachable_overlays["mag"]
+	cdel(attachable_overlays["mag"])
+	if(current_mag && current_mag.bonus_overlay)
+		//var/directives[] = list(current_mag.icon,src,current_mag.bonus_overlay)
+		var/image/reusable/I = rnew(/image/reusable)
+		I.generate_image(current_mag.icon,src,current_mag.bonus_overlay)
+		attachable_overlays["mag"] = I
+		overlays += I
+
+/obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
+	overlays -= attachable_overlays["special"]
+	cdel(attachable_overlays["special"])
+	//var/directives[] = list(icon,src,new_icon_state)
+	var/image/reusable/I = rnew(/image/reusable)
+	I.generate_image(icon,src,new_icon_state)
+	attachable_overlays["special"] = I
+	overlays += I
 
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
-		if(-50 to 15) //Unlikely to ever be -50, but just to be safe.
-			attack_verb = list("struck", "hit", "bashed")
-		if(16 to 35)
-			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
-		else //Greater than 35
-			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored")
+		if(-50 to 15) attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
+		if(16 to 35) attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+		else attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
 
 //----------------------------------------------------------
 					//				   \\
@@ -359,7 +358,7 @@ should be alright.
 	set desc = "Remove all attachables from a weapon."
 	set src in usr
 
-	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
 		usr << "Not right now."
@@ -376,16 +375,16 @@ should be alright.
 		return
 
 	if(rail && (rail.attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove the weapon's [rail].</span>"
+		usr << "<span class='notice'>You remove [src]'s [rail].</span>"
 		rail.Detach(src)
 	if(muzzle && (muzzle.attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove the weapon's [muzzle].</span>"
+		usr << "<span class='notice'>You remove [src]'s [muzzle].</span>"
 		muzzle.Detach(src)
 	if(under && (under.attach_features & ATTACH_REMOVABLE) )
-		usr << "<span class='notice'>You remove the weapon's [under].</span>"
+		usr << "<span class='notice'>You remove [src]'s [under].</span>"
 		under.Detach(src)
 	if(stock && (stock.attach_features & ATTACH_REMOVABLE))
-		usr << "<span class='notice'>You remove the weapon's [stock].</span>"
+		usr << "<span class='notice'>You remove [src]'s [stock].</span>"
 		stock.Detach(src)
 
 	playsound(src,'sound/machines/click.ogg', 50, 1)
@@ -423,7 +422,7 @@ should be alright.
 	set desc = "Remove the magazine from your current gun and drop it on the ground."
 	set src in usr
 
-	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 	if(!ishuman(usr)) return
 
@@ -441,7 +440,7 @@ should be alright.
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 	set src in usr
 
-	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 	if(!ishuman(usr)) return
 
@@ -450,7 +449,6 @@ should be alright.
 		return
 
 	if(!check_both_hands(usr)) return
-
 	unique_action(usr)
 
 /obj/item/weapon/gun/verb/activate_attachment()
@@ -459,7 +457,7 @@ should be alright.
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 	set src in usr
 
-	if(gun_features & GUN_BURST_ON & GUN_BURST_FIRING) return
+	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
 
 	if(!ishuman(usr)) return
 
@@ -469,59 +467,45 @@ should be alright.
 
 	if(!check_both_hands(usr)) return
 
-	var/list/usable_attachments = list() //Basic list of attachments to compare later.
-	if(rail && (rail.attach_features & ATTACH_ACTIVATION) ) usable_attachments[rail.name] = rail
+	var/usable_attachments[] = list() //Basic list of attachments to compare later.
+	if(rail && (rail.attach_features & ATTACH_ACTIVATION) ) usable_attachments += rail
 	if(under && (under.attach_features & ATTACH_ACTIVATION) )
 		if(istype(under, /obj/item/attachable/bipod)) //Specific case for bipods. Can be revised later if necessary.
 			if(under.activate_attachment(src,usr)) return
-		else usable_attachments[under.name] = under
+		else usable_attachments += under
+	if(stock  && (stock.attach_features & ATTACH_ACTIVATION) ) usable_attachments += stock
+	if(muzzle && (muzzle.attach_features & ATTACH_ACTIVATION) ) usable_attachments += muzzle
 
-	if(stock  && (stock.attach_features & ATTACH_ACTIVATION) ) usable_attachments[stock.name] = stock
-	if(muzzle && (muzzle.attach_features & ATTACH_ACTIVATION) ) usable_attachments[muzzle.name] = muzzle
-
-	if(usable_attachments.len <= 0) //No usable attachments.
-		usr << "<span class='warning'>This weapon does not have any attachments!</span>"
+	if(!usable_attachments.len) //No usable attachments.
+		usr << "<span class='warning'>[src] does not have any usable attachments!</span>"
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
 		if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) ) //In case the attach is passive like the flashlight/scope.
-			usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
-			playsound(src.loc,active_attachable.activation_sound, 50, 1)
-			active_attachable = null
+			cancel_active_attachment(usr)
 			return
-		else
-			var/activate_this = usable_attachments[1]
-			active_attachable = usable_attachments[activate_this]
-
+		else active_attachable = usable_attachments[1]
 	else
-		var/list/attachment_names = list() //Name list, since otherwise we would reference the object path itself in the choice menu.
-		for(var/attachment_found in usable_attachments) attachment_names += attachment_found
-		if(active_attachable) attachment_names += "Cancel Active"
-		else attachment_names += "Cancel"
-
 		//If you click on anything but the attachment name, it'll cancel anything active.
-		var/choice = input("Which attachment to activate?") as null|anything in attachment_names
-
+		usable_attachments += active_attachable ? "Cancel Active" : "Cancel"
+		var/obj/item/attachable/activate_this = input("Which attachment to activate?") as null|anything in usable_attachments
 		if(!usr.client || src.loc != usr) return//Dropped or something.
-
-		if(!choice || choice == "Cancel" || choice == "Cancel Active")
-			if(active_attachable  && !(active_attachable.attach_features & ATTACH_PASSIVE) )
-				usr << "<span class='notice'>You disable the [active_attachable.name].</span>"
-				playsound(usr,active_attachable.activation_sound, 50, 1)
-				active_attachable = null
-				return
-
-		var/obj/item/attachable/activate_this = usable_attachments[choice]
-		if(activate_this && activate_this.loc == src) active_attachable = activate_this //If it still exists at all and held on the gun.
-
-		if(!active_attachable)
-			usr << "<span class='warning'>Nothing happened!</span>"
+		if(!activate_this || activate_this == "Cancel" || activate_this == "Cancel Active")
+			if(active_attachable  && !(active_attachable.attach_features & ATTACH_PASSIVE) ) cancel_active_attachment(usr)
 			return
 
-	usr << "<span class='notice'>You toggle the [active_attachable.name].</span>"
-	active_attachable.activate_attachment(src,usr)
-	playsound(src.loc,active_attachable.activation_sound, 50, 1)
+		if(activate_this.loc == src) active_attachable = activate_this //If it's still held in the gun.
+	toggle_active_attachment(usr)
 
+/obj/item/weapon/gun/proc/cancel_active_attachment(mob/user)
+	user << "<span class='notice'>You disable [active_attachable].</span>"
+	playsound(user,active_attachable.activation_sound, 50, 1)
+	active_attachable = null
+
+/obj/item/weapon/gun/proc/toggle_active_attachment(mob/user)
+	user << "<span class='notice'>You toggle the [active_attachable.name].</span>"
+	playsound(user,active_attachable.activation_sound, 50, 1)
+	active_attachable.activate_attachment(src,user)
 
 //----------------------------------------------------------
 				//				   	   \\

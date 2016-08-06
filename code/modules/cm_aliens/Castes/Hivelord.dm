@@ -16,7 +16,7 @@
 	plasma_gain = 35
 	evolves_to = list()
 	caste_desc = "A builder of REALLY BIG hives."
-	adjust_pixel_x = -16
+	pixel_x = -16
 	// adjust_pixel_y = -6
 	// adjust_size_x = 0.8
 	// adjust_size_y = 0.75

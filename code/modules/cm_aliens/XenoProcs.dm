@@ -353,6 +353,7 @@
 	opacity = 0
 	anchored = 1
 	layer = 5 //Should be on top of most things
+	unacidable = 1
 
 	var/atom/target
 	var/ticks = 0
@@ -609,7 +610,7 @@
 	if(!readying_tail || readying_tail == -1) return 0 //Tail attack not prepared, or not available.
 
 	var/dmg = (round(readying_tail * 2.5)) + rand(5,10) //Ready max is 20
-	if(adjust_pixel_x) //Big xenos get a damage bonus.
+	if(big_xeno)
 		dmg += 10
 	var/datum/organ/external/affecting
 	var/tripped = 0

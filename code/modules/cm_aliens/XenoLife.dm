@@ -14,7 +14,6 @@
 		if(src.loc != zoom_turf && is_zoomed)
 			zoom_out()
 
-
 	if (stat != DEAD) //Stop if dead. Performance boost
 
 		update_progression()
@@ -51,7 +50,6 @@
 			update_fire()
 			updatehealth()
 			fire_stacks--
-
 	if(health > -100 && health < 0) //Unconscious
 		if(readying_tail) readying_tail = 0
 		blinded = 1
@@ -149,6 +147,7 @@
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
 						M.loc = locate(138,136,2)
+
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
@@ -402,6 +401,7 @@
 		stat = CONSCIOUS
 	else
 		health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
+
 	if(isXenoLarva(src))
 		if(health <= -25 && stat != DEAD)
 			death()

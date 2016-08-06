@@ -27,6 +27,8 @@ be nulled so it doesn't appear anywhere. Once it's added to the recycle list, it
 list will reference it. Even if it's somehow deleted in the interim, it doesn't honestly matter too much.
 */
 
+#define DEBUG_RA_AUTHORITY 0
+
 /proc/rnew(fetch_type, directive)
 	if(!fetch_type || !ispath(fetch_type)) return
 	return RecycleAuthority.FetchProduct(fetch_type, directive)
@@ -54,7 +56,9 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 /datum/authority/branch/recycle/proc/FetchFromNew(fetch_type, directive)
 	if(islist(directive)) 	. = new fetch_type(arglist(directive)) //Give us a an argument list.
 	else 					. = new fetch_type(directive) //Give us a loc.
-	//world << "Had to create a new atom. Could not get from shelf."
+	#if DEBUG_RA_AUTHORITY
+	world << "<span class='debuginfo'>Had to create a new atom. Could not get from shelf.</span>"
+	#endif
 
 /datum/authority/branch/recycle/proc/FetchFromShelf(fetch_type, directive)
 	var/datum/fetched = popleft(recycling[fetch_type]) //Get us the oldest element to reuse.
@@ -72,7 +76,9 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 	else 					fetched.New(directive)
 	. = fetched
 	recycle_count++
-	//world << "Was able to pull product from shelf."
+	#if DEBUG_RA_AUTHORITY
+	world << "<span class='debuginfo'>Was able to pull product from shelf.</span>"
+	#endif
 
 /*
 loc is reset through cdel, which is how things get into the recycler in the first place (how they should anyway),
@@ -105,12 +111,16 @@ so there's honestly not too much to do here.
 		var/blacklist[] = excluded_variables + product.Recycle() //Let's combine these so we know what to exclude in the following step.
 		blacklist &= product.vars //We need to get the items they have in common only, as this is what we need to remove.
 		gathered_variables[product.type] = product.vars ^ blacklist //Then we remove the incommon items. Easy.
-		//world << "Successfully notated [product.type]."
+		#if DEBUG_RA_AUTHORITY
+		world << "<span class='debuginfo'>Successfully notated [product.type].</span>"
+		#endif
 
 		for(var/I in gathered_variables[product.type])
 			if(islist(product.vars[I])) gathered_variables[product.type][I] = list() //We reset it to empty if it's a list.
 			else gathered_variables[product.type][I] = initial(product.vars[I]) //Reset.
-		//world << "Successfully reset [product.type]."
+		#if DEBUG_RA_AUTHORITY
+		world << "<span class='debuginfo'>Successfully reset [product.type].</span>"
+		#endif
 
 /*
 This is the opposite of Dispose. You can override this proc for certain things if you want to preserve
@@ -126,6 +136,38 @@ You can also return the entire list of variables if you reset them manually. Not
 */
 /datum/proc/Recycle()
 	return
+
+
+/*Generic image parent for any reusable image that works with the recycler.
+Set up on new() as an overlay. layer and dir can be overriden, the other
+stuff is required for it to show up in the first place.*/
+/image/reusable
+
+/image/reusable/Dispose()
+	..()
+	loc = null
+	return TA_REVIVE_ME
+
+/image/reusable/Recycle()
+	var/blacklist[] = list("icon","icon_state","loc","layer","dir")
+	. = ..() + blacklist
+
+/*
+/image/reusable/New(ricon, rloc, ricon_state, rlayer = FLOAT_LAYER, rdir)
+	. = ..()
+	world << "icon is [icon]. Icon state is [icon_state]"
+	icon = ricon
+	icon_state = ricon_state
+	loc = rloc
+	layer = rlayer
+	dir = rdir
+*/
+/image/proc/generate_image(IC, LC, IS, LY = FLOAT_LAYER, DR)
+	icon = IC
+	icon_state = IS
+	loc = LC
+	layer = LY
+	dir = DR
 
 //======================================================
 //======================================================
@@ -148,3 +190,5 @@ You can also return the entire list of variables if you reset them manually. Not
 	RecycleAuthority.purging = !RecycleAuthority.purging
 	usr << "\red RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]"
 	log_debug("RA: <b>[usr.key]</b> used the purge toggle.")
+
+#undef DEBUG_RA_AUTHORITY

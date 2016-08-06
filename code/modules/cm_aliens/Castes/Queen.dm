@@ -27,7 +27,7 @@
 	speed = 1
 	jelly = 1
 	jellyMax = 800
-	adjust_pixel_x = -16
+	pixel_x = -16
 	// adjust_pixel_y = -6
 	// adjust_size_x = 0.9
 	// adjust_size_y = 0.85
@@ -268,13 +268,12 @@
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
-
-
-	for(var/mob/M in player_list)
-		if(istype(M,/mob/living/carbon/human))
-			continue
-		M << "[queensWord]"
-		playsound(M, "queen", 50, 0)
+	if(ticker && ticker.mode)
+		for(var/datum/mind/L in ticker.mode.aliens)
+			var/mob/living/carbon/Xenomorph/X = L.current
+			if(X && X.client && istype(X) && !X.stat)
+				X << sound(get_sfx("queen"),wait=0,volume=50)
+				X << "[queensWord]"
 
 	log_admin("[key_name(src)] has created a Word of the Queen report:")
 	log_admin("[queensWord]")
