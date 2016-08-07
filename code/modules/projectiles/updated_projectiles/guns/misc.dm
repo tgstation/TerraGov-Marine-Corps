@@ -104,7 +104,7 @@
 			usr << "<span class='warning'>It has a flare loaded!</span>"
 
 	update_icon()
-		icon_state = (!num_flares) ? icon_state + "_e" : initial(icon_state)
+		icon_state = num_flares ? initial(icon_state) : icon_state + "_e"
 
 	load_into_chamber()
 		if(num_flares)
@@ -138,6 +138,7 @@
 			sleep(-1)
 			del(flare)
 			user << "<span class='notice'>You insert the flare.</span>"
+			update_icon()
 			return
 
 		return ..()

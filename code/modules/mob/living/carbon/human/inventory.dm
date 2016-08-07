@@ -671,7 +671,7 @@ It can still be worn/put on as normal.
 						W.hold.close(usr)
 				usr.put_in_hands(tie)
 				suit.hastie = null*/
-			if(suit & suit.hastie)
+			if(suit && suit.hastie)
 				suit.hastie.on_removed(usr)
 				suit.hastie = null
 				target.update_inv_w_uniform()

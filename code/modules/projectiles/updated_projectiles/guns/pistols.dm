@@ -120,8 +120,8 @@
 	name = "\improper Desert Eagle magazine (.50)"
 	default_ammo = "heavy pistol bullet"
 	caliber = ".50"
-	icon_state = "T38"
-	icon_empty = "T38-0"
+	icon_state = ".45a"
+	icon_empty = ".45a0"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/heavy
 

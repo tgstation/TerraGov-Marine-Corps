@@ -234,8 +234,6 @@
 	icon_state = "mar30"
 	item_state = "mar30"
 	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
-	item_state = "mar40short"
-
 
 	New()
 		..()

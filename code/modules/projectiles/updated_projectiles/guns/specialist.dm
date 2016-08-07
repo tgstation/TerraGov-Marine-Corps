@@ -61,11 +61,11 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/jungle //These really should just be skins.
 	name = "\improper M42A marksman rifle"
-	icon_state = "m_m42a"
+	icon_state = "m_m42a" //NO BACK STATE
 	item_state = "m_m42a"
 
 /obj/item/weapon/gun/rifle/sniper/M42A/snow
-	icon_state = "s_m42a"
+	icon_state = "s_m42a" //NO BACK STATE
 	item_state = "s_m42a"
 
 /obj/item/ammo_magazine/sniper/elite

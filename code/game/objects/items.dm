@@ -103,7 +103,7 @@
 	src.loc = T
 
 /*Global item proc for all of your unique item skin needs. Works with any
-item, and will cahnge the skin to whatever you specify here. You can also
+item, and will change the skin to whatever you specify here. You can also
 manually override the icon with a unique skin if wanted, for the outlier
 cases.*/
 /obj/item/proc/select_gamemode_skin(expected_type, override_icon_state)

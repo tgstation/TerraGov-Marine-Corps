@@ -118,7 +118,6 @@
 	var/max_proj_variance = 5
 
 /datum/configuration/proc/initialize_combat_defines(name,value)
-	if(!value) log_misc("Unknown value for setting [name] in combat defines.")
 	value = text2num(value)
 	switch(name)
 		if("proj_base_accuracy_mult") proj_base_accuracy_mult = value
@@ -222,4 +221,4 @@
 		if("high_proj_variance") high_proj_variance = value
 		if("max_proj_variance") max_proj_variance = value
 		else
-			log_misc("Unknown setting in configuration: '[name]'")
+			log_misc("Unknown setting in combat defines: '[name]'")

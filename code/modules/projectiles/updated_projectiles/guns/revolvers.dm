@@ -33,7 +33,7 @@
 		usr << "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]"
 
 	update_icon() //Special snowflake update icon.
-		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_e"
+		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
 	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1

@@ -59,7 +59,7 @@
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 9mm rounds in a 35 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10×20mm rounds in a 48 round magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	current_mag = /obj/item/ammo_magazine/smg/m39
@@ -87,7 +87,7 @@
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 9mm rounds and is used by elite troops."
+	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 10×20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	origin_tech = "combat=6;materials=5"

@@ -166,7 +166,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Weapons"
 
 /datum/supply_packs/weapons_sentry
-	name = "\improper UA 571-C sentry crate"
+	name = "UA 571-C sentry crate"
 	contains = list(
 				)
 	cost = 120
@@ -179,14 +179,15 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	contains = list(
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/pistol,
 					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol/hp,
 					/obj/item/ammo_magazine/smg/m39,
 					/obj/item/ammo_magazine/smg/m39,
 					/obj/item/ammo_magazine/revolver,
 					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver/marksman,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot
 				)

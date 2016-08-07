@@ -86,7 +86,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag.chamber_position++ //We move the position up when loading ammo. New rounds are always fired next, in order loaded.
 	current_mag.chamber_contents[current_mag.chamber_position] = selection //Just moves up one, unless the mag is full.
 	if(current_mag.current_rounds == 1 && !in_chamber) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
-		update_icon()					//It was just loaded.
+		update_icon()	//This is not needed for now. Maybe we'll have loaded sprites at some point, but I doubt it. Also doesn't play well with double barrel.
 		ready_in_chamber()
 		cock_gun(user)
 	if(user) playsound(user, reload_sound, 100, 1)
@@ -141,7 +141,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		var/mag_caliber = magazine.default_ammo //Handfuls can get deleted, so we need to keep this on hand for later.
 		if(current_mag.transfer_ammo(magazine,current_mag,user,1))
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
-			update_icon()
 
 	unload(mob/user as mob)
 		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
@@ -284,7 +283,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	//Turns out it has some attachments.
 	update_icon()
-		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_e"
+		icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 	check_chamber_position()
 		if(current_mag.chamber_closed) return
@@ -392,7 +391,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		..()
 		fire_delay = config.med_fire_delay*5
 		pump_delay = config.max_fire_delay*2
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14,)
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 		select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 
 	unique_action(mob/user)

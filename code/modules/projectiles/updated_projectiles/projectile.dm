@@ -465,8 +465,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		world << "<span class='debuginfo'>Adjusted armor is: <b>[armor]</b></span>"
 		#endif
 		var/critical_hit	 = rand(config.critical_chance_low,config.critical_chance_high)
-		armor_pass 	 	 	 = round( ( armor * damage * config.xeno_armor_resist_low ) / 100 )
-		armor				-= prob(critical_hit) ? round(armor/2) : armor_pass //Small chance to completely ignore armor.
+		armor_pass 	 	 	 = round( ( armor * damage * config.xeno_armor_resist_low ) * 0.01 )
+		armor				-= prob(critical_hit) ? round(armor*0.5) : armor_pass //Small chance to completely ignore armor.
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Armor after initial soak is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b></span>"
 		#endif

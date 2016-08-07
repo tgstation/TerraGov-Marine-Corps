@@ -225,7 +225,7 @@
 	w_class = 3
 	storage_slots = 4
 	max_w_class = 1
-	max_combined_w_class=3
+	max_combined_w_class=4
 
 	can_hold=list("/obj/item/weapon/throwing_knife")
 	New()

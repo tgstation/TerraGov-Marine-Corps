@@ -289,7 +289,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of slightly reduced damage."
 	icon_state = "suppressor"
 	slot = "muzzle"
 	silence_mod = 1
@@ -300,11 +300,12 @@ Defined in setup.dm.
 		accuracy_mod = config.min_hit_accuracy_mult
 		damage_mod = -config.min_hit_damage_mult
 		recoil_mod = -config.min_recoil_value
+		scatter_mod = -config.min_scatter_value
 		icon_state = pick("suppressor","suppressor2")
 
 /obj/item/attachable/bayonet
 	name = "bayonet"
-	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually."
+	desc = "A sharp blade for mounting on a weapon. It can be used to stab manually on anything but harm intent."
 	icon_state = "bayonet"
 	force = 20
 	throwforce = 10
@@ -343,7 +344,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/foregrip
 	name = "forward grip"
-	desc = "A custom-built improved foregrip for maximum accuracy. However, it also changes the weapon to two-handed and increases weapon size."
+	desc = "A custom-built improved foregrip for maximum accuracy, less recoil, and slightly less scatter. \nHowever, it also changes the weapon to two-handed and increases weapon size."
 	icon_state = "sparemag"
 	twohanded_mod = 1
 	w_class_mod = 1
@@ -359,7 +360,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/gyro
 	name = "gyroscopic stabilizer"
-	desc = "A set of weights and balances to allow a two handed weapon to be fired with one hand. Greatly reduces accuracy, however."
+	desc = "A set of weights and balances to allow a two handed weapon to be fired with one hand. \nSomewhat reduces accuracy and increases scatter, however."
 	icon_state = "gyro"
 	twohanded_mod = 2
 	slot = "under"
@@ -368,11 +369,11 @@ Defined in setup.dm.
 		..()
 		accuracy_mod = -config.low_hit_accuracy_mult
 		recoil_mod = config.min_recoil_value
-		scatter_mod = -config.min_scatter_value
+		scatter_mod = config.min_scatter_value
 
 /obj/item/attachable/flashlight
 	name = "rail flashlight"
-	desc = "A simple flashlight used for mounting on a firearm. Has no drawbacks."
+	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
 	light_mod = 7
 	slot = "rail"
@@ -399,13 +400,17 @@ Defined in setup.dm.
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. Greatly increases accuracy and reduces recoil, but also increases weapon size and slows firing speed."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
 	icon_state = "bipod"
 	slot = "under"
 	w_class_mod = 2
 	melee_mod = -10
-	delay_mod = 1
+
 	attach_features = ATTACH_PASSIVE | ATTACH_REMOVABLE | ATTACH_ACTIVATION
+
+	New()
+		..()
+		delay_mod = config.min_fire_delay
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		if(firing_support) //Let's see if we can find one.
@@ -415,7 +420,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
-	desc = "A lengthened barrel allows for greater accuracy, particularly at long range.\nHowever, natural resistance also slows the bullet, leading to reduced damage."
+	desc = "A lengthened barrel allows for greater accuracy, particularly at long range.\nHowever, natural resistance also slows the bullet, leading to slightly reduced damage."
 	slot = "muzzle"
 	icon_state = "ebarrel"
 
@@ -438,7 +443,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/quickfire
 	name = "quickfire adapter"
-	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. However, greatly reduces accuracy and increases weapon recoil."
+	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. \nHowever, greatly reduces accuracy, increases weapon recoil, and slightly adds to scatter."
 	slot = "rail"
 	icon_state = "autoloader"
 
@@ -451,7 +456,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"
-	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. Increases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
+	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. \nIncreases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
 	slot = "muzzle"
 	icon_state = "comp"
 	pixel_shift_x = 17
@@ -464,7 +469,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/burstfire_assembly
 	name = "burst fire assembly"
-	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability."
+	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nJust don't mind the increased scatter."
 	icon_state = "rapidfire"
 	accuracy_mod = -25
 	slot = "under"
@@ -492,7 +497,6 @@ Defined in setup.dm.
 	slot = "stock"
 	melee_mod = 5
 	size_mod = 2
-
 	pixel_shift_x = 30
 	pixel_shift_y = 14
 

@@ -206,8 +206,7 @@ mob/living/proc/NotTargeted(var/obj/item/weapon/gun/I)
 
 	if(I.target)//To prevent runtimes. This whole thing is such an awful mess. Might come back to later, sigh. ~N
 		I.target.Remove(src) //De-target them
-	if(!I.target.len)
-		del(I.target) //What the hell.
+		if(!I.target.len) del(I.target) //What the hell.
 
 	var/mob/living/T = I.loc //Remove the targeting icons
 	if(T && ismob(T) && !I.target)
