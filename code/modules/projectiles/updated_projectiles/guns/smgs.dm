@@ -81,7 +81,7 @@
 		..()
 		fire_delay = config.low_fire_delay
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
-		select_gamemode_skin(/obj/item/weapon/gun/smg/m39)
+		select_gamemode_skin(/obj/item/weapon/gun/smg/m39,"m39b2")
 
 //-------------------------------------------------------
 

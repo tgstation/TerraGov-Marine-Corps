@@ -401,7 +401,7 @@
 
 	update_icon()
 		..()
-		if(current_rounds <= 0) name = "Empty Rocket Frame"
+		if(current_rounds <= 0) name = "empty rocket frame"
 
 /obj/item/ammo_magazine/rocket/ap
 	name = "anti-tank rocket"
@@ -522,7 +522,6 @@
 			current_mag.current_rounds = current_mag.max_rounds
 			rocket.current_rounds = 0
 		rocket.update_icon()
-		update_icon()
 		return 1
 
 	unload(mob/user)

@@ -31,6 +31,8 @@
 	var/remove_gun_restrictions = 0
 
 /datum/configuration/proc/initialize_game_options(name,value)
+	if(!value) log_misc("Unknown value for setting [name] in game options.")
+	value = text2num(value)
 	switch(name)
 		if("health_threshold_crit")
 			config.health_threshold_crit = value

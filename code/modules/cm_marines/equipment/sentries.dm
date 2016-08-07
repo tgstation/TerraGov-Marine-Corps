@@ -801,7 +801,8 @@
 	if(prob(65))
 		var/layer = MOB_LAYER-0.1
 
-		var/image/flash = image('icons/obj/projectiles.dmi',src,"muzzle_flash",layer)
+		var/image/reusable/flash = rnew(/image/reusable)
+		flash.generate_image('icons/obj/projectiles.dmi',src,"muzzle_flash",layer)
 
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)

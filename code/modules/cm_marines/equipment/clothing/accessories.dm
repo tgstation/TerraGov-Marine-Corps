@@ -220,7 +220,7 @@
 /obj/item/weapon/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
-	icon_state="knife-rig"
+	icon_state="knifebelt"
 	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
 	w_class = 3
 	storage_slots = 4

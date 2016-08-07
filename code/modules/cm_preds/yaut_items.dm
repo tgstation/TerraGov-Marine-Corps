@@ -1062,8 +1062,8 @@
 			overlays += blood_overlay
 	else
 		user << "<span class='notice'>You collapse the combi-stick for storage.</span>"
-		icon_state = "combi_sheathed"
-		item_state = initial(item_state) + "_f"
+		icon_state = initial(item_state) + "_f"
+		item_state = icon_state
 		slot_flags = SLOT_POCKET
 		w_class = 1
 		force = 0

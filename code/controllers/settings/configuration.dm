@@ -161,9 +161,6 @@
 		else name = lowertext(t)
 
 		if (!name) continue
-		if(!value) log_misc("Unknown value for setting [name] in [filename].")
-		value = text2num(value)
-
 		switch(type)
 			if("config") initilize_configuration(name,value)
 			if("game_options") initialize_game_options(name, value)
