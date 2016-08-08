@@ -376,7 +376,7 @@
 //SADAR
 
 /obj/item/ammo_magazine/rocket
-	name = "high explosive rocket"
+	name = "\improper 84mm High-Explosive Rocket"
 	desc = "A rocket tube for an M83 SADAR rocket. Activate it without a missile inside to receive some materials."
 	caliber = "rocket"
 	icon_state = "rocket_tube"
@@ -404,19 +404,19 @@
 		if(current_rounds <= 0) name = "empty rocket frame"
 
 /obj/item/ammo_magazine/rocket/ap
-	name = "anti-tank rocket"
+	name = "\improper 84mm Anti-Armor Rocket"
 	icon_state = "rocket_tube_ap"
 	default_ammo = "anti-armor rocket"
 	desc = "A tube for an AP rocket - the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
 
 /obj/item/ammo_magazine/rocket/wp
-	name = "phosphorous rocket"
+	name = "\improper 84mm White-Phosphorus Rocket"
 	icon_state = "rocket_tube_wp"
 	default_ammo = "white phosphorous rocket"
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
 /obj/item/ammo_magazine/internal/rocket
-	name = "internal tube"
+	name = "\improper 84mm Internal tube"
 	desc = "The internal tube of a M83 SADAR."
 	caliber = "rocket"
 	default_ammo = "high explosive rocket"
@@ -533,7 +533,7 @@
 //SADARS MEAN FUCKING COUSIN
 
 /obj/item/ammo_magazine/rocket/quad
-	name = "thermobaric rocket array"
+	name = "\improper 84mm Thermobaric Rocket Array"
 	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "rocket_tube4"
@@ -551,10 +551,10 @@
 	max_rounds = 4
 
 /obj/item/weapon/gun/rocketlauncher/quad
-	name = "\improper M83AM thermobaric launcher"
-	desc = "The M83AM is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
+	name = "\improper M57-A4 'Lightning Bolt' Quad Thermobaric Launcher"
+	desc = "The M57-A4 'Lightning Bolt' is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "m83am"
-	item_state = "m83" //NEEDS AN ITEM STATE AND WIELDED STATE
+	item_state = "quad" //now has an item and wield state ;v)
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/rocket/quad
 	attachable_allowed = list()

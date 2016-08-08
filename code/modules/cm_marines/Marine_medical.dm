@@ -131,8 +131,8 @@
 //New Medic Combat-Lifesaver Bag - 21SEP2015 - APOPHIS
 
 /obj/item/weapon/storage/belt/medical/combatLifesaver
-	name = "Combat Lifesaver Bag"
-	desc = "Designed to hold ."
+	name = "\improper M276 pattern Lifesaver Bag"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
 	icon_state = "medicalbag"
 	item_state = "medicbag"
 	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.

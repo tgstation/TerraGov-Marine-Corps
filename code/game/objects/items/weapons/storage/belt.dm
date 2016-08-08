@@ -9,8 +9,8 @@
 	w_class = 4
 
 /obj/item/weapon/storage/belt/utility
-	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
-	desc = "Can hold various tools."
+	name = "\improper M276 pattern Toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	can_hold = list(
@@ -49,8 +49,8 @@
 
 
 /obj/item/weapon/storage/belt/medical
-	name = "medical belt"
-	desc = "Can hold various medical equipment."
+	name = "\improper M276 pattern Medical Storage rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is an less common configuration, designed to transport medical supplies, and light pistol munitions."
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
@@ -70,13 +70,14 @@
 		"/obj/item/clothing/mask/surgical",
 		"/obj/item/clothing/gloves/latex",
 		"/obj/item/weapon/storage/syringe_case",
-	        "/obj/item/weapon/reagent_containers/hypospray"
+		"/obj/item/ammo_magazine/pistol",
+	    "/obj/item/weapon/reagent_containers/hypospray"
 	)
 
 
 /obj/item/weapon/storage/belt/security
-	name = "security belt"
-	desc = "Can hold security gear like handcuffs and flashes."
+	name = "\improper M276 pattern Security rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This configuration is commonly seen among USCM Military Police and peacekeepers, though it can hold some light munitions."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
 	storage_slots = 7
@@ -89,6 +90,7 @@
 		"/obj/item/device/flash",
 		"/obj/item/clothing/glasses",
 		"/obj/item/ammo_casing/shotgun",
+		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine",
 		"/obj/item/weapon/reagent_containers/food/snacks/donut/normal",
 		"/obj/item/weapon/reagent_containers/food/snacks/donut/jelly",
