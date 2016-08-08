@@ -183,7 +183,7 @@
 	name = "\improper M276 pattern military police rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
 	icon_state = "securitybelt"
-	item_state = "s_marine"
+	item_state = "security"
 	storage_slots = 6
 	max_w_class = 3
 	max_combined_w_class = 30
@@ -194,6 +194,7 @@
 		"/obj/item/device/flash",
 		"/obj/item/clothing/glasses",
 		"/obj/item/weapon/gun/taser",
+		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/weapon/melee/baton",
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/weapon/combat_knife",
