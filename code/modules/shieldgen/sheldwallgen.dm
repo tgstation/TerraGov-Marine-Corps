@@ -6,7 +6,7 @@
 		icon_state = "Shield_Gen"
 		anchored = 0
 		density = 1
-		req_access = list(access_sulaco_engineering, access_marine_engprep)
+		req_access = list(access_sulaco_engineering, access_sulaco_CE)
 		var/active = 0
 		var/power = 0
 		var/state = 0

@@ -208,10 +208,7 @@
 		else if(ismob(A))
 			if( isliving(A) && roll_to_hit_mob(firer,A) && (A:lying == 0 || A == original))
 				ammo.on_hit_mob(A,src)
-				if(A && A.loc)
-					if(A.bullet_act(src)) //If we caused damage to the target, make it known.
-						if(ammo.sound_hit) playsound(A, pick(ammo.sound_hit), 120, 1)
-						animation_flash_color(A)
+				if(A.bullet_act(src)) play_damage_effect(A)
 				return 1
 
 //----------------------------------------------------------
@@ -292,6 +289,10 @@
 		else if(dir == target.dir) chance = 1
 		else chance = 20
 		if(prob(chance)) return 1
+
+/obj/item/projectile/proc/play_damage_effect(var/atom/A)
+	if(ammo.sound_hit) playsound(A, pick(ammo.sound_hit), 120, 1)
+	animation_flash_color(A)
 
 //----------------------------------------------------------
 				//				    \\
@@ -583,7 +584,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 					//					\\
 					//					\\
 //----------------------------------------------------------
-
 
 
 //This is where the bullet bounces off.

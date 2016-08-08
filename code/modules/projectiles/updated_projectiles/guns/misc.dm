@@ -1,6 +1,6 @@
 //-------------------------------------------------------
 //ENERGY GUNS/ETC
-/obj/item/weapon/gun/taser
+/obj/item/weapon/gun/energy/taser
 	name = "taser gun"
 	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns."
 	icon_state = "taser"
@@ -189,7 +189,7 @@
 		recoil = config.med_recoil_value
 		accuracy -= config.med_hit_accuracy_mult
 		burst_amount = config.max_burst_value
-		fire_delay = config.high_fire_delay
+		fire_delay = config.low_fire_delay
 		burst_delay = config.min_fire_delay
 		load_into_chamber()
 

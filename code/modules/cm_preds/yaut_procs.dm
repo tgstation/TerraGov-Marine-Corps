@@ -189,10 +189,10 @@
 				new /obj/item/weapon/melee/combistick(src.loc)
 
 		switch(mother_0)
-			if("The Fleeting Speargun")
-				new /obj/item/weapon/gun/launcher/speargun(src.loc)
+			if("The Fleeting Spike Launcher")
+				new /obj/item/weapon/gun/launcher/spike(src.loc)
 			if("The Brutal Plasma Rifle")
-				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
+				new /obj/item/weapon/gun/energy/plasmarifle(src.loc)
 			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 			if("The Enhanced Bracer")
@@ -201,10 +201,10 @@
 					Y.upgrades++
 
 		switch(mother_1)
-			if("The Fleeting Speargun")
-				new /obj/item/weapon/gun/launcher/speargun(src.loc)
+			if("The Fleeting Spike Launcher")
+				new /obj/item/weapon/gun/launcher/spike(src.loc)
 			if("The Brutal Plasma Rifle")
-				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
+				new /obj/item/weapon/gun/energy/plasmarifle(src.loc)
 			if("The Purifying Smart-Disc")
 				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
 			if("The Enhanced Bracer")

@@ -374,7 +374,7 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/m92(src)
+			new /obj/item/weapon/gun/launcher/m92(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
 			new /obj/item/weapon/storage/belt/grenade(src)
 
@@ -393,7 +393,7 @@
 	New()
 		..()
 		spawn(1)
-			new /obj/item/weapon/gun/rocketlauncher(src)
+			new /obj/item/weapon/gun/launcher/rocket(src)
 			new /obj/item/ammo_magazine/rocket(src)
 			new /obj/item/ammo_magazine/rocket(src)
 			new /obj/item/ammo_magazine/rocket/ap(src)

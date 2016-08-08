@@ -128,7 +128,7 @@
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mmpo(src)
-			new /obj/item/weapon/gun/taser(src)
+			new /obj/item/weapon/gun/energy/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
 
@@ -363,6 +363,6 @@
 			new /obj/item/clothing/head/soft/ro_cap(src)
 			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
-			new /obj/item/weapon/gun/taser(src)
+			new /obj/item/weapon/gun/energy/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/marine(src)

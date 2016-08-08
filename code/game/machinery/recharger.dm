@@ -9,7 +9,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/gun/taser)
+	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/gun/energy/taser)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -74,8 +74,8 @@ obj/machinery/recharger/process()
 		icon_state = icon_state_idle
 	//This is an awful check. Holy cow.
 	else
-		if(istype(charging, /obj/item/weapon/gun/taser))
-			var/obj/item/weapon/gun/taser/E = charging
+		if(istype(charging, /obj/item/weapon/gun/energy/taser))
+			var/obj/item/weapon/gun/energy/taser/E = charging
 			if(!E.cell.fully_charged())
 				icon_state = icon_state_charging
 				E.cell.give(active_power_usage*CELLRATE)

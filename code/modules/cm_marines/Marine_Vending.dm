@@ -266,6 +266,7 @@
 						/obj/item/weapon/storage/belt/medical/combatLifesaver = 3,
 						/obj/item/weapon/storage/syringe_case = 4,
 						/obj/item/weapon/storage/belt/medical = 3,
+						/obj/item/clothing/tie/storage/webbing = 2,
 						/obj/item/weapon/melee/defibrillator = 3,
 						/obj/item/bodybag/cryobag = 4,
 						/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,

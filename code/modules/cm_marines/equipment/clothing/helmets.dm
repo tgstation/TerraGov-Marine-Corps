@@ -224,12 +224,14 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/cap
 	name = "\improper Dutch's Dozen cap"
+	desc = "A protective cap worn by some seriously experienced mercs."
 	item_state = "dutch_cap"
 	icon_state = "dutch_cap"
 	flags_inv = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/band
 	name = "\improper Dutch's Dozen band"
+	desc = "A protective band worn by some seriously experienced mercs."
 	item_state = "dutch_band"
 	icon_state = "dutch_band"
 	flags_inv = BLOCKSHARPOBJ
@@ -258,102 +260,72 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 /obj/item/clothing/head/helmet/marine
 	examine()
 		if(contents.len)
-			var/dat = "<br><br>There is something attached to \the [src]:<br><br>"
+			var/dat = "<br><br>There is something attached to [src]:<br><br>"
 			for(var/obj/O in src)
 				dat += "\blue *\icon[O] - [O]<br>"
-			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""][dat]"
-		else
-			desc = "[initial(desc)][hug_damage?"\n<b>This helmet seems to be scratched up and damaged, particularly around the face area..</b>":""]"
+		desc = "[initial(desc)][hug_damage?"\n<b>This [src] seems to be scratched up and damaged, particularly around the face area...</b>":""]"
 		..()
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/flame/lighter) || istype(W, /obj/item/weapon/storage/fancy/cigarettes)\
-		|| istype(W, /obj/item/weapon/storage/box/matches) || istype(W, /obj/item/weapon/deck)\
-		|| istype(W, /obj/item/weapon/hand) || istype(W,/obj/item/weapon/reagent_containers/food/drinks/flask)\
-		|| istype(W, /obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(W,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito)\
-		|| istype(W, /obj/item/fluff/val_mcneil_1) || istype(W, /obj/item/clothing/mask/mara_kilpatrick_1))
+		if(istype(src,/obj/item/clothing/head/helmet/marine/veteran)) //Not for distress items.
+			user << "<span class='warning'>[src] cannot hold any items!</span>"
+			return
+		var/allowed_items[] = return_allowed_items()
+		if(W.type in allowed_items)
 			if(contents.len < 3)
-				user.drop_item()
+				user.remove_from_mob(W)
 				W.loc = src
-				user.visible_message("[usr] puts \the [W] on the [src].","\blue You put \the [W] on the [src].")
-				update_icon()
-			else
-				user << "\red There is no more space for [W]."
+				user.visible_message("<span class='notice'>[user] puts [W] on [src].</span>","<span class='info'>You put [W] on [src].</span>")
+				update_icon(user)
+			else user << "<span class='warning'>There is no more space for [W]!</span>"
 		else if(istype(W, /obj/item/weapon/claymore/mercsword/machete))
-			user.visible_message("[usr] tries to put \the [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b>","\red You try to put \the [W] on the [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b>")
-		else
-			user << "\red \the [W] does not fit on [src]."
+			user.visible_message("<span class='warning'>[user] tries to put [W] on [src] like a pro, <b>but fails miserably and looks like an idiot...</b></span>","<span class='warning'>You try to put [W] on [src], but there simply isn't enough space! <b><i>Maybe I should try again?</i></b></span>")
+		else user << "<span class='warning'>[W] does not fit on [src]!</span>"
 
-	update_icon()
+	update_icon(var/mob/user)
+		if(istype(src,/obj/item/clothing/head/helmet/marine/fluff)) return //Don't want these to update.
 		overlays.Cut()
-		if(hug_damage)
-			overlays += image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
+		if(hug_damage) overlays += image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
 		if(contents.len)
+			var/allowed_items[] = return_allowed_items()
 			for(var/obj/I in contents)
-				if(!isnull(I) && I in contents)
-					//Cigar Packs
-					if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
-					else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
-					else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_ls")
-					else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
-
-					//Cards
-					else if(istype(I,/obj/item/weapon/deck) || istype(I,/obj/item/weapon/hand))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_card_card")
-
-					//Matches
-					else if(istype(I,/obj/item/weapon/storage/box/matches))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_matches")
-
-					//Rosary
-					else if(istype(I,/obj/item/fluff/val_mcneil_1) || istype(I, /obj/item/clothing/mask/mara_kilpatrick_1))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_rosary")
-
-					//Flasks
-					else if(istype(I,/obj/item/weapon/reagent_containers/food/drinks/flask))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_flask")
-
-					//Lighters
-					else if(istype(I,/obj/item/weapon/flame/lighter/zippo))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_lighter_zippo")
-					else if(istype(I,/obj/item/weapon/flame/lighter) && !istype(I,/obj/item/weapon/flame/lighter/zippo))
-						var/obj/item/weapon/flame/lighter/L = I
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_lighter_[L.clr]")
-
-					//Snacks
-					else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_burrito")
-					else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(I,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
-						overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_eat")
-
+				overlays += image('icons/mob/helmet_garb.dmi', "[allowed_items[I.type]][I.type == /obj/item/weapon/flame/lighter/random ? I:clr : ""]")
 			overlays += image('icons/mob/helmet_garb.dmi', "helmet_band")
-		usr.update_inv_head()
-
+		user.update_inv_head()
 
 	MouseDrop(over_object, src_location, over_location)
-		if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-			if(!ishuman(usr))
-				return
+		if(!ishuman(usr)) return
+		var/mob/living/carbon/human/user = usr
+		if((over_object == user && (in_range(src, user) || user.contents.Find(src))))
 			if(contents.len)
-				var/obj/item/choice = input("What item would you like to remove from the [src]?") as null|obj in contents
-				if(!isnull(choice) && choice)
-					if((!usr.canmove && !usr.buckled) || usr.stat || usr.restrained() || !in_range(loc, usr))
-						return
-					if(!istype(choice, /obj/item))
-						usr << "\red You can't remove \the [choice] from your [src]."
-						return
-					if(!usr.get_active_hand())
-						usr.put_in_hands(choice)
-					else
-						choice.loc = get_turf(src)
-					update_icon()
-					usr.visible_message("\blue [usr] removes \the [choice] off \the [src].","\blue You remove \the [choice] off \the [src].")
-			else
-				usr << "\red There is nothing on [src]."
+				var/obj/item/choice = input("What item would you like to remove from [src]?") as null|obj in contents
+				if(choice)
+					if((!usr.canmove && !usr.buckled) || usr.stat || usr.restrained() || !in_range(loc, usr)) return
+
+					user.put_in_hands(choice)
+					user.visible_message("<span class='info'>[user] removes [choice] from [src].</span>","<span class='notice'>You remove [choice] from [src].</span>")
+					update_icon(user)
+
+			else user << "<span class='warning'>There is nothing attached to [src]!<span>"
+
+/obj/item/clothing/head/helmet/marine/proc/return_allowed_items()
+	var/allowed_items[] = list(
+						/obj/item/weapon/flame/lighter/random = "helmet_lighter_",
+						/obj/item/weapon/flame/lighter/zippo = "helmet_lighter_zippo",
+						/obj/item/weapon/storage/box/matches = "helmet_matches",
+						/obj/item/weapon/storage/fancy/cigarettes = "helmet_cig_kpack",
+						/obj/item/weapon/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
+						/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = "helmet_cig_ls",
+						/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
+						/obj/item/weapon/deck = "helmet_card_card",
+						/obj/item/weapon/hand = "helmet_card_card",
+						/obj/item/weapon/reagent_containers/food/drinks/flask = "helmet_flask",
+						/obj/item/weapon/reagent_containers/food/snacks/eat_bar = "helmet_snack_eat",
+						/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
+						/obj/item/weapon/reagent_containers/food/snacks/donkpocket = "helmet_snack_eat",
+						/obj/item/fluff/val_mcneil_1 = "helmet_rosary",
+						/obj/item/clothing/mask/mara_kilpatrick_1 = "helmet_rosary")
+	. = allowed_items
 
 /obj/item/clothing/head/helmet/marine/leader
 	New()

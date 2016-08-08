@@ -49,7 +49,7 @@ include jackets and regular suits, not armor.*/
 	item_state = "coif"
 	flags_inv = COVERMOUTH | HIDEALLHAIR
 	cold_protection = HEAD
-	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/mask/gas
 	name = "gas mask"
