@@ -205,13 +205,17 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/ammo_magazine/smg/uzi //Based on the Uzi.
-	name = "\improper Mac-15 magazine (9mm)"
+	name = "\improper MAC-15 magazine (9mm)"
 	desc = "A magazine for the MAC-15."
 	caliber = "9mm"
 	icon_state = "mac15"
 	icon_empty = "mac15"
 	max_rounds = 32 //Can also be 20, 25, 40, and 50.
 	gun_type = /obj/item/weapon/gun/smg/uzi
+
+/obj/item/ammo_magazine/smg/uzi/extended
+	name = "\improper MAC-15 extended magazine (9mm)"
+	max_rounds = 50
 
 /obj/item/weapon/gun/smg/uzi
 	name = "\improper MAC-15 submachinegun"

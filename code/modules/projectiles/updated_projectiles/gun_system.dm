@@ -484,7 +484,9 @@ and you're good to go.
 								user.apply_damage(100, OXY)
 								user.death()
 
+						projectile_to_fire.play_damage_effect(user)
 						if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+
 						reload_into_chamber(user) //Reload the sucker.
 
 					else click_empty(user)//If there's no projectile, we can't do much.
@@ -503,8 +505,10 @@ and you're good to go.
 					user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
 					apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
 					simulate_recoil(recoil+1, user)
-					M.bullet_act(projectile_to_fire) //Just apply the effects manually.
+
 					projectile_to_fire.ammo.on_hit_mob(M,projectile_to_fire)
+					if(M.bullet_act(projectile_to_fire)) projectile_to_fire.play_damage_effect(M)
+
 					if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire)
 					reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 				else

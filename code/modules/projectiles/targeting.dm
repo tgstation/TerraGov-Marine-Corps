@@ -149,7 +149,7 @@ mob/living/proc/Targeted(var/obj/item/weapon/gun/I) //Self explanitory.
 
 	if(targeted_by.len == 1)
 		spawn(0)
-			if(istype(I,/obj/item/weapon/gun/plasma_caster))
+			if(istype(I,/obj/item/weapon/gun/energy/plasma_caster))
 				target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking-y")
 			else
 				target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking")
@@ -157,7 +157,7 @@ mob/living/proc/Targeted(var/obj/item/weapon/gun/I) //Self explanitory.
 			spawn(0)
 				sleep(20)
 				if(target_locked)
-					if(istype(I,/obj/item/weapon/gun/plasma_caster))
+					if(istype(I,/obj/item/weapon/gun/energy/plasma_caster))
 						target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locked-y")
 					else
 						target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locked")

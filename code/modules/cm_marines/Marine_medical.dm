@@ -125,57 +125,6 @@
 			update_icon()
 		return
 
-
-
-
-//New Medic Combat-Lifesaver Bag - 21SEP2015 - APOPHIS
-
-/obj/item/weapon/storage/belt/medical/combatLifesaver
-	name = "\improper M276 pattern Lifesaver Bag"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
-	icon_state = "medicalbag"
-	item_state = "medicbag"
-	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
-	can_hold = list(
-		"/obj/item/weapon/reagent_containers/glass/bottle",
-		"/obj/item/weapon/reagent_containers/pill",
-		"/obj/item/weapon/reagent_containers/syringe",
-		"/obj/item/weapon/reagent_containers/glass/dispenser",
-		"/obj/item/weapon/storage/pill_bottle",
-		"/obj/item/clothing/gloves/latex",
-		"/obj/item/weapon/storage/syringe_case",
-		"/obj/item/weapon/reagent_containers/hypospray/autoinjector",
-		"/obj/item/stack/medical"
-	)
-	max_combined_w_class = 42
-
-
-/obj/item/weapon/storage/belt/medical/combatLifesaver/New()  //The belt, with all it's magic inside!
-	..()
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
-	new /obj/item/weapon/storage/pill_bottle/russianRed(src)
-
-
-
 //RUSSIAN RED ANTI-RAD
 
 /obj/item/weapon/storage/pill_bottle/russianRed

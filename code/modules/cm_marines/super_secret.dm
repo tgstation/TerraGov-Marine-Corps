@@ -119,7 +119,7 @@ Items and objects that are very hard to get to and do not affect balance.
 							for(var/mob/living/carbon/human/H in range(12))
 								if(!H || isnull(H) || H.stat) continue
 								H << "<font size=8 color=red><b>NO<br><br>BUGS</b></font>"
-							new /obj/item/weapon/gun/rocketlauncher/nobugs(get_turf(src.loc))
+							new /obj/item/weapon/gun/launcher/rocket/nobugs(get_turf(src.loc))
 							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
 							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
 							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
@@ -140,10 +140,10 @@ Items and objects that are very hard to get to and do not affect balance.
 		else
 			usr << "\red Nothing happened..."
 
-/obj/item/weapon/gun/rocketlauncher/nobugs //Fires dummy rockets, like a toy gun
+/obj/item/weapon/gun/launcher/rocket/nobugs //Fires dummy rockets, like a toy gun
 	name = "\improper BUG ROCKER rocket launcher"
 	desc = "Where did this come from? <b>NO BUGS</b>"
-	current_mag = /obj/item/ammo_magazine/internal/rocket/nobugs
+	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/nobugs
 
 /obj/item/ammo_magazine/rocket/nobugs
 	name = "\improper BUG ROCKER rocket tube"
@@ -151,9 +151,9 @@ Items and objects that are very hard to get to and do not affect balance.
 	default_ammo = "NO BUGS rocket"
 	caliber = "toy rocket"
 
-/obj/item/ammo_magazine/internal/rocket/nobugs
+/obj/item/ammo_magazine/internal/launcher/rocket/nobugs
 	default_ammo = "NO BUGS rocket"
-	gun_type = /obj/item/weapon/gun/rocketlauncher/nobugs
+	gun_type = /obj/item/weapon/gun/launcher/rocket/nobugs
 
 /datum/ammo/rocket/nobugs
 	name = "\improper NO BUGS rocket"

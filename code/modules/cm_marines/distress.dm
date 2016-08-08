@@ -4,111 +4,90 @@
 
 
 /proc/spawn_merc_gun(var/atom/M,var/sidearm = 0)
-	if(!M || isnull(M) || !istype(M))
-		M = usr //One last shot.
-		if(isnull(M)) return
+	if(!M) return
 
 	var/atom/spawnloc = M
 
-	var/list/merc_sidearms = list(/obj/item/weapon/gun/revolver/small,
-		/obj/item/weapon/gun/pistol/heavy,
-		/obj/item/weapon/gun/pistol/m1911,
-		/obj/item/weapon/gun/pistol/kt42,
-		/obj/item/weapon/gun/pistol/holdout,
-		/obj/item/weapon/gun/pistol/highpower,
-		/obj/item/weapon/gun/pistol/vp70,
-		/obj/item/weapon/gun/smg/mp7,
-		/obj/item/weapon/gun/smg/skorpion,
-		/obj/item/weapon/gun/smg/uzi,
-		/obj/item/weapon/gun/smg/uzi)
+	var/list/merc_sidearms = list(
+		/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
+		/obj/item/weapon/gun/pistol/heavy = /obj/item/ammo_magazine/pistol/heavy,
+		/obj/item/weapon/gun/pistol/m1911 = /obj/item/ammo_magazine/pistol/m1911,
+		/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
+		/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
+		/obj/item/weapon/gun/pistol/highpower = /obj/item/ammo_magazine/pistol/highpower,
+		/obj/item/weapon/gun/smg/mp7 = /obj/item/ammo_magazine/smg/mp7,
+		/obj/item/weapon/gun/smg/skorpion = /obj/item/ammo_magazine/smg/skorpion,
+		/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi,
+		/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi/extended)
 
-	var/list/merc_firearms = list(/obj/item/weapon/gun/rifle/lmg,
-		/obj/item/weapon/gun/shotgun/merc,
-		/obj/item/weapon/gun/shotgun/combat,
-		/obj/item/weapon/gun/shotgun/double,
-		/obj/item/weapon/gun/shotgun/pump/cmb,
-		/obj/item/weapon/gun/rifle/mar40,
-		/obj/item/weapon/gun/rifle/mar40/carbine,
-		/obj/item/weapon/gun/rifle/sniper/svd,
-		/obj/item/weapon/gun/rifle/m41a,
-		/obj/item/weapon/gun/smg/ppsh,
-		/obj/item/weapon/gun/smg/p90)
+	var/list/merc_firearms = list(
+		/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun,
+		/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun,
+		/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+		/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
+		/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/ammo_magazine/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
+		/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90)
 
-	var/gunpath
-	if(!sidearm)
-		gunpath = pick(merc_firearms)
-	else
-		gunpath = pick(merc_sidearms)
-
+	var/gunpath = sidearm? pick(merc_sidearms) : pick(merc_firearms)
+	var/ammopath = sidearm? merc_sidearms[gunpath] : merc_firearms[gunpath]
 	var/obj/item/weapon/gun/gun
 
 	if(gunpath)
 		gun = new gunpath(spawnloc)
-		var/ammopath = text2path(gun.current_mag)
 		if(ishuman(spawnloc))
 			var/mob/living/carbon/human/H = spawnloc
-			if(!sidearm)
-				H.equip_to_slot_or_del(gun, slot_r_hand)
-			else
-				H.equip_to_slot_or_del(gun, slot_l_hand)
+			H.equip_to_slot_or_del(gun, sidearm? slot_l_hand : slot_r_hand)
 			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
 				new ammopath(H.back)
 				new ammopath(H.back)
 		else
 			if(ammopath)
-				new ammopath(get_turf(spawnloc))
-				new ammopath(get_turf(spawnloc))
+				spawnloc = get_turf(spawnloc)
+				new ammopath(spawnloc)
+				new ammopath(spawnloc)
 
 	return 1
 
 /proc/spawn_slavic_gun(var/atom/M,var/sidearm = 0)
-	if(!M || isnull(M) || !istype(M))
-		M = usr //One last shot.
-		if(isnull(M)) return
+	if(!M) return
 
 	var/atom/spawnloc = M
 
-	var/list/rus_sidearms = list(/obj/item/weapon/gun/pistol/m4a3,
-		/obj/item/weapon/gun/revolver/upp,
-		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/weapon/gun/pistol/c99,
-		/obj/item/weapon/gun/pistol/c99/russian,
-		/obj/item/weapon/gun/pistol/kt42,
-		/obj/item/weapon/gun/smg/ppsh,
-		/obj/item/weapon/gun/smg/ppsh)
+	var/list/rus_sidearms = list(
+		/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
+		/obj/item/weapon/gun/revolver/mateba = /obj/item/ammo_magazine/revolver/mateba,
+		/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
+		/obj/item/weapon/gun/pistol/c99/russian = /obj/item/ammo_magazine/pistol/c99,
+		/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
+		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
+		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh/extended)
 
 	var/list/rus_firearms = list(/obj/item/weapon/gun/rifle/mar40,
-		/obj/item/weapon/gun/rifle/mar40,
-		/obj/item/weapon/gun/rifle/mar40,
-		/obj/item/weapon/gun/rifle/mar40/carbine,
-		/obj/item/weapon/gun/rifle/m41a,
-		/obj/item/weapon/gun/smg/ppsh,
-		/obj/item/weapon/gun/rifle/sniper/svd)
+		/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40/extended,
+		/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40,
+		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh/extended,
+		/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/rifle/sniper/svd)
 
-	var/gunpath
-	if(!sidearm)
-		gunpath = pick(rus_firearms)
-	else
-		gunpath = pick(rus_sidearms)
-
+	var/gunpath = sidearm? pick(rus_sidearms) : pick(rus_firearms)
+	var/ammopath = sidearm? rus_sidearms[gunpath] : rus_firearms[gunpath]
 	var/obj/item/weapon/gun/gun
 
 	if(gunpath)
 		gun = new gunpath(spawnloc)
-		var/ammopath = text2path(gun.current_mag)
 		if(ishuman(spawnloc))
 			var/mob/living/carbon/human/H = spawnloc
-			if(!sidearm)
-				H.equip_to_slot_or_del(gun, slot_r_hand)
-			else
-				H.equip_to_slot_or_del(gun, slot_l_hand)
+			H.equip_to_slot_or_del(gun, sidearm? slot_l_hand : slot_r_hand)
 			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
 				new ammopath(H.back)
 				new ammopath(H.back)
 		else
 			if(ammopath)
-				new ammopath(get_turf(spawnloc))
-				new ammopath(get_turf(spawnloc))
+				spawnloc = get_turf(spawnloc)
+				new ammopath(spawnloc)
+				new ammopath(spawnloc)
 
 	return 1
 
@@ -932,7 +911,7 @@
 					new /obj/item/ammo_magazine/rifle/incendiary
 					continue
 				if(5)
-					new /obj/item/weapon/gun/m92(drop_spawn)
+					new /obj/item/weapon/gun/launcher/m92(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
@@ -989,7 +968,7 @@
 					new /obj/item/ammo_magazine/rifle/incendiary
 					continue
 				if(5)
-					new /obj/item/weapon/gun/m92(drop_spawn)
+					new /obj/item/weapon/gun/launcher/m92(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
@@ -1147,7 +1126,7 @@
 					new /obj/item/weapon/shield/riot(drop_spawn)
 					continue
 				if(5)
-//					new /obj/item/weapon/gun/m92(drop_spawn)
+//					new /obj/item/weapon/gun/launcher/m92(drop_spawn)
 					continue
 				if(6)
 					new /obj/item/weapon/storage/box/grenade_system(drop_spawn)

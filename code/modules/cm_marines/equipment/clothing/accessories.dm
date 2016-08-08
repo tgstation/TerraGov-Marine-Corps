@@ -65,6 +65,156 @@
 //============================//BELTS\\==================================\\
 //=======================================================================\\
 
+/obj/item/weapon/storage/belt
+	name = "belt"
+	desc = "Can hold various things."
+	icon = 'icons/obj/clothing/belts.dmi'
+	icon_state = "utilitybelt"
+	item_state = "utility"
+	slot_flags = SLOT_BELT
+	attack_verb = list("whipped", "lashed", "disciplined")
+	w_class = 4
+
+/obj/item/weapon/storage/belt/utility
+	name = "\improper M276 pattern toolbelt rig" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version lacks any combat functionality, and is commonly used by engineers to transport important tools."
+	icon_state = "utilitybelt"
+	item_state = "utility"
+	can_hold = list(
+		"/obj/item/weapon/crowbar",
+		"/obj/item/weapon/screwdriver",
+		"/obj/item/weapon/weldingtool",
+		"/obj/item/weapon/wirecutters",
+		"/obj/item/weapon/wrench",
+		"/obj/item/device/multitool",
+		"/obj/item/device/flashlight",
+		"/obj/item/stack/cable_coil",
+		"/obj/item/device/t_scanner",
+		"/obj/item/device/analyzer",
+		"/obj/item/taperoll/engineering")
+
+
+/obj/item/weapon/storage/belt/utility/full/New()
+	..()
+	new /obj/item/weapon/screwdriver(src)
+	new /obj/item/weapon/wrench(src)
+	new /obj/item/weapon/weldingtool(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+
+
+/obj/item/weapon/storage/belt/utility/atmostech/New()
+	..()
+	new /obj/item/weapon/screwdriver(src)
+	new /obj/item/weapon/wrench(src)
+	new /obj/item/weapon/weldingtool(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/device/t_scanner(src)
+
+/obj/item/weapon/storage/belt/medical
+	name = "\improper M276 pattern medical storage rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is an less common configuration, designed to transport medical supplies, and light pistol munitions."
+	icon_state = "medicalbelt"
+	item_state = "medical"
+	can_hold = list(
+		"/obj/item/device/healthanalyzer",
+		"/obj/item/weapon/dnainjector",
+		"/obj/item/weapon/reagent_containers/dropper",
+		"/obj/item/weapon/reagent_containers/glass/beaker",
+		"/obj/item/weapon/reagent_containers/glass/bottle",
+		"/obj/item/weapon/reagent_containers/pill",
+		"/obj/item/weapon/reagent_containers/syringe",
+		"/obj/item/weapon/reagent_containers/glass/dispenser",
+		"/obj/item/weapon/flame/lighter/zippo",
+		"/obj/item/weapon/storage/fancy/cigarettes",
+		"/obj/item/weapon/storage/pill_bottle",
+		"/obj/item/stack/medical",
+		"/obj/item/device/flashlight/pen",
+		"/obj/item/clothing/mask/surgical",
+		"/obj/item/clothing/gloves/latex",
+		"/obj/item/weapon/storage/syringe_case",
+		"/obj/item/ammo_magazine/pistol",
+	    "/obj/item/weapon/reagent_containers/hypospray"
+	)
+
+
+/obj/item/weapon/storage/belt/medical/combatLifesaver
+	name = "\improper M276 pattern lifesaver bag"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
+	icon_state = "medicalbag"
+	item_state = "medicbag"
+	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
+	can_hold = list(
+		"/obj/item/weapon/reagent_containers/glass/bottle",
+		"/obj/item/weapon/reagent_containers/pill",
+		"/obj/item/weapon/reagent_containers/syringe",
+		"/obj/item/weapon/reagent_containers/glass/dispenser",
+		"/obj/item/weapon/storage/pill_bottle",
+		"/obj/item/clothing/gloves/latex",
+		"/obj/item/weapon/storage/syringe_case",
+		"/obj/item/weapon/reagent_containers/hypospray/autoinjector",
+		"/obj/item/stack/medical"
+	)
+	max_combined_w_class = 42
+
+
+/obj/item/weapon/storage/belt/medical/combatLifesaver/New()  //The belt, with all it's magic inside!
+	..()
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
+	new /obj/item/weapon/storage/pill_bottle/russianRed(src)
+
+/obj/item/weapon/storage/belt/security
+	name = "\improper M276 pattern security rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This configuration is commonly seen among USCM Military Police and peacekeepers, though it can hold some light munitions."
+	icon_state = "securitybelt"
+	item_state = "security"//Could likely use a better one.
+	storage_slots = 7
+	max_w_class = 3
+	max_combined_w_class = 21
+	can_hold = list(
+		"/obj/item/weapon/grenade/flashbang",
+		"/obj/item/weapon/reagent_containers/spray/pepper",
+		"/obj/item/weapon/handcuffs",
+		"/obj/item/device/flash",
+		"/obj/item/clothing/glasses",
+		"/obj/item/ammo_casing/shotgun",
+		"/obj/item/ammo_magazine/pistol",
+		"/obj/item/ammo_magazine",
+		"/obj/item/weapon/reagent_containers/food/snacks/donut/normal",
+		"/obj/item/weapon/reagent_containers/food/snacks/donut/jelly",
+		"/obj/item/weapon/melee/baton",
+		"/obj/item/weapon/gun/energy/taser",
+		"/obj/item/weapon/flame/lighter/zippo",
+		"/obj/item/weapon/cigpacket",
+		"/obj/item/clothing/glasses/hud/security",
+		"/obj/item/device/flashlight",
+		"/obj/item/device/pda",
+		"/obj/item/device/radio/headset",
+		"/obj/item/weapon/melee",
+		"/obj/item/taperoll/police"
+		)
+
 /obj/item/weapon/storage/belt/gun
 	name = "pistol belt"
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
@@ -193,7 +343,7 @@
 		"/obj/item/weapon/handcuffs",
 		"/obj/item/device/flash",
 		"/obj/item/clothing/glasses",
-		"/obj/item/weapon/gun/taser",
+		"/obj/item/weapon/gun/energy/taser",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/weapon/melee/baton",
 		"/obj/item/weapon/handcuffs",
@@ -208,7 +358,7 @@
 
 /obj/item/weapon/storage/belt/security/MP/full/New()
 	..()
-	new /obj/item/weapon/gun/taser(src)
+	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/melee/baton(src)
 	new /obj/item/weapon/handcuffs(src)

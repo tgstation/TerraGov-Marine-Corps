@@ -260,9 +260,12 @@
 	origin_tech = "combat=7;materials=5"
 	restriction_toggled = 0
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
-	accuracy = 1.15 //Slightly more accurate.
 	attachable_allowed = list() //Cannot be upgraded.
 	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
+
+	New()
+		..()
+		accuracy += config.min_hit_accuracy_mult
 
 	unique_action(mob/user)
 		toggle_restriction(user)
@@ -271,7 +274,7 @@
 //-------------------------------------------------------
 //GRENADE LAUNCHER
 
-/obj/item/weapon/gun/m92
+/obj/item/weapon/gun/launcher/m92
 	name = "\improper M92 grenade launcher"
 	desc = "A heavy, 6-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
 	icon_state = "m92"
@@ -352,7 +355,7 @@
 			grenades -= nade
 		else user << "<span class='warning'>It's empty!</span>"
 
-/obj/item/weapon/gun/m92/proc/fire_grenade(atom/target, mob/user)
+/obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("\red [] fired a grenade!", user), 1)
@@ -376,7 +379,7 @@
 //SADAR
 
 /obj/item/ammo_magazine/rocket
-	name = "\improper 84mm High-Explosive Rocket"
+	name = "\improper 84mm high-explosive rocket"
 	desc = "A rocket tube for an M83 SADAR rocket. Activate it without a missile inside to receive some materials."
 	caliber = "rocket"
 	icon_state = "rocket_tube"
@@ -386,7 +389,7 @@
 	w_class = 3.0
 	max_rounds = 1
 	default_ammo = "high explosive rocket"
-	gun_type = /obj/item/weapon/gun/rocketlauncher
+	gun_type = /obj/item/weapon/gun/launcher/rocket
 
 	attack_self(mob/user as mob)
 		if(current_rounds <= 0)
@@ -404,33 +407,33 @@
 		if(current_rounds <= 0) name = "empty rocket frame"
 
 /obj/item/ammo_magazine/rocket/ap
-	name = "\improper 84mm Anti-Armor Rocket"
+	name = "\improper 84mm anti-armor rocket"
 	icon_state = "rocket_tube_ap"
 	default_ammo = "anti-armor rocket"
-	desc = "A tube for an AP rocket - the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
+	desc = "A tube for an AP rocket, the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
 
 /obj/item/ammo_magazine/rocket/wp
-	name = "\improper 84mm White-Phosphorus Rocket"
+	name = "\improper 84mm white-phosphorus rocket"
 	icon_state = "rocket_tube_wp"
 	default_ammo = "white phosphorous rocket"
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
-/obj/item/ammo_magazine/internal/rocket
-	name = "\improper 84mm Internal tube"
+/obj/item/ammo_magazine/internal/launcher/rocket
+	name = "\improper 84mm internal tube"
 	desc = "The internal tube of a M83 SADAR."
 	caliber = "rocket"
 	default_ammo = "high explosive rocket"
 	max_rounds = 1
 	reload_delay = 60
 
-/obj/item/weapon/gun/rocketlauncher
+/obj/item/weapon/gun/launcher/rocket
 	name = "\improper M83 SADAR rocket launcher"
 	desc = "The M83 SADAR is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the SADAR is a dangerous weapon with a variety of combat uses."
 	icon_state = "m83"
-	item_state = "m83" //NEEDS A TWOHANDED STATE
+	item_state = "m83"
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 100000)
-	current_mag = /obj/item/ammo_magazine/internal/rocket
+	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket
 	slot_flags = 0
 	w_class = 5
 	force = 15
@@ -532,8 +535,8 @@
 //-------------------------------------------------------
 //SADARS MEAN FUCKING COUSIN
 
-/obj/item/ammo_magazine/rocket/quad
-	name = "\improper 84mm Thermobaric Rocket Array"
+/obj/item/ammo_magazine/rocket/m57a4
+	name = "\improper 84mm thermobaric rocket array"
 	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "rocket_tube4"
@@ -541,22 +544,22 @@
 	origin_tech = "combat=4;materials=4"
 	max_rounds = 4
 	default_ammo = "thermobaric rocket"
-	gun_type = /obj/item/weapon/gun/rocketlauncher/quad
+	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
 	reload_delay = 200
 
-/obj/item/ammo_magazine/internal/rocket/quad
+/obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an M83AM Thermobaric Launcher."
 	caliber = "rocket array"
 	default_ammo = "thermobaric rocket"
 	max_rounds = 4
 
-/obj/item/weapon/gun/rocketlauncher/quad
-	name = "\improper M57-A4 'Lightning Bolt' Quad Thermobaric Launcher"
+/obj/item/weapon/gun/launcher/rocket/m57a4
+	name = "\improper M57-A4 'Lightning Bolt' quad thermobaric launcher"
 	desc = "The M57-A4 'Lightning Bolt' is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
-	icon_state = "m83am"
-	item_state = "quad" //now has an item and wield state ;v)
+	icon_state = "m57a4"
+	item_state = "m57a4"
 	origin_tech = "combat=7;materials=5"
-	current_mag = /obj/item/ammo_magazine/internal/rocket/quad
+	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	attachable_allowed = list()
 	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
 
@@ -568,7 +571,7 @@
 		burst_amount = config.high_burst_value
 
 /obj/item/weapon/flamethrower/full/M240
-	name = "\improper M240 Incinerator Unit"
+	name = "\improper M240 incinerator unit"
 	desc = "A carbine-style flamethrower carried by the USCM in close quarters engagements. It is especially effective against soft-targets and in situations where area denial is important."
 	flags = FPRINT | CONDUCT | TWOHANDED
 

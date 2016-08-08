@@ -99,8 +99,8 @@
 	siemens_coefficient = 0.1
 	slowdown = 0
 	allowed = list(/obj/item/weapon/harpoon, //Don't ask me why this thing couldn't hold these items before... ~N
-			/obj/item/weapon/gun/launcher/speargun,
-			/obj/item/weapon/gun/launcher/plasmarifle,
+			/obj/item/weapon/gun/launcher/spike,
+			/obj/item/weapon/gun/energy/plasmarifle,
 			/obj/item/weapon/melee/yautja_chain,
 			/obj/item/weapon/melee/yautja_knife,
 			/obj/item/weapon/melee/yautja_sword,
@@ -308,8 +308,8 @@
 		if(!isYautja(usr))
 			usr << "<span class='warning'>You have no idea how to work these things!</span>"
 			return
-		var/obj/item/weapon/gun/plasma_caster/R = usr.r_hand
-		var/obj/item/weapon/gun/plasma_caster/L = usr.l_hand
+		var/obj/item/weapon/gun/energy/plasma_caster/R = usr.r_hand
+		var/obj/item/weapon/gun/energy/plasma_caster/L = usr.l_hand
 		if(!istype(R) && !istype(L))
 			caster_active = 0
 		if(caster_active) //Turn it off.
@@ -339,7 +339,7 @@
 				return
 			if(!drain_power(usr,50)) return
 
-			var/obj/item/weapon/gun/plasma_caster/W = new(usr)
+			var/obj/item/weapon/gun/energy/plasma_caster/W = new(usr)
 			usr.put_in_active_hand(W)
 			W.source = src
 			caster_active = 1
@@ -1095,7 +1095,7 @@
 //=================\\//=================\\
 
 
-/obj/item/weapon/gun/plasma_caster
+/obj/item/weapon/gun/energy/plasma_caster
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "plasma"
 	item_state = "plasma_wear"
@@ -1186,12 +1186,12 @@
 			user.update_power_display(perc)
 		return 1
 
-/obj/item/weapon/gun/launcher/speargun
-	name = "heavy speargun"
+/obj/item/weapon/gun/launcher/spike
+	name = "spike launcher"
 	desc = "A compact Yautja device in the shape of a crescent. It can rapidly fire damaging spikes and automatically recharges."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "speargun"
-	item_state = "speargun"
+	icon_state = "spikelauncher"
+	item_state = "spikelauncher"
 	muzzle_flash = null // TO DO, add a decent one.
 	origin_tech = "combat=7;materials=7"
 	unacidable = 1
@@ -1258,7 +1258,7 @@
 		if(refund) spikes++
 		return 1
 
-/obj/item/weapon/gun/launcher/plasmarifle
+/obj/item/weapon/gun/energy/plasmarifle
 	name = "plasma rifle"
 	desc = "A long-barreled heavy plasma weapon capable of taking down large game. It has a mounted scope for distant shots and an integrated battery."
 	icon = 'icons/Predator/items.dmi'

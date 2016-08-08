@@ -968,7 +968,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword(M), slot_r_hand)
 
 			spawn_merc_gun(M)
 
@@ -1116,7 +1115,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/plasmarifle(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/plasmarifle(M), slot_r_hand)
 
 /*
 
