@@ -1,6 +1,6 @@
 /datum/game_mode/colonialmarines
-	name = "Colonial Marines"
-	config_tag = "Colonial Marines"
+	name = "LV-624"
+	config_tag = "LV-624"
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
 	var/checkwin_counter = 0
@@ -20,7 +20,7 @@
 	return 1
 
 /datum/game_mode/colonialmarines/announce()
-	world << "<B>The current game mode is - Colonial Marines!</B>"
+	world << "<B>The current game mode is - LV-624!</B>"
 
 /datum/game_mode/colonialmarines/send_intercept()
 	return 1

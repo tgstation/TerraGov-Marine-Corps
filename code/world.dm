@@ -25,10 +25,8 @@ var/global/datum/global_init/init = new ()
 	var/year_string = time2text(world.realtime, "YYYY")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
-	// diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
-	round_stats = file("data/logs/[year_string]/round_stats.log")
 	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	// diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	round_stats = file("data/logs/[year_string]/round_stats.log")
 	round_stats << "[log_end]\nStarting up - [time2text(world.realtime,"YYYY-MM-DD (hh:mm:ss)")][log_end]\n---------------------[log_end]"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
@@ -296,59 +294,25 @@ var/world_topic_spam_protect_time = world.timeofday
 				D.associate(directory[ckey])
 
 /world/proc/update_status()
+	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; <b>USS Sulaco</b> | <b>Planet LV-624</b>"
+		s += "<a href=\"http://goo.gl/ZFLbE8\"><b>[config.server_name] &#8212; USS Sulaco</b>"
 		s += "<br>Hosted by <b>Apophis</b>"
-		s += "<br><img src=\"http://i.imgur.com/VSucCrP.jpg\"></a><br>"
+		s += "<br><img src=\"http://goo.gl/x9sgTF\"></a>"
+		// s += "<a href=\"http://goo.gl/04C5lP\">Wiki</a> | <a href=\"http://goo.gl/hMmIKu\">Rules</a>"
+		if(ticker)
+			if(master_mode)
+				s += "<br>Map: <b>[master_mode]</b>"
+				s += "<br>Round time: <b>[worldtime2text()]</b>"
+		else
+			s += "<br>Map: <b>STARTING</b>"
+		// s += enter_allowed ? "<br>Entering: <b>Enabled</b>" : "<br>Entering: <b>Disabled</b>"
 
-	var/list/features = list()
+		status = s
 
-	if(ticker)
-		if(master_mode)
-			features += master_mode
-	else
-		features += "<b>STARTING</b>"
-
-	if (!enter_allowed)
-		features += "closed"
-
-	features += abandon_allowed ? "respawn" : "no respawn"
-
-	if (config && config.allow_vote_mode)
-		features += "vote"
-
-	if (config && config.allow_ai)
-		features += "AI allowed"
-
-	var/n = 0
-	for (var/mob/M in player_list)
-		if (M.client)
-			n++
-
-	if (n > 1)
-		features += "~[n] players"
-	else if (n > 0)
-		features += "~[n] player"
-
-	/*
-	is there a reason for this? the byond site shows 'hosted by X' when there is a proper host already.
-	if (host)
-		features += "hosted by <b>[host]</b>"
-	*/
-
-	// if (!host && config && config.hostedby)
-	// 	features += "hosted by <b>Apophis</b>"
-
-	if (features)
-		s += ": [list2text(features, ", ")]"
-
-	/* does this help? I do not know */
-	if (src.status != s)
-		src.status = s
-
-#define FAILED_DB_CONNECTION_CUTOFF 5
+#define FAILED_DB_CONNECTION_CUTOFF 1
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
