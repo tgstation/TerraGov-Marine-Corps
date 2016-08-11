@@ -334,7 +334,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/reddot
 	name = "red-dot sight"
-	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does greatly increase weapon accuracy."
+	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
 	slot = "rail"
 
@@ -344,7 +344,7 @@ Defined in setup.dm.
 
 /obj/item/attachable/foregrip
 	name = "forward grip"
-	desc = "A custom-built improved foregrip for maximum accuracy, less recoil, and slightly less scatter. \nHowever, it also changes the weapon to two-handed and increases weapon size."
+	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter. \nHowever, it also changes the weapon to two-handed and increases weapon size."
 	icon_state = "sparemag"
 	twohanded_mod = 1
 	w_class_mod = 1
@@ -353,8 +353,7 @@ Defined in setup.dm.
 
 	New()
 		..()
-		accuracy_mod = config.low_hit_accuracy_mult
-		damage_mod = config.min_hit_damage_mult
+		accuracy_mod = config.min_hit_accuracy_mult
 		recoil_mod = -config.min_recoil_value
 		scatter_mod = -config.min_scatter_value
 
@@ -451,7 +450,7 @@ Defined in setup.dm.
 		..()
 		accuracy_mod = -config.med_hit_accuracy_mult
 		recoil_mod = config.min_recoil_value
-		scatter_mod = -config.low_scatter_value
+		scatter_mod = config.low_scatter_value
 		delay_mod = -config.low_fire_delay
 
 /obj/item/attachable/compensator
@@ -477,7 +476,7 @@ Defined in setup.dm.
 	New()
 		..()
 		burst_mod = config.low_burst_value
-		scatter_mod = -config.low_scatter_value
+		scatter_mod = config.low_scatter_value
 
 /obj/item/attachable/magnetic_harness
 	name = "magnetic harness"
