@@ -470,11 +470,11 @@ Defined in setup.dm.
 	name = "burst fire assembly"
 	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nJust don't mind the increased scatter."
 	icon_state = "rapidfire"
-	accuracy_mod = -25
 	slot = "under"
 
 	New()
 		..()
+		accuracy_mod = -config.low_hit_accuracy_mult
 		burst_mod = config.low_burst_value
 		scatter_mod = config.low_scatter_value
 
