@@ -249,7 +249,7 @@
 	icon_state = "maint_medbay"
 
 /area/ice_colony/underground/research/foyer_maint
-	name = "\improper Doorms Maintenance"
+	name = "\improper Dorms Maintenance"
 	icon_state = "maint_dormitory"
 
 /area/ice_colony/underground/research/dorms
