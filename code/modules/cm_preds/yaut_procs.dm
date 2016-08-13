@@ -163,7 +163,7 @@
 	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. If you cancel at any point, you will not claim your equipment.","Sure?","Begin the Hunt","No, not now")
 	if(sure == "Begin the Hunt")
 		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
-		var/list/other = list("The Fleeting Speargun", "The Brutal Plasma Rifle", "The Purifying Smart-Disc", "The Formidable Plate Armor","The Enhanced Bracer")//, "The Clever Hologram")
+		var/list/other = list("The Fleeting Spike Launcher", "The Brutal Plasma Rifle", "The Purifying Smart-Disc", "The Formidable Plate Armor", "The Enhanced Bracer")//, "The Clever Hologram")
 
 		var/msel = input("Which weapon shall you use on your hunt?:","Melee Weapon") as null|anything in melee
 		if(!msel) return //We don't want them to cancel out then get nothing.
