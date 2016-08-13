@@ -1102,7 +1102,7 @@
 	name = "plasma caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
 	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
-	ammo = "plasma bolt"
+	ammo = /datum/ammo/energy/yautja/caster/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	canremove = 0
 	w_class = 5
@@ -1131,28 +1131,27 @@
 
 	attack_self(mob/living/user as mob)
 		switch(mode)
-			if(2)
-				mode = 0
-				charge_cost = 30
-				fire_delay = config.high_fire_delay
-				fire_sound = 'sound/weapons/lasercannonfire.ogg'
-				user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
-				ammo = ammo_list["plasma bolt"]
 			if(0)
 				mode = 1
 				charge_cost = 100
 				fire_delay = config.med_fire_delay * 4
 				fire_sound = 'sound/weapons/emitter2.ogg'
 				user << "<span class='notice'>[src] is now set to fire medium plasma blasts.</span>"
-				ammo = ammo_list["plasma blast"]
+				ammo = ammo_list[/datum/ammo/energy/yautja/caster/blast]
 			if(1)
 				mode = 2
 				charge_cost = 300
 				fire_delay = config.high_fire_delay * 20
 				fire_sound = 'sound/weapons/pulse.ogg'
 				user << "<span class='notice'>[src] is now set to fire heavy plasma spheres.</span>"
-				ammo = ammo_list["plasma eradication sphere"]
-		return
+				ammo = ammo_list[/datum/ammo/energy/yautja/caster/sphere]
+			if(2)
+				mode = 0
+				charge_cost = 30
+				fire_delay = config.high_fire_delay
+				fire_sound = 'sound/weapons/lasercannonfire.ogg'
+				user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
+				ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 	dropped(var/mob/living/carbon/human/user)
 		..()
@@ -1196,7 +1195,7 @@
 	origin_tech = "combat=7;materials=7"
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
-	ammo = "alloy spike"
+	ammo = /datum/ammo/alloy_spike
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
@@ -1267,7 +1266,7 @@
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
 	fire_sound = 'sound/weapons/plasma_shot.ogg'
-	ammo = "plasma rifle bolt"
+	ammo = /datum/ammo/energy/yautja/rifle/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
 	slot_flags = SLOT_BACK
@@ -1326,8 +1325,7 @@
 		return ..()
 
 	load_into_chamber()
-		if(charge_time < 15) ammo = ammo_list["plasma rifle bolt"]
-		else ammo = ammo_list["plasma rifle blast"]
+		ammo = ammo_list[charge_time < 15? /datum/ammo/energy/yautja/rifle/bolt : /datum/ammo/energy/yautja/rifle/blast]
 		var/obj/item/projectile/P = create_bullet(ammo)
 		P.damage = P.ammo.damage + charge_time
 		P.ammo.accuracy = accuracy + charge_time
