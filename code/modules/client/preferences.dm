@@ -139,6 +139,9 @@ datum/preferences
 
 	var/predator_name = ""
 	var/predator_gender = "male"
+	var/predator_mask_type = 1
+	var/predator_armor_type = 1
+	var/predator_boot_type = 1
 	var/is_pred_elder = 0
 
 /datum/preferences/New(client/C)
@@ -263,6 +266,9 @@ datum/preferences
 	if(is_alien_whitelisted(user,"Yautja") || is_alien_whitelisted(user,"Yautja Elder"))
 		dat += "<BR><a href='?_src_=prefs;preference=pred_name;task=input'><b>Edit Predator Name:</b> [predator_name]</a><br>"
 		dat += "<a href='?_src_=prefs;preference=pred_gender;task=input'><b>Edit Predator Gender:</b> ([predator_gender])</a><br><BR>"
+		dat += "<BR><a href='?_src_=prefs;preference=pred_mask_type;task=input'><b>Edit Predator Mask:</b> [predator_mask_type]</a><br>"
+		dat += "<BR><a href='?_src_=prefs;preference=pred_armor_type;task=input'><b>Edit Predator Armor:</b> [predator_armor_type]</a><br>"
+		dat += "<BR><a href='?_src_=prefs;preference=pred_boot_type;task=input'><b>Edit Predator Boot:</b> [predator_boot_type]</a><br>"
 
 	dat += "<b>Name:</b> "
 	dat += "<a href='?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a><br>"
@@ -1134,7 +1140,18 @@ datum/preferences
 						predator_gender = "female"
 					else
 						predator_gender = "male"
-
+				if("pred_mask_type")
+					var/new_predator_mask_type = input(user, "Choose your mask type:\n(1-7)", "Character Preference") as num|null
+					if(new_predator_mask_type)
+						predator_mask_type = text2num(new_predator_mask_type)
+				if("pred_armor_type")
+					var/new_predator_armor_type = input(user, "Choose your armor type:\n(1-4)", "Character Preference") as num|null
+					if(new_predator_armor_type)
+						predator_armor_type = text2num(new_predator_armor_type)
+				if("pred_boot_type")
+					var/new_predator_boot_type = input(user, "Choose your greaves type:\n(1-3)", "Character Preference") as num|null
+					if(new_predator_boot_type)
+						predator_boot_type = text2num(new_predator_boot_type)
 				if("age")
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 					if(new_age)

@@ -59,6 +59,9 @@
 
 	S["pred_name"]			>> predator_name
 	S["pred_gender"]		>> predator_gender
+	S["pred_mask_type"]		>> predator_mask_type
+	S["pred_armor_type"]	>> predator_armor_type
+	S["pred_boot_type"]		>> predator_boot_type
 
 	//Sanitize
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -90,6 +93,9 @@
 
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
+	S["pred_mask_type"] 	<< predator_mask_type
+	S["pred_armor_type"] 	<< predator_armor_type
+	S["pred_boot_type"] 	<< predator_boot_type
 
 	return 1
 

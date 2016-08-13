@@ -22,14 +22,9 @@
 	anti_hug = 100
 	species_restricted = null
 	body_parts_covered = HEAD|FACE
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | NOPRESSUREDMAGE | BLOCKSHARPOBJ
+	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | NOPRESSUREDMAGE | BLOCKSHARPOBJ
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 	unacidable = 1
-
-	New()
-		spawn(0)
-			var/mask = rand(1,4)
-			icon_state = "pred_mask[mask]"
 
 	verb/togglesight()
 		set name = "Toggle Mask Visors"
@@ -118,6 +113,17 @@
 
 	slowdown = 1
 
+/obj/item/clothing/mask/eldercape
+	name = "clan elder cape"
+	desc = "A dusty, yet powerful cape worn and passed down by elder yautja"
+	icon = 'icons/Predator/items.dmi'
+	icon_state = "cape_elder"
+	item_state = "cape_elder"
+	icon_override = 'icons/Predator/items.dmi'
+	body_parts_covered = FACE|UPPER_TORSO
+	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
+	unacidable = 1
+
 /obj/item/clothing/shoes/yautja
 	name = "clan greaves"
 	icon = 'icons/Predator/items.dmi'
@@ -137,9 +143,6 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
-	New()
-		..()
-		if(prob(50)) icon_state = "y-boots2"
 
 
 /obj/item/clothing/under/chainshirt
