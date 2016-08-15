@@ -47,7 +47,7 @@
 			return
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] has cut [target]'s [affected.encased] open with \the [tool].",		\
 		"\blue You have cut [target]'s [affected.encased] open with \the [tool].")
@@ -99,7 +99,7 @@
 			return
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		var/msg = "\blue [user] forces open [target]'s [affected.encased] with \the [tool]."
 		var/self_msg = "\blue You force open [target]'s [affected.encased] with \the [tool]."
@@ -157,7 +157,7 @@
 			return
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		var/msg = "\blue [user] bends [target]'s [affected.encased] back into place with \the [tool]."
 		var/self_msg = "\blue You bend [target]'s [affected.encased] back into place with \the [tool]."
@@ -217,7 +217,7 @@
 			return
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		var/msg = "\blue [user] applied \the [tool] to [target]'s [affected.encased]."
 		var/self_msg = "\blue You applied \the [tool] to [target]'s [affected.encased]."
