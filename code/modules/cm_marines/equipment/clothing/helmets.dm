@@ -159,6 +159,12 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 		..(expected_type,new_name,new_protection)
 
+/obj/item/clothing/head/helmet/marine/pilot
+	name = "\improper M30 tactical helmet"
+	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Rasputin dropship manually and in safety."
+	icon_state = "pilot_helmet"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
 

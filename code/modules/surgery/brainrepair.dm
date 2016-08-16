@@ -28,7 +28,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] takes out all the bone chips in [target]'s brain with \the [tool].",	\
 		"\blue You take out all the bone chips in [target]'s brain with \the [tool].")
@@ -67,7 +67,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] mends hematoma in [target]'s brain with \the [tool].",	\
 		"\blue You mend hematoma in [target]'s brain with \the [tool].")

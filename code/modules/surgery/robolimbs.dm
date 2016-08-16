@@ -44,7 +44,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] cuts away flesh where [target]'s [affected.display_name] used to be with \the [tool].",	\
 		"\blue You cut away flesh where [target]'s [affected.display_name] used to be with \the [tool].")
@@ -84,7 +84,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] has finished repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool].",	\
 		"\blue You have finished repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool].")
@@ -125,7 +125,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] has finished adjusting the area around [target]'s [affected.display_name] with \the [tool].",	\
 		"\blue You have finished adjusting the area around [target]'s [affected.display_name] with \the [tool].")
@@ -169,7 +169,7 @@
 		var/obj/item/robot_parts/L = tool
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, cut him up
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] has attached \the [tool] where [target]'s [affected.display_name] used to be.",	\
 		"\blue You have attached \the [tool] where [target]'s [affected.display_name] used to be.")

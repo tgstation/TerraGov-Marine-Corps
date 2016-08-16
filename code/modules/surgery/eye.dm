@@ -40,7 +40,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] has separated the corneas on [target]'s eyes with \the [tool]." , \
 		"\blue You have separated the corneas on [target]'s eyes with \the [tool].",)
@@ -50,8 +50,8 @@
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/internal/eyes/eyes = target.internal_organs_by_name["eyes"]
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, slicing [target]'s eyes wth \the [tool]!" , \
-		"\red Your hand slips, slicing [target]'s eyes wth \the [tool]!" )
+		user.visible_message("\red [user]'s hand slips, slicing [target]'s eyes with \the [tool]!" , \
+		"\red Your hand slips, slicing [target]'s eyes with \the [tool]!" )
 		affected.createwound(CUT, 10)
 		eyes.take_damage(5, 0)
 		target.updatehealth()
@@ -79,10 +79,10 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
-		user.visible_message("\blue [user] has lifted the corneas from [target]'s eyes from with \the [tool]." , \
-		"\blue You has lifted the corneas from [target]'s eyes from with \the [tool]." )
+		user.visible_message("\blue [user] has lifted the corneas from [target]'s eyes with \the [tool]." , \
+		"\blue You have lifted the corneas from [target]'s eyes with \the [tool]." )
 		target.op_stage.eyes = 2
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -117,7 +117,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		user.visible_message("\blue [user] mends the nerves and lenses in [target]'s with \the [tool]." ,	\
 		"\blue You mend the nerves and lenses in [target]'s with \the [tool].")
@@ -155,7 +155,7 @@
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if(is_same_target != affected) //We we are not aiming at the same organ as when be begun, stop
-			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originaly."
+			user << "\red <b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally."
 			return
 		var/datum/organ/internal/eyes/eyes = target.internal_organs_by_name["eyes"]
 		user.visible_message("\blue [user] cauterizes the incision around [target]'s eyes with \the [tool].", \
@@ -169,7 +169,7 @@
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/internal/eyes/eyes = target.internal_organs_by_name["eyes"]
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips,  searing [target]'s eyes with \the [tool]!", \
+		user.visible_message("\red [user]'s hand slips, searing [target]'s eyes with \the [tool]!", \
 		"\red Your hand slips, searing [target]'s eyes with \the [tool]!")
 		target.apply_damage(5, BURN, affected)
 		eyes.take_damage(5, 0)
