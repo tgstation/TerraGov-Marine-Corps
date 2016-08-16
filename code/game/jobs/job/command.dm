@@ -107,6 +107,40 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			H << "You are also in charge of Logistics, including giving new IDs, manning the supply bay and sending dropships."
 		return 1
 
+//Pilot Officer
+/datum/job/pilot_officer
+	title = "Pilot Officer"
+	comm_title = "PO"
+	paygrade = 13 //Technically Second Lieutenant equivalent, but 2ndLT doesn't exist in Marine pay grade, so Ensign
+	flag = PILOT
+	department_flag = COMMAND
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Commander"
+	selection_color = "#ddddff"
+	idtype = /obj/item/weapon/card/id/silver
+	access = list(access_sulaco_logistics, access_sulaco_bridge)
+	minimal_access = list(access_sulaco_logistics, access_sulaco_bridge)
+	minimal_player_age = 7
+	equip(var/mob/living/carbon/human/H)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/pilot(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/pilot(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/flakjacket(H), slot_wear_suit)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_l_store)
+		H.implant_loyalty(src)
+		spawn(10)
+			H << "\red You are the Pilot Officer of the USS Sulaco!"
+			H << "Your job is to fly, protect and maintain the Sulaco's main and only marine dropship, the Rasputin."
+			H << "While you are part of the Officer staff, your authority is limited to the Rasputin."
+			H << "If you are not piloting, there is an autopilot fallback for Command, but don't leave the Rasputin without reason."
+		return 1
+
 //Liaison
 /datum/job/liaison
 	title = "Corporate Liaison"

@@ -219,6 +219,13 @@ include jackets and regular suits, not armor.*/
 	icon_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
+/obj/item/clothing/under/marine/officer/pilot
+	name = "pilot officer bodysuit"
+	desc = "A bodysuit worn by pilot officers of the USCM. Fly the marines onwards to glory."
+	icon_state = "pilot_flightsuit"
+	item_state = "pilot_flightsuit"
+	item_color = "pilot_flightsuit"
+
 /obj/item/clothing/under/marine/officer/bridge
 	name = "bridge officer uniform"
 	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
