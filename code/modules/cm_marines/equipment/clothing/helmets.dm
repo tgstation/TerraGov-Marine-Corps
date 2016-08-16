@@ -164,6 +164,8 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Rasputin dropship manually and in safety."
 	icon_state = "pilot_helmet"
 	icon_override = 'icons/Marine/marine_armor.dmi'
+	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
+	anti_hug = 2
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
