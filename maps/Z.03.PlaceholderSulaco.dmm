@@ -1073,7 +1073,7 @@
 "uG" = (/turf/simulated/floor{tag = "icon-whitebluefull (NORTHEAST)"; icon_state = "whitebluefull"; dir = 5},/area/sulaco/bridge)
 "uH" = (/obj/machinery/door/window{name = "Commander's Deck"; req_access_txt = "19"; req_one_access_txt = "0"},/turf/simulated/floor{tag = "icon-rampbottom (WEST)"; icon_state = "rampbottom"; dir = 8},/area/sulaco/bridge)
 "uI" = (/obj/structure/sign/prop1,/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/sulaco/bridge)
-"uJ" = (/obj/structure/stool/bed/chair{dir = 4},/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/sulaco/bridge)
+"uJ" = (/obj/structure/stool/bed/chair{dir = 4},/obj/effect/landmark/start{name = "Pilot Officer"},/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/sulaco/bridge)
 "uK" = (/obj/structure/table,/obj/item/weapon/book/manual/lazarus_landing_map,/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/sulaco/bridge)
 "uL" = (/obj/structure/stool/bed/chair{dir = 8},/turf/simulated/floor{icon_state = "cafeteria"; dir = 2},/area/sulaco/bridge)
 "uM" = (/obj/machinery/camera/autoname{dir = 8},/turf/simulated/floor{tag = "icon-whitered (EAST)"; icon_state = "whitered"; dir = 4},/area/sulaco/bridge)
