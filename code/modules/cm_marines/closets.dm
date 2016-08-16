@@ -103,6 +103,29 @@
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
 
+/obj/structure/closet/secure_closet/marine/marine_pilot
+	name = "pilot officer's locker"
+	req_access = list(access_sulaco_logistics)
+	icon_state = "hopsecure1"
+	icon_closed = "hopsecure"
+	icon_locked = "hopsecure1"
+	icon_opened = "hopsecureopen"
+	icon_broken = "hopsecurebroken"
+	icon_off = "hopsecureoff"
+	icon = 'icons/obj/closet.dmi'
+
+	New()
+		spawn(2)
+			new /obj/item/clothing/head/helmet/marine/pilot(src)
+			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/clothing/under/marine/officer/pilot(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/suit/armor/flakjacket(src)
+			new /obj/item/weapon/storage/belt/marine/full(src)
+			new /obj/item/weapon/storage/backpack/marine/satchel(src)
+			new /obj/item/clothing/gloves/yellow(src)
+			new /obj/item/clothing/glasses/sunglasses(src)
+
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/marine/military_officer
 	name = "military police's locker"
