@@ -51,7 +51,7 @@ var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
 								/obj/item/weapon/storage/box/rocket_system,\
 								/obj/item/weapon/storage/box/grenade_system,\
 								/obj/item/weapon/storage/box/m42c_system,\
-								/obj/item/clothing/suit/storage/smartgunner/gunner,\
+								/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC,\
 								/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner,\
 								/obj/item/weapon/gun/minigun,\
 								/obj/item/weapon/gun/rifle/m41a/elite,\

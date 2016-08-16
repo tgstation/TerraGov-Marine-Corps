@@ -219,8 +219,9 @@
 //----------------------------------------------------------
 
 
+/obj/item/projectile/proc/roll_to_hit_mob(var/atom/shooter,var/mob/living/target)
+	permutated += target //Don't want to hit them again, no matter what the outcome.
 
-/obj/item/projectile/proc/get_accuracy()
 	var/acc = accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
 	world << "<span class='debuginfo'>Base accuracy is <b>[acc]</b></span>"
@@ -232,11 +233,8 @@
 	#if DEBUG_HIT_CHANCE
 	world << "<span class='debuginfo'>Final accuracy is <b>[acc]</b></span>"
 	#endif
-	return max(5,acc) //There's always some chance.
 
-/obj/item/projectile/proc/roll_to_hit_mob(var/atom/shooter,var/mob/living/target)
-	permutated += target //Don't want to hit them again, no matter what the outcome.
-	var/hit_chance = get_accuracy() //Get the bullet's pure accuracy.
+	var/hit_chance = max(5,acc) //At least 5%.
 	if(target.lying && target.stat) hit_chance += 15 //Bonus hit against unconscious people.
 
 	if(ishuman(target))
@@ -312,19 +310,19 @@
 
 	var/damage = max(0, ( P.damage - (P.distance_travelled * P.ammo.damage_bleed) ) )
 
-	if(P.ammo.debilitate && stat != DEAD) //Not on deads please
-		//Apply happy funtime effects! Based on the ammo datum attached to the bullet.
+	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
 
-	if(damage) apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
+	if(damage)
+		bullet_message(P)
+		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
+		P.play_damage_effect(src)
 
-	bullet_message(P)
-
-	if(damage && P.ammo.ammo_behavior & AMMO_INCENDIARY)
-		adjust_fire_stacks(rand(6,10))
-		IgniteMob()
-		emote("scream")
-		src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
+		if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
+			adjust_fire_stacks(rand(6,10))
+			IgniteMob()
+			emote("scream")
+			src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
 	return 1
 
 /*
@@ -416,6 +414,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
+		P.play_damage_effect(src)
 		if(P.ammo.shrapnel_chance > 0 && prob(P.ammo.shrapnel_chance + round(damage / 10) ) ) embed_shrapnel(P,organ)
 		if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
@@ -494,17 +493,19 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	bullet_message(P) //Message us about the bullet, since damage was inflicted.
 
-	apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
-	if(!stat && prob(5 + round(damage / 4)))
-		var/pain_emote = prob(70) ? "hiss" : "roar"
-		emote(pain_emote)
-	if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
-		if(fire_immune) src << "<span class='avoidharm'>You shrug off some persistent flames.</span>"
-		else
-			adjust_fire_stacks(rand(2,6) + round(damage / 8))
-			IgniteMob()
-			visible_message("<span class='danger'>[src] bursts into flames!</span>","<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
-	updatehealth()
+	if(stat != DEAD)
+		apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
+		P.play_damage_effect(src)
+		if(!stat && prob(5 + round(damage / 4)))
+			var/pain_emote = prob(70) ? "hiss" : "roar"
+			emote(pain_emote)
+		if(P.ammo.ammo_behavior & AMMO_INCENDIARY)
+			if(fire_immune) src << "<span class='avoidharm'>You shrug off some persistent flames.</span>"
+			else
+				adjust_fire_stacks(rand(2,6) + round(damage / 8))
+				IgniteMob()
+				visible_message("<span class='danger'>[src] bursts into flames!</span>","<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
+		updatehealth()
 
 	return 1
 

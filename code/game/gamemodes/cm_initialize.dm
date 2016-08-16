@@ -132,12 +132,7 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/transform_predator(var/datum/mind/ghost_mind)
 	var/mob/living/carbon/human/new_predator
 
-	if( is_alien_whitelisted(ghost_mind.current,"Yautja Elder") ) new_predator = new (pick(pred_elder_spawn))
-	else new_predator = new (pick(pred_spawn))
-	var/obj/item/clothing/head/helmet/space/yautja/predmask = new /obj/item/clothing/head/helmet/space/yautja(new_predator)
-	var/obj/item/clothing/suit/armor/yautja/predarmor = new /obj/item/clothing/suit/armor/yautja(new_predator)
-	var/obj/item/clothing/shoes/yautja/predboot = new /obj/item/clothing/shoes/yautja(new_predator)
-	var/obj/item/clothing/mask/eldercape/cape = new /obj/item/clothing/mask/eldercape(new_predator)
+	new_predator = new(is_alien_whitelisted(ghost_mind.current,"Yautja Elder") ? pick(pred_elder_spawn) : pick(pred_spawn))
 
 	new_predator.key = ghost_mind.key //This will initialize their mind.
 
@@ -147,109 +142,28 @@ datum/game_mode/proc/initialize_special_clamps()
 		return
 
 	new_predator.set_species("Yautja")
-	//(predmask.icon_state = "pred_mask1")
-	var/masknumber = (new_predator.client.prefs.predator_mask_type)
-	var/armornumber = (new_predator.client.prefs.predator_armor_type)
-	var/bootnumber = (new_predator.client.prefs.predator_boot_type)
-	switch(masknumber)
-		if(1)
-			predmask.icon_state = "pred_mask[masknumber]"
-		if(2)
-			predmask.icon_state = "pred_mask[masknumber]"
-		if(3)
-			predmask.icon_state = "pred_mask[masknumber]"
-		if(4)
-			predmask.icon_state = "pred_mask[masknumber]"
-		if(5)
-			predmask.icon_state = "pred_mask[masknumber]"
-		if(6)
-			predmask.icon_state = "pred_mask[masknumber]"
-		if(7)
-			predmask.icon_state = "pred_mask[masknumber]"
-		if(928)
-			predmask.icon_state = "pred_mask8"
-		if(231)
-			predmask.icon_state = "pred_mask9"
-		if(334)
-			predmask.icon_state = "pred_mask10"
-		if(732)
-			predmask.icon_state = "pred_mask11"
-		else
-			predmask.icon_state = "pred_mask1"
-	switch(armornumber)
-		if(2)
-			predarmor.icon_state = "halfarmor[armornumber]"
-		if(3)
-			predarmor.icon_state = "halfarmor[armornumber]"
-		if(4)
-			predarmor.icon_state = "halfarmor[armornumber]"
-		if(441)
-			predarmor.icon_state = "halfarmor5"
-		else
-			predarmor.icon_state = "halfarmor"
-	switch(bootnumber)
-		if(2)
-			predboot.icon_state = "y-boots[bootnumber]"
-		if(3)
-			predboot.icon_state = "y-boots[bootnumber]"
-		else
-			predboot.icon_state = "y-boots"
-
-	new_predator.equip_to_slot_or_del(predmask , slot_head)
-	new_predator.equip_to_slot_or_del(predarmor, slot_wear_suit)
-	new_predator.equip_to_slot_or_del(predboot, slot_shoes)
 
 	if(new_predator.client.prefs) //They should have these set, but it's possible they don't have them.
 		new_predator.real_name = new_predator.client.prefs.predator_name
 		new_predator.gender = new_predator.client.prefs.predator_gender
 	else
 		new_predator.client.prefs = new /datum/preferences(new_predator.client) //Let's give them one.
-		new_predator.gender = "male"
+		new_predator.gender = MALE
 
 	if(!new_predator.real_name) //In case they don't have a name set or no prefs, there's a name.
 		new_predator.real_name = "Le'pro"
 		new_predator << "<b>\red You forgot to set your name in your preferences. Please do so next time.</b>"
 
+	var/armor_number = new_predator.client.prefs.predator_armor_type
+	var/boot_number = new_predator.client.prefs.predator_boot_type
+	var/mask_number = new_predator.client.prefs.predator_mask_type
+
+	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), slot_shoes)
 	if(is_alien_whitelisted(new_predator,"Yautja Elder"))
 		new_predator.real_name = "Elder [new_predator.real_name]"
-		switch(masknumber)
-			if(7128)
-				predmask.name = "'Mask of the Swamp Horror'"
-				predmask.icon_state = "pred_mask_elder_joshuu"
-			if(9867)
-				predmask.name = "'Mask of the Enforcer'"
-				predmask.icon_state = "pred_mask_elder_feweh"
-			if(1341)
-				predmask.name = "'Mask of the Dragon'"
-				predmask.icon_state = "pred_mask_elder_tr"
-
-		predarmor.armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 60, rad = 50)
-		predarmor.name = "clan elder's armor"
-		switch(armornumber)
-			if(7128)
-				predarmor.name = "'Armor of the Swamp Horror'"
-				predarmor.icon_state = "halfarmor_elder_joshuu"
-				cape.name = "'Mantle of the Swamp Horror'"
-				cape.icon_state = "cape_elder_joshuu"
-				cape.item_state = "cape_elder_joshuu"
-			if(9867)
-				predarmor.name = "'Armor of the Enforcer'"
-				predarmor.icon_state = "halfarmor_elder_feweh"
-				cape.name = "'Mantle of the Enforcer'"
-				cape.icon_state = "cape_elder_feweh"
-				cape.item_state = "cape_elder_feweh"
-			if(1341)
-				predarmor.name = "'Armor of the Dragon'"
-				predarmor.icon_state = "halfarmor_elder_tr"
-				cape.name = "'Mantle of the Dragon'"
-				cape.icon_state = "cape_elder_tr"
-				cape.item_state = "cape_elder_tr"
-			else
-				predarmor.icon_state = "halfarmor_elder"
-
-		//new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(new_predator), slot_wear_suit)
-		new_predator.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(new_predator), slot_l_hand)
-		new_predator.equip_to_slot_or_del(cape, slot_wear_mask)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), slot_wear_suit)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/yautja(new_predator, mask_number, 1), slot_head)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/eldercape(new_predator, armor_number), slot_wear_mask)
 
 		spawn(10)
 			new_predator << "\red <B> Welcome Elder!</B>"
@@ -257,6 +171,9 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_predator << "That does not mean you can't go out and show the youngsters how it's done."
 			new_predator << "<B>You come equipped as an Elder should, with a bonus glaive and heavy armor.</b>"
 	else
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number), slot_wear_suit)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/yautja(new_predator, mask_number), slot_head)
+
 		spawn(12)
 			new_predator << "You are <B>Yautja</b>, a great and noble predator!"
 			new_predator << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."

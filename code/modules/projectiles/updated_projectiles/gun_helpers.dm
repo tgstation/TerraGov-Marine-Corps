@@ -175,7 +175,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/wy_allowed_check(var/mob/living/carbon/human/user)
 	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
 
-	if(istype(user) && user.mind)
+	if(user.mind)
 		switch(user.mind.assigned_role)
 			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
 		if(user.mind.special_role == "DEATH SQUAD") return 1
@@ -192,7 +192,7 @@ should be alright.
 		var/mob/living/carbon/human/owner = user
 		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
 			var/obj/item/I = owner.wear_suit
-			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I,/obj/item/clothing/suit/storage/smartgunner))
+			if(istype(I,/obj/item/clothing/suit/storage/marine))
 				harness_return(user)
 				return 1
 

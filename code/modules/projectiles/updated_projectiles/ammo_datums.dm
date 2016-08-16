@@ -814,9 +814,10 @@
 	debilitate = list(3,4,0,0,3,5,0,0)
 
 /datum/ammo/xeno/acid
-	icon_state = "neurotoxin"
 	name = "acid spit"
+	icon_state = "neurotoxin"
 	sound_hit 	 = list('sound/bullets/acid_impact1.ogg')
+	sound_bounce	= list('sound/bullets/acid_impact1.ogg')
 	damage_type = BURN
 	New()
 		..()
@@ -873,6 +874,7 @@
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
 	sound_hit 	 = list('sound/bullets/acid_impact1.ogg')
+	sound_bounce	= list('sound/bullets/acid_impact1.ogg')
 	debilitate = list(1,1,0,0,1,1,0,0)
 	ammo_behavior = AMMO_XENO_ACID | AMMO_SKIPS_ALIENS | AMMO_EXPLOSIVE | AMMO_IGNORE_ARMOR | AMMO_INCENDIARY
 	New()

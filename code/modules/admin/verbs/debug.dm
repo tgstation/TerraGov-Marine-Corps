@@ -594,7 +594,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 		if("USCM Specialist (Smartgunner)")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/smartgunner(M), slot_wear_suit)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
@@ -623,7 +623,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			L.anti_hug = 99
 
 			M.equip_to_slot_or_del(L, slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/smartgunner(M), slot_wear_suit)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
@@ -775,7 +775,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/smartgunner/gunner(M), slot_wear_suit)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)

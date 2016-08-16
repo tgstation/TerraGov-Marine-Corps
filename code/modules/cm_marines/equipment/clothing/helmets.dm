@@ -58,6 +58,8 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
 	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
 
+
+
 /obj/item/clothing/head/helmet/specrag/snow
 	icon_state = "s_spec"
 	item_state = "s_spec"
@@ -76,15 +78,17 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 /obj/item/clothing/head/helmet/durag/jungle
 	name = "\improper M8 marksman cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
-	icon_state = "duragG"
-	item_state = "duragG"
+	icon = 'icons/Marine/marine_armor.dmi'
+	icon_state = "duragm"
+	item_state = "duragm"
 
-/obj/item/clothing/head/helmet/durag/snow
-	desc = "\improper M6 marksman hood"
-	desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
-	icon_state = "duragS"
-	item_state = "duragS"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	New(expected_type 	= type,
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M6 marksman hood"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..()
+		select_gamemode_skin(expected_type,,new_name,new_protection)
+		switch(icon_state)
+			if("s_durag") desc = "A hood meant to protect the wearer from both the cold and the guise of the enemy in the tundra."
 
 /obj/item/clothing/head/helmet/marine
 	name = "\improper M10 pattern marine helmet"
@@ -98,39 +102,32 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	health = 5
 	var/hug_damage = 0
 
-/obj/item/clothing/head/helmet/marine/snow
-	name = "\improper M10 pattern marine snow helmet"
-	icon_state = "helmet_snow"
-	item_state = "helmet_snow"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	New()
+	New(expected_type 		= /obj/item/clothing/suit/storage/marine,
+		new_name[] 			= list(/datum/game_mode/ice_colony =  "\improper M10 pattern marine snowhelmet"),
+		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
 		..()
-		var/helmet_color = rand(1,4)
-		if(helmet_color == 4)
-			icon_state = "helmet_snow2"
-			item_state = "helmet_snow2"
+		var/icon_override[] = type == /obj/item/clothing/suit/storage/marine ? list(/datum/game_mode/ice_colony = "s_helmet[pick(400;1,2)]") : null
+		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
-	icon_state = "helmet-tech"
-	item_color = "helmet-tech"
+	icon_state = "helmett"
+	item_color = "helmett"
 
-/obj/item/clothing/head/helmet/marine/tech/snow
-	name = "\improper M10 technician snow helmet"
-	icon_state = "s_helmet-tech"
-	item_color = "s_helmet-tech"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	New(expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 technician snow helmet"),
+		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..(expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/medic
 	name = "\improper M10 medic helmet"
-	icon_state = "helmet-medic"
-	item_color = "helmet-medic"
+	icon_state = "helmetm"
+	item_color = "helmetm"
 
-/obj/item/clothing/head/helmet/marine/medic/snow
-	name = "\improper M10 medic snow helmet"
-	icon_state = "s_helmet-medic" //NEEDS ICON
-	item_color = "s_helmet-medic"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	New(expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 medic snow helmet"),
+		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..(expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
@@ -140,10 +137,13 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	anti_hug = 2
 	var/obj/machinery/camera/camera
 
-/obj/item/clothing/head/helmet/marine/leader/snow
-	name = "\improper M11 pattern leader snow helmet"
-	icon_state = "s_xhelm"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	New(expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M11 pattern leader snow helmet"),
+		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..(expected_type,new_name,new_protection)
+
+		camera = new /obj/machinery/camera(src)
+		camera.network = list("LEADER")
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
@@ -154,10 +154,10 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	anti_hug = 3
 	unacidable = 1
 
-/obj/item/clothing/head/helmet/marine/specialist/snow
-	name = "\improper B18 snow helmet"
-	icon_state = "s_xhelm"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	New(expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper B18 snow helmet"),
+		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..(expected_type,new_name,new_protection)
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
@@ -328,11 +328,6 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	. = allowed_items
 
 /obj/item/clothing/head/helmet/marine/leader
-	New()
-		spawn(8)
-			camera = new /obj/machinery/camera(src)
-			camera.network = list("LEADER")
-
 	equipped(var/mob/living/carbon/human/mob, slot)
 		if(camera)
 			camera.c_tag = mob.name

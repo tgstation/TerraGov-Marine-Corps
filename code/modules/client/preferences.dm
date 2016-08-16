@@ -52,6 +52,13 @@ datum/preferences
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 
+	//Predator specific preferences.
+	var/predator_name = "Undefined"
+	var/predator_gender = MALE
+	var/predator_mask_type = 1
+	var/predator_armor_type = 1
+	var/predator_boot_type = 1
+
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
@@ -137,13 +144,6 @@ datum/preferences
 	var/metadata = ""
 	var/slot_name = ""
 
-	var/predator_name = ""
-	var/predator_gender = "male"
-	var/predator_mask_type = 1
-	var/predator_armor_type = 1
-	var/predator_boot_type = 1
-	var/is_pred_elder = 0
-
 /datum/preferences/New(client/C)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 	if(istype(C))
@@ -154,7 +154,6 @@ datum/preferences
 					return
 	gender = pick(MALE, FEMALE)
 	real_name = random_name(gender)
-
 	gear = list()
 
 /datum/preferences/proc/ZeroSkills(var/forced = 0)
@@ -264,11 +263,13 @@ datum/preferences
 
 	dat += "</center><hr><table><tr><td width='340px' height='320px'>"
 	if(is_alien_whitelisted(user,"Yautja") || is_alien_whitelisted(user,"Yautja Elder"))
-		dat += "<BR><a href='?_src_=prefs;preference=pred_name;task=input'><b>Edit Predator Name:</b> [predator_name]</a><br>"
-		dat += "<a href='?_src_=prefs;preference=pred_gender;task=input'><b>Edit Predator Gender:</b> ([predator_gender])</a><br><BR>"
-		dat += "<BR><a href='?_src_=prefs;preference=pred_mask_type;task=input'><b>Edit Predator Mask:</b> [predator_mask_type]</a><br>"
-		dat += "<BR><a href='?_src_=prefs;preference=pred_armor_type;task=input'><b>Edit Predator Armor:</b> [predator_armor_type]</a><br>"
-		dat += "<BR><a href='?_src_=prefs;preference=pred_boot_type;task=input'><b>Edit Predator Boot:</b> [predator_boot_type]</a><br>"
+		dat += "<br><b>Yautja name:</b> <a href='?_src_=prefs;preference=pred_name;task=input'>[predator_name]</a><br>"
+		dat += "<b>Yautja gender:</b> <a href='?_src_=prefs;preference=pred_gender;task=input'>[predator_gender == MALE ? "Male" : "Female"]</a><br>"
+		dat += "<b>Mask style:</b> <a href='?_src_=prefs;preference=pred_mask_type;task=input'>([predator_mask_type])</a><br>"
+		dat += "<b>Armor style:</b> <a href='?_src_=prefs;preference=pred_armor_type;task=input'>([predator_armor_type])</a><br>"
+		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
+
+	dat += "-Alpha(transparency): <a href='?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br>"
 
 	dat += "<b>Name:</b> "
 	dat += "<a href='?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a><br>"
@@ -1129,29 +1130,22 @@ datum/preferences
 
 				if("pred_name")
 					var/raw_name = input(user, "Choose your Predator's name:", "Character Preference")  as text|null
-					if (!isnull(raw_name)) // Check to ensure that the user entered text (rather than cancel.)
+					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)
 						var/new_name = reject_bad_name(raw_name)
-						if(new_name)
-							predator_name = new_name
-						else
-							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
+						if(new_name) predator_name = new_name
+						else user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
 				if("pred_gender")
-					if(predator_gender == "male")
-						predator_gender = "female"
-					else
-						predator_gender = "male"
+					predator_gender = predator_gender == MALE ? FEMALE : MALE
 				if("pred_mask_type")
-					var/new_predator_mask_type = input(user, "Choose your mask type:\n(1-7)", "Character Preference") as num|null
-					if(new_predator_mask_type)
-						predator_mask_type = text2num(new_predator_mask_type)
+					var/new_predator_mask_type = input(user, "Choose your mask type:\n(1-7)", "Mask Selection") as num|null
+					if(new_predator_mask_type) predator_mask_type = text2num(new_predator_mask_type)
 				if("pred_armor_type")
-					var/new_predator_armor_type = input(user, "Choose your armor type:\n(1-4)", "Character Preference") as num|null
-					if(new_predator_armor_type)
-						predator_armor_type = text2num(new_predator_armor_type)
+					var/new_predator_armor_type = input(user, "Choose your armor type:\n(1-5)", "Armor Selection") as num|null
+					if(new_predator_armor_type) predator_armor_type = text2num(new_predator_armor_type)
 				if("pred_boot_type")
-					var/new_predator_boot_type = input(user, "Choose your greaves type:\n(1-3)", "Character Preference") as num|null
-					if(new_predator_boot_type)
-						predator_boot_type = text2num(new_predator_boot_type)
+					var/new_predator_boot_type = input(user, "Choose your greaves type:\n(1-3)", "Greave Selection") as num|null
+					if(new_predator_boot_type) predator_boot_type = text2num(new_predator_boot_type)
+
 				if("age")
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 					if(new_age)
@@ -1588,8 +1582,7 @@ datum/preferences
 
 	character.real_name = real_name
 	character.name = character.real_name
-	if(character.dna)
-		character.dna.real_name = character.real_name
+	if(character.dna) character.dna.real_name = character.real_name
 
 	character.flavor_texts["general"] = flavor_texts["general"]
 	character.flavor_texts["head"] = flavor_texts["head"]

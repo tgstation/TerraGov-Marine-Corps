@@ -134,7 +134,7 @@
 	name = "Mercenaries"
 	mob_max = 5
 	arrival_message = "USS Sulaco, this is mercenary vessel MC-98 responding to your distress call. Prepare for boarding."
-	objectives = "Help or hinder the crew of the Sulaco. Take what you want as payment. Do what your Captain says. Ensure your survival at all costs."
+	objectives = "Help the crew of the Sulaco in exchange for payment, and choose your payment well. Do what your Captain says. Ensure your survival at all costs."
 	probability = 15
 
 //Xeeenoooooossss
@@ -565,7 +565,7 @@
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/smartgunner/gunner(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
@@ -631,12 +631,14 @@
 			leader = mob
 			spawn_captain(mob)
 			mob << "<font size='3'>\red You are the Mercenary captain!</font>"
-			mob << "<B> You must lead the mercs to victory against any and all hostile threats. Or just loot the place.</b>"
-			mob << "<B> You are not entitled to help the USCM, and you're in it for the money.</b>"
+			mob << "<B> You must lead the mercs to victory against any and all hostile threats..</b>"
+			mob << "<B> You are to help with the defense of the USS Sulaco, but you will not leave without payment.</b>"
+			mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
 		else
 			spawn_mercenary(mob)
 			mob << "<font size='3'>\red You are a Space Mercenary!</font>"
-			mob << "<B> You are not entitled to help the USCM, and you're in it for the money.</b>"
+			mob << "<B> You are to help with the defense of the USS Sulaco, but you will not leave without payment.</b>"
+			mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -713,11 +715,11 @@
 	A.randomize_appearance_for(mob)
 	var/list/first_names_mr = list("Grigory","Vladimir","Alexei","Andrei","Artyom","Viktor","Boris","Ivan","Igor","Oleg")
 	var/list/first_names_fr = list("Alexandra","Anna","Anastasiya","Eva","Klara","Nikita","Olga","Svetlana","Tatyana","Yaroslava")
-	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Dragomirov","Yeltsin","Zhirov","Zhukov","Ivanov","Ivchenko","Kasputin","Lukyanenko","Melnikov")
-	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
-	else
-		mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)]"
+	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Dragomirov","Yeltsin","Zhirov","Zhukov","Ivanov","Vasnetsov","Kasputin","Belov","Melnikov", "Vasilevsky", "Penkin")
+
+	if(mob.gender == MALE) 	mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
+	else 					mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)+"a"]"
+
 	mob.name = mob.real_name
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
@@ -1174,12 +1176,13 @@
 			leader = mob
 			spawn_officer(mob)
 			mob << "<font size='3'>\red You are in charge of the mercenary team!</font>"
-			mob << "<B> Lead your mercenary team to assist the Colonial Marines. You have been paid to do it.</b>"
+			mob << "<B> Lead your mercenary team to assist the Colonial Marines. You have been paid to do it, but you do not listen to USCM commands.</b>"
 			mob << "<B> Should you encounter a Yautja, you are to hunt it down at all costs. If the shuttle is called, you must get to it.</b>"
 			mob << "<B> You have prior knowledge of existance of the Yautja, but you are not to tell anyone about them!</b>"
 		else
 			spawn_standard(mob)
 			mob << "<font size='3'>\red You are a member of Dutch's Mercenary team!</font>"
+			mob << "<B> Should you encounter a Yautja, you are to hunt it down at all costs. If the shuttle is called, you must get to it.</b>"
 			mob << "<B> You have prior knowledge of existance of the Yautja, but you are not to tell anyone about them!</b>"
 
 	spawn(10)
@@ -1277,6 +1280,8 @@
 		else
 			spawn_standard(mob)
 			mob << "<font size='3'>\red You are a Weyland-Yutani Commando!!</font>"
+			mob << "<B> You must clear out any traces of the infestation and it's survivors..</b>"
+			mob << "<B> Follow any orders directly from Weyland-Yutani!</b>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"

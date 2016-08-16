@@ -249,7 +249,6 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/smg/uzi,
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/rifle/sniper/svd,
-					/obj/item/ammo_magazine/minigun,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
 					/obj/item/ammo_magazine/rifle/mar40,
 					/obj/item/ammo_magazine/rifle/mar40/extended,

@@ -139,34 +139,3 @@ Items and objects that are very hard to get to and do not affect balance.
 				usr << "\red Nothing happened..."
 		else
 			usr << "\red Nothing happened..."
-
-/obj/item/weapon/gun/launcher/rocket/nobugs //Fires dummy rockets, like a toy gun
-	name = "\improper BUG ROCKER rocket launcher"
-	desc = "Where did this come from? <b>NO BUGS</b>"
-	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/nobugs
-
-/obj/item/ammo_magazine/rocket/nobugs
-	name = "\improper BUG ROCKER rocket tube"
-	desc = "Where did this come from? <b>NO BUGS</b>"
-	default_ammo = "NO BUGS rocket"
-	caliber = "toy rocket"
-
-/obj/item/ammo_magazine/internal/launcher/rocket/nobugs
-	default_ammo = "NO BUGS rocket"
-	gun_type = /obj/item/weapon/gun/launcher/rocket/nobugs
-
-/datum/ammo/rocket/nobugs
-	name = "\improper NO BUGS rocket"
-	damage = 1
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		M << "<font size=6 color=red>NO BUGS</font>"
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		return
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		return
-
-	do_at_max_range(obj/item/projectile/P)
-		return

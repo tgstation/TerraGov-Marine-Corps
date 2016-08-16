@@ -9,7 +9,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 40000)
-	ammo = "taser bolt"
+	ammo = /datum/ammo/energy/taser
 	var/obj/item/weapon/cell/high/cell //10000 power.
 	var/charge_cost = 100 //100 shots.
 	gun_features = GUN_UNUSUAL_DESIGN
@@ -54,10 +54,9 @@
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 /obj/item/ammo_magazine/pistol/chimp
 	name = "\improper CHIMP70 magazine (.70M)"
-	default_ammo = "live monkey"
+	default_ammo = /datum/ammo/bullet/pistol/mankey
 	caliber = ".70M"
-	icon_state = "monkey1"
-	icon_empty = "monkey1"
+	icon_state = "c70" //PLACEHOLDER
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	matter = list("metal" = 100000)
 	max_rounds = 300
@@ -92,7 +91,7 @@
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/flaregun.ogg'
 	origin_tech = "combat=1;materials=2"
-	ammo = "flare"
+	ammo = /datum/ammo/flare
 	var/num_flares = 1
 	var/max_flares = 1
 	gun_features = GUN_UNUSUAL_DESIGN
@@ -160,11 +159,10 @@
 	name = "rotating ammo drum (7.62x51mm)"
 	desc = "A huge ammo drum for a huge gun."
 	caliber = "7.62×51mm"
-	icon_state = "a762"
-	icon_empty = "a762-0"
+	icon_state = "painless" //PLACEHOLDER
 	origin_tech = "combat=3;materials=3"
 	matter = list("metal" = 100000)
-	default_ammo = "minigun bullet"
+	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 300
 	reload_delay = 24 //Hard to reload.
 	gun_type = /obj/item/weapon/gun/minigun
@@ -197,3 +195,35 @@
 		usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
 
 //-------------------------------------------------------
+//Toy rocket launcher.
+
+/obj/item/weapon/gun/launcher/rocket/nobugs //Fires dummy rockets, like a toy gun
+	name = "\improper BUG ROCKER rocket launcher"
+	desc = "Where did this come from? <b>NO BUGS</b>"
+	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/nobugs
+
+/obj/item/ammo_magazine/rocket/nobugs
+	name = "\improper BUG ROCKER rocket tube"
+	desc = "Where did this come from? <b>NO BUGS</b>"
+	default_ammo = /datum/ammo/rocket/nobugs
+	caliber = "toy rocket"
+
+/obj/item/ammo_magazine/internal/launcher/rocket/nobugs
+	default_ammo = /datum/ammo/rocket/nobugs
+	gun_type = /obj/item/weapon/gun/launcher/rocket/nobugs
+
+/datum/ammo/rocket/nobugs
+	name = "\improper NO BUGS rocket"
+	damage = 1
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		M << "<font size=6 color=red>NO BUGS</font>"
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		return
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		return
+
+	do_at_max_range(obj/item/projectile/P)
+		return

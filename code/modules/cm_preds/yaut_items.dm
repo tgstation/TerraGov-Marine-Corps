@@ -26,6 +26,24 @@
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 	unacidable = 1
 
+	New(location, mask_number = rand(1,8), elder_restricted = 0)
+		..()
+		loc = location
+
+		var/mask_input[] = list(1,2,3,4,5,6,7,8,231,334,732,928)
+		if(mask_number in mask_input) icon_state = "pred_mask[mask_number]"
+		if(elder_restricted) //Not possible for non-elders.
+			switch(mask_number)
+				if(1341)
+					name = "\improper 'Mask of the Dragon'"
+					icon_state = "pred_mask_elder_tr"
+				if(7128)
+					name = "\improper 'Mask of the Swamp Horror'"
+					icon_state = "pred_mask_elder_joshuu"
+				if(9867)
+					name = "\improper 'Mask of the Enforcer'"
+					icon_state = "pred_mask_elder_feweh"
+
 	verb/togglesight()
 		set name = "Toggle Mask Visors"
 		set desc = "Toggle your mask visor sights. You must only be wearing a type of Yautja visor for this to work."
@@ -80,20 +98,17 @@
 
 /obj/item/clothing/suit/armor/yautja
 	name = "clan armor"
-	desc = "A suit of armor with heavy padding. It looks old, yet functional."
+	desc = "A suit of armor with light padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "halfarmor"
+	icon_state = "halfarmor1"
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 70, bullet = 80, laser = 55, energy = 65, bomb = 65, bio = 50, rad = 50)
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	body_parts_covered = UPPER_TORSO|ARM_LEFT
+	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
+	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.1
-	slowdown = 0
-	allowed = list(/obj/item/weapon/harpoon, //Don't ask me why this thing couldn't hold these items before... ~N
+	allowed = list(/obj/item/weapon/harpoon,
 			/obj/item/weapon/gun/launcher/spike,
 			/obj/item/weapon/gun/energy/plasmarifle,
 			/obj/item/weapon/melee/yautja_chain,
@@ -104,46 +119,115 @@
 			/obj/item/weapon/twohanded/glaive)
 	unacidable = 1
 
+	New(location, armor_number = rand(1,5), elder_restricted = 0)
+		..()
+		loc = location
+
+		if(elder_restricted)
+			switch(armor_number)
+				if(1341)
+					name = "\improper 'Armor of the Dragon'"
+					icon_state = "halfarmor_elder_tr"
+					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 70, bio = 25, rad = 25)
+				if(7128)
+					name = "\improper 'Armor of the Swamp Horror'"
+					icon_state = "halfarmor_elder_joshuu"
+					body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+					armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
+				if(9867)
+					name = "\improper 'Armor of the Enforcer'"
+					icon_state = "halfarmor_elder_feweh"
+					body_parts_covered = UPPER_TORSO|ARMS
+					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
+				else
+					name = "clan elder's armor"
+					icon_state = "halfarmor_elder"
+					body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+					armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
+		else
+			switch(armor_number)
+				if(2)
+					icon_state = "halfarmor[armor_number]"
+					body_parts_covered = UPPER_TORSO|ARMS
+					armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
+				if(3)
+					icon_state = "halfarmor[armor_number]"
+					body_parts_covered = UPPER_TORSO|LOWER_TORSO
+					armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
+				if(4)
+					icon_state = "halfarmor[armor_number]"
+					body_parts_covered = UPPER_TORSO
+					armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
+				if(5,441)
+					icon_state = "halfarmor[armor_number]"
+					body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+					armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
+		cold_protection = body_parts_covered
+		heat_protection = body_parts_covered
+
 /obj/item/clothing/suit/armor/yautja/full
 	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	armor = list(melee = 80, bullet = 90, laser = 65, energy = 70, bomb = 70, bio = 70, rad = 50)
-
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	armor = list(melee = 90, bullet = 95, laser = 75, energy = 75, bomb = 75, bio = 25, rad = 25)
 	slowdown = 1
+
+	New(location)
+		. = ..(location, 0)
 
 /obj/item/clothing/mask/eldercape
 	name = "clan elder cape"
-	desc = "A dusty, yet powerful cape worn and passed down by elder yautja"
+	desc = "A dusty, yet powerful cape worn and passed down by elder Yautja."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "cape_elder"
 	item_state = "cape_elder"
 	icon_override = 'icons/Predator/items.dmi'
-	body_parts_covered = FACE|UPPER_TORSO
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
+
+	New(location, cape_number)
+		..()
+		switch(cape_number)
+			if(1341)
+				name = "\improper 'Mantle of the Dragon'"
+				icon_state = "cape_elder_tr"
+				item_state = "cape_elder_tr"
+			if(7128)
+				name = "\improper 'Mantle of the Swamp Horror'"
+				icon_state = "cape_elder_joshuu"
+				item_state = "cape_elder_joshuu"
+			if(9867)
+				name = "\improper 'Mantle of the Enforcer'"
+				icon_state = "cape_elder_feweh"
+				item_state = "cape_elder_feweh"
 
 /obj/item/clothing/shoes/yautja
 	name = "clan greaves"
 	icon = 'icons/Predator/items.dmi'
-	icon_state = "y-boots"
+	icon_state = "y-boots1"
 	icon_override = 'icons/Predator/items.dmi'
 	desc = "A pair of armored, perfectly balanced boots. Perfect for running through the jungle."
-//	item_state = "yautja"
 	unacidable = 1
 	permeability_coefficient = 0.01
 	flags_inv = NOSLIPPING
 	body_parts_covered = FEET|LEGS
-	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 30, rad = 30)
+	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 20, rad = 20)
 	siemens_coefficient = 0.2
-	cold_protection = FEET|LEGS
-	heat_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
 
-
+	New(location, boot_number = rand(1,3))
+		..()
+		icon_state = "y-boots[boot_number]"
+		if(boot_number != 1) //More overall protection, less defensive value.
+			body_parts_covered = FEET|LEGS|LOWER_TORSO
+			armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
+		cold_protection = body_parts_covered
+		heat_protection = body_parts_covered
 
 /obj/item/clothing/under/chainshirt
 	name = "body mesh"
@@ -153,9 +237,12 @@
 	icon_override = 'icons/Predator/items.dmi'
 	item_color = "mesh_shirt"
 	item_state = "mesh_shirt"
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	siemens_coefficient = 0.9
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	species_restricted = null
 
 /obj/item/clothing/gloves/yautja
@@ -174,7 +261,7 @@
 	permeability_coefficient = 0.05
 	canremove = 0
 	body_parts_covered = HANDS
-	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 30, rad = 30)
+	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 10, rad = 10)
 	cold_protection = HANDS
 	heat_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE

@@ -57,7 +57,7 @@
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
-		bomb_ammo = ammo_list["glob of gas"]
+		bomb_ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
 
 	Del()
 		SetLuminosity(0)
@@ -117,8 +117,8 @@
 
 	if(!check_state()) return
 
-	src << "\blue You will now fire [bomb_ammo.name == "glob of gas" ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]"
-	bomb_ammo = bomb_ammo.name == "glob of gas" ? ammo_list["glob of acid"] : ammo_list["glob of gas"]
+	src << "\blue You will now fire [bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]"
+	bomb_ammo = bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? ammo_list[/datum/ammo/xeno/boiler_gas/corrosive] : ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bombard()
 	set name = "Bombard (200-250)"

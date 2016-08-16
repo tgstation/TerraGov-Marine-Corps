@@ -112,6 +112,8 @@ include jackets and regular suits, not armor.*/
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "under"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
 	pass_flags = PASSTABLE
 	flags = FPRINT
@@ -140,6 +142,12 @@ include jackets and regular suits, not armor.*/
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
 
+	New(expected_type 		= /obj/item/clothing/under/marine,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM snow uniform"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..()
+		select_gamemode_skin(expected_type,,new_name,new_protection)
+
 /obj/item/clothing/under/marine/underoos
 	name = "marine underpants"
 	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Find an actual uniform and change out."
@@ -149,29 +157,36 @@ include jackets and regular suits, not armor.*/
 	item_color = "marine_underpants"
 	slowdown = 3
 
-/obj/item/clothing/under/marine/snow
-	name = "\improper USCM snow uniform"
-	icon_state = "marine_jumpsuit_snow"
-	item_state = "marine_jumpsuit_snow"
-	item_color = "marine_jumpsuit_snow"
+/obj/item/clothing/under/marine/medic
+	name = "\improper USCM medic uniform"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has medical markings. "
+	icon_state = "marine_medic"
+	item_state = "marine_medic"
+	item_color = "marine_medic"
 
-/obj/item/clothing/under/marine/fluff/marineengineer/snow
-	name = "\improper USCM engineer snow uniform"
-	icon_state = "marine_engineer_snow"
-	item_state = "marine_engineer_snow"
-	item_color = "marine_engineer_snow"
+	New(expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM medic snow uniform"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..(expected_type, new_name, new_protection)
 
-/obj/item/clothing/under/marine/fluff/marinemedic/snow
-	name = "\improper USCM medic snow uniform"
-	icon_state = "marine_medic_snow"
-	item_state = "marine_medic_snow"
-	item_color = "marine_medic_snow"
+/obj/item/clothing/under/marine/engineer
+	name = "\improper USCM engineer uniform"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has engineer markings. "
+	icon_state = "marine_engineer"
+	item_state = "marine_engineer"
+	item_color = "marine_engineer"
+
+	New(expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM engineer snow uniform"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
+		..(expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/snow/sniper
 	name = "\improper USCM sniper uniform"
-	icon_state = "marine_sniper_snow"
-	item_state = "marine_sniper_snow"
-	item_color = "marine_sniper_snow"
+	icon_state = "s_marine_sniper"
+	item_state = "s_marine_sniper"
+	item_color = "s_marine_sniper"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 //========================//OFFICERS\\===================================\\
 //=======================================================================\\
@@ -275,6 +290,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "pmc_jumpsuit"
 	item_state = "armor"
 	item_color = "pmc_jumpsuit"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
@@ -300,11 +316,15 @@ include jackets and regular suits, not armor.*/
 	icon_state = "bear_jumpsuit"
 	item_state = "bear_jumpsuit"
 	item_color = "bear_jumpsuit"
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/dutch
 	name = "\improper Dutch's Dozen uniform"
 	desc = "A comfortable uniform worn by the Dutch's Dozen mercenaries. It's seen some definite wear and tear, but is still in good condition."
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "dutch_jumpsuit"
 	item_state = "dutch_jumpsuit"

@@ -1,8 +1,6 @@
 /obj/item/ammo_magazine/smg
 	name = "\improper default SMG magazine"
-	default_ammo = "submachinegun bullet"
-	icon_state = "9x"
-	icon_empty = "9x0"
+	default_ammo = /datum/ammo/bullet/smg
 	max_rounds = 30
 
 /obj/item/weapon/gun/smg
@@ -36,21 +34,16 @@
 	name = "\improper M39 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10×20mm"
-	icon_state = "9x"
-	icon_empty = "9x0"
+	icon_state = "m39"
 	max_rounds = 48
 	gun_type = /obj/item/weapon/gun/smg/m39
 
 /obj/item/ammo_magazine/smg/m39/ap
 	name = "\improper M39 AP magazine (10x20mm)"
-	icon_state = "9x"
-	icon_empty = "9x0"
-	default_ammo = "armor-piercing submachinegun bullet"
+	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/smg/m39/extended
 	name = "\improper M39 extended magazine (10x20mm)"
-	icon_state = "9x"
-	icon_empty = "9x0"
 	max_rounds = 72
 	bonus_overlay = "m39_mag"
 
@@ -81,7 +74,7 @@
 		..()
 		fire_delay = config.low_fire_delay
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
-		select_gamemode_skin(/obj/item/weapon/gun/smg/m39,"m39b2")
+		select_gamemode_skin(/obj/item/weapon/gun/smg/m39, list(/datum/game_mode/ice_colony = "m39b2") )
 
 //-------------------------------------------------------
 
@@ -106,10 +99,9 @@
 /obj/item/ammo_magazine/smg/mp7
 	name = "\improper MP27 magazine (4.6x30mm)"
 	desc = "A 4.6mm magazine for the MP7."
-	default_ammo = "armor-piercing submachinegun bullet"
+	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = "4.6×30mm"
-	icon_state = "9x"
-	icon_empty = "9x0"
+	icon_state = "mp7"
 	gun_type = /obj/item/weapon/gun/smg/mp7
 	max_rounds = 30 //Also comes in 20 and 40.
 
@@ -145,8 +137,7 @@
 	name = "\improper Skorpion magazine (.32ACP)"
 	desc = "A .32ACP caliber magazine for the Skorpion."
 	caliber = ".32ACP"
-	icon_state = "12mm"
-	icon_empty = "12mm0"
+	icon_state = "skorpion" //PLACEHOLDER
 	gun_type = /obj/item/weapon/gun/smg/skorpion
 	max_rounds = 20 //Can also be 10.
 
@@ -174,8 +165,7 @@
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
 	caliber = "7.62×25mm"
-	icon_state = "darts-0" //Dumb
-	icon_empty = "darts-0"
+	icon_state = "ppsh17b"
 	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/smg/ppsh
 
@@ -209,7 +199,6 @@
 	desc = "A magazine for the MAC-15."
 	caliber = "9mm"
 	icon_state = "mac15"
-	icon_empty = "mac15"
 	max_rounds = 32 //Can also be 20, 25, 40, and 50.
 	gun_type = /obj/item/weapon/gun/smg/uzi
 
@@ -241,10 +230,9 @@
 /obj/item/ammo_magazine/smg/p90
 	name = "P90 magazine (5.7x28mm)"
 	desc = "A magazine for the P90 SMG."
-	default_ammo = "armor-piercing submachinegun bullet"
+	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = "5.7×28mm"
-	icon_state = "763"
-	icon_empty = "763-0"
+	icon_state = "FP9000"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/smg/p90
 

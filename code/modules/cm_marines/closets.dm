@@ -19,23 +19,11 @@
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine(src)
-		return
 
 	select_gamemode_equipment(gamemode)
 		switch(gamemode)
 			if("Ice Colony")
-				new /obj/item/clothing/under/marine/snow(src)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
-				new /obj/item/weapon/storage/belt/marine(src)
-				new /obj/item/clothing/head/helmet/marine/snow(src)
-				new /obj/item/clothing/suit/storage/marine/snow(src)
-				new /obj/item/clothing/shoes/marine(src)
-			else
-				new /obj/item/clothing/under/marine(src)
-				new /obj/item/weapon/storage/belt/marine(src)
-				new /obj/item/clothing/head/helmet/marine(src)
-				new /obj/item/clothing/suit/storage/marine(src)
-				new /obj/item/clothing/shoes/marine(src)
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander

@@ -41,7 +41,7 @@ into helmets.dm*/
 	flags_inv = HIDETOPHAIR
 	New()
 		..()
-		select_gamemode_skin(type, "s_band")
+		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_band") )
 
 /obj/item/clothing/head/cmbandana/tan
 	icon_state = "band2"
@@ -59,7 +59,7 @@ into helmets.dm*/
 	item_color = "beret"
 	New()
 		..()
-		select_gamemode_skin(/obj/item/clothing/head/cmberet, "s_beret")
+		select_gamemode_skin(/obj/item/clothing/head/cmberet, list(/datum/game_mode/ice_colony = "s_beret") )
 
 /obj/item/clothing/head/cmberet/tan
 	icon_state = "berettan"
@@ -81,7 +81,7 @@ into helmets.dm*/
 	item_color = "headband"
 	New()
 		..()
-		select_gamemode_skin(type, "ushanka")
+		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "ushanka") )
 		switch(icon_state)
 			if("ushanka") //Weird case, since the item basically transforms into another item.
 				name = "\improper USCM ushanka"

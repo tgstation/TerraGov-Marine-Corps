@@ -252,7 +252,7 @@
 
 		//SQUAD ENGINEER
 		else if(H.mind.assigned_role == "Squad Engineer")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/fluff/marineengineer(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 
@@ -274,7 +274,7 @@
 
 		//SQUAD MEDIC
 		else if(H.mind.assigned_role == "Squad Medic")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/fluff/marinemedic(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/medic(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 
@@ -1148,8 +1148,8 @@
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/head/helmet/marine/tech,
 								/obj/item/clothing/head/helmet/marine/medic,
-								/obj/item/clothing/under/marine/fluff/marinemedic,
-								/obj/item/clothing/under/marine/fluff/marineengineer,
+								/obj/item/clothing/under/marine/medic,
+								/obj/item/clothing/under/marine/engineer,
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/device/binoculars,

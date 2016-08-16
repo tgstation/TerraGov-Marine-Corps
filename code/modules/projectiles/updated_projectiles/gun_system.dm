@@ -85,7 +85,6 @@
 		fire_delay = config.mhigh_fire_delay
 		burst_amount = config.min_burst_value
 		update_force_list() //This gives the gun some unique verbs for attacking.
-		select_gamemode_skin() //Make it all pretty.
 
 	Dispose()
 		. = ..()
@@ -507,7 +506,7 @@ and you're good to go.
 					simulate_recoil(recoil+1, user)
 
 					projectile_to_fire.ammo.on_hit_mob(M,projectile_to_fire)
-					if(M.bullet_act(projectile_to_fire)) projectile_to_fire.play_damage_effect(M)
+					M.bullet_act(projectile_to_fire)
 
 					if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire)
 					reload_into_chamber(user) //Reload into the chamber if the gun supports it.
@@ -549,7 +548,7 @@ and you're good to go.
 
 		//Has to be on the bottom of the stack to prevent delay when failing to fire the weapon for the first time.
 		//Can also set last_fired through New(), but honestly there's not much point to it.
-		if(world.time >= last_fired + fire_delay + extra_delay) //If not, check the last time it was fired.
+		if(world.time >= last_fired + max(0, fire_delay) + extra_delay) //If not, check the last time it was fired.
 			extra_delay = 0
 			last_fired = world.time
 		else

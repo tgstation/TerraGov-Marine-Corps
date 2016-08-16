@@ -23,11 +23,11 @@
 	var/shot_number = 0
 	var/state = 0
 	var/locked = 0
-	var/datum/ammo/energy/emitter/ammo
+	var/datum/ammo/energy/emitter/ammo = /datum/ammo/energy/emitter
 
 	New()
 		..()
-		ammo = ammo_list["emitter bolt"]
+		ammo = ammo_list[ammo]
 
 	Del()
 		ammo = null

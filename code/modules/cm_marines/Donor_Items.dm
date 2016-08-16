@@ -725,6 +725,7 @@
 	icon_state = "state"
 	item_state = "state_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
 	item_color = "state" //color must always be the same as item_state
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	//AND THIS LINE
 //END UNIFORM TEMPLATE

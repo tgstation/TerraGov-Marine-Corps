@@ -115,9 +115,10 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))   ammo = ammo_list["neurotoxic splash"]
-	else if(istype(src,/mob/living/carbon/Xenomorph/Spitter)) ammo = ammo_list["neurotoxic spatter"]
-	else 													  ammo = ammo_list["neurotoxic spit"]
+	switch(type)
+		if(/mob/living/carbon/Xenomorph/Praetorian) ammo = ammo_list[/datum/ammo/xeno/toxin/heavy ]
+		if(/mob/living/carbon/Xenomorph/Spitter) ammo = ammo_list[/datum/ammo/xeno/toxin/medium ]
+		else ammo = ammo_list[/datum/ammo/xeno/toxin]
 
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R

@@ -146,12 +146,7 @@
 			new /obj/item/clothing/glasses/night/m56_goggles(src)
 			new /obj/item/weapon/gun/smartgun(src)
 			new /obj/item/smartgun_powerpack(src)
-			if(ticker && ticker.mode)
-				switch(ticker.mode.name)
-					if("Ice Colony")
-						new /obj/item/clothing/suit/storage/smartgunner/snow(src)
-					else
-						new /obj/item/clothing/suit/storage/smartgunner(src)
+			new /obj/item/clothing/suit/storage/marine/smartgunner(src)
 			opened = 1
 		..()
 
@@ -269,14 +264,8 @@
 	open(var/mob/user as mob)
 		if(!opened)
 			new /obj/item/clothing/gloves/marine/specialist(src)
-			if(ticker && ticker.mode)
-				switch(ticker.mode.name)
-					if("Ice Colony")
-						new /obj/item/clothing/suit/storage/marine/specialist/snow(src)
-						new /obj/item/clothing/head/helmet/marine/specialist/snow(src)
-					else
-						new /obj/item/clothing/suit/storage/marine/specialist(src)
-						new /obj/item/clothing/head/helmet/marine/specialist(src)
+			new /obj/item/clothing/suit/storage/marine/specialist(src)
+			new /obj/item/clothing/head/helmet/marine/specialist(src)
 			opened = 1
 		..()
 
@@ -294,6 +283,7 @@
 	New()
 		..()
 		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/sniper(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
@@ -303,6 +293,7 @@
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
@@ -310,14 +301,9 @@
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
 					if("Ice Colony")
-						new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
-						new /obj/item/clothing/suit/storage/marine/sniper/snow(src)
-						new /obj/item/clothing/head/helmet/marine/snow(src)
+						new /obj/item/clothing/head/helmet/marine(src)
 					else
-						new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-						new /obj/item/clothing/suit/storage/marine/sniper(src)
 						new /obj/item/clothing/head/helmet/durag(src)
-						new /obj/item/weapon/facepaint/sniper(src)
 		..()
 
 /obj/item/weapon/storage/box/m42c_system_Jungle
@@ -334,10 +320,13 @@
 	New()
 		..()
 		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
 			new /obj/item/clothing/glasses/m42_goggles(src)
+			new /obj/item/clothing/head/helmet/durag/jungle(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
+			new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
 
 	open(var/mob/user as mob)
 		if(!opened)
@@ -345,16 +334,10 @@
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
 					if("Ice Colony")
-						new /obj/item/weapon/gun/rifle/sniper/M42A/snow(src)
 						new /obj/item/clothing/under/marine/snow/sniper(src)
-						new /obj/item/clothing/suit/storage/marine/sniper/snow/marksman(src)
-						new /obj/item/clothing/head/helmet/durag/snow(src)
 						new /obj/item/weapon/storage/backpack/marine/satchel(src)
 						new /obj/item/bodybag/tarp/snow(src)
 					else
-						new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
-						new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
-						new /obj/item/clothing/head/helmet/durag/jungle(src)
 						new /obj/item/weapon/facepaint/sniper(src)
 						new /obj/item/weapon/storage/backpack/marine/smock(src)
 						new /obj/item/bodybag/tarp(src)

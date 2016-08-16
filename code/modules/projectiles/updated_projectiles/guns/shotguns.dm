@@ -10,8 +10,8 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 /obj/item/ammo_magazine/shotgun
 	name = "box of shotgun slugs"
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
-	icon_state = "shells"
-	default_ammo = "shotgun slug"
+	icon_state = "slugs"
+	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = "12g" //All shotgun rounds are 12g right now.
 	gun_type = /obj/item/weapon/gun/shotgun
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
@@ -21,13 +21,13 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "box of incendiary slugs"
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
-	default_ammo = "incendiary slug"
+	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 
 /obj/item/ammo_magazine/shotgun/buckshot
 	name = "box of buckshot shells"
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
-	icon_state = "beanbag"
-	default_ammo = "shotgun buckshot"
+	icon_state = "buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 
 //-------------------------------------------------------
 
@@ -39,7 +39,7 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
-	default_ammo = "shotgun slug"
+	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = "12g"
 	max_rounds = 8
 	chamber_closed = 0
@@ -246,7 +246,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //DOUBLE SHOTTY
 
 /obj/item/ammo_magazine/internal/shotgun/double //For a double barrel.
-	default_ammo = "shotgun buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	max_rounds = 2
 	chamber_closed = 1 //Starts out with a closed tube.
 

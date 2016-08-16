@@ -8,18 +8,17 @@ They're all essentially identical when it comes to getting the job done.
 	desc = "A box of ammo."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = null
-	var/icon_empty = null
+	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags = FPRINT | CONDUCT
 	slot_flags = SLOT_BELT
-	item_state = ""
 	matter = list("metal" = 50000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2
 	w_class = 1.0
 	throw_speed = 2
 	throw_range = 6
-	var/default_ammo = "default bullet"
+	var/default_ammo = /datum/ammo/bullet
 	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/max_rounds = 7 //How many rounds can it hold?
@@ -27,25 +26,15 @@ They're all essentially identical when it comes to getting the job done.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 
-	/*
-	Current rounds are set to -1 by default.
-	When the magazine spawns in with New(), the -1 tell it to fill to full.
-	This doesn't honestly make a lot of sense, since you would in most circumstances
-	want a fresh mag to start with max_rounds, but this doesn't impact
-	anything. You may, potentially, want to have the mag spawn with
-	less than full rounds, for scavenging or Hunter Games.
-	So I'm leaving it like it is. The check didn't work before for whatever reason,
-	but I think it triggers properly now. ~N.
-	*/
-
 	New()
 		..()
-		if(current_rounds == -1) current_rounds = max_rounds//This actually works now. Amazing.
-		update_icon()
+		switch(current_rounds)
+			if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
+			if(0) icon_state += "_e" //In case it spawns empty instead.
 
-	update_icon()
-		if(current_rounds <= 0 && icon_empty) 	icon_state = icon_empty
-		else							 		icon_state = initial(icon_state)
+	update_icon(var/round_diff = 0)
+		if(current_rounds <= 0) 					icon_state += "_e" //Is it zero? Then it's empty.
+		else if(current_rounds - round_diff <= 0) 	icon_state  = copytext(icon_state,1,-2) //Did we add ammo to an empty?
 
 	examine()
 		..()
@@ -98,7 +87,7 @@ They're all essentially identical when it comes to getting the job done.
 			user.update_inv_r_hand()
 		cdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 	else source.update_icon()
-	target.update_icon()
+	target.update_icon(S)
 	return S // We return the number transferred if it was successful.
 
 //This will attempt to place the ammo in the user's hand if possible.
@@ -116,7 +105,7 @@ They're all essentially identical when it comes to getting the job done.
 			user << "<span class='notice'>You grab <b>[R]</b> round\s from [src].</span>"
 
 		else new_handful.loc = get_turf(src)
-		update_icon() //Update the other one.
+		update_icon(-R) //Update the other one.
 	return R //Give the number created.
 
 /obj/item/ammo_magazine/proc/match_ammo(var/obj/item/ammo_magazine/source,var/obj/item/ammo_magazine/target)
@@ -178,10 +167,18 @@ bullets/shells. ~N
 				transfer_ammo(transfer_from,src,user) // Transfer it from currently held to src, this item, message user.
 			else user << "Those aren't the same rounds. Better not mix them up."
 
+	Move()
+		var/cur_dir = dir
+		. = ..()
+		dir = cur_dir
+
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
-	name = "handful of [new_ammo + (new_ammo == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
+	var/datum/ammo/A = ammo_list[new_ammo]
+	var/ammo_name = A.name //Let's pull up the name.
+
+	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
+	icon_state = new_caliber == "12g" ? ammo_name : "bullet"
 	default_ammo = new_ammo
-	icon_state = new_caliber == "12g" ? new_ammo : "bullet"
 	caliber = new_caliber
 	max_rounds = maximum_rounds
 	current_rounds = new_rounds
@@ -234,10 +231,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			var/base_direction = current_casings - (current_icon * 8)
 			dir = base_direction + round(base_direction)/3
 			switch(current_casings)
-				if(3 to 5)
-					w_class = 2 //Slightly heavier.
-				if(9 to 10)
-					w_class = 3 //Can't put it in your pockets and stuff.
+				if(3 to 5) w_class = 2 //Slightly heavier.
+				if(9 to 10) w_class = 3 //Can't put it in your pockets and stuff.
 
 //Making child objects so that locate() and istype() doesn't screw up.
 /obj/item/ammo_casing/bullet

@@ -503,7 +503,7 @@ Defined in setup.dm.
 		..()
 		accuracy_mod = config.min_hit_accuracy_mult
 		recoil_mod = -config.min_recoil_value
-		scatter_mod = -config.low_scatter_value
+		scatter_mod = -config.min_scatter_value
 		delay_mod = config.high_fire_delay
 
 /obj/item/attachable/stock/shotgun
