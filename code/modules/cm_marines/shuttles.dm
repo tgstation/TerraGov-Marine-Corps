@@ -8,7 +8,7 @@
 	shuttle_tag = "Dropship 1"
 	unacidable = 1
 	exproof = 1
-	req_one_access_txt = "1;2;12;19;200"
+	req_one_access_txt = "22;200"
 
 
 /obj/machinery/computer/shuttle_control/marine2
@@ -18,7 +18,7 @@
 	shuttle_tag = "Dropship 2"
 	unacidable = 1
 	exproof = 1
-	req_one_access_txt = "1;2;12;19;200"
+	req_one_access_txt = "12;22;200"
 
 
 /obj/structure/engine_startup_sound // An invisible object to generate shuttle sounds

@@ -22,6 +22,7 @@
 /var/const/access_sulaco_bridge = 19
 /var/const/access_sulaco_chemistry = 20
 /var/const/access_sulaco_cargo = 21
+/var/const/access_sulaco_pilot = 22
 
 //Surface access levels
 
@@ -387,6 +388,8 @@
 			return "Civilian"
 		if(access_sulaco_cargo)
 			return "Requisitions"
+		if(access_sulaco_pilot)
+			return "Dropship Piloting"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
@@ -513,6 +516,7 @@ proc/get_all_job_icons() //For all existing HUD icons
 		"Commander",
 		"Executive Officer",
 		"Bridge Officer",
+		"Pilot Officer",
 		"Corporate Liaison",
 		"Chief Engineer",
 		"Maintenance Tech",
