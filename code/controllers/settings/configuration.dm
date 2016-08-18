@@ -116,6 +116,14 @@
 
 	var/comms_password = ""
 
+	var/use_slack = 0					// Defines whether server uses Slack integration or not.
+	var/slack_token = ""				// Slack API Token
+	var/slack_generic_name = "server"	// Sets the display name for generic messages from the server.
+	var/slack_ahelp_name = "ahelp"		// Sets the display name for adminhelp messages.
+	var/slack_send_round_info = 0		// Defines whether the server sends round start/end to slack.
+	var/slack_send_ahelps = 0			// Defines whether the server sends adminhelps to slack.
+	var/slack_send_ahelps_timer = 30	// defaults to 30 seconds.
+
 	var/use_irc_bot = 0
 	var/irc_bot_host = ""
 	var/main_irc = ""
@@ -464,6 +472,27 @@
 
 		if("admin_irc")
 			config.admin_irc = value
+
+		if("use_slack")
+			config.use_slack = 1
+
+		if("slack_token")
+			config.slack_token = value
+
+		if("slack_generic_name")
+			config.slack_generic_name = value
+
+		if("slack_ahelp_name")
+			config.slack_ahelp_name = value
+
+		if("slack_send_round_info")
+			config.slack_send_round_info = 1
+
+		if("slack_send_ahelps")
+			config.slack_send_ahelps = text2num(value)
+
+		if("slack_send_ahelps_timer")
+			config.slack_send_ahelps_timer = text2num(value) * 10
 
 		if("python_path")
 			if(value)

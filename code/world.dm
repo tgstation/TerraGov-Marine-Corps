@@ -42,6 +42,8 @@ var/global/datum/global_init/init = new ()
 	if(config && config.log_runtime)
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
+	if(config && config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The server is online!")
 	callHook("startup")
 	//Emergency Fix
 	load_mods()
@@ -211,6 +213,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
 
+	if(config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The server is restarting!")
 	..(reason)
 
 
