@@ -287,10 +287,10 @@
 
 
 /proc/get_all_accesses()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command, access_sulaco_cargo)
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo, access_sulaco_pilot, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
 
 /proc/get_all_marine_access()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo)
+	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo, access_sulaco_pilot)
 
 /proc/get_all_centcom_access()
 	return list(access_centcomm)
