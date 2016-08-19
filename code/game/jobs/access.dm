@@ -23,6 +23,7 @@
 /var/const/access_sulaco_chemistry = 20
 /var/const/access_sulaco_cargo = 21
 /var/const/access_sulaco_pilot = 22
+/var/const/access_sulaco_pilot_locker = 23
 
 //Surface access levels
 
@@ -390,6 +391,8 @@
 			return "Requisitions"
 		if(access_sulaco_pilot)
 			return "Dropship Piloting"
+		if(access_sulaco_pilot_locker)
+			return "Pilot Gear"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
