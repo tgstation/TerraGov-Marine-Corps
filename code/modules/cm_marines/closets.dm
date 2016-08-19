@@ -105,7 +105,7 @@
 
 /obj/structure/closet/secure_closet/marine/marine_pilot
 	name = "pilot officer's locker"
-	req_access = list(access_sulaco_logistics)
+	req_access = list(access_sulaco_pilot_locker)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
 	icon_locked = "hopsecure1"

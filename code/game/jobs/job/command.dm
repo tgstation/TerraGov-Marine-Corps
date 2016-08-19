@@ -120,8 +120,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics)
-	minimal_access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics)
+	access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
+	minimal_access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
