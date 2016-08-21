@@ -114,7 +114,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["ai"] = config.allow_ai
 		s["host"] = host ? host : null
 		s["players"] = list()
-		s["stationtime"] = worldtime2text()
+		s["stationtime"] = duration2text()
 		var/n = 0
 		var/admins = 0
 
@@ -309,7 +309,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(ticker)
 			if(master_mode)
 				s += "<br>Map: <b>[master_mode]</b>"
-				s += "<br>Round time: <b>[worldtime2text()]</b>"
+				s += "<br>Round time: <b>[duration2text()]</b>"
 		else
 			s += "<br>Map: <b>STARTING</b>"
 		// s += enter_allowed ? "<br>Entering: <b>Enabled</b>" : "<br>Entering: <b>Disabled</b>"

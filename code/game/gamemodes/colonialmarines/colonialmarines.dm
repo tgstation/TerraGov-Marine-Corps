@@ -154,7 +154,7 @@
 		else
 			world << 'sound/misc/asses_kicked.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Alien major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Alien major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
@@ -166,7 +166,7 @@
 		else
 			world << 'sound/misc/hell_march.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marine major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Marine major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
@@ -175,7 +175,7 @@
 		result = "marine minor victory - infestation stopped at a great cost"
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
@@ -183,7 +183,7 @@
 		world << "<FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
 		result = "alien minor victory - infestation survives"
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
@@ -192,7 +192,7 @@
 		result = "draw - the station has been nuked"
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 	else
 		world << "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!"
 		result = "broken round end! Finished value: [finished]"
