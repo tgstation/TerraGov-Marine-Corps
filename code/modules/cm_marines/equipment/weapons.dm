@@ -627,7 +627,8 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
 /obj/item/device/mine/Crossed(AM as mob|obj)
-	Bumped(AM)
+	if(ismob(AM))
+		Bumped(AM)
 
 /obj/item/device/mine/Bumped(var/mob/M)
 	if(!armed)
@@ -689,5 +690,5 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 /obj/effect/mine_tripwire/Crossed(AM as mob|obj)
 
-	if(linked_claymore)
+	if(linked_claymore && ismob(AM))
 		linked_claymore.Bumped(AM)
