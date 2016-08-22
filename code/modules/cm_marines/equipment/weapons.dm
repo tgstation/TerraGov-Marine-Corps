@@ -559,7 +559,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	icon_state = "mine"
 	force = 5.0
 	w_class = 2.0
-	layer = MOB_LAYER - 0.1 //You can't just randomly hide claymores under boxes. Booby-trapping bodies is fine though
+	//layer = MOB_LAYER - 0.1 //You can't just randomly hide claymores under boxes. Booby-trapping bodies is fine though
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
@@ -578,11 +578,11 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 //Arming
 /obj/item/device/mine/attack_self(mob/living/user as mob)
 	if(locate(/obj/item/device/mine) in get_turf(src))
-		src << "<span class='warning'>There already is a mine at this position!</span>"
+		user << "<span class='warning'>There already is a mine at this position!</span>"
 		return
 
 	if(user.z == 3 || user.z == 4) // On the Sulaco.
-		src << "<span class='warning'>Are you crazy? You can't plant a mine on a spaceship!</span>"
+		user << "<span class='warning'>Are you crazy? You can't plant a mine on a spaceship!</span>"
 		return
 
 	if(!armed)
@@ -671,6 +671,11 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	M.visible_message("<span class='danger'>\The [M] has slashed \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>")
 	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
+
+	//We move the tripwire randomly in either of the four cardinal directions
+	var/direction = pick(cardinal)
+	var/step_direction = get_step(src, direction)
+	tripwire.forceMove(step_direction)
 	trigger_explosion()
 
 /obj/effect/mine_tripwire
