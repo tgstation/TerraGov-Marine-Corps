@@ -218,7 +218,7 @@
 				H.w_uniform.add_fingerprint(M)
 
 			if(lying || src.sleeping)
-				if(src.client)
+				if(client)
 					src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0

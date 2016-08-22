@@ -1068,7 +1068,7 @@ mob/proc/yank_out_object()
 	return stunned
 
 /mob/living/proc/handle_weakened()
-	if(weakened && src.client)
+	if(weakened && client)
 		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 	return weakened
 
