@@ -195,7 +195,7 @@
 	use_sound = null
 
 /obj/item/weapon/storage/pill_bottle/kelotane
-	name = "bottle of kelotane pills"
+	name = "Kelotane pills"
 	desc = "Contains pills used to treat burns."
 
 	New()
