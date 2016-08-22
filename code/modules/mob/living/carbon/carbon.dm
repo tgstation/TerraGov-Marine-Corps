@@ -218,7 +218,8 @@
 				H.w_uniform.add_fingerprint(M)
 
 			if(lying || src.sleeping)
-				src.sleeping = max(0,src.sleeping-5)
+				if(src.client)
+					src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
