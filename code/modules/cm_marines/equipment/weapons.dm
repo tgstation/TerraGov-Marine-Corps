@@ -550,14 +550,16 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 
 ///***MINES***///
+//Mines have an invisible "tripwire" atom that explodes when crossed
+//Stepping directly on the mine will also blow it up
 /obj/item/device/mine
 	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a proximity triggered anti-presonnel mine designed by Armat Systems for use by the United States Colonial Marines."
+	desc = "The M20 Claymore is a directional proximity triggered anti-presonnel mine designed by Armat Systems for use by the United States Colonial Marines."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "mine"
 	force = 5.0
 	w_class = 2.0
-	layer = 3
+	layer = MOB_LAYER - 0.1 //You can't just randomly hide claymores under boxes. Booby-trapping bodies is fine though
 	throwforce = 5.0
 	throw_range = 6
 	throw_speed = 3
@@ -565,69 +567,122 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	flags = FPRINT | CONDUCT
 
 	var/triggered = 0
-	var/triggertype = "explosive" //Calls that proc
+	var/armed = 0 //Will the mine explode or not
+	var/trigger_type = "explosive" //Calls that proc
+	var/obj/effect/mine_tripwire/tripwire
 	/*
 		"explosive"
 		//"incendiary" //New bay//
 	*/
 
-
 //Arming
 /obj/item/device/mine/attack_self(mob/living/user as mob)
 	if(locate(/obj/item/device/mine) in get_turf(src))
-		src << "There's already a mine at this position!"
+		src << "<span class='warning'>There already is a mine at this position!</span>"
 		return
 
 	if(user.z == 3 || user.z == 4) // On the Sulaco.
-		src << "Are you crazy? You can't plant a landmine on a spaceship!"
+		src << "<span class='warning'>Are you crazy? You can't plant a mine on a spaceship!</span>"
 		return
 
-	if(!anchored)
-		user.visible_message("\blue \The [user] is deploying \the [src]")
-		if(!do_after(user,40))
-			user.visible_message("\blue \The [user] decides not to deploy \the [src].")
+	if(!armed)
+		user.visible_message("<span class='notice'>\The [user] starts deploying \the [src].</span>", \
+		"<span class='notice'>You start deploying \the [src].</span>")
+		if(!do_after(user, 40))
+			user.visible_message("<span class='notice'>\The [user] stops deploying \the [src].</span>", \
+		"<span class='notice'>You stop deploying \the [src].</span>")
 			return
-		user.visible_message("\blue \The [user] deployed \the [src].")
+		user.visible_message("<span class='notice'>\The [user] finishes deploying \the [src].</span>", \
+		"<span class='notice'>You finish deploying \the [src].</span>")
 		anchored = 1
+		armed = 1
+		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 100, 1, -1)
 		icon_state = "mine_armed"
 		user.drop_item()
+		dir = user.dir //The direction it is planted in is the direction the user faces at that time
+		var/tripwire_loc = get_turf(get_step(loc, dir))
+		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)
+		tripwire.linked_claymore = src
 		return
+
 
 //Disarming
 /obj/item/device/mine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool))
 		if(anchored)
-			user.visible_message("\blue \The [user] starts to disarm \the [src].")
-			if(!do_after(user,80))
-				user.visible_message("\blue \The [user] decides not to disarm \the [src].")
+			user.visible_message("<span class='notice'>\The [user] starts disarming \the [src].</span>", \
+			"<span class='notice'>You start disarming \the [src].</span>")
+			if(!do_after(user, 80))
+				user.visible_message("<span class='warning'>\The [user] stops disarming \the [src].", \
+				"<span class='warning'>You stop disarming \the [src].")
 				return
-			user.visible_message("\blue \The [user] finishes disarming \the [src]!")
+			user.visible_message("<span class='notice'>\The [user] finishes disarming \the [src].", \
+			"<span class='notice'>You finish disarming \the [src].")
 			anchored = 0
+			armed = 0
 			icon_state = "mine"
+			if(tripwire)
+				del(tripwire)
 			return
 
-//Triggering
+//Mine can also be triggered if you "cross right in front of it" (same tile)
 /obj/item/device/mine/Crossed(AM as mob|obj)
 	Bumped(AM)
 
-/obj/item/device/mine/Bumped(mob/M as mob|obj)
-	if(!anchored) return //If armed
-	if(triggered) return
+/obj/item/device/mine/Bumped(var/mob/M)
+	if(!armed)
+		return //If armed
+	if(triggered)
+		return
 
-	if(istype(M, /mob/living/carbon/Xenomorph) && !istype(M, /mob/living/carbon/Xenomorph/Larva) && M.stat != DEAD) //Only humanoid aliens can trigger it.
-		var/mob/living/carbon/Xenomorph/X = M
-		if(X.is_robotic) return //NOPE.jpg
-		for(var/mob/O in viewers(world.view, src.loc))
-			O << "<font color='red'>[M] triggered the \icon[src] [src]!</font>"
+	if(!check_for_id(M)) //ID check failed, because yes claymores in the future check for ID
+		M.visible_message("<span class='danger'>\icon[src] \The [src.name] clicks as \the [M] moves in front of it.</span>", \
+		"<span class='danger'>\icon[src] \The [src.name] clicks as you move in front of it.</span>", \
+		"<span class='danger'>You hear a click.</span>")
+		//Could use an actual claymore clicking sound here
+
+		playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 100, 1, -1)
 		triggered = 1
-		explosion(src.loc,-1,-1,2)
-		spawn(0)
-			if(src)
+		trigger_explosion(src)
+
+/obj/item/device/mine/proc/check_for_id(var/mob/M)
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.get_target_lock())
+			return 1
+
+	return 0 //Trigger an explosion if they don't meet these guidelines
+
+//Note : May not be actual explosion depending on linked method
+/obj/item/device/mine/proc/trigger_explosion()
+
+	switch(trigger_type)
+		if("explosive")
+			if(tripwire)
+				explosion(tripwire.loc, -1, -1, 2)
+			spawn()
+				if(tripwire)
+					del(tripwire)
 				del(src)
 
-//TYPES//
-//Explosive
-/obj/item/device/mine/proc/explosive(obj)
-	explosion(src.loc,-1,-1,3)
-	spawn(0)
-		del(src)
+/obj/item/device/mine/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(isXenoLarva(M)) return //Larvae can't do shit
+	M.visible_message("<span class='danger'>\The [M] has slashed \the [src]!</span>", \
+	"<span class='danger'>You slash \the [src]!</span>")
+	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
+	trigger_explosion()
+
+/obj/effect/mine_tripwire
+
+	name = "claymore tripwire"
+	mouse_opacity = 0
+	invisibility = 101
+	unacidable = 1 //You never know
+
+	var/obj/item/device/mine/linked_claymore
+
+/obj/effect/mine_tripwire/Crossed(AM as mob|obj)
+
+	if(linked_claymore)
+		linked_claymore.Bumped(AM)
