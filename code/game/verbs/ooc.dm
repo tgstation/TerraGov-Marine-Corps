@@ -60,8 +60,6 @@ var/global/normal_ooc_colour = "#002eb8"
 	log_ooc("[mob.name]/[key] : [msg]")
 
 	var/display_colour = normal_ooc_colour
-	if(donator)
-		display_colour = src.prefs.ooccolor
 	if(holder && !holder.fakekey)
 		display_colour = "#2e78d9"	//light blue
 		if(holder.rights & R_MOD && !(holder.rights & R_ADMIN))
@@ -73,6 +71,8 @@ var/global/normal_ooc_colour = "#002eb8"
 				display_colour = src.prefs.ooccolor
 			else
 				display_colour = "#b82e00"	//orange
+	if(donator)
+		display_colour = src.prefs.ooccolor
 
 	for(var/client/C in clients)
 		if(C.prefs.toggles & CHAT_OOC)
