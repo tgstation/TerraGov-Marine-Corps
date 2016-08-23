@@ -13,8 +13,8 @@
 	is_squad_job = 1
 	supervisors = "the commander"
 	selection_color = "#ffeeee"
-	access = list(access_marine_prep, access_marine_leader)
-	minimal_access = list(access_marine_prep, access_marine_leader)
+	access = list(access_marine_prep, access_marine_leader, access_sulaco_pilot)
+	minimal_access = list(access_marine_prep, access_marine_leader, access_sulaco_pilot)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(H), slot_w_uniform)
