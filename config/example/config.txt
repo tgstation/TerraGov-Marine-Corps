@@ -31,8 +31,11 @@ JOBS_HAVE_MINIMAL_ACCESS
 ## log OOC channel
 LOG_OOC
 
-## log client Say 
+## log client Say
 LOG_SAY
+
+## log client Hivemind
+LOG_HIVEMIND
 
 ## log admin actions
 LOG_ADMIN
@@ -86,7 +89,7 @@ SHOW_MENTORS
 
 
 ## probablities for game modes chosen in "secret" and "random" modes
-## 
+##
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY EXTENDED 1
@@ -199,7 +202,7 @@ GUEST_BAN
 ##Remove the # mark infront of this to forbid admins from posssessing the singularity.
 #FORBID_SINGULO_POSSESSION
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
+## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
 #POPUP_ADMIN_PM
 

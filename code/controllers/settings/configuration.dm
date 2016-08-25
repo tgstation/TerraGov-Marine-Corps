@@ -7,6 +7,7 @@
 	var/log_ooc = 0						// log OOC channel
 	var/log_access = 0					// log login/logout
 	var/log_say = 0						// log client say
+	var/log_hivemind = 0				// log hivemind
 	var/log_admin = 0					// log admin actions
 	var/log_debug = 1					// log debug output
 	var/log_game = 0					// log game events
@@ -205,6 +206,9 @@
 
 		if ("log_say")
 			config.log_say = 1
+
+		if ("log_hivemind")
+			config.log_hivemind = 1
 
 		if ("debug_paranoid")
 			config.debugparanoid = 1

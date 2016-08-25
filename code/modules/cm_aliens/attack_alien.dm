@@ -96,6 +96,7 @@
 			visible_message("\red <B>\The [M] has slashed at [src]!</B>")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
+			log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
 //			if (src.stat != 2)
 //				score_slashes_made++
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
@@ -158,7 +159,7 @@
 
 		if("hurt")//Can't slash other xenos for now. SORRY
 			if(istype(src,/mob/living/carbon/Xenomorph))
-				visible_message("\red \The [M] nibbles at [src].")
+				visible_message("\The [M] nibbles at [src].")
 				return
 			if(istype(src,/mob/living/silicon) && src.stat == 0) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
 				var/datum/effect/effect/system/spark_spread/spark_system
