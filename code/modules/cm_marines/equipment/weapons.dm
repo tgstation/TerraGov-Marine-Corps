@@ -623,11 +623,10 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 		M.visible_message("<span class='danger'>\icon[src] \The [src.name] clicks as \the [M] moves in front of it.</span>", \
 		"<span class='danger'>\icon[src] \The [src.name] clicks as you move in front of it.</span>", \
 		"<span class='danger'>You hear a click.</span>")
-		//Could use an actual claymore clicking sound here
 
-		playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 100, 1, -1)
 		triggered = 1
-		trigger_explosion(src)
+		playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 100, 1, -1)
+		trigger_explosion()
 
 /obj/item/device/mine/proc/check_for_id(var/mob/M)
 
@@ -651,15 +650,20 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 				del(src)
 
 /obj/item/device/mine/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(triggered) //Mine is already set to go off
+		return
+
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>\The [M] has slashed \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>")
 	playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 
 	//We move the tripwire randomly in either of the four cardinal directions
-	var/direction = pick(cardinal)
-	var/step_direction = get_step(src, direction)
-	tripwire.forceMove(step_direction)
+	triggered = 1
+	if(tripwire)
+		var/direction = pick(cardinal)
+		var/step_direction = get_step(src, direction)
+		tripwire.forceMove(step_direction)
 	trigger_explosion()
 
 /obj/effect/mine_tripwire
@@ -672,6 +676,8 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	var/obj/item/device/mine/linked_claymore
 
 /obj/effect/mine_tripwire/Crossed(AM as mob|obj)
+	if(linked_claymore.triggered) //Mine is already set to go off
+		return
 
 	if(linked_claymore && ismob(AM))
 		linked_claymore.Bumped(AM)
