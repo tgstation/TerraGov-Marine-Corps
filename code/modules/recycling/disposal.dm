@@ -958,9 +958,9 @@
 	New()
 		..()
 		if(icon_state == "pipe-s")
-			dpdir = dir | turn(dir, 180)
+			dpdir = dir|turn(dir, 180)
 		else
-			dpdir = dir | turn(dir, -90)
+			dpdir = dir|turn(dir, -90)
 
 		update()
 		return
@@ -1080,11 +1080,11 @@
 	New()
 		..()
 		if(icon_state == "pipe-j1")
-			dpdir = dir | turn(dir, -90) | turn(dir,180)
+			dpdir = dir|turn(dir, -90)|turn(dir,180)
 		else if(icon_state == "pipe-j2")
-			dpdir = dir | turn(dir, 90) | turn(dir,180)
+			dpdir = dir|turn(dir, 90)|turn(dir,180)
 		else // pipe-y
-			dpdir = dir | turn(dir,90) | turn(dir, -90)
+			dpdir = dir|turn(dir,90)|turn(dir, -90)
 		update()
 		return
 
@@ -1137,7 +1137,7 @@
 
 	New()
 		. = ..()
-		dpdir = dir | turn(dir, 180)
+		dpdir = dir|turn(dir, 180)
 		if(sort_tag) tagger_locations |= sort_tag
 		updatename()
 		updatedesc()
@@ -1201,7 +1201,7 @@
 		else if(icon_state == "pipe-j2s")
 			sortdir = turn(posdir, 90)
 
-		dpdir = sortdir | posdir | negdir
+		dpdir = sortdir|posdir|negdir
 
 	New()
 		. = ..()

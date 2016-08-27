@@ -129,7 +129,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 	paths = typesof(/datum/ammo) - blacklist
 	for(var/T in paths)
 		var/datum/ammo/A = new T
-		ammo_list[A.name] = A
+		ammo_list[A.type] = A
 
 	return 1
 

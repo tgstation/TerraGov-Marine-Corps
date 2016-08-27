@@ -318,7 +318,7 @@ obj/machinery/atmospherics/mains_pipe/split
 	New()
 		nodes.len = 2
 		..()
-		initialize_mains_directions = turn(dir, 90) | turn(dir, -90)
+		initialize_mains_directions = turn(dir, 90)|turn(dir, -90)
 		initialize_directions = dir // actually have a normal connection too
 
 	initialize()
@@ -552,7 +552,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 	New()
 		nodes.len = 2
 		..()
-		initialize_mains_directions = dir | turn(dir, 180)
+		initialize_mains_directions = dir|turn(dir, 180)
 
 	update_icon(animation)
 		var/turf/simulated/floor = loc

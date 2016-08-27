@@ -158,7 +158,7 @@
 	exclaim_verb = "hiveminds"
 	colour = "soghun"
 	key = "a"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 
 /datum/language/xenos/check_special_condition(var/mob/other)
 
@@ -184,7 +184,7 @@
 	speech_verb = "says"
 	colour = "changeling"
 	key = "7"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
@@ -202,7 +202,7 @@
 	ask_verb = "queries"
 	exclaim_verb = "declares"
 	key = "6"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 	var/drone_only
 
 /datum/language/binary/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
@@ -253,7 +253,7 @@
 	exclaim_verb = "transmits"
 	colour = "say_quote"
 	key = "d"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 	drone_only = 1
 
 // Language handling.

@@ -11,7 +11,7 @@
 	var/set_temperature = T0C + 70	//K
 	var/heating_power = 40000
 
-	flags = FPRINT
+	flags_atom = FPRINT
 
 
 /obj/machinery/space_heater/New()

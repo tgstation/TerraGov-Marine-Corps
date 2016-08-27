@@ -307,7 +307,7 @@
 		return dat
 
 	proc/confirm_menu(var/prompt,var/yes_option)
-		return "Are you sure you want to [prompt]? \[ [topic_link(src,yes_option,"OK")] | [topic_link(src,"main","Cancel")] \]"
+		return "Are you sure you want to [prompt]? \[ [topic_link(src,yes_option,"OK")]|[topic_link(src,"main","Cancel")] \]"
 
 	interact()
 		if(!interactable())
@@ -339,7 +339,7 @@
 					return
 			if(STATE_DELMESSAGE)
 				if (currmsg)
-					dat += "Are you sure you want to delete this message? \[ <A HREF='?src=\ref[src];delmessage2'>OK</A> | <A HREF='?src=\ref[src];viewmessage'>Cancel</A> \]"
+					dat += "Are you sure you want to delete this message? \[ <A HREF='?src=\ref[src];delmessage2'>OK</A>|<A HREF='?src=\ref[src];viewmessage'>Cancel</A> \]"
 				else
 					state = STATE_MESSAGELIST
 					interact()

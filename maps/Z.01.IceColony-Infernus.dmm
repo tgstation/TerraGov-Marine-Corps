@@ -585,7 +585,7 @@
 "alm" = (/turf/simulated/floor{tag = "icon-darkyellowcorners2 (NORTH)"; icon_state = "darkyellowcorners2"; dir = 1},/area/ice_colony/ground/outpost_central)
 "aln" = (/turf/simulated/floor{tag = "icon-darkyellow2 (WEST)"; icon_state = "darkyellow2"; dir = 8},/area/ice_colony/ground/outpost_central)
 "alo" = (/obj/structure/table/woodentable,/obj/item/trash/candle,/obj/effect/landmark{name = "crap_item"},/obj/structure/closet/fireaxecabinet{pixel_y = 32},/turf/simulated/floor{tag = "icon-darkyellowcorners2 (NORTH)"; icon_state = "darkyellowcorners2"; dir = 1},/area/ice_colony/ground/outpost_central)
-"alp" = (/obj/structure/table/woodentable,/obj/machinery/light{tag = "icon-tube1 (NORTH)"; icon_state = "tube1"; dir = 1},/turf/simulated/floor{tag = "icon-darkyellowcorners2 (NORTH)"; icon_state = "darkyellowcorners2"; dir = 1},/area/ice_colony/ground/outpost_central)
+"alp" = (/obj/structure/table/woodentable,/obj/machinery/light{tag = "icon-tube1 (NORTH)"; icon_state = "tube1"; dir = 1},/obj/item/weapon/dice/d20,/turf/simulated/floor{tag = "icon-darkyellowcorners2 (NORTH)"; icon_state = "darkyellowcorners2"; dir = 1},/area/ice_colony/ground/outpost_central)
 "alq" = (/obj/structure/table/woodentable,/obj/item/weapon/clipboard,/obj/structure/closet/fireaxecabinet{pixel_y = 32},/turf/simulated/floor{tag = "icon-darkyellowcorners2 (NORTH)"; icon_state = "darkyellowcorners2"; dir = 1},/area/ice_colony/ground/outpost_central)
 "alr" = (/obj/effect/landmark{name = "hunter_primary"},/turf/simulated/floor/plating,/area/ice_colony/outside)
 "als" = (/obj/machinery/door/airlock/medical{name = "Medbay Storage II"; req_access_txt = "100"},/turf/simulated/floor{tag = "icon-darkgreen2"; icon_state = "darkgreen2"},/area/ice_colony/ground/medbay)

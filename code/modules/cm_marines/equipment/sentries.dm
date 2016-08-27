@@ -2,11 +2,11 @@
 //They are built in stages, and only engineers have access to them.
 
 /obj/item/sentry_ammo
-	name = "M30 box magazine"
-	desc = "A box of 300 armor-piercing rounds for the UA 571-C Sentry Gun. Just click the sentry with this to reload it."
+	name = "M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 300, 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just click the sentry with this to reload it."
 	w_class = 4
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "a762"
+	icon_state = "ua571c" //PLACEHOLDER
 
 /obj/item/weapon/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
@@ -236,7 +236,7 @@
 	var/is_bursting = 0
 	var/obj/item/turret_laptop/laptop = null
 	var/immobile = 0 //Used for prebuilt ones.
-	var/datum/ammo/bullet/turret/ammo //Pre-makes the bullet data.
+	var/datum/ammo/bullet/turret/ammo = /datum/ammo/bullet/turret
 	var/obj/item/projectile/in_chamber = null
 
 	New()
@@ -250,7 +250,7 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
-		ammo = ammo_list["autocannon bullet"]
+		ammo = ammo_list[ammo]
 
 	Del() //Clear these for safety's sake.
 		if(gunner && gunner.turret_control)
@@ -680,7 +680,7 @@
 
 	visible_message("\The [src] is hit by the [Proj.name]!")
 
-	if(Proj.ammo.ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
+	if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
 		update_health(round(Proj.damage / 3))
 	else
 		update_health(round(Proj.damage / 10))
@@ -801,9 +801,7 @@
 	if(prob(65))
 		var/layer = MOB_LAYER-0.1
 
-		var/image/reusable/flash = rnew(/image/reusable)
-		flash.generate_image('icons/obj/projectiles.dmi',src,"muzzle_flash",layer)
-
+		var/image/reusable/flash = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,"muzzle_flash",layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)

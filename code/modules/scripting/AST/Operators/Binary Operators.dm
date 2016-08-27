@@ -105,7 +105,7 @@
 	Performs a bitwise or operation.
 
 	Example:
-	011 | 110 = 111
+	011|110 = 111
 */
 //
 	BitwiseOr

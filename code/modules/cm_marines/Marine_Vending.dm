@@ -38,29 +38,28 @@
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/device/radio/headset/msulaco = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
-					/obj/item/clothing/shoes/marine = 5
+					/obj/item/clothing/shoes/marine = 5,
+					/obj/item/clothing/under/marine = 10,
+					/obj/item/clothing/suit/storage/marine = 10,
+					/obj/item/clothing/head/helmet/marine = 10
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
-						/obj/item/ammo_magazine/smg/m39/ap = 2,
-						/obj/item/ammo_magazine/pistol/ap = 2)
+						/obj/item/ammo_magazine/pistol/ap = 2,
+						/obj/item/ammo_magazine/smg/m39/ap = 1
+						)
 
-	premium = list(/obj/item/ammo_magazine/shotgun/incendiary = 1,)
+	premium = list(/obj/item/weapon/gun/rifle/m41aMK1 = 1,)
 
 	prices = list()
 
 	select_gamemode_equipment(gamemode)
 		var/products2[]
 		switch(gamemode)
-			if("Ice Colony")	products2 = list(/obj/item/clothing/under/marine/snow = 10,
-								/obj/item/clothing/suit/storage/marine/snow = 10,
-								/obj/item/clothing/head/helmet/marine/snow = 10,
-								/obj/item/clothing/mask/rebreather/scarf = 10,
-								/obj/item/device/radio = 5)
-
-			else				products2 = list(/obj/item/clothing/under/marine = 10,
-								/obj/item/clothing/suit/storage/marine = 10,
-								/obj/item/clothing/head/helmet/marine = 10)
+			if(/datum/game_mode/ice_colony)
+				products2 = list(
+							/obj/item/clothing/mask/rebreather/scarf = 10,
+								)
 		build_inventory(products2)
 
 /obj/machinery/vending/marine/cargo_ammo
@@ -94,9 +93,23 @@
 					/obj/item/device/flashlight/ = 5
 					)
 
-	contraband = list()
+	contraband = list(
+					/obj/item/ammo_magazine/shotgun/incendiary = 0,
+					/obj/item/ammo_magazine/revolver/small = 0,
+					/obj/item/ammo_magazine/revolver/cmb = 0,
+					/obj/item/ammo_magazine/pistol/incendiary = 0,
+					/obj/item/ammo_magazine/pistol/m1911 = 0,
+					/obj/item/ammo_magazine/pistol/heavy = 0,
+					/obj/item/ammo_magazine/pistol/holdout = 0,
+					/obj/item/ammo_magazine/pistol/highpower = 0,
+					/obj/item/ammo_magazine/pistol/vp70 = 0,
+					/obj/item/ammo_magazine/smg/mp7 = 0,
+					/obj/item/ammo_magazine/smg/skorpion = 0,
+					/obj/item/ammo_magazine/smg/uzi = 0,
+					/obj/item/ammo_magazine/smg/p90 = 0
+					)
+
 	premium = list()
-	prices = list()
 	select_gamemode_equipment()
 
 /obj/machinery/vending/marine/cargo_guns
@@ -130,9 +143,23 @@
 					/obj/item/smartgun_powerpack = 0
 					)
 
-	contraband = list()
+	contraband = list(
+					/obj/item/weapon/gun/pistol/holdout = 0,
+					/obj/item/weapon/gun/pistol/highpower = 0,
+					/obj/item/weapon/gun/pistol/m1911 = 0,
+					/obj/item/weapon/gun/pistol/vp70 = 0,
+					/obj/item/weapon/gun/pistol/heavy = 0,
+					/obj/item/weapon/gun/revolver/small = 0,
+					/obj/item/weapon/gun/revolver/cmb = 0,
+					/obj/item/weapon/gun/shotgun/merc = 0,
+					/obj/item/weapon/gun/shotgun/pump/cmb = 0,
+					/obj/item/weapon/gun/shotgun/double = 0,
+					/obj/item/weapon/gun/smg/mp7 = 0,
+					/obj/item/weapon/gun/smg/skorpion = 0,
+					/obj/item/weapon/gun/smg/uzi = 0,
+					/obj/item/weapon/gun/smg/p90 = 0
+					)
 	premium = list()
-	prices = list()
 	select_gamemode_equipment()
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
@@ -216,7 +243,8 @@
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(access_marine_engprep)
 	products = list(
-					//	/obj/item/clothing/under/marine/fluff/marineengineer = 3,
+						/obj/item/clothing/under/marine/engineer = 3,
+						/obj/item/clothing/head/helmet/marine/tech = 2,
 						/obj/item/weapon/storage/backpack/marine/tech = 4,
 						/obj/item/weapon/storage/backpack/marine/satchel/tech = 2,
 						/obj/item/clothing/tie/storage/webbing = 3,
@@ -236,20 +264,7 @@
 						/obj/item/weapon/airalarm_electronics = 10,
 						/obj/item/weapon/cell/high = 10
 					)
-
-	select_gamemode_equipment(gamemode)
-		var/products2[]
-		var/contraband2[]
-		switch(gamemode)
-			if("Ice Colony")
-				products2 = list(/obj/item/clothing/under/marine/fluff/marineengineer/snow = 3)
-				contraband2 = list(/obj/item/clothing/head/helmet/marine/tech/snow = 2)
-			else
-				products2 = list(/obj/item/clothing/under/marine/fluff/marineengineer = 3)
-				contraband2 = list(/obj/item/clothing/head/helmet/marine/tech = 2)
-
-		build_inventory(products2)//Add them to the products list
-		build_inventory(contraband2,1)//Add them to the hidden list
+	contraband = list(/obj/item/weapon/cell/super = 1)
 
 /obj/machinery/vending/marine_medic
 	name = "ColMarTech Medic Vendor"
@@ -260,6 +275,8 @@
 	icon_deny = "med-deny"
 
 	products = list(
+						/obj/item/clothing/under/marine/medic = 3,
+						/obj/item/clothing/head/helmet/marine/medic = 2,
 						/obj/item/weapon/storage/backpack/marine/medic = 4,
 						/obj/item/weapon/storage/backpack/marine/satchel/medic = 2,
 						/obj/item/device/encryptionkey/headset_med = 3,
@@ -292,20 +309,8 @@
 						/obj/item/weapon/storage/firstaid/regular = 4,
 						/obj/item/weapon/storage/firstaid/adv = 3
 					)
+	contraband = list(/obj/item/weapon/reagent_containers/blood/OMinus = 1)
 
-	select_gamemode_equipment(gamemode)
-		var/products2[]
-		var/contraband2[]
-		switch(gamemode)
-			if("Ice Colony")
-				products2 = list(/obj/item/clothing/under/marine/fluff/marinemedic/snow = 3)
-				contraband2 = list(/obj/item/clothing/head/helmet/marine/medic/snow = 2)
-			else
-				products2 = list(/obj/item/clothing/under/marine/fluff/marinemedic = 3)
-				contraband2 = list(/obj/item/clothing/head/helmet/marine/medic = 2)
-
-		build_inventory(products2)//Add them to the products list
-		build_inventory(contraband2,1)//Add them to the hidden list
 
 /obj/machinery/vending/marine_special
 	name = "ColMarTech Specialist Vendor"
@@ -346,6 +351,8 @@
 	icon_deny = "tool-deny"
 
 	products = list(
+						/obj/item/clothing/suit/storage/marine/leader = 1,
+						/obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/device/squad_beacon = 3,
 						/obj/item/device/squad_beacon/bomb = 1,
@@ -354,15 +361,6 @@
 						/obj/item/device/binoculars = 1,
 						/obj/item/weapon/storage/backpack/marine/satchel = 2
 					)
-
-	select_gamemode_equipment(gamemode)
-		var/products2[]
-		switch(gamemode)
-			if("Ice Colony")	products2 = list(/obj/item/clothing/suit/storage/marine/leader/snow = 1,
-								/obj/item/clothing/head/helmet/marine/leader/snow = 1)
-			else 				products2 = list(/obj/item/clothing/suit/storage/marine/leader = 1,
-								/obj/item/clothing/head/helmet/marine/leader = 1)
-		build_inventory(products2)//Add them to the products list
 
 /obj/machinery/vending/attachments
 	name = "Armat Systems Attachments Vendor"

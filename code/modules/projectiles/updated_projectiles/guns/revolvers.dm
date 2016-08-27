@@ -1,12 +1,12 @@
 //---------------------------------------------------
 /obj/item/ammo_magazine/internal/revolver
 	name = "revolver cylinder"
-	default_ammo = "revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver
 	max_rounds = 6
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/44mag.ogg'
@@ -20,7 +20,7 @@
 	var/recent_trick //So they're not spamming tricks.
 	var/russian_roulette = 0 //God help you if you do this.
 	type_of_casings = "bullet"
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
 	New()
 		..() //Do all that other stuff.
@@ -45,7 +45,7 @@
 		playsound(user, cocked_sound, 70, 1)
 		russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 
-/obj/item/weapon/gun/revolver/proc/replace_cylinder(var/number_to_replace)
+/obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
 	var/i
@@ -74,8 +74,8 @@
 	return 1
 
 /obj/item/weapon/gun/revolver
-	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	reload(mob/user, obj/item/ammo_magazine/magazine)
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 		if(!magazine || !istype(magazine))
 			user << "<span class='warning'>That's not gonna work!</span>"
@@ -115,7 +115,7 @@
 			else 		user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
 
 	unload(mob/user)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 		if(current_mag.chamber_closed) //If it's actually closed.
 			user << "<span class='notice'>You clear the cylinder of [src].</span>"
@@ -253,18 +253,24 @@
 
 /obj/item/ammo_magazine/revolver
 	name = "\improper M44 magnum speed loader (.44)"
-	default_ammo = "revolver bullet"
-	slot_flags = null
+	default_ammo = /datum/ammo/bullet/revolver
+	flags_equip_slot = null
 	caliber = ".44"
-	icon_state = "38"
-	icon_empty = "38-0"
+	icon_state = "m44"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/m44
 
 /obj/item/ammo_magazine/revolver/marksman
 	name = "\improper M44 marksman speed loader (.44)"
-	default_ammo = "slimline revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver/marksman
 	caliber = ".44"
+	icon_state = "m_m44"
+
+/obj/item/ammo_magazine/revolver/heavy
+	name = "\improper M44 PW-MX speed loader (.44)"
+	default_ammo = /datum/ammo/bullet/revolver/heavy
+	caliber = ".44"
+	icon_state = "h_m44"
 
 /obj/item/ammo_magazine/internal/revolver/m44
 	caliber = ".44"
@@ -274,8 +280,8 @@
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M44 combat revolver"
 	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Colonial Marines, as well civilian law enforcement. Uses .44 Magnum rounds."
-	icon_state = "44"
-	item_state = "44"
+	icon_state = "m44"
+	item_state = "m44"
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 	attachable_allowed = list(
@@ -296,15 +302,16 @@
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
 
 /obj/item/ammo_magazine/revolver/upp
-	name = "\improper N-Y speed loader (7.62mm)"
-	caliber = "7.62mm"
-	icon_state = "T38"
-	icon_empty = "T38-0"
-	max_rounds = 6
+	name = "\improper N-Y speed loader (7.62x38mmR)"
+	default_ammo = /datum/ammo/bullet/revolver/small
+	caliber = "7.62×38mmR"
+	icon_state = "ny762"
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/ammo_magazine/internal/revolver/upp
-	caliber = "7.62mm"
+	default_ammo = /datum/ammo/bullet/revolver/small
+	caliber = "7.62×38mmR"
+	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/upp
 
 /obj/item/weapon/gun/revolver/upp
@@ -315,14 +322,16 @@
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
-	force = 10
-	attachable_allowed = list(
-						/obj/item/attachable/compensator)
+	force = 8
+	attachable_allowed = list(/obj/item/attachable/compensator)
 
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
 	New()
 		..()
+		damage += config.min_hit_damage_mult
+		fire_delay = config.low_fire_delay
+		recoil = 0
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 //-------------------------------------------------------
@@ -330,15 +339,14 @@
 
 /obj/item/ammo_magazine/revolver/small
 	name = "\improper S&W speed loader (.357)"
-	default_ammo = "small revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
-	icon_state = "38"
-	icon_empty = "38-0"
+	icon_state = "sw357"
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/small
 
 /obj/item/ammo_magazine/internal/revolver/small
-	default_ammo = "small revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
 	gun_type = /obj/item/weapon/gun/revolver/small
 
@@ -350,7 +358,7 @@
 	fire_sound = 'sound/weapons/pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS
 
 	New()
 		..()
@@ -366,15 +374,14 @@
 
 /obj/item/ammo_magazine/revolver/mateba
 	name = "\improper Mateba speed loader (.454)"
-	default_ammo = "high-impact revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver/highimpact
 	caliber = ".454"
-	icon_state = "T38"
-	icon_empty = "T38-0"
+	icon_state = "mateba"
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/ammo_magazine/internal/revolver/mateba
-	default_ammo = "high-impact revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver/highimpact
 	caliber = ".454"
 	gun_type = /obj/item/weapon/gun/revolver/mateba
 
@@ -394,7 +401,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_RUSSIANS
 
 	New()
 		..()
@@ -408,15 +415,14 @@
 
 /obj/item/ammo_magazine/revolver/cmb
 	name = "\improper Spearhead speed loader (.357)"
-	default_ammo = "small revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
-	icon_state = "38"
-	icon_empty = "38-0"
+	icon_state = "spearhead"
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 
 /obj/item/ammo_magazine/internal/revolver/cmb
-	default_ammo = "small revolver bullet"
+	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 

@@ -18,7 +18,7 @@
 	speed = -1.5
 	evolves_to = list("Hunter")
 	charge_type = 3 //Pounce - Runner
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 	attack_delay = -4
 	tier = 1
 	upgrade = 0

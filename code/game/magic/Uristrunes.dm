@@ -51,8 +51,8 @@ var/list/word_to_uristrune_table = null
 		animated = 0
 
 	var/bits = word_to_uristrune_bit(word1) \
-			 | word_to_uristrune_bit(word2) \
-			 | word_to_uristrune_bit(word3)
+			|word_to_uristrune_bit(word2) \
+			|word_to_uristrune_bit(word3)
 
 	return get_uristrune(bits, animated)
 

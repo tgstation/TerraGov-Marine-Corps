@@ -193,13 +193,13 @@ var/global/datum/controller/gameticker/ticker
 		if(mode.name == "Prison rescue")
 			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
-		if(mode.name == "Ice Colony")
+		if(mode.type == /datum/game_mode/ice_colony)
 			shuttle.area_offsite = locate(/area/shuttle/drop1/ice_colony)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/ice_colony)
 		for(var/obj/structure/closet/C in world) //Set up special equipment for lockers and vendors, depending on gamemode
-			C.select_gamemode_equipment(mode.name)
+			C.select_gamemode_equipment(mode.type)
 		for(var/obj/machinery/vending/V in world)
-			V.select_gamemode_equipment(mode.name)
+			V.select_gamemode_equipment(mode.type)
 	return 1
 
 /datum/controller/gameticker

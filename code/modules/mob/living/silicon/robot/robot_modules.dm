@@ -4,7 +4,7 @@
 	icon_state = "std_module"
 	w_class = 100.0
 	item_state = "electronic"
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	var/channels = list()
 	var/list/modules = list()
 	var/obj/item/emag = null

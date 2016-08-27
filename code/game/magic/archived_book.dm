@@ -40,7 +40,7 @@ datum/book_manager/proc/freeid()
 		src << "Only administrators may use this command."
 		return
 
-	var/isbn = input("ISBN number?", "Delete Book") as num | null
+	var/isbn = input("ISBN number?", "Delete Book") as num|null
 	if(!isbn)
 		return
 

@@ -72,7 +72,7 @@
 					adjustOxyLoss(175/damage_mod)
 
 				//If something went wrong, just do normal oxyloss
-				if(!(damagetype | BRUTELOSS) && !(damagetype | FIRELOSS) && !(damagetype | TOXLOSS) && !(damagetype | OXYLOSS))
+				if(!(damagetype|BRUTELOSS) && !(damagetype|FIRELOSS) && !(damagetype|TOXLOSS) && !(damagetype|OXYLOSS))
 					adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 
 				updatehealth()

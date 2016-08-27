@@ -30,7 +30,7 @@ Defined in setup.dm.
 	var/pixel_shift_x = 16 //Determines the amount of pixels to move the icon state for the overlay.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
-	flags =  FPRINT | CONDUCT
+	flags_atom =  FPRINT|CONDUCT
 	matter = list("metal" = 2000)
 	w_class = 2.0
 	force = 1.0
@@ -82,7 +82,7 @@ Defined in setup.dm.
 	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/type_of_casings = null
 
-	var/attach_features = ATTACH_PASSIVE | ATTACH_REMOVABLE
+	var/flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE
 
 
 	New() //Let's make sure if something needs an ammo type, it spawns with one.
@@ -95,7 +95,7 @@ Defined in setup.dm.
 		firing_support = null
 		firing_turf = null
 
-/obj/item/attachable/proc/Attach(var/obj/item/weapon/gun/G)
+/obj/item/attachable/proc/Attach(obj/item/weapon/gun/G)
 	if(!istype(G)) return //Guns only
 
 	/*
@@ -134,19 +134,19 @@ Defined in setup.dm.
 	G.recoil 			+= recoil_mod
 	G.force 			+= melee_mod
 
-	if(G.burst_amount <= 1) G.gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
+	if(G.burst_amount <= 1) G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
 	G.update_force_list() //This updates the gun to use proper force verbs.
 
 	switch(twohanded_mod)
-		if(1) G.flags |= TWOHANDED //Add two handed flag.
-		if(2) G.flags &= ~TWOHANDED //Remove two handed flag.
+		if(1) G.flags_atom |= TWOHANDED //Add two handed flag.
+		if(2) G.flags_atom &= ~TWOHANDED //Remove two handed flag.
 
 	if(silence_mod)
-		G.gun_features |= GUN_SILENCED
+		G.flags_gun_features |= GUN_SILENCED
 		G.muzzle_flash = null
 		G.fire_sound = pick('sound/weapons/silenced_shot1.ogg','sound/weapons/silenced_shot2.ogg')
 
-/obj/item/attachable/proc/Detach(var/obj/item/weapon/gun/G)
+/obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
 	if(!istype(G)) return //Guns only
 	if(G.zoom) G.zoom() //Remove zooming out.
 
@@ -175,29 +175,29 @@ Defined in setup.dm.
 	G.update_force_list()
 
 	//We need to know if the gun was originally two handed.
-	var/temp_flags = initial(G.flags)
+	var/temp_flags = initial(G.flags_atom)
 	switch(twohanded_mod) //Not as quick as just initial()ing it, but pretty fast regardless.
 		if(1) //We added the two handed mod.
-			if( !(temp_flags & TWOHANDED) ) G.flags &= ~TWOHANDED//Gun wasn't two handed initially.
+			if( !(temp_flags & TWOHANDED) ) G.flags_atom &= ~TWOHANDED//Gun wasn't two handed initially.
 		if(2) //We removed the two handed mod.
-			if(temp_flags & TWOHANDED) G.flags |= TWOHANDED //Gun was two handed before.
+			if(temp_flags & TWOHANDED) G.flags_atom |= TWOHANDED //Gun was two handed before.
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
-		G.gun_features &= ~GUN_SILENCED
+		G.flags_gun_features &= ~GUN_SILENCED
 		G.muzzle_flash = initial(G.muzzle_flash)
 		G.fire_sound = initial(G.fire_sound)
 	if(light_mod)  //Remember to turn the lights off
-		if(G.gun_features & GUN_FLASHLIGHT_ON)
+		if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
 			var/atom/movable/light_source = ismob(G.loc) ? G.loc : G
 			light_source.SetLuminosity(-light_mod)
-		G.gun_features &= ~GUN_FLASHLIGHT_ON
+		G.flags_gun_features &= ~GUN_FLASHLIGHT_ON
 
 	loc = get_turf(G)
 
-/obj/item/attachable/proc/activate_attachment(var/atom/target, var/mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
+/obj/item/attachable/proc/activate_attachment(atom/target, mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
 
-/obj/item/attachable/proc/fire_attachment(var/atom/target,var/obj/item/weapon/gun/gun, var/mob/user) //For actually shooting those guns.
+/obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
 	return
 
 /obj/item/attachable/proc/get_into_position(mob/living/user, obj/structure/support_structure, turf/active_turf, flipped = 2)
@@ -376,17 +376,17 @@ Defined in setup.dm.
 	icon_state = "flashlight"
 	light_mod = 7
 	slot = "rail"
-	attach_features = ATTACH_PASSIVE | ATTACH_REMOVABLE | ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		if(target)
-			var/flashlight_on = (target.gun_features & GUN_FLASHLIGHT_ON) ? -1 : 1
+			var/flashlight_on = (target.flags_gun_features & GUN_FLASHLIGHT_ON) ? -1 : 1
 			var/atom/movable/light_source =  user ? user : target
 			light_source.SetLuminosity(light_mod * flashlight_on)
-			target.gun_features ^= GUN_FLASHLIGHT_ON
+			target.flags_gun_features ^= GUN_FLASHLIGHT_ON
 			target.update_attachable(slot)
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I, mob/user)
 		if(istype(I,/obj/item/weapon/screwdriver))
 			user << "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>"
 			if(loc == user)
@@ -405,7 +405,7 @@ Defined in setup.dm.
 	w_class_mod = 2
 	melee_mod = -10
 
-	attach_features = ATTACH_PASSIVE | ATTACH_REMOVABLE | ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	New()
 		..()
@@ -503,25 +503,25 @@ Defined in setup.dm.
 		..()
 		accuracy_mod = config.min_hit_accuracy_mult
 		recoil_mod = -config.min_recoil_value
-		scatter_mod = -config.low_scatter_value
+		scatter_mod = -config.min_scatter_value
 		delay_mod = config.high_fire_delay
 
 /obj/item/attachable/stock/shotgun
-	name = "M37 Wooden Stock"
+	name = "\improper M37 wooden stock"
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
 	slot = "stock"
 	icon_state = "stock"
 
 /obj/item/attachable/stock/slavic
-	name = "Wooden Stock"
+	name = "wooden stock"
 	desc = "A non-standard heavy wooden stock for Slavic firearms."
 	icon_state = "slavicstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	attach_features = ATTACH_PASSIVE
+	flags_attach_features = ATTACH_PASSIVE
 
 /obj/item/attachable/stock/rifle
-	name = "M41A Marksman Stock"
+	name = "\improper M41A skeleton stock"
 	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
 	melee_mod = 5
@@ -534,8 +534,13 @@ Defined in setup.dm.
 		..()
 		accuracy_mod = config.low_hit_accuracy_mult
 
+/obj/item/attachable/stock/rifle/marksman
+	name = "\improper M41A marksman stock"
+	icon_state = "m4markstock"
+	flags_attach_features = ATTACH_PASSIVE
+
 /obj/item/attachable/stock/revolver
-	name = "44 Magnum Sharpshooter Stock"
+	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
 	slot = "stock"
 	melee_mod = -5
@@ -560,7 +565,7 @@ Defined in setup.dm.
 	max_range = 7
 	slot = "under"
 	fire_sound = 'sound/weapons/grenade_shot.ogg'
-	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	examine()
 		..()
@@ -608,7 +613,7 @@ Defined in setup.dm.
 	max_range = 5
 	slot = "under"
 	fire_sound = 'sound/weapons/flamethrower_shoot.ogg'
-	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	examine()
 		..()
@@ -652,7 +657,7 @@ Defined in setup.dm.
 		distance++
 		sleep(1)
 
-/obj/item/attachable/flamer/proc/flame_turf(var/turf/T,var/mob/user)
+/obj/item/attachable/flamer/proc/flame_turf(turf/T, mob/living/user)
 	if(!istype(T)) return
 
 	if(!locate(/obj/flamer_fire) in T) // No stacking flames!
@@ -684,7 +689,7 @@ Defined in setup.dm.
 	slot = "under"
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	type_of_casings = "shell"
-	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION | ATTACH_CONTINUOUS | ATTACH_PROJECTILE
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_CONTINUOUS|ATTACH_PROJECTILE
 
 	examine()
 		..()
@@ -701,7 +706,7 @@ Defined in setup.dm.
 	icon_state = "sniperscope"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	attach_features = ATTACH_REMOVABLE | ATTACH_ACTIVATION | ATTACH_PASSIVE
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PASSIVE
 
 	New()
 		..()
@@ -730,7 +735,7 @@ Defined in setup.dm.
 
 	pixel_shift_x = 20
 	pixel_shift_y = 16
-	attach_features = ATTACH_PASSIVE
+	flags_attach_features = ATTACH_PASSIVE
 
 	New()
 		..()
@@ -743,7 +748,7 @@ Defined in setup.dm.
 	desc = "A heavy barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
 	accuracy_mod = 10
-	attach_features = ATTACH_PASSIVE
+	flags_attach_features = ATTACH_PASSIVE
 
 	New()
 		..()
@@ -755,5 +760,5 @@ Defined in setup.dm.
 	icon_state = "smartbarrel"
 	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-	attach_features = ATTACH_PASSIVE
+	flags_attach_features = ATTACH_PASSIVE
 

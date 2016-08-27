@@ -167,7 +167,7 @@
 		shock(user, 5, 0.2)
 
 	else
-		if (W.flags & CONDUCT)
+		if (W.flags_atom & CONDUCT)
 			shock(user, 50, 0.7)
 
 	src.add_fingerprint(user)
@@ -220,7 +220,7 @@
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 50, "glass" = 20)
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 

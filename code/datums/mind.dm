@@ -1209,31 +1209,20 @@ datum/mind
 
 
 /mob/proc/mind_initialize()
-	if(mind)
-		mind.key = key
+	if(mind) mind.key = key
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		if(ticker)
-			ticker.minds += mind
-		else
-			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
-	if(!mind.name)	mind.name = real_name
-	mind.current = src
+		if(ticker) ticker.minds += mind
+		else world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
 
-/mob/dead/mind_initialize()
-	if(mind)
-		mind.key = key
-	else
-		mind = new /datum/mind(key)
-		mind.original = src
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Squad Marine"	//defualt
+	if(!mind.assigned_role)	mind.assigned_role = "Squad Marine"	//default
 
 //MONKEY
 /mob/living/carbon/monkey/mind_initialize()
@@ -1245,29 +1234,10 @@ datum/mind
 	mind.assigned_role = "slime"
 
 //XENO
-/mob/living/carbon/alien/mind_initialize()
+/mob/living/carbon/Xenomorph/mind_initialize()
 	..()
-	mind.assigned_role = "Alien"
-	//XENO HUMANOID
-/mob/living/carbon/alien/humanoid/queen/mind_initialize()
-	..()
-	mind.special_role = "Queen"
-
-/mob/living/carbon/alien/humanoid/hunter/mind_initialize()
-	..()
-	mind.special_role = "Hunter"
-
-/mob/living/carbon/alien/humanoid/drone/mind_initialize()
-	..()
-	mind.special_role = "Drone"
-
-/mob/living/carbon/alien/humanoid/sentinel/mind_initialize()
-	..()
-	mind.special_role = "Sentinel"
-	//XENO LARVA
-/mob/living/carbon/alien/larva/mind_initialize()
-	..()
-	mind.special_role = "Larva"
+	mind.assigned_role = "MODE"
+	mind.special_role = "Xenomorph"
 
 //AI
 /mob/living/silicon/ai/mind_initialize()

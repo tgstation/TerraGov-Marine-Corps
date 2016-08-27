@@ -53,22 +53,22 @@
 #define BODYTEMP_HEAT_DAMAGE_LIMIT 360.15 // The limit the human body can take before it starts taking damage from heat.
 #define BODYTEMP_COLD_DAMAGE_LIMIT 260.15 // The limit the human body can take before it starts taking damage from coldness.
 
-#define SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
-#define SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
-#define SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		5000	//These need better heat protect, but not as good heat protect as firesuits.
-#define FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
-#define FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	30000 //for fire helmet quality items (red and white hardhats)
-#define HELMET_MIN_COLD_PROTECTION_TEMPERATURE 			250	//For normal helmets
-#define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
-#define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			250	//For armor
-#define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
+#define SPACE_HELMET_min_cold_protection_temperature 	2.0 //what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
+#define SPACE_SUIT_min_cold_protection_temperature 		2.0 //what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
+#define SPACE_SUIT_max_heat_protection_temperature 		5000	//These need better heat protect, but not as good heat protect as firesuits.
+#define FIRESUIT_max_heat_protection_temperature 		30000 //what max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.
+#define FIRE_HELMET_max_heat_protection_temperature 	30000 //for fire helmet quality items (red and white hardhats)
+#define HELMET_min_cold_protection_temperature 			250	//For normal helmets
+#define HELMET_max_heat_protection_temperature 			600	//For normal helmets
+#define ARMOR_min_cold_protection_temperature 			250	//For armor
+#define ARMOR_max_heat_protection_temperature 			600	//For armor
 
-#define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
-#define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves
-#define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For gloves
-#define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For gloves
+#define GLOVES_min_cold_protection_temperature 			200	//For some gloves (black and)
+#define GLOVES_max_heat_protection_temperature 			650	//For some gloves
+#define SHOE_min_cold_protection_temperature 			200	//For gloves
+#define SHOE_max_heat_protection_temperature 			650	//For gloves
 
-#define ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE 		220 //For the ice planet map protection from the elements.
+#define ICE_PLANET_min_cold_protection_temperature 		220 //For the ice planet map protection from the elements.
 
 #define PRESSURE_DAMAGE_COEFFICIENT 4 //The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
 #define MAX_HIGH_PRESSURE_DAMAGE 4	//This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(
@@ -190,9 +190,9 @@ var/MAX_EXPLOSION_RANGE = 14
 
 //FLAGS BITMASK
 /*
-Cleaned these up a lot. Everything that applies to equipment is in flags_inv instead of
+Cleaned these up a lot. Everything that applies to equipment is in flags_inventory instead of
 flags. So I had to manually go through and reset all of the flags. Regular item flags
-should all be unique more or less. flags_inv can double up.
+should all be unique more or less. flags_inventory can double up.
 ~N
 */
 
@@ -216,6 +216,7 @@ should all be unique more or less. flags_inv can double up.
 #define FPRINT					16		// takes a fingerprint
 #define CONDUCT					32		// conducts electricity (metal etc.)
 #define ON_BORDER				64		// item has priority to check when entering or leaving
+#define DIRLOCK					128		// Item won't change direction when Moving()ing. Useful for items that have several dir states.
 //Reserved space for any general flags here.
 //==========================================================================================
 #define	NOREACT					1024	//Reagents dont' react inside this container.
@@ -227,8 +228,8 @@ should all be unique more or less. flags_inv can double up.
 #define WIELDED					32768		// The item is wielded with both hands.
 //==========================================================================================
 
-//FLAGS_INV
-//Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
+//flags_inventory
+//Bit flags for the flags_inventory variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 //It also determines a few other things now, and doesn't just apply to clothing. ~N
 #define BLOCKPHORON 	65536		// Does not get contaminated by phoron.
 
@@ -253,18 +254,36 @@ should all be unique more or less. flags_inv can double up.
 #define COVEREYES		128 // Covers the eyes/protects them.
 #define COVERMOUTH		256 // Covers the mouth.
 #define ALLOWINTERNALS	512	//mask allows internals
-#define BLOCKGASEFFECT	1024 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define ALLOWREBREATH	1024 //Mask allows to breath in really hot or really cold air.
+#define BLOCKGASEFFECT	2048 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCKSHARPOBJ 	2048  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define NOPRESSUREDMAGE 4096 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
+#define BLOCKSHARPOBJ 	4096  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define NOPRESSUREDMAGE 8192 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
 //SHOES ONLY===========================================================================================
 #define NOSLIPPING		1	//prevents from slipping on wet floors, in space etc
 //SHOES ONLY===========================================================================================
+
+//===========================================================================================
+//Marine armor only, use for flags_marine_armor.
+#define ARMOR_SQUAD_OVERLAY		1
+#define ARMOR_LAMP_OVERLAY		2
+#define ARMOR_LAMP_ON			4
+#define ARMOR_IS_REINFORCED		8
+//===========================================================================================
+
+//===========================================================================================
+//Marine helmet only, use for flags_marine_helmet.
+#define HELMET_SQUAD_OVERLAY	1
+#define HELMET_GARB_OVERLAY		2
+#define HELMET_DAMAGE_OVERLAY	4
+#define HELMET_STORE_GARB		8
+#define HELMET_IS_DAMAGED		16
+//===========================================================================================
 
 //slots
 #define slot_back 1
@@ -310,7 +329,7 @@ should all be unique more or less. flags_inv can double up.
 #define FULL_BODY		8191
 
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
-// Used with human/proc/get_heat_protection() and human/proc/get_cold_protection()
+// Used with human/proc/get_flags_heat_protection() and human/proc/get_flags_cold_protection()
 // The values here should add up to 1.
 // Hands and feet have 2.5%, arms and legs 7.5%, each of the torso parts has 15% and the head has 30%
 #define THERMAL_PROTECTION_HEAD			0.3
@@ -962,6 +981,7 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define GUN_ON_MERCS			2048 //Unused right now.
 #define GUN_ON_RUSSIANS			4096 //Unused right now.
 #define GUN_WY_RESTRICTED		8192
+#define GUN_SPECIALIST			16384
 
 //Gun attachable related flags.
 #define ATTACH_PASSIVE		1

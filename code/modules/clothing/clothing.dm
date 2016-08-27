@@ -90,7 +90,7 @@
 	name = "ears"
 	w_class = 1.0
 	throwforce = 2
-	slot_flags = SLOT_EARS
+	flags_equip_slot = SLOT_EARS
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -108,7 +108,7 @@
 		return
 
 	var/obj/item/clothing/ears/O
-	if(slot_flags & SLOT_TWOEARS )
+	if(flags_equip_slot & SLOT_TWOEARS )
 		O = (H.l_ear == src ? H.r_ear : H.l_ear)
 		user.u_equip(O)
 		if(!istype(src,/obj/item/clothing/ears/offear))
@@ -136,7 +136,7 @@
 	w_class = 5.0
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
-	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	flags_equip_slot = SLOT_EARS|SLOT_TWOEARS
 
 	New(var/obj/O)
 		name = O.name
@@ -150,7 +150,7 @@
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	flags_equip_slot = SLOT_EARS|SLOT_TWOEARS
 
 
 
@@ -168,10 +168,10 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	name = "suit"
 	var/fire_resist = T0C+100
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	slot_flags = SLOT_OCLOTHING
+	flags_equip_slot = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = 3

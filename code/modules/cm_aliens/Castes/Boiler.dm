@@ -57,7 +57,7 @@
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
-		bomb_ammo = ammo_list["glob of gas"]
+		bomb_ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
 
 	Del()
 		SetLuminosity(0)
@@ -117,8 +117,8 @@
 
 	if(!check_state()) return
 
-	src << "\blue You will now fire [bomb_ammo.name == "glob of gas" ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]"
-	bomb_ammo = bomb_ammo.name == "glob of gas" ? ammo_list["glob of acid"] : ammo_list["glob of gas"]
+	src << "\blue You will now fire [bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]"
+	bomb_ammo = bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? ammo_list[/datum/ammo/xeno/boiler_gas/corrosive] : ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bombard()
 	set name = "Bombard (200-250)"
@@ -243,7 +243,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 1
 	density = 0
 	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
@@ -287,7 +287,7 @@
 	if(isYautja(M) && prob(75))
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(40))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(40))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
@@ -318,7 +318,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 1
 	var/datum/effect/effect/system/smoke_spread/xeno_weaken/smoke
 
@@ -363,7 +363,7 @@
 	if(M.stat)
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(75))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(75))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else

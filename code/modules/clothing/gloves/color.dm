@@ -7,10 +7,10 @@
 	permeability_coefficient = 0.05
 	item_color="brown"
 
-	cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
+	flags_heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
 
 /obj/item/clothing/gloves/fyellow                             //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
@@ -32,10 +32,10 @@
 	item_state = "bgloves"
 	item_color="brown"
 
-	cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
+	flags_heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
 
 
 	hos

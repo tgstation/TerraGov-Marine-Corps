@@ -5,11 +5,10 @@
 /obj/item/ammo_magazine/sniper
 	name = "\improper M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
-	caliber = "10×28mm Caseless"
-	icon_state = "75"
-	icon_empty = "75-0"
+	caliber = "10×28mm"
+	icon_state = "m42c" //PLACEHOLDER
 	max_rounds = 15
-	default_ammo = "sniper bullet"
+	default_ammo = /datum/ammo/bullet/sniper
 	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
 
 	New()
@@ -19,13 +18,11 @@
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper M42A incendiary magazine (10x28mm)"
-	default_ammo = "incendiary sniper bullet"
+	default_ammo = /datum/ammo/bullet/sniper/incendiary
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper M42A flak magazine (10x28mm)"
-	default_ammo = "flak sniper bullet"
-	icon_state = "a762"
-	icon_empty = "a762-0"
+	default_ammo = /datum/ammo/bullet/sniper/flak
 
 //Pow! Headshot.
 /obj/item/weapon/gun/rifle/sniper/M42A
@@ -42,9 +39,10 @@
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/bipod)
 
-	gun_features = GUN_AUTO_EJECTOR
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
 
 	New()
+		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_m42a") )
 		..()
 		accuracy += config.low_hit_accuracy_mult
 		recoil = config.min_recoil_value
@@ -53,7 +51,7 @@
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = "" //Let's make it invisible. The sprite already has one.
-		S.attach_features &= ~ATTACH_REMOVABLE
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
@@ -64,15 +62,12 @@
 	icon_state = "m_m42a" //NO BACK STATE
 	item_state = "m_m42a"
 
-/obj/item/weapon/gun/rifle/sniper/M42A/snow
-	icon_state = "s_m42a" //NO BACK STATE
-	item_state = "s_m42a"
-
 /obj/item/ammo_magazine/sniper/elite
 	name = "\improper M42C marksman magazine (10x99mm)"
-	default_ammo = "supersonic sniper bullet"
+	default_ammo = /datum/ammo/bullet/sniper/elite
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = "10×99mm"
+	icon_state = "m42c"
 	max_rounds = 6
 
 /obj/item/weapon/gun/rifle/sniper/elite
@@ -86,7 +81,7 @@
 	force = 17
 	zoomdevicename = "scope"
 	attachable_allowed = list()
-	gun_features = GUN_AUTO_EJECTOR | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
 	New()
 		..()
@@ -97,22 +92,22 @@
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = "pmcscope"
-		S.attach_features &= ~ATTACH_REMOVABLE
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
 		update_attachables()
 
-	simulate_recoil(var/total_recoil = 0, var/mob/user, atom/target)
+	simulate_recoil(total_recoil = 0, mob/user, atom/target)
 		. = ..()
 		if(.)
 			var/mob/living/carbon/human/PMC_sniper = user
-			var/o_x = target.x < user.x ? -1 : 1
-			var/o_y = target.y < user.y ? -1 : 1
-			var/new_x = target.x == user.x ? user.x : user.x + o_x
-			var/new_y = target.y == user.y ? user.y : user.y + o_y
-			var/near_target = locate(new_x,new_y,target.z)
-			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/smartgunner/gunner) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
+			if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
+				var/o_x = target.x < user.x ? -1 : 1
+				var/o_y = target.y < user.y ? -1 : 1
+				var/new_x = target.x == user.x ? user.x : user.x + o_x
+				var/new_y = target.y == user.y ? user.y : user.y + o_y
+				var/near_target = locate(new_x,new_y,target.z)
 				PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 				step_away(PMC_sniper,near_target)
 				PMC_sniper.Weaken(5)
@@ -122,9 +117,8 @@
 	name = "\improper SVD magazine (7.62x54mmR)"
 	desc = "A large caliber magazine for the SVD sniper rifle."
 	caliber = "7.62×54mmR"
-	icon_state = "a762"
-	icon_empty = "a762-0"
-	default_ammo = "sniper bullet"
+	icon_state = "svd003"
+	default_ammo = /datum/ammo/bullet/sniper
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
 
@@ -146,7 +140,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/slavic)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_ON_MERCS | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_ON_MERCS|GUN_ON_RUSSIANS|GUN_SPECIALIST
 
 	New()
 		..()
@@ -160,7 +154,7 @@
 		S = new /obj/item/attachable/slavicbarrel(src)
 		S.Attach(src)
 		S = new /obj/item/attachable/stock/slavic(src)
-		S.attach_features &= ~ATTACH_REMOVABLE
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		update_attachables()
 
@@ -169,33 +163,31 @@
 /obj/item/ammo_magazine/internal/smartgun
 	name = "integrated smartgun belt"
 	caliber = "10×28mm"
-	icon_state = ".45a"
-	icon_empty = ".45a0"
 	max_rounds = 50 //Should be 500 in total.
-	default_ammo = "smartgun bullet"
+	default_ammo = /datum/ammo/bullet/smartgun
 
 //Come get some.
 /obj/item/weapon/gun/smartgun
 	name = "\improper M56 smartgun"
-	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a Powerpack. Click the powerpack icon in the top left to reload."
+	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left to reload."
 	icon_state = "m56"
 	item_state = "m56"
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	slot_flags = 0
+	flags_equip_slot = 0
 	w_class = 5
 	force = 20
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety off.
-	flags = FPRINT | CONDUCT | TWOHANDED
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	attachable_allowed = list(
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly)
 
-	gun_features = GUN_INTERNAL_MAG
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
 
 
 	New()
@@ -214,7 +206,7 @@
 	able_to_fire(mob/user)
 		if(!ishuman(user)) return
 		var/mob/living/carbon/human/smart_gunner = user
-		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/smartgunner) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
+		if( !istype(smart_gunner.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(smart_gunner.back,/obj/item/smartgun_powerpack))
 			click_empty(smart_gunner)
 			return
 		return ..()
@@ -239,19 +231,20 @@
 		return 1
 
 /obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	user << "\icon[src] You [restriction_toggled ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "not harm marines"]."
+	var/restriction_on = restriction_toggled
+	user << "\icon[src] You [restriction_on? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_on ? "harm anyone in your way" : "not harm marines"]."
 	playsound(loc,'sound/machines/click.ogg', 50, 1)
-	ammo = restriction_toggled ? ammo_list["irradiated smartgun bullet"] : ammo_list["smartgun bullet"]
+	ammo = restriction_on ? ammo_list[/datum/ammo/bullet/smartgun/dirty] : ammo_list[/datum/ammo/bullet/smartgun]
 	restriction_toggled = !restriction_toggled
 
-/obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, var/obj/item/smartgun_powerpack/power_pack)
+/obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
 	set waitfor = 0
 	sleep(5)
 	if(power_pack && power_pack.loc)
 		power_pack.attack_self(smart_gunner)
 
 /obj/item/ammo_magazine/internal/smartgun/dirty
-	default_ammo = "irradiated smartgun bullet"
+	default_ammo = /datum/ammo/bullet/smartgun/dirty
 	gun_type = /obj/item/weapon/gun/smartgun/dirty
 
 /obj/item/weapon/gun/smartgun/dirty
@@ -261,7 +254,7 @@
 	restriction_toggled = 0
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
 	attachable_allowed = list() //Cannot be upgraded.
-	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
 	New()
 		..()
@@ -289,11 +282,10 @@
 	cocked_sound = 'sound/weapons/grenadelaunch.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6
-	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness)
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
-	flags = FPRINT | CONDUCT | TWOHANDED
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
 
 	New()
 		set waitfor = 0
@@ -314,7 +306,7 @@
 			if (!(usr in view(2)) && usr!=src.loc) return
 			usr << "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades."
 
-	attackby(var/obj/item/I, var/mob/user)
+	attackby(obj/item/I, mob/user)
 		if((istype(I, /obj/item/weapon/grenade)))
 			if(grenades.len < max_grenades)
 				user.drop_item()
@@ -328,7 +320,7 @@
 		else if(istype(I,/obj/item/attachable))
 			if(check_inactive_hand(user)) attach_to_gun(user,I)
 
-	afterattack(atom/target, mob/user , flag)
+	afterattack(atom/target, mob/user, flag)
 		if(able_to_fire(user))
 			if(get_dist(target,user) <= 2)
 				user << "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>"
@@ -345,7 +337,7 @@
 	reload_into_chamber()
 		return
 
-	unload(var/mob/user)
+	unload(mob/user)
 		if(grenades.len)
 			var/obj/item/weapon/grenade/nade = grenades[grenades.len] //Grab the last one.
 			if(user)
@@ -380,18 +372,17 @@
 
 /obj/item/ammo_magazine/rocket
 	name = "\improper 84mm high-explosive rocket"
-	desc = "A rocket tube for an M83 SADAR rocket. Activate it without a missile inside to receive some materials."
+	desc = "A rocket tube for an M83 SADAR rocket."
 	caliber = "rocket"
-	icon_state = "rocket_tube"
-	icon_empty = "rocket_tube_empty"
+	icon_state = "rocket"
 	origin_tech = "combat=3;materials=3"
 	matter = list("metal" = 100000)
 	w_class = 3.0
 	max_rounds = 1
-	default_ammo = "high explosive rocket"
+	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user)
 		if(current_rounds <= 0)
 			user << "<span class='notice'>You begin taking apart the empty tube frame...</span>"
 			if(do_after(user,10))
@@ -403,26 +394,29 @@
 		else user << "Not with a missile inside!"
 
 	update_icon()
-		..()
-		if(current_rounds <= 0) name = "empty rocket frame"
+		overlays.Cut()
+		if(current_rounds <= 0)
+			name = "empty rocket frame"
+			desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
+			icon_state = type == /obj/item/ammo_magazine/rocket/m57a4? "quad_rocket_e" : "rocket_e"
 
 /obj/item/ammo_magazine/rocket/ap
 	name = "\improper 84mm anti-armor rocket"
-	icon_state = "rocket_tube_ap"
-	default_ammo = "anti-armor rocket"
+	icon_state = "ap_rocket"
+	default_ammo = /datum/ammo/rocket/ap
 	desc = "A tube for an AP rocket, the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
 
 /obj/item/ammo_magazine/rocket/wp
 	name = "\improper 84mm white-phosphorus rocket"
-	icon_state = "rocket_tube_wp"
-	default_ammo = "white phosphorous rocket"
+	icon_state = "wp_rocket"
+	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
 /obj/item/ammo_magazine/internal/launcher/rocket
 	name = "\improper 84mm internal tube"
 	desc = "The internal tube of a M83 SADAR."
 	caliber = "rocket"
-	default_ammo = "high explosive rocket"
+	default_ammo = /datum/ammo/rocket
 	max_rounds = 1
 	reload_delay = 60
 
@@ -434,14 +428,14 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 100000)
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket
-	slot_flags = 0
+	flags_equip_slot = 0
 	w_class = 5
 	force = 15
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
-	flags = FPRINT | CONDUCT | TWOHANDED
-	gun_features = GUN_INTERNAL_MAG
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
 	var/datum/effect/effect/system/smoke_spread/puff
 
 	New()
@@ -491,8 +485,8 @@
 		if(refund) current_mag.current_rounds++
 		return 1
 
-	reload(mob/user = null, var/obj/item/ammo_magazine/rocket)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	reload(mob/user, obj/item/ammo_magazine/rocket)
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 		if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
 			user << "<span class='warning'>That's not going to fit!</span>"
@@ -539,18 +533,17 @@
 	name = "\improper 84mm thermobaric rocket array"
 	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
-	icon_state = "rocket_tube4"
-	icon_empty = "rocket_tube_empty4"
+	icon_state = "quad_rocket"
 	origin_tech = "combat=4;materials=4"
 	max_rounds = 4
-	default_ammo = "thermobaric rocket"
+	default_ammo = /datum/ammo/rocket/wp/quad
 	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
 	reload_delay = 200
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an M83AM Thermobaric Launcher."
 	caliber = "rocket array"
-	default_ammo = "thermobaric rocket"
+	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4
 
 /obj/item/weapon/gun/launcher/rocket/m57a4
@@ -561,7 +554,7 @@
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	attachable_allowed = list()
-	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
 	New()
 		..()
@@ -573,5 +566,5 @@
 /obj/item/weapon/flamethrower/full/M240
 	name = "\improper M240 incinerator unit"
 	desc = "A carbine-style flamethrower carried by the USCM in close quarters engagements. It is especially effective against soft-targets and in situations where area denial is important."
-	flags = FPRINT | CONDUCT | TWOHANDED
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
 

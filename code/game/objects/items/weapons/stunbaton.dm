@@ -3,7 +3,7 @@
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
 	item_state = "baton"
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	force = 15
 	sharp = 0
 	edge = 0
@@ -191,4 +191,4 @@
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
 	hitcost = 2500
 	attack_verb = list("poked")
-	slot_flags = null
+	flags_equip_slot = null

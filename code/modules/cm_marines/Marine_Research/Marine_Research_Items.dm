@@ -54,13 +54,13 @@
 	if (!istype(A) || !istype(usr))
 		usr << "Doesn't work that way"
 		return
-	if (A.reinforced)
+	if (A.flags_marine_armor & ARMOR_IS_REINFORCED)
 		usr <<"This armor is already reinforced."
 		return
 	usr << "You reinforce the armor with some Chitin Plating..."
 	A.armor = list(melee = 70, bullet = 90, laser = 7, energy = 40, bomb = 50, bio = 40, rad = 20)
 	A.slowdown++
-	A.reinforced = 1
+	A.flags_marine_armor |= ARMOR_IS_REINFORCED
 	del(src)
 	return
 

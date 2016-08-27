@@ -5,8 +5,8 @@
 	icon_state = "flashlight"
 	item_state = "flashlight"
 	w_class = 2
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 
 	matter = list("metal" = 50,"glass" = 20)
 
@@ -83,8 +83,8 @@
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags_inv & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inv & COVEREYES) || (H.glasses && H.glasses.flags_inv & COVEREYES)))
-			user << "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inv & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inv & COVEREYES) ? "mask": "glasses"] first.</span>"
+		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
+			user << "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first.</span>"
 			return
 
 		if(M == user)	//they're using it on themselves
@@ -131,7 +131,7 @@
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = ""
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	brightness_on = 2
 	w_class = 1
 

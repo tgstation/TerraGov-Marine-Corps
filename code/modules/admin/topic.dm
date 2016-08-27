@@ -789,7 +789,7 @@
 				if(!reason)
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
 				M << "\red This is a temporary ban, it will be removed in [mins] minutes."
 				feedback_inc("ban_tmp",1)
@@ -799,9 +799,9 @@
 					M << "\red To try to resolve this matter head to [config.banappeals]"
 				else
 					M << "\red No ban appeals URL has been set."
-				log_admin("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+				log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-				notes_add(M.ckey, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [reason]", usr)
+				notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
 
 				del(M.client)
 				//del(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
@@ -822,12 +822,12 @@
 					M << "\red To try to resolve this matter head to [config.banappeals]"
 				else
 					M << "\red No ban appeals URL has been set."
-				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: Permanent | Reason: [reason]")
-				log_admin("[usr.client.ckey] has banned [M.ckey] | Duration: Permanent | Reason: [reason]")
+				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: Permanent|Reason: [reason]")
+				log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: Permanent|Reason: [reason]")
 				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 				feedback_inc("ban_perma",1)
 				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
-				notes_add(M.ckey, "Banned by [usr.client.ckey] | Duration: Permanent | Reason: [reason]", usr)
+				notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: Permanent|Reason: [reason]", usr)
 
 				del(M.client)
 				//del(M)
@@ -865,7 +865,7 @@
 			if("Cancel")
 				return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-		ban_unban_log_save("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+		ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
 		M << "\red This is a temporary ban, it will be removed in [mins] minutes."
 		M << "\blue This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section."
@@ -877,9 +877,9 @@
 		feedback_inc("ban_tmp", 1)
 		DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 		feedback_inc("ban_tmp_mins", mins)
-		log_admin("[usr.client.ckey] has banned [M.ckey] | Duration: [mins] minutes | Reason: [reason]")
+		log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-		notes_add(M.ckey, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [reason]", usr)
+		notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
 		del(M.client)
 
 
@@ -1304,26 +1304,26 @@
 			var/foo = ""
 			if (ismob(M) && M.client)
 				if(!M.client.authenticated && !M.client.authenticating)
-					foo += text("\[ <A HREF='?src=\ref[];adminauth=\ref[]'>Authorize</A> | ", src, M)
+					foo += text("\[ <A HREF='?src=\ref[];adminauth=\ref[]'>Authorize</A>|", src, M)
 				else
-					foo += text("\[ <B>Authorized</B> | ")
+					foo += text("\[ <B>Authorized</B>|")
 				if(M.start)
 					if(!istype(M, /mob/living/carbon/monkey))
-						foo += text("<A HREF='?src=\ref[];monkeyone=\ref[]'>Monkeyize</A> | ", src, M)
+						foo += text("<A HREF='?src=\ref[];monkeyone=\ref[]'>Monkeyize</A>|", src, M)
 					else
-						foo += text("<B>Monkeyized</B> | ")
+						foo += text("<B>Monkeyized</B>|")
 					if(istype(M, /mob/living/silicon/ai))
-						foo += text("<B>Is an AI</B> | ")
+						foo += text("<B>Is an AI</B>|")
 					else
-						foo += text("<A HREF='?src=\ref[];makeai=\ref[]'>Make AI</A> | ", src, M)
+						foo += text("<A HREF='?src=\ref[];makeai=\ref[]'>Make AI</A>|", src, M)
 					if(M.z != 2)
-						foo += text("<A HREF='?src=\ref[];sendtoprison=\ref[]'>Prison</A> | ", src, M)
-						foo += text("<A HREF='?src=\ref[];sendtomaze=\ref[]'>Maze</A> | ", src, M)
+						foo += text("<A HREF='?src=\ref[];sendtoprison=\ref[]'>Prison</A>|", src, M)
+						foo += text("<A HREF='?src=\ref[];sendtomaze=\ref[]'>Maze</A>|", src, M)
 					else
-						foo += text("<B>On Z = 2</B> | ")
+						foo += text("<B>On Z = 2</B>|")
 				else
-					foo += text("<B>Hasn't Entered Game</B> | ")
-				foo += text("<A HREF='?src=\ref[];revive=\ref[]'>Heal/Revive</A> | ", src, M)
+					foo += text("<B>Hasn't Entered Game</B>|")
+				foo += text("<A HREF='?src=\ref[];revive=\ref[]'>Heal/Revive</A>|", src, M)
 
 				foo += text("<A HREF='?src=\ref[];forcespeech=\ref[]'>Say</A> \]", src, M)
 			dat += text("N: [] R: [] (K: []) (IP: []) []<BR>", M.name, M.real_name, (M.client ? M.client : "No client"), M.lastKnownIP, foo)

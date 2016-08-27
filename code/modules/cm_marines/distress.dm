@@ -134,7 +134,7 @@
 	name = "Mercenaries"
 	mob_max = 5
 	arrival_message = "USS Sulaco, this is mercenary vessel MC-98 responding to your distress call. Prepare for boarding."
-	objectives = "Help or hinder the crew of the Sulaco. Take what you want as payment. Do what your Captain says. Ensure your survival at all costs."
+	objectives = "Help the crew of the Sulaco in exchange for payment, and choose your payment well. Do what your Captain says. Ensure your survival at all costs."
 	probability = 15
 
 //Xeeenoooooossss
@@ -565,7 +565,7 @@
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/smartgunner/gunner(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
@@ -631,12 +631,14 @@
 			leader = mob
 			spawn_captain(mob)
 			mob << "<font size='3'>\red You are the Mercenary captain!</font>"
-			mob << "<B> You must lead the mercs to victory against any and all hostile threats. Or just loot the place.</b>"
-			mob << "<B> You are not entitled to help the USCM, and you're in it for the money.</b>"
+			mob << "<B> You must lead the mercs to victory against any and all hostile threats..</b>"
+			mob << "<B> You are to help with the defense of the USS Sulaco, but you will not leave without payment.</b>"
+			mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
 		else
 			spawn_mercenary(mob)
 			mob << "<font size='3'>\red You are a Space Mercenary!</font>"
-			mob << "<B> You are not entitled to help the USCM, and you're in it for the money.</b>"
+			mob << "<B> You are to help with the defense of the USS Sulaco, but you will not leave without payment.</b>"
+			mob << "<B> You hold no loyalty to the USCM and are in it for the money.</b>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -713,11 +715,11 @@
 	A.randomize_appearance_for(mob)
 	var/list/first_names_mr = list("Grigory","Vladimir","Alexei","Andrei","Artyom","Viktor","Boris","Ivan","Igor","Oleg")
 	var/list/first_names_fr = list("Alexandra","Anna","Anastasiya","Eva","Klara","Nikita","Olga","Svetlana","Tatyana","Yaroslava")
-	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Dragomirov","Yeltsin","Zhirov","Zhukov","Ivanov","Ivchenko","Kasputin","Lukyanenko","Melnikov")
-	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
-	else
-		mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)]"
+	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Dragomirov","Yeltsin","Zhirov","Zhukov","Ivanov","Vasnetsov","Kasputin","Belov","Melnikov", "Vasilevsky", "Penkin")
+
+	if(mob.gender == MALE) 	mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
+	else 					mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)+"a"]"
+
 	mob.name = mob.real_name
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
@@ -940,45 +942,54 @@
 		if(istype(drop_spawn))
 			switch(choice)
 				if(0)
-					new /obj/item/weapon/gun/pistol/vp78(drop_spawn)
-					new /obj/item/weapon/gun/pistol/vp78(drop_spawn)
-					new /obj/item/ammo_magazine/pistol/vp78
-					new /obj/item/ammo_magazine/pistol/vp78
-					continue
+					new /obj/item/weapon/gun/pistol/m4a3(drop_spawn)
+					new /obj/item/weapon/gun/pistol/m1911(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/extended(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/extended(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/ap(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/incendiary(drop_spawn)
 				if(1)
-					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/m39/ap
-					new /obj/item/ammo_magazine/smg/m39/ap
-					continue
+					new /obj/item/weapon/gun/smg/m39(drop_spawn)
+					new /obj/item/weapon/gun/smg/m39(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/extended(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/extended(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/ap(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/ap(drop_spawn)
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					continue
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
 					new /obj/item/weapon/plastique(drop_spawn)
 					new /obj/item/weapon/plastique(drop_spawn)
-					continue
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 				if(4)
-					new /obj/item/weapon/gun/rifle/m41a/elite(drop_spawn)
-					new /obj/item/weapon/gun/rifle/m41a/elite(drop_spawn)
-					new /obj/item/ammo_magazine/rifle/incendiary
-					new /obj/item/ammo_magazine/rifle/incendiary
-					continue
+					new /obj/item/weapon/gun/rifle/m41a(drop_spawn)
+					new /obj/item/weapon/gun/rifle/m41a(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/extended(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/extended(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/incendiary(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/incendiary(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/ap(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/ap(drop_spawn)
 				if(5)
-					new /obj/item/weapon/gun/launcher/m92(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					continue
+					new /obj/item/weapon/gun/shotgun/combat(drop_spawn)
+					new /obj/item/weapon/gun/shotgun/combat(drop_spawn)
+					new /obj/item/ammo_magazine/shotgun/incendiary(drop_spawn)
+					new /obj/item/ammo_magazine/shotgun/incendiary(drop_spawn)
 				if(6)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
-					continue
+					new /obj/item/weapon/gun/rifle/m41a/scoped(drop_spawn)
+					new /obj/item/weapon/gun/rifle/m41a/scoped(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/marksman(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/marksman(drop_spawn)
 				if(7)
-					new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
-	return
+					new /obj/item/weapon/gun/rifle/lmg(drop_spawn)
+					new /obj/item/weapon/gun/rifle/lmg(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
 
 /datum/emergency_call/bears/spawn_items()
 	var/turf/drop_spawn
@@ -1095,7 +1106,7 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
 	siemens_coefficient = 0.7
-	body_parts_covered = FACE|EYES
+	flags_armor_protection = FACE|EYES
 	anti_hug = 8
 
 /datum/emergency_call/erc/spawn_items()
@@ -1174,12 +1185,13 @@
 			leader = mob
 			spawn_officer(mob)
 			mob << "<font size='3'>\red You are in charge of the mercenary team!</font>"
-			mob << "<B> Lead your mercenary team to assist the Colonial Marines. You have been paid to do it.</b>"
+			mob << "<B> Lead your mercenary team to assist the Colonial Marines. You have been paid to do it, but you do not listen to USCM commands.</b>"
 			mob << "<B> Should you encounter a Yautja, you are to hunt it down at all costs. If the shuttle is called, you must get to it.</b>"
 			mob << "<B> You have prior knowledge of existance of the Yautja, but you are not to tell anyone about them!</b>"
 		else
 			spawn_standard(mob)
 			mob << "<font size='3'>\red You are a member of Dutch's Mercenary team!</font>"
+			mob << "<B> Should you encounter a Yautja, you are to hunt it down at all costs. If the shuttle is called, you must get to it.</b>"
 			mob << "<B> You have prior knowledge of existance of the Yautja, but you are not to tell anyone about them!</b>"
 
 	spawn(10)
@@ -1277,6 +1289,8 @@
 		else
 			spawn_standard(mob)
 			mob << "<font size='3'>\red You are a Weyland-Yutani Commando!!</font>"
+			mob << "<B> You must clear out any traces of the infestation and it's survivors..</b>"
+			mob << "<B> Follow any orders directly from Weyland-Yutani!</b>"
 
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"

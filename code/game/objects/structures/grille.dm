@@ -5,7 +5,7 @@
 	icon_state = "grille"
 	density = 1
 	anchored = 1
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = 3
 	explosion_resistance = 5

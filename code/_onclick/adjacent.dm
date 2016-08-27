@@ -46,7 +46,7 @@
 			continue // could not leave T0 in that direction
 
 		var/turf/T1 = get_step(T0,d)
-		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = 0))
+		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0)|get_dir(T1,src), border_only = 0))
 			continue // couldn't enter or couldn't leave T1
 
 		if(!src.ClickCross(get_dir(src,T1), border_only = 1, target_atom = target))
@@ -121,7 +121,7 @@ Quick adjacency (to turf):
 	for(var/obj/O in src)
 		if( !O.density || O == target_atom || O.throwpass) continue // throwpass is used for anything you can click through
 
-		if( O.flags&ON_BORDER) // windows have throwpass but are on border, check them first
+		if( O.flags_atom & ON_BORDER) // windows have throwpass but are on border, check them first
 			if( O.dir & target_dir || O.dir&(O.dir-1) ) // full tile windows are just diagonals mechanically
 				var/obj/structure/window/W = target_atom
 				if(istype(W))

@@ -1238,7 +1238,7 @@ About the new airlock wires panel:
 			if(density)
 				if(beingcrowbarred == 0) //being fireaxe'd
 					var/obj/item/weapon/twohanded/fireaxe/F = C
-					if(F.flags & WIELDED)
+					if(F.flags_atom & WIELDED)
 						spawn(0)	open(1)
 					else
 						user << "\red You need to be wielding the Fire axe to do that."
@@ -1247,7 +1247,7 @@ About the new airlock wires panel:
 			else
 				if(beingcrowbarred == 0)
 					var/obj/item/weapon/twohanded/fireaxe/F = C
-					if(F.flags & WIELDED)
+					if(F.flags_atom & WIELDED)
 						spawn(0)	close(1)
 					else
 						user << "\red You need to be wielding the Fire axe to do that."

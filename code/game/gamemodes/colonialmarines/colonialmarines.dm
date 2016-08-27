@@ -106,6 +106,7 @@
 //Checks to see who won///
 //////////////////////////
 /datum/game_mode/colonialmarines/check_win()
+
 	if(has_started_timer) //Let's hold off on checking win conditions till everyone has spawned.
 		finished = 0
 		return
@@ -127,8 +128,6 @@
 		finished = 5
 	else
 		finished = 0
-
-	return
 
 ///////////////////////////////
 //Checks if the round is over//
@@ -201,22 +200,16 @@
 	if(config.use_slack && config.slack_send_round_info)
 		slackMessage("generic", "Round is over!  Result: [result]")
 	spawn(45)
-		if(aliens.len)
+		if(xenomorphs.len)
 			var/text = "<FONT size = 3><B>The Queen(s) were:</B></FONT>"
-			for(var/datum/mind/A in aliens)
+			for(var/datum/mind/A in xenomorphs)
 				if(A)
 					var/mob/M = A.current
 					if(!M)
 						M = A.original
 
 					if(M && istype(M,/mob/living/carbon/Xenomorph/Queen))
-						text += "<br>[M.key] was "
-						text += "[M.name] ("
-						if(M.stat == DEAD)
-							text += "died"
-						else
-							text += "survived"
-						text += ")"
+						text += "<br>[A.key] was [M] ([M.stat == DEAD? "DIED":"SURVIVED"])"
 			world << text
 		if(survivors.len)
 			var/text = "<br><FONT size = 3><B>The survivors were:</B></FONT>"

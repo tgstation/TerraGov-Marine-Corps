@@ -18,7 +18,7 @@
 //===========================================================================
 /atom/movable/Dispose()
 	. = ..()
-	src.loc = null //First thing to do so we move into null space.
+	loc = null //First thing to do so we move into null space.
 	for(var/atom/movable/I in contents) cdel(I)
 	if(pulledby) pulledby.stop_pulling()
 
@@ -27,13 +27,15 @@
 //===========================================================================
 
 /atom/movable/Move()
-	var/atom/A = src.loc
+	var/atom/A = loc
+	var/old_dir = dir
 	. = ..()
-	src.move_speed = world.time - src.l_move_time
-	src.l_move_time = world.time
-	src.m_flag = 1
-	if ((A != src.loc && A && A.z == src.z))
-		src.last_move = get_dir(A, src.loc)
+	if(flags_atom & DIRLOCK) dir = old_dir
+	move_speed = world.time - l_move_time
+	l_move_time = world.time
+	m_flag = 1
+	if ((A != loc && A && A.z == z))
+		last_move = get_dir(A, loc)
 	Moved(A,dir)
 	return
 

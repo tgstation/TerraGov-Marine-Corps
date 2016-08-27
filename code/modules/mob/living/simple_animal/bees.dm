@@ -11,7 +11,7 @@
 	var/turf/target_turf
 	var/mob/target_mob
 	var/obj/machinery/apiary/parent
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 	turns_per_move = 6
 	var/obj/machinery/portable_atmospherics/hydroponics/my_hydrotray
 

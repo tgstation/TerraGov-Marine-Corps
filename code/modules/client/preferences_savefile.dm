@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	11
+#define SAVEFILE_VERSION_MAX	12
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -10,7 +10,7 @@
 //if a file can't be updated, return 0 to delete it and start again
 //if a file was updated, return 1
 /datum/preferences/proc/savefile_update()
-	if(savefile_version < 8)	//lazily delete everything + additional files so they can be saved in the new format
+	if(savefile_version < SAVEFILE_VERSION_MIN)	//lazily delete everything + additional files so they can be saved in the new format
 		for(var/ckey in preferences_datums)
 			var/datum/preferences/D = preferences_datums[ckey]
 			if(D == src)
@@ -18,13 +18,13 @@
 				if(delpath && fexists(delpath))
 					fdel(delpath)
 				break
-		return 0
+		return
 
 	if(savefile_version == SAVEFILE_VERSION_MAX)	//update successful.
 		save_preferences()
 		save_character()
 		return 1
-	return 0
+	return
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)	return
@@ -40,12 +40,12 @@
 
 	S["version"] >> savefile_version
 	//Conversion
-	if(!savefile_version || !isnum(savefile_version) || savefile_version < SAVEFILE_VERSION_MIN || savefile_version > SAVEFILE_VERSION_MAX)
+	if(!savefile_version || !isnum(savefile_version) || savefile_version < SAVEFILE_VERSION_MIN || savefile_version != SAVEFILE_VERSION_MAX)
 		if(!savefile_update())  //handles updates
 			savefile_version = SAVEFILE_VERSION_MAX
 			save_preferences()
 			save_character()
-			return 0
+			return
 
 	//general preferences
 	S["ooccolor"]			>> ooccolor
@@ -59,6 +59,7 @@
 
 	S["pred_name"]			>> predator_name
 	S["pred_gender"]		>> predator_gender
+	S["pred_age"]			>> predator_age
 	S["pred_mask_type"]		>> predator_mask_type
 	S["pred_armor_type"]	>> predator_armor_type
 	S["pred_boot_type"]		>> predator_boot_type
@@ -93,6 +94,7 @@
 
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
+	S["pred_age"]			<< predator_age
 	S["pred_mask_type"] 	<< predator_mask_type
 	S["pred_armor_type"] 	<< predator_armor_type
 	S["pred_boot_type"] 	<< predator_boot_type

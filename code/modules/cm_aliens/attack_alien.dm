@@ -80,16 +80,16 @@
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(isYautja(src) && check_zone(M.zone_sel.selecting) == "head")
-				if(istype(src.head,/obj/item/clothing/head/helmet/space/yautja))
-					var/knock_chance = 2
-					if(M.frenzy_aura) knock_chance += 3
-					if(M.is_intelligent) knock_chance += 3
-					knock_chance += round(damage / 4)
+				if(istype(wear_mask,/obj/item/clothing/mask/gas/yautja))
+					var/knock_chance = 1
+					if(M.frenzy_aura) knock_chance += 2
+					if(M.is_intelligent) knock_chance += 2
+					knock_chance += min(round(damage * 0.25),10) //Maximum of 15% chance.
 					if(prob(knock_chance))
 						playsound(loc, 'sound/effects/metalhit.ogg', 100, 1, 1)
-						visible_message("\blue <B>The [M] smashes off [src]'s [src.head]!</B>")
-						src.drop_from_inventory(src.head)
-						src.emote("roar")
+						visible_message("\blue <B>The [M] smashes off [src]'s [wear_mask]!</B>")
+						drop_from_inventory(wear_mask)
+						emote("roar")
 						return
 
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)

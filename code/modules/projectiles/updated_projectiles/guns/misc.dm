@@ -9,10 +9,10 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 40000)
-	ammo = "taser bolt"
+	ammo = /datum/ammo/energy/taser
 	var/obj/item/weapon/cell/high/cell //10000 power.
 	var/charge_cost = 100 //100 shots.
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
 		..()
@@ -27,7 +27,7 @@
 		update_icon()
 		..()
 
-	able_to_fire(var/mob/living/carbon/human/user as mob)
+	able_to_fire(mob/living/carbon/human/user as mob)
 		if(..()) //Let's check all that other stuff first.
 			if(istype(user))
 				var/obj/item/weapon/card/id/card = user.wear_id
@@ -54,10 +54,9 @@
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 /obj/item/ammo_magazine/pistol/chimp
 	name = "\improper CHIMP70 magazine (.70M)"
-	default_ammo = "live monkey"
+	default_ammo = /datum/ammo/bullet/pistol/mankey
 	caliber = ".70M"
-	icon_state = "monkey1"
-	icon_empty = "monkey1"
+	icon_state = "c70" //PLACEHOLDER
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	matter = list("metal" = 100000)
 	max_rounds = 300
@@ -75,7 +74,7 @@
 	force = 8
 	type_of_casings = null
 	attachable_allowed = list()
-	gun_features = GUN_AUTO_EJECTOR | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED
 
 	New()
 		..()
@@ -92,10 +91,10 @@
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/flaregun.ogg'
 	origin_tech = "combat=1;materials=2"
-	ammo = "flare"
+	ammo = /datum/ammo/flare
 	var/num_flares = 1
 	var/max_flares = 1
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	examine()
 		..()
@@ -122,7 +121,7 @@
 		if(refund) num_flares++
 		return 1
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I, mob/user)
 		if(istype(I,/obj/item/device/flashlight/flare))
 			var/obj/item/device/flashlight/flare/flare = I
 			if(num_flares >= max_flares)
@@ -143,7 +142,7 @@
 
 		return ..()
 
-	unload(var/mob/user)
+	unload(mob/user)
 		if(num_flares)
 			var/obj/item/device/flashlight/flare/new_flare = new()
 			if(user) user.put_in_hands(new_flare)
@@ -160,11 +159,10 @@
 	name = "rotating ammo drum (7.62x51mm)"
 	desc = "A huge ammo drum for a huge gun."
 	caliber = "7.62×51mm"
-	icon_state = "a762"
-	icon_empty = "a762-0"
+	icon_state = "painless" //PLACEHOLDER
 	origin_tech = "combat=3;materials=3"
 	matter = list("metal" = 100000)
-	default_ammo = "minigun bullet"
+	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 300
 	reload_delay = 24 //Hard to reload.
 	gun_type = /obj/item/weapon/gun/minigun
@@ -181,19 +179,51 @@
 	type_of_casings = "cartridge"
 	w_class = 5
 	force = 20
-	flags = FPRINT | CONDUCT | TWOHANDED
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_BURST_ON
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON
 
-	New()
+	New(loc, spawn_empty)
 		..()
 		recoil = config.med_recoil_value
 		accuracy -= config.med_hit_accuracy_mult
 		burst_amount = config.max_burst_value
 		fire_delay = config.low_fire_delay
 		burst_delay = config.min_fire_delay
-		load_into_chamber()
+		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 	toggle_burst()
 		usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
 
 //-------------------------------------------------------
+//Toy rocket launcher.
+
+/obj/item/weapon/gun/launcher/rocket/nobugs //Fires dummy rockets, like a toy gun
+	name = "\improper BUG ROCKER rocket launcher"
+	desc = "Where did this come from? <b>NO BUGS</b>"
+	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/nobugs
+
+/obj/item/ammo_magazine/rocket/nobugs
+	name = "\improper BUG ROCKER rocket tube"
+	desc = "Where did this come from? <b>NO BUGS</b>"
+	default_ammo = /datum/ammo/rocket/nobugs
+	caliber = "toy rocket"
+
+/obj/item/ammo_magazine/internal/launcher/rocket/nobugs
+	default_ammo = /datum/ammo/rocket/nobugs
+	gun_type = /obj/item/weapon/gun/launcher/rocket/nobugs
+
+/datum/ammo/rocket/nobugs
+	name = "\improper NO BUGS rocket"
+	damage = 1
+
+	on_hit_mob(mob/M,obj/item/projectile/P)
+		M << "<font size=6 color=red>NO BUGS</font>"
+
+	on_hit_obj(obj/O,obj/item/projectile/P)
+		return
+
+	on_hit_turf(turf/T,obj/item/projectile/P)
+		return
+
+	do_at_max_range(obj/item/projectile/P)
+		return

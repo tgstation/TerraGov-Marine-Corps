@@ -37,8 +37,6 @@
 		new /obj/item/taperoll/engineering(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
 	req_access = list(access_sulaco_engineering)
@@ -68,8 +66,6 @@
 		new /obj/item/device/multitool(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
 	req_access = list(access_sulaco_engineering)
@@ -94,8 +90,6 @@
 		new /obj/item/weapon/weldpack(src)
 		new /obj/item/weapon/weldpack(src)
 		return
-
-
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "engineer's locker"
@@ -124,7 +118,7 @@
 
 	select_gamemode_equipment(gamemode)
 		switch(gamemode)
-			if("Ice Colony")
+			if(/datum/game_mode/ice_colony)
 				new /obj/item/clothing/suit/storage/snow_suit(src)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 

@@ -148,7 +148,7 @@
 					W.layer = initial(W.layer)
 				W.add_fingerprint(source)
 			else
-				if ((istype(item, /obj/item) && item.slot_flags & SLOT_BACK ))
+				if ((istype(item, /obj/item) && item.flags_equip_slot & SLOT_BACK ))
 					source.drop_item()
 					loc = target
 					item.layer = 20

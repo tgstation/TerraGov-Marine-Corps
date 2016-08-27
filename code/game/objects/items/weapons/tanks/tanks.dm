@@ -4,8 +4,8 @@
 /obj/item/weapon/tank
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BACK
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BACK
 	w_class = 3
 
 	pressure_resistance = ONE_ATMOSPHERE*5
@@ -135,7 +135,7 @@
 	data["maskConnected"] = 0
 	if(istype(loc,/mob/living/carbon))
 		var/mob/living/carbon/location = loc
-		if(location.internal == src || (location.wear_mask && (location.wear_mask.flags_inv & ALLOWINTERNALS)))
+		if(location.internal == src || (location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS)))
 			data["maskConnected"] = 1
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -177,7 +177,7 @@
 				if (location.internals)
 					location.internals.icon_state = "internal0"
 			else
-				if(location.wear_mask && (location.wear_mask.flags_inv & ALLOWINTERNALS))
+				if(location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS))
 					location.internal = src
 					usr << "\blue You open \the [src] valve."
 					if (location.internals)

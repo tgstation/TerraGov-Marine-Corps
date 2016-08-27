@@ -9,7 +9,7 @@
 	icon_state = "backpack"
 	item_state = "backpack"
 	w_class = 4.0
-	slot_flags = SLOT_BACK	//ERROOOOO
+	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	max_combined_w_class = 21
 
@@ -182,13 +182,13 @@
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel-eng"
-	item_state = "engiepack"
+	item_state = "satchel-eng"
 
 /obj/item/weapon/storage/backpack/satchel_med
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-med"
-	item_state = "medicalpack"
+	item_state = "satchel-med"
 
 /obj/item/weapon/storage/backpack/satchel_vir
 	name = "virologist satchel"
@@ -218,7 +218,7 @@
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
 	icon_state = "satchel-sec"
-	item_state = "securitypack"
+	item_state = "satchel-sec"
 
 /obj/item/weapon/storage/backpack/satchel_hyd
 	name = "hydroponics satchel"
@@ -230,7 +230,7 @@
 	name = "captain's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
-	item_state = "captainpack"
+	item_state = "satchel-cap"
 
 //ERT backpacks.
 /obj/item/weapon/storage/backpack/ert

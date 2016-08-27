@@ -302,7 +302,7 @@ var/list/ai_verbs_default = list(
 				var/cameratext = ""
 				if (alarm.cameras)
 					for (var/obj/machinery/camera/I in alarm.cameras)
-						cameratext += text("[]<A HREF=?src=\ref[];switchcamera=\ref[]>[]</A>", (cameratext=="") ? "" : " | ", src, I, I.c_tag)
+						cameratext += text("[]<A HREF=?src=\ref[];switchcamera=\ref[]>[]</A>", (cameratext=="") ? "" : "|", src, I, I.c_tag)
 				dat += text("-- [] ([])", alarm.area.name, (cameratext)? cameratext : "No Camera")
 
 				if (alarm.sources.len > 1)
@@ -326,7 +326,7 @@ var/list/ai_verbs_default = list(
 	set category = "AI Commands"
 	set name = "Make Station Announcement"
 
-	if(check_unable(AI_CHECK_WIRELESS | AI_CHECK_RADIO))
+	if(check_unable(AI_CHECK_WIRELESS|AI_CHECK_RADIO))
 		return
 
 	if(message_cooldown)
@@ -336,7 +336,7 @@ var/list/ai_verbs_default = list(
 	if(!input)
 		return
 
-	if(check_unable(AI_CHECK_WIRELESS | AI_CHECK_RADIO))
+	if(check_unable(AI_CHECK_WIRELESS|AI_CHECK_RADIO))
 		return
 
 	announcement.Announce(input)

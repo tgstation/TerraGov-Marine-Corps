@@ -3,6 +3,8 @@
 	config_tag = "Whiskey Outpost"
 	required_players = 1
 	recommended_enemies = 6 //Force doctors and commander if no one wants them
+	xeno_bypass_timer = 1
+	forbid_late_joining = 1
 
 	var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 
@@ -252,7 +254,7 @@
 
 		//SQUAD ENGINEER
 		else if(H.mind.assigned_role == "Squad Engineer")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/fluff/marineengineer(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 
@@ -274,7 +276,7 @@
 
 		//SQUAD MEDIC
 		else if(H.mind.assigned_role == "Squad Medic")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/fluff/marinemedic(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/medic(H), slot_w_uniform)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), slot_head)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 
@@ -458,7 +460,7 @@
 		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate!
 			world << "\red *___________________________________*"
 			world << "\red <b>***Whiskey Outpost Controller***</b>"
-			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?" | \red Times delayed: [wave_times_delayed]":""]"
+			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]"
 			world << "\red *___________________________________*"
 
 			wave_ticks_passed = 0
@@ -687,7 +689,7 @@
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
-				X.pass_flags = 0 // Runners cannot pass trough tables
+				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
@@ -704,7 +706,7 @@
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
-				X.pass_flags = 0 // Runners cannot pass trough tables
+				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
@@ -1148,8 +1150,8 @@
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/head/helmet/marine/tech,
 								/obj/item/clothing/head/helmet/marine/medic,
-								/obj/item/clothing/under/marine/fluff/marinemedic,
-								/obj/item/clothing/under/marine/fluff/marineengineer,
+								/obj/item/clothing/under/marine/medic,
+								/obj/item/clothing/under/marine/engineer,
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/device/binoculars,

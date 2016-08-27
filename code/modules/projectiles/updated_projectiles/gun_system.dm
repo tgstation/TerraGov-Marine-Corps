@@ -34,7 +34,8 @@
 	var/accuracy 		= 0  //Miltiplier. Increased and decreased through attachments. Multiplies the damage by this number.
 	var/damage 			= 0  //Same as above.
 	var/recoil 			= 0  //Screen shake when the weapon is fired.
-	var/scatter			= 0 //How much the bullet scatters when fired.
+	var/scatter			= 0  //How much the bullet scatters when fired.
+	var/jamming			= 0	 //How often the gun jams.
 	var/fire_delay 		= 0  //For regular shots, how long to wait before firing again.
 	var/last_fired 		= 0  //When it was last fired, related to world.time.
 
@@ -50,7 +51,7 @@
 	var/automatic 			= 0 //Used to determine if you can target multiple people.
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/firerate 			= 0 	//0 for keep shooting until aim is lowered
-						//1 for one bullet after tarrget moves and aim is lowered
+						//1 for one bullet after target moves and aim is lowered
 	//Attachments.
 	var/attachable_overlays[] 		= null //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/attachable_offset[] 		= null //Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
@@ -61,8 +62,8 @@
 	var/obj/item/attachable/stock 	= null
 	var/obj/item/attachable/active_attachable = null //This will link to one of the above four, or remain null.
 
-	flags 			 = FPRINT | CONDUCT
-	var/gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK
+	flags_atom 			 = FPRINT|CONDUCT
+	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 
 //----------------------------------------------------------
@@ -72,12 +73,16 @@
 				//					\\
 //----------------------------------------------------------
 
-	New()
-		..()
-		attachable_overlays = list("muzzle" = null, "rail" = null, "under" = null, "stock" = null, "mag" = null, "special" = null)
+	New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
+		..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
+		attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 		if(current_mag)
-			current_mag = new current_mag(src)
-			ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list["default bullet"] //Latter should never happen, adding as a precaution.
+			if(spawn_empty && !ispath(current_mag, /obj/item/ammo_magazine/internal)) //Internal mags will still spawn, but they won't be filled.
+				current_mag = null
+				update_icon()
+			else
+				current_mag = new current_mag(src, spawn_empty? 1:0)
+				ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list["default bullet"] //Latter should never happen, adding as a precaution.
 		else ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 		accuracy = config.base_hit_accuracy_mult
 		damage = config.base_hit_damage_mult
@@ -85,7 +90,6 @@
 		fire_delay = config.mhigh_fire_delay
 		burst_amount = config.min_burst_value
 		update_force_list() //This gives the gun some unique verbs for attacking.
-		select_gamemode_skin() //Make it all pretty.
 
 	Dispose()
 		. = ..()
@@ -95,7 +99,7 @@
 		target 			= null
 		last_moved_mob 	= null
 		muzzle 			= null
-		if( (gun_features & GUN_FLASHLIGHT_ON) && ismob(loc) ) loc.SetLuminosity(-rail.light_mod) //Handle flashlight.
+		if( (flags_gun_features & GUN_FLASHLIGHT_ON) && ismob(loc) ) loc.SetLuminosity(-rail.light_mod) //Handle flashlight.
 		rail 			= null
 		under 			= null
 		stock 			= null
@@ -121,7 +125,7 @@
 
 	examine()
 		..()
-		if( !(gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
+		if( !(flags_gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
 
 			if(rail) 	usr << "It has \icon[rail] [rail.name] mounted on the top."
 			if(muzzle) 	usr << "It has \icon[muzzle] [muzzle.name] mounted on the front."
@@ -130,7 +134,7 @@
 
 			if(!istype(current_mag)) //Internal mags and the like have their own stuff set.
 				if(current_mag && current_mag.current_rounds > 0)
-					if(gun_features & GUN_AMMO_COUNTER) usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
+					if(flags_gun_features & GUN_AMMO_COUNTER) usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
 					else 								usr << "It's loaded."
 				else 									usr << "It's unloaded."
 
@@ -160,8 +164,8 @@ Reload a gun using a magazine.
 This sets all the initial datum's stuff. The bullet does the rest.
 User can be passed as null, (a gun reloading itself for instance), so we need to watch for that constantly.
 */
-/obj/item/weapon/gun/proc/reload(mob/user, var/obj/item/ammo_magazine/magazine)
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features  || gun_features & (GUN_UNUSUAL_DESIGN | GUN_INTERNAL_MAG) ) return
+/obj/item/weapon/gun/proc/reload(mob/user, obj/item/ammo_magazine/magazine)
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features  || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG) ) return
 
 	if(!magazine || !istype(magazine))
 		user << "That's not a magazine!"
@@ -197,7 +201,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	update_icon()
 	return 1
 
-/obj/item/weapon/gun/proc/replace_magazine(mob/user, var/obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	user.remove_from_mob(magazine) //Click!
 	current_mag = magazine
 	magazine.loc = src //Jam that sucker in there.
@@ -212,7 +216,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst.
-	if( !reload_override && ( (gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features || gun_features & (GUN_UNUSUAL_DESIGN | GUN_INTERNAL_MAG) ) ) return
+	if( !reload_override && ( (flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG) ) ) return
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
 		user << "<span class='warning'>It's already empty or doesn't need to be unloaded!</span>"
@@ -253,10 +257,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//						   	    \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/weapon/gun/afterattack(atom/A, mob/living/user, flag, params)
 	if(flag)	return ..() //It's adjacent, is the user, or is on the user's person
 	if(!istype(A)) return
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(user && user.client && user.client.gun_mode && !(A in target)) PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 	else															  Fire(A,user,params) //Otherwise, fire normally.
@@ -269,7 +273,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
 	//If it's something like a flashlight, we turn it off. If it's an actual fire and forget one, we need to keep going.
-	if(active_attachable && (active_attachable.attach_features & ATTACH_PASSIVE) ) active_attachable = null
+	if(active_attachable && (active_attachable.flags_attach_features & ATTACH_PASSIVE) ) active_attachable = null
  	//If we have a round chambered and no attachable, we're good to go.
 	if(in_chamber && !active_attachable) return in_chamber //Already set!
 
@@ -315,12 +319,12 @@ and you're good to go.
 	if(!active_attachable) //We don't need to check for the mag if an attachment was used to shoot.
 		if(current_mag) //If there is no mag, we can't reload.
 			ready_in_chamber()
-			if(current_mag.current_rounds <= 0 && gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+			if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 50, 1)
 
 	// Shouldn't be called on, but in case something that uses Fire() is added that is toggled.
-	else if( !(active_attachable.attach_features & ATTACH_CONTINUOUS) ) active_attachable = null // Set it to null for next activation. Again, this isn't really going to happen.
+	else if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null // Set it to null for next activation. Again, this isn't really going to happen.
 	return in_chamber //Returns the projectile if it's actually successful.
 
 /obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
@@ -330,12 +334,11 @@ and you're good to go.
 		return 1
 
 /obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
-	gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
+	flags_gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
 	delete_bullet(projectile_to_fire,1) //We're going to clear up anything inside if we need to.
 	//If it's a regular bullet, we're just going to keep it chambered.
 	extra_delay = 2 + (burst_delay + extra_delay)*2 // Some extra delay before firing again.
 	user << "<span class='warning'>[src] jammed! You'll need a second to get it fixed!</span>"
-	click_empty(user)
 
 //----------------------------------------------------------
 		//									   \\
@@ -344,7 +347,7 @@ and you're good to go.
 		//						   			   \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0)
 	set waitfor = 0
 
 	if(!able_to_fire(user)) return
@@ -359,9 +362,9 @@ and you're good to go.
 	This is also a general check to see if the attachment can fire in the first place.
 	*/
 	var/check_for_attachment_fire = 0
-	if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) ) //Attachment activated and isn't a flashlight or something.
+	if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) ) //Attachment activated and isn't a flashlight or something.
 		check_for_attachment_fire = 1
-		if( !(active_attachable.attach_features & ATTACH_PROJECTILE) ) //If it's unique projectile, this is where we fire it.
+		if( !(active_attachable.flags_attach_features & ATTACH_PROJECTILE) ) //If it's unique projectile, this is where we fire it.
 			active_attachable.fire_attachment(target,src,user) //Fire it.
 			if(active_attachable.current_rounds <= 0) click_empty(user) //If it's empty, let them know.
 			active_attachable = null //Set it to null anyway, it's done.
@@ -376,9 +379,9 @@ and you're good to go.
 
 	//Number of bullets based on burst. If an active attachable is shooting, bursting is always zero.
 	var/bullets_fired = 1
-	if(!check_for_attachment_fire && gun_features & GUN_BURST_ON && burst_amount > 1)
+	if(!check_for_attachment_fire && flags_gun_features & GUN_BURST_ON && burst_amount > 1)
 		bullets_fired = burst_amount
-		gun_features |= GUN_BURST_FIRING
+		flags_gun_features |= GUN_BURST_FIRING
 
 	var/i
 	for(i = 1 to bullets_fired)
@@ -420,7 +423,7 @@ and you're good to go.
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
 			user << "Your gun is malfunctioning. Ahelp the following: ERROR CODE I1: projectile malfunctioned while firing."
 			log_debug("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
-			gun_features &= ~GUN_BURST_FIRING
+			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
 		if(get_turf(target) != get_turf(user))
@@ -449,22 +452,22 @@ and you're good to go.
 			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
 			sleep(burst_delay)
 
-	gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
+	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
-/obj/item/weapon/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
-	if(gun_features & GUN_CAN_POINTBLANK) // If it can't point blank, you can't suicide and such.
+/obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
+	if(flags_gun_features & GUN_CAN_POINTBLANK) // If it can't point blank, you can't suicide and such.
 		if(M == user && user.zone_sel.selecting == "mouth")
 			if(able_to_fire(user))
-				gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
+				flags_gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger...</span>")
 				if(do_after(user, 40))
-					if(active_attachable && !(active_attachable.attach_features & ATTACH_PROJECTILE))
+					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
 						active_attachable = null //We're not firing off a nade into our mouth.
 					var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 					if(projectile_to_fire) //We actually have a projectile, let's move on.
 						user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
 						var/actual_sound = (active_attachable && active_attachable.fire_sound) ? active_attachable.fire_sound : fire_sound
-						var/sound_volume = (gun_features & GUN_SILENCED && !active_attachable) ? 20 : 50
+						var/sound_volume = (flags_gun_features & GUN_SILENCED && !active_attachable) ? 20 : 50
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(recoil+2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
@@ -491,14 +494,14 @@ and you're good to go.
 
 					else click_empty(user)//If there's no projectile, we can't do much.
 				else M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
-				gun_features ^= GUN_CAN_POINTBLANK //Reset this.
+				flags_gun_features ^= GUN_CAN_POINTBLANK //Reset this.
 			return
 
 		else if(user.a_intent == "hurt") //Point blanking doesn't actually fire the projectile. No reason to.
-			gun_features &= ~GUN_BURST_FIRING
+			flags_gun_features &= ~GUN_BURST_FIRING
 			//Point blanking simulates firing the bullet proper but without actually firing it.
 			if(able_to_fire(user)) //If you can't fire the gun in the first place, we're just going to hit them with it.
-				if(active_attachable && !(active_attachable.attach_features & ATTACH_PROJECTILE)) active_attachable = null//No way.
+				if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE)) active_attachable = null//No way.
 				var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 				if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 					projectile_to_fire.damage *= (config.base_hit_damage_mult+config.low_hit_damage_mult) //Multiply the damage for point blank.
@@ -507,7 +510,7 @@ and you're good to go.
 					simulate_recoil(recoil+1, user)
 
 					projectile_to_fire.ammo.on_hit_mob(M,projectile_to_fire)
-					if(M.bullet_act(projectile_to_fire)) projectile_to_fire.play_damage_effect(M)
+					M.bullet_act(projectile_to_fire)
 
 					if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire)
 					reload_into_chamber(user) //Reload into the chamber if the gun supports it.
@@ -528,28 +531,28 @@ and you're good to go.
 	Removed ishuman() check. There is no reason for it, as it just eats up more processing, and adding fingerprints during the fire cycle is silly.
 	Consequently, predators are able to fire while cloaked.
 	*/
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 	if(ismob(user)) //Could be an object firing the gun.
 		if(!user.IsAdvancedToolUser())
 			user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 			return
 
-		if(gun_features & GUN_TRIGGER_SAFETY)
+		if(flags_gun_features & GUN_TRIGGER_SAFETY)
 			user << "<span class='warning'>The safety is on!</span>"
 			return
 
-		if(flags & TWOHANDED) //If we're not holding the weapon with both hands when we should.
+		if(flags_atom & TWOHANDED) //If we're not holding the weapon with both hands when we should.
 			var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand() //We have to check for this though, since the offhand can drop due to arm malfs, etc.
 			if(!istype(O))
 				unwield(user)
 				user << "<span class='warning'>You need a more secure grip to fire this weapon!"
 				return
 
-		if( (gun_features & GUN_WY_RESTRICTED) && !wy_allowed_check(user) ) return
+		if( (flags_gun_features & GUN_WY_RESTRICTED) && !wy_allowed_check(user) ) return
 
 		//Has to be on the bottom of the stack to prevent delay when failing to fire the weapon for the first time.
 		//Can also set last_fired through New(), but honestly there's not much point to it.
-		if(world.time >= last_fired + fire_delay + extra_delay) //If not, check the last time it was fired.
+		if(world.time >= last_fired + max(0, fire_delay) + extra_delay) //If not, check the last time it was fired.
 			extra_delay = 0
 			last_fired = world.time
 		else
@@ -566,14 +569,14 @@ and you're good to go.
 		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
-/obj/item/weapon/gun/proc/apply_bullet_effects(var/obj/item/projectile/projectile_to_fire, mob/user, var/i = 1, var/reflex = 0)
+/obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
 	var/actual_sound = fire_sound
-	var/sound_volume = gun_features & GUN_SILENCED ? 20 : 50
+	var/sound_volume = flags_gun_features & GUN_SILENCED ? 20 : 50
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.
 	projectile_to_fire.shot_from = src
 
-	if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) )
+	if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) )
 		if(active_attachable.fire_sound) actual_sound = active_attachable.fire_sound //If we're firing from an attachment, use that noise instead.
 		sound_volume = 50 //Since we're using an attachable, the silencer doesn't matter.
 
@@ -583,20 +586,20 @@ and you're good to go.
 		projectile_to_fire.dir = user.dir
 		playsound(user, actual_sound, sound_volume, 1)
 		if(i == 1)
-			if(!(gun_features & GUN_SILENCED))
+			if(!(flags_gun_features & GUN_SILENCED))
 				user.visible_message(
 				"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-				"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
+				"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
 				"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>"
 				)
 			else
-				user << "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>"
+				user << "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>"
 	return 1
 
-/obj/item/weapon/gun/proc/simulate_scatter(var/obj/item/projectile/projectile_to_fire, var/atom/target, var/turf/targloc, var/total_scatter_chance = 0)
+/obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0)
 	total_scatter_chance += (scatter + projectile_to_fire.ammo.scatter)
 	//Not if the gun doesn't scatter at all, or negative scatter.
-	if(total_scatter_chance > 0 && ( prob(5) || (gun_features & GUN_BURST_ON && burst_amount > 1) ) ) //Only 5% chance to scatter, and then still unlikely on single fire.
+	if(total_scatter_chance > 0 && ( prob(5) || (flags_gun_features & GUN_BURST_ON && burst_amount > 1) ) ) //Only 5% chance to scatter, and then still unlikely on single fire.
 		total_scatter_chance += (burst_amount * 3) //Much higher chance on a burst.
 
 		if(prob(total_scatter_chance)) //Scattered!
@@ -608,20 +611,18 @@ and you're good to go.
 	projectile_to_fire.original = target
 	return target
 
-/obj/item/weapon/gun/proc/simulate_recoil(var/total_recoil = 0, mob/user, atom/target)
+/obj/item/weapon/gun/proc/simulate_recoil(total_recoil = 0, mob/user, atom/target)
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return 1
 
-/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user as mob|obj)
+/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user)
 	set waitfor = 0 //No need to wait on this one.
-	if(!muzzle_flash || gun_features & GUN_SILENCED || !angle) return
+	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || !angle) return
 	if(!istype(user) || !istype(user.loc,/turf)) return
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
-		//var/directives[] = list('icons/obj/projectiles.dmi',user,muzzle_flash,image_layer)
-		var/image/reusable/flash = rnew(/image/reusable)
-		flash.generate_image('icons/obj/projectiles.dmi',user,muzzle_flash,image_layer)
+		var/image/reusable/flash = rnew(/image/reusable, list('icons/obj/projectiles.dmi',user,muzzle_flash,image_layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)

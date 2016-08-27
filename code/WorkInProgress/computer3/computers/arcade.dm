@@ -74,12 +74,12 @@
 	dat = "<center><h4>[enemy_name]</h4></center>"
 
 	dat += "<br><center><h3>[temp]</h3></center>"
-	dat += "<br><center>Health: [player_hp] | Magic: [player_mp] | Enemy Health: [enemy_hp]</center>"
+	dat += "<br><center>Health: [player_hp]|Magic: [player_mp]|Enemy Health: [enemy_hp]</center>"
 
 	if (gameover)
 		dat += "<center><b>[topic_link(src,"newgame","New Game")]"
 	else
-		dat += "<center><b>[topic_link(src,"attack","Attack")] | [topic_link(src,"heal","Heal")] | [topic_link(src,"charge","Recharge Power")]"
+		dat += "<center><b>[topic_link(src,"attack","Attack")]|[topic_link(src,"heal","Heal")]|[topic_link(src,"charge","Recharge Power")]"
 
 	dat += "</b></center>"
 

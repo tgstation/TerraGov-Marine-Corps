@@ -7,8 +7,8 @@
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 25)
 	siemens_coefficient = 0.2
 	species_restricted = null
-	body_parts_covered = HEAD|FACE
-	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
+	flags_armor_protection = HEAD|FACE
+	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE
 	anti_hug = 5
 
 /obj/item/clothing/suit/space/space_ninja
@@ -21,8 +21,8 @@
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 	species_restricted = null //Workaround for spawning alien ninja without internals.
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEJUMPSUIT|HIDETAIL
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_inventory = HIDEJUMPSUIT|HIDETAIL
 	supporting_limbs = list()
 
 	// Hardsuit breaching data

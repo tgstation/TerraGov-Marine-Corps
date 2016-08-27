@@ -41,9 +41,10 @@
 	src << "You will now spit [spit_type ? "stunning neurotoxin instead of acid.":"corrosive acid globs."]"
 	// Down from +20 to -10.  This should be sort of the base alien "ranged" attack.  Also, Praes/Spitters get lolshit for melee damage
 	spit_delay = spit_type ? spit_delay - 10 : spit_delay + 10 //This will make sure aliens don't slow down when switching spits.
-	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))   ammo = spit_type ? ammo_list["neurotoxic splash"]  : ammo_list["acid splash"]
-	else if(istype(src,/mob/living/carbon/Xenomorph/Spitter)) ammo = spit_type ? ammo_list["neurotoxic spatter"] : ammo_list["acid spatter"]
-	else 													  ammo = spit_type ? ammo_list["neurotoxic spit"]  	 : ammo_list["acid spit"]
+	switch(type)
+		if(/mob/living/carbon/Xenomorph/Praetorian) ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/heavy ]  : ammo_list[/datum/ammo/xeno/acid/heavy]
+		if(/mob/living/carbon/Xenomorph/Spitter) ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/medium ] : ammo_list[/datum/ammo/xeno/acid/medium]
+		else ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin] : ammo_list[/datum/ammo/xeno/acid]
 	spit_type = !spit_type
 	return
 
@@ -104,14 +105,14 @@
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
 		usedPounce = 30 //about 12 seconds
-		pass_flags = PASSTABLE
+		flags_pass = PASSTABLE
 		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 2, src) //victim, distance, speed
 		spawn(6)
 			if(!hardcore)
-				pass_flags = initial(pass_flags)//Reset the passtable.
+				flags_pass = initial(flags_pass)//Reset the passtable.
 			else
-				pass_flags = 0 //Reset the passtable.
+				flags_pass = 0 //Reset the passtable.
 
 		spawn(usedPounce)
 			usedPounce = 0
@@ -393,12 +394,12 @@
 
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
-	if(ticker && ticker.mode.aliens.len)
+	if(ticker && ticker.mode.xenomorphs.len)
 		dat += "<table cellspacing=4>"
-		for(var/datum/mind/L in ticker.mode.aliens)
-			var/mob/M = L.current
-			if(M && istype(M,/mob/living/carbon/Xenomorph))
-				dat += "<tr><td>[M.name] [M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+		for(var/datum/mind/L in ticker.mode.xenomorphs)
+			var/mob/living/carbon/Xenomorph/M = L.current
+			if(istype(M))
+				dat += "<tr><td>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
 	return

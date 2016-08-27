@@ -17,11 +17,11 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
-	body_parts_covered = HEAD
-	pass_flags = PASSTABLE
-	flags = FPRINT
-	slot_flags = SLOT_MASK
-	body_parts_covered = FACE|EYES
+	flags_armor_protection = HEAD
+	flags_pass = PASSTABLE
+	flags_atom = FPRINT
+	flags_equip_slot = SLOT_MASK
+	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0
 
@@ -39,24 +39,23 @@ include jackets and regular suits, not armor.*/
 	icon_state = "rebreather"
 	item_state = "rebreather"
 	w_class = 2
-	body_parts_covered = 0
-	flags_inv = COVERMOUTH | HIDELOWHAIR
+	flags_armor_protection = 0
+	flags_inventory = COVERMOUTH|HIDELOWHAIR|ALLOWREBREATH
 
 /obj/item/clothing/mask/rebreather/scarf
 	name = "heat absorbent coif"
 	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
 	icon_state = "coif"
 	item_state = "coif"
-	flags_inv = COVERMOUTH | HIDEALLHAIR
-	cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inventory = COVERMOUTH|HIDEALLHAIR|HIDEEARS|ALLOWREBREATH
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 
 /obj/item/clothing/mask/gas
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
-	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
-	body_parts_covered = FACE|EYES
+	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|COVERMOUTH|COVEREYES|ALLOWINTERNALS|HIDELOWHAIR|BLOCKGASEFFECT
 	w_class = 3.0
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
@@ -87,7 +86,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "pmc_mask"
 	anti_hug = 3
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
-	flags_inv = HIDEEARS | HIDEFACE | COVERMOUTH | ALLOWINTERNALS | HIDEALLHAIR | BLOCKGASEFFECT
+	flags_inventory = HIDEEARS|HIDEFACE|COVERMOUTH|ALLOWINTERNALS|HIDEALLHAIR|BLOCKGASEFFECT|ALLOWREBREATH
 
 /obj/item/clothing/mask/gas/PMC/leader
 	name = "\improper M8 pattern armored balaclava"
@@ -111,11 +110,13 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "under"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
-	pass_flags = PASSTABLE
-	flags = FPRINT
-	slot_flags = SLOT_ICLOTHING
+	flags_pass = PASSTABLE
+	flags_atom = FPRINT
+	flags_equip_slot = SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
@@ -127,9 +128,12 @@ include jackets and regular suits, not armor.*/
 		*/
 	var/obj/item/clothing/tie/hastie = null
 	var/displays_id = 1
-	var/rolled_down = 0
-	var/basecolor
+	var/base_color
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
+
+	New()
+		..()
+		base_color = item_color
 
 /obj/item/clothing/under/marine
 	name = "\improper USCM uniform"
@@ -140,6 +144,14 @@ include jackets and regular suits, not armor.*/
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
 
+	New(loc,expected_type 		= /obj/item/clothing/under/marine,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM snow uniform"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature),
+		icon_override[] 	= null
+		)
+		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
+		..()
+
 /obj/item/clothing/under/marine/underoos
 	name = "marine underpants"
 	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Find an actual uniform and change out."
@@ -149,29 +161,38 @@ include jackets and regular suits, not armor.*/
 	item_color = "marine_underpants"
 	slowdown = 3
 
-/obj/item/clothing/under/marine/snow
-	name = "\improper USCM snow uniform"
-	icon_state = "marine_jumpsuit_snow"
-	item_state = "marine_jumpsuit_snow"
-	item_color = "marine_jumpsuit_snow"
+/obj/item/clothing/under/marine/medic
+	name = "\improper USCM medic uniform"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has medical markings. "
+	icon_state = "marine_medic"
+	item_state = "marine_medic"
+	item_color = "marine_medic"
 
-/obj/item/clothing/under/marine/fluff/marineengineer/snow
-	name = "\improper USCM engineer snow uniform"
-	icon_state = "marine_engineer_snow"
-	item_state = "marine_engineer_snow"
-	item_color = "marine_engineer_snow"
+	New(loc,expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM medic snow uniform"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+		..(loc,expected_type, new_name, new_protection)
 
-/obj/item/clothing/under/marine/fluff/marinemedic/snow
-	name = "\improper USCM medic snow uniform"
-	icon_state = "marine_medic_snow"
-	item_state = "marine_medic_snow"
-	item_color = "marine_medic_snow"
+/obj/item/clothing/under/marine/engineer
+	name = "\improper USCM engineer uniform"
+	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has engineer markings. "
+	icon_state = "marine_engineer"
+	item_state = "marine_engineer"
+	item_color = "marine_engineer"
 
-/obj/item/clothing/under/marine/snow/sniper
+	New(loc,expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM engineer snow uniform"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+		..(loc,expected_type, new_name, new_protection)
+
+/obj/item/clothing/under/marine/sniper
 	name = "\improper USCM sniper uniform"
-	icon_state = "marine_sniper_snow"
-	item_state = "marine_sniper_snow"
-	item_color = "marine_sniper_snow"
+	New(loc,expected_type 		= type,
+		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM sniper snow uniform"),
+		new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature),
+		icon_override[]		= list(/datum/game_mode/ice_colony = "s_marine_sniper")
+		)
+		..(loc,expected_type, new_name, new_protection, icon_override)
 
 //========================//OFFICERS\\===================================\\
 //=======================================================================\\
@@ -193,7 +214,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "RO_jacket"
 	item_state = "RO_jacket"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
 
 /obj/item/clothing/under/marine/mp
 	name = "military police jumpsuit"
@@ -221,10 +242,11 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/officer/pilot
 	name = "pilot officer bodysuit"
-	desc = "A bodysuit worn by pilot officers of the USCM. Fly the marines onwards to glory."
+	desc = "A bodysuit worn by pilot officers of the USCM, and is meant for survival in inhospitable conditions. Fly the marines onwards to glory."
 	icon_state = "pilot_flightsuit"
 	item_state = "pilot_flightsuit"
 	item_color = "pilot_flightsuit"
+	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "bridge officer uniform"
@@ -282,6 +304,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "pmc_jumpsuit"
 	item_state = "armor"
 	item_color = "pmc_jumpsuit"
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
@@ -307,11 +330,15 @@ include jackets and regular suits, not armor.*/
 	icon_state = "bear_jumpsuit"
 	item_state = "bear_jumpsuit"
 	item_color = "bear_jumpsuit"
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/dutch
 	name = "\improper Dutch's Dozen uniform"
 	desc = "A comfortable uniform worn by the Dutch's Dozen mercenaries. It's seen some definite wear and tear, but is still in good condition."
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "dutch_jumpsuit"
 	item_state = "dutch_jumpsuit"
@@ -358,7 +385,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "CMB_jacket"
 	item_state = "CMB_jacket"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
@@ -390,13 +417,13 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"
-	desc = "A standard snow suit. It can protect the wearer from extreme temperatures down to 220K (-53°C)."
+	desc = "A standard snow suit. It can protect the wearer from extreme cold."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "snowsuit_alpha"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
 
@@ -546,17 +573,29 @@ include jackets and regular suits, not armor.*/
 	set name = "Roll Down Jumpsuit"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr)) return
 	if(usr.stat) return
 
-	if(copytext(item_color,-2) != "_d")
-		basecolor = item_color
-	if(basecolor + "_d_s" in icon_states('icons/mob/uniform_0.dmi'))
-		body_parts_covered = "[basecolor]" ? LEGS|LOWER_TORSO : UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-		item_color = item_color == "[basecolor]" ? "[basecolor]_d" : "[basecolor]"
+	if(base_color + "_d_s" in icon_states('icons/mob/uniform_0.dmi'))
+		var/full_coverage = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+		if(item_color == base_color)
+			var/partial_coverage = UPPER_TORSO|LOWER_TORSO|LEGS
+			var/final_coverage
+			//Marine uniforms can only roll up the sleeves, not wear it at the waist.
+			if(istype(src,/obj/item/clothing/under/marine))
+				final_coverage = copytext(item_color,1,3) == "s_" ? full_coverage : partial_coverage
+			else final_coverage = partial_coverage & ~UPPER_TORSO
+			flags_armor_protection = final_coverage
+			item_color = "[base_color]_d"
+		else
+			flags_armor_protection = full_coverage
+			item_color = base_color
+
+		flags_cold_protection = flags_armor_protection
+		flags_heat_protection = flags_armor_protection
 		update_clothing_icon()
-	else
-		usr << "<span class='notice'>You cannot roll down the uniform!</span>"
+
+	else usr << "<span class='warning'>You cannot roll down the uniform!</span>"
 
 /obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
 	if(!hastie)

@@ -162,7 +162,7 @@
 // 	if(!UI_style_new) return
 //
 // 	var/UI_style_alpha_new = input(usr, "Select a new alpha(transparence) parametr for UI, between 50 and 255") as num
-// 	if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
+// 	if(!UI_style_alpha_new|!(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
 //
 // 	var/UI_style_color_new = input(usr, "Choose your UI color, dark colors are not recommended!") as color|null
 // 	if(!UI_style_color_new) return

@@ -31,10 +31,10 @@
 
 					var/obj/item/safe_thing = null
 					if( victim.wear_mask )
-						if ( victim.wear_mask.flags_inv & COVEREYES )
+						if ( victim.wear_mask.flags_inventory & COVEREYES )
 							safe_thing = victim.wear_mask
 					if( victim.head )
-						if ( victim.head.flags_inv & COVEREYES )
+						if ( victim.head.flags_inventory & COVEREYES )
 							safe_thing = victim.head
 					if(victim.glasses)
 						if ( !safe_thing )

@@ -227,14 +227,13 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Ammo"
 
 /datum/supply_packs/randomised/ammo_black_market
+	name = "Black Market ammo crate"
 	num_contained = 6
-	contains = list(/obj/item/ammo_magazine/shotgun/incendiary,
+	contains = list(
 					/obj/item/ammo_magazine/revolver/upp,
 					/obj/item/ammo_magazine/revolver/small,
 					/obj/item/ammo_magazine/revolver/mateba,
 					/obj/item/ammo_magazine/revolver/cmb,
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/m1911,
 					/obj/item/ammo_magazine/pistol/heavy,
 					/obj/item/ammo_magazine/pistol/c99,
 					/obj/item/ammo_magazine/pistol/automatic,
@@ -249,19 +248,59 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/smg/uzi,
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/rifle/sniper/svd,
-					/obj/item/ammo_magazine/minigun,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
 					/obj/item/ammo_magazine/rifle/mar40,
 					/obj/item/ammo_magazine/rifle/mar40/extended,
-					/obj/item/ammo_magazine/rifle/lmg)
-	name = "Black Market ammo crate"
+					)
 	cost = 40
 	contraband = 1
 	containertype = /obj/structure/closet/crate
 	containername = "black market ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_exotic
+//This crate has a little bit of everything, mostly okay stuff, but it does have some really unique picks.
+/datum/supply_packs/randomised/surplus
+	name = "Surplus Ammo crate"
+	num_contained = 5
+	contains = list(
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle/extended,
+					/obj/item/ammo_magazine/rifle/ap,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/marksman,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/pistol,
+					/obj/item/ammo_magazine/pistol,
+					/obj/item/ammo_magazine/pistol,
+					/obj/item/ammo_magazine/pistol/extended,
+					/obj/item/ammo_magazine/pistol/ap,
+					/obj/item/ammo_magazine/pistol/hp,
+					/obj/item/ammo_magazine/pistol/incendiary,
+					/obj/item/ammo_magazine/pistol/m1911,
+					/obj/item/ammo_magazine/smg/m39,
+					/obj/item/ammo_magazine/smg/m39,
+					/obj/item/ammo_magazine/smg/m39,
+					/obj/item/ammo_magazine/smg/m39/extended,
+					/obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/ammo_magazine/revolver,
+					/obj/item/ammo_magazine/revolver,
+					/obj/item/ammo_magazine/revolver,
+					/obj/item/ammo_magazine/revolver/marksman,
+					/obj/item/ammo_magazine/revolver/heavy,
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/ammo_magazine/shotgun/incendiary
+				)
+	cost = 50
+	containertype = /obj/structure/closet/crate
+	containername = "surplus ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_specialist
 	name = "Specialist Ammo crate (M42c, M56)"
 	contains = list(
 					/obj/item/smartgun_powerpack,

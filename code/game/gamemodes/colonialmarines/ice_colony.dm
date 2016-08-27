@@ -266,9 +266,9 @@
 	world << "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]."
 
 	spawn(45)
-		if(aliens.len)
+		if(xenomorphs.len)
 			var/text = "<FONT size = 3><B>The Queen(s) were:</B></FONT>"
-			for(var/datum/mind/A in aliens)
+			for(var/datum/mind/A in xenomorphs)
 				if(A)
 					var/mob/M = A.current
 					if(!M)

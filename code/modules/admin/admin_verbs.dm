@@ -948,6 +948,6 @@ var/list/admin_verbs_mentor = list(
 		if(acc && dam)
 			config.proj_base_accuracy_mult = acc * 0.01
 			config.proj_base_damage_mult = dam * 0.01
-			message_admins("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
+			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
 			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
 

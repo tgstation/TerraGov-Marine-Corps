@@ -17,8 +17,8 @@
 	max_combined_w_class = 21   //Capacity of the backpack
 
 	New()
-		..()
 		select_gamemode_skin(type)
+		..()
 
 /obj/item/weapon/storage/backpack/marine/medic
 	name = "\improper USCM medic backpack"
@@ -54,6 +54,7 @@
 	name = "commando bag"
 	desc = "A heavy-duty bag carried by Weyland Yutani commandos."
 	icon_state = "commandopack"
+	item_state = "commandopack"
 	storage_slots = 10
 	max_combined_w_class = 30
 
@@ -71,7 +72,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = 4
 
@@ -297,11 +298,13 @@
 	icon_closed = "M4A3_holster_1"
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
+		"/obj/item/weapon/gun/pistol/m1911",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/pistol/hp",
 		"/obj/item/ammo_magazine/pistol/ap",
 		"/obj/item/ammo_magazine/pistol/incendiary",
-		"/obj/item/ammo_magazine/pistol/extended"
+		"/obj/item/ammo_magazine/pistol/extended",
+		"/obj/item/ammo_magazine/pistol/m1911"
 		)
 
 /obj/item/weapon/storage/belt/marine
@@ -326,8 +329,8 @@
 		"/obj/item/ammo_magazine/shotgun"
 		)
 	New()
-		..()
 		select_gamemode_skin(type)
+		..()
 
 /obj/item/weapon/storage/belt/security/MP
 	name = "\improper M276 pattern military police rig"
@@ -380,8 +383,8 @@
 
 	can_hold=list("/obj/item/weapon/throwing_knife")
 	New()
-		..()
 		select_gamemode_skin(type)
+		..()
 		item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
 		new /obj/item/weapon/throwing_knife(src)
 		new /obj/item/weapon/throwing_knife(src)
@@ -440,8 +443,8 @@ BLIND     // can't see anything
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = 2.0
-	flags_inv = COVEREYES
-	slot_flags = SLOT_EYES
+	flags_inventory = COVEREYES
+	flags_equip_slot = SLOT_EYES
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/invisa_view = 0

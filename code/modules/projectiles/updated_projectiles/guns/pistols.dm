@@ -7,7 +7,7 @@
 	cocked_sound = 'sound/weapons/pistol_cocked.ogg'
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 65000)
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	w_class = 3
 	fire_sound = 'sound/weapons/servicepistol.ogg'
 	type_of_casings = "bullet"
@@ -20,11 +20,11 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK //For easy reference.
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK //For easy reference.
 
 	New()
 		..()
-		load_into_chamber()
+		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 //-------------------------------------------------------
 //M4A3 PISTOL
@@ -32,30 +32,28 @@
 /obj/item/ammo_magazine/pistol
 	name = "\improper M4A3 magazine (9mm)"
 	caliber = "9mm"
-	icon_state = ".45a"
-	icon_empty = ".45a0"
+	icon_state = "m4a3"
 	max_rounds = 12
-	default_ammo = "pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/m4a3
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
-	default_ammo = "hollowpoint pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/hollow
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "\improper M4A3 AP magazine (9mm)"
-	default_ammo = "armor-piercing pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/ap
 
 /obj/item/ammo_magazine/pistol/incendiary
 	name = "\improper M4A3 incendiary magazine (9mm)"
-	default_ammo = "incendiary pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/incendiary
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 22
-	icon_state = "9mm_mag"
-	icon_empty = "9mm_mag0"
-	bonus_overlay = "pistol_mag"
+	icon_state = "m4a3" //PLACEHOLDER
+	bonus_overlay = "m4a3_ex"
 
 /obj/item/weapon/gun/pistol/m4a3
 	name = "\improper M4A3 service pistol"
@@ -67,17 +65,15 @@
 	force = 6
 
 	New()
-		..()
-		fire_delay = config.max_fire_delay
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 		select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
+		..()
+		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one is crested with an elephant-tusk ivory grip and has a slide carefully polished by a team of orphan children. Looks important."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
-
 
 	New()
 		..()
@@ -89,10 +85,9 @@
 
 /obj/item/ammo_magazine/pistol/m1911
 	name = "\improper M4A3 magazine (.45)"
-	default_ammo = "heavy pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol
 	caliber = ".45"
-	icon_state = "45-10"
-	icon_empty = "45-0"
+	icon_state = "m4a345"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
@@ -106,11 +101,11 @@
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	w_class = 2
 	force = 6
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
 	New()
 		..()
-		fire_delay = config.max_fire_delay
+		damage += config.min_hit_damage_mult
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 //-------------------------------------------------------
@@ -118,10 +113,9 @@
 
 /obj/item/ammo_magazine/pistol/heavy
 	name = "\improper Desert Eagle magazine (.50)"
-	default_ammo = "heavy pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".50"
-	icon_state = ".45a"
-	icon_empty = ".45a0"
+	icon_state = "m4a345" //PLACEHOLDER
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/heavy
 
@@ -144,7 +138,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()
 		..() //Pick some variant sprites.
@@ -161,10 +155,9 @@
 
 /obj/item/ammo_magazine/pistol/c99
 	name = "\improper PK-9 magazine (9mmM)"
-	default_ammo = "hollowpoint pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/hollow
 	caliber = ".9mmM"
-	icon_state = "45-10"
-	icon_empty = "45-0"
+	icon_state = "m4a3" //PLACEHOLDER
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/pistol/c99
 
@@ -183,7 +176,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()//Making the gun have an invisible silencer since it's supposed to have one.
 		..()
@@ -191,24 +184,23 @@
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 		var/obj/item/attachable/suppressor/S = new(src)
 		S.icon_state = ""
-		S.attach_features &= ~ATTACH_REMOVABLE
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		update_attachable(S.slot)
 
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
 	item_state = "pk9r"
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_RUSSIANS
 
 //-------------------------------------------------------
 //KT-42 //Inspired by the .44 Auto Mag pistol
 
 /obj/item/ammo_magazine/pistol/automatic
 	name = "\improper KT-42 magazine (.44)"
-	default_ammo = "heavy pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".32"
-	icon_state = "automag"
-	icon_empty = "automag"
+	icon_state = "kt42"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/kt42
 
@@ -220,7 +212,7 @@
 	fire_sound = 'sound/weapons/automag.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/automatic
 	attachable_allowed = list()
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()
 		..()
@@ -233,10 +225,9 @@
 
 /obj/item/ammo_magazine/pistol/holdout
 	name = "tiny pistol magazine (.22)"
-	default_ammo = "light pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/tiny
 	caliber = ".22"
-	icon_state = "9x"
-	icon_empty = "9x0"
+	icon_state = "m4a3" //PLACEHOLDER
 	max_rounds = 5
 	gun_type = /obj/item/weapon/gun/pistol/holdout
 
@@ -257,7 +248,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()
 		..()
@@ -269,10 +260,9 @@
 
 /obj/item/ammo_magazine/pistol/highpower
 	name = "\improper Highpower magazine (9mm)"
-	default_ammo = "armor-piercing pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = "9mm"
-	icon_state = "9x"
-	icon_empty = "9x0"
+	icon_state = "m4a3" //PLACEHOLDER
 	max_rounds = 13
 	gun_type = /obj/item/weapon/gun/pistol/highpower
 
@@ -285,7 +275,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
 	attachable_allowed = list()
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()
 		..()
@@ -298,10 +288,9 @@
 
 /obj/item/ammo_magazine/pistol/vp70
 	name = "\improper 88M4 AP magazine (9mm)"
-	default_ammo = "armor-piercing pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = "9mm"
-	icon_state = "45-10"
-	icon_empty = "45-0"
+	icon_state = "88m4"
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp70
 
@@ -327,10 +316,9 @@
 
 /obj/item/ammo_magazine/pistol/vp78
 	name = "\improper VP78 magazine (9mm)"
-	default_ammo = "squash-head pistol bullet"
+	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = "9mm"
-	icon_state = "45-10"
-	icon_empty = "45-0"
+	icon_state = "88m4" //PLACEHOLDER
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp78
 

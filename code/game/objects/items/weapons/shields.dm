@@ -6,7 +6,7 @@
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "riot"
-	slot_flags = SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 1
@@ -34,7 +34,7 @@
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
-	flags = FPRINT | CONDUCT | NOBLOODY
+	flags_atom = FPRINT|CONDUCT|NOBLOODY
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1
@@ -50,7 +50,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
 	var/active = 0.0
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	item_state = "electronic"
 	throwforce = 10.0
 	throw_speed = 2

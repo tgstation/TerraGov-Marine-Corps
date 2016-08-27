@@ -17,19 +17,19 @@
 
 	//exosuits and helmets obscure our view and stuff.
 	if(wear_suit)
-		skipgloves = wear_suit.flags_inv & HIDEGLOVES
-		skipsuitstorage = wear_suit.flags_inv & HIDESUITSTORAGE
-		skipjumpsuit = wear_suit.flags_inv & HIDEJUMPSUIT
-		skipshoes = wear_suit.flags_inv & HIDESHOES
+		skipgloves = wear_suit.flags_inventory & HIDEGLOVES
+		skipsuitstorage = wear_suit.flags_inventory & HIDESUITSTORAGE
+		skipjumpsuit = wear_suit.flags_inventory & HIDEJUMPSUIT
+		skipshoes = wear_suit.flags_inventory & HIDESHOES
 
 	if(head)
-		skipmask = head.flags_inv & HIDEMASK
-		skipeyes = head.flags_inv & HIDEEYES
-		skipears = head.flags_inv & HIDEEARS
-		skipface = head.flags_inv & HIDEFACE
+		skipmask = head.flags_inventory & HIDEMASK
+		skipeyes = head.flags_inventory & HIDEEYES
+		skipears = head.flags_inventory & HIDEEARS
+		skipface = head.flags_inventory & HIDEFACE
 
 	if(wear_mask)
-		skipface |= wear_mask.flags_inv & HIDEFACE
+		skipface |= wear_mask.flags_inventory & HIDEFACE
 
 	// crappy hacks because you can't do \his[src] etc. I'm sorry this proc is so unreadable, blame the text macros :<
 	var/t_He = "It" //capitalised for use at the start of each line.

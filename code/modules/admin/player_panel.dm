@@ -510,9 +510,9 @@
 					dat += "<tr><td><i>Head not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(ticker.mode.aliens.len)
+		if(ticker.mode.xenomorphs.len)
 			dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/L in ticker.mode.aliens)
+			for(var/datum/mind/L in ticker.mode.xenomorphs)
 				var/mob/M = L.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"

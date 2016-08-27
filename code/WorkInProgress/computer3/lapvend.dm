@@ -70,7 +70,7 @@
 		dat += "<center>Your comptuer will automatically be loaded with any programs you can use after the transaction is complete."
 		dat += "<center><b>Some programs will require additional components to be installed!</center></b><hr /><br>"
 		dat += "<center><b>HDD (Required)</b> : Added</center><br>"
-		dat += "<center><b>Card Reader</b> : <A href='?src=\ref[src];choice=single_add'>Single (50)</a> | <A href='?src=\ref[src];choice=dual_add'>Dual (125)</a><br>"
+		dat += "<center><b>Card Reader</b> : <A href='?src=\ref[src];choice=single_add'>Single (50)</a>|<A href='?src=\ref[src];choice=dual_add'>Dual (125)</a><br>"
 		dat += "<center><b>Floppy Drive</b>: <A href='?src=\ref[src];choice=floppy_add'>Add (50)</a><br>"
 		dat += "<center><b>Radio Network card</b> <A href='?src=\ref[src];choice=radio_add'>Add (50)</a><br>"
 		dat += "<center><b>Camera Card</b> <A href='?src=\ref[src];choice=camnet_add'>Add (100)</a><br>"

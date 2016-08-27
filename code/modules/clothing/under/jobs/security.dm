@@ -33,7 +33,7 @@
 	item_state = "dispatch"
 	item_color = "dispatch"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/security2
@@ -100,7 +100,7 @@
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
 	armor = list(melee = 50, bullet = 5, laser = 25,energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/det_hat/black
 	icon_state = "detective2"
@@ -128,8 +128,8 @@
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 10, bomb = 25, bio = 10, rad = 0)
-	flags_inv = HIDEEARS | COVEREYES
-	body_parts_covered = 0
+	flags_inventory = HIDEEARS|COVEREYES
+	flags_armor_protection = 0
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/armor/hos
@@ -137,9 +137,9 @@
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	item_state = "hos"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
+	flags_inventory = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
 
 
@@ -164,9 +164,9 @@
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
 	item_state = "jensencoat"
-	flags_inv = 0
+	flags_inventory = 0
 	siemens_coefficient = 0.6
-	body_parts_covered = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
 
 /*
  * Navy uniforms

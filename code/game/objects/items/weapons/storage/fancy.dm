@@ -69,7 +69,7 @@
 	item_state = "candlebox5"
 	storage_slots = 5
 	throwforce = 2
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 
 
 /obj/item/weapon/storage/fancy/candle_box/New()
@@ -132,14 +132,14 @@
 	item_state = "cigpacket"
 	w_class = 1
 	throwforce = 2
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	storage_slots = 6
 	can_hold = list("/obj/item/clothing/mask/cigarette", "/obj/item/weapon/flame/lighter")
 	icon_type = "cigarette"
 
 /obj/item/weapon/storage/fancy/cigarettes/New()
 	..()
-	flags |= NOREACT
+	flags_atom |= NOREACT
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
@@ -200,14 +200,14 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = 1
 	throwforce = 2
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	storage_slots = 7
 	can_hold = list("/obj/item/clothing/mask/cigarette/cigar")
 	icon_type = "cigar"
 
 /obj/item/weapon/storage/fancy/cigar/New()
 	..()
-	flags |= NOREACT
+	flags_atom |= NOREACT
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette/cigar(src)
 	create_reagents(15 * storage_slots)

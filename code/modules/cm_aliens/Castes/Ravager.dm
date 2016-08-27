@@ -83,12 +83,12 @@
 				return
 			visible_message("\red <B>[X] charges towards [T]!</B>","\red <b> You charge at [T]!</B>" )
 			emote("roar") //heheh
-			X.pass_flags = PASSTABLE
+			X.flags_pass = PASSTABLE
 			X.usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 			if(readying_tail) readying_tail = 0
 			X.throw_at(T, X.CHARGEDISTANCE, X.CHARGESPEED, src)
 			spawn(5)
-				X.pass_flags = 0
+				X.flags_pass = 0
 			spawn(X.CHARGECOOLDOWN)
 				X.usedPounce = 0
 				X << "Your exoskeleton quivers as you get ready to charge again."

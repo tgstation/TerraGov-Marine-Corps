@@ -10,8 +10,8 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 /obj/item/ammo_magazine/shotgun
 	name = "box of shotgun slugs"
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
-	icon_state = "shells"
-	default_ammo = "shotgun slug"
+	icon_state = "slugs"
+	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = "12g" //All shotgun rounds are 12g right now.
 	gun_type = /obj/item/weapon/gun/shotgun
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
@@ -21,13 +21,13 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "box of incendiary slugs"
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
-	default_ammo = "incendiary slug"
+	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 
 /obj/item/ammo_magazine/shotgun/buckshot
 	name = "box of buckshot shells"
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
-	icon_state = "beanbag"
-	default_ammo = "shotgun buckshot"
+	icon_state = "buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 
 //-------------------------------------------------------
 
@@ -39,7 +39,7 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
-	default_ammo = "shotgun slug"
+	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = "12g"
 	max_rounds = 8
 	chamber_closed = 0
@@ -59,11 +59,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
 	var/opened_sound = 'sound/weapons/shotgun_open2.ogg'
-	slot_flags = SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	type_of_casings = "shell"
 	accuracy = 1.15
-	flags = FPRINT | CONDUCT | TWOHANDED
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
 	New()
 		..()
@@ -125,7 +125,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
 			user << "<span class='warning'>You can't use that to reload!</span>"
@@ -142,8 +142,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(current_mag.transfer_ammo(magazine,current_mag,user,1))
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
 
-	unload(mob/user as mob)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	unload(mob/user)
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 		empty_chamber(user)
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
@@ -159,7 +159,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	ready_in_chamber()
 		return ready_shotgun_tube()
 
-	reload_into_chamber(var/mob/user as mob)
+	reload_into_chamber(mob/user)
 		if(active_attachable) make_casing(active_attachable.type_of_casings)
 		else
 			make_casing(type_of_casings)
@@ -170,7 +170,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
 				update_icon()
 		else
-			if( !(active_attachable.attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
+			if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
 		return 1
 
 //-------------------------------------------------------
@@ -187,11 +187,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	origin_tech = "combat=4;materials=2"
 	fire_sound = 'sound/weapons/shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	attachable_allowed = list(
 						/obj/item/attachable/compensator)
 
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS
 
 	New()
 		..()
@@ -200,7 +200,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		burst_amount = config.low_burst_value
 		burst_delay = config.mlow_fire_delay
 		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
-		load_into_chamber()
+		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 	examine()
 		..()
@@ -232,11 +232,11 @@ can cause issues with ammo types getting mixed up during the burst.
 		fire_delay = config.mhigh_fire_delay*2
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 		var/obj/item/attachable/grenade/G = new(src)
-		G.attach_features &= ~ATTACH_REMOVABLE
+		G.flags_attach_features &= ~ATTACH_REMOVABLE
 		G.icon_state = "" //Gun already has a better one
 		G.Attach(src)
 		update_attachable(G.slot)
-		load_into_chamber()
+		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 	examine()
 		..()
@@ -246,7 +246,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //DOUBLE SHOTTY
 
 /obj/item/ammo_magazine/internal/shotgun/double //For a double barrel.
-	default_ammo = "shotgun buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	max_rounds = 2
 	chamber_closed = 1 //Starts out with a closed tube.
 
@@ -266,7 +266,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS
 
 	New()
 		..()
@@ -316,7 +316,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	load_into_chamber()
 		//Trimming down the unnecessary stuff.
 		//This doesn't chamber, creates a bullet on the go.
-		if(active_attachable && (active_attachable.attach_features & ATTACH_PASSIVE) ) active_attachable = null
+		if(active_attachable && (active_attachable.flags_attach_features & ATTACH_PASSIVE) ) active_attachable = null
 		if(current_mag.current_rounds > 0)
 			ammo = ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
 			in_chamber = create_bullet(ammo)
@@ -346,10 +346,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
 	icon_state = "sshotgun"
 	item_state = "sshotgun"
-	slot_flags = SLOT_BELT
-	flags = FPRINT | CONDUCT
+	flags_equip_slot = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
 	attachable_allowed = list()
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS
 
 	New()
 		..()
@@ -388,11 +388,11 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/stock/shotgun)
 
 	New()
+		select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 		..()
 		fire_delay = config.med_fire_delay*5
 		pump_delay = config.max_fire_delay*2
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
-		select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 
 	unique_action(mob/user)
 		pump_shotgun(user)
@@ -439,7 +439,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(!active_attachable) //Time to move the tube position.
 			if(!current_mag.current_rounds && !in_chamber) update_icon()//No rounds, nothing chambered.
 		else
-			if( !(active_attachable.attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
+			if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
 
 		return 1
 

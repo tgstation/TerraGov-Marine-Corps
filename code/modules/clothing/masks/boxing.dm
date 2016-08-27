@@ -3,8 +3,8 @@
 	desc = "LOADSAMONEY"
 	icon_state = "balaclava"
 	item_state = "balaclava"
-	flags_inv = HIDEFACE|HIDEALLHAIR
-	body_parts_covered = FACE
+	flags_inventory = HIDEFACE|HIDEALLHAIR
+	flags_armor_protection = FACE
 	w_class = 2
 
 /obj/item/clothing/mask/balaclava/tactical
@@ -19,8 +19,8 @@
 	desc = "Worn by robust fighters, flying high to defeat their foes!"
 	icon_state = "luchag"
 	item_state = "luchag"
-	flags_inv = HIDEFACE|HIDEALLHAIR
-	body_parts_covered = HEAD|FACE
+	flags_inventory = HIDEFACE|HIDEALLHAIR
+	flags_armor_protection = HEAD|FACE
 	w_class = 2
 	siemens_coefficient = 3.0
 

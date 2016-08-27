@@ -150,11 +150,11 @@
 		dat += "<a href='?src=\ref[src];operation=login'>{Log In}</a>"
 	else
 		dat += "<a href='?src=\ref[src];operation=logout'>{Log Out}</a>"
-		dat += " | "
+		dat += "|"
 		dat += "<a href='?src=\ref[src];operation=screen;screen=database'>Database</a>"
-		dat += " | "
+		dat += "|"
 		dat += "<a href='?src=\ref[src];operation=screen;screen=details'>Record details</a>"
-		dat += " | "
+		dat += "|"
 		dat += "<a href='?src=\ref[src];operation=screen;screen=scan'>Scanning</a>"
 		dat +="<br><hr><br>"
 		switch(screen)

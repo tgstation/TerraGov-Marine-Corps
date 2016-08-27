@@ -17,7 +17,7 @@
 	if(successSpawn)
 		command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
-
+/*
 /datum/event/alien_infestation/start()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
@@ -38,3 +38,4 @@
 		vents -= vent
 		spawncount--
 		successSpawn = 1
+*/

@@ -7,10 +7,10 @@
 	var/on = 0
 	item_color = "yellow" //Determines used sprites: hardhat[on]_[color] and hardhat[on]_[color]2 (lying down sprite)
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 10, bomb = 20, bio = 10, rad = 20)
-	flags_inv = 0
+	flags_inventory = 0
 	icon_action_button = "action_hardhat"
 	siemens_coefficient = 0.9
-	flags_inv = BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
@@ -53,17 +53,17 @@
 	item_state = "hardhat0_red"
 	item_color = "red"
 	name = "firefighter helmet"
-	flags_inv = NOPRESSUREDMAGE
-	heat_protection = HEAD
-	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_inventory = NOPRESSUREDMAGE
+	flags_heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
 
 /obj/item/clothing/head/hardhat/white
 	icon_state = "hardhat0_white"
 	item_state = "hardhat0_white"
 	item_color = "white"
-	flags_inv = NOPRESSUREDMAGE
-	heat_protection = HEAD
-	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_inventory = NOPRESSUREDMAGE
+	flags_heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
 
 /obj/item/clothing/head/hardhat/dblue
 	icon_state = "hardhat0_dblue"

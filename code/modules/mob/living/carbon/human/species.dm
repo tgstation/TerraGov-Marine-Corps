@@ -210,7 +210,7 @@
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 
-	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR
+	flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -236,7 +236,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
+	flags = IS_WHITELISTED|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
 
 	flesh_color = "#34AF10"
 
@@ -263,7 +263,7 @@
 
 	primitive = /mob/living/carbon/monkey/tajara
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
+	flags = IS_WHITELISTED|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -277,7 +277,7 @@
 	primitive = /mob/living/carbon/monkey/skrell
 	unarmed_type = /datum/unarmed_attack/punch
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
+	flags = IS_WHITELISTED|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
 
@@ -356,7 +356,7 @@
 	breath_type = "nitrogen"
 	poison_type = "oxygen"
 
-	flags = NO_SCAN | NO_BLOOD | NO_PAIN
+	flags = NO_SCAN|NO_BLOOD|NO_PAIN
 
 	blood_color = "#2299FC"
 	flesh_color = "#808D11"
@@ -405,7 +405,7 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | IS_PLANT | NO_BLOOD | NO_PAIN | NO_SLIP
+	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|IS_PLANT|NO_BLOOD|NO_PAIN|NO_SLIP
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
@@ -464,7 +464,7 @@
 
 	synth_temp_gain = 10 //this should cause IPCs to stabilize at ~80 C in a 20 C environment.
 
-	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
+	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_PAIN|IS_SYNTHETIC
 
 	blood_color = "#EEEEEE"
 	flesh_color = "#272757"
@@ -480,7 +480,7 @@
 	icobase = 'icons/mob/human_races/r_predator.dmi'
 	deform = 'icons/mob/human_races/r_predator.dmi'
 	brute_mod = 0.33 //Beefy!
-	flags = IS_WHITELISTED | HAS_SKIN_COLOR | NO_PAIN | NO_SCAN | NO_POISON //Hmm, let's see if this does anything
+	flags = IS_WHITELISTED|HAS_SKIN_COLOR|NO_PAIN|NO_SCAN|NO_POISON //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
 	unarmed_type = /datum/unarmed_attack/punch/strong
@@ -493,10 +493,6 @@
 	death_message = "clicks in agony and falls still, motionless and completely lifeless..."
 	darksight = 5
 	slowdown = -0.8
-
-	cold_level_1 = 150
-	cold_level_2 = 100
-	cold_level_3 = 50
 
 	heat_level_1 = 500
 	heat_level_2 = 700

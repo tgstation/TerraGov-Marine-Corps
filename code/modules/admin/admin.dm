@@ -74,8 +74,8 @@ var/global/floorIsLava = 0
 	"}
 
 	if(M.client)
-		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> | "
-		body += "\ <A href='?_src_=holder;sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
+		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A>|"
+		body += "\ <A href='?_src_=holder;sendbacktolobby=\ref[M]'>Send back to Lobby</A>|"
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
 			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
@@ -91,7 +91,7 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A> |
 		<A href='?src=\ref[src];sendmob=\ref[M]'>Send To</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
+		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A>|" : "" ]
 		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
 		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
@@ -104,15 +104,15 @@ var/global/floorIsLava = 0
 
 			//Monkey
 			if(ismonkey(M))
-				body += "<B>Monkeyized</B> | "
+				body += "<B>Monkeyized</B>|"
 			else
-				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
+				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A>|"
 
 			//Corgi
 			if(iscorgi(M))
-				body += "<B>Corgized</B> | "
+				body += "<B>Corgized</B>|"
 			else
-				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
+				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A>|"
 
 			//AI / Cyborg
 			if(isAI(M))
@@ -125,12 +125,12 @@ var/global/floorIsLava = 0
 				"}
 			//Simple Animals
 			if(isanimal(M))
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
+				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A>|"
 			else
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
+				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A>|"
 
 			//Makin Yautjas
-			body += "<a href='?src=\ref[src];makeyautja=\ref[M]'>Make Yautja</a> | "
+			body += "<a href='?src=\ref[src];makeyautja=\ref[M]'>Make Yautja</a>|"
 
 			// DNA2 - Admin Hax
 			if(M.dna && iscarbon(M))

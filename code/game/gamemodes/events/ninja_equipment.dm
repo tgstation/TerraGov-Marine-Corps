@@ -246,8 +246,8 @@ ________________________________________________________________________________
 	var/dat = "<html><head><title>SpiderOS</title></head><body bgcolor=\"#3D5B43\" text=\"#B65B5B\"><style>a, a:link, a:visited, a:active, a:hover { color: #B65B5B; }img {border-style:none;}</style>"
 	dat += "<a href='byond://?src=\ref[src];choice=Refresh'><img src=sos_7.png> Refresh</a>"
 	if(spideros)
-		dat += " | <a href='byond://?src=\ref[src];choice=Return'><img src=sos_1.png> Return</a>"
-	dat += " | <a href='byond://?src=\ref[src];choice=Close'><img src=sos_8.png> Close</a>"
+		dat += "|<a href='byond://?src=\ref[src];choice=Return'><img src=sos_1.png> Return</a>"
+	dat += "|<a href='byond://?src=\ref[src];choice=Close'><img src=sos_8.png> Close</a>"
 	dat += "<br>"
 	if(s_control)
 		dat += "<h2 ALIGN=CENTER>SpiderOS v.1.337</h2>"
@@ -261,7 +261,7 @@ ________________________________________________________________________________
 	dat += "<img src=sos_14.png> pai Device: "
 	if(pai)
 		dat += "<a href='byond://?src=\ref[src];choice=Configure pAI'>Configure</a>"
-		dat += " | "
+		dat += "|"
 		dat += "<a href='byond://?src=\ref[src];choice=Eject pAI'>Eject</a>"
 	else
 		dat += "None Detected"
@@ -292,9 +292,9 @@ ________________________________________________________________________________
 			dat += "<h4>Overall Status: [U.stat > 1 ? "dead" : "[U.health]% healthy"]</h4>"
 			dat += "<h4>Nutrition Status: [U.nutrition]</h4>"
 			dat += "Oxygen loss: [U.getOxyLoss()]"
-			dat += " | Toxin levels: [U.getToxLoss()]<br>"
+			dat += "|Toxin levels: [U.getToxLoss()]<br>"
 			dat += "Burn severity: [U.getFireLoss()]"
-			dat += " | Brute trauma: [U.getBruteLoss()]<br>"
+			dat += "|Brute trauma: [U.getBruteLoss()]<br>"
 			dat += "Radiation Level: [U.radiation] rad<br>"
 			dat += "Body Temperature: [U.bodytemperature-T0C]&deg;C ([U.bodytemperature*1.8-459.67]&deg;F)<br>"
 
@@ -1184,7 +1184,7 @@ ________________________________________________________________________________
 /obj/item/clothing/glasses/hud/ninja
 	name = "Ninja Scanner HUD"
 	desc = "Assesses targets"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/hud/ninja/process_hud(var/mob/M)
 	var/target_list[] = list()

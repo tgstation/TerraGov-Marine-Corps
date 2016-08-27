@@ -5,14 +5,14 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 75, rad = 0)
-	body_parts_covered = HEAD|FACE
+	flags_armor_protection = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
 	siemens_coefficient = 0.7
-	body_parts_covered = FACE|EYES
+	flags_armor_protection = FACE|EYES
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
@@ -23,7 +23,7 @@
 /obj/item/clothing/mask/gas/voice
 	name = "gas mask"
 	//desc = "A face-covering mask that can be connected to an air supply. It seems to house some odd electronics."
-	var/mode = 0// 0==Scouter | 1==Night Vision | 2==Thermal | 3==Meson
+	var/mode = 0// 0==Scouter|1==Night Vision|2==Thermal|3==Meson
 	var/voice = "Unknown"
 	var/vchange = 0//This didn't do anything before. It now checks if the mask has special functions/N
 	origin_tech = "syndicate=4"
@@ -59,7 +59,7 @@
 	desc = "A mask used when acting as a monkey."
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
-	body_parts_covered = HEAD|FACE|EYES
+	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
