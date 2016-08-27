@@ -148,7 +148,7 @@
 			var/temp = winget(client, "input", "text")
 			if(findtextEx(temp, "Say \"", 1, 7) && length(temp) > 5)	//case sensitive means
 
-				temp = replacetext(temp, ";", "")	//general radio
+				temp = oldreplacetext(temp, ";", "")	//general radio
 
 				if(findtext(trim_left(temp), ":", 6, 7))	//dept radio
 					temp = copytext(trim_left(temp), 8)
@@ -174,9 +174,6 @@
 				winset(client, "input", "text=[null]")
 
 /mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
-
-	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
-		return 1
 
 	if(species.can_understand(other))
 		return 1

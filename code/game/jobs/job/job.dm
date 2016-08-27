@@ -43,6 +43,7 @@
 
 	var/is_squad_job = 0 //Should we place this job into squads?
 	var/comm_title = "" //The mini-title to display over comms.
+	var/paygrade = 0
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H)
 	return 1

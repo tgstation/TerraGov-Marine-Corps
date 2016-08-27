@@ -1,3 +1,5 @@
+//Boiler Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+
 /mob/living/carbon/Xenomorph/Boiler
 	caste = "Boiler"
 	name = "Boiler"
@@ -14,16 +16,19 @@
 	storedplasma = 450
 	plasma_gain = 30
 	maxplasma = 800
-	jellyMax = 0
+	jelly = 1
+	jellyMax = 800
 	spit_delay = 40
-	speed = 1.5
-	adjust_pixel_x = -16
+	speed = 1.2 //faster from 1.5
+	pixel_x = -16
 //	adjust_pixel_y = -6
 //	adjust_size_x = 0.9
 //	adjust_size_y = 0.8
 	caste_desc = "Gross!"
 	evolves_to = list()
 	big_xeno = 1 //Toggles pushing
+	tier = 3
+	upgrade = 0
 	var/zoom_timer = 0
 	var/is_bombarding = 0
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"
@@ -52,7 +57,7 @@
 		smoke = new /datum/effect/effect/system/smoke_spread/xeno_acid
 		smoke.attach(src)
 		see_in_dark = 20
-		bomb_ammo = new /datum/ammo/boiler_gas() //Set up the bombard ammo type.
+		bomb_ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
 
 	Del()
 		SetLuminosity(0)
@@ -112,18 +117,8 @@
 
 	if(!check_state()) return
 
-	if(!istype(bomb_ammo,/datum/ammo/boiler_gas/corrosive))
-		src << "\blue You will now fire corrosive gas. This is lethal!"
-		if(bomb_ammo) del(bomb_ammo)
-		bomb_ammo = new /datum/ammo/boiler_gas/corrosive()
-		return
-	else //This also checks for null ammo.
-		src << "\blue You will now fire neurotoxic gas. This is nonlethal."
-		if(bomb_ammo) del(bomb_ammo)
-		bomb_ammo = new /datum/ammo/boiler_gas()
-		return
-
-	return
+	src << "\blue You will now fire [bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]"
+	bomb_ammo = bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? ammo_list[/datum/ammo/xeno/boiler_gas/corrosive] : ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bombard()
 	set name = "Bombard (200-250)"
@@ -223,11 +218,12 @@
 		bomb_turf = null
 		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
 
-		var/obj/item/projectile/P = new(src.loc)
+		var/obj/item/projectile/P = rnew(/obj/item/projectile,src.loc)
 		P.ammo = bomb_ammo
+		P.name = P.ammo.name
 		P.icon_state = P.ammo.icon_state
 		P.damage = P.ammo.damage
-		P.damage_type = P.ammo.damage_type
+		P.accuracy += P.ammo.accuracy
 		P.fire_at(target,src,null,P.ammo.max_range,P.ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 60, 1)
 
@@ -247,7 +243,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 1
 	density = 0
 	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
@@ -291,7 +287,7 @@
 	if(isYautja(M) && prob(75))
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(40))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(40))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
@@ -322,7 +318,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 1
 	var/datum/effect/effect/system/smoke_spread/xeno_weaken/smoke
 
@@ -367,7 +363,7 @@
 	if(M.stat)
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS) && prob(75))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(75))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else

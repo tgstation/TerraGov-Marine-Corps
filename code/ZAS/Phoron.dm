@@ -43,7 +43,7 @@ obj/var/contaminated = 0
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
-	if(flags & PHORONGUARD) return 0
+	if(flags_inventory & BLOCKPHORON) return 0
 	else if(istype(src,/obj/item/weapon/storage/backpack)) return 0 //Cannot be washed :(
 	else if(istype(src,/obj/item/clothing)) return 1
 
@@ -94,18 +94,12 @@ obj/var/contaminated = 0
 	//Burn eyes if exposed.
 	if(vsc.plc.EYE_BURNS)
 		if(!head)
-			if(!wear_mask)
+			if( !wear_mask || !(wear_mask.flags_inventory & COVEREYES) )
 				burn_eyes()
-			else
-				if(!(wear_mask.flags & MASKCOVERSEYES))
-					burn_eyes()
 		else
-			if(!(head.flags & HEADCOVERSEYES))
-				if(!wear_mask)
+			if(!(head.flags_inventory & COVEREYES))
+				if( !wear_mask || !(wear_mask.flags_inventory & COVEREYES) )
 					burn_eyes()
-				else
-					if(!(wear_mask.flags & MASKCOVERSEYES))
-						burn_eyes()
 
 	//Genetic Corruption
 	if(vsc.plc.GENETIC_CORRUPTION)
@@ -133,9 +127,9 @@ obj/var/contaminated = 0
 	//Checks if the head is adequately sealed.
 	if(head)
 		if(vsc.plc.PHORONGUARD_ONLY)
-			if(head.flags & PHORONGUARD)
+			if(head.flags_inventory & BLOCKPHORON)
 				return 1
-		else if(head.flags & HEADCOVERSEYES)
+		else if(head.flags_inventory & COVEREYES)
 			return 1
 	return 0
 
@@ -143,9 +137,9 @@ obj/var/contaminated = 0
 	//Checks if the suit is adequately sealed.
 	if(wear_suit)
 		if(vsc.plc.PHORONGUARD_ONLY)
-			if(wear_suit.flags & PHORONGUARD) return 1
+			if(wear_suit.flags_inventory & BLOCKPHORON) return 1
 		else
-			if(wear_suit.flags_inv & HIDEJUMPSUIT) return 1
+			if(wear_suit.flags_inventory & HIDEJUMPSUIT) return 1
 		//should check HIDETAIL as well, but for the moment tails are not a part that can be damaged separately
 	return 0
 

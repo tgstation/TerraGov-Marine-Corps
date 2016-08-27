@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/engineering_chief
-	name = "Chief Engineer's Locker"
+	name = "\improper Chief Engineer's locker"
 	req_access = list(access_sulaco_CE)
 	icon_state = "securece1"
 	icon_closed = "securece"
@@ -37,10 +37,8 @@
 		new /obj/item/taperoll/engineering(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/engineering_electrical
-	name = "Electrical Supplies"
+	name = "electrical supplies"
 	req_access = list(access_sulaco_engineering)
 	icon_state = "secureengelec1"
 	icon_closed = "secureengelec"
@@ -68,10 +66,8 @@
 		new /obj/item/device/multitool(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/engineering_welding
-	name = "Welding Supplies"
+	name = "welding supplies"
 	req_access = list(access_sulaco_engineering)
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"
@@ -95,10 +91,8 @@
 		new /obj/item/weapon/weldpack(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/engineering_personal
-	name = "Engineer's Locker"
+	name = "engineer's locker"
 	req_access = list(access_sulaco_engineering)
 	icon_state = "secureeng1"
 	icon_closed = "secureeng"
@@ -106,42 +100,30 @@
 	icon_opened = "secureengopen"
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
-	special_equipment = 1
-
-	select_gamemode_equipment(gamemode = "")
-		if(special_equipment)
-			switch(gamemode)
-				if("Ice Colony")
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/snow_suit(src)
-					new /obj/item/clothing/mask/rebreather/scarf(src)
-
-
 
 	New()
 		..()
 		sleep(2)
-		if(prob(50))
-			new /obj/item/weapon/storage/backpack/industrial(src)
-		else
-			new /obj/item/weapon/storage/backpack/satchel_eng(src)
-		if (prob(70))
-			new /obj/item/clothing/tie/storage/brown_vest(src)
-		else
-			new /obj/item/clothing/tie/storage/webbing(src)
+		if(prob(50)) new /obj/item/weapon/storage/backpack/industrial(src)
+		else new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		if (prob(70)) new /obj/item/clothing/tie/storage/brown_vest(src)
+		else new /obj/item/clothing/tie/storage/webbing(src)
 		new /obj/item/weapon/storage/toolbox/mechanical(src)
-		if(z && (z == 3 || z == 4))
-			new /obj/item/device/radio/headset/headset_eng(src)
-		new /obj/item/clothing/suit/storage/hazardvest(src)
-		new /obj/item/clothing/mask/gas(src)
+		if(z != 1) new /obj/item/device/radio/headset/headset_eng(src)
 		new /obj/item/clothing/glasses/meson(src)
 		new /obj/item/weapon/cartridge/engineering(src)
 		new /obj/item/taperoll/engineering(src)
-		return
+		new /obj/item/clothing/suit/storage/hazardvest(src)
+		new /obj/item/clothing/mask/gas(src)
+
+	select_gamemode_equipment(gamemode)
+		switch(gamemode)
+			if(/datum/game_mode/ice_colony)
+				new /obj/item/clothing/suit/storage/snow_suit(src)
+				new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/structure/closet/secure_closet/atmos_personal
-	name = "Technician's Locker"
+	name = "technician's locker"
 	req_access = list(access_sulaco_engineering)
 	icon_state = "secureatm1"
 	icon_closed = "secureatm"

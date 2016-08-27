@@ -3,8 +3,8 @@
 	var/list/datum/mind/traitors = list()
 
 /datum/game_mode/traitor
-	name = "traitor"
-	config_tag = "traitor"
+	// name = "traitor"
+	// config_tag = "traitor"
 	restricted_jobs = list("Cyborg")//They are part of the AI if he is traitor so are they, they use to get double chances
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Captain")//AI", Currently out of the list as malf does not work for shit
 	required_players = 0

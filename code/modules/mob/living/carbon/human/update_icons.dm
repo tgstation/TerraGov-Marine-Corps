@@ -411,14 +411,14 @@ proc/get_damage_icon_part(damage_state, body_part)
 		return
 
 	//masks and helmets can obscure our hair.
-	if( (head && (head.flags & BLOCKHAIR)) || (wear_mask && (wear_mask.flags & BLOCKHAIR)))
+	if( (head && (head.flags_inventory & HIDEALLHAIR)) || (wear_mask && (wear_mask.flags_inventory & HIDEALLHAIR)))
 		if(update_icons)   update_icons()
 		return
 
 	//base icons
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
 
-	if(f_style)
+	if(f_style && !(wear_suit && (wear_suit.flags_inventory & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inventory & HIDELOWHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && src.species.name in facial_hair_style.species_allowed)
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
@@ -427,7 +427,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
-	if(h_style && !(head && (head.flags & BLOCKHEADHAIR)))
+	if(h_style && !(head && (head.flags_inventory & HIDETOPHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
 		if(hair_style && src.species.name in hair_style.species_allowed)
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
@@ -647,14 +647,15 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 /mob/living/carbon/human/update_inv_ears(var/update_icons=1)
 	overlays_standing[EARS_LAYER] = null
-	if( (head && (head.flags & (BLOCKHAIR | BLOCKHEADHAIR))) || (wear_mask && (wear_mask.flags & (BLOCKHAIR | BLOCKHEADHAIR))))
+	if( (head && (head.flags_inventory & HIDEEARS)) || (wear_mask && (wear_mask.flags_inventory & HIDEEARS)))
 		if(update_icons)   update_icons()
 		return
 
 	if(l_ear || r_ear)
+		var/t_type
 		if(l_ear)
 
-			var/t_type = l_ear.icon_state
+			t_type = l_ear.item_state? l_ear.item_state : l_ear.icon_state
 			if(l_ear.icon_override)
 				t_type = "[t_type]_l"
 				overlays_standing[EARS_LAYER] = image("icon" = l_ear.icon_override, "icon_state" = "[t_type]")
@@ -666,7 +667,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 		if(r_ear)
 
-			var/t_type = r_ear.icon_state
+			t_type = r_ear.item_state? r_ear.item_state : r_ear.icon_state
 			if(r_ear.icon_override)
 				t_type = "[t_type]_r"
 				overlays_standing[EARS_LAYER] = image("icon" = r_ear.icon_override, "icon_state" = "[t_type]")
@@ -681,7 +682,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_shoes(var/update_icons=1)
-	if(shoes && !(wear_suit && wear_suit.flags_inv & HIDESHOES))
+	if(shoes && !(wear_suit && wear_suit.flags_inventory & HIDESHOES))
 
 		var/image/standing
 		if(shoes.icon_override)
@@ -730,63 +731,26 @@ proc/get_damage_icon_part(damage_state, body_part)
 			else
 				standing = image("icon" = head.sprite_sheet_id?'icons/mob/head_1.dmi':'icons/mob/head_0.dmi', "icon_state" = "[head.icon_state]")
 
+		if(istype(head,/obj/item/clothing/head/helmet/marine))
+			var/obj/item/clothing/head/helmet/marine/marine_helmet = head
+			if(marine_helmet.flags_marine_helmet & HELMET_SQUAD_OVERLAY)
+				var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
+				var/leader = is_leader_from_card(src)
+				switch(squad)
+					if(1 to 4) standing.overlays += leader? helmetmarkings_sql[squad] : helmetmarkings[squad]
+
+			if(marine_helmet.overlays.len)
+				var/image/I
+				for(var/i in marine_helmet.helmet_overlays)
+					I = marine_helmet.helmet_overlays[i]
+					if(I)
+						I = image(I.icon,src,I.icon_state)
+						standing.overlays += I
+
 		if(head.blood_DNA)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "helmetblood")
 			bloodsies.color = head.blood_color
 			standing.overlays	+= bloodsies
-
-		if(istype(head,/obj/item/clothing/head/helmet/marine))
-			var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
-			var/leader = is_leader_from_card(src)
-			if(leader && squad > 0 && squad < 5)
-				standing.overlays += helmetmarkings_sql[squad]
-			else if(squad > 0 && squad < 5)
-				standing.overlays += helmetmarkings[squad]
-
-			if(head:hug_damage) //We know this is a good var.
-				var/image/scratchy = image('icons/Marine/marine_armor.dmi',icon_state = "hugger_damage")
-				standing.overlays += scratchy
-			//Update helmet contents overlay
-			if(head.contents.len)
-				for(var/obj/I in head.contents)
-					if(!isnull(I) && I in head.contents)
-						//Cigar Packs
-						if(istype(I,/obj/item/weapon/storage/fancy/cigarettes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco) && !istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
-						else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/kpack))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")
-						else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_ls")
-						else if(istype(I,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_cig_kpack")//TODO
-
-						//Cards
-						else if(istype(I,/obj/item/weapon/deck) || istype(I,/obj/item/weapon/hand))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_card_card")
-
-						//Matches
-						else if(istype(I,/obj/item/weapon/storage/box/matches))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_matches")
-
-						//Rosary
-						else if(istype(I,/obj/item/fluff/val_mcneil_1) || istype(I, /obj/item/clothing/mask/mara_kilpatrick_1))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_rosary")
-
-						//Flasks
-						else if(istype(I,/obj/item/weapon/reagent_containers/food/drinks/flask))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_flask")
-
-						//Lighters
-						else if(istype(I,/obj/item/weapon/flame/lighter) && !istype(I,/obj/item/weapon/flame/lighter/zippo))
-							var/obj/item/weapon/flame/lighter/L = I
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_lighter_[L.clr]")
-
-						//Snacks
-						else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_burrito")
-						else if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/eat_bar) || istype(I,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
-							standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_snack_eat")
-				standing.overlays += image('icons/mob/helmet_garb.dmi', "helmet_band")
 
 		overlays_standing[HEAD_LAYER] = standing
 
@@ -828,27 +792,27 @@ proc/get_damage_icon_part(damage_state, body_part)
 			drop_l_hand()
 			drop_r_hand()
 
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/obj/item/clothing/suit/storage/marine/marine_armor = wear_suit
+			if(marine_armor.flags_marine_armor & ARMOR_SQUAD_OVERLAY)
+				var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
+				var/leader = is_leader_from_card(src)
+				switch(squad)
+					if(1 to 4) standing.overlays += leader? armormarkings_sql[squad] : armormarkings[squad]
+
+			if(marine_armor.overlays.len)
+				var/image/I
+				for(var/i in marine_armor.armor_overlays)
+					I = marine_armor.armor_overlays[i]
+					if(I)
+						I = image(I.icon,src,I.icon_state)
+						standing.overlays += I
+
 		if(wear_suit.blood_DNA)
 			var/obj/item/clothing/suit/S = wear_suit
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color
 			standing.overlays	+= bloodsies
-
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/squad = get_squad_from_card(src) //This also sets their squad in .mind, if they didn't have one.
-			var/leader = is_leader_from_card(src)
-			if(leader && squad > 0 && squad < 5)
-				standing.overlays += armormarkings_sql[squad]
-			else if(squad > 0 && squad < 5)
-				standing.overlays += armormarkings[squad]
-
-			//For shoulder lamps
-			var/image/beam = image('icons/Marine/marine_armor.dmi',icon_state = "beam")
-			standing.overlays += image('icons/Marine/marine_armor.dmi',icon_state = "lamp")
-			if(wear_suit:on) //We know this is a good var.
-				standing.overlays += beam
-			else
-				standing.overlays -= beam
 
 		overlays_standing[SUIT_LAYER]	= standing
 
@@ -870,7 +834,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 
 /mob/living/carbon/human/update_inv_wear_mask(var/update_icons=1)
-	if( wear_mask && ( istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/tie) ) && !(head && head.flags_inv & HIDEMASK))
+	if( wear_mask && ( istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/tie) ) && !(head && head.flags_inventory & HIDEMASK))
 		wear_mask.screen_loc = ui_mask	//TODO
 
 		var/image/standing
@@ -894,12 +858,14 @@ proc/get_damage_icon_part(damage_state, body_part)
 /mob/living/carbon/human/update_inv_back(var/update_icons=1)
 	if(back)
 		back.screen_loc = ui_back	//TODO
+		var/t_state = back.item_state ? back.item_state : back.icon_state
+
 		if(back.icon_override)
-			overlays_standing[BACK_LAYER] = image("icon" = back.icon_override, "icon_state" = "[back.icon_state]")
+			overlays_standing[BACK_LAYER] = image("icon" = back.icon_override, "icon_state" = "[t_state]")
 		else if(back.sprite_sheets && back.sprite_sheets[species.name])
-			overlays_standing[BACK_LAYER] = image("icon" = back.sprite_sheets[species.name], "icon_state" = "[back.icon_state]")
+			overlays_standing[BACK_LAYER] = image("icon" = back.sprite_sheets[species.name], "icon_state" = "[t_state]")
 		else
-			overlays_standing[BACK_LAYER] = image("icon" = 'icons/mob/back.dmi', "icon_state" = "[back.icon_state]")
+			overlays_standing[BACK_LAYER] = image("icon" = 'icons/mob/back.dmi', "icon_state" = "[t_state]")
 	else
 		overlays_standing[BACK_LAYER]	= null
 	if(update_icons)   update_icons()
@@ -980,7 +946,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 	overlays_standing[TAIL_LAYER] = null
 
 	if(species.tail)
-		if(!wear_suit || !(wear_suit.flags_inv & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
+		if(!wear_suit || !(wear_suit.flags_inventory & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
 			var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
 			tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 

@@ -574,7 +574,8 @@
 			if(hasmob && prob(3))
 				for(var/mob/living/H in src)
 					if(!istype(H,/mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
-						H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+						if(!istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+							H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
 
 			if(has_fat_guy && prob(2)) // chance of becoming stuck per segment if contains a fat guy
 				active = 0
@@ -957,9 +958,9 @@
 	New()
 		..()
 		if(icon_state == "pipe-s")
-			dpdir = dir | turn(dir, 180)
+			dpdir = dir|turn(dir, 180)
 		else
-			dpdir = dir | turn(dir, -90)
+			dpdir = dir|turn(dir, -90)
 
 		update()
 		return
@@ -1079,11 +1080,11 @@
 	New()
 		..()
 		if(icon_state == "pipe-j1")
-			dpdir = dir | turn(dir, -90) | turn(dir,180)
+			dpdir = dir|turn(dir, -90)|turn(dir,180)
 		else if(icon_state == "pipe-j2")
-			dpdir = dir | turn(dir, 90) | turn(dir,180)
+			dpdir = dir|turn(dir, 90)|turn(dir,180)
 		else // pipe-y
-			dpdir = dir | turn(dir,90) | turn(dir, -90)
+			dpdir = dir|turn(dir,90)|turn(dir, -90)
 		update()
 		return
 
@@ -1136,7 +1137,7 @@
 
 	New()
 		. = ..()
-		dpdir = dir | turn(dir, 180)
+		dpdir = dir|turn(dir, 180)
 		if(sort_tag) tagger_locations |= sort_tag
 		updatename()
 		updatedesc()
@@ -1200,7 +1201,7 @@
 		else if(icon_state == "pipe-j2s")
 			sortdir = turn(posdir, 90)
 
-		dpdir = sortdir | posdir | negdir
+		dpdir = sortdir|posdir|negdir
 
 	New()
 		. = ..()

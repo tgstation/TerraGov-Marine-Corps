@@ -1,24 +1,31 @@
-//Xenomorph Runner - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
+//Runner Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
 /mob/living/carbon/Xenomorph/Runner
 	caste = "Runner"
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
+	icon = 'icons/xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
 	icon_state = "Runner Walking"
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	melee_damage_lower = 10
+	melee_damage_upper = 20
 	health = 100
 	maxHealth = 100
 	storedplasma = 50
 	plasma_gain = 1
 	maxplasma = 100
-	jellyMax = 400
+	jellyMax = 200
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -1.5
 	evolves_to = list("Hunter")
-	charge_type = 1 //Pounce
-	pass_flags = PASSTABLE
-	attack_delay = -3
+	charge_type = 3 //Pounce - Runner
+	flags_pass = PASSTABLE
+	attack_delay = -4
+	tier = 1
+	upgrade = 0
+	pixel_x = -16  //Needed for 2x2
+	// adjust_pixel_y = -6  //Needed for 2x2
+	// adjust_size_x = 0.8  //Needed for 2x2
+	// adjust_size_y = 0.75  //Needed for 2x2
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,

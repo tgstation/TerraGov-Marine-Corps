@@ -31,7 +31,6 @@
 	name = "amish suit"
 	icon_state = "sl_suit"
 	item_color = "sl_suit"
-	flags = FPRINT | TABLEPASS
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
@@ -39,7 +38,6 @@
 	icon_state = "waiter"
 	item_state = "waiter"
 	item_color = "waiter"
-	flags = FPRINT | TABLEPASS
 
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
@@ -54,7 +52,7 @@
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
 	item_color = "sexyclown"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
@@ -93,10 +91,9 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	flags = FPRINT | TABLEPASS
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS //Needs gloves and shoes with cold protection to be fully protected.
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS //Needs gloves and shoes with cold protection to be fully protected.
+	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
@@ -106,11 +103,10 @@
 	desc = "it's a cybernetically enhanced jumpsuit used for administrative duties."
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	flags = FPRINT | TABLEPASS
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	armor = list(melee = 100, bullet = 100, laser = 100,energy = 100, bomb = 100, bio = 100, rad = 100)
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	siemens_coefficient = 0
 
 /obj/item/clothing/under/owl
@@ -118,7 +114,6 @@
 	desc = "A jumpsuit with owl wings. Photorealistic owl feathers! Twooooo!"
 	icon_state = "owl"
 	item_color = "owl"
-	flags = FPRINT | TABLEPASS
 
 /obj/item/clothing/under/johnny
 	name = "johnny~~ jumpsuit"
@@ -145,7 +140,7 @@
 	icon_state = "psysuit"
 	item_state = "psysuit"
 	item_color = "psysuit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 
 /obj/item/clothing/under/gentlesuit
 	name = "Gentlemans Suit"
@@ -201,7 +196,7 @@
 	desc = "A black skirt, very fancy!"
 	icon_state = "blackskirt"
 	item_color = "blackskirt"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/schoolgirl
 	name = "schoolgirl uniform"
@@ -209,7 +204,7 @@
 	icon_state = "schoolgirl"
 	item_state = "schoolgirl"
 	item_color = "schoolgirl"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/overalls
 	name = "laborer's overalls"
@@ -224,7 +219,7 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	item_color = "pirate"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
@@ -246,7 +241,7 @@
 	icon_state = "kilt"
 	item_state = "kilt"
 	item_color = "kilt"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|FEET
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
@@ -254,7 +249,7 @@
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	item_color = "sexymime"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
@@ -262,11 +257,11 @@
 	icon_state = "gladiator"
 	item_state = "gladiator"
 	item_color = "gladiator"
-	body_parts_covered = LOWER_TORSO
+	flags_armor_protection = LOWER_TORSO
 
 //dress
 /obj/item/clothing/under/dress/
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/dress/dress_fire
 	name = "flame dress"
@@ -310,21 +305,21 @@
 	desc = "Feminine fashion for the style concious captain."
 	icon_state = "dress_cap"
 	item_color = "dress_cap"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/dress/dress_hop
 	name = "head of personnel dress uniform"
 	desc = "Feminine fashion for the style concious HoP."
 	icon_state = "dress_hop"
 	item_color = "dress_hop"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/dress/dress_hr
 	name = "human resources director uniform"
 	desc = "Superior class for the nosy H.R. Director."
 	icon_state = "huresource"
 	item_color = "huresource"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/dress/plaid_blue
 	name = "blue plaid skirt"
@@ -346,43 +341,43 @@
 
 //wedding stuff
 /obj/item/clothing/under/wedding/
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/wedding/bride_orange
 	name = "orange wedding dress"
 	desc = "A big and puffy orange dress."
 	icon_state = "bride_orange"
 	item_color = "bride_orange"
-	flags_inv = HIDESHOES
+	flags_inventory = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_purple
 	name = "purple wedding dress"
 	desc = "A big and puffy purple dress."
 	icon_state = "bride_purple"
 	item_color = "bride_purple"
-	flags_inv = HIDESHOES
+	flags_inventory = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_blue
 	name = "blue wedding dress"
 	desc = "A big and puffy blue dress."
 	icon_state = "bride_blue"
 	item_color = "bride_blue"
-	flags_inv = HIDESHOES
+	flags_inventory = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_red
 	name = "red wedding dress"
 	desc = "A big and puffy red dress."
 	icon_state = "bride_red"
 	item_color = "bride_red"
-	flags_inv = HIDESHOES
+	flags_inventory = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_white
 	name = "silky wedding dress"
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
 	item_color = "bride_white"
-	flags_inv = HIDESHOES
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_inventory = HIDESHOES
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
@@ -390,7 +385,7 @@
 	icon_state = "sundress"
 	item_state = "sundress"
 	item_color = "sundress"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/captainformal
 	name = "captain's formal uniform"

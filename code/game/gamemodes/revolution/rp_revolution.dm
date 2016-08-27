@@ -1,8 +1,8 @@
 // BS12's less violent revolution mode
 
 /datum/game_mode/revolution/rp_revolution
-	name = "rp-revolution"
-	config_tag = "rp-revolution"
+	// name = "rp-revolution"
+	// config_tag = "rp-revolution"
 	required_players = 4
 	required_players_secret = 12
 	required_enemies = 3
@@ -239,7 +239,7 @@
 
 /datum/game_mode/revolution/rp_revolution/proc/command_report(message)
 	for (var/obj/machinery/computer/communications/comm in world)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
+		if (!(comm.stat & (BROKEN|NOPOWER)) && comm.prints_intercept)
 			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper( comm.loc )
 			intercept.name = "Cent. Com. Announcement"
 			intercept.info = message

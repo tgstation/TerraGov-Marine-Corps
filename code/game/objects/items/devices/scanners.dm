@@ -13,8 +13,8 @@ REAGENT SCANNER
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
 	icon_state = "t-ray0"
 	var/on = 0
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	w_class = 2
 	item_state = "electronic"
 
@@ -69,8 +69,8 @@ REAGENT SCANNER
 	icon_state = "health"
 	item_state = "analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 5
@@ -135,7 +135,7 @@ REAGENT SCANNER
 	BR = M.getBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical damage detected</b></font>" 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		"\red Severe oxygen deprivation detected\blue" 	: 	"Subject bloodstream oxygen level normal"
-	user.show_message("[OX] | [TX] | [BU] | [BR]")
+	user.show_message("[OX]|[TX]|[BU]|[BR]")
 	if (istype(M, /mob/living/carbon))
 		if(M:reagents.total_volume > 0)
 			var/unknown = 0
@@ -166,9 +166,7 @@ REAGENT SCANNER
 			user.show_message(text("\red <b>*Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
 //	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
 //		user.show_message("\blue Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.")
-	if (M.has_brain_worms())
-		user.show_message("\red *Subject suffering from aberrant brain activity. Recommend further scanning.")
-	else if (M.getBrainLoss() >= 100 || !M.has_brain())
+	if (M.getBrainLoss() >= 100 || !M.has_brain())
 		user.show_message("\red *Subject is brain dead.")
 	else if (M.getBrainLoss() >= 60)
 		user.show_message("\red *Severe brain damage detected. Subject likely to have mental retardation.")
@@ -232,8 +230,8 @@ REAGENT SCANNER
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = 2.0
-	flags = FPRINT | TABLEPASS| CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -279,8 +277,8 @@ REAGENT SCANNER
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = 2.0
-	flags = FPRINT | TABLEPASS| CONDUCT | OPENCONTAINER
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT|OPENCONTAINER
+	flags_equip_slot = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -354,8 +352,8 @@ REAGENT SCANNER
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = 2.0
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -414,7 +412,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	origin_tech = "biotech=1"
 	w_class = 2.0
-	flags = CONDUCT
+	flags_atom = CONDUCT
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7

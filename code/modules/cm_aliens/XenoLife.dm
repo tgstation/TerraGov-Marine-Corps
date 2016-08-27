@@ -14,7 +14,6 @@
 		if(src.loc != zoom_turf && is_zoomed)
 			zoom_out()
 
-
 	if (stat != DEAD) //Stop if dead. Performance boost
 
 		update_progression()
@@ -31,14 +30,12 @@
 
 		//Status updates, death etc.
 		handle_regular_status_updates()
-//		updatehealth() //It already updates each handle_regular_status_updates() update
 		update_canmove()
 		handle_statuses() //Deals with stunned, etc
 		update_icons()
-		if(loc)
-			handle_environment(loc.return_air())
-		if(client)
-			handle_regular_hud_updates()
+		if(loc) handle_environment(loc.return_air())
+		if(client) handle_regular_hud_updates()
+
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
 
@@ -53,7 +50,6 @@
 			update_fire()
 			updatehealth()
 			fire_stacks--
-
 	if(health > -100 && health < 0) //Unconscious
 		if(readying_tail) readying_tail = 0
 		blinded = 1
@@ -78,39 +74,40 @@
 				readying_tail = 20
 				src << "\blue Your tail is now fully poised to impale some unfortunate target."
 
-		if(health > 0) //Just to be safe
-			blinded = 0
+		if(stat != DEAD)
+			if(health > 0) //Just to be safe
+				blinded = 0
 
-		ear_deaf = 0 //All this stuff is prob unnecessary
-		ear_damage = 0
-		eye_blind = 0
-		eye_blurry = 0
+			ear_deaf = 0 //All this stuff is prob unnecessary
+			ear_damage = 0
+			eye_blind = 0
+			eye_blurry = 0
 
-		if(weakened)
-			weakened--
+			if(weakened)
+				weakened--
 
-		if(paralysis) //If they're down, make sure they are actually down.
-			AdjustParalysis(-3)
-			blinded = 1
-			stat = UNCONSCIOUS
-			if(halloss > 0)
+			if(paralysis) //If they're down, make sure they are actually down.
+				AdjustParalysis(-3)
+				blinded = 1
+				stat = UNCONSCIOUS
+				if(halloss > 0)
+					adjustHalLoss(-3)
+			else if(sleeping)
 				adjustHalLoss(-3)
-		else if(sleeping)
-			adjustHalLoss(-3)
-			if (mind)
-				if((mind.active && client != null) || immune_to_ssd)
-					sleeping = max(sleeping-1, 0)
-			blinded = 1
-			stat = UNCONSCIOUS
-		else if(resting)
-			blinded = 0
-			if(halloss > 0)
-				adjustHalLoss(-3)
-		else
-			stat = CONSCIOUS
-			blinded = 0
-			if(halloss > 0)
-				adjustHalLoss(-1)
+				if (mind)
+					if((mind.active && client != null) || immune_to_ssd)
+						sleeping = max(sleeping-1, 0)
+				blinded = 1
+				stat = UNCONSCIOUS
+			else if(resting)
+				blinded = 0
+				if(halloss > 0)
+					adjustHalLoss(-3)
+			else
+				stat = CONSCIOUS
+				blinded = 0
+				if(halloss > 0)
+					adjustHalLoss(-1)
 
 		if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !stat) //Handle crusher stuff.
 			var/mob/living/carbon/Xenomorph/Crusher/X = src
@@ -145,10 +142,12 @@
 							M.adjustFireLoss(1)
 							if(prob(10))
 								M << "\green <b>You are burned by stomach acids!</b>"
+						M.updatehealth()
 					if(M.acid_damage > 240)
 						src << "\green [M] is dissolved in your gut with a gurgle."
 						stomach_contents.Remove(M)
 						M.loc = locate(138,136,2)
+
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
@@ -208,14 +207,14 @@
 
 	if ((blind && stat != 2))
 		if ((blinded))
-			blind.layer = 18
+			blind.plane = 0
 		else
-			blind.layer = 0
+			blind.plane = -80
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
 
-	if (stat != 2 && prob(10)) //Is this really necessary? Xenos can't look thru cameras.
+	if (stat != 2) //Ladders have cameras now.
 		if (machine)
 			if (!( machine.check_eye(src) ))
 				reset_view(null)
@@ -243,7 +242,7 @@
 	if(istype(src,/mob/living/carbon/Xenomorph/Runner) && src.layer != initial(src.layer))
 		is_runner_hiding = 1
 
-	if(!is_robotic)//Robot no heal
+	if(!is_robotic && !hardcore)//Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health >= maxHealth)
 				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
@@ -258,6 +257,7 @@
 				adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
 				adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
 				updatehealth() //Make sure their actual health updates immediately.
+
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health
 			if(rand(0,1) == 0) storedplasma += 1
 			if(recovery_aura)
@@ -275,6 +275,43 @@
 		if(readying_tail) storedplasma -= 3
 		if(current_aura)
 			storedplasma -= 5
+
+		// START HARDCORE //This needs to be removed.
+	else if(!is_robotic && hardcore)//Robot no heal
+		if(locate(/obj/effect/alien/weeds) in T)
+			if(health > 0)
+				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
+					storedplasma += plasma_gain
+					if(recovery_aura)
+						storedplasma += (recovery_aura * 2)
+			if(health < 35)//Bearly enough to stay near critical if saved
+				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
+				if(recovery_aura)
+					adjustBruteLoss(-(recovery_aura))
+				adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
+				adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
+				adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
+				updatehealth() //Make sure their actual health updates immediately.
+
+		else //Xenos restore plasma VERY slowly off weeds
+			if(rand(0,1) == 0) storedplasma += 1
+			if(recovery_aura)
+				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
+				storedplasma += round(recovery_aura + 1)
+				updatehealth()
+
+		if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
+			if(src:speed_activated)
+				storedplasma -= 30
+				if(storedplasma < 0)
+					src:speed_activated = 0
+					src << "\red You feel dizzy as the world slows down."
+
+		if(readying_tail) storedplasma -= 3
+		if(current_aura)
+			storedplasma -= 5
+		//END HARDCORE
+
 	if(storedplasma > maxplasma) storedplasma = maxplasma
 	if(storedplasma < 0)
 		storedplasma = 0
@@ -284,7 +321,6 @@
 		if(readying_tail)
 			readying_tail =0
 			src << "You feel your tail relax."
-	return
 
 /mob/living/carbon/Xenomorph/gib()
 	if (stat != 2) //Prevents double deaths and whatnot when gibbed
@@ -317,31 +353,28 @@
 	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
-	if(!gibbed)
-		icon_state = "[caste] Dead"
-	playsound(loc, 'sound/voice/alien_death.ogg', 50, 1, 1)
+	var/msg = !is_robotic ? "lets out a waning guttural screech, green blood bubbling from its maw." : "begins to shudder, and the lights go out in its eyes as it lies still."
+	. = ..(gibbed,msg)
+	if(!.) return
+
+	if(!gibbed) icon_state = "[caste] Dead"
+	var/sount_to_play = pick(1,2) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg'
+	if(!istype(src, /mob/living/carbon/Xenomorph/Queen)) playsound(loc, sount_to_play, 50, 1, 1)
+	else playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
+
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-		xeno_message("A great tremor runs through the hive as the Queen is slain. Vengeance!",3)
-		xeno_message("The slashing of hosts is now permitted!",2)
+		xeno_message("<span class='xenodanger'>A great tremor runs through the hive as the Queen is slain. Vengeance!</span>",3)
+		xeno_message("<span class='danger'>The slashing of hosts is now permitted!</span>",2)
 		slashing_allowed = 1
 		if(ticker && ticker.mode)
 			ticker.mode.queen_death_timer = queen_time // 5 minutes. Defined in Xenomorph.dm
 	else
 		var/area/A = get_area(src)
-		if(A)
-			xeno_message("Hive: A [src.name] has <b>died</b> at [sanitize(A.name)]!",3)
-		else
-			xeno_message("Hive: A [src.name] has <b>died!</b>",3)
+		xeno_message("<span class='xenonotice'>Hive: A [name] has <b>died</b>[A? " at [sanitize(A.name)]":""]!</span>",3)
 
-	for(var/atom/movable/M in src)
-		if(M in src.stomach_contents)
-			src.stomach_contents.Remove(M)
-		M.loc = src.loc
-
-	if(!is_robotic)
-		return ..(gibbed,"lets out a waning guttural screech, green blood bubbling from its maw.")
-	else
-		return ..(gibbed,"begins to shudder, and the lights go out in its eyes as it lies still.")
+	for(var/atom/movable/A in stomach_contents)
+		stomach_contents -= A
+		A.loc = loc
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null
@@ -368,6 +401,7 @@
 		stat = CONSCIOUS
 	else
 		health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
+
 	if(isXenoLarva(src))
 		if(health <= -25 && stat != DEAD)
 			death()
@@ -382,4 +416,3 @@
 		blinded = 1
 		silent = 0
 		see_in_dark = 8
-		return

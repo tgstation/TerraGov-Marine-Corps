@@ -20,7 +20,7 @@ datum
 		var/nutriment_factor = 0
 		var/custom_metabolism = REAGENTS_METABOLISM
 		var/overdose = 0
-		var/overdose_dam = 1
+		var/overdose_dam = 1//Handeled by heart damage
 		var/scannable = 0 //shows up on health analyzers
 		//var/list/viruses = list()
 		var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
@@ -75,6 +75,8 @@ datum
 				if( (overdose > 0) && (volume >= overdose))//Overdosing, wooo
 					M.adjustToxLoss(overdose_dam)
 				holder.remove_reagent(src.id, custom_metabolism) //By default it slowly disappears.
+				if(volume > (overdose*2) && overdose && overdose_dam) //Makes sure that there's actually an overdose or overdose damage to deal
+					M.adjustToxLoss(overdose_dam*(volume/overdose))//Super fuck people up if they take hundreds of chems.
 				return
 
 			on_move(var/mob/M)
@@ -759,7 +761,7 @@ datum
 			color = "#C8A5DC"
 			overdose = 30
 			scannable = 1
-			custom_metabolism = 0.025 // Lasts 10 minutes for 15 units
+			custom_metabolism = 0.1 // Lasts 10 minutes for 15 units
 
 			on_mob_life(var/mob/living/M as mob)
 				if(volume > overdose)
@@ -1307,6 +1309,7 @@ datum
 			color = "#C8A5DC" // rgb: 200, 165, 220
 			custom_metabolism = 1
 			overdose = 10
+			scannable = 1
 
 			on_mob_life(var/mob/living/M as mob)
 				if(volume >= overdose)
@@ -1402,6 +1405,10 @@ datum
 			description = "A chemical designed to quickly stop internal bleeding"
 			reagent_state = LIQUID
 			color = "#CC00FF"
+			overdose = 4
+			overdose_dam = 30//Quick-clot overdoses will pretty much fuck you up
+			scannable = 1 //scannable now.  HUZZAH.
+			custom_metabolism = 0.1
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
 				M.take_organ_damage(1*REM, 0)
@@ -1411,15 +1418,30 @@ datum
 		hyperzine
 			name = "Hyperzine"
 			id = "hyperzine"
-			description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
+			description = "Hyperzine is a highly effective, long lasting, muscle stimulant.  May cause heart damage"
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
-			custom_metabolism = 0.03
-			overdose = REAGENTS_OVERDOSE/2
+			custom_metabolism = 0.1
+			overdose = 6
 
 			on_mob_life(var/mob/living/M as mob)
+				if(volume > overdose)
+					if(ishuman(M))
+						if(prob(50))
+							var/mob/living/carbon/human/H = M
+							var/datum/organ/internal/heart/E = H.internal_organs_by_name["heart"]
+							E.damage += 1
+							M.emote(pick("twitch","blink_r","shiver"))
+
 				if(!M) M = holder.my_atom
-				if(prob(5)) M.emote(pick("twitch","blink_r","shiver"))
+				if(prob(1))
+					M.emote(pick("twitch","blink_r","shiver"))
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						var/datum/organ/internal/heart/F = H.internal_organs_by_name["heart"]
+						F.damage += 1
+						M.emote(pick("twitch","blink_r","shiver"))
+
 				..()
 				return
 
@@ -2152,7 +2174,7 @@ datum
 					data = 1
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					if(H.species && !(H.species.flags & (NO_PAIN | IS_SYNTHETIC)) )
+					if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
 						switch(data)
 							if(1 to 2)
 								H << "\red <b>Your insides feel uncomfortably hot !</b>"
@@ -2189,17 +2211,17 @@ datum
 						var/eyes_covered = 0
 						var/obj/item/safe_thing = null
 						if( victim.wear_mask )
-							if( victim.wear_mask.flags & MASKCOVERSEYES )
+							if( victim.wear_mask.flags_inventory & COVEREYES )
 								eyes_covered = 1
 								safe_thing = victim.wear_mask
-							if( victim.wear_mask.flags & MASKCOVERSMOUTH )
+							if( victim.wear_mask.flags_inventory & COVERMOUTH )
 								mouth_covered = 1
 								safe_thing = victim.wear_mask
 						if( victim.head )
-							if( victim.head.flags & MASKCOVERSEYES )
+							if( victim.head.flags_inventory & COVEREYES )
 								eyes_covered = 1
 								safe_thing = victim.head
-							if( victim.head.flags & MASKCOVERSMOUTH )
+							if( victim.head.flags_inventory & COVERMOUTH )
 								mouth_covered = 1
 								safe_thing = victim.head
 						if(victim.glasses)
@@ -2242,7 +2264,7 @@ datum
 					data = 1
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					if(H.species && !(H.species.flags & (NO_PAIN | IS_SYNTHETIC)) )
+					if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
 						switch(data)
 							if(1)
 								H << "\red <b>You feel like your insides are burning !</b>"
@@ -3100,10 +3122,10 @@ datum
 			var/adj_sleepy = 0
 			var/slurr_adj = 3
 			var/confused_adj = 2
-			var/slur_start = 90			//amount absorbed after which mob starts slurring
-			var/confused_start = 150	//amount absorbed after which mob starts confusing directions
-			var/blur_start = 300	//amount absorbed after which mob starts getting blurred vision
-			var/pass_out = 400	//amount absorbed after which mob starts passing out
+			var/slur_start = 180			//amount absorbed after which mob starts slurring
+			var/confused_start = 300	//amount absorbed after which mob starts confusing directions
+			var/blur_start = 600	//amount absorbed after which mob starts getting blurred vision
+			var/pass_out = 800	//amount absorbed after which mob starts passing out
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
 				M:nutrition += nutriment_factor
@@ -3214,7 +3236,7 @@ datum
 			color = "#664300" // rgb: 102, 67, 0
 			boozepwr = 2
 			dizzy_adj = 4
-			slur_start = 30		//amount absorbed after which mob starts slurring
+			slur_start = 90		//amount absorbed after which mob starts slurring
 
 		ethanol/thirteenloko
 			name = "Thirteen Loko"
@@ -3300,8 +3322,8 @@ datum
 			color = "#7E4043" // rgb: 126, 64, 67
 			boozepwr = 1.5
 			dizzy_adj = 2
-			slur_start = 65			//amount absorbed after which mob starts slurring
-			confused_start = 145	//amount absorbed after which mob starts confusing directions
+			slur_start = 125			//amount absorbed after which mob starts slurring
+			confused_start = 195	//amount absorbed after which mob starts confusing directions
 
 		ethanol/cognac
 			name = "Cognac"
@@ -3310,7 +3332,7 @@ datum
 			color = "#AB3C05" // rgb: 171, 60, 5
 			boozepwr = 1.5
 			dizzy_adj = 4
-			confused_start = 115	//amount absorbed after which mob starts confusing directions
+			confused_start = 195	//amount absorbed after which mob starts confusing directions
 
 		ethanol/hooch
 			name = "Hooch"
@@ -3320,8 +3342,8 @@ datum
 			boozepwr = 2
 			dizzy_adj = 6
 			slurr_adj = 5
-			slur_start = 35			//amount absorbed after which mob starts slurring
-			confused_start = 90	//amount absorbed after which mob starts confusing directions
+			slur_start = 95			//amount absorbed after which mob starts slurring
+			confused_start = 160	//amount absorbed after which mob starts confusing directions
 
 		ethanol/ale
 			name = "Ale"
@@ -3337,8 +3359,8 @@ datum
 			color = "#33EE00" // rgb: 51, 238, 0
 			boozepwr = 4
 			dizzy_adj = 5
-			slur_start = 15
-			confused_start = 30
+			slur_start = 45
+			confused_start = 90
 
 
 		ethanol/pwine

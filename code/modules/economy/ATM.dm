@@ -356,7 +356,7 @@ log transactions
 				if(authenticated_account)
 					var/obj/item/weapon/paper/R = new(src.loc)
 					R.name = "Account balance: [authenticated_account.owner_name]"
-					R.info = "<b>NT Automated Teller Account Statement</b><br><br>"
+					R.info = "<b>WY Automated Teller Account Statement</b><br><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
 					R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
@@ -370,7 +370,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/weapon/stamp
 					R.overlays += stampoverlay
-					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+					R.stamps += "<HR><i>This paper has been stamped by the WY Automatic Teller Machine.</i>"
 
 				if(prob(50))
 					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
@@ -412,7 +412,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/weapon/stamp
 					R.overlays += stampoverlay
-					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+					R.stamps += "<HR><i>This paper has been stamped by the WY Automatic Teller Machine.</i>"
 
 				if(prob(50))
 					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)

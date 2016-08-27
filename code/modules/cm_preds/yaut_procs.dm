@@ -157,19 +157,26 @@
 		src << "Not here. Only on the ship."
 		return
 
-	if(pred_bought)
-		return
+	var/obj/item/clothing/gloves/yautja/Y = src.gloves
+	if(!istype(Y) || Y.upgrades) return
 
-	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. Would you like to proceed, Yautja?","Sure?","Begin the Hunt","No, not now")
+	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. If you cancel at any point, you will not claim your equipment.","Sure?","Begin the Hunt","No, not now")
 	if(sure == "Begin the Hunt")
-		var/list/melee = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
-		var/list/other = list("The Fleeting Speargun", "The Brutal Plasma Rifle", "The Purifying Smart-Disc","The Enhanced Bracer")//, "The Clever Hologram")
+		var/melee[] = list("The Lumbering Glaive", "The Rending Chain-Whip","The Piercing Hunting Sword","The Cleaving War-Scythe", "The Adaptive Combi-Stick")
+		var/other[] = list("The Fleeting Spike Launcher", "The Brutal Plasma Rifle", "The Purifying Smart-Disc", "The Formidable Plate Armor", "The Enhanced Bracer")//, "The Clever Hologram")
+		var/restricted[] = list("The Fleeting Spike Launcher", "The Brutal Plasma Rifle", "The Formidable Plate Armor") //Can only select them once each.
 
 		var/msel = input("Which weapon shall you use on your hunt?:","Melee Weapon") as null|anything in melee
+		if(!msel) return //We don't want them to cancel out then get nothing.
 		var/mother_0 = input("Which secondary gear shall you take?","Item 1 (of 2)") as null|anything in other
+		if(!mother_0) return
+		if(mother_0 in restricted) other -= mother_0
 		var/mother_1 = input("And the last piece of equipment?:","Item 2 (of 2)") as null|anything in other
-		var/obj/item/clothing/gloves/yautja/Y = src.gloves
-		pred_bought = 1		//vvvvv This is the laziest fucking way. Ever. Jesus. I am genuinely sorry (it's okai abbi)
+		if(!mother_1) return
+
+		if(!istype(Y) || Y.upgrades) return //Tried to run it several times in the same loop. That's not happening.
+		Y.upgrades++ //Just means gear was purchased.
+
 		switch(msel)
 			if("The Lumbering Glaive")
 				new /obj/item/weapon/twohanded/glaive(src.loc)
@@ -181,117 +188,29 @@
 				new /obj/item/weapon/melee/yautja_scythe(src.loc)
 			if("The Adaptive Combi-Stick")
 				new /obj/item/weapon/melee/combistick(src.loc)
-		switch(mother_0)
-			if("The Fleeting Speargun")
-				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("The Brutal Plasma Rifle")
-				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
-			if("The Purifying Smart-Disc")
-				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
-			if("The Enhanced Bracer")
-				if(istype(Y))
+
+		var/choice = mother_0
+		var/i = 0
+		while(++i <= 2)
+			switch(choice)
+				if("The Fleeting Spike Launcher")
+					new /obj/item/weapon/gun/launcher/spike(src.loc)
+				if("The Brutal Plasma Rifle")
+					new /obj/item/weapon/gun/energy/plasmarifle(src.loc)
+				if("The Purifying Smart-Disc")
+					new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
+				if("The Formidable Plate Armor")
+					new /obj/item/clothing/suit/armor/yautja/full(src.loc)
+				if("The Enhanced Bracer")
 					Y.charge_max += 500
 					Y.upgrades++
+			choice = mother_1
 
-		switch(mother_1)
-			if("The Fleeting Speargun")
-				new /obj/item/weapon/gun/launcher/speargun(src.loc)
-			if("The Brutal Plasma Rifle")
-				new /obj/item/weapon/gun/launcher/plasmarifle(src.loc)
-			if("The Purifying Smart-Disc")
-				new /obj/item/weapon/grenade/spawnergrenade/smartdisc(src.loc)
-			if("The Enhanced Bracer")
-				if(istype(Y))
-					Y.charge_max += 500
-					Y.upgrades++
-
-		if(istype(Y))
-			if(Y.upgrades >= 1)
-				src << "\green <B>Your [Y.name] hums as it receives a battery and translator upgrade.</b>"
-				var/newverb = /obj/item/clothing/gloves/yautja/proc/translate
-				Y.verbs |= newverb
-			if (Y.upgrades == 2)
-				src << "\green <B>Your [Y.name] can now translate to xenomorph hives as well.</b>"
-				src << "\green <B>Your [Y.name] has been upgraded to carry a scimitar instead of blades.</b>"
-	return
-
-/proc/get_whitelisted_predators(var/readied = 1)
-	// Assemble a list of active players who are whitelisted.
-	var/list/players = list()
-
-	for(var/mob/player in player_list)
-		if(!player.client) continue
-		if(isYautja(player)) continue
-		if(readied)
-			if(!istype(player,/mob/new_player)) continue
-			if(!player:ready) continue
-		else
-			if(!istype(player,/mob/dead)) continue
-
-		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
-			if(!player.client) //Just to be safe.
-				continue
-
-			if(!player.client.prefs)
-				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
-
-			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
-				if(player.mind)
-					players += player.mind
-				else if(player.key)
-					player.mind = new /datum/mind(player.key)
-					players += player.mind
-	return players
-
-/proc/transform_predator(var/datum/mind/ghost)
-
-	var/mob/H = ghost.current
-	var/mob/living/carbon/human/newmob
-
-	newmob = new (pick(pred_spawn))
-
-	newmob.key = ghost.key
-	if(!newmob.key)
-		message_admins("Warning: null client in transform_predator, key: [H.key]")
-		del(newmob)
-		return
-
-	newmob.set_species("Yautja")
-
-	if(newmob.client.prefs)
-		newmob.real_name = newmob.client.prefs.predator_name
-		newmob.gender = newmob.client.prefs.predator_gender
-		newmob.client.was_a_predator = 1
-	else
-		newmob.real_name = pick("Halkrath","Gahn","Ju'dha","Kjuhte","M-do","Ch'hkta","Set'gin")
-		newmob.gender = "male"
-
-	newmob.mind.assigned_role = "MODE" //This should be "ghost" at this point.
-	newmob.mind.special_role = "Predator"
-
-	newmob.update_icons()
-	if(is_alien_whitelisted(newmob,"Yautja Elder"))
-		newmob.real_name = "Elder [newmob.real_name]"
-		newmob.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
-		newmob.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
-		spawn(10)
-			newmob << "\red <B> Welcome Elder!</B>"
-			newmob << "\red You are responsible for the well-being of your pupils. Hunting is secondary in priority."
-			newmob << "That does not mean you can't go out and show the youngsters how it's done, though.."
-
-
-	spawn(12)
-		newmob << "You are <B>Yautja</b>, a great and noble predator!"
-		newmob << "Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered."
-		newmob << "Use your hellhounds to scout and test your opponents."
-		newmob << "Hunt at your discretion, yet be observant rather than violent."
-		newmob << "And above all, listen to your elders!"
-
-	if(ticker && ticker.mode)
-		if(!(ghost in ticker.mode.predators))
-			ticker.mode.predators += ghost
-
-	ticker.mode.pred_keys += newmob.key
-
-	if(H) del(H)
-	return 1
+		if(Y.upgrades > 1)
+			src << "<span class='notice'>Your [Y] hums as it receives a battery and translator upgrade.</span>"
+			var/newverb = /obj/item/clothing/gloves/yautja/proc/translate
+			Y.verbs |= newverb
+		if(Y.upgrades > 2)
+			src << "<span class='notice'>Your [Y] can now translate to xenomorph hives as well.</span>"
+			src << "<span class='notice'>Your [Y] has been upgraded to carry a scimitar instead of blades.</span>"
+		verbs -= /mob/living/carbon/human/proc/pred_buy

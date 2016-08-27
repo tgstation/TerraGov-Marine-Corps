@@ -3,7 +3,7 @@
 	health = 400 //They need to live awhile longer than other organs.
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain2"
-	flags = TABLEPASS
+	flags_atom = NOFLAGS
 	force = 1.0
 	w_class = 2.0
 	throwforce = 1.0
@@ -57,10 +57,7 @@
 
 	..()
 
-	var/mob/living/simple_animal/borer/borer = target.has_brain_worms()
 
-	if(borer)
-		borer.detatch() //Should remove borer if the brain is removed - RR
 
 	var/mob/living/carbon/human/H = target
 	var/obj/item/organ/brain/B = src

@@ -5,7 +5,7 @@
 	icon_state = "grille"
 	density = 1
 	anchored = 1
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = 3
 	explosion_resistance = 5
@@ -134,7 +134,7 @@
 /obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
 
 	//Tasers and the like should not damage grilles.
-	if(Proj.damage_type == HALLOSS)
+	if(Proj.ammo.damage_type == HALLOSS)
 		return 0
 
 	src.health -= round(Proj.damage*0.3)

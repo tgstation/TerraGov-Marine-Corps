@@ -122,12 +122,15 @@
 			else
 				usr << "\red You haven't got enough [src] to build \the [R.title]!"
 			return
+		if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
+			usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+			return
 		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
 			usr << "\red There is another [R.title] here!"
 		if(locate(/obj/structure/m_barricade) in usr.loc || locate(/obj/structure/table) in usr.loc)
 			usr << "\red Not enough space to construct [R.title] here!"
 			return
-		if (R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor)))
+		if (R.on_floor && !(istype(usr.loc, /turf/simulated/floor) || istype(usr.loc, /turf/unsimulated/floor) || istype(usr.loc, /turf/unsimulated/jungle)))
 			usr << "\red \The [R.title] must be constructed on the floor!"
 			return
 		if (R.time)
@@ -167,15 +170,14 @@
 	return
 
 /obj/item/stack/proc/use(var/used)
-	if (amount < used)
+	if (used > amount) //If it's larger than what we have, no go.
 		return 0
 	amount -= used
 	if (amount <= 0)
-		var/oldsrc = src
-		src = null //dont kill proc after del()
 		if(usr)
-			usr.before_take_item(oldsrc)
-		del(oldsrc)
+			usr.before_take_item(src)
+		spawn(1) //Did they not have spawn back in the day? Pff.
+			del(src)
 	return 1
 
 /obj/item/stack/proc/add(var/extra)

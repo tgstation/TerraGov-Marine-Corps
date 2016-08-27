@@ -48,7 +48,7 @@
 		icon_state = A.icon_state
 		item_state = A.item_state
 		item_color = A.item_color
-		body_parts_covered = A.body_parts_covered
+		flags_armor_protection = A.flags_armor_protection
 		update_clothing_icon()	//so our overlays update.
 
 //*****************
@@ -62,7 +62,7 @@
 	item_color = "grey"
 	desc = "It looks like a plain hat, but upon closer inspection, there's an advanced holographic array installed inside. It seems to have a small dial inside."
 	origin_tech = "syndicate=3"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 	var/list/clothing_choices = list()
 
 	New()
@@ -101,8 +101,8 @@
 		icon_state = A.icon_state
 		item_state = A.item_state
 		item_color = A.item_color
-		flags_inv = A.flags_inv
-		body_parts_covered = A.body_parts_covered
+		flags_inventory = A.flags_inventory
+		flags_armor_protection = A.flags_armor_protection
 		update_clothing_icon()	//so our overlays update.
 
 //******************
@@ -154,8 +154,8 @@
 		icon_state = A.icon_state
 		item_state = A.item_state
 		item_color = A.item_color
-		flags_inv = A.flags_inv
-		body_parts_covered = A.body_parts_covered
+		flags_inventory = A.flags_inventory
+		flags_armor_protection = A.flags_armor_protection
 		update_clothing_icon()	//so our overlays update.
 
 //*******************
@@ -311,7 +311,7 @@
 		icon_state = A.icon_state
 		item_state = A.item_state
 		item_color = A.item_color
-		flags_inv = A.flags_inv
+		flags_inventory = A.flags_inventory
 		update_clothing_icon()	//so our overlays update.
 
 //******************
@@ -360,8 +360,8 @@
 		name = A.name
 		icon_state = A.icon_state
 		item_state = A.item_state
-		flags_inv = A.flags_inv
-		body_parts_covered = A.body_parts_covered
+		flags_inventory = A.flags_inventory
+		flags_armor_protection = A.flags_armor_protection
 		update_clothing_icon()	//so our overlays update.
 
 //*********************
@@ -409,7 +409,7 @@
 		name = A.name
 		icon_state = A.icon_state
 		item_state = A.item_state
-		flags_inv = A.flags_inv
+		flags_inventory = A.flags_inventory
 		update_clothing_icon()	//so our overlays update.
 
 //*****************
@@ -463,7 +463,7 @@
 		name = A.name
 		icon_state = A.icon_state
 		item_state = A.item_state
-		flags_inv = A.flags_inv
+		flags_inventory = A.flags_inventory
 
 		//so our overlays update.
 		if (ismob(src.loc))

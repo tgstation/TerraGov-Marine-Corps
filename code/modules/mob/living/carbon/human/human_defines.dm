@@ -1,4 +1,6 @@
 /mob/living/carbon/human
+	//CM XENO CUFF
+	var/xenoCuffed = 0
 	//Hair colour and style
 	var/r_hair = 0
 	var/g_hair = 0
@@ -85,4 +87,9 @@
 	var/image/slashed_icon = null
 	var/obj/machinery/marine_turret/turret_control = null
 
-	var/pred_bought = 0
+	//Emotes
+	var/farted = 0
+	var/burped = 0
+	var/clapped = 0
+	var/golfclapped = 0
+	var/medicd = 0

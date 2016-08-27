@@ -11,7 +11,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
 	unacidable = 1//So effect are not targeted by alien acid.
-	pass_flags = PASSTABLE | PASSGRILLE
+	flags_pass = PASSTABLE|PASSGRILLE
 
 	//Fire
 /obj/effect/effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
@@ -285,7 +285,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
 	..()
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
 	else
 		if (prob(20))
@@ -359,7 +359,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/phosphorus/affect(var/mob/living/carbon/M)
 	..()
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS))
 		return
 	else
 		if (prob(20))
@@ -627,7 +627,7 @@ steam.start() -- spawns the effect
 
 	if (istype(AM, /mob/living/carbon))
 		var/mob/M =	AM
-		if (istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags&NOSLIP) || M.buckled)
+		if (istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags_inventory&NOSLIPPING) || M.buckled)
 			return
 
 		M.stop_pulling()

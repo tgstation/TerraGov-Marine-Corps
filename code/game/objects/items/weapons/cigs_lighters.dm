@@ -65,7 +65,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_speed = 0.5
 	item_state = "cigoff"
 	w_class = 1
-	body_parts_covered = 0
+	flags_armor_protection = 0
 	attack_verb = list("burnt", "singed")
 	var/lit = 0
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
@@ -74,11 +74,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lastHolder = null
 	var/smoketime = 300
 	var/chem_volume = 15
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/New()
 	..()
-	flags |= NOREACT // so it doesn't react until you light it
+	flags_atom |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 
 /obj/item/clothing/mask/cigarette/Del()
@@ -152,7 +152,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			e.start()
 			del(src)
 			return
-		flags &= ~NOREACT // allowing reagents to react after being lit
+		flags_atom &= ~NOREACT // allowing reagents to react after being lit
 		reagents.handle_reactions()
 		icon_state = icon_on
 		item_state = icon_on
@@ -389,8 +389,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/clr = "g"
 	w_class = 1
 	throwforce = 4
-	flags = TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	attack_verb = list("burnt", "singed")
 
 /obj/item/weapon/flame/lighter/zippo

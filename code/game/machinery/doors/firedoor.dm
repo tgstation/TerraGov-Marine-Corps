@@ -213,7 +213,7 @@
 
 		if(istype(C,/obj/item/weapon/twohanded/fireaxe))
 			var/obj/item/weapon/twohanded/fireaxe/F = C
-			if(!F.wielded)
+			if(!(F.flags_atom & WIELDED))
 				return
 
 		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
@@ -374,7 +374,7 @@
 		var/turf/simulated/source = loc
 		var/turf/simulated/destination = get_step(source,dir)
 
-		update_heat_protection(loc)
+		update_flags_heat_protection(loc)
 
 		if(istype(source)) air_master.tiles_to_update += source
 		if(istype(destination)) air_master.tiles_to_update += destination

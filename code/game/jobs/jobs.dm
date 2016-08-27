@@ -61,6 +61,7 @@ var/const/BRIDGE			=(1<<2)
 var/const/MPOLICE			=(1<<3)
 var/const/LIASON			=(1<<4)
 var/const/REQUI				=(1<<5)
+var/const/PILOT				=(1<<6)
 
 var/const/ENGI				=(1<<1)
 
@@ -89,6 +90,7 @@ var/list/command_positions = list(
 	"Commander",
 	"Executive Officer",
 	"Bridge Officer",
+	"Pilot Officer",
 	"Military Police",
 	"Corporate Liaison",
 	"Requisitions Officer",

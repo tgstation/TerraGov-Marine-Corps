@@ -4,8 +4,8 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	throwforce = 5
 	w_class = 2.0
 	throw_speed = 2
@@ -28,7 +28,7 @@
 		if (C == user)
 			place_handcuffs(user, user)
 			return
-		
+
 		//check for an aggressive grab
 		for (var/obj/item/weapon/grab/G in C.grabbed_by)
 			if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
@@ -41,11 +41,11 @@
 
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
-		
+
 		if (!H.has_organ_for_slot(slot_handcuffed))
 			user << "\red \The [H] needs at least two wrists before you can cuff them together!"
 			return
-		
+
 		H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [H.name] ([H.ckey])</font>")
 		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
@@ -62,7 +62,7 @@
 			feedback_add_details("handcuffs","H")
 			O.process()
 		return
-	
+
 	if (ismonkey(target))
 		var/mob/living/carbon/monkey/M = target
 		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
@@ -80,9 +80,13 @@
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
-	if (last_chew + 26 > world.time) return
-
 	var/mob/living/carbon/human/H = A
+
+	if (last_chew + 75 > world.time)
+		H << "\red You can't bite your hand again yet..."
+		return
+
+
 	if (!H.handcuffed) return
 	if (H.a_intent != "hurt") return
 	if (H.zone_sel.selecting != "mouth") return
@@ -97,7 +101,7 @@ var/last_chew = 0
 	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
 	log_attack("[s] ([H.ckey])")
 
-	if(O.take_damage(3,0,1,1,"teeth marks"))
+	if(O.take_damage(1,0,1,1,"teeth marks"))
 		H:UpdateDamageIcon()
 
 	last_chew = world.time
@@ -155,13 +159,13 @@ var/last_chew = 0
 		var/turf/p_loc_m = C.loc
 		playsound(src.loc, cuff_sound, 30, 1, -2)
 		user.visible_message("\red <B>[user] is trying to put handcuffs on [C]!</B>")
-		
+
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if (!H.has_organ_for_slot(slot_handcuffed))
 				user << "\red \The [H] needs at least two wrists before you can cuff them together!"
 				return
-		
+
 		spawn(30)
 			if(!C)	return
 			if(p_loc == user.loc && p_loc_m == C.loc)

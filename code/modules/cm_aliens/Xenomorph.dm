@@ -5,7 +5,26 @@
 //This is so they can be easily transferred between them without copypasta
 
 //All this stuff was written by Absynth.
+//Edited by Apop - 11JUN16
 
+#define DEBUG_XENO 0
+
+#if DEBUG_XENO
+/mob/verb/debug_xeno_mind()
+	set name =  "Debug Xeno Mind"
+	set category = "Debug"
+	set desc = "Shows whether or not a mine is contained within the xenomorph list."
+
+	if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
+		src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
+		return
+	if(mind in ticker.mode.xenomorphs)
+		src << "<span class='debuginfo'>[src] mind is in the xenomorph list. Mind key is [mind.key].</span>"
+		src << "<span class='debuginfo'>Current mob is: [mind.current]. Original mob is: [mind.original].</span>"
+	else src << "<span class='debuginfo'>This xenomorph is not in the xenomorph list.</span>"
+#endif
+
+#undef DEBUG_XENO
 
 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 var/global/slashing_allowed = 0
@@ -77,8 +96,6 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/guard_aura = 0
 	var/recovery_aura = 0
 	var/current_aura = null //"claw", "armor", "regen", "speed"
-	var/adjust_pixel_x = 0
-	var/adjust_pixel_y = 0
 	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
 	var/adjust_size_y = 1
 	var/spit_type = 0 //0: normal, 1: heavy
@@ -89,7 +106,9 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/nicknumber = -1 //The number after the name. Saved right here so it transfers between castes.
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
-
+	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
+	var/upgrade = -1  //This will track their upgrade level.  Once they can no longer upgrade, it will set to -1
+	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
@@ -99,6 +118,9 @@ var/global/hive_orders = "" //What orders should the hive have
 
 /mob/living/carbon/Xenomorph/New()
 	..()
+	//WO GAMEMODE
+	if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+		hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
 	add_language("Hivemind") //hivemind
@@ -111,25 +133,15 @@ var/global/hive_orders = "" //What orders should the hive have
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-	ammo = new /datum/ammo/xeno/spit() //Set up the initial spit projectile datum. It defaults to stun.
-	if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-		//Bigger and badder!
-		ammo.stun += 2
-		ammo.weaken += 2
-	else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-		ammo.stun += 1
-		ammo.weaken += 1
-		ammo.shell_speed = 2 //Super fast!
+	switch(type)
+		if(/mob/living/carbon/Xenomorph/Praetorian) ammo = ammo_list[/datum/ammo/xeno/toxin/heavy ]
+		if(/mob/living/carbon/Xenomorph/Spitter) ammo = ammo_list[/datum/ammo/xeno/toxin/medium ]
+		else ammo = ammo_list[/datum/ammo/xeno/toxin]
 
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R
 	R.my_atom = src
 	gender = NEUTER
-	if(adjust_pixel_x) //Adjust large 2x2 sprites
-		src.pixel_x += adjust_pixel_x
-
-	if(adjust_pixel_y) //Adjust large 2x2 sprites
-		src.pixel_y += adjust_pixel_y
 
 	if(adjust_size_x != 1)
 		var/matrix/M = matrix()
@@ -141,16 +153,8 @@ var/global/hive_orders = "" //What orders should the hive have
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
 		if(caste != "Queen")//This needed to be moved here because the re-naming was happening faster than the transfer. - Apop
 			nicknumber = rand(1,999)
-			name = "[caste] ([nicknumber])"
+			name = "Young [caste] ([nicknumber])"
 			real_name = name
-		if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
-			src.mind.assigned_role = "MODE"
-			src.mind.special_role = "Alien"
-			src.mind.name  = real_name
-			//Add them to the gametype xeno tracker
-			if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len && !is_robotic) //Robots don't get added.
-				if(!(src.mind in ticker.mode.aliens))
-					ticker.mode.aliens += src.mind
 
 	regenerate_icons()
 
@@ -191,6 +195,6 @@ var/global/hive_orders = "" //What orders should the hive have
 			return ..()
 
 /mob/living/carbon/Xenomorph/Del() //If mob is deleted, remove it off the xeno list completely.
-	if(!isnull(src) && !isnull(src.mind) && !isnull(ticker.mode) && ticker.mode.aliens.len && src.mind in ticker.mode.aliens)
-		ticker.mode.aliens -= src.mind
+	if(!isnull(src) && !isnull(src.mind) && !isnull(ticker.mode) && ticker.mode.xenomorphs.len && mind in ticker.mode.xenomorphs)
+		ticker.mode.xenomorphs -= mind
 	..()

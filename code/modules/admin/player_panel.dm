@@ -76,6 +76,7 @@
 					body += "</td><td align='center'>";
 
 					body += "<a href='?src=\ref[src];adminplayeropts="+ref+"'>PP</a> - "
+					body += "<a href='?src=\ref[src];playerpanelextended="+ref+"'>PPE</a> - "
 					body += "<a href='?src=\ref[src];notes=show;mob="+ref+"'>N</a> - "
 					body += "<a href='?_src_=vars;Vars="+ref+"'>VV</a> - "
 					body += "<a href='?src=\ref[src];traitor="+ref+"'>TP</a> - "
@@ -263,23 +264,23 @@
 			else if(isobserver(M))
 				M_job = "Ghost"
 
-			M_job = replacetext(M_job, "'", "")
-			M_job = replacetext(M_job, "\"", "")
-			M_job = replacetext(M_job, "\\", "")
+			M_job = oldreplacetext(M_job, "'", "")
+			M_job = oldreplacetext(M_job, "\"", "")
+			M_job = oldreplacetext(M_job, "\\", "")
 
 			var/M_name = M.name
-			M_name = replacetext(M_name, "'", "")
-			M_name = replacetext(M_name, "\"", "")
-			M_name = replacetext(M_name, "\\", "")
+			M_name = oldreplacetext(M_name, "'", "")
+			M_name = oldreplacetext(M_name, "\"", "")
+			M_name = oldreplacetext(M_name, "\\", "")
 			var/M_rname = M.real_name
-			M_rname = replacetext(M_rname, "'", "")
-			M_rname = replacetext(M_rname, "\"", "")
-			M_rname = replacetext(M_rname, "\\", "")
+			M_rname = oldreplacetext(M_rname, "'", "")
+			M_rname = oldreplacetext(M_rname, "\"", "")
+			M_rname = oldreplacetext(M_rname, "\\", "")
 
 			var/M_key = M.key
-			M_key = replacetext(M_key, "'", "")
-			M_key = replacetext(M_key, "\"", "")
-			M_key = replacetext(M_key, "\\", "")
+			M_key = oldreplacetext(M_key, "'", "")
+			M_key = oldreplacetext(M_key, "\"", "")
+			M_key = oldreplacetext(M_key, "\\", "")
 
 			//output for each mob
 			dat += {"
@@ -315,6 +316,7 @@
 
 	usr << browse(dat, "window=players;size=600x480")
 
+/*
 //The old one
 /datum/admins/proc/player_panel_old()
 	if (!usr.client.holder)
@@ -385,7 +387,55 @@
 	dat += "</table></body></html>"
 
 	usr << browse(dat, "window=players;size=640x480")
+*/
 
+//Extended panel with ban related things
+/datum/admins/proc/player_panel_extended()
+	if (!usr.client.holder)
+		return
+
+	var/dat = "<html><head><title>Player Menu</title></head>"
+	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Real Name</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>Notes</th></tr></B>"
+	//add <th>IP:</th> to this if wanting to add back in IP checking
+	//add <td>(IP: [M.lastKnownIP])</td> if you want to know their ip to the lists below
+	var/list/mobs = sortmobs()
+
+	for(var/mob/M in mobs)
+		if(!M.ckey) continue
+
+		dat += "<tr><td>[(M.client ? "[M.client]" : "No client")]</td>"
+		dat += "<td><a href='?src=\ref[usr];priv_msg=\ref[M]'>[M.name]</a></td>"
+		if(isAI(M))
+			dat += "<td>AI</td>"
+		else if(isrobot(M))
+			dat += "<td>Cyborg</td>"
+		else if(ishuman(M))
+			dat += "<td>[M.real_name]</td>"
+		else if(istype(M, /mob/living/silicon/pai))
+			dat += "<td>pAI</td>"
+		else if(istype(M, /mob/new_player))
+			dat += "<td>New Player</td>"
+		else if(isobserver(M))
+			dat += "<td>Ghost</td>"
+		else if(ismonkey(M))
+			dat += "<td>Monkey</td>"
+		else if(isalien(M))
+			dat += "<td>Alien</td>"
+		else
+			dat += "<td>Unknown</td>"
+
+
+		dat += {"<td align=center><a HREF='?src=\ref[src];adminplayeropts=\ref[M]'>X</a></td>
+		<td>[M.computer_id]</td>
+		<td>[M.lastKnownIP]</td>
+		<td><a href='?src=\ref[src];adminplayerobservejump=\ref[M]'>JMP</a></td>
+		<td><a href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</a></td>
+		"}
+
+
+	dat += "</table></body></html>"
+
+	usr << browse(dat, "window=players;size=640x480")
 
 
 /datum/admins/proc/check_antagonists()
@@ -460,9 +510,9 @@
 					dat += "<tr><td><i>Head not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(ticker.mode.aliens.len)
+		if(ticker.mode.xenomorphs.len)
 			dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/L in ticker.mode.aliens)
+			for(var/datum/mind/L in ticker.mode.xenomorphs)
 				var/mob/M = L.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -510,8 +560,7 @@
 		if(ticker.mode.traitors.len)
 			dat += check_role_table("Traitors", ticker.mode.traitors, src)
 
-		if(ticker.mode.borers.len)
-			dat += check_role_table("Cortical Borers", ticker.mode.borers, src)
+
 
 		var/datum/game_mode/mutiny/mutiny = get_mutiny_mode()
 		if(mutiny)

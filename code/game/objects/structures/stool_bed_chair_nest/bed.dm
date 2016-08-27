@@ -36,6 +36,10 @@
 	manual_unbuckle(user)
 	return
 
+/obj/structure/stool/bed/attack_ai(mob/user as mob)
+	manual_unbuckle(user)
+	return
+
 /obj/structure/stool/bed/proc/handle_rotation()
 	return
 

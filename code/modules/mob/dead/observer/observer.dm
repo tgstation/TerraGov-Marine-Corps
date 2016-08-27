@@ -26,7 +26,7 @@
 	var/atom/movable/following = null
 
 /mob/dead/observer/New(mob/body)
-	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
+	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	verbs += /mob/dead/observer/proc/dead_tele
@@ -70,11 +70,10 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	..()
-	if(is_alien_whitelisted(src,"Yautja") && ticker && ticker.mode && istype(ticker.mode,/datum/game_mode/colonialmarines))
-		if(ticker.mode:is_pred_round)
-			spawn(20)
-				src << "\red It is a PREDATOR ROUND! Use Join The Hunt to enlist!"
-				return
+	if(ticker && ticker.mode && ticker.mode.pred_round_status)
+		spawn(20)
+			src << "\red This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!"
+			return
 
 
 
@@ -567,93 +566,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Join as Xeno"
 	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
 
-	var/mob/L = src
-
-	if(ticker.current_state < GAME_STATE_PLAYING)
-		usr << "\red The game hasn't started yet!"
+	if (!stat || !client)
 		return
 
-	if (!usr.stat) // Make sure we're an observer
-		// usr << "!usr.stat"
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		src << "<span class='warning'>The game hasn't started yet!</span?"
 		return
 
-	if (usr != src)
-		// usr << "usr != src"
-		return 0 // Something is terribly wrong
-
-	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing aliens and cannot spawn as a Xeno."
-		return
-
-	var/list/alien_list = list()
-
-	for(var/mob/living/carbon/Xenomorph/A in living_mob_list)
-		if(isXeno(A) && !A.client)
-			alien_list += A.name
-
-	if(alien_list.len == 0)
-		usr << "\red There aren't any available Xenomorphs."
-
-	var/choice = input("Pick a Xeno:") as null|anything in alien_list
-	if (isnull(choice) || choice == "Cancel")
-		return
-
-	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
-		if(choice == X.name)
-			L = X
-			break
-
-	if(!L || isnull( L ))
-		usr << "Not a valid mob!"
-		return
-
-	if(!istype(L, /mob/living/carbon/Xenomorph))
-		usr << "\red That's not a Xeno."
-		return
-
-	if(L.stat == DEAD)  // Xeno is dead. Dead.
-		usr << "\red It's dead."
-		return
-
-	if(L.client) // Xeno player is still online
-		usr << "\red That player has reconnected."
-		return
-
-	var/deathtime = world.time - usr.timeofdeath
-	var/deathtimeminutes = round(deathtime / 600)
-	var/pluralcheck = "minute"
-	if(deathtimeminutes == 0)
-		pluralcheck = ""
-	else if(deathtimeminutes == 1)
-		pluralcheck = " [deathtimeminutes] minute and"
-	else if(deathtimeminutes > 1)
-		pluralcheck = " [deathtimeminutes] minutes and"
-	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-
-	if (deathtime < 3000 && (!usr.client.holder || !(usr.client.holder.rights & R_ADMIN))) // To prevent players from ghosting/suiciding and then immediately becoming a Xeno - Ignored for Admins, cause we're special
-		usr << "\red You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "\red You must wait 5 minutes before rejoining the game!"
-		return
-
-	if(L.away_timer < 300) // away_timer in mob.dm's Life() proc is not high enough. NOT ignored for Admins, cause that player might actually log back in.
-		usr << "\red That player hasn't been away long enough. Please wait [300 - L.away_timer] more seconds."
-		return
-
-	if (alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this [L]?", "Confirmation", "Yes", "No") == "Yes")
-
-		if(L.client || L.stat == DEAD) // Do it again, just in case
-			usr << "\red Oops. That mob can no longer be controlled. Sorry."
-			return
-
-		var/mob/ghostmob = usr.client.mob
-		message_admins("[usr.ckey] has joined as [L].")
-		log_admin("[usr.ckey] has joined as [L].")
-		L.ckey = usr.ckey
-		// L.client = usr.client
-		if( isobserver(ghostmob) )
-			del(ghostmob)
-
-	return
+	if(ticker.mode.check_xeno_late_join(src))
+		var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src)
+		if(new_xeno) ticker.mode.transfer_xeno(src, new_xeno)
 
 /mob/dead/verb/join_as_hellhound()
 	set category = "Ghost"
@@ -738,90 +660,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/verb/join_as_yautja()
 	set category = "Ghost"
-	set name = "Join as Predator"
+	set name = "Join the Hunt"
 	set desc = "If you are whitelisted, and it is the right type of round, join in."
 
+	if (!stat || !client)
+		return
+
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
-		usr << "\red The game hasn't started yet!"
+		src << "<span class='warning'>The game hasn't started yet!</span?"
 		return
 
-	if(!istype(ticker.mode,/datum/game_mode/colonialmarines))
-		usr << "Gamemode mismatch. Consider asking an Admin to spawn you."
-		return
-
-	if (!usr.stat || !client) // Make sure we're an observer
-		// usr << "!usr.stat"
-		return
-
-	if (usr != src)
-		// usr << "usr != src"
-		return 0 // Something is terribly wrong
-
-	if(jobban_isbanned(usr,"Alien")) // User is jobbanned
-		usr << "\red You are banned from playing aliens and cannot spawn as a Predator."
-		return
-
-	if(!is_alien_whitelisted(usr,"Yautja") && !is_alien_whitelisted(usr,"Yautja Elder"))
-		usr << "You are not whitelisted."
-		return
-
-	if(ticker.mode:is_pred_round == 0)
-		usr << "You are whitelisted, but there are no hunts this round. Maybe if you prayed real hard an Admin could spawn you in."
-		return
-
-	if(ticker.mode:numpreds >= 3)
-		usr << "Already full up. There can only be 3 per round."
-		return
-
-	if((src.client && src.client.was_a_predator))
-		usr << "You already were a Yautja! Give someone else a chance."
-		return
-
-	var/I
-
-	for(I in ticker.mode.pred_keys)
-		if(uppertext(I) == uppertext(usr.key)) //case doesn't matter.
-			usr << "You already were Yautja, you bum."
-			return
-
-	var/mob/old = src
-	var/mob/living/carbon/human/M = new(pick(pred_spawn))
-	M.key = src.key
-
-	M.set_species("Yautja")
-	if(src.client && src.client.prefs) //Fuckit, one of these must be right.
-		M.real_name = src.client.prefs.predator_name
-		M.gender = src.client.prefs.predator_gender
-	else if(M.client && M.client.prefs)
-		if(M.client.prefs.predator_gender)
-			if(M.client.prefs.predator_gender == "male")
-				M.gender = "male"
-			else
-				M.gender = "female"
-		else
-			M.gender = "male"
-
-		M.real_name = M.client.prefs.predator_name
-
-	if(!M.gender) M.gender = "male"
-	M.update_icons()
-	log_admin("[src] [src.key], became a new Yautja, [M.real_name].")
-	message_admins("[src] ([src.key]) joined as Yautja, [M.real_name].")
-
-	if(is_alien_whitelisted(M,"Yautja Elder"))
-		M.real_name = "Elder [M.real_name]"
-		M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
-		M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
-		M << "<B>You come equipped as an Elder should, with bonus glaive and heavy armor.</b>"
-
-	ticker.mode.predators += M.mind
-	ticker.mode.pred_keys += usr.key
-	ticker.mode:numpreds++
-	M.mind.assigned_role = "MODE"
-	M.mind.special_role = "Predator"
-	if(M.client) M.client.was_a_predator = 1
-	if(old) del(old) //Wipe the old ghost.
-	return
+	if(ticker.mode.check_predator_late_join(src))
+		ticker.mode.attempt_to_join_as_predator(src)
 
 /mob/dead/verb/drop_vote()
 	set category = "Ghost"

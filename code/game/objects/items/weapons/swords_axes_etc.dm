@@ -68,8 +68,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "baton"
 	item_state = "classic_baton"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	force = 10
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
@@ -117,8 +116,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "telebaton_0"
 	item_state = "telebaton_0"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	w_class = 2
 	force = 3
 	var/on = 0

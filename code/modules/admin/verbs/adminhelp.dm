@@ -27,7 +27,8 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		// Adminhelp cooldown
 		src.verbs -= /client/verb/adminhelp
 		spawn(1200)
-			src.verbs += /client/verb/adminhelp
+			if(src)
+				src.verbs += /client/verb/adminhelp
 
 	if(selected_type == "Suggestion / Bug Report")
 		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our forum.",,"Go to Suggestions forum","Go to Bugs forum","Cancel"))
@@ -128,7 +129,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			if(!(R_ADMIN & X.holder.rights))
 				if(X.is_afk())
 					admin_number_afk++
-		if(R_ADMIN | R_MOD & X.holder.rights) // just admins here please
+		if(R_ADMIN|R_MOD & X.holder.rights) // just admins here please
 			adminholders += X
 			if(X.is_afk())
 				admin_number_afk++
@@ -153,7 +154,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		if("Bug report")
 			if(debugholders.len)
 				for(var/client/X in debugholders)
-					if(R_ADMIN | R_MOD & X.holder.rights) // Admins get every button & special highlights in theirs
+					if(R_ADMIN|R_MOD & X.holder.rights) // Admins get every button & special highlights in theirs
 						if(X.prefs.toggles & SOUND_ADMINHELP)
 							X << 'sound/effects/adminhelp_new.ogg'
 						X << msg
@@ -191,4 +192,15 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	else
 		send2adminirc("[selected_upper] from [key_name(src)]: [html_decode(original_msg)]")
 	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	unansweredAhelps["[src.mob.computer_id]"] = msg //We are gonna do it by CID, since any other way really gets fucked over by ghosting etc
+
+	if(config.use_slack && config.slack_send_ahelps)
+		if(config.slack_send_ahelps == 1)
+			slackMessage("adminhelp", "Adminhelp from *[key_name(src)]*: _*[html_decode(original_msg)]*_ (Admins: [admin_number_present] active / [admin_number_afk] AFK)")
+		if(config.slack_send_ahelps == 2)
+			spawn(config.slack_send_ahelps_timer)
+				if(unansweredAhelps.Find(src.mob.computer_id))
+					slackMessage("adminhelp", "Unanswered adminhelp from *[key_name(src)]*: _*[html_decode(original_msg)]*_ (Admins: [admin_number_present] active / [admin_number_afk] AFK) <!here>")
+
 	return

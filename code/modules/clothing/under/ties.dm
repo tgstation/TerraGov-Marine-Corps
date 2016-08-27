@@ -5,8 +5,7 @@
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
 	item_color = "bluetie"
-	flags = FPRINT | TABLEPASS
-	slot_flags = 0
+	flags_equip_slot = 0
 	w_class = 2.0
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
@@ -367,6 +366,7 @@
 	desc = "Strudy mess of synthcotton belts and buckles, ready to share your burden."
 	icon_state = "webbing"
 	item_color = "webbing"
+	slots = 3
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -393,7 +393,7 @@
 	desc = "This glowing blue badge marks the holder as THE LAW."
 	icon_state = "holobadge"
 	item_color = "holobadge"
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 
 	var/emagged = 0 //Emagging removes Sec check.
 	var/stored_name = null
@@ -401,7 +401,7 @@
 /obj/item/clothing/tie/holobadge/cord
 	icon_state = "holobadge-cord"
 	item_color = "holobadge-cord"
-	slot_flags = SLOT_MASK
+	flags_equip_slot = SLOT_MASK
 
 /obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
 	if(!stored_name)

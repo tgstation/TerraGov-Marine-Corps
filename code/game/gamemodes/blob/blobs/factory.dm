@@ -29,7 +29,7 @@
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "blobsquiggle"
 	icon_living = "blobsquiggle"
-	pass_flags = PASSBLOB
+	flags_pass = PASSBLOB
 	health = 20
 	maxHealth = 20
 	melee_damage_lower = 4

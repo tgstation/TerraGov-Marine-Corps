@@ -44,7 +44,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	if(!notesfile)	return
 	notesfile.cd = "/[ckey]"
 	notesfile.eof = 1		//move to the end of the buffer
-	notesfile << "[time2text(world.realtime,"DD-MMM-YYYY")] | [note][(usr && usr.ckey)?" ~[usr.ckey]":""]"
+	notesfile << "[time2text(world.realtime,"DD-MMM-YYYY")]|[note][(usr && usr.ckey)?" ~[usr.ckey]":""]"
 	return
 
 //handles removing entries from the buffer, or removing the entire directory if no start_index is given
@@ -123,8 +123,8 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	infos += P
 	info << infos
 
-	message_admins("\blue [key_name_admin(usr)] has edited [key]'s notes.")
-	log_admin("[key_name(usr)] has edited [key]'s notes.")
+	message_admins("\blue [key_name_admin(usr)] has edited [key]'s notes: [note]")
+	log_admin("[key_name(usr)] has edited [key]'s notes: [note]")
 
 	del info
 

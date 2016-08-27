@@ -235,19 +235,19 @@
 				var/washglasses = 1
 
 				if(H.wear_suit)
-					washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
-					washshoes = !(H.wear_suit.flags_inv & HIDESHOES)
+					washgloves = !(H.wear_suit.flags_inventory & HIDEGLOVES)
+					washshoes = !(H.wear_suit.flags_inventory & HIDESHOES)
 
 				if(H.head)
-					washmask = !(H.head.flags_inv & HIDEMASK)
-					washglasses = !(H.head.flags_inv & HIDEEYES)
-					washears = !(H.head.flags_inv & HIDEEARS)
+					washmask = !(H.head.flags_inventory & HIDEMASK)
+					washglasses = !(H.head.flags_inventory & HIDEEYES)
+					washears = !(H.head.flags_inventory & HIDEEARS)
 
 				if(H.wear_mask)
 					if (washears)
-						washears = !(H.wear_mask.flags_inv & HIDEEARS)
+						washears = !(H.wear_mask.flags_inventory & HIDEEARS)
 					if (washglasses)
-						washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
+						washglasses = !(H.wear_mask.flags_inventory & HIDEEYES)
 
 				if(H.head)
 					if(H.head.clean_blood())

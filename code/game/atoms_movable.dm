@@ -14,14 +14,28 @@
 	var/moved_recently = 0
 	var/mob/pulledby = null
 
-/atom/movable/Move()
-	var/atom/A = src.loc
+
+//===========================================================================
+/atom/movable/Dispose()
 	. = ..()
-	src.move_speed = world.time - src.l_move_time
-	src.l_move_time = world.time
-	src.m_flag = 1
-	if ((A != src.loc && A && A.z == src.z))
-		src.last_move = get_dir(A, src.loc)
+	loc = null //First thing to do so we move into null space.
+	for(var/atom/movable/I in contents) cdel(I)
+	if(pulledby) pulledby.stop_pulling()
+
+/atom/movable/Recycle()
+	return
+//===========================================================================
+
+/atom/movable/Move()
+	var/atom/A = loc
+	var/old_dir = dir
+	. = ..()
+	if(flags_atom & DIRLOCK) dir = old_dir
+	move_speed = world.time - l_move_time
+	l_move_time = world.time
+	m_flag = 1
+	if ((A != loc && A && A.z == z))
+		last_move = get_dir(A, loc)
 	Moved(A,dir)
 	return
 
@@ -99,10 +113,6 @@
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
-
-	if(istype(src,/obj/item/weapon/twohanded/offhand)) //Wield icons get force deleted.
-		src:unwield()
-		return
 
 	src.throwing = 1
 	src.thrower = thrower

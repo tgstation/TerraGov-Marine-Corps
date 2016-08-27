@@ -112,7 +112,7 @@ OBSOLETE BITCH
 
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
-		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
+		if(istype(C) && (C.flags_armor_protection & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
 	return siemens_coefficient
@@ -125,7 +125,7 @@ OBSOLETE BITCH
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
-			if(C.body_parts_covered & def_zone.body_part)
+			if(C.flags_armor_protection & def_zone.body_part)
 				protection += C.armor[type]
 	return protection
 
@@ -136,7 +136,7 @@ OBSOLETE BITCH
 		if(!bp)	continue
 		if(bp && istype(bp ,/obj/item/clothing))
 			var/obj/item/clothing/C = bp
-			if(C.body_parts_covered & HEAD)
+			if(C.flags_armor_protection & HEAD)
 				return 1
 	return 0
 
@@ -406,13 +406,21 @@ OBSOLETE BITCH
 
 //This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
 //Does not actually check for station jobs or access yet, cuz I'm mad lazy.
-/mob/living/carbon/human/proc/get_marine_id()
+//Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.
+/mob/living/carbon/human/proc/get_target_lock()
+	//Let's first check if they're antags.
+	if(isYautja(src)) return //Predators always read as targets.
+	if(mind && mind.special_role) //Let's see if they're an antag.
+		switch(mind.special_role) //Switches are still better than evaluating this twice.
+			if("IRON BEARS","DEATH SQUAD") //Antags.
+				return //Return a target lock.
+
 	var/obj/item/weapon/card/id/mobcard = wear_id
 
 	if(!mobcard || !istype(mobcard))
 		mobcard = get_active_hand() //Not a PDA or in ID slot? Fine, check their hand.
 
 	if(!mobcard || !istype(mobcard))
-		return 0 //Still nothing!
+		return //Still nothing!
 
 	return 1 //Yay!

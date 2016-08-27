@@ -1,4 +1,4 @@
-//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 24JAN2015
+//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
 //Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
 //All castes need an evolves_to() list in their defines
@@ -8,6 +8,14 @@
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
+	var totalXenos = 0.0 //total number of Xenos
+	// var tierA = 0.0 //Tier 1 - Not used in calculation of Tier maximums
+	var tierB = 0.0 //Tier 2
+	var tierC = 0.0 //Tier 3
+
+	if(hardcore)
+		src << "\red Nuh-uh"
+		return
 
 	if(jobban_isbanned(src,"Alien"))
 		src << "\red You are jobbanned from Aliens and cannot evolve. How did you even become an alien?"
@@ -29,6 +37,41 @@
 	if(isnull(evolves_to))
 		src << "You are already the apex of form and function. Go! Spread the hive!"
 		return
+
+	if(upgrade > 0 )
+		src <<"You gave up evolving in exchange for power..."
+		return
+
+	if(health < maxHealth)
+		src << "\red You must be at full health to evolve."
+		return
+
+	if(storedplasma < maxplasma)
+		src << "\red You must be at full Plasma to evolve."
+		return
+
+	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
+
+
+	for(var/mob/living/carbon/Xenomorph/M in living_mob_list) //should count mindless as well so people don't cheat
+		if(M.tier == 0)
+			continue
+		else if(M.tier == 1)
+		// 	tierA++
+		else if(M.tier == 2)
+			tierB++
+		else if(M.tier == 3)
+			tierC++
+		else
+			src <<"\red You shouldn't see this.  If you do, bug repot it! (Error XE01)."
+			continue
+		totalXenos++
+
+	//Debugging that should've been done
+	// world << "[tierA] Tier 1"
+	// world << "[tierB] Tier 2"
+	// world << "[tierC] Tier 3"
+	// world << "[totalXenos] Total"
 
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()
@@ -52,17 +95,32 @@
 		return
 
 	if(caste == "Queen") // Special case for dealing with queenae
-		if(storedplasma >= 500)
-			if(is_queen_alive())
-				src << "\red There is already a queen."
+		if(!hardcore)
+			if(storedplasma >= 500)
+				if(is_queen_alive())
+					src << "\red There is already a queen."
+					return
+			else
+				src << "You require more plasma! Currently at: [storedplasma] / 500."
+				return
+
+			if(ticker && ticker.mode && ticker.mode.queen_death_timer)
+				src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
 				return
 		else
-			src << "You require more plasma! Currently at: [storedplasma] / 500."
+			src << "\red Nuh-uhh."
 			return
 
-		if(ticker && ticker.mode && ticker.mode.queen_death_timer)
-			src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
-			return
+
+
+
+	if(tier == 1 && ((tierB+tierC)/totalXenos)> 0.5 && caste != "Queen")
+		src << "\red The hive can't support another Tier 2 alien, either upgrade or wait for either more aliens to be born or someone to die..."
+		return
+	else if(tier == 2 && (tierC/totalXenos)> 0.25 && caste != "Queen")
+		src << "\red The hive can't support another Tier 3 alien, wait until someone stronger dies or upgrades."
+		return
+	else src << "\green Looks like the hive can support your evolution!"
 
 	var/mob/living/carbon/Xenomorph/M = null
 

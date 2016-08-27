@@ -4,8 +4,8 @@
 	icon_state = "electropack0"
 	item_state = "electropack"
 	frequency = 1449
-	flags = FPRINT | CONDUCT | TABLEPASS
-	slot_flags = SLOT_BACK
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BACK
 	w_class = 5.0
 
 	matter = list("metal" = 10000,"glass" = 2500)

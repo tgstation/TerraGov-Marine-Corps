@@ -3,7 +3,7 @@
 	name = "Skrellian helmet"
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
 	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
-	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 	species_restricted = list("Skrell","Human")
 
 /obj/item/clothing/head/helmet/space/skrell/white
@@ -21,8 +21,8 @@
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 	species_restricted = list("Skrell","Human")
 
 /obj/item/clothing/suit/space/skrell/white
@@ -38,8 +38,8 @@
 //Unathi space gear. Huge and restrictive.
 /obj/item/clothing/head/helmet/space/unathi
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
-	heat_protection = HEAD
-	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_heat_protection = HEAD
+	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 	var/up = 0 //So Unathi helmets play nicely with the weldervision check.
 	species_restricted = list("Unathi")
 
@@ -53,8 +53,8 @@
 /obj/item/clothing/suit/space/unathi
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 	species_restricted = list("Unathi")
 
 /obj/item/clothing/suit/space/unathi/rig_cheap
@@ -87,8 +87,8 @@
 	slowdown = 2
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.6
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/suit.dmi',
@@ -98,7 +98,7 @@
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.6
-	flags = HEADCOVERSEYES|STOPSPRESSUREDMAGE
+	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|NOPRESSUREDMAGE
 	species_restricted = list("Vox","Vox Armalis")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi',
@@ -122,7 +122,7 @@
 	icon_state = "vox-carapace"
 	item_state = "vox-carapace"
 	desc = "A glowing visor, perhaps stolen from a depressed Cylon."
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
 /obj/item/clothing/suit/space/vox/carapace
 	name = "alien carapace armour"
@@ -164,7 +164,7 @@
 	icon_state = "vox-casual-1"
 	item_color = "vox-casual-1"
 	item_state = "vox-casual-1"
-	body_parts_covered = LEGS
+	flags_armor_protection = LEGS
 
 /obj/item/clothing/under/vox/vox_robes
 	name = "alien robes"
@@ -202,7 +202,7 @@
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(src.magpulse)
-		flags &= ~NOSLIP
+		flags_inventory &= ~NOSLIPPING
 		magpulse = 0
 		canremove = 1
 		user << "You relax your deathgrip on the flooring."
@@ -216,7 +216,7 @@
 			return
 
 
-		flags |= NOSLIP
+		flags_inventory |= NOSLIPPING
 		magpulse = 1
 		canremove = 0	//kinda hard to take off magclaws when you are gripping them tightly.
 		user << "You dig your claws deeply into the flooring, bracing yourself."
@@ -227,7 +227,7 @@
 	..()
 	if(src.magpulse)
 		user.visible_message("The [src] go limp as they are removed from [usr]'s feet.", "The [src] go limp as they are removed from your feet.")
-		flags &= ~NOSLIP
+		flags_inventory &= ~NOSLIPPING
 		magpulse = 0
 		canremove = 1
 

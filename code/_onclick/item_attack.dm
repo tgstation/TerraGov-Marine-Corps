@@ -8,7 +8,7 @@
 	return
 /atom/movable/attackby(obj/item/W, mob/user)
 	if(W)
-		if(!(W.flags&NOBLUDGEON))
+		if(!(W.flags_atom & NOBLUDGEON))
 			visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
 
 /mob/living/attackby(obj/item/I, mob/user)
@@ -23,9 +23,12 @@
 
 
 /obj/item/proc/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+	if(flags_atom & NOBLUDGEON)
+		return
 
 	if (!istype(M)) // not sure if this is the right thing...
 		return 0
+
 	var/messagesource = M
 	if (can_operate(M))        //Checks if mob is lying down on table for surgery
 		if (do_surgery(M,user,src))

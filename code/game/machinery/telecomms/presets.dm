@@ -45,10 +45,8 @@
 	id = "Centcom Relay"
 	hide = 1
 	toggled = 1
-	//anchored = 1
-	//use_power = 0
-	//idle_power_usage = 0
 	produces_heat = 0
+	use_power = 0
 	autolinkers = list("c_relay")
 
 //HUB
@@ -56,7 +54,7 @@
 /obj/machinery/telecomms/hub/preset
 	id = "Hub"
 	network = "tcommsat"
-	autolinkers = list("hub", "relay", "c_relay", "s_relay", "m_relay", "r_relay", "medical",
+	autolinkers = list("hub", "relay", "s_relay", "medical",
 		"common", "command", "engineering", "squads", "security",
 		"receiverA", "receiverB",  "broadcasterA", "broadcasterB")
 
@@ -64,8 +62,7 @@
 	id = "CentComm Hub"
 	network = "tcommsat"
 	produces_heat = 0
-	autolinkers = list("hub_cent", "c_relay", "s_relay", "m_relay", "r_relay",
-	 "centcomm", "receiverCent", "broadcasterCent")
+	autolinkers = list("hub_cent", "relay", "c_relay", "s_relay", "centcomm", "receiverCent", "broadcasterCent")
 
 //Receivers
 
@@ -84,7 +81,7 @@
 	id = "Receiver B"
 	network = "tcommsat"
 	autolinkers = list("receiverB") // link to relay
-	freq_listening = list(COMM_FREQ, ENG_FREQ, SEC_FREQ, MED_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, SUP_FREQ )
+	freq_listening = list(COMM_FREQ, ENG_FREQ, SEC_FREQ, MED_FREQ, CIV_GEN_FREQ, CIV_COMM_FREQ, SUP_FREQ)
 
 	//Common and other radio frequencies for people to freely use
 	New()
@@ -97,7 +94,7 @@
 	network = "tcommsat"
 	produces_heat = 0
 	autolinkers = list("receiverCent")
-	freq_listening = list(ERT_FREQ, DTH_FREQ, SYND_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
 
 
 //Buses
@@ -134,7 +131,7 @@
 /obj/machinery/telecomms/bus/preset_cent
 	id = "CentComm Bus"
 	network = "tcommsat"
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
 	produces_heat = 0
 	autolinkers = list("processorCent", "centcomm")
 
@@ -216,7 +213,7 @@
 
 /obj/machinery/telecomms/server/presets/centcomm
 	id = "CentComm Server"
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
 	produces_heat = 0
 	autolinkers = list("centcomm")
 
@@ -242,3 +239,65 @@
 	network = "tcommsat"
 	produces_heat = 0
 	autolinkers = list("broadcasterCent")
+
+/*
+	Basically just an empty shell for receiving and broadcasting radio messages. Not
+	very flexible, but it gets the job done.
+*/
+
+/obj/machinery/telecomms/allinone
+	name = "Telecommunications Mainframe"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "comm_server"
+	desc = "A compact machine used for portable subspace telecommuniations processing."
+	density = 1
+	anchored = 1
+	use_power = 0
+	idle_power_usage = 0
+	machinetype = 6
+	produces_heat = 0
+	unacidable = 1
+	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
+
+/obj/machinery/telecomms/allinone/interceptor
+	name = "Message Intercept Mainframe"
+	intercept = 1
+	freq_listening = list(SYND_FREQ, RUS_FREQ)
+
+/obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
+
+	if(!on) // has to be on to receive messages
+		return
+
+	if(is_freq_listening(signal)) // detect subspace signals
+
+		signal.data["done"] = 1 // mark the signal as being broadcasted
+		signal.data["compression"] = 0
+
+		// Search for the original signal and mark it as done as well
+		var/datum/signal/original = signal.data["original"]
+		if(original)
+			original.data["done"] = 1
+
+		if(signal.data["slow"] > 0)
+			sleep(signal.data["slow"]) // simulate the network lag if necessary
+
+		/* ###### Broadcast a message using signal.data ###### */
+
+		var/datum/radio_frequency/connection = signal.data["connection"]
+
+		if(connection.frequency in ANTAG_FREQS) // if antag broadcast, just
+			Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							  signal.data["vmask"], signal.data["vmessage"],
+							  signal.data["radio"], signal.data["message"],
+							  signal.data["name"], signal.data["job"],
+							  signal.data["realname"], signal.data["vname"],, signal.data["compression"], list(0), connection.frequency,
+							  signal.data["verb"], signal.data["language"])
+		else
+			if(intercept)
+				Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							  signal.data["vmask"], signal.data["vmessage"],
+							  signal.data["radio"], signal.data["message"],
+							  signal.data["name"], signal.data["job"],
+							  signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency,
+							  signal.data["verb"], signal.data["language"])

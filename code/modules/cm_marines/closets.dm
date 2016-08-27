@@ -1,7 +1,7 @@
 /**********************Marine Gear**************************/
 //STANDARD MARINE CLOSET
 /obj/structure/closet/secure_closet/marine
-	name = "Marine's Locker"
+	name = "marine's locker"
 	req_access = list(access_marine_prep)
 	icon_state = "standard_locked"
 	icon_closed = "standard_unlocked"
@@ -10,37 +10,23 @@
 	icon_broken = "standard_emmaged"
 	icon_off = "standard_off"
 	icon = 'icons/Marine/Marine_Lockers.dmi'
-	special_equipment = 1
 
 	New()
 		spawn(5)
-			new /obj/item/clothing/suit/storage/marine(src)
-			new /obj/item/weapon/storage/belt/marine(src)
-			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/shoes/marine(src)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
-		return
 
-	select_gamemode_equipment(gamemode = "")
-		if(special_equipment)
-			switch(gamemode)
-				if("Ice colony")
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/marine/snow(src)
-					new /obj/item/clothing/mask/rebreather/scarf(src)
-
-				else
-					new /obj/item/clothing/under/marine_jumpsuit(src)
-					new /obj/item/clothing/head/helmet/marine(src)
-					new /obj/item/clothing/suit/storage/marine(src)
-
-
+	select_gamemode_equipment(gamemode)
+		new /obj/item/clothing/suit/storage/marine(src)
+		new /obj/item/weapon/storage/belt/marine(src)
+		new /obj/item/clothing/head/helmet/marine(src)
+		new /obj/item/clothing/under/marine(src)
+		switch(gamemode)
+			if(/datum/game_mode/ice_colony)
+				new /obj/item/clothing/mask/rebreather/scarf(src)
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
-	name = "Marine Commander's Locker"
+	name = "\improper marine Commander's locker"
 	req_access = list(access_sulaco_captain)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
@@ -63,7 +49,7 @@
 			new /obj/item/device/radio/headset/mcom(src)
 
 /obj/structure/closet/secure_closet/securecom
-	name = "Commander's Secure Box"
+	name = "\improper Commander's secure box"
 	req_access = list(access_sulaco_captain)
 	desc = "You could probably get court-marshaled just by looking at this..."
 	icon = 'icons/obj/storage.dmi'
@@ -73,7 +59,7 @@
 	icon_locked = "largermetal"
 
 /obj/structure/closet/secure_closet/marine/marine_lo
-	name = "Bridge Officer's Locker"
+	name = "bridge officer's locker"
 	req_access = list(access_sulaco_logistics)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
@@ -104,9 +90,32 @@
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
 
+/obj/structure/closet/secure_closet/marine/marine_pilot
+	name = "pilot officer's locker"
+	req_access = list(access_sulaco_pilot_locker)
+	icon_state = "hopsecure1"
+	icon_closed = "hopsecure"
+	icon_locked = "hopsecure1"
+	icon_opened = "hopsecureopen"
+	icon_broken = "hopsecurebroken"
+	icon_off = "hopsecureoff"
+	icon = 'icons/obj/closet.dmi'
+
+	New()
+		spawn(2)
+			new /obj/item/clothing/head/helmet/marine/pilot(src)
+			new /obj/item/device/radio/headset/mcom(src)
+			new /obj/item/clothing/under/marine/officer/pilot(src)
+			new /obj/item/clothing/shoes/marine(src)
+			new /obj/item/clothing/suit/armor/vest/pilot(src)
+			new /obj/item/weapon/storage/belt/marine/full(src)
+			new /obj/item/weapon/storage/backpack/marine/satchel(src)
+			new /obj/item/clothing/gloves/yellow(src)
+			new /obj/item/clothing/glasses/sunglasses(src)
+
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/marine/military_officer
-	name = "Military Police's Locker"
+	name = "military police's locker"
 	req_access = list(access_sulaco_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -118,6 +127,8 @@
 
 	New()
 		spawn(3)
+			new /obj/item/clothing/head/cmberet/red(src)
+			new /obj/item/clothing/head/cmberet/red(src)
 			new /obj/item/clothing/tie/holster/armpit(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine/mp(src)
@@ -127,14 +138,12 @@
 			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mmpo(src)
-			new /obj/item/weapon/gun/taser(src)
+			new /obj/item/weapon/gun/energy/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
 
-
-
 /obj/structure/closet/secure_closet/marine/military_officer_spare
-	name = "Extra Equipment Locker"
+	name = "extra equipment locker"
 	req_access = list(access_sulaco_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -161,7 +170,7 @@
 
 //ALPHA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_alpha_equipment
-	name = "Alpha Equipment Locker"
+	name = "alpha equipment locker"
 	req_access = list(access_marine_prep, access_squad_alpha)
 	icon_state = "squad_alpha_locked"
 	icon_closed = "squad_alpha_unlocked"
@@ -171,16 +180,14 @@
 	icon_off = "squad_alpha_off"
 
 	New()
+		..()
 		spawn(5)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/alpha(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/malpha(src)
-
 
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment
-	name = "Bravo Equipment Locker"
+	name = "bravo equipment locker"
 	req_access = list(access_marine_prep, access_squad_bravo)
 	icon_state = "squad_bravo_locked"
 	icon_closed = "squad_bravo_unlocked"
@@ -190,17 +197,14 @@
 	icon_off = "squad_bravo_off"
 
 	New()
+		..()
 		spawn(6)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/bravo(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/mbravo(src)
-
-
 
 //CHARLIE EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_charlie_equipment
-	name = "Charlie Equipment Locker"
+	name = "charlie equipment locker"
 	req_access = list(access_marine_prep, access_squad_charlie)
 	icon_state = "squad_charlie_locked"
 	icon_closed = "squad_charlie_unlocked"
@@ -210,16 +214,14 @@
 	icon_off = "squad_charlie_off"
 
 	New()
+		..()
 		spawn(7)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/charlie(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/mcharlie(src)
-
 
 //DELTA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
-	name = "Delta Equipment Locker"
+	name = "delta equipment locker"
 	req_access = list(access_marine_prep, access_squad_delta)
 	icon_state = "squad_delta_locked"
 	icon_closed = "squad_delta_unlocked"
@@ -229,16 +231,14 @@
 	icon_off = "squad_delta_off"
 
 	New()
+		..()
 		spawn(8)
-			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/gloves/marine/delta(src)
-			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/device/radio/headset/mdelta(src)
-
 
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
-	name = "Sulaco Medical Doctor's Locker"
+	name = "sulaco medical doctor's locker"
 	req_access = list(access_sulaco_medbay)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
@@ -247,56 +247,36 @@
 	icon_broken = "securemedbroken"
 	icon_off = "securemedoff"
 	icon = 'icons/obj/closet.dmi'
-	special_equipment = 1
-
-	select_gamemode_equipment(gamemode = "")
-		if(special_equipment)
-			switch(gamemode)
-				if("Ice colony")
-					new /obj/item/clothing/under/marine_jumpsuit/snow(src)
-					new /obj/item/clothing/head/helmet/marine/snow(src)
-					new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
-					new /obj/item/clothing/mask/rebreather/scarf(src)
 
 	New()
 		spawn(9)
-			if(prob(50))
-				new /obj/item/weapon/storage/backpack/medic(src)
-			else
-				new /obj/item/weapon/storage/backpack/satchel_med(src)
+			if(prob(50)) new /obj/item/weapon/storage/backpack/medic(src)
+			else new /obj/item/weapon/storage/backpack/satchel_med(src)
 			new /obj/item/clothing/under/rank/nursesuit (src)
 			new /obj/item/clothing/head/nursehat (src)
-			switch(pick("blue", "green", "purple"))
-				if ("blue")
-					new /obj/item/clothing/under/rank/medical/blue(src)
-					new /obj/item/clothing/head/surgery/blue(src)
-				if ("green")
-					new /obj/item/clothing/under/rank/medical/green(src)
-					new /obj/item/clothing/head/surgery/green(src)
-				if ("purple")
-					new /obj/item/clothing/under/rank/medical/purple(src)
-					new /obj/item/clothing/head/surgery/purple(src)
-			switch(pick("blue", "green", "purple"))
-				if ("blue")
-					new /obj/item/clothing/under/rank/medical/blue(src)
-					new /obj/item/clothing/head/surgery/blue(src)
-				if ("green")
-					new /obj/item/clothing/under/rank/medical/green(src)
-					new /obj/item/clothing/head/surgery/green(src)
-				if ("purple")
-					new /obj/item/clothing/under/rank/medical/purple(src)
-					new /obj/item/clothing/head/surgery/purple(src)
+			var/i = 0
+			var/new_item_path
+			while(++i <= 2)
+				var/rand_color = pick("blue", "green", "purple")
+				new_item_path = text2path("/obj/item/clothing/under/rank/medical/[rand_color]")
+				new new_item_path(src)
+				new_item_path = text2path("/obj/item/clothing/head/surgery/[rand_color]")
+				new new_item_path(src)
 			new /obj/item/clothing/under/rank/medical(src)
 			new /obj/item/clothing/under/rank/nurse(src)
 			new /obj/item/clothing/under/rank/orderly(src)
 			new /obj/item/clothing/suit/storage/labcoat(src)
 			new /obj/item/clothing/suit/storage/fr_jacket(src)
 			new /obj/item/clothing/shoes/white(src)
-			if(z && (z == 3 || z == 4))
-				new /obj/item/device/radio/headset/headset_med(src)
+			if(z != 1) new /obj/item/device/radio/headset/headset_med(src)
 			new /obj/item/weapon/storage/belt/medical(src)
 			new /obj/item/clothing/glasses/hud/health(src)
 
+	select_gamemode_equipment(gamemode)
+		switch(gamemode)
+			if(/datum/game_mode/ice_colony)
+				new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
+				new /obj/item/clothing/mask/rebreather/scarf(src)
 
 //MARINE SUPPLY CRATES APOPHIS775 15JAN2015
 
@@ -308,7 +288,7 @@
 	New()
 		..()
 		for(var/c, c<5, c++)
-			new /obj/item/clothing/under/marine_jumpsuit(src)
+			new /obj/item/clothing/under/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/clothing/shoes/marine(src)
@@ -379,7 +359,7 @@
 */
 
 /obj/structure/closet/secure_closet/req_officer
-	name = "RO's Extra Locker"
+	name = "\improper RO's extra locker"
 	req_access = list(access_sulaco_cargo)
 	icon_state = "securecargo1"
 	icon_closed = "securecargo"
@@ -397,6 +377,6 @@
 			new /obj/item/clothing/head/soft/ro_cap(src)
 			new /obj/item/clothing/head/helmet/marine(src)
 			new /obj/item/device/flashlight(src)
-			new /obj/item/weapon/gun/taser(src)
+			new /obj/item/weapon/gun/energy/taser(src)
 			new /obj/item/weapon/melee/baton(src)
 			new /obj/item/weapon/storage/backpack/marine(src)

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "closed"
 	density = 1
-	flags = FPRINT
+	flags_atom = FPRINT
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0
@@ -20,14 +20,10 @@
 	var/store_misc = 1
 	var/store_items = 1
 	var/store_mobs = 1
-	var/special_equipment = 0 //Will it check for gamemode on start and spawn special equipment?
 
 	anchored = 1 //Yep
 
 	var/const/mob_size = 15
-
-	proc/select_gamemode_equipment(var/gamemode)
-		return
 
 /obj/structure/closet/New()
 	..()
@@ -43,6 +39,9 @@
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1
 	return (!density)
+
+/obj/structure/closet/proc/select_gamemode_equipment(gamemode)
+	return
 
 /obj/structure/closet/proc/can_open()
 	if(src.welded)

@@ -37,7 +37,7 @@ Programs are a file that can be executed
 
 /datum/file/program/proc/decode(text)
 		//adds line breaks
-		text = replacetext(text, "\n","<BR>")
+		text = oldreplacetext(text, "\n","<BR>")
 		return text
 
 
@@ -223,7 +223,7 @@ Programs are a file that can be executed
 			computer.floppy.eject_disk()
 		return 1
 	//
-	// usage: eject_card | eject_card=reader | eject_card=writer
+	// usage: eject_card|eject_card=reader|eject_card=writer
 	// only functions if there is a cardslot
 	//
 	if("eject_card" in href_list)

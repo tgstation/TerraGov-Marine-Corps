@@ -9,10 +9,10 @@
 
 	bullet_act(var/obj/item/projectile/Proj)
 		//Tasers and the like should not damage girders.
-		if(Proj.damage_type == HALLOSS || Proj.damage_type == TOX || Proj.damage_type == CLONE || Proj.damage == 0)
+		if(Proj.ammo.damage_type == HALLOSS || Proj.ammo.damage_type == TOX || Proj.ammo.damage_type == CLONE || Proj.damage == 0)
 			return 0
 
-		if(Proj.damage_type == BURN)
+		if(Proj.ammo.damage_type == BURN)
 			health -= Proj.damage
 			if(health <= 0)
 				new /obj/item/stack/sheet/metal(get_turf(src))
@@ -95,6 +95,7 @@
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
 						if (do_after(user,80))
+							if(!S) return
 							if(S.use(2))
 								user << "<span class='notice'>You create a false wall. Push on it to open or close the passage.</span>"
 								new /obj/structure/falsewall (src.loc)

@@ -1,4 +1,5 @@
 //Xenomorph General Procs And Functions - Colonial Marines
+//LAST EDIT: APOPHIS 22MAY16
 
 ///mob/living/carbon/Xenomorph/gib(anim="gibbed-m",do_gibs)
 //	return ..(anim="gibbed-a",do_gibs)
@@ -21,8 +22,8 @@
 	if(!message)
 		return
 
-	if(ticker && ticker.mode.aliens.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in ticker.mode.aliens)
+	if(ticker && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client) //Only living and connected xenos
 				M << "\red <font size=[size]> [message]</font>"
@@ -142,6 +143,14 @@
 	tally = speed
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
+
+	if(locate(/obj/structure/bush) in src.loc) //Bushes slows you down
+		var/obj/structure/bush/B = locate(/obj/structure/bush) in src.loc
+		if(!B.stump)
+			if(prob(20*tier))
+				var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
+				playsound(src.loc, sound, 50, 1)
+
 
 	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
@@ -344,6 +353,7 @@
 	opacity = 0
 	anchored = 1
 	layer = 5 //Should be on top of most things
+	unacidable = 1
 
 	var/atom/target
 	var/ticks = 0
@@ -467,11 +477,44 @@
 					src.throwing = 0
 					return
 
+
+			if(charge_type == 3)  //Runner
+				visible_message("\red \The Runner pounces on [V]!","You pounce on [V]!")
+				V.Weaken(1)
+				src.canmove = 0
+				src.frozen = 1
+				src.loc = V.loc
+				src.throwing = 0 //Stop the movement
+				if(!is_robotic)
+					if(rand(0,100) < 70)
+						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+					else
+						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
+				spawn(1)
+					src.frozen = 0
+
+			if(charge_type == 1) //hunter pounce.
+				visible_message("\red \The Hunter pounces on [V]!","You pounce on [V]!")
+				V.Weaken(3)
+				src.canmove = 0
+				src.frozen = 1
+				src.loc = V.loc
+				src.throwing = 0 //Stop the movement
+				if(!is_robotic)
+					if(rand(0,100) < 70)
+						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
+					else
+						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
+				spawn(15)
+					src.frozen = 0
+
 			if(charge_type == 2) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead
 				V.attack_alien(src)
 				V.Weaken(2)
 				src.throwing = 0
 
+
+/*   //OLD RUNNER/HUNDER COMBO POUNCE
 			if(charge_type == 1) //Runner/hunter pounce.
 				visible_message("\red \The [src] pounces on [V]!","You pounce on [V]!")
 				V.Weaken(4)
@@ -482,7 +525,7 @@
 				if(!is_robotic)
 					playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
 				spawn(20)
-					src.frozen = 0
+					src.frozen = 0   */
 		return
 
 	if(isturf(hit_atom))
@@ -567,7 +610,7 @@
 	if(!readying_tail || readying_tail == -1) return 0 //Tail attack not prepared, or not available.
 
 	var/dmg = (round(readying_tail * 2.5)) + rand(5,10) //Ready max is 20
-	if(adjust_pixel_x) //Big xenos get a damage bonus.
+	if(big_xeno)
 		dmg += 10
 	var/datum/organ/external/affecting
 	var/tripped = 0
@@ -652,3 +695,26 @@
 		src:zoom_timer = 0
 	zoom_turf = null
 	return
+
+/mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
+	var/obj/structure/mineral_door/alien_door = locate() in current_turf
+	var/obj/effect/alien/resin/alien_construct = locate() in current_turf
+	var/obj/structure/stool/chair = locate() in current_turf
+
+	if(alien_door || alien_construct || chair)
+		src << "There's something built here already."
+		return
+
+	var/obj/royaljelly/alien_jelly = locate() in current_turf
+	var/obj/effect/alien/egg/alien_egg = locate() in current_turf
+
+	if(alien_jelly || alien_egg)
+		src << "There's already an egg or royal jelly here."
+		return
+
+	var/obj/item/clothing/mask/facehugger/alien_hugger = locate() in current_turf
+	if(alien_hugger)
+		src << "There is a little one here already. Best move it."
+		return
+
+	return 1

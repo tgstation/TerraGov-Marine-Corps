@@ -19,8 +19,8 @@
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "wrench"
-	flags = FPRINT | TABLEPASS| CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -37,8 +37,8 @@
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "screwdriver"
-	flags = FPRINT | TABLEPASS| CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	force = 5.0
 	w_class = 1.0
 	throwforce = 5.0
@@ -96,8 +96,8 @@
 	desc = "This cuts wires."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "cutters"
-	flags = FPRINT | TABLEPASS| CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
@@ -131,8 +131,8 @@
 	name = "welding tool"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
-	flags = FPRINT | TABLEPASS| CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 
 	//Amount of OUCH when it's thrown
 	force = 3.0
@@ -343,6 +343,7 @@
 		else
 			usr << "\blue Need more fuel!"
 			src.welding = 0
+			src.w_class = initial(src.w_class)
 			return
 	else
 		if(!message)
@@ -438,8 +439,8 @@
 	desc = "Used to remove floors and to pry open doors."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "crowbar"
-	flags = FPRINT | TABLEPASS| CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"
@@ -470,9 +471,10 @@
 					user << "\red You can't repair damage to your own body - it's against OH&S."
 					return
 
-		if(S.brute_dam)
+		if(S.brute_dam && welding)
 			S.heal_damage(15,0,0,1)
 			user.visible_message("\red \The [user] patches some dents on \the [M]'s [S.display_name] with \the [src].")
+			remove_fuel(1,user)
 			return
 		else
 			user << "Nothing to fix!"

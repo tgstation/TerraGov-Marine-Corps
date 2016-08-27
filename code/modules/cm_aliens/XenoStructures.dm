@@ -160,7 +160,7 @@
 
 /obj/effect/alien/weeds/node/New()
 	..(src.loc, src)
-
+	new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/weeds/New(pos, node)
 	..()
@@ -203,6 +203,9 @@
 
 			new /obj/effect/alien/weeds(T, linked_node)
 
+		// spawn(600) // Not very performance-friendly
+		// 	if(linked_node)
+		// 		goto direction_loop
 
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
@@ -410,7 +413,7 @@
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
-	if(Proj.damage_type == BURN)
+	if(Proj.ammo.damage_type == BURN)
 		health -= round(Proj.damage * 0.3)
 	..()
 	healthcheck()
@@ -536,7 +539,7 @@
 	if(!istype(M) || M.stat || M.health < 1) return
 	var/tunnel_time = 40
 
-	if(M.adjust_pixel_x) //Big xenos take WAY longer
+	if(M.big_xeno) //Big xenos take WAY longer
 		tunnel_time = 120
 
 	if(istype(M,/mob/living/carbon/Xenomorph/Larva)) //Larva can zip through near-instantly, they are wormlike after all
@@ -578,7 +581,7 @@
 	var/on_fire = 0
 	var/resisting = 0
 	var/resisting_ready = 0
-	var/nest_resist_time = 1900
+	var/nest_resist_time = 1200
 	layer = 2.9 //Just above weeds.
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
@@ -760,16 +763,16 @@
 //Alien blood effects.
 /obj/effect/decal/cleanable/blood/xeno
 	name = "sizzling blood"
-	desc = "It's green and acidic. It looks like... <i>blood?</i>"
+	desc = "It's yellow and acidic. It looks like... <i>blood?</i>"
 	icon = 'icons/effects/blood.dmi'
-	basecolor = "#05EE05"
+	basecolor = "#dbcd79"
 
 /obj/effect/decal/cleanable/blood/gibs/xeno
 	name = "steaming gibs"
 	desc = "Gnarly..."
 	icon_state = "xgib1"
 	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6")
-	basecolor = "#05EE05"
+	basecolor = "#dbcd79"
 
 /obj/effect/decal/cleanable/blood/gibs/xeno/update_icon()
 	color = "#FFFFFF"
@@ -790,4 +793,4 @@
 	random_icon_states = list("xgibmid1", "xgibmid2", "xgibmid3")
 
 /obj/effect/decal/cleanable/blood/xtracks
-	basecolor = "#05EE05"
+	basecolor = "#dbcd79"

@@ -255,6 +255,9 @@
 		return 0
 	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/carbon/human))
 		return 0
+	if(istype(C,/obj/machinery/marine_turret))
+		usr << "That won't work."
+		return 0
 
 	..()
 

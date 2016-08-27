@@ -3,8 +3,7 @@
 	name = "banhammer"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "toyhammer"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	throwforce = 0
 	w_class = 2.0
 	throw_speed = 7
@@ -20,8 +19,7 @@
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
 	icon_state = "nullrod"
 	item_state = "nullrod"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	force = 15
 	throw_speed = 1
 	throw_range = 4
@@ -71,78 +69,6 @@
 	if (istype(A, /turf/simulated/floor))
 		user << "\blue You hit the floor with the [src]."
 		call(/obj/effect/rune/proc/revealrunes)(src)
-
-/obj/item/weapon/sord
-	name = "\improper SORD"
-	desc = "This thing is so unspeakably shitty you are having a hard time even holding it."
-	icon_state = "sord"
-	item_state = "sord"
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
-	force = 2
-	throwforce = 1
-	sharp = 1
-	edge = 1
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return(BRUTELOSS)
-
-/obj/item/weapon/sord/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return ..()
-
-/obj/item/weapon/claymore
-	name = "claymore"
-	desc = "What are you standing around staring at this for? Get to killing!"
-	icon_state = "claymore"
-	item_state = "claymore"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
-	force = 40
-	throwforce = 10
-	sharp = 1
-	edge = 1
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	IsShield()
-		return 1
-
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return(BRUTELOSS)
-
-/obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return ..()
-
-/obj/item/weapon/katana
-	name = "katana"
-	desc = "Woefully underpowered in D20"
-	icon_state = "katana"
-	item_state = "katana"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT | SLOT_BACK
-	force = 40
-	throwforce = 10
-	sharp = 1
-	edge = 1
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>"
-		return(BRUTELOSS)
-
-/obj/item/weapon/katana/IsShield()
-		return 1
-
-/obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return ..()
 
 /obj/item/weapon/harpoon
 	name = "harpoon"
@@ -268,7 +194,7 @@ obj/item/weapon/wirerod
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
 	icon_state = "wiredrod"
 	item_state = "rods"
-	flags = CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	force = 8
 	throwforce = 10
 	w_class = 3

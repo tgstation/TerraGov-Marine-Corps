@@ -40,7 +40,7 @@
 	icon = 'icons/obj/harvest.dmi'
 	icon_state = "logs"
 	force = 5
-	flags = TABLEPASS
+	flags_atom = NOFLAGS
 	throwforce = 5
 	w_class = 3.0
 	throw_speed = 3
@@ -49,7 +49,7 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || (istype(W, /obj/item/weapon/twohanded/fireaxe) && W:wielded) || istype(W, /obj/item/weapon/melee/energy))
+		if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || (istype(W, /obj/item/weapon/twohanded/fireaxe) && (W.flags_atom & WIELDED)) || istype(W, /obj/item/weapon/melee/energy))
 			user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 			for(var/i=0,i<2,i++)
 				var/obj/item/stack/sheet/wood/NG = new (user.loc)
@@ -71,7 +71,7 @@
 	icon_state = "sunflower"
 	damtype = "fire"
 	force = 0
-	flags = TABLEPASS
+	flags_atom = NOFLAGS
 	throwforce = 1
 	w_class = 1.0
 	throw_speed = 1
@@ -89,7 +89,7 @@
 	icon_state = "nettle"
 	damtype = "fire"
 	force = 15
-	flags = TABLEPASS
+	flags_atom = NOFLAGS
 	throwforce = 1
 	w_class = 2.0
 	throw_speed = 1

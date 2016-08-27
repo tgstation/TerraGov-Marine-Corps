@@ -3,7 +3,7 @@
 /obj/item/weapon/stamperaser
 	name = "eraser"
 	desc = "It looks like some kind of eraser."
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT|TABLEPASS
 	icon = 'icons/obj/items.dmi'
 	icon_state = "zippo"
 	item_state = "zippo"

@@ -4,6 +4,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/captain
 	title = "Commander"
 	comm_title = "CO"
+	paygrade = 16
 	flag = COMMANDER
 	department_flag = COMMAND
 	faction = "Station"
@@ -18,7 +19,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_player_age = 14
 	equip(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
@@ -46,6 +47,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/executive_officer
 	title = "Executive Officer"
 	comm_title = "XO"
+	paygrade = 15
 	flag = EXECUTIVE
 	department_flag = COMMAND
 	faction = "Station"
@@ -58,7 +60,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	minimal_access = list() //Meh. See below
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), slot_w_uniform)
@@ -79,6 +81,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/bridge_officer
 	title = "Bridge Officer"
 	comm_title = "BO"
+	paygrade = 14
 	flag = BRIDGE
 	department_flag = COMMAND
 	faction = "Station"
@@ -87,11 +90,11 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig)
-	minimal_access = list(access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig)
+	access = list(access_sulaco_bridge, access_sulaco_brig, access_sulaco_pilot, access_sulaco_logistics)
+	minimal_access = list(access_sulaco_bridge, access_sulaco_brig, access_sulaco_pilot, access_sulaco_logistics)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
@@ -104,10 +107,45 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			H << "You are also in charge of Logistics, including giving new IDs, manning the supply bay and sending dropships."
 		return 1
 
+//Pilot Officer
+/datum/job/pilot_officer
+	title = "Pilot Officer"
+	comm_title = "PO"
+	paygrade = 13 //Technically Second Lieutenant equivalent, but 2ndLT doesn't exist in Marine pay grade, so Ensign
+	flag = PILOT
+	department_flag = COMMAND
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Commander"
+	selection_color = "#ddddff"
+	idtype = /obj/item/weapon/card/id/silver
+	access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
+	minimal_access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
+	minimal_player_age = 7
+	equip(var/mob/living/carbon/human/H)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/pilot(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/pilot(H), slot_r_hand)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/pilot(H), slot_wear_suit)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_l_store)
+		H.implant_loyalty(src)
+		spawn(10)
+			H << "\red You are the Pilot Officer of the USS Sulaco!"
+			H << "Your job is to fly, protect and maintain the Sulaco's main and only marine dropship, the Rasputin."
+			H << "While you are part of the Officer staff, your authority is limited to the Rasputin."
+			H << "If you are not piloting, there is an autopilot fallback for Command, but don't leave the Rasputin without reason."
+		return 1
+
 //Liaison
 /datum/job/liaison
 	title = "Corporate Liaison"
 	comm_title = "CL"
+	paygrade = 0
 	flag = LIASON
 	department_flag = COMMAND
 	faction = "Station"
@@ -115,8 +153,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "your Corporate Overlords"
 	selection_color = "#ffeedd"
-	access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_logistics, access_sulaco_research)
-	minimal_access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_logistics, access_sulaco_research)
+	access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_research, access_sulaco_logistics)
+	minimal_access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_research, access_sulaco_logistics)
 	idtype = /obj/item/weapon/card/id/silver
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
@@ -133,6 +171,3 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			H << "Your primary job is to observe and report back your findings to Weyland Yutani. You still must follow normal rules unless told otherwise."
 			H << "Use your office fax machine to communicate with them or to acquire new directives, if they are feeling generous."
 		return 1
-
-
-

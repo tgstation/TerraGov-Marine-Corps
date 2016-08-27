@@ -9,8 +9,7 @@
 	icon_state = "backpack"
 	item_state = "backpack"
 	w_class = 4.0
-	flags = FPRINT|TABLEPASS
-	slot_flags = SLOT_BACK	//ERROOOOO
+	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	max_combined_w_class = 21
 
@@ -40,6 +39,7 @@
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	origin_tech = "bluespace=4"
 	icon_state = "holdingpack"
+	item_state = "holdingpack"
 	max_w_class = 4
 	max_combined_w_class = 28
 
@@ -95,6 +95,7 @@
 	name = "trophy rack"
 	desc = "It's useful for both carrying extra gear and proudly declaring your insanity."
 	icon_state = "cultpack"
+	item_state = "cultpack"
 
 /obj/item/weapon/storage/backpack/clown
 	name = "Giggles von Honkerton"
@@ -164,6 +165,7 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
+	item_state = "satchel"
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
 	New()
@@ -174,62 +176,68 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
+	item_state = "satchel-norm"
 
 /obj/item/weapon/storage/backpack/satchel_eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel-eng"
-	item_state = "engiepack"
+	item_state = "satchel-eng"
 
 /obj/item/weapon/storage/backpack/satchel_med
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel-med"
-	item_state = "medicalpack"
+	item_state = "satchel-med"
 
 /obj/item/weapon/storage/backpack/satchel_vir
 	name = "virologist satchel"
 	desc = "A sterile satchel with virologist colours."
 	icon_state = "satchel-vir"
+	item_state = "satchel-vir"
 
 /obj/item/weapon/storage/backpack/satchel_chem
 	name = "chemist satchel"
 	desc = "A sterile satchel with chemist colours."
 	icon_state = "satchel-chem"
+	item_state = "satchel-chem"
 
 /obj/item/weapon/storage/backpack/satchel_gen
 	name = "geneticist satchel"
 	desc = "A sterile satchel with geneticist colours."
 	icon_state = "satchel-gen"
+	item_state = "satchel-gen"
 
 /obj/item/weapon/storage/backpack/satchel_tox
 	name = "scientist satchel"
 	desc = "Useful for holding research materials."
 	icon_state = "satchel-tox"
+	item_state = "satchel-tox"
 
 /obj/item/weapon/storage/backpack/satchel_sec
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
 	icon_state = "satchel-sec"
-	item_state = "securitypack"
+	item_state = "satchel-sec"
 
 /obj/item/weapon/storage/backpack/satchel_hyd
 	name = "hydroponics satchel"
 	desc = "A green satchel for plant related work."
 	icon_state = "satchel_hyd"
+	item_state = "satchel_hyd"
 
 /obj/item/weapon/storage/backpack/satchel_cap
 	name = "captain's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
-	item_state = "captainpack"
+	item_state = "satchel-cap"
 
 //ERT backpacks.
 /obj/item/weapon/storage/backpack/ert
 	name = "emergency response team backpack"
 	desc = "A spacious backpack with lots of pockets, used by members of the Emergency Response Team."
 	icon_state = "ert_commander"
-	item_state = "backpack"
+	item_state = "ert_commander"
 
 //Commander
 /obj/item/weapon/storage/backpack/ert/commander
@@ -241,15 +249,18 @@
 	name = "emergency response team security backpack"
 	desc = "A spacious backpack with lots of pockets, worn by security members of a Emergency Response Team."
 	icon_state = "ert_security"
+	item_state = "ert_security"
 
 //Engineering
 /obj/item/weapon/storage/backpack/ert/engineer
 	name = "emergency response team engineer backpack"
 	desc = "A spacious backpack with lots of pockets, worn by engineering members of a Emergency Response Team."
 	icon_state = "ert_engineering"
+	item_state = "ert_engineering"
 
 //Medical
 /obj/item/weapon/storage/backpack/ert/medical
 	name = "emergency response team medical backpack"
 	desc = "A spacious backpack with lots of pockets, worn by medical members of a Emergency Response Team."
 	icon_state = "ert_medical"
+	item_state = "ert_medical"

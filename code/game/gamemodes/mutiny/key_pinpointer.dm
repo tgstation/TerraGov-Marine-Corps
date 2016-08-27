@@ -33,7 +33,7 @@
 			usr << "It is calibrated for the Emergency Secondary Authentication Key."
 		else
 			usr << "It is switched off."
-
+/*
 /datum/supply_packs/key_pinpointer
 	name = "Authentication Key Pinpointer crate"
 	contains = list(/obj/item/weapon/pinpointer/advpinpointer/auth_key)
@@ -47,3 +47,4 @@
 		// This crate is only accessible during mutiny rounds
 		if (istype(ticker.mode,/datum/game_mode/mutiny))
 			..()
+*/

@@ -1,3 +1,4 @@
+//Spitter Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
 /mob/living/carbon/Xenomorph/Spitter
 	caste = "Spitter"
@@ -6,17 +7,20 @@
 	icon_state = "Spitter Walking"
 	melee_damage_lower = 12
 	melee_damage_upper = 22
-	health = 150
-	maxHealth = 150
+	health = 160
+	maxHealth = 160
 	storedplasma = 150
 	plasma_gain = 20
 	maxplasma = 600
-	jellyMax = 500
-	spit_delay = 80
+	jellyMax = 250
+	spit_delay = 25
 	speed = 0
+	jelly = 1
 	caste_desc = "Ptui!"
 	evolves_to = list("Praetorian", "Boiler")
-
+	armor_deflection = 15
+	tier = 2
+	upgrade = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

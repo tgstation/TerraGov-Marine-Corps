@@ -63,7 +63,7 @@
 	name_part1 = pick("the Automatic ", "Farmer ", "Lord ", "Professor ", "the Cuban ", "the Evil ", "the Dread King ", "the Space ", "Lord ", "the Great ", "Duke ", "General ")
 	name_part2 = pick("Melonoid", "Murdertron", "Sorcerer", "Ruin", "Jeff", "Ectoplasm", "Crushulon", "Uhangoid", "Vhakoid", "Peteoid", "slime", "Griefer", "ERPer", "Lizard Man", "Unicorn")
 
-	enemy_name = replacetext(name_part1, "the ", "") + name_part2
+	enemy_name = oldreplacetext(name_part1, "the ", "") + name_part2
 	name = (name_action + name_part1 + name_part2)
 
 
@@ -74,12 +74,12 @@
 	dat = "<center><h4>[enemy_name]</h4></center>"
 
 	dat += "<br><center><h3>[temp]</h3></center>"
-	dat += "<br><center>Health: [player_hp] | Magic: [player_mp] | Enemy Health: [enemy_hp]</center>"
+	dat += "<br><center>Health: [player_hp]|Magic: [player_mp]|Enemy Health: [enemy_hp]</center>"
 
 	if (gameover)
 		dat += "<center><b>[topic_link(src,"newgame","New Game")]"
 	else
-		dat += "<center><b>[topic_link(src,"attack","Attack")] | [topic_link(src,"heal","Heal")] | [topic_link(src,"charge","Recharge Power")]"
+		dat += "<center><b>[topic_link(src,"attack","Attack")]|[topic_link(src,"heal","Heal")]|[topic_link(src,"charge","Recharge Power")]"
 
 	dat += "</b></center>"
 

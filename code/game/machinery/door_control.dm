@@ -105,6 +105,16 @@
 /obj/machinery/door_control/proc/handle_pod()
 	for(var/obj/machinery/door/poddoor/M in world)
 		if(M.id == src.id)
+			//Hotfix for shutters being opened in flight.
+			//Faster than doing per door. Returns if the first door it finds says it's in flight.
+			var/datum/shuttle/ferry/shuttle
+			var/area/current_area = get_area(M)
+			if(istype(current_area, /area/shuttle/drop1))
+				shuttle = shuttle_controller.shuttles["Dropship 1"]
+				if(shuttle.moving_status == SHUTTLE_INTRANSIT) return
+			else if(istype(current_area, /area/shuttle/drop2))
+				shuttle = shuttle_controller.shuttles["Dropship 2"]
+				if(shuttle.moving_status == SHUTTLE_INTRANSIT) return
 			if(M.density)
 				spawn(0)
 					M.open()

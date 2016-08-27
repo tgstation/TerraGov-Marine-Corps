@@ -8,7 +8,7 @@ Structure: ///////////////////          //////////////////////////
     The object that holds everything.   			 V
 		   							      reagent_list var (list)   	A List of datums, each datum is a reagent.
 
-		   							      |          |          |
+		   							     |        |         |
 		   							      V          V          V
 
 		   							         reagents (datums)	    	Reagents. I.e. Water , antitoxins or mercury.

@@ -154,18 +154,18 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		#ifdef ZASDBG
 		var/updated = 0
 		#endif
-		
+
 		//defer updating of self-zone-blocked turfs until after all other turfs have been updated.
 		//this hopefully ensures that non-self-zone-blocked turfs adjacent to self-zone-blocked ones
 		//have valid zones when the self-zone-blocked turfs update.
 		var/list/deferred = list()
-		
+
 		for(var/turf/T in updating)
 			//check if the turf is self-zone-blocked
 			if(T.c_airblock(T) & ZONE_BLOCKED)
 				deferred += T
 				continue
-			
+
 			T.update_air_properties()
 			T.post_update_air_properties()
 			T.needs_air_update = 0
@@ -242,7 +242,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	#endif
 	var/ablock = A.c_airblock(B)
 	if(ablock == BLOCKED) return BLOCKED
-	return ablock | B.c_airblock(A)
+	return ablock|B.c_airblock(A)
 
 /datum/controller/air_system/proc/has_valid_zone(turf/simulated/T)
 	#ifdef ZASDBG

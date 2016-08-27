@@ -4,12 +4,14 @@
 #define MINUTE *600
 #define MINUTES *600
 
-//Returns the world time in english
-proc/worldtime2text(time = world.time)
+proc/worldtime2text(time = world.time) // Shows current time starting at noon 12:00 (station time)
 	return "[round(time / 36000)+12]:[(time / 600 % 60) < 10 ? add_zero(time / 600 % 60, 1) : time / 600 % 60]"
 
-proc/time_stamp()
+proc/time_stamp() // Shows current GMT time
 	return time2text(world.timeofday, "hh:mm:ss")
+
+proc/duration2text(time = world.time) // Shows current time starting at 0:00
+	return "[round(time / 36000)]:[(time / 600 % 60) < 10 ? add_zero(time / 600 % 60, 1) : time / 600 % 60]"
 
 /* Preserving this so future generations can see how fucking retarded some people are
 proc/time_stamp()

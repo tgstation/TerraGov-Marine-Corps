@@ -55,11 +55,17 @@ h1.alert, h2.alert		{color: #000000;}
 .disarm					{color: #990000;}
 .passive				{color: #660000;}
 
-.danger					{color: #ff0000;	font-weight: bold;}
-.warning				{color: #ff0000;	font-style: italic;}
 .rose					{color: #ff5050;}
 .info					{color: #0000CC;}
+.debuginfo				{color: #493D26;	font-style: italic;}
 .notice					{color: #000099;}
+.xenonotice				{color: #2a623d;}
+.boldnotice				{color: #000099;	font-weight: bold;}
+.warning				{color: #ff0000;	font-style: italic;}
+.danger					{color: #ff0000;	font-weight: bold;}
+.avoidharm				{color:	#72a0e5;	font-weight: bold;}
+.highdanger				{color: #ff0000;	font-weight: bold; font-size: 3;}
+.xenodanger				{color: #2a623d; 	font-weight: bold; font-size: 3;}
 
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}

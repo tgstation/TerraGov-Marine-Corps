@@ -14,8 +14,8 @@
 	throw_speed = 1
 	layer = 4
 	pressure_resistance = 1
-	slot_flags = SLOT_HEAD
-	body_parts_covered = HEAD
+	flags_equip_slot = SLOT_HEAD
+	flags_armor_protection = HEAD
 	attack_verb = list("bapped")
 
 	var/info		//What's actually written on the paper.
@@ -43,7 +43,7 @@
 
 	if(info != initial(info))
 		info = html_encode(info)
-		info = replacetext(info, "\n", "<BR>")
+		info = oldreplacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
 
 	spawn(2)
@@ -193,59 +193,59 @@
 /obj/item/weapon/paper/proc/parsepencode(var/t, var/obj/item/weapon/pen/P, mob/user as mob, var/iscrayon = 0)
 //	t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
-	t = replacetext(t, "\[center\]", "<center>")
-	t = replacetext(t, "\[/center\]", "</center>")
-	t = replacetext(t, "\[br\]", "<BR>")
-	t = replacetext(t, "\[b\]", "<B>")
-	t = replacetext(t, "\[/b\]", "</B>")
-	t = replacetext(t, "\[i\]", "<I>")
-	t = replacetext(t, "\[/i\]", "</I>")
-	t = replacetext(t, "\[u\]", "<U>")
-	t = replacetext(t, "\[/u\]", "</U>")
-	t = replacetext(t, "\[large\]", "<font size=\"4\">")
-	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
-	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
+	t = oldreplacetext(t, "\[center\]", "<center>")
+	t = oldreplacetext(t, "\[/center\]", "</center>")
+	t = oldreplacetext(t, "\[br\]", "<BR>")
+	t = oldreplacetext(t, "\[b\]", "<B>")
+	t = oldreplacetext(t, "\[/b\]", "</B>")
+	t = oldreplacetext(t, "\[i\]", "<I>")
+	t = oldreplacetext(t, "\[/i\]", "</I>")
+	t = oldreplacetext(t, "\[u\]", "<U>")
+	t = oldreplacetext(t, "\[/u\]", "</U>")
+	t = oldreplacetext(t, "\[large\]", "<font size=\"4\">")
+	t = oldreplacetext(t, "\[/large\]", "</font>")
+	t = oldreplacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
+	t = oldreplacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
 
-	t = replacetext(t, "\[h1\]", "<H1>")
-	t = replacetext(t, "\[/h1\]", "</H1>")
-	t = replacetext(t, "\[h2\]", "<H2>")
-	t = replacetext(t, "\[/h2\]", "</H2>")
-	t = replacetext(t, "\[h3\]", "<H3>")
-	t = replacetext(t, "\[/h3\]", "</H3>")
+	t = oldreplacetext(t, "\[h1\]", "<H1>")
+	t = oldreplacetext(t, "\[/h1\]", "</H1>")
+	t = oldreplacetext(t, "\[h2\]", "<H2>")
+	t = oldreplacetext(t, "\[/h2\]", "</H2>")
+	t = oldreplacetext(t, "\[h3\]", "<H3>")
+	t = oldreplacetext(t, "\[/h3\]", "</H3>")
 
 	if(!iscrayon)
-		t = replacetext(t, "\[*\]", "<li>")
-		t = replacetext(t, "\[hr\]", "<HR>")
-		t = replacetext(t, "\[small\]", "<font size = \"1\">")
-		t = replacetext(t, "\[/small\]", "</font>")
-		t = replacetext(t, "\[list\]", "<ul>")
-		t = replacetext(t, "\[/list\]", "</ul>")
-		t = replacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
-		t = replacetext(t, "\[/table\]", "</td></tr></table>")
-		t = replacetext(t, "\[grid\]", "<table>")
-		t = replacetext(t, "\[/grid\]", "</td></tr></table>")
-		t = replacetext(t, "\[row\]", "</td><tr>")
-		t = replacetext(t, "\[cell\]", "<td>")
-		t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
+		t = oldreplacetext(t, "\[*\]", "<li>")
+		t = oldreplacetext(t, "\[hr\]", "<HR>")
+		t = oldreplacetext(t, "\[small\]", "<font size = \"1\">")
+		t = oldreplacetext(t, "\[/small\]", "</font>")
+		t = oldreplacetext(t, "\[list\]", "<ul>")
+		t = oldreplacetext(t, "\[/list\]", "</ul>")
+		t = oldreplacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
+		t = oldreplacetext(t, "\[/table\]", "</td></tr></table>")
+		t = oldreplacetext(t, "\[grid\]", "<table>")
+		t = oldreplacetext(t, "\[/grid\]", "</td></tr></table>")
+		t = oldreplacetext(t, "\[row\]", "</td><tr>")
+		t = oldreplacetext(t, "\[cell\]", "<td>")
+		t = oldreplacetext(t, "\[logo\]", "<img src = ntlogo.png>")
 
 		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
 	else // If it is a crayon, and he still tries to use these, make them empty!
-		t = replacetext(t, "\[*\]", "")
-		t = replacetext(t, "\[hr\]", "")
-		t = replacetext(t, "\[small\]", "")
-		t = replacetext(t, "\[/small\]", "")
-		t = replacetext(t, "\[list\]", "")
-		t = replacetext(t, "\[/list\]", "")
-		t = replacetext(t, "\[table\]", "")
-		t = replacetext(t, "\[/table\]", "")
-		t = replacetext(t, "\[row\]", "")
-		t = replacetext(t, "\[cell\]", "")
-		t = replacetext(t, "\[logo\]", "")
+		t = oldreplacetext(t, "\[*\]", "")
+		t = oldreplacetext(t, "\[hr\]", "")
+		t = oldreplacetext(t, "\[small\]", "")
+		t = oldreplacetext(t, "\[/small\]", "")
+		t = oldreplacetext(t, "\[list\]", "")
+		t = oldreplacetext(t, "\[/list\]", "")
+		t = oldreplacetext(t, "\[table\]", "")
+		t = oldreplacetext(t, "\[/table\]", "")
+		t = oldreplacetext(t, "\[row\]", "")
+		t = oldreplacetext(t, "\[cell\]", "")
+		t = oldreplacetext(t, "\[logo\]", "")
 
 		t = "<font face=\"[crayonfont]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"
 
-//	t = replacetext(t, "#", "") // Junk converted to nothing!
+//	t = oldreplacetext(t, "#", "") // Junk converted to nothing!
 
 //Count the fields
 	var/laststart = 1
@@ -341,7 +341,7 @@
 				return
 */
 		t = html_encode(t)
-		t = replacetext(t, "\n", "<BR>")
+		t = oldreplacetext(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
 		if(id!="end")

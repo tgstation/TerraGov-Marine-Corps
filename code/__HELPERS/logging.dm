@@ -37,47 +37,51 @@
 
 /proc/log_game(text)
 	if (config.log_game)
-		diary << "\[[time_stamp()]]GAME: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]GAME: [text][log_end]")
 
 /proc/log_vote(text)
 	if (config.log_vote)
-		diary << "\[[time_stamp()]]VOTE: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]VOTE: [text][log_end]")
 
 /proc/log_access(text)
 	if (config.log_access)
-		diary << "\[[time_stamp()]]ACCESS: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]ACCESS: [text][log_end]")
 
 /proc/log_say(text)
 	if (config.log_say)
-		diary << "\[[time_stamp()]]SAY: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]SAY: [text][log_end]")
+
+/proc/log_hivemind(text)
+	if (config.log_hivemind)
+		diary << html_decode("\[[time_stamp()]]HIVEMIND: [text][log_end]")
 
 /proc/log_ooc(text)
 	if (config.log_ooc)
-		diary << "\[[time_stamp()]]OOC: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]OOC: [text][log_end]")
 
 /proc/log_whisper(text)
 	if (config.log_whisper)
-		diary << "\[[time_stamp()]]WHISPER: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]WHISPER: [text][log_end]")
 
 /proc/log_emote(text)
 	if (config.log_emote)
-		diary << "\[[time_stamp()]]EMOTE: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]EMOTE: [text][log_end]")
 
 /proc/log_attack(text)
 	if (config.log_attack)
-		diary << "\[[time_stamp()]]ATTACK: [text][log_end]" //Seperate attack logs? Why?  FOR THE GLORY OF SATAN!
+		diary << html_decode("\[[time_stamp()]]ATTACK: [text][log_end]")
 
 /proc/log_adminsay(text)
 	if (config.log_adminchat)
-		diary << "\[[time_stamp()]]ADMINSAY: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]ADMINSAY: [text][log_end]")
 
 /proc/log_adminwarn(text)
 	if (config.log_adminwarn)
-		diary << "\[[time_stamp()]]ADMINWARN: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]ADMINWARN: [text][log_end]")
 
 /proc/log_pda(text)
 	if (config.log_pda)
-		diary << "\[[time_stamp()]]PDA: [text][log_end]"
+		diary << html_decode("\[[time_stamp()]]PDA: [text][log_end]")
 
 /proc/log_misc(text)
-	diary << "\[[time_stamp()]]MISC: [text][log_end]"
+	diary << html_decode("\[[time_stamp()]]MISC: [text][log_end]")

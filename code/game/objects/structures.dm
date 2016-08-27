@@ -94,7 +94,7 @@
 			if(S.climbable)
 				continue
 
-		if(O && O.density && !(O.flags & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
+		if(O && O.density && !(O.flags_atom & ON_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
 			user << "\red There's \a [O] in the way."
 			return 0
 	return 1

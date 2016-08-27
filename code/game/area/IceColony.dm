@@ -249,7 +249,7 @@
 	icon_state = "maint_medbay"
 
 /area/ice_colony/underground/research/foyer_maint
-	name = "\improper Doorms Maintenance"
+	name = "\improper Dorms Maintenance"
 	icon_state = "maint_dormitory"
 
 /area/ice_colony/underground/research/dorms
@@ -260,9 +260,9 @@
 	name = "\improper Anomaly Storage II"
 	icon_state = "south"
 
-/area/ice_colony/underground/research/anomaly_storage_five
-	name = "\improper Anomaly Storage V"
-	icon_state = "southeast"
+/area/ice_colony/underground/research/anomaly_storage_elevator
+	name = "\improper Anomaly Storage Elevator Foyer"
+	icon_state = "research"
 
 /area/ice_colony/underground/research/disposal
 	name = "\improper Disposal"
@@ -311,7 +311,7 @@
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg')
 
 	//Nope
 	firealert()

@@ -117,7 +117,7 @@
 		var/jobs_all = ""
 		var/list/alljobs = (get_marine_jobs()) + "Custom"
 		for(var/job in alljobs)
-			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
+			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[oldreplacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
 
 		var/body
@@ -163,15 +163,45 @@
 			carddesc += "</form>"
 
 			carddesc += "<b>Assignment:</b> "
-			var/jobs = "<span id='alljobsslot'><a href='#' onclick='showAll()'>[target_rank]</a></span>" //CHECK THIS
+			var/jobs = "<span id='alljobsslot'><a href='#' onclick='showAll()'>[target_rank]</a></span><br>" //CHECK THIS
+			var/paygrade = ""
+			if((modify.paygrade >= 9 && modify.paygrade <= 12) || modify.paygrade >= 16)
+				paygrade += "<b>Paygrade:<b> [get_paygrades(modify.paygrade)] -- LOCKED BY CENTRAL COMMAND"
+			else
+				paygrade += "<form name='paygrade' action='?src=\ref[src]' method='get'>"
+				paygrade += "<input type='hidden' name='src' value='\ref[src]'>"
+				paygrade += "<input type='hidden' name='choice' value='paygrade'>"
+				paygrade += "<b>Paygrade:</b> <select name='paygrade'>"
+				for(var/i = -1; i <=7; i++)
+					if(i == modify.paygrade)
+						paygrade += "<option value='[i]' selected=selected>[get_paygrades(i)]</option>"
+					else
+						paygrade += "<option value='[i]'>[get_paygrades(i)]</option>"
+				if(scan.paygrade > 14)
+					if(modify.paygrade == 13)
+						paygrade += "<option value='13' selected=selected>[get_paygrades(13)]</option>"
+					else
+						paygrade += "<option value='13'>[get_paygrades(13)]</option>"
+					if(modify.paygrade == 14)
+						paygrade += "<option value='14' selected=selected>[get_paygrades(14)]</option>"
+					else
+						paygrade += "<option value='14'>[get_paygrades(14)]</option>"
+				if(scan.paygrade > 15)
+					if(modify.paygrade == 15)
+						paygrade += "<option value='15' selected=selected>[get_paygrades(15)]</option>"
+					else
+						paygrade += "<option value='15'>[get_paygrades(15)]</option>"
+				paygrade += "</select>"
+				paygrade += "<input type='submit' value='Modify'>"
+				paygrade += "</form>"
 			var/accesses = ""
 			if(istype(src,/obj/machinery/computer/card/centcom))
 				accesses += "<h5>Central Command:</h5>"
 				for(var/A in get_all_centcom_access())
 					if(A in modify.access)
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font></a> "
+						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[oldreplacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font></a> "
 					else
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</a> "
+						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[oldreplacetext(get_centcom_access_desc(A), " ", "&nbsp")]</a> "
 			else
 				accesses += "<div align='center'><b>Access</b></div>"
 				accesses += "<table style='width:100%'>"
@@ -183,13 +213,13 @@
 					accesses += "<td style='width:14%' valign='top'>"
 					for(var/A in get_region_accesses(i))
 						if(A in modify.access)
-							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
+							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[oldreplacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
 						else
-							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
+							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[oldreplacetext(get_access_desc(A), " ", "&nbsp")]</a> "
 						accesses += "<br>"
 					accesses += "</td>"
 				accesses += "</tr></table>"
-			body = "[carddesc]<br>[jobs]<br><br>[accesses]" //CHECK THIS
+			body = "[carddesc]<br>[jobs]<br>[paygrade]<br><br>[accesses]" //CHECK THIS
 		else
 			body = "<a href='?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
 			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
@@ -281,6 +311,7 @@
 						return
 
 					modify.access = jobdatum.get_access()
+					modify.paygrade = jobdatum.paygrade
 					modify.assignment = t1
 					modify.rank = t1
 		if ("reg")
@@ -300,6 +331,12 @@
 				if ((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
 					var/account_num = text2num(href_list["account"])
 					modify.associated_account_number = account_num
+		if ("paygrade")
+			if(authenticated)
+				var/t2 = modify
+				if ((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+					var/pg = text2num(href_list["paygrade"])
+					modify.paygrade = pg
 		if ("mode")
 			mode = text2num(href_list["mode_target"])
 		if ("print")

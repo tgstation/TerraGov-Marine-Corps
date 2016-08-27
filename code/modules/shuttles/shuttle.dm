@@ -32,8 +32,8 @@
 	//world << "shuttle/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
 	if(moving_status != SHUTTLE_IDLE) return
 
-	for(var/obj/structure/enginesound/O in departing)
-		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
+	for(var/obj/structure/engine_startup_sound/S in departing)
+		playsound(S.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
 
 	moving_status = SHUTTLE_WARMUP
 	recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
@@ -50,14 +50,24 @@
 		while (world.time < arrive_time)
 			sleep(5)
 
+		for(var/obj/structure/engine_landing_sound/L in destination)
+			playsound(L.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
+		for(var/obj/structure/engine_inside_sound/L in interim)
+			playsound(L.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
+		sleep(100)
+
 		move(interim, destination, direction)
 		spawn(1)
 			open_doors(destination)
 		moving_status = SHUTTLE_IDLE
 
 
-		spawn(600) // 1 minute in deciseconds
-			recharging = 0
+		if(!iselevator)
+			spawn(1200) // 2 minutes in deciseconds
+				recharging = 0
+		if(iselevator)
+			spawn(150)
+				recharging = 0
 
 /* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
 /datum/shuttle/proc/toggle_doors(var/close_doors, var/bolt_doors, var/area/whatArea)
@@ -159,6 +169,8 @@
 
 	for(var/turf/T in destination)
 		for(var/obj/O in T)
+			if(istype(O, /obj/structure/engine_landing_sound))
+				continue
 			del(O)
 		if(istype(T, /turf/simulated))
 			del(T)
@@ -199,6 +211,6 @@
 
 /*
 /datum/shuttle/proc/play_engine_sound()
-	for(var/obj/structure/enginesound/O in get_area(src))
+	for(var/obj/structure/engine_startup_sound/O in get_area(src))
 		playsound(O.loc, 'sound/effects/engine_startup.ogg', 100, 1)
 */

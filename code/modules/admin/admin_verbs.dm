@@ -1,7 +1,7 @@
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
 var/list/admin_verbs_default = list(
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
-	/client/proc/player_panel,
+//	/client/proc/player_panel,
 	/client/proc/toggleadminhelpsound,	/*toggles whether we hear a sound when adminhelps/PMs are used*/
 	/client/proc/deadmin_self,			/*destroys our own admin datum so we can play as a regular player*/
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
@@ -22,7 +22,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/toggle_view_range,		/*changes how far we can see*/
 	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
-	/datum/admins/proc/view_atk_log,	/*shows the server combat-log, doesn't do anything presently*/
+	// /datum/admins/proc/view_atk_log,	/*shows the server combat-log, doesn't do anything presently*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
@@ -34,7 +34,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/jumptocoord,			/*we ghost and jump to a coordinate*/
 	/client/proc/Getmob,				/*teleports a mob to our location*/
 	/client/proc/Getkey,				/*teleports a mob with a certain ckey to our location*/
-//	/client/proc/sendmob,				/*sends a mob somewhere*/ -Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage
+	/client/proc/sendmob,				/*sends a mob somewhere*/ //-Removed due to it needing two sorting procs to work, which were executed every time an admin right-clicked. ~Errorage
 	/client/proc/Jump,
 	/client/proc/jumptokey,				/*allows us to jump to the location of a mob with a certain ckey*/
 	/client/proc/jumptomob,				/*allows us to jump to a specific mob*/
@@ -45,6 +45,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_create_centcom_report, //Messages from USCM command.
 	/client/proc/cmd_admin_create_MOTHER_report,  //Allows creation of IC reports by the ships AI
+	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/client/proc/check_words,			/*displays cult-words*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/client/proc/check_antagonists,
@@ -72,18 +73,23 @@ var/list/admin_verbs_admin = list(
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
 	/client/proc/change_security_level, /* Changes alert levels*/
+	/client/proc/toggle_gun_restrictions,
+	/client/proc/adjust_weapon_mult,
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/sleepall,
 	/datum/admins/proc/admin_force_distress,
 	/client/proc/cmd_admin_changekey,
 	// /datum/admins/proc/show_skills,
 	// /client/proc/check_customitem_activity,
-	/client/proc/man_up,
-	/client/proc/global_man_up,
+	// /client/proc/man_up,
+	// /client/proc/global_man_up,
 	/client/proc/response_team, // Response Teams admin verb
 //	/client/proc/toggle_antagHUD_use,
 //	/client/proc/toggle_antagHUD_restrictions,
-	/client/proc/allow_character_respawn    /* Allows a ghost to respawn */
+	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
+	/datum/admins/proc/viewCLFaxes,
+	/datum/admins/proc/viewUSCMFaxes,
+	/datum/admins/proc/force_predator_round //Force spawns a predator round.
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -160,7 +166,11 @@ var/list/admin_verbs_debug = list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/toggledebuglogs,
-	/client/proc/spawn_predators
+	/client/proc/spawn_predators,
+	/datum/proc/ta_diagnose,
+	/datum/proc/ra_diagnose,
+	/datum/proc/ta_purge,
+	/datum/proc/ra_purge
 	// /client/proc/SDQL_query,
 	// /client/proc/SDQL2_query,
 	)
@@ -196,7 +206,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/admin_ghost,
 	/client/proc/toggle_view_range,
 	/datum/admins/proc/view_txt_log,
-	/datum/admins/proc/view_atk_log,
+	// /datum/admins/proc/view_atk_log,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_check_contents,
 	// /datum/admins/proc/access_news_network,
@@ -249,6 +259,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/enable_debug_verbs,
+	/datum/admins/proc/fix_breach,
 	/proc/possess,
 	/proc/release
 	)
@@ -270,6 +281,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/jobbans,
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
+	/client/proc/toggleffattacklogs,
+	/datum/admins/proc/view_txt_log,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
 	/client/proc/editzoneair,
@@ -278,6 +291,13 @@ var/list/admin_verbs_mod = list(
 	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcomm*/
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_create_MOTHER_report, //Allows creation of MOTHER reports.  THIS MAY BE DISABLED IF MODS ARE SHIT.
+	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
+	/proc/release,
+	/datum/admins/proc/fix_breach,
+	// /datum/admins/proc/fix_air, // Not working yet
+	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  �\_("/)_/�
+	/datum/admins/proc/viewCLFaxes,
+	/datum/admins/proc/viewUSCMFaxes
 )
 
 var/list/admin_verbs_mentor = list(
@@ -287,8 +307,11 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/admin_ghost,
 	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
-//	/client/proc/dsay,
-	/client/proc/cmd_admin_subtle_message
+	/client/proc/dsay,
+	/datum/admins/proc/togglesleep,
+	/client/proc/cmd_admin_subtle_message,
+	/datum/admins/proc/viewCLFaxes,
+	/datum/admins/proc/viewUSCMFaxes
 )
 
 /client/proc/add_admin_verbs()
@@ -408,7 +431,7 @@ var/list/admin_verbs_mentor = list(
 			mob << "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>"
 			mob.alpha = max(mob.alpha - 100, 0)
 
-
+/*
 /client/proc/player_panel()
 	set name = "Player Panel"
 	set category = "Admin"
@@ -416,6 +439,7 @@ var/list/admin_verbs_mentor = list(
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
+*/
 
 /client/proc/player_panel_new()
 	set name = "Player Panel New"
@@ -810,6 +834,16 @@ var/list/admin_verbs_mentor = list(
 	else
 		usr << "You now won't get attack log messages"
 
+/client/proc/toggleffattacklogs()
+	set name = "Toggle FF Attack Log Messages"
+	set category = "Preferences"
+
+	prefs.toggles ^= CHAT_FFATTACKLOGS
+	if (prefs.toggles & CHAT_FFATTACKLOGS)
+		usr << "You now will get friendly fire attack log messages"
+	else
+		usr << "You now won't get friendly fire attack log messages"
+
 
 /client/proc/toggleghostwriters()
 	set name = "Toggle ghost writers"
@@ -849,7 +883,7 @@ var/list/admin_verbs_mentor = list(
 	else
 		usr << "You now won't get debug log messages"
 
-
+/* Commenting this stupid shit out
 /client/proc/man_up(mob/T as mob in mob_list)
 	set category = "Fun"
 	set name = "Man Up"
@@ -872,7 +906,7 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
-
+*/
 
 /client/proc/change_security_level()
 	set name = "Set security level"
@@ -884,3 +918,36 @@ var/list/admin_verbs_mentor = list(
 	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
+
+/client/proc/toggle_gun_restrictions()
+	set name = "Toggle Gun Restrictions"
+	set desc = "Toggling to on will allow anyone to use restricted WY superguns. Leave this alone unless you know what you're doing."
+	set category = "Server"
+
+	if(!holder)	return
+	if(config)
+		if(config.remove_gun_restrictions)
+			src << "<b>Enabled gun restrictions.</b>"
+			message_admins("Admin [key_name_admin(usr)] has enabled WY gun restrictions.", 1)
+			log_admin("[key_name(src)] enabled WY gun restrictions.")
+		else
+			src << "<b>Disabled gun restrictions.</b>"
+			message_admins("Admin [key_name_admin(usr)] has disabled WY gun restrictions.", 1)
+			log_admin("[key_name(src)] disabled WY gun restrictions.")
+		config.remove_gun_restrictions = !config.remove_gun_restrictions
+
+/client/proc/adjust_weapon_mult()
+	set name = "Adjust Weapon Multiplier"
+	set desc = "Using this allow to change how much accuracy and damage are changed. 1 is the normal number, anything higher will increase damage and/or accuracy."
+	set category = "Server"
+
+	if(!holder)	return
+	if(config)
+		var/acc = input("Select the new accuracy and damage multipliers.","ACCURACY MULTIPLIER", 1) as num
+		var/dam = input("Select the new accuracy and damage multipliers.","DAMAGE MULTIPLIER", 1) as num
+		if(acc && dam)
+			config.proj_base_accuracy_mult = acc * 0.01
+			config.proj_base_damage_mult = dam * 0.01
+			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
+			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
+

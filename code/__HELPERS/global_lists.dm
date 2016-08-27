@@ -1,6 +1,9 @@
 var/list/clients = list()							//list of all clients
 var/list/admins = list()							//list of all clients whom are admins
 var/list/directory = list()							//list of all ckeys with associated client
+var/list/unansweredAhelps = list()					//This feels inefficient, but I can't think of a better way. Stores the message indexed by CID
+var/list/CLFaxes = list()							//List of all CL faxes sent this round
+var/list/USCMFaxes = list()							//List of all USCM faxes sent this round
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
@@ -17,6 +20,7 @@ var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
+var/global/list/ammo_list = list()					//list of all ammo types. Used by guns to tell the projectile how to act.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 //Languages/species/whitelist.
@@ -102,7 +106,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 	for(var/T in paths)
 		var/datum/language/L = new T
 		all_languages[L.name] = L
-	
+
 	for (var/language_name in all_languages)
 		var/datum/language/L = all_languages[language_name]
 		language_keys[":[lowertext(L.key)]"] = L
@@ -119,6 +123,13 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 
 		if(S.flags & IS_WHITELISTED)
 			whitelisted_species += S.name
+
+	//Our ammo stuff is initialized here.
+	var/blacklist[] = list(/datum/ammo,/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
+	paths = typesof(/datum/ammo) - blacklist
+	for(var/T in paths)
+		var/datum/ammo/A = new T
+		ammo_list[A.type] = A
 
 	return 1
 

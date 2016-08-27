@@ -139,7 +139,7 @@
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "viscerator_attack"
 	icon_living = "viscerator_attack"
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 	health = 15
 	maxHealth = 15
 	melee_damage_lower = 15

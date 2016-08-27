@@ -59,6 +59,9 @@
 
 	S["pred_name"]			>> predator_name
 	S["pred_gender"]		>> predator_gender
+	S["pred_mask_type"]		>> predator_mask_type
+	S["pred_armor_type"]	>> predator_armor_type
+	S["pred_boot_type"]		>> predator_boot_type
 
 	//Sanitize
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -90,6 +93,9 @@
 
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
+	S["pred_mask_type"] 	<< predator_mask_type
+	S["pred_armor_type"] 	<< predator_armor_type
+	S["pred_boot_type"] 	<< predator_boot_type
 
 	return 1
 
@@ -112,7 +118,6 @@
 	S["name_is_always_random"] >> be_random_name
 	S["gender"]				>> gender
 	S["age"]				>> age
-	S["species"]			>> species
 	S["language"]			>> language
 	S["spawnpoint"]			>> spawnpoint
 
@@ -193,9 +198,6 @@
 	metadata		= sanitize_text(metadata, initial(metadata))
 	real_name		= reject_bad_name(real_name)
 
-	if(isnull(species) || !(species in whitelisted_species))
-		species = "Human"
-
 	if(isnull(language)) language = "None"
 	if(isnull(spawnpoint)) spawnpoint = "Arrivals Shuttle"
 	if(isnull(nanotrasen_relation)) nanotrasen_relation = initial(nanotrasen_relation)
@@ -264,7 +266,6 @@
 	S["name_is_always_random"] << be_random_name
 	S["gender"]				<< gender
 	S["age"]				<< age
-	S["species"]			<< species
 	S["language"]			<< language
 	S["hair_red"]			<< r_hair
 	S["hair_green"]			<< g_hair

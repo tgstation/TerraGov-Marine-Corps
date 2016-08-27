@@ -158,7 +158,7 @@
 	exclaim_verb = "hiveminds"
 	colour = "soghun"
 	key = "a"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 
 /datum/language/xenos/check_special_condition(var/mob/other)
 
@@ -184,7 +184,7 @@
 	speech_verb = "says"
 	colour = "changeling"
 	key = "7"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
@@ -193,29 +193,6 @@
 	else
 		..(speaker,message)
 
-/datum/language/corticalborer
-	name = "Cortical Link"
-	desc = "Cortical borers possess a strange link between their tiny minds."
-	speech_verb = "sings"
-	ask_verb = "sings"
-	exclaim_verb = "sings"
-	colour = "alien"
-	key = "x"
-	flags = RESTRICTED | HIVEMIND
-
-/datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-
-	var/mob/living/simple_animal/borer/B
-
-	if(istype(speaker,/mob/living/carbon))
-		var/mob/living/carbon/M = speaker
-		B = M.has_brain_worms()
-	else if(istype(speaker,/mob/living/simple_animal/borer))
-		B = speaker
-
-	if(B)
-		speaker_mask = B.truename
-	..(speaker,message,speaker_mask)
 
 /datum/language/binary
 	name = "Robot Talk"
@@ -225,7 +202,7 @@
 	ask_verb = "queries"
 	exclaim_verb = "declares"
 	key = "6"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 	var/drone_only
 
 /datum/language/binary/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
@@ -276,7 +253,7 @@
 	exclaim_verb = "transmits"
 	colour = "say_quote"
 	key = "d"
-	flags = RESTRICTED | HIVEMIND
+	flags = RESTRICTED|HIVEMIND
 	drone_only = 1
 
 // Language handling.

@@ -440,6 +440,7 @@
 	name = "box of lightsticks"
 	desc = "Contains blue lightsticks."
 	icon_state = "lightstick"
+	can_hold = list(/obj/item/lightstick)
 
 	New()
 		..()
@@ -537,8 +538,8 @@
 	force = 5.0
 	throwforce = 3.0
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	var/working = 0
 	var/mode = 0
 		//0 = remove
@@ -802,174 +803,6 @@ obj/item/alienjar
 		pixel_x += rand(-3,3)
 		pixel_y += rand(-3,3)
 
-//CLOTHING-----------------------//
-//MASK-----------------------//
-//Rebreather
-/obj/item/clothing/mask/rebreather
-	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
-	name = "rebreather"
-	icon_state = "rebreather"
-	item_state = "rebreather"
-	flags = FPRINT | TABLEPASS | MASKCOVERSMOUTH
-	body_parts_covered = 0
-	w_class = 2
-
-//Scarf
-/obj/item/clothing/mask/rebreather/scarf
-	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
-	name = "Heat Absorbent Coif"
-	icon_state = "coif"
-	item_state = "coif"
-
-//SUITS-----------------------//
-//Snow Armor
-/obj/item/clothing/suit/storage/marine/snow
-	name = "M3 Pattern Marine Snow Armor"
-	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage. It's extremely thick insulation can protect the wearer from extreme temperatures down to 220K (-53°C)."
-	icon_state = "s_1"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = 220
-	armor = list(melee = 45, bullet = 65, laser = 65, energy = 20, bomb = 20, bio = 0, rad = 0)
-
-//Snow Suit
-/obj/item/clothing/suit/storage/snow_suit
-	name = "Snow Suit"
-	desc = "A standard snow suit. It can protect the wearer from extreme temperatures down to 220K (-53°C)."
-	icon = 'icons/obj/clothing/suits.dmi'
-	icon_state = "snowsuit_alpha"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	min_cold_protection_temperature = 220
-	blood_overlay_type = "armor"
-	siemens_coefficient = 0.7
-
-//Doctor Snow Suit
-/obj/item/clothing/suit/storage/snow_suit/doctor
-	name = "Doctor's Snow Suit"
-	icon_state = "snowsuit_doctor"
-	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
-
-//Engineer Snow Suit
-/obj/item/clothing/suit/storage/snow_suit/engineer
-	name = "Engineer's Snow Suit"
-	icon_state = "snowsuit_engineer"
-	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
-
-//B18 Snow Armor
-/obj/item/clothing/suit/storage/marine/marine_spec_armor/snow
-	name = "B18 Defensive Snow Armor"
-	icon_state = "s_xarmor"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = 220
-	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-
-//B12 Leader Snow Armor
-/obj/item/clothing/suit/storage/marine/marine_leader_armor/snow
-	name = "B12 Pattern Leader Snow Armor"
-	icon_state = "s_7"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = 220
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-
-//M56 Combat Snow Harness
-/obj/item/clothing/suit/storage/marine_smartgun_armor/snow
-	name = "M56 Combat Snow Harness"
-	icon_state = "s_8"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = 220
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-
-//Sniper Armor
-/obj/item/clothing/suit/storage/marine/sniper/snow
-	name = "M3 Pattern Sniper Snow Armor"
-	icon_state = "s_marine_sniper" //NEEDS ICON
-	item_state = "s_marine_sniper"
-	min_cold_protection_temperature = 220
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-
-//HELMETS-----------------------//
-//Snow Helmet
-/obj/item/clothing/head/helmet/marine/snow
-	name = "M10 Pattern Marine Snow Helmet"
-	min_cold_protection_temperature = 220
-	icon_state = "helmet_snow"
-	item_state = "helmet_snow"
-
-//Snow Engineer Helmet
-/obj/item/clothing/head/helmet/marine/tech/snow
-	name = "M10 Technician Snow Helmet"
-	icon_state = "s_helmet-tech"
-	item_color = "s_helmet-tech"
-	cold_protection = HEAD
-	min_cold_protection_temperature = 220
-
-//Snow Medic Helmet
-/obj/item/clothing/head/helmet/marine/medic/snow
-	name = "M10 Medic Snow Helmet"
-	icon_state = "s_helmet-medic" //NEEDS ICON
-	item_color = "s_helmet-medic"
-	cold_protection = HEAD
-	min_cold_protection_temperature = 220
-
-//Snow SpecRag (?What?)
-/obj/item/clothing/head/helmet/specrag/snow
-	icon_state = "s_spec"
-	item_state = "s_spec"
-	item_color = "s_spec"
-	min_cold_protection_temperature = 220
-	cold_protection = HEAD
-
-//B12 Snow Helmet
-/obj/item/clothing/head/helmet/marine/heavy/snow
-	name = "B18 Snow Helmet"
-	icon_state = "s_xhelm"
-	min_cold_protection_temperature = 220
-	cold_protection = HEAD
-
-//M11 Snow Helmet
-/obj/item/clothing/head/helmet/marine/leader/snow
-	name = "M11 Pattern Leader Snow Helmet"
-	icon_state = "s_xhelm"
-	min_cold_protection_temperature = 220
-	cold_protection = HEAD
-
-//UNIFORM-----------------------//
-//Snow Uniform
-/obj/item/clothing/under/marine_jumpsuit/snow
-	name = "USCM Snow Uniform"
-	icon_state = "marine_jumpsuit_snow"
-	item_state = "marine_jumpsuit_snow"
-	item_color = "marine_jumpsuit_snow"
-
-//Snow Medic Uniform
-/obj/item/clothing/under/marine/fluff/marineengineer/snow
-	name = "Marine Engineer Snow Uniform"
-	icon_state = "marine_engineer_snow"
-	item_state = "marine_engineer_snow"
-	item_color = "marine_engineer_snow"
-
-//Snow Engineer Uniform
-/obj/item/clothing/under/marine/fluff/marinemedic/snow
-	name = "Marine Medic Snow Uniform"
-	icon_state = "marine_medic_snow"
-	item_state = "marine_medic_snow"
-	item_color = "marine_medic_snow"
-//SHOES
-
-//Snow Shoes
-/obj/item/clothing/shoes/snow
-	name = "snow boots"
-	desc = "When you feet are as cold as your heart"
-	icon_state = "swat"
-	siemens_coefficient = 0.6
-
-	cold_protection = FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-
 //TESTING
 /datum/file/program/door_control
 	name = "Door control"
@@ -1149,54 +982,14 @@ obj/item/alienjar
 
 //-----ACES Research Reports
 /datum/file/program/data/text/aces_log
-	name = "ACES Research Report"
+	name = "ACES Research Reports"
 	extension = "txt"
 	image = 'icons/ntos/file.png'
-	dat = ""
+	dat = "<b><font face=\"verdana\" color=\"green\">ACES Research Reports</font></b><br>"
 	active_state = "text"
-	var/list/logs = list(
-	"Research Log I" = "<b>Research Log I</b><br><br>This log is very nice looking!",
-	"Research Log II" = "<b>Research Log II</b><br><br>This log is very nice looking!",
-	"Research Log III" = "<b>Research Log III</b><br><br>This log is very nice looking!",
-	"Research Log IV" = "<b>Research Log IV</b><br><br>This log is very nice looking!",
-	"Research Log V" = "<b>Research Log V</b><br><br>This log is very nice looking!"
-	)
-
-
-/*
-	New()
-		..()
-		for(var/i in logs)
-			world << "[i] = [logs[i]]"
-			world << "<a href=\"byond://?show_help=[i]\">[i]</a>"
-			world << "_____________________"
-
-			//"[topic_link(src,"log_1","Log I")]<br>[topic_link(src,"log_2","Log II")]<br>[topic_link(src,"log_3","Log III")]<br>[topic_link(src,"log_4","Log IV")]<br>[topic_link(src,"log_5","Log V")]"
-*/
-
-/datum/file/program/data/text/aces_log/Topic(href, list/href_list)
-	if(!interactable() || ..(href,href_list))
-		return
-	..()
-	if ("log_1" in href_list)
-		dat = "<b>Research Log I</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_2" in href_list)
-		dat = "<b>Research Log II</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_3" in href_list)
-		dat = "<b>Research Log III</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_4" in href_list)
-		dat = "<b>Research Log IV</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("log_5" in href_list)
-		dat = "<b>Research Log V</b><br><br>This log is very nice looking!"
-		dat += "<br><br>[topic_link(src,"return","Return")]"
-	if ("return" in href_list)
-		dat = "[initial(dat)]"
-
-
+	logs = list(
+				"Research Log I" = "<b><font face=\"verdana\" color=\"green\">Research Log I</font></b><br><br>This log is very nice looking!"
+				)
 
 
 //-----ACES Storage Access Program
@@ -1213,8 +1006,6 @@ obj/item/alienjar
 	action_name = "Toggle Door"
 
 //-----PaperWork-----
-
-
 
 
 //RD OFFICE-----

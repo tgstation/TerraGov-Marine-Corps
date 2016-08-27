@@ -31,7 +31,7 @@
 	name = "beam"
 	unacidable = 1//Just to be sure.
 	var/def_zone
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 
 
 /obj/effect/begin
@@ -137,8 +137,8 @@
 			even = !even
 
 	dat += "</table>"
-	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
-	dat = replacetext(dat, "\t", "")
+	dat = oldreplacetext(dat, "\n", "") // so it can be placed on paper correctly
+	dat = oldreplacetext(dat, "\t", "")
 
 	return dat
 
@@ -260,7 +260,6 @@ var/global/list/PDA_Manifest = list()
 	throwforce = 0.0
 	throw_speed = 1
 	throw_range = 20
-	flags = FPRINT | TABLEPASS | CONDUCT
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		user.drop_item()

@@ -2,12 +2,12 @@
 	name = "cargo cap"
 	desc = "It's a baseball hat in a tasteless yellow color."
 	icon_state = "cargosoft"
-	flags = FPRINT|TABLEPASS|HEADCOVERSEYES
+	flags_inventory = COVEREYES
 	item_state = "helmet"
 	item_color = "cargo"
 	var/flipped = 0
 	siemens_coefficient = 0.9
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 	dropped()
 		src.icon_state = "[item_color]soft"

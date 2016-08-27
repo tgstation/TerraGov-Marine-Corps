@@ -60,8 +60,8 @@ datum/controller/game_controller/New()
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
 
-	spawn(20)
-		createRandomZlevel()
+	// spawn(20)
+	// 	createRandomZlevel()
 
 	if(!air_master)
 		air_master = new /datum/controller/air_system()
@@ -74,7 +74,7 @@ datum/controller/game_controller/proc/setup()
 	setupgenetics()
 	setupfactions()
 	setup_economy()
-	SetupXenoarch()
+	// SetupXenoarch()
 
 	transfer_controller = new
 
@@ -141,6 +141,7 @@ datum/controller/game_controller/proc/process()
 				var/start_time = world.timeofday
 				controller_iteration++
 
+				TrashAuthority.EmptyTrash()
 				vote.process()
 				transfer_controller.process()
 				shuttle_controller.process()
@@ -406,4 +407,3 @@ datum/controller/game_controller/proc/Recover()		//Mostly a placeholder for now.
 				else
 					msg += "\t [varname] = [varval]\n"
 	world.log << msg
-

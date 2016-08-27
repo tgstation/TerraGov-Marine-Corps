@@ -105,63 +105,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	..()
 
 
-/*
-	Basically just an empty shell for receiving and broadcasting radio messages. Not
-	very flexible, but it gets the job done.
-*/
-
-/obj/machinery/telecomms/allinone
-	name = "Telecommunications Mainframe"
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "comm_server"
-	desc = "A compact machine used for portable subspace telecommuniations processing."
-	density = 1
-	anchored = 1
-	use_power = 0
-	idle_power_usage = 0
-	machinetype = 6
-	produces_heat = 0
-	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
-
-/obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
-
-	if(!on) // has to be on to receive messages
-		return
-
-	if(is_freq_listening(signal)) // detect subspace signals
-
-		signal.data["done"] = 1 // mark the signal as being broadcasted
-		signal.data["compression"] = 0
-
-		// Search for the original signal and mark it as done as well
-		var/datum/signal/original = signal.data["original"]
-		if(original)
-			original.data["done"] = 1
-
-		if(signal.data["slow"] > 0)
-			sleep(signal.data["slow"]) // simulate the network lag if necessary
-
-		/* ###### Broadcast a message using signal.data ###### */
-
-		var/datum/radio_frequency/connection = signal.data["connection"]
-
-		if(connection.frequency in ANTAG_FREQS) // if antag broadcast, just
-			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"],, signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], signal.data["language"])
-		else
-			if(intercept)
-				Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], signal.data["language"])
-
-
 
 /**
 
@@ -298,7 +241,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(card)
 			if(card.assignment == "Commander")
 				command = 3
-			else if(card.assignment == "Bridge Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
+			else if(card.assignment == "Pilot Officer" || card.assignment == "Bridge Officer" || card.assignment == "Executive Officer" || findtext(card.assignment, "Leader"))
 				command = 3
 
 		if(M.mind && M.mind.role_comm_title)
@@ -415,7 +358,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			part_a = "<span class='deltaradio'><span class='name'>"
 
 		// If all else fails and it's a dept_freq, color me purple!
-		else if (display_freq in DEPT_FREQS || display_freq == YAUT_FREQ)
+		else if (display_freq in DEPT_FREQS)
 			part_a = "<span class='deptradio'><span class='name'>"
 
 		// --- Filter the message; place it in quotes apply a verb ---

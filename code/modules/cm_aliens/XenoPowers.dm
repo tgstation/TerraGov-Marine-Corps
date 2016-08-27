@@ -1,4 +1,4 @@
-//Xenomorph Super - Colonial Marines - Apophis775 - Last Edit: 8FEB2015
+//Xenomorph Powers - Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
 //Their verbs are all actually procs, so we don't need to add them like 4 times copypaste for different species
 //Just add the name to the caste's inherent_verbs() list
@@ -38,38 +38,14 @@
 
 	if(!check_plasma(20)) return
 
-	if(!spit_type)
-		src << "You will now spit corrosive acid globs."
-		spit_type = 1
-		ammo.icon_state = "neurotoxin"
-		ammo.damage = 10
-		ammo.stun = 0
-		ammo.weaken = 0
-		ammo.shell_speed = 1
-		spit_delay = (initial(spit_delay) + 20) //Takes longer to recharge.
-		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-			//Bigger and badder!
-			ammo.damage += 15
-		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-			ammo.damage += 5
-			ammo.shell_speed = 2 //Super fast!
-	else
-		src << "You will now spit stunning neurotoxin instead of acid."
-		spit_type = 0
-		ammo.icon_state = "toxin"
-		ammo.damage = 0
-		ammo.stun = 1
-		ammo.weaken = 2
-		ammo.shell_speed = 1
-		spit_delay = initial(spit_delay)
-		if(istype(src,/mob/living/carbon/Xenomorph/Praetorian))
-			//Bigger and badder!
-			ammo.stun += 2
-			ammo.weaken += 2
-		else if(istype(src,/mob/living/carbon/Xenomorph/Spitter))
-			ammo.stun += 1
-			ammo.weaken += 1
-			ammo.shell_speed = 2 //Super fast!
+	src << "You will now spit [spit_type ? "stunning neurotoxin instead of acid.":"corrosive acid globs."]"
+	// Down from +20 to -10.  This should be sort of the base alien "ranged" attack.  Also, Praes/Spitters get lolshit for melee damage
+	spit_delay = spit_type ? spit_delay - 10 : spit_delay + 10 //This will make sure aliens don't slow down when switching spits.
+	switch(type)
+		if(/mob/living/carbon/Xenomorph/Praetorian) ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/heavy ]  : ammo_list[/datum/ammo/xeno/acid/heavy]
+		if(/mob/living/carbon/Xenomorph/Spitter) ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/medium ] : ammo_list[/datum/ammo/xeno/acid/medium]
+		else ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin] : ammo_list[/datum/ammo/xeno/acid]
+	spit_type = !spit_type
 	return
 
 /mob/living/carbon/Xenomorph/proc/plant()
@@ -94,13 +70,14 @@
 		return
 
 	if(locate(/obj/effect/alien/weeds/node) in T)
-		src << "There's a pod here already.!"
+		src << "There's a pod here already!"
 		return
 
 	if(check_plasma(75))
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>\The [src] regurgitates a pulsating node and plants it on the ground!</B>"), 1)
 		new /obj/effect/alien/weeds/node(loc)
+		new /obj/effect/alien/weeds(loc)
 		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //splat!
 	return
 
@@ -127,12 +104,16 @@
 
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
-		usedPounce = 180 //about 12 seconds
-		pass_flags = PASSTABLE
+		usedPounce = 30 //about 12 seconds
+		flags_pass = PASSTABLE
 		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 2, src) //victim, distance, speed
 		spawn(6)
-			pass_flags = initial(pass_flags)//Reset the passtable.
+			if(!hardcore)
+				flags_pass = initial(flags_pass)//Reset the passtable.
+			else
+				flags_pass = 0 //Reset the passtable.
+
 		spawn(usedPounce)
 			usedPounce = 0
 			src << "You get ready to pounce again."
@@ -160,7 +141,7 @@
 		for(var/mob/M in src)
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
-				M.loc = loc
+				M.forceMove(loc)
 		src.visible_message("\red <B>\The [src] hurls out the contents of their stomach!</B>")
 	else
 		src << "There's nothing in your belly that needs regurgitating."
@@ -210,51 +191,33 @@
 		src << "\green You have transferred [amount] plasma to [M]. You now have [src.storedplasma]."
 	return
 
-/mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE
+/mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE <---There's a name I haven't heard in a while. ~N
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Alien"
 
 	if(!check_state())	return
 
-	if(!is_weedable(loc))
-		src << "Bad place for a garden!"
-		return
-
-	var/turf/T = loc
-	var/turf/T2 = null
-	if(!T || !istype(T)) //logic
-		return
-
-	if(!locate(/obj/effect/alien/weeds) in T)
-		src << "You can only shape on weeds. Find some resin before you start building!"
-		return
-	if(locate(/obj/structure/mineral_door) in T || locate(/obj/effect/alien/resin) in T)
-		src << "There's something built here already."
-		return
-	if(locate(/obj/structure/stool/) in T)
-		src << "There's something here already."
-		return
-
 	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
 
 	if(!choice || choice == "cancel")
 		return
 
-	T2 = loc
-
-	if(T != T2 || !isturf(T2))
-		src << "You have to stand still when making your selection."
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf || !istype(current_turf))
 		return
-	//Another check, in case someone built where they were standing somehow.
-	if(!locate(/obj/effect/alien/weeds) in T2)
+
+	if(!is_weedable(current_turf))
+		src << "Bad place for a garden!"
+		return
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+
+	if(!alien_weeds)
 		src << "You can only shape on weeds. Find some resin before you start building!"
 		return
-	if(locate(/obj/structure/mineral_door) in T2 || locate(/obj/effect/alien/resin) in T2)
-		src << "There's something built here already."
-		return
-	if(locate(/obj/structure/stool) in T)
-		src << "There's something here already."
+
+	if(!check_alien_construction(current_turf))
 		return
 
 	if(!check_plasma(75))
@@ -267,15 +230,15 @@
 
 	switch(choice)
 		if("resin door")
-			new /obj/structure/mineral_door/resin(T)
+			new /obj/structure/mineral_door/resin(current_turf)
 		if("resin wall")
-			new /obj/effect/alien/resin/wall(T)
+			new /obj/effect/alien/resin/wall(current_turf)
 		if("resin membrane")
-			new /obj/effect/alien/resin/membrane(T)
+			new /obj/effect/alien/resin/membrane(current_turf)
 		if("resin nest")
-			new /obj/structure/stool/bed/nest(T)
+			new /obj/structure/stool/bed/nest(current_turf)
 		if("sticky resin")
-			new /obj/effect/alien/resin/sticky(T)
+			new /obj/effect/alien/resin/sticky(current_turf)
 	return
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
@@ -286,15 +249,13 @@
 
 	if(!check_state())	return
 
-	if(has_spat)
-		usr << "You must wait for your neurotoxin glands to refill."
+	if(!isturf(loc))
+		src << "You can't spit from here!"
 		return
 
-	if(!isturf(usr.loc))
-		usr << "You can't spit from here!"
+	if(has_spat + spit_delay >= world.time)
+		src << "You must wait for your neurotoxin glands to refill."
 		return
-
-	if(!ammo) return
 
 	if(!T)
 		var/list/victims = list()
@@ -303,48 +264,34 @@
 				victims += C
 		victims += "Cancel"
 		T = input(src, "Who should you spit towards?") as null|anything in victims
-	if(T == "Cancel")
-		return
+
+	if(!client || !loc || T == "Cancel") return
 
 	if(T)
-		if(spit_type)
-			if(!check_plasma(100))
-				return
-		else
-			if(!check_plasma(50))
-				return
+		if(!check_plasma(spit_type?100:50)) return
 
-		var/turf/Turf = get_turf(src)
-		var/turf/Target_Turf = get_turf(T)
+		var/turf/current_turf = get_turf(src)
 
-		if(!Target_Turf || !Turf)
-			return
+		if(!current_turf) return
 
-		if(Turf == Target_Turf)
-			src << "Too close!"
-			return
+		visible_message("<span class='danger'>\The [src] spits at [T]!</span>","<span class='danger'>You spit at [T]!</span>" )
+		var/sound_to_play = pick(1,2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
+		playsound(src.loc, sound_to_play, 60, 1)
 
-		visible_message("\red <B>\The [src] spits at [T]!</B>","\red <b> You spit at [T]!</B>" )
-
-		var/obj/item/projectile/A = new(Turf)
-		A.permutated.Add(src)
+		var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
+		A.generate_bullet(ammo)
+		A.permutated += src
 		A.def_zone = get_organ_target()
-		A.ammo = ammo //This always must be set.
-		A.icon = A.ammo.icon
-		A.icon_state = A.ammo.icon_state
-		A.damage = A.ammo.damage
-		A.damage_type = A.ammo.damage_type
+		A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed)
+		has_spat = world.time
+		cooldown_notification(spit_delay,"spit")
+	else src << "You cannot spit at nothing!"
 
-		spawn()
-			A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed) //Ptui!
-//		src.next_move += 2 //Lags you out a bit, spitting.
-		has_spat = 1
-		spawn(spit_delay)
-			has_spat = 0
-			src << "You feel your glands swell with ichor. You can spit again."
-	else
-		src << "You cannot spit at nothing!"
-	return
+/mob/living/carbon/Xenomorph/proc/cooldown_notification(cooldown, message)
+	set waitfor = 0
+	sleep(cooldown)
+	switch(message)
+		if("spit") src << "You feel your glands swell with ichor. You can spit again."
 
 //Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
 //The acid items are stored in XenoProcs.
@@ -447,12 +394,12 @@
 
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
-	if(ticker && ticker.mode.aliens.len)
+	if(ticker && ticker.mode.xenomorphs.len)
 		dat += "<table cellspacing=4>"
-		for(var/datum/mind/L in ticker.mode.aliens)
-			var/mob/M = L.current
-			if(M && istype(M,/mob/living/carbon/Xenomorph))
-				dat += "<tr><td>[M.name] [M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+		var/mob/living/carbon/Xenomorph/X
+		for(var/datum/mind/L in ticker.mode.xenomorphs)
+			X = L.current
+			if(istype(X)) dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
 	return
@@ -514,6 +461,8 @@
 
 	if(!check_state()) return
 
+	if(!istype(victim,/mob/living/carbon/human)) return // Runtime fix for attempting to secure Monkeys, which don't need to be cuffed anyway
+
 	if(!victim)
 		var/list/victims = list()
 		for(var/mob/living/carbon/human/C in view(2))
@@ -538,11 +487,9 @@
 		if(do_after(src,40))
 			src.visible_message("\red [src] continues securing [victim] with resin..","\red You continue securing [victim] with resin.. almost there.")
 		if(do_after(src,80))
-			if(victim.handcuffed && !victim.legcuffed)
-				victim.legcuffed = new /obj/item/weapon/legcuffs/xeno(victim)
-				src.visible_message("\red <B>[src] finishes binding [victim]'s legs.</b>","\red <B>You finish binding [victim]'s legs!</b>")
-			else if(!victim.handcuffed)
+			if(!victim.handcuffed)
 				victim.handcuffed = new /obj/item/weapon/handcuffs/xeno(victim)
+				victim.xenoCuffed = 1
 				src.visible_message("\red <B>[src] finishes securing [victim]'s arms.</b>","\red <B>You finish securing [victim]'s arms!</b>")
 			else
 				src << "Looks like someone secured them before you!"

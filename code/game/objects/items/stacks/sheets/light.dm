@@ -8,7 +8,6 @@
 	throwforce = 5.0
 	throw_speed = 5
 	throw_range = 20
-	flags = FPRINT | TABLEPASS | CONDUCT
 	max_amount = 60
 
 /obj/item/stack/light_w/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -25,8 +24,8 @@
 	if(istype(O,/obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = O
 		if (M.use(1))
+			new/obj/item/stack/tile/light(user.loc, 1)
 			use(1)
-			new/obj/item/stack/tile/light(user.loc)
 			user << "<span class='notice'>You make a light tile.</span>"
 		else
 			user << "<span class='warning'>You need one metal sheet to finish the light tile.</span>"

@@ -6,7 +6,7 @@
 	layer = 3.2//Just above doors
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1.0
-	flags = ON_BORDER
+	flags_atom = ON_BORDER
 	var/health = 14.0
 	var/state = 2
 	var/reinf = 0
@@ -18,7 +18,7 @@
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
 	//Tasers and the like should not damage windows.
-	if(Proj.damage_type == HALLOSS || Proj.damage <= 0 || istype(Proj.ammo,/datum/ammo/energy))
+	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || istype(Proj.ammo,/datum/ammo/energy))
 		return 0
 
 	health -= Proj.damage
@@ -195,7 +195,7 @@
 					hit(50)
 			return
 
-	if(W.flags & NOBLUDGEON) return
+	if(W.flags_atom & NOBLUDGEON) return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(reinf && state >= 1)

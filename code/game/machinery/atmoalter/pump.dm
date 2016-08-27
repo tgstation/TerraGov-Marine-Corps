@@ -130,7 +130,7 @@ Flow Rate: [round(last_flow_rate, 0.1)] L/s<BR>
 Port Status: [(connected_port)?("Connected"):("Disconnected")]
 [holding_text]<BR>
 <BR>
-Cell Charge: [cell? "[round(cell.percent())]%" : "N/A"] | Load: [round(last_power_draw)] W<BR>
+Cell Charge: [cell? "[round(cell.percent())]%" : "N/A"]|Load: [round(last_power_draw)] W<BR>
 Power Switch: <A href='?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
 Pump Direction: <A href='?src=\ref[src];direction=1'>[direction_out?("Out"):("In")]</A><BR>
 Target Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?src=\ref[src];pressure_adj=-100'>-</A> <A href='?src=\ref[src];pressure_adj=-10'>-</A> <A href='?src=\ref[src];pressure_adj=-1'>-</A> [target_pressure] kPa<A href='?src=\ref[src];pressure_adj=1'>+</A> <A href='?src=\ref[src];pressure_adj=10'>+</A> <A href='?src=\ref[src];pressure_adj=100'>+</A> <A href='?src=\ref[src];pressure_adj=1000'>+</A><BR>

@@ -168,7 +168,7 @@
 	var/list/uis = open_uis[src_object_key][ui.ui_key]
 	uis.Add(ui)
 	processing_uis.Add(ui)
-	//testing("nanomanager/ui_opened mob [ui.user.name] [ui.src_object:name] [ui.ui_key] - user.open_uis [ui.user.open_uis.len] | uis [uis.len] | processing_uis [processing_uis.len]")
+	//testing("nanomanager/ui_opened mob [ui.user.name] [ui.src_object:name] [ui.ui_key] - user.open_uis [ui.user.open_uis.len]|uis [uis.len]|processing_uis [processing_uis.len]")
 
  /**
   * Remove a /nanoui ui from the list of open uis
@@ -190,7 +190,7 @@
 	var/list/uis = open_uis[src_object_key][ui.ui_key]
 	uis.Remove(ui)
 
-	//testing("nanomanager/ui_closed mob [ui.user.name] [ui.src_object:name] [ui.ui_key] - user.open_uis [ui.user.open_uis.len] | uis [uis.len] | processing_uis [processing_uis.len]")
+	//testing("nanomanager/ui_closed mob [ui.user.name] [ui.src_object:name] [ui.ui_key] - user.open_uis [ui.user.open_uis.len]|uis [uis.len]|processing_uis [processing_uis.len]")
 
 	return 1
 

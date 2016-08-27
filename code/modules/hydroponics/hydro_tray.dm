@@ -6,7 +6,7 @@
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1
-	flags = OPENCONTAINER
+	flags_atom = OPENCONTAINER
 	volume = 100
 
 	var/draw_warnings = 1 //Set to 0 to stop it from drawing the alert lights.

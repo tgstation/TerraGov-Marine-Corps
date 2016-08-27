@@ -5,8 +5,8 @@
 	var/list/stored = list()
 	w_class = 3.0
 	item_state = "electronic"
-	flags = FPRINT | TABLEPASS | CONDUCT | NOBLUDGEON
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT|NOBLUDGEON
+	flags_equip_slot = SLOT_BELT
 
 /obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))

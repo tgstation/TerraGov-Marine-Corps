@@ -37,9 +37,11 @@
 	var/obj/screen/locate_queen = null
 	var/obj/screen/pred_power_icon = null
 
+	//Gun action icons.
 	var/obj/screen/eject_mag = null
 	var/obj/screen/toggle_burst = null
 	var/obj/screen/use_attachment = null
+	var/obj/screen/unique_action = null
 
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.

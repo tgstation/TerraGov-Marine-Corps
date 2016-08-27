@@ -53,7 +53,7 @@
 			return
 		if (istype(O, /obj/item/weapon/twohanded/fireaxe) && src.localopened)
 			if(!fireaxe)
-				if(O:wielded)
+				if(O.flags_atom & WIELDED)
 					user << "\red Unwield the axe first."
 					return
 				fireaxe = O

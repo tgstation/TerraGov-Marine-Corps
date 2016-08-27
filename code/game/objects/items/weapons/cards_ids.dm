@@ -128,7 +128,7 @@
 	item_state = "card-id"
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	slot_flags = SLOT_ID
+	flags_equip_slot = SLOT_ID
 
 	var/blood_type = "\[UNSET\]"
 	var/dna_hash = "\[UNSET\]"
@@ -138,6 +138,7 @@
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
 	var/dorm = 0		// determines if this ID has claimed a dorm already
+	var/paygrade = 0  // Marine's paygrade
 
 /obj/item/weapon/card/id/New()
 	..()

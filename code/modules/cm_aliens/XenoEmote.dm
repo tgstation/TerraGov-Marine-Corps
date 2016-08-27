@@ -29,7 +29,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> roars!"
-				if(!adjust_pixel_x)
+				if(!big_xeno)
 					playsound(src.loc, 'sound/voice/alien_roar_small.ogg', 100, 1, 1)
 				else
 					playsound(src.loc, 'sound/voice/alien_roar_large.ogg', 100, 1, 1)
@@ -37,7 +37,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> growls."
-				if(!adjust_pixel_x)
+				if(!big_xeno)
 					playsound(src.loc, 'sound/voice/alien_growl_small.ogg', 30, 1, 1)
 				else
 					playsound(src.loc, 'sound/voice/alien_growl_large.ogg', 30, 1, 1)
@@ -45,7 +45,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [src.name]</B> hisses."
-				if(!adjust_pixel_x)
+				if(!big_xeno)
 					playsound(src.loc, 'sound/voice/alien_hiss_small.ogg', 100, 1, 1)
 				else
 					playsound(src.loc, 'sound/voice/alien_hiss_large.ogg', 100, 1, 1)
@@ -63,7 +63,13 @@
 						dir = i
 						sleep(1)
 		if("help")
-			src << "Available emotes: *roar, *growl, *hiss, *tail, *dance"
+			src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
+			dance, \
+			<span style='color: green;'>growl</span>, \
+			<span style='color: green;'>hiss</span>, \
+			me, \
+			<span style='color: green;'>roar</span>, \
+			<span style='color: green;'>tail</span></b><br>"
 		else
 			src << text("Invalid Emote: []", act)
 	if ((message && src.stat == 0))

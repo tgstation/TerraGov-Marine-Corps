@@ -122,8 +122,8 @@
 		playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 		if(violent)
 			visible_message("[src] rapidly deflates!")
-			var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
-			src.transfer_fingerprints_to(R)
+			//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
+			//src.transfer_fingerprints_to(R)
 			del(src)
 		else
 			//user << "\blue You slowly deflate the inflatable wall."
@@ -139,6 +139,8 @@
 		set src in oview(1)
 
 		if(isobserver(usr)) //to stop ghosts from deflating
+			return
+		if(isalien(usr))
 			return
 
 		deflate()
@@ -249,8 +251,8 @@
 		playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
 		if(violent)
 			visible_message("[src] rapidly deflates!")
-			var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
-			src.transfer_fingerprints_to(R)
+			//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
+			//src.transfer_fingerprints_to(R)
 			del(src)
 		else
 			//user << "\blue You slowly deflate the inflatable wall."
@@ -260,7 +262,7 @@
 				src.transfer_fingerprints_to(R)
 				del(src)
 
-
+/*
 /obj/item/inflatable/torn
 	name = "torn inflatable wall"
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation. It is too torn to be usable."
@@ -280,7 +282,7 @@
 	attack_self(mob/user)
 		user << "\blue The inflatable door is too torn to be inflated!"
 		add_fingerprint(user)
-
+*/
 /obj/item/weapon/storage/briefcase/inflatable
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."

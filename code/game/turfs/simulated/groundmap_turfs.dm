@@ -189,7 +189,7 @@
 	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
-	hull = 1 //Can't be deconstructed
+	hull = 0 //Can't be deconstructed
 
 	damage_cap = 8000 //As tough as R_walls.
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
@@ -214,3 +214,13 @@
 
 	return
 
+
+
+/turf/simulated/wall/sulaco/hull
+	name = "Outer Hull"
+	desc = "A reinforced outer hull, probably to prevent breaches"
+	hull = 1
+
+	damage_cap = 20000 // Tougher than a reinforced wall
+	max_temperature = 50000 // Nearly impossible to melt
+	walltype = "sulaco"

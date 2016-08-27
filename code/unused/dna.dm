@@ -771,23 +771,23 @@
 			H.sdisabilities = 0
 			H.disabilities = 0
 			if (speak < 3776)
-				H.disabilities = H.disabilities | 4
+				H.disabilities = H.disabilities|4
 			else
 				if (speak > 3776)
-					H.sdisabilities = H.sdisabilities | 2
+					H.sdisabilities = H.sdisabilities|2
 			if (speak2 < 2640)
-				H.disabilities = H.disabilities | 16
+				H.disabilities = H.disabilities|16
 			if (ears > 3226)
-				H.sdisabilities = H.sdisabilities | 4
+				H.sdisabilities = H.sdisabilities|4
 			if (vision < 1447)
-				H.sdisabilities = H.sdisabilities | 1
+				H.sdisabilities = H.sdisabilities|1
 			else
 				if (vision > 1447)
-					H.disabilities = H.disabilities | 1
+					H.disabilities = H.disabilities|1
 			if (mental1 < 1742)
-				H.disabilities = H.disabilities | 2
+				H.disabilities = H.disabilities|2
 			if (mental2 < 1452)
-				H.disabilities = H.disabilities | 8
+				H.disabilities = H.disabilities|8
 			var/t1 = null
 			if (length(H.primary.uni_identity) >= 20)
 				t1 = copytext(H.primary.uni_identity, 19, 21)

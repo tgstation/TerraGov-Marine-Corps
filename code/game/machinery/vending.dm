@@ -10,8 +10,6 @@
 	var/display_color = "blue"
 	var/category = CAT_NORMAL
 
-
-
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
@@ -66,12 +64,6 @@
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/obj/item/weapon/spacecash/ewallet/ewallet
 	var/tipped_level = 0
-	var/special_equipment = 0
-
-	proc/select_gamemode_equipment(gamemode = "")
-		return
-
-
 
 /obj/machinery/vending/New()
 	..()
@@ -120,6 +112,9 @@
 
 	return
 
+/obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
+	return
+
 /obj/machinery/vending/proc/build_inventory(var/list/productlist,hidden=0,req_coin=0)
 
 	if(delay_product_spawn)
@@ -130,25 +125,21 @@
 		var/price = prices[typepath]
 		if(isnull(amount)) amount = 1
 
-		var/atom/temp = new typepath(null)
+		var/obj/item/temp_path = typepath
 		var/datum/data/vending_product/R = new /datum/data/vending_product()
 
 		R.product_path = typepath
 		R.amount = amount
 		R.price = price
 
-
-
-		if(istype(temp,/obj/item/weapon/gun) || istype(temp,/obj/item/ammo_magazine) || istype(temp,/obj/item/weapon/grenade) || istype(temp,/obj/item/weapon/flamethrower) || istype(temp,/obj/item/weapon/storage) )
+		if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/weapon/grenade) || ispath(typepath,/obj/item/weapon/flamethrower) || ispath(typepath,/obj/item/weapon/storage) )
 			R.display_color = "red"
-		else if(istype(temp,/obj/item/clothing) || istype(temp,/obj/item/weapon/storage))
+		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/weapon/storage))
 			R.display_color = "green"
-		else if(istype(temp,/obj/item/weapon/reagent_containers) || istype(temp,/obj/item/stack/medical))
+		else if(ispath(typepath,/obj/item/weapon/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
 			R.display_color = "blue"
 		else
 			R.display_color = "black"
-
-//		R.display_color = pick("red","blue","green")
 
 		if(hidden)
 			R.category=CAT_HIDDEN
@@ -163,7 +154,7 @@
 		if(delay_product_spawn)
 			sleep(5) //sleep(1) did not seem to cut it, so here we are.
 
-		R.product_name = temp.name
+		R.product_name = initial(temp_path.name)
 
 //		world << "Added: [R.product_name]] - [R.amount] - [R.product_path]"
 	return
@@ -221,18 +212,9 @@
 					anchored = 0
 		return
 
-//Vending exploit. - Not exploit, being turned into feature. - Apophis
-//Deletes the old object and creates a new one in the vendor,
-//thus fixing broken helmets and replensishing autoinjectors in seconds.
+	else if(panel_open)
+		stock(W,user)
 
-	else if(src.panel_open)
-
-		for(var/datum/data/vending_product/R in product_records)
-			if(istype(W, R.product_path) && !istype(W,/obj/item/weapon/storage)) //Nice try, specialists/engis
-				stock(R, user)
-				del(W)
-
-	else
 		..()
 
 /obj/machinery/vending/proc/scan_card(var/obj/item/weapon/card/I)
@@ -456,15 +438,15 @@
 		usr.set_machine(src)
 		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
 
-			if(istype(usr,/mob/living/silicon))
-				if(istype(usr,/mob/living/silicon/robot))
-					var/mob/living/silicon/robot/R = usr
-					if(!(R.module && istype(R.module,/obj/item/weapon/robot_module/butler) ))
-						usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
-						return
-				else
-					usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
-					return
+			// if(istype(usr,/mob/living/silicon))
+			// 	if(istype(usr,/mob/living/silicon/robot))
+			// 		var/mob/living/silicon/robot/R = usr
+			// 		if(!(R.module && istype(R.module,/obj/item/weapon/robot_module/butler) ))
+			// 			usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
+			// 			return
+			// 	else
+			// 		usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
+			// 		return
 
 			if ((!src.allowed(usr)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
 				usr << "\red Access denied." //Unless emagged of course
@@ -560,19 +542,32 @@
 	use_power(vend_power_usage)	//actuators and stuff
 	if (src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
-	spawn(src.vend_delay)
-		new R.product_path(get_turf(src))
-		src.vend_ready = 1
+	spawn(vend_delay)
+		if(ispath(R.product_path,/obj/item/weapon/gun)) new R.product_path(get_turf(src),1)
+		else new R.product_path(get_turf(src))
+		vend_ready = 1
 		return
 
 	src.updateUsrDialog()
 
-/obj/machinery/vending/proc/stock(var/datum/data/vending_product/R, var/mob/user)
-	if(src.panel_open)
-		user << "\blue You stock the [src] with \a [R.product_name]"
-		R.amount++
-
-	src.updateUsrDialog()
+/obj/machinery/vending/proc/stock(var/obj/item_to_stock, var/mob/user)
+	var/datum/data/vending_product/R //Let's try with a new datum.
+	 //More accurate comparison between absolute paths.
+	for(R in (product_records + hidden_records + coin_records))
+		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/weapon/storage)) //Nice try, specialists/engis
+			if(istype(item_to_stock, /obj/item/weapon/gun))
+				var/obj/item/weapon/gun/G = item_to_stock
+				if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
+					user << "<span class='warning'>The [G] is still loaded. Unload it before you can restock it.</span>"
+					return
+			if(item_to_stock.flags_atom & TWOHANDED) item_to_stock:unwield(user)
+			del(item_to_stock)
+			user.update_inv_l_hand(0) //Update those hands.
+			user.update_inv_r_hand()
+			user << "\blue You stock the [src] with \a [R.product_name]"
+			R.amount++
+			updateUsrDialog()
+			return //We found our item, no reason to go on.
 
 /obj/machinery/vending/process()
 	if(stat & (BROKEN|NOPOWER))

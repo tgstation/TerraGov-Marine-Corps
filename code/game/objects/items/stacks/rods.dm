@@ -3,7 +3,7 @@
 	desc = "Some rods. Can be used for building, or something."
 	singular_name = "metal rod"
 	icon_state = "rods"
-	flags = FPRINT | TABLEPASS| CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	w_class = 3.0
 	force = 9.0
 	throwforce = 15.0
@@ -42,6 +42,9 @@
 
 	if(!istype(user.loc,/turf)) return 0
 
+	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
+		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+		return
 
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)

@@ -13,18 +13,18 @@
 		if((!src.current_folder) || !(src.current_folder.holder in src.master))
 			src.current_folder = src.holder.root
 
-		var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a> | "
+		var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>|"
 		dat += "<a href='byond://?src=\ref[src];quit=1'>Quit</a>"
 
 		switch(mode)
 			if(0)
 				dat += " |<a href='byond://?src=\ref[src];create=folder'>Create Folder</a>"
-				//dat += " | <a href='byond://?src=\ref[src];create=file'>Create File</a>"
-				dat += " | <a href='byond://?src=\ref[src];file=\ref[src.current_folder];function=paste'>Paste</a>"
-				dat += " | <a href='byond://?src=\ref[src];top_folder=1'>Root</a>"
-				dat += " | <a href='byond://?src=\ref[src];mode=1'>Drive</a><br>"
+				//dat += "|<a href='byond://?src=\ref[src];create=file'>Create File</a>"
+				dat += "|<a href='byond://?src=\ref[src];file=\ref[src.current_folder];function=paste'>Paste</a>"
+				dat += "|<a href='byond://?src=\ref[src];top_folder=1'>Root</a>"
+				dat += "|<a href='byond://?src=\ref[src];mode=1'>Drive</a><br>"
 
-				dat += "<b>Contents of [current_folder] | Drive:\[[src.current_folder.holder.title]]</b><br>"
+				dat += "<b>Contents of [current_folder]|Drive:\[[src.current_folder.holder.title]]</b><br>"
 				dat += "<b>Used: \[[src.current_folder.holder.file_used]/[src.current_folder.holder.file_amount]\]</b><hr>"
 
 				dat += "<table cellspacing=5>"
@@ -49,8 +49,8 @@
 				dat += "</table>"
 
 			if(1)
-				dat += " | <a href='byond://?src=\ref[src];mode=0'>Main</a>"
-				dat += " | <a href='byond://?src=\ref[master];disk=1'>Eject</a><br>"
+				dat += "|<a href='byond://?src=\ref[src];mode=0'>Main</a>"
+				dat += "|<a href='byond://?src=\ref[master];disk=1'>Eject</a><br>"
 
 				for(var/obj/item/weapon/disk/data/D in src.master)
 					if(D == current_folder.holder)

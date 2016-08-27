@@ -100,7 +100,7 @@ var/list/ghostteleportlocs = list()
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg')
 
 /area/space/firealert()
 	return
@@ -963,7 +963,7 @@ var/list/ghostteleportlocs = list()
 /area/chapel/main
 	name = "\improper abandoned  Chapel"
 	icon_state = "chapel"
-	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg','sound/music/traitor.ogg')
+	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 
 /area/chapel/office
 	name = "\improper abandoned  Chapel Office"
@@ -1287,7 +1287,7 @@ var/list/ghostteleportlocs = list()
 /area/medical/morgue
 	name = "\improper abandoned  Morgue"
 	icon_state = "morgue"
-	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg','sound/music/main.ogg')
+	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg')
 
 /area/medical/chemistry
 	name = "\improper abandoned  Chemistry"
@@ -2039,7 +2039,7 @@ var/list/ghostteleportlocs = list()
 	Exited(atom/movable/Obj)
 		if(ismob(Obj))
 			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
+				mysound.status = SOUND_PAUSED|SOUND_UPDATE
 				Obj << mysound
 
 	proc/process()
@@ -2168,7 +2168,7 @@ var/list/the_station_areas = list (
 	Exited(atom/movable/Obj)
 		if(ismob(Obj))
 			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
+				mysound.status = SOUND_PAUSED|SOUND_UPDATE
 				Obj << mysound
 
 	proc/process()

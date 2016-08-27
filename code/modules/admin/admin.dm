@@ -20,6 +20,15 @@ var/global/floorIsLava = 0
 				var/msg = rendered
 				C << msg
 
+/proc/msg_admin_ff(var/text)
+	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
+	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
+	for(var/client/C in admins)
+		if(R_MOD & C.holder.rights)
+			if(C.prefs.toggles & CHAT_FFATTACKLOGS)
+				var/msg = rendered
+				C << msg
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
@@ -59,13 +68,14 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
+		<A href='?src=\ref[src];lazyban=\ref[M]'>LazyBan</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
 		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}
 
 	if(M.client)
-		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> | "
-		body += "\ <A href='?_src_=holder;sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
+		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A>|"
+		body += "\ <A href='?_src_=holder;sendbacktolobby=\ref[M]'>Send back to Lobby</A>|"
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
 			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
@@ -81,7 +91,7 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A> |
 		<A href='?src=\ref[src];sendmob=\ref[M]'>Send To</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
+		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A>|" : "" ]
 		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
 		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
@@ -94,15 +104,15 @@ var/global/floorIsLava = 0
 
 			//Monkey
 			if(ismonkey(M))
-				body += "<B>Monkeyized</B> | "
+				body += "<B>Monkeyized</B>|"
 			else
-				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
+				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A>|"
 
 			//Corgi
 			if(iscorgi(M))
-				body += "<B>Corgized</B> | "
+				body += "<B>Corgized</B>|"
 			else
-				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
+				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A>|"
 
 			//AI / Cyborg
 			if(isAI(M))
@@ -115,12 +125,12 @@ var/global/floorIsLava = 0
 				"}
 			//Simple Animals
 			if(isanimal(M))
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
+				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A>|"
 			else
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
+				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A>|"
 
 			//Makin Yautjas
-			body += "<a href='?src=\ref[src];makeyautja=\ref[M]'>Make Yautja</a> | "
+			body += "<a href='?src=\ref[src];makeyautja=\ref[M]'>Make Yautja</a>|"
 
 			// DNA2 - Admin Hax
 			if(M.dna && iscarbon(M))
@@ -1264,8 +1274,53 @@ var/global/floorIsLava = 0
 
 	return
 
-//
-//
-//ALL DONE
-//*********************************************************************************************************
-//
+/datum/admins/proc/fix_breach()
+	set category = "Debug"
+	set desc = "Stand over the tile you want to fix and use this verb to build a floor or wall."
+	set name = "Fix Breach"
+
+	// new /turf/simulated/wall/r_wall(usr.loc) - Not working. Air still escapes.
+
+	if(istype(usr.loc, /turf/space))
+		usr << "Placing a floor..."
+		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
+		return
+
+	if(istype(usr.loc, /turf/simulated/floor))
+		usr << "Placing a wall..."
+		usr.loc:ChangeTurf(/turf/simulated/wall/sulaco)
+		return
+
+	if(istype(usr.loc, /turf/simulated/wall/sulaco))
+		usr << "Placing a floor..."
+		usr.loc:ChangeTurf(/turf/simulated/floor/plating/airless)
+		return
+
+	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
+	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+
+	return
+
+/datum/admins/proc/fix_air()
+	set category = "Debug"
+	set desc = "Fix air in the room you're standing in."
+	set name = "Fix Air"
+
+	var/turf/T = usr.loc
+	if(!isturf(T)) return
+	var/datum/gas_mixture/GM = new
+
+	if(!GM)	return
+
+	// GM.adjust(20, 0, 80, 0, null)
+
+	// T.oxygen = 20
+	// T.nitrogen = 80
+	// T.carbon_dioxide = 0
+	// T.phoron = 0
+	// T.temperature = 293
+
+	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
+	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+
+	return

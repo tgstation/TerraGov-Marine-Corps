@@ -1238,7 +1238,7 @@ About the new airlock wires panel:
 			if(density)
 				if(beingcrowbarred == 0) //being fireaxe'd
 					var/obj/item/weapon/twohanded/fireaxe/F = C
-					if(F:wielded)
+					if(F.flags_atom & WIELDED)
 						spawn(0)	open(1)
 					else
 						user << "\red You need to be wielding the Fire axe to do that."
@@ -1247,7 +1247,7 @@ About the new airlock wires panel:
 			else
 				if(beingcrowbarred == 0)
 					var/obj/item/weapon/twohanded/fireaxe/F = C
-					if(F:wielded)
+					if(F.flags_atom & WIELDED)
 						spawn(0)	close(1)
 					else
 						user << "\red You need to be wielding the Fire axe to do that."
@@ -1271,9 +1271,9 @@ About the new airlock wires panel:
 			return 0
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
-		playsound(src.loc, 'sound/machines/airlock.ogg', 30, 1)
+		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
 	return ..()
@@ -1316,9 +1316,9 @@ About the new airlock wires panel:
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(src.loc, 'sound/machines/windowdoor.ogg', 30, 1)
+		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
-		playsound(src.loc, 'sound/machines/airlock.ogg', 30, 1)
+		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		if(killthis)

@@ -379,7 +379,7 @@ var/global/list/holodeck_programs = list(
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "stool"
 	anchored = 1.0
-	flags = FPRINT
+	flags_atom = FPRINT
 	pressure_resistance = 15
 
 
@@ -398,7 +398,7 @@ var/global/list/holodeck_programs = list(
 	layer = 3.2//Just above doors
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1.0
-	flags = ON_BORDER
+	flags_atom = ON_BORDER
 
 
 /obj/structure/holowindow/Del()
@@ -415,7 +415,7 @@ var/global/list/holodeck_programs = list(
 	throw_range = 5
 	throwforce = 0
 	w_class = 2.0
-	flags = FPRINT | TABLEPASS | NOSHIELD
+	flags_atom = FPRINT|NOBLUDGEON|NOSHIELD
 	var/active = 0
 
 /obj/item/weapon/holo/esword/green

@@ -1,3 +1,4 @@
+//Sentinal Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
 /mob/living/carbon/Xenomorph/Sentinel
 	caste = "Sentinel"
@@ -11,11 +12,13 @@
 	storedplasma = 75
 	plasma_gain = 10
 	maxplasma = 300
-	jellyMax = 400
-	spit_delay = 90
-	caste_desc = ""
+	jellyMax = 200
+	spit_delay = 30
+	caste_desc = "A weak ranged combat alien."
 	evolves_to = list("Spitter")
-
+	armor_deflection = 15
+	tier = 1
+	upgrade = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

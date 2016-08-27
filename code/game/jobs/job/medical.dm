@@ -2,6 +2,7 @@
 /datum/job/sul_cmo
 	title = "Chief Medical Officer"
 	comm_title = "CMO"
+	paygrade = -1
 	flag = SULCMO
 	department_flag = MEDSCI
 	faction = "Station"
@@ -32,11 +33,12 @@
 /datum/job/sul_doc
 	title = "Doctor"
 	comm_title = "Doc"
+	paygrade = -1
 	flag = SULDOC
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
 	access = list(access_sulaco_medbay, access_sulaco_chemistry)
@@ -62,6 +64,7 @@
 /datum/job/sul_res
 	title = "Researcher"
 	comm_title = "Rsr"
+	paygrade = -1
 	flag = SULRES
 	department_flag = MEDSCI
 	faction = "Station"

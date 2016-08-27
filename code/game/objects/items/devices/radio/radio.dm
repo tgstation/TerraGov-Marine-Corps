@@ -12,7 +12,7 @@
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/obj/item/device/radio/patch_link = null
-	var/wires = WIRE_SIGNAL | WIRE_RECEIVE | WIRE_TRANSMIT
+	var/wires = WIRE_SIGNAL|WIRE_RECEIVE|WIRE_TRANSMIT
 	var/b_stat = 0
 	var/broadcasting = 0
 	var/listening = 1
@@ -22,8 +22,8 @@
 	var/syndie = 0//Holder to see if it's a syndicate encrpyed radio
 	var/maxf = 1499
 //			"Example" = FREQ_LISTENING|FREQ_BROADCASTING
-	flags = FPRINT | CONDUCT | TABLEPASS
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2

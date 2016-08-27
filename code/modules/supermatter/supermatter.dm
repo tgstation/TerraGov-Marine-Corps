@@ -58,11 +58,11 @@
 	var/emergency_color = "#D9D900"
 
 	var/grav_pulling = 0
-	var/pull_radius = 14
+	var/pull_radius = 20
 
 	var/emergency_issued = 0
 
-	var/explosion_power = 8
+	var/explosion_power = 16 //Previously 8.  This should take out the rear of the Sulaco if they let it explode like Idiots.
 
 	var/lastwarning = 0                        // Time in 1/10th of seconds since the last sent warning
 	var/power = 0
@@ -244,7 +244,9 @@
 		//adjusted range so that a power of 300 (pretty high) results in 8 tiles, roughly the distance from the core to the engine monitoring room.
 
 		for(var/mob/living/l in range(src, round(sqrt(power / 5))))
-			var/rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
+			var/rads = 0
+			if(l.loc == src.loc) rads = (power/10) //SOMEHOW mobs were on the same turf as the SM, so just give rads like they are on the next tile
+			else rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
 			l.apply_effect(rads, IRRADIATE)
 
 			power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation

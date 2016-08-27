@@ -8,7 +8,7 @@
 	anchored = 1
 	density = 0
 	layer = 5
-	pass_flags = PASSTABLE | PASSGRILLE
+	flags_pass = PASSTABLE|PASSGRILLE
 
 	// Vars used by vines with seed data.
 	var/age = 0
@@ -43,6 +43,7 @@
 		if(/obj/item/weapon/hatchet) del src
 		if(/obj/item/weapon/melee/energy) del src
 		if(/obj/item/weapon/pickaxe/plasmacutter) del src
+		if(/obj/item/weapon/combat_knife) del src
 
 		// Less effective weapons
 		if(/obj/item/weapon/wirecutters)
@@ -102,13 +103,14 @@
 						"<span class='notice'>You untangle [src] from around yourself.</span>",\
 						"<span class='warning'>You hear shredding and ripping.</span>")
 			unbuckle()
+			return 1
 		else
 			var/text = pick("rips","tears","pulls")
 			user.visible_message(\
 				"<span class='notice'>[user.name] [text] at [src].</span>",\
 				"<span class='notice'>You [text] at [src].</span>",\
 				"<span class='warning'>You hear shredding and ripping.</span>")
-	return
+	return 0
 
 /obj/effect/plantsegment/proc/grow()
 
@@ -366,6 +368,7 @@
 		growth_queue -= SV
 
 		SV.life()
+		if(!SV) continue
 
 		if(SV.energy < 2) //If tile isn't fully grown
 			var/chance

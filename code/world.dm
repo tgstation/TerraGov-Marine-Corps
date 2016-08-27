@@ -4,9 +4,8 @@ var/global/datum/global_init/init = new ()
 	Pre-map initialization stuff should go here.
 */
 /datum/global_init/New()
-
+	load_configuration()
 	makeDatumRefLists()
-
 	del(src)
 
 
@@ -19,24 +18,21 @@ var/global/datum/global_init/init = new ()
 
 
 
-#define RECOMMENDED_VERSION 501
+#define RECOMMENDED_VERSION 510
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	var/year_string = time2text(world.realtime, "YYYY")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
-	// diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
-	round_stats = file("data/logs/[year_string]/round_stats.log")
 	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	// diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	round_stats = file("data/logs/[year_string]/round_stats.log")
 	round_stats << "[log_end]\nStarting up - [time2text(world.realtime,"YYYY-MM-DD (hh:mm:ss)")][log_end]\n---------------------[log_end]"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
 
-	load_configuration()
 	initialize_marine_armor()
 
 	if(config && config.server_name != null && config.server_suffix && world.port > 0)
@@ -46,6 +42,8 @@ var/global/datum/global_init/init = new ()
 	if(config && config.log_runtime)
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
+	if(config && config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The server is online!")
 	callHook("startup")
 	//Emergency Fix
 	load_mods()
@@ -116,7 +114,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["ai"] = config.allow_ai
 		s["host"] = host ? host : null
 		s["players"] = list()
-		s["stationtime"] = worldtime2text()
+		s["stationtime"] = duration2text()
 		var/n = 0
 		var/admins = 0
 
@@ -172,7 +170,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		C.received_irc_pm = world.time
 		C.irc_admin = input["sender"]
 
-		C << 'sound/effects/adminhelp.ogg'
+		C << 'sound/effects/adminhelp_new.ogg'
 		C << message
 
 
@@ -215,6 +213,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
 
+	if(config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The server is restarting!")
 	..(reason)
 
 
@@ -260,10 +260,11 @@ var/world_topic_spam_protect_time = world.timeofday
 	join_motd = file2text("config/motd.txt")
 
 
-/world/proc/load_configuration()
+/proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
+	config.load("config/combat_defines.txt","combat_defines")
 	config.loadsql("config/dbconfig.txt")
 	config.loadforumsql("config/forumdbconfig.txt")
 	// apply some settings from config..
@@ -297,59 +298,25 @@ var/world_topic_spam_protect_time = world.timeofday
 				D.associate(directory[ckey])
 
 /world/proc/update_status()
+	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"http://www.colonial-marines.com\"><b>[config.server_name]</b> &#8212; <b>USS Sulaco</b> | <b>Planet LV-624/Deadulus Prison</b>"
+		s += "<a href=\"http://goo.gl/ZFLbE8\"><b>[config.server_name] &#8212; USS Sulaco</b>"
 		s += "<br>Hosted by <b>Apophis</b>"
-		s += "<br><img src=\"http://i.imgur.com/VSucCrP.jpg\"></a><br>"
+		s += "<br><img src=\"http://goo.gl/Irt1qi\"></a>"
+		// s += "<a href=\"http://goo.gl/04C5lP\">Wiki</a>|<a href=\"http://goo.gl/hMmIKu\">Rules</a>"
+		if(ticker)
+			if(master_mode)
+				s += "<br>Map: <b>[master_mode]</b>"
+				s += "<br>Round time: <b>[duration2text()]</b>"
+		else
+			s += "<br>Map: <b>STARTING</b>"
+		// s += enter_allowed ? "<br>Entering: <b>Enabled</b>" : "<br>Entering: <b>Disabled</b>"
 
-	var/list/features = list()
+		status = s
 
-	if(ticker)
-		if(master_mode)
-			features += master_mode
-	else
-		features += "<b>STARTING</b>"
-
-	if (!enter_allowed)
-		features += "closed"
-
-	features += abandon_allowed ? "respawn" : "no respawn"
-
-	if (config && config.allow_vote_mode)
-		features += "vote"
-
-	if (config && config.allow_ai)
-		features += "AI allowed"
-
-	var/n = 0
-	for (var/mob/M in player_list)
-		if (M.client)
-			n++
-
-	if (n > 1)
-		features += "~[n] players"
-	else if (n > 0)
-		features += "~[n] player"
-
-	/*
-	is there a reason for this? the byond site shows 'hosted by X' when there is a proper host already.
-	if (host)
-		features += "hosted by <b>[host]</b>"
-	*/
-
-	// if (!host && config && config.hostedby)
-	// 	features += "hosted by <b>Apophis</b>"
-
-	if (features)
-		s += ": [list2text(features, ", ")]"
-
-	/* does this help? I do not know */
-	if (src.status != s)
-		src.status = s
-
-#define FAILED_DB_CONNECTION_CUTOFF 5
+#define FAILED_DB_CONNECTION_CUTOFF 1
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 

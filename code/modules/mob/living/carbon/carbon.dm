@@ -133,12 +133,13 @@
 
 
 /mob/living/carbon/proc/swap_hand()
-	var/obj/item/item_in_hand = src.get_active_hand()
-	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		if(istype(get_inactive_hand(),/obj/item/weapon/twohanded/offhand) && item_in_hand:wielded)
-			var/obj/item/inactive_hand = get_inactive_hand()
-			usr << "<span class='warning'>Your other hand is too busy holding the [inactive_hand.name]</span>"
+	var/obj/item/wielded_item = get_active_hand()
+	if(wielded_item && (wielded_item.flags_atom & WIELDED)) //this segment checks if the item in your hand is twohanded.
+		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_hand()
+		if(offhand && (offhand.flags_atom & WIELDED))
+			src << "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>" //So it's an offhand.
 			return
+		else wielded_item.unwield(src) //Get rid of it.
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
@@ -217,7 +218,8 @@
 				H.w_uniform.add_fingerprint(M)
 
 			if(lying || src.sleeping)
-				src.sleeping = max(0,src.sleeping-5)
+				if(client)
+					src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
@@ -483,8 +485,8 @@
 
 			if((tmob.a_intent == "help" || tmob.restrained()) && (a_intent == "help" || src.restrained()) && tmob.canmove && !tmob.buckled && canmove) // mutual brohugs all around!
 				var/turf/oldloc = loc
-				loc = tmob.loc
-				tmob.loc = oldloc
+				forceMove(tmob.loc)
+				tmob.forceMove(oldloc)
 				now_pushing = 0
 				for(var/mob/living/carbon/slime/slime in view(1,tmob))
 					if(slime.Victim == tmob)

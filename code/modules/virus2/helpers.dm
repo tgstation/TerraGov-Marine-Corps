@@ -47,8 +47,8 @@ proc/get_infection_chance(var/mob/living/carbon/M, var/vector = "Airborne")
 //Checks if table-passing table can reach target (5 tile radius)
 proc/airborne_can_reach(turf/source, turf/target)
 	var/obj/dummy = new(source)
-	dummy.flags = FPRINT | TABLEPASS
-	dummy.pass_flags = PASSTABLE
+	dummy.flags_atom = FPRINT|NOINTERACT
+	dummy.flags_pass = PASSTABLE
 
 	for(var/i=0, i<5, i++) if(!step_towards(dummy, target)) break
 
@@ -149,7 +149,7 @@ proc/airborne_can_reach(turf/source, turf/target)
 			var/list/clothes = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform, H.gloves, H.shoes)
 			for(var/obj/item/clothing/C in clothes )
 				if(C && istype(C))
-					if(C.body_parts_covered & select_area.body_part)
+					if(C.flags_armor_protection & select_area.body_part)
 						nudity = 0
 		if (nudity)
 			for (var/ID in victim.virus2)

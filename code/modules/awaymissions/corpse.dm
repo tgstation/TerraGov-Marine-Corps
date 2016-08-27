@@ -206,7 +206,7 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/mining
 
 /obj/effect/landmark/corpse/security
-	corpseuniform = /obj/item/clothing/under/marine_jumpsuit/PMC
+	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 

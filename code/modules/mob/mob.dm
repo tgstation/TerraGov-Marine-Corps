@@ -113,8 +113,8 @@
 		//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 		if(W.zoom)
 			W.zoom()
-		if(istype(W,/obj/item/weapon/gun) || istype(W,/obj/item/weapon/twohanded))
-			W:unwield()
+		if(W.flags_atom & TWOHANDED)
+			W.unwield(src)
 	return 1
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
@@ -308,7 +308,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
-		var/msg = replacetext(flavor_text, "\n", " ")
+		var/msg = oldreplacetext(flavor_text, "\n", " ")
 		if(lentext(msg) <= 40)
 			return "\blue [msg]"
 		else
@@ -514,7 +514,7 @@ var/list/slot_equipment_priority = list( \
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
+		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, oldreplacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
 		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
@@ -718,12 +718,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 	var/half_period = period / 2
 	var/quarter_period = period / 4
 
-	animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING | EASE_OUT, loop = -1)		//up
+	animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING|EASE_OUT, loop = -1)		//up
 	animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
-	animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
+	animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING|EASE_IN, loop = -1)			//back
 
 /mob/proc/stop_floating()
-	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
+	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING|EASE_IN) //halt animation
 	//reset the pixel offsets to zero
 	is_floating = 0
 
@@ -823,12 +823,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	if(lying)
 		density = 0
-		//Deal with two handed stuff before the drop. Sometimes doesn't clear the drop properly when being pounced etc
-		if(src.r_hand && (istype(src.r_hand,/obj/item/weapon/gun) || istype(src.r_hand,/obj/item/weapon/twohanded) ))
-			r_hand:unwield()
-		if(src.l_hand && (istype(src.l_hand,/obj/item/weapon/gun) || istype(src.l_hand,/obj/item/weapon/twohanded) ))
-			l_hand:unwield()
-
 		drop_l_hand()
 		drop_r_hand()
 	else
@@ -842,6 +836,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 		regenerate_icons()
 	else if( lying != lying_prev )
 		update_icons()
+		if(istype(src, /mob/living))
+			var/mob/living/L = src
+			L.update_fire() //Maybe fixes fire overlay problems
 
 	return canmove
 
@@ -1071,7 +1068,7 @@ mob/proc/yank_out_object()
 	return stunned
 
 /mob/living/proc/handle_weakened()
-	if(weakened)
+	if(weakened && client)
 		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 	return weakened
 
@@ -1100,14 +1097,6 @@ mob/proc/yank_out_object()
 		AdjustParalysis(-1)
 	return paralysis
 
-//Check for brain worms in head.
-/mob/proc/has_brain_worms()
-
-	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
-			return I
-
-	return 0
 
 /mob/proc/updateicon()
 	return

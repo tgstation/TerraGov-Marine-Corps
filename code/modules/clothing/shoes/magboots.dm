@@ -10,23 +10,23 @@
 
 	attack_self(mob/user)
 		if(magpulse)
-			flags &= ~NOSLIP
+			flags_inventory &= ~NOSLIPPING
 			slowdown = SHOES_SLOWDOWN
 			magpulse = 0
 			icon_state = "magboots0"
 			user << "You disable the mag-pulse traction system."
 		else
-			flags |= NOSLIP
+			flags_inventory |= NOSLIPPING
 			slowdown = 2
 			magpulse = 1
 			icon_state = "magboots1"
 			user << "You enable the mag-pulse traction system."
 		user.update_inv_shoes()	//so our mob-overlays update
-	
+
 	examine()
 		set src in view()
 		..()
 		var/state = "disabled"
-		if(src.flags&NOSLIP)
+		if(flags_inventory&NOSLIPPING)
 			state = "enabled"
 		usr << "Its mag-pulse traction system appears to be [state]."

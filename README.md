@@ -1,2 +1,1 @@
-# NewEdenColonialMarinesALPHA
-New Eden Colonial Marines ALPHA
+# Colonial Marines ALPHA

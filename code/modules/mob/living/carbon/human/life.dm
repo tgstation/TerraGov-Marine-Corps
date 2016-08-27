@@ -146,7 +146,7 @@
 
 	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
 
-	if(wear_suit && (wear_suit.flags & STOPSPRESSUREDMAGE) && head && (head.flags & STOPSPRESSUREDMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
+	if(wear_suit && (wear_suit.flags_inventory & NOPRESSUREDMAGE) && head && (head.flags_inventory & NOPRESSUREDMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
 		pressure_adjustment_coefficient = 0
 
 		// Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure protection.
@@ -388,13 +388,13 @@
 					// Handle filtering
 					var/block = 0
 					if(wear_mask)
-						if(wear_mask.flags & BLOCK_GAS_SMOKE_EFFECT)
+						if(wear_mask.flags_inventory & BLOCKGASEFFECT)
 							block = 1
 					if(glasses)
-						if(glasses.flags & BLOCK_GAS_SMOKE_EFFECT)
+						if(glasses.flags_inventory & BLOCKGASEFFECT)
 							block = 1
 					if(head)
-						if(head.flags & BLOCK_GAS_SMOKE_EFFECT)
+						if(head.flags_inventory & BLOCKGASEFFECT)
 							block = 1
 
 					if(!block)
@@ -429,7 +429,7 @@
 		if(internal)
 			if (!contents.Find(internal))
 				internal = null
-			if (!wear_mask || !(wear_mask.flags & MASKINTERNALS) )
+			if (!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS) )
 				internal = null
 			if(internal)
 				return internal.remove_air_volume(volume_needed)
@@ -605,10 +605,7 @@
 			adjustOxyLoss(-5)
 
 		// Hot air hurts :(
-		var/rebreather = 0 //If you have rebreather equipped, don't damage the lungs
-		if(wear_mask)
-			if(istype(wear_mask, /obj/item/clothing/mask/rebreather) || istype(wear_mask, /obj/item/clothing/mask/fluff) || istype(wear_mask, /obj/item/clothing/mask/facehugger))
-				rebreather = 1
+		var/rebreather = wear_mask && wear_mask.flags_inventory & ALLOWREBREATH ? 1:0 //If you have rebreather equipped, don't damage the lungs
 		if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations) && !rebreather)
 			if(breath.temperature < species.cold_level_1)
 				if(prob(20))
@@ -691,11 +688,11 @@
 			//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection
 			var/temp_adj = 0
 			if(loc_temp < bodytemperature)			//Place is colder than we are
-				var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+				var/thermal_protection = get_flags_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 				if(thermal_protection < 1)
 					temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
 			else if (loc_temp > bodytemperature)			//Place is hotter than we are
-				var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+				var/thermal_protection = get_flags_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 				if(thermal_protection < 1)
 					temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
@@ -775,7 +772,7 @@
 	handle_fire()
 		if(..())
 			return
-		var/thermal_protection = get_heat_protection(30000) //If you don't have fire suit level protection, you get a temperature increase
+		var/thermal_protection = get_flags_heat_protection(30000) //If you don't have fire suit level protection, you get a temperature increase
 		if((1 - thermal_protection) > 0.0001)
 			bodytemperature += BODYTEMP_HEATING_MAX
 		return
@@ -831,34 +828,34 @@
 			bodytemperature += recovery_amt
 
 	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
-	proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
+	proc/get_flags_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 		var/thermal_protection_flags = 0
 
 		//Handle normal clothing
 
 		if(head)
 			if(head.max_heat_protection_temperature && head.max_heat_protection_temperature >= temperature)
-				thermal_protection_flags |= head.heat_protection
+				thermal_protection_flags |= head.flags_heat_protection
 		if(wear_suit)
 			if(wear_suit.max_heat_protection_temperature && wear_suit.max_heat_protection_temperature >= temperature)
-				thermal_protection_flags |= wear_suit.heat_protection
+				thermal_protection_flags |= wear_suit.flags_heat_protection
 		if(w_uniform)
 			if(w_uniform.max_heat_protection_temperature && w_uniform.max_heat_protection_temperature >= temperature)
-				thermal_protection_flags |= w_uniform.heat_protection
+				thermal_protection_flags |= w_uniform.flags_heat_protection
 		if(shoes)
 			if(shoes.max_heat_protection_temperature && shoes.max_heat_protection_temperature >= temperature)
-				thermal_protection_flags |= shoes.heat_protection
+				thermal_protection_flags |= shoes.flags_heat_protection
 		if(gloves)
 			if(gloves.max_heat_protection_temperature && gloves.max_heat_protection_temperature >= temperature)
-				thermal_protection_flags |= gloves.heat_protection
+				thermal_protection_flags |= gloves.flags_heat_protection
 		if(wear_mask)
 			if(wear_mask.max_heat_protection_temperature && wear_mask.max_heat_protection_temperature >= temperature)
-				thermal_protection_flags |= wear_mask.heat_protection
+				thermal_protection_flags |= wear_mask.flags_heat_protection
 
 		return thermal_protection_flags
 
-	proc/get_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
-		var/thermal_protection_flags = get_heat_protection_flags(temperature)
+	proc/get_flags_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
+		var/thermal_protection_flags = get_flags_heat_protection_flags(temperature)
 		var/thermal_protection = 0.0
 		if(thermal_protection_flags)
 			if(thermal_protection_flags & HEAD)
@@ -887,8 +884,8 @@
 
 		return min(1,thermal_protection)
 
-	//See proc/get_heat_protection_flags(temperature) for the description of this proc.
-	proc/get_cold_protection_flags(temperature, var/deficit = 0)
+	//See proc/get_flags_heat_protection_flags(temperature) for the description of this proc.
+	proc/get_flags_cold_protection_flags(temperature, var/deficit = 0)
 		var/thermal_protection_flags = 0
 		//If the temperature is lower than the cold protection, reduce the overall coverage instead of ignoring it completely.
 		var/thermal_deficit = 0
@@ -896,32 +893,32 @@
 		//Handle normal clothing
 		if(head)
 			if(head.min_cold_protection_temperature)
-				thermal_protection_flags |= head.cold_protection
+				thermal_protection_flags |= head.flags_cold_protection
 				if(head.min_cold_protection_temperature > temperature)
 					thermal_deficit += head.min_cold_protection_temperature - temperature
 		if(wear_suit)
 			if(wear_suit.min_cold_protection_temperature)
-				thermal_protection_flags |= wear_suit.cold_protection
+				thermal_protection_flags |= wear_suit.flags_cold_protection
 				if(wear_suit.min_cold_protection_temperature > temperature)
 					thermal_deficit += wear_suit.min_cold_protection_temperature - temperature
 		if(w_uniform)
 			if(w_uniform.min_cold_protection_temperature)
-				thermal_protection_flags |= w_uniform.cold_protection
+				thermal_protection_flags |= w_uniform.flags_cold_protection
 				if(w_uniform.min_cold_protection_temperature > temperature)
 					thermal_deficit += w_uniform.min_cold_protection_temperature - temperature
 		if(shoes)
 			if(shoes.min_cold_protection_temperature)
-				thermal_protection_flags |= shoes.cold_protection
+				thermal_protection_flags |= shoes.flags_cold_protection
 				if(shoes.min_cold_protection_temperature > temperature)
 					thermal_deficit += shoes.min_cold_protection_temperature - temperature
 		if(gloves)
 			if(gloves.min_cold_protection_temperature)
-				thermal_protection_flags |= gloves.cold_protection
+				thermal_protection_flags |= gloves.flags_cold_protection
 				if(gloves.min_cold_protection_temperature > temperature)
 					thermal_deficit += gloves.min_cold_protection_temperature - temperature
 		if(wear_mask)
 			if(wear_mask.min_cold_protection_temperature)
-				thermal_protection_flags |= wear_mask.cold_protection
+				thermal_protection_flags |= wear_mask.flags_cold_protection
 				if(wear_mask.min_cold_protection_temperature > temperature)
 					thermal_deficit += wear_mask.min_cold_protection_temperature - temperature
 
@@ -931,14 +928,14 @@
 		else
 			return thermal_protection_flags
 
-	proc/get_cold_protection(temperature)
+	proc/get_flags_cold_protection(temperature)
 
 		if(COLD_RESISTANCE in mutations)
 			return 1 //Fully protected from the cold.
 
 		temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
-		var/thermal_protection_flags = get_cold_protection_flags(temperature)
-		var/thermal_deficit = get_cold_protection_flags(temperature, 1)
+		var/thermal_protection_flags = get_flags_cold_protection_flags(temperature)
+		var/thermal_deficit = get_flags_cold_protection_flags(temperature, 1)
 		var/thermal_protection = 0.0
 
 		if(thermal_protection_flags)
@@ -1531,8 +1528,8 @@
 						else
 							bodytemp.icon_state = "temp0"
 			if(blind)
-				if(blinded)		blind.layer = 18
-				else			blind.layer = 0
+				if(blinded)		blind.plane = 0
+				else			blind.plane = -80
 
 			if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
 				if(glasses)					//to every /obj/item
@@ -1789,13 +1786,6 @@
 			holder2.icon_state = "hudxeno"
 		else if(foundVirus)
 			holder.icon_state = "hudill"
-		else if(has_brain_worms())
-			var/mob/living/simple_animal/borer/B = has_brain_worms()
-			if(B.controlling)
-				holder.icon_state = "hudbrainworm"
-			else
-				holder.icon_state = "hudhealthy"
-			holder2.icon_state = "hudbrainworm"
 		else
 			holder.icon_state = "hudhealthy"
 			if(virus2.len)

@@ -4,8 +4,8 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cleaner"
 	item_state = "cleaner"
-	flags = TABLEPASS|OPENCONTAINER|FPRINT|NOBLUDGEON
-	slot_flags = SLOT_BELT
+	flags_atom = OPENCONTAINER|FPRINT|NOBLUDGEON
+	flags_equip_slot = SLOT_BELT
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 2
@@ -22,8 +22,9 @@
 	src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 
 /obj/item/weapon/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob)
+	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
-	|| istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart))
+	|| istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart || istype(A, /obj/structure/ladder)))
 		return
 
 	if(istype(A, /obj/effect/proc_holder/spell))

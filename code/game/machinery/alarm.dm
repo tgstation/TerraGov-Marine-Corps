@@ -750,12 +750,12 @@ Toxins: <span class='dl[phoron_dangerlevel]'>[phoron_percent]</span>%<br>
 		dat += "<b>Off</b>"
 	else
 		dat += "<a href='?src=\ref[src];rcon=[RCON_NO]'>Off</a>"
-	dat += " | "
+	dat += "|"
 	if(rcon_setting == RCON_AUTO)
 		dat += "<b>Auto</b>"
 	else
 		dat += "<a href='?src=\ref[src];rcon=[RCON_AUTO]'>Auto</a>"
-	dat += " | "
+	dat += "|"
 	if(rcon_setting == RCON_YES)
 		dat += "<b>On</b>"
 	else
@@ -1197,7 +1197,7 @@ Code shamelessly copied from apc_frame
 	desc = "Used for building Air Alarms"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm_bitem"
-	flags = FPRINT | TABLEPASS| CONDUCT
+	flags_atom = FPRINT|CONDUCT
 
 /obj/item/alarm_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/wrench))
@@ -1520,7 +1520,7 @@ Code shamelessly copied from apc_frame
 	desc = "Used for building Fire Alarms"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire_bitem"
-	flags = FPRINT | TABLEPASS| CONDUCT
+	flags_atom = FPRINT|CONDUCT
 
 /obj/item/firealarm_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/wrench))

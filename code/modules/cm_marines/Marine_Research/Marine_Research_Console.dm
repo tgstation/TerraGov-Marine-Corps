@@ -4,6 +4,8 @@
 //Future machines will also be controlled from this.
 //Basically, this is a rehashed RD console.
 //FYI:  All the marine research weapons, still use the r_n_d class.  Don't see a reason to make another one, and this will let the w-y system link with Legacy.
+#define	IMPRINTER	1	//For circuits. Uses glass/chemicals.
+#define PROTOLATHE	2	//New stuff. Uses glass/metal/chemicals
 
 /obj/machinery/computer/WYresearch
 	name = "R&D Console"
@@ -314,7 +316,8 @@
 									linked_lathe.reagents.remove_reagent(M, being_built.materials[M])
 
 						if(being_built.build_path)
-							var/obj/new_item = new being_built.build_path(src)
+							var/buildPath = text2path(being_built.build_path)
+							var/obj/new_item = new buildPath(src)
 							if( new_item.type == /obj/item/weapon/storage/backpack/holding )
 								new_item.investigate_log("built by [key]","singulo")
 							new_item.reliability = being_built.reliability
@@ -666,8 +669,8 @@
 			dat += "<B>Material Amount:</B> [linked_lathe.TotalMaterials()] cm<sup>3</sup> (MAX: [linked_lathe.max_material_storage])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			for(var/datum/design/D in files.known_designs)
-			/*	if(!(D.build_type & PROTOLATHE))//Giving an undefined va error.  It might be related to Data/Design Disks.
-					continue*/
+				if(!(D.build_type & PROTOLATHE))//Giving an undefined va error.  It might be related to Data/Design Disks.
+					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = 1
 				for(var/M in D.materials)
@@ -754,7 +757,7 @@
 			dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
-				dat += "Name: [R.name] | Units: [R.volume] "
+				dat += "Name: [R.name]|Units: [R.volume] "
 				dat += "<A href='?src=\ref[src];disposeP=[R.id]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallP=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
@@ -772,8 +775,8 @@
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 
 			for(var/datum/design/D in files.known_designs)
-			/*	if(!(D.build_type & IMPRINTER))//Giving an undefined va error.  It might be related to Data/Design Disks.
-					continue*/
+				if(!(D.build_type & IMPRINTER))
+					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = 1
 				for(var/M in D.materials)
@@ -800,7 +803,7 @@
 			dat += "<A href='?src=\ref[src];menu=4.1'>Imprinter Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
-				dat += "Name: [R.name] | Units: [R.volume] "
+				dat += "Name: [R.name]|Units: [R.volume] "
 				dat += "<A href='?src=\ref[src];disposeI=[R.id]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 

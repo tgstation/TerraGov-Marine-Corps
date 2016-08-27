@@ -397,7 +397,7 @@
 
 	New()
 		..()
-		flags |= NOREACT
+		flags_atom |= NOREACT
 		syringes = new
 		known_reagents = list("inaprovaline"="Inaprovaline","anti_toxin"="Dylovene")
 		processed_reagents = new
@@ -410,13 +410,13 @@
 
 	critfail()
 		..()
-		flags &= ~NOREACT
+		flags_atom &= ~NOREACT
 		return
 
 	get_equip_info()
 		var/output = ..()
 		if(output)
-			return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyze" : "Launch"]</a>\]<br />\[Syringes: [syringes.len]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
+			return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyze" : "Launch"]</a>\]<br />\[Syringes: [syringes.len]/[max_syringes]|Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
 		return
 
 	action(atom/movable/target)

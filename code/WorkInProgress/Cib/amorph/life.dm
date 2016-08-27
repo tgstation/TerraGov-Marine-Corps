@@ -249,7 +249,7 @@
 				var/transfer_coefficient
 
 				transfer_coefficient = 1
-				if(wear_mask && (wear_mask.body_parts_covered & HEAD) && (environment.temperature < wear_mask.protective_temperature))
+				if(wear_mask && (wear_mask.flags_armor_protection & HEAD) && (environment.temperature < wear_mask.protective_temperature))
 					transfer_coefficient *= wear_mask.heat_transfer_coefficient
 
 				handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)

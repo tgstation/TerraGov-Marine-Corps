@@ -2,6 +2,7 @@
 /datum/job/sul_ce
 	title = "Chief Engineer"
 	comm_title = "CE"
+	paygrade = 15
 	flag = SULCE
 	department_flag = ENGI
 	faction = "Station"
@@ -36,6 +37,7 @@
 /datum/job/sul_eng
 	title = "Maintenance Tech"
 	comm_title = "MT"
+	paygrade = 6
 	flag = SULENG
 	department_flag = ENGI
 	faction = "Station"
@@ -70,6 +72,7 @@
 /datum/job/req_officer
 	title = "Requisitions Officer"
 	comm_title = "RO"
+	paygrade = 13
 	flag = REQUI
 	department_flag = COMMAND
 	faction = "Station"
@@ -87,7 +90,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/req(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 		//H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/RO(H), slot_wear_suit)
 
@@ -104,11 +107,12 @@
 /datum/job/sul_cargo
 	title = "Cargo Technician"
 	comm_title = "CT"
+	paygrade = 5
 	flag = SULCARG
 	department_flag = ENGI
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Requisitions Officer, the Commander"
 	selection_color = "#BAAFD9"
 	access = list(access_sulaco_cargo)
@@ -116,7 +120,7 @@
 	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marinesatchel(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)

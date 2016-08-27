@@ -16,6 +16,7 @@
 
 /obj/machinery/computer/cloning/New()
 	..()
+	req_access = list(access_sulaco_medbay)
 	spawn(5)
 		updatemodules()
 		return
@@ -76,6 +77,9 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/cloning/attack_hand(mob/user as mob)
+	if(!src.allowed(user))
+		user << "\red Access denied."
+		return
 	user.set_machine(src)
 	add_fingerprint(user)
 
@@ -153,16 +157,16 @@
 					H=locate(src.active_record.implant)
 
 				if ((H) && (istype(H)))
-					dat += "<b>Health:</b> [H.sensehealth()] | OXY-BURN-TOX-BRUTE<br>"
+					dat += "<b>Health:</b> [H.sensehealth()]|OXY-BURN-TOX-BRUTE<br>"
 				else
 					dat += "<font color=red>Unable to locate implant.</font><br>"
 
 				if (!isnull(src.diskette))
 					dat += "<a href='byond://?src=\ref[src];disk=load'>Load from disk.</a>"
 
-					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=ue'>UI + UE</a>"
-					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=ui'>UI</a>"
-					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=se'>SE</a>"
+					dat += "|Save: <a href='byond://?src=\ref[src];save_disk=ue'>UI + UE</a>"
+					dat += "|Save: <a href='byond://?src=\ref[src];save_disk=ui'>UI</a>"
+					dat += "|Save: <a href='byond://?src=\ref[src];save_disk=se'>SE</a>"
 					dat += "<br>"
 				else
 					dat += "<br>" //Keeping a line empty for appearances I guess.

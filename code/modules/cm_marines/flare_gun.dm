@@ -4,7 +4,7 @@ obj/item/projectile/flareburst
 		unacidable=1
 		anchored=1  //SEE modules/projectiles/projectile.dm
 		layer = 10  //random high layer to show visibillity above other icons
-		pass_flags = PASSTABLE
+		flags_pass = PASSTABLE
 		mouse_opacity=0
 		icon='icons/Marine/flaregun.dmi'
 		icon_state = "horrible"
@@ -29,8 +29,8 @@ obj/item/projectile/flareburst
 	origin_tech = "combat=1;materials=2"
 	force = 3.0
 	w_class = 1.0
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags = FPRINT|TABLEPASS|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	var/loaded_s = 0 //any shell loaded
 	var/shell_name = "nothing"
 	desc = "Save your life in one shot."
@@ -170,8 +170,8 @@ obj/item/projectile/flareburst
 	icon_state = "shell"
 	w_class =0.5
 	origin_tech="combat=1;materials=1"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT | SLOT_POCKET
+	flags = FPRINT|TABLEPASS|CONDUCT
+	flags_equip_slot = SLOT_BELT|SLOT_POCKET
 
 /obj/item/flareround_sp
 	name = "Howl Flare Shell"
@@ -180,5 +180,5 @@ obj/item/projectile/flareburst
 	icon_state = "shell"
 	w_class =0.5
 	origin_tech="combat=1;materials=1"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT | SLOT_POCKET
+	flags = FPRINT|TABLEPASS|CONDUCT
+	flags_equip_slot = SLOT_BELT|SLOT_POCKET

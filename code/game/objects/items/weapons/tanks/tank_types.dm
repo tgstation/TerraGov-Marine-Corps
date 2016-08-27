@@ -47,7 +47,7 @@
 	name = "anesthetic tank"
 	desc = "A tank with an N2O/O2 gas mix."
 	icon_state = "anesthetic"
-	item_state = "an_tank"
+	item_state = "anesthetic"
 
 /obj/item/weapon/tank/anesthetic/New()
 	..()
@@ -89,8 +89,8 @@
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = null	//they have no straps!
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = null	//they have no straps!
 
 
 /obj/item/weapon/tank/phoron/New()
@@ -119,8 +119,8 @@
 	name = "emergency oxygen tank"
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	w_class = 2.0
 	force = 4.0
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD

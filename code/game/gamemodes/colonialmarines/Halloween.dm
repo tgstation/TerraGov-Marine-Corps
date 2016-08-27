@@ -1,8 +1,8 @@
 //CM HALLOWEEN GAME MODE
 
 /datum/game_mode/Halloween
-	name = "Colonial Marines Halloween"
-	config_tag = "Colonial Marines Halloween"
+	// name = "Colonial Marines Halloween"
+	// config_tag = "Colonial Marines Halloween"
 	required_players = 1
 	var/checkwin_counter = 0
 	var/finished = 0
@@ -36,15 +36,15 @@
 			if(numaliens > 0 && !new_alien) //We ran out of total alien candidates!
 				numaliens = 0
 			else
-				aliens += new_alien
+				xenomorphs += new_alien
 				possible_aliens -= new_alien
 				numaliens--
 
-	if(!aliens.len) //Our list is empty! This shouldn't EVER happen. Abort!
+	if(!xenomorphs.len) //Our list is empty! This shouldn't EVER happen. Abort!
 		world << "<h2 style=\"color:red\">Something is messed up with the alien generator - no alien candidates found. Aborting.</h2>"
 		return 0
 
-	for(var/datum/mind/A in aliens)
+	for(var/datum/mind/A in xenomorphs)
 		A.assigned_role = "MODE"
 		A.special_role = "Alien"
 
@@ -79,7 +79,7 @@
 //Xenos and survivors should not spawn anywhere until we transform them.
 /datum/game_mode/Halloween/post_setup()
 
-	for(var/datum/mind/alien in aliens) //Build and move the xenos.
+	for(var/datum/mind/alien in xenomorphs) //Build and move the xenos.
 		transform_xeno(alien)
 
 	for(var/datum/mind/survivor in survivors) //Build and move to the survivors.
@@ -91,7 +91,7 @@
 		command_announcement.Announce("An admiral at Centcom has inherited an old manor from his great uncle.  There hasn't been any contact for some time, so the marines have been deployed to investigate...", "USS Sulaco")
 
 
-/datum/game_mode/Halloween/proc/transform_xeno(var/datum/mind/ghost)
+/datum/game_mode/Halloween/transform_xeno(var/datum/mind/ghost)
 
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn_HH))
 	new_xeno.amount_grown = 100
@@ -109,7 +109,7 @@
 		del(original)
 
 //Start the Survivor players. This must go post-setup so we already have a body.
-/datum/game_mode/Halloween/proc/transform_survivor(var/datum/mind/ghost)
+/datum/game_mode/Halloween/transform_survivor(var/datum/mind/ghost)
 
 	var/mob/living/carbon/human/H = ghost.current
 
@@ -263,7 +263,7 @@
 		else
 			world << 'sound/misc/asses_kicked.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Alien major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Alien major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
@@ -274,7 +274,7 @@
 		else
 			world << 'sound/misc/hell_march.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marine major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Marine major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
@@ -282,14 +282,14 @@
 		world << "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>"
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
 		world << "\red <FONT size = 3><B>Alien minor victory.</B></FONT>"
 		world << "<FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
@@ -297,16 +297,16 @@
 		world << "<FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 	else
 		world << "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!"
 
 	world << "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]."
 
 	spawn(45)
-		if(aliens.len)
+		if(xenomorphs.len)
 			var/text = "<FONT size = 3><B>The Queen(s) were:</B></FONT>"
-			for(var/datum/mind/A in aliens)
+			for(var/datum/mind/A in xenomorphs)
 				if(A)
 					var/mob/M = A.current
 					if(!M)

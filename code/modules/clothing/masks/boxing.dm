@@ -3,9 +3,8 @@
 	desc = "LOADSAMONEY"
 	icon_state = "balaclava"
 	item_state = "balaclava"
-	flags = FPRINT|TABLEPASS|BLOCKHAIR
-	flags_inv = HIDEFACE
-	body_parts_covered = FACE
+	flags_inventory = HIDEFACE|HIDEALLHAIR
+	flags_armor_protection = FACE
 	w_class = 2
 
 /obj/item/clothing/mask/balaclava/tactical
@@ -13,8 +12,6 @@
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
 	item_state = "balaclava"
-	flags = FPRINT|TABLEPASS|BLOCKHAIR
-	flags_inv = HIDEFACE
 	w_class = 2
 
 /obj/item/clothing/mask/luchador
@@ -22,9 +19,8 @@
 	desc = "Worn by robust fighters, flying high to defeat their foes!"
 	icon_state = "luchag"
 	item_state = "luchag"
-	flags = FPRINT|TABLEPASS|BLOCKHAIR
-	flags_inv = HIDEFACE
-	body_parts_covered = HEAD|FACE
+	flags_inventory = HIDEFACE|HIDEALLHAIR
+	flags_armor_protection = HEAD|FACE
 	w_class = 2
 	siemens_coefficient = 3.0
 

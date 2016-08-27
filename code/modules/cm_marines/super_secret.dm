@@ -119,12 +119,12 @@ Items and objects that are very hard to get to and do not affect balance.
 							for(var/mob/living/carbon/human/H in range(12))
 								if(!H || isnull(H) || H.stat) continue
 								H << "<font size=8 color=red><b>NO<br><br>BUGS</b></font>"
-							new /obj/item/weapon/gun/rocketlauncher/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket_tube/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket_tube/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket_tube/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket_tube/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket_tube/nobugs(get_turf(src.loc))
+							new /obj/item/weapon/gun/launcher/rocket/nobugs(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
 
 					icon = 'icons/obj/decals.dmi'
 					icon_state = "nobugs"
@@ -139,32 +139,3 @@ Items and objects that are very hard to get to and do not affect balance.
 				usr << "\red Nothing happened..."
 		else
 			usr << "\red Nothing happened..."
-
-/obj/item/weapon/gun/rocketlauncher/nobugs //Fires dummy rockets, like a toy gun
-	name = "BUG ROCKER rocket launcher"
-	desc = "Where did this come from? <b>NO BUGS</b>"
-
-	mag_type = "/obj/item/ammo_magazine/rocket_tube/nobugs"
-
-
-/obj/item/ammo_magazine/rocket_tube/nobugs
-	name = "BUG ROCKER Rocket Tube"
-	desc = "Where did this come from? <b>NO BUGS</b>"
-	default_ammo = "/datum/ammo/rocket/nobugs"
-	reload_delay = 60
-
-/datum/ammo/rocket/nobugs
-	name = "NO BUGS rocket"
-	damage = 1
-
-	on_hit_mob(mob/M,obj/item/projectile/P)
-		M << "<font size=6 color=red>NO BUGS</font>"
-
-	on_hit_obj(obj/O,obj/item/projectile/P)
-		return
-
-	on_hit_turf(turf/T,obj/item/projectile/P)
-		return
-
-	do_at_max_range(obj/item/projectile/P)
-		return

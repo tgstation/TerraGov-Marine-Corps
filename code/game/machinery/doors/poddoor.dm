@@ -23,7 +23,7 @@
 
 /obj/machinery/door/poddoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if (!( istype(C, /obj/item/weapon/crowbar) || (istype(C, /obj/item/weapon/twohanded/fireaxe) && C:wielded == 1) ))
+	if( !istype(C, /obj/item/weapon/crowbar) && !( istype(C, /obj/item/weapon/twohanded/fireaxe) && (C.flags_atom & WIELDED) ) )
 		return
 	if ((src.density && (stat & NOPOWER) && !( src.operating )))
 		spawn( 0 )
@@ -385,6 +385,10 @@
 /obj/machinery/door/poddoor/filler_object
 	name = ""
 	icon_state = ""
+	unacidable = 1
+
+	ex_act(severity)
+		return
 
 /obj/machinery/door/poddoor/four_tile_hor/secure
 	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'

@@ -2,7 +2,7 @@
 	if(scriptsprefix) script = "scripts/" + script
 
 	if(world.system_type == MS_WINDOWS)
-		script = replacetext(script, "/", "\\")
+		script = oldreplacetext(script, "/", "\\")
 
 	var/command = config.python_path + " " + script + " " + args
 

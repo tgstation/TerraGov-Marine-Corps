@@ -3,8 +3,8 @@
 
 
 /datum/game_mode/traitor/autotraitor
-	name = "AutoTraitor"
-	config_tag = "extend-a-traitormongous"
+	// name = "AutoTraitor"
+	// config_tag = "extend-a-traitormongous"
 
 	var/list/possible_traitors
 	var/num_players = 0
@@ -196,5 +196,3 @@
 				//message_admins("New traitor roll failed.  No new traitor.")
 	//else
 		//message_admins("Late Joiner does not have Be Syndicate")
-
-

@@ -14,10 +14,10 @@
 
 	if(config.allow_admin_jump)
 		usr.on_mob_jump()
-		usr.loc = pick(get_area_turfs(A))
+		usr.forceMove(pick(get_area_turfs(A)))
 
 		log_admin("[key_name(usr)] jumped to [A]")
-		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+		message_admins("[key_name_admin(usr)] jumped to [A] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>)", 1)
 		feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
@@ -32,7 +32,7 @@
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.on_mob_jump()
-		usr.loc = T
+		usr.forceMove(T)
 		feedback_add_details("admin_verb","JT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
@@ -48,14 +48,14 @@
 
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
+		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[M]'>JMP</A>)", 1)
 		if(src.mob)
 			var/mob/A = src.mob
 			var/turf/T = get_turf(M)
 			if(T && isturf(T))
 				feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 				A.on_mob_jump()
-				A.loc = T
+				A.forceMove(T)
 			else
 				A << "This mob is not located in the game world."
 	else
@@ -76,6 +76,10 @@
 			A.x = tx
 			A.y = ty
 			A.z = tz
+
+			//This is a bit hacky but ensures it works properly
+			A.forceMove(A.loc)
+
 			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[tx];Y=[ty];Z=[tz]'>JMP</a>)")
 
@@ -100,7 +104,7 @@
 			return
 		var/mob/M = selection:mob
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
+		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[M]'>JMP</A>)", 1)
 		usr.on_mob_jump()
 		usr.loc = M.loc
 		feedback_add_details("admin_verb","JK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -166,6 +170,6 @@
 			feedback_add_details("admin_verb","SMOB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 			log_admin("[key_name(usr)] teleported [key_name(M)] to [A]")
-			message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)] to [A]", 1)
+			message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)] to [A] <A HREF='?_src_=holder;adminplayerobservejump=\ref[M]'>JMP</A>", 1)
 		else
 			alert("Admin jumping disabled")

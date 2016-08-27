@@ -45,9 +45,12 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/traitor.ogg',
 	'sound/music/title2.ogg',
 	'sound/music/clouds.s3m'*/
-	'sound/music/fortunate_son.ogg',
-	'sound/music/buffalo_springfield.ogg',
-	'sound/music/good_day_to_die.ogg', //It's a Good Day to Die
+	'sound/music/good_day_to_die.ogg',
+	'sound/music/Suspense_Explore.ogg',
+	'sound/music/Aliens_Main_Theme.ogg',
+	//'sound/music/fortunate_son.ogg',
+	//'sound/music/buffalo_springfield.ogg',
+	//'sound/music/Prometheus_trailer.ogg',
 	'sound/music/warrior_song.ogg')  //The Warrior Song
 
 	/*'SEASONAL/ColonialHalloween.ogg'
@@ -162,6 +165,9 @@ var/global/datum/controller/gameticker/ticker
 		world << "\red <B>The OOC channel has been globally disabled due to round start!</B>"
 		ooc_allowed = !( ooc_allowed )
 
+	if(config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The round has started!")
+
 	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)
@@ -187,13 +193,13 @@ var/global/datum/controller/gameticker/ticker
 		if(mode.name == "Prison rescue")
 			shuttle.area_offsite = locate(/area/shuttle/drop1/prison)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/prison)
-		if(mode.name == "Ice colony")
+		if(mode.type == /datum/game_mode/ice_colony)
 			shuttle.area_offsite = locate(/area/shuttle/drop1/ice_colony)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/ice_colony)
 		for(var/obj/structure/closet/C in world) //Set up special equipment for lockers and vendors, depending on gamemode
-			C.select_gamemode_equipment(mode.name)
+			C.select_gamemode_equipment(mode.type)
 		for(var/obj/machinery/vending/V in world)
-			V.select_gamemode_equipment(mode.name)
+			V.select_gamemode_equipment(mode.type)
 	return 1
 
 /datum/controller/gameticker
@@ -301,7 +307,7 @@ var/global/datum/controller/gameticker/ticker
 
 	proc/equip_characters()
 		var/captainless=1
-		if(mode && istype(mode,/datum/game_mode/huntergames))
+		if(mode && istype(mode,/datum/game_mode/huntergames)) // || istype(mode,/datum/game_mode/whiskey_outpost)
 			return
 
 		for(var/mob/living/carbon/human/player in player_list)

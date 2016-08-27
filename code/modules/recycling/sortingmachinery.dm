@@ -6,7 +6,7 @@
 	var/obj/wrapped = null
 	density = 1
 	var/sortTag = null
-	flags = FPRINT | NOBLUDGEON
+	flags_atom = FPRINT|NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	var/examtext = null
 	var/nameset = 0
@@ -116,7 +116,7 @@
 	icon_state = "deliverycrate3"
 	var/obj/item/wrapped = null
 	var/sortTag = null
-	flags = FPRINT
+	flags_atom = FPRINT
 	var/examtext = null
 	var/nameset = 0
 	var/tag_x
@@ -319,8 +319,8 @@
 
 	w_class = 2
 	item_state = "electronic"
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 
 	proc/openwindow(mob/user as mob)
 		var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"

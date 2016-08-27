@@ -31,7 +31,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		if(!uplink_data)
 			uplink_data = ticker.mode.uplink_items
 
-		items = replacetext(uplink_data, "\n", "")	// Getting the text string of items
+		items = oldreplacetext(uplink_data, "\n", "")	// Getting the text string of items
 		ItemList = dd_text2list(src.items, ";")	// Parsing the items text string
 		uses = ticker.mode.uplink_uses
 
@@ -317,8 +317,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/temp = null 			//Temporary storage area for a message offering the option to destroy the radio
 	var/selfdestruct = 0		//Set to 1 while the radio is self destructing itself.
 	var/obj/item/device/radio/origradio = null
-	flags = FPRINT | TABLEPASS | CONDUCT
-	slot_flags = SLOT_BELT
+	flags = FPRINT|TABLEPASS|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	w_class = 2.0
 	item_state = "radio"
 	throwforce = 5

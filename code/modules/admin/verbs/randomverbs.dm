@@ -514,6 +514,31 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
 
+
+//Added for testing purposes. Blast from the past seeing Respawn Character. ~N
+/datum/admins/proc/force_predator_round()
+	set category = "Special Verbs"
+	set name = "Force Predator Round"
+	set desc = "Force a predator round for the round type. Only works on Colonial Marines."
+
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		usr << "\red The game hasn't started yet!"
+		return
+
+	var/datum/game_mode/predator_round = ticker.mode
+
+	if(!predator_round.pred_round_status)
+		predator_round.pred_round_status = 1
+		usr << "The Hunt is now enabled."
+	else
+		usr << "The Hunt is already in progress."
+		return
+
+	feedback_add_details("admin_verb","FPRED")
+	log_admin("[key_name(usr)] admin-forced a predator round.")
+	message_admins("\blue [key_name_admin(usr)] admin-forced a predator round.", 1)
+	return
+
 /client/proc/cmd_admin_add_freeform_ai_law()
 	set category = "Fun"
 	set name = "Add Custom AI law"
@@ -622,7 +647,27 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name_admin(src)] has created a M.O.T.H.E.R. report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_xeno_report()
+	set category = "Special Verbs"
+	set name = "Create Queen Mother Report"
+	set desc = "Basically a MOTHER report, but only for Xenos"
+	if(!holder)
+		src << "Only administrators may use this command."
+		return
+	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.", "What?", "") as message|null
+	var/customname = "Queen Mother Psychic Directive"
+	if(!input)
+		return
 
+	var/data = "<h1>[customname]</h1><br><br><br>\red[input]<br><br>"
+
+	for(var/mob/M in player_list)
+		if(isXeno(M))
+			M << data
+
+	log_admin("[key_name(src)] has created a Queen Mother report: [input]")
+	message_admins("[key_name_admin(src)] has created a Queen Mother report", 1)
+	feedback_add_details("admin_verb","QMR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_delete(atom/O as obj|mob|turf in world)
 	set category = "Admin"
@@ -633,7 +678,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	if (alert(src, "Are you sure you want to delete:\n[O]\nat ([O.x], [O.y], [O.z])?", "Confirmation", "Yes", "No") == "Yes")
-		log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z])")
+		log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z]) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>)")
 		message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z])", 1)
 		feedback_add_details("admin_verb","DEL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		del(O)
@@ -791,7 +836,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
+			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[oldreplacetext(config.server_name, "#", "")]")
 			del(M.client)
 			del(M)
 		else
@@ -806,7 +851,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
+		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[oldreplacetext(config.server_name, "#", "")]")
 		del(M.client)
 		del(M)
 */

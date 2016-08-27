@@ -334,7 +334,7 @@
 			for(var/mob/M in SubA)
 				if(M.Check_Dense_Object() && istype(src,/mob/living/carbon/human/))
 					var/mob/living/carbon/human/H = src
-					if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags & NOSLIP))  //magboots + dense_object = no floaty effect
+					if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING))  //magboots + dense_object = no floaty effect
 						H.make_floating(0)
 					else
 						H.make_floating(1)
@@ -343,7 +343,7 @@
 
 /area/proc/thunk(mob)
 	if(istype(mob,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
-		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags & NOSLIP)))
+		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags_inventory & NOSLIPPING)))
 			return
 
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.

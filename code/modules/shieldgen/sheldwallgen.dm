@@ -6,7 +6,7 @@
 		icon_state = "Shield_Gen"
 		anchored = 0
 		density = 1
-		req_access = list(access_sulaco_engineering, access_marine_engprep)
+		req_access = list(access_sulaco_engineering, access_sulaco_CE)
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -20,7 +20,7 @@
 //		var/maxshieldload = 200
 		var/obj/structure/cable/attached		// the attached cable
 		var/storedpower = 0
-		flags = FPRINT | CONDUCT
+		flags_atom = FPRINT|CONDUCT
 		//There have to be at least two posts, so these are effectively doubled
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
@@ -153,6 +153,7 @@
 		T = get_step(T2, NSEW)
 		T2 = T
 		var/obj/machinery/shieldwall/CF = new/obj/machinery/shieldwall/(src, G) //(ref to this gen, ref to connected gen)
+		if(!CF) return
 		CF.loc = T
 		CF.dir = field_dir
 

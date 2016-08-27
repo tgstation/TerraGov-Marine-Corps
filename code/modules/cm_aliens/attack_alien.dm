@@ -80,22 +80,23 @@
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(isYautja(src) && check_zone(M.zone_sel.selecting) == "head")
-				if(istype(src.head,/obj/item/clothing/head/helmet/space/yautja))
-					var/knock_chance = 2
-					if(M.frenzy_aura) knock_chance += 3
-					if(M.is_intelligent) knock_chance += 3
-					knock_chance += round(damage / 4)
+				if(istype(wear_mask,/obj/item/clothing/mask/gas/yautja))
+					var/knock_chance = 1
+					if(M.frenzy_aura) knock_chance += 2
+					if(M.is_intelligent) knock_chance += 2
+					knock_chance += min(round(damage * 0.25),10) //Maximum of 15% chance.
 					if(prob(knock_chance))
 						playsound(loc, 'sound/effects/metalhit.ogg', 100, 1, 1)
-						visible_message("\blue <B>The [M] smashes off [src]'s [src.head]!</B>")
-						src.drop_from_inventory(src.head)
-						src.emote("roar")
+						visible_message("\blue <B>The [M] smashes off [src]'s [wear_mask]!</B>")
+						drop_from_inventory(wear_mask)
+						emote("roar")
 						return
 
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 			visible_message("\red <B>\The [M] has slashed at [src]!</B>")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
+			log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
 //			if (src.stat != 2)
 //				score_slashes_made++
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=1, edge=1) //This should slicey dicey
@@ -158,7 +159,7 @@
 
 		if("hurt")//Can't slash other xenos for now. SORRY
 			if(istype(src,/mob/living/carbon/Xenomorph))
-				visible_message("\red \The [M] nibbles at [src].")
+				visible_message("\The [M] nibbles at [src].")
 				return
 			if(istype(src,/mob/living/silicon) && src.stat == 0) //A bit of visual flavor for attacking Cyborgs/pAIs. Sparks!
 				var/datum/effect/effect/system/spark_spread/spark_system
@@ -216,11 +217,13 @@
 /obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
 	src.health -= rand(M.melee_damage_lower,M.melee_damage_upper)
+	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	visible_message("<span class='danger'>[M] slashes at the [src]!</span>")
 	update_health()
 
 /obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(isXenoLarva(M)) return //Larvae can't do shit
+	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
 	visible_message("<span class='danger'>[M] slices [src] apart!</span>")
 	destroy()
 
@@ -348,7 +351,7 @@
 		M << "\blue You slice through the metal foam wall."
 		for(var/mob/O in oviewers(M))
 			if ((O.client && !( O.blinded )))
-				O << "\red [M] slice through the foamed metal."
+				O << "\red [M] slices through the foamed metal."
 		del(src)
 		return
 	else
@@ -468,8 +471,9 @@
 	if(M.is_intelligent)
 		attack_hand(M)
 		if(alerted >0)
-			command_announcement.Announce("Unknown Biological Entity has access the Shuttle Console.", "RED ALERT:", new_sound = 'sound/misc/ALARM.ogg')
+			command_announcement.Announce("Unknown biological entity has accessed a shuttle console.", "RED ALERT:", new_sound = 'sound/misc/queen_alarm.ogg')
 			alerted--
+			M << "\red <b>A loud alarm erupts from the console! The fleshy hosts must know that you can access it!</b>"
 	else
 		..()
 	return
@@ -481,11 +485,12 @@
 		return
 
 	if(isXenoLarva(M)) return
-
+/*
+//I don't know why this was added. I am changing it back. All apcs are unacidable, that's why you slash them instead. ~N
 	if(unacidable)
 		M << "This one's too reinforced for you to damage."
 		return
-
+*/
 	M.visible_message("\red [M.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
 	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 	var/allcut = 1
@@ -627,6 +632,13 @@
 		tip_over()
 	else
 		tipped_level = 0
+
+/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+	if(istype(M,/mob/living/carbon/Xenomorph/Larva))
+		visible_message("\red <B>[M] nudges its head against [src].</B>")
+		return 0
+
+	deflate(1)
 
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()

@@ -265,7 +265,7 @@
 		if(internal)
 			if (!contents.Find(internal))
 				internal = null
-			if (!wear_mask || !(wear_mask.flags|MASKINTERNALS) )
+			if (!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS) )
 				internal = null
 			if(internal)
 				if (internals)
@@ -601,9 +601,9 @@
 
 		if(blind && stat != DEAD)
 			if(blinded)
-				blind.layer = 18
+				blind.plane = 0
 			else
-				blind.layer = 0
+				blind.plane = -80
 
 				if(disabilities & NEARSIGHTED)
 					client.screen += global_hud.vimpaired

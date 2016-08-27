@@ -4,7 +4,7 @@
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
-	flags_inv = HIDEFACE
+	flags_inventory = HIDEFACE|HIDEEYES
 	permeability_coefficient = 0.01
 	armor = list(melee = 65, bullet = 50, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 50)
 
@@ -17,14 +17,13 @@
 	w_class = 4
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	flags = FPRINT | TABLEPASS | STOPSPRESSUREDMAGE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
 	slowdown = 1.5
 	armor = list(melee = 65, bullet = 50, laser = 50, energy = 25, bomb = 50, bio = 100, rad = 50)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|NOPRESSUREDMAGE
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	siemens_coefficient = 0.7
 
 //Deathsquad suit
@@ -34,7 +33,6 @@
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 100, rad = 60)
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | BLOCKHAIR | HEADCOVERSMOUTH | STOPSPRESSUREDMAGE | THICKMATERIAL
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/head/helmet/space/deathsquad/beret
@@ -42,7 +40,7 @@
 	desc = "An armored beret commonly used by special operations officers."
 	icon_state = "beret_badge"
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDMAGE
+	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ|HIDEEYES
 	siemens_coefficient = 0.9
 
 //Space santa outfit suit
@@ -50,8 +48,8 @@
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDMAGE
-	body_parts_covered = HEAD
+	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ|HIDEEYES
+	flags_armor_protection = HEAD
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
@@ -59,9 +57,8 @@
 	icon_state = "santa"
 	item_state = "santa"
 	slowdown = 0
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL | STOPSPRESSUREDMAGE
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|BLOCKSHARPOBJ|NOPRESSUREDMAGE
 	allowed = list(/obj/item) //for stuffing exta special presents
-
 
 //Space pirate outfit
 /obj/item/clothing/head/helmet/space/pirate
@@ -70,8 +67,8 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDMAGE
-	body_parts_covered = 0
+	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ|HIDEEYES
+	flags_armor_protection = 0
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/space/pirate
@@ -84,6 +81,6 @@
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.9
-	body_parts_covered = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
 
 

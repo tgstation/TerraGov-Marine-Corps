@@ -18,14 +18,14 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
 	name = "Quick Clot"
-	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly."
-	amount_per_transfer_from_this = 5
-	volume = 5
+	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every 5 seconds."
+	amount_per_transfer_from_this = 3
+	volume = 3
 
 	New()
 		..()
 		spawn(1)
-			reagents.add_reagent("quickclot", 5)
+			reagents.add_reagent("quickclot", 3)
 			update_icon()
 		return
 
@@ -125,57 +125,6 @@
 			update_icon()
 		return
 
-
-
-
-//New Medic Combat-Lifesaver Bag - 21SEP2015 - APOPHIS
-
-/obj/item/weapon/storage/belt/medical/combatLifesaver
-	name = "Combat Lifesaver Bag"
-	desc = "Designed to hold ."
-	icon_state = "medicalbag"
-	item_state = "medicbag"
-	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
-	can_hold = list(
-		"/obj/item/weapon/reagent_containers/glass/bottle",
-		"/obj/item/weapon/reagent_containers/pill",
-		"/obj/item/weapon/reagent_containers/syringe",
-		"/obj/item/weapon/reagent_containers/glass/dispenser",
-		"/obj/item/weapon/storage/pill_bottle",
-		"/obj/item/clothing/gloves/latex",
-		"/obj/item/weapon/storage/syringe_case",
-		"/obj/item/weapon/reagent_containers/hypospray/autoinjector",
-		"/obj/item/stack/medical"
-	)
-	max_combined_w_class = 42
-
-
-/obj/item/weapon/storage/belt/medical/combatLifesaver/New()  //The belt, with all it's magic inside!
-	..()
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(src)
-	new /obj/item/weapon/storage/pill_bottle/russianRed(src)
-
-
-
 //RUSSIAN RED ANTI-RAD
 
 /obj/item/weapon/storage/pill_bottle/russianRed
@@ -206,3 +155,83 @@
 
 
 
+//PERIDAXON
+/obj/item/weapon/storage/pill_bottle/peridaxon
+	name = "Peridaxon Pill Bottle"
+	desc = "Pills that heal internal organs"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+		new /obj/item/weapon/reagent_containers/pill/peridaxon( src )
+
+
+/obj/item/weapon/reagent_containers/pill/peridaxon
+	name = "Peridaxon (10u)"
+	desc = "Heals internal organ damage"
+	icon_state = "pill13"
+	New()
+		..()
+		reagents.add_reagent("peridaxon", 10)
+
+//imidazoline
+/obj/item/weapon/storage/pill_bottle/imidazoline
+	name = "Imidazoline Pill Bottle"
+	desc = "Pills that heal eye damage"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+		new /obj/item/weapon/reagent_containers/pill/imidazoline( src )
+
+
+/obj/item/weapon/reagent_containers/pill/imidazoline
+	name = "Imidazoline (10u)"
+	desc = "Heals eye damage"
+	icon_state = "pill3"
+	New()
+		..()
+		reagents.add_reagent("imidazoline", 10)
+
+//Alkysine
+/obj/item/weapon/storage/pill_bottle/alkysine
+	name = "Alkysine Pill Bottle"
+	desc = "Pills that heal brain damage"
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+		new /obj/item/weapon/reagent_containers/pill/alkysine( src )
+
+
+/obj/item/weapon/reagent_containers/pill/alkysine
+	name = "Alkysine (10u)"
+	desc = "Heals brain damage"
+	icon_state = "pill15"
+	New()
+		..()
+		reagents.add_reagent("alkysine", 10)

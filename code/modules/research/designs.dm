@@ -78,23 +78,23 @@ datum/design/seccamera
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/security"
 
-datum/design/aicore
-	name = "Circuit Design (AI Core)"
-	desc = "Allows for the construction of circuit boards used to build new AI cores."
-	id = "aicore"
-	req_tech = list("programming" = 4, "biotech" = 3)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/aicore"
-
-datum/design/aiupload
-	name = "Circuit Design (AI Upload)"
-	desc = "Allows for the construction of circuit boards used to build an AI Upload Console."
-	id = "aiupload"
-	req_tech = list("programming" = 4)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/aiupload"
+// datum/design/aicore
+// 	name = "Circuit Design (AI Core)"
+// 	desc = "Allows for the construction of circuit boards used to build new AI cores."
+// 	id = "aicore"
+// 	req_tech = list("programming" = 4, "biotech" = 3)
+// 	build_type = IMPRINTER
+// 	materials = list("$glass" = 2000, "sacid" = 20)
+// 	build_path = "/obj/item/weapon/circuitboard/aicore"
+//
+// datum/design/aiupload
+// 	name = "Circuit Design (AI Upload)"
+// 	desc = "Allows for the construction of circuit boards used to build an AI Upload Console."
+// 	id = "aiupload"
+// 	req_tech = list("programming" = 4)
+// 	build_type = IMPRINTER
+// 	materials = list("$glass" = 2000, "sacid" = 20)
+// 	build_path = "/obj/item/weapon/circuitboard/aiupload"
 
 datum/design/borgupload
 	name = "Circuit Design (Cyborg Upload)"
@@ -368,14 +368,14 @@ datum/design/message_monitor
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/message_monitor"
 
-datum/design/aifixer
-	name = "Circuit Design (AI Integrity Restorer)"
-	desc = "Allows for the construction of circuit boards used to build an AI Integrity Restorer."
-	id = "aifixer"
-	req_tech = list("programming" = 3, "biotech" = 2)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/aifixer"
+// datum/design/aifixer
+// 	name = "Circuit Design (AI Integrity Restorer)"
+// 	desc = "Allows for the construction of circuit boards used to build an AI Integrity Restorer."
+// 	id = "aifixer"
+// 	req_tech = list("programming" = 3, "biotech" = 2)
+// 	build_type = IMPRINTER
+// 	materials = list("$glass" = 2000, "sacid" = 20)
+// 	build_path = "/obj/item/weapon/circuitboard/aifixer"
 
 // VERY VERY EXPENSIVE (needs diamonds and stuff)
 datum/design/smes_cell
@@ -915,7 +915,7 @@ datum/design/design_disk
 	desc = "Produce additional disks for storing device designs."
 	id = "design_disk"
 	req_tech = list("programming" = 1)
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE|AUTOLATHE
 	materials = list("$metal" = 30, "$glass" = 10)
 	build_path = "/obj/item/weapon/disk/design_disk"
 
@@ -924,7 +924,7 @@ datum/design/tech_disk
 	desc = "Produce additional disks for storing technology data."
 	id = "tech_disk"
 	req_tech = list("programming" = 1)
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE|AUTOLATHE
 	materials = list("$metal" = 30, "$glass" = 10)
 	build_path = "/obj/item/weapon/disk/tech_disk"
 
@@ -937,7 +937,7 @@ datum/design/basic_capacitor
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_capacitor"
 	req_tech = list("powerstorage" = 1)
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE|AUTOLATHE
 	materials = list("$metal" = 50, "$glass" = 50)
 	build_path = "/obj/item/weapon/stock_parts/capacitor"
 
@@ -946,7 +946,7 @@ datum/design/basic_sensor
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_sensor"
 	req_tech = list("magnets" = 1)
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE|AUTOLATHE
 	materials = list("$metal" = 50, "$glass" = 20)
 	build_path = "/obj/item/weapon/stock_parts/scanning_module"
 
@@ -955,7 +955,7 @@ datum/design/micro_mani
 	desc = "A stock part used in the construction of various devices."
 	id = "micro_mani"
 	req_tech = list("materials" = 1, "programming" = 1)
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE|AUTOLATHE
 	materials = list("$metal" = 30)
 	build_path = "/obj/item/weapon/stock_parts/manipulator"
 
@@ -964,7 +964,7 @@ datum/design/basic_micro_laser
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_micro_laser"
 	req_tech = list("magnets" = 1)
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE|AUTOLATHE
 	materials = list("$metal" = 10, "$glass" = 20)
 	build_path = "/obj/item/weapon/stock_parts/micro_laser"
 
@@ -973,7 +973,7 @@ datum/design/basic_matter_bin
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_matter_bin"
 	req_tech = list("materials" = 1)
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE|AUTOLATHE
 	materials = list("$metal" = 80)
 	build_path = "/obj/item/weapon/stock_parts/matter_bin"
 
@@ -1146,7 +1146,7 @@ datum/design/basic_cell
 	desc = "A basic power cell that holds 1000 units of energy"
 	id = "basic_cell"
 	req_tech = list("powerstorage" = 1)
-	build_type = PROTOLATHE | AUTOLATHE |MECHFAB
+	build_type = PROTOLATHE|AUTOLATHE |MECHFAB
 	materials = list("$metal" = 700, "$glass" = 50)
 	build_path = "/obj/item/weapon/cell"
 	category = "Misc"
@@ -1156,7 +1156,7 @@ datum/design/high_cell
 	desc = "A power cell that holds 10000 units of energy"
 	id = "high_cell"
 	req_tech = list("powerstorage" = 2)
-	build_type = PROTOLATHE | AUTOLATHE | MECHFAB
+	build_type = PROTOLATHE|AUTOLATHE|MECHFAB
 	materials = list("$metal" = 700, "$glass" = 60)
 	build_path = "/obj/item/weapon/cell/high"
 	category = "Misc"
@@ -1167,7 +1167,7 @@ datum/design/super_cell
 	id = "super_cell"
 	req_tech = list("powerstorage" = 3, "materials" = 2)
 	reliability_base = 75
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE|MECHFAB
 	materials = list("$metal" = 700, "$glass" = 70)
 	build_path = "/obj/item/weapon/cell/super"
 	category = "Misc"
@@ -1178,7 +1178,7 @@ datum/design/hyper_cell
 	id = "hyper_cell"
 	req_tech = list("powerstorage" = 5, "materials" = 4)
 	reliability_base = 70
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE|MECHFAB
 	materials = list("$metal" = 400, "$gold" = 150, "$silver" = 150, "$glass" = 70)
 	build_path = "/obj/item/weapon/cell/hyper"
 	category = "Misc"
@@ -1370,7 +1370,7 @@ datum/design/mmi
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	id = "mmi"
 	req_tech = list("programming" = 2, "biotech" = 3)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE|MECHFAB
 	materials = list("$metal" = 1000, "$glass" = 500)
 	reliability_base = 76
 	build_path = "/obj/item/device/mmi"
@@ -1381,7 +1381,7 @@ datum/design/mmi_radio
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
 	id = "mmi_radio"
 	req_tech = list("programming" = 2, "biotech" = 4)
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE|MECHFAB
 	materials = list("$metal" = 1200, "$glass" = 500)
 	reliability_base = 74
 	build_path = "/obj/item/device/mmi/radio_enabled"
@@ -1517,7 +1517,7 @@ datum/design/nuclear_gun
 	reliability_base = 76
 	build_path = "/obj/item/weapon/gun/energy/gun/nuclear"
 	locked = 1*/
-
+/*
 datum/design/stunrevolver
 	name = "Stun Revolver"
 	desc = "The prize of the Head of Security."
@@ -1526,7 +1526,7 @@ datum/design/stunrevolver
 	build_type = PROTOLATHE
 	materials = list("$metal" = 4000)
 	build_path = "/obj/item/weapon/gun/energy/stunrevolver"
-	locked = 1
+	locked = 1*/
 /*
 datum/design/lasercannon
 	name = "Laser Cannon"
@@ -1557,7 +1557,7 @@ datum/design/chemsprayer
 	materials = list("$metal" = 5000, "$glass" = 1000)
 	reliability_base = 100
 	build_path = "/obj/item/weapon/reagent_containers/spray/chemsprayer"
-
+/*
 datum/design/rapidsyringe
 	name = "Rapid Syringe Gun"
 	desc = "A gun that fires many syringes."
@@ -1565,7 +1565,7 @@ datum/design/rapidsyringe
 	req_tech = list("combat" = 3, "materials" = 3, "engineering" = 3, "biotech" = 2)
 	build_type = PROTOLATHE
 	materials = list("$metal" = 5000, "$glass" = 1000)
-	build_path = "/obj/item/weapon/gun/syringe/rapidsyringe"
+	build_path = "/obj/item/weapon/gun/syringe/rapidsyringe"*/
 /*
 datum/design/largecrossbow
 	name = "Energy Crossbow"
@@ -1624,14 +1624,14 @@ datum/design/ammo_9mm
 	materials = list("$metal" = 3750, "$silver" = 100)
 	build_path = "/obj/item/ammo_magazine/c9mm"
 */
-datum/design/stunshell
-	name = "Stun Shell"
-	desc = "A stunning shell for a shotgun."
-	id = "stunshell"
-	req_tech = list("combat" = 3, "materials" = 3)
-	build_type = PROTOLATHE
-	materials = list("$metal" = 4000)
-	build_path = "/obj/item/ammo_casing/shotgun/stunshell"
+// datum/design/stunshell
+// 	name = "Stun Shell"
+// 	desc = "A stunning shell for a shotgun."
+// 	id = "stunshell"
+// 	req_tech = list("combat" = 3, "materials" = 3)
+// 	build_type = PROTOLATHE
+// 	materials = list("$metal" = 4000)
+// 	build_path = "/obj/item/ammo_casing/shotgun/stunshell"
 
 /*datum/design/phoronpistol
 	name = "phoron pistol"
