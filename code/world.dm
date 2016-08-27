@@ -301,7 +301,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s += "<a href=\"http://goo.gl/ZFLbE8\"><b>[config.server_name] &#8212; USS Sulaco</b>"
 		s += "<br>Hosted by <b>Apophis</b>"
 		s += "<br><img src=\"http://goo.gl/Irt1qi\"></a>"
-		// s += "<a href=\"http://goo.gl/04C5lP\">Wiki</a> | <a href=\"http://goo.gl/hMmIKu\">Rules</a>"
+		// s += "<a href=\"http://goo.gl/04C5lP\">Wiki</a>|<a href=\"http://goo.gl/hMmIKu\">Rules</a>"
 		if(ticker)
 			if(master_mode)
 				s += "<br>Map: <b>[master_mode]</b>"

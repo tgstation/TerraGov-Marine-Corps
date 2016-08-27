@@ -22,7 +22,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = 0
@@ -135,7 +135,7 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	sharp = 1
 	edge = 1
 	force = 10.0
@@ -167,7 +167,7 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	force = 15.0
 	w_class = 2.0
 	throwforce = 8.0
@@ -213,9 +213,10 @@
 	if (t == "head")
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
+			var/obj/item/head_protection = H.head
 			if (H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
-				if (istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80))
+				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
 					H << "\red The helmet protects you from being hit hard in the head!"
 					return
 				var/time = rand(2, 6)
@@ -244,7 +245,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	matter = list("metal" = 3000)
 	/* // NOPE
 	var/food_total= 0
@@ -325,7 +326,7 @@
 
 
 
-	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inv & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inv & COVEREYES) ) || (H.glasses && (H.glasses.flags & COVEREYES) )))
+	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
 		M << "\red You get slammed in the face with the tray, against your mask!"
 		if(prob(33))
 			src.add_blood(H)

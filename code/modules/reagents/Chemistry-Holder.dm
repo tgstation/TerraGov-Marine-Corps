@@ -270,7 +270,7 @@ datum
 
 			handle_reactions()
 				if(!my_atom) return
-				if(my_atom.flags & NOREACT) return //Yup, no reactions here. No siree.
+				if(my_atom.flags_atom & NOREACT) return //Yup, no reactions here. No siree.
 
 				var/reaction_occured = 0
 				do

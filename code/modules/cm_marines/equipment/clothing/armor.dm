@@ -3,8 +3,12 @@
 
 /*All protective armor should go in here. This also defined armor for squad
 use, and contains the necessary procs at the bottom of the file.
-
+*/
 //You can enable this proc to see the combined armor value of a person.
+
+#define DEBUG_ARMOR_PROTECTION 0
+
+#if DEBUG_ARMOR_PROTECTION
 /mob/living/carbon/human/verb/check_overall_protection()
 	set name = "Get Armor Value"
 	set category = "Debug"
@@ -14,11 +18,11 @@ use, and contains the necessary procs at the bottom of the file.
 	var/counter = 0
 	for(var/i in organs_by_name)
 		armor = getarmor_organ(organs_by_name[i], "bullet")
-		src << "<b>[i]</b> is protected with <b>[armor]</b> armor against bullets."
+		src << "<span class='debuginfo'><b>[i]</b> is protected with <b>[armor]</b> armor against bullets.</span>"
 		counter += armor
-	src << "The overall armor score is: <b>[counter]</b>."
+	src << "<span class='debuginfo'>The overall armor score is: <b>[counter]</b>.</span>"
+#endif
 
-*/
 //=======================================================================\\
 //=======================================================================\\
 
@@ -38,13 +42,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 //=======================================================================\\
 
 /obj/item/clothing/suit/armor
-	flags = FPRINT
-	flags_inv = BLOCKSHARPOBJ
-	body_parts_covered = UPPER_TORSO | LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO
-	heat_protection = UPPER_TORSO|LOWER_TORSO
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_atom = FPRINT
+	flags_inventory = BLOCKSHARPOBJ
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
+	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	siemens_coefficient = 0.6
 	allowed = list(/obj/item/weapon/gun)//Guns only.
 
@@ -54,8 +58,31 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO
+	flags_armor_protection = UPPER_TORSO
 	armor = list(melee = 50, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/armor/vest/pilot
+	name = "\improper M70 flak jacket"
+	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "pilot"
+	icon_override = 'icons/Marine/marine_armor.dmi'
+	blood_overlay_type = "armor"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 50, bullet = 60, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/storage/fancy/cigarettes,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/grenade,
+		/obj/item/device/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/storage/sparepouch)
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
@@ -63,22 +90,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO
-	armor = list(melee = 30, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
-	siemens_coefficient = 0.7
-
-/obj/item/clothing/suit/armor/flakjacket
-	name = "flak jacket"
-	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
-	icon_state = "pilot_vest"
-	item_state = "armor"
-	icon_override = 'icons/Marine/marine_armor.dmi'
-	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_armor_protection = UPPER_TORSO
 	armor = list(melee = 30, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
@@ -87,10 +99,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat_suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT | BLOCKSHARPOBJ
+	flags_inventory = HIDEJUMPSUIT|BLOCKSHARPOBJ
 	siemens_coefficient = 0.5
 
 //===========================//MARINES\\=================================\\
@@ -111,12 +123,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "1"
 	item_state = "armor"
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	flags = FPRINT | CONDUCT
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_atom = FPRINT|CONDUCT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
+	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
@@ -133,12 +145,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch)
-	var/ArmorVariation
+
 	var/brightness_on = 5
-	var/on = 0
-	var/reinforced = 0
-	var/lamp = 1 //So we don't stack lamp overlays every time we update the suit icons
+	var/armor_overlays[]
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
+	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
@@ -149,14 +160,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
 		/obj/item/ammo_magazine/,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,
 		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/handcuffs,
 		/obj/item/weapon/grenade,
-		/obj/item/weapon/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/flamethrower,
+		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch)
 
@@ -171,25 +180,25 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "marine_sniper"
 	item_state = "marine_sniper"
 	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 
-	New(expected_type 	= type,
+	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern sniper snow armor"))
-		..(expected_type,,new_name)
+		..(loc,expected_type,,new_name)
 
 /obj/item/clothing/suit/storage/marine/sniper/jungle
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 	item_state = "marine_sniperm"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
-	New(expected_type 	= type,
+	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern marksman snow armor"))
-		..(expected_type,,new_name)
+		..(loc,expected_type,,new_name)
 
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M56 combat harness"
@@ -199,9 +208,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "armor"
 	slowdown = 1
 	icon_override = 'icons/Marine/marine_armor.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 0, rad = 0)
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen,
 					/obj/item/device/flashlight,
@@ -217,9 +226,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "7"
 	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
 
-	New(expected_type 	= type,
+	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper B12 pattern leader snow armor"))
-		..(expected_type,,new_name)
+		..(loc,expected_type,,new_name)
 
 /obj/item/clothing/suit/storage/marine/specialist
 	name = "\improper B18 defensive armor"
@@ -230,12 +239,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	var/injections = 2
 	unacidable = 1
 
-	New(expected_type 	= type,
+	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper B18 defensive snow armor"))
-		..(expected_type,,new_name)
+		..(loc,expected_type,,new_name)
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
+
+/obj/item/clothing/suit/storage/marine/veteran
+	flags_marine_armor = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC
 	name = "\improper M4 pattern PMC armor"
@@ -271,11 +283,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "pmc_sniper"
 	icon_state = "pmc_sniper"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 60, bullet = 70, laser = 50, energy = 60, bomb = 65, bio = 10, rad = 10)
-	flags_inv = BLOCKSHARPOBJ | HIDELOWHAIR
+	flags_inventory = BLOCKSHARPOBJ|HIDELOWHAIR
 
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC
 	name = "\improper PMC gunner armor"
@@ -284,9 +296,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "heavy_armor"
 	icon_state = "heavy_armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 85, bullet = 85, laser = 55, energy = 65, bomb = 70, bio = 20, rad = 20)
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
@@ -309,7 +321,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "bear_armor"
 	icon_state = "bear_armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 70, laser = 50, energy = 60, bomb = 50, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/veteran/dutch
@@ -319,7 +331,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "dutch_armor"
 	icon_state = "dutch_armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
 //=========================//ARMOR PROCS\\===============================\\
@@ -345,29 +357,41 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		helmetmarkings_sql += helmet
 
 /obj/item/clothing/suit/storage/marine
-	New(expected_type 		= /obj/item/clothing/suit/storage/marine,
+	New(loc,expected_type 		= /obj/item/clothing/suit/storage/marine,
 		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M3 pattern marine snow armor"))
-		..()
 		if(type == /obj/item/clothing/suit/storage/marine)
 			var/armor_variation = rand(1,6)
 			switch(armor_variation)
 				if(2,3)
-					body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-					cold_protection = body_parts_covered
-					heat_protection = body_parts_covered
+					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+					flags_cold_protection = flags_armor_protection
+					flags_heat_protection = flags_armor_protection
 			icon_state = "[armor_variation]"
 
 		select_gamemode_skin(expected_type,,new_name)
-		ArmorVariation = icon_state
-		overlays += image('icons/Marine/marine_armor.dmi', "lamp-off")
+		..()
+		armor_overlays = list("lamp") //Just one for now, can add more later.
+		update_icon()
+
+	update_icon(mob/user)
+		var/image/reusable/I
+		I = armor_overlays["lamp"]
+		overlays -= I
+		cdel(I)
+		if(flags_marine_armor & ARMOR_LAMP_OVERLAY)
+			I = rnew(/image/reusable, flags_marine_armor & ARMOR_LAMP_ON? list('icons/Marine/marine_armor.dmi', src, "lamp-on") : list('icons/Marine/marine_armor.dmi', src, "lamp-off"))
+			armor_overlays["lamp"] = I
+			overlays += I
+		else armor_overlays["lamp"] = null
+		if(user) user.update_inv_wear_suit()
 
 	pickup(mob/user)
-		if(on && src.loc != user)
+		if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
 			user.SetLuminosity(brightness_on)
 			SetLuminosity(0)
 
 	dropped(mob/user)
-		if(on && src.loc != user)
+		if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
 			user.SetLuminosity(-brightness_on)
 			SetLuminosity(brightness_on)
 
@@ -381,26 +405,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	attack_self(mob/user)
 		if(!isturf(user.loc))
 			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
-			return 0
+			return
 
-		overlays.Cut()
-		if(on) //Turn it off.
-			if(user)
-				user.SetLuminosity(-brightness_on)
-			else //Shouldn't be possible, but whatever
-				SetLuminosity(0)
-			overlays += image('icons/Marine/marine_armor.dmi', "lamp-off")
-			on = 0
-		else //Turn it on!
-			on = 1
-			if(user)
-				user.SetLuminosity(brightness_on)
-			else //Somehow
-				SetLuminosity(brightness_on)
-			overlays += image('icons/Marine/marine_armor.dmi', "lamp-on")
+		if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
+			if(user) user.SetLuminosity(-brightness_on)
+			else SetLuminosity(0)
+		else //Turn it on.
+			if(user) user.SetLuminosity(brightness_on)
+			else SetLuminosity(brightness_on)
+
+		flags_marine_armor ^= ARMOR_LAMP_ON
 
 		playsound(src,'sound/machines/click.ogg', 20, 1)
-		update_clothing_icon()
+		update_icon(user)
 		return 1
 
 /obj/item/clothing/suit/storage/marine/specialist/verb/inject()

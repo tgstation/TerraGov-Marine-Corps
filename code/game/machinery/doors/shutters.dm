@@ -10,7 +10,7 @@
 
 /obj/machinery/door/poddoor/shutters/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	add_fingerprint(user)
-	if( !istype(C, /obj/item/weapon/crowbar) && !( istype(C, /obj/item/weapon/twohanded/fireaxe) && (C.flags & WIELDED) ) )
+	if( !istype(C, /obj/item/weapon/crowbar) && !( istype(C, /obj/item/weapon/twohanded/fireaxe) && (C.flags_atom & WIELDED) ) )
 		return
 	if(density && (stat & NOPOWER) && !operating)
 		operating = 1

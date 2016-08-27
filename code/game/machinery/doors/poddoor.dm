@@ -23,7 +23,7 @@
 
 /obj/machinery/door/poddoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if( !istype(C, /obj/item/weapon/crowbar) && !( istype(C, /obj/item/weapon/twohanded/fireaxe) && (C.flags & WIELDED) ) )
+	if( !istype(C, /obj/item/weapon/crowbar) && !( istype(C, /obj/item/weapon/twohanded/fireaxe) && (C.flags_atom & WIELDED) ) )
 		return
 	if ((src.density && (stat & NOPOWER) && !( src.operating )))
 		spawn( 0 )

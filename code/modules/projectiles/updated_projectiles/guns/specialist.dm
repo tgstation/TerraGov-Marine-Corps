@@ -39,11 +39,11 @@
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/bipod)
 
-	gun_features = GUN_AUTO_EJECTOR
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST
 
 	New()
-		..()
 		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_m42a") )
+		..()
 		accuracy += config.low_hit_accuracy_mult
 		recoil = config.min_recoil_value
 		fire_delay = config.mhigh_fire_delay*10
@@ -51,7 +51,7 @@
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = "" //Let's make it invisible. The sprite already has one.
-		S.attach_features &= ~ATTACH_REMOVABLE
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
@@ -81,7 +81,7 @@
 	force = 17
 	zoomdevicename = "scope"
 	attachable_allowed = list()
-	gun_features = GUN_AUTO_EJECTOR | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
 	New()
 		..()
@@ -92,13 +92,13 @@
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 		var/obj/item/attachable/scope/S = new(src)
 		S.icon_state = "pmcscope"
-		S.attach_features &= ~ATTACH_REMOVABLE
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
 		update_attachables()
 
-	simulate_recoil(var/total_recoil = 0, var/mob/user, atom/target)
+	simulate_recoil(total_recoil = 0, mob/user, atom/target)
 		. = ..()
 		if(.)
 			var/mob/living/carbon/human/PMC_sniper = user
@@ -140,7 +140,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/slavic)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_ON_MERCS | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_ON_MERCS|GUN_ON_RUSSIANS|GUN_SPECIALIST
 
 	New()
 		..()
@@ -154,7 +154,7 @@
 		S = new /obj/item/attachable/slavicbarrel(src)
 		S.Attach(src)
 		S = new /obj/item/attachable/stock/slavic(src)
-		S.attach_features &= ~ATTACH_REMOVABLE
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		update_attachables()
 
@@ -169,25 +169,25 @@
 //Come get some.
 /obj/item/weapon/gun/smartgun
 	name = "\improper M56 smartgun"
-	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a Powerpack. Click the powerpack icon in the top left to reload."
+	desc = "The actual firearm in the 4-piece M56 Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left to reload."
 	icon_state = "m56"
 	item_state = "m56"
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	slot_flags = 0
+	flags_equip_slot = 0
 	w_class = 5
 	force = 20
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety off.
-	flags = FPRINT | CONDUCT | TWOHANDED
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	attachable_allowed = list(
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly)
 
-	gun_features = GUN_INTERNAL_MAG
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
 
 
 	New()
@@ -237,7 +237,7 @@
 	ammo = restriction_on ? ammo_list[/datum/ammo/bullet/smartgun/dirty] : ammo_list[/datum/ammo/bullet/smartgun]
 	restriction_toggled = !restriction_toggled
 
-/obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, var/obj/item/smartgun_powerpack/power_pack)
+/obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
 	set waitfor = 0
 	sleep(5)
 	if(power_pack && power_pack.loc)
@@ -254,7 +254,7 @@
 	restriction_toggled = 0
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
 	attachable_allowed = list() //Cannot be upgraded.
-	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
 	New()
 		..()
@@ -284,8 +284,8 @@
 	var/max_grenades = 6
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
-	flags = FPRINT | CONDUCT | TWOHANDED
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST
 
 	New()
 		set waitfor = 0
@@ -306,7 +306,7 @@
 			if (!(usr in view(2)) && usr!=src.loc) return
 			usr << "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades."
 
-	attackby(var/obj/item/I, var/mob/user)
+	attackby(obj/item/I, mob/user)
 		if((istype(I, /obj/item/weapon/grenade)))
 			if(grenades.len < max_grenades)
 				user.drop_item()
@@ -320,7 +320,7 @@
 		else if(istype(I,/obj/item/attachable))
 			if(check_inactive_hand(user)) attach_to_gun(user,I)
 
-	afterattack(atom/target, mob/user , flag)
+	afterattack(atom/target, mob/user, flag)
 		if(able_to_fire(user))
 			if(get_dist(target,user) <= 2)
 				user << "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>"
@@ -337,7 +337,7 @@
 	reload_into_chamber()
 		return
 
-	unload(var/mob/user)
+	unload(mob/user)
 		if(grenades.len)
 			var/obj/item/weapon/grenade/nade = grenades[grenades.len] //Grab the last one.
 			if(user)
@@ -382,7 +382,7 @@
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user)
 		if(current_rounds <= 0)
 			user << "<span class='notice'>You begin taking apart the empty tube frame...</span>"
 			if(do_after(user,10))
@@ -428,14 +428,14 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 100000)
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket
-	slot_flags = 0
+	flags_equip_slot = 0
 	w_class = 5
 	force = 15
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
-	flags = FPRINT | CONDUCT | TWOHANDED
-	gun_features = GUN_INTERNAL_MAG
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST
 	var/datum/effect/effect/system/smoke_spread/puff
 
 	New()
@@ -485,8 +485,8 @@
 		if(refund) current_mag.current_rounds++
 		return 1
 
-	reload(mob/user = null, var/obj/item/ammo_magazine/rocket)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	reload(mob/user, obj/item/ammo_magazine/rocket)
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 		if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
 			user << "<span class='warning'>That's not going to fit!</span>"
@@ -554,7 +554,7 @@
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	attachable_allowed = list()
-	gun_features = GUN_INTERNAL_MAG | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
 	New()
 		..()
@@ -566,5 +566,5 @@
 /obj/item/weapon/flamethrower/full/M240
 	name = "\improper M240 incinerator unit"
 	desc = "A carbine-style flamethrower carried by the USCM in close quarters engagements. It is especially effective against soft-targets and in situations where area denial is important."
-	flags = FPRINT | CONDUCT | TWOHANDED
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
 

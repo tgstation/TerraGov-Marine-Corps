@@ -19,8 +19,8 @@
 	var/wired = 0
 	var/obj/item/weapon/cell/cell = 0
 	var/clipped = 0
-	body_parts_covered = HANDS
-	slot_flags = SLOT_GLOVES
+	flags_armor_protection = HANDS
+	flags_equip_slot = SLOT_GLOVES
 	attack_verb = list("challenged")
 	species_restricted = list("exclude","Yautja")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
@@ -32,11 +32,11 @@
 	item_state = "graygloves"
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
-	cold_protection = HANDS
-	heat_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
-	body_parts_covered = HANDS
+	flags_cold_protection = HANDS
+	flags_heat_protection = HANDS
+	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
+	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
+	flags_armor_protection = HANDS
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 
 /obj/item/clothing/gloves/marine/alpha
@@ -120,8 +120,8 @@
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
-	body_parts_covered = FEET
-	slot_flags = SLOT_FEET
+	flags_armor_protection = FEET
+	flags_equip_slot = SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	species_restricted = list("exclude","Yautja")
@@ -132,10 +132,10 @@
 	desc = "When you feet are as cold as your heart"
 	icon_state = "swat"
 	siemens_coefficient = 0.6
-	cold_protection = FEET
-	heat_protection = FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_cold_protection = FEET
+	flags_heat_protection = FEET
+	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 
 /obj/item/clothing/shoes/marine
 	name = "marine combat boots"
@@ -143,10 +143,10 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
-	cold_protection = FEET
-	heat_protection = FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_cold_protection = FEET
+	flags_heat_protection = FEET
+	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 	siemens_coefficient = 0.7
 	var/obj/item/weapon/combat_knife/knife
 	var/armor_stage = 0
@@ -156,7 +156,7 @@
 	desc = "Only a small amount of monkeys, kittens, and orphans were killed in making this."
 	icon_state = "laceups"
 	armor = list(melee = 50, bullet = 50, laser = 25,energy = 25, bomb = 20, bio = 20, rad = 10)
-	flags_inv = NOSLIPPING
+	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/marinechief/commander
@@ -168,11 +168,11 @@
 	desc = "The height of fashion, but these look to be woven with protective fiber."
 	icon_state = "laceups"
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-	cold_protection = FEET
-	heat_protection = FEET
-	flags_inv = NOSLIPPING
+	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+	flags_cold_protection = FEET
+	flags_heat_protection = FEET
+	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/veteran/PMC/commando

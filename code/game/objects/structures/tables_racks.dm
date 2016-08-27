@@ -455,7 +455,7 @@
 		layer = 5
 	climbable = 0 //flipping tables allows them to be used as makeshift barriers
 	flipped = 1
-	flags |= ON_BORDER
+	flags_atom |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
 		var/obj/structure/table/T = locate() in get_step(src,D)
 		if(T && !T.flipped)
@@ -472,7 +472,7 @@
 	layer = initial(layer)
 	flipped = 0
 	climbable = initial(climbable)
-	flags &= ~ON_BORDER
+	flags_atom &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
 		var/obj/structure/table/T = locate() in get_step(src.loc,D)
 		if(T && T.flipped && T.dir == src.dir)
@@ -553,7 +553,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
 	density = 1
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 1.0
 	throwpass = 1	//You can throw objects over this, despite it's density.
 	breakable = 1

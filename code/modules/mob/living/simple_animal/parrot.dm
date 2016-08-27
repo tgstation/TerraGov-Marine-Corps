@@ -32,7 +32,7 @@
 	icon_state = "parrot_fly"
 	icon_living = "parrot_fly"
 	icon_dead = "parrot_dead"
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 	small = 1
 
 	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
@@ -242,7 +242,7 @@
 
 	if(M.melee_damage_upper > 0)
 		parrot_interest = M
-		parrot_state = PARROT_SWOOP | PARROT_ATTACK //Attack other animals regardless
+		parrot_state = PARROT_SWOOP|PARROT_ATTACK //Attack other animals regardless
 		icon_state = "parrot_fly"
 
 //Mobs with objects
@@ -254,7 +254,7 @@
 				parrot_sleep_dur = parrot_sleep_max //Reset it's sleep timer if it was perched
 
 			parrot_interest = user
-			parrot_state = PARROT_SWOOP | PARROT_FLEE
+			parrot_state = PARROT_SWOOP|PARROT_FLEE
 			icon_state = "parrot_fly"
 			drop_held_item(0)
 	return
@@ -311,7 +311,7 @@
 	if(parrot_state == PARROT_PERCH)
 		if(parrot_perch && parrot_perch.loc != src.loc) //Make sure someone hasnt moved our perch on us
 			if(parrot_perch in view(src))
-				parrot_state = PARROT_SWOOP | PARROT_RETURN
+				parrot_state = PARROT_SWOOP|PARROT_RETURN
 				icon_state = "parrot_fly"
 				return
 			else
@@ -356,7 +356,7 @@
 			parrot_interest = search_for_item()
 			if(parrot_interest)
 				emote("looks in [parrot_interest]'s direction and takes flight")
-				parrot_state = PARROT_SWOOP | PARROT_STEAL
+				parrot_state = PARROT_SWOOP|PARROT_STEAL
 				icon_state = "parrot_fly"
 			return
 
@@ -378,36 +378,36 @@
 				if(istype(AM, /obj/item) || isliving(AM))	//If stealable item
 					parrot_interest = AM
 					emote("turns and flies towards [parrot_interest]")
-					parrot_state = PARROT_SWOOP | PARROT_STEAL
+					parrot_state = PARROT_SWOOP|PARROT_STEAL
 					return
 				else	//Else it's a perch
 					parrot_perch = AM
-					parrot_state = PARROT_SWOOP | PARROT_RETURN
+					parrot_state = PARROT_SWOOP|PARROT_RETURN
 					return
 			return
 
 		if(parrot_interest && parrot_interest in view(src))
-			parrot_state = PARROT_SWOOP | PARROT_STEAL
+			parrot_state = PARROT_SWOOP|PARROT_STEAL
 			return
 
 		if(parrot_perch && parrot_perch in view(src))
-			parrot_state = PARROT_SWOOP | PARROT_RETURN
+			parrot_state = PARROT_SWOOP|PARROT_RETURN
 			return
 
 		else //Have an item but no perch? Find one!
 			parrot_perch = search_for_perch()
 			if(parrot_perch)
-				parrot_state = PARROT_SWOOP | PARROT_RETURN
+				parrot_state = PARROT_SWOOP|PARROT_RETURN
 				return
 //-----STEALING
-	else if(parrot_state == (PARROT_SWOOP | PARROT_STEAL))
+	else if(parrot_state == (PARROT_SWOOP|PARROT_STEAL))
 		walk(src,0)
 		if(!parrot_interest || held_item)
-			parrot_state = PARROT_SWOOP | PARROT_RETURN
+			parrot_state = PARROT_SWOOP|PARROT_RETURN
 			return
 
 		if(!(parrot_interest in view(src)))
-			parrot_state = PARROT_SWOOP | PARROT_RETURN
+			parrot_state = PARROT_SWOOP|PARROT_RETURN
 			return
 
 		if(in_range(src, parrot_interest))
@@ -422,14 +422,14 @@
 					visible_message("[src] grabs the [held_item]!", "\blue You grab the [held_item]!", "You hear the sounds of wings flapping furiously.")
 
 			parrot_interest = null
-			parrot_state = PARROT_SWOOP | PARROT_RETURN
+			parrot_state = PARROT_SWOOP|PARROT_RETURN
 			return
 
 		walk_to(src, parrot_interest, 1, parrot_speed)
 		return
 
 //-----RETURNING TO PERCH
-	else if(parrot_state == (PARROT_SWOOP | PARROT_RETURN))
+	else if(parrot_state == (PARROT_SWOOP|PARROT_RETURN))
 		walk(src, 0)
 		if(!parrot_perch || !isturf(parrot_perch.loc)) //Make sure the perch exists and somehow isnt inside of something else.
 			parrot_perch = null
@@ -447,7 +447,7 @@
 		return
 
 //-----FLEEING
-	else if(parrot_state == (PARROT_SWOOP | PARROT_FLEE))
+	else if(parrot_state == (PARROT_SWOOP|PARROT_FLEE))
 		walk(src,0)
 		if(!parrot_interest || !isliving(parrot_interest)) //Sanity
 			parrot_state = PARROT_WANDER
@@ -457,7 +457,7 @@
 		return
 
 //-----ATTACKING
-	else if(parrot_state == (PARROT_SWOOP | PARROT_ATTACK))
+	else if(parrot_state == (PARROT_SWOOP|PARROT_ATTACK))
 
 		//If we're attacking a nothing, an object, a turf or a ghost for some stupid reason, switch to wander
 		if(!parrot_interest || !isliving(parrot_interest))
@@ -478,7 +478,7 @@
 					if(!held_item)
 						held_item = steal_from_mob() //Apparently it's possible for dead mobs to hang onto items in certain circumstances.
 				if(parrot_perch in view(src)) //If we have a home nearby, go to it, otherwise find a new home
-					parrot_state = PARROT_SWOOP | PARROT_RETURN
+					parrot_state = PARROT_SWOOP|PARROT_RETURN
 				else
 					parrot_state = PARROT_WANDER
 				return

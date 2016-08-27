@@ -942,45 +942,54 @@
 		if(istype(drop_spawn))
 			switch(choice)
 				if(0)
-					new /obj/item/weapon/gun/pistol/vp78(drop_spawn)
-					new /obj/item/weapon/gun/pistol/vp78(drop_spawn)
-					new /obj/item/ammo_magazine/pistol/vp78
-					new /obj/item/ammo_magazine/pistol/vp78
-					continue
+					new /obj/item/weapon/gun/pistol/m4a3(drop_spawn)
+					new /obj/item/weapon/gun/pistol/m1911(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/extended(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/extended(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/ap(drop_spawn)
+					new /obj/item/ammo_magazine/pistol/incendiary(drop_spawn)
 				if(1)
-					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/weapon/gun/smg/m39/elite(drop_spawn)
-					new /obj/item/ammo_magazine/smg/m39/ap
-					new /obj/item/ammo_magazine/smg/m39/ap
-					continue
+					new /obj/item/weapon/gun/smg/m39(drop_spawn)
+					new /obj/item/weapon/gun/smg/m39(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/extended(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/extended(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/ap(drop_spawn)
+					new /obj/item/ammo_magazine/smg/m39/ap(drop_spawn)
 				if(2)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
-					continue
 				if(3)
 					new /obj/item/weapon/plastique(drop_spawn)
 					new /obj/item/weapon/plastique(drop_spawn)
 					new /obj/item/weapon/plastique(drop_spawn)
-					continue
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
+					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
 				if(4)
-					new /obj/item/weapon/gun/rifle/m41a/elite(drop_spawn)
-					new /obj/item/weapon/gun/rifle/m41a/elite(drop_spawn)
-					new /obj/item/ammo_magazine/rifle/incendiary
-					new /obj/item/ammo_magazine/rifle/incendiary
-					continue
+					new /obj/item/weapon/gun/rifle/m41a(drop_spawn)
+					new /obj/item/weapon/gun/rifle/m41a(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/extended(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/extended(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/incendiary(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/incendiary(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/ap(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/ap(drop_spawn)
 				if(5)
-					new /obj/item/weapon/gun/launcher/m92(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					new /obj/item/weapon/grenade/explosive/PMC(drop_spawn)
-					continue
+					new /obj/item/weapon/gun/shotgun/combat(drop_spawn)
+					new /obj/item/weapon/gun/shotgun/combat(drop_spawn)
+					new /obj/item/ammo_magazine/shotgun/incendiary(drop_spawn)
+					new /obj/item/ammo_magazine/shotgun/incendiary(drop_spawn)
 				if(6)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
-					continue
+					new /obj/item/weapon/gun/rifle/m41a/scoped(drop_spawn)
+					new /obj/item/weapon/gun/rifle/m41a/scoped(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/marksman(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/marksman(drop_spawn)
 				if(7)
-					new /obj/item/weapon/storage/box/m42c_system(drop_spawn)
-	return
+					new /obj/item/weapon/gun/rifle/lmg(drop_spawn)
+					new /obj/item/weapon/gun/rifle/lmg(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
+					new /obj/item/ammo_magazine/rifle/lmg(drop_spawn)
 
 /datum/emergency_call/bears/spawn_items()
 	var/turf/drop_spawn
@@ -1097,7 +1106,7 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
 	siemens_coefficient = 0.7
-	body_parts_covered = FACE|EYES
+	flags_armor_protection = FACE|EYES
 	anti_hug = 8
 
 /datum/emergency_call/erc/spawn_items()

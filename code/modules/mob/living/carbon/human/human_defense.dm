@@ -112,7 +112,7 @@ OBSOLETE BITCH
 
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
-		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
+		if(istype(C) && (C.flags_armor_protection & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
 	return siemens_coefficient
@@ -125,7 +125,7 @@ OBSOLETE BITCH
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
-			if(C.body_parts_covered & def_zone.body_part)
+			if(C.flags_armor_protection & def_zone.body_part)
 				protection += C.armor[type]
 	return protection
 
@@ -136,7 +136,7 @@ OBSOLETE BITCH
 		if(!bp)	continue
 		if(bp && istype(bp ,/obj/item/clothing))
 			var/obj/item/clothing/C = bp
-			if(C.body_parts_covered & HEAD)
+			if(C.flags_armor_protection & HEAD)
 				return 1
 	return 0
 

@@ -334,15 +334,15 @@ datum/gas_mixture/proc/calculate_firelevel(obj/effect/decal/cleanable/liquid_fue
 			continue
 
 		if( C.max_heat_protection_temperature >= last_temperature )
-			if(C.body_parts_covered & HEAD)
+			if(C.flags_armor_protection & HEAD)
 				head_exposure = 0
-			if(C.body_parts_covered & UPPER_TORSO)
+			if(C.flags_armor_protection & UPPER_TORSO)
 				chest_exposure = 0
-			if(C.body_parts_covered & LOWER_TORSO)
+			if(C.flags_armor_protection & LOWER_TORSO)
 				groin_exposure = 0
-			if(C.body_parts_covered & LEGS)
+			if(C.flags_armor_protection & LEGS)
 				legs_exposure = 0
-			if(C.body_parts_covered & ARMS)
+			if(C.flags_armor_protection & ARMS)
 				arms_exposure = 0
 	//minimize this for low-pressure enviroments
 	var/mx = 5 * firelevel/vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)

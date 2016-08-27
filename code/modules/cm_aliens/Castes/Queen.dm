@@ -6,7 +6,7 @@
 	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
-//	pass_flags = PASSTABLE
+//	flags_pass = PASSTABLE
 	melee_damage_lower = 30
 	melee_damage_upper = 46
 	tacklemin = 4
@@ -269,7 +269,7 @@
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
 	if(ticker && ticker.mode)
-		for(var/datum/mind/L in ticker.mode.aliens)
+		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
 			if(X && X.client && istype(X) && !X.stat)
 				X << sound(get_sfx("queen"),wait=0,volume=50)

@@ -213,3 +213,4 @@
 		if(Y.upgrades > 2)
 			src << "<span class='notice'>Your [Y] can now translate to xenomorph hives as well.</span>"
 			src << "<span class='notice'>Your [Y] has been upgraded to carry a scimitar instead of blades.</span>"
+		verbs -= /mob/living/carbon/human/proc/pred_buy

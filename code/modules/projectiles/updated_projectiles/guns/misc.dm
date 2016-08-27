@@ -12,7 +12,7 @@
 	ammo = /datum/ammo/energy/taser
 	var/obj/item/weapon/cell/high/cell //10000 power.
 	var/charge_cost = 100 //100 shots.
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
 		..()
@@ -27,7 +27,7 @@
 		update_icon()
 		..()
 
-	able_to_fire(var/mob/living/carbon/human/user as mob)
+	able_to_fire(mob/living/carbon/human/user as mob)
 		if(..()) //Let's check all that other stuff first.
 			if(istype(user))
 				var/obj/item/weapon/card/id/card = user.wear_id
@@ -74,7 +74,7 @@
 	force = 8
 	type_of_casings = null
 	attachable_allowed = list()
-	gun_features = GUN_AUTO_EJECTOR | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED
 
 	New()
 		..()
@@ -94,7 +94,7 @@
 	ammo = /datum/ammo/flare
 	var/num_flares = 1
 	var/max_flares = 1
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	examine()
 		..()
@@ -121,7 +121,7 @@
 		if(refund) num_flares++
 		return 1
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I, mob/user)
 		if(istype(I,/obj/item/device/flashlight/flare))
 			var/obj/item/device/flashlight/flare/flare = I
 			if(num_flares >= max_flares)
@@ -142,7 +142,7 @@
 
 		return ..()
 
-	unload(var/mob/user)
+	unload(mob/user)
 		if(num_flares)
 			var/obj/item/device/flashlight/flare/new_flare = new()
 			if(user) user.put_in_hands(new_flare)
@@ -179,17 +179,17 @@
 	type_of_casings = "cartridge"
 	w_class = 5
 	force = 20
-	flags = FPRINT | CONDUCT | TWOHANDED
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_BURST_ON
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON
 
-	New()
+	New(loc, spawn_empty)
 		..()
 		recoil = config.med_recoil_value
 		accuracy -= config.med_hit_accuracy_mult
 		burst_amount = config.max_burst_value
 		fire_delay = config.low_fire_delay
 		burst_delay = config.min_fire_delay
-		load_into_chamber()
+		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 	toggle_burst()
 		usr << "<span class='warning'>This weapon can only fire in bursts!</span>"

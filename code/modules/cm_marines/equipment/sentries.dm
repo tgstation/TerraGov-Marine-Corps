@@ -680,7 +680,7 @@
 
 	visible_message("\The [src] is hit by the [Proj.name]!")
 
-	if(Proj.ammo.ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
+	if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
 		update_health(round(Proj.damage / 3))
 	else
 		update_health(round(Proj.damage / 10))
@@ -801,9 +801,7 @@
 	if(prob(65))
 		var/layer = MOB_LAYER-0.1
 
-		var/image/reusable/flash = rnew(/image/reusable)
-		flash.generate_image('icons/obj/projectiles.dmi',src,"muzzle_flash",layer)
-
+		var/image/reusable/flash = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,"muzzle_flash",layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)

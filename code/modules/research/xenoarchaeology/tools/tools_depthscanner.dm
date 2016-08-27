@@ -10,8 +10,8 @@
 	icon_state = "crap"
 	item_state = "analyzer"
 	w_class = 2.0
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	var/list/positive_locations = list()
 	var/datum/depth_scan/current
 

@@ -2,7 +2,7 @@
 	name = "baby slime"
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey baby slime"
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 	var/is_adult = 0
 	speak_emote = list("telepathically chirps")
 
@@ -789,13 +789,13 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS|HEAD
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS|HEAD
 	slowdown = 1.0
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT | NOPRESSUREDMAGE
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS | HEAD
-	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|NOPRESSUREDMAGE
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS|HEAD
+	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS|HEAD
+	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	canremove = 0
 	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -805,7 +805,7 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	icon_state = "golem"
 	item_state = null
 	canremove = 0
-	flags_inv = NOSLIPPING
+	flags_inventory = NOSLIPPING
 	slowdown = SHOES_SLOWDOWN+1
 
 
@@ -845,9 +845,9 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	desc = "a golem's head"
 	canremove = 0
 	unacidable = 1
-	flags_inv = NOPRESSUREDMAGE
-	heat_protection = HEAD
-	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_inventory = NOPRESSUREDMAGE
+	flags_heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
 	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 /obj/effect/golemrune

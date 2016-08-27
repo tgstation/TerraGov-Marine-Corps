@@ -168,8 +168,8 @@
 /obj/item/weapon/plantspray
 	icon = 'icons/obj/hydroponics.dmi'
 	item_state = "spray"
-	flags = FPRINT | NOBLUDGEON
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|NOBLUDGEON
+	flags_equip_slot = SLOT_BELT
 	throwforce = 4
 	w_class = 2.0
 	throw_speed = 2
@@ -220,7 +220,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
-	flags = FPRINT | CONDUCT | NOBLUDGEON
+	flags_atom = FPRINT|CONDUCT|NOBLUDGEON
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -270,7 +270,7 @@
 	desc = "A small glass bottle. Can hold up to 10 units."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
-	flags = FPRINT |  OPENCONTAINER
+	flags_atom = FPRINT| OPENCONTAINER
 	possible_transfer_amounts = null
 	w_class = 2.0
 
@@ -310,7 +310,7 @@
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hatchet"
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	force = 12.0
 	w_class = 2.0
 	throwforce = 15.0
@@ -335,7 +335,8 @@
 	attack_verb = list("ripped", "torn", "cut")
 
 /obj/item/weapon/scythe
-	icon_state = "scythe0"
+	icon_state = "scythe"
+	item_state = "scythe"
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	force = 13.0
@@ -343,8 +344,8 @@
 	throw_speed = 1
 	throw_range = 3
 	w_class = 4.0
-	flags = FPRINT | CONDUCT | NOSHIELD
-	slot_flags = SLOT_BACK
+	flags_atom = FPRINT|CONDUCT|NOSHIELD
+	flags_equip_slot = SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 

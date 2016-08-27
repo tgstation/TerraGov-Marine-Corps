@@ -34,7 +34,7 @@ var/global/list/good_items = list(/obj/item/weapon/storage/belt/utility/full,\
 								)
 
 var/global/list/god_items = list(/obj/item/weapon/twohanded/glaive,\
-								/obj/item/clothing/head/helmet/space/yautja,\
+								/obj/item/clothing/mask/gas/yautja,\
 								/obj/item/clothing/suit/armor/yautja,\
 								/obj/item/clothing/suit/armor/yautja/full,\
 								/obj/item/clothing/shoes/yautja,\
@@ -115,6 +115,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	name = "Hunter Games"
 	config_tag = "Hunter Games"
 	required_players = 1
+	forbid_late_joining = 1
 	var/list/contestants = list()
 	var/checkwin_counter = 0
 	var/finished = 0

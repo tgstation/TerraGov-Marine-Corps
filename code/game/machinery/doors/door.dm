@@ -36,7 +36,7 @@
 	if(density)
 		layer = closed_layer
 		explosion_resistance = initial(explosion_resistance)
-		update_heat_protection(get_turf(src))
+		update_flags_heat_protection(get_turf(src))
 	else
 		layer = open_layer
 		explosion_resistance = 0
@@ -292,12 +292,12 @@
 		return 0
 
 	for(var/turf/simulated/turf in locs)
-		update_heat_protection(turf)
+		update_flags_heat_protection(turf)
 		air_master.mark_for_update(turf)
 
 	return 1
 
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
+/obj/machinery/door/proc/update_flags_heat_protection(var/turf/simulated/source)
 	if(istype(source))
 		if(src.density && (src.opacity || src.heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT

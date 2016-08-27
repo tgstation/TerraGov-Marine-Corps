@@ -19,9 +19,9 @@
 	matter = list("metal" = 3000, "glass" = 1000)
 	var/up = 0
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	flags = FPRINT | CONDUCT
-	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | BLOCKSHARPOBJ
-	body_parts_covered = HEAD|FACE|EYES
+	flags_atom = FPRINT|CONDUCT
+	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	flags_armor_protection = HEAD|FACE|EYES
 	icon_action_button = "action_welding"
 	siemens_coefficient = 0.9
 	w_class = 3
@@ -39,12 +39,12 @@
 
 	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(up)
-			flags_inv |= HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | BLOCKSHARPOBJ
+			flags_inventory |= HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 			icon_state = initial(icon_state)
 			usr << "You flip the [src] down to protect your eyes."
 			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
-			flags_inv &= ~(HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | BLOCKSHARPOBJ)
+			flags_inventory &= ~(HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push the [src] up out of your face."
 			hug_memory = anti_hug
@@ -61,12 +61,12 @@
 	name = "cake-hat"
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
-	flags_inv = COVEREYES
+	flags_inventory = COVEREYES
 	var/onfire = 0.0
 	var/status = 0
 	var/fire_resist = T0C+1300	//this is the max temp it can stand before you start to cook. although it might not burn away, you take damage
 	var/processing = 0 //I dont think this is used anywhere.
-	body_parts_covered = EYES
+	flags_armor_protection = EYES
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
@@ -106,8 +106,8 @@
 	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
 	item_state = "hardhat0_pumpkin"
 	item_color = "pumpkin"
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | HIDEALLHAIR
-	body_parts_covered = HEAD|EYES
+	flags_inventory = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|COVEREYES|COVERMOUTH|HIDEALLHAIR
+	flags_armor_protection = HEAD|EYES
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0
 	w_class = 3
@@ -148,7 +148,7 @@
 	name = "kitty ears"
 	desc = "A pair of kitty ears. Meow!"
 	icon_state = "kitty"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 	var/icon/mob
 	var/icon/mob2
 	siemens_coefficient = 1.5

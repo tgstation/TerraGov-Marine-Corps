@@ -45,18 +45,20 @@
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
-						/obj/item/ammo_magazine/smg/m39/ap = 2,
-						/obj/item/ammo_magazine/pistol/ap = 2)
+						/obj/item/ammo_magazine/pistol/ap = 2,
+						/obj/item/ammo_magazine/smg/m39/ap = 1
+						)
 
-	premium = list(/obj/item/ammo_magazine/shotgun/incendiary = 1,)
+	premium = list(/obj/item/weapon/gun/rifle/m41aMK1 = 1,)
 
 	prices = list()
 
 	select_gamemode_equipment(gamemode)
 		var/products2[]
 		switch(gamemode)
-			if("Ice Colony")	products2 = list(
-								/obj/item/clothing/mask/rebreather/scarf = 10,
+			if(/datum/game_mode/ice_colony)
+				products2 = list(
+							/obj/item/clothing/mask/rebreather/scarf = 10,
 								)
 		build_inventory(products2)
 
@@ -108,7 +110,6 @@
 					)
 
 	premium = list()
-	prices = list()
 	select_gamemode_equipment()
 
 /obj/machinery/vending/marine/cargo_guns
@@ -159,7 +160,6 @@
 					/obj/item/weapon/gun/smg/p90 = 0
 					)
 	premium = list()
-	prices = list()
 	select_gamemode_equipment()
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
@@ -264,6 +264,7 @@
 						/obj/item/weapon/airalarm_electronics = 10,
 						/obj/item/weapon/cell/high = 10
 					)
+	contraband = list(/obj/item/weapon/cell/super = 1)
 
 /obj/machinery/vending/marine_medic
 	name = "ColMarTech Medic Vendor"
@@ -308,6 +309,8 @@
 						/obj/item/weapon/storage/firstaid/regular = 4,
 						/obj/item/weapon/storage/firstaid/adv = 3
 					)
+	contraband = list(/obj/item/weapon/reagent_containers/blood/OMinus = 1)
+
 
 /obj/machinery/vending/marine_special
 	name = "ColMarTech Specialist Vendor"

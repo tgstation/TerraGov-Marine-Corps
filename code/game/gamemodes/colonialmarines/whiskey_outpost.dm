@@ -3,6 +3,8 @@
 	config_tag = "Whiskey Outpost"
 	required_players = 1
 	recommended_enemies = 6 //Force doctors and commander if no one wants them
+	xeno_bypass_timer = 1
+	forbid_late_joining = 1
 
 	var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 
@@ -458,7 +460,7 @@
 		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate!
 			world << "\red *___________________________________*"
 			world << "\red <b>***Whiskey Outpost Controller***</b>"
-			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?" | \red Times delayed: [wave_times_delayed]":""]"
+			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]"
 			world << "\red *___________________________________*"
 
 			wave_ticks_passed = 0
@@ -687,7 +689,7 @@
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
-				X.pass_flags = 0 // Runners cannot pass trough tables
+				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
@@ -704,7 +706,7 @@
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
 				X.storedplasma = X.maxplasma
-				X.pass_flags = 0 // Runners cannot pass trough tables
+				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))

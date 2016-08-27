@@ -24,7 +24,7 @@
 		"/obj/item/weapon/reagent_containers/dropper",
 		"/obj/item/weapon/screwdriver",
 		"/obj/item/weapon/stamp")
-	slot_flags = SLOT_ID
+	flags_equip_slot = SLOT_ID
 
 	var/obj/item/weapon/card/id/front_id = null
 

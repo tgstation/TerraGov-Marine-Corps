@@ -15,7 +15,7 @@ FLOOR SAFES
 	spawn(10)
 		for(var/obj/structure/safe/safe in loc)
 			if(safe)
-				info = "This looks like a handwritten page with two numbers on it: \n\n<b>[safe.tumbler_1_open] | [safe.tumbler_2_open]</b>."
+				info = "This looks like a handwritten page with two numbers on it: \n\n<b>[safe.tumbler_1_open]|[safe.tumbler_2_open]</b>."
 				info_links = info
 				icon_state = "paper_words"
 				break

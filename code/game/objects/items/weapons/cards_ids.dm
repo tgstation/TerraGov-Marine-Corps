@@ -128,7 +128,7 @@
 	item_state = "card-id"
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	slot_flags = SLOT_ID
+	flags_equip_slot = SLOT_ID
 
 	var/blood_type = "\[UNSET\]"
 	var/dna_hash = "\[UNSET\]"

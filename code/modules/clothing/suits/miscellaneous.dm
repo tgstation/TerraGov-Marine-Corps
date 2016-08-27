@@ -14,7 +14,7 @@
 	icon_state = "bluetag"
 	item_state = "bluetag"
 	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO
+	flags_armor_protection = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun)
 	siemens_coefficient = 3.0
 
@@ -24,7 +24,7 @@
 	icon_state = "redtag"
 	item_state = "redtag"
 	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO
+	flags_armor_protection = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun)
 	siemens_coefficient = 3.0
 
@@ -36,7 +36,7 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
-	body_parts_covered = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
 
 
 /obj/item/clothing/suit/hgpirate
@@ -44,8 +44,8 @@
 	desc = "Yarr."
 	icon_state = "hgpirate"
 	item_state = "hgpirate"
-	flags_inv = HIDEJUMPSUIT
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_inventory = HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 60, bullet = 90, laser = 60, energy = 20, bomb = 25, bio = 10, rad = 10)
 
 
@@ -54,9 +54,9 @@
 	desc = "Suit for a cyborg costume."
 	icon_state = "death"
 	item_state = "death"
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	fire_resist = T0C+5200
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/greatcoat
@@ -76,17 +76,17 @@
 	desc = "This pretty much looks ridiculous."
 	icon_state = "justice"
 	item_state = "justice"
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/judgerobe
 	name = "judge's robe"
 	desc = "This robe commands authority."
 	icon_state = "judge"
 	item_state = "judge"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
-	flags_inv = HIDEJUMPSUIT
+	flags_inventory = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/wcoat
 	name = "waistcoat"
@@ -94,7 +94,7 @@
 	icon_state = "vest"
 	item_state = "wcoat"
 	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 
 /obj/item/clothing/suit/apron/overalls
@@ -102,7 +102,7 @@
 	desc = "A set of denim overalls."
 	icon_state = "overalls"
 	item_state = "overalls"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 
 /obj/item/clothing/suit/syndicatefake
@@ -112,16 +112,16 @@
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = 3
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/toy)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/hastur
 	name = "Hastur's Robes"
 	desc = "Robes not meant to be worn by man"
 	icon_state = "hastur"
 	item_state = "hastur"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/imperium_monk
@@ -129,8 +129,8 @@
 	desc = "Have YOU killed a xenos today?"
 	icon_state = "imperium_monk"
 	item_state = "imperium_monk"
-	body_parts_covered = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	flags_armor_protection = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	flags_inventory = HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/chickensuit
@@ -138,8 +138,8 @@
 	desc = "A suit made long ago by the ancient empire KFC."
 	icon_state = "chickensuit"
 	item_state = "chickensuit"
-	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET
+	flags_inventory = HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
 
 
@@ -148,8 +148,8 @@
 	desc = "A suit that looks like a primate"
 	icon_state = "monkeysuit"
 	item_state = "monkeysuit"
-	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET|HANDS
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
 
 
@@ -158,8 +158,8 @@
 	desc = "This is a nice holiday my son."
 	icon_state = "holidaypriest"
 	item_state = "holidaypriest"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_inventory = HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/cardborg
@@ -167,8 +167,8 @@
 	desc = "An ordinary cardboard box with holes cut in the sides."
 	icon_state = "cardborg"
 	item_state = "cardborg"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	flags_inv = HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_inventory = HIDEJUMPSUIT
 
 /*
  * Misc
@@ -179,15 +179,15 @@
 	desc = "A suit that completely restrains the wearer."
 	icon_state = "straight_jacket"
 	item_state = "straight_jacket"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
 	icon_state = "ianshirt"
 	item_state = "ianshirt"
-	body_parts_covered = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
 
 //Blue suit jacket toggle
 /obj/item/clothing/suit/suit/verb/toggle()
@@ -219,14 +219,14 @@
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "blue_pyjamas"
 	item_state = "blue_pyjamas"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 /obj/item/clothing/under/redpyjamas
 	name = "red pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "red_pyjamas"
 	item_state = "red_pyjamas"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 //coats
 
@@ -250,7 +250,7 @@
 
 //stripper
 /obj/item/clothing/under/stripper
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/under/stripper/stripper_pink
 	name = "pink swimsuit"
@@ -292,13 +292,13 @@
 	desc = "A suit made out of chitinous alien hide."
 	icon_state = "xenos"
 	item_state = "xenos_helm"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_inventory = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/under/swimsuit/black
 	name = "black swimsuit"
@@ -358,7 +358,7 @@
 	desc = "A well-worn WW2 leather bomber jacket."
 	icon_state = "bomber"
 	item_state = "bomber"
-	body_parts_covered = UPPER_TORSO|ARMS
-	cold_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C
 	siemens_coefficient = 0.7

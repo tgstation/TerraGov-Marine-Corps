@@ -15,8 +15,8 @@ var/const/MAX_ACTIVE_TIME = 200
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = 1 //note: can be picked up by aliens unlike most other items of w_class below 4
-	flags_inv = COVEREYES | ALLOWINTERNALS | COVERMOUTH
-	body_parts_covered = FACE|EYES
+	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
+	flags_armor_protection = FACE|EYES
 	throw_range = 1
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case

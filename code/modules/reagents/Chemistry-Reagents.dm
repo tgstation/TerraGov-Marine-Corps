@@ -2174,7 +2174,7 @@ datum
 					data = 1
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					if(H.species && !(H.species.flags & (NO_PAIN | IS_SYNTHETIC)) )
+					if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
 						switch(data)
 							if(1 to 2)
 								H << "\red <b>Your insides feel uncomfortably hot !</b>"
@@ -2211,17 +2211,17 @@ datum
 						var/eyes_covered = 0
 						var/obj/item/safe_thing = null
 						if( victim.wear_mask )
-							if( victim.wear_mask.flags_inv & COVEREYES )
+							if( victim.wear_mask.flags_inventory & COVEREYES )
 								eyes_covered = 1
 								safe_thing = victim.wear_mask
-							if( victim.wear_mask.flags_inv & COVERMOUTH )
+							if( victim.wear_mask.flags_inventory & COVERMOUTH )
 								mouth_covered = 1
 								safe_thing = victim.wear_mask
 						if( victim.head )
-							if( victim.head.flags_inv & COVEREYES )
+							if( victim.head.flags_inventory & COVEREYES )
 								eyes_covered = 1
 								safe_thing = victim.head
-							if( victim.head.flags_inv & COVERMOUTH )
+							if( victim.head.flags_inventory & COVERMOUTH )
 								mouth_covered = 1
 								safe_thing = victim.head
 						if(victim.glasses)
@@ -2264,7 +2264,7 @@ datum
 					data = 1
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					if(H.species && !(H.species.flags & (NO_PAIN | IS_SYNTHETIC)) )
+					if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
 						switch(data)
 							if(1)
 								H << "\red <b>You feel like your insides are burning !</b>"

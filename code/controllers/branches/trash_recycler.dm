@@ -49,35 +49,25 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 #undef RA_PRODUCT_SPACE
 
 /datum/authority/branch/recycle/proc/FetchProduct(fetch_type, directive)
-	if( isnull(recycling[fetch_type]) || !length(recycling[fetch_type]) ) //If we don't have a fetch type stored, or the stored list has no length.
-		. = FetchFromNew(fetch_type, directive)
-	else . = FetchFromShelf(fetch_type, directive)
+	if( recycling[fetch_type] && length(recycling[fetch_type]) )
+		var/datum/fetched = popleft(recycling[fetch_type]) //Get us the oldest element to reuse.
+		if(fetched) //This shouldn't happen, but the system is not optimized enough to eliminate the outlier cases...
+			fetched.ta_directive = null //Reset this, in case we need to dispose of it later, though it should still be recycled in most cases.
 
-/datum/authority/branch/recycle/proc/FetchFromNew(fetch_type, directive)
+			if(islist(directive)) 	fetched.New(arglist(directive))
+			else 					fetched.New(directive)
+			recycle_count++
+			#if DEBUG_RA_AUTHORITY
+			world << "<span class='debuginfo'>Was able to pull product from shelf.</span>"
+			#endif
+			return fetched
+
+		else log_debug("RA: FetchFromShelf returned a null item: [fetch_type] and it was somehow deleted in the interim. Pulling from new instead.")
+
 	if(islist(directive)) 	. = new fetch_type(arglist(directive)) //Give us a an argument list.
 	else 					. = new fetch_type(directive) //Give us a loc.
 	#if DEBUG_RA_AUTHORITY
 	world << "<span class='debuginfo'>Had to create a new atom. Could not get from shelf.</span>"
-	#endif
-
-/datum/authority/branch/recycle/proc/FetchFromShelf(fetch_type, directive)
-	var/datum/fetched = popleft(recycling[fetch_type]) //Get us the oldest element to reuse.
-	if(!fetched) //This shouldn't happen, but the system is not optimized enough to eliminate the outlier cases...
-		log_debug("RA: FetchFromShelf returned a null item: [fetch_type] and it was somehow deleted in the interim. Pulling from new instead.")
-		return FetchFromNew(fetch_type, directive)
-
-	fetched.ta_directive = null //Reset this, in case we need to dispose of it later, though it should still be recycled in most cases.
-
-	var/atom/movable/fetched_atom
-	if(istype(fetched, /atom/movable)) fetched_atom = fetched //Only atom movable has a loc.
-	if(fetched_atom)		fetched_atom.loc = islist(directive) ? directive[1] : directive
-
-	if(islist(directive)) 	fetched.New(arglist(directive))
-	else 					fetched.New(directive)
-	. = fetched
-	recycle_count++
-	#if DEBUG_RA_AUTHORITY
-	world << "<span class='debuginfo'>Was able to pull product from shelf.</span>"
 	#endif
 
 /*
@@ -97,16 +87,6 @@ so there's honestly not too much to do here.
 			shelf_space += 10
 			log_debug("Increasing RA shelf space. Current maximum space: <b>[shelf_space]</b>")
 
-	StockProduct(product)
-
-	//Time to reset its variables.
-	for(var/I in gathered_variables[product.type]) //We still need to empty lists here. Sigh. Better to just empty them on Dispose().
-		product.vars[I] = islist(product.vars[I]) ? list() : gathered_variables[product.type][I]
-
-	recycling[product.type] += product //Adds it to the list.
-	product.ta_directive = TA_REVIVE_ME //It won't be collected and disposed of later.
-
-/datum/authority/branch/recycle/proc/StockProduct(var/datum/product)
 	if(!gathered_variables[product.type]) //If we don't have a variable reference, we're going to make one.
 		var/blacklist[] = excluded_variables + product.Recycle() //Let's combine these so we know what to exclude in the following step.
 		blacklist &= product.vars //We need to get the items they have in common only, as this is what we need to remove.
@@ -121,6 +101,13 @@ so there's honestly not too much to do here.
 		#if DEBUG_RA_AUTHORITY
 		world << "<span class='debuginfo'>Successfully reset [product.type].</span>"
 		#endif
+
+	//Time to reset its variables.
+	for(var/I in gathered_variables[product.type]) //We still need to empty lists here. Sigh. Better to just empty them on Dispose().
+		product.vars[I] = islist(product.vars[I]) ? list() : gathered_variables[product.type][I]
+
+	recycling[product.type] += product //Adds it to the list.
+	product.ta_directive = TA_REVIVE_ME //It won't be collected and disposed of later.
 
 /*
 This is the opposite of Dispose. You can override this proc for certain things if you want to preserve
@@ -137,37 +124,52 @@ You can also return the entire list of variables if you reset them manually. Not
 /datum/proc/Recycle()
 	return
 
+#if DEBUG_RA_AUTHORITY
+/image/debug_image
+	New(icon,loc,icon_state,layer = FLOAT_LAYER,dir)
+
+/mob/verb/debug_reusable_image()
+	set name = "Test Image Variables"
+	set category = "Debug"
+	set desc = "Test out image creation on New() and the variables as they are set."
+
+	var/directives[] = list('icons/testing/Zone.dmi',src,"assigned",10,10)
+	var/image/debug_image/I = new(arglist(directives))
+	src << "<span class='debuginfo'><b>Initial Spawn</b></span>"
+	src << "<span class='debuginfo'>Icon is [I.icon].</span>"
+	src << "<span class='debuginfo'>Location is [I.loc].</span>"
+	src << "<span class='debuginfo'>Icon state is [I.icon_state].</span>"
+	src << "<span class='debuginfo'>Layer is [I.layer].</span>"
+	src << "<span class='debuginfo'>Direction is [I.dir].</span>"
+
+	I.New(arglist(list('icons/testing/Zone.dmi',src,"assigned2",4,6)))
+	src << "<span class='debuginfo'><b>New() Spawn</b></span>"
+	src << "<span class='debuginfo'>Icon is [I.icon].</span>"
+	src << "<span class='debuginfo'>Location is [I.loc].</span>"
+	src << "<span class='debuginfo'>Icon state is [I.icon_state].</span>"
+	src << "<span class='debuginfo'>Layer is [I.layer].</span>"
+	src << "<span class='debuginfo'>Direction is [I.dir].</span>"
+#endif
 
 /*Generic image parent for any reusable image that works with the recycler.
 Set up on new() as an overlay. layer and dir can be overriden, the other
 stuff is required for it to show up in the first place.*/
 /image/reusable
+	New(IC,LC,IS,L = FLOAT_LAYER,D)
+		icon = IC
+		loc = LC
+		icon_state = IS
+		layer = L
+		dir = D
 
-/image/reusable/Dispose()
-	..()
-	loc = null
-	return TA_REVIVE_ME
+	Dispose()
+		..()
+		loc = null
+		return TA_REVIVE_ME
 
-/image/reusable/Recycle()
-	var/blacklist[] = list("icon","icon_state","loc","layer","dir")
-	. = ..() + blacklist
-
-/*
-/image/reusable/New(ricon, rloc, ricon_state, rlayer = FLOAT_LAYER, rdir)
-	. = ..()
-	world << "icon is [icon]. Icon state is [icon_state]"
-	icon = ricon
-	icon_state = ricon_state
-	loc = rloc
-	layer = rlayer
-	dir = rdir
-*/
-/image/proc/generate_image(IC, LC, IS, LY = FLOAT_LAYER, DR)
-	icon = IC
-	icon_state = IS
-	loc = LC
-	layer = LY
-	dir = DR
+	Recycle()
+		var/blacklist[] = list("icon","icon_state","loc","layer","dir")
+		. = ..() + blacklist
 
 //======================================================
 //======================================================

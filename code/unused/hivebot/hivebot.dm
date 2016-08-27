@@ -310,9 +310,9 @@
 			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
 /*
 		if(src.activated(obj))
-			dat += text("[obj]: \[<B>Activated</B> | <A HREF=?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>")
+			dat += text("[obj]: \[<B>Activated</B>|<A HREF=?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>")
 		else
-			dat += text("[obj]: \[<A HREF=?src=\ref[src];act=\ref[obj]>Activate</A> | <B>Deactivated</B>\]<BR>")
+			dat += text("[obj]: \[<A HREF=?src=\ref[src];act=\ref[obj]>Activate</A>|<B>Deactivated</B>\]<BR>")
 */
 	src << browse(dat, "window=robotmod&can_close=0")
 

@@ -4,8 +4,8 @@
 	icon_state = "pai"
 	item_state = "electronic"
 	w_class = 2.0
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	origin_tech = "programming=2"
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0

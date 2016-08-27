@@ -298,7 +298,7 @@
 	if(istype(part_set))
 		for(var/obj/item/part in part_set)
 			var/resources_available = check_resources(part)
-			output += "<div class='part'>[output_part_info(part)]<br>\[[resources_available?"<a href='?src=\ref[src];part=\ref[part]'>Build</a> | ":null]<a href='?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
+			output += "<div class='part'>[output_part_info(part)]<br>\[[resources_available?"<a href='?src=\ref[src];part=\ref[part]'>Build</a>|":null]<a href='?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
 	return output
 
 /obj/machinery/mecha_part_fabricator/proc/output_part_info(var/obj/item/part)
@@ -311,7 +311,7 @@
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))//The most efficient way to go about this. Not all objects have these vars, but if they don't then they CANNOT be made by the mech fab. Doing it this way reduces a major amount of typecasting and switches, while cutting down maintenece for them as well -Sieve
 		for(var/c in part:construction_cost)//The check should ensure that anything without the var doesn't make it to this point
 			if(c in resources)
-				output += "[i?" | ":null][get_resource_cost_w_coeff(part,c)] [c]"
+				output += "[i?"|":null][get_resource_cost_w_coeff(part,c)] [c]"
 				i++
 		return output
 	else
@@ -323,7 +323,7 @@
 		var/amount = min(res_max_amount, resources[resource])
 		output += "<span class=\"res_name\">[resource]: </span>[amount] cm&sup3;"
 		if(amount>0)
-			output += "<span style='font-size:80%;'> - Remove \[<a href='?src=\ref[src];remove_mat=1;material=[resource]'>1</a>\] | \[<a href='?src=\ref[src];remove_mat=10;material=[resource]'>10</a>\] | \[<a href='?src=\ref[src];remove_mat=[res_max_amount];material=[resource]'>All</a>\]</span>"
+			output += "<span style='font-size:80%;'> - Remove \[<a href='?src=\ref[src];remove_mat=1;material=[resource]'>1</a>\]|\[<a href='?src=\ref[src];remove_mat=10;material=[resource]'>10</a>\]|\[<a href='?src=\ref[src];remove_mat=[res_max_amount];material=[resource]'>All</a>\]</span>"
 		output += "<br/>"
 	return output
 
@@ -415,7 +415,7 @@
 		if(!check_resources(part))
 			src.visible_message("\icon[src] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
 			temp = {"<font color='red'>Not enough resources to build next part.</font><br>
-						<a href='?src=\ref[src];process_queue=1'>Try again</a> | <a href='?src=\ref[src];clear_temp=1'>Return</a><a>"}
+						<a href='?src=\ref[src];process_queue=1'>Try again</a>|<a href='?src=\ref[src];clear_temp=1'>Return</a><a>"}
 			return 0
 		remove_from_queue(1)
 		build_part(part)
@@ -438,7 +438,7 @@
 					remove_from_queue(i)//Trash it
 					return list_queue()//Rebuild it
 		output += "</ol>"
-		output += "\[<a href='?src=\ref[src];process_queue=1'>Process queue</a> | <a href='?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
+		output += "\[<a href='?src=\ref[src];process_queue=1'>Process queue</a>|<a href='?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
 	return output
 
 /obj/machinery/mecha_part_fabricator/proc/convert_designs()

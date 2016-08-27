@@ -8,7 +8,7 @@
 	universal_speak = 0
 	universal_understand = 1
 	gender = NEUTER
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 	braintype = "Robot"
 	lawupdate = 0
 	density = 1

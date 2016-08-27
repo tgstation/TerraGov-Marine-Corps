@@ -36,15 +36,15 @@
 			if(numaliens > 0 && !new_alien) //We ran out of total alien candidates!
 				numaliens = 0
 			else
-				aliens += new_alien
+				xenomorphs += new_alien
 				possible_aliens -= new_alien
 				numaliens--
 
-	if(!aliens.len) //Our list is empty! This shouldn't EVER happen. Abort!
+	if(!xenomorphs.len) //Our list is empty! This shouldn't EVER happen. Abort!
 		world << "<h2 style=\"color:red\">Something is messed up with the alien generator - no alien candidates found. Aborting.</h2>"
 		return 0
 
-	for(var/datum/mind/A in aliens)
+	for(var/datum/mind/A in xenomorphs)
 		A.assigned_role = "MODE"
 		A.special_role = "Alien"
 
@@ -79,7 +79,7 @@
 //Xenos and survivors should not spawn anywhere until we transform them.
 /datum/game_mode/Halloween/post_setup()
 
-	for(var/datum/mind/alien in aliens) //Build and move the xenos.
+	for(var/datum/mind/alien in xenomorphs) //Build and move the xenos.
 		transform_xeno(alien)
 
 	for(var/datum/mind/survivor in survivors) //Build and move to the survivors.
@@ -304,9 +304,9 @@
 	world << "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]."
 
 	spawn(45)
-		if(aliens.len)
+		if(xenomorphs.len)
 			var/text = "<FONT size = 3><B>The Queen(s) were:</B></FONT>"
-			for(var/datum/mind/A in aliens)
+			for(var/datum/mind/A in xenomorphs)
 				if(A)
 					var/mob/M = A.current
 					if(!M)

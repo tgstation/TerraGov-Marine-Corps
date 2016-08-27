@@ -472,7 +472,7 @@
 	item_state = "zippo"
 	storage_slots = 10
 	w_class = 1
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	can_hold = list("/obj/item/weapon/flame/match")
 
 	New()

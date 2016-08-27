@@ -91,7 +91,7 @@
 		text=cap
 	var/q = 0
 	msg+=text
-	if(msg=="What" | msg == "Who" | msg == "How" | msg == "Why" | msg == "Are")
+	if(msg=="What"|msg == "Who"|msg == "How"|msg == "Why"|msg == "Are")
 		q=1
 
 	text=lowertext(text)

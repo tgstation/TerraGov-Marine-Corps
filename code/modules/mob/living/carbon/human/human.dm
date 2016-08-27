@@ -427,9 +427,9 @@
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
-	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
+	if( wear_mask && (wear_mask.flags_inventory&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
-	if( head && (head.flags_inv&HIDEFACE) )
+	if( head && (head.flags_inventory&HIDEFACE) )
 		return get_id_name("Unknown")		//Likewise for hats
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
@@ -792,19 +792,21 @@
 /mob/living/carbon/human/eyecheck()
 	var/number = 0
 
-	if(!species.has_organ["eyes"]) //No eyes, can't hurt them.
-		return 2
+	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
+
 
 	if(internal_organs_by_name["eyes"]) // Eyes are fucked, not a 'weak point'.
 		var/datum/organ/internal/I = internal_organs_by_name["eyes"]
 		if(I.status & ORGAN_CUT_AWAY)
 			return 2
-	else
-		return 2
+	else return 2
+
 
 	if(istype(src.head, /obj/item/clothing/head/welding))
 		if(!src.head:up)
 			number += 2
+	if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
+		number += 2
 	if(istype(src.head, /obj/item/clothing/head/helmet/space))
 		number += 2
 	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
@@ -1031,7 +1033,7 @@
 		reset_view(0)
 
 /mob/living/carbon/human/proc/get_visible_gender()
-	if(wear_suit && wear_suit.flags_inv & HIDEJUMPSUIT && ((head && head.flags_inv & HIDEMASK) || wear_mask))
+	if(wear_suit && wear_suit.flags_inventory & HIDEJUMPSUIT && ((head && head.flags_inventory & HIDEMASK) || wear_mask))
 		return NEUTER
 	return gender
 
@@ -1328,10 +1330,10 @@
 
 	switch(target_zone)
 		if("head")
-			if(head && head.flags_inv & BLOCKSHARPOBJ)
+			if(head && head.flags_inventory & BLOCKSHARPOBJ)
 				. = 0
 		else
-			if(wear_suit && wear_suit.flags_inv & BLOCKSHARPOBJ)
+			if(wear_suit && wear_suit.flags_inventory & BLOCKSHARPOBJ)
 				. = 0
 	if(!. && error_msg && user)
  		// Might need re-wording.
@@ -1349,21 +1351,21 @@
 	var/feet_exposed = 1
 
 	for(var/obj/item/clothing/C in equipment)
-		if(C.body_parts_covered & HEAD)
+		if(C.flags_armor_protection & HEAD)
 			head_exposed = 0
-		if(C.body_parts_covered & FACE)
+		if(C.flags_armor_protection & FACE)
 			face_exposed = 0
-		if(C.body_parts_covered & EYES)
+		if(C.flags_armor_protection & EYES)
 			eyes_exposed = 0
-		if(C.body_parts_covered & UPPER_TORSO)
+		if(C.flags_armor_protection & UPPER_TORSO)
 			torso_exposed = 0
-		if(C.body_parts_covered & ARMS)
+		if(C.flags_armor_protection & ARMS)
 			arms_exposed = 0
-		if(C.body_parts_covered & HANDS)
+		if(C.flags_armor_protection & HANDS)
 			hands_exposed = 0
-		if(C.body_parts_covered & LEGS)
+		if(C.flags_armor_protection & LEGS)
 			legs_exposed = 0
-		if(C.body_parts_covered & FEET)
+		if(C.flags_armor_protection & FEET)
 			feet_exposed = 0
 
 	flavor_text = flavor_texts["general"]

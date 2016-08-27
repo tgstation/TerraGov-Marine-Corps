@@ -22,8 +22,8 @@
 	if(!message)
 		return
 
-	if(ticker && ticker.mode.aliens.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in ticker.mode.aliens)
+	if(ticker && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client) //Only living and connected xenos
 				M << "\red <font size=[size]> [message]</font>"

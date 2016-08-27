@@ -4,10 +4,10 @@
 	item_color = "black"
 	desc = "A pair of black shoes."
 
-	cold_protection = FEET
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_cold_protection = FEET
+	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	flags_heat_protection = FEET
+	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 
 	redcoat
 		item_color = "redcoat"	//Exists for washing machines. Is not different from black shoes in any way.

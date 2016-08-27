@@ -7,6 +7,24 @@
 //All this stuff was written by Absynth.
 //Edited by Apop - 11JUN16
 
+#define DEBUG_XENO 0
+
+#if DEBUG_XENO
+/mob/verb/debug_xeno_mind()
+	set name =  "Debug Xeno Mind"
+	set category = "Debug"
+	set desc = "Shows whether or not a mine is contained within the xenomorph list."
+
+	if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
+		src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
+		return
+	if(mind in ticker.mode.xenomorphs)
+		src << "<span class='debuginfo'>[src] mind is in the xenomorph list. Mind key is [mind.key].</span>"
+		src << "<span class='debuginfo'>Current mob is: [mind.current]. Original mob is: [mind.original].</span>"
+	else src << "<span class='debuginfo'>This xenomorph is not in the xenomorph list.</span>"
+#endif
+
+#undef DEBUG_XENO
 
 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 var/global/slashing_allowed = 0
@@ -137,14 +155,6 @@ var/global/hive_orders = "" //What orders should the hive have
 			nicknumber = rand(1,999)
 			name = "Young [caste] ([nicknumber])"
 			real_name = name
-		if(src.mind) //Are we not an NPC? Set us to actually be a xeno.
-			src.mind.assigned_role = "MODE"
-			src.mind.special_role = "Alien"
-			src.mind.name  = real_name
-			//Add them to the gametype xeno tracker
-			if(ticker && ticker.current_state >= GAME_STATE_PLAYING && ticker.mode.aliens.len && !is_robotic) //Robots don't get added.
-				if(!(src.mind in ticker.mode.aliens))
-					ticker.mode.aliens += src.mind
 
 	regenerate_icons()
 
@@ -185,6 +195,6 @@ var/global/hive_orders = "" //What orders should the hive have
 			return ..()
 
 /mob/living/carbon/Xenomorph/Del() //If mob is deleted, remove it off the xeno list completely.
-	if(!isnull(src) && !isnull(src.mind) && !isnull(ticker.mode) && ticker.mode.aliens.len && src.mind in ticker.mode.aliens)
-		ticker.mode.aliens -= src.mind
+	if(!isnull(src) && !isnull(src.mind) && !isnull(ticker.mode) && ticker.mode.xenomorphs.len && mind in ticker.mode.xenomorphs)
+		ticker.mode.xenomorphs -= mind
 	..()

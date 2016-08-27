@@ -4,7 +4,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "stool"
 	anchored = 1.0
-	flags = FPRINT
+	flags_atom = FPRINT
 	pressure_resistance = 15
 
 /obj/structure/stool/ex_act(severity)

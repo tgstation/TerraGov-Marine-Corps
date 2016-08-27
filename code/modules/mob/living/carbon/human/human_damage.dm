@@ -142,12 +142,12 @@
 	..()
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.flags & (IS_SYNTHETIC | NO_SCAN))
+	if(species.flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(var/amount)
-	if(species.flags & (IS_SYNTHETIC | NO_SCAN))
+	if(species.flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	else
 		..()
@@ -155,7 +155,7 @@
 /mob/living/carbon/human/adjustCloneLoss(var/amount)
 	..()
 
-	if(species.flags & (IS_SYNTHETIC | NO_SCAN))
+	if(species.flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 		return
 
@@ -350,7 +350,7 @@ This function restores all organs.
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 
-	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
+	//visible_message("Hit debug. [damage]|[damagetype]|[def_zone]|[blocked]|[sharp]|[used_weapon]")
 
 	//Handle other types of damage
 	if((damagetype != BRUTE) && (damagetype != BURN))

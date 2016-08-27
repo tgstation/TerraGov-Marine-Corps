@@ -322,13 +322,13 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar_control/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN | NOPOWER)) return
+	if(stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN | NOPOWER)) return
+	if(stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 
@@ -368,7 +368,7 @@ var/list/solars_list = list()
 	lastgen = gen
 	gen = 0
 
-	if(stat & (NOPOWER | BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		return
 
 	//use_power(250)
@@ -385,7 +385,7 @@ var/list/solars_list = list()
 
 // called by solar tracker when sun position changes
 /obj/machinery/power/solar_control/proc/tracker_update(var/angle)
-	if(track != 2 || stat & (NOPOWER | BROKEN))
+	if(track != 2 || stat & (NOPOWER|BROKEN))
 		return
 	cdir = angle
 	set_panels(cdir)
@@ -394,7 +394,7 @@ var/list/solars_list = list()
 
 
 /obj/machinery/power/solar_control/interact(mob/user)
-	if(stat & (BROKEN | NOPOWER)) return
+	if(stat & (BROKEN|NOPOWER)) return
 	if ( (get_dist(src, user) > 1 ))
 		if (!istype(user, /mob/living/silicon))
 			user.unset_machine()

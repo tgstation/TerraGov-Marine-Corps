@@ -243,7 +243,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 1
 	density = 0
 	var/datum/effect/effect/system/smoke_spread/xeno_acid/smoke
@@ -287,7 +287,7 @@
 	if(isYautja(M) && prob(75))
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(40))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(40))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else
@@ -318,7 +318,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "acidblob"
 	det_time = 8
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 1
 	var/datum/effect/effect/system/smoke_spread/xeno_weaken/smoke
 
@@ -363,7 +363,7 @@
 	if(M.stat)
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inv & ALLOWINTERNALS) && prob(75))
+	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(75))
 		M << "<b>Your gas mask protects you!</b>"
 		return
 	else

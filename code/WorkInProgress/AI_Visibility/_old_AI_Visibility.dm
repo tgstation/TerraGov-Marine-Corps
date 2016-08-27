@@ -108,7 +108,7 @@
 
 	minimap_icon.Blend(rgb(255, 0, 0), ICON_MULTIPLY)
 
-	var/list/turfs = visibleTurfs | dimTurfs
+	var/list/turfs = visibleTurfs|dimTurfs
 
 	for(var/turf/turf in turfs)
 		var/x = (turf.x & 0xf) * 2

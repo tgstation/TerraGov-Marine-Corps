@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	//w_class = 2.0
 	//flags = GLASSESCOVERSEYES
-	//slot_flags = SLOT_EYES
+	//flags_equip_slot = SLOT_EYES
 	//var/vision_flags = 0
 	//var/darkness_view = 0//Base human is 2
 	//var/invisa_view = 0
@@ -12,7 +12,7 @@
 	var/toggleable = 0
 	var/active = 1
 	var/obj/screen/overlay = null
-	body_parts_covered = EYES
+	flags_armor_protection = EYES
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
@@ -69,14 +69,14 @@
 	desc = "Yarr."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/material
 	name = "Optical Material Scanner"
@@ -94,7 +94,7 @@
 	icon_state = "glasses"
 	item_state = "glasses"
 	prescription = 1
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "Prescription Glasses"
@@ -107,14 +107,14 @@
 	name = "3D glasses"
 	icon_state = "3d"
 	item_state = "3d"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/gglasses
 	name = "Green Glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/sunglasses
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
@@ -129,7 +129,7 @@
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	icon_action_button = "action_welding_g"
-	flags_inv = COVEREYES | HIDEEYES
+	flags_inventory = COVEREYES|HIDEEYES
 	var/up = 0
 
 /obj/item/clothing/glasses/welding/attack_self()
@@ -144,14 +144,14 @@
 	if(usr.canmove && !usr.stat && !usr.restrained())
 		if(src.up)
 			src.up = !src.up
-			flags_inv |= (COVEREYES | HIDEEYES)
-			body_parts_covered |= EYES
+			flags_inventory |= (COVEREYES|HIDEEYES)
+			flags_armor_protection |= EYES
 			icon_state = initial(icon_state)
 			usr << "You flip \the [src] down to protect your eyes."
 		else
 			src.up = !src.up
-			flags_inv &= ~(COVEREYES | HIDEEYES)
-			body_parts_covered &= ~EYES
+			flags_inventory &= ~(COVEREYES|HIDEEYES)
+			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push \the [src] up out of your face."
 
@@ -233,9 +233,9 @@
 	name = "Thermoncle"
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
-	flags = null //doesn't protect eyes because it's a monocle, duh
+	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 	toggleable = 0
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/thermal/eyepatch
 	name = "Optical Thermal Eyepatch"
@@ -243,7 +243,7 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	toggleable = 0
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/glasses/thermal/jensen
 	name = "Optical Thermal Implants"

@@ -15,10 +15,10 @@ into helmets.dm*/
 /obj/item/clothing/head
 	name = "head"
 	icon = 'icons/obj/clothing/hats.dmi'
-	body_parts_covered = HEAD
-	slot_flags = SLOT_HEAD
-	pass_flags = PASSTABLE
-	flags = FPRINT
+	flags_armor_protection = HEAD
+	flags_equip_slot = SLOT_HEAD
+	flags_pass = PASSTABLE
+	flags_atom = FPRINT
 	w_class = 2.0
 	var/anti_hug = 0
 
@@ -38,10 +38,10 @@ into helmets.dm*/
 	item_state = "band"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "band"
-	flags_inv = HIDETOPHAIR
+	flags_inventory = HIDETOPHAIR
 	New()
-		..()
 		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_band") )
+		..()
 
 /obj/item/clothing/head/cmbandana/tan
 	icon_state = "band2"
@@ -58,8 +58,8 @@ into helmets.dm*/
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "beret"
 	New()
-		..()
 		select_gamemode_skin(/obj/item/clothing/head/cmberet, list(/datum/game_mode/ice_colony = "s_beret") )
+		..()
 
 /obj/item/clothing/head/cmberet/tan
 	icon_state = "berettan"
@@ -80,15 +80,15 @@ into helmets.dm*/
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "headband"
 	New()
-		..()
 		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "ushanka") )
+		..()
 		switch(icon_state)
 			if("ushanka") //Weird case, since the item basically transforms into another item.
 				name = "\improper USCM ushanka"
 				desc = "Worn during cold operations by idiots."
-				cold_protection = HEAD
-				min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-				flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
+				flags_cold_protection = HEAD
+				min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+				flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 
 /obj/item/clothing/head/headband/red
 	icon_state = "headbandred"
@@ -113,8 +113,8 @@ into helmets.dm*/
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	item_color = "cap"
 	New()
-		..()
 		select_gamemode_skin(/obj/item/clothing/head/cmcap)
+		..()
 
 /obj/item/clothing/head/cmcap/ro
 	name = "\improper USCM officer cap"
@@ -144,7 +144,7 @@ into helmets.dm*/
 	icon_state = "greysoft"
 	item_color = "grey"
 	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
-	flags_inv = BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/soft/marine/alpha
 	name = "alpha squad sergeant cap"
@@ -179,7 +179,7 @@ into helmets.dm*/
 	desc = "A beret with the ensign insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "beret_badge"
 	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
-	flags_inv = BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/commander
 	name = "marine commander beret"
@@ -210,9 +210,9 @@ into helmets.dm*/
 	icon_state = "ushankadown"
 	item_state = "ushankadown"
 	armor = list(melee = 35, bullet = 35, laser = 20, energy = 10, bomb = 10, bio = 0, rad = 0)
-	cold_protection = HEAD
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
+	flags_cold_protection = HEAD
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 	anti_hug = 1
 
 /obj/item/clothing/head/bearpelt
@@ -222,10 +222,10 @@ into helmets.dm*/
 	item_state = "bearpelt"
 	siemens_coefficient = 2.0
 	anti_hug = 4
-	body_parts_covered = HEAD|UPPER_TORSO|ARMS
+	flags_armor_protection = HEAD|UPPER_TORSO|ARMS
 	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
-	cold_protection = HEAD|UPPER_TORSO|ARMS
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inv = HIDEEARS | HIDETOPHAIR | BLOCKSHARPOBJ
+	flags_cold_protection = HEAD|UPPER_TORSO|ARMS
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
 
 

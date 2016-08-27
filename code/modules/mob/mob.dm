@@ -113,7 +113,7 @@
 		//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 		if(W.zoom)
 			W.zoom()
-		if(W.flags & TWOHANDED)
+		if(W.flags_atom & TWOHANDED)
 			W.unwield(src)
 	return 1
 
@@ -718,12 +718,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 	var/half_period = period / 2
 	var/quarter_period = period / 4
 
-	animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING | EASE_OUT, loop = -1)		//up
+	animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING|EASE_OUT, loop = -1)		//up
 	animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
-	animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING | EASE_IN, loop = -1)			//back
+	animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING|EASE_IN, loop = -1)			//back
 
 /mob/proc/stop_floating()
-	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING | EASE_IN) //halt animation
+	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING|EASE_IN) //halt animation
 	//reset the pixel offsets to zero
 	is_floating = 0
 

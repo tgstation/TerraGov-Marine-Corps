@@ -4,7 +4,7 @@
 	icon_state = "combat_knife"
 	item_state = "knife"
 	desc = "The standard issue combat bayonet issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	sharp = 1
 	force = 25
 	w_class = 1.0
@@ -44,7 +44,7 @@
 	icon='icons/obj/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	sharp = 1
 	force = 10
 	w_class = 1.0
@@ -53,15 +53,15 @@
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	slot_flags = SLOT_POCKET
+	flags_equip_slot = SLOT_POCKET
 
 /obj/item/weapon/claymore
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
 	item_state = "claymore"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	force = 40
 	throwforce = 10
 	sharp = 1
@@ -88,7 +88,7 @@
 	item_state = "machete"
 	item_color = "machete"
 	force = 35
-	slot_flags = SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	w_class = 4.0
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -100,8 +100,8 @@
 	desc = "A finely made Japanese sword, expertly crafted by a dedicated weaponsmith. It has some foreign letters carved into the hilt."
 	icon_state = "katana"
 	item_state = "katana"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT | SLOT_BACK
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT|SLOT_BACK
 	force = 40
 	throwforce = 10
 	sharp = 1
@@ -156,8 +156,8 @@
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "powerpack"
 	item_state = "powerpack"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BACK
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BACK
 	w_class = 5.0
 	var/obj/item/weapon/cell/pcell = null
 	var/rounds_remaining = 250
@@ -165,8 +165,8 @@
 	var/reloading = 0
 
 	New()
-		..()
 		select_gamemode_skin(/obj/item/smartgun_powerpack)
+		..()
 		pcell = new /obj/item/weapon/cell(src)
 
 	attack_self(mob/user)
@@ -334,7 +334,7 @@
 			if(ticker && ticker.mode)
 				switch(ticker.mode.name)
 					if("Ice Colony")
-						new /obj/item/clothing/under/marine/snow/sniper(src)
+						new /obj/item/clothing/under/marine/sniper(src)
 						new /obj/item/weapon/storage/backpack/marine/satchel(src)
 						new /obj/item/bodybag/tarp/snow(src)
 					else
@@ -437,7 +437,7 @@
 	icon_state = "grenade_fire"
 	det_time = 40
 	item_state = "grenade_fire"
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	dangerous = 1
 
 	prime()
@@ -545,7 +545,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	throw_range = 6
 	throw_speed = 3
 	unacidable = 1
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 
 	var/triggered = 0
 	var/triggertype = "explosive" //Calls that proc

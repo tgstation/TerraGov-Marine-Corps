@@ -27,19 +27,19 @@
 		switch(ptype)
 			if(0)
 				base_state = "pipe-s"
-				dpdir = dir | flip
+				dpdir = dir|flip
 			if(1)
 				base_state = "pipe-c"
-				dpdir = dir | right
+				dpdir = dir|right
 			if(2)
 				base_state = "pipe-j1"
-				dpdir = dir | right | flip
+				dpdir = dir|right|flip
 			if(3)
 				base_state = "pipe-j2"
-				dpdir = dir | left | flip
+				dpdir = dir|left|flip
 			if(4)
 				base_state = "pipe-y"
-				dpdir = dir | left | right
+				dpdir = dir|left|right
 			if(5)
 				base_state = "pipe-t"
 				dpdir = dir
@@ -60,11 +60,11 @@
 
 			if(9)
 				base_state = "pipe-j1s"
-				dpdir = dir | right | flip
+				dpdir = dir|right|flip
 
 			if(10)
 				base_state = "pipe-j2s"
-				dpdir = dir | left | flip
+				dpdir = dir|left|flip
 ///// Z-Level stuff
 			if(11)
 				base_state = "pipe-u"
@@ -75,10 +75,10 @@
 ///// Z-Level stuff
 			if(13)
 				base_state = "pipe-tagger"
-				dpdir = dir | flip
+				dpdir = dir|flip
 			if(14)
 				base_state = "pipe-tagger-partial"
-				dpdir = dir | flip
+				dpdir = dir|flip
 
 
 ///// Z-Level stuff

@@ -10,13 +10,13 @@
 
 	attack_self(mob/user)
 		if(magpulse)
-			flags_inv &= ~NOSLIPPING
+			flags_inventory &= ~NOSLIPPING
 			slowdown = SHOES_SLOWDOWN
 			magpulse = 0
 			icon_state = "magboots0"
 			user << "You disable the mag-pulse traction system."
 		else
-			flags_inv |= NOSLIPPING
+			flags_inventory |= NOSLIPPING
 			slowdown = 2
 			magpulse = 1
 			icon_state = "magboots1"
@@ -27,6 +27,6 @@
 		set src in view()
 		..()
 		var/state = "disabled"
-		if(flags_inv&NOSLIPPING)
+		if(flags_inventory&NOSLIPPING)
 			state = "enabled"
 		usr << "Its mag-pulse traction system appears to be [state]."

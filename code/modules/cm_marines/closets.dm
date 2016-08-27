@@ -16,13 +16,12 @@
 			new /obj/item/clothing/suit/storage/marine(src)
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/clothing/head/helmet/marine(src)
-			new /obj/item/device/flashlight(src)
 			new /obj/item/clothing/shoes/marine(src)
 			new /obj/item/clothing/under/marine(src)
 
 	select_gamemode_equipment(gamemode)
 		switch(gamemode)
-			if("Ice Colony")
+			if(/datum/game_mode/ice_colony)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 
 //MARINE COMMAND CLOSET
@@ -158,6 +157,7 @@
 	icon_off = "squad_alpha_off"
 
 	New()
+		..()
 		spawn(5)
 			new /obj/item/clothing/gloves/marine/alpha(src)
 			new /obj/item/device/radio/headset/malpha(src)
@@ -174,6 +174,7 @@
 	icon_off = "squad_bravo_off"
 
 	New()
+		..()
 		spawn(6)
 			new /obj/item/clothing/gloves/marine/bravo(src)
 			new /obj/item/device/radio/headset/mbravo(src)
@@ -190,6 +191,7 @@
 	icon_off = "squad_charlie_off"
 
 	New()
+		..()
 		spawn(7)
 			new /obj/item/clothing/gloves/marine/charlie(src)
 			new /obj/item/device/radio/headset/mcharlie(src)
@@ -206,6 +208,7 @@
 	icon_off = "squad_delta_off"
 
 	New()
+		..()
 		spawn(8)
 			new /obj/item/clothing/gloves/marine/delta(src)
 			new /obj/item/device/radio/headset/mdelta(src)
@@ -248,7 +251,7 @@
 
 	select_gamemode_equipment(gamemode)
 		switch(gamemode)
-			if("Ice Colony")
+			if(/datum/game_mode/ice_colony)
 				new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 

@@ -416,7 +416,7 @@
 	throw_speed = 0.5
 	item_state = "ciglit"
 	w_class = 1
-	body_parts_covered = null
+	flags_armor_protection = null
 
 //Strange penlight, Nerezza: Asher Spock
 
@@ -727,7 +727,7 @@
 	desc = "A black hat.  The inside has the words, \"Lieutenant James Girard, LPD SWAT Team Four.\""
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "swatcap"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/welding/fluff/alice_mccrea_1 //madmalicemccrea: Alice McCrea
 	name = "flame decal welding helmet"
@@ -760,10 +760,10 @@
 	desc = "Hey, I think we're missing a hazard vest..."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "taryn_kifer_1"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/fluff
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /obj/item/clothing/head/fluff/edvin_telephosphor_1 //foolamancer: Edvin Telephosphor
 	name = "Edvin's Hat"
@@ -847,7 +847,7 @@
 
 /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle
 	icon = 'icons/obj/chemical.dmi'
-	flags = FPRINT //Starting them with lids on them.  Safety first!
+	flags_atom = FPRINT //Starting them with lids on them.  Safety first!
 	New(loc, var/color, var/labeled)
 		..()
 		name = "[labeled] bottle"
@@ -861,7 +861,7 @@
 	desc = "A labcoat with a few markings denoting it as the labcoat of roboticist."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "aeneasrinil"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
 /obj/item/clothing/suit/storage/labcoat/fluff/pink //spaceman96: Trenna Seber
 	name = "pink labcoat"
@@ -897,7 +897,7 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "mantle-unathi"
 	item_state = "mantle-unathi"
-	body_parts_covered = 0
+	flags_armor_protection = 0
 
 /////////////////////////////// 50_n00b - R.A.N.G.E.'s blue dress //////////////////////////
 
@@ -907,7 +907,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "br_dress"
 	item_state = "br_dress"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 //////////////////////////////// Broseph Stylin - Lombardi's Jacket ///////////////////////////
 
@@ -917,7 +917,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "lombardi_jacket"
 	item_state = "lombardi_jacket"
-	body_parts_covered = UPPER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|ARMS
 
 	verb/toggle()
 		set name = "Toggle Jacket Buttons"
@@ -970,7 +970,7 @@
 	icon_state = "lilith_uniform"
 	item_state = "lilith_uniform"
 	item_color = "lilith_uniform"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/fluff/ana_issek_1 //suethecake: Ana Issek
 	name = "retired uniform"
@@ -979,7 +979,7 @@
 	icon_state = "ana_uniform"
 	item_state = "ana_uniform"
 	item_color = "ana_uniform"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/fluff/olddressuniform //desiderium: Momiji Inubashiri
 	name = "retired dress uniform"
@@ -1005,7 +1005,7 @@
 	icon_state = "harper_uniform"
 	item_state = "jensensuit"
 	item_color = "harper_uniform"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 //////////////////// Layla's Dress - Layla Davies-Halabi - sabirm ///////////////
 
@@ -1030,7 +1030,7 @@
 	icon_state = "tian_dress"
 	item_state = "tian_dress"
 	item_color = "tian_dress"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/rank/bartender/fluff/classy	//searif: Ara Al-Jazari
 	name = "classy bartender uniform"
@@ -1115,7 +1115,7 @@
 	icon_state = "lillian_dress"
 	item_state = "lillian_dress"
 	item_color = "lillian_dress"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 ////// Cybernetic Casings - Parker Eliza - MrSnapwalk
 /obj/item/clothing/under/fluff/parkereliza
@@ -1125,7 +1125,7 @@
 	icon_state = "parker_eliza"
 	item_state = "parker_eliza"
 	item_color = "parker_eliza"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS
 
 
 ////////////// Accessories /////
@@ -1140,7 +1140,7 @@
 	item_state = "radi_pendant"
 	item_color = "radi_pendant"
 	w_class = 2.0
-	slot_flags = 0
+	flags_equip_slot = 0
 
 //////////// Masks ////////////
 
@@ -1171,7 +1171,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	item_state = "head_m"
 	icon_state = "head_m"
-	body_parts_covered = FACE|EYES
+	flags_armor_protection = FACE|EYES
 
 ////// Small locket - Altair An-Nasaqan - Serithi
 
@@ -1182,9 +1182,9 @@
 	icon_state = "altair_locket"
 	item_state = "altair_locket"
 	item_color = "altair_locket"
-	slot_flags = 0
+	flags_equip_slot = 0
 	w_class = 2
-	slot_flags = SLOT_MASK
+	flags_equip_slot = SLOT_MASK
 
 ////// Silver locket - Konaa Hirano - Konaa_Hirano
 
@@ -1195,10 +1195,10 @@
 	icon_state = "konaahirano"
 	item_state = "konaahirano"
 	item_color = "konaahirano"
-	slot_flags = 0
-	flags = FPRINT|CONDUCT
+	flags_equip_slot = 0
+	flags_atom = FPRINT|CONDUCT
 	w_class = 2
-	slot_flags = SLOT_MASK
+	flags_equip_slot = SLOT_MASK
 	var/obj/item/held //Item inside locket.
 
 /obj/item/clothing/tie/fluff/konaa_hirano/attack_self(mob/user as mob)
@@ -1226,9 +1226,9 @@
 	desc = "This silvered medallion bears the symbol of the Hadii Clan of the Tajaran."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "nasir_khayyam_1"
-	flags = FPRINT|CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	w_class = 2
-	slot_flags = SLOT_MASK
+	flags_equip_slot = SLOT_MASK
 
 ////// Emerald necklace - Ty Foster - Nega
 
@@ -1246,8 +1246,8 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "michael_guess_1"
 	w_class = 2
-	slot_flags = SLOT_MASK
-	body_parts_covered = 0
+	flags_equip_slot = SLOT_MASK
+	flags_armor_protection = 0
 
 //////////// Shoes ////////////
 
@@ -1290,7 +1290,7 @@
 	icon_state = "medical_short"
 	item_state = "medical_short"
 	item_color = "medical_short"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/suit/storage/labcoat/fluff/red
 	name = "red labcoat"
@@ -1363,7 +1363,7 @@
 	icon_state = "mai_yang"
 	item_state = "mai_yang"
 	item_color = "mai_yang"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
 	name = "Sakura Kimono"

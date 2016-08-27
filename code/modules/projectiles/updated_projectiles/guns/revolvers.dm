@@ -6,7 +6,7 @@
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/44mag.ogg'
@@ -20,7 +20,7 @@
 	var/recent_trick //So they're not spamming tricks.
 	var/russian_roulette = 0 //God help you if you do this.
 	type_of_casings = "bullet"
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
 	New()
 		..() //Do all that other stuff.
@@ -45,7 +45,7 @@
 		playsound(user, cocked_sound, 70, 1)
 		russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 
-/obj/item/weapon/gun/revolver/proc/replace_cylinder(var/number_to_replace)
+/obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
 	var/i
@@ -74,8 +74,8 @@
 	return 1
 
 /obj/item/weapon/gun/revolver
-	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	reload(mob/user, obj/item/ammo_magazine/magazine)
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 		if(!magazine || !istype(magazine))
 			user << "<span class='warning'>That's not gonna work!</span>"
@@ -115,7 +115,7 @@
 			else 		user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
 
 	unload(mob/user)
-		if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+		if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 		if(current_mag.chamber_closed) //If it's actually closed.
 			user << "<span class='notice'>You clear the cylinder of [src].</span>"
@@ -254,7 +254,7 @@
 /obj/item/ammo_magazine/revolver
 	name = "\improper M44 magnum speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver
-	slot_flags = null
+	flags_equip_slot = null
 	caliber = ".44"
 	icon_state = "m44"
 	max_rounds = 7
@@ -325,7 +325,7 @@
 	force = 8
 	attachable_allowed = list(/obj/item/attachable/compensator)
 
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
 	New()
 		..()
@@ -358,7 +358,7 @@
 	fire_sound = 'sound/weapons/pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_MERCS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS
 
 	New()
 		..()
@@ -401,7 +401,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 
-	gun_features = GUN_CAN_POINTBLANK | GUN_INTERNAL_MAG | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_RUSSIANS
 
 	New()
 		..()

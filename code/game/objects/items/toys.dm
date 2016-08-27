@@ -127,7 +127,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "revolver"
 	item_state = "gun"
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	w_class = 3.0
 
 	matter = list("glass" = 10,"metal" = 10)
@@ -322,7 +322,7 @@
 	item_state = "sword0"
 	var/active = 0.0
 	w_class = 2.0
-	flags = FPRINT | NOSHIELD
+	flags_atom = FPRINT|NOSHIELD
 	attack_verb = list("attacked", "struck", "hit")
 
 	attack_self(mob/user as mob)
@@ -354,8 +354,8 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "katana"
 	item_state = "katana"
-	flags = FPRINT | CONDUCT | NOSHIELD
-	slot_flags = SLOT_BELT | SLOT_BACK
+	flags_atom = FPRINT|CONDUCT|NOSHIELD
+	flags_equip_slot = SLOT_BELT|SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = 3
@@ -572,8 +572,8 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "katana"
 	item_state = "katana"
-	flags = FPRINT | NOSHIELD | CONDUCT
-	slot_flags = SLOT_BELT | SLOT_BACK
+	flags_atom = FPRINT|NOSHIELD|CONDUCT
+	flags_equip_slot = SLOT_BELT|SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = 3
@@ -635,7 +635,7 @@
 	desc = "This baby looks almost real. Wait, did it just burp?"
 	force = 5
 	w_class = 4.0
-	slot_flags = SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 */
 
 //This should really be somewhere else but I don't know where. w/e
@@ -646,4 +646,4 @@
 	icon_state = "inflatable"
 	item_state = "inflatable"
 	icon = 'icons/obj/clothing/belts.dmi'
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT

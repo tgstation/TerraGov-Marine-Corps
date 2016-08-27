@@ -9,7 +9,7 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	type_of_casings = "bullet"
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	force = 8
 	w_class = 4
 	attachable_allowed = list(
@@ -18,14 +18,14 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
 	New()
 		..()
 		fire_delay = config.med_fire_delay
 		burst_delay = config.mlow_fire_delay
 		burst_amount = config.med_burst_value
-		load_into_chamber()
+		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 //-------------------------------------------------------
 //M39 SMG ammo
@@ -68,13 +68,13 @@
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	New()
+		select_gamemode_skin(/obj/item/weapon/gun/smg/m39, list(/datum/game_mode/ice_colony = "m39b2") )
 		..()
 		fire_delay = config.low_fire_delay
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
-		select_gamemode_skin(/obj/item/weapon/gun/smg/m39, list(/datum/game_mode/ice_colony = "m39b2") )
 
 //-------------------------------------------------------
 
@@ -85,7 +85,7 @@
 	item_state = "m39b2"
 	origin_tech = "combat=6;materials=5"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_AMMO_COUNTER | GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WY_RESTRICTED
 
 	New()
 		..()
@@ -120,7 +120,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()
 		..()
@@ -149,7 +149,7 @@
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/skorpion.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
 	New()
 		..()
@@ -181,7 +181,7 @@
 	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
-	gun_features = GUN_CAN_POINTBLANK | GUN_ON_RUSSIANS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ON_RUSSIANS
 
 	New()
 		..()
@@ -214,7 +214,7 @@
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/uzi.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()
 		..()
@@ -249,7 +249,7 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/scope)
 
-	gun_features = GUN_AUTO_EJECTOR | GUN_CAN_POINTBLANK | GUN_ON_MERCS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
 	New()
 		..()

@@ -127,7 +127,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 					Cl = slot_w_uniform
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(3)
-				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered&HANDS)
+				if(isobj(H.wear_suit) && H.wear_suit.flags_armor_protection&HANDS)
 					Cl = H.wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
@@ -135,7 +135,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 					Cl = H.gloves
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(4)
-				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered&FEET)
+				if(isobj(H.wear_suit) && H.wear_suit.flags_armor_protection&FEET)
 					Cl = H.wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 

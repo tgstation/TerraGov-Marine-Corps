@@ -3,7 +3,7 @@
 	desc = "A small electronic device that should never exist."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = ""
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	w_class = 2.0
 	matter = list("metal" = 100)
 	throwforce = 2
@@ -15,7 +15,7 @@
 	var/list/attached_overlays = null
 	var/obj/item/device/assembly_holder/holder = null
 	var/cooldown = 0//To prevent spam
-	var/wires = WIRE_RECEIVE | WIRE_PULSE
+	var/wires = WIRE_RECEIVE|WIRE_PULSE
 
 	var/const/WIRE_RECEIVE = 1			//Allows Pulsed(0) to call Activate()
 	var/const/WIRE_PULSE = 2				//Allows Pulse(0) to act on the holder

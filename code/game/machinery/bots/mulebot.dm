@@ -614,7 +614,7 @@
 						if(newdir == dir)
 							B.dir = newdir
 						else
-							newdir = newdir | dir
+							newdir = newdir|dir
 							if(newdir == 3)
 								newdir = 1
 							else if(newdir == 12)

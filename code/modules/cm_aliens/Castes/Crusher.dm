@@ -63,7 +63,7 @@
 	if(stunned && momentum > 24)
 		Weaken(2)
 		src.visible_message("<b>[src] skids to a halt!</b>","<b>You skid to a halt.</B>")
-	pass_flags = 0
+	flags_pass = 0
 	momentum = 0
 	speed = initial(speed)
 	update_icons()

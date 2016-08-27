@@ -11,7 +11,7 @@
 //======================================\\
 //=================\\//=================\\
 
-/obj/item/clothing/head/helmet/space/yautja
+/obj/item/clothing/mask/gas/yautja
 	name = "clan mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional."
 	icon = 'icons/Predator/items.dmi'
@@ -19,12 +19,15 @@
 	item_state = "helmet"
 	icon_override = 'icons/Predator/items.dmi'
 	armor = list(melee = 80, bullet = 95, laser = 70, energy = 70, bomb = 65, bio = 100, rad = 100)
-	anti_hug = 100
-	species_restricted = null
-	body_parts_covered = HEAD|FACE
-	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVEREYES | COVERMOUTH | NOPRESSUREDMAGE | BLOCKSHARPOBJ
+	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
+	flags_armor_protection = HEAD|FACE|EYES
+	flags_cold_protection = HEAD
+	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR|COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
+	filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	gas_filter_strength = 3
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
 	unacidable = 1
+	anti_hug = 100
 
 	New(location, mask_number = rand(1,8), elder_restricted = 0)
 		..()
@@ -64,19 +67,19 @@
 			if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
 				M << "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>"
 				return
-			M.drop_from_inventory(G) //Get rid of ye existinge gogglors
-			del(G)
+			M.remove_from_mob(G) //Get rid of ye existinge gogglors
+			cdel(G)
 		switch(current_goggles)
 			if(0)
-				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), slot_glasses)
+				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), slot_glasses)
 				M << "<span class='notice'>Low-light vision module: activated.</span>"
 				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(1)
-				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), slot_glasses)
+				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), slot_glasses)
 				M << "<span class='notice'>Thermal sight module: activated.</span>"
 				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(2)
-				M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), slot_glasses)
+				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), slot_glasses)
 				M << "<span class='notice'>Material vision module: activated.</span>"
 				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(3)
@@ -92,8 +95,8 @@
 		var/obj/item/G = mob.glasses
 		if(G)
 			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
-				mob.drop_from_inventory(G)
-				del(G)
+				mob.remove_from_mob(G)
+				cdel(G)
 				mob.update_inv_glasses()
 
 /obj/item/clothing/suit/armor/yautja
@@ -103,10 +106,10 @@
 	icon_state = "halfarmor1"
 	item_state = "armor"
 	icon_override = 'icons/Predator/items.dmi'
-	body_parts_covered = UPPER_TORSO|ARM_LEFT
+	flags_armor_protection = UPPER_TORSO|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
-	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
+	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	siemens_coefficient = 0.1
 	allowed = list(/obj/item/weapon/harpoon,
 			/obj/item/weapon/gun/launcher/spike,
@@ -132,59 +135,59 @@
 				if(7128)
 					name = "\improper 'Armor of the Swamp Horror'"
 					icon_state = "halfarmor_elder_joshuu"
-					body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 					armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 				if(9867)
 					name = "\improper 'Armor of the Enforcer'"
 					icon_state = "halfarmor_elder_feweh"
-					body_parts_covered = UPPER_TORSO|ARMS
+					flags_armor_protection = UPPER_TORSO|ARMS
 					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 				else
 					name = "clan elder's armor"
 					icon_state = "halfarmor_elder"
-					body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 					armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 		else
 			switch(armor_number)
 				if(2)
 					icon_state = "halfarmor[armor_number]"
-					body_parts_covered = UPPER_TORSO|ARMS
+					flags_armor_protection = UPPER_TORSO|ARMS
 					armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 				if(3)
 					icon_state = "halfarmor[armor_number]"
-					body_parts_covered = UPPER_TORSO|LOWER_TORSO
+					flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 					armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 				if(4)
 					icon_state = "halfarmor[armor_number]"
-					body_parts_covered = UPPER_TORSO
+					flags_armor_protection = UPPER_TORSO
 					armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
 				if(5,441)
 					icon_state = "halfarmor[armor_number]"
-					body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 					armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
-		cold_protection = body_parts_covered
-		heat_protection = body_parts_covered
+		flags_cold_protection = flags_armor_protection
+		flags_heat_protection = flags_armor_protection
 
 /obj/item/clothing/suit/armor/yautja/full
 	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "fullarmor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(melee = 90, bullet = 95, laser = 75, energy = 75, bomb = 75, bio = 25, rad = 25)
 	slowdown = 1
 
 	New(location)
 		. = ..(location, 0)
 
-/obj/item/clothing/mask/eldercape
+/obj/item/clothing/cape/eldercape
 	name = "clan elder cape"
 	desc = "A dusty, yet powerful cape worn and passed down by elder Yautja."
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "cape_elder"
 	item_state = "cape_elder"
-	icon_override = 'icons/Predator/items.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_equip_slot = SLOT_BACK
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
 
@@ -212,22 +215,22 @@
 	desc = "A pair of armored, perfectly balanced boots. Perfect for running through the jungle."
 	unacidable = 1
 	permeability_coefficient = 0.01
-	flags_inv = NOSLIPPING
-	body_parts_covered = FEET|LEGS
+	flags_inventory = NOSLIPPING
+	flags_armor_protection = FEET|LEGS
 	armor = list(melee = 75, bullet = 85, laser = 60, energy = 50, bomb = 50, bio = 20, rad = 20)
 	siemens_coefficient = 0.2
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
+	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 	species_restricted = null
 
 	New(location, boot_number = rand(1,3))
 		..()
 		icon_state = "y-boots[boot_number]"
 		if(boot_number != 1) //More overall protection, less defensive value.
-			body_parts_covered = FEET|LEGS|LOWER_TORSO
+			flags_armor_protection = FEET|LEGS|LOWER_TORSO
 			armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
-		cold_protection = body_parts_covered
-		heat_protection = body_parts_covered
+		flags_cold_protection = flags_armor_protection
+		flags_heat_protection = flags_armor_protection
 
 /obj/item/clothing/under/chainshirt
 	name = "body mesh"
@@ -237,12 +240,12 @@
 	icon_override = 'icons/Predator/items.dmi'
 	item_color = "mesh_shirt"
 	item_state = "mesh_shirt"
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	siemens_coefficient = 0.9
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	species_restricted = null
 
 /obj/item/clothing/gloves/yautja
@@ -260,12 +263,12 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	canremove = 0
-	body_parts_covered = HANDS
+	flags_armor_protection = HANDS
 	armor = list(melee = 80, bullet = 80, laser = 55, energy = 50, bomb = 50, bio = 10, rad = 10)
-	cold_protection = HANDS
-	heat_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_cold_protection = HANDS
+	flags_heat_protection = HANDS
+	min_cold_protection_temperature = GLOVES_min_cold_protection_temperature
+	max_heat_protection_temperature = GLOVES_max_heat_protection_temperature
 	unacidable = 1
 	var/charge = 2000
 	var/charge_max = 2000
@@ -321,7 +324,6 @@
 			playsound(M.loc,'sound/weapons/wristblades_off.ogg', 40, 1)
 			blades_active = 0
 			M.drop_item(R)
-			if(R) del(R) //Just to make sure. The drop should take care of it though.
 			return
 		else
 			if(R)
@@ -330,10 +332,7 @@
 			if(!drain_power(usr,50)) return
 
 			var/obj/item/weapon/wristblades/W
-			if(upgrades > 1)
-				W = new /obj/item/weapon/wristblades/scimitar(M)
-			else
-				W = new /obj/item/weapon/wristblades(M)
+			W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, M)
 
 			M.put_in_active_hand(W)
 			blades_active = 1
@@ -439,13 +438,15 @@
 		return 1
 
 	proc/explodey(var/mob/living/carbon/victim)
+		set waitfor = 0
+		exploding = 1
 		playsound(src.loc,'sound/effects/pred_countdown.ogg', 80, 0)
-		spawn(rand(65,85))
-			var/turf/T = get_turf(victim)
-			if(istype(T))
-				victim.apply_damage(50,BRUTE,"chest")
-				explosion(T, 1, 4, 7, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby. //Not enough ~N
-				if(victim) victim.gib() //Adding one more safety.
+		sleep(rand(65,85))
+		var/turf/T = get_turf(victim)
+		if(istype(T) && exploding)
+			victim.apply_damage(50,BRUTE,"chest")
+			explosion(T, 1, 4, 7, -1) //KABOOM! This should be enough to gib the corpse and injure/kill anyone nearby. //Not enough ~N
+			if(victim) victim.gib() //Adding one more safety.
 
 	verb/activate_suicide()
 		set name = "Final Countdown (!)"
@@ -456,10 +457,10 @@
 		var/mob/living/carbon/human/M = usr
 		if(!istype(M)) return
 		if(M.stat == DEAD)
-			usr << "<span class='warning'>Little too late for that now!</span>"
+			M << "<span class='warning'>Little too late for that now!</span>"
 			return
-		if(!isYautja(usr))
-			usr << "<span class='warning'>You have no idea how to work these things!</span>"
+		if(!isYautja(M))
+			M << "<span class='warning'>You have no idea how to work these things!</span>"
 			return
 
 		var/obj/item/weapon/grab/grabbing = M.get_active_hand()
@@ -482,6 +483,9 @@
 			return
 		if(exploding)
 			if(alert("Are you sure you want to stop the countdown? You coward.","Bracers", "Yes", "No") == "Yes")
+				if(M.stat == DEAD)
+					M << "<span class='warning'>Little too late for that now!</span>"
+					return
 				exploding = 0
 				M << "<span class='notice'>Your bracers stop beeping.</span>"
 				return
@@ -489,8 +493,11 @@
 			M << "<span class='warning'>Strange...something seems to be interfering with your bracer functions...</span>"
 			return
 		if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
+			if(M.stat == DEAD)
+				M << "<span class='warning'>Little too late for that now!</span>"
+				return
 			M << "<span class='userdanger'>You set the timer. May your journey to the great hunting grounds be swift.</span>"
-			src.explodey(M)
+			explodey(M)
 
 	verb/injectors()
 		set name = "Create Self-Heal Crystal"
@@ -617,7 +624,7 @@
 
 	New()
 		..()
-		del(keyslot1)
+		cdel(keyslot1)
 		keyslot1 = new /obj/item/device/encryptionkey/yautja
 		recalculateChannels()
 
@@ -647,7 +654,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "beltbag"
 	item_state = "beltbag"
-	slot_flags = SLOT_BELT
+	flags_equip_slot = SLOT_BELT
 	max_w_class = 3
 	storage_slots = 10
 	max_combined_w_class = 30
@@ -665,6 +672,14 @@
 		..()
 		overlay = null  //Stops the green overlay.
 
+	Dispose()
+		..()
+		return TA_REVIVE_ME
+
+	Recycle()
+		var/blacklist[] = list("overlay","icon_state","item_state","name","desc","darkness_view","can_remove")
+		. = ..() + blacklist
+
 /obj/item/clothing/glasses/thermal/yautja
 	name = "bio-mask thermal"
 	desc = "A vision overlay generated by the Bio-Mask. Used to sense the heat of prey."
@@ -675,6 +690,14 @@
 	invisa_view = 2
 	canremove = 0
 
+	Dispose()
+		..()
+		return TA_REVIVE_ME
+
+	Recycle()
+		var/blacklist[] = list("icon_state","item_state","name","desc","vision_flags","invisa_view","can_remove")
+		. = ..() + blacklist
+
 /obj/item/clothing/glasses/meson/yautja
 	name = "bio-mask x-ray"
 	desc = "A vision overlay generated by the Bio-Mask. Used to see through objects."
@@ -683,6 +706,14 @@
 	item_state = "securityhud"
 	vision_flags = SEE_TURFS
 	canremove = 0
+
+	Dispose()
+		..()
+		return TA_REVIVE_ME
+
+	Recycle()
+		var/blacklist[] = list("icon_state","item_state","name","desc","vision_flags","can_remove")
+		. = ..() + blacklist
 
 /obj/item/weapon/legcuffs/yautja
 	name = "hunting trap"
@@ -766,7 +797,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "teleporter"
 	origin_tech = "materials=7;bluespace=7;engineering=7"
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	w_class = 2
 	force = 1
 	throwforce = 1
@@ -784,8 +815,8 @@
 			playsound(user, 'sound/effects/EMPulse.ogg', 100, 1)
 			spawn(30)
 				explosion(src.loc,-1,-1,2)
-				del(src)
-				return 0
+				if(src && loc) cdel(src)
+				return
 
 		if(sure == "No" || !sure) return
 		playsound(src,'sound/ambience/signal.ogg', 100, 1)
@@ -859,13 +890,13 @@
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
 	w_class = 4.0
-	slot_flags = SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	force_wielded = 60
 	throwforce = 50
 	throw_speed = 3
 	edge = 1
 	sharp = 1
-	flags = FPRINT | CONDUCT | NOSHIELD | TWOHANDED
+	flags_atom = FPRINT|CONDUCT|NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	unacidable = 1
@@ -887,10 +918,9 @@
 	w_class = 5.0
 	edge = 1
 	sharp = 0
-	flags = NOSHIELD
-	slot_flags = 0
+	flags_atom = NOSHIELD
+	flags_equip_slot = 0
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
-	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	canremove = 0
 	attack_speed = 6
 
@@ -900,6 +930,15 @@
 			var/obj/item/weapon/wristblades/get_other_hand = usr.get_inactive_hand()
 			if(get_other_hand && istype(get_other_hand))
 				attack_speed = attack_speed - attack_speed/3
+		attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
+
+	Dispose()
+		..()
+		return TA_REVIVE_ME
+
+	Recycle()
+		var/blacklist[] = list("attack_verb")
+		. = ..() + blacklist
 
 	dropped(var/mob/living/carbon/human/mob)
 		playsound(mob,'sound/weapons/wristblades_off.ogg', 30, 1)
@@ -909,7 +948,7 @@
 			if(get_other_hand && istype(get_other_hand))
 				get_other_hand.attack_speed = initial(attack_speed)
 
-		del(src)
+		cdel(src)
 
 	afterattack(obj/O as obj, mob/user as mob, proximity)
 		if(!proximity || !user) return
@@ -951,8 +990,8 @@
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
 	icon_state = "whip"
 	item_state = "chain"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	force = 35
 	throwforce = 12
 	w_class = 3
@@ -978,8 +1017,8 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predknife"
 	item_state = "knife"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_POCKET
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_POCKET
 	sharp = 1
 	force = 24
 	w_class = 1.0
@@ -1028,8 +1067,8 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "clansword"
 	item_state = "clansword"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BACK
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BACK
 	sharp = 1
 	edge = 1
 	force = 45 //More damage than other weapons like it. Considering how "strong" this sword is supposed to be, 38 damage was laughable.
@@ -1066,8 +1105,8 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "predscythe"
 	item_state = "scythe0"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	sharp = 1
 	force = 32
 	w_class = 4.0
@@ -1109,8 +1148,8 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "combistick"
 	item_state = "combistick"
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BACK
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BACK
 	w_class = 4
 	force = 32
 	throwforce = 70
@@ -1132,7 +1171,7 @@
 		"You hear an ominous click.")
 		icon_state = initial(icon_state)
 		item_state = initial(item_state)
-		slot_flags = initial(slot_flags)
+		flags_equip_slot = initial(flags_equip_slot)
 		w_class = 4
 		force = 28
 		throwforce = initial(throwforce)
@@ -1154,7 +1193,7 @@
 		user << "<span class='notice'>You collapse the combi-stick for storage.</span>"
 		icon_state = initial(item_state) + "_f"
 		item_state = icon_state
-		slot_flags = SLOT_POCKET
+		flags_equip_slot = SLOT_POCKET
 		w_class = 1
 		force = 0
 		throwforce = initial(throwforce) - 50
@@ -1203,8 +1242,8 @@
 	var/mode = 0
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	accuracy = 10
-	flags = FPRINT | CONDUCT | NOBLUDGEON //Can't buldgeon with this.
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_atom = FPRINT|CONDUCT|NOBLUDGEON //Can't buldgeon with this.
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	New()
 		..()
@@ -1219,7 +1258,7 @@
 		. = ..()
 		source = null
 
-	attack_self(mob/living/user as mob)
+	attack_self(mob/living/user)
 		switch(mode)
 			if(0)
 				mode = 1
@@ -1243,14 +1282,14 @@
 				user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
 				ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
-	dropped(var/mob/living/carbon/human/user)
+	dropped(mob/user)
 		..()
 		user << "The plasma caster deactivates."
 		playsound(user,'sound/weapons/plasmacaster_off.ogg', 40, 1)
 		cdel(src)
 		return
 
-	able_to_fire(var/mob/user as mob)
+	able_to_fire(mob/user)
 		if(!source)	return
 		if(!isYautja(user))
 			user << "<span class='warning'>You have no idea how this thing works!</span>"
@@ -1263,7 +1302,7 @@
 			in_chamber = create_bullet(ammo)
 			return in_chamber
 
-	reload_into_chamber(var/mob/user/carbon/human/user as mob)
+	reload_into_chamber()
 		return 1
 
 	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
@@ -1286,12 +1325,12 @@
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ammo = /datum/ammo/alloy_spike
-	slot_flags = SLOT_BELT|SLOT_BACK
+	flags_equip_slot = SLOT_BELT|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
 	var/max_spikes = 12
 	var/last_regen
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	Dispose()
 		. = ..()
@@ -1338,7 +1377,7 @@
 			spikes--
 			return in_chamber
 
-	reload_into_chamber(mob/user)
+	reload_into_chamber()
 		update_icon()
 		return 1
 
@@ -1359,12 +1398,12 @@
 	ammo = /datum/ammo/energy/yautja/rifle/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
-	slot_flags = SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	w_class = 5
 	accuracy = 50
 	var/charge_time = 0
 	var/last_regen = 0
-	gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 	Dispose()
 		. = ..()
@@ -1401,13 +1440,13 @@
 			last_regen = charge_time
 
 	unique_action(mob/user)
-		if(!isYautja(usr))
+		if(!isYautja(user))
 			user << "<span class='warning'>You have no idea how this thing works!</span>"
 			return
 		..()
 		zoom()
 
-	able_to_fire(var/mob/user as mob)
+	able_to_fire(mob/user)
 		if(!isYautja(user))
 			user << "<span class='warning'>You have no idea how this thing works!</span>"
 			return
@@ -1424,16 +1463,16 @@
 		charge_time = round(charge_time / 2)
 		return in_chamber
 
-	reload_into_chamber(var/mob/user as mob)
+	reload_into_chamber()
 		update_icon()
 		return 1
 
-	delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 		cdel(projectile_to_fire)
 		if(refund) charge_time *= 2
 		return 1
 
-	attack_self(mob/user as mob)
+	attack_self(mob/living/user)
 		if(!isYautja(user))
 			return ..()
 
@@ -1621,7 +1660,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "net1"
 	flags = TABLEPASS
-	pass_flags = PASSTABLE
+	flags_pass = PASSTABLE
 	var/state = 1 //"bunched up" state
 	var/fire_mode = 1//1: net. 0: grab
 

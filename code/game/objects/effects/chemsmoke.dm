@@ -5,7 +5,7 @@
 	icon = 'icons/effects/chemsmoke.dmi'
 	opacity = 0
 	time_to_live = 300
-	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS		//PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
+	flags_pass = PASSTABLE|PASSGRILLE|PASSGLASS		//PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
 	anchored = 1
 
 /obj/effect/effect/smoke/chem/New()
@@ -76,7 +76,7 @@
 		contained = "\[[contained]\]"
 	var/area/A = get_area(location)
 
-	var/where = "[A.name] | [location.x], [location.y]"
+	var/where = "[A.name]|[location.x], [location.y]"
 	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"
 
 	if(carry.my_atom.fingerprintslast)

@@ -85,9 +85,9 @@
 		if(W)
 			success = 1
 		wear_suit = null
-		if(W.flags_inv & HIDESHOES)
+		if(W.flags_inventory & HIDESHOES)
 			update_inv_shoes(0)
-		if(W.flags_inv & (HIDEALLHAIR | HIDETOPHAIR | HIDELOWHAIR) )
+		if(W.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 			update_hair(0)
 			update_inv_head()
 		update_inv_wear_suit()
@@ -113,7 +113,7 @@
 		update_inv_glasses()
 	else if (W == head)
 		head = null
-		if( W.flags_inv & (HIDEALLHAIR | HIDETOPHAIR | HIDELOWHAIR | HIDEMASK) )
+		if( W.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDEMASK) )
 			update_hair(0)	//rebuild hair
 			update_inv_ears(0)
 			update_inv_wear_mask(0)
@@ -143,7 +143,7 @@
 				adjustBruteLossByPart(25,"head")
 		wear_mask = null
 		success = 1
-		if( W.flags_inv & (HIDEALLHAIR | HIDETOPHAIR | HIDELOWHAIR) )
+		if( W.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 			update_hair(0)	//rebuild hair
 			update_inv_ears(0)
 		if(internal)
@@ -224,7 +224,7 @@
 			update_inv_back(redraw_mob)
 		if(slot_wear_mask)
 			src.wear_mask = W
-			if( wear_mask.flags_inv & (HIDEALLHAIR | HIDETOPHAIR | HIDELOWHAIR) )
+			if( wear_mask.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 			W.equipped(src, slot)
@@ -254,7 +254,7 @@
 			update_inv_wear_id(redraw_mob)
 		if(slot_l_ear)
 			src.l_ear = W
-			if(l_ear.slot_flags & SLOT_TWOEARS)
+			if(l_ear.flags_equip_slot & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.loc = src
 				src.r_ear = O
@@ -263,7 +263,7 @@
 			update_inv_ears(redraw_mob)
 		if(slot_r_ear)
 			src.r_ear = W
-			if(r_ear.slot_flags & SLOT_TWOEARS)
+			if(r_ear.flags_equip_slot & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.loc = src
 				src.l_ear = O
@@ -280,7 +280,7 @@
 			update_inv_gloves(redraw_mob)
 		if(slot_head)
 			src.head = W
-			if( head.flags_inv & (HIDEALLHAIR | HIDETOPHAIR | HIDELOWHAIR | HIDEMASK) )
+			if( head.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDEMASK) )
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
@@ -294,9 +294,9 @@
 			update_inv_shoes(redraw_mob)
 		if(slot_wear_suit)
 			src.wear_suit = W
-			if(wear_suit.flags_inv & HIDESHOES)
+			if(wear_suit.flags_inventory & HIDESHOES)
 				update_inv_shoes(0)
-			if( wear_suit.flags_inv & (HIDEALLHAIR | HIDETOPHAIR | HIDELOWHAIR) )
+			if( wear_suit.flags_inventory & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 				update_hair(redraw_mob)
 			W.equipped(src, slot)
 			update_inv_wear_suit(redraw_mob)

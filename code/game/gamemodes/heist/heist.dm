@@ -113,7 +113,7 @@ var/global/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' 
 	vox.f_style = "Shaved"
 
 	for(var/datum/organ/external/limb in vox.organs)
-		limb.status &= ~(ORGAN_DESTROYED | ORGAN_ROBOT)
+		limb.status &= ~(ORGAN_DESTROYED|ORGAN_ROBOT)
 
 	// Keep track of their stack.
 	if(vox.internal_organs_by_name["stack"])

@@ -7,7 +7,7 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
-	flags = FPRINT
+	flags_atom = FPRINT
 	pressure_resistance = 2*ONE_ATMOSPHERE
 
 	var/amount_per_transfer_from_this = 10

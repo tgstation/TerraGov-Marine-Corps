@@ -9,7 +9,7 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
-	flags = OPENCONTAINER | NOREACT
+	flags_atom = OPENCONTAINER|NOREACT
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -75,10 +75,10 @@
 					"\blue [user] fixes the microwave.", \
 					"\blue You have fixed the microwave." \
 				)
-				src.icon_state = "mw"
-				src.broken = 0 // Fix it!
-				src.dirty = 0 // just to be sure
-				src.flags = OPENCONTAINER
+				icon_state = "mw"
+				broken = 0 // Fix it!
+				dirty = 0 // just to be sure
+				flags_atom = OPENCONTAINER
 		else
 			user << "\red It's broken!"
 			return 1
@@ -93,10 +93,10 @@
 					"\blue [user]  has cleaned  the microwave.", \
 					"\blue You have cleaned the microwave." \
 				)
-				src.dirty = 0 // It's clean!
-				src.broken = 0 // just to be sure
-				src.icon_state = "mw"
-				src.flags = OPENCONTAINER
+				dirty = 0 // It's clean!
+				broken = 0 // just to be sure
+				icon_state = "mw"
+				flags_atom = OPENCONTAINER
 		else //Otherwise bad luck!!
 			user << "\red It's dirty!"
 			return 1
@@ -326,23 +326,23 @@
 
 /obj/machinery/microwave/proc/muck_finish()
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-	src.visible_message("\red The microwave gets covered in muck!")
-	src.dirty = 100 // Make it dirty so it can't be used util cleaned
-	src.flags = null //So you can't add condiments
-	src.icon_state = "mwbloody" // Make it look dirty too
-	src.operating = 0 // Turn it off again aferwards
-	src.updateUsrDialog()
+	visible_message("\red The microwave gets covered in muck!")
+	dirty = 100 // Make it dirty so it can't be used util cleaned
+	flags_atom = null //So you can't add condiments
+	icon_state = "mwbloody" // Make it look dirty too
+	operating = 0 // Turn it off again aferwards
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/broke()
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(2, 1, src)
 	s.start()
-	src.icon_state = "mwb" // Make it look all busted up and shit
-	src.visible_message("\red The microwave breaks!") //Let them know they're stupid
-	src.broken = 2 // Make it broken so it can't be used util fixed
-	src.flags = null //So you can't add condiments
-	src.operating = 0 // Turn it off again aferwards
-	src.updateUsrDialog()
+	icon_state = "mwb" // Make it look all busted up and shit
+	visible_message("\red The microwave breaks!") //Let them know they're stupid
+	broken = 2 // Make it broken so it can't be used util fixed
+	flags_atom = null //So you can't add condiments
+	operating = 0 // Turn it off again aferwards
+	updateUsrDialog()
 
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)

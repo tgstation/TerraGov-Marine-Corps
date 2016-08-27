@@ -22,9 +22,9 @@ DEFINES in setup.dm, referenced here.
 #define GUN_ON_MERCS			2048
 #define GUN_ON_RUSSIANS			4096
 #define GUN_WY_RESTRICTED		8192
+#define GUN_SPECIALIST			16384
 
 	NOTES
-
 
 	if(burst_toggled && burst_firing) return
 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -116,8 +116,8 @@ DEFINES in setup.dm, referenced here.
 			//						   	  \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/AltClick(var/mob/user)
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features || gun_features & GUN_UNUSUAL_DESIGN) return
+/obj/item/weapon/gun/AltClick(mob/user)
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & GUN_UNUSUAL_DESIGN) return
 
 	if(!ishuman(user)) return
 
@@ -125,20 +125,20 @@ DEFINES in setup.dm, referenced here.
 		user << "Not right now."
 		return
 
-	user << "<span class='notice'>You toggle the safety [gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
+	user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
 	playsound(usr,'sound/machines/click.ogg', 15, 1)
-	gun_features ^= GUN_TRIGGER_SAFETY
+	flags_gun_features ^= GUN_TRIGGER_SAFETY
 	return
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
-	if(gun_features & GUN_BURST_FIRING) return
+	if(flags_gun_features & GUN_BURST_FIRING) return
 	unwield(user)
 	return ..()
 
 /obj/item/weapon/gun/attack_hand(mob/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
-	if( in_hand == src && (flags & TWOHANDED) ) unload(user)//It has to be held if it's a two hander.
+	if( in_hand == src && (flags_atom & TWOHANDED) ) unload(user)//It has to be held if it's a two hander.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
@@ -156,7 +156,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if (user && user.client)
 		user.client.remove_gun_icons()
 
-	if(gun_features & GUN_FLASHLIGHT_ON)
+	if(flags_gun_features & GUN_FLASHLIGHT_ON)
 		user.SetLuminosity(-rail.light_mod)
 		SetLuminosity(rail.light_mod)
 
@@ -166,13 +166,13 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
 
-	if(gun_features & GUN_FLASHLIGHT_ON)
+	if(flags_gun_features & GUN_FLASHLIGHT_ON)
 		user.SetLuminosity(rail.light_mod)
 		SetLuminosity(0)
 
 	unwield(user)
 
-/obj/item/weapon/gun/proc/wy_allowed_check(var/mob/living/carbon/human/user)
+/obj/item/weapon/gun/proc/wy_allowed_check(mob/living/carbon/human/user)
 	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
 
 	if(user.mind)
@@ -196,7 +196,7 @@ should be alright.
 				harness_return(user)
 				return 1
 
-/obj/item/weapon/gun/proc/harness_return(var/mob/living/carbon/human/user)
+/obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
 	set waitfor = 0
 	sleep(3)
 	if(loc && user)
@@ -213,15 +213,15 @@ should be alright.
 		return
 
 	//There are only two ways to interact here.
-	if(flags & TWOHANDED)
-		if(flags & WIELDED) unwield(user)//Trying to unwield it
+	if(flags_atom & TWOHANDED)
+		if(flags_atom & WIELDED) unwield(user)//Trying to unwield it
 		else wield(user)//Trying to wield it
 	else unload(user)//We just unload it.
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I as obj, mob/user as mob)
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(istype(I,/obj/item/ammo_magazine))
 		if(check_inactive_hand(user)) reload(user,I)
@@ -239,7 +239,7 @@ should be alright.
 /obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
 	return
 
-/obj/item/weapon/gun/proc/check_inactive_hand(var/mob/user)
+/obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 		if( in_hand != src ) //It has to be held.
@@ -247,7 +247,7 @@ should be alright.
 			return
 	return 1
 
-/obj/item/weapon/gun/proc/check_both_hands(var/mob/user)
+/obj/item/weapon/gun/proc/check_both_hands(mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
@@ -272,13 +272,13 @@ should be alright.
 	var/can_attach = 1
 	switch(attachment.slot)
 		if("rail")
-			if(rail && !(rail.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("muzzle")
-			if(muzzle && !(muzzle.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("under")
-			if(under && !(under.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 		if("stock")
-			if(stock && !(stock.attach_features & ATTACH_REMOVABLE) ) can_attach = 0
+			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE) ) can_attach = 0
 
 	if(!can_attach)
 		user << "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>"
@@ -308,34 +308,32 @@ should be alright.
 			if("under") update_overlays(under, attachable)
 			if("rail") update_overlays(rail, attachable)
 
-/obj/item/weapon/gun/proc/update_overlays(var/obj/item/attachable/A, slot)
-	overlays -= attachable_overlays[slot]
-	cdel(attachable_overlays[slot])
+/obj/item/weapon/gun/proc/update_overlays(obj/item/attachable/A, slot)
+	var/image/reusable/I = attachable_overlays[slot]
+	overlays -= I
+	cdel(I)
 	if(A) //Only updates if the attachment exists for that slot.
-		//var/directives[] = list(A.icon,src, ( (slot == "rail" && gun_features & GUN_FLASHLIGHT_ON) ? "[A.icon_state]-on" : A.icon_state ))
-		var/image/reusable/I = rnew(/image/reusable)
-		I.generate_image(A.icon,src, ( (slot == "rail" && gun_features & GUN_FLASHLIGHT_ON) ? "[A.icon_state]-on" : A.icon_state ))
+		I = rnew(/image/reusable, list(A.icon,src, ( (slot == "rail" && flags_gun_features & GUN_FLASHLIGHT_ON) ? "[A.icon_state]-on" : A.icon_state )))
 		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
 		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
 		attachable_overlays[slot] = I
 		overlays += I
+	else attachable_overlays[slot] = null
 
 /obj/item/weapon/gun/proc/update_mag_overlay()
-	overlays -= attachable_overlays["mag"]
-	cdel(attachable_overlays["mag"])
+	var/image/reusable/I = attachable_overlays["mag"]
+	overlays -= I
+	cdel(I)
 	if(current_mag && current_mag.bonus_overlay)
-		//var/directives[] = list(current_mag.icon,src,current_mag.bonus_overlay)
-		var/image/reusable/I = rnew(/image/reusable)
-		I.generate_image(current_mag.icon,src,current_mag.bonus_overlay)
+		I = rnew(/image/reusable, list(current_mag.icon,src,current_mag.bonus_overlay))
 		attachable_overlays["mag"] = I
 		overlays += I
+	else attachable_overlays["mag"] = null
 
 /obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
 	overlays -= attachable_overlays["special"]
 	cdel(attachable_overlays["special"])
-	//var/directives[] = list(icon,src,new_icon_state)
-	var/image/reusable/I = rnew(/image/reusable)
-	I.generate_image(icon,src,new_icon_state)
+	var/image/reusable/I = rnew(/image/reusable, list(icon,src,new_icon_state))
 	attachable_overlays["special"] = I
 	overlays += I
 
@@ -358,7 +356,7 @@ should be alright.
 	set desc = "Remove all attachables from a weapon."
 	set src in usr
 
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
 		usr << "Not right now."
@@ -374,16 +372,16 @@ should be alright.
 	if(!do_after(usr,40))
 		return
 
-	if(rail && (rail.attach_features & ATTACH_REMOVABLE) )
+	if(rail && (rail.flags_attach_features & ATTACH_REMOVABLE) )
 		usr << "<span class='notice'>You remove [src]'s [rail].</span>"
 		rail.Detach(src)
-	if(muzzle && (muzzle.attach_features & ATTACH_REMOVABLE) )
+	if(muzzle && (muzzle.flags_attach_features & ATTACH_REMOVABLE) )
 		usr << "<span class='notice'>You remove [src]'s [muzzle].</span>"
 		muzzle.Detach(src)
-	if(under && (under.attach_features & ATTACH_REMOVABLE) )
+	if(under && (under.flags_attach_features & ATTACH_REMOVABLE) )
 		usr << "<span class='notice'>You remove [src]'s [under].</span>"
 		under.Detach(src)
-	if(stock && (stock.attach_features & ATTACH_REMOVABLE))
+	if(stock && (stock.flags_attach_features & ATTACH_REMOVABLE))
 		usr << "<span class='notice'>You remove [src]'s [stock].</span>"
 		stock.Detach(src)
 
@@ -396,7 +394,7 @@ should be alright.
 	set desc = "Toggle on or off your weapon burst mode, if it has one. Greatly reduces accuracy."
 	set src in usr
 
-	if(gun_features & GUN_BURST_FIRING) return //We don't want to mess with this WHILE the gun is firing.
+	if(flags_gun_features & GUN_BURST_FIRING) return //We don't want to mess with this WHILE the gun is firing.
 
 	if(!ishuman(usr)) return
 
@@ -412,9 +410,9 @@ should be alright.
 
 	if(!check_both_hands(usr)) return
 
-	usr << "<span class='notice'>\icon[src] You [gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode.</span>"
+	usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>disable</b>" : "<B>enable</b>"] the [src]'s burst fire mode.</span>"
 	playsound(usr,'sound/machines/click.ogg', 50, 1)
-	gun_features ^= GUN_BURST_ON
+	flags_gun_features ^= GUN_BURST_ON
 
 /obj/item/weapon/gun/verb/empty_mag()
 	set category = "Weapons"
@@ -422,7 +420,7 @@ should be alright.
 	set desc = "Remove the magazine from your current gun and drop it on the ground."
 	set src in usr
 
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(!ishuman(usr)) return
 
@@ -440,7 +438,7 @@ should be alright.
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 	set src in usr
 
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(!ishuman(usr)) return
 
@@ -457,7 +455,7 @@ should be alright.
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 	set src in usr
 
-	if((gun_features | GUN_BURST_ON | GUN_BURST_FIRING) == gun_features) return
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(!ishuman(usr)) return
 
@@ -468,20 +466,20 @@ should be alright.
 	if(!check_both_hands(usr)) return
 
 	var/usable_attachments[] = list() //Basic list of attachments to compare later.
-	if(rail && (rail.attach_features & ATTACH_ACTIVATION) ) usable_attachments += rail
-	if(under && (under.attach_features & ATTACH_ACTIVATION) )
+	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) ) usable_attachments += rail
+	if(under && (under.flags_attach_features & ATTACH_ACTIVATION) )
 		if(istype(under, /obj/item/attachable/bipod)) //Specific case for bipods. Can be revised later if necessary.
 			if(under.activate_attachment(src,usr)) return
 		else usable_attachments += under
-	if(stock  && (stock.attach_features & ATTACH_ACTIVATION) ) usable_attachments += stock
-	if(muzzle && (muzzle.attach_features & ATTACH_ACTIVATION) ) usable_attachments += muzzle
+	if(stock  && (stock.flags_attach_features & ATTACH_ACTIVATION) ) usable_attachments += stock
+	if(muzzle && (muzzle.flags_attach_features & ATTACH_ACTIVATION) ) usable_attachments += muzzle
 
 	if(!usable_attachments.len) //No usable attachments.
 		usr << "<span class='warning'>[src] does not have any usable attachments!</span>"
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
-		if(active_attachable && !(active_attachable.attach_features & ATTACH_PASSIVE) ) //In case the attach is passive like the flashlight/scope.
+		if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) ) //In case the attach is passive like the flashlight/scope.
 			cancel_active_attachment(usr)
 			return
 		else active_attachable = usable_attachments[1]
@@ -491,7 +489,7 @@ should be alright.
 		var/obj/item/attachable/activate_this = input("Which attachment to activate?") as null|anything in usable_attachments
 		if(!usr.client || src.loc != usr) return//Dropped or something.
 		if(!activate_this || activate_this == "Cancel" || activate_this == "Cancel Active")
-			if(active_attachable  && !(active_attachable.attach_features & ATTACH_PASSIVE) ) cancel_active_attachment(usr)
+			if(active_attachable  && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) ) cancel_active_attachment(usr)
 			return
 
 		if(activate_this.loc == src) active_attachable = activate_this //If it's still held in the gun.

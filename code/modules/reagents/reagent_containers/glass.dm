@@ -12,7 +12,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	flags = FPRINT | OPENCONTAINER
+	flags_atom = FPRINT|OPENCONTAINER
 
 	var/label_text = ""
 
@@ -61,10 +61,10 @@
 		..()
 		if (is_open_container())
 			usr << "<span class = 'notice'>You put the lid on \the [src]."
-			flags ^= OPENCONTAINER
+			flags_atom ^= OPENCONTAINER
 		else
 			usr << "<span class = 'notice'>You take the lid off \the [src]."
-			flags |= OPENCONTAINER
+			flags_atom |= OPENCONTAINER
 		update_icon()
 
 	afterattack(obj/target, mob/user , flag)
@@ -217,7 +217,7 @@
 	matter = list("glass" = 500)
 	volume = 60
 	amount_per_transfer_from_this = 10
-	flags = FPRINT | OPENCONTAINER | NOREACT
+	flags_atom = FPRINT|OPENCONTAINER|NOREACT
 
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 	name = "bluespace beaker"
@@ -237,7 +237,7 @@
 	volume = 30
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
-	flags = FPRINT | OPENCONTAINER
+	flags_atom = FPRINT|OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
 	New()
@@ -268,7 +268,7 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
-	flags = FPRINT | OPENCONTAINER
+	flags_atom = FPRINT|OPENCONTAINER
 
 	attackby(var/obj/D, mob/user as mob)
 		if(isprox(D))
@@ -295,7 +295,7 @@
 	volume = 15
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(1,5,15)
-	flags = FPRINT | TABLEPASS | OPENCONTAINER */
+	flags = FPRINT|TABLEPASS|OPENCONTAINER */
 
 /*
 /obj/item/weapon/reagent_containers/glass/blender_jug
@@ -335,7 +335,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "beaker0"
 	amount_per_transfer_from_this = 10
-	flags = FPRINT | TABLEPASS | OPENCONTAINER
+	flags = FPRINT|TABLEPASS|OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/dispenser/surfactant
 	name = "reagent glass (surfactant)"

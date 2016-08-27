@@ -4,7 +4,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
 	density = 1
-	flags = FPRINT
+	flags_atom = FPRINT
 	anchored = 0
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)

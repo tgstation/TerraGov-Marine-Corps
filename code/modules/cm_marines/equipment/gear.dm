@@ -374,7 +374,7 @@
 /obj/structure/largecrate/guns
 	name = "\improper USCM firearms crate (x3)"
 	var/num_guns = 3
-	var/num_mags = 2
+	var/num_mags = 0
 	var/list/stuff = list(
 					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,
 					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,

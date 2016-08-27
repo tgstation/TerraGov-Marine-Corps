@@ -8,7 +8,7 @@
 	var/force_wielded 	= 0
 	var/wieldsound 		= null
 	var/unwieldsound 	= null
-	flags = TWOHANDED
+	flags_atom = TWOHANDED
 
 	update_icon()
 		return
@@ -25,7 +25,7 @@
 		unwield(user)
 
 /obj/item/proc/wield(var/mob/user)
-	if( !(flags & TWOHANDED) || flags & WIELDED ) return
+	if( !(flags_atom & TWOHANDED) || flags_atom & WIELDED ) return
 
 	if(user.get_inactive_hand())
 		user << "<span class='warning'>You need your other hand to be empty!</span>"
@@ -39,15 +39,15 @@
 			user << "<span class='warning'>Your other hand can't hold [src]!</span>"
 			return
 
-	flags 	   ^= WIELDED
+	flags_atom 	   ^= WIELDED
 	name 	   += " (Wielded)"
 	item_state += "_w"
 	place_offhand(user,initial(name))
 	return 1
 
 /obj/item/proc/unwield(mob/user)
-	if( (flags | TWOHANDED | WIELDED) != flags) return //Have to be actually a twohander and wielded.
-	flags 	   ^= WIELDED
+	if( (flags_atom|TWOHANDED|WIELDED) != flags_atom) return //Have to be actually a twohander and wielded.
+	flags_atom ^= WIELDED
 	name 	    = copytext(name,1,-10)
 	item_state  = copytext(item_state,1,-2)
 	remove_offhand(user)
@@ -87,7 +87,7 @@
 		user << "<span class='warning'>It's too heavy for you to wield fully!</span>"
 		return
 
-	if(flags & WIELDED) unwield(user)
+	if(flags_atom & WIELDED) unwield(user)
 	else 				wield(user)
 
 ///////////OFFHAND///////////////
@@ -95,7 +95,7 @@
 	w_class = 5.0
 	icon_state = "offhand"
 	name = "offhand"
-	flags = DELONDROP | TWOHANDED | WIELDED
+	flags_atom = DELONDROP|TWOHANDED|WIELDED
 
 	unwield(var/mob/user)
 		user.remove_from_mob(src)
@@ -131,15 +131,15 @@
 	sharp = 1
 	edge = 1
 	w_class = 4.0
-	slot_flags = SLOT_BACK
-	flags = FPRINT | CONDUCT | TWOHANDED
+	flags_equip_slot = SLOT_BACK
+	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	force_wielded = 40
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
-	if(A && (flags & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
+	if(A && (flags_atom & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
 		del(A)
 
 /*
@@ -158,7 +158,7 @@
 	force_wielded = 30
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
-	flags = FPRINT | NOSHIELD | NOBLOODY | TWOHANDED
+	flags_atom = FPRINT|NOSHIELD|NOBLOODY|TWOHANDED
 	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
@@ -166,18 +166,18 @@
 
 /obj/item/weapon/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
 	..()
-	if((CLUMSY in user.mutations) && (flags & WIELDED) &&prob(40))
+	if((CLUMSY in user.mutations) && (flags_atom & WIELDED) &&prob(40))
 		user << "<span class='highdanger'>You twirl around a bit before losing your balance and impaling yourself on [src].</span>"
 		user.take_organ_damage(20,25)
 		return
-	if((flags & WIELDED) && prob(50))
+	if((flags_atom & WIELDED) && prob(50))
 		spawn(0)
 			for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2))
 				user.dir = i
 				sleep(1)
 
 /obj/item/weapon/twohanded/dualsaber/IsShield()
-	if(flags & WIELDED) return 1
+	if(flags_atom & WIELDED) return 1
 
 /obj/item/weapon/twohanded/dualsaber/wield(mob/user)
 	. = ..()
@@ -197,13 +197,13 @@
 	item_state = "spearglass"
 	force = 14
 	w_class = 4.0
-	slot_flags = SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	force_wielded = 24
 	throwforce = 30
 	throw_speed = 3
 	edge = 1
 	sharp = 1
-	flags = FPRINT | NOSHIELD | TWOHANDED
+	flags_atom = FPRINT|NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 

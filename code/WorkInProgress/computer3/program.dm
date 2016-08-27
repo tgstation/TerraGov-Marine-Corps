@@ -223,7 +223,7 @@ Programs are a file that can be executed
 			computer.floppy.eject_disk()
 		return 1
 	//
-	// usage: eject_card | eject_card=reader | eject_card=writer
+	// usage: eject_card|eject_card=reader|eject_card=writer
 	// only functions if there is a cardslot
 	//
 	if("eject_card" in href_list)

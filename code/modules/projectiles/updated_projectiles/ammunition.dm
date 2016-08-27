@@ -10,8 +10,8 @@ They're all essentially identical when it comes to getting the job done.
 	icon_state = null
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
-	flags = FPRINT | CONDUCT
-	slot_flags = SLOT_BELT
+	flags_atom = FPRINT|CONDUCT
+	flags_equip_slot = SLOT_BELT
 	matter = list("metal" = 50000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2
@@ -26,8 +26,9 @@ They're all essentially identical when it comes to getting the job done.
 	var/reload_delay = 1 //Set a timer for reloading mags. Higher is slower.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 
-	New()
+	New(loc, spawn_empty)
 		..()
+		if(spawn_empty) current_rounds = 0
 		switch(current_rounds)
 			if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
 			if(0) icon_state += "_e" //In case it spawns empty instead.
@@ -137,10 +138,11 @@ bullets/shells. ~N
 	name = "generic handful"
 	desc = "A handful of rounds to reload on the go."
 	matter = list("metal" = 5000) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
-	slot_flags = null // It only fits into pockets and such.
+	flags_equip_slot = null // It only fits into pockets and such.
 	origin_tech = "combat=1'materials=1"
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
+	flags_atom = FPRINT|CONDUCT|DIRLOCK
 
 	Dispose()
 		..()
@@ -166,11 +168,6 @@ bullets/shells. ~N
 			if(default_ammo == transfer_from.default_ammo) //Has to match.
 				transfer_ammo(transfer_from,src,user) // Transfer it from currently held to src, this item, message user.
 			else user << "Those aren't the same rounds. Better not mix them up."
-
-	Move()
-		var/cur_dir = dir
-		. = ..()
-		dir = cur_dir
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
 	var/datum/ammo/A = ammo_list[new_ammo]
@@ -204,11 +201,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	desc = "Empty and useless now."
 	icon = 'icons/obj/casings.dmi'
 	icon_state = "casing_"
-	flags = FPRINT | CONDUCT
 	throwforce = 1
 	w_class = 1.0
 	layer = OBJ_LAYER - 0.1 //Below other objects but above weeds.
 	dir = 1 //Always north when it spawns.
+	flags_atom = FPRINT|CONDUCT|DIRLOCK
 	var/current_casings = 1 //This is manipulated in the procs that use these.
 	var/max_casings = 16
 	var/current_icon = 0

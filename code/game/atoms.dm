@@ -1,14 +1,14 @@
 /atom
 	layer = 2
 	var/level = 2
-	var/flags = FPRINT
+	var/flags_atom = FPRINT
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/fingerprintslast = null
 	var/list/blood_DNA
 	var/blood_color
 	var/last_bumped = 0
-	var/pass_flags = 0
+	var/flags_pass = 0
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
@@ -65,7 +65,7 @@ directive is properly returned.
 // returns true if open
 // false if closed
 /atom/proc/is_open_container()
-	return flags & OPENCONTAINER
+	return flags_atom & OPENCONTAINER
 
 /*//Convenience proc to see whether a container can be accessed in a certain way.
 
@@ -233,7 +233,7 @@ its easier to just keep the beam vertical.
 /atom/proc/add_hiddenprint(mob/living/M as mob)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
-	if (!( src.flags ) & FPRINT)
+	if (!(flags_atom  & FPRINT))
 		return
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -259,7 +259,7 @@ its easier to just keep the beam vertical.
 	if(isnull(M)) return
 	if(isAI(M)) return
 	if(isnull(M.key)) return
-	if (!( src.flags ) & FPRINT)
+	if (!(flags_atom & FPRINT))
 		return
 	if (ishuman(M))
 		//Add the list if it does not exist.
@@ -383,7 +383,7 @@ its easier to just keep the beam vertical.
 
 //returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
-	if(flags & NOBLOODY) return 0
+	if(flags_atom & NOBLOODY) return 0
 	.=1
 	if (!( istype(M, /mob/living/carbon/human) ))
 		return 0
@@ -391,7 +391,7 @@ its easier to just keep the beam vertical.
 		M.dna = new /datum/dna(null)
 		M.dna.real_name = M.real_name
 	M.check_dna()
-	if (!( src.flags ) & FPRINT)
+	if (!(flags_atom & FPRINT))
 		return 0
 	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()
@@ -433,4 +433,4 @@ its easier to just keep the beam vertical.
 		return 0
 
 /atom/proc/checkpass(passflag)
-	return pass_flags&passflag
+	return flags_pass&passflag

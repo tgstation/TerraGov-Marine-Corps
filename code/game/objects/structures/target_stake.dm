@@ -5,7 +5,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_stake"
 	density = 1
-	flags = CONDUCT
+	flags_atom = CONDUCT
 	var/obj/item/target/pinned_target // the current pinned target
 
 	Move()

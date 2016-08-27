@@ -113,7 +113,7 @@ Flow Rate: [round(last_flow_rate, 0.1)] L/s<BR>
 Port Status: [(connected_port)?("Connected"):("Disconnected")]
 [holding_text]<BR>
 <BR>
-Cell Charge: [cell? "[round(cell.percent())]%" : "N/A"] | Load: [round(last_power_draw)] W<BR>
+Cell Charge: [cell? "[round(cell.percent())]%" : "N/A"]|Load: [round(last_power_draw)] W<BR>
 Power Switch: <A href='?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
 Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\ref[src];volume_adj=-100'>-</A> <A href='?src=\ref[src];volume_adj=-10'>-</A> <A href='?src=\ref[src];volume_adj=-1'>-</A> [volume_rate] L/s <A href='?src=\ref[src];volume_adj=1'>+</A> <A href='?src=\ref[src];volume_adj=10'>+</A> <A href='?src=\ref[src];volume_adj=100'>+</A> <A href='?src=\ref[src];volume_adj=1000'>+</A><BR>
 

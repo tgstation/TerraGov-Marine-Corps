@@ -54,7 +54,7 @@
 	if(!istype(src, /mob/dead) && !istype(src, /mob/living/silicon/ai) && !(client && client.holder && client.holder.level >= 4))
 		return
 
-	var/level = input("Select a Z level", "Z select", null) as null | anything in cameranet.minimap
+	var/level = input("Select a Z level", "Z select", null) as null|anything in cameranet.minimap
 
 	if(level != null)
 		cameranet.show_minimap(client, level)
@@ -86,7 +86,7 @@
 
 	minimap_icon.Blend(rgb(255, 0, 0), ICON_MULTIPLY)
 
-	var/list/turfs = visibleTurfs | dimTurfs
+	var/list/turfs = visibleTurfs|dimTurfs
 
 	for(var/turf/turf in turfs)
 		var/x = (turf.x & 0xf) * 2

@@ -34,7 +34,7 @@
 	icon_state = "pda"
 	item_state = "electronic"
 	w_class = 2.0
-	flags = FPRINT | TABLEPASS
+	flags = FPRINT|TABLEPASS
 	slow_flags = SLOT_BELT
 
 	var/owner = null
@@ -101,7 +101,7 @@
 
 	if (!src.owner)
 		if(src.cartridge)
-			dat += " | <a href='byond://?src=\ref[src];eject_cart=1'>Eject [src.cartridge]</a>"
+			dat += "|<a href='byond://?src=\ref[src];eject_cart=1'>Eject [src.cartridge]</a>"
 		dat += "<br>Warning: No owner information entered.  Please swipe card.<br><br>"
 		dat += "<a href='byond://?src=\ref[src];refresh=1'>Retry</a>"
 	else
@@ -113,7 +113,7 @@
 				dat += src.active_program.return_text()
 			else
 				if(src.cartridge)
-					dat += " | <a href='byond://?src=\ref[src];eject_cart=1'>Eject [src.cartridge]</a><br>"
+					dat += "|<a href='byond://?src=\ref[src];eject_cart=1'>Eject [src.cartridge]</a><br>"
 				dat += "<center><font color=red>Fatal Error 0x17<br>"
 				dat += "No System Software Loaded</font></center>"
 					//To-do: System recovery shit (maybe have a dedicated computer for this kind of thing)

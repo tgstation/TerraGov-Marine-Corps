@@ -2039,7 +2039,7 @@ var/list/ghostteleportlocs = list()
 	Exited(atom/movable/Obj)
 		if(ismob(Obj))
 			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
+				mysound.status = SOUND_PAUSED|SOUND_UPDATE
 				Obj << mysound
 
 	proc/process()
@@ -2168,7 +2168,7 @@ var/list/the_station_areas = list (
 	Exited(atom/movable/Obj)
 		if(ismob(Obj))
 			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
+				mysound.status = SOUND_PAUSED|SOUND_UPDATE
 				Obj << mysound
 
 	proc/process()

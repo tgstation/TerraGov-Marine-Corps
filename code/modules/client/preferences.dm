@@ -55,6 +55,7 @@ datum/preferences
 	//Predator specific preferences.
 	var/predator_name = "Undefined"
 	var/predator_gender = MALE
+	var/predator_age = 100
 	var/predator_mask_type = 1
 	var/predator_armor_type = 1
 	var/predator_boot_type = 1
@@ -65,7 +66,7 @@ datum/preferences
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
-	var/b_type = "A+"					//blood type (not-chooseable)
+	var/b_type = "O+"					//blood type (not-chooseable)
 	var/underwear = 1					//underwear type
 	var/undershirt = 1					//undershirt type
 	var/backbag = 2						//backpack type
@@ -265,6 +266,7 @@ datum/preferences
 	if(is_alien_whitelisted(user,"Yautja") || is_alien_whitelisted(user,"Yautja Elder"))
 		dat += "<br><b>Yautja name:</b> <a href='?_src_=prefs;preference=pred_name;task=input'>[predator_name]</a><br>"
 		dat += "<b>Yautja gender:</b> <a href='?_src_=prefs;preference=pred_gender;task=input'>[predator_gender == MALE ? "Male" : "Female"]</a><br>"
+		dat += "<b>Yautja age:</b> <a href='?_src_=prefs;preference=pred_age;task=input'>[predator_age]</a><br>"
 		dat += "<b>Mask style:</b> <a href='?_src_=prefs;preference=pred_mask_type;task=input'>([predator_mask_type])</a><br>"
 		dat += "<b>Armor style:</b> <a href='?_src_=prefs;preference=pred_armor_type;task=input'>([predator_armor_type])</a><br>"
 		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
@@ -851,7 +853,7 @@ datum/preferences
 				var/datum/job/job = locate(href_list["job"])
 				if (job)
 					var/choices = list(job.title) + job.alt_titles
-					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
+					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices|null
 					if(choice)
 						SetPlayerAltTitle(job, choice)
 						SetChoices(user)
@@ -1136,15 +1138,18 @@ datum/preferences
 						else user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
 				if("pred_gender")
 					predator_gender = predator_gender == MALE ? FEMALE : MALE
+				if("pred_age")
+					var/new_predator_age = input(user, "Choose your Predator's age(20 to 10000):", "Character Preference") as num|null
+					if(new_predator_age) predator_age = max(min( round(text2num(new_predator_age)), 10000),20)
 				if("pred_mask_type")
 					var/new_predator_mask_type = input(user, "Choose your mask type:\n(1-7)", "Mask Selection") as num|null
-					if(new_predator_mask_type) predator_mask_type = text2num(new_predator_mask_type)
+					if(new_predator_mask_type) predator_mask_type = round(text2num(new_predator_mask_type))
 				if("pred_armor_type")
 					var/new_predator_armor_type = input(user, "Choose your armor type:\n(1-5)", "Armor Selection") as num|null
-					if(new_predator_armor_type) predator_armor_type = text2num(new_predator_armor_type)
+					if(new_predator_armor_type) predator_armor_type = round(text2num(new_predator_armor_type))
 				if("pred_boot_type")
 					var/new_predator_boot_type = input(user, "Choose your greaves type:\n(1-3)", "Greave Selection") as num|null
-					if(new_predator_boot_type) predator_boot_type = text2num(new_predator_boot_type)
+					if(new_predator_boot_type) predator_boot_type = round(text2num(new_predator_boot_type))
 
 				if("age")
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
@@ -1517,7 +1522,7 @@ datum/preferences
 
 				if("UIalpha")
 					var/UI_style_alpha_new = input(user, "Select a new alpha(transparence) parametr for UI, between 50 and 255") as num
-					if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
+					if(!UI_style_alpha_new|!(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
 					UI_style_alpha = UI_style_alpha_new
 
 				if("be_special")

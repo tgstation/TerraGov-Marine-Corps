@@ -75,14 +75,14 @@
 
 					if(!src.note_mode)
 						dat += "<a href='byond://?src=\ref[src];input=note'>Edit</a>"
-						dat += " | <a href='byond://?src=\ref[src];note_func=new'>New File</a>"
-						dat += " | <a href='byond://?src=\ref[src];note_func=save'>Save</a>"
-						dat += " | <a href='byond://?src=\ref[src];note_func=switchmenu'>Load</a><br>"
+						dat += "|<a href='byond://?src=\ref[src];note_func=new'>New File</a>"
+						dat += "|<a href='byond://?src=\ref[src];note_func=save'>Save</a>"
+						dat += "|<a href='byond://?src=\ref[src];note_func=switchmenu'>Load</a><br>"
 
 						dat += src.note
 					else
 						dat += " <a href='byond://?src=\ref[src];note_func=switchmenu'>Back</a>"
-						dat += " | \[[src.holding_folder.holder.file_amount - src.holding_folder.holder.file_used]\] Free<br>"
+						dat += "|\[[src.holding_folder.holder.file_amount - src.holding_folder.holder.file_used]\] Free<br>"
 						dat += "<table cellspacing=5>"
 
 						for(var/datum/computer/file/text/T in src.holding_folder.contents)
@@ -100,9 +100,9 @@
 
 					if (!src.message_mode)
 
-						dat += "<a href='byond://?src=\ref[src];message_func=ringer'>Ringer: [src.message_silent == 1 ? "Off" : "On"]</a> | "
-						dat += "<a href='byond://?src=\ref[src];message_func=on'>Send / Receive: [src.message_on == 1 ? "On" : "Off"]</a> | "
-						dat += "<a href='byond://?src=\ref[src];input=tone'>Set Ringtone</a> | "
+						dat += "<a href='byond://?src=\ref[src];message_func=ringer'>Ringer: [src.message_silent == 1 ? "Off" : "On"]</a>|"
+						dat += "<a href='byond://?src=\ref[src];message_func=on'>Send / Receive: [src.message_on == 1 ? "On" : "Off"]</a>|"
+						dat += "<a href='byond://?src=\ref[src];input=tone'>Set Ringtone</a>|"
 						dat += "<a href='byond://?src=\ref[src];message_mode=1'>Messages</a><br>"
 
 						dat += "<font size=2><a href='byond://?src=\ref[src];message_func=scan'>Scan</a></font><br>"
@@ -132,7 +132,7 @@
 							dat += "None detected.<br>"
 
 					else
-						dat += "<a href='byond://?src=\ref[src];message_func=clear'>Clear</a> | "
+						dat += "<a href='byond://?src=\ref[src];message_func=clear'>Clear</a>|"
 						dat += "<a href='byond://?src=\ref[src];message_mode=0'>Back</a><br>"
 
 						dat += "<h4>Messages</h4>"
@@ -147,11 +147,11 @@
 					if((!src.browse_folder) || !(src.browse_folder.holder in src.master))
 						src.browse_folder = src.holding_folder
 
-					dat += " | <a href='byond://?src=\ref[src];target=\ref[src.browse_folder];browse_func=paste'>Paste</a>"
-					dat += " | Drive: "
+					dat += "|<a href='byond://?src=\ref[src];target=\ref[src.browse_folder];browse_func=paste'>Paste</a>"
+					dat += "|Drive: "
 					dat += "\[<a href='byond://?src=\ref[src];browse_func=drive'>[src.browse_folder.holder == src.master.hd ? "MAIN" : "CART"]</a>\]<br>"
 
-					dat += "<b>Contents of [browse_folder] | Drive ID:\[[src.browse_folder.holder.title]]</b><br>"
+					dat += "<b>Contents of [browse_folder]|Drive ID:\[[src.browse_folder.holder.title]]</b><br>"
 					dat += "<b>Used: \[[src.browse_folder.holder.file_used]/[src.browse_folder.holder.file_amount]\]</b><hr>"
 
 					dat += "<table cellspacing=5>"
@@ -436,11 +436,11 @@
 			var/dat
 
 			if(src.mode)
-				dat += " | <a href='byond://?src=\ref[src];mode=0'>Main Menu</a>"
+				dat += "|<a href='byond://?src=\ref[src];mode=0'>Main Menu</a>"
 
 			else if (!isnull(src.master.cartridge))
-				dat += " | <a href='byond://?src=\ref[src.master];eject_cart=1'>Eject [src.master.cartridge]</a>"
+				dat += "|<a href='byond://?src=\ref[src.master];eject_cart=1'>Eject [src.master.cartridge]</a>"
 
-			dat += " | <a href='byond://?src=\ref[src.master];refresh=1'>Refresh</a>"
+			dat += "|<a href='byond://?src=\ref[src.master];refresh=1'>Refresh</a>"
 
 			return dat

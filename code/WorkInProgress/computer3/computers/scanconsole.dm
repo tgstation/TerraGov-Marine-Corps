@@ -1178,7 +1178,7 @@
 			if (viable_occupant) temp_html += text("Save : <A href='?src=\ref[];b1addui=1'>UI</A> - <A href='?src=\ref[];b1adduiue=1'>UI+UE</A> - <A href='?src=\ref[];b1addse=1'>SE</A><br />", src, src, src)
 			if (buffer1) temp_html += text("Transfer to: <A href='?src=\ref[];b1transfer=1'>Occupant</A> - <A href='?src=\ref[];b1injector=1'>Injector</A><br />", src, src)
 			//if (buffer1) temp_html += text("<A href='?src=\ref[];b1iso=1'>Isolate Block</A><br />", src)
-			if (buffer1) temp_html += "Disk: <A href='?src=\ref[src];save_disk=1'>Save To</a> | <A href='?src=\ref[src];load_disk=1'>Load From</a><br />"
+			if (buffer1) temp_html += "Disk: <A href='?src=\ref[src];save_disk=1'>Save To</a>|<A href='?src=\ref[src];load_disk=1'>Load From</a><br />"
 			if (buffer1) temp_html += text("<A href='?src=\ref[];b1label=1'>Edit Label</A><br />", src)
 			if (buffer1) temp_html += text("<A href='?src=\ref[];b1clear=1'>Clear Buffer</A><br /><br />", src)
 			if (!buffer1) temp_html += "<br />"
@@ -1192,7 +1192,7 @@
 			if (viable_occupant) temp_html += text("Save : <A href='?src=\ref[];b2addui=1'>UI</A> - <A href='?src=\ref[];b2adduiue=1'>UI+UE</A> - <A href='?src=\ref[];b2addse=1'>SE</A><br />", src, src, src)
 			if (buffer2) temp_html += text("Transfer to: <A href='?src=\ref[];b2transfer=1'>Occupant</A> - <A href='?src=\ref[];b2injector=1'>Injector</A><br />", src, src)
 			//if (buffer2) temp_html += text("<A href='?src=\ref[];b2iso=1'>Isolate Block</A><br />", src)
-			if (buffer2) temp_html += "Disk: <A href='?src=\ref[src];save_disk=2'>Save To</a> | <A href='?src=\ref[src];load_disk=2'>Load From</a><br />"
+			if (buffer2) temp_html += "Disk: <A href='?src=\ref[src];save_disk=2'>Save To</a>|<A href='?src=\ref[src];load_disk=2'>Load From</a><br />"
 			if (buffer2) temp_html += text("<A href='?src=\ref[];b2label=1'>Edit Label</A><br />", src)
 			if (buffer2) temp_html += text("<A href='?src=\ref[];b2clear=1'>Clear Buffer</A><br /><br />", src)
 			if (!buffer2) temp_html += "<br />"
@@ -1206,7 +1206,7 @@
 			if (viable_occupant) temp_html += text("Save : <A href='?src=\ref[];b3addui=1'>UI</A> - <A href='?src=\ref[];b3adduiue=1'>UI+UE</A> - <A href='?src=\ref[];b3addse=1'>SE</A><br />", src, src, src)
 			if (buffer3) temp_html += text("Transfer to: <A href='?src=\ref[];b3transfer=1'>Occupant</A> - <A href='?src=\ref[];b3injector=1'>Injector</A><br />", src, src)
 			//if (buffer3) temp_html += text("<A href='?src=\ref[];b3iso=1'>Isolate Block</A><br />", src)
-			if (buffer3) temp_html += "Disk: <A href='?src=\ref[src];save_disk=3'>Save To</a> | <A href='?src=\ref[src];load_disk=3'>Load From</a><br />"
+			if (buffer3) temp_html += "Disk: <A href='?src=\ref[src];save_disk=3'>Save To</a>|<A href='?src=\ref[src];load_disk=3'>Load From</a><br />"
 			if (buffer3) temp_html += text("<A href='?src=\ref[];b3label=1'>Edit Label</A><br />", src)
 			if (buffer3) temp_html += text("<A href='?src=\ref[];b3clear=1'>Clear Buffer</A><br /><br />", src)
 			if (!buffer3) temp_html += "<br />"

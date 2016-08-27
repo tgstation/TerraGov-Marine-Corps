@@ -105,14 +105,14 @@
 	if(T)
 		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
 		usedPounce = 30 //about 12 seconds
-		pass_flags = PASSTABLE
+		flags_pass = PASSTABLE
 		if(readying_tail) readying_tail = 0
 		src.throw_at(T, 6, 2, src) //victim, distance, speed
 		spawn(6)
 			if(!hardcore)
-				pass_flags = initial(pass_flags)//Reset the passtable.
+				flags_pass = initial(flags_pass)//Reset the passtable.
 			else
-				pass_flags = 0 //Reset the passtable.
+				flags_pass = 0 //Reset the passtable.
 
 		spawn(usedPounce)
 			usedPounce = 0
@@ -394,12 +394,12 @@
 
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
-	if(ticker && ticker.mode.aliens.len)
+	if(ticker && ticker.mode.xenomorphs.len)
 		dat += "<table cellspacing=4>"
-		for(var/datum/mind/L in ticker.mode.aliens)
-			var/mob/M = L.current
-			if(M && istype(M,/mob/living/carbon/Xenomorph))
-				dat += "<tr><td>[M.name] [M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+		for(var/datum/mind/L in ticker.mode.xenomorphs)
+			var/mob/living/carbon/Xenomorph/M = L.current
+			if(istype(M))
+				dat += "<tr><td>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
 	return

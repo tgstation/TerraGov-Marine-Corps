@@ -7,7 +7,7 @@
 	desc = "Extracts information on wounds."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "autopsy_scanner"
-	flags = FPRINT | CONDUCT
+	flags_atom = FPRINT|CONDUCT
 	w_class = 2.0
 	origin_tech = "materials=1;biotech=1"
 	var/list/datum/autopsy_data_scanner/wdata = list()
