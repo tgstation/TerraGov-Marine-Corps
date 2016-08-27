@@ -58,7 +58,7 @@ You can see a working example in the Colonial Marines game mode.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
-	xeno_starting_num = Clamp((ready_players/5), xeno_required_num, 14) //(n, minimum, maximum)
+	xeno_starting_num = Clamp((ready_players/5), xeno_required_num, INFINITY) //(n, minimum, maximum)
 	surv_starting_num = Clamp((ready_players/7), 0, 3) //(n, minimum, maximum)
 
 //===================================================\\
@@ -237,13 +237,16 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/i = xeno_starting_num
 	var/datum/mind/new_xeno
 	while(i > 0) //While we can still pick someone for the role.
-		if(!possible_xenomorphs.len) break //We ran out of candidates, time to back out. Shouldn't happen though.
-		new_xeno = pick(possible_xenomorphs)
-		if(!new_xeno) break  //Looks like we didn't get anyone. Back out.
-		new_xeno.assigned_role = "MODE"
-		new_xeno.special_role = "Xenomorph"
-		possible_xenomorphs -= new_xeno
-		xenomorphs += new_xeno
+		if(possible_xenomorphs.len) //We still have candidates
+			new_xeno = pick(possible_xenomorphs)
+			if(!new_xeno) break  //Looks like we didn't get anyone. Back out.
+			new_xeno.assigned_role = "MODE"
+			new_xeno.special_role = "Xenomorph"
+			possible_xenomorphs -= new_xeno
+			xenomorphs += new_xeno
+		else //Out of candidates, spawn in empty larvas directly
+			var/mob/living/carbon/Xenomorph/Larva/empty_xeno = new(pick(xeno_spawn))
+			empty_xeno.amount_grown = 100
 		i--
 
 	/*
