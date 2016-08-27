@@ -208,10 +208,11 @@
 				return
 
 			else new_player_panel()
-/*
+
 		if(!ready && href_list["preference"])
 			if(client)
 				client.prefs.process_link(src, href_list)
+				/*
 		else if(!href_list["late_join"])
 
 		if("privacy_poll")
