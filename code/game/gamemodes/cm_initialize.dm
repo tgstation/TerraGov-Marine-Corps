@@ -136,23 +136,23 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(pred_candidate) pred_candidate.loc = null //Nullspace it for garbage collection later.
 
-/datum/game_mode/proc/check_predator_late_join(var/mob/pred_candidate, hide_round_type)
+/datum/game_mode/proc/check_predator_late_join(var/mob/pred_candidate)
 
 	if(!is_alien_whitelisted(pred_candidate,"Yautja") && !is_alien_whitelisted(pred_candidate,"Yautja Elder"))
-		if(!hide_round_type) pred_candidate << "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>"
+		pred_candidate << "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>"
 		return
 
 	if(!pred_round_status)
-		if(!hide_round_type) pred_candidate << "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>"
+		pred_candidate << "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>"
 		return
 
 	if(pred_candidate.key in pred_keys)
-		if(!hide_round_type) pred_candidate << "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>"
+		pred_candidate << "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>"
 		return
 
 	if(!is_alien_whitelisted(pred_candidate,"Yautja Elder"))
 		if(pred_current_num >= pred_maximum_num)
-			if(!hide_round_type) pred_candidate << "<span class='warning'>Only three predators may spawn per round, but Elders are excluded.</span>"
+			pred_candidate << "<span class='warning'>Only three predators may spawn per round, but Elders are excluded.</span>"
 			return
 
 	return 1
@@ -327,6 +327,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_xeno.amount_grown = 100
 	var/mob/original = ghost_mind.current
 	ghost_mind.transfer_to(new_xeno) //The mind is fine, since we already labeled them as a xeno. Away they go.
+	ghost_mind.name = ghost_mind.current.name
 
 	new_xeno << "<B>You are now an alien!</B>"
 	new_xeno << "<B>Your job is to spread the hive and protect the Queen. You can become the Queen yourself by evolving into a drone.</B>"
