@@ -543,7 +543,8 @@
 	if (src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
 	spawn(vend_delay)
-		new R.product_path(get_turf(src), ispath(R.product_path,/obj/item/weapon/gun)?1:0 )
+		if(ispath(R.product_path,/obj/item/weapon/gun)) new R.product_path(get_turf(src),1)
+		else new R.product_path(get_turf(src))
 		vend_ready = 1
 		return
 

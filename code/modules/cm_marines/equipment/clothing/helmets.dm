@@ -105,7 +105,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
 		new_name[] 			= list(/datum/game_mode/ice_colony =  "\improper M10 pattern marine snow helmet"),
 		new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
-		var/icon_override[] = type == /obj/item/clothing/suit/storage/marine ? list(/datum/game_mode/ice_colony = "s_helmet[pick(400;1,2)]") : null
+		var/icon_override[] = type == /obj/item/clothing/head/helmet/marine ? list(/datum/game_mode/ice_colony = "s_helmet[pick(200;1,2)]") : null
 		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 		..()
 		helmet_garb = list()
