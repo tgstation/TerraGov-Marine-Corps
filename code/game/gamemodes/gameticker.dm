@@ -165,6 +165,9 @@ var/global/datum/controller/gameticker/ticker
 		world << "\red <B>The OOC channel has been globally disabled due to round start!</B>"
 		ooc_allowed = !( ooc_allowed )
 
+	if(config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The round has started!")
+
 	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)

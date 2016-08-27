@@ -157,7 +157,7 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker
 	name = "beaker"
-	desc = "A beaker. Can hold up to 50 units."
+	desc = "A beaker. Can hold up to 60 units."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
@@ -203,7 +203,7 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/large
 	name = "large beaker"
-	desc = "A large beaker. Can hold up to 100 units."
+	desc = "A large beaker. Can hold up to 120 units."
 	icon_state = "beakerlarge"
 	matter = list("glass" = 5000)
 	volume = 120
@@ -231,7 +231,7 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 	name = "vial"
-	desc = "A small glass vial. Can hold up to 25 units."
+	desc = "A small glass vial. Can hold up to 30 units."
 	icon_state = "vial"
 	matter = list("glass" = 250)
 	volume = 30

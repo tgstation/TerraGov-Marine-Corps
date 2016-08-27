@@ -7,6 +7,7 @@
 	var/log_ooc = 0						// log OOC channel
 	var/log_access = 0					// log login/logout
 	var/log_say = 0						// log client say
+	var/log_hivemind = 0				// log hivemind
 	var/log_admin = 0					// log admin actions
 	var/log_debug = 1					// log debug output
 	var/log_game = 0					// log game events
@@ -116,6 +117,14 @@
 
 	var/comms_password = ""
 
+	var/use_slack = 0					// Defines whether server uses Slack integration or not.
+	var/slack_token = ""				// Slack API Token
+	var/slack_generic_name = "server"	// Sets the display name for generic messages from the server.
+	var/slack_ahelp_name = "ahelp"		// Sets the display name for adminhelp messages.
+	var/slack_send_round_info = 0		// Defines whether the server sends round start/end to slack.
+	var/slack_send_ahelps = 0			// Defines whether the server sends adminhelps to slack.
+	var/slack_send_ahelps_timer = 30	// defaults to 30 seconds.
+
 	var/use_irc_bot = 0
 	var/irc_bot_host = ""
 	var/main_irc = ""
@@ -197,6 +206,9 @@
 
 		if ("log_say")
 			config.log_say = 1
+
+		if ("log_hivemind")
+			config.log_hivemind = 1
 
 		if ("debug_paranoid")
 			config.debugparanoid = 1
@@ -464,6 +476,27 @@
 
 		if("admin_irc")
 			config.admin_irc = value
+
+		if("use_slack")
+			config.use_slack = 1
+
+		if("slack_token")
+			config.slack_token = value
+
+		if("slack_generic_name")
+			config.slack_generic_name = value
+
+		if("slack_ahelp_name")
+			config.slack_ahelp_name = value
+
+		if("slack_send_round_info")
+			config.slack_send_round_info = 1
+
+		if("slack_send_ahelps")
+			config.slack_send_ahelps = text2num(value)
+
+		if("slack_send_ahelps_timer")
+			config.slack_send_ahelps_timer = text2num(value) * 10
 
 		if("python_path")
 			if(value)

@@ -106,7 +106,7 @@ into helmets.dm*/
 
 /obj/item/clothing/head/cmcap
 	name = "\improper USCM cap"
-	desc = "A casual cap occasionally  worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "cap"
 	item_state = "cap"
@@ -118,14 +118,14 @@ into helmets.dm*/
 
 /obj/item/clothing/head/cmcap/ro
 	name = "\improper USCM officer cap"
-	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
 	item_state = "rocap"
 	item_color = "rocap"
 
 /obj/item/clothing/head/cmcap/req
 	name = "\improper USCM requisition cap"
-	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it over the standard issue helmet."
+	desc = "A hat usually worn by officers in the USCM. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cargocap"
 	item_state = "cargocap"
 	item_color = "cargocap"

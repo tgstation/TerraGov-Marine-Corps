@@ -397,6 +397,10 @@
 			message = "<B>[comm_paygrade][src]</B> smiles."
 			m_type = 1
 
+		if ("sneeze")
+			message = "<B>[comm_paygrade][src]</B> sneezes!"
+			m_type = 1
+
 		if ("snore")
 			message = "<B>[comm_paygrade][src]</B> snores."
 			m_type = 1

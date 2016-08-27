@@ -186,13 +186,25 @@
 		var/mob/living/carbon/pulled = pulling
 		if(!istype(pulled)) return
 		if(istype(pulled,/mob/living/carbon/Xenomorph))
-			src << "Nice try! That wouldn't taste very good."
+			src << "<span class='warning'>Nice try! That wouldn't taste very good.</span>"
 			return
-		src.visible_message("\red <B>[src] starts to devour [pulled]!</b>","\red <b>You start to devour [pulled]!</b>")
+		visible_message("<span class='danger'>[src] starts to devour [pulled]!</span>", \
+		"<span class='danger'>You start to devour [pulled]!</span>")
 		if(do_after(src,50))
-			src.visible_message("\red [src] devours [pulled]!","\red You devour [pulled]!")
+			visible_message("<span class='warning'>[src] devours [pulled]!</span>", \
+			"<span class='warning'>You devour [pulled]!</span>")
 			src.stop_pulling()
-			pulled.loc = src
+
+			//IMPORTANT CODER NOTE: Due to us using the old lighting engine, we need to hacky hack hard to get this working properly
+			//So we're just going to get the lights out of here by forceMoving them to a far-away place
+			//They will be recovered when regurgitating, since this also calls forceMove
+			pulled.x = 1
+			pulled.y = 1
+			pulled.z = 2 //Centcomm
+			pulled.forceMove(pulled.loc)
+
+			//Then, we place the mob where it ought to be
+			pulled.forceMove(src)
 			src.stomach_contents.Add(pulled)
 		else
 			src << "You stop devouring. [pulled] probably tastes gross anyway."

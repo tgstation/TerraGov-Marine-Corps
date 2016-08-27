@@ -769,7 +769,7 @@
 		world << "<FONT size = 3><B>Well done, you showed those snowflakes what war means!</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marines remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]\nBig Winner:)"
+			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner:)"
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","Marines Won")
@@ -777,7 +777,7 @@
 		world << "<FONT size = 3><B>Well done, it is now time for real marines to take over your positions.</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marines remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 	else
 		feedback_set_details("round_end_result","no winners")
 		world << "\red <FONT size = 4><B>NOBODY WON!</B></FONT>"
@@ -785,7 +785,7 @@
 		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marines remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	return 1
 

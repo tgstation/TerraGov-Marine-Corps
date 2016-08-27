@@ -1427,7 +1427,7 @@
 "Bw" = (/obj/machinery/vending/cigarette/colony,/turf/simulated/floor{icon_state = "white"},/area/lv624/lazarus/main_hall)
 "Bx" = (/obj/item/device/radio/intercom{anyai = 1; freerange = 1; frequency = 1469; name = "General Listening Channel"; pixel_x = -30; pixel_y = 0},/turf/simulated/floor{dir = 8; icon_state = "warning"},/area/lv624/lazarus/main_hall)
 "By" = (/obj/item/weapon/crowbar/red,/turf/simulated/floor{tag = "icon-warningcorner (WEST)"; icon_state = "warningcorner"; dir = 8},/area/lv624/ground/compound)
-"Bz" = (/obj/machinery/computer/shuttle_control/marine1{active_power_usage = 0; idle_power_usage = 0; req_one_access_txt = "1;2;4;12;19;21;200"; use_power = 0},/turf/simulated/floor{dir = 1; icon_state = "warning"},/area/lv624/lazarus/console)
+"Bz" = (/obj/machinery/computer/shuttle_control/marine1,/turf/simulated/floor{dir = 1; icon_state = "warning"},/area/lv624/lazarus/console)
 "BA" = (/turf/simulated/floor{icon_state = "warningcorner"; dir = 4},/area/lv624/ground/compound)
 "BB" = (/obj/item/weapon/bananapeel,/turf/unsimulated/floor/gm/grass,/area/lv624/ground/jungle4)
 "BC" = (/obj/structure/flora/ausbushes/sunnybush,/turf/unsimulated/floor/gm/coast{dir = 1},/area/lv624/ground/jungle4)

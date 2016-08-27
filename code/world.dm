@@ -42,6 +42,8 @@ var/global/datum/global_init/init = new ()
 	if(config && config.log_runtime)
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
+	if(config && config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The server is online!")
 	callHook("startup")
 	//Emergency Fix
 	load_mods()
@@ -112,7 +114,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["ai"] = config.allow_ai
 		s["host"] = host ? host : null
 		s["players"] = list()
-		s["stationtime"] = worldtime2text()
+		s["stationtime"] = duration2text()
 		var/n = 0
 		var/admins = 0
 
@@ -211,6 +213,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
 
+	if(config.use_slack && config.slack_send_round_info)
+		slackMessage("generic", "The server is restarting!")
 	..(reason)
 
 
@@ -305,7 +309,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(ticker)
 			if(master_mode)
 				s += "<br>Map: <b>[master_mode]</b>"
-				s += "<br>Round time: <b>[worldtime2text()]</b>"
+				s += "<br>Round time: <b>[duration2text()]</b>"
 		else
 			s += "<br>Map: <b>STARTING</b>"
 		// s += enter_allowed ? "<br>Entering: <b>Enabled</b>" : "<br>Entering: <b>Disabled</b>"

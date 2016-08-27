@@ -410,7 +410,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		world << "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]\nBig Winner: [winner.real_name] ([winner.key])"
+			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner: [winner.real_name] ([winner.key])"
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","no winners")
@@ -419,7 +419,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 	else
 		feedback_set_details("round_end_result","no winners")
 		world << "\red <FONT size = 4><B>NOBODY WON!</B></FONT>"
@@ -427,7 +427,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
+			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
 	return 1
 
