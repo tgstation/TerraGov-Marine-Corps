@@ -35,7 +35,7 @@
 			output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the USCM!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
-			if(is_alien_whitelisted(src,"Yautja") || is_alien_whitelisted(src,"Yautja Elder"))
+			if(ticker.mode.pred_round_status && ( is_alien_whitelisted(src,"Yautja") || is_alien_whitelisted(src,"Yautja Elder")) )
 				output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_pred'>Join the Hunt!</A></p>"
 
 		output += "<p><a href='byond://?src=\ref[src];lobby_choice=observe'>Observe</A></p>"
@@ -175,10 +175,9 @@
 					return
 
 				if(alert(src,"Are you sure you want to attempt joining as a predator?","Confirmation","Yes","No") == "Yes" )
-					if(ticker.mode.check_predator_late_join(src, 1))
+					if(ticker.mode.check_predator_late_join(src))
 						close_spawn_windows()
 						ticker.mode.attempt_to_join_as_predator(src)
-					else src << "<span class='warning'>You are unable to join the Hunt. It may not be a predator round or slots are already filled. Try again next round.</span>"
 
 			if("manifest")
 				ViewManifest()

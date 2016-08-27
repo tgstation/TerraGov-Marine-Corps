@@ -64,7 +64,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 /obj/item/clothing/suit/armor/vest/pilot
 	name = "\improper M70 flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "pilot"
+	item_state = "pilot"
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	blood_overlay_type = "armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO

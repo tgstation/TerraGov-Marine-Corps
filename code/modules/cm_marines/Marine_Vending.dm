@@ -94,21 +94,21 @@
 					)
 
 	contraband = list(
-					/obj/item/ammo_magazine/shotgun/incendiary = 0,
-					/obj/item/ammo_magazine/revolver/small = 0,
-					/obj/item/ammo_magazine/revolver/cmb = 0,
-					/obj/item/ammo_magazine/pistol/incendiary = 0,
-					/obj/item/ammo_magazine/pistol/m1911 = 0,
-					/obj/item/ammo_magazine/pistol/heavy = 0,
-					/obj/item/ammo_magazine/pistol/holdout = 0,
-					/obj/item/ammo_magazine/pistol/highpower = 0,
-					/obj/item/ammo_magazine/pistol/vp70 = 0,
-					/obj/item/ammo_magazine/smg/mp7 = 0,
-					/obj/item/ammo_magazine/smg/skorpion = 0,
-					/obj/item/ammo_magazine/smg/uzi = 0,
-					/obj/item/ammo_magazine/smg/p90 = 0
+					/obj/item/weapon/gun/pistol/holdout = 0,
+					/obj/item/weapon/gun/pistol/highpower = 0,
+					/obj/item/weapon/gun/pistol/m1911 = 0,
+					/obj/item/weapon/gun/pistol/vp70 = 0,
+					/obj/item/weapon/gun/pistol/heavy = 0,
+					/obj/item/weapon/gun/revolver/small = 0,
+					/obj/item/weapon/gun/revolver/cmb = 0,
+					/obj/item/weapon/gun/shotgun/merc = 0,
+					/obj/item/weapon/gun/shotgun/pump/cmb = 0,
+					/obj/item/weapon/gun/shotgun/double = 0,
+					/obj/item/weapon/gun/smg/mp7 = 0,
+					/obj/item/weapon/gun/smg/skorpion = 0,
+					/obj/item/weapon/gun/smg/uzi = 0,
+					/obj/item/weapon/gun/smg/p90 = 0
 					)
-
 	premium = list()
 	select_gamemode_equipment()
 
@@ -144,20 +144,19 @@
 					)
 
 	contraband = list(
-					/obj/item/weapon/gun/pistol/holdout = 0,
-					/obj/item/weapon/gun/pistol/highpower = 0,
-					/obj/item/weapon/gun/pistol/m1911 = 0,
-					/obj/item/weapon/gun/pistol/vp70 = 0,
-					/obj/item/weapon/gun/pistol/heavy = 0,
-					/obj/item/weapon/gun/revolver/small = 0,
-					/obj/item/weapon/gun/revolver/cmb = 0,
-					/obj/item/weapon/gun/shotgun/merc = 0,
-					/obj/item/weapon/gun/shotgun/pump/cmb = 0,
-					/obj/item/weapon/gun/shotgun/double = 0,
-					/obj/item/weapon/gun/smg/mp7 = 0,
-					/obj/item/weapon/gun/smg/skorpion = 0,
-					/obj/item/weapon/gun/smg/uzi = 0,
-					/obj/item/weapon/gun/smg/p90 = 0
+					/obj/item/ammo_magazine/shotgun/incendiary = 0,
+					/obj/item/ammo_magazine/revolver/small = 0,
+					/obj/item/ammo_magazine/revolver/cmb = 0,
+					/obj/item/ammo_magazine/pistol/incendiary = 0,
+					/obj/item/ammo_magazine/pistol/m1911 = 0,
+					/obj/item/ammo_magazine/pistol/heavy = 0,
+					/obj/item/ammo_magazine/pistol/holdout = 0,
+					/obj/item/ammo_magazine/pistol/highpower = 0,
+					/obj/item/ammo_magazine/pistol/vp70 = 0,
+					/obj/item/ammo_magazine/smg/mp7 = 0,
+					/obj/item/ammo_magazine/smg/skorpion = 0,
+					/obj/item/ammo_magazine/smg/uzi = 0,
+					/obj/item/ammo_magazine/smg/p90 = 0
 					)
 	premium = list()
 	select_gamemode_equipment()

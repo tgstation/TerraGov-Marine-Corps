@@ -553,7 +553,7 @@
 /obj/machinery/vending/proc/stock(var/obj/item_to_stock, var/mob/user)
 	var/datum/data/vending_product/R //Let's try with a new datum.
 	 //More accurate comparison between absolute paths.
-	for(R in product_records)
+	for(R in (product_records + hidden_records + coin_records))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/weapon/storage)) //Nice try, specialists/engis
 			if(istype(item_to_stock, /obj/item/weapon/gun))
 				var/obj/item/weapon/gun/G = item_to_stock
