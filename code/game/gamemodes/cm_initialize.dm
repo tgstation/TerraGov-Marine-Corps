@@ -178,7 +178,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	//They should have these set, but it's possible they don't have them.
 	new_predator.real_name = new_predator.client.prefs.predator_name
 	new_predator.gender = new_predator.client.prefs.predator_gender
-	//new_predator.age = new_predator.client.prefs.predator_age
+	new_predator.age = new_predator.client.prefs.predator_age
 
 	if(!new_predator.real_name || new_predator.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
 		new_predator.real_name = "Le'pro"
