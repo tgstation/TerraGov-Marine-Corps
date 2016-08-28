@@ -943,8 +943,8 @@
 
 	attack_self(mob/living/user as mob)
 		if(!linked_turret)
-*/
 
+*/
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
 	immobile = 1
@@ -966,4 +966,4 @@
 		spawn(2)
 			stat = 0
 			processing_objects.Add(src)
-		ammo = ammo_list["autocannon bullet"]
+		ammo = ammo_list[ammo]
