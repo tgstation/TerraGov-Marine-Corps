@@ -605,7 +605,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 			armed = 0
 			icon_state = "mine"
 			if(tripwire)
-				del(tripwire)
+				cdel(tripwire)
 			return
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
@@ -646,8 +646,8 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 				explosion(tripwire.loc, -1, -1, 2)
 			spawn()
 				if(tripwire)
-					del(tripwire)
-				del(src)
+					cdel(tripwire)
+				cdel(src)
 
 /obj/item/device/mine/attack_alien(mob/living/carbon/Xenomorph/M as mob)
 	if(triggered) //Mine is already set to go off
@@ -676,6 +676,11 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	var/obj/item/device/mine/linked_claymore
 
 /obj/effect/mine_tripwire/Crossed(AM as mob|obj)
+
+	if(!linked_claymore)
+		cdel(src)
+		return
+
 	if(linked_claymore.triggered) //Mine is already set to go off
 		return
 
