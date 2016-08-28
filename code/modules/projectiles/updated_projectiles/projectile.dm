@@ -73,7 +73,7 @@
 		if(AM && !AM in permutated)
 			scan_a_turf(get_turf(AM))
 
-/obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage)
+/obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0)
 	ammo 		= ammo_datum
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state

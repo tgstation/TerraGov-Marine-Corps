@@ -35,8 +35,8 @@
 			output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the USCM!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
-			if(ticker.mode.pred_round_status && ( is_alien_whitelisted(src,"Yautja") || is_alien_whitelisted(src,"Yautja Elder")) )
-				output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_pred'>Join the Hunt!</A></p>"
+			if(ticker.mode.pred_round_status)
+				if(ticker.mode.check_predator_late_join(src,0)) output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_pred'>Join the Hunt!</A></p>"
 
 		output += "<p><a href='byond://?src=\ref[src];lobby_choice=observe'>Observe</A></p>"
 
@@ -164,7 +164,7 @@
 
 				if(alert(src,"Are you sure you want to attempt joining as a xenomorph?","Confirmation","Yes","No") == "Yes" )
 					if(ticker.mode.check_xeno_late_join(src))
-						var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src, 1)
+						var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src, 0)
 						if(new_xeno)
 							close_spawn_windows(new_xeno)
 							ticker.mode.transfer_xeno(src, new_xeno)
@@ -175,9 +175,12 @@
 					return
 
 				if(alert(src,"Are you sure you want to attempt joining as a predator?","Confirmation","Yes","No") == "Yes" )
-					if(ticker.mode.check_predator_late_join(src))
+					if(ticker.mode.check_predator_late_join(src,0))
 						close_spawn_windows()
 						ticker.mode.attempt_to_join_as_predator(src)
+					else
+						src << "<span class='warning'>You are no longer able to join as predator.</span>"
+						new_player_panel()
 
 			if("manifest")
 				ViewManifest()
