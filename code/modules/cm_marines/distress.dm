@@ -714,7 +714,7 @@
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
 	var/list/first_names_mr = list("Grigory","Vladimir","Alexei","Andrei","Artyom","Viktor","Boris","Ivan","Igor","Oleg")
-	var/list/first_names_fr = list("Alexandra","Anna","Anastasiya","Eva","Klara","Nikita","Olga","Svetlana","Tatyana","Yaroslava")
+	var/list/first_names_fr = list("Alexandra","Anna","Anastasiya","Eva","Klara","Oksana","Olga","Svetlana","Tatyana","Yaroslava")
 	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Dragomirov","Yeltsin","Zhirov","Zhukov","Ivanov","Vasnetsov","Kasputin","Belov","Melnikov", "Vasilevsky", "Penkin")
 
 	if(mob.gender == MALE) 	mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
