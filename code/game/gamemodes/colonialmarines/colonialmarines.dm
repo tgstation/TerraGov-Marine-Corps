@@ -96,6 +96,7 @@
 	for(var/mob/living/carbon/Xenomorph/X in player_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space) && !istype(get_area(X.loc),/area/shuttle/distress_start)) // If they're connected/unghosted and alive and not debrained
+				// if(istype(X, /mob/living/carbon/Xenomorph/Drone || istype(X, /mob/living/carbon/Xenomorph/Larva))) continue // If a Queen is no longer an option, end the round faster
 				xeno_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_XENOS()")

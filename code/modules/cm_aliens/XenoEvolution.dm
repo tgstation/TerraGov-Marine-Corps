@@ -218,7 +218,7 @@
 /proc/is_queen_alive()
 	var/found = 0
 
-	for(var/mob/living/carbon/Xenomorph/Queen/Q in mob_list)
+	for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
 		if(!isnull(Q) && Q.stat != DEAD)
 			found = 1
 			break

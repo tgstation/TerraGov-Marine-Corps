@@ -12,6 +12,7 @@
 	storedplasma = 75
 	plasma_gain = 10
 	maxplasma = 300
+	jelly = 1
 	jellyMax = 200
 	spit_delay = 30
 	caste_desc = "A weak ranged combat alien."

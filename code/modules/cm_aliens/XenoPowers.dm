@@ -161,7 +161,7 @@
 		src << "\green You said: \"[msg]\" to [M]"
 	return
 
-/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M as mob in oview(1))
+/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M as mob in oview(2))
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Alien"
@@ -443,10 +443,11 @@
 	if(isnull(current_aura))
 		if(!check_plasma(30))
 			return
-		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "guard","recovery")
-		current_aura = choice
-		visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
-		return
+		var/choice = alert(src,"Which pheromone would you like to emit?\nFrenzy - Increased run speed\nGuard - Reduced incoming damage\nRecovery - Increased plasma generation","Auras", "frenzy", "guard", "recovery")
+		if (choice != "cancel")
+			current_aura = choice
+			visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
+			return
 	else
 		current_aura = null
 		src << "<b>You stop emitting pheromones.</b>"

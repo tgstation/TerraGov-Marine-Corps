@@ -33,8 +33,10 @@
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
 	..()
-	if(jelly)
-		stat(null, "Jelly Progress: [jellyGrow]/[jellyMax]")
+	if(jelly && is_queen_alive())
+		stat(null, "Evolve Progress: [jellyGrow]/[jellyMax]")
+	else
+		stat(null, "Evolve Progress (HALTED - NO QUEEN): [jellyGrow]/[jellyMax]")
 
 	if(maxplasma > 0)
 		if(is_robotic)

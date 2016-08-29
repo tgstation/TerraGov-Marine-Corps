@@ -47,7 +47,7 @@
 		/mob/living/carbon/Xenomorph/proc/build_resin,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/Queen/proc/screech,
-		/mob/living/carbon/Xenomorph/Queen/proc/produce_jelly,
+		// /mob/living/carbon/Xenomorph/Queen/proc/produce_jelly, // Disabling this because the jelly system is clunky and relies on a competent Queen player
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
 		// /mob/living/carbon/Xenomorph/proc/bestial_roar,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
