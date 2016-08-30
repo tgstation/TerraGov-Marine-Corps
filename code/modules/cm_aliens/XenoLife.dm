@@ -25,7 +25,7 @@
 		if(jelly && jellyGrow < jellyMax && is_queen_alive())
 			jellyGrow++
 			if(jellyGrow == jellyMax-1)
-				src << "\green You feel the royal jelly swirl in your veins. You are ready to evolve!"
+				src << "\green Your carapace crackles and your tendons strengthen. You are ready to evolve!"
 
 
 		//Status updates, death etc.

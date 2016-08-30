@@ -393,6 +393,7 @@
 	set category = "Alien"
 
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
+	dat += "Total Alive Sisters: [ticker.mode.xenomorphs.len]"
 
 	if(ticker && ticker.mode.xenomorphs.len)
 		dat += "<table cellspacing=4>"

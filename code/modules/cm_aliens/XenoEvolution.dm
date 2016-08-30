@@ -159,7 +159,7 @@
 
 	if(jellyMax && caste != "Queen") //Does the caste have a jelly timer? Then check it
 		if(jellyGrow < jellyMax)
-			src << "You must wait to let the royal jelly seep into your lymph. Currently at: [jellyGrow] / [jellyMax]."
+			src << "You must wait before evolving. Currently at: [jellyGrow] / [jellyMax]."
 			return
 
 	visible_message("\green <b> \The [src] begins to twist and contort..</b>","\green <b>You begin to twist and contort..</b>")

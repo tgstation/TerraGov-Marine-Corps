@@ -53,8 +53,7 @@ var/global/datum/controller/gameticker/ticker
 	//'sound/music/Prometheus_trailer.ogg',
 	'sound/music/warrior_song.ogg')  //The Warrior Song
 
-	/*'SEASONAL/ColonialHalloween.ogg'
-	'SEASONAL/CMxmas.ogg')*/
+	/*'sound/music/ColonialHalloween.ogg'*/
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
