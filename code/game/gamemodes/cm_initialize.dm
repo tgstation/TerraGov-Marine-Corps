@@ -303,7 +303,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/mob/living/carbon/Xenomorph/new_xeno
 	if(!instant_join)
 		new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
-		if (!istype(new_xeno)) return //It could be null, it could be "cancel" or whatever that isn't a xenomorph.
+		if (!istype(new_xeno) || !xeno_candidate) return //It could be null, it could be "cancel" or whatever that isn't a xenomorph.
 
 		if(!(new_xeno in living_mob_list) || new_xeno.stat == DEAD)
 			xeno_candidate << "<span class='warning'>You cannot join if the xenomorph is dead.</span>"
@@ -313,11 +313,10 @@ datum/game_mode/proc/initialize_special_clamps()
 			xeno_candidate << "<span class='warning'>That xenomorph has been occupied.</span>"
 			return
 
-		var/deathtime = world.time - xeno_candidate.timeofdeath
-		var/deathtimeminutes = round(deathtime / 600)
-		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-
 		if(!xeno_bypass_timer)
+			var/deathtime = world.time - xeno_candidate.timeofdeath
+			var/deathtimeminutes = round(deathtime / 600)
+			var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 			if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
 				xeno_candidate << "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>"
 				xeno_candidate << "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>"
@@ -327,7 +326,7 @@ datum/game_mode/proc/initialize_special_clamps()
 				return
 
 		if(alert(xeno_candidate, "Everything checks out. Are you sure you want to transfer yourself into [new_xeno]?", "Confirm Transfer", "Yes", "No") == "Yes")
-			if(new_xeno.client || !(new_xeno in living_mob_list) || new_xeno.stat == DEAD) // Do it again, just in case
+			if(new_xeno.client || !(new_xeno in living_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 				xeno_candidate << "<span class='warning'>That xenomorph can no longer be controlled. Please try another.</span>"
 				return
 		else return

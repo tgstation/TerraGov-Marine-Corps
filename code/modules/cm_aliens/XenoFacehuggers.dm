@@ -235,7 +235,7 @@ var/const/MAX_ACTIVE_TIME = 200
 			if(istype(W))
 				if(!W.canremove)
 					return 0
-				if(istype(W,/obj/item/clothing/mask/facehugger))
+				if(istype(W,/obj/item/clothing/mask/facehugger) && W:stat != DEAD)
 					return 0
 				if(W.anti_hug > 1)
 					target.visible_message("\red \b [src] smashes against [target]'s [W] and bounces off!")
@@ -376,7 +376,7 @@ var/const/MAX_ACTIVE_TIME = 200
 			var/obj/item/W = M.wear_mask
 			if(!W.canremove)
 				return 0
-			if(istype(W,/obj/item/clothing/mask/facehugger))
+			if(istype(W,/obj/item/clothing/mask/facehugger) && W:stat != DEAD)
 				return 0
 
 	if(iscorgi(M))
