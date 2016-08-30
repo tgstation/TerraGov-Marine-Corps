@@ -28,7 +28,7 @@
 		output +="<hr>"
 		output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Setup Character</A></p>"
 
-		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
+		if(!ticker || !ticker.mode || ticker.current_state <= GAME_STATE_PREGAME)
 			output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 
 		else
