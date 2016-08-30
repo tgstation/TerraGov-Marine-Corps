@@ -1,11 +1,8 @@
 // BEGIN_INTERNALS
 /*
-LAST_COMPILE_TIME: 1472542912
-DIR: .git .git\logs .git\logs\refs .git\refs code code\_onclick code\controllers code\datums code\datums\diseases code\datums\diseases\advance code\datums\diseases\advance\symptoms code\defines code\defines\obj code\defines\procs code\game code\game\area code\modules code\modules\cm_marines code\modules\cm_marines\Marine_Research code\modules\research maps 
+LAST_COMPILE_TIME: 1469411214
 AUTO_FILE_DIR: OFF
 MAP_ICON_TYPE: 0
 LAST_COMPILE_VERSION: 510.1347
-WINDOW: code\modules\research\designs.dm;code\modules\cm_marines\Marine_Research\Marine_Research_Console.dm;code\modules\cm_marines\Marine_Research\Marine_Designs.dm;code\modules\cm_marines\Marine_Research\Marine_Research_Items.dm;maps\Z.04.SulacoBottom.dmm
-FILE: maps\Z.04.SulacoBottom.dmm
 */
 // END_INTERNALS
