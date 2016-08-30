@@ -65,7 +65,7 @@
 				return
 			//usr << "You've cut out an intact organ."
 			usr << "You've cut out some Biomass..."
-			new /obj/item/XenoBio/Biomass(T.loc)//This will be an organ eventually, based on the caste.
+			new /obj/item/XenoBio/Resin(T.loc)//This will be an organ eventually, based on the caste.
 			T.butchery_progress++
 			active = 0
 	if(T.butchery_progress == 3)
@@ -75,7 +75,7 @@
 				return
 			usr << "You scrape out the remaining biomass."
 			active = 0
-			new /obj/item/XenoBio/Biomass(T.loc)
+			new /obj/item/XenoBio/Resin(T.loc)
 			new /obj/effect/decal/remains/xeno(T.loc)
 			del(T)
 

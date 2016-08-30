@@ -22,6 +22,7 @@
 	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter = null	//Linked Circuit Imprinter
 	//CM MACHINES
 	var/obj/machinery/r_n_d/organic_analyzer/linked_organic = null      //linked Organic Analyzer
+	var/obj/machinery/r_n_d/bioprinter/linked_bioprinter = null			//linked bioprinter
 
 	var/screen = 1.0	//Which screen is currently showing.
 	var/id = 0			//ID of the computer (for server restrictions).
@@ -66,12 +67,12 @@
 				return_name = "Uranium"
 			if("diamond")
 				return_name = "Diamond"
-			if("acidblood") //Xeno blood - retreived during autopsy
+			if("blood") //Xeno blood - retreived during autopsy
 				return_name = "Acid Blood"
 			if("chitin")    //Xeno Chitin - retreived during autopsy
 				return_name = "Alien Chitin"
-			if("xenomass")   //Xeno Biomass - if an organ/sample is placed into the 3D printer instead of the Organic Analyzer, it generates this instead of research points.
-				return_name = "Alien Biomass"
+			if("resin")   //Xeno Biomass - if an organ/sample is placed into the 3D printer instead of the Organic Analyzer, it generates this instead of research points.
+				return_name = "Alien Resin"
 	else
 		for(var/R in typesof(/datum/reagent) - /datum/reagent)
 			temp_reagent = null
@@ -89,7 +90,7 @@
 	for(var/obj/machinery/r_n_d/D in oview(3,src))
 		if(D.linked_console != null || D.disabled || D.opened)
 			continue
-		if(istype(D, /obj/machinery/r_n_d/organic_analyzer))
+		if(istype(D, /obj/machinery/r_n_d/organic_analyzer)) // CM MACHINE
 			if(linked_organic == null)
 				linked_organic = D
 				D.linked_console = src
@@ -104,6 +105,10 @@
 		else if(istype(D, /obj/machinery/r_n_d/circuit_imprinter))
 			if(linked_imprinter == null)
 				linked_imprinter = D
+				D.linked_console = src
+		else if(istype(D, /obj/machinery/r_n_d/bioprinter)) // CM MACHINE
+			if(linked_imprinter == null)
+				linked_bioprinter = D
 				D.linked_console = src
 
 	return
@@ -524,7 +529,42 @@
 
 
 
+	else if(href_list["bioprint"]) //Causes the bioprinter to print something
+		if(linked_bioprinter)
+			var/datum/design/being_built = null
+			for(var/datum/design/D in files.known_designs)
+				if(D.id == href_list["bioprint"])
+					being_built = D
+					break
+			if(being_built)
+				var/power = linked_bioprinter.active_power_usage
+				for(var/M in being_built.materials)
+					power += round(being_built.materials[M] / 5)
+				power = max(linked_bioprinter.active_power_usage, power)
+				screen = 0.6
+				linked_bioprinter.busy = 1
+				flick("protolathe",linked_bioprinter)
+				spawn(16)
+					use_power(power)
+					spawn(16)
+						errored = 1
+						for(var/M in being_built.materials)
+							switch(M)
+								if("$chitin")
+									linked_bioprinter.chitin_amount = max(0, (linked_bioprinter.chitin_amount-being_built.materials[M]))
+								if("$blood")
+									linked_bioprinter.blood_amount = max(0, (linked_bioprinter.blood_amount-being_built.materials[M]))
+								if("$resin")
+									linked_bioprinter.resin_amount = max(0, (linked_bioprinter.resin_amount-being_built.materials[M]))
 
+						if(being_built.build_path)
+							var/buildPath = text2path(being_built.build_path)
+							var/obj/new_item = new buildPath(src)
+							new_item.loc = linked_bioprinter.loc
+							linked_bioprinter.busy = 0
+							screen = 6.1
+							errored = 0
+						updateUsrDialog()
 
 
 
@@ -584,6 +624,9 @@
 		if(0.4)
 			dat += "Imprinting Circuit. Please Wait..."
 
+		if(0.6)
+			dat += "Bioprinting. Please Wait..."
+
 		if(1.0) //Main Menu
 			dat += "Main Menu:<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.1'>Current Research Levels</A><BR>"
@@ -591,6 +634,7 @@
 			if(linked_organic != null) dat += "<A href='?src=\ref[src];menu=5.2'>Weyland Brand Organic Analyzer(TM) Menu</A><BR>"
 			if(linked_lathe != null) dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Construction Menu</A><BR>"
 			if(linked_imprinter != null) dat += "<A href='?src=\ref[src];menu=4.1'>Circuit Construction Menu</A><BR>"
+			if(linked_bioprinter != null) dat += "<A href='?src=\ref[src];menu=6.1'>Weyland Yutani Brand Bioprinter(TM) menu</A><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.6'>Settings</A>"
 
 		if(1.1) //Research viewer
@@ -633,9 +677,13 @@
 				dat += "* (No Circuit Imprinter Linked)<BR>"
 
 			if(linked_organic)
-				dat += "* Weyland Brand Organic Analyzer(TM) Imprinter <A href='?src=\ref[src];disconnect=organic'>(Disconnect)</A><BR>"
+				dat += "* Weyland Brand Organic Analyzer(TM) <A href='?src=\ref[src];disconnect=organic'>(Disconnect)</A><BR>"
 			else
 				dat += "* (No Weyland Brand Organic Analyzer(TM) linked)<BR>"
+			if(linked_bioprinter)
+				dat += "* Weyland Yutanii Brand Bioprinter(TM) <A href='?src=\ref[src];disconnect=bioprinter'>(Disconnect)</A><BR>"
+			else
+				dat += "* (No Weyland Yutani Brand Bioprinter(TM) linked)<BR>"
 		////////////////////DESTRUCTIVE ANALYZER SCREENS////////////////////////////
 		if(2.0)
 			dat += "NO DESTRUCTIVE ANALYZER LINKED TO CONSOLE<BR><BR>"
@@ -858,6 +906,53 @@
 				dat += "* [CallTechName(T)] [temp_tech[T]]<BR>"
 			dat += "<HR><A href='?src=\ref[src];organScan=1'>Analyze Item</A> || "
 			dat += "<A href='?src=\ref[src];eject_organ=1'>Eject Item</A> || "
+
+
+				////////////////////BIOPRINTER SCREENS////////////////////////////
+		if(6.0)
+			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
+			dat += "NO BIOPRINTER LINKED TO CONSOLE<BR><BR>"
+
+		if(6.1)
+			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='?src=\ref[src];menu=6.2'>Material Storage</A> || "
+			dat += "Bioprinter Menu:<BR><BR>"
+			dat += "<B>Material Amount:</B> [linked_bioprinter.TotalMaterials()] cm<sup>3</sup> (MAX: [linked_bioprinter.max_material_storage])<BR>"
+			for(var/datum/design/D in files.known_designs)
+				if(!(D.build_type & BIOPRINTER))//Giving an undefined va error.  It might be related to Data/Design Disks.
+					continue
+				var/temp_dat = "[D.name] || "
+				var/check_materials = 1
+				for(var/M in D.materials)
+					temp_dat += " [D.materials[M]] [CallMaterialName(M)] |"
+					if(copytext(M, 1, 2) == "$")
+						switch(M)
+							if("$blood")
+								if(D.materials[M] > linked_bioprinter.blood_amount) check_materials = 0
+							if("$chitin")
+								if(D.materials[M] > linked_bioprinter.chitin_amount) check_materials = 0
+							if("$resin")
+								if(D.materials[M] > linked_bioprinter.resin_amount) check_materials = 0
+					else if (!linked_bioprinter.reagents.has_reagent(M, D.materials[M]))
+						check_materials = 0
+				if (check_materials)
+					dat += "* <A href='?src=\ref[src];bioprint=[D.id]'>[temp_dat]</A><BR>"
+				else
+					dat += "* [temp_dat]<BR>"
+
+		if(6.2) //bioprinter Material Storage Sub-menu
+			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='?src=\ref[src];menu=6.1'>Bioprinter Menu</A><HR>"
+			dat += "Material Storage<BR><HR>"
+			//blood
+			dat += "* [linked_bioprinter.blood_amount] cm<sup>3</sup> of Alien Blood || "
+			dat += "<BR>"
+			//chitin
+			dat += "* [linked_bioprinter.chitin_amount] cm<sup>3</sup> of Alien Chitin || "
+			dat += "<BR>"
+			//resin
+			dat += "* [linked_bioprinter.resin_amount] cm<sup>3</sup> of Alien Resin "
+			dat += "<BR>"
 
 
 	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")

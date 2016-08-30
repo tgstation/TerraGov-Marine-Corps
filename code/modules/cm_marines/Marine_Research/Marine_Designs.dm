@@ -3,12 +3,6 @@
 //This is an exentision of Designs.dm, focused on the alien stuff.
 
 
-/*
-#define	IMPRINTER	1	//For circuits. Uses glass/chemicals.
-#define PROTOLATHE	2	//New stuff. Uses glass/metal/chemicals
-#define	AUTOLATHE	4	//Uses glass/metal only.
-#define CRAFTLATHE	8	//Uses fuck if I know. For use eventually.
-#define MECHFAB		16 //Remember, objects utilising this flag should have construction_time and construction_cost vars.*/ //FOR REFERENCE ONLY
 #define BIOPRINTER 32
 
 /*
@@ -32,10 +26,27 @@ datum/design						//Datum for object designs, used in construction
 datum/design/ChitinPlate
 	name = "Chitin Armor Plate"
 	desc = "Item that can be attached to Marine Armor to greatly increase defense at the expense of movement speed."
-	id = "chitinarm"
+	id = "ChitinPlate"
 	req_tech = list("Bio" = 2)
 	build_type = BIOPRINTER
-	materials = list("$acidblood" = 1, "$chitin" = 2, "$xenomass" = 2)
-	build_path = "/obj/item/XenoItem/ChitinPlate"
+	materials = list("$blood" = 1, "$chitin" = 2, "$resin" = 2)
+	build_path = "/obj/item/weapon/XenoItem/ChitinPlate"
 
 
+datum/design/ResinPaste
+	name = "Resin Paste"
+	desc = "A paste which allows you to repair a broken helmet."
+	id = "ResinPaste"
+	req_tech = list("Bio" = 2)
+	build_type = BIOPRINTER
+	materials = list("$chitin" = 2, "$resin" = 2)
+	build_path = "/obj/item/weapon/XenoItem/ResinPaste"
+
+datum/design/AntiAcid
+	name = "Anti-Acid Spray"
+	desc = "Spraying this onto a surface will prevent it from being meltable by Xeno Acid."
+	id = "AntiAcid"
+	req_tech = list("Bio" = 2)
+	build_type = BIOPRINTER
+	materials = list("$blood" = 1, "$resin" = 2)
+	build_path = "/obj/item/weapon/XenoItem/AntiAcid"

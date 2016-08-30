@@ -5,7 +5,7 @@
 Note: Must be placed within 3 tiles of the WY Research Console
 */
 /obj/machinery/r_n_d/organic_analyzer
-	name = "Weyland Brand Organic Analyzer(TM)"
+	name = "Weyland Yutani Brand Organic Analyzer(TM)"
 	icon_state = "d_analyzer"
 	var/obj/item/loaded_item = null
 	var/decon_mod = 1
