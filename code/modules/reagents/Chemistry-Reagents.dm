@@ -1103,7 +1103,7 @@ datum
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 			scannable = 1
-			overdose = 30
+			overdose = REAGENTS_OVERDOSE
 			overdose_dam = 0
 
 			on_mob_life(var/mob/living/M as mob, var/alien)

@@ -68,8 +68,8 @@
 	flag = SULRES
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
 	access = list(access_sulaco_medbay, access_sulaco_research, access_sulaco_chemistry)

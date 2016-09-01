@@ -997,6 +997,7 @@ client
 			else
 				usr << "You caused an error. DEBUG: Text:[Text] Mob:[L]"
 				return
+		L.updatehealth()
 
 		if(amount != 0)
 			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L] ")
@@ -1010,4 +1011,3 @@ client
 		src.debug_variables(DAT)
 
 	return
-
