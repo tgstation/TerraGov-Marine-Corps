@@ -25,6 +25,9 @@
 	if(active)
 		usr << "Your already performing an autopsy"
 		return
+	if(istype(T, /mob/living/carbon/Xenomorph/Larva))
+		usr << "It's too young... (This will be in a future update)"
+		return
 	active = 1
 	var CHECK = user.loc
 	playsound(loc, 'sound/weapons/pierce.ogg', 50)
