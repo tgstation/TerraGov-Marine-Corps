@@ -9,7 +9,7 @@
 	icon_state = "flashlight"
 	item_state = "flashlight"
 	var/attachable = 0  //Can this be attached to another weapon or device?
-	brightness_on = 7 //luminosity when on
+	brightness_on = 5 //Pretty luminous, but still a flashlight that fits in a pocket
 
 /obj/item/device/flashlight/combat/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
