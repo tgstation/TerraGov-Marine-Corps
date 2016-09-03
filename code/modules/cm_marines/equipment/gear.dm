@@ -646,6 +646,28 @@
 
 		"}
 
+/obj/item/weapon/book/manual/ice_colony_map
+	name = "\improper Ice Colony map"
+	desc = "A satellite printout of the Ice Colony."
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	author = "Weyland Yutani"
+	title = "Ice Colony Map"
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<img src="IceColony.png" alt="Map">
+		</body>
+
+		</html>
+
+		"}
+
 /obj/item/weapon/book/manual/whiskey_outpost_map
 	name = "\improper Whiskey Outpost map"
 	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
