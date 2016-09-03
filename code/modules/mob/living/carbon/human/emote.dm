@@ -38,6 +38,10 @@
 			message = "<B>[comm_paygrade][src]</B> blinks."
 			m_type = 1
 
+		if ("blink_r")
+			message = "blinks rapidly."
+			m_type = 1
+
 		if ("bow")
 			if (!src.buckled)
 				var/M = null
@@ -127,6 +131,10 @@
 
 		if ("eyebrow")
 			message = "<B>[comm_paygrade][src]</B> raises an eyebrow."
+			m_type = 1
+
+		if ("facepalm")
+			message = "facepalms."
 			m_type = 1
 
 		if ("faint")
@@ -367,6 +375,10 @@
 			message = "<B>[comm_paygrade][src]</B> shakes \his head."
 			m_type = 1
 
+		if ("shiver")
+			message = "shivers."
+			m_type = 1
+
 		if ("shrug")
 			message = "<B>[comm_paygrade][src]</B> shrugs."
 			m_type = 1
@@ -439,13 +451,16 @@
 		if ("help")
 			src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br> \
 			blink, \
+			blink_r, \
 			bow-(mob name), \
 			chuckle, \
 			<span style='color: green;'>clap</span>, \
 			collapse, \
 			cough, \
+			cry, \
 			drool, \
 			eyebrow, \
+			facepalm, \
 			faint, \
 			frown, \
 			gasp, \
@@ -467,10 +482,12 @@
 			<span style='color: green;'>salute</span>, \
 			scream, \
 			shakehead, \
+			shiver, \
 			shrug, \
 			sigh, \
 			signal-#1-10, \
 			smile, \
+			sneeze, \
 			snore, \
 			stare-(mob name), \
 			twitch, \
