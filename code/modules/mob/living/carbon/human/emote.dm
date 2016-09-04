@@ -39,7 +39,7 @@
 			m_type = 1
 
 		if ("blink_r")
-			message = "blinks rapidly."
+			message = "<B>[comm_paygrade][src]</B> blinks rapidly."
 			m_type = 1
 
 		if ("bow")
@@ -134,7 +134,7 @@
 			m_type = 1
 
 		if ("facepalm")
-			message = "facepalms."
+			message = "<B>[comm_paygrade][src]</B> facepalms."
 			m_type = 1
 
 		if ("faint")
@@ -376,7 +376,7 @@
 			m_type = 1
 
 		if ("shiver")
-			message = "shivers."
+			message = "<B>[comm_paygrade][src]</B> shivers."
 			m_type = 1
 
 		if ("shrug")
