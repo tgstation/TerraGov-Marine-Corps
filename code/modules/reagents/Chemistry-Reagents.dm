@@ -3238,6 +3238,14 @@ datum
 			dizzy_adj = 4
 			slur_start = 90		//amount absorbed after which mob starts slurring
 
+		ethanol/sake
+			name = "Sake"
+			id = "sake"
+			description = "A potent rice-wine."
+			color = "#0064C8" // rgb: 102, 67, 0
+			boozepwr = 2
+			dizzy_adj = 4
+
 		ethanol/thirteenloko
 			name = "Thirteen Loko"
 			id = "thirteenloko"

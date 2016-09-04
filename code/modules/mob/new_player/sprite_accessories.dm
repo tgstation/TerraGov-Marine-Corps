@@ -420,6 +420,11 @@
 		icon_state = "hair_mjoker"
 		gender = MALE
 
+	lt_rasczak
+		name = "Lt. Rasczak"
+		icon_state = "hair_mrasczak"
+		gender = MALE
+
 	marine_fade
 		name = "Marine Fade"
 		icon_state = "hair_mmarinefade"
@@ -428,6 +433,11 @@
 	marine_mohawk
 		name = "Marine Mohawk"
 		icon_state = "hair_mmarinemohawk"
+		gender = MALE
+
+	mullet
+		name = "Mullet"
+		icon_state = "hair_mmullet"
 		gender = MALE
 
 	shaved_balding

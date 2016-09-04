@@ -1781,7 +1781,7 @@
 "Im" = (/obj/structure/bookcase,/obj/item/weapon/book/manual/chef_recipes,/obj/item/weapon/book/manual/excavation,/obj/item/weapon/book/manual/nuclear,/turf/simulated/floor/bluegrid,/area/lv624/lazarus/internal_affairs)
 "In" = (/obj/structure/computerframe{anchored = 1},/turf/simulated/floor/bluegrid,/area/lv624/lazarus/internal_affairs)
 "Io" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c200{pixel_x = 3; pixel_y = -3},/turf/simulated/floor{tag = "icon-whiteblue (NORTH)"; icon_state = "whiteblue"; dir = 1},/area/lv624/lazarus/internal_affairs)
-"Ip" = (/obj/item/weapon/spacecash/c100{pixel_x = -12},/turf/simulated/floor{dir = 8; icon_state = "whiteblue"},/area/lv624/lazarus/internal_affairs)
+"Ip" = (/obj/item/weapon/spacecash/c100{pixel_x = -12},/obj/item/weapon/reagent_containers/food/drinks/bottle/sake,/turf/simulated/floor{dir = 8; icon_state = "whiteblue"},/area/lv624/lazarus/internal_affairs)
 "Iq" = (/obj/structure/bookcase/manuals/xenoarchaeology,/obj/item/weapon/book/manual/ripley_build_and_repair,/obj/item/weapon/book/manual/security_space_law,/turf/simulated/floor/bluegrid,/area/lv624/lazarus/internal_affairs)
 "Ir" = (/obj/structure/table/woodentable,/turf/simulated/floor/bluegrid,/area/lv624/lazarus/internal_affairs)
 "Is" = (/obj/effect/landmark{name = "surv_spawn"; pixel_x = -1},/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/compound)

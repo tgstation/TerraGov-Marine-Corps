@@ -858,9 +858,9 @@
 				reason = "Needlessly talking back and/or arguing with staff members"
 			if("EORG")
 				switch(alert("Which offense?", ,"1st", "2nd", "3rd or more"))
-					if("1st") mins = 1440
-					if("2nd") mins = 2880
-					if("3rd or more") mins = 10080
+					if("1st") mins = 180
+					if("2nd") mins = 720
+					if("3rd or more") mins = 1440
 				reason = "EORG"
 			if("Cancel")
 				return

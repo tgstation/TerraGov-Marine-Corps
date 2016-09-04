@@ -781,9 +781,12 @@
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/kepler_crisps = 12,/obj/item/weapon/reagent_containers/food/snacks/eat_bar = 12,/obj/item/weapon/reagent_containers/food/snacks/packaged_hdogs =12,
-					/obj/item/weapon/reagent_containers/food/snacks/packaged_burger = 12,/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito = 12)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6)
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/kepler_crisps = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/eat_bar = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged_hdogs =12,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged_burger = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito = 12)
+
 	prices = list()
 
 
@@ -794,13 +797,17 @@
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
 	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/souto = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/souto/diet = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry = 10,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry/diet = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10)
-	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 5)
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 1,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 1,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 1,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1)
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/souto = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/diet = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry/diet = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10)
+
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/souto = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/diet = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry/diet = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 //This one's from bay12
@@ -822,13 +829,11 @@
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
 	vend_delay = 14
 	icon_state = "cigs"
-	products = list(/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = 30,
-					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 10,
-					/obj/item/weapon/storage/fancy/cigarettes = 10,
+	products = list(/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = 50,
 					/obj/item/weapon/storage/box/matches = 10,
-					/obj/item/weapon/flame/lighter/random = 15)
+					/obj/item/weapon/flame/lighter/random = 15,
+					/obj/item/weapon/flame/lighter/zippo = 5)
 
-	contraband = list(/obj/item/weapon/flame/lighter/zippo = 5)
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5)
 	prices = list()
 
