@@ -2799,8 +2799,6 @@
 		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'Mark'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified.</b>"
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked your request and is preparing to respond...</b>"
 
-		if(config.use_slack && config.slack_send_ahelps == 1)
-			slackMessage("adminhelp", "Adminhelp from [ref_person.ckey] was marked for response by [usr.key]!")
 		//send this msg to all admins
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
@@ -2818,8 +2816,7 @@
 			return
 		var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has used <font color='#009900'>'No response necessary'</font> on the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font>. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.</b>"
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your Adminhelp is being handled, it's fixed, or it's nonsensical.</font></b>"
-		if(config.use_slack && config.slack_send_ahelps == 1)
-			slackMessage("adminhelp", "Adminhelp from [ref_person.ckey] was marked as 'No response necessary' by [usr.key]!")
+
 		//send this msg to all admins
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)

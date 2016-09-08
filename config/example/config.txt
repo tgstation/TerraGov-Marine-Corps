@@ -280,24 +280,3 @@ REQ_CULT_GHOSTWRITER 6
 
 ## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
 AUTOOOCMUTE
-
-## Uncomment following settings for Slack integration.
-#USE_SLACK
-
-## Token URL for the Slack integration.
-#SLACK_TOKEN https://hooks.slack.com/services/xxx
-
-## Slack Display name for generic server messages.
-#SLACK_GENERIC_NAME server
-
-## Slack Display name for adminhelps.
-#SLACK_AHELP_NAME ahelp
-
-## Allows round start/end to be sent to Slack.
-#SLACK_SEND_ROUND_INFO
-
-## Allows AHelps to be sent to Slack.  1 is all ahelps, 2 is unanswered only
-#SLACK_SEND_AHELPS 0
-
-## Sets the timer limit (in seconds) for sending unanswered adminhelps to Slack.
-#SLACK_SEND_AHELPS_TIMER 30

@@ -195,12 +195,4 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	unansweredAhelps["[src.mob.computer_id]"] = msg //We are gonna do it by CID, since any other way really gets fucked over by ghosting etc
 
-	if(config.use_slack && config.slack_send_ahelps)
-		if(config.slack_send_ahelps == 1)
-			slackMessage("adminhelp", "Adminhelp from *[key_name(src)]*: _*[html_decode(original_msg)]*_ (Admins: [admin_number_present] active / [admin_number_afk] AFK)")
-		if(config.slack_send_ahelps == 2)
-			spawn(config.slack_send_ahelps_timer)
-				if(unansweredAhelps.Find(src.mob.computer_id))
-					slackMessage("adminhelp", "Unanswered adminhelp from *[key_name(src)]*: _*[html_decode(original_msg)]*_ (Admins: [admin_number_present] active / [admin_number_afk] AFK) <!here>")
-
 	return

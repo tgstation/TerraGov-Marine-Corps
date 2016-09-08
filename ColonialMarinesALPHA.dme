@@ -1357,7 +1357,6 @@
 #include "code\modules\shuttles\shuttle_specops.dm"
 #include "code\modules\shuttles\shuttle_supply.dm"
 #include "code\modules\shuttles\shuttles_multi.dm"
-#include "code\modules\slack\procs.dm"
 #include "code\modules\supermatter\supermatter.dm"
 #include "code\modules\surgery\bones.dm"
 #include "code\modules\surgery\brainrepair.dm"
