@@ -8,7 +8,31 @@
 	icon_state = "scalpel_laser2_on"
 	damtype = "fire"
 	force = 12.0
-	var active = 0;
+	var active = 0
+	var resetting = 0//For the reset, to prevent macro-spam abuse
+
+
+
+
+/obj/item/weapon/WYautopsy/verb/reset()
+	set category = "IC"
+	set name = "Reset WY Autopsy tool"
+	set desc = "Reset the WY Tool in case it breaks."
+	set src in usr
+
+	if(!active)
+		usr << "System appears to be working fine..."
+		return
+	if(active)
+		resetting = 1
+		usr << "Resetting tool, This will take a few seconds...  Do not attempt to use the tool during the reset or it may malfunction."
+		while(active) //While keep running until it's reset (in case of lag-spam)
+			active = 0 //Sets it to not active
+			usr << "Processing..."
+			spawn(60) // runs a timer before the final check.  timer is longer than autopsy timers.
+				if(!active)
+					usr << "System Reset completed"
+					resetting = 0
 
 
 
@@ -16,6 +40,8 @@
 /*	set category = "Autopsy"
 	set name = "Perform Alien Autopsy"
 	set src in usr*/
+	if(resetting)
+		usr << "Tool is currently returning to factory default.  If you have been waiting, try running the reset again."
 	if(!isXeno(T))
 		usr << "What are you, some sort of fucking MONSTER?"
 		return
@@ -52,7 +78,7 @@
 			new /obj/item/XenoBio/Chitin(T.loc) //This will be 1-3 Chitin eventually (depending on tier)
 			T.butchery_progress++
 			active = 0
-	if(T.butchery_progress == 1)
+	else if(T.butchery_progress == 1)
 		spawn(50)
 			if(CHECK != user.loc)
 				usr << "This is difficult, you probably shouldn't move."
@@ -61,7 +87,7 @@
 			new /obj/item/XenoBio/Blood(T.loc)//This will be a sample of blood eventually
 			T.butchery_progress++
 			active = 0
-	if(T.butchery_progress == 2)
+	else if(T.butchery_progress == 2)
 		spawn(50)
 			if(CHECK != user.loc)
 				usr << "This is difficult, you probably shouldn't move."
@@ -71,7 +97,7 @@
 			new /obj/item/XenoBio/Resin(T.loc)//This will be an organ eventually, based on the caste.
 			T.butchery_progress++
 			active = 0
-	if(T.butchery_progress == 3)
+	else if(T.butchery_progress == 3)
 		spawn(50)
 			if(CHECK != user.loc)
 				usr << "This is difficult, you probably shouldn't move."
@@ -81,7 +107,6 @@
 			new /obj/item/XenoBio/Resin(T.loc)
 			new /obj/effect/decal/remains/xeno(T.loc)
 			del(T)
-
 
 	return
 
