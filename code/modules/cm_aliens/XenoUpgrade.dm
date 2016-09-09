@@ -32,7 +32,7 @@
 
 	if(jellyMax) //Does the caste have a jelly timer? Then check it
 		if(jellyGrow < jellyMax)
-			src << "You require more jelly growth..."
+			src << "You require more growth..."
 			return
 
 	//FIRST UPGRADE

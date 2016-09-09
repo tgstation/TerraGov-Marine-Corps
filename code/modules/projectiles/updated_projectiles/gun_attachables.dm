@@ -75,8 +75,7 @@ Defined in setup.dm.
 	var/firing_flipped 	= 2 //Default is 2, 0 means the table isn't flipped. 1 means it is. 2 means it's not a table so we don't care.
 
 	//Some attachments may be fired. So here are the variables related to that.
-	var/default_ammo 	= null //Which type of ammo it uses. If it's not a datum, it'll be a seperate object.
-	var/datum/ammo/ammo = null //Turning this into a New(), since otherwise attachables don't work right. ~N
+	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
 	var/current_rounds 	= 0 //How much it has.
 	var/max_rounds 		= 0 //How much ammo it can store
 	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
@@ -87,7 +86,7 @@ Defined in setup.dm.
 
 	New() //Let's make sure if something needs an ammo type, it spawns with one.
 		..()
-		if(default_ammo) ammo = ammo_list[default_ammo]
+		if(ammo) ammo = ammo_list[ammo]
 
 	Dispose()
 		. = ..()
@@ -685,7 +684,7 @@ Defined in setup.dm.
 	w_class = 4.0
 	max_rounds = 5
 	current_rounds = 5
-	default_ammo = "shotgun slug"
+	ammo = /datum/ammo/bullet/shotgun/slug
 	slot = "under"
 	fire_sound = 'sound/weapons/shotgun.ogg'
 	type_of_casings = "shell"

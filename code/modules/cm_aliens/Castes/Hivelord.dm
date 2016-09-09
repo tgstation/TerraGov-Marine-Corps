@@ -12,6 +12,7 @@
 	maxHealth = 220
 	storedplasma = 200
 	maxplasma = 800
+	jelly = 1
 	jellyMax = 800
 	plasma_gain = 35
 	evolves_to = list()

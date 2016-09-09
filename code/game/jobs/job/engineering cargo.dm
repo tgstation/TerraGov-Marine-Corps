@@ -88,7 +88,7 @@
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(H), slot_belt)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/req(H), slot_head)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)

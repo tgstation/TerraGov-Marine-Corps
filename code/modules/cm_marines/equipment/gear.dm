@@ -9,7 +9,7 @@
 	icon_state = "flashlight"
 	item_state = "flashlight"
 	var/attachable = 0  //Can this be attached to another weapon or device?
-	brightness_on = 7 //luminosity when on
+	brightness_on = 5 //Pretty luminous, but still a flashlight that fits in a pocket
 
 /obj/item/device/flashlight/combat/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
@@ -640,6 +640,28 @@
 
 		<body>
 		<img src="LV624.png" alt="Map">
+		</body>
+
+		</html>
+
+		"}
+
+/obj/item/weapon/book/manual/ice_colony_map
+	name = "\improper Ice Colony map"
+	desc = "A satellite printout of the Ice Colony."
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	author = "Weyland Yutani"
+	title = "Ice Colony Map"
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<img src="IceColony.png" alt="Map">
 		</body>
 
 		</html>

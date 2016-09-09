@@ -96,6 +96,7 @@
 	for(var/mob/living/carbon/Xenomorph/X in player_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space) && !istype(get_area(X.loc),/area/shuttle/distress_start)) // If they're connected/unghosted and alive and not debrained
+				// if(istype(X, /mob/living/carbon/Xenomorph/Drone || istype(X, /mob/living/carbon/Xenomorph/Larva))) continue // If a Queen is no longer an option, end the round faster
 				xeno_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_XENOS()")
@@ -142,12 +143,10 @@
 //Announces the end of the game with all relevant information stated//
 //////////////////////////////////////////////////////////////////////
 /datum/game_mode/colonialmarines/declare_completion()
-	var/result = ""
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
 		world << "\red <FONT size = 4><B>Alien major victory!</B></FONT>"
 		world << "<FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>"
-		result = "alien major victory - marine incursion fails"
 		if(prob(50))
 			world << 'sound/misc/Game_Over_Man.ogg'
 		else
@@ -159,7 +158,6 @@
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
 		world << "\red <FONT size = 4><B>Marines major victory!</B></FONT>"
 		world << "<FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>"
-		result = "marine major victory - xenomorph infestation eradicated"
 		if(prob(50))
 			world << 'sound/misc/hardon.ogg'
 		else
@@ -171,7 +169,6 @@
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
 		world << "\red <FONT size = 3><B>Marine minor victory.</B></FONT>"
 		world << "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>"
-		result = "marine minor victory - infestation stopped at a great cost"
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
@@ -180,7 +177,6 @@
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
 		world << "\red <FONT size = 3><B>Alien minor victory.</B></FONT>"
 		world << "<FONT size = 3><B>The Sulaco has been evacuated... but the infestation remains!</B></FONT>"
-		result = "alien minor victory - infestation survives"
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 
@@ -188,17 +184,14 @@
 		feedback_set_details("round_end_result","draw - the station has been nuked")
 		world << "\red <FONT size = 3><B>Draw.</B></FONT>"
 		world << "<FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
-		result = "draw - the station has been nuked"
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
 	else
 		world << "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!"
-		result = "broken round end! Finished value: [finished]"
 
 	world << "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]."
-	if(config.use_slack && config.slack_send_round_info)
-		slackMessage("generic", "Round is over!  Result: [result]")
+
 	spawn(45)
 		if(xenomorphs.len)
 			var/text = "<FONT size = 3><B>The Queen(s) were:</B></FONT>"

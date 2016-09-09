@@ -35,6 +35,7 @@
 		new /obj/item/device/multitool(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/taperoll/engineering(src)
+		new /obj/item/device/flashlight(src)
 		return
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -115,6 +116,7 @@
 		new /obj/item/taperoll/engineering(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)
 		new /obj/item/clothing/mask/gas(src)
+		new /obj/item/device/flashlight(src)
 
 	select_gamemode_equipment(gamemode)
 		switch(gamemode)

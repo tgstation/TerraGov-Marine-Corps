@@ -52,13 +52,21 @@ datum/preferences
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 
+	//Predator specific preferences.
+	var/predator_name = "Undefined"
+	var/predator_gender = MALE
+	var/predator_age = 100
+	var/predator_mask_type = 1
+	var/predator_armor_type = 1
+	var/predator_boot_type = 1
+
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
-	var/b_type = "A+"					//blood type (not-chooseable)
+	var/b_type = "O+"					//blood type (not-chooseable)
 	var/underwear = 1					//underwear type
 	var/undershirt = 1					//undershirt type
 	var/backbag = 2						//backpack type
@@ -137,13 +145,6 @@ datum/preferences
 	var/metadata = ""
 	var/slot_name = ""
 
-	var/predator_name = ""
-	var/predator_gender = "male"
-	var/predator_mask_type = 1
-	var/predator_armor_type = 1
-	var/predator_boot_type = 1
-	var/is_pred_elder = 0
-
 /datum/preferences/New(client/C)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 	if(istype(C))
@@ -154,7 +155,6 @@ datum/preferences
 					return
 	gender = pick(MALE, FEMALE)
 	real_name = random_name(gender)
-
 	gear = list()
 
 /datum/preferences/proc/ZeroSkills(var/forced = 0)
@@ -220,7 +220,7 @@ datum/preferences
 	var/HTML = "<body>"
 	HTML += "<b>Select your Skills</b><br>"
 	HTML += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
-	HTML += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
+	HTML += "<a href=\"byond://?src=\ref[user];preference=skills;skill_select=preconfigured;\">Use preconfigured skillset</a><br>"
 	HTML += "<table>"
 	for(var/V in SKILLS)
 		HTML += "<tr><th colspan = 5><b>[V]</b>"
@@ -228,18 +228,18 @@ datum/preferences
 		for(var/datum/skill/S in SKILLS[V])
 			var/level = skills[S.ID]
 			HTML += "<tr style='text-align:left;'>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
+			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skill_select=info;skillinfo=\ref[S]'>[S.name]</a></th>"
+			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skill_select=set;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
 			// secondary skills don't have an amateur level
 			if(S.secondary)
 				HTML += "<th></th>"
 			else
-				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_BASIC]'><font color=[(level == SKILL_BASIC) ? "red" : "black"]>\[Amateur\]</font></a></th>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_ADEPT]'><font color=[(level == SKILL_ADEPT) ? "red" : "black"]>\[Trained\]</font></a></th>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_EXPERT]'><font color=[(level == SKILL_EXPERT) ? "red" : "black"]>\[Professional\]</font></a></th>"
+				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skill_select=set;setskill=\ref[S];newvalue=[SKILL_BASIC]'><font color=[(level == SKILL_BASIC) ? "red" : "black"]>\[Amateur\]</font></a></th>"
+			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skill_select=set;setskill=\ref[S];newvalue=[SKILL_ADEPT]'><font color=[(level == SKILL_ADEPT) ? "red" : "black"]>\[Trained\]</font></a></th>"
+			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skill_select=set;setskill=\ref[S];newvalue=[SKILL_EXPERT]'><font color=[(level == SKILL_EXPERT) ? "red" : "black"]>\[Professional\]</font></a></th>"
 			HTML += "</tr>"
 	HTML += "</table>"
-	HTML += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
+	HTML += "<a href=\"byond://?src=\ref[user];preference=skills;skill_select=cancel;\">\[Done\]</a>"
 
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=show_skills;size=600x800")
@@ -264,11 +264,14 @@ datum/preferences
 
 	dat += "</center><hr><table><tr><td width='340px' height='320px'>"
 	if(is_alien_whitelisted(user,"Yautja") || is_alien_whitelisted(user,"Yautja Elder"))
-		dat += "<BR><a href='?_src_=prefs;preference=pred_name;task=input'><b>Edit Predator Name:</b> [predator_name]</a><br>"
-		dat += "<a href='?_src_=prefs;preference=pred_gender;task=input'><b>Edit Predator Gender:</b> ([predator_gender])</a><br><BR>"
-		dat += "<BR><a href='?_src_=prefs;preference=pred_mask_type;task=input'><b>Edit Predator Mask:</b> [predator_mask_type]</a><br>"
-		dat += "<BR><a href='?_src_=prefs;preference=pred_armor_type;task=input'><b>Edit Predator Armor:</b> [predator_armor_type]</a><br>"
-		dat += "<BR><a href='?_src_=prefs;preference=pred_boot_type;task=input'><b>Edit Predator Boot:</b> [predator_boot_type]</a><br>"
+		dat += "<br><b>Yautja name:</b> <a href='?_src_=prefs;preference=pred_name;task=input'>[predator_name]</a><br>"
+		dat += "<b>Yautja gender:</b> <a href='?_src_=prefs;preference=pred_gender;task=input'>[predator_gender == MALE ? "Male" : "Female"]</a><br>"
+		dat += "<b>Yautja age:</b> <a href='?_src_=prefs;preference=pred_age;task=input'>[predator_age]</a><br>"
+		dat += "<b>Mask style:</b> <a href='?_src_=prefs;preference=pred_mask_type;task=input'>([predator_mask_type])</a><br>"
+		dat += "<b>Armor style:</b> <a href='?_src_=prefs;preference=pred_armor_type;task=input'>([predator_armor_type])</a><br>"
+		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
+
+	dat += "-Alpha(transparency): <a href='?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br>"
 
 	dat += "<b>Name:</b> "
 	dat += "<a href='?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a><br>"
@@ -826,254 +829,202 @@ datum/preferences
 					job_marines_low |= job.flag
 	return 1
 
-/datum/preferences/proc/process_link(mob/user, list/href_list)
-	if(!user)	return
+/datum/preferences/proc/process_link(mob/new_player/user, list/href_list)
+	if(!istype(user)) return
 
-	if(!istype(user, /mob/new_player))	return
-	if(href_list["preference"] == "job")
-		switch(href_list["task"])
-			if("close")
-				user << browse(null, "window=mob_occupation")
-				ShowChoices(user)
-			if("reset")
-				ResetJobs()
-				SetChoices(user)
-			if("random")
-				if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_ASSISTANT)
-					alternate_option += 1
-				else if(alternate_option == RETURN_TO_LOBBY)
-					alternate_option = 0
+	switch(href_list["preference"])
+		if("job")
+			switch(href_list["task"])
+				if("close")
+					user << browse(null, "window=mob_occupation")
+					ShowChoices(user)
+				if("reset")
+					ResetJobs()
+					SetChoices(user)
+				if("random")
+					if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_ASSISTANT)
+						alternate_option += 1
+					else if(alternate_option == RETURN_TO_LOBBY)
+						alternate_option = 0
+					else
+						return 0
+					SetChoices(user)
+				if ("alt_title")
+					var/datum/job/job = locate(href_list["job"])
+					if (job)
+						var/choices = list(job.title) + job.alt_titles
+						var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices|null
+						if(choice)
+							SetPlayerAltTitle(job, choice)
+							SetChoices(user)
+				if("input")
+					SetJob(user, href_list["text"])
 				else
-					return 0
-				SetChoices(user)
-			if ("alt_title")
-				var/datum/job/job = locate(href_list["job"])
-				if (job)
-					var/choices = list(job.title) + job.alt_titles
-					var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
-					if(choice)
-						SetPlayerAltTitle(job, choice)
-						SetChoices(user)
-			if("input")
-				SetJob(user, href_list["text"])
-			else
-				SetChoices(user)
-		return 1
-	else if(href_list["preference"] == "skills")
-		if(href_list["cancel"])
-			user << browse(null, "window=show_skills")
-			ShowChoices(user)
-		else if(href_list["skillinfo"])
-			var/datum/skill/S = locate(href_list["skillinfo"])
-			var/HTML = "<b>[S.name]</b><br>[S.desc]"
-			user << browse(HTML, "window=\ref[user]skillinfo")
-		else if(href_list["setskill"])
-			var/datum/skill/S = locate(href_list["setskill"])
-			var/value = text2num(href_list["newvalue"])
-			skills[S.ID] = value
-			CalculateSkillPoints()
-			SetSkills(user)
-		else if(href_list["preconfigured"])
-			var/selected = input(user, "Select a skillset", "Skillset") as null|anything in SKILL_PRE
-			if(!selected) return
+					SetChoices(user)
+			return 1
+		if("skills")
+			switch(href_list["skill_select"])
+				if("cancel")
+					user << browse(null, "window=show_skills")
+					ShowChoices(user)
+				if("skill")
+					var/datum/skill/S = locate(href_list["skillinfo"])
+					var/HTML = "<b>[S.name]</b><br>[S.desc]"
+					user << browse(HTML, "window=\ref[user]skillinfo")
+				if("set")
+					var/datum/skill/S = locate(href_list["setskill"])
+					var/value = text2num(href_list["newvalue"])
+					skills[S.ID] = value
+					CalculateSkillPoints()
+					SetSkills(user)
+				if("preconfigured")
+					var/selected = input(user, "Select a skillset", "Skillset") as null|anything in SKILL_PRE
+					if(!selected) return
 
-			ZeroSkills(1)
-			for(var/V in SKILL_PRE[selected])
-				if(V == "field")
-					skill_specialization = SKILL_PRE[selected]["field"]
-					continue
-				skills[V] = SKILL_PRE[selected][V]
-			CalculateSkillPoints()
+					ZeroSkills(1)
+					for(var/V in SKILL_PRE[selected])
+						if(V == "field")
+							skill_specialization = SKILL_PRE[selected]["field"]
+							continue
+						skills[V] = SKILL_PRE[selected][V]
+					CalculateSkillPoints()
 
-			SetSkills(user)
-		else if(href_list["setspecialization"])
-			skill_specialization = href_list["setspecialization"]
-			CalculateSkillPoints()
-			SetSkills(user)
-		else
-			SetSkills(user)
-		return 1
-	else if (href_list["preference"] == "loadout")
+					SetSkills(user)
+				else SetSkills(user)
 
-		if(href_list["task"] == "input")
+			return 1
+		if("loadout")
+			switch(href_list["task"])
+				if("input")
 
-			var/list/valid_gear_choices = list()
+					var/list/valid_gear_choices = list()
 
-			for(var/gear_name in gear_datums)
-				var/datum/gear/G = gear_datums[gear_name]
-				if(G.whitelisted && !is_alien_whitelisted(user, G.whitelisted))
-					continue
-				valid_gear_choices += gear_name
+					for(var/gear_name in gear_datums)
+						var/datum/gear/G = gear_datums[gear_name]
+						if(G.whitelisted && !is_alien_whitelisted(user, G.whitelisted))
+							continue
+						valid_gear_choices += gear_name
 
-			var/choice = input(user, "Select gear to add: ") as null|anything in valid_gear_choices
+					var/choice = input(user, "Select gear to add: ") as null|anything in valid_gear_choices
 
-			if(choice && gear_datums[choice])
+					if(choice && gear_datums[choice])
 
-				var/total_cost = 0
+						var/total_cost = 0
 
-				if(isnull(gear) || !islist(gear)) gear = list()
+						if(isnull(gear) || !islist(gear)) gear = list()
 
-				if(gear && gear.len)
-					for(var/gear_name in gear)
-						if(gear_datums[gear_name])
-							var/datum/gear/G = gear_datums[gear_name]
-							total_cost += G.cost
+						if(gear && gear.len)
+							for(var/gear_name in gear)
+								if(gear_datums[gear_name])
+									var/datum/gear/G = gear_datums[gear_name]
+									total_cost += G.cost
 
-				var/datum/gear/C = gear_datums[choice]
-				total_cost += C.cost
-				if(C && total_cost <= MAX_GEAR_COST)
-					gear += choice
-					user << "<span class='notice'>Added \the '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining).</span>"
+						var/datum/gear/C = gear_datums[choice]
+						total_cost += C.cost
+						if(C && total_cost <= MAX_GEAR_COST)
+							gear += choice
+							user << "<span class='notice'>Added \the '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining).</span>"
+						else
+							user << "<span class='warning'>Adding \the '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points.</span>"
+
+				if("remove")
+					var/i_remove = text2num(href_list["gear"])
+					if(i_remove < 1 || i_remove > gear.len) return
+					gear.Cut(i_remove, i_remove + 1)
+
+				if("clear")
+					gear.Cut()
+
+		if("flavor_text")
+			switch(href_list["task"])
+				if("open")
+					SetFlavorText(user)
+					return
+				if("done")
+					user << browse(null, "window=flavor_text")
+					ShowChoices(user)
+					return
+				if("general")
+					var/msg = input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
 				else
-					user << "<span class='warning'>Adding \the '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points.</span>"
-
-		else if(href_list["task"] == "remove")
-			var/i_remove = text2num(href_list["gear"])
-			if(i_remove < 1 || i_remove > gear.len) return
-			gear.Cut(i_remove, i_remove + 1)
-
-		else if(href_list["task"] == "clear")
-			gear.Cut()
-
-	else if(href_list["preference"] == "flavor_text")
-		switch(href_list["task"])
-			if("open")
-				SetFlavorText(user)
-				return
-			if("done")
-				user << browse(null, "window=flavor_text")
-				ShowChoices(user)
-				return
-			if("general")
-				var/msg = input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
-				if(msg != null)
-					msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-					msg = html_encode(msg)
-				flavor_texts[href_list["task"]] = msg
-			else
-				var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
-				if(msg != null)
-					msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-					msg = html_encode(msg)
-				flavor_texts[href_list["task"]] = msg
-		SetFlavorText(user)
-		return
-
-	else if(href_list["preference"] == "pAI")
-		paiController.recruitWindow(user, 0)
-		return 1
-
-	else if(href_list["preference"] == "records")
-		if(text2num(href_list["record"]) >= 1)
-			SetRecords(user)
+					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
+			SetFlavorText(user)
 			return
-		else
-			user << browse(null, "window=records")
-		if(href_list["task"] == "med_record")
-			var/medmsg = input(usr,"Set your medical notes here.","Medical Records",html_decode(med_record)) as message
 
-			if(medmsg != null)
-				medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
-				medmsg = html_encode(medmsg)
+		if("pAI")
+			paiController.recruitWindow(user, 0)
+			return 1
 
-				med_record = medmsg
+		if("records")
+			if(text2num(href_list["record"]) >= 1)
 				SetRecords(user)
+				return
+			else
+				user << browse(null, "window=records")
 
-		if(href_list["task"] == "sec_record")
-			var/secmsg = input(usr,"Set your security notes here.","Security Records",html_decode(sec_record)) as message
+			switch(href_list["task"])
+				if("med_record")
+					var/medmsg = input(usr,"Set your medical notes here.","Medical Records",html_decode(med_record)) as message
 
-			if(secmsg != null)
-				secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
-				secmsg = html_encode(secmsg)
+					if(medmsg != null)
+						medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
+						medmsg = html_encode(medmsg)
 
-				sec_record = secmsg
-				SetRecords(user)
-		if(href_list["task"] == "gen_record")
-			var/genmsg = input(usr,"Set your employment notes here.","Employment Records",html_decode(gen_record)) as message
+						med_record = medmsg
+						SetRecords(user)
 
-			if(genmsg != null)
-				genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
-				genmsg = html_encode(genmsg)
+				if("sec_record")
+					var/secmsg = input(usr,"Set your security notes here.","Security Records",html_decode(sec_record)) as message
 
-				gen_record = genmsg
-				SetRecords(user)
+					if(secmsg != null)
+						secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
+						secmsg = html_encode(secmsg)
 
-		if(href_list["task"] == "exploitable_record")
-			var/exploitmsg = input(usr,"Set exploitable information about you here.","Exploitable Information",html_decode(exploit_record)) as message
+						sec_record = secmsg
+						SetRecords(user)
+				if("gen_record")
+					var/genmsg = input(usr,"Set your employment notes here.","Employment Records",html_decode(gen_record)) as message
 
-			if(exploitmsg != null)
-				exploitmsg = copytext(exploitmsg, 1, MAX_PAPER_MESSAGE_LEN)
-				exploitmsg = html_encode(exploitmsg)
+					if(genmsg != null)
+						genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
+						genmsg = html_encode(genmsg)
 
-				exploit_record = exploitmsg
+						gen_record = genmsg
+						SetRecords(user)
+
+				if("exploitable_record")
+					var/exploitmsg = input(usr,"Set exploitable information about you here.","Exploitable Information",html_decode(exploit_record)) as message
+
+					if(exploitmsg != null)
+						exploitmsg = copytext(exploitmsg, 1, MAX_PAPER_MESSAGE_LEN)
+						exploitmsg = html_encode(exploitmsg)
+
+						exploit_record = exploitmsg
+						SetAntagoptions(user)
+
+		if("antagoptions")
+			if(text2num(href_list["active"]) == 0)
 				SetAntagoptions(user)
-
-	else if (href_list["preference"] == "antagoptions")
-		if(text2num(href_list["active"]) == 0)
-			SetAntagoptions(user)
-			return
-		if (href_list["antagtask"] == "uplinktype")
-			if (uplinklocation == "PDA")
-				uplinklocation = "Headset"
-			else if(uplinklocation == "Headset")
-				uplinklocation = "None"
-			else
-				uplinklocation = "PDA"
-			SetAntagoptions(user)
-		if (href_list["antagtask"] == "done")
-			user << browse(null, "window=antagoptions")
-			ShowChoices(user)
-		return 1
-
-	else if (href_list["preference"] == "loadout")
-
-		if(href_list["task"] == "input")
-
-			var/list/valid_gear_choices = list()
-
-			for(var/gear_name in gear_datums)
-				var/datum/gear/G = gear_datums[gear_name]
-				if(G.whitelisted && !is_alien_whitelisted(user, G.whitelisted))
-					continue
-				valid_gear_choices += gear_name
-
-			var/choice = input(user, "Select gear to add: ") as null|anything in valid_gear_choices
-
-			if(choice && gear_datums[choice])
-
-				var/total_cost = 0
-
-				if(isnull(gear) || !islist(gear)) gear = list()
-
-				if(gear && gear.len)
-					for(var/gear_name in gear)
-						if(gear_datums[gear_name])
-							var/datum/gear/G = gear_datums[gear_name]
-							total_cost += G.cost
-
-				var/datum/gear/C = gear_datums[choice]
-				total_cost += C.cost
-				if(C && total_cost <= MAX_GEAR_COST)
-					gear += choice
-					user << "\blue Added [choice] for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining)."
-				else
-					user << "\red That item will exceed the maximum loadout cost of [MAX_GEAR_COST] points."
-
-		else if(href_list["task"] == "remove")
-
-			if(isnull(gear) || !islist(gear))
-				gear = list()
-			if(!gear.len)
 				return
-
-			var/choice = input(user, "Select gear to remove: ") as null|anything in gear
-			if(!choice)
-				return
-
-			for(var/gear_name in gear)
-				if(gear_name == choice)
-					gear -= gear_name
-					break
+			switch(href_list["antagtask"])
+				if ("uplinktype")
+					switch(uplinklocation)
+						if("PDA") uplinklocation = "Headset"
+						if("Headset") uplinklocation = "None"
+						else uplinklocation = "PDA"
+					SetAntagoptions(user)
+				if ("done")
+					user << browse(null, "window=antagoptions")
+					ShowChoices(user)
+			return 1
 
 	switch(href_list["task"])
 		if("random")
@@ -1129,29 +1080,25 @@ datum/preferences
 
 				if("pred_name")
 					var/raw_name = input(user, "Choose your Predator's name:", "Character Preference")  as text|null
-					if (!isnull(raw_name)) // Check to ensure that the user entered text (rather than cancel.)
+					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)
 						var/new_name = reject_bad_name(raw_name)
-						if(new_name)
-							predator_name = new_name
-						else
-							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
+						if(new_name) predator_name = new_name
+						else user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
 				if("pred_gender")
-					if(predator_gender == "male")
-						predator_gender = "female"
-					else
-						predator_gender = "male"
+					predator_gender = predator_gender == MALE ? FEMALE : MALE
+				if("pred_age")
+					var/new_predator_age = input(user, "Choose your Predator's age(20 to 10000):", "Character Preference") as num|null
+					if(new_predator_age) predator_age = max(min( round(text2num(new_predator_age)), 10000),20)
 				if("pred_mask_type")
-					var/new_predator_mask_type = input(user, "Choose your mask type:\n(1-7)", "Character Preference") as num|null
-					if(new_predator_mask_type)
-						predator_mask_type = text2num(new_predator_mask_type)
+					var/new_predator_mask_type = input(user, "Choose your mask type:\n(1-7)", "Mask Selection") as num|null
+					if(new_predator_mask_type) predator_mask_type = round(text2num(new_predator_mask_type))
 				if("pred_armor_type")
-					var/new_predator_armor_type = input(user, "Choose your armor type:\n(1-4)", "Character Preference") as num|null
-					if(new_predator_armor_type)
-						predator_armor_type = text2num(new_predator_armor_type)
+					var/new_predator_armor_type = input(user, "Choose your armor type:\n(1-5)", "Armor Selection") as num|null
+					if(new_predator_armor_type) predator_armor_type = round(text2num(new_predator_armor_type))
 				if("pred_boot_type")
-					var/new_predator_boot_type = input(user, "Choose your greaves type:\n(1-3)", "Character Preference") as num|null
-					if(new_predator_boot_type)
-						predator_boot_type = text2num(new_predator_boot_type)
+					var/new_predator_boot_type = input(user, "Choose your greaves type:\n(1-3)", "Greave Selection") as num|null
+					if(new_predator_boot_type) predator_boot_type = round(text2num(new_predator_boot_type))
+
 				if("age")
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 					if(new_age)
@@ -1523,7 +1470,7 @@ datum/preferences
 
 				if("UIalpha")
 					var/UI_style_alpha_new = input(user, "Select a new alpha(transparence) parametr for UI, between 50 and 255") as num
-					if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
+					if(!UI_style_alpha_new|!(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
 					UI_style_alpha = UI_style_alpha_new
 
 				if("be_special")
@@ -1588,8 +1535,7 @@ datum/preferences
 
 	character.real_name = real_name
 	character.name = character.real_name
-	if(character.dna)
-		character.dna.real_name = character.real_name
+	if(character.dna) character.dna.real_name = character.real_name
 
 	character.flavor_texts["general"] = flavor_texts["general"]
 	character.flavor_texts["head"] = flavor_texts["head"]

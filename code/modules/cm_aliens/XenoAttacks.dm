@@ -186,8 +186,18 @@
 		var/mob/living/carbon/pulled = pulling
 		if(!istype(pulled)) return
 		if(istype(pulled,/mob/living/carbon/Xenomorph))
-			src << "<span class='warning'>Nice try! That wouldn't taste very good.</span>"
+			src << "That wouldn't taste very good."
 			return
+		if(pulled.stat == DEAD)
+			src << "Ew. [pulled] is already starting to rot."
+			return
+			/* Saving this in case we want to allow devouring of dead bodies UNLESS their client is still online somewhere
+			if(pulled.client) // The client is still inside the body
+			else // The client is observing
+				for(var/mob/dead/observer/G in player_list)
+					if(ckey(G.mind.original.ckey) == pulled.ckey)
+						src << "You start to devour [pulled] but realize \he is already dead."
+						return */
 		visible_message("<span class='danger'>[src] starts to devour [pulled]!</span>", \
 		"<span class='danger'>You start to devour [pulled]!</span>")
 		if(do_after(src,50))

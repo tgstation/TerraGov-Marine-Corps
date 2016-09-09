@@ -161,7 +161,7 @@
 		src << "\green You said: \"[msg]\" to [M]"
 	return
 
-/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M as mob in oview(1))
+/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M as mob in oview(2))
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Alien"
@@ -393,13 +393,14 @@
 	set category = "Alien"
 
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
+	dat += "Total Alive Sisters: [ticker.mode.xenomorphs.len]"
 
 	if(ticker && ticker.mode.xenomorphs.len)
 		dat += "<table cellspacing=4>"
 		var/mob/living/carbon/Xenomorph/X
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			X = L.current
-			if(istype(X)) dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+			if(istype(X)) dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
 	return
@@ -443,10 +444,11 @@
 	if(isnull(current_aura))
 		if(!check_plasma(30))
 			return
-		var/choice = alert(src,"Which pheromone would you like to emit?","Auras", "frenzy", "guard","recovery")
-		current_aura = choice
-		visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
-		return
+		var/choice = alert(src,"Which pheromone would you like to emit?\nFrenzy - Increased run speed\nGuard - Reduced incoming damage\nRecovery - Increased plasma generation","Auras", "frenzy", "guard", "recovery")
+		if (choice != "cancel")
+			current_aura = choice
+			visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
+			return
 	else
 		current_aura = null
 		src << "<b>You stop emitting pheromones.</b>"

@@ -67,7 +67,23 @@ datum/game_mode/proc/initialize_special_clamps()
 
 //===================================================\\
 
-/datum/game_mode/proc/initialize_predator(var/mob/living/carbon/human/new_predator)
+#define DEBUG_PREDATOR_INITIALIZE 0
+
+#if DEBUG_PREDATOR_INITIALIZE
+/mob/verb/adjust_predator_round()
+	set name = "Adjust Predator Round"
+	set category = "Debug"
+	set desc = "Adjust the number of predators present in a predator round."
+
+	if(!ticker || !ticker.mode)
+		src << "<span class='warning'>The game hasn't started yet!</span?"
+		return
+
+	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",3) as num|null
+	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
+#endif
+
+/datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
 	predators += new_predator.mind //Add them to the proper list.
 	pred_keys += new_predator.key //Add their key.
 	if(!is_alien_whitelisted(new_predator,"Yautja Elder")) pred_current_num++ //If they are not an elder, tick up the max.
@@ -103,7 +119,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		possible_predators -= new_pred //Remove from list.
 		i--
 
-/datum/game_mode/proc/get_whitelisted_predators(var/readied = 1)
+/datum/game_mode/proc/get_whitelisted_predators(readied = 1)
 	// Assemble a list of active players who are whitelisted.
 	var/list/players = list()
 
@@ -127,7 +143,7 @@ datum/game_mode/proc/initialize_special_clamps()
 				players += player.mind
 	return players
 
-/datum/game_mode/proc/attempt_to_join_as_predator(var/mob/pred_candidate)
+/datum/game_mode/proc/attempt_to_join_as_predator(mob/pred_candidate)
 	var/mob/living/carbon/human/new_predator = transform_predator(pred_candidate) //Initialized and ready.
 	if(!new_predator) return
 
@@ -136,28 +152,28 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(pred_candidate) pred_candidate.loc = null //Nullspace it for garbage collection later.
 
-/datum/game_mode/proc/check_predator_late_join(var/mob/pred_candidate)
+/datum/game_mode/proc/check_predator_late_join(mob/pred_candidate, show_warning = 1)
 
 	if(!is_alien_whitelisted(pred_candidate,"Yautja") && !is_alien_whitelisted(pred_candidate,"Yautja Elder"))
-		pred_candidate << "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>"
+		if(show_warning) pred_candidate << "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>"
 		return
 
 	if(!pred_round_status)
-		pred_candidate << "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>"
+		if(show_warning) pred_candidate << "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>"
 		return
 
 	if(pred_candidate.key in pred_keys)
-		pred_candidate << "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>"
+		if(show_warning) pred_candidate << "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>"
 		return
 
 	if(!is_alien_whitelisted(pred_candidate,"Yautja Elder"))
 		if(pred_current_num >= pred_maximum_num)
-			pred_candidate << "<span class='warning'>Only three predators may spawn per round, but Elders are excluded.</span>"
+			if(show_warning) pred_candidate << "<span class='warning'>Only three predators may spawn per round, but Elders are excluded.</span>"
 			return
 
 	return 1
 
-/datum/game_mode/proc/transform_predator(var/mob/pred_candidate)
+/datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
 		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
 		log_debug("Null client in transform_predator.")
@@ -178,7 +194,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	//They should have these set, but it's possible they don't have them.
 	new_predator.real_name = new_predator.client.prefs.predator_name
 	new_predator.gender = new_predator.client.prefs.predator_gender
-	//new_predator.age = new_predator.client.prefs.predator_age
+	new_predator.age = new_predator.client.prefs.predator_age
 
 	if(!new_predator.real_name || new_predator.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
 		new_predator.real_name = "Le'pro"
@@ -214,6 +230,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_predator.update_icons()
 	initialize_predator(new_predator)
 	return new_predator
+
+#undef DEBUG_PREDATOR_INITIALIZE
 
 //===================================================\\
 
@@ -263,13 +281,13 @@ datum/game_mode/proc/initialize_special_clamps()
 	for(var/datum/mind/new_xeno in xenomorphs) //Build and move the xenos.
 		transform_xeno(new_xeno)
 
-/datum/game_mode/proc/check_xeno_late_join(var/mob/xeno_candidate)
+/datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
 	if(jobban_isbanned(xeno_candidate,"Alien")) // User is jobbanned
 		xeno_candidate << "<span class='warning'>You are banned from playing aliens and cannot spawn as a xenomorph.</span>"
 		return
 	return 1
 
-/datum/game_mode/proc/attempt_to_join_as_xeno(var/mob/xeno_candidate, instant_join = 0)
+/datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = 0)
 	var/available_xenos[] = list()
 	var/available_xenos_non_ssd[] = list()
 
@@ -285,7 +303,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/mob/living/carbon/Xenomorph/new_xeno
 	if(!instant_join)
 		new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
-		if (!istype(new_xeno)) return //It could be null, it could be "cancel" or whatever that isn't a xenomorph.
+		if (!istype(new_xeno) || !xeno_candidate) return //It could be null, it could be "cancel" or whatever that isn't a xenomorph.
 
 		if(!(new_xeno in living_mob_list) || new_xeno.stat == DEAD)
 			xeno_candidate << "<span class='warning'>You cannot join if the xenomorph is dead.</span>"
@@ -295,11 +313,10 @@ datum/game_mode/proc/initialize_special_clamps()
 			xeno_candidate << "<span class='warning'>That xenomorph has been occupied.</span>"
 			return
 
-		var/deathtime = world.time - xeno_candidate.timeofdeath
-		var/deathtimeminutes = round(deathtime / 600)
-		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-
 		if(!xeno_bypass_timer)
+			var/deathtime = world.time - xeno_candidate.timeofdeath
+			var/deathtimeminutes = round(deathtime / 600)
+			var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 			if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
 				xeno_candidate << "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>"
 				xeno_candidate << "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>"
@@ -309,20 +326,20 @@ datum/game_mode/proc/initialize_special_clamps()
 				return
 
 		if(alert(xeno_candidate, "Everything checks out. Are you sure you want to transfer yourself into [new_xeno]?", "Confirm Transfer", "Yes", "No") == "Yes")
-			if(new_xeno.client || !(new_xeno in living_mob_list) || new_xeno.stat == DEAD) // Do it again, just in case
+			if(new_xeno.client || !(new_xeno in living_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 				xeno_candidate << "<span class='warning'>That xenomorph can no longer be controlled. Please try another.</span>"
 				return
 		else return
 	else new_xeno = pick(available_xenos_non_ssd) //Just picks something at random.
 	return new_xeno
 
-/datum/game_mode/proc/transfer_xeno(var/mob/xeno_candidate, var/mob/new_xeno)
+/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/new_xeno)
 	new_xeno.key = xeno_candidate.key
 	message_admins("[new_xeno.key] has joined as [new_xeno].")
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
 	if(xeno_candidate) xeno_candidate.loc = null
 
-/datum/game_mode/proc/transform_xeno(var/datum/mind/ghost_mind)
+/datum/game_mode/proc/transform_xeno(datum/mind/ghost_mind)
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(pick(xeno_spawn))
 	new_xeno.amount_grown = 100
 	var/mob/original = ghost_mind.current

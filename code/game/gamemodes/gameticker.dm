@@ -53,8 +53,7 @@ var/global/datum/controller/gameticker/ticker
 	//'sound/music/Prometheus_trailer.ogg',
 	'sound/music/warrior_song.ogg')  //The Warrior Song
 
-	/*'SEASONAL/ColonialHalloween.ogg'
-	'SEASONAL/CMxmas.ogg')*/
+	/*'sound/music/ColonialHalloween.ogg'*/
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
@@ -164,9 +163,6 @@ var/global/datum/controller/gameticker/ticker
 	if(config.autooocmute)
 		world << "\red <B>The OOC channel has been globally disabled due to round start!</B>"
 		ooc_allowed = !( ooc_allowed )
-
-	if(config.use_slack && config.slack_send_round_info)
-		slackMessage("generic", "The round has started!")
 
 	var/admins_number = 0
 	for(var/client/C)

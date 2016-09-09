@@ -109,7 +109,7 @@
 			var/turf/new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
 			if(!istype(new_target) || isnull(new_target)) continue	//If we didn't find anything, make another pass.
 			var/obj/item/projectile/P = rnew(/obj/item/projectile, original_P.shot_from)
-			P.generate_bullet(ammo_list["additional buckshot"]) //No bonus damage or anything.
+			P.generate_bullet(ammo_list[/datum/ammo/bullet/shotgun/spread]) //No bonus damage or anything.
 			P.original = new_target
 			P.fire_at(new_target,original_P.firer,original_P.shot_from,range,speed) //Fire!
 

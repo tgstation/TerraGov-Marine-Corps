@@ -311,5 +311,6 @@
 		'icons/spideros_icons/sos_14.png',
 		'html/images/whiskey_outpost.png',
 		'html/images/LV624.png',
+		'html/images/IceColony.png',
 		'html/images/ntlogo.png'
 		)

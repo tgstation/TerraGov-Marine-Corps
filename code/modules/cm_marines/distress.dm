@@ -433,23 +433,23 @@
 			spawn_officer(mob)
 			mob.mind.special_role = "MODE"
 			mob.mind.assigned_role = "PMC Leader"
-			mob << "<font size='3'>\red You are the PMC Commando leader!</font>"
+			mob << "<font size='3'>\red You are the Weyland Yutani PMC leader!</font>"
 			mob << "<B> You must lead the PMCs to victory against any and all hostile threats.</b>"
 			mob << "<B> Ensure no damage is incurred against Weyland Yutani. Make sure the CL is safe.</b>"
 		else
 			mob.mind.special_role = "MODE"
 			if(prob(55)) //Randomize the heavy commandos and standard PMCs.
 				spawn_standard(mob)
-				mob << "<font size='3'>\red You are a Weyland Yutani Commando!</font>"
+				mob << "<font size='3'>\red You are a Weyland Yutani tactical responder!</font>"
 				mob << "<b> Follow your orders and protect W-Y interests. Make sure the CL is safe.</b>"
 			else
 				if(prob(50))
 					spawn_heavy(mob)
-					mob << "<font size='3'>\red You are a Weyland Yutani Heavy Commando!</font>"
+					mob << "<font size='3'>\red You are a Weyland Yutani sniper!</font>"
 					mob << "<b> Follow your orders and protect W-Y interests. Make sure the CL is safe.</b>"
 				else
 					spawn_gunner(mob)
-					mob << "<font size='3'>\red You are a Weyland Yutani Heavy Smartgunner!</font>"
+					mob << "<font size='3'>\red You are a Weyland Yutani heavy gunner!</font>"
 					mob << "<b> Follow your orders and protect W-Y interests. Make sure the CL is safe.</b>"
 	spawn(10)
 		M << "<B>Objectives:</b> [objectives]"
@@ -714,7 +714,7 @@
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
 	var/list/first_names_mr = list("Grigory","Vladimir","Alexei","Andrei","Artyom","Viktor","Boris","Ivan","Igor","Oleg")
-	var/list/first_names_fr = list("Alexandra","Anna","Anastasiya","Eva","Klara","Nikita","Olga","Svetlana","Tatyana","Yaroslava")
+	var/list/first_names_fr = list("Alexandra","Anna","Anastasiya","Eva","Klara","Oksana","Olga","Svetlana","Tatyana","Yaroslava")
 	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Dragomirov","Yeltsin","Zhirov","Zhukov","Ivanov","Vasnetsov","Kasputin","Belov","Melnikov", "Vasilevsky", "Penkin")
 
 	if(mob.gender == MALE) 	mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
@@ -1238,7 +1238,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine/full(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
 
 	spawn_merc_gun(M)
 	spawn_merc_gun(M,1)

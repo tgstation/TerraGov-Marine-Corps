@@ -813,10 +813,10 @@ steam.start() -- spawns the effect
 				heavy = 0
 
 			if (round(amount/3) > 0)
-				light = min (MAX_EXPLOSION_RANGE, light + round(amount/3))
+				light = min (4, light + round(amount/3)) //Used to be max size possible. That's way too massive.
 
 			if (flash && flashing_factor)
-				flash += (round(amount/4) * flashing_factor)
+				flash += (round(amount/4) * flashing_factor) + 1 //+1 to compensate for the smaller blast size
 
 			for(var/mob/M in viewers(8, location))
 				M << "\red The solution violently explodes."

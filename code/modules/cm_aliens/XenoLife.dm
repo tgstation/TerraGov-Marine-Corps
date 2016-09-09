@@ -22,10 +22,10 @@
 		if(isXenoLarva(src) && src.a_intent != "help")
 			src.a_intent = "help"
 
-		if(jelly && jellyGrow < jellyMax && client)
+		if(jelly && jellyGrow < jellyMax && is_queen_alive())
 			jellyGrow++
 			if(jellyGrow == jellyMax-1)
-				src << "\green You feel the royal jelly swirl in your veins.."
+				src << "\green Your carapace crackles and your tendons strengthen. You are ready to evolve!"
 
 
 		//Status updates, death etc.
@@ -363,8 +363,8 @@
 	else playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
-		xeno_message("<span class='xenodanger'>A great tremor runs through the hive as the Queen is slain. Vengeance!</span>",3)
-		xeno_message("<span class='danger'>The slashing of hosts is now permitted!</span>",2)
+		xeno_message("<span class='xenodanger'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
+		xeno_message("<span class='danger'>The slashing of hosts is now permitted.</span>",2)
 		slashing_allowed = 1
 		if(ticker && ticker.mode)
 			ticker.mode.queen_death_timer = queen_time // 5 minutes. Defined in Xenomorph.dm

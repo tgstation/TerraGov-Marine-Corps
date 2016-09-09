@@ -11,6 +11,7 @@
 	maxHealth = 120
 	storedplasma = 350
 	maxplasma = 750
+	jelly = 1
 	jellyMax = 500
 	plasma_gain = 12
 	tier = 1

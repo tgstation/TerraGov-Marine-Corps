@@ -33,8 +33,10 @@
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
 	..()
-	if(jelly)
-		stat(null, "Jelly Progress: [jellyGrow]/[jellyMax]")
+	if(jelly && is_queen_alive())
+		stat(null, "Evolve Progress: [jellyGrow]/[jellyMax]")
+	else
+		stat(null, "Evolve Progress (HALTED - NO QUEEN): [jellyGrow]/[jellyMax]")
 
 	if(maxplasma > 0)
 		if(is_robotic)
@@ -705,11 +707,10 @@
 		src << "There's something built here already."
 		return
 
-	var/obj/royaljelly/alien_jelly = locate() in current_turf
 	var/obj/effect/alien/egg/alien_egg = locate() in current_turf
 
-	if(alien_jelly || alien_egg)
-		src << "There's already an egg or royal jelly here."
+	if(alien_egg)
+		src << "There's already an egg."
 		return
 
 	var/obj/item/clothing/mask/facehugger/alien_hugger = locate() in current_turf

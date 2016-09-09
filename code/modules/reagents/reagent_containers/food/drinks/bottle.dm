@@ -128,6 +128,15 @@
 		..()
 		reagents.add_reagent("whiskey", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake
+	name = "Weyland-Yuyani Sake"
+	desc = "Sake made with ancient techniques passed down for thousands of years. Fermented in Iowa by the Weyland Yutani Corporation."
+	icon_state = "sakebottle"
+	center_of_mass = list("x"=17, "y"=7)
+	New()
+		..()
+		reagents.add_reagent("sake", 100)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
 	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."

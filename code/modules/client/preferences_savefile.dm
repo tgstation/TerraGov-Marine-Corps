@@ -10,7 +10,7 @@
 //if a file can't be updated, return 0 to delete it and start again
 //if a file was updated, return 1
 /datum/preferences/proc/savefile_update()
-	if(savefile_version < 8)	//lazily delete everything + additional files so they can be saved in the new format
+	if(savefile_version < SAVEFILE_VERSION_MIN)	//lazily delete everything + additional files so they can be saved in the new format
 		for(var/ckey in preferences_datums)
 			var/datum/preferences/D = preferences_datums[ckey]
 			if(D == src)
@@ -59,6 +59,7 @@
 
 	S["pred_name"]			>> predator_name
 	S["pred_gender"]		>> predator_gender
+	S["pred_age"]			>> predator_age
 	S["pred_mask_type"]		>> predator_mask_type
 	S["pred_armor_type"]	>> predator_armor_type
 	S["pred_boot_type"]		>> predator_boot_type
@@ -72,6 +73,13 @@
 	toggles			= sanitize_integer(toggles, 0, 65535, initial(toggles))
 	UI_style_color	= sanitize_hexcolor(UI_style_color, initial(UI_style_color))
 	UI_style_alpha	= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
+
+	predator_name 		= predator_name ? sanitize_text(predator_name, initial(predator_name)) : initial(predator_name)
+	predator_gender 	= sanitize_text(predator_gender, initial(predator_gender))
+	predator_age 		= sanitize_integer(predator_age, 100, 10000, initial(predator_age))
+	predator_mask_type 	= sanitize_integer(predator_mask_type,1,1000000,initial(predator_mask_type))
+	predator_armor_type = sanitize_integer(predator_armor_type,1,1000000,initial(predator_armor_type))
+	predator_boot_type 	= sanitize_integer(predator_boot_type,1,1000000,initial(predator_boot_type))
 
 	return 1
 
@@ -93,6 +101,7 @@
 
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
+	S["pred_age"]			<< predator_age
 	S["pred_mask_type"] 	<< predator_mask_type
 	S["pred_armor_type"] 	<< predator_armor_type
 	S["pred_boot_type"] 	<< predator_boot_type

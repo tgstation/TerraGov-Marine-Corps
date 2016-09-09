@@ -187,9 +187,8 @@
 /obj/item/weapon/twohanded/dualsaber/unwield(mob/user)
 	. = ..()
 	if(!.) return
-	icon_state -= "_w"
+	icon_state 	= copytext(icon_state,1,-2)
 
-//spears, bay edition
 /obj/item/weapon/twohanded/spear
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."

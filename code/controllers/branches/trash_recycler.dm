@@ -153,7 +153,16 @@ You can also return the entire list of variables if you reset them manually. Not
 
 /*Generic image parent for any reusable image that works with the recycler.
 Set up on new() as an overlay. layer and dir can be overriden, the other
-stuff is required for it to show up in the first place.*/
+stuff is required for it to show up in the first place. Anything generated
+with image() sets the arguments without needing to actually set them through
+New(), just like loc works for regular atoms (always set as first argument).
+
+This means that by having overrides in New(), the proc will write everything
+twice on image(). This same behavior also applies to new. When the image is
+recycled, it will NOT autoset the arguments, so you have to set them through
+New() instead. I thought about having a unique proc insted of using New(), to
+cut down on overhead, but I think having uniform behavior is best here as the
+overhead only applies when the image is first created.*/
 /image/reusable
 	New(IC,LC,IS,L = FLOAT_LAYER,D)
 		icon = IC

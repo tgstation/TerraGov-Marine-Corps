@@ -108,9 +108,6 @@
 	C << recieve_message
 	src << "<br><br><font color='#009900'><b>[send_pm_type]PM to [get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]: <font color='#DA6200'>[msg]</b></font><br>"
 
-	if(config.use_slack && config.slack_send_ahelps == 1)
-		slackMessage("adminhelp", "AdminPM - [recieve_pm_type] [src.ckey] to [C.ckey]: [msg]")
-
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this
 	if(C.prefs && C.prefs.toggles & SOUND_ADMINHELP)

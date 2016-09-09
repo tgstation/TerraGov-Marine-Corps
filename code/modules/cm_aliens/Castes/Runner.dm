@@ -13,6 +13,7 @@
 	storedplasma = 50
 	plasma_gain = 1
 	maxplasma = 100
+	jelly = 1
 	jellyMax = 200
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	speed = -1.5

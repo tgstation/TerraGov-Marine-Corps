@@ -148,7 +148,7 @@
 datum/tech/XenoFauna
 	name = "Biological"
 	desc = "Analysis of alien biology"
-	id = "bio"
+	id = "Bio"
 
 
 
