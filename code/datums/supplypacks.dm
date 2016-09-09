@@ -120,16 +120,20 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/webbing
-	name = "Webbing crate"
+	name = "Webbings & Gun Belts crate"
 	contains = list(/obj/item/clothing/tie/holster,
 					/obj/item/clothing/tie/storage/brown_vest,
 					/obj/item/clothing/tie/storage/webbing,
 					/obj/item/clothing/tie/storage/webbing,
 					/obj/item/clothing/tie/storage/webbing,
-					/obj/item/clothing/tie/storage/webbing)
+					/obj/item/clothing/tie/storage/webbing,
+					/obj/item/weapon/storage/belt/gun/m4a3,
+					/obj/item/weapon/storage/belt/gun/m44,
+					/obj/item/weapon/storage/belt/gun/m39
+					)
 	cost = 40
 	containertype = /obj/structure/closet/crate
-	containername = "webbing crate"
+	containername = "extra storage crate"
 	group = "Operations"
 
 /datum/supply_packs/explosives
@@ -326,7 +330,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 				)
 	cost = 30
 	containertype = /obj/structure/closet/crate
-	containername = "extended ammo crate"
+	containername = "explosive ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sentry

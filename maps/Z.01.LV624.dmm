@@ -249,7 +249,7 @@
 "eO" = (/obj/item/weapon/pickaxe/plasmacutter,/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/sand4)
 "eP" = (/turf/simulated/floor/plating{icon_state = "warnplate"; dir = 8},/area/lv624/ground/sand2)
 "eQ" = (/obj/structure/table/reinforced{dir = 8; flipped = 1},/obj/item/weapon/grenade/explosive,/turf/simulated/floor/plating,/area/lv624/ground/sand2)
-"eR" = (/obj/structure/table,/obj/item/weapon/storage/belt/marine/full,/turf/simulated/floor/plating,/area/lv624/ground/sand2)
+"eR" = (/obj/structure/table,/obj/item/weapon/storage/belt/marine,/turf/simulated/floor/plating,/area/lv624/ground/sand2)
 "eS" = (/turf/simulated/floor/plating{icon_state = "warnplate"; dir = 4},/area/lv624/ground/sand2)
 "eT" = (/obj/structure/girder/displaced,/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/sand4)
 "eU" = (/obj/machinery/floodlight,/turf/simulated/floor/plating,/area/lv624/ground/sand2)

@@ -219,9 +219,8 @@
 /obj/item/weapon/storage/belt/gun
 	name = "pistol belt"
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
-	icon_state = "marinebelt"
-	var/icon_closed = null //Empty for now.
-	item_state = "holster0"
+	icon_state = "m4a3_holster"
+	item_state = "m4a3_holster"
 	use_sound = null
 	w_class = 4
 	storage_slots = 3
@@ -230,72 +229,65 @@
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
+	var/image/reusable/gun_underlay //The underlay we will use.
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
 		"/obj/item/ammo_magazine/pistol"
 		)
 
-	proc/update_icon_special() //Update icon is called from within the other storage procs, and we don't want that.
+	proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
+		var/mob/user = loc
 		if(holds_guns_now) //So it has a gun, let's make an icon.
 			/*
-			This is sort of a workaround; displaying an icon as an underlay doesn't properly display the
-			the thing in all instances. Alt+click is one example where it fails. Same with right click.
-			This is still pretty fast, might actually be better than creating a matrix then rotating.
+			Have to use a workaround here, otherwise images won't display properly at all times.
+			Reason being, transform is not displayed when right clicking/alt+clicking an object,
+			so it's necessary to pre-load the potential states so the item actually shows up
+			correctly without having to rotate anything. Preloading weapon icons also makes
+			sure that we don't have to do any extra calculations.
 			*/
-			var/icon/I = new(current_gun.icon, current_gun.icon_state) //New icon object.
-			var/image/I2 = new(initial(icon),icon_closed) //New image to serve as an overlay.
-			I.Turn(90) //Clockwise.
-			icon = I
-			overlays += I2
-			item_state = "holster1"
-			//update_inv_belt()
+			gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
+			icon_state += "_g"
+			item_state = icon_state
+			underlays += gun_underlay
 		else
-			overlays.Cut()
-			icon = initial(icon)
-			icon_state = initial(icon_state)
-			item_state = initial(item_state)
-			//update_inv_belt()
+			underlays -= gun_underlay
+			icon_state = copytext(icon_state,1,-2)
+			item_state = icon_state
+			cdel(gun_underlay)
+			gun_underlay = null
+		if(istype(user)) user.update_inv_belt()
 
 	//There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
-	can_be_inserted(obj/item/W as obj, stop_messages = 0) //We don't need to stop messages, but it can be left in.
+	can_be_inserted(obj/item/W, stop_messages) //We don't need to stop messages, but it can be left in.
 		if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
 			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
 				if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-					if(!stop_messages) usr << "<span class='notice'>\The [src] already holds a gun.<span>"
+					if(!stop_messages) usr << "<span class='warning'>[src] already holds a gun.</span>"
 					return //Nothing else to do.
-				holds_guns_now++ //Slide it in.
-				if(!current_gun) //If there's no active gun, we want to make this our icon.
-					current_gun = W
-				update_icon_special()
 			else //Must be ammo.
-		//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
+			//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
 				if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
-					if(!stop_messages) usr << "<span class='notice'>\The [src] can't hold any more magazines.<span>"
+					if(!stop_messages) usr << "<span class='warning'>[src] can't hold any more magazines.</span>"
 					return
 			return 1
 
-	remove_from_storage(obj/item/W as obj)
-		if(..() ) //Same deal, this will handle things.
-			if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
-				holds_guns_now-- //Remove it.
-				if(W == current_gun)
-					current_gun = null
-				update_icon_special() //Update.
-			return 1
+/obj/item/weapon/gun/on_enter_storage(obj/item/weapon/storage/belt/gun/gun_belt)
+	if(istype(gun_belt))
+		gun_belt.holds_guns_now++ //Slide it in.
+		if(!gun_belt.current_gun)
+			gun_belt.current_gun = src //If there's no active gun, we want to make this our icon.
+			gun_belt.update_gun_icon()
 
-/obj/item/weapon/storage/belt/gun/revolver
-	name = "pistol belt"
-	desc = "A belt-holster assembly that allows one to hold a revolver and two magazines."
-	can_hold = list(
-		"/obj/item/weapon/gun/revolver",
-		"/obj/item/ammo_magazine/revolver"
-		)
+/obj/item/weapon/gun/on_exit_storage(obj/item/weapon/storage/belt/gun/gun_belt)
+	if(istype(gun_belt))
+		gun_belt.holds_guns_now--
+		if(gun_belt.current_gun == src)
+			gun_belt.current_gun = null
+			gun_belt.update_gun_icon()
 
 /obj/item/weapon/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains two side pouches that can store two spare 9mm magazines."
-	icon_state = "M4A3_holster_0"
-	icon_closed = "M4A3_holster_1"
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
 		"/obj/item/weapon/gun/pistol/m1911",
@@ -307,6 +299,58 @@
 		"/obj/item/ammo_magazine/pistol/m1911"
 		)
 
+	New()
+		select_gamemode_skin(type)
+		..()
+
+/obj/item/weapon/storage/belt/gun/m4a3/full/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
+	new_gun.on_enter_storage(src)
+
+/obj/item/weapon/storage/belt/gun/m44
+	name = "\improper M276 pattern m44 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is for the m44 magnum revolver, along with two speedloaders. It faintly smells of hay."
+	icon_state = "m44_holster"
+	item_state = "m44_holster"
+	max_w_class = 3
+	can_hold = list(
+		"/obj/item/weapon/gun/revolver/m44",
+		"/obj/item/ammo_magazine/revolver",
+		"/obj/item/ammo_magazine/revolver/marksman",
+		"/obj/item/ammo_magazine/revolver/heavy"
+		)
+
+/obj/item/weapon/storage/belt/gun/m44/full/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new_gun.on_enter_storage(src)
+
+/obj/item/weapon/storage/belt/gun/m39
+	name = "\improper M276 pattern M39 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed for the m39 SMG, and features a larger frame to support the gun. It's isn't entirely practical, but does the job in the end."
+	icon_state = "m39_holster"
+	item_state = "m39_holster"
+	storage_slots = 1
+	max_combined_w_class = 4
+	max_w_class = 4
+	can_hold = list(
+		"/obj/item/weapon/gun/smg/m39",
+		"/obj/item/weapon/gun/smg/m39/elite",
+		"/obj/item/ammo_magazine/smg/m39",
+		"/obj/item/ammo_magazine/smg/m39/ap",
+		"/obj/item/ammo_magazine/smg/m39/extended"
+		)
+
+/obj/item/weapon/storage/belt/gun/m39/full/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/smg/m39(src)
+	new_gun.on_enter_storage(src)
+
 /obj/item/weapon/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition carrying operations."
@@ -315,18 +359,15 @@
 	storage_slots = 6
 	max_combined_w_class = 12
 	can_hold = list(
-		//"/obj/item/weapon/gun/pistol",
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
-		"/obj/item/weapon/storage/box/m94",
-		"/obj/item/device/flash",
 		"/obj/item/ammo_magazine",
 		"/obj/item/flareround_s",
 		"/obj/item/flareround_sp",
 		"/obj/item/weapon/grenade",
 		"/obj/item/device/mine",
 		"/obj/item/weapon/reagent_containers/food/snacks",
-		"/obj/item/ammo_magazine/shotgun"
+		"/obj/item/device/flashlight/flare"
 		)
 	New()
 		select_gamemode_skin(type)
@@ -365,11 +406,6 @@
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/melee/baton(src)
 	new /obj/item/weapon/handcuffs(src)
-
-/obj/item/weapon/storage/belt/marine/full/New()
-	..()
-	new /obj/item/weapon/gun/pistol/m4a3(src)
-	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/weapon/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"

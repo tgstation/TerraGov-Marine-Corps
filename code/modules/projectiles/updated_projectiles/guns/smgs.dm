@@ -9,7 +9,6 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
 	type_of_casings = "bullet"
-	flags_equip_slot = SLOT_BELT
 	force = 8
 	w_class = 4
 	attachable_allowed = list(

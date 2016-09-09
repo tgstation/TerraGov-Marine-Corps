@@ -74,7 +74,7 @@
 	UI_style_color	= sanitize_hexcolor(UI_style_color, initial(UI_style_color))
 	UI_style_alpha	= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
 
-	predator_name 		= sanitize_text(predator_name, initial(predator_name))
+	predator_name 		= predator_name ? sanitize_text(predator_name, initial(predator_name)) : initial(predator_name)
 	predator_gender 	= sanitize_text(predator_gender, initial(predator_gender))
 	predator_age 		= sanitize_integer(predator_age, 100, 10000, initial(predator_age))
 	predator_mask_type 	= sanitize_integer(predator_mask_type,1,1000000,initial(predator_mask_type))

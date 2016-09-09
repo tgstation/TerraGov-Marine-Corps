@@ -707,11 +707,10 @@
 		src << "There's something built here already."
 		return
 
-	var/obj/royaljelly/alien_jelly = locate() in current_turf
 	var/obj/effect/alien/egg/alien_egg = locate() in current_turf
 
-	if(alien_jelly || alien_egg)
-		src << "There's already an egg or royal jelly here."
+	if(alien_egg)
+		src << "There's already an egg."
 		return
 
 	var/obj/item/clothing/mask/facehugger/alien_hugger = locate() in current_turf

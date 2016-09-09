@@ -34,7 +34,6 @@
 					/obj/item/weapon/storage/belt/knifepouch = 5,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/weapon/storage/box/m94 = 5,
-					/obj/item/device/flashlight/ = 5,
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/device/radio/headset/msulaco = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
@@ -68,15 +67,21 @@
 	products = list(
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/weapon/storage/belt/marine = 10,
+					/obj/item/clothing/tie/storage/webbing = 3,
+					/obj/item/clothing/tie/storage/brown_vest = 0,
+					/obj/item/clothing/tie/holster = 0,
+					/obj/item/weapon/storage/belt/gun/m4a3 = 2,
+					/obj/item/weapon/storage/belt/gun/m44 = 2,
+					/obj/item/weapon/storage/belt/gun/m39 = 2,
 					/obj/item/weapon/gun/pistol/m4a3 = 5,
 					/obj/item/weapon/gun/pistol/m1911 = 1,
 					/obj/item/weapon/gun/revolver/m44 = 5,
 					/obj/item/weapon/gun/smg/m39 = 10,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
-					/obj/item/weapon/gun/rifle/m41a = 10,
-					/obj/item/weapon/gun/rifle/m41a/elite = 0,
 					/obj/item/weapon/gun/rifle/m41aMK1 = 0,
+					/obj/item/weapon/gun/rifle/m41a = 10,
 					/obj/item/weapon/gun/rifle/m41a/scoped = 0,
+					/obj/item/weapon/gun/rifle/m41a/elite = 0,
 					/obj/item/weapon/gun/rifle/lmg = 0,
 					/obj/item/weapon/gun/shotgun/pump = 5,
 					/obj/item/weapon/gun/shotgun/combat = 0,
@@ -95,10 +100,9 @@
 
 	contraband = list(
 					/obj/item/weapon/gun/pistol/holdout = 0,
-					/obj/item/weapon/gun/pistol/highpower = 0,
-					/obj/item/weapon/gun/pistol/m1911 = 0,
-					/obj/item/weapon/gun/pistol/vp70 = 0,
 					/obj/item/weapon/gun/pistol/heavy = 0,
+					/obj/item/weapon/gun/pistol/highpower = 0,
+					/obj/item/weapon/gun/pistol/vp70 = 0,
 					/obj/item/weapon/gun/revolver/small = 0,
 					/obj/item/weapon/gun/revolver/cmb = 0,
 					/obj/item/weapon/gun/shotgun/merc = 0,
@@ -116,6 +120,7 @@
 	name = "\improper ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
 	products = list(
+					/obj/item/weapon/claymore/mercsword/machete = 5,
 					/obj/item/ammo_magazine/pistol = 10,
 					/obj/item/ammo_magazine/pistol/hp = 0,
 					/obj/item/ammo_magazine/pistol/ap = 0,
@@ -144,19 +149,18 @@
 					)
 
 	contraband = list(
-					/obj/item/ammo_magazine/shotgun/incendiary = 0,
-					/obj/item/ammo_magazine/revolver/small = 0,
-					/obj/item/ammo_magazine/revolver/cmb = 0,
 					/obj/item/ammo_magazine/pistol/incendiary = 0,
-					/obj/item/ammo_magazine/pistol/m1911 = 0,
 					/obj/item/ammo_magazine/pistol/heavy = 0,
 					/obj/item/ammo_magazine/pistol/holdout = 0,
 					/obj/item/ammo_magazine/pistol/highpower = 0,
 					/obj/item/ammo_magazine/pistol/vp70 = 0,
+					/obj/item/ammo_magazine/revolver/small = 0,
+					/obj/item/ammo_magazine/revolver/cmb = 0,
 					/obj/item/ammo_magazine/smg/mp7 = 0,
 					/obj/item/ammo_magazine/smg/skorpion = 0,
 					/obj/item/ammo_magazine/smg/uzi = 0,
-					/obj/item/ammo_magazine/smg/p90 = 0
+					/obj/item/ammo_magazine/smg/p90 = 0,
+					/obj/item/ammo_magazine/shotgun/incendiary = 0
 					)
 	premium = list()
 	select_gamemode_equipment()
@@ -234,7 +238,21 @@
 					/obj/item/weapon/reagent_containers/blood/BPlus = 5, /obj/item/weapon/reagent_containers/blood/BMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/OPlus = 5, /obj/item/weapon/reagent_containers/blood/OMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/empty = 10)
+	contraband = list()
 
+	build_inventory(productlist[])
+		. = ..()
+		var/temp_list[] = productlist
+		var/obj/item/weapon/reagent_containers/blood/temp_path
+		var/datum/data/vending_product/R
+		var/blood_type
+		for(R in (product_records + hidden_records + coin_records))
+			if(R.product_path in temp_list)
+				temp_path = R.product_path
+				blood_type = initial(temp_path.blood_type)
+				R.product_name += blood_type? " [blood_type]" : ""
+				temp_list -= R.product_path
+				if(!temp_list.len) break
 
 /obj/machinery/vending/marine_engi
 	name = "ColMarTech Engineer Vendor"
@@ -392,9 +410,6 @@
 
 						/obj/item/attachable/grenade = 5,
 						/obj/item/attachable/shotgun = 3,
-						/obj/item/attachable/flamer = 3,
-
-						/obj/item/clothing/tie/storage/webbing = 3,
-						/obj/item/weapon/claymore/mercsword/machete = 5
+						/obj/item/attachable/flamer = 3
 
 					)

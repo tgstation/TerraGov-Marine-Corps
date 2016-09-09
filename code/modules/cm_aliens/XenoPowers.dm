@@ -400,7 +400,7 @@
 		var/mob/living/carbon/Xenomorph/X
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			X = L.current
-			if(istype(X)) dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+			if(istype(X)) dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
 	return
