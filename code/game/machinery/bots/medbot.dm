@@ -27,6 +27,7 @@
 	var/last_found = 0
 	var/last_newpatient_speak = 0 //Don't spam the "HEY I'M COMING" messages
 	var/currently_healing = 0
+	var/safety_checks = 1
 	var/injection_amount = 15 //How much reagent do we inject at a time?
 	var/heal_threshold = 10 //Start healing when they have this much damage in a category
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
@@ -128,6 +129,11 @@
 		dat += "<a href='?src=\ref[src];adj_inject=5'>+</a> "
 		dat += "</TT><br>"
 
+		dat += "<TT>OD Protection: "
+		dat += "<b>[safety_checks ? "On" : "Off"]</b> : "
+		dat += "<a href='?src=\ref[src];togglesafety=1'>Toggle?</a>"
+		dat += "</TT><br>"
+
 		dat += "Reagent Source: "
 		dat += "<a href='?src=\ref[src];use_beaker=1'>[src.use_beaker ? "Loaded Beaker (When available)" : "Internal Synthesizer"]</a><br>"
 
@@ -165,6 +171,9 @@
 			src.injection_amount = 5
 		if(src.injection_amount > 15)
 			src.injection_amount = 15
+
+	else if((href_list["togglesafety"]) && (!src.locked || issilicon(usr)))
+		safety_checks = !safety_checks
 
 	else if((href_list["use_beaker"]) && (!src.locked || issilicon(usr)))
 		src.use_beaker = !src.use_beaker
@@ -233,6 +242,7 @@
 		src.last_found = world.time
 		src.anchored = 0
 		src.emagged = 2
+		src.safety_checks = 0
 		src.on = 1
 		src.icon_state = "medibot[src.on]"
 
@@ -338,6 +348,12 @@
 
 	if(src.emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return 1
+
+	if(safety_checks)
+		if(C.reagents.total_volume > 0)
+			for(var/datum/reagent/R in C.reagents.reagent_list)
+				if((src.injection_amount + R.volume) >= R.overdose)
+					return 0 //Don't medicate if it will kill them --MadSnailDisease
 
 	//If they're injured, we're using a beaker, and don't have one of our WONDERCHEMS.
 	if((src.reagent_glass) && (src.use_beaker) && ((C.getBruteLoss() >= heal_threshold) || (C.getToxLoss() >= heal_threshold) || (C.getToxLoss() >= heal_threshold) || (C.getOxyLoss() >= (heal_threshold + 15))))

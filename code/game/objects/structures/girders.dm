@@ -237,7 +237,7 @@
 	icon_state= "cultgirder"
 	anchored = 1
 	density = 1
-	layer = 2
+	layer = 3 //Used to be 2 but bullets flew over it --MadSnailDisease
 	var/health = 250
 
 	attackby(obj/item/W as obj, mob/user as mob)

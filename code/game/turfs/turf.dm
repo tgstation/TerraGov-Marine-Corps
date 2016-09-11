@@ -33,6 +33,8 @@
 	var/bullet_holes = 0 //How many bullets already there?
 	var/is_clawed = 0 //Clawed up already?
 
+	var/oldTurf = "" //The previous turf's path as text. Used when deconning on LV --MadSnailDisease
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -260,7 +262,9 @@
 		//	if(!zone.CheckStatus())
 		//		zone.SetStatus(ZONE_ACTIVE)
 
+		var/path = "[src.type]"
 		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		W.oldTurf = path
 		W.lighting_lumcount += old_lumcount
 		if(old_lumcount != W.lighting_lumcount)
 			W.lighting_changed = 1
