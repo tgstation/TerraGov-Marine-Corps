@@ -811,8 +811,6 @@
 		number += 2
 	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
 		number -= 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
-		number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
 		var/obj/item/clothing/glasses/welding/W = src.glasses
 		if(!W.up)

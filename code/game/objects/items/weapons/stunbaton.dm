@@ -58,7 +58,25 @@
 	if(!bcell)
 		usr <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
+/obj/item/weapon/melee/baton/attack_hand(mob/user)
+
+	var/mob/living/carbon/human/H = user
+	if(H)
+		var/obj/item/weapon/card/id/card = H.wear_id
+		if( ( !istype(card) ) || ( istype(card) && card.assignment != "Military Police") )
+			H.visible_message("\blue [src] beeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
+			spawn(2)
+				H.Weaken(20)
+				H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
+				deductcharge(hitcost)
+			add_fingerprint(user)
+		else
+			..()
+	else
+		..()
+
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
+
 	if(istype(W, /obj/item/weapon/cell))
 		if(!bcell)
 			user.drop_item()

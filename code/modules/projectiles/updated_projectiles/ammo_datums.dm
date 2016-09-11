@@ -125,7 +125,7 @@
 					if("DEATH SQUAD")
 						target.apply_effects(0,1) //Almost unaffacted.
 						return
-			target.apply_effects(8,8) //Buffed a bit.
+			target.apply_effects(12,20)
 
 	proc/drop_flame(turf/T)
 		if(!istype(T)) return
