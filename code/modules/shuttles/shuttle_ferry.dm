@@ -17,7 +17,7 @@
 	//TODO: change location to a string and use a mapping for area and dock targets.
 	var/dock_target_station
 	var/dock_target_offsite
-	
+
 	var/last_dock_attempt_time = 0
 
 /datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
@@ -43,6 +43,7 @@
 		departing = get_location_area(location)
 
 	direction = !location
+
 	..(departing, destination, interim, travel_time, direction)
 
 /datum/shuttle/ferry/move(var/area/origin,var/area/destination)
@@ -69,6 +70,7 @@
 	Doing so will ensure that multiple jumps cannot be initiated in parallel.
 */
 /datum/shuttle/ferry/proc/process()
+
 	switch(process_state)
 		if (WAIT_LAUNCH)
 			if (skip_docking_checks() || docking_controller.can_launch())
@@ -86,15 +88,15 @@
 				long_jump(interim=area_transition, travel_time=move_time, direction=transit_direction)
 			else
 				short_jump()
-			
+
 			process_state = WAIT_ARRIVE
-		
+
 		if (WAIT_ARRIVE)
 			if (moving_status == SHUTTLE_IDLE)
 				dock()
 				in_use = null	//release lock
 				process_state = WAIT_FINISH
-		
+
 		if (WAIT_FINISH)
 			if (skip_docking_checks() || docking_controller.docked() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
 				process_state = IDLE_STATE
@@ -155,6 +157,11 @@
 
 /datum/shuttle/ferry/proc/can_cancel()
 	if (moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
+		return 1
+	return 0
+
+/datum/shuttle/ferry/proc/can_optimize()
+	if(!(moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH) && !transit_optimized && !recharging)
 		return 1
 	return 0
 

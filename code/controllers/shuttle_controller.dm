@@ -153,6 +153,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle = new()
 	shuttle.location = 0
 	shuttle.warmup_time = 10
+	shuttle.can_be_optimized = 1 //This shuttle uses complex flight maneuvers and can be optimized
 	shuttle.area_offsite = locate(/area/shuttle/drop1/LV624)
 	shuttle.area_station = locate(/area/shuttle/drop1/sulaco)
 	shuttle.area_transition = locate(/area/shuttle/drop1/transit)
@@ -160,7 +161,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 //	shuttle.dock_target_station = "escape_dock"
 //	shuttle.dock_target_offsite = "centcom_dock"
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	shuttle.move_time = DROPSHIP_TRANSIT_DURATION
 	shuttles["Dropship 1"] = shuttle
 	process_shuttles += shuttle
 
@@ -172,10 +173,11 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.area_station = locate(/area/shuttle/drop2/sulaco)
 	shuttle.area_transition = locate(/area/shuttle/drop2/transit)
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = (SHUTTLE_TRANSIT_DURATION_RETURN / 2)
+	shuttle.move_time = DROPPOD_TRANSIT_DURATION
 	shuttles["Dropship 2"] = shuttle
 	process_shuttles += shuttle
 
+	// Distress Shuttle - ERT
 	shuttle = new()
 	shuttle.location = 1
 	shuttle.warmup_time = 10
@@ -183,7 +185,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.area_station = pick(locate(/area/shuttle/distress_arrive_1),locate(/area/shuttle/distress_arrive_2),locate(/area/shuttle/distress_arrive_3))
 	shuttle.area_transition = locate(/area/shuttle/distress_transit)
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	shuttle.move_time = DROPSHIP_TRANSIT_DURATION
 	shuttles["Distress"] = shuttle
 	process_shuttles += shuttle
 
@@ -192,6 +194,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle = new()
 	shuttle.location = 0
 	shuttle.warmup_time = 2
+	shuttle.recharge_time = ELEVATOR_RECHARGE
 	shuttle.area_offsite = locate(/area/shuttle/elevator1/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator1/ground)
 	shuttle.area_transition = locate(/area/shuttle/elevator1/transit)
@@ -199,7 +202,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 //	shuttle.dock_target_station = "escape_dock"
 //	shuttle.dock_target_offsite = "centcom_dock"
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = 5
+	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
 	shuttle.iselevator = 1
 	shuttles["Elevator 1"] = shuttle
 	process_shuttles += shuttle
@@ -208,11 +211,12 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle = new()
 	shuttle.location = 0
 	shuttle.warmup_time = 2
+	shuttle.recharge_time = ELEVATOR_RECHARGE
 	shuttle.area_offsite = locate(/area/shuttle/elevator2/underground)
 	shuttle.area_station = locate(/area/shuttle/elevator2/ground)
 	shuttle.area_transition = locate(/area/shuttle/elevator2/transit)
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = 5
+	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
 	shuttle.iselevator = 1
 	shuttles["Elevator 2"] = shuttle
 	process_shuttles += shuttle

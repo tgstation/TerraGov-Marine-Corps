@@ -3,6 +3,9 @@
 	<div class="item">
 		{{:data.shuttle_status}}
 	</div>
+	<div class="item">
+		{{:data.shuttle_status_optimization}}
+	</div>
 </div>
 <div class="item" style="padding-top: 10px">
 	<div class="item">
@@ -15,11 +18,37 @@
 			{{else data.shuttle_state == "warmup"}}
 				<span style="font-weight: bold;color: #336699">SPINNING UP</span>
 			{{else data.shuttle_state == "in_transit"}}
-				<span style="font-weight: bold;color: #336699">ENGAGED</span>
+				<span style="font-weight: bold;color: #339933">ENGAGED</span>
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
 		</div>
+		{{if data.recharge_time > 0}}
+			{{if data.shuttle_state == "idle"}}
+				<div class="line">
+					<div class="statusLabel">Recharge Status:</div>
+					{{if data.recharging > 0}}
+						{{if data.optimized}}
+							{{:helper.displayBar(data.recharge_status, 0, data.recharge_time, 'average')}}
+						{{else}}
+							{{:helper.displayBar(data.recharge_status, 0, data.recharge_time, 'bad')}}
+						{{/if}}
+						<div class="line">
+							The Bluespace Drive will be recharged in {{:data.recharging_seconds}} seconds.
+						</div>
+					{{else}}
+						{{:helper.displayBar(data.recharge_time, 0, data.recharge_time, 'good')}}
+						<div class="line">
+							The Bluespace Drive is ready to use.
+						</div>
+					{{/if}}
+				</div>
+			{{else}}
+				<div class="line">
+					The Bluespace Drive is currently under use.
+				</div>	
+			{{/if}}
+		{{/if}}
 	</div>
 </div>
 {{if data.has_docking}}
@@ -61,6 +90,9 @@
 			{{:helper.link('Launch Shuttle', 'arrowthickstop-1-e', {'move' : '1'}, data.can_launch? null : 'disabled' , null)}}
 			<!-- {{:helper.link('Cancel Launch', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
 			{{:helper.link('Force Launch', 'alert', {'force' : '1'}, data.can_force? null : 'disabled' , data.can_force ? 'redButton' : null)}} -->
+			{{if data.optimize_allowed == 1}}
+				{{:helper.link('Run Flight Optimization', 'refresh', {'optimize' : '1'}, data.can_optimize? null : 'disabled' , null)}}
+			{{/if}}
 		</div>
 	</div>
 </div>

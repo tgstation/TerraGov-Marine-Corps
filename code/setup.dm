@@ -877,10 +877,17 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 // these define the time taken for the shuttle to get to SS13
 // and the time before it leaves again
+// note that this is multiplied by 10 in the shuttle controller. Hence, this is not defined in deciseconds but in real seconds
 #define SHUTTLE_PREPTIME 				600	// 10 minutes = 600 seconds - after this time, the shuttle departs centcom and cannot be recalled
 #define SHUTTLE_LEAVETIME 				180	// 3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving
 #define SHUTTLE_TRANSIT_DURATION		600	// 10 minutes = 600 seconds - how long it takes for the shuttle to get to the station
 #define SHUTTLE_TRANSIT_DURATION_RETURN 100	// 100 seconds
+#define DROPSHIP_TRANSIT_DURATION		100	// 100 seconds
+#define DROPPOD_TRANSIT_DURATION		50	// 50 seconds
+#define ELEVATOR_TRANSIT_DURATION		5	// 5 seconds
+
+#define SHUTTLE_RECHARGE  1200 // 2 minutes
+#define ELEVATOR_RECHARGE 150  // 15 seconds
 
 //Shuttle moving status
 #define SHUTTLE_IDLE		0
