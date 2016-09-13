@@ -38,6 +38,7 @@
 	tier = 0 //Queen doesn't count towards population limit.
 	upgrade = 0
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
+	var/breathing_counter = 0
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
 		/mob/living/carbon/Xenomorph/Queen/proc/lay_egg,
@@ -56,6 +57,14 @@
 		/mob/living/carbon/Xenomorph/proc/secure_host,
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
+
+/mob/living/carbon/Xenomorph/Queen/Life()
+	..()
+
+	if(++breathing_counter >= 20) //Increase the breathing variable each tick and play it when it's been X ticks
+		if(prob(5)) //Randomize the chance so it's not exactly at X ticks
+			pick(playsound(src.loc, 'sound/voice/alien_queen_breath1.ogg', 10, 1, -3), playsound(src.loc, 'sound/voice/alien_queen_breath2.ogg', 10, 1, -3))
+			breathing_counter = 0 //Reset the counter
 
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //Prevents resetting queen death timer.

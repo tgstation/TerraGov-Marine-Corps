@@ -444,7 +444,7 @@
 	if(isnull(current_aura))
 		if(!check_plasma(30))
 			return
-		var/choice = alert(src,"Which pheromone would you like to emit?\nFrenzy - Increased run speed\nGuard - Reduced incoming damage\nRecovery - Increased plasma generation","Auras", "frenzy", "guard", "recovery")
+		var/choice = alert(src,"Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.\nFrenzy - Increased run speed\nGuard - Reduced incoming damage\nRecovery - Increased plasma and health regeneration","Emit Pheromones", "frenzy", "guard", "recovery")
 		if (choice != "cancel")
 			current_aura = choice
 			visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")

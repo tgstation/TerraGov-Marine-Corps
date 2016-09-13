@@ -488,7 +488,7 @@
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
-					if(rand(0,100) < 70)
+					if(rand(0,100) < 95)
 						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
 					else
 						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
@@ -503,7 +503,7 @@
 				src.loc = V.loc
 				src.throwing = 0 //Stop the movement
 				if(!is_robotic)
-					if(rand(0,100) < 70)
+					if(rand(0,100) < 95)
 						playsound(src.loc, 'sound/voice/alien_pounce.ogg', 50, 1)
 					else
 						playsound(src.loc, 'sound/voice/alien_pounce2.ogg', 50, 0)
