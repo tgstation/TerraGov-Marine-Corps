@@ -11,6 +11,7 @@
 	w_class = 3
 	origin_tech = "combat=2"
 	attack_verb = list("beaten")
+	req_one_access = list(access_sulaco_brig, access_sulaco_armory, access_sulaco_captain, access_centcomm)
 	var/stunforce = 10
 	var/agonyforce = 80
 	var/status = 0		//whether the thing is on or not
@@ -63,7 +64,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H && !istype(src, /obj/item/weapon/melee/baton/cattleprod))
 		var/obj/item/weapon/card/id/card = H.wear_id
-		if( ( !istype(card) ) || ( istype(card) && card.assignment != "Military Police") )
+		if( ( !istype(card) ) || ( istype(card) && !src.check_access(card)) )
 			H.visible_message("\blue [src] beeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
 			spawn(2)
 				H.Weaken(20)
