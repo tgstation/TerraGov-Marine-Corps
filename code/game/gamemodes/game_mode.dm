@@ -517,3 +517,38 @@ proc/get_nt_opposed()
 	text += ")"
 
 	return text
+
+
+/datum/game_mode/proc/announce_bioscans()
+	var/list/activeXenos = list() //We'll announce to them later.
+	var/numHostsPlanet 	= 0
+	var/numHostsShip 	= 0
+	var/numXenosPlanet 	= 0
+	var/numXenosShip 	= 0
+
+	for(var/mob/M in player_list) //Scan through and detect Xenos and Hosts
+		if(M && M.client && M.stat != DEAD)
+			if(isXeno(M))
+				switch(M.z)
+					if(3,4) numXenosShip++ //On the ship.
+					else	numXenosPlanet++ //Elsewhere.
+				activeXenos += M
+
+			if(ishuman(M) && !isYautja(M))
+				switch(M.z)
+					if(3,4) numHostsShip++ //On the ship.
+					else	numHostsPlanet++ //Elsewhere.
+
+	// The announcement to all Xenos. Slightly off for the human ship, accurate otherwise.
+	for(var/mob/M in activeXenos)
+		M << sound(get_sfx("queen"),wait=0,volume=50)
+		M << "<br><br><h1 style='color:red'>The Queen Mother reaches into your mind from worlds away...</h1>"
+		M << "<h2 style='color:red'>To my children and their queen... I sense approximately [ max(0,numHostsShip + rand(-2,2)) ] host\s in the metal hive and [numHostsPlanet? "[numHostsPlanet]" : "none"] scattered elsewhere...</h2>"
+
+	// The announcement to all Humans. Slightly off for the planet and elsewhere, accurate for the ship.
+	var/name = "M.O.T.H.E.R. Bioscan Status"
+	var/input = "Bioscan complete.\n\nSensors indicate [numXenosShip?"[numXenosShip]":"no"] unknown lifeform signature[!numXenosShip||numXenosShip>1?"s":""] present on the ship and approximately [ max(0,numXenosPlanet + rand(-2,2)) ] signature\s located elsewhere."
+	command_announcement.Announce(input, name, new_sound = 'sound/AI/commandreport.ogg')
+
+	log_admin("A bioscan/Queen Mother message has completed. Humans: [numHostsPlanet] on the planet and [numHostsShip] on the ship. Xenos: [numXenosPlanet] on the planet and [numXenosShip] on the ship.")
+	message_admins("A bioscan/Queen Mother message has completed. Humans: [numHostsPlanet] on the planet and [numHostsShip] on the ship. Xenos: [numXenosPlanet] on the planet and [numXenosShip] on the ship.", 1)

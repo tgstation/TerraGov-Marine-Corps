@@ -112,6 +112,12 @@
 		finished = 0
 		return
 
+	// Automated bioscan / Queen Mother message
+	if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
+		announce_bioscans() //Announce the results of the bioscan to both sides.
+		bioscan_current_interval += bioscan_ongoing_interval //Add to the interval based on our set interval time.
+		return //We'll skip checking completion in this cycle.
+
 	//Count up our player controlled mobs.
 	var/count_h = count_humans()
 	var/count_x = count_xenos()

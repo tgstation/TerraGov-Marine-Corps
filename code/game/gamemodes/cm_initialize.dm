@@ -49,6 +49,8 @@ You can see a working example in the Colonial Marines game mode.
 	var/pred_round_status = 0 //Is it actually a predator round?
 	var/pred_round_chance = 20 //%
 	var/forbid_late_joining = 0 //Cannot late join as a marine after round start.
+	var/bioscan_current_interval = 36000
+	var/bioscan_ongoing_interval = 12000
 
 //===================================================\\
 
