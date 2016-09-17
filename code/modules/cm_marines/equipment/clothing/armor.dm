@@ -50,6 +50,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	siemens_coefficient = 0.6
+	w_class = 5
 	allowed = list(/obj/item/weapon/gun)//Guns only.
 
 /obj/item/clothing/suit/armor/vest
