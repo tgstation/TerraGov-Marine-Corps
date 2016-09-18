@@ -120,6 +120,10 @@
 		if(reinf) new /obj/item/stack/rods(loc)
 		del(src)
 
+	if(user.windowknock_cooldown)
+		user << "You just did that. Wait."
+		return
+
 	else if (usr.a_intent == "hurt")
 
 		if (istype(usr,/mob/living/carbon/human))
@@ -137,6 +141,9 @@
 		usr.visible_message("[usr.name] knocks on the [src.name].", \
 							"You knock on the [src.name].", \
 							"You hear a knocking sound.")
+		user.windowknock_cooldown = 1
+		spawn(100) //10 seconds
+			user.windowknock_cooldown = 0
 	return
 
 
