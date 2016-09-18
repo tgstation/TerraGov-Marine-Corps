@@ -12,7 +12,7 @@
 		loc = pick(newplayer_start)
 	else
 		loc = locate(1,1,1)
-	lastarea = loc
+	lastarea = get_area(src.loc)
 
 	sight |= SEE_TURFS
 	player_list |= src
