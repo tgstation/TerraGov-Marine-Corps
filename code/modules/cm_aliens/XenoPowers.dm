@@ -82,9 +82,6 @@
 	return
 
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
-	set name = "Pounce (10)"
-	set desc = "Pounce on someone. Click a turf to just leap there."
-	set category = "Alien"
 
 	if(!check_state())	return
 
