@@ -386,7 +386,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Returns a list of all mobs with their name
 /proc/getmobs()
-
 	var/list/mobs = sortmobs()
 	var/list/names = list()
 	var/list/creatures = list()
@@ -411,7 +410,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return creatures
 
 /proc/getxenos()
-
 	var/list/mobs = sortxenos()
 	var/list/names = list()
 	var/list/creatures = list()
@@ -436,12 +434,37 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return creatures
 
 /proc/getpreds()
-
 	var/list/mobs = sortpreds()
 	var/list/names = list()
 	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
+		if(!isYautja(M)) continue
+		var/name = M.name
+		if (name in names)
+			namecounts[name]++
+			name = "[name] ([namecounts[name]])"
+		else
+			names.Add(name)
+			namecounts[name] = 1
+		if (M.real_name && M.real_name != M.name)
+			name += " \[[M.real_name]\]"
+		if (M.stat == 2)
+			if(istype(M, /mob/dead/observer/))
+				name += " \[ghost\]"
+			else
+				name += " \[dead\]"
+		creatures[name] = M
+
+	return creatures
+
+/proc/gethumans()
+	var/list/mobs = sorthumans()
+	var/list/names = list()
+	var/list/creatures = list()
+	var/list/namecounts = list()
+	for(var/mob/M in mobs)
+		if(isYautja(M)) continue
 		var/name = M.name
 		if (name in names)
 			namecounts[name]++
@@ -511,6 +534,15 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			continue
 		predlist.Add(M)
 	return predlist
+
+/proc/sorthumans()
+	var/list/humanlist = list()
+	var/list/sortmob = sortAtom(mob_list)
+	for(var/mob/living/carbon/human/M in sortmob)
+		if(!M.client || M.species.name == "Yautja")
+			continue
+		humanlist.Add(M)
+	return humanlist
 
 //E = MC^2
 /proc/convert2energy(var/M)

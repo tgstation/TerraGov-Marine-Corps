@@ -9,6 +9,8 @@ var/list/hiss_sound = list('sound/voice/alien_talk.ogg','sound/voice/alien_talk2
 var/list/page_sound = list('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 //var/list/gun_sound = list('sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg','sound/weapons/Gunshot4.ogg')
 var/list/queen_sound = list('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
+var/list/scream_male_sound = list('sound/voice/scream_male_1.ogg','sound/voice/scream_male_2.ogg','sound/voice/scream_male_3.ogg','sound/voice/scream_male_4.ogg','sound/voice/scream_male_5.ogg')
+var/list/scream_female_sound = list('sound/voice/scream_female_1.ogg','sound/voice/scream_female_2.ogg','sound/voice/scream_female_3.ogg','sound/voice/scream_female_4.ogg','sound/voice/scream_female_5.ogg')
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global)
 
@@ -54,34 +56,34 @@ var/const/FALLOFF_SOUNDS = 0.5
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
 		var/turf/T = get_turf(src)
-		
+
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
-		
+
 		S.volume -= max(distance - world.view, 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
-		
+
 		//sound volume falloff with pressure
 		var/pressure_factor = 1.0
-		
+
 		var/datum/gas_mixture/hearer_env = T.return_air()
 		var/datum/gas_mixture/source_env = turf_source.return_air()
-		
+
 		if (hearer_env && source_env)
 			var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
-			
+
 			if (pressure < ONE_ATMOSPHERE)
 				pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
 		else //in space
 			pressure_factor = 0
-		
+
 		if (distance <= 1)
 			pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
-		
+
 		S.volume *= pressure_factor
-		
+
 		if (S.volume <= 0)
 			return	//no volume means no sound
-		
+
 		var/dx = turf_source.x - T.x // Hearing from the right/left
 		S.x = dx
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
@@ -115,4 +117,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("pageturn") soundin = pick(page_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 			if ("queen") soundin = pick(queen_sound)
+			if ("scream_male") soundin = pick(scream_male_sound)
+			if ("scream_female") soundin = pick(scream_female_sound)
 	return soundin

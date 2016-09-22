@@ -301,7 +301,7 @@
 			if(!medicd)
 				if (!muzzled && !stat)
 					message = "<B>[comm_paygrade][src] calls for a medic!</b>"
-					m_type = 1
+					m_type = 2
 					if(src.gender == "male")
 						if(rand(0,100) < 95)
 							playsound(src.loc, 'sound/misc/medic_male.ogg', 30, 0)
@@ -368,8 +368,17 @@
 			m_type = 1
 
 		if("scream")
-			message = "<B>[comm_paygrade][src]</B> screams!"
-			m_type = 1
+			if(!screamed)
+				message = "<B>[comm_paygrade][src]</B> screams!"
+				m_type = 2
+				if(ishuman(src) && src.client)
+					if(gender == "male")
+						playsound(loc, "scream_male", 75)
+					else
+						playsound(loc, "scream_female", 75)
+				screamed = 1
+				spawn(600)
+					screamed = 0
 
 		if("shakehead")
 			message = "<B>[comm_paygrade][src]</B> shakes \his head."

@@ -139,6 +139,8 @@
 			if (speech_sound)
 				sound_vol *= 0.5
 
+		playsound(src.loc, 'sound/effects/radiostatic.ogg', 30, 1)
+
 	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
 
 /mob/living/carbon/human/proc/forcesay(list/append)
