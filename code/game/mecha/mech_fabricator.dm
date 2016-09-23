@@ -37,21 +37,21 @@
 	var/temp
 	var/output_dir = SOUTH	//the direction relative to the fabber at which completed parts appear.
 	var/list/part_sets = list( //set names must be unique
-	"Robot"=list(
-						/obj/item/robot_parts/robot_suit,
-						/obj/item/robot_parts/chest,
-						/obj/item/robot_parts/head,
-						/obj/item/robot_parts/l_arm,
-						/obj/item/robot_parts/r_arm,
-						/obj/item/robot_parts/l_leg,
-						/obj/item/robot_parts/r_leg,
-						/obj/item/robot_parts/robot_component/binary_communication_device,
-						/obj/item/robot_parts/robot_component/radio,
-						/obj/item/robot_parts/robot_component/actuator,
-						/obj/item/robot_parts/robot_component/diagnosis_unit,
-						/obj/item/robot_parts/robot_component/camera,
-						/obj/item/robot_parts/robot_component/armour
-					),
+	// "Robot"=list(
+	// 					/obj/item/robot_parts/robot_suit,
+	// 					/obj/item/robot_parts/chest,
+	// 					/obj/item/robot_parts/head,
+	// 					/obj/item/robot_parts/l_arm,
+	// 					/obj/item/robot_parts/r_arm,
+	// 					/obj/item/robot_parts/l_leg,
+	// 					/obj/item/robot_parts/r_leg,
+	// 					/obj/item/robot_parts/robot_component/binary_communication_device,
+	// 					/obj/item/robot_parts/robot_component/radio,
+	// 					/obj/item/robot_parts/robot_component/actuator,
+	// 					/obj/item/robot_parts/robot_component/diagnosis_unit,
+	// 					/obj/item/robot_parts/robot_component/camera,
+	// 					/obj/item/robot_parts/robot_component/armour
+	// 				),
 	"Ripley"=list(
 						/obj/item/mecha_parts/chassis/ripley,
 						/obj/item/mecha_parts/part/ripley_torso,

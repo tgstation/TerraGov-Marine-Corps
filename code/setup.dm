@@ -219,6 +219,7 @@ should all be unique more or less. flags_inventory can double up.
 #define DIRLOCK					128		// Item won't change direction when Moving()ing. Useful for items that have several dir states.
 //Reserved space for any general flags here.
 //==========================================================================================
+#define USEDELAY 				512		// 1 second extra delay on use (Can be used once every 2s)
 #define	NOREACT					1024	//Reagents dont' react inside this container.
 #define OPENCONTAINER			2048	//is an open container for chemistry purposes
 //==========================================================================================
