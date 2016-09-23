@@ -38,7 +38,7 @@
 		src << "You are already the apex of form and function. Go! Spread the hive!"
 		return
 
-	if(upgrade > 0 )
+	if(upgrade > 0 && caste != "Drone")
 		src <<"You gave up evolving in exchange for power..."
 		return
 
@@ -76,14 +76,17 @@
 	//Recoded the caste selection to add cancel buttons, makes it look nicer, uses a list() in castes for easy additions
 	var/list/pop_list = list()
 	for(var/Q in evolves_to) //Populate our evolution list
-		pop_list += Q
+		if(caste == "Drone" && upgrade > 0)
+			pop_list += "Queen"
+		else
+			pop_list += Q
 	pop_list += "Cancel"
 
 	//I'd really like to turn all this into an href popup window but dang I am really bad at html
 	//--Abby
 
-	var/caste = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
-	if(caste == "Cancel" || isnull(caste) || caste == "") //Changed my mind
+	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in pop_list
+	if(castepick == "Cancel" || isnull(castepick) || castepick == "") //Changed my mind
 		return
 
 	if(stat)
@@ -94,7 +97,7 @@
 		src << "\red The restraints are too restricting to allow you to evolve."
 		return
 
-	if(caste == "Queen") // Special case for dealing with queenae
+	if(castepick == "Queen") // Special case for dealing with queenae
 		if(!hardcore)
 			if(storedplasma >= 500)
 				if(is_queen_alive())
@@ -114,10 +117,10 @@
 
 
 
-	if(tier == 1 && ((tierB+tierC)/totalXenos)> 0.5 && caste != "Queen")
+	if(tier == 1 && ((tierB+tierC)/totalXenos)> 0.5 && castepick != "Queen")
 		src << "\red The hive can't support another Tier 2 alien, either upgrade or wait for either more aliens to be born or someone to die..."
 		return
-	else if(tier == 2 && (tierC/totalXenos)> 0.25 && caste != "Queen")
+	else if(tier == 2 && (tierC/totalXenos)> 0.25 && castepick != "Queen")
 		src << "\red The hive can't support another Tier 3 alien, wait until someone stronger dies or upgrades."
 		return
 	else src << "\green Looks like the hive can support your evolution!"
@@ -125,7 +128,7 @@
 	var/mob/living/carbon/Xenomorph/M = null
 
 	//Better to use a get_caste_by_text proc but ehhhhhhhh. Lazy.
-	switch(caste) //ADD NEW CASTES HERE!
+	switch(castepick) //ADD NEW CASTES HERE!
 		if("Larva" || "Bloody Larva" || "Normal Larva") //Not actually possible, but put here for insanity's sake
 			M = /mob/living/carbon/Xenomorph/Larva
 		if("Runner")
@@ -154,17 +157,17 @@
 			M = /mob/living/carbon/Xenomorph/Boiler
 
 	if(isnull(M))
-		usr << "[caste] is not a valid caste! If you're seeing this message tell a coder!"
+		usr << "[castepick] is not a valid caste! If you're seeing this message tell a coder!"
 		return
 
-	if(jellyMax && caste != "Queen") //Does the caste have a jelly timer? Then check it
+	if(jellyMax && castepick != "Queen") //Does the caste have a jelly timer? Then check it
 		if(jellyGrow < jellyMax)
 			src << "You must wait before evolving. Currently at: [jellyGrow] / [jellyMax]."
 			return
 
 	visible_message("\green <b> \The [src] begins to twist and contort..</b>","\green <b>You begin to twist and contort..</b>")
 	if(do_after(src,25))
-		if(caste == "Queen") // Do another check after the tick.
+		if(castepick == "Queen") // Do another check after the tick.
 			if(is_queen_alive())
 				src << "\red There is already a queen."
 				return
@@ -177,7 +180,7 @@
 			return
 
 		//We have to reset the name here after evolving.
-		if(caste != "Queen")
+		if(castepick != "Queen")
 			new_xeno.nicknumber = nicknumber
 			new_xeno.name = "[initial(name)] ([nicknumber])"
 		new_xeno.real_name = new_xeno.name

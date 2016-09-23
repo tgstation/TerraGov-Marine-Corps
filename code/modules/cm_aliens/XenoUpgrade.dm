@@ -37,7 +37,7 @@
 
 	//FIRST UPGRADE
 	if(upgrade == 0)
-		var/up = alert(src, "If you upgrade, you will never be able to evolve, are you sure?",,"Yes","No")
+		var/up = alert(src, "If you upgrade, you will never be able to evolve (except for Drone->Queen), are you sure?",,"Yes","No")
 		if(up == "No")
 			return
 		name = "Mature [caste] ([nicknumber])"
@@ -169,13 +169,28 @@
 				maxplasma = 900
 				jellyMax = 1600
 				spit_delay = 15
-				caste_desc = "A giant ranged monster...   It looks a little more dangerous..."
+				caste_desc = "A giant ranged monster...  It looks a little more dangerous..."
 				armor_deflection = 50
 				tacklemin = 5
 				tacklemax = 8
 				tackle_chance = 75
 				speed = 1.6
 				spit_type = 0
+			if("Drone")
+				melee_damage_lower = 12
+				melee_damage_upper = 16
+				health = 120
+				maxHealth = 120
+				storedplasma = 0
+				maxplasma = 800
+				plasma_gain = 20
+				jellyMax = 1000
+				caste_desc = "The workhorse of the hive. It looks a little more dangerous..."
+				armor_deflection = 5
+				tacklemin = 3
+				tacklemax = 5
+				tackle_chance = 60
+				speed = -0.6
 			if("Hivelord")
 				melee_damage_lower = 15
 				melee_damage_upper = 20
@@ -185,7 +200,7 @@
 				maxplasma = 900
 				plasma_gain = 40
 				jellyMax = 1600
-				caste_desc = "A builder of REALLY BIG hives.   It looks a little more dangerous..."
+				caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous..."
 				armor_deflection = 10
 				tacklemin = 3
 				tacklemax = 5
@@ -219,7 +234,7 @@
 				maxplasma = 800
 				plasma_gain = 40
 				jellyMax = 1600
-				caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
+				caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 				armor_deflection = 65
 				tacklemin = 5
 				tacklemax = 7
@@ -367,6 +382,21 @@
 				tackle_chance = 80
 				speed = 1.5
 				spit_type = 0
+			if("Drone")
+				melee_damage_lower = 12
+				melee_damage_upper = 16
+				health = 150
+				maxHealth = 150
+				storedplasma = 0
+				maxplasma = 900
+				plasma_gain = 30
+				jellyMax = 1500
+				caste_desc = "The workhorse of the hive. It looks a little more dangerous..."
+				armor_deflection = 5
+				tacklemin = 3
+				tacklemax = 5
+				tackle_chance = 60
+				speed = -0.6
 			if("Hivelord")
 				melee_damage_lower = 15
 				melee_damage_upper = 20
@@ -559,6 +589,20 @@
 				tackle_chance = 85
 				speed = 1.3
 				spit_type = 0
+			if("Drone")
+				melee_damage_lower = 20
+				melee_damage_upper = 30
+				health = 200
+				maxHealth = 200
+				storedplasma = 0
+				maxplasma = 1000
+				plasma_gain = 50
+				caste_desc = "A very mean architect."
+				armor_deflection = 15
+				tacklemin = 4
+				tacklemax = 6
+				tackle_chance = 80
+				speed = -0.6
 			if("Hivelord")
 				src <<"\green You are the builder of walls.  Ensure that the marines are the ones who pay for them."
 				melee_damage_lower = 20
@@ -610,10 +654,3 @@
 				speed = 0.7
 
 	return
-
-
-
-
-
-
-
