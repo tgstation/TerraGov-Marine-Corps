@@ -765,14 +765,16 @@
 	name = "sizzling blood"
 	desc = "It's yellow and acidic. It looks like... <i>blood?</i>"
 	icon = 'icons/effects/blood.dmi'
-	basecolor = "#dbcd79"
+	basecolor = "#dffc00"
+	amount = 0
 
 /obj/effect/decal/cleanable/blood/gibs/xeno
 	name = "steaming gibs"
 	desc = "Gnarly..."
 	icon_state = "xgib1"
 	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6")
-	basecolor = "#dbcd79"
+	basecolor = "#dffc00"
+	amount = 0
 
 /obj/effect/decal/cleanable/blood/gibs/xeno/update_icon()
 	color = "#FFFFFF"
@@ -793,4 +795,4 @@
 	random_icon_states = list("xgibmid1", "xgibmid2", "xgibmid3")
 
 /obj/effect/decal/cleanable/blood/xtracks
-	basecolor = "#dbcd79"
+	basecolor = "#dffc00"
