@@ -4,8 +4,8 @@
 	set src in oview(1)
 
 	if(Adjacent(usr))
-		if(isobj(src) && isXeno(usr))
-			usr << "Nice try."
+		if( isobj(src) && isXeno(usr) || istype(src, /obj/item/device/flashlight) && ishuman(usr) )
+			usr << "You can't pull that."
 			return
 
 		usr.start_pulling(src)

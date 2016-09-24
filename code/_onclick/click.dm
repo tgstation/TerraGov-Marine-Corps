@@ -259,6 +259,7 @@
 /atom/movable/CtrlClick(var/mob/user)
 	if(Adjacent(user) && !isXenoLarva(user))
 		if(isXeno(user) && isobj(src)) return
+		if(istype(src, /obj/item/device/flashlight) && ishuman(user)) return
 		user.start_pulling(src)
 
 /*
@@ -281,7 +282,7 @@
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
-	
+
 /*
 	Control+Shift click
 	Unused except for AI
