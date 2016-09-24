@@ -223,8 +223,8 @@
 	item_state = "m4a3_holster"
 	use_sound = null
 	w_class = 4
-	storage_slots = 3
-	max_combined_w_class = 6
+	storage_slots = 4
+	max_combined_w_class = 7
 	max_w_class = 2
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
@@ -287,7 +287,7 @@
 
 /obj/item/weapon/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains two side pouches that can store two spare 9mm magazines."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains three side pouches that can store two spare 9mm magazines."
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
 		"/obj/item/weapon/gun/pistol/m1911",
@@ -312,10 +312,10 @@
 
 /obj/item/weapon/storage/belt/gun/m44
 	name = "\improper M276 pattern m44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is for the m44 magnum revolver, along with two speedloaders. It faintly smells of hay."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is for the m44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
-	max_w_class = 3
+	max_w_class = 4
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/m44",
 		"/obj/item/ammo_magazine/revolver",
@@ -332,7 +332,7 @@
 
 /obj/item/weapon/storage/belt/gun/m39
 	name = "\improper M276 pattern M39 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed for the m39 SMG, and features a larger frame to support the gun. It's isn't entirely practical, but does the job in the end."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed for the m39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m39_holster"
 	item_state = "m39_holster"
 	storage_slots = 1
