@@ -328,7 +328,6 @@
 	monkeyizing = 1
 	dead_mob_list -= src
 	canmove = 0
-	icon = null
 	update_canmove()
 	if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
 		visible_message("<B>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</b>")
@@ -338,18 +337,20 @@
 			src:smoke.start()
 		sleep(20) //Hopefully enough time for smoke to clear..
 
-	invisibility = 101
-	var/atom/movable/overlay/animation = null
-	animation = new(loc)
-	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
-	animation.master = src
 
-	flick("gibbed-a", animation)
+	if(istype(src,/mob/living/carbon/Xenomorph/Runner))
+		flick("gibbed-a-runner", src)
+		icon_state = "gibbed-a-corpse-runner"
+		return
+	if(isXenoLarva(src))
+		flick("larva_gib", src)
+		//xgibs(get_turf(src))
+		icon_state = "larva_gib_corpse"
+		return
+
+	flick("gibbed-a", src)
 	xgibs(get_turf(src))
-	spawn(15)
-		if(animation)	del(animation)
-		if(src)			del(src)
+	icon_state = "gibbed-a-corpse"
 	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
@@ -404,7 +405,11 @@
 
 	if(isXenoLarva(src))
 		if(health <= -25 && stat != DEAD)
-			death()
+			var gibChance = rand(1)
+			if(gibChance == 1)
+				gib()
+			else
+				death()
 			blinded = 1
 			silent = 0
 			see_in_dark = 8
@@ -412,7 +417,11 @@
 		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
 			gib() //Boilers gib instead of just die.
 		else
-			death()
+			var gibChance = rand(3)
+			if(gibChance == 2)
+				gib()
+			else
+				death()
 		blinded = 1
 		silent = 0
 		see_in_dark = 8
