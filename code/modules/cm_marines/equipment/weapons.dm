@@ -295,6 +295,7 @@
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 
+
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
 			opened = 1
@@ -304,6 +305,7 @@
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
 						new /obj/item/clothing/head/helmet/durag(src)
+						new /obj/item/weapon/facepaint/sniper(src)
 		..()
 
 /obj/item/weapon/storage/box/m42c_system_Jungle

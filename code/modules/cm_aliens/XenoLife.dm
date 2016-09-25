@@ -331,26 +331,33 @@
 	update_canmove()
 	if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
 		visible_message("<B>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</b>")
+
+		xgibs(get_turf(src))
 		src:smoke.set_up(6, 0, get_turf(src))
 		stat = UNCONSCIOUS //Keep em from moving around and stuff.
 		spawn(0)
 			src:smoke.start()
+		death()
+		icon_state = "gibbed-a-corpse"
 		sleep(20) //Hopefully enough time for smoke to clear..
-
+		return
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Runner))
 		flick("gibbed-a-runner", src)
+		death()
 		icon_state = "gibbed-a-corpse-runner"
 		return
 	if(isXenoLarva(src))
 		flick("larva_gib", src)
 		//xgibs(get_turf(src))
 		icon_state = "larva_gib_corpse"
+		death()
 		return
 
 	flick("gibbed-a", src)
 	xgibs(get_turf(src))
 	icon_state = "gibbed-a-corpse"
+	death()
 	return
 
 /mob/living/carbon/Xenomorph/death(gibbed)
@@ -420,8 +427,7 @@
 			var gibChance = rand(3)
 			if(gibChance == 2)
 				gib()
-			else
-				death()
+			death()
 		blinded = 1
 		silent = 0
 		see_in_dark = 8
