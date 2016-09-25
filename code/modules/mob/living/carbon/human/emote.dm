@@ -368,10 +368,10 @@
 			m_type = 1
 
 		if("scream")
+			message = "<B>[comm_paygrade][src]</B> screams!"
+			m_type = 2
 			if(!screamed)
-				message = "<B>[comm_paygrade][src]</B> screams!"
-				m_type = 2
-				if(ishuman(src) && src.client)
+				if(has_species(src,"Human") && src.client)
 					if(gender == "male")
 						playsound(loc, "scream_male", 75)
 					else

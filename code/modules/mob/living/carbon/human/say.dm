@@ -138,8 +138,8 @@
 				M.show_message("<span class='notice'>[src] talks into [used_radios.len ? used_radios[1] : "the radio."]</span>")
 			if (speech_sound)
 				sound_vol *= 0.5
-
-		playsound(src.loc, 'sound/effects/radiostatic.ogg', 30, 1)
+		if(has_species(src,"Human"))
+			playsound(src.loc, 'sound/effects/radiostatic.ogg', 30, 1)
 
 	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
 
