@@ -185,14 +185,14 @@ var/global/hive_orders = "" //What orders should the hive have
 				usr << "It is heavily injured and limping badly."
 	return
 
-/mob/living/carbon/Xenomorph/Bumped(atom/AM)
-	spawn(0)
-		if(!istype(AM,/mob/living/carbon))
-			return ..()
-		if(big_xeno)
-			return
-		else
-			return ..()
+// /mob/living/carbon/Xenomorph/Bumped(atom/AM) Apparently this does nothing since bumping is handled in carbon.dm. Commenting it out for now just in case.
+// 	spawn(0)
+// 		if(!istype(AM,/mob/living/carbon))
+// 			return ..()
+// 		if(big_xeno)
+// 			return
+// 		else
+// 			return ..()
 
 /mob/living/carbon/Xenomorph/Del() //If mob is deleted, remove it off the xeno list completely.
 	if(!isnull(src) && !isnull(src.mind) && !isnull(ticker.mode) && ticker.mode.xenomorphs.len && mind in ticker.mode.xenomorphs)

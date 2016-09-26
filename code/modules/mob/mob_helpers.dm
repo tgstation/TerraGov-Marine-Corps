@@ -5,11 +5,6 @@
 		return 1
 	return 0
 
-/proc/isalien(A)
-	if(istype(A, /mob/living/carbon/Xenomorph))
-		return 1
-	return 0
-
 /proc/ismonkey(A)
 	if(A && istype(A, /mob/living/carbon/monkey))
 		return 1
@@ -419,7 +414,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isalien(src))
+	if(ishuman(src) || isbrain(src) || isXeno(src))
 		switch(input)
 			if("help","disarm","grab","hurt")
 				a_intent = input

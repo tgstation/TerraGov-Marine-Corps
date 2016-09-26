@@ -140,7 +140,7 @@
 
 		if(isobserver(usr)) //to stop ghosts from deflating
 			return
-		if(isalien(usr))
+		if(isXeno(usr))
 			return
 
 		deflate()

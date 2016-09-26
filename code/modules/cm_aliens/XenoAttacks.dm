@@ -109,6 +109,12 @@
 			if (M == src || src.anchored)
 				return
 
+			if(src.stat < 2 && has_species(M,"Human")) // If the Xeno is alive, fight back against a grab/pull
+				M.Weaken(rand(src.tacklemin,src.tacklemax))
+				playsound(M.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+				visible_message("<span class='warning'>[M] tried to grab [src] but instead gets a tail swipe to the head!</span>")
+				return
+
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, src )
 
 			M.put_in_active_hand(G)

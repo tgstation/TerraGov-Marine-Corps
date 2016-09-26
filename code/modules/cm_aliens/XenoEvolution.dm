@@ -54,7 +54,7 @@
 
 
 	for(var/mob/living/carbon/Xenomorph/M in living_mob_list) //should count mindless as well so people don't cheat
-		if(M.tier == 0)
+		if(M.tier == 4)
 			continue
 		else if(M.tier == 1)
 		// 	tierA++

@@ -35,7 +35,7 @@
 	big_xeno = 1
 	jelly = 1
 	armor_deflection = 60
-	tier = 0 //Queen doesn't count towards population limit.
+	tier = 4 //The only Tier 4. Queen doesn't count towards population limit.
 	upgrade = 0
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 	var/breathing_counter = 0

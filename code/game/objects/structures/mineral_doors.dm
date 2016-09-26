@@ -275,7 +275,7 @@
 		return 1
 
 	TryToSwitchState(atom/user)
-		if(isalien(user))
+		if(isXeno(user))
 			return ..()
 
 	Open()
