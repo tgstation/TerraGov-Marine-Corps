@@ -39,8 +39,6 @@
 		if(ishuman(M) && M.mind && !(M.mind.special_role))
 			count++
 
-	var/positions = round(count/12)
-
-	if(positions < 4) positions = 4
+	var/positions = max(4, min(round(count/12), 6))
 
 	return positions
