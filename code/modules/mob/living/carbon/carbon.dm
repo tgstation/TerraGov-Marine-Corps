@@ -441,7 +441,7 @@
 			if( istype(tmob, /mob/living/carbon) && prob(10) )
 				src.spread_disease_to(AM, "Contact")
 
-			if(istype(tmob, /mob/living/carbon/Xenomorph)) // Prevents humans from pushing any Xenos, but big Xenos and Preds can still push small Xenos
+			if(isXeno(tmob) && !isXenoLarva(tmob)) // Prevents humans from pushing any Xenos, but big Xenos and Preds can still push small Xenos
 				if(has_species(src,"Human") || tmob:big_xeno)
 					now_pushing = 0
 					return
