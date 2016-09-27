@@ -344,6 +344,7 @@
 
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
+		src.attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
 	visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
 	return
 
