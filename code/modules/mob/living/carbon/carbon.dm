@@ -476,9 +476,9 @@
 				now_pushing = 0
 				return
 
-			// Step over drones.
+			// Step over drones and Xeno Larva.
 			// I have no idea why the hell this isn't already happening. How do mice do it?
-			if(istype(tmob,/mob/living/silicon/robot/drone))
+			if(istype(tmob,/mob/living/silicon/robot/drone) || isXenoLarva(tmob))
 				loc = tmob.loc
 				now_pushing = 0
 				return

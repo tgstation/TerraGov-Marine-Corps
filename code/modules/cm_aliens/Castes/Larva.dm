@@ -79,3 +79,14 @@
 		layer = MOB_LAYER
 		src << text("\blue You have stopped hiding.")
 	return
+
+/mob/living/carbon/Xenomorph/Larva/Bump(atom/AM as mob|obj|turf, yes)
+
+	spawn(0)
+		if(src.stat || !AM || !istype(AM) || AM == src || !yes)
+			return
+
+		if(ismob(AM))
+			loc = AM.loc
+			now_pushing = 0
+			return
