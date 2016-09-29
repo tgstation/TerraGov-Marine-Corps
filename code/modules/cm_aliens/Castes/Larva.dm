@@ -2,12 +2,10 @@
 
 
 /mob/living/carbon/Xenomorph/Larva
-	name = "Alien Larva"
-	real_name = "Alien Larva"
-	speak_emote = list("hisses")
+	name = "Bloody Larva"
 	caste = "Bloody Larva"
+	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
-	language = "Hivemind"
 	amount_grown = 0
 	max_grown = 100
 	maxHealth = 35
@@ -51,8 +49,10 @@
 		state = "Normal"
 	if(state == "Normal" && amount_grown < 100)
 		name = "Larva ([nicknumber])"
+		real_name = name
 	else if(amount_grown >=100)
 		name = "Mature Larva ([nicknumber])"
+		real_name = name
 
 	if(stat == DEAD)
 		icon_state = "[state] Larva Dead"
