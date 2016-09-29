@@ -8,7 +8,7 @@
 			usr << "You can't pull that."
 			return
 
-		if(istype(src,/mob/living/carbon/Xenomorph))
+		if(istype(src,/mob/living/carbon/Xenomorph) && !isXenoLarva(src))
 			var/mob/living/carbon/Xenomorph/X = src
 			if(X.stat < 2 && has_species(usr,"Human")) // If the Xeno is alive, fight back against a grab/pull
 				usr.Weaken(rand(X.tacklemin,X.tacklemax))
