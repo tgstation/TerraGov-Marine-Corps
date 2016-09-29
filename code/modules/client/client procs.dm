@@ -39,11 +39,10 @@
 	//Admin PM //Why is this not in /datums/admin/Topic()
 	if(href_list["priv_msg"])
 		var/client/C = locate(href_list["priv_msg"])
-		if(ismob(C))
-			throw EXCEPTION("Mob([C]) passed in to /client/Topic() for priv_msg. Tell MadSnailDisease!")
-		if(!C) //Outdated links to logged players generate runtimes
-			src << "\red That client is no longer connected"
-			return
+		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
+			var/mob/M = C
+			C = M.client
+		if(!C) return //Outdated links to logged players generate runtimes
 		cmd_admin_pm(C,null)
 		if(unansweredAhelps[C.mob.computer_id]) unansweredAhelps.Remove(C.mob.computer_id)
 		return
