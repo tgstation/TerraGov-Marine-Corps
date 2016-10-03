@@ -687,7 +687,8 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/handcuffs/xeno
+//COMMENTED BY APOP
+/*/obj/item/weapon/handcuffs/xeno
 	name = "hardened resin"
 	desc = "A thick, nasty resin. You could probably resist out of this."
 	breakouttime = 200
@@ -697,7 +698,7 @@
 
 	dropped()
 		del(src)
-		return
+		return*/
 
 /obj/item/weapon/legcuffs/xeno
 	name = "sticky resin"

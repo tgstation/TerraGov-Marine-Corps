@@ -452,7 +452,9 @@
 		src << "<b>You stop emitting pheromones.</b>"
 		return
 
-/mob/living/carbon/Xenomorph/proc/secure_host(mob/living/carbon/human/victim as mob in view(2))
+
+//COMMENTED OUT BY APOP
+/*/mob/living/carbon/Xenomorph/proc/secure_host(mob/living/carbon/human/victim as mob in view(2))
 	set name = "Secure Host (50)"
 	set desc = "Spin some resin to further secure a host within the nest."
 	set category = "Alien"
@@ -501,3 +503,4 @@
 
 	src << "Nobody like that around here."
 	return
+ */
