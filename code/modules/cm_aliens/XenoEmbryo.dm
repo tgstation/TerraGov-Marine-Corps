@@ -47,13 +47,14 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
-	//The embryo always grow at one per tick, unless the temperature is VERY low or the mob is in stasis
+	//Low temperature seriously hampers larva growth (as in, way below livable), so does stasis
 	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)
-		if(prob(30))
-			if(stage <= 4)
-				counter++
-			else if(stage == 4 && prob(30))
-				counter++
+		if(stage <= 4)
+			counter += 0.33
+		else if(stage == 4)
+			counter += 0.11
+	else if(istype(affected_mob.buckled, /obj/structure/stool/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster
+		counter += 1.5 //Currently twice as much, can be changed
 	else
 		if(stage <= 4)
 			counter++
