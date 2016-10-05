@@ -8,6 +8,7 @@
 	var/mob/living/affected_mob
 	var/stage = 0
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst
+	var/wait_for_candidate = 0 //Chestburst will not happen if no candidate is around
 
 /obj/item/alien_embryo/New()
 	if(istype(loc, /mob/living))
@@ -89,14 +90,13 @@
 			if(prob(2))
 				affected_mob << "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>"
 		if(5)
+			if(wait_for_candidate)
+				wait_for_candidate--
 			if(affected_mob.paralysis < 1)
 				affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 											 "<span class='danger'>You feel something ripping up your insides!</span>")
 				affected_mob.Paralyse(20)
 				affected_mob.make_jittery(100)
-				affected_mob.take_organ_damage(5) //Was 1
-				affected_mob.adjustToxLoss(20)  //Was 5
-				counter = -80
 			affected_mob.updatehealth()
 			chest_burst()
 
@@ -117,6 +117,8 @@
 	//Host doesn't want to be it, so we try and pull observers into the role
 	else if(candidates.len)
 		picked = pick(candidates)
+	else
+		wait_for_candidate = 10 //Try again in 10 seconds
 
 	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
 	affected_mob.update_burst()
