@@ -337,6 +337,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 
+/obj/item/clothing/suit/space/compression
+	name = "\improper MK.50 compression suit"
+	desc = "A heavy, bulky civilian space suit, fitted with armored plates. Commonly seen in the hands of mercenaries, explorers, scavengers, and researchers."
+	item_state = "compression"
+	icon_state = "compression"
+	armor = list(melee = 50, bullet = 55, laser = 65,energy = 70, bomb = 65, bio = 100, rad = 70)
+	unacidable = 1
+
+
 //=========================//ARMOR PROCS\\===============================\\
 //=======================================================================\\
 

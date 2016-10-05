@@ -651,15 +651,15 @@
 	if(!M || !istype(M)) return
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/captain_fly(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/caphat(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), slot_head)
 	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), slot_r_hand)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), slot_l_hand)
@@ -670,7 +670,7 @@
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "Captain"
+	W.assignment = "Mercenary Captain"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
@@ -682,23 +682,29 @@
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), slot_l_ear)
 	if(prob(50))
-		M.equip_to_slot_or_del(new /obj/item/clothing/under/chameleon(M), slot_w_uniform)
+		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), slot_w_uniform)
 	else
-		M.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/bulletproof(M), slot_wear_suit)
+		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), slot_w_uniform)
+		M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), slot_wear_suit)
 	if(prob(50))
 		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(M), slot_head)
+		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), slot_head)
 	else
 		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), slot_gloves)
 		M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	if(prob(75))
-		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(M), slot_shoes)
-	else
-		M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
+
+	var/obj/item/weapon/card/id/W = new(src)
+	W.assignment = "Mercenary"
+	W.registered_name = M.real_name
+	W.name = "[M.real_name]'s ID Card ([W.assignment])"
+	W.icon_state = "centcom"
+	W.access = get_all_accesses()
+	W.access += get_all_centcom_access()
+	M.equip_to_slot_or_del(W, slot_wear_id)
 
 	spawn_merc_gun(M)
 	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands
