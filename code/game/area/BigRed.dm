@@ -190,3 +190,7 @@
 /area/bigred/uground/cargo_elevator
 	name = "\improper cargo elevator"
 	icon_state = "primarystorage"
+
+/area/bigred/uground/safe_room
+	name = "\improper Corporate Saferoom"
+	icon_state = "vault"
