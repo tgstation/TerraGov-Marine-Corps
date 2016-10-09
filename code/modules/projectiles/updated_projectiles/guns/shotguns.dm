@@ -59,7 +59,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
 	var/opened_sound = 'sound/weapons/shotgun_open2.ogg'
-	flags_equip_slot = SLOT_BACK
+	//flags_equip_slot = SLOT_BACK
 	type_of_casings = "shell"
 	accuracy = 1.15
 	flags_atom = FPRINT|CONDUCT|TWOHANDED

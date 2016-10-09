@@ -85,7 +85,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch)
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/storage/belt/gun/m4a3,
+		/obj/item/weapon/storage/belt/gun/m44)
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
@@ -147,7 +150,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flamethrower,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch)
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/storage/belt/gun/m4a3,
+		/obj/item/weapon/storage/belt/gun/m44)
 
 	var/brightness_on = 4 //Shitty attachable poclet light. Gonna need a real flashlight to see well
 	var/armor_overlays[]
@@ -171,7 +177,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch)
+		/obj/item/weapon/storage/sparepouch,)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
@@ -222,6 +228,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/device/mine,
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun,
+					/obj/item/weapon/storage/belt/gun/m4a3,
+					/obj/item/weapon/storage/belt/gun/m44,
 					/obj/item/weapon/storage/sparepouch)
 
 /obj/item/clothing/suit/storage/marine/leader
