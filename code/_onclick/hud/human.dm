@@ -318,6 +318,13 @@
 	mymob.use_attachment.screen_loc = ui_gun_attachment
 	hud_elements |= mymob.use_attachment
 
+	mymob.toggle_raillight = new /obj/screen()
+	mymob.toggle_raillight.icon = ui_style
+	mymob.toggle_raillight.icon_state = "gun_raillight"
+	mymob.toggle_raillight.name = "Toggle Rail Flashlight"
+	mymob.toggle_raillight.screen_loc = ui_gun_railtoggle
+	hud_elements |= mymob.toggle_raillight
+
 	mymob.eject_mag = new /obj/screen()
 	mymob.eject_mag.icon = ui_style
 	mymob.eject_mag.icon_state = "gun_loaded"

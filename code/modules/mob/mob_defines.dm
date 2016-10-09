@@ -41,6 +41,7 @@
 	var/obj/screen/eject_mag = null
 	var/obj/screen/toggle_burst = null
 	var/obj/screen/use_attachment = null
+	var/obj/screen/toggle_raillight = null
 	var/obj/screen/unique_action = null
 
 
