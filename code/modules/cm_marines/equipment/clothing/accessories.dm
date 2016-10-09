@@ -72,6 +72,7 @@
 	max_combined_w_class = 7
 	max_w_class = 5
 	var/originalName = "m37_holster"
+	var/drawSound = 'sound/weapons/drawrifle.ogg'
 	//icon_state = originalName
 	//item_state = originalName
 
@@ -79,6 +80,7 @@
 		)
 
 	/obj/item/weapon/storage/backpack/gun/update_icon()
+		playsound(src,drawSound, 20, 1)
 		var/mob/user = loc
 		icon_state = "[originalName][contents.len]"
 		item_state = "[originalName][contents.len]"
@@ -292,6 +294,8 @@
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
 	var/image/reusable/gun_underlay //The underlay we will use.
+	var/sheatheSound = 'sound/weapons/drawpistol.ogg'
+	var/drawSound = 'sound/weapons/drawpistol2.ogg'
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
 		"/obj/item/ammo_magazine/pistol"
@@ -307,11 +311,13 @@
 			correctly without having to rotate anything. Preloading weapon icons also makes
 			sure that we don't have to do any extra calculations.
 			*/
+			playsound(src,drawSound, 20, 1)
 			gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
 			icon_state += "_g"
 			item_state = icon_state
 			underlays += gun_underlay
 		else
+			playsound(src,sheatheSound, 20, 1)
 			underlays -= gun_underlay
 			icon_state = copytext(icon_state,1,-2)
 			item_state = icon_state
