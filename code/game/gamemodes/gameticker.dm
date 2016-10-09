@@ -192,6 +192,10 @@ var/global/datum/controller/gameticker/ticker
 		if(mode.type == /datum/game_mode/ice_colony)
 			shuttle.area_offsite = locate(/area/shuttle/drop1/ice_colony)
 			shuttle2.area_offsite = locate(/area/shuttle/drop2/ice_colony)
+		if(mode.type == /datum/game_mode/bigred)
+			shuttle.area_offsite = locate(/area/shuttle/drop1/BigRed)
+			shuttle2.area_offsite = locate(/area/shuttle/drop2/BigRed)
+
 		for(var/obj/structure/closet/C in world) //Set up special equipment for lockers and vendors, depending on gamemode
 			C.select_gamemode_equipment(mode.type)
 		for(var/obj/machinery/vending/V in world)

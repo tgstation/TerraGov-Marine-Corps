@@ -55,7 +55,7 @@ include jackets and regular suits, not armor.*/
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
-	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
+	flags_inventory = HIDEEARS | HIDEEYES | HIDEFACE | COVERMOUTH | COVEREYES | ALLOWINTERNALS | HIDELOWHAIR | BLOCKGASEFFECT
 	w_class = 3.0
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
