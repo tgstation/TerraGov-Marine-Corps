@@ -401,8 +401,8 @@
 	icon_state = "m39_holster"
 	item_state = "m39_holster"
 	storage_slots = 1
-	max_combined_w_class = 4
-	max_w_class = 4
+	max_combined_w_class = 6
+	max_w_class = 6
 	can_hold = list(
 		"/obj/item/weapon/gun/smg/m39",
 		"/obj/item/weapon/gun/smg/m39/elite",
