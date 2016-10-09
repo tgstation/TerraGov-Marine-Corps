@@ -88,7 +88,7 @@
 	item_state = "machete"
 	item_color = "machete"
 	force = 35
-	flags_equip_slot = SLOT_BACK
+	//flags_equip_slot = SLOT_BACK
 	w_class = 4.0
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

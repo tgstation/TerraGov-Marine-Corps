@@ -146,7 +146,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		///obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/flamethrower,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
