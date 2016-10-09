@@ -228,8 +228,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 					/obj/item/device/mine,
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun,
-					/obj/item/weapon/storage/belt/gun/m4a3,
-					/obj/item/weapon/storage/belt/gun/m44,
 					/obj/item/weapon/storage/sparepouch)
 
 /obj/item/clothing/suit/storage/marine/leader
