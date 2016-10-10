@@ -222,6 +222,7 @@
 #include "code\game\gamemodes\changeling\changeling_powers.dm"
 #include "code\game\gamemodes\changeling\modularchangling.dm"
 #include "code\game\gamemodes\changeling\traitor_chan.dm"
+#include "code\game\gamemodes\colonialmarines\big_red.dm"
 #include "code\game\gamemodes\colonialmarines\colonialmarines.dm"
 #include "code\game\gamemodes\colonialmarines\Halloween.dm"
 #include "code\game\gamemodes\colonialmarines\huntergames.dm"

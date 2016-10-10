@@ -183,7 +183,7 @@
 		new /obj/item/clothing/under/CM_uniform(src)
 		new /obj/item/weapon/storage/backpack/security(src)
 		new /obj/item/weapon/storage/belt/security(src)
-		/obj/item/clothing/shoes/jackboots(src)
+		new /obj/item/clothing/shoes/jackboots(src)
 		return
 
 /obj/structure/closet/secure_closet/security
