@@ -47,6 +47,10 @@
 	name = "\improper garden"
 	icon_state = "garden"
 
+/area/bigred/ground/cryogenics
+	name = "\improper cryogenic vault"
+	icon_state = "auxstorage"
+
 /area/bigred/ground/laundry
 	name = "\improper laundrette"
 	icon_state = "green"
@@ -136,8 +140,24 @@
 	icon_state = "asmaint"
 
 /area/bigred/ground/exterior
-	name = "\improper facility exterior"
+	name = "\improper underground"
 	icon_state = "blue-red"
+
+/area/bigred/ground/exterior/north
+	name = "\improper northern facility exterior"
+	icon_state = "north"
+
+/area/bigred/ground/exterior/south
+	name = "\improper southern facility exterior"
+	icon_state = "south"
+
+/area/bigred/ground/exterior/west
+	name = "\improper western facility exterior"
+	icon_state = "west"
+
+/area/bigred/ground/exterior/east
+	name = "\improper eastern facility exterior"
+	icon_state = "east"
 
 /area/bigred/ground/cargo
 	name = "\improper cargo bay"
@@ -194,3 +214,4 @@
 /area/bigred/uground/safe_room
 	name = "\improper Corporate Saferoom"
 	icon_state = "vault"
+

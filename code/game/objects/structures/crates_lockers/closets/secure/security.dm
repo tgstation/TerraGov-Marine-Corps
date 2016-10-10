@@ -166,7 +166,25 @@
 		new /obj/item/clothing/head/beret/sec/warden(src)
 		return
 
+/obj/structure/closet/secure_closet/marshal
+	name = "Marshal's Locker"
+	req_access = list(access_sulaco_brig)
+	icon_state = "wardensecure1"
+	icon_closed = "wardensecure"
+	icon_locked = "wardensecure1"
+	icon_opened = "wardensecureopen"
+	icon_broken = "wardensecurebroken"
+	icon_off = "wardensecureoff"
 
+
+	New()
+		..()
+		new /obj/item/clothing/suit/storage/CMB(src)
+		new /obj/item/clothing/under/CM_uniform(src)
+		new /obj/item/weapon/storage/backpack/security(src)
+		new /obj/item/weapon/storage/belt/security(src)
+		/obj/item/clothing/shoes/jackboots(src)
+		return
 
 /obj/structure/closet/secure_closet/security
 	name = "Security Officer's Locker"
