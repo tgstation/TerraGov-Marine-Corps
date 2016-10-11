@@ -52,10 +52,6 @@ You can see a working example in the Colonial Marines game mode.
 	var/bioscan_current_interval = 36000
 	var/bioscan_ongoing_interval = 18000
 
-	//Set to 1 for game mode with the classic style of marines respond to distress signal, xenos are there, etc.
-	//Make sure the gamemode has finished declared
-	var/classic_gamemode = 0
-
 //===================================================\\
 
 				//GAME MODE INITIATLIZE\\
@@ -560,10 +556,3 @@ datum/game_mode/proc/initialize_special_clamps()
 					survivor.memory += temp_story
 		current_survivors -= survivor
 	return 1
-
-//Called when the queen has died for Marine Minor
-/datum/game_mode/proc/queen_has_died()
-	set waitfor = 0
-	if(!(ticker && ticker.mode && ticker.mode.classic_gamemode)) return //Make sure the next code makes sense to run
-	sleep(12000) //20 minutes
-	if(!is_queen_alive()) ticker.mode:finished = 6
