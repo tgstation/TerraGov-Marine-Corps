@@ -6,7 +6,6 @@
 	var/checkwin_counter = 0
 	var/finished = 0
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	classic_gamemode = 1
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -19,6 +18,9 @@
 		return
 	initialize_starting_survivor_list()
 	return 1
+
+/datum/game_mode/bigred/announce()
+	world << "<B>The current map is - Big-Red!</B>"
 
 /datum/game_mode/bigred/send_intercept()
 	return 1
@@ -56,7 +58,6 @@
 
 	if(queen_death_timer && !finished)
 		queen_death_timer--
-		queen_has_died()
 		if(queen_death_timer == 1)
 			xeno_message("The Hive is ready for a new Queen to evolve.")
 
@@ -186,15 +187,6 @@
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [worldtime2text()][log_end]"
-
-	else if(finished == 6)
-		feedback_set_details("round_end_result","marine minor victory - queen has been dead for too long")
-		world << "\red <FONT size = 3><B>Marine minor victory.</B></FONT>"
-		world << "<FONT size = 3><B>The Marines have killed the Xenomorph queen but were unable to finish off the hive!</B></FONT>"
-		world << 'sound/misc/sadtrombone.ogg'
-		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marine minor victory (Queen dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
-
 	else
 		world << "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!"
 
