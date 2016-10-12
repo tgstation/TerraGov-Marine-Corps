@@ -44,7 +44,7 @@
 			C = M.client
 		if(!C) return //Outdated links to logged players generate runtimes
 		cmd_admin_pm(C,null)
-		if(unansweredAhelps[C.mob.computer_id]) unansweredAhelps.Remove(C.mob.computer_id)
+		if(unansweredAhelps[C.computer_id]) unansweredAhelps.Remove(C.computer_id)
 		return
 
 	if(href_list["irc_msg"])

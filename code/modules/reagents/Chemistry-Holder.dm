@@ -389,6 +389,7 @@ datum
 						update_total()
 
 			del_reagent(var/reagent)
+				if(!my_atom) return
 				for(var/A in reagent_list)
 					var/datum/reagent/R = A
 					if (R.id == reagent)
