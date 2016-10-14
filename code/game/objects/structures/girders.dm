@@ -93,6 +93,9 @@
 				if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
 					if(!anchored)
 						if(S.get_amount() < 2) return ..()
+						if(istype(src.loc, /turf/simulated/shuttle/floor) || istype(get_area(src.loc),/area/sulaco/hangar))
+							user << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+							return
 						user << "<span class='notice'>Now adding plating...</span>"
 						if (do_after(user,80))
 							if(!S) return
