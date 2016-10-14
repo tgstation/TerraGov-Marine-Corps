@@ -230,7 +230,7 @@
 	if(target_zone == "chest")
 		user.visible_message("<span class='notice'>[user] starts to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool].</span>", \
 		"<span class='notice'>You start to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool].</span>")
-	if(target_zone == "groin")
+	else if(target_zone == "groin")
 		user.visible_message("<span class='notice'>[user] starts to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool].</span>", \
 		"<span class='notice'>You start to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool].</span>")
 	else
@@ -247,7 +247,7 @@
 	if(target_zone == "chest")
 		user.visible_message("<span class='notice'>[user] keeps the ribcage open on [target]'s torso with \the [tool].</span>", \
 		"<span class='notice'>You keep the ribcage open on [target]'s torso with \the [tool].</span>")
-	if(target_zone == "groin")
+	else if(target_zone == "groin")
 		user.visible_message("<span class='notice'>[user] keeps the incision open on [target]'s lower abdomen with \the [tool].</span>", \
 		"<span class='notice'>You keep the incision open on [target]'s lower abdomen with \the [tool].</span>")
 	else
