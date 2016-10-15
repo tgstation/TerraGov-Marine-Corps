@@ -127,16 +127,20 @@
 		..()
 		if( !(flags_gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
 
-			if(rail) 	usr << "It has \icon[rail] [rail.name] mounted on the top."
-			if(muzzle) 	usr << "It has \icon[muzzle] [muzzle.name] mounted on the front."
-			if(under) 	usr << "It has \icon[under] [under.name] mounted underneath."
-			if(stock) 	usr << "It has \icon[stock] [stock.name] for a stock."
+			var/dat = ""
+			if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
+
+			if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
+			if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
+			if(under) 	dat += "It has \icon[under] [under.name] mounted underneath.<br>"
+			if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
 
 			if(!istype(current_mag)) //Internal mags and the like have their own stuff set.
 				if(current_mag && current_mag.current_rounds > 0)
-					if(flags_gun_features & GUN_AMMO_COUNTER) usr << "Ammo counter shows [current_mag.current_rounds] round\s remaining."
-					else 								usr << "It's loaded."
-				else 									usr << "It's unloaded."
+					if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
+					else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
+				else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+			usr << dat
 
 
 //----------------------------------------------------------

@@ -459,35 +459,29 @@
 	return
 
 
-/datum/emergency_call/pmc/proc/spawn_standard(var/mob/M)
-	if(!M || !istype(M)) return
+/datum/emergency_call/pmc/proc/spawn_standard(mob/M)
+	if(!istype(M)) return
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), slot_wear_mask)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M.back), slot_in_backpack)	 //Sidearm in backpack.
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
 
-	if(rand(0,2) != 0)//Usually, m39 elite.
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_l_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
-	else //Rarely, they get an elite m41.
-		M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/incendiary(M), slot_l_hand)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(M.back), slot_in_backpack)
-		M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Standard"
@@ -498,27 +492,27 @@
 	W.access += get_all_centcom_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
-/datum/emergency_call/pmc/proc/spawn_officer(var/mob/M)
-	if(!M || !istype(M)) return
+/datum/emergency_call/pmc/proc/spawn_officer(mob/M)
+	if(!istype(M)) return
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), slot_w_uniform)
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M.back), slot_in_backpack)	 //Sidearm in backpack.
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_r_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
 
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(M), slot_l_hand)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Officer"
@@ -529,38 +523,8 @@
 	W.access += get_all_centcom_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
-/datum/emergency_call/pmc/proc/spawn_heavy(var/mob/M)
-	if(!M || !istype(M)) return
-
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), slot_glasses)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
-
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/M42A(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/incendiary(M.back), slot_in_backpack)
-
-	var/obj/item/weapon/card/id/W = new(src)
-	W.assignment = "PMC Sniper"
-	W.registered_name = M.real_name
-	W.name = "[M.real_name]'s ID Card ([W.assignment])"
-	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
-
-/datum/emergency_call/pmc/proc/spawn_gunner(var/mob/M)
-	if(!M || !istype(M)) return
+/datum/emergency_call/pmc/proc/spawn_gunner(mob/M)
+	if(!istype(M)) return
 
 	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
@@ -573,8 +537,42 @@
 	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
 
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
+
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Specialist"
+	W.registered_name = M.real_name
+	W.name = "[M.real_name]'s ID Card ([W.assignment])"
+	W.icon_state = "centcom"
+	W.access = get_all_accesses()
+	W.access += get_all_centcom_access()
+	M.equip_to_slot_or_del(W, slot_wear_id)
+
+/datum/emergency_call/pmc/proc/spawn_heavy(mob/M)
+	if(!istype(M)) return
+
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), slot_wear_suit)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), slot_glasses)
+
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
+
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
+
+	var/obj/item/weapon/card/id/W = new(src)
+	W.assignment = "PMC Sniper"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"

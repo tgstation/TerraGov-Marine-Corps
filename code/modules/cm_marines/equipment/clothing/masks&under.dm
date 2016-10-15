@@ -389,7 +389,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
-	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Specically crafted to make you look like a prick."
+	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Expertly crafted to make you look like a prick."
 	icon_state = "liaison_regular"
 	item_state = "liaison_regular"
 	item_color = "liaison_regular"

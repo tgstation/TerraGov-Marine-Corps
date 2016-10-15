@@ -184,7 +184,6 @@
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	attachable_allowed = list(
 						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST

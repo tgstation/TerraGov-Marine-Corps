@@ -61,10 +61,9 @@
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
 
-	if(++breathing_counter >= 20) //Increase the breathing variable each tick and play it when it's been X ticks
-		if(prob(5)) //Randomize the chance so it's not exactly at X ticks
-			pick(playsound(src.loc, 'sound/voice/alien_queen_breath1.ogg', 10, 1, -3), playsound(src.loc, 'sound/voice/alien_queen_breath2.ogg', 10, 1, -3))
-			breathing_counter = 0 //Reset the counter
+	if(stat != DEAD && ++breathing_counter >= rand(12,17)) //Increase the breathing variable each tick. Play it at random intervals.
+		pick(playsound(src.loc, 'sound/voice/alien_queen_breath1.ogg', 10, 1, -3), playsound(src.loc, 'sound/voice/alien_queen_breath2.ogg', 10, 1, -3))
+		breathing_counter = 0 //Reset the counter
 
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //Prevents resetting queen death timer.

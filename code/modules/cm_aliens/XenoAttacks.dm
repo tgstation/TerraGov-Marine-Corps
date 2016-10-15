@@ -85,13 +85,9 @@
 
 	return
 
-/mob/living/carbon/Xenomorph/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/Xenomorph/attack_hand(mob/living/carbon/human/M)
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
-		return
-
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
 		return
 
 	..()
@@ -131,25 +127,28 @@
 					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
 
 		else
-			var/damage = rand(1, 2)
-			if (prob(90))
+			var/datum/unarmed_attack/attack = M.species.unarmed
+			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
+			if(!attack.is_usable(M)) return
+
+			var/damage = rand(1, 3)
+			if(prob(85))
 				if (HULK in M.mutations)
 					damage += 5
 					spawn(0)
 						step_away(src,M,15)
 						sleep(3)
 						step_away(src,M,15)
-				playsound(loc, "punch", 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has punched []!</B>", M, src), 1)
+				damage += attack.damage > 5 ? attack.damage : 0
+
+				playsound(loc, attack.attack_sound, 25, 1, -1)
+				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has attempted to punch []!</B>", M, src), 1)
+				playsound(loc, attack.miss_sound, 25, 1, -1)
+				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
+
 	return
 
 //Hot hot Aliens on Aliens action.

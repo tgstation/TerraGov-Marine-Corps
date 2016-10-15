@@ -566,7 +566,7 @@
 				plasma_gain = 50
 				maxplasma = 1000
 				spit_delay = 10
-				caste_desc = "A devestating piece of alien artillary."
+				caste_desc = "A devestating piece of alien artillery."
 				armor_deflection = 40
 				tacklemin = 4
 				tacklemax = 6

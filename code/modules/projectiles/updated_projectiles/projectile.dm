@@ -208,7 +208,7 @@
 		else if(ismob(A))
 			if( isliving(A) && roll_to_hit_mob(firer,A) && (A:lying == 0 || A == original))
 				ammo.on_hit_mob(A,src)
-				if(A.bullet_act(src)) play_damage_effect(A)
+				if(A && A.loc) A.bullet_act(src)
 				return 1
 
 //----------------------------------------------------------
@@ -288,9 +288,9 @@
 		else chance = 20
 		if(prob(chance)) return 1
 
-/obj/item/projectile/proc/play_damage_effect(atom/A)
-	if(ammo.sound_hit) playsound(A, pick(ammo.sound_hit), 120, 1)
-	animation_flash_color(A)
+/obj/item/projectile/proc/play_damage_effect(mob/M)
+	if(ammo.sound_hit) playsound(M, pick(ammo.sound_hit), 120, 1)
+	if(M.stat != DEAD) animation_flash_color(M)
 
 //----------------------------------------------------------
 				//				    \\
@@ -415,23 +415,23 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
 		P.play_damage_effect(src)
-		if(P.ammo.shrapnel_chance > 0 && prob(P.ammo.shrapnel_chance + round(damage / 10) ) ) embed_shrapnel(P,organ)
+		if(P.ammo.shrapnel_chance > 0 && prob(P.ammo.shrapnel_chance + round(damage / 10) ) )
+			var/obj/item/weapon/shard/shrapnel/shrap = new()
+			shrap.name = "[P.name] shrapnel"
+			shrap.desc = "[shrap.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
+			shrap.loc = organ
+			organ.embed(shrap)
+			if(!stat)
+				emote("scream")
+				src << "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>"
+
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
 			IgniteMob()
-			emote("scream")
-			src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
+			if(!stat)
+				emote("scream")
+				src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
 		return 1
-
-/mob/living/carbon/human/proc/embed_shrapnel(obj/item/projectile/P, datum/organ/external/organ)
-	var/obj/item/weapon/shard/shrapnel/SP = new()
-	SP.name = "[P.name] shrapnel"
-	SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
-	SP.loc = organ
-	organ.embed(SP)
-	if(!stat)
-		src << "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>"
-		emote("scream")
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
@@ -492,20 +492,20 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		return
 
 	bullet_message(P) //Message us about the bullet, since damage was inflicted.
+	P.play_damage_effect(src)
 
-	if(stat != DEAD)
-		apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
-		P.play_damage_effect(src)
-		if(!stat && prob(5 + round(damage / 4)))
-			var/pain_emote = prob(70) ? "hiss" : "roar"
-			emote(pain_emote)
-		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-			if(fire_immune) src << "<span class='avoidharm'>You shrug off some persistent flames.</span>"
-			else
-				adjust_fire_stacks(rand(2,6) + round(damage / 8))
-				IgniteMob()
-				visible_message("<span class='danger'>[src] bursts into flames!</span>","<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
-		updatehealth()
+	apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
+	if(!stat && prob(5 + round(damage / 4)))
+		var/pain_emote = prob(70) ? "hiss" : "roar"
+		emote(pain_emote)
+	if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
+		if(fire_immune)
+			if(!stat) src << "<span class='avoidharm'>You shrug off some persistent flames.</span>"
+		else
+			adjust_fire_stacks(rand(2,6) + round(damage / 8))
+			IgniteMob()
+			visible_message("<span class='danger'>[src] bursts into flames!</span>","<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
+	updatehealth()
 
 	return 1
 
