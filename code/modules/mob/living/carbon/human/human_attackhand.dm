@@ -1,8 +1,4 @@
 /mob/living/carbon/human/attack_hand(mob/living/carbon/human/M as mob)
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
-		return
-
 	var/datum/organ/external/temp = M:organs_by_name["r_hand"]
 	if (M.hand)
 		temp = M:organs_by_name["l_hand"]
@@ -112,37 +108,30 @@
 			return 1
 
 		if("hurt")
-
 			// See if they can attack, and which attacks to use.
 			var/datum/unarmed_attack/attack = M.species.unarmed
-			if(!attack.is_usable(M))
-				attack = M.species.secondary_unarmed
-			if(!attack.is_usable(M))
-				return 0
+			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
+			if(!attack.is_usable(M)) return
 
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[pick(attack.attack_verb)]ed [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [pick(attack.attack_verb)]ed by [M.name] ([M.ckey])</font>")
+			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [pick(attack.attack_verb)]ed by [M.name] ([M.ckey])</font>")
 			msg_admin_attack("[key_name(M)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
-			var/damage = rand(0, 5)//BS12 EDIT
+			var/damage = rand(0, 5)
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1, -1)
-				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
-				return 0
-
+				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
+				return
 
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(HULK in M.mutations)			damage += 5
-
-
+			if(HULK in M.mutations) damage += 5
 			playsound(loc, attack.attack_sound, 25, 1, -1)
 
-			visible_message("\red <B>[M] [pick(attack.attack_verb)]ed [src]!</B>")
-			//Rearranged, so claws don't increase weaken chance.
+			visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
 			if(damage >= 5 && prob(50))
-				visible_message("\red <B>[M] has weakened [src]!</B>")
+				visible_message("<span class='danger'>[M] has weakened [src]!</span>")
 				apply_effect(3, WEAKEN, armor_block)
 
 			damage += attack.damage

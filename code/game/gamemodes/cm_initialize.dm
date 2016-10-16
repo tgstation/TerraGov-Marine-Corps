@@ -533,7 +533,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 		if(current_survivors.len > 1) //If we have another survivor to pick from.
 			if(survivor_multi_story.len) //Unlikely.
-				var/datum/mind/another_survivor = pick(current_survivors)
+				var/datum/mind/another_survivor = pick(current_survivors - survivor) // We don't want them to be picked twice.
 				current_survivors -= another_survivor
 				if(!istype(another_survivor)) continue//If somehow this thing screwed up, we're going to run another pass.
 				story = pick(survivor_multi_story)

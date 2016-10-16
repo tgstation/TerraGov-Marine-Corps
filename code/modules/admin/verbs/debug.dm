@@ -715,24 +715,27 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
 			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
 
-			var/obj/item/weapon/card/id/W = new(M)
-			W.name = "[M.real_name]'s ID Card"
-			W.access = list()
-			W.assignment = "Weyland PMC Operative"
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
+
+			var/obj/item/weapon/card/id/W = new(src)
+			W.assignment = "PMC Standard"
 			W.registered_name = M.real_name
+			W.name = "[M.real_name]'s ID Card ([W.assignment])"
+			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
 			M.equip_to_slot_or_del(W, slot_wear_id)
@@ -747,22 +750,25 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
 
-			var/obj/item/weapon/card/id/W = new(M)
-			W.name = "[M.real_name]'s ID Card"
-			W.access = list()
-			W.assignment = "Weyland PMC Leader"
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
+
+			var/obj/item/weapon/card/id/W = new(src)
+			W.assignment = "PMC Officer"
 			W.registered_name = M.real_name
+			W.name = "[M.real_name]'s ID Card ([W.assignment])"
+			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
 			M.equip_to_slot_or_del(W, slot_wear_id)
@@ -780,8 +786,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun/dirty(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), slot_back)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
+
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
 
 			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Specialist"
@@ -807,15 +817,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), slot_glasses)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), slot_l_store)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
 
-			var/obj/item/weapon/card/id/W = new(M)
+			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Sniper"
 			W.registered_name = M.real_name
 			W.name = "[M.real_name]'s ID Card ([W.assignment])"

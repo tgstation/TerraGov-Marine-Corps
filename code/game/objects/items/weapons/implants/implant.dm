@@ -342,7 +342,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			return 0
 		else if(H.mind in ticker.mode:revolutionaries)
 			ticker.mode:remove_revolutionary(H.mind)
-		H << "\blue You are now tagged as a WY loyalist and will be monitored by the central headquarters."
+		H << "<span class = 'notice'>You are now tagged as a WY loyalist and will be monitored by the central headquarters. You retain your free will and mental faculties.</span>"
 		return 1
 
 
