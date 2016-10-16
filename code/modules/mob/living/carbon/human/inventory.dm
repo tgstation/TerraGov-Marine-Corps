@@ -776,6 +776,12 @@ It can still be worn/put on as normal.
 				del(src)
 				return 0
 
+			//Prevent donor items from being unequipped
+			var/obj/item/I = strip_item
+			if(!I.othersCanRemove)
+				source << "You're having difficulty removing that item."
+				return
+
 			target.drop_from_inventory(strip_item)
 			if(slot_to_process == slot_l_store) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
 				//Psst. You were wrong. - Abby

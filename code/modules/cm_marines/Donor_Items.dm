@@ -12,6 +12,7 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_override = 'icons/mob/suit_0.dmi'  //Don't fuck with this in the future please.
 	flags_marine_armor = NOFLAGS
+	othersCanRemove = 0
 
 /obj/item/clothing/suit/storage/marine/fluff/verb/toggle_squad_markings()
 	if(!ishuman(usr)) return
@@ -410,6 +411,7 @@
 	icon_override = 'icons/mob/head_0.dmi'
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_marine_helmet = HELMET_STORE_GARB
+	othersCanRemove = 0
 
 /obj/item/clothing/head/helmet/marine/fluff/verb/toggle_squad_markings()
 	if(!ishuman(usr)) return
@@ -817,6 +819,7 @@
 	item_state = "state_s" //ITEM STATE ALWAYS MUST HAVE _s AT THE END FOR UNIFORMS!!!!!
 	item_color = "state" //color must always be the same as item_state
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	othersCanRemove = 0
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	//AND THIS LINE
 //END UNIFORM TEMPLATE
@@ -1096,6 +1099,7 @@
 	desc = "ITEM DESCRIPTION.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "state"
 	item_state = "state"
+	othersCanRemove = 0
 	//DON'T GRAB STUFF BETWEEN THIS LINE
 	// flags_inventory = 0
 	flags_inventory = HIDEEARS|HIDEEYES|HIDEFACE|ALLOWREBREATH
@@ -1185,6 +1189,7 @@
 	desc = "ITEM DESCRIPTION.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "state"
 	item_state = "state"
+	othersCanRemove = 0
 //END FEET TEMPLATE
 
 /obj/item/clothing/shoes/marine/fluff/Vintage
@@ -1212,6 +1217,7 @@
 	desc = "ITEM DESCRIPTION.  DONOR ITEM" //Add UNIQUE if Unique
 	icon_state = "state"
 	item_state = "state"
+	othersCanRemove = 0
 
 
 /obj/item/clothing/glasses/fluff/eyepatch
@@ -1219,58 +1225,68 @@
 	desc = "Badass +10.  Donor Item"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
+	othersCanRemove = 0
 
 /obj/item/clothing/glasses/fluff/wright
 	name = "eyepatch"
 	desc = "Yarr, this be a Donor Item, YARR!"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
+	othersCanRemove = 0
 
 /obj/item/clothing/glasses/fluff/sado
 	name = "Tanya's Optics"
 	desc = "Custom Optics, owned by Tanya Edenia"
 	icon_state = "thermal"
 	item_state = "glasses"
+	othersCanRemove = 0
 
 /obj/item/clothing/glasses/fluff/haveatya
 	name = "Special Nightvision Goggles"
 	desc = "Disclaimer:  May not provide Night Vision.  DONOR ITEM"
 	icon_state = "night"
 	item_state = "glasses"
+	othersCanRemove = 0
 
 /obj/item/clothing/gloves/black/obey
 	desc = "Black gloves, favored by Special Operations teams.  DONOR ITEM"
 	name = "Black Ops Black Gloves"
+	othersCanRemove = 0
 
 /obj/item/weapon/storage/backpack/marine/fluff/Sado
 	name = "Tanya's Backpack"
 	desc = "A large backpack, used by Tanya Edenia. DONOR ITEM"
 	icon_state = "securitypack"
 	item_state = "securitypack"
+	othersCanRemove = 0
 
 /obj/item/weapon/storage/backpack/marine/fluff/mitii
 	name = "Mya's Backpack"
 	desc = "A large security backpack, with a radio booster.  Donor Item"
 	icon_state = "securitypack"
 	item_state = "securitypack"
+	othersCanRemove = 0
 
 /obj/item/clothing/glasses/fluff/alexwar
 	name = "Black Jack's Dank Shades"
 	desc = "+20 Badass points.  Donor item"
 	icon_state = "sun"
 	item_state = "sun"
+	othersCanRemove = 0
 
 obj/item/clothing/gloves/marine/fluff/jedijas
 	name = "Fists of Mandalore"
 	desc = "If Mandalore was a person, these would be it's fists...  DONOR ITEM"
 	icon_state = "marine-white"
 	item_state = "marine-wgloves"
+	othersCanRemove = 0
 
 /obj/item/weapon/storage/belt/marine/fluff/swordbelt
 	name = "Omega Sword Belt"
 	desc = "Belt worn by the dreaded Commissars of Omega Team.  UNIQUE DONOR ITEM"
 	icon_state = "swordbelt_u"
 	item_state = "swordbelt_u"
+	othersCanRemove = 0
 
 //CUSTOM ITEMS - NO TEMPLATES - ALL UNIQUE ////////////////////////
 /obj/item/weapon/lighter/zippo/fluff/ghost
@@ -1278,6 +1294,7 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 	desc = "A Golden Zippo lighter, engraved with the name John Donable... UNIQUE DONOR ITEM."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "bluezippo"
+	othersCanRemove = 0
 
 /obj/item/clothing/mask/cigarette/fluff/ghost
 	name = "XXX's custom Cigar"
@@ -1287,6 +1304,7 @@ obj/item/clothing/gloves/marine/fluff/jedijas
 	icon_off = "cigar2off"
 	smoketime = 7200
 	chem_volume = 30
+	othersCanRemove = 0
 
 
 //GHOST CIGAR CODE
