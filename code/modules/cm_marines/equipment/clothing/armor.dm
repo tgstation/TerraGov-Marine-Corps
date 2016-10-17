@@ -155,7 +155,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 
-	var/brightness_on = 4 //Shitty attachable poclet light. Gonna need a real flashlight to see well
+	var/brightness_on = 5 //Average attachable pocket light
 	var/armor_overlays[]
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
