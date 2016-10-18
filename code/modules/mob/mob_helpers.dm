@@ -116,8 +116,58 @@ proc/isXeno(A) //Xenomorph Hud Test APOPHIS 22MAY2015
 		return 1
 	return 0
 
+proc/isXenoBoiler(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Boiler))
+		return 1
+	return 0
+
+proc/isXenoCarrier(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Carrier))
+		return 1
+	return 0
+
+proc/isXenoCrusher(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+		return 1
+	return 0
+
+proc/isXenoDrone(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Drone))
+		return 1
+	return 0
+
+proc/isXenoHivelord(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Hivelord))
+		return 1
+	return 0
+
+proc/isXenoHunter(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Hunter))
+		return 1
+	return 0
+
 proc/isXenoLarva(A) //Xenomorph Larva Hud Test APOPHIS 22MAY2015
 	if(istype(A, /mob/living/carbon/Xenomorph/Larva))
+		return 1
+	return 0
+
+proc/isXenoQueen(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Queen))
+		return 1
+	return 0
+
+proc/isXenoRavager(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Ravager))
+		return 1
+	return 0
+
+proc/isXenoRunner(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Runner))
+		return 1
+	return 0
+
+proc/isXenoSentinel(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Sentinel))
 		return 1
 	return 0
 
@@ -127,6 +177,11 @@ proc/isYautja(A)
 	if(!A:species) return 0
 	if(A:species.name != "Yautja") return 0
 	return 1
+
+proc/isHellhound(A)
+	if(istype(A, /mob/living/carbon/hellhound))
+		return 1
+	return 0
 
 proc/hasorgans(A)
 	return ishuman(A)

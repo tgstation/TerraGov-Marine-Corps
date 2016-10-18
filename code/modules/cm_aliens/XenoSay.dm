@@ -5,23 +5,24 @@
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "\red You cannot speak in IC (Muted)."
+			src << "<span class='warning'>You cannot speak in IC (Muted).</span>"
 			return
 
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	if(stat == 2)
+	if(stat == DEAD)
 		return say_dead(message)
 
-	if(stat) return //Unconscious? Nope.
+	if(stat == UNCONSCIOUS)
+		return //Unconscious? Nope.
 
-	if(copytext(message,1,2) == "*")
-		return emote(copytext(message,2))
+	if(copytext(message, 1, 2) == "*")
+		return emote(copytext(message, 2))
 
 	var/datum/language/speaking = null
 
 	if(length(message) >= 2)
-		var/channel_prefix = copytext(message, 1 ,3)
+		var/channel_prefix = copytext(message, 1, 3)
 		if(languages.len)
 			for(var/datum/language/L in languages)
 				if(lowertext(channel_prefix) == ":[L.key]" || lowertext(channel_prefix) == ".[L.key]")
@@ -57,7 +58,7 @@
 	if(forced)
 		if(is_robotic)
 			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
-			verb = pick("beeps","buzzes","pings")
+			verb = pick("beeps", "buzzes", "pings")
 			playsound(src.loc, noise, 20, 1, 1)
 		else
 			playsound(loc, "hiss", 25, 1, 1)
@@ -67,20 +68,20 @@
 
 /mob/living/carbon/Xenomorph/say_understands(var/mob/other,var/datum/language/speaking = null)
 
-	if(istype(other,/mob/living/carbon/Xenomorph))
+	if(isXeno(other))
 		return 1
 	return ..()
 
 
 //General proc for hivemind. Lame, but effective.
 /mob/living/carbon/Xenomorph/proc/hivemind_talk(var/message)
-	if (!message || src.stat)
+	if(!message || src.stat)
 		return
 
 	var/rendered
-	if(istype(src, /mob/living/carbon/Xenomorph/Queen))
+	if(isXenoQueen(src))
 		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i></font>"
-	else if (is_robotic)
+	else if(is_robotic)
 		var/message_b = pick("high-pitched blast of static","series of pings","long string of numbers","loud, mechanical squeal", "series of beeps")
 		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> emits a [message_b]!</span></i>"
 	else
@@ -94,6 +95,6 @@
 			if(istype(S,/mob/dead/observer))
 				track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
 				ghostrend= "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
-				S.show_message(ghostrend,2)
+				S.show_message(ghostrend, 2)
 			else
 				S.show_message(rendered, 2)

@@ -5,16 +5,18 @@
 	set invisibility = 0
 	set background = 1
 
-	if (monkeyizing)	return
-	if(!loc)			return
+	if(monkeyizing)
+		return
+	if(!loc)
+		return
 
 	..()
 
 	if(zoom_turf)
-		if(src.loc != zoom_turf && is_zoomed)
+		if(loc != zoom_turf && is_zoomed)
 			zoom_out()
 
-	if (stat != DEAD) //Stop if dead. Performance boost
+	if(stat != DEAD) //Stop if dead. Performance boost
 
 		update_progression()
 
@@ -24,22 +26,23 @@
 
 		if(jelly && jellyGrow < jellyMax && is_queen_alive())
 			jellyGrow++
-			if(jellyGrow == jellyMax-1)
+			if(jellyGrow == jellyMax - 1)
 				src << "\green Your carapace crackles and your tendons strengthen. You are ready to evolve!"
-
 
 		//Status updates, death etc.
 		handle_regular_status_updates()
 		update_canmove()
 		handle_statuses() //Deals with stunned, etc
 		update_icons()
-		if(loc) handle_environment(loc.return_air())
-		if(client) handle_regular_hud_updates()
-
+		if(loc)
+			handle_environment(loc.return_air())
+		if(client)
+			handle_regular_hud_updates()
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
 
-	if(status_flags & GODMODE)	return 0
+	if(status_flags & GODMODE)
+		return 0
 
 	if(on_fire)
 		if(!fire_stacks)
@@ -51,11 +54,12 @@
 			updatehealth()
 			fire_stacks--
 	if(health > -100 && health < 0) //Unconscious
-		if(readying_tail) readying_tail = 0
+		if(readying_tail)
+			readying_tail = 0
 		blinded = 1
 		see_in_dark = 5
 		Paralyse(4)
-		if(istype(src,/mob/living/carbon/Xenomorph/Runner) && src.layer != initial(src.layer))//Unhide
+		if(isXenoRunner(src) && layer != initial(layer)) //Unhide
 			layer = MOB_LAYER
 		var/turf/T = loc
 		if(istype(T))
@@ -63,16 +67,17 @@
 				adjustBruteLoss(5)
 				updatehealth()
 	else						//Alive! Yey! Turn on their vision.
-		if(istype(src,/mob/living/carbon/Xenomorph/Boiler))
+		if(isXenoBoiler(src))
 			see_in_dark = 20
 		else
 			see_in_dark = 8
 		if(readying_tail && readying_tail < 20)
-			readying_tail += rand(1,2)
-			if(istype(src,/mob/living/carbon/Xenomorph/Hunter)) readying_tail++ //Warriors get a speed bonus.
+			readying_tail += rand(1, 2)
+			if(isXenoHunter(src))
+				readying_tail++ //Hunters get a speed bonus.
 			if(readying_tail >= 20)
 				readying_tail = 20
-				src << "\blue Your tail is now fully poised to impale some unfortunate target."
+				src << "<span class='notice'>Your tail is now fully poised to impale some unfortunate target.</span>"
 
 		if(stat != DEAD)
 			if(health > 0) //Just to be safe
@@ -94,9 +99,9 @@
 					adjustHalLoss(-3)
 			else if(sleeping)
 				adjustHalLoss(-3)
-				if (mind)
+				if(mind)
 					if((mind.active && client != null) || immune_to_ssd)
-						sleeping = max(sleeping-1, 0)
+						sleeping = max(sleeping - 1, 0)
 				blinded = 1
 				stat = UNCONSCIOUS
 			else if(resting)
@@ -109,7 +114,7 @@
 				if(halloss > 0)
 					adjustHalLoss(-1)
 
-		if(istype(src,/mob/living/carbon/Xenomorph/Crusher) && !stat) //Handle crusher stuff.
+		if(isXenoCrusher(src) && !stat) //Handle crusher stuff.
 			var/mob/living/carbon/Xenomorph/Crusher/X = src
 			if(X.momentum > 2 && X.charge_dir != dir)
 				X.charge_timer = 0
@@ -123,11 +128,15 @@
 		guard_aura = 0
 		recovery_aura = 0
 
-		for(var/mob/living/carbon/Xenomorph/Z in range(7,src))
-			if(isnull(Z.current_aura)) continue
-			if(Z.current_aura == "frenzy" && !Z.stat && Z.storedplasma > 5) frenzy_aura++
-			if(Z.current_aura == "guard"&& !Z.stat && Z.storedplasma > 5) guard_aura++
-			if(Z.current_aura == "recovery"&& !Z.stat && Z.storedplasma > 5) recovery_aura++
+		for(var/mob/living/carbon/Xenomorph/Z in range(7, src))
+			if(isnull(Z.current_aura))
+				continue
+			if(Z.current_aura == "frenzy" && !Z.stat && Z.storedplasma > 5)
+				frenzy_aura++
+			if(Z.current_aura == "guard"&& !Z.stat && Z.storedplasma > 5)
+				guard_aura++
+			if(Z.current_aura == "recovery"&& !Z.stat && Z.storedplasma > 5)
+				recovery_aura++
 
 		update_icons()
 
@@ -152,8 +161,8 @@
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
-	if (healths)
-		if (stat != 2)
+	if(healths)
+		if(stat != DEAD)
 			switch(round(health * 100 / maxHealth)) //Maxhealth should never be zero or this will generate runtimes.
 				if(100 to INFINITY)
 					healths.icon_state = "health0"
@@ -171,7 +180,7 @@
 			healths.icon_state = "health6"
 
 	if(alien_plasma_display)
-		if (stat != 2)
+		if(stat != DEAD)
 			if(maxplasma) //No divide by zeros please
 				switch(round(storedplasma * 100 / maxplasma))
 					if(100 to INFINITY)
@@ -202,11 +211,11 @@
 	if(pullin)
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
 
-	if (client)
+	if(client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
-	if ((blind && stat != 2))
-		if ((blinded))
+	if(blind && stat != DEAD)
+		if(blinded)
 			blind.plane = 0
 		else
 			blind.plane = -80
@@ -214,9 +223,9 @@
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
 
-	if (stat != 2) //Ladders have cameras now.
-		if (machine)
-			if (!( machine.check_eye(src) ))
+	if(stat != DEAD) //Ladders have cameras now.
+		if(machine)
+			if(!machine.check_eye(src))
 				reset_view(null)
 		else
 			if(client && !client.adminobs)
@@ -225,24 +234,28 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_environment(var/datum/gas_mixture/environment)
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(environment && !fire_immune)
-		if(environment.temperature > (T0C+66))
-			adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-			if (fire) fire.icon_state = "fire2"
+		if(environment.temperature > (T0C + 66))
+			adjustFireLoss((environment.temperature - (T0C + 66)) / 5) //Might be too high, check in testing.
+			updatehealth() //Make sure their actual health updates immediately
+			if(fire)
+				fire.icon_state = "fire2"
 			if(prob(20))
-				src << "\red You feel a searing heat!"
+				src << "<span class='warning'>You feel a searing heat!</span>"
 		else
-			if (fire) fire.icon_state = "fire0"
+			if(fire)
+				fire.icon_state = "fire0"
 
-	if(!T || !istype(T)) return
+	if(!T || !istype(T))
+		return
 
 	var/is_runner_hiding
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Runner) && src.layer != initial(src.layer))
+	if(isXenoRunner(src) && layer != initial(layer))
 		is_runner_hiding = 1
 
-	if(!is_robotic && !hardcore)//Robot no heal
+	if(!is_robotic && !hardcore) //Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health >= maxHealth)
 				if(!readying_tail && !is_runner_hiding) //Readying tail = no plasma increase.
@@ -259,24 +272,27 @@
 				updatehealth() //Make sure their actual health updates immediately.
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health
-			if(rand(0,1) == 0) storedplasma += 1
+			if(prob(50))
+				storedplasma += 1
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
 				storedplasma += round(recovery_aura + 1)
 				updatehealth()
 
-		if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
-			if(src:speed_activated)
+		if(isXenoHivelord(src))
+			var/mob/living/carbon/Xenomorph/Hivelord/H = src
+			if(H.speed_activated)
 				storedplasma -= 30
 				if(storedplasma < 0)
-					src:speed_activated = 0
-					src << "\red You feel dizzy as the world slows down."
+					H.speed_activated = 0
+					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
 
-		if(readying_tail) storedplasma -= 3
+		if(readying_tail)
+			storedplasma -= 3
 		if(current_aura)
 			storedplasma -= 5
 
-		// START HARDCORE //This needs to be removed.
+	//START HARDCORE //This needs to be removed.
 	else if(!is_robotic && hardcore)//Robot no heal
 		if(locate(/obj/effect/alien/weeds) in T)
 			if(health > 0)
@@ -284,7 +300,7 @@
 					storedplasma += plasma_gain
 					if(recovery_aura)
 						storedplasma += (recovery_aura * 2)
-			if(health < 35)//Bearly enough to stay near critical if saved
+			if(health < 35) //Barely enough to stay near critical if saved
 				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
 				if(recovery_aura)
 					adjustBruteLoss(-(recovery_aura))
@@ -294,33 +310,37 @@
 				updatehealth() //Make sure their actual health updates immediately.
 
 		else //Xenos restore plasma VERY slowly off weeds
-			if(rand(0,1) == 0) storedplasma += 1
+			if(prob(50))
+				storedplasma += 1
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
 				storedplasma += round(recovery_aura + 1)
 				updatehealth()
 
-		if(istype(src,/mob/living/carbon/Xenomorph/Hivelord))
-			if(src:speed_activated)
+		if(isXenoHivelord(src))
+			var/mob/living/carbon/Xenomorph/Hivelord/H = src
+			if(H.speed_activated)
 				storedplasma -= 30
 				if(storedplasma < 0)
-					src:speed_activated = 0
-					src << "\red You feel dizzy as the world slows down."
+					H.speed_activated = 0
+					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
 
-		if(readying_tail) storedplasma -= 3
+		if(readying_tail)
+			storedplasma -= 3
 		if(current_aura)
 			storedplasma -= 5
 		//END HARDCORE
 
-	if(storedplasma > maxplasma) storedplasma = maxplasma
+	if(storedplasma > maxplasma)
+		storedplasma = maxplasma
 	if(storedplasma < 0)
 		storedplasma = 0
 		if(current_aura)
 			current_aura = null
-			src << "Having run out of plasma, you stop emitting pheromones."
+			src << "<span class='warning'>Having run out of plasma, you stop emitting pheromones.</span>"
 		if(readying_tail)
-			readying_tail =0
-			src << "You feel your tail relax."
+			readying_tail = 0
+			src << "<span class='warning'>You feel your tail relax.</span>"
 
 /mob/living/carbon/Xenomorph/gib()
 	if (stat != 2) //Prevents double deaths and whatnot when gibbed

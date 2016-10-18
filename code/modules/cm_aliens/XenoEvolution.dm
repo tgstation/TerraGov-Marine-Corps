@@ -14,46 +14,45 @@
 	var tierC = 0.0 //Tier 3
 
 	if(hardcore)
-		src << "\red Nuh-uh"
+		src << "<span class='warning'>Nuh-uh.</span>"
 		return
 
-	if(jobban_isbanned(src,"Alien"))
-		src << "\red You are jobbanned from Aliens and cannot evolve. How did you even become an alien?"
+	if(jobban_isbanned(src, "Alien"))
+		src << "<span class='warning'>You are jobbanned from aliens and cannot evolve. How did you even become an alien?</span>"
 		return
 
-	if(stat)
-		src << "You have to be conscious to evolve."
+	if(stat != CONSCIOUS)
+		src << "<span class='warning'>You have to be conscious to evolve.</span>"
 		return
 
 	if(handcuffed || legcuffed)
-		src << "\red The restraints are too restricting to allow you to evolve."
+		src << "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>"
 		return
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Larva)) //Special case for dealing with larvae
+	if(isXenoLarva(src)) //Special case for dealing with larvae
 		if(amount_grown < max_grown)
-			src << "\red You are not yet fully grown. You are currently at [amount_grown]/[max_grown]."
+			src << "<span class='warning'>You are not yet fully grown. Currently at: [amount_grown] / [max_grown].</span>"
 			return
 
 	if(isnull(evolves_to))
-		src << "You are already the apex of form and function. Go! Spread the hive!"
+		src << "<span class='warning'>You are already the apex of form and function. Go! Spread the hive!</span>"
 		return
 
 	if(upgrade > 0 && caste != "Drone")
-		src <<"You gave up evolving in exchange for power..."
+		src << "<span class='warning'>You gave up evolving in exchange for more power.</span>"
 		return
 
 	if(health < maxHealth)
-		src << "\red You must be at full health to evolve."
+		src << "<span class='warning'>You must be at full health to evolve.</span>"
 		return
 
 	if(storedplasma < maxplasma)
-		src << "\red You must be at full Plasma to evolve."
+		src << "<span class='warning'>You must be at full plasma to evolve.</span>"
 		return
 
 	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
-
-
-	for(var/mob/living/carbon/Xenomorph/M in living_mob_list) //should count mindless as well so people don't cheat
+	//Should count mindless as well so people don't cheat
+	for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
 		if(M.tier == 0)
 			continue
 		else if(M.tier == 1)
@@ -63,7 +62,7 @@
 		else if(M.tier == 3)
 			tierC++
 		else
-			src <<"\red You shouldn't see this.  If you do, bug repot it! (Error XE01)."
+			src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
 			continue
 		totalXenos++
 
@@ -89,41 +88,42 @@
 	if(castepick == "Cancel" || isnull(castepick) || castepick == "") //Changed my mind
 		return
 
-	if(stat)
-		src << "You have to be conscious to evolve."
+	if(stat != CONSCIOUS)
+		src << "<span class='warning'>You have to be conscious to evolve.</span>"
 		return
 
 	if(handcuffed || legcuffed)
-		src << "\red The restraints are too restricting to allow you to evolve."
+		src << "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>"
 		return
 
-	if(castepick == "Queen") // Special case for dealing with queenae
+	if(castepick == "Queen") //Special case for dealing with queenae
 		if(!hardcore)
 			if(storedplasma >= 500)
 				if(is_queen_alive())
-					src << "\red There is already a queen."
+					src << "<span class='warning'>There is already a queen.</span>"
 					return
 			else
-				src << "You require more plasma! Currently at: [storedplasma] / 500."
+				src << "<span class='warning'>You require more plasma! Currently at: [storedplasma] / 500.</span>"
 				return
 
 			if(ticker && ticker.mode && ticker.mode.queen_death_timer)
-				src << "You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death."
+				src << "<span class='warning'>You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death.</span>"
 				return
 		else
-			src << "\red Nuh-uhh."
+			src << "<span class='warning'>Nuh-uhh.</span>"
 			return
 
 
 
 
-	if(tier == 1 && ((tierB+tierC)/totalXenos)> 0.5 && castepick != "Queen")
-		src << "\red The hive can't support another Tier 2 alien, either upgrade or wait for either more aliens to be born or someone to die..."
+	if(tier == 1 && ((tierB + tierC) / totalXenos)> 0.5 && castepick != "Queen")
+		src << "<span class='warning'>The hive cannot support another Tier 2, either upgrade or wait for either more aliens to be born or someone to die.</span>"
 		return
-	else if(tier == 2 && (tierC/totalXenos)> 0.25 && castepick != "Queen")
-		src << "\red The hive can't support another Tier 3 alien, wait until someone stronger dies or upgrades."
+	else if(tier == 2 && (tierC / totalXenos)> 0.25 && castepick != "Queen")
+		src << "<span class='warning'>The hive cannot support another Tier 3, either upgrade or wait for either more aliens to be born or someone to die.</span>"
 		return
-	else src << "\green Looks like the hive can support your evolution!"
+	else
+		src << "\green Looks like the hive can support your evolution!"
 
 	var/mob/living/carbon/Xenomorph/M = null
 
@@ -157,26 +157,27 @@
 			M = /mob/living/carbon/Xenomorph/Boiler
 
 	if(isnull(M))
-		usr << "[castepick] is not a valid caste! If you're seeing this message tell a coder!"
+		usr << "<span class='warning'>[castepick] is not a valid caste! If you're seeing this message, tell a coder!</span>"
 		return
 
 	if(jellyMax && castepick != "Queen") //Does the caste have a jelly timer? Then check it
 		if(jellyGrow < jellyMax)
-			src << "You must wait before evolving. Currently at: [jellyGrow] / [jellyMax]."
+			src << "<span class='warning'>You must wait before evolving. Currently at: [jellyGrow] / [jellyMax].</span>"
 			return
 
-	visible_message("\green <b> \The [src] begins to twist and contort..</b>","\green <b>You begin to twist and contort..</b>")
-	if(do_after(src,25))
-		if(castepick == "Queen") // Do another check after the tick.
+	visible_message("\green <b> \The [src] begins to twist and contort.</b>", \
+	"\green <b>You begin to twist and contort.</b>")
+	if(do_after(src, 25))
+		if(castepick == "Queen") //Do another check after the tick.
 			if(is_queen_alive())
-				src << "\red There is already a queen."
+				src << "<span class='warning'>There is already a queen.</span>"
 				return
 		var/mob/living/carbon/Xenomorph/new_xeno = new M(get_turf(src))
 		if(!istype(new_xeno))
 			//Something went horribly wrong!
-			usr << "Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!"
+			usr << "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>"
 			if(new_xeno)
-				del(new_xeno)
+				cdel(new_xeno)
 			return
 
 		//We have to reset the name here after evolving.
@@ -184,7 +185,6 @@
 			new_xeno.nicknumber = nicknumber
 			new_xeno.name = "[initial(name)] ([nicknumber])"
 		new_xeno.real_name = new_xeno.name
-
 		remove_inherent_verbs()
 
 		if(mind)
@@ -204,19 +204,18 @@
 		new_xeno.middle_mouse_toggle = src.middle_mouse_toggle //Keep our toggle state
 		new_xeno.shift_mouse_toggle = src.shift_mouse_toggle //Keep our toggle state
 
-		for (var/obj/item/W in src.contents) //Drop stuff
-			src.drop_from_inventory(W)
+		for(var/obj/item/W in src.contents) //Drop stuff
+			drop_from_inventory(W)
 
-		src.drop_l_hand() //Drop dem huggies, just in case
-		src.drop_r_hand()
+		drop_l_hand() //Drop dem huggies, just in case
+		drop_r_hand()
 
 		empty_gut()
-		new_xeno.visible_message("\green <b> \The [new_xeno] emerges from the husk of [src].</b>","\green <b>You emerge in a greater form from the husk of your old body. For the hive!</b>")
-		del(src)
+		new_xeno.visible_message("\green <b> The [new_xeno.name] emerges from the husk of the [src.name].</b>", \
+		"\green <b>You emerge in a greater form from the husk of your old body. For the hive!</b>")
+		cdel(src)
 	else
-		src << "You quiver, but nothing happens. Hold still while evolving."
-
-	return
+		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"
 
 /proc/is_queen_alive()
 	var/found = 0

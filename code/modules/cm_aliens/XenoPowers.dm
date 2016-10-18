@@ -9,13 +9,11 @@
 	set category = "Alien"
 
 	if(!middle_mouse_toggle)
-		src << "You turn middle mouse clicking ON for certain xeno abilities."
+		src << "<span class='notice'>You turn middle mouse clicking ON for certain xeno abilities.</span>"
 		middle_mouse_toggle = 1
 	else
-		src << "You turn middle mouse clicking OFF. Middle mouse button will instead change active hands."
+		src << "<span class='notice'>You turn middle mouse clicking OFF. Middle mouse button will instead change active hands.</span>"
 		middle_mouse_toggle = 0
-
-	return
 
 /mob/living/carbon/Xenomorph/verb/shift_mousetoggle()
 	set name = "Toggle Shift Clicking"
@@ -23,30 +21,31 @@
 	set category = "Alien"
 
 	if(!shift_mouse_toggle)
-		src << "You turn shift clicking ON for certain xeno abilities."
+		src << "<span class='notice'>You turn shift clicking ON for certain xeno abilities.</span>"
 		shift_mouse_toggle = 1
 	else
-		src << "You turn shift clicking OFF. Shift click will instead examine."
+		src << "<span class='notice'>You turn shift clicking OFF. Shift click will instead examine.</span>"
 		shift_mouse_toggle = 0
-
-	return
 
 /mob/living/carbon/Xenomorph/proc/shift_spits()
 	set name = "Toggle Spit Type (20)"
 	set desc = "Toggles between a lighter, single-target stun spit or a heavier area acid that burns. The heavy version requires more plasma."
 	set category = "Alien"
 
-	if(!check_plasma(20)) return
+	if(!check_plasma(20))
+		return
 
-	src << "You will now spit [spit_type ? "stunning neurotoxin instead of acid.":"corrosive acid globs."]"
+	src << "<span class='notice'>You will now spit [spit_type ? "stunning neurotoxin instead of acid.":"corrosive acid globs."]</span>"
 	// Down from +20 to -10.  This should be sort of the base alien "ranged" attack.  Also, Praes/Spitters get lolshit for melee damage
 	spit_delay = spit_type ? spit_delay - 10 : spit_delay + 10 //This will make sure aliens don't slow down when switching spits.
 	switch(type)
-		if(/mob/living/carbon/Xenomorph/Praetorian) ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/heavy ]  : ammo_list[/datum/ammo/xeno/acid/heavy]
-		if(/mob/living/carbon/Xenomorph/Spitter) ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/medium ] : ammo_list[/datum/ammo/xeno/acid/medium]
-		else ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin] : ammo_list[/datum/ammo/xeno/acid]
+		if(/mob/living/carbon/Xenomorph/Praetorian)
+			ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/heavy ]  : ammo_list[/datum/ammo/xeno/acid/heavy]
+		if(/mob/living/carbon/Xenomorph/Spitter)
+			ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin/medium ] : ammo_list[/datum/ammo/xeno/acid/medium]
+		else
+			ammo = spit_type ? ammo_list[/datum/ammo/xeno/toxin] : ammo_list[/datum/ammo/xeno/acid]
 	spit_type = !spit_type
-	return
 
 /mob/living/carbon/Xenomorph/proc/plant()
 	set name = "Plant Weeds (75)"
@@ -58,35 +57,35 @@
 	var/turf/T = src.loc
 
 	if(!istype(T) || isnull(T))
-		src << "You can't do that here."
+		src << "<span class='warning'>You can't do that here.</span>"
 		return
 
 	if(T.slayer > 0)
-		src << "It requires a solid ground. Dig it up!"
+		src << "<span class='warning'>It requires a solid ground. Dig it up!</span>"
 		return
 
 	if(!is_weedable(T))
-		src << "Bad place for a garden!"
+		src << "<span class='warning'>Bad place for a garden!</span>"
 		return
 
 	if(locate(/obj/effect/alien/weeds/node) in T)
-		src << "There's a pod here already!"
+		src << "<span class='warning'>There's a pod here already!</span>"
 		return
 
 	if(check_plasma(75))
-		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>\The [src] regurgitates a pulsating node and plants it on the ground!</B>"), 1)
+		visible_message("\green <B>\The [src] regurgitates a pulsating node and plants it on the ground!</B>", \
+		"\green <B>You regurgitate a pulsating node and plant it on the ground!</B>")
 		new /obj/effect/alien/weeds/node(loc)
 		new /obj/effect/alien/weeds(loc)
 		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //splat!
-	return
 
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
 	if(usedPounce)
-		src << "\red You must wait before pouncing."
+		src << "<span class='warning'>You must wait before pouncing.</span>"
 		return
 
 	if(!check_plasma(10))
@@ -100,102 +99,107 @@
 		T = input(src, "Who should you pounce towards?") as null|anything in victims
 
 	if(T)
-		visible_message("\red <B>[src] pounces at [T]!</B>","\red <b> You leap at [T]!</B>" )
-		usedPounce = 30 //about 12 seconds
+		visible_message("<span class='danger'>\The [src] pounces at \the [T]!</span>", \
+		"<span class='danger'>You pounce at \the [T]!</span>")
+		usedPounce = 30 //About 12 seconds
 		flags_pass = PASSTABLE
-		if(readying_tail) readying_tail = 0
-		src.throw_at(T, 6, 2, src) //victim, distance, speed
+		if(readying_tail)
+			readying_tail = 0
+		throw_at(T, 6, 2, src) //Victim, distance, speed
 		spawn(6)
 			if(!hardcore)
-				flags_pass = initial(flags_pass)//Reset the passtable.
+				flags_pass = initial(flags_pass) //Reset the passtable.
 			else
 				flags_pass = 0 //Reset the passtable.
 
 		spawn(usedPounce)
 			usedPounce = 0
-			src << "You get ready to pounce again."
+			src << "<span class='notice'>You get ready to pounce again.</span>"
 	else
 		storedplasma += 5 //Since we already stole 5
-		src << "\blue You cannot pounce at nothing!"
-	return
+		src << "<span class='notice'>You cannot pounce at nothing!</span>"
 
 /mob/living/carbon/Xenomorph/proc/vent_crawl()
 	set name = "Crawl through Vent"
 	set desc = "Enter an air vent and crawl through the pipe system."
 	set category = "Alien"
-	if(!check_state())	return
+	if(!check_state())
+		return
 	handle_ventcrawl()
-	return
 
 /mob/living/carbon/Xenomorph/proc/regurgitate()
 	set name = "Regurgitate"
 	set desc = "Empties the contents of your stomach"
 	set category = "Alien"
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
 	if(stomach_contents.len)
 		for(var/mob/M in src)
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.forceMove(loc)
-		src.visible_message("\red <B>\The [src] hurls out the contents of their stomach!</B>")
+		visible_message("<span class='danger'>\The [src] hurls out the contents of their stomach!</span>", \
+		"<span class='danger'>You hurl out the contents of your stomach!</span>")
 	else
-		src << "There's nothing in your belly that needs regurgitating."
-	return
+		src << "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>"
 
 /mob/living/carbon/Xenomorph/proc/psychic_whisper(mob/M as mob in oview())
 	set name = "Psychic Whisper"
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Alien"
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
 		M << "\green You hear a strange, alien voice in your head... \italic [msg]"
 		src << "\green You said: \"[msg]\" to [M]"
-	return
 
 /mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M as mob in oview(2))
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Alien"
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
-	if(!M || !istype(M)) return
+	if(!M || !istype(M))
+		return
 
-	if (get_dist(src,M) >= 3)
+	if(get_dist(src, M) >= 3)
 		src << "\green You need to be closer."
 		return
 
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
 
-	if (get_dist(src,M) >= 3)//Double Check
+	if(get_dist(src, M) >= 3)//Double Check
 		src << "\green You need to be closer."
 		return
 
-	if (amount)
+	if(amount)
 		amount = abs(round(amount))
 		if(storedplasma < amount)
 			amount = storedplasma //Just use all of it
 		storedplasma -= amount
 		M.storedplasma += amount
-		if(M.storedplasma > M.maxplasma) M.storedplasma = M.maxplasma
+		if(M.storedplasma > M.maxplasma)
+			M.storedplasma = M.maxplasma
 		M << "\green [src] has transfered [amount] plasma to you. You now have [M.storedplasma]."
 		src << "\green You have transferred [amount] plasma to [M]. You now have [src.storedplasma]."
-	return
 
 /mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE <---There's a name I haven't heard in a while. ~N
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Alien"
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
-	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest", "sticky resin", "cancel")
+	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door", "resin wall", "resin membrane", "resin nest", "sticky resin", "cancel")
 
 	if(!choice || choice == "cancel")
 		return
@@ -205,13 +209,13 @@
 		return
 
 	if(!is_weedable(current_turf))
-		src << "Bad place for a garden!"
+		src << "<span class='warning'>Bad place for a garden!</span>"
 		return
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
 	if(!alien_weeds)
-		src << "You can only shape on weeds. Find some resin before you start building!"
+		src << "<span class='warning'>You can only shape on weeds. Find some resin before you start building!</span>"
 		return
 
 	if(!check_alien_construction(current_turf))
@@ -220,10 +224,8 @@
 	if(!check_plasma(75))
 		return
 
-	src << "\green You shape a [choice]."
-	for(var/mob/O in viewers(src, null))
-		if(O != src)
-			O.show_message(text("\red <B>[src] vomits up a thick substance and begins to shape it!</B>"), 1)
+	visible_message("<span class='danger'>[src] vomits up a thick substance and begins to shape it!</span>", \
+	"\green You shape a [choice].")
 
 	switch(choice)
 		if("resin door")
@@ -236,7 +238,6 @@
 			new /obj/structure/stool/bed/nest(current_turf)
 		if("sticky resin")
 			new /obj/effect/alien/resin/sticky(current_turf)
-	return
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/neurotoxin(var/atom/T)
@@ -244,14 +245,15 @@
 	set desc = "Spits neurotoxin at someone, paralyzing them for a short time, or globs of acid which burn in an area."
 	set category = "Alien"
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
 	if(!isturf(loc))
-		src << "You can't spit from here!"
+		src << "<span class='warning'>You can't spit from here!</span>"
 		return
 
 	if(has_spat + spit_delay >= world.time)
-		src << "You must wait for your neurotoxin glands to refill."
+		src << "<span class='warning'>You must wait for your neurotoxin glands to refill.</span>"
 		return
 
 	if(!T)
@@ -262,33 +264,39 @@
 		victims += "Cancel"
 		T = input(src, "Who should you spit towards?") as null|anything in victims
 
-	if(!client || !loc || T == "Cancel") return
+	if(!client || !loc || T == "Cancel")
+		return
 
 	if(T)
-		if(!check_plasma(spit_type?100:50)) return
+		if(!check_plasma(spit_type? 100:50))
+			return
 
 		var/turf/current_turf = get_turf(src)
 
-		if(!current_turf) return
+		if(!current_turf)
+			return
 
-		visible_message("<span class='danger'>\The [src] spits at [T]!</span>","<span class='danger'>You spit at [T]!</span>" )
-		var/sound_to_play = pick(1,2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
+		visible_message("<span class='danger'>\The [src] spits at \the [T]!</span>", \
+		"<span class='danger'>You spit at \the [T]!</span>" )
+		var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 		playsound(src.loc, sound_to_play, 60, 1)
 
 		var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
 		A.generate_bullet(ammo)
 		A.permutated += src
 		A.def_zone = get_organ_target()
-		A.fire_at(T,src,null,ammo.max_range,ammo.shell_speed)
+		A.fire_at(T, src, null, ammo.max_range, ammo.shell_speed)
 		has_spat = world.time
 		cooldown_notification(spit_delay,"spit")
-	else src << "You cannot spit at nothing!"
+	else
+		src << "<span class='warning'>You have nothing to spit at!</span>"
 
 /mob/living/carbon/Xenomorph/proc/cooldown_notification(cooldown, message)
 	set waitfor = 0
 	sleep(cooldown)
 	switch(message)
-		if("spit") src << "You feel your glands swell with ichor. You can spit again."
+		if("spit")
+			src << "<span class='notice'>You feel your glands swell with ichor. You can spit again.</span>"
 
 //Corrosive acid is consolidated -- it checks for specific castes for strength now, but works identically to each other.
 //The acid items are stored in XenoProcs.
@@ -297,57 +305,60 @@
 	set desc = "Drench an object in acid. Drones/Sentinel cost 75, Boilers 200, everything else 100."
 	set category = "Alien"
 
-	if(!check_state())	return
-
-	if(!O in oview(1))
-		src << "\green [O] is too far away."
+	if(!check_state())
 		return
 
-	// OBJ CHECK
+	if(!O in oview(1))
+		src << "\green \The [O] is too far away."
+		return
+
+	//OBJ CHECK
 	if(isobj(O))
 		var/obj/I = O
-		if(I.unacidable || istype(I,/obj/machinery/computer) || istype(I,/obj/effect))	//So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
-			src << "\green You cannot dissolve this object." // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
+		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
+			src << "\green You cannot dissolve \the [I]." // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
 
-	// TURF CHECK
+	//TURF CHECK
 	else if(istype(O, /turf/simulated))
 		var/turf/T = O
-		// R WALL
-		if(istype(T,/turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
-			src << "\green You cannot dissolve this."
+		//R WALL
+		if(istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
+			src << "\green You cannot dissolve \the [T]."
 			return
 		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))
-			src << "\green This wall is too tough to be melted by your weak acid."
+			src << "\green This [T.name] is too tough to be melted by your weak acid."
 			return
 	else
-		src << "\green You cannot dissolve this object."
+		src << "\green You cannot dissolve \the [O]."
 		return
 
 	if(isnull(O) || isnull(get_turf(O))) //Some logic.
 		return
 
-	if(istype(src,/mob/living/carbon/Xenomorph/Sentinel) || istype(src,/mob/living/carbon/Xenomorph/Drone) ) //weak level
-		if(!check_plasma(75)) return
+	if(isXenoSentinel(src) || isXenoDrone(src)) //Weak level
+		if(!check_plasma(75))
+			return
 		var/obj/effect/xenomorph/acid/weak/A = new (get_turf(O), O)
 		A.layer = O:layer + 0.6
 
-	else if(istype(src,/mob/living/carbon/Xenomorph/Boiler)) //strong level
-		if(!check_plasma(200)) return
+	else if(isXenoBoiler(src)) //Strong level
+		if(!check_plasma(200))
+			return
 		var/obj/effect/xenomorph/acid/strong/A = new (get_turf(O), O)
 		A.layer = O:layer + 0.6
 
 	else
-		if(!check_plasma(100)) return
+		if(!check_plasma(100))
+			return
 		var/obj/effect/xenomorph/acid/A = new (get_turf(O), O)
 		A.layer = O:layer + 0.6
 
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
 		src.attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
-	visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
-	return
-
+	visible_message("\green <B>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>", \
+	"\green <B>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()
 	set name = "Permit/Disallow Slashing"
@@ -355,11 +366,11 @@
 	set category = "Alien"
 
 	if(stat)
-		src << "You can't do that now."
+		src << "<span class='warning'>You can't do that now.</span>"
 		return
 
 	if(pslash_delay)
-		src << "You must wait a bit before you can toggle this again."
+		src << "<span class='warning'>You must wait a bit before you can toggle this again.</span>"
 		return
 
 	spawn(300)
@@ -368,22 +379,20 @@
 	pslash_delay = 1
 
 
-	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allow","Restricted - less damage","Forbid")
+	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
 
-	if(choice == "Allow")
-		src << "You allow slashing."
+	if(choice == "Allowed")
+		src << "<span class='notice'>You allow slashing.</span>"
 		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!",3)
 		slashing_allowed = 1
-	else if(choice == "Restricted - less damage")
-		src << "You restrict slashing."
+	else if(choice == "Restricted - Less Damage")
+		src << "<span class='warning'>You restrict slashing.</span>"
 		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.",3)
 		slashing_allowed = 2
-	else if(choice == "Forbid")
-		src << "You forbid slashing entirely."
+	else if(choice == "Forbidden")
+		src << "<span class='warning'>You forbid slashing entirely.</span>"
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.",3)
 		slashing_allowed = 0
-	else
-		return
 
 /mob/living/carbon/Xenomorph/verb/hive_status()
 	set name = "Hive Status"
@@ -398,59 +407,49 @@
 		var/mob/living/carbon/Xenomorph/X
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			X = L.current
-			if(istype(X)) dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+			if(istype(X))
+				dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
-	return
 
 /mob/living/carbon/Xenomorph/proc/tail_attack()
 	set name = "Ready Tail Attack (20)"
 	set desc = "Wind up your tail for a devastating stab on your next harm attack. Drains plasma when active."
 	set category = "Alien"
 
-	if(!check_state()) return //Nope
+	if(!check_state())
+		return
 
 	if(!readying_tail)
-		if(!check_plasma(20)) return
-		visible_message("\blue \The [src]'s tail starts to coil like a spring..","\blue You begin to ready your tail for a vicious attack. This will drain plasma to keep active.")
+		if(!check_plasma(20))
+			return
+		visible_message("<span class='warning'>\The [src]'s tail starts to coil like a spring.</span>", \
+		"<span class='notice'>You begin to ready your tail for a vicious attack. This will drain plasma to keep active.</span>")
 		readying_tail = 1
 	else
-		src << "\blue You relax your tail. You are no longer readying a tail attack."
+		visible_message("<span class='notice'>\The [src]'s tail relaxes.</span>", \
+		"<span class='notice'>You relax your tail. You are no longer readying a tail attack.</span>")
 		readying_tail = 0
-	return
-
-/*/mob/living/carbon/Xenomorph/proc/bestial_roar()
-	set name = "Bestial Roar"
-	set desc = "Shake the ground with a roar from the underworld."
-	set category = "Alien"
-
-	for(var/mob/M in view(50))
-		if(M.client)
-		// playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global)
-			playsound(M, 'sound/voice/alien_bestial_roar.ogg', 100, 0, 100, -1) //About as loud as it can possibly get
-			shake_camera(M, 50, 1) // 50 deciseconds, the exact length of the sound
-			M << "<span class='warning'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
-*/
 
 /mob/living/carbon/Xenomorph/proc/toggle_auras()
 	set name = "Emit Pheromones (30)"
 	set desc = "Emit pheromones in the area around you. Nearby xenomorphs will be enhanced in some way. This drains plasma to keep active."
 	set category = "Alien"
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	if(isnull(current_aura))
 		if(!check_plasma(30))
 			return
-		var/choice = alert(src,"Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.\nFrenzy - Increased run speed and tackle chance\nGuard - Reduced incoming damage\nRecovery - Increased plasma and health regeneration","Emit Pheromones", "frenzy", "guard", "recovery")
-		if (choice != "cancel")
+		var/choice = alert(src, "Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.\nFrenzy - Increased run speed and tackle chance\nGuard - Reduced incoming damage\nRecovery - Increased plasma and health regeneration", "Emit Pheromones", "frenzy", "guard", "recovery")
+		if(choice != "cancel")
 			current_aura = choice
-			visible_message("<B>[src] begins to emit strange-smelling pheromones.</b>","<b>You begin to emit '[choice]' pheromones.</b>")
+			visible_message("<span class='bnotice'>[src] begins to emit strange-smelling pheromones.</span>","<span class='bnotice'>You begin to emit '[choice]' pheromones.</span>")
 			return
 	else
 		current_aura = null
-		src << "<b>You stop emitting pheromones.</b>"
-		return
+		src << "<span class='bnotice'>You stop emitting pheromones.</span>"
 
 
 //COMMENTED OUT BY APOP
@@ -459,11 +458,14 @@
 	set desc = "Spin some resin to further secure a host within the nest."
 	set category = "Alien"
 
-	if(last_special > world.time) return
+	if(last_special > world.time)
+		return
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
-	if(!istype(victim,/mob/living/carbon/human)) return // Runtime fix for attempting to secure Monkeys, which don't need to be cuffed anyway
+	if(!ishuman(victim)) //Runtime fix for attempting to secure Monkeys, which don't need to be cuffed anyway
+		return
 
 	if(!victim)
 		var/list/victims = list()
@@ -473,34 +475,37 @@
 
 		victim = input(src, "Who to secure?") as null|anything in victims
 
-	if(victim && get_dist(src,victim) <= 2)
-		if(!check_plasma(50)) return
+	if(victim && get_dist(src, victim) <= 2)
+		if(!check_plasma(50))
+			return
 		if(!victim.lying)
-			src << "Your victim has to be lying down."
+			src << "<span class='warning'>Your victim has to be lying down.</span>"
 			return
 		if(!victim.buckled || !istype(victim.buckled,/obj/structure/stool/bed/nest))
-			src << "Your victim must be nested."
+			src << "<span class='warning'>Your victim must be nested.</span>"
 			return
 		if(victim.handcuffed && victim.legcuffed)
-			src << "They're already secured."
+			src << "<span class='warning'>They're already secured.</span>"
 			return
 
-		src.visible_message("\red [src] begins securing [victim] with resin!","\red You begin securing [victim] with resin.. Hold still!")
-		if(do_after(src,40))
-			src.visible_message("\red [src] continues securing [victim] with resin..","\red You continue securing [victim] with resin.. almost there.")
-		if(do_after(src,80))
+		src.visible_message("<span class='warning'>\The [src] begins securing \the [victim] with resin!</span>", \
+		"<span class='notice'>You begin securing [victim] with resin.</span>")
+		if(do_after(src, 40))
+			src.visible_message("<span class='warning'>\The [src] continues securing \the [victim] with resin.", \
+			"<span class='notice'>You continue securing [victim] with resin.</span>")
+		if(do_after(src, 80))
 			if(!victim.handcuffed)
 				victim.handcuffed = new /obj/item/weapon/handcuffs/xeno(victim)
 				victim.xenoCuffed = 1
-				src.visible_message("\red <B>[src] finishes securing [victim]'s arms.</b>","\red <B>You finish securing [victim]'s arms!</b>")
+				src.visible_message("<span class='danger'>\The [src] finishes securing \the [victim]'s arms.</span>", \
+				"<span class='notice'>You finish securing \the [victim]'s arms!</span>")
 			else
-				src << "Looks like someone secured them before you!"
+				src << "<span class='warning'>Looks like someone secured them before you!</span>"
 				return
 			victim.update_icons()
 			last_special = world.time + 50
 
 		return
 
-	src << "Nobody like that around here."
-	return
+	src << "<span class='warning'>Nobody like that around here.</span>"
  */

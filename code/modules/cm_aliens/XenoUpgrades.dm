@@ -9,7 +9,6 @@ proc/initialize_upgrades()
 			upgrade_list += new U()
 
 //The basic upgrade datums which hold pretty generic data.
-
 /datum/upgrade
 	var/name = "NOPE"
 	var/cost = 0 //Cost in EP
@@ -43,7 +42,7 @@ proc/initialize_upgrades()
 /mob/living/carbon/Xenomorph/proc/upgrade_claws()
 	melee_damage_lower += 10
 	melee_damage_upper += 10
-	src << "\red Your claws feel sharper."
+	src << "\green Your claws feel sharper.</span>"
 	update_icons()
 
 /datum/upgrade/claws2
@@ -63,7 +62,7 @@ proc/initialize_upgrades()
 /mob/living/carbon/Xenomorph/proc/upgrade_claws2()
 	melee_damage_lower += 10
 	melee_damage_upper += 10
-	src << "\red Your claws feel razor sharp."
+	src << "\green Your claws feel razor sharp."
 
 /datum/upgrade/claws3
 	name = "Corrosive Claws"
@@ -80,7 +79,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_claws3()
 	melee_damage_lower += 5
-	src << "\red Your claws drip with corrosive acid."
+	src << "\green Your claws drip with corrosive acid."
 
 /datum/upgrade/claws4
 	name = "Resin Claws"
@@ -96,7 +95,7 @@ proc/initialize_upgrades()
 	helptext = "Your claws are coated with fibrous resin, dealing less damage but allowing easy knockdowns."
 
 /mob/living/carbon/Xenomorph/proc/upgrade_claws4()
-	src << "\red Your claws drip with sticky resin."
+	src << "\green Your claws drip with sticky resin."
 
 /datum/upgrade/armor
 	name = "Hardened Carapace"
@@ -117,10 +116,10 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_armor()
 	if(src.armor_deflection > 0)
-		src.armor_deflection += 15
+		armor_deflection += 15
 	else
-		src.armor_deflection = 60
-	src << "\red You exoskeleton feels thicker."
+		armor_deflection = 60
+	src << "\green You exoskeleton feels thicker."
 
 /datum/upgrade/armor2
 	name = "Increased Musclemass"
@@ -138,7 +137,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_health()
 	src.maxHealth = round(src.maxHealth * 5 / 4) + 10 //20% + 10
-	src << "\red You feel bulkier."
+	src << "\green You feel bulkier."
 
 /datum/upgrade/armor3
 	name = "Blast Resistance"
@@ -160,7 +159,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_bombs()
 	src.maxHealth = round(src.maxHealth * 8 / 7)
-	src << "\red You grow a new layer on your exoskeleton."
+	src << "\green You grow a new layer on your exoskeleton."
 
 /datum/upgrade/armor4
 	name = "Reinforced Exoskeleton"
@@ -178,7 +177,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_armor2()
 	src.maxHealth = round(src.maxHealth * 6 / 5) + 20
-	src << "\red Your exoskeleton grows thick as stone."
+	src << "\green Your exoskeleton grows thick as stone."
 
 /datum/upgrade/armor5
 	name = "Razors"
@@ -199,7 +198,7 @@ proc/initialize_upgrades()
 	helptext = "You have sharp spines on your exoskeleton, damaging enemies you bump into."
 
 /mob/living/carbon/Xenomorph/proc/upgrade_armor3()
-	src << "\red Razor sharp spikes spring from your exoskeleton."
+	src << "\green Razor sharp spikes spring from your exoskeleton."
 
 /datum/upgrade/jelly
 	name = "Quickened Evolution"
@@ -226,31 +225,36 @@ proc/initialize_upgrades()
 		jelly = 1
 		jellyGrow += 10
 
-	src << "\red You feel royal jelly ripple through your haemolymph."
+	src << "\green You feel royal jelly ripple through your haemolymph."
 
 //Changes a xeno's evolution points.
 /mob/living/carbon/Xenomorph/proc/change_ep(var/amount)
-	if(!src || !amount) return
-	if(stat == DEAD) return //Dead xenos do not change at all.
+	if(!src || !amount)
+		return
+	if(stat == DEAD)
+		return //Dead xenos do not change at all.
 
 	evo_points += amount
-	if(evo_points < 0) evo_points = 0
-	if(evo_points > 1000) evo_points = 1000
-	return
+	if(evo_points < 0)
+		evo_points = 0
+	if(evo_points > 1000)
+		evo_points = 1000
 
 //Checks to see if they can spend some EP, and removes or adds it.
 /mob/living/carbon/Xenomorph/proc/check_ep(var/amount)
-	if(!src) return 0
+	if(!src)
+		return 0
 
 	if(evo_points - amount < 0)
-		src << "You lack the required amount of evolution points - you need <B>[amount]</b> but have only <B>[evo_points]</b>."
+		src << "<span class='warning'>You lack the required amount of evolution points - you need <B>[amount]</b> but have only <B>[evo_points]</b>.</span>"
 		return 0
 
 	change_ep(amount)
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/has_upgrade(var/u_tag)
-	if(!src || !u_tag) return 0
+	if(!src || !u_tag)
+		return 0
 
 	if(u_tag in upgrades_bought)
 		return 1
@@ -265,15 +269,15 @@ proc/get_upgrade_by_u_tag(var/u_tag)
 
 //Also reduces evo points.
 /mob/living/carbon/Xenomorph/proc/add_upgrade(var/datum/upgrade/U)
-	if(!src) return 0
+	if(!src)
+		return 0
+	if(stat == DEAD)
+		return 0
+	if(!U || !istype(U) || U.u_tag == null)
+		return 0
+	if(has_upgrade(U.u_tag))
+		return 0 //They already have it.
 
-	if(stat == DEAD) return 0
-	if(!U || !istype(U) || U.u_tag == null) return 0
-
-	if(src.has_upgrade(U.u_tag)) return 0 //They already have it.
-
-	src.upgrades_bought += U.u_tag
+	upgrades_bought += U.u_tag
 	change_ep(U.cost * -1) //Negative value of cost
-	call(src,U.procpath)()
-	return
-
+	call(src, U.procpath)()

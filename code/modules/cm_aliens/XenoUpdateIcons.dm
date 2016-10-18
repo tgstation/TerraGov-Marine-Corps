@@ -26,29 +26,35 @@
 	if(stat == DEAD)
 		icon_state = "[caste] Dead"
 		is_lying = 1
-		if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
+		if(enh_claws)
+			overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
 	else if(lying)
 		if(resting)
 			icon_state = "[caste] Sleeping"
-			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Sleeping")
+			if(enh_claws)
+				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Sleeping")
 		else
 			icon_state = "[caste] Knocked Down"
-			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
+			if(enh_claws)
+				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Knocked Down")
 		is_lying = 1
 
 	else
 		if(m_intent == "run")
-			if(istype(src,/mob/living/carbon/Xenomorph/Crusher))
-				if(src:momentum > 2) //Let it build up a bit so we're not changing icons every single turf
+			if(isXenoCrusher(src))
+				var/mob/living/carbon/Xenomorph/Crusher/crusher = src
+				if(crusher.momentum > 2) //Let it build up a bit so we're not changing icons every single turf
 					icon_state = "[caste] Charging"
 				else
 					icon_state = "[caste] Running"
 			else
 				icon_state = "[caste] Running"
-			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Running")
+			if(enh_claws)
+				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Running")
 		else
 			icon_state = "[caste] Walking"
-			if(enh_claws) overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Walking")
+			if(enh_claws)
+				overlay_claws = image("icon" = src.icon, "icon_state" = "[caste] Claws Walking")
 		is_lying = 0
 
 	if(overlay_claws && enh_claws)
@@ -63,43 +69,37 @@
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
 	..()
-	if (monkeyizing)	return
+	if(monkeyizing)
+		return
 
-//We don't need to do most of this stuff anymore, they don't even have the slots.
-//	update_inv_head(0)
-//	update_inv_wear_suit(0)
 	update_inv_r_hand(0)
 	update_inv_l_hand(0)
-//	update_inv_pockets(0)
-	//update_hud() //Icons already update hud
 	update_icons()
 	update_fire()
 
-
 /mob/living/carbon/Xenomorph/update_hud()
 	//TODO
-	if (client)
-//		if(other)	client.screen |= hud_used.other		//Not used
-//		else		client.screen -= hud_used.other		//Not used
+	if(client)
 		client.screen |= contents
 
-/mob/living/carbon/Xenomorph/update_inv_wear_suit(var/update_icons=1)
+/mob/living/carbon/Xenomorph/update_inv_wear_suit(var/update_icons = 1)
 	if(wear_suit)
 		var/t_state = wear_suit.item_state
-		if(!t_state)	t_state = wear_suit.icon_state
+		if(!t_state)
+			t_state = wear_suit.icon_state
 		var/image/lying		= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "[t_state]2")
 		var/image/standing	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "[t_state]")
 
 		if(wear_suit.blood_DNA)
 			var/t_suit = "suit"
-			if( istype(wear_suit, /obj/item/clothing/suit/armor) )
+			if(istype(wear_suit, /obj/item/clothing/suit/armor))
 				t_suit = "armor"
 			lying.overlays		+= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[t_suit]blood2")
 			standing.overlays	+= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[t_suit]blood")
 
 		//TODO
 		wear_suit.screen_loc = ui_alien_oclothing
-		if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
+		if(istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 			drop_from_inventory(handcuffed)
 			drop_r_hand()
 			drop_l_hand()
@@ -109,13 +109,14 @@
 	else
 		overlays_lying[X_SUIT_LAYER]	= null
 		overlays_standing[X_SUIT_LAYER]	= null
-	if(update_icons)	update_icons()
+	if(update_icons)
+		update_icons()
 
-
-/mob/living/carbon/Xenomorph/update_inv_head(var/update_icons=1)
-	if (head)
+/mob/living/carbon/Xenomorph/update_inv_head(var/update_icons = 1)
+	if(head)
 		var/t_state = head.item_state
-		if(!t_state)	t_state = head.icon_state
+		if(!t_state)
+			t_state = head.icon_state
 		var/image/lying		= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "[t_state]2")
 		var/image/standing	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "[t_state]")
 		if(head.blood_DNA)
@@ -127,55 +128,63 @@
 	else
 		overlays_lying[X_HEAD_LAYER]	= null
 		overlays_standing[X_HEAD_LAYER]	= null
-	if(update_icons)	update_icons()
+	if(update_icons)
+		update_icons()
 
+/mob/living/carbon/Xenomorph/update_inv_pockets(var/update_icons = 1)
+	if(l_store)
+		l_store.screen_loc = ui_storage1
+	if(r_store)
+		r_store.screen_loc = ui_storage2
+	if(update_icons)
+		update_icons()
 
-/mob/living/carbon/Xenomorph/update_inv_pockets(var/update_icons=1)
-	if(l_store)		l_store.screen_loc = ui_storage1
-	if(r_store)		r_store.screen_loc = ui_storage2
-	if(update_icons)	update_icons()
-
-
-/mob/living/carbon/Xenomorph/update_inv_r_hand(var/update_icons=1)
+/mob/living/carbon/Xenomorph/update_inv_r_hand(var/update_icons = 1)
 	if(r_hand)
 		var/t_state = r_hand.item_state
-		if(!t_state)	t_state = r_hand.icon_state
+		if(!t_state)
+			t_state = r_hand.icon_state
 		r_hand.screen_loc = ui_rhand
 		overlays_standing[X_R_HAND_LAYER]	= image("icon" = r_hand.sprite_sheet_id?'icons/mob/items_righthand_0.dmi':'icons/mob/items_righthand_0.dmi', "icon_state" = t_state)
 	else
 		overlays_standing[X_R_HAND_LAYER]	= null
-	if(update_icons)	update_icons()
+	if(update_icons)
+		update_icons()
 
-/mob/living/carbon/Xenomorph/update_inv_l_hand(var/update_icons=1)
+/mob/living/carbon/Xenomorph/update_inv_l_hand(var/update_icons = 1)
 	if(l_hand)
 		var/t_state = l_hand.item_state
-		if(!t_state)	t_state = l_hand.icon_state
+		if(!t_state)
+			t_state = l_hand.icon_state
 		l_hand.screen_loc = ui_lhand
 		overlays_standing[X_L_HAND_LAYER]	= image("icon" = l_hand.sprite_sheet_id?'icons/mob/items_lefthand_1.dmi':'icons/mob/items_lefthand_0.dmi', "icon_state" = t_state)
 	else
 		overlays_standing[X_L_HAND_LAYER]	= null
-	if(update_icons)	update_icons()
+	if(update_icons)
+		update_icons()
 
 //Call when target overlay should be added/removed
-/mob/living/carbon/Xenomorph/update_targeted(var/update_icons=1)
-	if (targeted_by && target_locked)
+/mob/living/carbon/Xenomorph/update_targeted(var/update_icons = 1)
+	if(targeted_by && target_locked)
 		overlays_lying[TARGETED_LAYER]		= target_locked
 		overlays_standing[TARGETED_LAYER]	= target_locked
-	else if (!targeted_by && target_locked)
-		del(target_locked)
-	if (!targeted_by || src.stat == DEAD)
+	else if(!targeted_by && target_locked)
+		cdel(target_locked)
+	if(!targeted_by || src.stat == DEAD)
 		overlays_lying[TARGETED_LAYER]		= null
 		overlays_standing[TARGETED_LAYER]	= null
-	if(update_icons)		update_icons()
+	if(update_icons)
+		update_icons()
 
-/mob/living/carbon/Xenomorph/update_inv_legcuffed(var/update_icons=1)
+/mob/living/carbon/Xenomorph/update_inv_legcuffed(var/update_icons = 1)
 	if(legcuffed)
 		overlays_standing[X_LEGCUFF_LAYER]	= image("icon" = 'icons/Xeno/Effects.dmi', "icon_state" = "legcuff")
-		if(src.m_intent != "walk")
-			src.m_intent = "walk"
+		if(m_intent != "walk")
+			m_intent = "walk"
 	else
 		overlays_standing[X_LEGCUFF_LAYER]	= null
-	if(update_icons)   update_icons()
+	if(update_icons)
+		update_icons()
 
 /mob/living/carbon/Xenomorph/proc/create_shriekwave()
 	overlays_standing[X_SUIT_LAYER] = image("icon" = src.icon, "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
@@ -194,7 +203,8 @@
 	else
 		overlays_standing[X_FIRE_LAYER] = null
 
-	if(update_icons) update_icons()
+	if(update_icons)
+		update_icons()
 
 
 //Xeno Overlays Indexes//////////
