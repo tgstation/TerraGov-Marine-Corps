@@ -527,8 +527,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/datum/game_mode/predator_round = ticker.mode
 
-	if(!predator_round.pred_round_status)
-		predator_round.pred_round_status = 1
+	if(!(predator_round.flags_round_type & MODE_PREDATOR))
+		predator_round.flags_round_type |= MODE_PREDATOR
 		usr << "The Hunt is now enabled."
 	else
 		usr << "The Hunt is already in progress."

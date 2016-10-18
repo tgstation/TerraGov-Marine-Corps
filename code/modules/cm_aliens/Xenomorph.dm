@@ -109,6 +109,8 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
 	var/upgrade = -1  //This will track their upgrade level.  Once they can no longer upgrade, it will set to -1
 	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
+	var/crit_health = -100 // What negative healthy they die in.
+	var/gib_chance  = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves

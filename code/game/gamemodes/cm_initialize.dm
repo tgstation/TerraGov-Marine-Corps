@@ -30,27 +30,40 @@ You can see a working example in the Colonial Marines game mode.
 
 		return 1
 
+
+//Flags defined in setup.dm
+MODE_INFESTATION
+MODE_PREDATOR
+
+Additional game mode variables.
 */
 
-//Additional game mode variables.
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
 	var/datum/mind/survivors[] = list()
 	var/datum/mind/predators[] = list()
 	var/datum/mind/hellhounds[] = list() //Hellhound spawning is not supported at round start.
 	var/pred_keys[] = list() //People who are playing predators, we can later reference who was a predator during the round.
-	var/queen_death_timer = 0 //How long ago did the queen die?
+
 	var/xeno_required_num = 0 //We need at least one. You can turn this off in case we don't care if we spawn or don't spawn xenos.
 	var/xeno_starting_num = 0 //To clamp starting xenos.
 	var/xeno_bypass_timer = 0 //Bypass the five minute timer before respawning.
+	var/xeno_queen_timer  = 0 //How long ago did the queen die?
+	var/xeno_queen_deaths = 0 //How many times the alien queen died.
 	var/surv_starting_num = 0 //To clamp starting survivors.
 	var/pred_current_num = 0 //How many are there now?
 	var/pred_maximum_num = 3 //How many are possible per round? Does not count elders.
-	var/pred_round_status = 0 //Is it actually a predator round?
 	var/pred_round_chance = 20 //%
 	var/forbid_late_joining = 0 //Cannot late join as a marine after round start.
 	var/bioscan_current_interval = 36000
 	var/bioscan_ongoing_interval = 18000
+
+	//Some gameplay variables.
+	var/round_checkwin = 0
+	var/round_finished
+	var/round_started  = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
+
+	var/flags_round_type = NOFLAGS
 
 //===================================================\\
 
@@ -92,7 +105,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/initialize_starting_predator_list()
 	if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
-		pred_round_status = 1 //It is now a predator round.
+		flags_round_type |= MODE_PREDATOR //It is now a predator round.
 		var/list/datum/mind/possible_predators = get_whitelisted_predators() //Grabs whitelisted preds who are ready at game start.
 		var/datum/mind/new_pred
 		while(possible_predators.len)
@@ -160,7 +173,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(show_warning) pred_candidate << "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>"
 		return
 
-	if(!pred_round_status)
+	if(!(flags_round_type & MODE_PREDATOR))
 		if(show_warning) pred_candidate << "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>"
 		return
 

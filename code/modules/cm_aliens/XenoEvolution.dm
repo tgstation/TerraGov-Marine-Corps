@@ -106,8 +106,8 @@
 				src << "<span class='warning'>You require more plasma! Currently at: [storedplasma] / 500.</span>"
 				return
 
-			if(ticker && ticker.mode && ticker.mode.queen_death_timer)
-				src << "<span class='warning'>You must wait about [round(ticker.mode.queen_death_timer / 60)] minutes for the hive to recover from the previous Queen's death.</span>"
+			if(ticker && ticker.mode && ticker.mode.xeno_queen_timer)
+				src << "<span class='warning'>You must wait about [round(ticker.mode.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>"
 				return
 		else
 			src << "<span class='warning'>Nuh-uhh.</span>"

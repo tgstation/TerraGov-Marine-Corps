@@ -12,6 +12,7 @@
 	var/toggleable = 0
 	var/active = 1
 	var/obj/screen/overlay = null
+	flags_inventory = COVEREYES
 	flags_armor_protection = EYES
 
 /obj/item/clothing/glasses/attack_self(mob/user)

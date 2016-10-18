@@ -49,15 +49,15 @@
 						stomach_contents.Remove(A)
 					src.gib()
 
-/mob/living/carbon/gib()
+/mob/living/carbon/gib(anim, do_gibs, f_icon)
 	for(var/mob/M in src)
-		if(M in src.stomach_contents)
-			src.stomach_contents.Remove(M)
-		M.loc = src.loc
+		if(M in stomach_contents)
+			stomach_contents -= M
+		M.loc = loc
 		for(var/mob/N in viewers(src, null))
-			if(N.client)
-				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
-	. = ..(null,1)
+			if(N.client) N.show_message(text("<span class='danger'>[M] bursts out of [src]!</span>"), 2)
+
+	. = ..(anim, do_gibs, f_icon)
 
 /mob/living/carbon/attack_hand(mob/M as mob)
 	if(!istype(M, /mob/living/carbon)) return

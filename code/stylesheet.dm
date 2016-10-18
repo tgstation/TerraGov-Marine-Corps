@@ -70,6 +70,9 @@ h1.alert, h2.alert		{color: #000000;}
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
 
+.round_header			{color: #db0000; 	text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
+.round_body				{color: #001427; 	text-align: center; font-family: trebuchet ms; font-weight: bold; font-size: 3;}
+
 .mod					{color: #735638;	font-weight: bold;}
 .modooc					{color: #184880;	font-weight: bold;}
 .adminmod				{color: #402A14;	font-weight: bold;}

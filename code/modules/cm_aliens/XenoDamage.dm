@@ -71,7 +71,7 @@
 
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, chancemod)
-	updatehealth()
+	updatehealth(damage*0.65)
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/check_blood_splash(var/damage = 0, var/damtype = BRUTE, var/chancemod = 0)

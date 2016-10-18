@@ -602,7 +602,7 @@ It can still be worn/put on as normal.
 	if ((source.restrained() || source.stat)) return //Source restrained or unconscious / dead
 
 	var/slot_to_process
-	var/strip_item //this will tell us which item we will be stripping - if any.
+	var/obj/item/strip_item //this will tell us which item we will be stripping - if any.
 
 	switch(place)	//here we go again...
 		if("mask")
@@ -774,12 +774,11 @@ It can still be worn/put on as normal.
 		if(strip_item) //Stripping an item from the mob
 			if(istype(strip_item,/obj/item/weapon/gun/smartgun)) //NOPE
 				del(src)
-				return 0
+				return
 
 			//Prevent donor items from being unequipped
-			var/obj/item/I = strip_item
-			if(!I.othersCanRemove)
-				source << "You're having difficulty removing that item."
+			if(strip_item.flags_inventory & CANTSTRIP)
+				source << "<span class='warning'>You're having difficulty removing that item.</span>"
 				return
 
 			target.drop_from_inventory(strip_item)

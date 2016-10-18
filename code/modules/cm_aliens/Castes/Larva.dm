@@ -21,10 +21,16 @@
 	away_timer = 300
 	tier = 0  //Larva's don't count towards Pop limits
 	upgrade = -2
+	crit_health = -25
+	gib_chance = 25
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
+
+/mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
+	a_intent = "help" //Forces help intent for all interactions.
+	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
 	..()

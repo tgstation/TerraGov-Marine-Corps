@@ -232,6 +232,7 @@ should all be unique more or less. flags_inventory can double up.
 //flags_inventory
 //Bit flags for the flags_inventory variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 //It also determines a few other things now, and doesn't just apply to clothing. ~N
+#define CANTSTRIP		32768		// Can't be removed by others. Mostly for donor stuff.
 #define BLOCKPHORON 	65536		// Does not get contaminated by phoron.
 
 //SUIT ONLY============================================================================================
@@ -994,3 +995,8 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define ATTACH_CONTINUOUS	4
 #define ATTACH_ACTIVATION	8
 #define ATTACH_PROJECTILE	16
+
+//Game mode related defines.
+#define MODE_INFESTATION	1
+#define MODE_PREDATOR		2
+

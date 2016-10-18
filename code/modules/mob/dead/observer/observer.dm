@@ -70,7 +70,7 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	..()
-	if(ticker && ticker.mode && ticker.mode.pred_round_status)
+	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_PREDATOR)
 		spawn(20)
 			src << "\red This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!"
 			return
