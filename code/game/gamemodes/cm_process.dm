@@ -163,17 +163,18 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	var/numXenosPlanet 	= 0
 	var/numXenosShip 	= 0
 
-	for(var/mob/M in (player_list&living_mob_list)) //Scan through and detect Xenos and Hosts, but only those with clients.
-		if(isXeno(M))
-			switch(M.z)
-				if(3,4) numXenosShip++ //On the ship.
-				else	numXenosPlanet++ //Elsewhere.
-			activeXenos += M
+	for(var/mob/M in player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
+		if(M.stat != DEAD)
+			if(isXeno(M))
+				switch(M.z)
+					if(3,4) numXenosShip++ //On the ship.
+					else	numXenosPlanet++ //Elsewhere.
+				activeXenos += M
 
-		if(ishuman(M) && !isYautja(M))
-			switch(M.z)
-				if(3,4) numHostsShip++ //On the ship.
-				else	numHostsPlanet++ //Elsewhere.
+			if(ishuman(M) && !isYautja(M))
+				switch(M.z)
+					if(3,4) numHostsShip++ //On the ship.
+					else	numHostsPlanet++ //Elsewhere.
 
 	// The announcement to all Xenos. Slightly off for the human ship, accurate otherwise.
 	for(var/mob/M in activeXenos)
@@ -199,9 +200,9 @@ Only checks living mobs with a client attached.
 	var/num_xenos = 0
 	var/area/A
 
-	for(var/mob/M in (player_list&living_mob_list))
+	for(var/mob/M in player_list)
 		A = get_area(M.loc)
-		if(M.z && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
+		if(M.z && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
 			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST))
 				num_humans++
 			else if(isXeno(M))
