@@ -16,7 +16,7 @@
 	flick(anim, animation)
 	if(do_gibs) gibs(loc, viruses, dna)
 
-	cdel(animation,,15)
+	cdel(animation,,13)
 	spawn(15) del(src) //I'll leave this alone for now. Garbage collecting mobs is iffy at the moment.
 
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).

@@ -177,7 +177,7 @@
 			//Something went horribly wrong!
 			usr << "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>"
 			if(new_xeno)
-				cdel(new_xeno)
+				del(new_xeno)
 			return
 
 		//We have to reset the name here after evolving.
@@ -213,7 +213,7 @@
 		empty_gut()
 		new_xeno.visible_message("\green <b> The [new_xeno.name] emerges from the husk of the [src.name].</b>", \
 		"\green <b>You emerge in a greater form from the husk of your old body. For the hive!</b>")
-		cdel(src)
+		del(src)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"
 

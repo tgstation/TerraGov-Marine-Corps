@@ -48,7 +48,7 @@
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <= 0)
 		density = 0
-		cdel(src)
+		del(src)
 
 /obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
@@ -161,7 +161,7 @@
 /obj/effect/alien/weeds/New(pos, node)
 	..()
 	if(istype(loc, /turf/space))
-		cdel(src)
+		del(src)
 		return
 	linked_node = node
 	if(icon_state == "weeds")
@@ -175,7 +175,7 @@
 	var/turf/U = get_turf(src)
 
 	if(istype(U, /turf/space) || isnull(U))
-		cdel(src)
+		del(src)
 		return
 
 	if(!linked_node || (get_dist(linked_node, src) > linked_node.node_range) )
@@ -200,13 +200,13 @@
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			del(src)
 		if(2.0)
 			if(prob(70))
-				cdel(src)
+				del(src)
 		if(3.0)
 			if(prob(50))
-				cdel(src)
+				del(src)
 
 /obj/effect/alien/weeds/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!W || !user || isnull(W))
@@ -231,7 +231,7 @@
 
 /obj/effect/alien/weeds/proc/healthcheck()
 	if(health <= 0)
-		cdel(src)
+		del(src)
 
 /obj/effect/alien/weeds/update_icon()
 	overlays.Cut()
@@ -243,7 +243,7 @@
 	if(on_fire)
 		update_icon()
 		spawn(rand(100,175))
-			cdel(src)
+			del(src)
 
 #undef NODERANGE
 
@@ -274,7 +274,7 @@
 
 /obj/effect/alien/acid/proc/tick()
 	if(!target)
-		cdel(src)
+		del(src)
 
 	ticks += 1
 
@@ -290,8 +290,8 @@
 				for(var/mob/S in target)
 					if(S in target.contents && !isnull(target.loc))
 						S.loc = target.loc
-			cdel(target)
-		cdel(src)
+			del(target)
+		del(src)
 
 	switch(target_strength - ticks)
 		if(6)
@@ -356,7 +356,7 @@
 			user:storedplasma += 1
 			if(isXenoLarva(user,/mob/living/carbon/Xenomorph/Larva))
 				user:amount_grown += 1
-			cdel(src)
+			del(src)
 			return
 		if(GROWING)
 			user << "<span class='warning'>The child is not developed yet.</span>"
@@ -410,7 +410,7 @@
 	if(on_fire)
 		update_icon()
 		spawn(rand(125, 200))
-			cdel(src)
+			del(src)
 
 /obj/effect/alien/egg/attackby(obj/item/W as obj, mob/user as mob)
 	if(health <= 0)
@@ -481,8 +481,8 @@
 		visible_message("<span class='danger'>The [src] suddenly collapses!</span>")
 		if(other && isturf(other.loc))
 			visible_message("<span class='danger'>The [other] suddenly collapses!</span>")
-			cdel(other)
-		cdel(src)
+			del(other)
+		del(src)
 
 /obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
 	return 0
@@ -685,7 +685,7 @@
 	icon_state = "sticky2"
 
 /obj/item/weapon/legcuffs/xeno/dropped()
-	cdel(src)
+	del(src)
 
 /obj/structure/stool/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/aforce = W.force
@@ -698,7 +698,7 @@
 /obj/structure/stool/bed/nest/proc/healthcheck()
 	if(health <= 0)
 		density = 0
-		cdel(src)
+		del(src)
 
 /obj/structure/stool/bed/nest/update_icon()
 	overlays.Cut()
@@ -710,7 +710,7 @@
 	if(on_fire)
 		update_icon()
 		spawn(rand(225, 400))
-			cdel(src)
+			del(src)
 
 /obj/structure/stool/bed/nest/unbuckle(mob/user as mob)
 	if(!buckled_mob)
