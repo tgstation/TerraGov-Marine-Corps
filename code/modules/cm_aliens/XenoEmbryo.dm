@@ -29,7 +29,7 @@
 
 /obj/item/alien_embryo/process()
 	if(!affected_mob) //The mob we were gestating in is straight up gone, we shouldn't be here
-		cdel(src)
+		del(src)
 		return 0
 
 	if(loc != affected_mob) //Our location is not the host
@@ -138,7 +138,7 @@
 		affected_mob.chestburst = 2
 		processing_objects.Remove(src)
 		affected_mob.update_burst()
-		cdel(src)
+		del(src)
 
 /*----------------------------------------
 Proc: RefreshInfectionImage()

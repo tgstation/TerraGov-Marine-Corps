@@ -210,7 +210,7 @@
 
 	New() //Self-deletes after creation & animation
 		spawn(8)
-			cdel(src)
+			del(src)
 			return
 
 /obj/effect/xenomorph/splatterblob
@@ -224,7 +224,7 @@
 
 	New() //Self-deletes after creation & animation
 		spawn(40)
-			cdel(src)
+			del(src)
 			return
 
 /obj/effect/xenomorph/spray
@@ -240,7 +240,7 @@
 	New() //Self-deletes
 		spawn(100 + rand(0, 20))
 			processing_objects.Remove(src)
-			cdel(src)
+			del(src)
 			return
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
@@ -272,7 +272,7 @@
 	var/turf/simulated/T = src.loc
 	if(!istype(T))
 		processing_objects.Remove(src)
-		cdel(src)
+		del(src)
 		return
 
 	for(var/mob/living/carbon/M in loc)
@@ -318,7 +318,7 @@
 
 /obj/effect/xenomorph/acid/proc/tick()
 	if(!target || isnull(target))
-		cdel(src)
+		del(src)
 		return
 
 	if(!src) //Woops, abort
@@ -349,8 +349,8 @@
 				var/turf/T = target
 				T.ChangeTurf(/turf/simulated/floor/plating)
 			else
-				cdel(target)
-		cdel(src)
+				del(target)
+		del(src)
 		return
 
 	switch(target_strength - ticks)

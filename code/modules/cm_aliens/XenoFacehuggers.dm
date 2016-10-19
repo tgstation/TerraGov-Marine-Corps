@@ -43,7 +43,7 @@ var/const/MAX_ACTIVE_TIME = 200
 				count++
 		if(count > 2) //Was 5, our rules got much tighter
 			visible_message("<span class='warning'>The facehugger is furiously cannibalized by the nearby horde of other ones!</span>")
-			cdel(src)
+			del(src)
 
 //Can be picked up by aliens
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob)
@@ -74,7 +74,7 @@ var/const/MAX_ACTIVE_TIME = 200
 				C.huggers_cur++
 				user.visible_message("<span class='warning'>\The [user] scoops up the facehugger.</span>", \
 				"<span class='notice'>You scoop up the facehugger and carry it for safekeeping. Now sheltering: [C.huggers_cur] / [C.huggers_max].</span>")
-				cdel(src)
+				del(src)
 			else
 				user << "<span class='warning'>This [src.name] looks too unhealthy.</span>"
 			return
@@ -351,7 +351,7 @@ var/const/MAX_ACTIVE_TIME = 200
 			M.drop_from_inventory(src)
 			M.update_icons()
 		spawn(0)
-			cdel(src)
+			del(src)
 
 /proc/CanHug(var/mob/living/M)
 
