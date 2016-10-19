@@ -28,7 +28,7 @@
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		for(var/obj/effect/xenomorph/acid/A in src.loc)
-			if(A.target == src)
+			if(A.acid_t == src)
 				user << "You can't get near that, it's melting!"
 				return
 

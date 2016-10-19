@@ -163,7 +163,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	var/numXenosPlanet 	= 0
 	var/numXenosShip 	= 0
 
-	for(var/mob/M in living_mob_list) //Scan through and detect Xenos and Hosts
+	for(var/mob/M in (player_list&living_mob_list)) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(isXeno(M))
 			switch(M.z)
 				if(3,4) numXenosShip++ //On the ship.
@@ -199,7 +199,7 @@ Only checks living mobs with a client attached.
 	var/num_xenos = 0
 	var/area/A
 
-	for(var/mob/M in living_mob_list)
+	for(var/mob/M in (player_list&living_mob_list))
 		A = get_area(M.loc)
 		if(M.z && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
 			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST))

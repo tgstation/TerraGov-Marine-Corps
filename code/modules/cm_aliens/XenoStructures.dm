@@ -247,7 +247,7 @@
 
 #undef NODERANGE
 
-/*
+/* //It turns out this is cloned in xenoprocs.dm. Wonderful.
  * Acid
  */
 /obj/effect/alien/acid
@@ -258,52 +258,41 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	var/atom/target
 	var/ticks = 0
-	var/target_strength = 0
 
-/obj/effect/alien/acid/New(loc, target)
+/obj/effect/alien/acid/New(loc, acid_t)
 	..(loc)
-	src.target = target
+	world << "acid was SPAWNEDDDs"
+	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
+	tick(acid_t,strength_t)
 
-	if(isturf(target)) // Turf take twice as long to take down.
-		target_strength = 8
-	else
-		target_strength = 4
-	tick()
+/obj/effect/alien/acid/proc/tick(atom/acid_t,strength_t)
+	set waitfor = 0
+	if(!acid_t || !acid_t.loc)
+		cdel(src)
+		return
 
-/obj/effect/alien/acid/proc/tick()
-	if(!target)
-		del(src)
+	if(++ticks >= strength_t)
+		visible_message("<span class='warning'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 
-	ticks += 1
-
-	if(ticks >= target_strength)
-
-		visible_message("\green <B>[src.target] collapses under its own weight into a puddle of goop and undigested debris!</B>")
-
-		if(istype(target, /turf/simulated/wall)) // I hate turf code.
-			var/turf/simulated/wall/W = target
+		if(istype(acid_t, /turf/simulated/wall)) // I hate turf code.
+			var/turf/simulated/wall/W = acid_t
 			W.dismantle_wall(1)
 		else
-			if(target.contents) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/mob/S in target)
-					if(S in target.contents && !isnull(target.loc))
-						S.loc = target.loc
-			del(target)
-		del(src)
+			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
+				for(var/mob/M in acid_t.contents)
+					if(acid_t.loc) M.loc = acid_t.loc
+			del(acid_t)
+		cdel(src)
+		return
 
-	switch(target_strength - ticks)
-		if(6)
-			visible_message("\green <B>[src.target] is holding up against the acid!</B>")
-		if(4)
-			visible_message("\green <B>[src.target]\s structure is being melted by the acid!</B>")
-		if(2)
-			visible_message("\green <B>[src.target] is struggling to withstand the acid!</B>")
-		if(0 to 1)
-			visible_message("\green <B>[src.target] begins to crumble under the acid!</B>")
-	spawn(rand(150, 200))
-		tick()
+	switch(strength_t - ticks)
+		if(6) visible_message("<span class='warning'>[acid_t] is holding up against the acid!</span>")
+		if(4) visible_message("<span class='warning'>[acid_t]\s structure is being melted by the acid!</span>")
+		if(2) visible_message("<span class='warning'>[acid_t] is struggling to withstand the acid!</span>")
+		if(0 to 1) visible_message("<span class='warning'>[acid_t] begins to crumble under the acid!</span>")
+	sleep(rand(150, 200))
+	.()
 
 /*
  * Egg
