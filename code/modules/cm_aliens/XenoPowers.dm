@@ -309,14 +309,14 @@
 		return
 
 	if(!O in oview(1))
-		src << "\green \The [O] is too far away."
+		src << "<span class='warning'>\The [O] is too far away.</span>"
 		return
 
 	//OBJ CHECK
 	if(isobj(O))
 		var/obj/I = O
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
-			src << "\green You cannot dissolve \the [I]." // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
+			src << "<span class='warning'>You cannot dissolve \the [I].</span>" // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
 
 	//TURF CHECK
@@ -324,13 +324,13 @@
 		var/turf/T = O
 		//R WALL
 		if(istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle) || istype(T, /turf/simulated/floor) || istype(T,/turf/simulated/mineral) || istype(T,/turf/unsimulated/wall/gm) || istype(T,/turf/simulated/wall/r_wall/unmeltable))
-			src << "\green You cannot dissolve \the [T]."
+			src << "<span class='warning'>You cannot dissolve \the [T].</span>"
 			return
 		if(istype(T, /turf/simulated/wall/r_wall) && !istype(src,/mob/living/carbon/Xenomorph/Boiler))
-			src << "\green This [T.name] is too tough to be melted by your weak acid."
+			src << "<span class='warning'>This [T.name] is too tough to be melted by your weak acid.</span>"
 			return
 	else
-		src << "\green You cannot dissolve \the [O]."
+		src << "<span class='warning'>You cannot dissolve \the [O].</span>"
 		return
 
 	if(isnull(O) || isnull(get_turf(O))) //Some logic.
@@ -339,26 +339,26 @@
 	if(isXenoSentinel(src) || isXenoDrone(src)) //Weak level
 		if(!check_plasma(75))
 			return
-		var/obj/effect/xenomorph/acid/weak/A = new (get_turf(O), O)
+		var/obj/effect/xenomorph/acid/weak/A = new(get_turf(O), O)
 		A.layer = O:layer + 0.6
 
 	else if(isXenoBoiler(src)) //Strong level
 		if(!check_plasma(200))
 			return
-		var/obj/effect/xenomorph/acid/strong/A = new (get_turf(O), O)
+		var/obj/effect/xenomorph/acid/strong/A = new(get_turf(O), O)
 		A.layer = O:layer + 0.6
 
 	else
 		if(!check_plasma(100))
 			return
-		var/obj/effect/xenomorph/acid/A = new (get_turf(O), O)
+		var/obj/effect/xenomorph/acid/A = new(get_turf(O), O)
 		A.layer = O:layer + 0.6
 
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
-		src.attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
-	visible_message("\green <B>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>", \
-	"\green <B>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
+		attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
+	visible_message("<span class='warning'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
+	"<span class='xenonotice'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()
 	set name = "Permit/Disallow Slashing"

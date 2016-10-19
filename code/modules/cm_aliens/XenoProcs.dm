@@ -290,80 +290,57 @@
 	anchored = 1
 	layer = 5 //Should be on top of most things
 	unacidable = 1
-
-	var/atom/target
+	var/atom/acid_t
 	var/ticks = 0
-	var/target_strength = 0
-	var/acid_strength = 100 //100% speed, normal
+	var/acid_strength = 1 //100% speed, normal
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 250 //250% normal speed
+	acid_strength = 2.5 //250% normal speed
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 40 //20% normal speed
+	acid_strength = 0.4 //20% normal speed
 
 /obj/effect/xenomorph/acid/New(loc, target)
 	..(loc)
-	target = target
+	acid_t = target
+	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
+	tick(strength_t)
 
-	if(isturf(target)) // Turf take twice as long to take down.
-		target_strength = 8
-	else
-		target_strength = 4
-	tick()
-
-/obj/effect/xenomorph/acid/proc/tick()
-	if(!target || isnull(target))
-		del(src)
+/obj/effect/xenomorph/acid/proc/tick(strength_t)
+	set waitfor = 0
+	if(!acid_t || !acid_t.loc)
+		cdel(src)
 		return
+	if(++ticks >= strength_t)
+		visible_message("<span class='warning'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 
-	if(!src) //Woops, abort
-		return
-
-	if(isturf(target.loc) && loc != target.loc)
-		loc = target.loc
-
-	var/tick_timer = rand(200,300) * acid_strength / 100 //Acid strength is just a percentage of time between ticks
-
-	ticks += 1
-
-	if(ticks >= target_strength)
-
-		for(var/mob/O in hearers(src, null))
-			O.show_message("\green <B>[src.target] collapses under its own weight into a puddle of goop and undigested debris!</B>", 1)
-
-		if(istype(target, /turf/simulated/wall)) // I hate turf code.
-			var/turf/simulated/wall/W = target
-			W.dismantle_wall(1)
-		else
-			if(target.contents) //Hopefully won't auto-delete things inside melted stuff..
-				for(var/atom/movable/S in target)
-					if(S in target.contents && !isnull(get_turf(target)))
-						S.loc = get_turf(target)
-
-			if(istype(target,/turf)) //We don't want space tiles appearing everywhere... but this sucks!
-				var/turf/T = target
-				T.ChangeTurf(/turf/simulated/floor/plating)
+		if(istype(acid_t, /turf))
+			if(istype(acid_t, /turf/simulated/wall))
+				var/turf/simulated/wall/W = acid_t
+				W.dismantle_wall(1)
 			else
-				del(target)
-		del(src)
+				var/turf/T = acid_t
+				T.ChangeTurf(/turf/simulated/floor/plating)
+		else
+			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
+				for(var/mob/M in acid_t.contents)
+					if(acid_t.loc) M.loc = acid_t.loc
+			del(acid_t)
+		cdel(src)
 		return
 
-	switch(target_strength - ticks)
-		if(6)
-			visible_message("\green <B>[src.target] is holding up against the acid!</B>")
-		if(4)
-			visible_message("\green <B>[src.target]\s structure is being melted by the acid!</B>")
-		if(2)
-			visible_message("\green <B>[src.target] is struggling to withstand the acid!</B>")
-		if(0 to 1)
-			visible_message("\green <B>[src.target] begins to crumble under the acid!</B>")
-	spawn(tick_timer)
-		tick()
+	switch(strength_t - ticks)
+		if(6) visible_message("<span class='warning'>[acid_t] is holding up against the acid!</span>")
+		if(4) visible_message("<span class='warning'>[acid_t]\s structure is being melted by the acid!</span>")
+		if(2) visible_message("<span class='warning'>[acid_t] is struggling to withstand the acid!</span>")
+		if(0 to 1) visible_message("<span class='warning'>[acid_t] begins to crumble under the acid!</span>")
+
+	sleep(rand(200,300) * acid_strength)
+	.()
 
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
 //Pounce, charge both use throw_at, so we need extra code to do stuff rather than just push people aside.
