@@ -1,5 +1,5 @@
 /datum/game_mode/bigred
-	name = "Big-Red"
+	name = "Solaris Ridge"
 	config_tag = "Big-Red"
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
@@ -18,7 +18,7 @@
 	return 1
 
 /datum/game_mode/bigred/announce()
-	world << "<span class='round_header'>The current map is - Big-Red!</span>"
+	world << "<span class='round_header'>The current map is - Solaris Ridge!</span>"
 
 /datum/game_mode/bigred/send_intercept()
 	return 1
@@ -46,7 +46,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("We've lost contact with one of Weyland-Yutani's research facilities on LV-224 AKA Big-Red. The USS Sulaco has been dispatched to assist.", "USS Sulaco")
+		command_announcement.Announce("We've lost contact with the Weyland-Yutani's research facility, Solaris Ridge. The USS Sulaco has been dispatched to assist.", "USS Sulaco")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

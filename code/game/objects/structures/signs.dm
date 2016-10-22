@@ -338,3 +338,20 @@
 	name = "\improper Warning: Critical System"
 	desc = "A warning sign that warns of facility critical computer systems"
 	icon_state = "sign_computer"
+
+/obj/structure/sign/safety/hydro
+	name = "\improper Hydrophonics"
+	desc = "A sign that denotes the presence of a hydrophonic facility"
+	icon_state = "sign_food_fridge"
+
+/obj/structure/sign/safety/fridge
+	name = "\improper Refridgerated Storage"
+	desc = "A sign that denotes the presence of a refridgeration facility"
+	icon_state = "sign_cold_storage"
+
+/obj/structure/sign/safety/radio
+	name = "\improper Intercommunication System"
+	desc = "A sign notifying the presence of a intercomm system."
+	icon_state = "sign_intercomm"
+
+

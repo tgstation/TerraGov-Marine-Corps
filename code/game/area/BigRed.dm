@@ -1,4 +1,12 @@
 //Areas for BigRed - Minijar
+/area/bigred/ground/
+	name = "ground"
+	icon_state = "blue"
+
+/area/bigred/uground/
+	name = "uground"
+	icon_state = "blue"
+
 /area/bigred/ground/ship
 	name = "\improper crashed vessel"
 	icon_state = "syndie-ship"
@@ -215,3 +223,38 @@
 	name = "\improper Corporate Saferoom"
 	icon_state = "vault"
 
+/area/bigred/uground/lambda_labs/airlock
+	name = "\improper Lambda Labs Airlock"
+	icon_state = "decontamination"
+
+/area/bigred/uground/lambda_labs/lobby
+	name = "\improper Lambda Labs Reception"
+	icon_state = "bluenew"
+
+/area/bigred/uground/lambda_labs/office
+	name = "\improper Lambda Labs Administration"
+	icon_state = "heads_quarters"
+
+/area/bigred/uground/lambda_labs/laser_lab
+	name = "\improper Lambda Laser Laboratory"
+	icon_state = "toxmisc"
+
+/area/bigred/uground/lambda_labs/hydro_office
+	name = "\improper Lambda Labs Bio-Dome"
+	icon_state = "hydro"
+
+/area/bigred/uground/lambda_labs/hydro_lab
+	name = "\improper Lambda Labs Hydrophonics"
+	icon_state = "garden"
+
+/area/bigred/uground/lambda_labs/fridge
+	name = "\improper Lambda Labs Refridgeration"
+	icon_state = "kitchen"
+
+/area/bigred/uground/lambda_labs/maintenance
+	name = "\improper Unknown Area"
+	icon_state = "yellow"
+
+/area/bigred/uground/lambda_labs/maintenance2
+	name = "\improper Unknown Area"
+	icon_state = "blue"

@@ -166,7 +166,8 @@
 /obj/item/clothing/shoes/veteran/PMC
 	name = "polished shoes"
 	desc = "The height of fashion, but these look to be woven with protective fiber."
-	icon_state = "laceups"
+	icon_state = "jackboots"
+	item_state = "jackboots"
 	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
