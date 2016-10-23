@@ -18,7 +18,7 @@
 		if(!S.melee_damage_upper)
 			S.emote("[S.friendly] [src]")
 		else
-			visible_message("<span class'danger'>[S] [S.attacktext] [src]!</span>")
+			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>")
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
 			adjustBruteLoss(damage)
 			S.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
