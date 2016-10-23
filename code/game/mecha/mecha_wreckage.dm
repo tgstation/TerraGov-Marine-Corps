@@ -75,6 +75,12 @@
 		..()
 	return
 
+/obj/effect/decal/mecha_wreckage/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+    if(M.a_intent != "help")
+        playsound(src, 'sound/effects/metal_crash.ogg', 100, 1)
+        M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>You slice [src] apart!</span>")
+        robogibs(src)
+        cdel(src)
 
 /obj/effect/decal/mecha_wreckage/gygax
 	name = "Gygax wreckage"

@@ -41,8 +41,8 @@
 					user << "\blue You dissasembled the girder!"
 					dismantle()
 			else if(!anchored)
-				if(istype(src.loc, /turf/simulated/shuttle/floor) || istype(get_area(src.loc),/area/sulaco/hangar))
-					user << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+				if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
+					user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue Now securing the girder"
@@ -90,8 +90,8 @@
 
 		else if(istype(W, /obj/item/stack/sheet))
 
-			if(istype(src.loc, /turf/simulated/shuttle/floor) || istype(get_area(src.loc),/area/sulaco/hangar))
-				user << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+			if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
+				user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 				return
 
 			var/obj/item/stack/sheet/S = W
