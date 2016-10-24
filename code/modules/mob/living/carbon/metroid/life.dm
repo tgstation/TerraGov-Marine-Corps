@@ -366,7 +366,7 @@
 									Target = C
 									break
 
-							if(isalien(C) || ismonkey(C))
+							if(isXeno(C) || ismonkey(C))
 								Target = C
 								break
 

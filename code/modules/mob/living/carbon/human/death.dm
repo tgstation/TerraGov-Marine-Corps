@@ -33,14 +33,14 @@
 	if(species) species.handle_death(src)
 
 
-	callHook("death", list(src, gibbed))
+	//callHook("death", list(src, gibbed))
 
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 80, 1, 1)
 
-	if(ticker && ticker.mode)
-		sql_report_death(src)
-		ticker.mode.check_win()
+	//if(ticker && ticker.mode)
+	//	sql_report_death(src)
+	//	ticker.mode.check_win()
 //		if(istype(ticker.mode,/datum/game_mode/heist))
 //			vox_kills++ //Bad vox. Shouldn't be killing humans.
 	if(turret_control)

@@ -39,7 +39,7 @@
 		/mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger,
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/toggle_auras,
-		/mob/living/carbon/Xenomorph/proc/secure_host
+		///mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
 

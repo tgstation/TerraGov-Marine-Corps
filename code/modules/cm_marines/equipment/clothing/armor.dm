@@ -50,6 +50,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	siemens_coefficient = 0.6
+	w_class = 5
 	allowed = list(/obj/item/weapon/gun)//Guns only.
 
 /obj/item/clothing/suit/armor/vest
@@ -84,7 +85,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch)
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/storage/belt/gun/m4a3,
+		/obj/item/weapon/storage/belt/gun/m44)
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
@@ -142,16 +146,20 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/storage/bible,
-		/obj/item/weapon/claymore/mercsword/machete,
+		///obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/flamethrower,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch)
+		/obj/item/weapon/storage/sparepouch,
+		/obj/item/weapon/storage/backpack/gun/machete,
+		/obj/item/weapon/storage/belt/gun/m4a3,
+		/obj/item/weapon/storage/belt/gun/m44)
 
-	var/brightness_on = 4 //Shitty attachable poclet light. Gonna need a real flashlight to see well
+	var/brightness_on = 5 //Average attachable pocket light
 	var/armor_overlays[]
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
+	w_class = 5
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
@@ -169,7 +177,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/grenade,
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/storage/sparepouch)
+		/obj/item/weapon/storage/sparepouch,)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
@@ -335,6 +343,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+
+/obj/item/clothing/suit/space/compression
+	name = "\improper MK.50 compression suit"
+	desc = "A heavy, bulky civilian space suit, fitted with armored plates. Commonly seen in the hands of mercenaries, explorers, scavengers, and researchers."
+	item_state = "compression"
+	icon_state = "compression"
+	armor = list(melee = 50, bullet = 55, laser = 65,energy = 70, bomb = 65, bio = 100, rad = 70)
+	unacidable = 1
+
 
 //=========================//ARMOR PROCS\\===============================\\
 //=======================================================================\\

@@ -25,7 +25,20 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), slot_glasses)
 		spawn(10)
 			H << "\red You are a Military Police Officer!"
+			H << "You are held by a higher standard and are required to obey not only the server rules but the <a href='http://www.colonial-marines.com/wiki/Marine_Law'>Marine Law</a>."
+			H << "Failure to do so may result in a job ban or server ban."
 			H << "Your primary job is to maintain peace and stability on board the Sulaco."
 			H << "Marines can get rowdy after a few weeks of cryosleep!"
 			H << "In addition, you are tasked with the security of high-ranking personnel. Keep them safe!"
 		return 1
+
+/datum/job/military_police/getTotalPositions()
+
+	var/count = 0
+	for(var/mob/M in player_list)
+		if(ishuman(M) && M.mind && !(M.mind.special_role))
+			count++
+
+	var/positions = max(4, min(round(count/12), 6))
+
+	return positions

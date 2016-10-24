@@ -310,13 +310,13 @@
 
 /obj/mecha/proc/mechturn(direction)
 	dir = direction
-	playsound(src,'sound/mecha/mechturn.ogg',40,1)
+	pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 40, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 40, 1))
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
-		playsound(src,'sound/mecha/mechstep.ogg',40,1)
+		pick(playsound(src.loc, 'sound/mecha/powerloader_step.ogg', 40, 1), playsound(src.loc, 'sound/mecha/powerloader_step2.ogg', 40, 1))
 	return result
 
 

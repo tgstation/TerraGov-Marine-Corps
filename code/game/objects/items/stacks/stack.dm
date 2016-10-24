@@ -123,7 +123,7 @@
 				usr << "\red You haven't got enough [src] to build \the [R.title]!"
 			return
 		if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-			usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+			usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 			return
 		if (R.one_per_turf && (locate(R.result_type) in usr.loc))
 			usr << "\red There is another [R.title] here!"

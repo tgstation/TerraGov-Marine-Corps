@@ -62,7 +62,7 @@
 
 	var/emergency_issued = 0
 
-	var/explosion_power = 16 //Previously 8.  This should take out the rear of the Sulaco if they let it explode like Idiots.
+	var/explosion_power = 10 //Previously 8.  This should take out the rear of the Sulaco if they let it explode like Idiots.
 
 	var/lastwarning = 0                        // Time in 1/10th of seconds since the last sent warning
 	var/power = 0
@@ -110,7 +110,7 @@
 /obj/machinery/power/supermatter/proc/explode()
 	anchored = 1
 	grav_pulling = 1
-	spawn(100)
+	spawn(200) // Breaking apart and sucking everything in before the final explosion. Increasing this might decrease lag since the explosion doesn't need to destroy as much
 		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
 		del src
 		return
@@ -158,7 +158,7 @@
 
 		if(damage > explosion_point)
 			for(var/mob/living/mob in living_mob_list)
-				if(loc.z == mob.loc.z)
+				if( (src.loc && mob.loc) && ( loc.z == mob.loc.z ))
 					if(istype(mob, /mob/living/carbon/human))
 						//Hilariously enough, running into a closet should make you get hit the hardest.
 						var/mob/living/carbon/human/H = mob
@@ -243,13 +243,12 @@
 
 		//adjusted range so that a power of 300 (pretty high) results in 8 tiles, roughly the distance from the core to the engine monitoring room.
 
-		for(var/mob/living/l in range(src, round(sqrt(power / 5))))
-			var/rads = 0
-			if(l.loc == src.loc) rads = (power/10) //SOMEHOW mobs were on the same turf as the SM, so just give rads like they are on the next tile
-			else rads = (power / 10) * sqrt( 1 / get_dist(l, src) )
+		for(var/mob/living/l in range(src, round(sqrt(power / 2))))
+			var/radius = max(get_dist(l, src), 1)
+			var/rads = (power / 10) * ( 1 / (radius**2) )
 			l.apply_effect(rads, IRRADIATE)
 
-			power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
+		power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
 	return 1
 

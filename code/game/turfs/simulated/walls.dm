@@ -154,7 +154,8 @@
 		else
 			O.loc = src
 
-	ChangeTurf(/turf/simulated/floor/plating)
+	if(oldTurf != "") ChangeTurf(text2path(oldTurf))
+	else ChangeTurf(/turf/simulated/floor/plating)
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)

@@ -12,6 +12,7 @@
 	var/toggleable = 0
 	var/active = 1
 	var/obj/screen/overlay = null
+	flags_inventory = COVEREYES
 	flags_armor_protection = EYES
 
 /obj/item/clothing/glasses/attack_self(mob/user)
@@ -28,32 +29,31 @@
 			usr << "You activate the optical matrix on the [src]."
 
 /obj/item/clothing/glasses/meson
-	name = "Optical Meson Scanner"
-	desc = "Used for seeing walls, floors, and stuff through anything."
+	name = "optical meson scanner"
+	desc = "Used for shield the user's eyes from harmful electromagnetic emissions, can also be used as safety googles."
 	icon_state = "meson"
 	item_state = "glasses"
 	icon_action_button = "action_meson" //This doesn't actually matter, the action button is generated from the current icon_state. But, this is the only way to get it to show up.
 	origin_tech = "magnets=2;engineering=2"
 	toggleable = 1
-	vision_flags = SEE_TURFS
 
 /obj/item/clothing/glasses/meson/New()
 	..()
 	overlay = global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
-	name = "prescription mesons"
-	desc = "Optical Meson Scanner with prescription lenses."
+	name = "prescription optical meson scanner"
+	desc = "Used for shield the user's eyes from harmful electromagnetic emissions, can also be used as safety googles. Contains prescription lenses."
 	prescription = 1
 
 /obj/item/clothing/glasses/science
-	name = "Science Goggles"
-	desc = "The goggles do nothing!"
+	name = "science goggles"
+	desc = "The goggles do nothing! Can be used as safety googles."
 	icon_state = "purple"
 	item_state = "glasses"
 
 /obj/item/clothing/glasses/night
-	name = "Night Vision Goggles"
+	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"

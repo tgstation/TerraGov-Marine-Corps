@@ -5,11 +5,6 @@
 		return 1
 	return 0
 
-/proc/isalien(A)
-	if(istype(A, /mob/living/carbon/Xenomorph))
-		return 1
-	return 0
-
 /proc/ismonkey(A)
 	if(A && istype(A, /mob/living/carbon/monkey))
 		return 1
@@ -121,8 +116,58 @@ proc/isXeno(A) //Xenomorph Hud Test APOPHIS 22MAY2015
 		return 1
 	return 0
 
+proc/isXenoBoiler(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Boiler))
+		return 1
+	return 0
+
+proc/isXenoCarrier(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Carrier))
+		return 1
+	return 0
+
+proc/isXenoCrusher(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+		return 1
+	return 0
+
+proc/isXenoDrone(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Drone))
+		return 1
+	return 0
+
+proc/isXenoHivelord(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Hivelord))
+		return 1
+	return 0
+
+proc/isXenoHunter(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Hunter))
+		return 1
+	return 0
+
 proc/isXenoLarva(A) //Xenomorph Larva Hud Test APOPHIS 22MAY2015
 	if(istype(A, /mob/living/carbon/Xenomorph/Larva))
+		return 1
+	return 0
+
+proc/isXenoQueen(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Queen))
+		return 1
+	return 0
+
+proc/isXenoRavager(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Ravager))
+		return 1
+	return 0
+
+proc/isXenoRunner(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Runner))
+		return 1
+	return 0
+
+proc/isXenoSentinel(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Sentinel))
 		return 1
 	return 0
 
@@ -132,6 +177,11 @@ proc/isYautja(A)
 	if(!A:species) return 0
 	if(A:species.name != "Yautja") return 0
 	return 1
+
+proc/isHellhound(A)
+	if(istype(A, /mob/living/carbon/hellhound))
+		return 1
+	return 0
 
 proc/hasorgans(A)
 	return ishuman(A)
@@ -419,7 +469,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src) || isalien(src))
+	if(ishuman(src) || isbrain(src) || isXeno(src))
 		switch(input)
 			if("help","disarm","grab","hurt")
 				a_intent = input

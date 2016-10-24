@@ -9,7 +9,7 @@
 
 /obj/effect/decal/remains/xeno
 	name = "remains"
-	desc = "They look like the remains of something... alien. They have a strange aura about them."
+	desc = "They look like the remains of some horrible creature. They are not pleasant to look at..."
 	gender = PLURAL
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remainsxeno"

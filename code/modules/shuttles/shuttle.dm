@@ -12,7 +12,13 @@
 
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
 
-	var/recharging = 0
+	//Important note: Shuttle code is a mess, recharge vars will only work fully on ferry type shuttles, aka everything but specops snowflake
+	var/recharge_time = SHUTTLE_RECHARGE //Default recharge time attached to the shuttle itself
+	var/recharging = 0 //How long until the shuttle has recharged and is ready to move again. Now a countdown instead of a boolean. Do NOT set this to a decimal
+
+	var/can_be_optimized = 0 //Can we optimize the flight of this ship ?
+	var/transit_optimized = 0 //Has the transit itself been optimized ?
+
 	var/iselevator = 0 //Used to remove some shuttle related procs and texts to make it compatible with elevators
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
@@ -36,12 +42,19 @@
 		playsound(S.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
 
 	moving_status = SHUTTLE_WARMUP
-	recharging = 1 // Prevent the shuttle from moving again until it finishes recharging
+	if(transit_optimized)
+		recharging = round(recharge_time*0.75) //Optimized flight plan means less recharge time
+	else
+		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
+			recharging = 0
 			return	//someone canceled the launch
 
-		arrive_time = world.time + travel_time*10
+		if(transit_optimized)
+			arrive_time = world.time + travel_time*10*0.5
+		else
+			arrive_time = world.time + travel_time*10
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 		spawn(1)
@@ -61,13 +74,13 @@
 			open_doors(destination)
 		moving_status = SHUTTLE_IDLE
 
+		//Simple, cheap ticker
+		if(recharge_time)
+			while(recharging)
+				recharging--
+				sleep(1)
 
-		if(!iselevator)
-			spawn(1200) // 2 minutes in deciseconds
-				recharging = 0
-		if(iselevator)
-			spawn(150)
-				recharging = 0
+		transit_optimized = 0 //De-optimize the flight plans
 
 /* Pseudo-code. Auto-bolt shuttle airlocks when in motion.
 /datum/shuttle/proc/toggle_doors(var/close_doors, var/bolt_doors, var/area/whatArea)

@@ -70,7 +70,7 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	..()
-	if(ticker && ticker.mode && ticker.mode.pred_round_status)
+	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_PREDATOR)
 		spawn(20)
 			src << "\red This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!"
 			return
@@ -314,20 +314,35 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/target = mobs[input]
 	ManualFollow(target)
 
-// /mob/dead/observer/verb/follow_pred()
-// 	set category = "Ghost"
-// 	set name = "Follow Predator" // "Haunt"
-// 	set desc = "Follow a living Predator."
-//
-// 	var/list/mobs = getpreds()
-// 	var/input = input("Please select a living Predator:", "Haunt", null, null) as null|anything in mobs
-//
-// 	if(mobs.len == 0)
-// 		usr << "\red There aren't any living Predators."
-// 		return
-//
-// 	var/mob/target = mobs[input]
-// 	ManualFollow(target)
+/mob/dead/observer/verb/follow_pred()
+	set category = "Ghost"
+	set name = "Follow Predator" // "Haunt"
+	set desc = "Follow a living Predator."
+
+	var/list/mobs = getpreds()
+	var/input = input("Please select a living Predator:", "Haunt", null, null) as null|anything in mobs
+
+	if(mobs.len == 0)
+		usr << "\red There aren't any living Predators."
+		return
+
+	var/mob/target = mobs[input]
+	ManualFollow(target)
+
+/mob/dead/observer/verb/follow_human()
+	set category = "Ghost"
+	set name = "Follow Human" // "Haunt"
+	set desc = "Follow a living Human."
+
+	var/list/mobs = gethumans()
+	var/input = input("Please select a living Human:", "Haunt", null, null) as null|anything in mobs
+
+	if(mobs.len == 0)
+		usr << "\red There aren't any living Humans."
+		return
+
+	var/mob/target = mobs[input]
+	ManualFollow(target)
 
 // This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(var/atom/movable/target)

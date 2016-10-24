@@ -31,12 +31,14 @@
 					/obj/item/ammo_magazine/shotgun/buckshot = 8,
 
 					/obj/item/weapon/combat_knife = 20,
-					/obj/item/weapon/storage/belt/knifepouch = 5,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/weapon/storage/box/m94 = 5,
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/device/radio/headset/msulaco = 5,
 					/obj/item/weapon/storage/belt/marine = 5,
+					/obj/item/weapon/storage/belt/knifepouch = 5,
+					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
+					/obj/item/weapon/storage/backpack/gun/m37 = 5,
 					/obj/item/clothing/shoes/marine = 5,
 					/obj/item/clothing/under/marine = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
@@ -70,9 +72,9 @@
 					/obj/item/clothing/tie/storage/webbing = 3,
 					/obj/item/clothing/tie/storage/brown_vest = 0,
 					/obj/item/clothing/tie/holster = 0,
-					/obj/item/weapon/storage/belt/gun/m4a3 = 2,
-					/obj/item/weapon/storage/belt/gun/m44 = 2,
-					/obj/item/weapon/storage/belt/gun/m39 = 2,
+					/obj/item/weapon/storage/belt/gun/m4a3 = 5,
+					/obj/item/weapon/storage/belt/gun/m44 = 3,
+					/obj/item/weapon/storage/belt/gun/m39 = 3,
 					/obj/item/weapon/gun/pistol/m4a3 = 5,
 					/obj/item/weapon/gun/pistol/m1911 = 1,
 					/obj/item/weapon/gun/revolver/m44 = 5,
@@ -120,7 +122,8 @@
 	name = "\improper ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
 	products = list(
-					/obj/item/weapon/claymore/mercsword/machete = 5,
+					///obj/item/weapon/claymore/mercsword/machete = 5,
+					/obj/item/weapon/storage/backpack/gun/machete/full = 6,
 					/obj/item/ammo_magazine/pistol = 10,
 					/obj/item/ammo_magazine/pistol/hp = 0,
 					/obj/item/ammo_magazine/pistol/ap = 0,

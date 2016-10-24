@@ -375,7 +375,9 @@ Defined in setup.dm.
 	icon_state = "flashlight"
 	light_mod = 7
 	slot = "rail"
-	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE
+	icon_action_button = 1
+	action_button_name = "Toggle Rail Flashlight"
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
 		if(target)
@@ -441,16 +443,16 @@ Defined in setup.dm.
 
 /obj/item/attachable/quickfire
 	name = "quickfire adapter"
-	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. \nHowever, greatly reduces accuracy, increases weapon recoil, and slightly adds to scatter."
+	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. \nHowever, it also reduces accuracy and the number of bullets fired on burst."
 	slot = "rail"
 	icon_state = "autoloader"
 
 	New()
 		..()
 		accuracy_mod = -config.med_hit_accuracy_mult
-		recoil_mod = config.min_recoil_value
-		scatter_mod = config.low_scatter_value
-		delay_mod = -config.low_fire_delay
+		scatter_mod = config.med_scatter_value
+		delay_mod = -config.mlow_fire_delay
+		burst_mod = -config.min_burst_value
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"

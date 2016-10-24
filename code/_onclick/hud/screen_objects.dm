@@ -475,6 +475,16 @@
 			if(iscarbon(usr))
 				G.activate_attachment()
 
+		if("Toggle Rail Flashlight")
+			var/obj/item/weapon/gun/G = usr.equipped()
+			if(!istype(G,/obj/item/weapon/gun))
+				usr << "You need your gun in your active hand to do that!"
+				return
+			if(iscarbon(usr))
+				var/obj/item/attachable/flashlight/FL = G.rail
+				if(FL)
+					FL.activate_attachment(G, usr)
+
 		if("Eject magazine")
 			var/obj/item/weapon/gun/G = usr.equipped()
 			if(!istype(G,/obj/item/weapon/gun))

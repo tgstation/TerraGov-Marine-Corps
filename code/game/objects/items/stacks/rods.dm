@@ -43,7 +43,7 @@
 	if(!istype(user.loc,/turf)) return 0
 
 	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
 	if (locate(/obj/structure/grille, usr.loc))

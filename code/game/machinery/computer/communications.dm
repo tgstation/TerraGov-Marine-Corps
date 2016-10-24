@@ -210,7 +210,7 @@
 			for(var/mob/living/M in living_mob_list)
 				if(ishuman(M) && M.stat != DEAD && M.client)
 					count_humans++
-				if(isalien(M) && M.stat != DEAD && M.client)
+				if(isXeno(M) && M.stat != DEAD && M.client)
 					count_aliens++
 
 			if(count_aliens < round(count_humans / 2))
@@ -386,7 +386,7 @@
 				for(var/mob/living/M in player_list)
 					if(ishuman(M) && M.stat != DEAD)
 						count_humans++
-					if(isalien(M) && M.stat != DEAD)
+					if(isXeno(M) && M.stat != DEAD)
 						count_aliens++
 
 				if(emergency_shuttle.location())

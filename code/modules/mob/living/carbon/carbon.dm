@@ -49,15 +49,15 @@
 						stomach_contents.Remove(A)
 					src.gib()
 
-/mob/living/carbon/gib()
+/mob/living/carbon/gib(anim, do_gibs, f_icon)
 	for(var/mob/M in src)
-		if(M in src.stomach_contents)
-			src.stomach_contents.Remove(M)
-		M.loc = src.loc
+		if(M in stomach_contents)
+			stomach_contents -= M
+		M.loc = loc
 		for(var/mob/N in viewers(src, null))
-			if(N.client)
-				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
-	. = ..(null,1)
+			if(N.client) N.show_message(text("<span class='danger'>[M] bursts out of [src]!</span>"), 2)
+
+	. = ..(anim, do_gibs, f_icon)
 
 /mob/living/carbon/attack_hand(mob/M as mob)
 	if(!istype(M, /mob/living/carbon)) return
@@ -441,8 +441,8 @@
 			if( istype(tmob, /mob/living/carbon) && prob(10) )
 				src.spread_disease_to(AM, "Contact")
 
-			if(istype(tmob, /mob/living/carbon/Xenomorph))
-				if(tmob:big_xeno)
+			if(isXeno(tmob) && !isXenoLarva(tmob)) // Prevents humans from pushing any Xenos, but big Xenos and Preds can still push small Xenos
+				if(has_species(src,"Human") || tmob:big_xeno)
 					now_pushing = 0
 					return
 
@@ -476,9 +476,9 @@
 				now_pushing = 0
 				return
 
-			// Step over drones.
+			// Step over drones and Xeno Larva.
 			// I have no idea why the hell this isn't already happening. How do mice do it?
-			if(istype(tmob,/mob/living/silicon/robot/drone))
+			if(istype(tmob,/mob/living/silicon/robot/drone) || isXenoLarva(tmob))
 				loc = tmob.loc
 				now_pushing = 0
 				return

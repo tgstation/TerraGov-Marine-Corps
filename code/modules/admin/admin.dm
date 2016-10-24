@@ -66,16 +66,14 @@ var/global/floorIsLava = 0
 		<a href='?src=\ref[src];adminplayerobservejump=\ref[M]'>JMP</a>\] </b><br>
 		<b>Mob type</b> = [M.type]<br><br>
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
-		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
 		<A href='?src=\ref[src];lazyban=\ref[M]'>LazyBan</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
-		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
+		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A> |
 	"}
 
 	if(M.client)
-		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A>|"
-		body += "\ <A href='?_src_=holder;sendbacktolobby=\ref[M]'>Send back to Lobby</A>|"
+		body += "\ <A href='?_src_=holder;sendbacktolobby=\ref[M]'> Send back to Lobby</A>"
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
 			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
@@ -91,7 +89,7 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A> |
 		<A href='?src=\ref[src];sendmob=\ref[M]'>Send To</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A>|" : "" ]
+		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> |" : "" ]
 		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
 		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
@@ -104,15 +102,15 @@ var/global/floorIsLava = 0
 
 			//Monkey
 			if(ismonkey(M))
-				body += "<B>Monkeyized</B>|"
+				body += "<B>Monkeyized</B> |"
 			else
-				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A>|"
+				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
 
 			//Corgi
-			if(iscorgi(M))
-				body += "<B>Corgized</B>|"
-			else
-				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A>|"
+			// if(iscorgi(M))
+			// 	body += "<B>Corgized</B>|"
+			// else
+			// 	body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A>|"
 
 			//AI / Cyborg
 			if(isAI(M))
@@ -121,16 +119,15 @@ var/global/floorIsLava = 0
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
 					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
 					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A> |
-					<A href='?src=\ref[src];makeslime=\ref[M]'>Make Slime</A> |
 				"}
 			//Simple Animals
 			if(isanimal(M))
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A>|"
+				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
-				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A>|"
+				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
 
 			//Makin Yautjas
-			body += "<a href='?src=\ref[src];makeyautja=\ref[M]'>Make Yautja</a>|"
+			body += "<a href='?src=\ref[src];makeyautja=\ref[M]'>Make Yautja</a>"
 
 			// DNA2 - Admin Hax
 			if(M.dna && iscarbon(M))
@@ -155,31 +152,24 @@ var/global/floorIsLava = 0
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
 				\[ <A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A> \]
 				<br>\[ Humanoid: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A> |
-				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
-				<A href='?src=\ref[src];simplemake=human;species=Unathi;mob=\ref[M]'>Unathi</A> |
-				<A href='?src=\ref[src];simplemake=human;species=Tajaran;mob=\ref[M]'>Tajaran</A> |
-				<A href='?src=\ref[src];simplemake=human;species=Skrell;mob=\ref[M]'>Skrell</A> |
-				<A href='?src=\ref[src];simplemake=human;species=Vox;mob=\ref[M]'>Vox</A> |
-				<A href='?src=\ref[src];simplemake=human;species=Diona;mob=\ref[M]'>Diona</A> \]
-				<br>\[ Predator: <A href='?src=\ref[src];simplemake=human;species=yautja\ref[M]'>Predator</A> \]
-				<br>\[ Alien: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A> |
-				<A href='?src=\ref[src];simplemake=runner;mob=\ref[M]'>Runner</A> |
+				<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> \]
+				<br>\[ Alien Tier 0: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A> \]
+				<br>\[ Alien Tier 1: <A href='?src=\ref[src];simplemake=runner;mob=\ref[M]'>Runner</A> |
 				<A href='?src=\ref[src];simplemake=drone;mob=\ref[M]'>Drone</A> |
-				<A href='?src=\ref[src];simplemake=sentinel;mob=\ref[M]'>Sentinel</A> ||
-				<A href='?src=\ref[src];simplemake=hunter;mob=\ref[M]'>Hunter</A> |
-				<A href='?src=\ref[src];simplemake=carrier;mob=\ref[M]'>Carrier</A> |
-				<A href='?src=\ref[src];simplemake=spitter;mob=\ref[M]'>Spitter</A> ||
-				<A href='?src=\ref[src];simplemake=ravager;mob=\ref[M]'>Ravager</A> |
+				<A href='?src=\ref[src];simplemake=sentinel;mob=\ref[M]'>Sentinel</A> \]
+				<br>\[ Alien Tier 2: <A href='?src=\ref[src];simplemake=hunter;mob=\ref[M]'>Hunter</A> |
+				<A href='?src=\ref[src];simplemake=spitter;mob=\ref[M]'>Spitter</A> |
 				<A href='?src=\ref[src];simplemake=hivelord;mob=\ref[M]'>Hivelord</A> |
+				<A href='?src=\ref[src];simplemake=carrier;mob=\ref[M]'>Carrier</A> \]
+				<br>\[ Alien Tier 3: <A href='?src=\ref[src];simplemake=ravager;mob=\ref[M]'>Ravager</A> |
 				<A href='?src=\ref[src];simplemake=praetorian;mob=\ref[M]'>Praetorian</A> |
 				<A href='?src=\ref[src];simplemake=boiler;mob=\ref[M]'>Boiler</A> |
-				<A href='?src=\ref[src];simplemake=crusher;mob=\ref[M]'>Crusher</A> ||
-				<A href='?src=\ref[src];simplemake=queen;mob=\ref[M]'>Queen</A> \]
-				<br>\[ Silicon: <A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Cyborg</A> \]
+				<A href='?src=\ref[src];simplemake=crusher;mob=\ref[M]'>Crusher</A> \]
+				<br>\[ Alien Tier 4: <A href='?src=\ref[src];simplemake=queen;mob=\ref[M]'>Queen</A> \]
+				<br>\[ Silicon: <A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Robot</A> \]
 				<br>\[ Simple Mobs: <A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> |
 				<A href='?src=\ref[src];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
-				<A href='?src=\ref[src];simplemake=crab;mob=\ref[M]'>Crab</A> |
-				<A href='?src=\ref[src];simplemake=nymph;mob=\ref[M]'>Nymph</A> \]
+				<A href='?src=\ref[src];simplemake=crab;mob=\ref[M]'>Crab</A> \]
 				<br>
 			"}
 
@@ -191,7 +181,7 @@ var/global/floorIsLava = 0
 			<A href='?src=\ref[src];tdome1=\ref[M]'>Thunderdome 1</A> |
 			<A href='?src=\ref[src];tdome2=\ref[M]'>Thunderdome 2</A> |
 			<A href='?src=\ref[src];tdomeadmin=\ref[M]'>Thunderdome Admin</A> |
-			<A href='?src=\ref[src];tdomeobserve=\ref[M]'>Thunderdome Observer</A> |
+			<A href='?src=\ref[src];tdomeobserve=\ref[M]'>Thunderdome Observer</A>
 		"}
 
 	body += {"<br>

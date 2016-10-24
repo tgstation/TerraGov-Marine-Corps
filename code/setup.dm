@@ -219,6 +219,7 @@ should all be unique more or less. flags_inventory can double up.
 #define DIRLOCK					128		// Item won't change direction when Moving()ing. Useful for items that have several dir states.
 //Reserved space for any general flags here.
 //==========================================================================================
+#define USEDELAY 				512		// 1 second extra delay on use (Can be used once every 2s)
 #define	NOREACT					1024	//Reagents dont' react inside this container.
 #define OPENCONTAINER			2048	//is an open container for chemistry purposes
 //==========================================================================================
@@ -231,6 +232,7 @@ should all be unique more or less. flags_inventory can double up.
 //flags_inventory
 //Bit flags for the flags_inventory variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 //It also determines a few other things now, and doesn't just apply to clothing. ~N
+#define CANTSTRIP		32768		// Can't be removed by others. Mostly for donor stuff.
 #define BLOCKPHORON 	65536		// Does not get contaminated by phoron.
 
 //SUIT ONLY============================================================================================
@@ -645,9 +647,6 @@ var/list/liftable_structures = list(\
 #define ORGAN_DEAD 1024
 #define ORGAN_MUTATED 2048
 
-#define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
-
-
 
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
@@ -877,10 +876,17 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 // these define the time taken for the shuttle to get to SS13
 // and the time before it leaves again
+// note that this is multiplied by 10 in the shuttle controller. Hence, this is not defined in deciseconds but in real seconds
 #define SHUTTLE_PREPTIME 				600	// 10 minutes = 600 seconds - after this time, the shuttle departs centcom and cannot be recalled
 #define SHUTTLE_LEAVETIME 				180	// 3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving
 #define SHUTTLE_TRANSIT_DURATION		600	// 10 minutes = 600 seconds - how long it takes for the shuttle to get to the station
 #define SHUTTLE_TRANSIT_DURATION_RETURN 100	// 100 seconds
+#define DROPSHIP_TRANSIT_DURATION		100	// 100 seconds
+#define DROPPOD_TRANSIT_DURATION		50	// 50 seconds
+#define ELEVATOR_TRANSIT_DURATION		5	// 5 seconds
+
+#define SHUTTLE_RECHARGE  1200 // 2 minutes
+#define ELEVATOR_RECHARGE 150  // 15 seconds
 
 //Shuttle moving status
 #define SHUTTLE_IDLE		0
@@ -989,3 +995,8 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define ATTACH_CONTINUOUS	4
 #define ATTACH_ACTIVATION	8
 #define ATTACH_PROJECTILE	16
+
+//Game mode related defines.
+#define MODE_INFESTATION	1
+#define MODE_PREDATOR		2
+

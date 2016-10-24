@@ -61,7 +61,7 @@
 	icon_state = "m4a3"
 	item_state = "m4a3"
 	current_mag = /obj/item/ammo_magazine/pistol
-	w_class = 2
+	w_class = 3
 	force = 6
 
 	New()
@@ -99,7 +99,7 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
-	w_class = 2
+	w_class = 3
 	force = 6
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 

@@ -234,7 +234,7 @@
 						M_job = "slime"
 					else if(ismonkey(M))
 						M_job = "Monkey"
-					else if(isalien(M))
+					else if(isXeno(M))
 						M_job = "Alien"
 					else
 						M_job = "Carbon-based"
@@ -346,7 +346,7 @@
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
-		else if(isalien(M))
+		else if(isXeno(M))
 			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"
@@ -419,7 +419,7 @@
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
-		else if(isalien(M))
+		else if(isXeno(M))
 			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"

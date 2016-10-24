@@ -144,7 +144,7 @@
 
 /obj/effect/landmark/corpse/doctor
 	name = "Doctor"
-	corpseuniform = /obj/item/clothing/under/rank/medical
+	corpseuniform = /obj/item/clothing/under/colonist
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
 	corpseback = /obj/item/weapon/storage/backpack/medic
 	corpsepocket1 = /obj/item/device/flashlight/pen
@@ -155,7 +155,7 @@
 
 /obj/effect/landmark/corpse/engineer
 	name = "Engineer"
-	corpseuniform = /obj/item/clothing/under/rank/engineer
+	corpseuniform = /obj/item/clothing/under/colonist
 	corpseback = /obj/item/weapon/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpsebelt = /obj/item/weapon/storage/belt/utility/full
@@ -183,8 +183,8 @@
 
 /obj/effect/landmark/corpse/scientist
 	name = "Scientist"
-	corpseuniform = /obj/item/clothing/under/rank/scientist
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat/science
+	corpseuniform = /obj/item/clothing/under/marine/officer/researcher
+	corpsesuit = /obj/item/clothing/suit/storage/labcoat
 	corpseback = /obj/item/weapon/storage/backpack
 	corpseshoes = /obj/item/clothing/shoes/white
 	corpseid = 1
@@ -192,7 +192,7 @@
 //	corpseidaccess = "Scientist"
 
 /obj/effect/landmark/corpse/miner
-	corpseuniform = /obj/item/clothing/under/rank/miner
+	corpseuniform = /obj/item/clothing/under/colonist
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpseback = /obj/item/weapon/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/black
@@ -234,6 +234,20 @@
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
+	corpseidaccess = "Captain"
+
+/obj/effect/landmark/corpse/PMC
+	name = "Private Security Officer"
+	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
+	corpseglasses = /obj/item/clothing/glasses/sunglasses
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	corpseshoes = /obj/item/clothing/shoes/veteran/PMC
+	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
+	corpseid = 1
+	corpseidjob = "Private Security Officer"
 	corpseidaccess = "Captain"
 
 

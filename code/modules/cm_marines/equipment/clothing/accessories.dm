@@ -63,6 +63,70 @@
 	desc = "The contents of this backpack are top secret."
 	icon_state = "marinepack"
 
+/obj/item/weapon/storage/backpack/gun
+	name = "Rifle Holster"
+	desc = "holster"
+	use_sound = null
+	w_class = 4
+	storage_slots = 1
+	max_combined_w_class = 7
+	max_w_class = 5
+	var/originalName = "m37_holster"
+	var/drawSound = 'sound/weapons/drawrifle.ogg'
+	//icon_state = originalName
+	//item_state = originalName
+
+	can_hold = list(
+		)
+
+	/obj/item/weapon/storage/backpack/gun/update_icon()
+		playsound(src,drawSound, 20, 1)
+		var/mob/user = loc
+		icon_state = "[originalName][contents.len]"
+		item_state = "[originalName][contents.len]"
+		if(istype(user)) user.update_inv_back()
+		if(istype(user)) user.update_inv_s_store()
+		return
+
+
+/obj/item/weapon/storage/backpack/gun/m37
+	name = "\improper L44 M37A2 Scabbard"
+	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage"
+	originalName = "m37_holster"
+	icon_state = "m37_holster0"
+	item_state = "m37_holster0"
+	can_hold = list(
+		"/obj/item/weapon/gun/shotgun/pump",
+		"/obj/item/weapon/gun/shotgun/combat"
+		)
+
+
+
+/obj/item/weapon/storage/backpack/gun/m37/full/New()
+	..()
+	icon_state = "m37_holster1"
+	item_state = "m37_holster1"
+	new /obj/item/weapon/gun/shotgun/pump(src)
+
+/obj/item/weapon/storage/backpack/gun/machete
+	name = "\improper H5 pattern M2132 machete scabbard"
+	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back or the armor"
+	originalName = "machete_holster"
+	icon_state = "machete_holster0"
+	item_state = "machete_holster0"
+	can_hold = list(
+		"/obj/item/weapon/claymore/mercsword/machete"
+		)
+
+/obj/item/weapon/storage/backpack/gun/machete/full/New()
+	..()
+	icon_state = "machete_holster1"
+	item_state = "machete_holster1"
+	new /obj/item/weapon/claymore/mercsword/machete(src)
+
+
+
+
 //============================//BELTS\\==================================\\
 //=======================================================================\\
 
@@ -223,13 +287,15 @@
 	item_state = "m4a3_holster"
 	use_sound = null
 	w_class = 4
-	storage_slots = 3
+	storage_slots = 4
 	max_combined_w_class = 6
-	max_w_class = 2
+	max_w_class = 3
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
 	var/image/reusable/gun_underlay //The underlay we will use.
+	var/sheatheSound = 'sound/weapons/drawpistol.ogg'
+	var/drawSound = 'sound/weapons/drawpistol2.ogg'
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
 		"/obj/item/ammo_magazine/pistol"
@@ -245,17 +311,20 @@
 			correctly without having to rotate anything. Preloading weapon icons also makes
 			sure that we don't have to do any extra calculations.
 			*/
+			playsound(src,drawSound, 20, 1)
 			gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
 			icon_state += "_g"
 			item_state = icon_state
 			underlays += gun_underlay
 		else
+			playsound(src,sheatheSound, 20, 1)
 			underlays -= gun_underlay
 			icon_state = copytext(icon_state,1,-2)
 			item_state = icon_state
 			cdel(gun_underlay)
 			gun_underlay = null
 		if(istype(user)) user.update_inv_belt()
+		if(istype(user)) user.update_inv_s_store()
 
 	//There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
 	can_be_inserted(obj/item/W, stop_messages) //We don't need to stop messages, but it can be left in.
@@ -287,7 +356,7 @@
 
 /obj/item/weapon/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains two side pouches that can store two spare 9mm magazines."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains three side pouches that can store two spare 9mm magazines."
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
 		"/obj/item/weapon/gun/pistol/m1911",
@@ -308,14 +377,15 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/m44
 	name = "\improper M276 pattern m44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is for the m44 magnum revolver, along with two speedloaders. It faintly smells of hay."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is for the m44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
-	max_w_class = 3
+	max_w_class = 6
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/m44",
 		"/obj/item/ammo_magazine/revolver",
@@ -328,16 +398,17 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/m39
 	name = "\improper M276 pattern M39 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed for the m39 SMG, and features a larger frame to support the gun. It's isn't entirely practical, but does the job in the end."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version is designed for the m39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m39_holster"
 	item_state = "m39_holster"
 	storage_slots = 1
-	max_combined_w_class = 4
-	max_w_class = 4
+	max_combined_w_class = 6
+	max_w_class = 6
 	can_hold = list(
 		"/obj/item/weapon/gun/smg/m39",
 		"/obj/item/weapon/gun/smg/m39/elite",

@@ -29,6 +29,7 @@
 	big_xeno = 1 //Toggles pushing
 	tier = 3
 	upgrade = 0
+	gib_chance = 100
 	var/zoom_timer = 0
 	var/is_bombarding = 0
 	var/obj/item/weapon/grenade/grenade_type = "/obj/item/weapon/grenade/xeno"

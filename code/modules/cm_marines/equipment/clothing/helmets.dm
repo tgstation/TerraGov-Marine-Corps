@@ -65,7 +65,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 /obj/item/clothing/head/helmet/durag
 	name = "durag"
 	desc = "Good for keeping sweat out of your eyes"
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/Marine/marine_armor.dmi'
 	item_state = "durag"
 	icon_state = "durag"
 	armor = list(melee = 35, bullet = 35, laser = 35, energy = 15, bomb = 10, bio = 0, rad = 0)
@@ -265,6 +265,15 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	anti_hug = 2
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
+
+/obj/item/clothing/head/helmet/space/compression
+	name = "\improper MK.50 compression helmet"
+	desc = "A heavy space helmet, designed to be coupled with the MK.50 compression suit, though it is less resilient than the suit. Feels like you could hotbox in here."
+	item_state = "compression"
+	icon_state = "compression"
+	armor = list(melee = 40, bullet = 45, laser = 40, energy = 55, bomb = 40, bio = 100, rad = 50)
+	anti_hug = 3
+	unacidable = 1
 
 //==========================//HELMET PROCS\\=============================\\
 //=======================================================================\\

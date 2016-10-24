@@ -28,7 +28,7 @@
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		for(var/obj/effect/xenomorph/acid/A in src.loc)
-			if(A.target == src)
+			if(A.acid_t == src)
 				user << "You can't get near that, it's melting!"
 				return
 
@@ -41,6 +41,9 @@
 					user << "\blue You dissasembled the girder!"
 					dismantle()
 			else if(!anchored)
+				if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
+					user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue Now securing the girder"
 				if(get_turf(user, 40))
@@ -86,6 +89,10 @@
 				del(src)
 
 		else if(istype(W, /obj/item/stack/sheet))
+
+			if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
+				user << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+				return
 
 			var/obj/item/stack/sheet/S = W
 			switch(S.type)
@@ -237,7 +244,7 @@
 	icon_state= "cultgirder"
 	anchored = 1
 	density = 1
-	layer = 2
+	layer = 3 //Used to be 2 but bullets flew over it --MadSnailDisease
 	var/health = 250
 
 	attackby(obj/item/W as obj, mob/user as mob)

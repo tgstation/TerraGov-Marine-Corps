@@ -15,7 +15,7 @@
 	jellyMax = 500
 	plasma_gain = 12
 	tier = 1
-	upgrade = -2 //Drones can't upgrade, since they become Le Queen  Maybe this will change in the future?
+	upgrade = 0
 	evolves_to = list("Queen", "Carrier", "Hivelord") //Add more here seperated by commas
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	inherent_verbs = list(
@@ -27,7 +27,5 @@
 		/mob/living/carbon/Xenomorph/proc/tail_attack,
 		/mob/living/carbon/Xenomorph/proc/corrosive_acid,
 		/mob/living/carbon/Xenomorph/proc/toggle_auras,
-		/mob/living/carbon/Xenomorph/proc/secure_host
+	//	/mob/living/carbon/Xenomorph/proc/secure_host
 		)
-
-

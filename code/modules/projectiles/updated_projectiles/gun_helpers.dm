@@ -125,6 +125,8 @@ DEFINES in setup.dm, referenced here.
 		user << "Not right now."
 		return
 
+	if(!(src in user)) return //No telekinetic toggling.
+
 	user << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
 	playsound(usr,'sound/machines/click.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY

@@ -15,7 +15,7 @@
 			count_humans++
 		if(ishuman(C.mob) && C.mob.stat != DEAD && C.mob.status_flags & XENO_HOST)
 			count_infectedhumans++
-		if(isalien(C.mob) && C.mob.stat != DEAD)
+		if(isXeno(C.mob) && C.mob.stat != DEAD)
 			count_aliens++
 
 

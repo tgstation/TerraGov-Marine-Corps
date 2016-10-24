@@ -259,6 +259,16 @@
 /atom/movable/CtrlClick(var/mob/user)
 	if(Adjacent(user) && !isXenoLarva(user))
 		if(isXeno(user) && isobj(src)) return
+		if(istype(src, /obj/item/device/flashlight) && ishuman(user)) return
+
+		if(istype(src,/mob/living/carbon/Xenomorph) && !isXenoLarva(src))
+			var/mob/living/carbon/Xenomorph/X = src
+			if(X.stat < 2 && has_species(user,"Human")) // If the Xeno is alive, fight back against a grab/pull
+				user.Weaken(rand(X.tacklemin,X.tacklemax))
+				playsound(user.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+				visible_message("<span class='warning'>[user] tried to pull [X] but instead gets a tail swipe to the head!</span>")
+				return
+
 		user.start_pulling(src)
 
 /*
@@ -281,7 +291,7 @@
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
-	
+
 /*
 	Control+Shift click
 	Unused except for AI

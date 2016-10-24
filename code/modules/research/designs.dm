@@ -613,7 +613,7 @@ datum/design/posibrain
 //////////Mecha Module Disks///////
 ///////////////////////////////////
 
-datum/design/ripley_main
+/*datum/design/ripley_main
 	name = "Circuit Design (APLU \"Ripley\" Central Control module)"
 	desc = "Allows for the construction of a \"Ripley\" Central Control module."
 	id = "ripley_main"
@@ -629,7 +629,7 @@ datum/design/ripley_peri
 	req_tech = list("programming" = 3)
 	build_type = IMPRINTER
 	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/mecha/ripley/peripherals"
+	build_path = "/obj/item/weapon/circuitboard/mecha/ripley/peripherals"*/
 
 /*datum/design/odysseus_main
 	name = "Circuit Design (\"Odysseus\" Central Control module)"

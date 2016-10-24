@@ -41,6 +41,7 @@
 	var/obj/screen/eject_mag = null
 	var/obj/screen/toggle_burst = null
 	var/obj/screen/use_attachment = null
+	var/obj/screen/toggle_raillight = null
 	var/obj/screen/unique_action = null
 
 
@@ -155,6 +156,7 @@
 	var/in_throw_mode = 0
 
 	var/coughedtime = null
+	var/windowknock_cooldown = 0
 
 	var/inertia_dir = 0
 

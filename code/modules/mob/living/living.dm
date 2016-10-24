@@ -640,7 +640,7 @@
 				var/obj/item/weapon/handcuffs/HC = CM.handcuffed
 				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
-				if(istype(HC, /obj/item/weapon/handcuffs/xeno))
+				/*if(istype(HC, /obj/item/weapon/handcuffs/xeno))
 					breakouttime = 300
 					displaytime = "Half a"
 					CM << "\red You attempt to remove \the [HC]. (This will take around half a minute and you need to stand still)"
@@ -649,10 +649,10 @@
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
 						CM << "\blue You successfully remove \the [CM.handcuffed]."
 						CM.drop_from_inventory(CM.handcuffed)
-						return
+						return*/ //Commented by Apop
 
 
-				else if(istype(HC))
+				if(istype(HC))
 					displaytime = breakouttime / 600 //Minutes
 				CM << "\red You attempt to remove \the [HC]. (This will take around [displaytime] minute(s) and you need to stand still)"
 				for(var/mob/O in viewers(CM))

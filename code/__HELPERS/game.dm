@@ -324,7 +324,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	for(var/mob/dead/observer/G in player_list) //We eliminated all of the banned people, but then we have to make sure they want to be an alium
 		if(!(G.ckey in ckeys)) continue //He got booted in the jobban check
 		if(G.client && G.client.prefs.be_special & BE_ALIEN)
-			if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + 5)
+			if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + 5 || istype(G.client.holder, /datum/admins)) //Admins and AFK players cannot be drafted
 				candidates += G.key
 	return candidates
 

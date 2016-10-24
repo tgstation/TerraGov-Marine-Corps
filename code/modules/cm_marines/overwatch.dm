@@ -269,27 +269,27 @@
 				current_squad.secondary_objective = input
 				send_to_squad("Your secondary objective has changed. See Status pane for details.")
 		if("supply_x")
-			var/input = input(usr,"What X-coordinate offset between -10 and 10 would you like? (Positive means east)","X Offset",0) as num
-			if(input > 10) input = 10
-			if(input < -10) input = -10
+			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
 			usr << "\icon[src] X-offset is now [input]."
 			src.x_offset_s = input
 		if("supply_y")
-			var/input = input(usr,"What Y-coordinate offset between -10 and 10 would you like? (Positive means north)","Y Offset",0) as num
-			if(input > 10) input = 10
-			if(input < -10) input = -10
+			var/input = input(usr,"What Y-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
 			usr << "\icon[src] Y-offset is now [input]."
 			y_offset_s = input
 		if("bomb_x")
-			var/input = input(usr,"What X-coordinate offset between -10 and 10 would you like? (Positive means east)","X Offset",0) as num
-			if(input > 10) input = 10
-			if(input < -10) input = -10
+			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
 			usr << "\icon[src] X-offset is now [input]."
 			x_offset_b = input
 		if("bomb_y")
-			var/input = input(usr,"What X-coordinate offset between -10 and 10 would you like? (Positive means north)","Y Offset",0) as num
-			if(input > 10) input = 10
-			if(input < -10) input = -10
+			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
+			if(input > 5) input = 5
+			if(input < -5) input = -5
 			usr << "\icon[src] Y-offset is now [input]."
 			y_offset_b = input
 		if("refresh")
@@ -400,7 +400,7 @@
 		usr << "\icon[src] Beacon is not transmitting from the ground."
 		return
 	var/area/A = get_area(current_squad.bbeacon)
-	if(A && istype(A,/area/lv624/ground/caves) || istype(A, /area/ice_colony/underground))
+	if(A && istype(A,/area/lv624/ground/caves) || istype(A, /area/ice_colony/underground) || istype(A, /area/bigred/uground/))
 		usr << "\icon[src] The beacon's signal is too weak. It is probably inside a cave."
 		return
 
@@ -409,8 +409,10 @@
 	var/turf/T = get_turf(current_squad.bbeacon)
 	x_offset = round(x_offset)
 	y_offset = round(y_offset)
-	if(x_offset < -5 || x_offset > 5) x_offset = 0
-	if(y_offset < -5 || y_offset > 5) x_offset = 0
+	if(x_offset < -5) x_offset = -5 //None of these should be possible, but whatever
+	if(x_offset > 5) x_offset = 5
+	if(y_offset < -5) y_offset = -5
+	if(y_offset > 5) y_offset = 5
 	//All set, let's do this.
 	send_to_squad("Initializing fire coordinates..")
 	if(current_squad.bbeacon)

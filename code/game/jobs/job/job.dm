@@ -75,3 +75,9 @@
 		return 0
 
 	return max(0, minimal_player_age - C.player_age)
+
+
+//This lets you scale max jobs at runtime
+//All you have to do is rewrite the inheritance
+/datum/job/proc/getTotalPositions()
+	return total_positions

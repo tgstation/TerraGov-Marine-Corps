@@ -2,12 +2,10 @@
 
 
 /mob/living/carbon/Xenomorph/Larva
-	name = "Alien Larva"
-	real_name = "Alien Larva"
-	speak_emote = list("hisses")
+	name = "Bloody Larva"
 	caste = "Bloody Larva"
+	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
-	language = "Hivemind"
 	amount_grown = 0
 	max_grown = 100
 	maxHealth = 35
@@ -23,10 +21,16 @@
 	away_timer = 300
 	tier = 0  //Larva's don't count towards Pop limits
 	upgrade = -2
+	crit_health = -25
+	gib_chance = 25
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
+
+/mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
+	a_intent = "help" //Forces help intent for all interactions.
+	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
 	..()
@@ -51,8 +55,10 @@
 		state = "Normal"
 	if(state == "Normal" && amount_grown < 100)
 		name = "Larva ([nicknumber])"
+		real_name = name
 	else if(amount_grown >=100)
 		name = "Mature Larva ([nicknumber])"
+		real_name = name
 
 	if(stat == DEAD)
 		icon_state = "[state] Larva Dead"
@@ -79,3 +85,14 @@
 		layer = MOB_LAYER
 		src << text("\blue You have stopped hiding.")
 	return
+
+/mob/living/carbon/Xenomorph/Larva/Bump(atom/AM as mob|obj|turf, yes)
+
+	spawn(0)
+		if(src.stat || !AM || !istype(AM) || AM == src || !yes)
+			return
+
+		if(ismob(AM))
+			loc = AM.loc
+			now_pushing = 0
+			return

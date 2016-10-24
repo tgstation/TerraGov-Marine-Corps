@@ -93,3 +93,4 @@
 	var/clapped = 0
 	var/golfclapped = 0
 	var/medicd = 0
+	var/screamed = 0

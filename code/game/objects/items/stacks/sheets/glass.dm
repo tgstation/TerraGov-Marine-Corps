@@ -32,7 +32,7 @@
 /obj/item/stack/sheet/glass/attack_self(mob/user as mob)
 
 	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
 	construct_window(user)

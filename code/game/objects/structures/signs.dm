@@ -216,7 +216,7 @@
 
 /obj/structure/sign/safety/rad_shield
 	name = "\improper Radiation shielded area"
-	desc = "A sign denoting the presence of a radiation shielded area."
+	desc = "A sign denoting the presence of a lead radiation shielding."
 	icon_state = "sign_rad_shield"
 
 /obj/structure/sign/safety/no_grav
@@ -253,3 +253,105 @@
 	name = "\improper Breakroom"
 	desc = "A sign denoting the presence of a breakroom nearby"
 	icon_state = "sign_coffee"
+
+/obj/structure/sign/safety/medical
+	name = "\improper Medical Bay"
+	desc = "A sign that denotes the proximity of a medical facility"
+	icon_state = "sign_medical"
+
+/obj/structure/sign/safety/maintenance
+	name = "\improper Maintenance Shaft"
+	desc = "A sign warning of a nearby maintenance shaft."
+	icon_state = "sign_maint"
+
+/obj/structure/sign/safety/galley
+	name = "\improper Galley"
+	desc = "A sign that denotes the proximity of food nearby."
+	icon_state = "sign_galley"
+
+/obj/structure/sign/safety/atmospherics
+	name = "\improper Life Support System"
+	desc = "A sign that denotes the proximity of a life supprot system."
+	icon_state = "sign_life_support"
+
+/obj/structure/sign/safety/vent
+	name = "\improper Warning: Exhaust Vent"
+	desc = "A warning sign that indicates a hazardous exhaust vent nearby"
+	icon_state = "sign_exhaust"
+
+/obj/structure/sign/safety/storage
+	name = "\improper Storage Area"
+	desc = "A sign that denotes the proximity of a storage facility."
+	icon_state = "sign_storage"
+
+/obj/structure/sign/safety/medical_supplies
+	name = "\improper First-Aid"
+	desc = "A sign denoting the presence of nearby "
+	icon_state = "sign_medical_life_support"
+
+/obj/structure/sign/safety/EVA
+	name = "\improper EVA Suit Locker"
+	desc = "A sign that indicates the presence of a EVA Suit Locker"
+	icon_state = "sign_space_suit_locker"
+
+/obj/structure/sign/safety/laser
+	name = "\improper Warning: High-Energy Laser"
+	desc = "A warning sign that warns of a lethal energy laser nearby"
+	icon_state = "sign_laser"
+
+/obj/structure/sign/safety/vacuum
+	name = "\improper Warning: Vacuum"
+	desc = "A warning sign indicating a pressureless area nearby"
+	icon_state = "sign_vacuum"
+
+/obj/structure/sign/safety/ladder
+	name = "\improper Warning: Ladder"
+	desc = "A sign that denotes the proximity of a ladder"
+	icon_state = "sign_ladder"
+
+/obj/structure/sign/safety/pressure
+	name = "\improper Warning: Pressurised Area Ahead"
+	desc = "A sign that warns of a pressurised area nearby"
+	icon_state = "sign_pressurised_area"
+
+/obj/structure/sign/safety/high_radiation
+	name = "\improper Warning:HIGH RADIATION LEVELS"
+	desc = "A sign that warns of dangerous radiation nearby"
+	icon_state = "sign_high_rad"
+
+/obj/structure/sign/safety/rad_hazard
+	name = "\improper Warning: Radiation Hazard"
+	desc = "A sign that warns of radiation nearby"
+	icon_state = "sign_rad_hazard"
+
+/obj/structure/sign/safety/cryogenic
+	name = "\improper Cryogenic Vault"
+	desc = "A sign that denotes the presence of a cryogenic vault"
+	icon_state = "sign_cryo_vault"
+
+/obj/structure/sign/safety/hazard
+	name = "\improper Warning: Hazardous Materials"
+	desc = "A sign that warns of hazardous materials nearby"
+	icon_state = "sign_hazard"
+
+/obj/structure/sign/safety/computer
+	name = "\improper Warning: Critical System"
+	desc = "A warning sign that warns of facility critical computer systems"
+	icon_state = "sign_computer"
+
+/obj/structure/sign/safety/hydro
+	name = "\improper Hydrophonics"
+	desc = "A sign that denotes the presence of a hydrophonic facility"
+	icon_state = "sign_food_fridge"
+
+/obj/structure/sign/safety/fridge
+	name = "\improper Refridgerated Storage"
+	desc = "A sign that denotes the presence of a refridgeration facility"
+	icon_state = "sign_cold_storage"
+
+/obj/structure/sign/safety/radio
+	name = "\improper Intercommunication System"
+	desc = "A sign notifying the presence of a intercomm system."
+	icon_state = "sign_intercomm"
+
+

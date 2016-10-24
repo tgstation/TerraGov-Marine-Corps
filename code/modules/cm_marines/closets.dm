@@ -48,6 +48,8 @@
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/device/radio/headset/mcom(src)
 
+	select_gamemode_equipment()
+
 /obj/structure/closet/secure_closet/securecom
 	name = "\improper Commander's secure box"
 	req_access = list(access_sulaco_captain)
@@ -90,6 +92,8 @@
 			new /obj/item/weapon/storage/belt/marine(src)
 			new /obj/item/weapon/storage/backpack/marine(src)
 
+	select_gamemode_equipment()
+
 /obj/structure/closet/secure_closet/marine/marine_pilot
 	name = "pilot officer's locker"
 	req_access = list(access_sulaco_pilot_locker)
@@ -112,6 +116,8 @@
 			new /obj/item/weapon/storage/backpack/marine/satchel(src)
 			new /obj/item/clothing/gloves/yellow(src)
 			new /obj/item/clothing/glasses/sunglasses(src)
+
+	select_gamemode_equipment()
 
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/marine/military_officer
@@ -140,7 +146,9 @@
 			new /obj/item/device/radio/headset/mmpo(src)
 			new /obj/item/weapon/gun/energy/taser(src)
 			new /obj/item/weapon/melee/baton(src)
-			new /obj/item/weapon/storage/backpack/marine(src)
+			new /obj/item/weapon/storage/backpack/security (src)
+
+	select_gamemode_equipment()
 
 /obj/structure/closet/secure_closet/marine/military_officer_spare
 	name = "extra equipment locker"
@@ -167,6 +175,8 @@
 			new /obj/item/clothing/gloves/black(src)
 			new /obj/item/device/radio/headset/mmpo(src)
 			new /obj/item/clothing/tie/holster/waist(src)
+
+	select_gamemode_equipment()
 
 //ALPHA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_alpha_equipment

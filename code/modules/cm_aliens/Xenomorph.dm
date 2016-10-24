@@ -16,7 +16,7 @@
 	set desc = "Shows whether or not a mine is contained within the xenomorph list."
 
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
-		src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
+		src << "<span class='warning'>The round is either not ready, or has already finished.</span>"
 		return
 	if(mind in ticker.mode.xenomorphs)
 		src << "<span class='debuginfo'>[src] mind is in the xenomorph list. Mind key is [mind.key].</span>"
@@ -65,9 +65,9 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/max_grown = 200
 	var/time_of_birth
 	var/plasma_gain = 5
-	var/jelly = 0 //variable to check if they ate delicious jelly or not
-	var/jellyGrow = 0 //how much the jelly has grown
-	var/jellyMax = 0 //max amount jelly will grow till evolution
+	var/jelly = 0 //Variable to check if they ate delicious jelly or not
+	var/jellyGrow = 0 //How much the jelly has grown
+	var/jellyMax = 0 //Max amount jelly will grow till evolution
 	var/list/evolves_to = list() //This is where you add castes to evolve into. "Seperated", "by", "commas"
 	var/tacklemin = 2
 	var/tacklemax = 4
@@ -82,7 +82,7 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/shift_mouse_toggle = 0 //The same, but for shift clicking.
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/armor_deflection = 0 //Chance of deflecting projectiles.
-	var/fire_immune = 0 //boolean
+	var/fire_immune = 0 //Boolean
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
 	var/datum/ammo/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
@@ -109,6 +109,8 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
 	var/upgrade = -1  //This will track their upgrade level.  Once they can no longer upgrade, it will set to -1
 	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
+	var/crit_health = -100 // What negative healthy they die in.
+	var/gib_chance  = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
@@ -126,16 +128,15 @@ var/global/hive_orders = "" //What orders should the hive have
 	add_language("Hivemind") //hivemind
 	add_inherent_verbs()
 
-//	internal_organs += new /datum/organ/internal/xenos/hivenode(src)
-
-//	sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	sight |= SEE_MOBS
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
 	switch(type)
-		if(/mob/living/carbon/Xenomorph/Praetorian) ammo = ammo_list[/datum/ammo/xeno/toxin/heavy ]
-		if(/mob/living/carbon/Xenomorph/Spitter) ammo = ammo_list[/datum/ammo/xeno/toxin/medium ]
+		if(/mob/living/carbon/Xenomorph/Praetorian)
+			ammo = ammo_list[/datum/ammo/xeno/toxin/heavy]
+		if(/mob/living/carbon/Xenomorph/Spitter)
+			ammo = ammo_list[/datum/ammo/xeno/toxin/medium]
 		else ammo = ammo_list[/datum/ammo/xeno/toxin]
 
 	var/datum/reagents/R = new/datum/reagents(100)
@@ -146,29 +147,27 @@ var/global/hive_orders = "" //What orders should the hive have
 	if(adjust_size_x != 1)
 		var/matrix/M = matrix()
 		M.Scale(adjust_size_x, adjust_size_y)
-//		M.Translate(0, 16*(adjust_size-1))
-		src.transform = M
+		transform = M
 
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
-		if(caste != "Queen")//This needed to be moved here because the re-naming was happening faster than the transfer. - Apop
-			nicknumber = rand(1,999)
+		if(caste != "Queen") //This needed to be moved here because the re-naming was happening faster than the transfer. - Apop
+			nicknumber = rand(1, 999)
 			name = "Young [caste] ([nicknumber])"
 			real_name = name
 
 	regenerate_icons()
 
-
-
 /mob/living/carbon/Xenomorph/examine()
-	if(!usr) return //Somehow?
+	if(!usr)
+		return //Somehow?
 	..()
-	if(istype(usr,/mob/living/carbon/Xenomorph) && caste_desc)
+	if(isXeno(usr) && caste_desc)
 		usr << caste_desc
 
 	if(stat == DEAD)
 		usr << "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
-	else if (stat == UNCONSCIOUS)
+	else if(stat == UNCONSCIOUS)
 		usr << "It quivers a bit, but barely moves."
 	else
 		var/percent = (health / maxHealth * 100)
@@ -185,16 +184,8 @@ var/global/hive_orders = "" //What orders should the hive have
 				usr << "It is heavily injured and limping badly."
 	return
 
-/mob/living/carbon/Xenomorph/Bumped(atom/AM)
-	spawn(0)
-		if(!istype(AM,/mob/living/carbon))
-			return ..()
-		if(big_xeno)
-			return
-		else
-			return ..()
-
-/mob/living/carbon/Xenomorph/Del() //If mob is deleted, remove it off the xeno list completely.
-	if(!isnull(src) && !isnull(src.mind) && !isnull(ticker.mode) && ticker.mode.xenomorphs.len && mind in ticker.mode.xenomorphs)
+//If mob is deleted, remove it off the xeno list completely.
+/mob/living/carbon/Xenomorph/Del()
+	if(!isnull(src) && !isnull(mind) && !isnull(ticker.mode) && ticker.mode.xenomorphs.len && mind in ticker.mode.xenomorphs)
 		ticker.mode.xenomorphs -= mind
 	..()

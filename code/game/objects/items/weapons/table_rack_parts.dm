@@ -31,8 +31,8 @@
 		user << "<span class='warning'>There is already a table here.</span>"
 		return
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
+		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
 	new /obj/structure/table( user.loc )
@@ -55,8 +55,8 @@
 		user << "<span class='warning'>There is already a table here.</span>"
 		return
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
+		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
 	new /obj/structure/table/reinforced( user.loc )
@@ -85,8 +85,8 @@
 		user << "<span class='warning'>There is already a table here.</span>"
 		return
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
+		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
 	new /obj/structure/table/woodentable( user.loc )
@@ -110,8 +110,8 @@
 
 /obj/item/weapon/table_parts/gambling/attack_self(mob/user as mob)
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
+		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
 	new /obj/structure/table/gamblingtable( user.loc )
@@ -131,8 +131,8 @@
 
 /obj/item/weapon/rack_parts/attack_self(mob/user as mob)
 
-	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>DO NOT BUILD IN THE HANGAR. This area is needed for the dropships and personnel.</span>"
+	if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))  //HANGER/SHUTTLE BUILDING
+		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
 		return
 
 	if(locate(/obj/structure/rack) in user.loc)

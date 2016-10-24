@@ -1,4 +1,12 @@
 //Areas for BigRed - Minijar
+/area/bigred/ground/
+	name = "ground"
+	icon_state = "blue"
+
+/area/bigred/uground/
+	name = "uground"
+	icon_state = "blue"
+
 /area/bigred/ground/ship
 	name = "\improper crashed vessel"
 	icon_state = "syndie-ship"
@@ -46,6 +54,10 @@
 /area/bigred/ground/garden
 	name = "\improper garden"
 	icon_state = "garden"
+
+/area/bigred/ground/cryogenics
+	name = "\improper cryogenic vault"
+	icon_state = "auxstorage"
 
 /area/bigred/ground/laundry
 	name = "\improper laundrette"
@@ -136,8 +148,24 @@
 	icon_state = "asmaint"
 
 /area/bigred/ground/exterior
-	name = "\improper facility exterior"
+	name = "\improper underground"
 	icon_state = "blue-red"
+
+/area/bigred/ground/exterior/north
+	name = "\improper northern facility exterior"
+	icon_state = "north"
+
+/area/bigred/ground/exterior/south
+	name = "\improper southern facility exterior"
+	icon_state = "south"
+
+/area/bigred/ground/exterior/west
+	name = "\improper western facility exterior"
+	icon_state = "west"
+
+/area/bigred/ground/exterior/east
+	name = "\improper eastern facility exterior"
+	icon_state = "east"
 
 /area/bigred/ground/cargo
 	name = "\improper cargo bay"
@@ -190,3 +218,43 @@
 /area/bigred/uground/cargo_elevator
 	name = "\improper cargo elevator"
 	icon_state = "primarystorage"
+
+/area/bigred/uground/safe_room
+	name = "\improper Corporate Saferoom"
+	icon_state = "vault"
+
+/area/bigred/uground/lambda_labs/airlock
+	name = "\improper Lambda Labs Airlock"
+	icon_state = "decontamination"
+
+/area/bigred/uground/lambda_labs/lobby
+	name = "\improper Lambda Labs Reception"
+	icon_state = "bluenew"
+
+/area/bigred/uground/lambda_labs/office
+	name = "\improper Lambda Labs Administration"
+	icon_state = "heads_quarters"
+
+/area/bigred/uground/lambda_labs/laser_lab
+	name = "\improper Lambda Laser Laboratory"
+	icon_state = "toxmisc"
+
+/area/bigred/uground/lambda_labs/hydro_office
+	name = "\improper Lambda Labs Bio-Dome"
+	icon_state = "hydro"
+
+/area/bigred/uground/lambda_labs/hydro_lab
+	name = "\improper Lambda Labs Hydrophonics"
+	icon_state = "garden"
+
+/area/bigred/uground/lambda_labs/fridge
+	name = "\improper Lambda Labs Refridgeration"
+	icon_state = "kitchen"
+
+/area/bigred/uground/lambda_labs/maintenance
+	name = "\improper Unknown Area"
+	icon_state = "yellow"
+
+/area/bigred/uground/lambda_labs/maintenance2
+	name = "\improper Unknown Area"
+	icon_state = "blue"
