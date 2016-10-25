@@ -141,7 +141,7 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	if(!mob)	return
 	if(IsGuestKey(key))
-		src << "Guests may not use OOC."
+		src << "Guests may not use LOOC."
 		return
 
 	msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
@@ -153,20 +153,20 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	if(!holder)
 		if(!looc_allowed)
-			src << "\red OOC is globally muted"
+			src << "\red LOOC is globally muted"
 			return
-		if(!dooc_allowed && (mob.stat == DEAD))
-			usr << "\red OOC for dead mobs has been turned off."
+		if(!dlooc_allowed && (mob.stat == DEAD))
+			usr << "\red LOOC for dead mobs has been turned off."
 			return
 		if(prefs.muted & MUTE_OOC)
-			src << "\red You cannot use OOC (muted)."
+			src << "\red You cannot use LOOC (muted)."
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
 			src << "<B>Advertising other servers is not allowed.</B>"
-			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
 			return
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")

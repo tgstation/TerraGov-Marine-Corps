@@ -59,6 +59,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/togglelooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
+	/datum/admins/proc/toggleloocdead,	/*toggles looc on/off for everyone who is dead*/
 	/datum/admins/proc/toggledsay,		/*toggles dsay on/off for everyone*/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
@@ -285,6 +286,7 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/view_txt_log,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
+	/datum/admins/proc/toggleloocdead,	/*toggles looc on/off for everyone who is dead*/
 	/client/proc/editzoneair,
 	/client/proc/cmd_admin_changekey,
 	/client/proc/admin_call_shuttle,	/*allows us to call the emergency shuttle*/
@@ -950,4 +952,3 @@ var/list/admin_verbs_mentor = list(
 			config.proj_base_damage_mult = dam * 0.01
 			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
 			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
-
