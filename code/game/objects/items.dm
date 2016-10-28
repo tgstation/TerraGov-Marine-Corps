@@ -253,7 +253,7 @@ cases. Override_icon_state should be a list.*/
 
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
-			zoom()
+			zoom(user, 11, 12)
 	return
 
 // called just as an item is picked up (loc is not yet changed)
@@ -665,10 +665,7 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 
-/obj/item/proc/zoom(var/tileoffset = 11,var/viewsize = 12, var/mob/living/user) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-
-	if(usr && !user)
-		user = usr
+/obj/item/proc/zoom(var/mob/living/user, var/tileoffset = 11,var/viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 
 	if(!user)
 		return
@@ -680,24 +677,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		devicename = src.name
 
+	for(var/obj/item/I in user.contents)
+		if(I.zoom && I != src)
+			user << "<span class='warning'>You are already looking through \the [I].</span>"
+			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
+
 	var/cannotzoom = 0
 
-	if(user.stat || !(istype(user,/mob/living/carbon/human)))
-		user << "You are unable to focus through the [devicename]"
+	if(user.stat || !ishuman(user))
+		user << "<span class='warning'>You are unable to focus through \the [devicename].</span>"
 		cannotzoom = 1
 	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
-		user << "Your welding equipment gets in the way of you looking through the [devicename]"
+		user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [devicename].</span>"
 		cannotzoom = 1
 	else if (user.eye_blind)
-		user << "You are a little way too blind to see anything..."
+		user << "<span class='warning'>You are a too blind to see anything.</span>"
 		cannotzoom = 1
 	else if(!zoom && user.get_active_hand() != src)
-		user << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
+		user << "<span class='warning'>You need to hold \the [devicename] to look through it.</span>"
 		cannotzoom = 1
 
 	if(!zoom && !cannotzoom)
 		if(!user.hud_used.hud_shown)
-			user.button_pressed_F12(1)	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+			user.button_pressed_F12(1) //If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		user.button_pressed_F12(1)
 		user.client.view = viewsize
 		zoom = 1
@@ -705,21 +707,22 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
 
-		switch(usr.dir)
-			if (NORTH)
+		switch(user.dir)
+			if(NORTH)
 				user.client.pixel_x = 0
 				user.client.pixel_y = viewoffset
-			if (SOUTH)
+			if(SOUTH)
 				user.client.pixel_x = 0
 				user.client.pixel_y = -viewoffset
-			if (EAST)
+			if(EAST)
 				user.client.pixel_x = viewoffset
 				user.client.pixel_y = 0
-			if (WEST)
+			if(WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
 
-		user.visible_message("[user] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
+		user.visible_message("<span class='notice'>\The [user] peers through \the [zoomdevicename ? "[zoomdevicename] of \the [src]" : "[src]"].</span>", \
+		"<span class='notice'>You peer through \the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].</span>")
 	else
 		user.client.view = world.view
 		if(!user.hud_used.hud_shown)
@@ -730,6 +733,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.client.pixel_y = 0
 
 		if(!cannotzoom)
-			user.visible_message("[zoomdevicename ? "[user] looks up from the [src.name]" : "[user] lowers the [src.name]"].")
+			user.visible_message("[zoomdevicename ? "<span class='notice'>[user] looks up from \the [src].</span>" : "<span class='notice'>[user] lowers \the [src]"].</span>", \
+			"[zoomdevicename ? "<span class='notice'>You look up from \the [src].</span>" : "<span class='notice'>You lower \the [src]"].</span>")
 
 	return

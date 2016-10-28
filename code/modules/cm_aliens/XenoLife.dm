@@ -16,6 +16,9 @@
 		if(loc != zoom_turf && is_zoomed)
 			zoom_out()
 
+	if(stat || lying)
+		zoom_out()
+
 	if(stat != DEAD) //Stop if dead. Performance boost
 
 		update_progression()

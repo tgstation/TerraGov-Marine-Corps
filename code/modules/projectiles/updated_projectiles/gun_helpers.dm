@@ -361,13 +361,17 @@ should be alright.
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !usr.loc)
-		usr << "Not right now."
+		usr << "<span class='warning'>Not right now.</span>"
 		return
 
 	if(!check_both_hands(usr)) return
 
 	if(!rail && !muzzle && !under && !stock)
 		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
+		return
+
+	if(zoom)
+		usr << "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>"
 		return
 
 	usr << "<span class='notice'>You begin field-stripping your [src]...</span>"

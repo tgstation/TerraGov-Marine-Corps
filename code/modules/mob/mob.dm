@@ -112,7 +112,7 @@
 	if(W.loc == start_loc && src.get_active_hand() != W)
 		//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 		if(W.zoom)
-			W.zoom()
+			W.zoom(src)
 		if(W.flags_atom & TWOHANDED)
 			W.unwield(src)
 	return 1
