@@ -809,8 +809,8 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/toggleenter()
 	set category = "Server"
-	set desc="People can't enter"
-	set name="Toggle Entering"
+	set desc="Players can still log into the server, but Marines won't be able to join the game as a new mob. DOES NOT AFFECT XENOS."
+	set name="Toggle Joining"
 	enter_allowed = !( enter_allowed )
 	if (!( enter_allowed ))
 		world << "<B>New players may no longer enter the game.</B>"
