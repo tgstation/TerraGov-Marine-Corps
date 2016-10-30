@@ -848,21 +848,22 @@
 
 		var/mins = 0
 		var/reason = ""
-
-		switch(alert("Reason?", , "Disobeying staff", "Arguing with staff", "EORG", "Cancel"))
-			if("Disobeying staff")
-				mins = 4320
-				reason = "Expressly disobeying staff"
-			if("Arguing with staff")
-				mins = 4320
-				reason = "Needlessly talking back and/or arguing with staff members"
-			if("EORG")
-				switch(alert("Which offense?", ,"1st", "2nd", "3rd or more"))
-					if("1st") mins = 180
-					if("2nd") mins = 720
-					if("3rd or more") mins = 1440
-				reason = "EORG"
-			if("Cancel")
+		switch(alert("Are you sure you want to lazyban this person?", , "Yes", "No"))
+			if("Yes")
+				switch(alert("Reason?", , "Disobeying staff", "Arguing with staff", "EORG"))
+					if("Disobeying staff")
+						mins = 4320
+						reason = "Expressly disobeying staff"
+					if("Arguing with staff")
+						mins = 4320
+						reason = "Needlessly talking back and/or arguing with staff members"
+					if("EORG")
+						switch(alert("Which offense?", ,"1st", "2nd", "3rd or more"))
+							if("1st") mins = 180
+							if("2nd") mins = 720
+							if("3rd or more") mins = 1440
+						reason = "EORG"
+			if("No")
 				return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 		ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
