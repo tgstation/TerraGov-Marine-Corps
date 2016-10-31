@@ -166,7 +166,7 @@
 /datum/game_mode/colonialmarines_halloween_2016/process()
 	if(--round_started > 0) return //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 	if(!round_finished && ++round_checkwin >= 5)
-		if(world.time >= (900 + lobby_time) && fog_blockers.len)
+		if(world.time >= (1000 + lobby_time) && fog_blockers.len)
 			world << "<span class='boldnotice'>The sickly fog surrounding the area is receding!</span>"
 			for(var/obj/F in fog_blockers)
 				fog_blockers -= F
@@ -355,7 +355,8 @@
 			for(var/I in H.contents)//Delete the cryo uniform
 				if(istype(I,/obj/item/clothing/under/marine/underoos)) del(I)
 
-	H.key = M.key
+	if(H.client) H.key = M.key
+	else return //We don't want no-client mobs to spawn.
 	if(!H.mind) H.mind = new(H.key)
 	H.nutrition = rand(325,400)
 
@@ -512,7 +513,6 @@
 				W.access += get_all_centcom_access()
 				H.equip_to_slot_or_del(W, slot_wear_id)
 				H.mind.assigned_role = "PMC"
-		ticker.mode.traitors += H.mind
 		H.mind.special_role = "PMC"
 		spawn(40)
 			if(H)
