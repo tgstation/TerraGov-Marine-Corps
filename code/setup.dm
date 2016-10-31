@@ -3,6 +3,8 @@
 #define DEBUG
 
 #define PI 3.1415
+#define CARDINAL_DIRS 		list(1,2,4,8)
+#define CARDINAL_ALL_DIRS 	list(1,2,4,5,6,8,9,10)
 
 #define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)
 #define ONE_ATMOSPHERE		101.325	//kPa
@@ -329,6 +331,9 @@ should all be unique more or less. flags_inventory can double up.
 #define HAND_RIGHT		4096
 #define HANDS			6144
 #define FULL_BODY		8191
+
+//defense zones for selecting them via the hud.
+#define DEFENSE_ZONES_LIVING list("head","chest","mouth","eyes","groin","l_leg","l_foot","r_leg","r_foot","l_arm","l_hand","r_arm","r_hand")
 
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
 // Used with human/proc/get_flags_heat_protection() and human/proc/get_flags_cold_protection()

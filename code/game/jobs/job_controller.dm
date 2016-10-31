@@ -66,7 +66,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 			//For Whiskey outpost gamemode, we want to force every non marine into Squad Marine.
 				//Why? Because we only need marines for this gamemode, and the only way to set up squads is by this hacky way.
 				//Once they spawn on Sulaco, they are teleported to WO map.
-			if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+			if(ticker && ( istype(ticker.mode,/datum/game_mode/whiskey_outpost) || istype(ticker.mode,/datum/game_mode/colonialmarines_halloween_2016) ) )
 				//world << "Rank: [rank]"
 				if(rank != "Squad Marine" && rank != "Squad Medic" && rank != "Squad Engineer" && rank != "Squad Specialist" && rank != "Squad Leader")
 					rank = "Squad Marine"
@@ -580,7 +580,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				H << "You have been assigned to: \b [H.mind.assigned_squad.name] squad."
 				//WHISKEY OUTPOST GAMEMODE
 					//They spawn ready on the outpost, not on Sulaco!
-				if(ticker && !istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+				if(ticker && (!istype(ticker.mode,/datum/game_mode/whiskey_outpost) || !istype(ticker.mode,/datum/game_mode/colonialmarines_halloween_2016) ) )
 					H << "Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."
 		return
 
