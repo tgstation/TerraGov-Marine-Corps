@@ -166,7 +166,7 @@
 /datum/game_mode/colonialmarines_halloween_2016/process()
 	if(--round_started > 0) return //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 	if(!round_finished && ++round_checkwin >= 5)
-		if(world.time >= (9000 + lobby_time) && fog_blockers.len)
+		if(world.time >= (900 + lobby_time) && fog_blockers.len)
 			world << "<span class='boldnotice'>The sickly fog surrounding the area is receding!</span>"
 			for(var/obj/F in fog_blockers)
 				fog_blockers -= F
