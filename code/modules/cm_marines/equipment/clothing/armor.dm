@@ -62,6 +62,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_armor_protection = UPPER_TORSO
 	armor = list(melee = 50, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 
+/obj/item/clothing/suit/armor/vest/jason
+	name = "musty jacket"
+	desc = "A killer fashion statement."
+	icon_state = "jason_jacket"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	armor = list(melee = 13, bullet = 13, laser = 13, energy = 13, bomb = 13, bio = 13, rad = 13)
+
 /obj/item/clothing/suit/armor/vest/pilot
 	name = "\improper M70 flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."

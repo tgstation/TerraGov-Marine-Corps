@@ -51,6 +51,7 @@ Additional game mode variables.
 	var/xeno_queen_timer  = 0 //How long ago did the queen die?
 	var/xeno_queen_deaths = 0 //How many times the alien queen died.
 	var/surv_starting_num = 0 //To clamp starting survivors.
+	var/merc_starting_num = 0 //PMC clamp.
 	var/pred_current_num = 0 //How many are there now?
 	var/pred_maximum_num = 3 //How many are possible per round? Does not count elders.
 	var/pred_round_chance = 20 //%
@@ -74,7 +75,8 @@ Additional game mode variables.
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
 	xeno_starting_num = Clamp((ready_players/5), xeno_required_num, INFINITY) //(n, minimum, maximum)
-	surv_starting_num = Clamp((ready_players/7), 0, 3) //(n, minimum, maximum)
+	surv_starting_num = Clamp((ready_players/7), 0, 3)
+	merc_starting_num = Clamp((ready_players/3), 1, INFINITY)
 
 //===================================================\\
 

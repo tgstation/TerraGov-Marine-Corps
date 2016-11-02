@@ -1,4 +1,8 @@
-//Created in about 8 hours. Kill me.
+#define EVENT_MAJOR_INTERVAL 	4000
+#define EVENT_MINOR_INTERVAL 	900
+#define FOG_DELAY_INTERVAL		6000
+#define BATTLEFIELD_END			36000
+#define MAX_BLOOD_ATTUNED		5
 
 /datum/game_mode/colonialmarines_halloween_2016
 	name = "Nightmare on LV-624"
@@ -6,23 +10,26 @@
 	required_players 		= 2 //Need at least one player, but really we need 2.
 	forbid_late_joining 	= 1
 	var/lobby_time 			= 0
+	var/event_time_major	= FOG_DELAY_INTERVAL
+	var/event_time_minor	= EVENT_MINOR_INTERVAL
+	var/total_attuned		= 0
 	var/obj/item/device/omega_array/mcguffin
 	var/fog_blockers[]
 	var/turf/marine_spawns[]
 	var/turf/pmc_spawns[]
-	var/pmc_starting_num
+	var/turf/horror_spawns[]
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Pre-pre-startup */
 /datum/game_mode/colonialmarines_halloween_2016/can_start()
+	initialize_special_clamps()
 	initialize_starting_predator_list()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
 	if(ready_players < required_players)
 		world << "<h2 style=\"color:red\">Not enough players to start the game. <b>Aborting</b>.</h2>"
 		return
-	pmc_starting_num = Clamp((ready_players/3), 1, INFINITY) //(n, minimum, maximum)
 	return 1
 
 /datum/game_mode/colonialmarines_halloween_2016/announce()
@@ -38,97 +45,55 @@
 /* Pre-setup */
 //We can ignore this for now, we don't want to do anything before characters are set up.
 /datum/game_mode/colonialmarines_halloween_2016/pre_setup()
-	fog_blockers = list()
-	for(var/obj/effect/blocker/fog/F in world) fog_blockers+=F
+	var/obj/effect/landmark/L
+	var/obj/effect/step_trigger/attunement/R
+	var/obj/effect/blocker/fog/F
+	fog_blockers 		= new
+	horror_spawns		= new
+	pmc_spawns	 		= new
+	marine_spawns	 	= new
 
-	var/blood_attuners[] = list("O-","O+","A-","A+","B-","B+","AB-","AB+")
-	var/b_type[] = list()
-	var/i = 0
-	while(++i < 3)
-		var/blood_type = pick(blood_attuners)
-		b_type += blood_type
-		blood_attuners -= blood_type
+	//This will set up the various blood attuners to correspond to blood type.
+	var/blood_types[] 		= HUMAN_BLOODTYPES
+	var/blood_attuners[] 	= new
+	var/blood_chosen[]
+	var/i
+	var/e
+	var/t
+	for(t = 0, ++t<6)
+		i = 0
+		e = t == 5 ? 5 : 3
+		blood_chosen = new
+		if(t == 5) blood_types = HUMAN_BLOODTYPES
+		while(++i < e) blood_chosen += pick(blood_types)
+		blood_attuners["blood attunement [t]"] = blood_chosen
 
-	var/obj/effect/step_trigger/attunement/attune
-	for(var/obj/effect/landmark/battlefield/spawn_blood_attunement1/A in world)
-		attune = new(A.loc)
-		attune.b_type = b_type
-		cdel(A)
+	var/turf/pmc_supplies[] 	= new
+	var/turf/marine_supplies[] 	= new
 
-	b_type = list()
-	i = 0
-	while(++i < 3)
-		var/blood_type = pick(blood_attuners)
-		b_type += blood_type
-		blood_attuners -= blood_type
+	//Get all the fog effects in the world.
+	for(F in world) fog_blockers += F
 
-	for(var/obj/effect/landmark/battlefield/spawn_blood_attunement2/A in world)
-		attune = new(A.loc)
-		attune.b_type = b_type
-		cdel(A)
-
-	b_type = list()
-	i = 0
-	while(++i < 3)
-		var/blood_type = pick(blood_attuners)
-		b_type += blood_type
-		blood_attuners -= blood_type
-
-	for(var/obj/effect/landmark/battlefield/spawn_blood_attunement3/A in world)
-		attune = new(A.loc)
-		attune.b_type = b_type
-		cdel(A)
-
-	b_type = list()
-	i = 0
-	while(++i < 3)
-		var/blood_type = pick(blood_attuners)
-		b_type += blood_type
-		blood_attuners -= blood_type
-
-	for(var/obj/effect/landmark/battlefield/spawn_blood_attunement4/A in world)
-		attune = new(A.loc)
-		attune.b_type = b_type
-		cdel(A)
-
-	blood_attuners = list("O-","O+","A-","A+","B-","B+","AB-","AB+")
-	b_type = list()
-	i = 0
-	while(++i < 5)
-		var/blood_type = pick(blood_attuners)
-		b_type += blood_type
-		blood_attuners -= blood_type
-
-	for(var/obj/effect/landmark/battlefield/spawn_blood_attunement5/A in world)
-		attune = new(A.loc)
-		attune.b_type = b_type
-		cdel(A)
-
-	for(var/obj/effect/landmark/battlefield/spawn_mcguffin/A in world)
-		var/obj/item/device/omega_array/control/C = new(A.loc)
-		mcguffin = C
-		cdel(A)
-
-	pmc_spawns = list()
-	for(var/obj/effect/landmark/battlefield/spawn_pmc/L in world)
-		pmc_spawns += L.loc
+	//Set up landmarks.
+	for(L in world)
+		switch(L.name)
+			if("marine start") marine_spawns += L.loc
+			if("pmc start") pmc_spawns += L.loc
+			if("horror start")
+				horror_spawns += L.loc
+				new /obj/effect/gateway(L.loc)
+			if("omega control")
+				var/obj/item/device/omega_array/control/C = new(L.loc)
+				mcguffin = C
+			if("marine supplies") marine_supplies += L.loc
+			if("pmc supplies") pmc_supplies += L.loc
+			if("blood attunement 1","blood attunement 2","blood attunement 3","blood attunement 4","blood attunement 5")
+				R = new(L.loc)
+				R.b_type = blood_attuners[L.name]
 		cdel(L)
 
-	marine_spawns = list()
-	for(var/obj/effect/landmark/battlefield/spawn_marine/L in world)
-		marine_spawns += L.loc
-		cdel(L)
-
-	var/turf/pmc_supplies[] = list()
-	for(var/obj/effect/landmark/battlefield/spawn_pmc_supplies/L in world)
-		pmc_supplies += L.loc
-		cdel(L)
+	//Generate supplies.
 	create_pmc_supplies(pmc_supplies)
-
-	var/turf/marine_supplies[] = list()
-	for(var/obj/effect/landmark/battlefield/spawn_marine_supplies/L in world)
-		marine_supplies += L.loc
-		cdel(L)
 	create_marine_supplies(marine_supplies)
 
 	return 1
@@ -141,36 +106,47 @@
 //We move it later with transform_survivor but they might flicker at any start_loc spawn landmark effects then disappear.
 //Xenos and survivors should not spawn anywhere until we transform them.
 /datum/game_mode/colonialmarines_halloween_2016/post_setup()
+	set waitfor = 0
+
 	if(config) config.remove_gun_restrictions = 1
 	lobby_time = world.time
 	initialize_post_predator_list()
 
 	var/mob/M
-	var/temp_player_list[] = list()
+	var/temp_player_list[] = new
 	for(var/i in player_list) temp_player_list += i
 	while(temp_player_list.len)
 		M = pick(temp_player_list) //We randomzie it a bit.
 		temp_player_list -= M
 		spawn_player(M)
 
-	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
+	defer_powernet_rebuild = 2
 
-	spawn (50)
-		command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "USS Sulaco")
-		world << 'sound/misc/eventhorizon_shiplog.ogg'
+	sleep (100)
+	command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. Beginning playback.", "USS Sulaco")
+	world << 'sound/misc/eventhorizon_shiplog.ogg'
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
 /datum/game_mode/colonialmarines_halloween_2016/process()
-	if(--round_started > 0) return //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
+	if(--round_started > 0) return
 	if(!round_finished && ++round_checkwin >= 5)
-		if(world.time >= (1000 + lobby_time) && fog_blockers.len)
+		if(world.time >= (FOG_DELAY_INTERVAL + lobby_time) && fog_blockers.len)
 			world << "<span class='boldnotice'>The sickly fog surrounding the area is receding!</span>"
 			for(var/obj/F in fog_blockers)
 				fog_blockers -= F
 				cdel(F)
+		if(world.time <= FOG_DELAY_INTERVAL && world.time >= (event_time_minor + lobby_time) )
+			handle_event_minor_spooky()
+			event_time_minor = world.time + EVENT_MINOR_INTERVAL
+		if(world.time >= (event_time_major + lobby_time))
+			handle_event_major_spooky()
+			event_time_major = world.time + EVENT_MAJOR_INTERVAL
+		if(total_attuned >= MAX_BLOOD_ATTUNED)
+			new /obj/machinery/singularity/narsie/wizard(pick(horror_spawns))
+			total_attuned = 0
 		check_win()
 		round_checkwin = 0
 
@@ -189,7 +165,7 @@
 		if(!mcguffin || !mcguffin.loc) round_finished 	= MODE_BATTLEFIELD_M_MAJOR
 		else round_finished 							= MODE_BATTLEFIELD_M_MINOR
 	else if(!num_marines && !num_pmcs)	round_finished  = MODE_BATTLEFIELD_DRAW_DEATH
-	else if((world.time > 36000 + lobby_time)) //An hour later, we don't have a clear winner.
+	else if((world.time > BATTLEFIELD_END + lobby_time))
 		if(mcguffin && mcguffin.loc) round_finished		= MODE_BATTLEFIELD_W_MAJOR
 		else round_finished 							= MODE_BATTLEFIELD_DRAW_STALEMATE
 	else if(station_was_nuked) round_finished 			= MODE_GENERIC_DRAW_NUKE
@@ -211,35 +187,44 @@
 //////////////////////////////////
 /obj/effect/landmark/battlefield
 	name = "battlefield"
+	icon = 'icons/effects/effects.dmi'
 
-/obj/effect/landmark/battlefield/spawn_blood_attunement1
+/obj/effect/landmark/battlefield/attune
+	icon_state = "spawn_event"
+/obj/effect/landmark/battlefield/attune/spawn_blood_attunement1
 	name = "blood attunement 1"
-/obj/effect/landmark/battlefield/spawn_blood_attunement2
+/obj/effect/landmark/battlefield/attune/spawn_blood_attunement2
 	name = "blood attunement 2"
-/obj/effect/landmark/battlefield/spawn_blood_attunement3
+/obj/effect/landmark/battlefield/attune/spawn_blood_attunement3
 	name = "blood attunement 3"
-/obj/effect/landmark/battlefield/spawn_blood_attunement4
+/obj/effect/landmark/battlefield/attune/spawn_blood_attunement4
 	name = "blood attunement 4"
-/obj/effect/landmark/battlefield/spawn_blood_attunement5
+/obj/effect/landmark/battlefield/attune/spawn_blood_attunement5
 	name = "blood attunement 5"
 
 /obj/effect/landmark/battlefield/spawn_marine
 	name = "marine start"
-	icon_state = "x"
+	icon_state = "spawn_mob1"
 /obj/effect/landmark/battlefield/spawn_pmc
 	name = "pmc start"
-	icon_state = "x"
+	icon_state = "spawn_mob2"
+/obj/effect/landmark/battlefield/spawn_horrors
+	name = "horror start"
+	icon_state = "spawn_mob3"
+
 /obj/effect/landmark/battlefield/spawn_mcguffin
-	name = "objective"
-	icon_state = "x3"
+	name = "omega control"
+	icon_state = "spawn_goal"
+
 /obj/effect/landmark/battlefield/spawn_marine_supplies
 	name = "marine supplies"
+	icon_state = "spawn_obj"
 /obj/effect/landmark/battlefield/spawn_pmc_supplies
 	name = "pmc supplies"
-
+	icon_state = "spawn_obj"
 
 /obj/item/device/omega_array
-	name = "Omega Wave Destablization Array"
+	name = "omega wave destablization array"
 	desc = "It's hard to say just what this thing is, but the eggheads at W-Y central must have some reason for creating it."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "omega_control"
@@ -262,7 +247,7 @@
 		update_health()
 
 /obj/item/device/omega_array/proc/update_health()
-	if (health <= 0)
+	if(health <= 0)
 		visible_message("<span class='warning'>[src] sparks and begins to violently shake!</span>")
 		destroy()
 
@@ -335,18 +320,28 @@
 					M.apply_damage(50,BURN,pick(DEFENSE_ZONES_LIVING))
 		playsound(src, 'sound/effects/eventhorizon_scream.ogg', 120, 1)
 
+/obj/effect/rune/attunement
+	l_color = "#ff0000"
+	luminosity = 5
+
+	Dispose()
+		. = ..()
+		luminosity = 0
+		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
+			T.total_attuned++
+
 /obj/effect/rune/attunement/attack_hand(mob/living/user) //Special snowflake rune, do not steal 2016.
 	user << "<span class='notice'>You touch the rune, feeling it glow beneath your fingertip. It feels warm, somehow pleasant. The rune soon fades and disappears, as you feel a new sense of understanding about the world.</span>"
-	user.mutations |= pick(TK,COLD_RESISTANCE,XRAY,HULK)
-	user.mutations |= pick(LASER,HEAL,SHADOW,SCREAM)
-	user.mutations |= pick(REPROCESSOR,SHOCKWAVE,REGENERATION)
+	user.dna.SetSEState(pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK), 1)
+	domutcheck(user,null,MUTCHK_FORCED)
+	user.update_mutations()
 	cdel(src)
 
 /datum/game_mode/colonialmarines_halloween_2016/proc/spawn_player(mob/M)
 
 	var/mob/living/carbon/human/H
 	var/turf/picked
-
 
 	if(istype(M,/mob/living/carbon/human)) //If We started on Sulaco as squad marine
 		if(isYautja(M)) return
@@ -355,23 +350,49 @@
 			for(var/I in H.contents)//Delete the cryo uniform
 				if(istype(I,/obj/item/clothing/under/marine/underoos)) del(I)
 
-	if(H.client) H.key = M.key
-	else return //We don't want no-client mobs to spawn.
-	if(!H.mind) H.mind = new(H.key)
 	H.nutrition = rand(325,400)
 
 	//Squad ID and backpack are already spawned in job datum
 
+	switch(H.mind.assigned_role) //These guys are assigned outside of everyone else.
+		if("Corporate Liaison") //Lead the way, corporate drone!
+			H.mind.special_role = "PMC"
+			H.loc = pick(pmc_spawns)
+			H.update_icons()
+			spawn(40)
+				if(H)
+					H << "________________________"
+					H << "\red <b>You are the [H.mind.assigned_role]!<b>"
+					H << "It was just a regular day in the office when the higher up decided to send you in to this hot mess. If only you called in sick that day..."
+					H << "The W-Y mercs were hired to protect some important science experiment, and W-Y expects you to keep them in line."
+					H << "These are hardened killers, and you write on paper for a living. It won't be easy, that's for damn sure."
+					H << "Best to let the mercs do the killing and the dying, but <b>remind them who pays the bills.</b>"
+					H << "________________________"
+			return
+		if("Commander")
+			H.loc = pick(marine_spawns)
+			H.update_icons()
+			spawn(40)
+				if(H)
+					H << "________________________"
+					H << "\red <b>You are the [H.mind.assigned_role]!<b>"
+					H << "What the hell did you do to get assigned on this mission? Maybe someone is looking to bump you off for a promotion. Regardless..."
+					H << "The marines need a leader to inspire them and lead them to victory. You'll settle for telling them which side of the gun the bullets come from."
+					H << "You are a vet, a real badass in your day, but now you're in the thick of it with the grunts. You're plenty sure they are going to die in droves."
+					H << "Come hell or high water, <b>you are going to be there for them</b>."
+					H << "________________________"
+			return
+
 	//PMC. We want to set up these guys first.
-	if(pmc_starting_num-- > 0)
+	if(merc_starting_num-- > 0)
 		if(pmc_spawns.len) picked = pick(pmc_spawns)
 		if(H.contents.len)
 			for(var/I in H.contents)
 				if(istype(I,/obj/item)) del(I)
 
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), slot_l_ear)
 		switch(H.mind.assigned_role)
 			if("Squad Leader")
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), slot_l_ear)
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(H), slot_w_uniform)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(H), slot_wear_suit)
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
@@ -389,18 +410,8 @@
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H), slot_l_store)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
-
-				var/obj/item/weapon/card/id/W = new(src)
-				W.assignment = "PMC Officer"
-				W.registered_name = H.real_name
-				W.name = "[H.real_name]'s ID Card ([W.assignment])"
-				W.icon_state = "centcom"
-				W.access = get_all_accesses()
-				W.access += get_all_centcom_access()
-				H.equip_to_slot_or_del(W, slot_wear_id)
-				H.mind.assigned_role = "PMC Leader"
+				H.mind.assigned_role = "PMC Officer"
 			if("Squad Engineer")
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), slot_l_ear)
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(H), slot_glasses)
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(H), slot_wear_suit)
@@ -414,18 +425,8 @@
 				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_l_store)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_r_store)
-
-				var/obj/item/weapon/card/id/W = new(src)
-				W.assignment = "PMC Specialist"
-				W.registered_name = H.real_name
-				W.name = "[H.real_name]'s ID Card ([W.assignment])"
-				W.icon_state = "centcom"
-				W.access = get_all_accesses()
-				W.access += get_all_centcom_access()
-				H.equip_to_slot_or_del(W, slot_wear_id)
 				H.mind.assigned_role = "PMC Gunner"
 			if("Squad Medic")
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), slot_l_ear)
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(H), slot_wear_suit)
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
@@ -442,18 +443,9 @@
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(H), slot_l_store)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(H.back), slot_in_backpack)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(H.back), slot_in_backpack)
-
-				var/obj/item/weapon/card/id/W = new(src)
-				W.assignment = "PMC Sniper"
-				W.registered_name = H.real_name
-				W.name = "[H.real_name]'s ID Card ([W.assignment])"
-				W.icon_state = "centcom"
-				W.access = get_all_accesses()
-				W.access += get_all_centcom_access()
-				H.equip_to_slot_or_del(W, slot_wear_id)
 				H.mind.assigned_role = "PMC Sniper"
 			if("Squad Specialist")
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(H), slot_l_ear)
+
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(H), slot_glasses)
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), slot_w_uniform)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(H), slot_wear_suit)
@@ -473,15 +465,6 @@
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
 				H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), slot_s_store)
-
-				var/obj/item/weapon/card/id/W = new(src)
-				W.assignment = "PMC Commando"
-				W.registered_name = H.real_name
-				W.name = "[H.real_name]'s ID Card ([W.assignment])"
-				W.icon_state = "centcom"
-				W.access = get_all_accesses()
-				W.access += get_all_centcom_access()
-				H.equip_to_slot_or_del(W, slot_wear_id)
 				H.mind.assigned_role = "PMC Commando"
 			else
 				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), slot_l_ear)
@@ -504,16 +487,19 @@
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(H), slot_l_store)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(H.back), slot_in_backpack)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(H.back), slot_in_backpack)
-				var/obj/item/weapon/card/id/W = new(src)
-				W.assignment = "PMC Standard"
-				W.registered_name = H.real_name
-				W.name = "[H.real_name]'s ID Card ([W.assignment])"
-				W.icon_state = "centcom"
-				W.access = get_all_accesses()
-				W.access += get_all_centcom_access()
-				H.equip_to_slot_or_del(W, slot_wear_id)
-				H.mind.assigned_role = "PMC"
+				H.mind.assigned_role = "PMC Standard"
+
+		var/obj/item/weapon/card/id/W = new(src)
+		W.assignment = H.mind.assigned_role
+		W.registered_name = H.real_name
+		W.name = "[H.real_name]'s ID Card ([W.assignment])"
+		W.icon_state = "centcom"
+		W.access = get_all_accesses()
+		W.access += get_all_centcom_access()
+		H.equip_to_slot_or_del(W, slot_wear_id)
 		H.mind.special_role = "PMC"
+		H.mind.role_alt_title = H.mind.assigned_role
+		H.mind.role_comm_title = "W-Y"
 		spawn(40)
 			if(H)
 				H << "________________________"
@@ -661,78 +647,35 @@
 		if(prob(25))
 			H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), slot_l_hand)
 
-
-
-
 		//Find their squad
 		var/squad = get_squad_from_card(H)
 		var/leader = is_leader_from_card(H)
 
 		//Squad Gloves and radio headsets
-		switch(squad)
-			if(1)//Alpha
-					//Radio
-				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/malphal(H), slot_l_ear)
-				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/malpha(H), slot_l_ear)
-					//Gloves
-				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), slot_gloves)
-				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+		var/squad_list[] = list("alpha","bravo","charlie","delta")
+		var/item_path = text2path("/obj/item/device/radio/headset/m["[squad_list[squad]]"][leader?"l":""]")
+		H.equip_to_slot_or_del(new item_path(H), slot_l_ear)
+		item_path = text2path("/obj/item/clothing/gloves/marine/[H.mind.assigned_role == "Squad Engineer"?"yellow":squad_list[squad]]")
+		H.equip_to_slot_or_del(new item_path(H), slot_gloves)
 
-			if(2)//Bravo
-					//Radio
-				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mbravol(H), slot_l_ear)
-				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mbravo(H), slot_l_ear)
-					//Gloves
-				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/bravo(H), slot_gloves)
-				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
-
-			if(3)//Charlie
-					//Radio
-				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcharliel(H), slot_l_ear)
-				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcharlie(H), slot_l_ear)
-					//Gloves
-				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/charlie(H), slot_gloves)
-				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
-
-			if(4)//Delta
-					//Radio
-				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mdeltal(H), slot_l_ear)
-				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mdelta(H), slot_l_ear)
-					//Gloves
-				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/delta(H), slot_gloves)
-				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 
 		//Set Random Weapon and Ammo
 		if(randwep)
-			var/rand_wep = rand(0,2)
-			switch(rand_wep)
-				if(0)//M41a
+			switch(rand(1,20))
+				if(1,10)//M41a
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), slot_s_store)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-				if(1)//Combat Shotgun
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), slot_s_store)
+				if(11,13)
+					if(prob(75))
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), slot_s_store)
+					else
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), slot_s_store)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-				if(2)//SMG
+				else
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), slot_s_store)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
@@ -753,415 +696,406 @@
 
 	return 1
 
+/datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_minor_spooky()
+	set waitfor = 0
+	switch(rand(1,20))
+		if(1,10)
+			for(var/mob/M in player_list)
+				if(prob(23) && M.stat != DEAD && ishuman(M) && !isYautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
+					switch(rand(1,3))
+						if(1)
+							var/phrases[] = list( //The edgiest lyrics in the universe.
+								"Sanguis bibimus...",
+								"Corpus edibus...",
+								"Sanguis bibimus...",
+								"Corpus edibus...",
+								"Rolle corpus...",
+								"Satani...",
+								"Ave, ave...",
+								"Ave, ave versus Christus...",
+								"Ave, ave versus Christus...",
+								"Ave Satani...",
+								"Satani, Satani, Satani...",
+								"Ave, ave Satani...")
+							var/dat
+							switch(rand(1,5))
+								if(1) dat = "<span class='notice'>You hear a male voice in your head, like it's coming from somewhere nearby.</span> "
+								if(2) dat = "<span class='notice'>You hear a female chant. You cannot tell where it is coming from.</span> "
+								if(3) dat = "<span class='notice'>There is a weird buzzing in your head, like someone is talking...</span> "
+								if(4) dat = "<span class='notice'>Did someone say something? Who was that talking just now?</span> "
+								if(5) dat = "<span class='notice'>Something is calling you, just around the corner. Who is that?</span> "
+							dat += pick("<span class='rose'>[pick(phrases)]</span>")
+							M << dat
+						if(2)
+							var/spooky_sounds[] = list(
+								'sound/hallucinations/behind_you1.ogg',
+								'sound/hallucinations/behind_you2.ogg',
+								'sound/hallucinations/far_noise.ogg',
+								'sound/hallucinations/growl1.ogg',
+								'sound/hallucinations/growl2.ogg',
+								'sound/hallucinations/growl3.ogg',
+								'sound/hallucinations/i_see_you1.ogg',
+								'sound/hallucinations/i_see_you2.ogg',
+								'sound/hallucinations/im_here1.ogg',
+								'sound/hallucinations/im_here2.ogg',
+								'sound/hallucinations/look_up1.ogg',
+								'sound/hallucinations/look_up2.ogg',
+								'sound/hallucinations/over_here1.ogg',
+								'sound/hallucinations/over_here2.ogg',
+								'sound/hallucinations/over_here3.ogg',
+								'sound/hallucinations/turn_around1.ogg',
+								'sound/hallucinations/turn_around2.ogg',
+								'sound/hallucinations/veryfar_noise.ogg',
+								'sound/hallucinations/wail.ogg')
+							M << pick(spooky_sounds)
+						if(3)
+							var/mob/living/carbon/human/H = M
+							H.hallucination += 60
+		if(11,18)
+			//Going to create some spooky imagery here.
+			//sleep(300)
+		else
+			for(var/area/A in world)
+				if(A.z == 1 && A.requires_power)
+					for(var/obj/machinery/light/L in A)
+						if(prob(75)) L.flicker(10)
+						else if(prob(5)) L.broken()
 
-/datum/game_mode/colonialmarines_halloween_2016/proc/create_pmc_supplies(supplies)
-	var/obj/structure/closet/crate/C = new(pick(supplies))
-	var/supply_manifest[]
+
+/datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_major_spooky()
+	var/mob/living/horror
+	switch(pick(1,2))
+		if(1)
+			var/mob/living/carbon/Xenomorph/Ravager/ravenger/R = new(pick(horror_spawns))
+			horror = R
+		if(2)
+			var/mob/living/carbon/human/H = new(pick(horror_spawns))
+			var/obj/item/I
+			if(prob(18)) //Jasssooon
+				I = new /obj/item/clothing/under/jason(H)
+				I.canremove = 0
+				H.equip_to_slot_or_del(I, slot_w_uniform)
+
+				I = new /obj/item/clothing/mask/jason(H)
+				I.canremove = 0
+				H.equip_to_slot_or_del(I, slot_wear_mask)
+
+				I = new /obj/item/clothing/shoes/jackboots(H)
+				I.canremove = 0
+				H.equip_to_slot_or_del(I, slot_shoes)
+
+				I = new /obj/item/clothing/suit/armor/vest/jason(H)
+				I.canremove = 0
+				H.equip_to_slot_or_del(I, slot_wear_suit)
+
+				I = new /obj/item/clothing/gloves/black(H)
+				I.canremove = 0
+				H.equip_to_slot_or_del(I, slot_gloves)
+
+
+				I = new /obj/item/weapon/claymore/mercsword/machete(H)
+				H.equip_to_slot_or_del(I, slot_r_hand)
+				I.force = 80
+				I.edge = 1
+
+			else
+				I = new /obj/item/clothing/under/colonist(H)
+				H.equip_to_slot_or_del(I, slot_w_uniform)
+				I.canremove = 0
+
+				switch(rand(1,5))
+					if(1) I = new /obj/item/clothing/suit/storage/labcoat(H)
+					if(2) I = new /obj/item/clothing/suit/apron(H)
+					if(3) I = new /obj/item/clothing/suit/chef(H)
+					if(4) I = new /obj/item/clothing/suit/apron/overalls(H)
+					if(5) I = null
+				if(I)
+					I.canremove = 0
+					H.equip_to_slot_or_del(I, slot_wear_suit)
+
+				if(prob(50)) I = new /obj/item/clothing/gloves/black(H)
+				else I = null
+				if(I)
+					I.canremove = 0
+					H.equip_to_slot_or_del(I, slot_gloves)
+
+				switch(rand(1,4))
+					if(1)
+						I = new /obj/item/clothing/mask/gas/plaguedoctor(H)
+						H.equip_to_slot_or_del(I, slot_wear_mask)
+					if(2)
+						I = new /obj/item/clothing/mask/gas(H)
+						H.equip_to_slot_or_del(I, slot_wear_mask)
+					if(3)
+						I = new /obj/item/clothing/head/welding
+						H.equip_to_slot_or_del(I, slot_head)
+					else I = null
+				if(I) I.canremove = 0
+
+				switch(rand(1,4))
+					if(1) I = new /obj/item/clothing/shoes/black(H)
+					if(2) I = new /obj/item/clothing/shoes/jackboots(H)
+					if(3) I = new /obj/item/clothing/shoes/brown(H)
+					if(4) I = null
+				if(I)
+					I.canremove = 0
+					H.equip_to_slot_or_del(I, slot_shoes)
+
+				switch(rand(1,4))
+					if(1) I = new /obj/item/weapon/pickaxe(H)
+					if(2) I = new /obj/item/weapon/claymore/mercsword/machete(H)
+					if(3) I = new /obj/item/weapon/kitchen/utensil/knife(H)
+					if(4) I = new /obj/item/weapon/butch(H)
+				H.equip_to_slot_or_del(I, slot_r_hand)
+
+			H.set_species("Horror")
+			H.mind_initialize()
+			H.mind.special_role = "MODE"
+			H.mind.assigned_role = "killer"
+			H.sdisabilities |= MUTE //We don't want them chatting up people.
+			H.dna.SetSEState(XRAYBLOCK, 1)
+			domutcheck(H,null,MUTCHK_FORCED)
+			H.update_mutations()
+			horror = H
+
+	var/horror_key
+	var/mob/candidate_mob
+	var/candidates[] = new	//list of candidate keys
+	for(var/mob/dead/observer/G in player_list)
+		if(G.client && !G.client.is_afk() && G.client.prefs.be_special & (BE_ALIEN|BE_SURVIVOR|BE_RESPONDER))
+			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
+
+	if(!candidates.len)
+		del(horror)
+		return
+	candidates = shuffle(candidates)
+
+	while(!horror_key && candidates.len)
+		candidate_mob = pick(candidates)
+		if(sd_Alert(candidate_mob, "Would you like to spawn as a horror and kill the living?", buttons = list("Yes","No"), duration = 150) == "Yes")
+			horror_key = candidate_mob.ckey
+		else candidates -= candidate_mob
+
+	if(!horror_key)
+		del(horror)
+		return
+
+	horror.key = horror_key
+	horror.mind.key = horror.key
+
+	horror << "<span class='rough'>You hunger for blood of the living! Murder! Death! KILL!</span>"
+
+/datum/game_mode/colonialmarines_halloween_2016/proc/generate_supply_crate(turf/supply_spawn[], supply_manifest[], crate_name = "supplies")
+	var/obj/structure/closet/crate/C = new(pick(supply_spawn))
 	var/item_path
+	var/i
+	for(item_path in supply_manifest)
+		i = supply_manifest[item_path]
+		while(i--) new item_path(C)
+	C.name = crate_name
 
-	supply_manifest=list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reddot,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb
+/datum/game_mode/colonialmarines_halloween_2016/proc/create_pmc_supplies(turf/supply_spawn[])
+	var/supply_manifest[] =list(
+		/obj/item/attachable/suppressor = 6,
+		/obj/item/attachable/reddot = 6,
+		/obj/item/weapon/grenade/smokebomb = 6
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "special ops crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"special ops crate")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/clothing/tie/holster,
-		/obj/item/clothing/tie/holster,
-		/obj/item/clothing/tie/holster,
-		/obj/item/clothing/tie/holster,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/weapon/storage/belt/gun/m39,
-		/obj/item/weapon/storage/belt/gun/m39,
-		/obj/item/weapon/storage/belt/gun/m39,
-		/obj/item/weapon/storage/belt/gun/m39,
-		/obj/item/weapon/storage/belt/gun/m39,
-		/obj/item/weapon/storage/belt/gun/m39
+		/obj/item/clothing/tie/holster = 4,
+		/obj/item/clothing/tie/storage/brown_vest = 6,
+		/obj/item/clothing/tie/storage/webbing = 4,
+		/obj/item/weapon/storage/belt/gun/m39 = 5
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "extra storage crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"extra storage crate")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/weapon/storage/box/explosive_mines,
-		/obj/item/weapon/storage/box/explosive_mines,
-		/obj/item/weapon/storage/box/explosive_mines,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/explosive/PMC,
-		/obj/item/weapon/grenade/incendiary,
-		/obj/item/weapon/grenade/incendiary,
-		/obj/item/weapon/grenade/explosive/m40,
-		/obj/item/weapon/grenade/explosive/m40
+		/obj/item/weapon/storage/box/explosive_mines = 3,
+		/obj/item/weapon/grenade/explosive/PMC = 6,
+		/obj/item/weapon/grenade/incendiary = 4,
+		/obj/item/weapon/grenade/explosive/m40 = 4
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "\improper explosives crate (WARNING)"
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/weapon/flamethrower/full,
-		/obj/item/weapon/flamethrower/full,
-		/obj/item/weapon/flamethrower/full,
-		/obj/item/weapon/tank/phoron/m240,
-		/obj/item/weapon/tank/phoron/m240,
-		/obj/item/weapon/tank/phoron/m240
+		/obj/item/weapon/flamethrower/full = 2,
+		/obj/item/weapon/tank/phoron/m240 = 6
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "\improper M240 Incinerator crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper M240 Incinerator crate")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/rifle/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/smg/m39/extended,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/pistol/vp70,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba
+		/obj/item/ammo_magazine/rifle/extended = 6,
+		/obj/item/ammo_magazine/rifle/ap = 6
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "ammo crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/rifle/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap,
-		/obj/item/ammo_magazine/smg/m39/ap
+		/obj/item/ammo_magazine/smg/m39/extended = 8,
+		/obj/item/ammo_magazine/smg/m39/ap = 8
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "armor piercing ammo crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/weapon/storage/box/explosive_mines,
-		/obj/item/weapon/storage/box/explosive_mines,
-		/obj/item/weapon/grenade/explosive,
-		/obj/item/weapon/grenade/explosive,
-		/obj/item/weapon/grenade/explosive,
-		/obj/item/weapon/grenade/explosive,
-		/obj/item/weapon/grenade/explosive,
-		/obj/item/weapon/grenade/explosive,
-		/obj/item/weapon/grenade/explosive,
-		/obj/item/weapon/grenade/incendiary,
-		/obj/item/weapon/grenade/incendiary,
-		/obj/item/weapon/grenade/incendiary,
-		/obj/item/weapon/grenade/incendiary,
-		/obj/item/weapon/grenade/explosive/m40,
-		/obj/item/weapon/grenade/explosive/m40,
-		/obj/item/weapon/grenade/explosive/m40,
-		/obj/item/weapon/grenade/explosive/m40
+		/obj/item/ammo_magazine/smg/m39/extended = 8,
+		/obj/item/ammo_magazine/smg/m39/ap = 8
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "\improper explosives crate (WARNING)"
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre,
-		/obj/item/weapon/storage/box/wy_mre
+		/obj/item/ammo_magazine/pistol/vp70 = 5,
+		/obj/item/ammo_magazine/revolver/mateba = 5
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "\improper W-Y MRE crate"
-
-	C = new(pick(supplies))
-	supply_manifest=list(
-		/obj/item/weapon/storage/firstaid/regular,
-		/obj/item/weapon/storage/firstaid/fire,
-		/obj/item/weapon/storage/firstaid/toxin,
-		/obj/item/weapon/storage/firstaid/o2,
-		/obj/item/weapon/storage/firstaid/adv,
-		/obj/item/weapon/storage/firstaid/adv,
-		/obj/item/weapon/storage/firstaid/adv,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-		/obj/item/weapon/storage/box/syringes,
-		/obj/item/weapon/storage/box/autoinjectors)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "medical crate"
-
-
-/datum/game_mode/colonialmarines_halloween_2016/proc/create_marine_supplies(supplies)
-	var/obj/structure/closet/crate/C = new(pick(supplies))
-	var/supply_manifest[]
-	var/item_path
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (sidearm)")
 
 	supply_manifest=list(
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/quickfire,
-		/obj/item/attachable/quickfire,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/foregrip,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/bipod,
-		/obj/item/attachable/shotgun,
-		/obj/item/attachable/flamer,
-		/obj/item/attachable/burstfire_assembly,
-		/obj/item/attachable/stock/revolver,
-		/obj/item/attachable/stock/revolver,
-		/obj/item/attachable/stock/rifle,
-		/obj/item/attachable/stock/rifle,
-		/obj/item/attachable/stock/shotgun,
-		/obj/item/attachable/stock/shotgun
+		/obj/item/weapon/storage/box/wy_mre = 12
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "attachables crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate")
 
-
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/smg/m39,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/shotgun,
-		/obj/item/ammo_magazine/shotgun/buckshot,
-		/obj/item/ammo_magazine/shotgun,
-		/obj/item/ammo_magazine/shotgun/buckshot,
-		/obj/item/ammo_magazine/shotgun,
-		/obj/item/ammo_magazine/shotgun/buckshot,
-		/obj/item/ammo_magazine/shotgun,
-		/obj/item/ammo_magazine/shotgun/buckshot
+		/obj/item/weapon/storage/firstaid/regular = 1,
+		/obj/item/weapon/storage/firstaid/fire = 1,
+		/obj/item/weapon/storage/firstaid/toxin = 1,
+		/obj/item/weapon/storage/firstaid/o2 = 1,
+		/obj/item/weapon/storage/firstaid/adv = 3,
+		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
+		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 2,
+		/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2,
+		/obj/item/weapon/storage/box/syringes = 1,
+		/obj/item/weapon/storage/box/autoinjectors = 1
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "ammo crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
 
-	C = new(pick(supplies))
-	supply_manifest=list(
-		/obj/item/smartgun_powerpack,
-		/obj/item/smartgun_powerpack,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/ammo_magazine/sniper/flak,
-		/obj/item/ammo_magazine/sniper/flak,
-		/obj/item/ammo_magazine/sniper/incendiary
+/datum/game_mode/colonialmarines_halloween_2016/proc/create_marine_supplies(turf/supply_spawn[])
+	var/supply_manifest[]=list(
+		/obj/item/attachable/scope = 2,
+		/obj/item/attachable/reddot = 3,
+		/obj/item/attachable/magnetic_harness = 4,
+		/obj/item/attachable/quickfire = 2,
+		/obj/item/attachable/suppressor = 2,
+		/obj/item/attachable/bayonet = 4,
+		/obj/item/attachable/extended_barrel = 2,
+		/obj/item/attachable/heavy_barrel = 1,
+		/obj/item/attachable/foregrip = 3,
+		/obj/item/attachable/gyro = 2,
+		/obj/item/attachable/bipod = 1,
+		/obj/item/attachable/shotgun = 3,
+		/obj/item/attachable/flamer = 3,
+		/obj/item/attachable/burstfire_assembly = 1,
+		/obj/item/attachable/stock/rifle = 3
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "specialist ammo crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (rifle)")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/ammo_magazine/rocket,
-		/obj/item/ammo_magazine/rocket,
-		/obj/item/ammo_magazine/rocket/ap,
-		/obj/item/ammo_magazine/rocket/wp,
+		/obj/item/attachable/reddot = 3,
+		/obj/item/attachable/magnetic_harness = 4,
+		/obj/item/attachable/quickfire = 1,
+		/obj/item/attachable/suppressor = 4,
+		/obj/item/attachable/extended_barrel = 2,
+		/obj/item/attachable/foregrip = 3,
+		/obj/item/attachable/burstfire_assembly = 1
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "explosive ammo crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (smg)")
 
-
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre,
-		/obj/item/weapon/storage/box/uscm_mre
+		/obj/item/attachable/reddot = 3,
+		/obj/item/attachable/magnetic_harness = 4,
+		/obj/item/attachable/bayonet = 4,
+		/obj/item/attachable/heavy_barrel = 2,
+		/obj/item/attachable/compensator = 3,
+		/obj/item/attachable/foregrip = 3,
+		/obj/item/attachable/gyro = 3,
+		/obj/item/attachable/stock/shotgun = 2
 		)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "\improper MRE crate"
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (shotgun)")
 
-	C = new(pick(supplies))
 	supply_manifest=list(
-		/obj/item/weapon/storage/firstaid/regular,
-		/obj/item/weapon/storage/firstaid/regular,
-		/obj/item/weapon/storage/firstaid/regular,
-		/obj/item/weapon/storage/firstaid/regular,
-		/obj/item/weapon/storage/firstaid/fire,
-		/obj/item/weapon/storage/firstaid/fire,
-		/obj/item/weapon/storage/firstaid/toxin,
-		/obj/item/weapon/storage/firstaid/toxin,
-		/obj/item/weapon/storage/firstaid/o2,
-		/obj/item/weapon/storage/firstaid/adv,
-		/obj/item/weapon/storage/firstaid/adv,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-		/obj/item/weapon/storage/box/syringes,
-		/obj/item/weapon/storage/box/autoinjectors)
-	for(item_path in supply_manifest)
-		new item_path(C)
-	C.name = "medical crate"
+		/obj/item/attachable/scope = 1,
+		/obj/item/attachable/reddot = 3,
+		/obj/item/attachable/suppressor = 1,
+		/obj/item/attachable/bayonet = 3,
+		/obj/item/attachable/heavy_barrel = 1,
+		/obj/item/attachable/compensator = 3,
+		/obj/item/attachable/stock/revolver = 3
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (sidearm)")
+
+	supply_manifest=list(
+		/obj/item/ammo_magazine/rifle = 10,
+		/obj/item/ammo_magazine/rifle/ap = 4,
+		/obj/item/ammo_magazine/rifle/extended = 4
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
+
+	supply_manifest=list(
+		/obj/item/ammo_magazine/smg/m39 = 10,
+		/obj/item/ammo_magazine/smg/m39/ap = 4,
+		/obj/item/ammo_magazine/smg/m39/extended = 4
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
+
+	supply_manifest=list(
+		/obj/item/ammo_magazine/shotgun = 8,
+		/obj/item/ammo_magazine/shotgun/buckshot = 8,
+		/obj/item/ammo_magazine/shotgun/incendiary = 2
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (shotgun)")
+
+	supply_manifest=list(
+		/obj/item/ammo_magazine/pistol = 8,
+		/obj/item/ammo_magazine/pistol/extended = 4,
+		/obj/item/ammo_magazine/revolver = 5,
+		/obj/item/ammo_magazine/revolver/marksman = 3
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (sidearm)")
+
+	supply_manifest=list(
+		/obj/item/smartgun_powerpack = 2,
+		/obj/item/ammo_magazine/sniper = 2,
+		/obj/item/ammo_magazine/sniper/flak = 2,
+		/obj/item/ammo_magazine/sniper/incendiary = 1
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"specialist ammo crate")
+
+	supply_manifest=list(
+		/obj/item/weapon/gun/rifle/m41a/scoped = 2,
+		/obj/item/ammo_magazine/rifle/marksman = 6,
+		/obj/item/weapon/gun/rifle/lmg = 2,
+		/obj/item/ammo_magazine/rifle/lmg = 2
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"experimental weapon crate")
+
+	supply_manifest=list(
+		/obj/item/ammo_magazine/rocket = 3,
+		/obj/item/ammo_magazine/rocket/ap = 1,
+		/obj/item/ammo_magazine/rocket/wp = 2,
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"explosive ammo crate")
+
+	supply_manifest=list(
+		/obj/item/weapon/storage/box/uscm_mre = 12
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper MRE crate")
+
+	supply_manifest=list(
+		/obj/item/weapon/storage/firstaid/regular = 6,
+		/obj/item/weapon/storage/firstaid/fire = 2,
+		/obj/item/weapon/storage/firstaid/toxin = 2,
+		/obj/item/weapon/storage/firstaid/o2 = 2,
+		/obj/item/weapon/storage/firstaid/adv = 1,
+		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
+		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 2,
+		/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2,
+		/obj/item/weapon/storage/box/syringes = 1,
+		/obj/item/weapon/storage/box/autoinjectors = 1)
+	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
+
+#undef EVENT_MAJOR_INTERVAL
+#undef EVENT_MINOR_INTERVAL
+#undef FOG_DELAY_INTERVAL
+#undef BATTLEFIELD_END
+#undef MAX_BLOOD_ATTUNED

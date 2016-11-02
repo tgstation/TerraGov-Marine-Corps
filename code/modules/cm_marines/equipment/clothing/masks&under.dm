@@ -33,6 +33,12 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
 
+/obj/item/clothing/mask/jason
+	name = "hockey mask"
+	desc = "It smells like teenage spirit."
+	icon_state = "jason_mask"
+	anti_hug = 100
+
 /obj/item/clothing/mask/rebreather
 	name = "rebreather"
 	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
@@ -134,6 +140,14 @@ include jackets and regular suits, not armor.*/
 	New()
 		..()
 		base_color = item_color
+
+/obj/item/clothing/under/jason
+	name = "dirty work attire"
+	desc = "Perfect thing to wear when digging graves."
+	icon_state = "jason_suit"
+	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
+	has_sensor = 0
+	displays_id = 0
 
 /obj/item/clothing/under/marine
 	name = "\improper USCM uniform"

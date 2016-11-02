@@ -638,6 +638,10 @@ var/list/liftable_structures = list(\
 #define EYE_BLUR	"eye_blur"
 #define DROWSY		"drowsy"
 
+///////////////////HUMAN BLOODTYPES///////////////////
+
+#define HUMAN_BLOODTYPES list("O-","O+","A-","A+","B-","B+","AB-","AB+")
+
 ///////////////////ORGAN DEFINES///////////////////
 
 #define ORGAN_CUT_AWAY 1
