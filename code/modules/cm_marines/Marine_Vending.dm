@@ -61,6 +61,10 @@
 				products2 = list(
 							/obj/item/clothing/mask/rebreather/scarf = 10,
 								)
+			if(/datum/game_mode/bigred)
+				products2 = list(
+							/obj/item/clothing/mask/gas/ = 20,
+								)
 		build_inventory(products2)
 
 /obj/machinery/vending/marine/cargo_ammo

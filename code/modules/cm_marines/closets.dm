@@ -23,6 +23,8 @@
 		switch(gamemode)
 			if(/datum/game_mode/ice_colony)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
+			if(/datum/game_mode/bigred)
+				new /obj/item/clothing/mask/gas/(src)
 
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
@@ -287,6 +289,8 @@
 			if(/datum/game_mode/ice_colony)
 				new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
+			if(/datum/game_mode/bigred)
+				new /obj/item/clothing/mask/gas/(src)
 
 //MARINE SUPPLY CRATES APOPHIS775 15JAN2015
 

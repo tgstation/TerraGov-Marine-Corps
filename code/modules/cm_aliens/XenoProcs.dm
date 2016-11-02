@@ -96,7 +96,7 @@
 		return 0
 	if(istype(T, /turf/space))
 		return 0
-	if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/gm/dirtgrassborder) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast))
+	if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/gm/dirtgrassborder) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast) || istype(T, /turf/simulated/floor/gm/coast) || istype(T, /turf/simulated/floor/gm/grass) || istype(T, /turf/simulated/floor/gm/dirtgrassborder) || istype(T, /turf/simulated/floor/gm/river))
 		return 0
 	return 1
 
