@@ -103,8 +103,8 @@
 //DRINKS
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola
-	name = "Space Cola"
-	desc = "Cola. in space."
+	name = "\improper Fruit-Beer"
+	desc = "In theory, Mango flavored root beer sounds like a pretty good idea. Weyland Yutani has disproved yet another theory with its latest line of cola. Canned by the Weyland-Yutani Corporation."
 	icon_state = "cola"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -112,7 +112,7 @@
 		reagents.add_reagent("cola", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle
-	name = "Bottled Water"
+	name = "\improper Weyland-Yutani Bottled Spring Water"
 	desc = "Overpriced 'Spring' water. Bottled by the Weyland-Yutani Corporation."
 	icon_state = "wy_water"
 	center_of_mass = list("x"=15, "y"=8)
@@ -121,8 +121,8 @@
 		reagents.add_reagent("water", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/beer
-	name = "Space Beer"
-	desc = "Contains only water, malt and hops."
+	name = "beer bottle"
+	desc = "Good. You've found the beer. Time to fire for effect."
 	icon_state = "beer"
 	center_of_mass = list("x"=16, "y"=12)
 	New()
@@ -130,8 +130,8 @@
 		reagents.add_reagent("beer", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/ale
-	name = "Magm-Ale"
-	desc = "A true dorf's drink of choice."
+	name = "ale bottle"
+	desc = "Beer's misunderstood cousin."
 	icon_state = "alebottle"
 	item_state = "beer"
 	center_of_mass = list("x"=16, "y"=10)
@@ -141,7 +141,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind
-	name = "Space Mountain Wind"
+	name = "\improper Mountain Wind"
 	desc = "Blows right through you like a space wind."
 	icon_state = "space_mountain_wind"
 	center_of_mass = list("x"=16, "y"=10)
@@ -150,7 +150,7 @@
 		reagents.add_reagent("spacemountainwind", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko
-	name = "Thirteen Loko"
+	name = "\improper Thirteen Loko"
 	desc = "The CMO has advised crew members that consumption of Thirteen Loko may result in seizures, blindness, drunkeness, or even death. Please Drink Responsibly."
 	icon_state = "thirteen_loko"
 	center_of_mass = list("x"=16, "y"=8)
@@ -159,7 +159,7 @@
 		reagents.add_reagent("thirteenloko", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
-	name = "Dr. Gibb"
+	name = "\improper Dr. Gibb"
 	desc = "A delicious mixture of 42 different flavors."
 	icon_state = "dr_gibb"
 	center_of_mass = list("x"=16, "y"=10)
@@ -168,7 +168,7 @@
 		reagents.add_reagent("dr_gibb", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/starkist
-	name = "Star-kist"
+	name = "\improper Star-kist"
 	desc = "The taste of a star in liquid form. And, a bit of tuna...?"
 	icon_state = "starkist"
 	center_of_mass = list("x"=16, "y"=10)
@@ -178,7 +178,7 @@
 		reagents.add_reagent("orangejuice", 15)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/space_up
-	name = "Space-Up"
+	name = "\improper Space-Up"
 	desc = "Tastes like a hull breach in your mouth."
 	icon_state = "space-up"
 	center_of_mass = list("x"=16, "y"=10)
@@ -187,7 +187,7 @@
 		reagents.add_reagent("space_up", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime
-	name = "Lemon-Lime"
+	name = "lemon-lime"
 	desc = "You wanted ORANGE. It gave you Lemon Lime."
 	icon_state = "lemon-lime"
 	center_of_mass = list("x"=16, "y"=10)
@@ -196,7 +196,7 @@
 		reagents.add_reagent("lemon_lime", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea
-	name = "Vrisk Serket Iced Tea"
+	name = "\improper Vrisk Serket Iced Tea"
 	desc = "That sweet, refreshing southern earthy flavor. That's where it's from, right? South Earth?"
 	icon_state = "ice_tea_can"
 	center_of_mass = list("x"=16, "y"=10)
@@ -205,7 +205,7 @@
 		reagents.add_reagent("icetea", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice
-	name = "Grapel Juice"
+	name = "\improper Grapel Juice"
 	desc = "500 pages of rules of how to appropriately enter into a combat with this juice!"
 	icon_state = "purple_can"
 	center_of_mass = list("x"=16, "y"=10)
@@ -214,8 +214,8 @@
 		reagents.add_reagent("grapejuice", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/tonic
-	name = "T-Borg's Tonic Water"
-	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	name = "tonic water"
+	desc = "Step Two: Gin."
 	icon_state = "tonic"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -223,8 +223,8 @@
 		reagents.add_reagent("tonic", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/sodawater
-	name = "Soda Water"
-	desc = "A can of soda water. Still water's more refreshing cousin."
+	name = "soda water"
+	desc = "A can of soda water. Still water's more refreshing cousin...according to those Europe-folk."
 	icon_state = "sodawater"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -232,46 +232,86 @@
 		reagents.add_reagent("sodawater", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/souto
-	name = "Souto Classic"
-	desc = "A fruit flavored soda canned in Havana."
-	icon_state = "souoto"
+	name = "\improper Souto Classic"
+	desc = "The can boldly proclaims it to be tangerine flavored. You can't help but think that's a lie. canned in Havana."
+	icon_state = "souto_classic"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
 		reagents.add_reagent("souto_classic", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/souto/diet
-	name = "Souto Diet"
+	name = "\improper Diet Souto"
 	desc = "Now with 0% fruit juice! Canned in Havana"
-	icon_state = "souto_diet"
+	icon_state = "souto_diet_classic"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("souto_classic", 50)
+		reagents.add_reagent("souto_classic", 25)
+		reagents.add_reagent("water", 25)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry
-	name = "Souto Cherry"
-	desc = "Now with 0% fruit juice! Canned in Havana"
-	icon_state = "souoto"
+	name = "\improper Cherry Souto"
+	desc = "Now with more artificial flavors! Canned in Havana"
+	icon_state = "souto_cherry"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
 		reagents.add_reagent("souto_cherry", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry/diet
-	name = "Diet Souto Cherry"
+	name = "\improper Diet Cherry Souto"
 	desc = "It's neither diet nor cherry flavored. Canned in Havanna."
-	icon_state = "souto_diet"
+	icon_state = "souto_diet_cherry"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("souto_cherry", 50)
+		reagents.add_reagent("souto_cherry", 25)
+		reagents.add_reagent("water", 25)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/aspen
-	name = "Aspen Beer"
+	name = "\improper Weyland Yutani Aspen Beer"
 	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by the Weyland-Yutani Corporation."
-	icon_state = "wy_beer"
+	icon_state = "6_pack_1"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
-		reagents.add_reagent("aspen", 50)
+		reagents.add_reagent("beer", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto/lime
+	name = "\improper Lime Souto"
+	desc = "It's not bad. It's not good either, but it's not bad. Canned in Havana."
+	icon_state = "souto_lime"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("lemon_lime", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto/lime/diet
+	name = "\improper Diet Lime Souto"
+	desc = "Ten kinds of acid, two cups of fake sugar, almost a full tank of carbon dioxide, and about 210 kPs all crammed into an aluminum can. What's not to love? Canned in Havana."
+	icon_state = "souto_diet_lime"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("lemon_lime", 25)
+		reagents.add_reagent("water", 25)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto/grape
+	name = "\improper Grape Souto"
+	desc = "An old standby for soda flavors. This, however, tastes like grape flavored cough syrup. Canned in Havana."
+	icon_state = "souto_grape"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("grapejuice", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/souto/grape/diet
+	name = "\improper Diet Grape Souto"
+	desc = "You're fairly certain that this is just grape cough syrup and carbonated water. Canned in Havana."
+	icon_state = "souto_diet_grape"
+	center_of_mass = list("x"=16, "y"=10)
+	New()
+		..()
+		reagents.add_reagent("grapejuice", 25)
+		reagents.add_reagent("water", 25)

@@ -111,7 +111,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/gin
-	name = "Griffeater Gin"
+	name = "\improper Griffeater Gin"
 	desc = "A bottle of high quality gin, produced in the New London Space Station."
 	icon_state = "ginbottle"
 	center_of_mass = list("x"=16, "y"=4)
@@ -120,7 +120,7 @@
 		reagents.add_reagent("gin", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
-	name = "Uncle Git's Special Reserve"
+	name = "\improper Uncle Git's Special Reserve"
 	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter. TUNNEL WHISKEY RULES."
 	icon_state = "whiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)
@@ -129,7 +129,7 @@
 		reagents.add_reagent("whiskey", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/sake
-	name = "Weyland-Yuyani Sake"
+	name = "\improper Weyland-Yutani Sake"
 	desc = "Sake made with ancient techniques passed down for thousands of years. Fermented in Iowa by the Weyland Yutani Corporation."
 	icon_state = "sakebottle"
 	center_of_mass = list("x"=17, "y"=7)
@@ -138,16 +138,16 @@
 		reagents.add_reagent("sake", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
-	name = "Tunguska Triple Distilled"
-	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
-	icon_state = "vodkabottle"
+	name = "\improper Red Star Vodka"
+	desc = "Red Star Vodka: A staple of the enemy's diet. Who knew that liquid potato could smell this potent. The bottle reads, 'Ra Ra Red Star Man: Lover of the Finer Things.' Or at least that's what you assume...you can't read Russian."
+	icon_state = "red_star_vodka"
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
 		reagents.add_reagent("vodka", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
-	name = "Caccavo Guaranteed Quality Tequilla"
+	name = "\improper Caccavo Guaranteed Quality Tequilla"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequillabottle"
 	center_of_mass = list("x"=16, "y"=3)
@@ -156,8 +156,8 @@
 		reagents.add_reagent("tequilla", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/davenport
-	name = "Davenport Rye"
-	desc = "An expensive alcohol with a distinct flavor"
+	name = "\improper Davenport Rye"
+	desc = "An expensive alcohol with a distinct flavor."
 	icon_state = "davenport"
 	center_of_mass = list("x"=16, "y"=3)
 	New()
