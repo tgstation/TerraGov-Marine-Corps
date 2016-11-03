@@ -95,6 +95,14 @@ into helmets.dm*/
 	item_state = "headbandred"
 	item_color = "headbandred"
 
+/obj/item/clothing/head/headband/rambo
+	name = "headband"
+	desc = "It flutters in the face of the wind, defiant and unrestrained, like the man who wears it."
+	icon_override = null
+	icon_state = "headband_rambo"
+	item_state = "headband_rambo"
+	item_color = "headband_rambo"
+
 /obj/item/clothing/head/headset
 	name = "\improper USCM headset"
 	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."

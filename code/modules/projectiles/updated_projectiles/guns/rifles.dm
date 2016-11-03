@@ -181,7 +181,7 @@
 /obj/item/ammo_magazine/rifle/mar40
 	name = "\improper MAR magazine (7.62x39mm)"
 	desc = "A 7.62×39mm magazine for the MAR series of firearms."
-	caliber = " 7.62×39mm"
+	caliber = "7.62×39mm"
 	icon_state = "mar40"
 	default_ammo = /datum/ammo/bullet/rifle/mar40
 	max_rounds = 40
@@ -238,6 +238,48 @@
 		..()
 		accuracy += config.min_hit_accuracy_mult
 		fire_delay = config.high_fire_delay
+
+//-------------------------------------------------------
+//M16 RIFLE
+
+/obj/item/ammo_magazine/rifle/m16
+	name = "\improper M16 magazine (5.56x45mm)"
+	desc = "A 5.56×45mm magazine for the M16 assault rifle."
+	caliber = "5.56×45mm"
+	icon_state = "mar40" //PLACEHOLDER
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 20 //Also comes in 30 and 100 round Beta-C mag.
+	gun_type = /obj/item/weapon/gun/rifle/m16
+
+/obj/item/weapon/gun/rifle/m16
+	name = "\improper M16 rifle"
+	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56×45mm."
+	icon_state = "m16"
+	item_state = "mar40" //PLACEHOLDER
+	origin_tech = "combat=4;materials=3"
+	fire_sound = 'sound/weapons/heavyrifle.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/m16
+	type_of_casings = "cartridge"
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/foregrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/burstfire_assembly)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
+
+	New()
+		..()
+		accuracy += config.min_hit_accuracy_mult
+		damage += config.min_hit_damage_mult
+		burst_amount = config.high_burst_value
+		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE

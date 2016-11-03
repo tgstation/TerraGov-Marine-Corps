@@ -252,7 +252,7 @@ Only checks living mobs with a client attached.
 		if(M.z && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
 			if(ishuman(M) && !isYautja(M))
 				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
-				else 										num_marines++
+				else if(M.mind && !M.mind.special_role)		num_marines++
 
 	return list(num_marines,num_pmcs)
 

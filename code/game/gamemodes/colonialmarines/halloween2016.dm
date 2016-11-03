@@ -25,7 +25,7 @@
 /* Pre-pre-startup */
 /datum/game_mode/colonialmarines_halloween_2016/can_start()
 	initialize_special_clamps()
-	initialize_starting_predator_list()
+	//initialize_starting_predator_list()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
 	if(ready_players < required_players)
 		world << "<h2 style=\"color:red\">Not enough players to start the game. <b>Aborting</b>.</h2>"
@@ -110,7 +110,7 @@
 
 	if(config) config.remove_gun_restrictions = 1
 	lobby_time = world.time
-	initialize_post_predator_list()
+	//initialize_post_predator_list()
 
 	var/mob/M
 	var/temp_player_list[] = new
@@ -318,7 +318,7 @@
 				var/i = 0
 				while(++i < 6)
 					M.apply_damage(50,BURN,pick(DEFENSE_ZONES_LIVING))
-		playsound(src, 'sound/effects/eventhorizon_scream.ogg', 120, 1)
+		playsound(src, 'sound/voice/scream_horror1.ogg', 120, 1)
 
 /obj/effect/rune/attunement
 	l_color = "#ff0000"
@@ -662,12 +662,12 @@
 		//Set Random Weapon and Ammo
 		if(randwep)
 			switch(rand(1,20))
-				if(1,10)//M41a
+				if(1 to 10)//M41a
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), slot_s_store)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-				if(11,13)
+				if(11 to 13)
 					if(prob(75))
 						H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), slot_s_store)
 					else
@@ -699,7 +699,7 @@
 /datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_minor_spooky()
 	set waitfor = 0
 	switch(rand(1,20))
-		if(1,10)
+		if(1 to 10)
 			for(var/mob/M in player_list)
 				if(prob(23) && M.stat != DEAD && ishuman(M) && !isYautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
 					switch(rand(1,3))
@@ -751,7 +751,7 @@
 						if(3)
 							var/mob/living/carbon/human/H = M
 							H.hallucination += 60
-		if(11,18)
+		if(11 to 16)
 			//Going to create some spooky imagery here.
 			//sleep(300)
 		else
@@ -761,35 +761,44 @@
 						if(prob(75)) L.flicker(10)
 						else if(prob(5)) L.broken()
 
-
 /datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_major_spooky()
 	var/mob/living/horror
-	switch(pick(1,2))
+	var/special_role
+	var/recruit_msg
+	var/spawn_character = rand(1,10)
+	switch(spawn_character)
 		if(1)
 			var/mob/living/carbon/Xenomorph/Ravager/ravenger/R = new(pick(horror_spawns))
 			horror = R
-		if(2)
+			special_role = BE_ALIEN
+			recruit_msg = "terrible, fire breathing monster and haunt the living?"
+		if(2 to 8)
 			var/mob/living/carbon/human/H = new(pick(horror_spawns))
 			var/obj/item/I
 			if(prob(18)) //Jasssooon
 				I = new /obj/item/clothing/under/jason(H)
 				I.canremove = 0
+				I.flags_inventory |= CANTSTRIP
 				H.equip_to_slot_or_del(I, slot_w_uniform)
 
 				I = new /obj/item/clothing/mask/jason(H)
 				I.canremove = 0
+				I.flags_inventory |= CANTSTRIP
 				H.equip_to_slot_or_del(I, slot_wear_mask)
 
 				I = new /obj/item/clothing/shoes/jackboots(H)
 				I.canremove = 0
+				I.flags_inventory |= CANTSTRIP
 				H.equip_to_slot_or_del(I, slot_shoes)
 
-				I = new /obj/item/clothing/suit/armor/vest/jason(H)
+				I = new /obj/item/clothing/suit/jason(H)
 				I.canremove = 0
+				I.flags_inventory |= CANTSTRIP
 				H.equip_to_slot_or_del(I, slot_wear_suit)
 
 				I = new /obj/item/clothing/gloves/black(H)
 				I.canremove = 0
+				I.flags_inventory |= CANTSTRIP
 				H.equip_to_slot_or_del(I, slot_gloves)
 
 
@@ -802,6 +811,7 @@
 				I = new /obj/item/clothing/under/colonist(H)
 				H.equip_to_slot_or_del(I, slot_w_uniform)
 				I.canremove = 0
+				I.flags_inventory |= CANTSTRIP
 
 				switch(rand(1,5))
 					if(1) I = new /obj/item/clothing/suit/storage/labcoat(H)
@@ -811,12 +821,14 @@
 					if(5) I = null
 				if(I)
 					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
 					H.equip_to_slot_or_del(I, slot_wear_suit)
 
 				if(prob(50)) I = new /obj/item/clothing/gloves/black(H)
 				else I = null
 				if(I)
 					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
 					H.equip_to_slot_or_del(I, slot_gloves)
 
 				switch(rand(1,4))
@@ -830,7 +842,9 @@
 						I = new /obj/item/clothing/head/welding
 						H.equip_to_slot_or_del(I, slot_head)
 					else I = null
-				if(I) I.canremove = 0
+				if(I)
+					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
 
 				switch(rand(1,4))
 					if(1) I = new /obj/item/clothing/shoes/black(H)
@@ -839,13 +853,15 @@
 					if(4) I = null
 				if(I)
 					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
 					H.equip_to_slot_or_del(I, slot_shoes)
 
-				switch(rand(1,4))
+				switch(rand(1,5))
 					if(1) I = new /obj/item/weapon/pickaxe(H)
 					if(2) I = new /obj/item/weapon/claymore/mercsword/machete(H)
 					if(3) I = new /obj/item/weapon/kitchen/utensil/knife(H)
 					if(4) I = new /obj/item/weapon/butch(H)
+					if(5) I = new /obj/item/weapon/scythe(H)
 				H.equip_to_slot_or_del(I, slot_r_hand)
 
 			H.set_species("Horror")
@@ -857,12 +873,84 @@
 			domutcheck(H,null,MUTCHK_FORCED)
 			H.update_mutations()
 			horror = H
+			special_role = BE_SURVIVOR
+			recruit_msg = "a horror and kill the living?"
+			//BE_RESPONDER
+		else
+			var/mob/living/carbon/human/H = new(pick(horror_spawns))
+			var/obj/item/I
+			switch(rand(1,2))
+				if(1)
+					I = new /obj/item/clothing/under/mcclane(H)
+					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
+					H.equip_to_slot_or_del(I, slot_w_uniform)
+
+					I = new /obj/item/weapon/gun/smg/mp5(H)
+					H.equip_to_slot_or_del(I, slot_r_hand)
+
+					I = new /obj/item/weapon/gun/smg/mp5(H)
+					H.equip_to_slot_or_del(I, slot_l_hand)
+
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/m37/full(H), slot_back)
+
+					H.equip_to_slot_or_del(new /obj/item/device/flashlight/(H), slot_r_store)
+					H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), slot_l_store)
+
+					H.real_name = "John McClane"
+					H.age = 32
+					H.r_eyes = 153
+					H.g_eyes = 102
+					H.b_eyes = 0
+
+				if(2)
+					I = new /obj/item/clothing/under/rambo(H)
+					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
+					H.equip_to_slot_or_del(I, slot_w_uniform)
+
+					I = new /obj/item/clothing/shoes/jackboots(H)
+					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
+					H.equip_to_slot_or_del(I, slot_shoes)
+
+					I = new /obj/item/clothing/suit/rambo(H)
+					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
+					H.equip_to_slot_or_del(I, slot_wear_suit)
+
+					I = new /obj/item/clothing/head/headband/rambo(H)
+					I.canremove = 0
+					I.flags_inventory |= CANTSTRIP
+					H.equip_to_slot_or_del(I, slot_head)
+
+					I = new /obj/item/weapon/gun/rifle/m16(H)
+					H.equip_to_slot_or_del(I, slot_r_hand)
+
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), slot_back)
+
+					H.equip_to_slot_or_del(new /obj/item/device/flashlight/(H), slot_r_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16(H), slot_l_store)
+
+					H.real_name = "John 'Raven' Rambo"
+					H.age = 29
+					H.r_eyes = 102
+					H.g_eyes = 51
+					H.b_eyes = 0
+					H.h_style = "Shoulder-length Hair Alt"
+
+			H.mind_initialize()
+			H.mind.special_role = "MODE"
+			H.mind.assigned_role = "hero"
+			horror = H
+			special_role = BE_RESPONDER
+			recruit_msg = "a hero and fight together with the remaining mortal souls?"
 
 	var/horror_key
 	var/mob/candidate_mob
 	var/candidates[] = new	//list of candidate keys
 	for(var/mob/dead/observer/G in player_list)
-		if(G.client && !G.client.is_afk() && G.client.prefs.be_special & (BE_ALIEN|BE_SURVIVOR|BE_RESPONDER))
+		if(G.client && !G.client.is_afk() && G.client.prefs.be_special & special_role)
 			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
 
 	if(!candidates.len)
@@ -872,7 +960,7 @@
 
 	while(!horror_key && candidates.len)
 		candidate_mob = pick(candidates)
-		if(sd_Alert(candidate_mob, "Would you like to spawn as a horror and kill the living?", buttons = list("Yes","No"), duration = 150) == "Yes")
+		if(sd_Alert(candidate_mob, "Would you like to spawn as [recruit_msg]", buttons = list("Yes","No"), duration = 150) == "Yes")
 			horror_key = candidate_mob.ckey
 		else candidates -= candidate_mob
 
@@ -883,7 +971,11 @@
 	horror.key = horror_key
 	horror.mind.key = horror.key
 
-	horror << "<span class='rough'>You hunger for blood of the living! Murder! Death! KILL!</span>"
+	spawn(10)
+		switch(spawn_character)
+			if(1) horror << "<span class='alien'>You must baptize everything in fire! The world will burn! ROAR!</span>"
+			if(2 to 8) horror << "<span class='rough'>You hunger for blood of the living! Murder! Death! KILL!</span>"
+			else horror << "<span class='notice'>You have been transported to who-knows where from elsewhere! Fight the horrors of this place!</span>"
 
 /datum/game_mode/colonialmarines_halloween_2016/proc/generate_supply_crate(turf/supply_spawn[], supply_manifest[], crate_name = "supplies")
 	var/obj/structure/closet/crate/C = new(pick(supply_spawn))
@@ -1022,6 +1114,16 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (sidearm)")
 
 	supply_manifest=list(
+		/obj/item/weapon/storage/backpack/gun/m37 = 5,
+		/obj/item/weapon/storage/backpack/gun/machete = 4,
+		/obj/item/clothing/tie/storage/webbing = 4,
+		/obj/item/weapon/storage/belt/gun/m44 = 5,
+		/obj/item/weapon/storage/belt/gun/m4a3 = 6,
+		/obj/item/weapon/storage/belt/gun/m39 = 3
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"extra storage crate")
+
+	supply_manifest=list(
 		/obj/item/ammo_magazine/rifle = 10,
 		/obj/item/ammo_magazine/rifle/ap = 4,
 		/obj/item/ammo_magazine/rifle/extended = 4
@@ -1074,6 +1176,14 @@
 		/obj/item/ammo_magazine/rocket/wp = 2,
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"explosive ammo crate")
+
+	supply_manifest=list(
+		/obj/item/weapon/storage/box/explosive_mines = 2,
+		/obj/item/weapon/grenade/explosive = 4,
+		/obj/item/weapon/grenade/incendiary = 3,
+		/obj/item/weapon/grenade/explosive/m40 = 3
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper explosives crate (WARNING)")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/box/uscm_mre = 12
