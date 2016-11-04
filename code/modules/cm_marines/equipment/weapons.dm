@@ -671,6 +671,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 /obj/effect/mine_tripwire
 
 	name = "claymore tripwire"
+	anchored = 1
 	mouse_opacity = 0
 	invisibility = 101
 	unacidable = 1 //You never know
