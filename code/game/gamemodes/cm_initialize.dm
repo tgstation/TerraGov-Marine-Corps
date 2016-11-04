@@ -583,7 +583,12 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	//We take the number of marine players, deduced from other lists, and then get a scale multiplier from it, to be used in arbitrary manners to distribute equipment
 	//This might count players who ready up but get kicked back to the lobby
-	var/marine_pop_size = num_players() - xeno_starting_num - surv_starting_num - pred_current_num //We assume the predator's current number is correct just at roundstart
+	var/marine_pop_size = 0
+
+	for(var/mob/M in player_list)
+		if(M.stat != DEAD && M.mind && !M.mind.special_role)
+			marine_pop_size++
+
 	var/scale = marine_pop_size / MARINE_GEAR_SCALING_NORMAL //This gives a decimal value representing a scaling multiplier
 
 	//Set up attachment vendor contents related to Marine count
