@@ -42,6 +42,7 @@
 	initialize_post_predator_list()
 	initialize_post_xenomorph_list()
 	initialize_post_survivor_list()
+	initialize_post_marine_gear_list()
 
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 

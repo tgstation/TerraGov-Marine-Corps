@@ -1009,3 +1009,5 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define MODE_INFESTATION	1
 #define MODE_PREDATOR		2
 
+//Number of marine players against which the Marine's gear scales
+#define MARINE_GEAR_SCALING_NORMAL 30
