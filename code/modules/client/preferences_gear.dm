@@ -274,6 +274,18 @@ var/global/list/gear_datums = list()
 	cost = 2
 	slot = slot_glasses
 
+/datum/gear/cmgoggles
+	display_name = "Ballistic Goggles"
+	path = /obj/item/clothing/glasses/mgoggles
+	cost = 2
+	slot = slot_glasses
+
+/datum/gear/cmgoggles
+	display_name = "Perscription Google"
+	path = /obj/item/clothing/glasses/mgoggles/perscription
+	cost = 3
+	slot = slot_glasses
+
 /datum/gear/cigar
 	display_name = "Cigar"
 	path = /obj/item/clothing/mask/cigarette/cigar
@@ -285,6 +297,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/mask/cigarette
 	slot = slot_wear_mask
 	cost = 2
+
 /*
 // Mask
 
