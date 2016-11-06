@@ -8,7 +8,7 @@ client
 		//set src in world
 
 
-		if(!usr.client || !usr.client.holder || !(usr.client.holder & R_MOD))
+		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_MOD))
 			usr << "\red You need to be a moderator or higher to access this."
 			return
 
