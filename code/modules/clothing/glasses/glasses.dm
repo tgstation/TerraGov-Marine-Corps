@@ -251,3 +251,17 @@
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
 	toggleable = 0
+
+/obj/item/clothing/glasses/mgoggles
+	name = "marine ballistic goggles"
+	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet."
+	icon_state = "mgoggles"
+	item_state = "mgoggles"
+	flags_equip_slot = SLOT_EYES|SLOT_MASK
+
+/obj/item/clothing/glasses/mgoggles/prescription
+	name = "prescription marine ballistic goggles"
+	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not.."
+	icon_state = "mgoggles"
+	item_state = "mgoggles"
+	prescription = 1

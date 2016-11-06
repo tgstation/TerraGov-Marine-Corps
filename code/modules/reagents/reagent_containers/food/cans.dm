@@ -105,7 +105,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola
 	name = "\improper Fruit-Beer"
 	desc = "In theory, Mango flavored root beer sounds like a pretty good idea. Weyland Yutani has disproved yet another theory with its latest line of cola. Canned by the Weyland-Yutani Corporation."
-	icon_state = "cola"
+	icon_state = "fruit_beer"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
@@ -122,7 +122,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/beer
 	name = "beer bottle"
-	desc = "Good. You've found the beer. Time to fire for effect."
+	desc = "Beer. You've dialed in your target. Time to fire for effect."
 	icon_state = "beer"
 	center_of_mass = list("x"=16, "y"=12)
 	New()
@@ -160,7 +160,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb
 	name = "\improper Dr. Gibb"
-	desc = "A delicious mixture of 42 different flavors."
+	desc = "A delicious mixture of 42 different flavors of chemicals that you can't pronoounce."
 	icon_state = "dr_gibb"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -196,8 +196,8 @@
 		reagents.add_reagent("lemon_lime", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea
-	name = "\improper Vrisk Serket Iced Tea"
-	desc = "That sweet, refreshing southern earthy flavor. That's where it's from, right? South Earth?"
+	name = "iced tea can"
+	desc = "Just like the squad redneck's grandmother used to buy."
 	icon_state = "ice_tea_can"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -205,8 +205,8 @@
 		reagents.add_reagent("icetea", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice
-	name = "\improper Grapel Juice"
-	desc = "500 pages of rules of how to appropriately enter into a combat with this juice!"
+	name = "grape juice"
+	desc = "A can of probably not grape juice."
 	icon_state = "purple_can"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -215,7 +215,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/tonic
 	name = "tonic water"
-	desc = "Step Two: Gin."
+	desc = "Step One: Tonic. Check. Step Two: Gin."
 	icon_state = "tonic"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -224,7 +224,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/sodawater
 	name = "soda water"
-	desc = "A can of soda water. Still water's more refreshing cousin...according to those Europe-folk."
+	desc = "A can of soda water. Tap water's more refreshing cousin...according to those Europe-folk."
 	icon_state = "sodawater"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -233,7 +233,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/souto
 	name = "\improper Souto Classic"
-	desc = "The can boldly proclaims it to be tangerine flavored. You can't help but think that's a lie. canned in Havana."
+	desc = "The can boldly proclaims it to be tangerine flavored. You can't help but think that's a lie. Canned in Havana."
 	icon_state = "souto_classic"
 	center_of_mass = list("x"=16, "y"=10)
 	New()

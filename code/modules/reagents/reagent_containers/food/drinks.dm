@@ -284,7 +284,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/marine
 	name = "\improper USCM flask"
-	desc = "A metal flask embossed with the USCM logo and filled with a slurry of water, motor oil, and medicinal alcohol."
+	desc = "A metal flask embossed with the USCM logo and probably filled with a slurry of water, motor oil, and medicinal alcohol."
 	icon_state = "flask_uscm"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
@@ -315,7 +315,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/britcup
 	name = "cup"
-	desc = "A cup with the British flag emblazoned on it."
+	desc = "A cup with the British flag emblazoned on it. The sight of it irritates you."
 	icon_state = "britcup"
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)

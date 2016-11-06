@@ -121,7 +121,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	name = "\improper Uncle Git's Special Reserve"
-	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter. TUNNEL WHISKEY RULES."
+	desc = "A premium single-malt whiskey, gently matured for four years by hillbillies in the backwaters of Alabama."
 	icon_state = "whiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)
 	New()
@@ -156,13 +156,13 @@
 		reagents.add_reagent("tequilla", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/davenport
-	name = "\improper Davenport Rye"
-	desc = "An expensive alcohol with a distinct flavor."
+	name = "\improper Davenport Rye Whiskey"
+	desc = "An expensive whiskey with a distinct flavor. The bottle proudly proclaims that it's, 'A True Classic.'"
 	icon_state = "davenport"
 	center_of_mass = list("x"=16, "y"=3)
 	New()
 		..()
-		reagents.add_reagent("davenport", 100)
+		reagents.add_reagent("davenport", 50)
 
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing
@@ -185,7 +185,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
-	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
+	desc = "Named after the famed Captain 'Cuban' Pete, this rum is about as volatile as his final mission."
 	icon_state = "rumbottle"
 	center_of_mass = list("x"=16, "y"=8)
 	New()

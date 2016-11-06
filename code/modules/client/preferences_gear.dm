@@ -705,3 +705,14 @@ var/global/list/gear_datums = list()
 	path = /obj/item/weapon/fluff/cado_keppel_1
 	cost = 2
 */
+/datum/gear/cmgoggles
+	display_name = "Ballistic Goggles"
+	path = /obj/item/clothing/glasses/mgoggles
+	cost = 2
+	slot = slot_glasses
+
+/datum/gear/cmgoggles
+	display_name = "Prescription Goggles"
+	path = /obj/item/clothing/glasses/mgoggles/prescription
+	cost = 3
+	slot = slot_glasses

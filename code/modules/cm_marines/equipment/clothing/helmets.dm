@@ -109,7 +109,7 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 		..()
 		helmet_garb = list()
-		helmet_overlays = list("damage","garb1","garb2","garb3","band") //To make things simple.
+		helmet_overlays = list("damage","band","garb1","garb2","garb3") //To make things simple.
 
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
@@ -377,7 +377,8 @@ protective or not, should go in to hats.dm. Try to rank them by overall protecti
 						/obj/item/weapon/reagent_containers/food/drinks/flask = "helmet_flask",
 						/obj/item/weapon/reagent_containers/food/snacks/eat_bar = "helmet_snack_eat",
 						/obj/item/weapon/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
-						/obj/item/weapon/reagent_containers/food/snacks/donkpocket = "helmet_snack_eat",
+						/obj/item/clothing/glasses/mgoggles = "goggles",
+						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/fluff/val_mcneil_1 = "helmet_rosary",
 						/obj/item/clothing/mask/mara_kilpatrick_1 = "helmet_rosary")
 	. = allowed_items
