@@ -51,6 +51,7 @@ Additional game mode variables.
 	var/xeno_queen_timer  = 0 //How long ago did the queen die?
 	var/xeno_queen_deaths = 0 //How many times the alien queen died.
 	var/surv_starting_num = 0 //To clamp starting survivors.
+	var/merc_starting_num = 0 //PMC clamp.
 	var/pred_current_num = 0 //How many are there now?
 	var/pred_maximum_num = 3 //How many are possible per round? Does not count elders.
 	var/pred_round_chance = 20 //%
@@ -74,7 +75,8 @@ Additional game mode variables.
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
 	xeno_starting_num = Clamp((ready_players/5), xeno_required_num, INFINITY) //(n, minimum, maximum)
-	surv_starting_num = Clamp((ready_players/7), 0, 3) //(n, minimum, maximum)
+	surv_starting_num = Clamp((ready_players/7), 0, 3)
+	merc_starting_num = Clamp((ready_players/3), 1, INFINITY)
 
 //===================================================\\
 
@@ -569,3 +571,116 @@ datum/game_mode/proc/initialize_special_clamps()
 					survivor.memory += temp_story
 		current_survivors -= survivor
 	return 1
+
+//===================================================\\
+
+			//MARINE GEAR INITIATLIZE\\
+
+//===================================================\\
+
+//We do NOT want to initilialize the gear before everyone is properly spawned in
+/datum/game_mode/proc/initialize_post_marine_gear_list()
+
+	//We take the number of marine players, deduced from other lists, and then get a scale multiplier from it, to be used in arbitrary manners to distribute equipment
+	//This might count players who ready up but get kicked back to the lobby
+	var/marine_pop_size = 0
+
+	for(var/mob/M in player_list)
+		if(M.stat != DEAD && M.mind && !M.mind.special_role)
+			marine_pop_size++
+
+	var/scale = marine_pop_size / MARINE_GEAR_SCALING_NORMAL //This gives a decimal value representing a scaling multiplier
+
+	//Set up attachment vendor contents related to Marine count
+	for(var/obj/machinery/vending/attachments/A in attachment_vendors)
+
+		//Forcefully reset the product list
+		A.product_records = list()
+
+		A.products = list(
+					/obj/item/attachable/suppressor = round(scale * 8),
+					/obj/item/attachable/bayonet = round(scale * 15),
+					/obj/item/attachable/compensator = round(scale * 4),
+					/obj/item/attachable/extended_barrel = round(scale * 8),
+					/obj/item/attachable/heavy_barrel = round(scale * 2),
+
+					/obj/item/attachable/scope = round(scale * 1),
+					/obj/item/attachable/flashlight = round(scale * 20),
+					/obj/item/attachable/reddot = round(scale * 10),
+					/obj/item/attachable/magnetic_harness = round(scale * 8),
+					/obj/item/attachable/quickfire = round(scale * 2),
+
+					/obj/item/attachable/foregrip = round(scale * 10),
+					/obj/item/attachable/gyro = round(scale * 4),
+					/obj/item/attachable/bipod = round(scale * 4),
+					/obj/item/attachable/burstfire_assembly = round(scale * 2),
+
+					/obj/item/attachable/stock/shotgun = round(scale * 3),
+					/obj/item/attachable/stock/rifle = round(scale * 3) ,
+					/obj/item/attachable/stock/revolver = round(scale * 3),
+
+					/obj/item/attachable/grenade = round(scale * 5),
+					/obj/item/attachable/shotgun = round(scale * 3),
+					/obj/item/attachable/flamer = round(scale * 3)
+					)
+
+		//Rebuild the vendor's inventory to make our changes apply
+		A.build_inventory(A.products)
+
+	for(var/obj/machinery/vending/marine/M in marine_vendors)
+
+		//Forcefully reset the product list
+		M.product_records = list()
+
+		M.products = list(
+						/obj/item/weapon/gun/pistol/m4a3 = round(scale * 25),
+						/obj/item/weapon/gun/revolver/m44 = round(scale * 5),
+						/obj/item/weapon/gun/smg/m39 = round(scale * 20),
+						/obj/item/weapon/gun/rifle/m41a = round(scale * 25),
+						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
+
+						/obj/item/ammo_magazine/pistol = round(scale * 30),
+						/obj/item/ammo_magazine/revolver = round(scale * 25),
+						/obj/item/ammo_magazine/smg/m39 = round(scale * 30),
+						/obj/item/ammo_magazine/rifle = round(scale * 22),
+						/obj/item/ammo_magazine/rifle/ap = round(scale * 5),
+						/obj/item/ammo_magazine/shotgun = round(scale * 8),
+						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 8),
+
+						/obj/item/weapon/combat_knife = round(scale * 20),
+						/obj/item/weapon/throwing_knife = round(scale * 5),
+						/obj/item/weapon/storage/box/m94 = round(scale * 5),
+						/obj/item/weapon/storage/backpack/marine = round(scale * 10),
+						/obj/item/device/radio/headset/msulaco = round(scale * 5),
+						/obj/item/weapon/storage/belt/marine = round(scale * 5),
+						/obj/item/weapon/storage/belt/knifepouch = round(scale * 5),
+						/obj/item/weapon/storage/belt/gun/m4a3 = round(scale * 5),
+						/obj/item/weapon/storage/backpack/gun/m37 = round(scale * 5),
+						/obj/item/clothing/shoes/marine = round(scale * 5),
+						/obj/item/clothing/under/marine = round(scale * 10),
+						/obj/item/clothing/suit/storage/marine = round(scale * 10),
+						/obj/item/clothing/head/helmet/marine = round(scale * 10)
+						)
+
+		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),
+							/obj/item/ammo_magazine/pistol/ap = round(scale * 2),
+							/obj/item/ammo_magazine/smg/m39/ap = round(scale * 1)
+							)
+
+		M.premium = list(/obj/item/weapon/gun/rifle/m41aMK1 = round(scale * 1),
+						)
+
+		//Rebuild the vendor's inventory to make our changes apply
+		M.build_inventory(M.products)
+		M.build_inventory(M.contraband, 1)
+		M.build_inventory(M.premium, 0, 1)
+
+		var/products2[]
+		if(istype(src, /datum/game_mode/ice_colony)) //Literally, we are in gamemode code
+			products2 = list(
+						/obj/item/clothing/mask/rebreather/scarf = round(scale * 10),
+							)
+		M.build_inventory(products2)
+
+	//Scale the amount of cargo points through a direct multiplier
+	supply_controller.points = round(supply_controller.points * scale)

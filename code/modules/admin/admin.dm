@@ -763,13 +763,23 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
-	set desc="Toggle dis bitch"
+	set desc="Toggle the ability for dead people to use OOC chat"
 	set name="Toggle Dead OOC"
 	dooc_allowed = !( dooc_allowed )
 
-	log_admin("[key_name(usr)] toggled OOC.")
+	log_admin("[key_name(usr)] toggled Dead OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/datum/admins/proc/toggleloocdead()
+	set category = "Server"
+	set desc="Toggle the ability for dead people to use LOOC chat"
+	set name="Toggle Dead LOOC"
+	dlooc_allowed = !( dlooc_allowed )
+
+	log_admin("[key_name(usr)] toggled Dead LOOC.")
+	message_admins("[key_name_admin(usr)] toggled Dead LOOC.", 1)
+	feedback_add_details("admin_verb","TDLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggletraitorscaling()
 	set category = "Server"
@@ -799,8 +809,8 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/toggleenter()
 	set category = "Server"
-	set desc="People can't enter"
-	set name="Toggle Entering"
+	set desc="Players can still log into the server, but Marines won't be able to join the game as a new mob. DOES NOT AFFECT XENOS."
+	set name="Toggle Joining"
 	enter_allowed = !( enter_allowed )
 	if (!( enter_allowed ))
 		world << "<B>New players may no longer enter the game.</B>"

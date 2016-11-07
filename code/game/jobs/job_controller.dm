@@ -71,6 +71,10 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				if(rank != "Squad Marine" && rank != "Squad Medic" && rank != "Squad Engineer" && rank != "Squad Specialist" && rank != "Squad Leader")
 					rank = "Squad Marine"
 					//world << "Rank Post: [rank]"
+			else if(ticker && istype(ticker.mode,/datum/game_mode/colonialmarines_halloween_2016))
+				switch(rank)
+					if("Squad Marine","Squad Medic","Squad Engineer","Squad Specialist","Squad Leader","Commander","Corporate Liaison")
+					else rank = "Squad Marine"
 
 			var/datum/job/job = GetJob(rank)
 
@@ -580,7 +584,7 @@ var/list/headsurvivorjobs = list("Chief Medical Officer", "Chief Engineer", "Res
 				H << "You have been assigned to: \b [H.mind.assigned_squad.name] squad."
 				//WHISKEY OUTPOST GAMEMODE
 					//They spawn ready on the outpost, not on Sulaco!
-				if(ticker && !istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+				if(ticker && (!istype(ticker.mode,/datum/game_mode/whiskey_outpost) || !istype(ticker.mode,/datum/game_mode/colonialmarines_halloween_2016) ) )
 					H << "Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."
 		return
 

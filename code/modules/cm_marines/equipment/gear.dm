@@ -652,6 +652,7 @@
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "map"
 	item_state = "map"
+	color = "blue"
 	author = "Weyland Yutani"
 	title = "Ice Colony Map"
 	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
@@ -674,6 +675,7 @@
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "map"
 	item_state = "map"
+	color = "grey"
 	author = "Weyland Yutani"
 	title = "Whiskey Outpost Map"
 	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
@@ -692,6 +694,29 @@
 		<b>Whiskey Outpost Tactical Map:</b>
 		<br>
 		<img src="whiskey_outpost.png" alt="Map">
+		</body>
+
+		</html>
+
+		"}
+
+/obj/item/weapon/book/manual/big_red_map
+	name = "\improper Solaris Ridge Map"
+	desc = "A censored blueprint of the Solaris Ridge facility"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "map"
+	item_state = "map"
+	color = "#e88a10"
+	author = "Weyland Yutani"
+	title = "Solaris Ridge Map"
+	// Map images should be placed in html\icons. The image must then be added to the send_resources() proc in \code\modules\client\client procs.dm. From there it can be linked to directly.
+	dat = {"
+
+		<html><head>
+		</head>
+
+		<body>
+		<img src="BigRed.png" alt="Map">
 		</body>
 
 		</html>

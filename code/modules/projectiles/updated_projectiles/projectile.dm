@@ -167,6 +167,9 @@
 				path = getline2(current_turf,next_turf) //Build a new flight path.
 				if(path.len && src)
 					follow_flightpath(speed, change_x, change_y, range) //Onwards!
+			else //To prevent bullets from getting stuck in maps like WO.
+				cdel(src)
+				return
 
 /obj/item/projectile/proc/scan_a_turf(turf/T)
 	if(!istype(T)) return //Not a turf. Back out.

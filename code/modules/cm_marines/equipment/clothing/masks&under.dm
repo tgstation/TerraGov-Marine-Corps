@@ -33,6 +33,13 @@ include jackets and regular suits, not armor.*/
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
 
+/obj/item/clothing/mask/jason
+	name = "hockey mask"
+	desc = "It smells like teenage spirit."
+	icon_state = "jason_mask"
+	item_state = "jason_mask"
+	anti_hug = 100
+
 /obj/item/clothing/mask/rebreather
 	name = "rebreather"
 	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs."
@@ -415,6 +422,40 @@ include jackets and regular suits, not armor.*/
 	item_state = "liaison_suspenders"
 	item_color = "liaison_suspenders"
 
+/obj/item/clothing/under/jason
+	name = "dirty work attire"
+	desc = "Perfect thing to wear when digging graves."
+	icon_state = "jason_suit"
+	item_state = "jason_suit"
+	item_color = "jason_suit"
+	armor = list(melee = 13, bullet = 13, laser = 13, energy = 13, bomb = 13, bio = 13, rad = 13)
+	has_sensor = 0
+	displays_id = 0
+
+/obj/item/clothing/under/rambo
+	name = "combat pants"
+	desc = "The only thing a man needs when he's up agains the world."
+	icon_state = "rambo_suit"
+	item_state = "rambo_suit"
+	item_color = "rambo_suit"
+	has_sensor = 0
+
+/obj/item/clothing/under/mcclane
+	name = "holiday attire"
+	desc = "The perfect outfit for a Christmas holiday with family. Shoes not included."
+	icon_state = "mcclane_suit"
+	item_state = "mcclane_suit"
+	item_color = "mcclane_suit"
+	has_sensor = 0
+
+/obj/item/clothing/under/dutch
+	name = "combat fatigues"
+	desc = "Just another pair of military fatigues for a grueling tour in a jungle."
+	icon_state = "dutch_suit"
+	item_state = "dutch_suit"
+	item_color = "dutch_suit"
+	has_sensor = 0
+
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"
 	desc = "A standard snow suit. It can protect the wearer from extreme cold."
@@ -437,6 +478,20 @@ include jackets and regular suits, not armor.*/
 	icon_state = "snowsuit_engineer"
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 
+/obj/item/clothing/suit/rambo
+	name = "pendant"
+	desc = "It's a precious stone and something of a talisman of protection."
+	flags_armor_protection = UPPER_TORSO
+	flags_cold_protection = UPPER_TORSO
+	icon_state = "rambo_pendant"
+	item_state = "rambo_pendant"
+
+/obj/item/clothing/suit/jason
+	name = "musty jacket"
+	desc = "A killer fashion statement."
+	icon_state = "jason_jacket"
+	item_state = "jason_jacket"
+	armor = list(melee = 13, bullet = 13, laser = 13, energy = 13, bomb = 13, bio = 13, rad = 13)
 
 //==========================//UNDER PROCS\\=============================\\
 //=======================================================================\\

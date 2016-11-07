@@ -1444,7 +1444,7 @@
 			user << "<span class='warning'>You have no idea how this thing works!</span>"
 			return
 		..()
-		zoom()
+		zoom(user)
 
 	able_to_fire(mob/user)
 		if(!isYautja(user))

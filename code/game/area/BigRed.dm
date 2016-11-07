@@ -115,6 +115,14 @@
 	name = "\improper robotics laboratory"
 	icon_state = "mechbay"
 
+/area/bigred/ground/science/assembly
+	name = "\improper Assembly room"
+	icon_state = "mechbay"
+
+/area/bigred/ground/science/office
+	name = "\improper Admistration"
+	icon_state = "mechbay"
+
 /area/bigred/ground/science/research
 	name = "\improper research lab"
 	icon_state = "research"
@@ -150,18 +158,22 @@
 /area/bigred/ground/exterior
 	name = "\improper underground"
 	icon_state = "blue-red"
+	ambience = list('sound/ambience/ambiatm1.ogg')
 
 /area/bigred/ground/exterior/north
 	name = "\improper northern facility exterior"
 	icon_state = "north"
 
+
 /area/bigred/ground/exterior/south
 	name = "\improper southern facility exterior"
 	icon_state = "south"
 
+
 /area/bigred/ground/exterior/west
 	name = "\improper western facility exterior"
 	icon_state = "west"
+
 
 /area/bigred/ground/exterior/east
 	name = "\improper eastern facility exterior"

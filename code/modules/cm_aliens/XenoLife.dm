@@ -16,6 +16,9 @@
 		if(loc != zoom_turf && is_zoomed)
 			zoom_out()
 
+	if(stat || lying)
+		zoom_out()
+
 	if(stat != DEAD) //Stop if dead. Performance boost
 
 		update_progression()
@@ -67,6 +70,9 @@
 			see_in_dark = 20
 		else
 			see_in_dark = 8
+
+		updatehealth()
+
 		if(readying_tail && readying_tail < 20)
 			readying_tail += rand(1, 2)
 			if(isXenoHunter(src))

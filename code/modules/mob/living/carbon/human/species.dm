@@ -209,11 +209,40 @@
 	language = "Sol Common"
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
-
 	flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
+
+//Helly, Jason.
+/datum/species/human/spook
+	name = "Horror"
+	name_plural = "Horrors"
+	language = "Drrrrrrr"
+	icobase = 'icons/mob/human_races/r_spooker.dmi'
+	deform = 'icons/mob/human_races/r_spooker.dmi'
+	brute_mod = 0.15
+	burn_mod = 0.25
+	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP
+	unarmed_type = /datum/unarmed_attack/punch/strong
+	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
+	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
+	death_sound = 'sound/voice/scream_horror1.ogg'
+	speech_sounds = list('sound/effects/ghost.ogg','sound/effects/ghost2.ogg','sound/voice/scream_horror2.ogg','sound/voice/shriek1.ogg')
+	speech_chance = 60
+	darksight = 8
+	slowdown = 0.3
+	insulated = 1
+	total_health = 150
+	has_fine_manipulation = 0
+
+	heat_level_1 = 1000
+	heat_level_2 = 1500
+	heat_level_3 = 2000
+
+	cold_level_1 = 100
+	cold_level_2 = 50
+	cold_level_3 = 20
 
 /datum/species/unathi
 	name = "Unathi"

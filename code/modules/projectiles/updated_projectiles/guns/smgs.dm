@@ -95,8 +95,46 @@
 
 //-------------------------------------------------------
 
+/obj/item/ammo_magazine/smg/mp5
+	name = "\improper MP5 magazine (9mm)"
+	desc = "A 9mm magazine for the MP5."
+	default_ammo = /datum/ammo/bullet/smg
+	caliber = "9mm"
+	icon_state = "mp7" //PLACEHOLDER
+	gun_type = /obj/item/weapon/gun/smg/mp5
+	max_rounds = 30 //Also comes in 10 and 40.
+
+/obj/item/weapon/gun/smg/mp5
+	name = "\improper MP5 submachinegun"
+	desc = "A German design, this was one of the most widely used submachine guns in the world. It's still possible to find this firearm in the hands of collectors or gun fanatics."
+	icon_state = "mp5"
+	item_state = "mp7" //PLACEHOLDER
+	origin_tech = "combat=3;materials=2"
+	fire_sound = 'sound/weapons/smg_light.ogg'
+	current_mag = /obj/item/ammo_magazine/smg/mp5
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ON_MERCS
+
+	New()
+		..()
+		fire_delay = config.mlow_fire_delay
+		accuracy += config.min_hit_accuracy_mult
+		damage += config.med_hit_damage_mult
+		scatter += config.med_scatter_value
+		burst_amount = config.high_burst_value
+		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
+
+
+//-------------------------------------------------------
+
 /obj/item/ammo_magazine/smg/mp7
-	name = "\improper MP27 magazine (4.6x30mm)"
+	name = "\improper MP7 magazine (4.6x30mm)"
 	desc = "A 4.6mm magazine for the MP7."
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = "4.6×30mm"
@@ -105,8 +143,8 @@
 	max_rounds = 30 //Also comes in 20 and 40.
 
 /obj/item/weapon/gun/smg/mp7
-	name = "\improper MP27 submachinegun"
-	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
+	name = "\improper MP7 submachinegun"
+	desc = "An archaic design going back hundreds of years, the MP7 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
 	icon_state = "mp7"
 	item_state = "mp7"
 	origin_tech = "combat=3;materials=2"

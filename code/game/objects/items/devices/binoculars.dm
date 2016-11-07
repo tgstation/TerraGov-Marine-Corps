@@ -13,6 +13,5 @@
 
 	//matter = list("metal" = 50,"glass" = 50)
 
-
 /obj/item/device/binoculars/attack_self(mob/user)
-	zoom()
+	zoom(user)

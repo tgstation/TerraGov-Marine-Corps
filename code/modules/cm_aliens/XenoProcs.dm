@@ -96,7 +96,7 @@
 		return 0
 	if(istype(T, /turf/space))
 		return 0
-	if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/gm/dirtgrassborder) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast))
+	if(istype(T, /turf/unsimulated/floor/gm/grass) || istype(T, /turf/unsimulated/floor/gm/dirtgrassborder) || istype(T, /turf/unsimulated/floor/gm/river) || istype(T, /turf/unsimulated/floor/gm/coast) || istype(T, /turf/simulated/floor/gm/coast) || istype(T, /turf/simulated/floor/gm/grass) || istype(T, /turf/simulated/floor/gm/dirtgrassborder) || istype(T, /turf/simulated/floor/gm/river))
 		return 0
 	return 1
 
@@ -565,7 +565,7 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
-	if(stat)
+	if(stat || resting)
 		if(is_zoomed)
 			is_zoomed = 0
 			zoom_out()

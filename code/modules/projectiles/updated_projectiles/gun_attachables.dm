@@ -147,7 +147,6 @@ Defined in setup.dm.
 
 /obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
 	if(!istype(G)) return //Guns only
-	if(G.zoom) G.zoom() //Remove zooming out.
 
 	switch(slot) //I am removing checks for the attachment being src.
 		if("rail") 		G.rail = null//If it's being called on by this proc, it has to be that attachment. ~N
@@ -716,7 +715,7 @@ Defined in setup.dm.
 		burst_mod = -config.min_burst_value
 
 	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
-		target.zoom(11,12,user)
+		target.zoom(user, 11, 12)
 		return 1
 
 /obj/item/attachable/scope/slavic

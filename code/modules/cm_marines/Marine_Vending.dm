@@ -61,7 +61,17 @@
 				products2 = list(
 							/obj/item/clothing/mask/rebreather/scarf = 10,
 								)
+			if(/datum/game_mode/bigred)
+				products2 = list(
+							/obj/item/clothing/mask/gas/ = 20,
+								)
 		build_inventory(products2)
+
+	New()
+
+		..()
+
+		marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/cargo_ammo
 	name = "\improper ColMarTech automated armaments vendor"
@@ -118,6 +128,12 @@
 	premium = list()
 	select_gamemode_equipment()
 
+	New()
+
+		..()
+
+		marine_vendors.Remove(src)
+
 /obj/machinery/vending/marine/cargo_guns
 	name = "\improper ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
@@ -167,6 +183,12 @@
 					)
 	premium = list()
 	select_gamemode_equipment()
+
+	New()
+
+		..()
+
+		marine_vendors.Remove(src)
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
@@ -389,6 +411,7 @@
 	req_access = list(access_sulaco_cargo)
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
+
 	products = list(
 						/obj/item/attachable/suppressor = 8,
 						/obj/item/attachable/bayonet = 15,
@@ -396,7 +419,7 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 
-						/obj/item/attachable/scope = 0,
+						/obj/item/attachable/scope = 1,
 						/obj/item/attachable/flashlight = 20,
 						/obj/item/attachable/reddot = 10,
 						/obj/item/attachable/magnetic_harness = 8,
@@ -414,5 +437,10 @@
 						/obj/item/attachable/grenade = 5,
 						/obj/item/attachable/shotgun = 3,
 						/obj/item/attachable/flamer = 3
-
 					)
+
+	New()
+
+		..()
+
+		attachment_vendors.Add(src)

@@ -312,5 +312,6 @@
 		'html/images/whiskey_outpost.png',
 		'html/images/LV624.png',
 		'html/images/IceColony.png',
+		'html/images/BigRed.png',
 		'html/images/ntlogo.png'
 		)

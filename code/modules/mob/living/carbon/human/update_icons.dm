@@ -834,7 +834,8 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 
 /mob/living/carbon/human/update_inv_wear_mask(var/update_icons=1)
-	if( wear_mask && ( istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/tie) ) && !(head && head.flags_inventory & HIDEMASK))
+	//Sorry for the atrocious code, but mgoggles needs a special exception since it goes in 3 slots and masks has a snowflake check unlike head and glasses --MadSnailDisease
+	if( ( wear_mask && ( istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/tie) ) && !(head && head.flags_inventory & HIDEMASK) ) || ( wear_mask && ( istype(wear_mask, /obj/item/clothing/glasses/mgoggles) ) ) )
 		wear_mask.screen_loc = ui_mask	//TODO
 
 		var/image/standing

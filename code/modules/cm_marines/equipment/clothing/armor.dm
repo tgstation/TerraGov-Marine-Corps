@@ -90,6 +90,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
 
+/obj/item/clothing/suit/armor/vest/dutch
+	name = "armored jacket"
+	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
+	icon_state = "dutch_armor"
+	item_state = "dutch_armor"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."

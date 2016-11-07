@@ -399,7 +399,7 @@
 					del(src)
 			if("splints")
 				var/count = 0
-				for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
+				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 					var/datum/organ/external/o = target.organs_by_name[organ]
 					if(o.status & ORGAN_SPLINTED)
 						count = 1
@@ -700,7 +700,7 @@ It can still be worn/put on as normal.
 					can_reach_splints = 0
 
 			if(can_reach_splints)
-				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","l_foot","r_foot","l_hand","r_hand"))
+				for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 					var/datum/organ/external/o = target.get_organ(organ)
 					if (o && o.status & ORGAN_SPLINTED)
 						var/obj/item/W = new /obj/item/stack/medical/splint(amount=1)
