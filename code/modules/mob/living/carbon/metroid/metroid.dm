@@ -77,15 +77,19 @@
 	..()
 
 /mob/living/carbon/slime/movement_delay()
-	if (bodytemperature >= 330.23) // 135 F
-		return -1	// slimes become supercharged at high temperatures
 
-	var/tally = 0
+	..()
+
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
+	if(bodytemperature >= 330.23) // 135 F
+		return -1	// slimes become supercharged at high temperatures
 
 	var/health_deficiency = (100 - health)
 	if(health_deficiency >= 45) tally += (health_deficiency / 25)
 
-	if (bodytemperature < 183.222)
+	if(bodytemperature < 183.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 
 	if(reagents)

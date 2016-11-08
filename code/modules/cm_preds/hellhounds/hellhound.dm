@@ -332,14 +332,16 @@
 	return
 
 /mob/living/carbon/hellhound/movement_delay()
+
+	..()
+
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
 	if(stat)
 		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
 
-	var/tally = 0
-
-	tally = speed
-
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
+	tally += speed
 
 	if(istype(loc,/turf/unsimulated/floor/gm/river)) //Rivers slow you down
 		tally += 1.3

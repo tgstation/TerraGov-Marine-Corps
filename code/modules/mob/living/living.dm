@@ -827,3 +827,13 @@
 
 /mob/living/proc/has_eyes()
 	return 1
+
+/mob/living/movement_delay()
+
+	tally = 0 //Reset tally from last call
+
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
+	if(pulling)	//Dragging stuff slows you down a bit.
+		tally += 3

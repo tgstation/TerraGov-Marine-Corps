@@ -1,5 +1,10 @@
 /mob/living/carbon/human/movement_delay()
 
+	..()
+
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
 	if(turret_control)
 		src << "\blue You stop controlling the turret."
 		turret_control.visible_message("\icon[src] \blue [turret_control] buzzes: Manual control halted. AI control re-initiated.")
@@ -7,12 +12,8 @@
 		turret_control.manual_override = 0
 		turret_control = null
 
-	var/tally = 0
-
 	if(species.slowdown)
 		tally = species.slowdown
-
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.

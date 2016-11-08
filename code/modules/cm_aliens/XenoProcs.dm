@@ -116,15 +116,15 @@
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
 
+	..()
+
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
 	if(stat)
 		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
 
-	var/tally = 0
-
-	tally = speed
-
-	if(istype(loc, /turf/space))
-		return -1 // It's hard to be slowed down in space by... anything
+	tally += speed
 
 	if(locate(/obj/structure/bush) in loc) //Bushes slows you down
 		var/obj/structure/bush/B = locate(/obj/structure/bush) in loc
@@ -158,9 +158,6 @@
 
 	if(frenzy_aura)
 		tally = tally - (frenzy_aura * 0.1) - 0.4
-
-	if(src.pulling)	//Dragging stuff slows you down a bit.
-		tally += 3
 
 	if(isXenoCrusher(src)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src
