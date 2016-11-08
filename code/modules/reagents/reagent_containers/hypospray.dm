@@ -14,6 +14,7 @@
 	flags_atom = FPRINT|OPENCONTAINER
 	flags_equip_slot = SLOT_BELT
 	var/hType = "autoinjector" //Hypospray Type.  This is for the icon update, since we have like 200 types now.
+	var/USED = 0;
 
 /obj/item/weapon/reagent_containers/hypospray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
@@ -29,6 +30,9 @@
 		user << "\red [src] is empty."
 		return
 	if (!( istype(M, /mob) ))
+		return
+	if (USED ==1)
+		user << "\red Eww... the [src] has been used already."
 		return
 	if (reagents.total_volume)
 		user << "\blue You inject [M] with [src]."
@@ -76,9 +80,12 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
 	if(reagents.total_volume > 0)
 		icon_state = "[hType]"
+	else if (USED == 1)
+		return
 	else
 		icon_state = "[hType]0"
 		name = "[name] - Expended" //So people can see what have been expended since we have smexy new sprites people aren't used too...
+		USED = 1;
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/examine()
 	..()
