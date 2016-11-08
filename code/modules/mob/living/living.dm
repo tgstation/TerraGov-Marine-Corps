@@ -835,5 +835,5 @@
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(pulling)	//Dragging stuff slows you down a bit.
+	if(pulling && !istype(pulling, /obj/structure/stool/bed/roller))	//Dragging stuff slows you down a bit.
 		tally += 3
