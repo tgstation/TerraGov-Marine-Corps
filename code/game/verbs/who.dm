@@ -9,7 +9,7 @@
 	var/count_aliens = 0
 
 	for(var/client/C in clients)
-		if(isobserver(C.mob) && !C.holder)
+		if(isobserver(C.mob) && !C.holder)		
 			count_observers++
 		if(ishuman(C.mob) && C.mob.stat != DEAD)
 			count_humans++
@@ -112,7 +112,7 @@
 				msg += "\n"
 
 				num_admins_online++
-			else if(R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights)				//Who shows up in mod/mentor rows.
+			else if(R_MOD & C.holder.rights)				//Who shows up in mod/mentor rows.
 				modmsg += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
@@ -147,7 +147,7 @@
 				if(!C.holder.fakekey)
 					msg += "\t[C] is a [C.holder.rank]\n"
 					num_admins_online++
-			else if (R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights)
+			else if (R_MOD & C.holder.rights)
 				modmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mods_online++
 			else if (R_MENTOR & C.holder.rights)
