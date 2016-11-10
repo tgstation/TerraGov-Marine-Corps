@@ -51,8 +51,6 @@
 	item_state = "hypo"
 	amount_per_transfer_from_this = 5
 	volume = 5
-	item_state = hType
-	icon_state = hType
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
 	. = ..()
