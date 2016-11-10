@@ -589,7 +589,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(M.stat != DEAD && M.mind && !M.mind.special_role)
 			marine_pop_size++
 
-	var/scale = marine_pop_size / MARINE_GEAR_SCALING_NORMAL //This gives a decimal value representing a scaling multiplier
+	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING_NORMAL, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
 
 	//Set up attachment vendor contents related to Marine count
 	for(var/obj/machinery/vending/attachments/A in attachment_vendors)
