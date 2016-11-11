@@ -94,3 +94,12 @@
 	var/golfclapped = 0
 	var/medicd = 0
 	var/screamed = 0
+
+	//Life variables
+	var/oxygen_alert = 0
+	var/phoron_alert = 0
+	var/co2_alert = 0
+	var/fire_alert = 0
+	var/pressure_alert = 0
+	var/prev_gender = null // Debug for plural genders
+	var/temperature_alert = 0
