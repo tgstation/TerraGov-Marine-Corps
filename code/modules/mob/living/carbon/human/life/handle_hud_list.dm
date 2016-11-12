@@ -9,10 +9,10 @@
 /mob/living/carbon/human/proc/handle_hud_list()
 	if(hud_updateflag & 1 << HEALTH_HUD)
 		var/image/holder = hud_list[HEALTH_HUD]
-		if(stat == 2)
-			holder.icon_state = "hudhealth-100" 	// X_X
+		if(stat == DEAD)
+			holder.icon_state = "hudhealth-100" //X_X
 		else
-			var/percentage_health = RoundHealth(((0.0+health)/species.total_health)*100)
+			var/percentage_health = RoundHealth(((0.0 + health)/species.total_health) * 100)
 			holder.icon_state = "hud[percentage_health]"
 		hud_list[HEALTH_HUD] = holder
 
@@ -21,14 +21,14 @@
 		for(var/datum/disease/D in viruses)
 			if(!D.hidden[SCANNER])
 				foundVirus++
-		for (var/ID in virus2)
-			if (ID in virusDB)
+		for(var/ID in virus2)
+			if(ID in virusDB)
 				foundVirus = 1
 				break
 
 		var/image/holder = hud_list[STATUS_HUD]
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
-		if(stat == 2)
+		if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
 		else if(status_flags & XENO_HOST)
@@ -57,7 +57,6 @@
 		else
 			holder.icon_state = "hudunknown"
 
-
 		hud_list[ID_HUD] = holder
 
 	if(hud_updateflag & 1 << WANTED_HUD)
@@ -71,7 +70,7 @@
 
 		for(var/datum/data/record/E in data_core.general)
 			if(E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.security)
+				for(var/datum/data/record/R in data_core.security)
 					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						holder.icon_state = "hudwanted"
 						break
@@ -111,10 +110,10 @@
 	if(hud_updateflag & 1 << SPECIALROLE_HUD)
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
-		if(mind)
 
+		if(mind)
 			switch(mind.special_role)
-				if("traitor","Syndicate")
+				if("traitor", "Syndicate")
 					holder.icon_state = "hudsyndicate"
 				if("Revolutionary")
 					holder.icon_state = "hudrevolutionary"
@@ -124,7 +123,7 @@
 					holder.icon_state = "hudcultist"
 				if("Changeling")
 					holder.icon_state = "hudchangeling"
-				if("Wizard","Fake Wizard")
+				if("Wizard", "Fake Wizard")
 					holder.icon_state = "hudwizard"
 				if("Death Commando")
 					holder.icon_state = "huddeathsquad"

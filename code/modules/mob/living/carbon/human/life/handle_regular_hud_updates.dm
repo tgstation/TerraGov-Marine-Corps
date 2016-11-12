@@ -2,19 +2,18 @@
 
 /mob/living/carbon/human/proc/handle_regular_hud_updates()
 
-	if(hud_updateflag) // update our mob's hud overlays, AKA what others see flaoting above our head
+	if(hud_updateflag) //Update our mob's hud overlays, AKA what others see flaoting above our head
 		handle_hud_list()
 
-	// now handle what we see on our screen
+	//Now handle what we see on our screen
 	if(!client || isnull(client))
 		return 0
 
 	for(var/image/hud in client.images)
-		if(copytext(hud.icon_state,1,4) == "hud") //ugly, but icon comparison is worse, I believe
+		if(copytext(hud.icon_state,1,4) == "hud") //Ugly, but icon comparison is worse, I believe
 			client.images.Remove(hud)
 
 	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
-
 	update_action_buttons()
 
 	if(damageoverlay.overlays)
@@ -23,7 +22,7 @@
 
 	if(stat == UNCONSCIOUS)
 		//Critical damage passage overlay
-		if(health <= 0)
+		if(health <= config.health_threshold_crit)
 			var/image/I
 			switch(health)
 				if(-20 to -10)
@@ -69,7 +68,7 @@
 			damageoverlay.overlays += I
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+		var/hurtdamage = getBruteLoss() + getFireLoss() + damageoverlaytemp
 		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/image/I
@@ -94,12 +93,12 @@
 		if(!druggy)
 			see_invisible = SEE_INVISIBLE_LEVEL_TWO
 		if(healths)
-			healths.icon_state = "health7"	//DEAD healthmeter
+			healths.icon_state = "health7" //DEAD healthmeter
 
 	else
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = species.darksight
-		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+		see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
 		if(dna)
 			switch(dna.mutantrace)
 				if("slime")
@@ -112,9 +111,10 @@
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
-			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+			if(!druggy)
+				see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
-		if(seer==1)
+		if(seer == 1)
 			var/obj/effect/rune/R = locate() in loc
 			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
 				see_invisible = SEE_INVISIBLE_OBSERVER
@@ -123,10 +123,6 @@
 				seer = 0
 
 		var/tmp/glasses_processed = 0
-//			if(istype(wear_mask, /obj/item/clothing/mask/gas/voice/space_ninja))
-//				var/obj/item/clothing/mask/gas/voice/space_ninja/O = wear_mask
-//				glasses_processed = 1
-//				process_glasses(O.ninja_vision.glasses)
 		if(glasses)
 			glasses_processed = 1
 			process_glasses(glasses)
@@ -135,14 +131,13 @@
 			see_invisible = SEE_INVISIBLE_LIVING
 
 		if(healths)
-			if (analgesic)
+			if(analgesic)
 				healths.icon_state = "health_health_numb"
 			else
 				switch(hal_screwyhud)
 					if(1)	healths.icon_state = "health6"
 					if(2)	healths.icon_state = "health7"
 					else
-//							switch(health - halloss)
 						if(isYautja(src))
 							switch(health)
 								if(100 to INFINITY)		healths.icon_state = "health0"
@@ -176,9 +171,6 @@
 		if(pullin)
 			if(pulling)								pullin.icon_state = "pull1"
 			else									pullin.icon_state = "pull0"
-//			if(rest)	//Not used with new UI
-//				if(resting || lying || sleeping)		rest.icon_state = "rest1"
-//				else									rest.icon_state = "rest0"
 		if(toxin)
 			if(hal_screwyhud == 4 || phoron_alert)	toxin.icon_state = "tox1"
 			else									toxin.icon_state = "tox0"
@@ -203,30 +195,30 @@
 					else					bodytemp.icon_state = "temp-4"
 			else
 				var/temp_step
-				if (bodytemperature >= species.body_temperature)
+				if(bodytemperature >= species.body_temperature)
 					temp_step = (species.heat_level_1 - species.body_temperature)/4
 
-					if (bodytemperature >= species.heat_level_1)
+					if(bodytemperature >= species.heat_level_1)
 						bodytemp.icon_state = "temp4"
-					else if (bodytemperature >= species.body_temperature + temp_step*3)
+					else if(bodytemperature >= species.body_temperature + temp_step * 3)
 						bodytemp.icon_state = "temp3"
-					else if (bodytemperature >= species.body_temperature + temp_step*2)
+					else if(bodytemperature >= species.body_temperature + temp_step * 2)
 						bodytemp.icon_state = "temp2"
-					else if (bodytemperature >= species.body_temperature + temp_step*1)
+					else if(bodytemperature >= species.body_temperature + temp_step * 1)
 						bodytemp.icon_state = "temp1"
 					else
 						bodytemp.icon_state = "temp0"
 
-				else if (bodytemperature < species.body_temperature)
+				else if(bodytemperature < species.body_temperature)
 					temp_step = (species.body_temperature - species.cold_level_1)/4
 
-					if (bodytemperature <= species.cold_level_1)
+					if(bodytemperature <= species.cold_level_1)
 						bodytemp.icon_state = "temp-4"
-					else if (bodytemperature <= species.body_temperature - temp_step*3)
+					else if(bodytemperature <= species.body_temperature - temp_step * 3)
 						bodytemp.icon_state = "temp-3"
-					else if (bodytemperature <= species.body_temperature - temp_step*2)
+					else if(bodytemperature <= species.body_temperature - temp_step * 2)
 						bodytemp.icon_state = "temp-2"
-					else if (bodytemperature <= species.body_temperature - temp_step*1)
+					else if(bodytemperature <= species.body_temperature - temp_step * 1)
 						bodytemp.icon_state = "temp-1"
 					else
 						bodytemp.icon_state = "temp0"
@@ -234,8 +226,8 @@
 			if(blinded)		blind.plane = 0
 			else			blind.plane = -80
 
-		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
-			if(glasses)					//to every /obj/item
+		if(disabilities & NEARSIGHTED)	//This looks meh but saves a lot of memory by not requiring to add var/prescription to every /obj/item
+			if(glasses)
 				var/obj/item/clothing/glasses/G = glasses
 				if(!G.prescription)
 					client.screen += global_hud.vimpaired
@@ -247,13 +239,13 @@
 
 		var/masked = 0
 
-		if( istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/unathi))
+		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/unathi))
 			var/obj/item/clothing/head/welding/O = head
 			if(!O.up && tinted_weldhelh)
 				client.screen += global_hud.darkMask
 				masked = 1
 
-		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding) )
+		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
 			var/obj/item/clothing/glasses/welding/O = glasses
 			if(!O.up && tinted_weldhelh)
 				client.screen += global_hud.darkMask
@@ -262,11 +254,12 @@
 			blind.layer = 18
 
 		if(machine)
-			if(!machine.check_eye(src))		reset_view(null)
+			if(!machine.check_eye(src))
+				reset_view(null)
 		else
 			var/isRemoteObserve = 0
 			if((mRemote in mutations) && remoteview_target)
-				if(remoteview_target.stat==CONSCIOUS)
+				if(remoteview_target.stat == CONSCIOUS)
 					isRemoteObserve = 1
 			if(!isRemoteObserve && client && !client.adminobs)
 				remoteview_target = null
