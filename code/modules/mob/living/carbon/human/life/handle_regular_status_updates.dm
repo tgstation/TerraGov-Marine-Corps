@@ -2,13 +2,14 @@
 
 /mob/living/carbon/human/proc/handle_regular_status_updates()
 
-	if(status_flags & GODMODE)	return 0
+	if(status_flags & GODMODE)
+		return 0
 
-	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
+	if(stat == DEAD) //DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
 		blinded = 1
 		silent = 0
-	else				//ALIVE. LIGHTS ARE ON
-		updatehealth()	//TODO
+	else //ALIVE. LIGHTS ARE ON
+		updatehealth() //TODO
 
 		if(health <= config.health_threshold_dead || (species.has_organ["brain"] && !has_brain()))
 			death()
@@ -16,11 +17,11 @@
 			silent = 0
 			return 1
 
-		// the analgesic effect wears off slowly
+		//The analgesic effect wears off slowly
 		analgesic = max(0, analgesic - 1)
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if( (getOxyLoss() > 50) || (config.health_threshold_crit > health) )
+		if((getOxyLoss() > 50) || (config.health_threshold_crit > health))
 			Paralyse(3)
 
 		if(hallucination)
@@ -30,7 +31,7 @@
 				if(!handling_hal)
 					spawn handle_hallucinations() //The not boring kind!
 
-			if(hallucination<=2)
+			if(hallucination <= 2)
 				hallucination = 0
 				halloss = 0
 			else
@@ -41,9 +42,8 @@
 				del a
 
 			if(halloss > 100)
-				src << "<span class='notice'>You're in too much pain to keep going...</span>"
-				for(var/mob/O in oviewers(src, null))
-					O.show_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.", 1)
+				visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>", \
+				"<span class='warning'>You slump to the ground, you're in too much pain to keep going.</span>")
 				Paralyse(10)
 				setHalLoss(99)
 
@@ -57,13 +57,13 @@
 			speech_problem_flag = 1
 			handle_dreams()
 			adjustHalLoss(-3)
-			if (mind)
+			if(mind)
 				if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-					sleeping = max(sleeping-1, 0)
+					sleeping = max(sleeping - 1, 0)
 			blinded = 1
 			stat = UNCONSCIOUS
-			if( prob(2) && health && !hal_crit )
-				spawn(0)
+			if(prob(2) && health && !hal_crit)
+				spawn()
 					emote("snore")
 		//CONSCIOUS
 		else
@@ -90,55 +90,57 @@
 					Y.charge -= 10
 					if(Y.charge <= 0)
 						Y.decloak(src)
-					if(Y.charge < 0) Y.charge = 0
+					if(Y.charge < 0)
+						Y.charge = 0
 				else
 					Y.charge += 30
-					if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
+					if(Y.charge > Y.charge_max)
+						Y.charge = Y.charge_max
 				if(Y.charge_max) //No runtimes!
 					var/perc_charge = (Y.charge / Y.charge_max * 100)
 					update_power_display(perc_charge)
-		if(istype(src.l_hand,/obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/hug = src.l_hand
+		if(istype(l_hand, /obj/item/clothing/mask/facehugger))
+			var/obj/item/clothing/mask/facehugger/hug = l_hand
 			if(hug.stat != DEAD)
 				src.drop_from_inventory(hug)
 				hug.GoIdle()
 
-		if(istype(src.r_hand,/obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/hug = src.r_hand
+		if(istype(r_hand, /obj/item/clothing/mask/facehugger))
+			var/obj/item/clothing/mask/facehugger/hug = r_hand
 			if(hug.stat != DEAD)
 				src.drop_from_inventory(hug)
 				hug.GoIdle()
 
 		//Eyes
-		if(!species.has_organ["eyes"]) // Presumably if a species has no eyes, they see via something else.
+		if(!species.has_organ["eyes"]) //Presumably if a species has no eyes, they see via something else.
 			eye_blind =  0
 			blinded =    0
 			eye_blurry = 0
-		else if(!has_eyes())           // Eyes cut out? Permablind.
+		else if(!has_eyes())           //Eyes cut out? Permablind.
 			eye_blind =  1
 			blinded =    1
 			eye_blurry = 1
-		else if(sdisabilities & BLIND) // Disabled-blind, doesn't get better on its own
+		else if(sdisabilities & BLIND) //Disabled-blind, doesn't get better on its own
 			blinded =    1
-		else if(eye_blind)		       // Blindness, heals slowly over time
-			eye_blind =  max(eye_blind-1,0)
+		else if(eye_blind)		       //Blindness, heals slowly over time
+			eye_blind =  max(eye_blind - 1, 0)
 			blinded =    1
-		else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
-			eye_blurry = max(eye_blurry-3, 0)
+		else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold)) //Resting your eyes with a blindfold heals blurry eyes faster
+			eye_blurry = max(eye_blurry - 3, 0)
 			blinded =    1
-		else if(eye_blurry)	           // Blurry eyes heal slowly
-			eye_blurry = max(eye_blurry-1, 0)
+		else if(eye_blurry)	           //Blurry eyes heal slowly
+			eye_blurry = max(eye_blurry - 1, 0)
 
 		//Ears
-		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
+		if(sdisabilities & DEAF) //Disabled-deaf, doesn't get better on its own
 			ear_deaf = max(ear_deaf, 1)
-		else if(ear_deaf)			//deafness, heals slowly over time
-			ear_deaf = max(ear_deaf-1, 0)
-		else if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))	//resting your ears with earmuffs heals ear damage faster
-			ear_damage = max(ear_damage-0.15, 0)
+		else if(ear_deaf) //Deafness, heals slowly over time
+			ear_deaf = max(ear_deaf - 1, 0)
+		else if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))	//Resting your ears with earmuffs heals ear damage faster
+			ear_damage = max(ear_damage - 0.15, 0)
 			ear_deaf = max(ear_deaf, 1)
-		else if(ear_damage < 25)	//ear damage heals slowly under this threshold. otherwise you'll need earmuffs
-			ear_damage = max(ear_damage-0.05, 0)
+		else if(ear_damage < 25) //Ear damage heals slowly under this threshold. otherwise you'll need earmuffs
+			ear_damage = max(ear_damage - 0.05, 0)
 
 		//Resting
 		if(resting)
@@ -153,16 +155,16 @@
 		//Other
 		handle_statuses()
 
-		if (drowsyness)
+		if(drowsyness)
 			drowsyness--
 			eye_blurry = max(2, eye_blurry)
-			if (prob(5))
+			if(prob(5))
 				sleeping += 1
 				Paralyse(5)
 
 		confused = max(0, confused - 1)
 
-		// If you're dirty, your gloves will become dirty, too.
+		//If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
 

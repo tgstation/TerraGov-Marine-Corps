@@ -7,10 +7,10 @@
 
 	if(getFireLoss())
 		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
+			heal_organ_damage(0, 1)
 
-	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
+	//DNA2 - Gene processing.
+	//The HULK stuff that was here is now in the hulk gene.
 	for(var/datum/dna/gene/gene in dna_genes)
 		if(!gene.block)
 			continue
@@ -20,7 +20,7 @@
 
 	radiation = Clamp(radiation,0,100)
 
-	if (radiation)
+	if(radiation)
 		var/datum/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
 		if(rad_organ && !rad_organ.is_broken())
 			var/rads = radiation/25
@@ -37,7 +37,7 @@
 		if(prob(25))
 			damage = 1
 
-		if (radiation > 50)
+		if(radiation > 50)
 			damage = 1
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
@@ -46,14 +46,14 @@
 				Weaken(3)
 				if(!lying)
 					emote("collapse")
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.name == "Human") //apes go bald
-				if((h_style != "Bald" || f_style != "Shaved" ))
+			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.name == "Human") //Apes go bald
+				if((h_style != "Bald" || f_style != "Shaved"))
 					src << "<span class='warning'>Your hair falls out.</span>"
 					h_style = "Bald"
 					f_style = "Shaved"
 					update_hair()
 
-		if (radiation > 75)
+		if(radiation > 75)
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			damage = 3
 			if(prob(5))
