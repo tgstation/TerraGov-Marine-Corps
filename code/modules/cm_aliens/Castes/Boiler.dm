@@ -21,9 +21,6 @@
 	spit_delay = 40
 	speed = 1.2 //faster from 1.5
 	pixel_x = -16
-//	adjust_pixel_y = -6
-//	adjust_size_x = 0.9
-//	adjust_size_y = 0.8
 	caste_desc = "Gross!"
 	evolves_to = list()
 	big_xeno = 1 //Toggles pushing
@@ -86,25 +83,28 @@
 	set desc = "Examines terrain at a distance."
 	set category = "Alien"
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	if(zoom_timer)
 		return
 
 	if(is_zoomed)
 		zoom_out()
-		visible_message("\blue [src] stops looking in the distance.","\blue You stop peering into the distance.")
+		visible_message("<span class='notice'>[src] stops looking off into the distance.</span>", \
+		"<span class='notice'>You stop looking off into the distance.</span>")
 		return
 
-	if(!check_plasma(20)) return
+	if(!check_plasma(20))
+		return
 
 	zoom_timer = 1
-	visible_message("\blue [src] begins looking off into the distance.","\blue You start looking off into the distance.. Hold still!")
+	visible_message("<span class='notice'>[src] starts looking off into the distance.</span>", \
+	"<span class='notice'>You start focusing your sight to look off into the distance.</span>")
 
-	if(do_after(src,20))
+	if(do_after(src, 20))
 		zoom_in()
-		spawn(0)
-			zoom_timer = 0 //Just so they don't spam it and weird things out
+		zoom_timer = 0 //Just so they don't spam it and weird things out
 		return
 	else
 		zoom_timer = 0
@@ -116,9 +116,10 @@
 	set desc = "Swap between different area attack types."
 	set category = "Alien"
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
-	src << "\blue You will now fire [bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]"
+	src << "<span class='notice'>You will now fire [bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive gas. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>"
 	bomb_ammo = bomb_ammo.type == /datum/ammo/xeno/boiler_gas ? ammo_list[/datum/ammo/xeno/boiler_gas/corrosive] : ammo_list[/datum/ammo/xeno/boiler_gas]
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bombard()
@@ -126,7 +127,8 @@
 	set desc = "Bombard an area. Use 'Toggle bombard types' to change the effect."
 	set category = "Alien"
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	if(readying_bombard)
 		return
@@ -135,23 +137,25 @@
 		if(client)
 			client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 		is_bombarding = 0
-		src << "You relax your stance."
+		src << "<span class='notice'>You relax your stance.</span>"
 		return
 
 	if(bomb_cooldown)
-		src << "You are still preparing another spit. Be patient!"
+		src << "<span class='warning'>You are still preparing another spit. Be patient!</span>"
 		return
 
-	if(src.z == 0)
-		src << "You can't do that from in here."
+	if(!isturf(loc))
+		src << "<span class='warning'>You can't do that from there.</span>"
 		return
 
 	readying_bombard = 1
-	visible_message("\blue [src] begins digging their claws into the ground.","\blue You begin preparing a bombardment..")
-	if(do_after(src,30))
+	visible_message("<span class='notice'>\The [src] begins digging their claws into the ground.</span>", \
+	"<span class='notice'>You begin digging yourself into place.</span>")
+	if(do_after(src, 30))
 		readying_bombard = 0
 		is_bombarding = 1
-		visible_message("\blue [src] digs in!","\blue You get ready to bomb an area! If you move, you must wait again to fire.")
+		visible_message("<span class='notice'>\The [src] digs itself into the ground!</span>", \
+		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>")
 		bomb_turf = get_turf(src)
 		if(client)
 			client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
@@ -164,10 +168,10 @@
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bomb_turf(var/turf/T)
 	if(!istype(T) || T.z != src.z || T == get_turf(src))
-		src << "That is not a valid target."
+		src << "<span class='warning'>This is not a valid target.</span>"
 		return
 
-	if(src.z == 0) //In a locker
+	if(!isturf(loc)) //In a locker
 		return
 
 	var/turf/U = get_turf(src)
@@ -179,26 +183,26 @@
 		return
 
 	if(!is_bombarding)
-		src << "You must prepare your stance before you can do this."
+		src << "<span class='warning'>You must dig yourself in before you can do this.</span>"
 		return
 
 	if(bomb_cooldown)
-		src << "You are still preparing another spit. Be patient!"
+		src << "<span class='warning'>You are still preparing another spit. Be patient!</span>"
 		return
 
-	if(get_dist(T,U) <= 5)
-		src << "You are too close! You must be at least 7 meters from the target, due to the trajectory arc."
+	if(get_dist(T, U) <= 5) //Magic number
+		src << "<span class='warning'>You are too close! You must be at least 7 meters from the target due to the trajectory arc.</span>"
 		return
 
 	if(!bomb_ammo)
-		src << "You have no bomb type selected, somehow."
+		src << "<span class='warning'>You need to select a bombardment type.</span>" //Not supposed to happen, but give a semi-IC warning
 		return
 
 	if(!check_plasma(200))
 		return
 
-	var/offset_x = rand(-1,1)
-	var/offset_y = rand(-1,1)
+	var/offset_x = rand(-1, 1)
+	var/offset_y = rand(-1, 1)
 
 	if(prob(30))
 		offset_x = 0
@@ -210,31 +214,32 @@
 	if(!istype(target))
 		return
 
-	src << "<B>You begin building up acid..</B>"
+	src << "<span class='xenonotice'>You begin building up acid.</span>"
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon) //Reset the mouse pointer.
 	bomb_cooldown = 1
 	is_bombarding = 0
-	if(do_after(src,50))
+	if(do_after(src, 50))
 		bomb_turf = null
-		visible_message("\green <B>The [src] launches a huge glob of acid into the distance!</b>","\green <B>You spit a huge glob of acid!</b>")
+		visible_message("<span class='xenodanger'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
+		"<span class='xenodanger'>You launch a huge glob of acid hurling into the distance!</span>")
 
-		var/obj/item/projectile/P = rnew(/obj/item/projectile,src.loc)
+		var/obj/item/projectile/P = rnew(/obj/item/projectile, loc)
 		P.ammo = bomb_ammo
 		P.name = P.ammo.name
 		P.icon_state = P.ammo.icon_state
 		P.damage = P.ammo.damage
 		P.accuracy += P.ammo.accuracy
-		P.fire_at(target,src,null,P.ammo.max_range,P.ammo.shell_speed)
+		P.fire_at(target, src, null, P.ammo.max_range, P.ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 60, 1)
 
 		spawn(200) //20 seconds cooldown.
 			bomb_cooldown = 0
-			src << "You feel your toxin glands swell. You are able to bombard an area again."
+			src << "<span class='notice'>You feel your toxin glands swell. You are able to bombard an area again.</span>"
 		return
 	else
 		bomb_cooldown = 0
-		src << "You decide not to launch any acid."
+		src << "<span class='warning'>You decide not to launch any acid.</span>"
 	return
 
 //Yes, the mortar strikes are grenades. Deal with it (tm)
@@ -257,7 +262,7 @@
 	prime()
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
 		icon_state = "splatter"
-		src.smoke.set_up(6, 0, usr.loc)
+		smoke.set_up(6, 0, usr.loc)
 		spawn(0)
 			src.smoke.start()
 			sleep(10)
@@ -288,26 +293,27 @@
 	if(isYautja(M) && prob(75))
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(40))
-		M << "<b>Your gas mask protects you!</b>"
+	if(M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(40))
+		M << "<span class='danger'>Your gas mask protects you!</span>"
 		return
 	else
-		if (prob(20))
+		if(prob(20))
 			M.drop_item()
 		M.adjustOxyLoss(5)
 		M.adjustFireLoss(rand(5,15))
 		M.updatehealth()
-		if (M.coughedtime != 1 && !M.stat)
+		if(M.coughedtime != 1 && !M.stat)
 			M.coughedtime = 1
 			if(prob(50))
 				M.emote("cough")
 			else
 				M.emote("gasp")
-			spawn (15)
+			spawn(15)
 				M.coughedtime = 0
-	M << "\green <b>Your skin burns!</b>"
+	M << "<span class='xenodanger'>Your skin feels like it is melting away!</span>"
 	if(ishuman(M))
-		M:take_overall_damage(0,rand(10,15)) //burn damage, randomizes between various parts
+		var/mob/living/carbon/human/H = M
+		H.take_overall_damage(0, rand(10, 15)) //Burn damage, randomizes between various parts //Magic number
 	else
 		M.burn_skin(5)
 	M.updatehealth()
@@ -331,15 +337,14 @@
 	prime()
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1)
 		icon_state = "splatter"
-		src.smoke.set_up(7, 0, usr.loc)
+		smoke.set_up(7, 0, usr.loc)
 		spawn(0)
-			src.smoke.start()
+			smoke.start()
 			sleep(10)
-			src.smoke.start()
+			smoke.start()
 		invisibility = 101
 		sleep(20)
 		del(src)
-		return
 
 /datum/effect/effect/system/smoke_spread/xeno_weaken
 	smoke_type = /obj/effect/effect/smoke/xeno_weak
@@ -364,40 +369,40 @@
 	if(M.stat)
 		return
 
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(75))
-		M << "<b>Your gas mask protects you!</b>"
+	if(M.internal != null && M.wear_mask && (M.wear_mask.flags_inventory & ALLOWINTERNALS) && prob(75))
+		M << "<span class='danger'>Your gas mask protects you!</span>"
 		return
 	else
-		if (M.coughedtime != 1)
+		if(M.coughedtime != 1)
 			M.coughedtime = 1
 			M.emote("gasp")
 			M.adjustOxyLoss(1)
 			M.Weaken(2)
-			spawn (15)
+			spawn(15)
 				M.coughedtime = 0
 		if(!M.weakened && prob(75))
-			spawn(rand(1,5))
+			spawn(rand(1, 5))
 				if(M)
 					M.Weaken(20)
-					M.visible_message("\red [M] passes out.","<B>You feel woozy from the gas...</B>")
-	return
+					M.visible_message("<span class='danger'>\The [M] collapses.</span>", \
+					"<span class='danger'>You collapse as the gas scalds your nerves.</span>")
 
 /mob/living/carbon/Xenomorph/Boiler/proc/acid_spray(var/atom/T)
 	set name = "Spray Acid (10+)"
 	set desc = "Hose down an area with corrosive acid. Use middle mouse button for best results."
 	set category = "Alien"
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	if(acid_cooldown)
 		return
 
-	if(!istype(src.loc,/turf) || istype(src.loc,/turf/space))
-		src << "Not here!"
+	if(!isturf(loc) || istype(loc, /turf/space))
+		src << "<span class='warning'>You can't do that from there.</span>"
 		return
 
-	if(storedplasma < 10)
-		src << "Not enough plasma."
+	if(!check_plasma(10))
 		return
 
 	if(!T)
@@ -418,56 +423,60 @@
 		if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 			return
 
-		if(target == src.loc)
-			src << "That's too close!"
+		if(target == loc)
+			src << "<span class='warning'>That's far too close!</span>"
 			return
 
 		acid_cooldown = 1
 		playsound(src.loc, 'sound/effects/refill.ogg', 100, 1)
-		visible_message("\green <B>[src] spews forth a virulent spray of acid!</B>")
+		visible_message("<span class='xenodanger'>\The [src] spews forth a virulent spray of acid!</span>", \
+		"<span class='xenodanger'>You spew forth a spray of acid!</span>")
 		var/turflist = getline(src, target)
 		spray_turfs(turflist)
 		spawn(90) //12 second cooldown.
 			acid_cooldown = 0
-			src << "You feel your acid glands refill. You can spray <B>acid</b> again."
+			src << "<span class='warning'>You feel your acid glands refill. You can spray <B>acid</b> again.</span>"
 	else
-		src << "\blue You cannot spit at nothing!"
+		src << "<span class='warning'>You see nothing to spit at!</span>"
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/spray_turfs(turflist)
-	if(isnull(turflist)) return
+	if(isnull(turflist))
+		return
 	var/distance = 0
 
 	for(var/turf/T in turflist)
 		distance++
 		if(T.density || istype(T, /turf/space))
 			break
-
 		if(distance > 7)
 			break
 		if(!isnull(src))
-			if(DirBlocked(T,src.dir))
+			if(DirBlocked(T, dir))
 				break
-			else if(DirBlocked(T,turn(src.dir,180)))
+			else if(DirBlocked(T, turn(dir, 180)))
 				break
-		if(locate(/obj/effect/alien/resin/wall,T) || locate(/obj/effect/alien/resin/membrane,T) || locate(/obj/structure/girder,T))
+		if(locate(/obj/effect/alien/resin/wall, T) || locate(/obj/effect/alien/resin/membrane, T) || locate(/obj/structure/girder, T))
 			break //Nope.avi
 		var/obj/structure/mineral_door/resin/D = locate() in T
 		if(D)
-			if(D.density) break
+			if(D.density)
+				break
 		var/obj/machinery/M = locate() in T
 		if(M)
-			if(M.density) break
+			if(M.density)
+				break
 		var/obj/structure/window/W = locate() in T
 		if(W)
-			if(W.is_full_window()) break
+			if(W.is_full_window())
+				break
 			if(prev_turf)
 				if(get_dir(prev_turf,W) == W.dir)
 					break
 
-		if(!prev_turf && length(turflist)>1)
+		if(!prev_turf && length(turflist) > 1)
 			prev_turf = get_turf(src)
-			continue	//so we don't burn the tile we be standin on
+			continue //So we don't burn the tile we be standin on
 
 		if(prev_turf && LinkBlocked(prev_turf, T))
 			break
@@ -482,20 +491,19 @@
 	return
 
 /mob/living/carbon/Xenomorph/Boiler/proc/splat_turf(var/turf/target)
-	if(!istype(target) || istype(target,/turf/space)) return
+	if(!istype(target) || istype(target,/turf/space))
+		return
 
-	if(!locate(/obj/effect/xenomorph/spray) in target) // No stacking flames!
+	if(!locate(/obj/effect/xenomorph/spray) in target) //No stacking flames!
 		var/obj/effect/xenomorph/spray/S =  new(target)
 		processing_objects.Add(S)
 		for(var/mob/living/carbon/M in target)
-			if(istype(M,/mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey))
-				M.adjustFireLoss(rand(15,30))
-				M.show_message(text("\green [src] showers you in corrosive acid!"),1)
-				M.radiation += rand(5,50)
+			if(ishuman(M) || ismonkey(M))
+				M.adjustFireLoss(rand(15, 30))
+				M << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
+				M.radiation += rand(5, 50)
 				if(!isYautja(M))
 					if(prob(70))
 						M.emote("scream")
 					if(prob(40))
-						M.Weaken(rand(3,8))
-
-	return
+						M.Weaken(rand(3, 8))

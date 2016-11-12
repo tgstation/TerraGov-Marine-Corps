@@ -24,9 +24,6 @@
 	tier = 1
 	upgrade = 0
 	pixel_x = -16  //Needed for 2x2
-	// adjust_pixel_y = -6  //Needed for 2x2
-	// adjust_size_x = 0.8  //Needed for 2x2
-	// adjust_size_y = 0.75  //Needed for 2x2
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/regurgitate,
@@ -36,7 +33,6 @@
 		/mob/living/carbon/Xenomorph/Larva/proc/xenohide,
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
-
 
 /mob/living/carbon/Xenomorph/Runner/ClickOn(var/atom/A, params)
 
@@ -48,5 +44,3 @@
 		Pounce(A)
 		return
 	..()
-
-

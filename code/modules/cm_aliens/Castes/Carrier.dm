@@ -28,9 +28,6 @@
 	tier = 3
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
-	// adjust_pixel_y = -6  //Needed for 2x2
-	// adjust_size_x = 0.8  //Needed for 2x2
-	// adjust_size_y = 0.75  //Needed for 2x2
 
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/plant,
@@ -64,7 +61,8 @@
 	set desc = "Throw one of your facehuggers. MIDDLE MOUSE BUTTON quick-throws."
 	set category = "Alien"
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 	//This shit didn't wanna go into the upgrade area...
 	if(upgrade == 1)
 		huggers_max = 7
@@ -76,34 +74,25 @@
 		huggers_max = 10
 		hugger_delay = 10
 
-	var/mob/living/carbon/Xenomorph/Carrier/X = src
-	if(!istype(X))
-		src << "How did you get this verb??" //Lel. Shouldn't be possible, butcha never know. Since this uses carrier-only vars
+	if(huggers_cur <= 0)
+		src << "<span class='warning'>You don't have any facehuggers to throw!</span>"
 		return
 
-	if(X.huggers_cur <= 0)
-		src << "\red You don't have any facehuggers to throw!"
-		return
-
-	if(!X.threw_a_hugger)
+	if(!threw_a_hugger)
 		if(!T)
 			var/list/victims = list()
 			for(var/mob/living/carbon/human/C in oview(7))
 				victims += C
 			T = input(src, "Who should you throw at?") as null|anything in victims
 		if(T)
-			X.threw_a_hugger = 1
+			threw_a_hugger = 1
 			var/obj/item/clothing/mask/facehugger/newthrow = new()
-			X.huggers_cur -= 1
-			newthrow.loc = src.loc
-			newthrow.throw_at(T, 5, X.throwspeed)
-			// src << "You throw a facehugger at [T]."
-			visible_message("\red <B>[src] throws something towards [T]!</B>")
+			huggers_cur--
+			newthrow.loc = loc
+			newthrow.throw_at(T, 5, throwspeed)
+			visible_message("<span class='xenodanger'>\The [src] throws something towards \the [T]!</span>", \
+			"<span class='xenodanger'>You throw a facehugger towards \the [T]!</span>")
 			spawn(hugger_delay)
-				X.threw_a_hugger = 0
+				threw_a_hugger = 0
 		else
-			src << "\blue You cannot throw at nothing!"
-	return
-
-
-
+			src << "<span class='warning'>You see nothing to throw this facehugger at!</span>"

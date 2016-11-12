@@ -21,9 +21,6 @@
 	speed = 1.7
 	jelly = 1
 	pixel_x = -16
-//	adjust_pixel_y = -6
-//	adjust_size_x = 0.9
-//	adjust_size_y = 0.85
 	caste_desc = "Ptui!"
 	evolves_to = list()
 	armor_deflection = 45

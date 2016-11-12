@@ -62,9 +62,9 @@
 
 	if(stat == DEAD)
 		icon_state = "[state] Larva Dead"
-	else if (handcuffed || legcuffed)
+	else if(handcuffed || legcuffed)
 		icon_state = "[state] Larva Cuff"
-	else if (stunned)
+	else if(stunned)
 		icon_state = "[state] Larva Stunned"
 	else if(lying || resting)
 		icon_state = "[state] Larva Sleeping"
@@ -76,20 +76,20 @@
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
 	set category = "Alien"
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
+		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return
-	if (layer != TURF_LAYER+0.2)
-		layer = TURF_LAYER+0.2
-		src << text("\blue You are now hiding.")
+	if(layer != TURF_LAYER + 0.2)
+		layer = TURF_LAYER + 0.2
+		src << "<span class='notice'>You are now hiding.</span>"
 	else
 		layer = MOB_LAYER
-		src << text("\blue You have stopped hiding.")
+		src << "<span class='notice'>You have stopped hiding.</span>"
 	return
 
 /mob/living/carbon/Xenomorph/Larva/Bump(atom/AM as mob|obj|turf, yes)
 
 	spawn(0)
-		if(src.stat || !AM || !istype(AM) || AM == src || !yes)
+		if(stat || !AM || !istype(AM) || AM == src || !yes)
 			return
 
 		if(ismob(AM))

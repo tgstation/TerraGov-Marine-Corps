@@ -23,7 +23,7 @@
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client) //Only living and connected xenos
-				M << "<span class='warning'><font size=[size]> [message]</font></span>"
+				M << "<span class='xenonotice'><font size=[size]> [message]</font></span>"
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
