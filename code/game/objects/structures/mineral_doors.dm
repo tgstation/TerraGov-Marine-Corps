@@ -243,6 +243,7 @@
 				new/obj/item/stack/sheet/wood(get_turf(src))
 		del(src)
 
+//Shouldn't be there
 /obj/structure/mineral_door/resin
 	mineralType = "resin"
 	icon = 'icons/Xeno/Effects.dmi'
@@ -252,17 +253,13 @@
 
 	attack_paw(mob/user as mob)
 		if(user.a_intent == "hurt")
-			// if (islarva(user))//Safety check for larva. /N
-				// return
-			user << "\green You claw at the [name]."
-			for(var/mob/O in oviewers(src))
-				O.show_message("\red [user] claws at the resin!", 1)
+			user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
+			"<span class='xenowarning'>You claw at \the [src].</span>")
 			playsound(loc, 'sound/effects/attackblob.ogg', 30, 1, -4)
 			health -= rand(40, 60)
 			if(health <= 0)
-				user << "\green You slice the [name] to pieces."
-				for(var/mob/O in oviewers(src))
-					O.show_message("\red [user] slices the [name] apart!", 1)
+				user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
+				"<span class='xenodanger'>You slice \the [src] apart.</span>")
 			healthcheck()
 			return
 		else

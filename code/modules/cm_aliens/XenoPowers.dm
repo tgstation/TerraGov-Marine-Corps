@@ -99,8 +99,8 @@
 		T = input(src, "Who should you pounce towards?") as null|anything in victims
 
 	if(T)
-		visible_message("<span class='xenonotice'>\The [src] pounces at \the [T]!</span>", \
-		"<span class='xenonotice'>You pounce at \the [T]!</span>")
+		visible_message("<span class='xenowarning'>\The [src] pounces at \the [T]!</span>", \
+		"<span class='xenowarning'>You pounce at \the [T]!</span>")
 		usedPounce = 30 //About 12 seconds
 		flags_pass = PASSTABLE
 		if(readying_tail)
@@ -140,8 +140,8 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.forceMove(loc)
-		visible_message("<span class='xenonotice'>\The [src] hurls out the contents of their stomach!</span>", \
-		"<span class='xenonotice'>You hurl out the contents of your stomach!</span>")
+		visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
+		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>")
 	else
 		src << "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>"
 
@@ -159,7 +159,7 @@
 		M << "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>"
 		src << "<span class='xenonotice'>You said: \"[msg]\" to [M]</span>"
 
-/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M as mob in oview(2))
+/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M in oview(2))
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Alien"
@@ -188,8 +188,8 @@
 		M.storedplasma += amount
 		if(M.storedplasma > M.maxplasma)
 			M.storedplasma = M.maxplasma
-		M << "<span class='xenodanger'>\The [src] has transfered [amount] plasma to you. You now have [M.storedplasma].</span>"
-		src << "<span class='xenodanger'>You have transferred [amount] plasma to \the [M]. You now have [storedplasma].</span>"
+		M << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [M.storedplasma].</span>"
+		src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [M]. You now have [storedplasma].</span>"
 
 /mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE <---There's a name I haven't heard in a while. ~N
 	set name = "Secrete Resin (75)"
@@ -224,8 +224,8 @@
 	if(!check_plasma(75))
 		return
 
-	visible_message("<span class='xenodanger'>\The [src] regurgitates a thick substance and shapes it into \a [choice]!</span>", \
-	"<span class='xenodanger'>You regurgitate some resin and shape it into \a [choice].</span>")
+	visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and shapes it into \a [choice]!</span>", \
+	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [choice].</span>")
 	playsound(loc, 'sound/effects/splat.ogg', 30, 1) //Splat!
 
 	switch(choice)
@@ -277,8 +277,8 @@
 		if(!current_turf)
 			return
 
-		visible_message("<span class='xenodanger'>\The [src] spits at \the [T]!</span>", \
-		"<span class='xenodanger'>You spit at \the [T]!</span>" )
+		visible_message("<span class='xenowarning'>\The [src] spits at \the [T]!</span>", \
+		"<span class='xenowarning'>You spit at \the [T]!</span>" )
 		var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 		playsound(src.loc, sound_to_play, 60, 1)
 
@@ -358,8 +358,8 @@
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
 		attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
-	visible_message("<span class='xenodanger'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
-	"<span class='xenodanger'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
+	visible_message("<span class='xenowarning'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
+	"<span class='xenowarning'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()
 	set name = "Permit/Disallow Slashing"
@@ -446,13 +446,13 @@
 		var/choice = alert(src, "Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.\nFrenzy - Increased run speed and tackle chance\nGuard - Reduced incoming damage\nRecovery - Increased plasma and health regeneration", "Emit Pheromones", "frenzy", "guard", "recovery")
 		if(choice != "cancel")
 			current_aura = choice
-			visible_message("<span class='xenodanger'>\The [src] begins to emit strange-smelling pheromones.</span>", \
-			"<span class='xenodanger'>You begin to emit '[choice]' pheromones.</span>")
+			visible_message("<span class='xenowarning'>\The [src] begins to emit strange-smelling pheromones.</span>", \
+			"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
 			return
 	else
 		current_aura = null
-		visible_message("<span class='xenodanger'>\The [src] stops emitting pheromones.</span>", \
-		"<span class='xenodanger'>You stop emitting pheromones.</span>")
+		visible_message("<span class='xenowarning'>\The [src] stops emitting pheromones.</span>", \
+		"<span class='xenowarning'>You stop emitting pheromones.</span>")
 
 
 //COMMENTED OUT BY APOP

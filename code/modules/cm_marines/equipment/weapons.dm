@@ -651,7 +651,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 					cdel(tripwire)
 				cdel(src)
 
-/obj/item/device/mine/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/item/device/mine/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(triggered) //Mine is already set to go off
 		return
 
