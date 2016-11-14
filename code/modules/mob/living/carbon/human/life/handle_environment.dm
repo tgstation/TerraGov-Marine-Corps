@@ -91,25 +91,24 @@
 	if(status_flags & GODMODE)
 		return 1 //Godmode
 
-	switch(adjusted_pressure)
-		if(0 to species.hazard_low_pressure)
-			if(!(COLD_RESISTANCE in mutations))
-				take_overall_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-				if(getOxyLoss() < 55) //11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-					adjustOxyLoss(4)  //16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
-				pressure_alert = -2
-			else
-				pressure_alert = -1
-		if(species.hazard_low_pressure to species.warning_low_pressure)
+	if(adjusted_pressure >= species.hazard_high_pressure)
+		var/pressure_damage = min(((adjusted_pressure / species.hazard_high_pressure) - 1) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE)
+		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
+		pressure_alert = 2
+	else if(adjusted_pressure >= species.warning_high_pressure)
+		pressure_alert = 1
+	else if(adjusted_pressure >= species.warning_low_pressure)
+		pressure_alert = 0
+	else if(adjusted_pressure >= species.hazard_low_pressure)
+		pressure_alert = -1
+	else
+		if(!(COLD_RESISTANCE in mutations))
+			take_overall_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+			if(getOxyLoss() < 55) //11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
+				adjustOxyLoss(4)  //16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
+			pressure_alert = -2
+		else
 			pressure_alert = -1
-		if(species.warning_low_pressure to species.warning_high_pressure)
-			pressure_alert = 0
-		if(species.warning_high_pressure to species.hazard_high_pressure)
-			pressure_alert = 1
-		if(species.hazard_high_pressure to INFINITY)
-			var/pressure_damage = min(((adjusted_pressure / species.hazard_high_pressure) - 1) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE)
-			take_overall_damage(brute = pressure_damage, used_weapon = "High Pressure")
-			pressure_alert = 2
 
 	if(isturf(loc) && !stat)
 		var/obj/effect/effect/smoke/xeno_weak/X = locate() in loc
