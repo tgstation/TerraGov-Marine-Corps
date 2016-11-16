@@ -87,6 +87,9 @@
 
 		handle_medical_side_effects()
 
+		//In case we want them to do something unique every life cycle, like twitch or moan, or whatever.
+		species.handle_unique_behavior(src)
+
 	handle_stasis_bag()
 
 	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle

@@ -394,7 +394,6 @@ OBSOLETE BITCH
 		update_inv_w_uniform(0)
 
 /mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage)
-
 	if(!wear_suit) return
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	if(damtype != BURN && damtype != BRUTE) return
@@ -407,20 +406,10 @@ OBSOLETE BITCH
 //This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
 //Does not actually check for station jobs or access yet, cuz I'm mad lazy.
 //Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.
-/mob/living/carbon/human/proc/get_target_lock()
-	//Let's first check if they're antags.
-	if(isYautja(src)) return //Predators always read as targets.
-	if(mind && mind.special_role) //Let's see if they're an antag.
-		switch(mind.special_role) //Switches are still better than evaluating this twice.
-			if("IRON BEARS","DEATH SQUAD") //Antags.
-				return //Return a target lock.
-
-	var/obj/item/weapon/card/id/mobcard = wear_id
-
-	if(!mobcard || !istype(mobcard))
-		mobcard = get_active_hand() //Not a PDA or in ID slot? Fine, check their hand.
-
-	if(!mobcard || !istype(mobcard))
-		return //Still nothing!
-
-	return 1 //Yay!
+/mob/living/carbon/human/proc/get_target_lock(unique_access)
+	//Streamlined for faster processing. Needs a unique access, otherwise it will just hit everything.
+	var/obj/item/weapon/card/id/C = wear_id
+	if(!istype(C)) C = get_active_hand()
+	if(!istype(C)) return
+	if(!(unique_access in C.access)) return
+	return 1

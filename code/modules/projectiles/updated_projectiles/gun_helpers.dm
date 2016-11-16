@@ -288,11 +288,12 @@ should be alright.
 
 	user << "<span class='notice'>You begin field modifying [src]...</span>"
 	if(do_after(user,60))
-		user << "<span class='notice'>You attach [attachment] to [src].</span>"
-		user.drop_item(attachment)
-		attachment.Attach(src)
-		update_attachable(attachment.slot)
-		playsound(user,'sound/machines/click.ogg', 50, 1)
+		if(attachment && attachment.loc)
+			user << "<span class='notice'>You attach [attachment] to [src].</span>"
+			user.remove_from_mob(attachment)
+			attachment.Attach(src)
+			update_attachable(attachment.slot)
+			playsound(user,'sound/machines/click.ogg', 50, 1)
 
 /obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
 	//overlays.Cut()

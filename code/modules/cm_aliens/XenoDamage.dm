@@ -43,11 +43,22 @@
 /mob/living/carbon/Xenomorph/blob_act()
 	return
 
-/mob/living/carbon/Xenomorph/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
-	if(!damage)
-		return 0
-	if(stat == DEAD) //Quit beating a dead horse! I mean xeno
-		return 0
+/mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
+	if(!damage) return
+
+	//We still want to check for blood splash before we get to the damage application.
+	var/chancemod = 0
+	if(used_weapon && sharp)
+		chancemod += 10
+	if(used_weapon && edge) //Pierce weapons give the most bonus
+		chancemod += 12
+	if(def_zone != "chest") //Which it generally will be, vs xenos
+		chancemod += 5
+
+	if(damage > 12) //Light damage won't splash.
+		check_blood_splash(damage, damagetype, chancemod)
+
+	if(stat == DEAD) return
 
 	if(guard_aura && damage > 0) //Slight damage reduction
 		damage = round(damage * 6 / 7)
@@ -61,35 +72,20 @@
 		if(BURN)
 			adjustFireLoss(damage)
 
-	var/chancemod = 0
-	if(used_weapon && sharp)
-		chancemod += 10
-	if(used_weapon && edge) //Pierce weapons give the most bonus
-		chancemod += 12
-	if(def_zone != "chest") //Which it generally will be, vs xenos
-		chancemod += 5
-
-	if(damage > 12) //Light damage won't splash.
-		check_blood_splash(damage, damagetype, chancemod)
 	updatehealth(damage*0.65)
 	return 1
 
-/mob/living/carbon/Xenomorph/proc/check_blood_splash(var/damage = 0, var/damtype = BRUTE, var/chancemod = 0)
+/mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0)
 	if(!damage)
 		return 0
-	var/chance = 10 //base chance
-	if(damtype == BRUTE)
-		chance += 5
-	chance += chancemod
-	chance += (damage / 3) //A fair bonus based on damage. 30 dam : +10% splash, 60 dam(glaive) : +20%
+	var/chance = 20 //base chance
+	if(damtype == BRUTE) chance += 5
+	chance += chancemod + (damage * 0.33)
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return 0
-	if(stat == DEAD) //Well. Maybe a smaller chance.. To stop marines from running around hacking them up I guess.
-		chance -= 20
 
-	if(!prob(chance))
-		return 0 //Failed the check.
+	if(!prob(chance)) return
 
 	//Success! Splash somea dat bluds
 	var/obj/effect/decal/cleanable/blood/xeno/decal = locate(/obj/effect/decal/cleanable/blood/xeno) in T

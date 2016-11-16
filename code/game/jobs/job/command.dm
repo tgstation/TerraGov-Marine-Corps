@@ -90,8 +90,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_bridge, access_sulaco_brig, access_sulaco_pilot, access_sulaco_logistics)
-	minimal_access = list(access_sulaco_bridge, access_sulaco_brig, access_sulaco_pilot, access_sulaco_logistics)
+	access = list(access_marine_iff_tag, access_sulaco_bridge, access_sulaco_brig, access_sulaco_pilot, access_sulaco_logistics)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_bridge, access_sulaco_brig, access_sulaco_pilot, access_sulaco_logistics)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
@@ -120,8 +120,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "the Commander"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
-	minimal_access = list(access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
+	access = list(access_marine_iff_tag, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_logistics, access_sulaco_pilot_locker)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
@@ -153,8 +153,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "your Corporate Overlords"
 	selection_color = "#ffeedd"
-	access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_research, access_sulaco_logistics)
-	minimal_access = list(access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_research, access_sulaco_logistics)
+	access = list(access_marine_iff_tag, access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_research, access_sulaco_logistics)
+	minimal_access = list(access_marine_iff_tag, access_centcomm, access_syndicate, access_sulaco_bridge, access_sulaco_pilot, access_sulaco_research, access_sulaco_logistics)
 	idtype = /obj/item/weapon/card/id/silver
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)

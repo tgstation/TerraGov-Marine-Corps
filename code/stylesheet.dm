@@ -75,6 +75,7 @@ h1.alert, h2.alert		{color: #000000;}
 
 .round_header			{color: #db0000; 	text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
 .round_body				{color: #001427; 	text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 3;}
+.event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 3;}
 
 .mod					{color: #735638;	font-weight: bold;}
 .modooc					{color: #184880;	font-weight: bold;}

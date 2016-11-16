@@ -346,6 +346,7 @@
 	icon_state = icon_dead
 	stat = DEAD
 	density = 0
+	lying = 1
 	return ..()
 
 /mob/living/simple_animal/ex_act(severity)

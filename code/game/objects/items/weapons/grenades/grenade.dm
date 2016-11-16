@@ -13,18 +13,6 @@
 	var/det_time = 50
 	var/dangerous = 0		//Make an danger overlay for humans?
 
-/obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>Huh? How does this thing work?</span>"
-
-		activate(user)
-		add_fingerprint(user)
-		spawn(5)
-			prime()
-		return 0
-	return 1
-
-
 /*/obj/item/weapon/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 	if (istype(target, /obj/item/weapon/storage)) return ..() // Trying to put it in a full container
 	if (istype(target, /obj/item/weapon/gun/grenadelauncher)) return ..()
@@ -54,15 +42,22 @@
 
 /obj/item/weapon/grenade/attack_self(mob/user as mob)
 	if(!active)
-		if(clown_check(user))
-			user << "<span class='warning'>You prime \the [name]! [det_time/10] seconds!</span>"
 
-			activate(user)
-			add_fingerprint(user)
+		if(!user.IsAdvancedToolUser())
+			user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+			return
+
+		add_fingerprint(user)
+		activate(user)
+		if((CLUMSY in user.mutations) && prob(50))
+			user << "<span class='warning'>Huh? How does this thing work?</span>"
+			spawn(5) prime()
+
+		else
+			user << "<span class='warning'>You prime \the [name]! [det_time/10] seconds!</span>"
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
-	return
 
 
 /obj/item/weapon/grenade/proc/activate(mob/user as mob)

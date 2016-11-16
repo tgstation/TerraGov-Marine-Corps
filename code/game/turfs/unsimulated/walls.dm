@@ -5,6 +5,11 @@
 	opacity = 1
 	density = 1
 
+/turf/unsimulated/wall/bulkhead
+	name = "bulkhead"
+	desc = "It is a large metal bulkhead."
+	icon_state = "hull"
+
 /turf/unsimulated/wall/fakeglass
 	name = "window"
 	icon_state = "fakewindows"

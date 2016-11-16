@@ -48,7 +48,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/attachables
-	name = "Rail Attachments"
+	name = "Rail Attachments crate"
 	contains = list(
 					/obj/item/attachable/reddot,
 					/obj/item/attachable/scope,
@@ -63,7 +63,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/m_attachables
-	name = "Muzzle Attachments"
+	name = "Muzzle Attachments crate"
 	contains = list(
 					/obj/item/attachable/suppressor,
 					/obj/item/attachable/bayonet,
@@ -77,7 +77,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/u_attachables
-	name = "Underbarrel Attachments"
+	name = "Underbarrel Attachments crate"
 	contains = list(
 					/obj/item/attachable/foregrip,
 					/obj/item/attachable/gyro,
@@ -92,7 +92,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/s_attachables
-	name = "Stock Attachments"
+	name = "Stock Attachments crate"
 	contains = list(
 					/obj/item/attachable/stock/revolver,
 					/obj/item/attachable/stock/revolver,
@@ -107,7 +107,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/beacons
-	name = "Squad Beacons"
+	name = "Squad Beacons crate"
 	contains = list(
 					/obj/item/device/squad_beacon,
 					/obj/item/device/squad_beacon,
@@ -120,7 +120,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	group = "Operations"
 
 /datum/supply_packs/webbing
-	name = "Webbings & Gun Belts crate"
+	name = "Webbings and Gun Belts crate"
 	contains = list(/obj/item/clothing/tie/holster,
 					/obj/item/clothing/tie/storage/brown_vest,
 					/obj/item/clothing/tie/storage/webbing,

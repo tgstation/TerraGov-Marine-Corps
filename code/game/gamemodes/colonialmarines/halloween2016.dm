@@ -1,23 +1,64 @@
-#define EVENT_MAJOR_INTERVAL 	4000
-#define EVENT_MINOR_INTERVAL 	900
-#define FOG_DELAY_INTERVAL		6000
-#define BATTLEFIELD_END			36000
+#define EVENT_MAJOR_INTERVAL 	3000 // 5 minutes
+#define EVENT_MINOR_INTERVAL 	900 // 1.5 minutes
+#define FOG_DELAY_INTERVAL		4800 // 8 minutes
+#define BATTLEFIELD_END			36000 // 60 minutes
 #define MAX_BLOOD_ATTUNED		5
+#define BATTLEFIELD_DEBUG		0
 
+#if BATTLEFIELD_DEBUG
+/mob/living/verb/test_major_spooky()
+	set name = "Debug Major Event"
+	set category = "Battlefield Debug"
+
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/shuffle1 = input("Select which role to spawn.","1-20") as num
+	var/shuffle2 = input("Select which sub-role to spawn.","1-2") as num
+	CM.handle_event_major_spooky(shuffle1,shuffle2)
+	world << "<span class='debug'>Major event triggered.</span>"
+
+/mob/living/verb/test_minor_spooky()
+	set name = "Debug Minor Event"
+	set category = "Battlefield Debug"
+
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/shuffle1 = input("Select which event to play.","1-20") as num
+	var/shuffle2 = input("Select which sub event to play.","1-20") as num
+	CM.handle_event_minor_spooky(shuffle1,shuffle2)
+	world << "<span class='debug'>Minor event triggered.</span>"
+
+/mob/living/verb/test_battle_spawn()
+	set name = "Debug Character Spawn"
+	set category = "Battlefield Debug"
+
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+
+	var/role = input("Select which role to spawn.","Roles") in list("Corporate Liaison","Commander","Squad Leader","Squad Specialist","Squad Engineer","Squad Medic","Squad Marine")
+	if(!role) return
+	if(alert("Do you want to be a PMC or Marine?","Preference","Marine","PMC") == "PMC") CM.merc_starting_num = 1
+	else CM.merc_starting_num = 0
+	var/shuffle1 = input("Select which role to spawn as.","1-20") as num
+	var/shuffle2 = input("Select which equipment to spawn with.","1-20") as num
+	CM.spawn_battlefield_player(src,role,shuffle1,shuffle2)
+
+#endif
+#undef BATTLEFIELD_DEBUG
 /datum/game_mode/colonialmarines_halloween_2016
 	name = "Nightmare on LV-624"
 	config_tag = "Nightmare on LV-624"
 	required_players 		= 2 //Need at least one player, but really we need 2.
-	forbid_late_joining 	= 1
+	//forbid_late_joining 	= 1
 	var/lobby_time 			= 0
 	var/event_time_major	= FOG_DELAY_INTERVAL
 	var/event_time_minor	= EVENT_MINOR_INTERVAL
-	var/total_attuned		= 0
+	var/total_attuned		= MAX_BLOOD_ATTUNED
 	var/obj/item/device/omega_array/mcguffin
-	var/fog_blockers[]
+	var/obj/effect/blocker/fog/fog_blockers[]
 	var/turf/marine_spawns[]
 	var/turf/pmc_spawns[]
 	var/turf/horror_spawns[]
+	var/turf/jason_spawns[]
+	var/obj/effect/step_trigger/jason/jason_triggers[]
+	var/special_spawns[] = list("Jason","Skywalker","Robocop","Rambo","Dutch","Mcclane")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -47,11 +88,14 @@
 /datum/game_mode/colonialmarines_halloween_2016/pre_setup()
 	var/obj/effect/landmark/L
 	var/obj/effect/step_trigger/attunement/R
+	var/obj/effect/step_trigger/jason/J
 	var/obj/effect/blocker/fog/F
 	fog_blockers 		= new
 	horror_spawns		= new
 	pmc_spawns	 		= new
 	marine_spawns	 	= new
+	jason_spawns		= new
+	jason_triggers		= new
 
 	//This will set up the various blood attuners to correspond to blood type.
 	var/blood_types[] 		= HUMAN_BLOODTYPES
@@ -82,6 +126,10 @@
 			if("horror start")
 				horror_spawns += L.loc
 				new /obj/effect/gateway(L.loc)
+			if("jason start") jason_spawns += L.loc
+			if("jason trigger")
+				J = new /obj/effect/step_trigger/jason(L.loc)
+				jason_triggers += J
 			if("omega control")
 				var/obj/item/device/omega_array/control/C = new(L.loc)
 				mcguffin = C
@@ -90,6 +138,7 @@
 			if("blood attunement 1","blood attunement 2","blood attunement 3","blood attunement 4","blood attunement 5")
 				R = new(L.loc)
 				R.b_type = blood_attuners[L.name]
+			else L = null //So we are not deleting all landmarks that still may exist, like observer spawn.
 		cdel(L)
 
 	//Generate supplies.
@@ -109,6 +158,7 @@
 	set waitfor = 0
 
 	if(config) config.remove_gun_restrictions = 1
+	slashing_allowed = 1
 	lobby_time = world.time
 	//initialize_post_predator_list()
 
@@ -118,7 +168,7 @@
 	while(temp_player_list.len)
 		M = pick(temp_player_list) //We randomzie it a bit.
 		temp_player_list -= M
-		spawn_player(M)
+		spawn_battlefield_player(M)
 
 	defer_powernet_rebuild = 2
 
@@ -131,6 +181,7 @@
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
 /datum/game_mode/colonialmarines_halloween_2016/process()
+
 	if(--round_started > 0) return
 	if(!round_finished && ++round_checkwin >= 5)
 		if(world.time >= (FOG_DELAY_INTERVAL + lobby_time) && fog_blockers.len)
@@ -144,9 +195,11 @@
 		if(world.time >= (event_time_major + lobby_time))
 			handle_event_major_spooky()
 			event_time_major = world.time + EVENT_MAJOR_INTERVAL
-		if(total_attuned >= MAX_BLOOD_ATTUNED)
+		if(!total_attuned)
 			new /obj/machinery/singularity/narsie/wizard(pick(horror_spawns))
-			total_attuned = 0
+			total_attuned--
+			world << "<span class='event_announcement'>All the blood seals are broken! He comes!</span>"
+
 		check_win()
 		round_checkwin = 0
 
@@ -187,7 +240,7 @@
 //////////////////////////////////
 /obj/effect/landmark/battlefield
 	name = "battlefield"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/misc/mark.dmi'
 
 /obj/effect/landmark/battlefield/attune
 	icon_state = "spawn_event"
@@ -201,6 +254,9 @@
 	name = "blood attunement 4"
 /obj/effect/landmark/battlefield/attune/spawn_blood_attunement5
 	name = "blood attunement 5"
+/obj/effect/landmark/battlefield/jason_trigger
+	name = "jason trigger"
+	icon_state = "spawn_event"
 
 /obj/effect/landmark/battlefield/spawn_marine
 	name = "marine start"
@@ -210,6 +266,10 @@
 	icon_state = "spawn_mob2"
 /obj/effect/landmark/battlefield/spawn_horrors
 	name = "horror start"
+	icon_state = "spawn_mob3"
+
+/obj/effect/landmark/battlefield/spawn_jason
+	name = "jason start"
 	icon_state = "spawn_mob3"
 
 /obj/effect/landmark/battlefield/spawn_mcguffin
@@ -294,6 +354,19 @@
 		..()
 		if(istype(M)) M.apply_damage(55,TOX)
 
+/obj/effect/step_trigger/jason/Trigger(mob/living/M)
+	if(istype(M) && M.stat != DEAD && (!M.mind || !M.mind.special_role || M.mind.special_role == "PMC"))
+		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
+			if("Jason" in T.special_spawns) //We do not want to trigger multiple instances of this.
+				T.special_spawns -= "Jason" //First one blocks any further atempts.
+				var/obj/effect/step_trigger/jason/J
+				for(J in T.jason_triggers)
+					T.jason_triggers -= J
+					cdel(J)
+				T.jason_triggers = null
+				T.handle_event_major_spooky(0,0,1)
+
 /obj/effect/step_trigger/attunement
 	var/b_type[] //The blood, it speaks to all.
 
@@ -307,11 +380,11 @@
 
 		switch(rand(1,3))
 			if(1)
-				visible_message("<span class='danger'>[M] is being torn limb from limb by an unseen force!</span>","<span class='userdanger'>YOU ARE BEING TORN LIMB FROM LIMB!</span>")
+				visible_message("<span class='danger'>[M] is torn limb from limb by an unseen force!</span>","<span class='userdanger'>YOU ARE TORN LIMB FROM LIMB!</span>")
 				if(!M.stat) M.emote("scream")
 				M.gib()
 			if(2)
-				visible_message("<span class='danger'>[M] is being burned alive by some unseen flame!</span>","<span class='userdanger'>YOU ARE BEING ROASTED ALIVE!</span>")
+				visible_message("<span class='danger'>[M] is burned alive by some unseen flame!</span>","<span class='userdanger'>YOU ARE ROASTED ALIVE!</span>")
 				M.adjust_fire_stacks(rand(6,11))
 				M.IgniteMob()
 				if(!M.stat) M.emote("scream")
@@ -329,7 +402,7 @@
 		luminosity = 0
 		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
-			T.total_attuned++
+			world << "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>"
 
 /obj/effect/rune/attunement/attack_hand(mob/living/user) //Special snowflake rune, do not steal 2016.
 	user << "<span class='notice'>You touch the rune, feeling it glow beneath your fingertip. It feels warm, somehow pleasant. The rune soon fades and disappears, as you feel a new sense of understanding about the world.</span>"
@@ -338,24 +411,25 @@
 	user.update_mutations()
 	cdel(src)
 
-/datum/game_mode/colonialmarines_halloween_2016/proc/spawn_player(mob/M)
-
+/datum/game_mode/colonialmarines_halloween_2016/proc/spawn_battlefield_player(mob/M,given_role,shuffle_override1,shuffle_override2)
 	var/mob/living/carbon/human/H
 	var/turf/picked
+	var/obj/item/weapon/card/id/ID
+	var/obj/item/I
+	var/shuffle1 = shuffle_override1? shuffle_override1 : rand(1,20)
+	var/shuffle2 = shuffle_override2? shuffle_override2 : rand(1,20)
 
-	if(istype(M,/mob/living/carbon/human)) //If We started on Sulaco as squad marine
+	if(istype(M,/mob/living/carbon/human)) //If we started on Sulaco as squad marine
 		if(isYautja(M)) return
 		H = M
-		if(H.contents.len)
-			for(var/I in H.contents)//Delete the cryo uniform
-				if(istype(I,/obj/item/clothing/under/marine/underoos)) del(I)
 
 	H.nutrition = rand(325,400)
 
 	//Squad ID and backpack are already spawned in job datum
-
-	switch(H.mind.assigned_role) //These guys are assigned outside of everyone else.
+	given_role = given_role? given_role : H.mind.assigned_role
+	switch(given_role) //These guys are assigned outside of everyone else.
 		if("Corporate Liaison") //Lead the way, corporate drone!
+			if(H.wear_id) ID.access = get_antagonist_pmc_access()//They should have one.
 			H.mind.special_role = "PMC"
 			H.loc = pick(pmc_spawns)
 			H.update_icons()
@@ -383,120 +457,178 @@
 					H << "________________________"
 			return
 
+	var/random_primary = 1
+	I = H.back
+	if(I)
+		H.remove_from_mob(I)
+		cdel(I)
+	I = H.w_uniform
+	if(I)
+		H.remove_from_mob(I)
+		cdel(I)
+
 	//PMC. We want to set up these guys first.
 	if(merc_starting_num-- > 0)
 		if(pmc_spawns.len) picked = pick(pmc_spawns)
 		if(H.contents.len)
-			for(var/I in H.contents)
-				if(istype(I,/obj/item)) del(I)
+			for(var/i in H.contents)
+				if(istype(i,/obj/item))
+					H.remove_from_mob(i)
+					cdel(i)
 
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), slot_l_ear)
-		switch(H.mind.assigned_role)
-			if("Squad Leader")
+		switch(given_role)
+			if("Squad Leader") //Well equipped, great weapons overall.
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(H), slot_w_uniform)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(H), slot_wear_suit)
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(H), slot_head)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(H), slot_wear_mask)
+				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), slot_s_store)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/incendiary(H), slot_in_backpack)
 				H.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(H.back), slot_in_backpack)
-
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(H.back), slot_r_store)
+				H.equip_to_slot_or_del(new /obj/item/device/flashlight(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(H), slot_belt)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(H), slot_r_store)
 				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(H.back), slot_in_backpack)
-
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), slot_r_hand)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H), slot_l_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_store)
+				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(H.back), slot_in_backpack)
 				H.mind.assigned_role = "PMC Officer"
-			if("Squad Engineer")
-				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(H), slot_glasses)
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(H), slot_wear_suit)
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
-				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(H), slot_head)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
-				H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(H), slot_wear_mask)
-				H.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(H), slot_back)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun/dirty(H), slot_r_hand)
+				random_primary = !random_primary
 
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_l_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_r_store)
-				H.mind.assigned_role = "PMC Gunner"
-			if("Squad Medic")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(H), slot_wear_suit)
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
-				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(H), slot_head)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
-				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), slot_glasses)
-
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H.back), slot_r_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H.back), slot_in_backpack)
-
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(H), slot_r_hand)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(H), slot_l_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(H.back), slot_in_backpack)
-				H.mind.assigned_role = "PMC Sniper"
 			if("Squad Specialist")
+				random_primary = !random_primary
+				switch(shuffle1)
+					if(1 to 11) //Smartgunner. Most common. Deadly, but slow.
+						H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
+						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(H), slot_wear_suit)
+						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
+						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
+						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(H), slot_head)
+						H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(H), slot_wear_mask)
+						H.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(H), slot_glasses)
 
-				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(H), slot_glasses)
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(H), slot_wear_suit)
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(H), slot_gloves)
-				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(H), slot_head)
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(H), slot_back)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(H), slot_shoes)
-				H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), slot_wear_mask)
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H), slot_l_store)
-				H.equip_to_slot_or_del(new /obj/item/weapon/plastique(H), slot_r_store)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(H), slot_belt)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), slot_s_store)
-				H.mind.assigned_role = "PMC Commando"
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun/dirty(H.wear_suit), slot_s_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_l_store)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_r_store)
+						H.mind.assigned_role = "PMC Gunner"
+
+					if(12 to 15) //Sniper option. Uncommon, but incredibly deadly at range.
+						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), slot_glasses)
+						H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
+						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(H), slot_wear_suit)
+						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(H), slot_head)
+						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
+						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
+
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_r_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(H), slot_s_store)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(H), slot_l_store)
+						H.mind.assigned_role = "PMC Sharpshooter"
+
+					if(16 to 18) //Glass cannon option. Awesome rifle, but stripped down everything. And a katana, because why not?
+						H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
+						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(H), slot_wear_suit)
+						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
+
+						H.equip_to_slot_or_del(new /obj/item/weapon/katana(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/knifepouch(H), slot_belt)
+						H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_hand)
+						H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), slot_s_store)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(H), slot_r_store)
+						H.mind.assigned_role = "PMC Ninja"
+
+					else //The armor option, random primary, amazing armor. Carries explosives.
+						H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), slot_w_uniform)
+						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(H), slot_wear_suit)
+						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(H), slot_gloves)
+						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(H), slot_head)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(H), slot_shoes)
+						H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), slot_wear_mask)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/grenade(H), slot_belt)
+
+						H.equip_to_slot_or_del(new /obj/item/weapon/plastique(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/plastique(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/device/flashlight(H.back), slot_in_backpack)
+						H.mind.assigned_role = "PMC Commando"
+						random_primary = !random_primary
+
 			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), slot_l_ear)
+				switch(given_role)
+					if("Squad Engineer")
+						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), slot_glasses)
+						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_eng(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/weapon/plastique(H), slot_l_store)
+						var/obj/item/stack/sheet/plasteel/P = new /obj/item/stack/sheet/plasteel(H.back)
+						P.amount = 30
+						H.equip_to_slot_or_del(P, slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H.back), slot_in_backpack)
+						H.mind.assigned_role = "PMC Mechanic"
+					if("Squad Medic")
+						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), slot_glasses)
+						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), slot_gloves)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), slot_belt)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot(H), slot_l_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone(H), slot_l_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/bodybag(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/inaprovaline(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/tramadol(H.back), slot_in_backpack)
+						H.mind.assigned_role = "PMC Triage"
+					else
+						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
+						if(prob(60)) //Chance of secondary for combat troops.
+							H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
+							H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_l_store)
+						else if (prob(35))
+							H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/knifepouch(H), slot_belt)
+						H.mind.assigned_role = "PMC Standard"
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(H), slot_wear_suit)
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), slot_gloves)
-				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(H), slot_head)
+				if(prob(65)) H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(H), slot_head)
+				if(prob(65)) H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), slot_wear_mask)
 				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), slot_shoes)
-				H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), slot_wear_mask)
 
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/device/flashlight(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), slot_belt)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H), slot_r_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(H.back), slot_in_backpack)
+		if(random_primary)
+			switch(shuffle2) //Random primary. Secondaries are either pre-selected, or random for standards.
+				if(1 to 11)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(H), slot_r_store)
+				if(12,15)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/p90(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/p90(H), slot_r_store)
+				if(16,18)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/lmg(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/lmg(H), slot_r_store)
+				else
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(H), slot_r_store)
 
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(H), slot_r_hand)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(H), slot_l_store)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(H.back), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(H.back), slot_in_backpack)
-				H.mind.assigned_role = "PMC Standard"
-
-		var/obj/item/weapon/card/id/W = new(src)
-		W.assignment = H.mind.assigned_role
-		W.registered_name = H.real_name
-		W.name = "[H.real_name]'s ID Card ([W.assignment])"
-		W.icon_state = "centcom"
-		W.access = get_all_accesses()
-		W.access += get_all_centcom_access()
-		H.equip_to_slot_or_del(W, slot_wear_id)
+		ID = new(src)
+		ID.assignment = H.mind.assigned_role
+		ID.registered_name = H.real_name
+		ID.name = "[H.real_name]'s ID Card ([ID.assignment])"
+		ID.icon_state = "centcom"
+		ID.access = get_antagonist_pmc_access()
+		H.equip_to_slot_or_del(ID, slot_wear_id)
 		H.mind.special_role = "PMC"
 		H.mind.role_alt_title = H.mind.assigned_role
 		H.mind.role_comm_title = "W-Y"
@@ -513,124 +645,164 @@
 	//SQUADS
 	else
 		if(marine_spawns.len) picked = pick(marine_spawns)
-		var/randwep = 1 //Specialists spawn with their own random weapon
 
-		switch(H.mind.assigned_role)
-			//SQUAD LEADER
+		//Find their squad
+		var/squad = H.mind.assigned_squad ? lowertext(H.mind.assigned_squad.name) : "alpha"
+
+		var/item_path = text2path("/obj/item/device/radio/headset/m[squad][given_role == "Squad Leader"? "l" : ""]")
+		H.equip_to_slot_or_del(new item_path(H), slot_l_ear)
+		item_path = text2path("/obj/item/clothing/gloves/marine/[squad]")
+		H.equip_to_slot_or_del(new item_path(H), slot_gloves)
+
+		var/obj/item/clothing/tie/storage/webbing/W
+		var/obj/item/clothing/under/U
+
+		switch(given_role)
 			if("Squad Leader")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
+				U = new /obj/item/clothing/under/marine(H)
+				H.equip_to_slot_or_del(U, slot_w_uniform)
+				W = new()
+				W.on_attached(U, H)
+				U.hastie = W
+				H.update_inv_w_uniform()
+
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), slot_head)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), slot_wear_suit)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), slot_back)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(H), slot_belt)
 
-				//SPESHUL EQUIPMENT
-				//Machete
-				H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/machete(H), slot_r_hand)
+				H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_store)
 
-				//Binos, webbing and bomb beacons in backpack
-				H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
+			if("Squad Engineer")
+				U = new /obj/item/clothing/under/marine/engineer(H)
+				H.equip_to_slot_or_del(U, slot_w_uniform)
+				W = new()
+				W.on_attached(U, H)
+				U.hastie = W
+				H.update_inv_w_uniform()
 
-				//Belt and grenades
-				var/obj/item/weapon/storage/belt/marine/B = new/obj/item/weapon/storage/belt/marine(H)
-				new /obj/item/weapon/grenade/explosive(B)
-				new /obj/item/weapon/grenade/explosive(B)
-				new /obj/item/weapon/grenade/explosive(B)
-				new /obj/item/weapon/grenade/incendiary(B)
-				new /obj/item/weapon/grenade/incendiary(B)
-				H.equip_to_slot_or_del(B, slot_belt)
-
-
-			//SQUAD ENGINEER
-			else if("Squad Engineer")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), slot_glasses)
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), slot_head)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
-
-				//SPESHUL EQUIPMENT
-				//Metal, webbing, grenades in backpack
-				var/obj/item/stack/sheet/metal/MET = new /obj/item/stack/sheet/metal(H)
-				MET.amount = 50
-				H.equip_to_slot_or_del(MET, slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
-
-				//Utility Belt
+				I = H.gloves
+				H.remove_from_mob(I)
+				cdel(I)
+				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
+				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/tech(H), slot_back)
+				else H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/tech(H), slot_back)
+				var/obj/item/stack/sheet/metal/P = new /obj/item/stack/sheet/metal(H.back)
+				P.amount = 50
+				H.equip_to_slot_or_del(P, slot_in_backpack)
+				P = new(H.back)
+				H.equip_to_slot_or_del(P, slot_in_backpack)
 
-				//Welding Glasses
-				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), slot_glasses)
+				H.equip_to_slot_or_del(new /obj/item/weapon/plastique(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/device/multitool(H.back), slot_l_store)
+				H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_eng(H), slot_r_store)
 
-			//SQUAD MEDIC
-			else if("Squad Medic")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/medic(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), slot_head)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
-
-				//SPESHUL EQUIPMENT
-				//Defibs, webbing, first aid, adv aid in backpack
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H), slot_in_backpack)
-
-				//Medical encryption key
-				H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_med(H), slot_l_hand)
-
-				//Combat Lifesaver belt
-				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), slot_belt)
-
-				//Med Hud
+			if("Squad Medic")
 				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), slot_glasses)
+				U = new /obj/item/clothing/under/marine/medic(H)
+				H.equip_to_slot_or_del(U, slot_w_uniform)
+				W = new()
+				W.on_attached(U, H)
+				U.hastie = W
+				H.update_inv_w_uniform()
 
-			//SQUAD SPECIALIST
-			else if("Squad Specialist")
-				randwep = 0
-				var/type = rand(0,14)
+				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), slot_head)
+				H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), slot_wear_mask)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), slot_belt)
+				H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP(H), slot_belt)
 
-				switch(type) //Scaled based on player feedback
-					if(0 to 4)//Smartgun
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m56_system(H), slot_r_hand)
-						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
+				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/medic(H), slot_back)
+				else H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel/medic(H), slot_back)
 
-					if(5 to 8)//Sniper
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m42c_system(H), slot_r_hand)
+				H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(H), slot_back)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/bodybag(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/inaprovaline(H.back), slot_in_backpack)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/tramadol(H.back), slot_in_backpack)
 
-					if(9 to 11)//SADAR
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/rocket_system(H), slot_r_hand)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/spaceacillin(H.back), slot_l_store)
+				H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/headset_med(H), slot_r_store)
 
+			if("Squad Specialist")
+				U = new /obj/item/clothing/under/marine(H)
+				H.equip_to_slot_or_del(U, slot_w_uniform)
+				W = new()
+				W.on_attached(U, H)
+				U.hastie = W
+				H.update_inv_w_uniform()
+				random_primary = !random_primary
+				switch(shuffle1)
+					if(1 to 11) //Smartgunner. Has an okay secondary and some grenades. Same as the classic specs in Aliens.
+						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(H), slot_head)
+						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner(H), slot_wear_suit)
+						H.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(H), slot_glasses)
+
+						new /obj/item/weapon/grenade/explosive(W.hold)
+						new /obj/item/weapon/grenade/explosive/m40(W.hold)
+						new /obj/item/weapon/grenade/incendiary(W.hold)
+
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(H), slot_s_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/full(H), slot_belt)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/incendiary(H), slot_l_store)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/ap(H), slot_r_store)
+
+					if(12 to 15) //SADAR. the most popular choice, but also pretty damn deadly.
 						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(H), slot_belt)
 
-					if(12 to 13)//Flamethrower
-						H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), slot_s_store)
-						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), slot_in_backpack)
-						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), slot_in_backpack)
-						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), slot_in_backpack)
+						new /obj/item/weapon/plastique(W.hold)
+						new /obj/item/weapon/plastique(W.hold)
+						new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(W.hold)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/ap(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/ap(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/wp(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/wp(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), slot_l_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket(H), slot_s_store)
 
-						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
-						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
+					if(16 to 18) //Sniper. Gets the marksman kit.
+						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/durag/jungle(H), slot_head)
+						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/sniper/jungle(H), slot_wear_suit)
+						H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), slot_glasses)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/smock(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m39/full(H), slot_belt)
 
+						new /obj/item/ammo_magazine/sniper(W.hold)
+						new /obj/item/ammo_magazine/sniper(W.hold)
+						new /obj/item/ammo_magazine/sniper/incendiary(W.hold)
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(H), slot_s_store)
+						H.equip_to_slot_or_del(new /obj/item/weapon/facepaint/sniper(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/bodybag/tarp(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), slot_l_store)
 
-					if(14)//Grenade Launcher
-						H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/grenade_system(H), slot_r_hand)
+					else//Armor + machete, for when you just want to really stay alive. Random primary.
+						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(H), slot_head)
+						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(H), slot_wear_suit)
+						I = H.gloves
+						H.remove_from_mob(I)
+						cdel(I)
+						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(H), slot_gloves)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/grenade(H), slot_belt)
 
-						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
-						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
-
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
-
-				//SPESHUL EQUIPMENT
-				//Webbing
-				H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), slot_in_backpack)
-
-				//Backup SMG Weapon
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), slot_belt)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
-				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_l_store)
+						random_primary = !random_primary
 
 			//SQUAD MARINE
 			else
@@ -638,48 +810,74 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), slot_head)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), slot_wear_suit)
 				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), slot_belt)
+				if(prob(65))
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(H), slot_back)
+					if(prob(50))
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/m44(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver(H), slot_r_store)
+					else
+						H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m4a3(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol(H), slot_r_store)
 
-		//Every Squad Starts with this:
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_l_store)
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+		var/obj/item/clothing/shoes/marine/B = new(H)
+		H.equip_to_slot_or_del(B, slot_shoes)
 		//Knife
-		if(prob(25))
-			H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), slot_l_hand)
-
-		//Find their squad
-		var/squad = get_squad_from_card(H)
-		var/leader = is_leader_from_card(H)
-
-		//Squad Gloves and radio headsets
-		var/squad_list[] = list("alpha","bravo","charlie","delta")
-		var/item_path = text2path("/obj/item/device/radio/headset/m["[squad_list[squad]]"][leader?"l":""]")
-		H.equip_to_slot_or_del(new item_path(H), slot_l_ear)
-		item_path = text2path("/obj/item/clothing/gloves/marine/[H.mind.assigned_role == "Squad Engineer"?"yellow":squad_list[squad]]")
-		H.equip_to_slot_or_del(new item_path(H), slot_gloves)
-
+		if(prob(65))
+			var/obj/item/weapon/combat_knife/K = new(B)
+			B.knife = K
+			B.update_icon()
 
 		//Set Random Weapon and Ammo
-		if(randwep)
-			switch(rand(1,20))
-				if(1 to 10)//M41a
+		U = H.w_uniform
+		if(random_primary)
+			switch(shuffle2)
+				if(1 to 11)//M41a
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), slot_s_store)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_in_backpack)
-				if(11 to 13)
-					if(prob(75))
+					if(istype(H.belt, /obj/item/weapon/storage/belt/marine))
+						new /obj/item/ammo_magazine/rifle(H.belt)
+						new /obj/item/ammo_magazine/rifle(H.belt)
+						new /obj/item/ammo_magazine/rifle(H.belt)
+					else if(W) //If they have webbing on, they have room for this.
+						new /obj/item/ammo_magazine/rifle(W.hold)
+						new /obj/item/ammo_magazine/rifle(W.hold)
+						new /obj/item/ammo_magazine/rifle(W.hold)
+					else //Too bad.
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), slot_r_hand)
+
+				if(12 to 15)
+					if(istype(H.back, /obj/item/weapon/storage/backpack/marine))
 						H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), slot_s_store)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H.back), slot_in_backpack)
 					else
-						H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), slot_s_store)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_in_backpack)
-				else
+						H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/m37/full(H), slot_back)
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), slot_r_hand)
+				if(16 to 18)
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), slot_s_store)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_in_backpack)
+					if(istype(H.belt, /obj/item/weapon/storage/belt/marine))
+						new /obj/item/ammo_magazine/smg/m39(H.belt)
+						new /obj/item/ammo_magazine/smg/m39(H.belt)
+						new /obj/item/ammo_magazine/smg/m39(H.belt)
+					else if(W)
+						new /obj/item/ammo_magazine/smg/m39(W.hold)
+						new /obj/item/ammo_magazine/smg/m39(W.hold)
+						new /obj/item/ammo_magazine/smg/m39(W.hold)
+					else
+						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), slot_r_hand)
+				else
+					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), slot_s_store)
+					if(istype(H.back, /obj/item/weapon/storage/backpack/marine))
+						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H.back), slot_in_backpack)
+						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H.back), slot_in_backpack)
+					else
+						H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), slot_r_hand)
+					if(W)
+						new /obj/item/weapon/grenade/phosphorus(W.hold)
+						new /obj/item/weapon/grenade/phosphorus(W.hold)
+						new /obj/item/weapon/grenade/phosphorus(W.hold)
+					else if(H.belt)
+						new /obj/item/weapon/grenade/phosphorus(H.belt)
+						new /obj/item/weapon/grenade/phosphorus(H.belt)
+						new /obj/item/weapon/grenade/phosphorus(H.belt)
 		//Give them some information
 		spawn(40)
 			if(H)
@@ -694,16 +892,20 @@
 	H.update_icons()
 	H.loc = picked
 
-	return 1
+	return H
 
-/datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_minor_spooky()
+/datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_minor_spooky(shuffle_override1,shuffle_override2)
 	set waitfor = 0
-	switch(rand(1,20))
+
+	var/shuffle1 = shuffle_override1? shuffle_override1 : rand(1,20)
+	var/shuffle2 = shuffle_override2? shuffle_override2 : rand(1,20)
+
+	switch(shuffle1)
 		if(1 to 10)
 			for(var/mob/M in player_list)
 				if(prob(23) && M.stat != DEAD && ishuman(M) && !isYautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
-					switch(rand(1,3))
-						if(1)
+					switch(shuffle2)
+						if(1 to 11)
 							var/phrases[] = list( //The edgiest lyrics in the universe.
 								"Sanguis bibimus...",
 								"Corpus edibus...",
@@ -726,7 +928,7 @@
 								if(5) dat = "<span class='notice'>Something is calling you, just around the corner. Who is that?</span> "
 							dat += pick("<span class='rose'>[pick(phrases)]</span>")
 							M << dat
-						if(2)
+						if(12 to 16)
 							var/spooky_sounds[] = list(
 								'sound/hallucinations/behind_you1.ogg',
 								'sound/hallucinations/behind_you2.ogg',
@@ -748,7 +950,7 @@
 								'sound/hallucinations/veryfar_noise.ogg',
 								'sound/hallucinations/wail.ogg')
 							M << pick(spooky_sounds)
-						if(3)
+						else
 							var/mob/living/carbon/human/H = M
 							H.hallucination += 60
 		if(11 to 16)
@@ -761,197 +963,227 @@
 						if(prob(75)) L.flicker(10)
 						else if(prob(5)) L.broken()
 
-/datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_major_spooky()
+/datum/game_mode/colonialmarines_halloween_2016/proc/handle_event_major_spooky(shuffle_override1,shuffle_override2,jason_override)
+	set waitfor = 0
+
 	var/mob/living/horror
 	var/special_role
 	var/recruit_msg
-	var/spawn_character = rand(1,10)
-	switch(spawn_character)
-		if(1)
+	var/entry_sound
+
+	var/shuffle1 = shuffle_override1? shuffle_override1 : rand(1,20)
+	var/shuffle2 = shuffle_override2? shuffle_override2 : rand(1,20)
+
+	if(jason_override) shuffle1 = 5
+
+	switch(shuffle1)
+		if(1 to 4)
 			var/mob/living/carbon/Xenomorph/Ravager/ravenger/R = new(pick(horror_spawns))
 			horror = R
 			special_role = BE_ALIEN
 			recruit_msg = "terrible, fire breathing monster and haunt the living?"
-		if(2 to 8)
-			var/mob/living/carbon/human/H = new(pick(horror_spawns))
+			animation_teleport_spooky_in(R)
+		if(5 to 15)
+			var/mob/living/carbon/human/H
 			var/obj/item/I
-			if(prob(18)) //Jasssooon
-				I = new /obj/item/clothing/under/jason(H)
-				I.canremove = 0
-				I.flags_inventory |= CANTSTRIP
-				H.equip_to_slot_or_del(I, slot_w_uniform)
-
-				I = new /obj/item/clothing/mask/jason(H)
-				I.canremove = 0
-				I.flags_inventory |= CANTSTRIP
-				H.equip_to_slot_or_del(I, slot_wear_mask)
-
-				I = new /obj/item/clothing/shoes/jackboots(H)
-				I.canremove = 0
-				I.flags_inventory |= CANTSTRIP
-				H.equip_to_slot_or_del(I, slot_shoes)
-
-				I = new /obj/item/clothing/suit/jason(H)
-				I.canremove = 0
-				I.flags_inventory |= CANTSTRIP
-				H.equip_to_slot_or_del(I, slot_wear_suit)
-
-				I = new /obj/item/clothing/gloves/black(H)
-				I.canremove = 0
-				I.flags_inventory |= CANTSTRIP
-				H.equip_to_slot_or_del(I, slot_gloves)
-
-
+			if(jason_override) //Jason, the king of spooks. Comes with a horribly OP machete.
+				H = new(pick(jason_spawns))
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/jason(H), slot_w_uniform, 1)
+				H.equip_to_slot_or_del(new /obj/item/clothing/mask/gimmick/jason(H), slot_wear_mask, 1)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes, 1)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/gimmick/jason(H), slot_wear_suit, 1)
+				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves, 1)
 				I = new /obj/item/weapon/claymore/mercsword/machete(H)
 				H.equip_to_slot_or_del(I, slot_r_hand)
+				I.name = "bloody machete"
+				I.desc = "The favored weapon of a supernatural psycopath."
 				I.force = 80
 				I.edge = 1
 
 			else
-				I = new /obj/item/clothing/under/colonist(H)
-				H.equip_to_slot_or_del(I, slot_w_uniform)
-				I.canremove = 0
-				I.flags_inventory |= CANTSTRIP
+				H = new(pick(horror_spawns))
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), slot_w_uniform, 1)
 
 				switch(rand(1,5))
-					if(1) I = new /obj/item/clothing/suit/storage/labcoat(H)
-					if(2) I = new /obj/item/clothing/suit/apron(H)
-					if(3) I = new /obj/item/clothing/suit/chef(H)
-					if(4) I = new /obj/item/clothing/suit/apron/overalls(H)
-					if(5) I = null
-				if(I)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_wear_suit)
+					if(1) H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit, 1)
+					if(2) H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit, 1)
+					if(3) H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), slot_wear_suit, 1)
+					if(4) H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron/overalls(H), slot_wear_suit, 1)
 
-				if(prob(50)) I = new /obj/item/clothing/gloves/black(H)
-				else I = null
-				if(I)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_gloves)
+				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves, 1)
 
 				switch(rand(1,4))
-					if(1)
-						I = new /obj/item/clothing/mask/gas/plaguedoctor(H)
-						H.equip_to_slot_or_del(I, slot_wear_mask)
-					if(2)
-						I = new /obj/item/clothing/mask/gas(H)
-						H.equip_to_slot_or_del(I, slot_wear_mask)
-					if(3)
-						I = new /obj/item/clothing/head/welding
-						H.equip_to_slot_or_del(I, slot_head)
-					else I = null
-				if(I)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
+					if(1) H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/plaguedoctor(H), slot_wear_mask, 1)
+					if(2) H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H), slot_wear_mask, 1)
+					if(3) H.equip_to_slot_or_del(new /obj/item/clothing/head/welding, slot_head, 1)
 
 				switch(rand(1,4))
-					if(1) I = new /obj/item/clothing/shoes/black(H)
-					if(2) I = new /obj/item/clothing/shoes/jackboots(H)
-					if(3) I = new /obj/item/clothing/shoes/brown(H)
-					if(4) I = null
-				if(I)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_shoes)
+					if(1) H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes, 1)
+					if(2) H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes, 1)
+					if(3) H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes, 1)
 
 				switch(rand(1,5))
-					if(1) I = new /obj/item/weapon/pickaxe(H)
-					if(2) I = new /obj/item/weapon/claymore/mercsword/machete(H)
-					if(3) I = new /obj/item/weapon/kitchen/utensil/knife(H)
-					if(4) I = new /obj/item/weapon/butch(H)
-					if(5) I = new /obj/item/weapon/scythe(H)
-				H.equip_to_slot_or_del(I, slot_r_hand)
+					if(1) H.equip_to_slot_or_del(new /obj/item/weapon/pickaxe(H), slot_r_hand)
+					if(2) H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/machete(H), slot_r_hand)
+					if(3) H.equip_to_slot_or_del(new /obj/item/weapon/kitchen/utensil/knife(H), slot_r_hand)
+					if(4) H.equip_to_slot_or_del(new /obj/item/weapon/butch(H), slot_r_hand)
+					if(5) H.equip_to_slot_or_del(new /obj/item/weapon/scythe(H), slot_r_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/flame/lighter(H), slot_l_store) //So they're not always stumbling in the dark. Unless the want to.
 
 			H.set_species("Horror")
+			H.dna.ready_dna(H)
 			H.mind_initialize()
 			H.mind.special_role = "MODE"
-			H.mind.assigned_role = "killer"
+			H.mind.assigned_role = "Horror"
 			H.sdisabilities |= MUTE //We don't want them chatting up people.
 			H.dna.SetSEState(XRAYBLOCK, 1)
 			domutcheck(H,null,MUTCHK_FORCED)
 			H.update_mutations()
 			horror = H
-			special_role = BE_SURVIVOR
+			special_role = BE_SURVIVOR|BE_RESPONDER
 			recruit_msg = "a horror and kill the living?"
 			//BE_RESPONDER
+			animation_teleport_spooky_in(H)
 		else
 			var/mob/living/carbon/human/H = new(pick(horror_spawns))
-			var/obj/item/I
-			switch(rand(1,2))
-				if(1)
-					I = new /obj/item/clothing/under/mcclane(H)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_w_uniform)
+			switch(shuffle2)
+				if(1) //McClane. The weakest hero that can spawn. Limited inventory and items. Can you blame him? He's bald.
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/mcclane(H), slot_w_uniform, 1)
 
-					I = new /obj/item/weapon/gun/smg/mp5(H)
-					H.equip_to_slot_or_del(I, slot_r_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/mp5(H), slot_r_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs(H), slot_l_hand)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/b92fs(H), slot_l_store)
+					H.equip_to_slot_or_del(new /obj/item/device/radio(H), slot_belt)
 
-					I = new /obj/item/weapon/gun/smg/mp5(H)
-					H.equip_to_slot_or_del(I, slot_l_hand)
-
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/m37/full(H), slot_back)
-
-					H.equip_to_slot_or_del(new /obj/item/device/flashlight/(H), slot_r_store)
-					H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), slot_l_store)
-
-					H.real_name = "John McClane"
-					H.age = 32
+					H.real_name = "John McClane" //BALD BALD BAAAALD
+					H.age = 33
 					H.r_eyes = 153
 					H.g_eyes = 102
 					H.b_eyes = 0
 
-				if(2)
-					I = new /obj/item/clothing/under/rambo(H)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_w_uniform)
+				if(2) //Rambo. Great weapons, and generally a badass. No armor though.
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/rambo(H), slot_w_uniform, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/gimmick/rambo(H), slot_wear_suit, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/head/headband/rambo(H), slot_head, 1)
 
-					I = new /obj/item/clothing/shoes/jackboots(H)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_shoes)
+					var/obj/item/I = new /obj/item/weapon/combat_knife(H)
+					I.name = "survival knife"
+					I.desc = "The tool to use when you want to get up close and personal. Not for the faint of heart."
+					I.force = 35
+					H.equip_to_slot_or_del(I, slot_belt)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket(H), slot_back)
 
-					I = new /obj/item/clothing/suit/rambo(H)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_wear_suit)
-
-					I = new /obj/item/clothing/head/headband/rambo(H)
-					I.canremove = 0
-					I.flags_inventory |= CANTSTRIP
-					H.equip_to_slot_or_del(I, slot_head)
-
-					I = new /obj/item/weapon/gun/rifle/m16(H)
-					H.equip_to_slot_or_del(I, slot_r_hand)
-
-					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), slot_back)
-
-					H.equip_to_slot_or_del(new /obj/item/device/flashlight/(H), slot_r_store)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m16(H), slot_r_hand) //TODO: CHANGE
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16(H), slot_l_store)
 
 					H.real_name = "John 'Raven' Rambo"
-					H.age = 29
+					H.age = 39
 					H.r_eyes = 102
 					H.g_eyes = 51
 					H.b_eyes = 0
 					H.h_style = "Shoulder-length Hair Alt"
+					H.f_style = "5 O'clock Shadow"
 
+					H.s_tone = -45
+				if(3) //Dutch. The most well-armed and powerful of the heroes in terms of offense.
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/dutch(H), slot_w_uniform, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/gimmick/dutch(H), slot_wear_suit, 1)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), slot_back)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/grenade(H), slot_belt)
+
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4(H), slot_s_store)
+
+					var/obj/item/weapon/gun/rifle/m16/G = new(H)
+					var/obj/item/attachable/grenade/N = new(G)
+					N.Attach(G)
+					G.update_attachable(N.slot)
+
+					H.equip_to_slot_or_del(G, slot_r_hand)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16(H), slot_l_store)
+
+					H.real_name = "Alan 'Dutch' Schaefer"
+					H.age = 40
+					H.r_eyes = 51
+					H.g_eyes = 102
+					H.b_eyes = 204
+					H.h_style = "Cpl. Dietrich"
+					H.f_style = "3 O'clock Shadow"
+					H.r_hair = 153
+					H.g_hair = 102
+					H.b_hair = 51
+					H.s_tone = -10
+				if(4) //Robocop. Has great armor and weapon, but otherwise doesn't have a whole lot of equipment. Hard to put down, that's for sure.
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/robocop(H), slot_w_uniform, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/gimmick/robocop(H), slot_shoes, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/gimmick/robocop(H), slot_wear_suit, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/gimmick/robocop(H), slot_head, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/gimmick/robocop(H), slot_gloves, 1)
+
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/auto9(H), slot_s_store)
+					H.equip_to_slot_or_del(new /obj/item/device/flashlight/(H), slot_belt)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/auto9(H), slot_l_store)
+
+					H.real_name = "RoboCop"
+					H.age = 33
+				if(5) //Luke. Melee-based, and isn't particularly powerful. Does come with TK since he can use the force.
+					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/skywalker(H), slot_w_uniform, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/gimmick/skywalker(H), slot_shoes, 1)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/gimmick/skywalker(H), slot_gloves, 1)
+
+					var/obj/item/weapon/melee/energy/sword/green/LS = new(H)
+					H.equip_to_slot_or_del(LS, slot_r_hand)
+					LS.name = "green lightsaber"
+					LS.desc = "A jedi knight constructed this weapon after losing a duel with his evil father. It was actually pretty dramatic."
+
+					H.real_name = "Luke Skywalker"
+					H.age = 23
+					H.r_eyes = 51
+					H.g_eyes = 102
+					H.b_eyes = 204
+					H.h_style = "Parted"
+					H.r_hair = 162
+					H.g_hair = 110
+					H.b_hair = 33
+
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/(H), slot_r_store)
+			H.set_species("Human Hero")
 			H.mind_initialize()
 			H.mind.special_role = "MODE"
-			H.mind.assigned_role = "hero"
+			H.mind.assigned_role = "Action Hero"
+			H.dna.ready_dna(H)
+			switch(shuffle2) //Have to do this after DNA.
+				if(3) //Dutch's robot hand.
+					var/datum/organ/external/O = H.organs_by_name["r_arm"]
+					O.status |= ORGAN_ROBOT
+					O = H.organs_by_name["r_hand"]
+					O.status |= ORGAN_ROBOT
+				if(4) //Robocop is full on half mech.
+					for(var/datum/organ/external/O in H.organs)
+						O.status |= ORGAN_ROBOT
+					for(var/datum/organ/internal/O in H.internal_organs)
+						O.mechanize()
+				if(5)
+					var/datum/organ/external/O = H.organs_by_name["r_hand"]
+					O.status |= ORGAN_ROBOT
+					H.dna.SetSEState(TELEBLOCK, 1)
+					domutcheck(H,null,MUTCHK_FORCED)
+					H.update_mutations()
+
+			H.update_body(0)
+			H.update_hair()
 			horror = H
-			special_role = BE_RESPONDER
+			special_role = BE_SURVIVOR|BE_RESPONDER
 			recruit_msg = "a hero and fight together with the remaining mortal souls?"
+			animation_teleport_magic_in(H)
 
 	var/horror_key
 	var/mob/candidate_mob
 	var/candidates[] = new	//list of candidate keys
 	for(var/mob/dead/observer/G in player_list)
 		if(G.client && !G.client.is_afk() && G.client.prefs.be_special & special_role)
-			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
+			if(!G.can_reenter_corpse || !(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
 
 	if(!candidates.len)
 		del(horror)
@@ -971,14 +1203,18 @@
 	horror.key = horror_key
 	horror.mind.key = horror.key
 
-	spawn(10)
-		switch(spawn_character)
-			if(1) horror << "<span class='alien'>You must baptize everything in fire! The world will burn! ROAR!</span>"
-			if(2 to 8) horror << "<span class='rough'>You hunger for blood of the living! Murder! Death! KILL!</span>"
-			else horror << "<span class='notice'>You have been transported to who-knows where from elsewhere! Fight the horrors of this place!</span>"
+	world << "<span class='event_announcement'>An otherwordly presence is reaching through the fabric of reality!</span>"
+	sleep(10)
+	switch(shuffle1)
+		if(1 to 4) horror << "<span class='alien'>You must baptize everything in fire! The world will burn! ROAR!</span>"
+		if(5 to 15) horror << "<span class='rough'>You hunger for blood of the living! Murder! Death! KILL!</span>"
+		else horror << "<span class='notice'>You have been transported to who-knows where from elsewhere! Fight the horrors of this place!</span>"
+	if(entry_sound) world << entry_sound
 
 /datum/game_mode/colonialmarines_halloween_2016/proc/generate_supply_crate(turf/supply_spawn[], supply_manifest[], crate_name = "supplies")
-	var/obj/structure/closet/crate/C = new(pick(supply_spawn))
+	var/turf/spawn_point = pick(supply_spawn)
+	supply_spawn -= spawn_point // Let's get rid of it. We don't want boxes to overlap.
+	var/obj/structure/closet/crate/C = new(spawn_point)
 	var/item_path
 	var/i
 	for(item_path in supply_manifest)
@@ -990,7 +1226,8 @@
 	var/supply_manifest[] =list(
 		/obj/item/attachable/suppressor = 6,
 		/obj/item/attachable/reddot = 6,
-		/obj/item/weapon/grenade/smokebomb = 6
+		/obj/item/weapon/grenade/smokebomb = 4,
+		/obj/item/weapon/grenade/phosphorus = 4
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"special ops crate")
 
@@ -1003,7 +1240,7 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"extra storage crate")
 
 	supply_manifest=list(
-		/obj/item/weapon/storage/box/explosive_mines = 3,
+		/obj/item/weapon/storage/box/explosive_mines/pmc = 2,
 		/obj/item/weapon/grenade/explosive/PMC = 6,
 		/obj/item/weapon/grenade/incendiary = 4,
 		/obj/item/weapon/grenade/explosive/m40 = 4
@@ -1017,28 +1254,24 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"\improper M240 Incinerator crate")
 
 	supply_manifest=list(
-		/obj/item/ammo_magazine/rifle/extended = 6,
-		/obj/item/ammo_magazine/rifle/ap = 6
-		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (rifle)")
-
-	supply_manifest=list(
-		/obj/item/ammo_magazine/smg/m39/extended = 8,
-		/obj/item/ammo_magazine/smg/m39/ap = 8
-		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
-
-	supply_manifest=list(
-		/obj/item/ammo_magazine/smg/m39/extended = 8,
-		/obj/item/ammo_magazine/smg/m39/ap = 8
-		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
-
-	supply_manifest=list(
+		/obj/item/ammo_magazine/rifle/extended = 3,
+		/obj/item/ammo_magazine/rifle/ap = 3,
 		/obj/item/ammo_magazine/pistol/vp70 = 5,
 		/obj/item/ammo_magazine/revolver/mateba = 5
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (sidearm)")
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (assorted)")
+
+	supply_manifest=list(
+		/obj/item/ammo_magazine/smg/m39/extended = 8,
+		/obj/item/ammo_magazine/smg/m39/ap = 8
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
+
+	supply_manifest=list(
+		/obj/item/ammo_magazine/smg/m39/extended = 8,
+		/obj/item/ammo_magazine/smg/m39/ap = 8
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"ammo crate (smg)")
 
 	supply_manifest=list(
 		/obj/item/weapon/storage/box/wy_mre = 12
@@ -1113,7 +1346,7 @@
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"attachables crate (sidearm)")
 
-	supply_manifest=list(
+/*	supply_manifest=list(
 		/obj/item/weapon/storage/backpack/gun/m37 = 5,
 		/obj/item/weapon/storage/backpack/gun/machete = 4,
 		/obj/item/clothing/tie/storage/webbing = 4,
@@ -1121,7 +1354,7 @@
 		/obj/item/weapon/storage/belt/gun/m4a3 = 6,
 		/obj/item/weapon/storage/belt/gun/m39 = 3
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"extra storage crate")
+	generate_supply_crate(supply_spawn,supply_manifest,"extra storage crate") */
 
 	supply_manifest=list(
 		/obj/item/ammo_magazine/rifle = 10,
@@ -1166,7 +1399,8 @@
 		/obj/item/weapon/gun/rifle/m41a/scoped = 2,
 		/obj/item/ammo_magazine/rifle/marksman = 6,
 		/obj/item/weapon/gun/rifle/lmg = 2,
-		/obj/item/ammo_magazine/rifle/lmg = 2
+		/obj/item/ammo_magazine/rifle/lmg = 2,
+		/obj/item/weapon/gun/launcher/m92 = 1
 		)
 	generate_supply_crate(supply_spawn,supply_manifest,"experimental weapon crate")
 
@@ -1178,7 +1412,7 @@
 	generate_supply_crate(supply_spawn,supply_manifest,"explosive ammo crate")
 
 	supply_manifest=list(
-		/obj/item/weapon/storage/box/explosive_mines = 2,
+		/obj/item/weapon/storage/box/explosive_mines = 3,
 		/obj/item/weapon/grenade/explosive = 4,
 		/obj/item/weapon/grenade/incendiary = 3,
 		/obj/item/weapon/grenade/explosive/m40 = 3
@@ -1203,6 +1437,15 @@
 		/obj/item/weapon/storage/box/autoinjectors = 1)
 	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
 	generate_supply_crate(supply_spawn,supply_manifest,"medical crate")
+
+	supply_manifest=list(
+		/obj/item/weapon/storage/box/m94 = 5,
+		/obj/item/weapon/facepaint/green = 1,
+		/obj/item/weapon/facepaint/brown = 1,
+		/obj/item/weapon/facepaint/black = 1
+		)
+	generate_supply_crate(supply_spawn,supply_manifest,"misc supplies crate")
+
 
 #undef EVENT_MAJOR_INTERVAL
 #undef EVENT_MINOR_INTERVAL

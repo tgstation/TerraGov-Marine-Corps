@@ -46,7 +46,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
 
 			if (evac)
-				emergency_shuttle_docked.Announce("The escape pods have successfully completed fuelling procedures. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the escape pods before they depart. ")
+				emergency_shuttle_docked.Announce("Attention all hands: Evacuation preparation task complete. You have approximately [round(estimate_launch_time()/60,1)] minutes until departure. Please remain seated and with your belongings secured. This is not a drill.")
 			else
 				priority_announcement.Announce("The scheduled Crew Transfer Shuttle has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
 
@@ -77,7 +77,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
 	evac = 1
-	emergency_shuttle_called.Announce("Attention Personnel: An emergency evacuation order has been declared, the escape pods will commence fueling procedures and will finish in approximately [round(estimate_arrival_time()/60)] minutes.")
+	emergency_shuttle_called.Announce("Attention all hands: An emergency evacuation order has been issued, and all cryogenically frozen personnel are now being prepared for departure. Please proceed to the nearest evacuation pod in an orderly manner. Evacuation will commence in approximately [round(estimate_arrival_time()/60)] minutes. This is not a drill.")
 //	for(var/area/A in world)
 //		if(istype(A, /area/hallway))
 //			A.readyalert()

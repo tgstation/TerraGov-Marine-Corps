@@ -255,7 +255,7 @@
 	name = "\improper M16 rifle"
 	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56×45mm."
 	icon_state = "m16"
-	item_state = "mar40" //PLACEHOLDER
+	item_state = "m16"
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/heavyrifle.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
@@ -270,7 +270,11 @@
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly)
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/grenade,
+						/obj/item/attachable/flamer,
+						/obj/item/attachable/shotgun
+						)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
@@ -278,7 +282,6 @@
 		..()
 		accuracy += config.min_hit_accuracy_mult
 		damage += config.min_hit_damage_mult
-		burst_amount = config.high_burst_value
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
 
 //-------------------------------------------------------

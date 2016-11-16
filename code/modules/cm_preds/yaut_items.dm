@@ -475,14 +475,11 @@
 				else
 					M << "<span class='warning'>Your fallen comrade does not have a bracer. <b>Report this to your elder so that it's fixed.</b></span>"
 			else
-				M << "<span class='info'>You can only activate the bracer of another yautja, and they must have fallen in the Hunt.</span>"
+				M << "<span class='info'>You can only activate the bracer of another Yautja, and they must have fallen in the Hunt.</span>"
 			return
 
-		if(!M.stat)
-			M << "<span class='warning'>You can only do this when unconscious. Go hunting and die gloriously.</span>"
-			return
 		if(exploding)
-			if(alert("Are you sure you want to stop the countdown? You coward.","Bracers", "Yes", "No") == "Yes")
+			if(alert("Are you sure you want to stop the countdown?","Bracers", "Yes", "No") == "Yes")
 				if(M.stat == DEAD)
 					M << "<span class='warning'>Little too late for that now!</span>"
 					return

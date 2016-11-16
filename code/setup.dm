@@ -212,7 +212,7 @@ should all be unique more or less. flags_inventory can double up.
 
 //==========================================================================================
 #define NODROP					1		// Cannot be dropped at all, only deleted.
-#define NOINTERACT				2		// Despite being an item, you can't interact with it normally.
+#define NOINTERACT				2		// You can't interact with it, at all. Useful when doing certain animations.
 #define NOBLOODY				4		// Don't want a blood overlay on this one.
 #define DELONDROP				8		// Deletes on drop instead of falling on the floor.
 #define FPRINT					16		// takes a fingerprint
@@ -923,6 +923,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define IS_SKRELL 3
 #define IS_UNATHI 4
 #define IS_XENOS 5
+#define IS_YAUTJA 6
+#define IS_HORROR 7
 
 #define MAX_GEAR_COST 5 //Used in chargen for loadout limit.
 

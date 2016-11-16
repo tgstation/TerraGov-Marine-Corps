@@ -9,17 +9,17 @@
 	custom_metabolism = 0.01
 	data = 0
 
-	on_mob_life(var/mob/living/M as mob)
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
 		if(!M) M = holder.my_atom
 		if(src.volume <= 0.1) if(data != -1)
 			data = -1
-			M << "\red You lose focus.."
+			M << "<span class='warning'>You lose focus.</span>"
 		else
 			if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 				data = world.time
-				M << "\blue Your mind feels focused and undivided."
-		..()
-		return
+				M << "<span class='notice'>Your mind feels focused and undivided.</span>"
 
 /datum/chemical_reaction/methylphenidate
 	name = "Methylphenidate"
@@ -37,17 +37,17 @@
 	custom_metabolism = 0.01
 	data = 0
 
-	on_mob_life(var/mob/living/M as mob)
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
 		if(!M) M = holder.my_atom
-		if(src.volume <= 0.1) if(data != -1)
+		if(volume <= 0.1) if(data != -1)
 			data = -1
-			M << "\red Your mind feels a little less stable.."
+			M << "<span class='warning'>Your mind feels a little less stable...</span>"
 		else
 			if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 				data = world.time
-				M << "\blue Your mind feels stable.. a little stable."
-		..()
-		return
+				M << "<span class='notice'>Your mind feels stable.. a little stable.</span>"
 
 /datum/chemical_reaction/citalopram
 	name = "Citalopram"
@@ -66,21 +66,21 @@
 	custom_metabolism = 0.01
 	data = 0
 
-	on_mob_life(var/mob/living/M as mob)
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
 		if(!M) M = holder.my_atom
-		if(src.volume <= 0.1) if(data != -1)
+		if(volume <= 0.1) if(data != -1)
 			data = -1
-			M << "\red Your mind feels much less stable.."
+			M << "<span class='warning'>Your mind feels much less stable...</span>"
 		else
 			if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 				data = world.time
 				if(prob(90))
-					M << "\blue Your mind feels much more stable."
+					M << "<span class='notice'>Your mind feels much more stable.</span>"
 				else
-					M << "\red Your mind breaks apart.."
+					M << "<span class='warning'>Your mind breaks apart...</span>"
 					M.hallucination += 200
-		..()
-		return
 
 /datum/chemical_reaction/paroxetine
 	name = "Paroxetine"

@@ -853,6 +853,7 @@
 #include "code\modules\cm_marines\equipment\weapons.dm"
 #include "code\modules\cm_marines\equipment\clothing\accessories.dm"
 #include "code\modules\cm_marines\equipment\clothing\armor.dm"
+#include "code\modules\cm_marines\equipment\clothing\gimmick.dm"
 #include "code\modules\cm_marines\equipment\clothing\gloves&boots.dm"
 #include "code\modules\cm_marines\equipment\clothing\hats.dm"
 #include "code\modules\cm_marines\equipment\clothing\helmets.dm"

@@ -25,6 +25,7 @@
 	var/sound_miss[] //When it misses someone.
 	var/sound_bounce[] //When it bounces off something.
 
+	var/iff_signal			= 0 //PLACEHOLDER. Bullets that can skip friendlies will call for this.
 	var/accuracy 			= 0 //This is added to the bullet's base accuracy.
 	var/accuracy_var_low	= 0 //How much the accuracy varies when fired.
 	var/accuracy_var_high	= 0
@@ -500,7 +501,7 @@
 	New()
 		..()
 		accuracy = config.max_hit_accuracy
-		damage = config.ultra_hit_damage
+		damage = config.super_hit_damage
 		shell_speed = config.super_shell_speed
 
 /*
@@ -511,6 +512,7 @@
 
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
+	iff_signal = access_marine_iff_tag
 	flags_ammo_behavior = AMMO_SKIPS_HUMANS
 	New()
 		..()
@@ -519,19 +521,30 @@
 		damage = config.low_hit_damage
 		penetration= config.mlow_armor_penetration
 
+/datum/ammo/bullet/smartgun/lethal
+	New()
+		..()
+		damage = config.lmed_hit_damage
+		penetration= config.low_armor_penetration
+
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
+	iff_signal = access_pmc_iff_tag
 	debilitate = list(0,0,0,3,0,0,0,1)
+	New()
+		..()
+		shrapnel_chance = config.max_shrapnel_chance
+
+/datum/ammo/bullet/smartgun/dirty/lethal
 	flags_ammo_behavior = AMMO_REGULAR
 	New()
 		..()
 		damage = config.lmed_hit_damage
 		penetration= config.med_armor_penetration
-		shrapnel_chance = config.max_shrapnel_chance
-
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
+	iff_signal = access_marine_iff_tag
 	flags_ammo_behavior = AMMO_SKIPS_HUMANS
 	New()
 		..()

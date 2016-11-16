@@ -213,6 +213,7 @@
 	layer = 3.5
 	use_power = 0
 	req_one_access = list(access_sulaco_engineering,access_marine_leader)
+	var/iff_signal = access_marine_iff_tag
 	var/dir_locked = 1
 	var/safety_off = 0
 	var/rounds = 300
@@ -795,21 +796,18 @@
 
 //Mostly taken from gun code.
 /obj/machinery/marine_turret/proc/muzzle_flash(var/angle)
-	set waitfor = 0
 	if(isnull(angle)) return
 
 	if(prob(65))
 		var/layer = MOB_LAYER-0.1
 
-		var/image/reusable/flash = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,"muzzle_flash",layer))
+		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,"muzzle_flash",layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)
-		flash.transform = rotate
+		I.transform = rotate
 
-		for(var/mob/M in viewers(src))
-			M << flash
-		cdel(flash,,3)
+		I.flick_overlay(src, 3)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
@@ -820,28 +818,43 @@
 
 	var/list/turf/path = list()
 	var/turf/T
-	var/blocked = 0
+	var/mob/M
 
-	for(var/mob/living/carbon/C in oview(range,src))
-		if(C.stat) continue //No unconscious/deads.
+	for(M in oview(range,src))
+		if(!isliving(M) || M.stat) continue //No unconscious/deads, or non living.
 
-		if(ishuman(C) && !isYautja(C)) //Predators are not recognized.
-			var/mob/living/carbon/human/H = C
-			var/obj/item/device/pda/pda_check = H.wear_id
-			var/obj/item/weapon/card/ID_check = H.wear_id
-			if(istype(H.wear_id, ID_check) || ( istype(H.wear_id, pda_check) && pda_check.id) ) //Do they have a card or pda?
-				continue
-			pda_check = H.l_hand
-			ID_check = H.l_hand
-			if( istype(H.l_hand, ID_check) || ( istype(H.l_hand, pda_check) && pda_check.id ) ) //Check left hand.
-				continue
-			pda_check = H.r_hand
-			ID_check = H.r_hand
-			if( istype(H.r_hand, ID_check) || ( istype(H.r_hand, pda_check) && pda_check.id ) ) //Check right hand.
-				continue
+		/*
+		I really, really need to replace this with some that isn't insane. You shouldn't have to fish for access like this.
+		This should be enough shortcircuiting, but it is possible for the code to go all over the possibilities and generally
+		slow down. It'll serve for now.
+		*/
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+
+			var/obj/item/weapon/card/id/W
+			W = H.wear_id
+			//world << "[W? W.type : "null"] [istype(W)]"
+			if(istype(W) && (iff_signal in W.access)) continue//This is going to account for 95% of the cases.
+
+			var/obj/item/device/pda/P
+			P = H.wear_id
+			//world << "[P? P.type : "null"] [istype(P)]"
+			if(istype(P) && P.id && (iff_signal in P.id.access)) continue
+
+			W = H.r_hand //Right hand first.
+			if(istype(W) && (iff_signal in W.access)) continue
+
+			P = H.r_hand
+			if(istype(P) && P.id && (iff_signal in P.id.access)) continue
+
+			W = H.l_hand //Let's try the left hand.
+			if(istype(W) && (iff_signal in W.access)) continue
+
+			P = H.l_hand
+			if(istype(P) && P.id && (iff_signal in P.id.access)) continue
 
 		if(dir_locked) //We're dir locked and facing the right way.
-			var/angle = get_dir(src,C)
+			var/angle = get_dir(src,M)
 			if(dir == NORTH && (angle == NORTHEAST || angle == NORTHWEST)) //There's probably an easier way to do this. MEH
 				angle = NORTH
 			if(dir == SOUTH && (angle == SOUTHEAST || angle == SOUTHWEST))
@@ -851,29 +864,16 @@
 			if(dir == WEST && (angle == NORTHWEST || angle == SOUTHWEST))
 				angle = WEST
 
-			if(angle == dir)
-				path = getline2(src,C)
-				blocked = 0
-				for(T in path)
-					if(T.density) //Simple density check on turfs in the firing path.
-						blocked = 1
-				if(blocked == 0)
-					targets += C
-		else  //Otherwise grab everyone around us.
-			path = getline2(src,C)
-			blocked = 0
+			if(angle == dir) path = getline2(src,M)
+
+		else path = getline2(src,M) //Otherwise grab everyone around us.
+
+		if(path.len)
 			for(T in path)
-				if(T.density)
-					blocked = 1
-			if(blocked == 0)
-				targets += C
+				if(T.density) continue
+			targets += M
 
-	if(targets.len)
-		var/mob/P = pick(targets)
-		if(P)
-			return P
-
-	return null
+	if(targets.len) . = pick(targets)
 
 /obj/machinery/marine_turret/proc/handle_manual_fire(var/mob/living/carbon/human/user, var/atom/A, var/params)
 	if(!gunner || !istype(user)) return 0
