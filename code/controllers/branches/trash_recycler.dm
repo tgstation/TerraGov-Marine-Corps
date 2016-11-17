@@ -187,7 +187,7 @@ overhead only applies when the image is first created.*/
 	appearance_flags = flags
 	A.overlays += src
 	sleep(time)
-	A.overlays -= src
+	if(A && A.loc) A.overlays -= src
 	cdel(src)
 
 //======================================================
