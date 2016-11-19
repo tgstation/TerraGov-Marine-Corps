@@ -11,8 +11,8 @@
 	supervisors = "the Commander"
 	selection_color = "#ffeeaa"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_CE, access_sulaco_engineering, access_sulaco_bridge)
-	minimal_access = list(access_sulaco_CE, access_sulaco_engineering, access_sulaco_bridge)
+	access = list(access_marine_iff_tag, access_sulaco_CE, access_sulaco_engineering, access_sulaco_bridge)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_CE, access_sulaco_engineering, access_sulaco_bridge)
 	minimal_player_age = 3
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -45,8 +45,8 @@
 	spawn_positions = 3
 	supervisors = "the Chief Engineer, the Commander"
 	selection_color = "#fff5cc"
-	access = list(access_sulaco_engineering)
-	minimal_access = list(access_sulaco_engineering)
+	access = list(access_marine_iff_tag, access_sulaco_engineering)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_engineering)
 	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -80,8 +80,8 @@
 	spawn_positions = 1
 	supervisors = "the Commander, the Executive Officer"
 	selection_color = "#9990B2"
-	access = list(access_sulaco_cargo, access_sulaco_bridge)
-	minimal_access = list(access_sulaco_cargo, access_sulaco_bridge)
+	access = list(access_marine_iff_tag, access_sulaco_cargo, access_sulaco_bridge)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_cargo, access_sulaco_bridge)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -115,8 +115,8 @@
 	spawn_positions = 2
 	supervisors = "the Requisitions Officer, the Commander"
 	selection_color = "#BAAFD9"
-	access = list(access_sulaco_cargo)
-	minimal_access = list(access_sulaco_cargo)
+	access = list(access_marine_iff_tag, access_sulaco_cargo)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_cargo)
 	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

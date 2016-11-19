@@ -221,8 +221,8 @@
 	is_bombarding = 0
 	if(do_after(src, 50))
 		bomb_turf = null
-		visible_message("<span class='xenodanger'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
-		"<span class='xenodanger'>You launch a huge glob of acid hurling into the distance!</span>")
+		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
+		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>")
 
 		var/obj/item/projectile/P = rnew(/obj/item/projectile, loc)
 		P.ammo = bomb_ammo
@@ -310,7 +310,7 @@
 				M.emote("gasp")
 			spawn(15)
 				M.coughedtime = 0
-	M << "<span class='xenodanger'>Your skin feels like it is melting away!</span>"
+	M << "<span class='danger'>Your skin feels like it is melting away!</span>"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.take_overall_damage(0, rand(10, 15)) //Burn damage, randomizes between various parts //Magic number
@@ -429,8 +429,8 @@
 
 		acid_cooldown = 1
 		playsound(src.loc, 'sound/effects/refill.ogg', 100, 1)
-		visible_message("<span class='xenodanger'>\The [src] spews forth a virulent spray of acid!</span>", \
-		"<span class='xenodanger'>You spew forth a spray of acid!</span>")
+		visible_message("<span class='xenowarning'>\The [src] spews forth a virulent spray of acid!</span>", \
+		"<span class='xenowarning'>You spew forth a spray of acid!</span>")
 		var/turflist = getline(src, target)
 		spray_turfs(turflist)
 		spawn(90) //12 second cooldown.

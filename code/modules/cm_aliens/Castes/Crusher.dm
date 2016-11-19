@@ -122,7 +122,7 @@
 	if(momentum == 10)
 		src << "<span class='xenonotice'>You begin churning up the ground with your charge!</span>"
 	else if(momentum == 20)
-		src << "<span class='xenodanger'>The ground begins to shake as you run!</span>"
+		src << "<span class='xenowarning'>The ground begins to shake as you run!</span>"
 	else if(momentum == 28) //Not 30, since it's max
 		src << "<span class='xenodanger'>You have achieved maximum momentum!</span>"
 		emote("roar")

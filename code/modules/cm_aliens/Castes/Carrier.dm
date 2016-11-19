@@ -90,8 +90,8 @@
 			huggers_cur--
 			newthrow.loc = loc
 			newthrow.throw_at(T, 5, throwspeed)
-			visible_message("<span class='xenodanger'>\The [src] throws something towards \the [T]!</span>", \
-			"<span class='xenodanger'>You throw a facehugger towards \the [T]!</span>")
+			visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
+			"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
 			spawn(hugger_delay)
 				threw_a_hugger = 0
 		else

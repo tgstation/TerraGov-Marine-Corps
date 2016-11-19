@@ -180,6 +180,16 @@ overhead only applies when the image is first created.*/
 		var/blacklist[] = list("icon","icon_state","loc","layer","dir")
 		. = ..() + blacklist
 
+//Quickly shows the image to everyone, then removes it some time later.
+//We don't want apperance flags by default for everything, but we want them here to ignore color, transparency, and transform.
+/image/reusable/proc/flick_overlay(atom/A, time = 1, flags = RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM|TILE_BOUND)
+	set waitfor = 0
+	appearance_flags = flags
+	A.overlays += src
+	sleep(time)
+	if(A && A.loc) A.overlays -= src
+	cdel(src)
+
 //======================================================
 //======================================================
 //Debug verbs.

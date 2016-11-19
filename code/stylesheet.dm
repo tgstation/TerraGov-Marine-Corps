@@ -62,16 +62,20 @@ h1.alert, h2.alert		{color: #000000;}
 .xenonotice				{color: #2a623d;}
 .boldnotice				{color: #000099;	font-weight: bold;}
 .warning				{color: #ff0000;	font-style: italic;}
+.xenowarning			{color: #2a623d;	font-style: italic;}
 .danger					{color: #ff0000;	font-weight: bold;}
+.xenodanger				{color: #2a623d;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}
 .highdanger				{color: #ff0000;	font-weight: bold; font-size: 3;}
-.xenodanger				{color: #2a623d; 	font-weight: bold; font-size: 3;}
+.xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 3;}
+.xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 3;}
 
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
 
 .round_header			{color: #db0000; 	text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
 .round_body				{color: #001427; 	text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 3;}
+.event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 3;}
 
 .mod					{color: #735638;	font-weight: bold;}
 .modooc					{color: #184880;	font-weight: bold;}

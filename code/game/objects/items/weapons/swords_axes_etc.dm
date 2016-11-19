@@ -190,6 +190,10 @@
 	New()
 		item_color = "green"
 
+/obj/item/weapon/melee/energy/sword/green/attack_self()
+	..()
+	force = active ? 80 : 3
+
 /obj/item/weapon/melee/energy/sword/red
 	New()
 		item_color = "red"

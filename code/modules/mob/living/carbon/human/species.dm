@@ -179,6 +179,10 @@
 			H.update_hair()
 	return
 
+//Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
+/datum/species/proc/handle_unique_behavior(var/mob/living/carbon/human/H)
+	return
+
 // Only used for alien plasma weeds atm, but could be used for Dionaea later.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
 	return
@@ -214,26 +218,41 @@
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
 
-//Helly, Jason.
+//Slightly tougher humans.
+/datum/species/human/hero
+	name = "Human Hero"
+	name_plural = "Human Heroes"
+	brute_mod = 0.55
+	burn_mod = 0.55
+	unarmed_type = /datum/unarmed_attack/punch/strong
+
+	cold_level_1 = 220
+	cold_level_2 = 180
+	cold_level_3 = 80
+	heat_level_1 = 390
+	heat_level_2 = 480
+	heat_level_3 = 1100
+
+
+//Various horrors that spawn in and haunt the living.
 /datum/species/human/spook
 	name = "Horror"
 	name_plural = "Horrors"
-	language = "Drrrrrrr"
+	default_language = "Drrrrrrr"
 	icobase = 'icons/mob/human_races/r_spooker.dmi'
 	deform = 'icons/mob/human_races/r_spooker.dmi'
 	brute_mod = 0.15
-	burn_mod = 0.25
+	burn_mod = 1.50
+	reagent_tag = IS_HORROR
 	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
 	death_sound = 'sound/voice/scream_horror1.ogg'
-	speech_sounds = list('sound/effects/ghost.ogg','sound/effects/ghost2.ogg','sound/voice/scream_horror2.ogg','sound/voice/shriek1.ogg')
-	speech_chance = 60
+
 	darksight = 8
 	slowdown = 0.3
 	insulated = 1
-	total_health = 150
 	has_fine_manipulation = 0
 
 	heat_level_1 = 1000
@@ -243,6 +262,16 @@
 	cold_level_1 = 100
 	cold_level_2 = 50
 	cold_level_3 = 20
+
+	//To show them we mean business.
+	handle_unique_behavior(var/mob/living/carbon/human/H)
+		if(prob(25)) animation_horror_flick(H)
+
+		//Organ damage will likely still take them down eventually.
+		H.adjustBruteLoss(-3)
+		H.adjustFireLoss(-3)
+		H.adjustOxyLoss(-15)
+		H.adjustToxLoss(-15)
 
 /datum/species/unathi
 	name = "Unathi"
@@ -509,6 +538,8 @@
 	icobase = 'icons/mob/human_races/r_predator.dmi'
 	deform = 'icons/mob/human_races/r_predator.dmi'
 	brute_mod = 0.33 //Beefy!
+	burn_mod = 0.65
+	reagent_tag = IS_YAUTJA
 	flags = IS_WHITELISTED|HAS_SKIN_COLOR|NO_PAIN|NO_SCAN|NO_POISON //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"

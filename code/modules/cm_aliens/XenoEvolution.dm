@@ -123,7 +123,7 @@
 		src << "<span class='warning'>The hive cannot support another Tier 3, either upgrade or wait for either more aliens to be born or someone to die.</span>"
 		return
 	else
-		src << "\green Looks like the hive can support your evolution!"
+		src << "<span class='xenonotice'>It looks like the hive can support your evolution!</span>"
 
 	var/mob/living/carbon/Xenomorph/M = null
 
@@ -165,14 +165,17 @@
 			src << "<span class='warning'>You must wait before evolving. Currently at: [jellyGrow] / [jellyMax].</span>"
 			return
 
-	visible_message("\green <b> \The [src] begins to twist and contort.</b>", \
-	"\green <b>You begin to twist and contort.</b>")
+	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
+	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	if(do_after(src, 25))
 		if(castepick == "Queen") //Do another check after the tick.
 			if(is_queen_alive())
-				src << "<span class='warning'>There is already a queen.</span>"
+				src << "<span class='warning'>There already is a Queen.</span>"
 				return
+
+		//From there, the new xeno exists, hopefully
 		var/mob/living/carbon/Xenomorph/new_xeno = new M(get_turf(src))
+
 		if(!istype(new_xeno))
 			//Something went horribly wrong!
 			usr << "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>"
@@ -180,17 +183,18 @@
 				del(new_xeno)
 			return
 
-		//We have to reset the name here after evolving.
-		if(castepick != "Queen")
-			new_xeno.nicknumber = nicknumber
-			new_xeno.name = "[initial(name)] ([nicknumber])"
-		new_xeno.real_name = new_xeno.name
-		remove_inherent_verbs()
-
 		if(mind)
 			mind.transfer_to(new_xeno)
 		else
 			new_xeno.key = src.key
+
+		//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
+		new_xeno.nicknumber = nicknumber
+		generate_name()
+
+		//Clear verbs
+		remove_inherent_verbs()
+
 
 		if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 			new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
@@ -211,8 +215,8 @@
 		drop_r_hand()
 
 		empty_gut()
-		new_xeno.visible_message("\green <b> The [new_xeno.name] emerges from the husk of the [src.name].</b>", \
-		"\green <b>You emerge in a greater form from the husk of your old body. For the hive!</b>")
+		new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.caste] emerges from the husk of \the [src].</span>", \
+		"<span class='xenodanger'>You emerge in a greater form from the husk of your old body. For the hive!</span>")
 		del(src)
 	else
 		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"

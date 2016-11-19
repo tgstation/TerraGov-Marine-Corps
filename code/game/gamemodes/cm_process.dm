@@ -211,8 +211,8 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	// The announcement to all Xenos. Slightly off for the human ship, accurate otherwise.
 	for(var/mob/M in activeXenos)
 		M << sound(get_sfx("queen"),wait=0,volume=50)
-		M << "<br><br><h1 style='color:red'>The Queen Mother reaches into your mind from worlds away...</h1>"
-		M << "<h2 style='color:red'>To my children and their queen... I sense approximately [ max(0,numHostsShip + rand(-2,2)) ] host\s in the metal hive and [numHostsPlanet? "[numHostsPlanet]" : "none"] scattered elsewhere...</h2>"
+		M << "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>"
+		M << "<span class='xenoannounce'>To my children and their Queen. I sense approximately [max(0, numHostsShip + rand(-2,2))] host\s in the metal hive and [numHostsPlanet? "[numHostsPlanet]" : "none"] scattered elsewhere.</span>"
 
 	// The announcement to all Humans. Slightly off for the planet and elsewhere, accurate for the ship.
 	var/name = "M.O.T.H.E.R. Bioscan Status"

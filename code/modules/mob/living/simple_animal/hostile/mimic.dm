@@ -50,75 +50,70 @@
 //
 
 
-// Aggro when you try to open them. Will also pickup loot when spawns and drop it when dies.
+//Aggro when you try to open them, or when taking damage. Will also pickup loot when spawns and drop it when dies.
 /mob/living/simple_animal/hostile/mimic/crate
-
 	attacktext = "bites"
-
 	stop_automated_movement = 1
 	wander = 0
 	var/attempt_open = 0
+/*
+	New()
+		set waitfor = 0
+		..()
+		sleep(10) //Make sure everything is spawned in.
+		for(var/obj/item/I in loc)
+			I.loc = src
+	*/
 
-// Pickup loot
-/mob/living/simple_animal/hostile/mimic/crate/initialize()
-	..()
-	for(var/obj/item/I in loc)
-		I.loc = src
+	initialize()
+		..()
+		for(var/obj/item/I in loc)
+			I.loc = src
 
-/mob/living/simple_animal/hostile/mimic/crate/DestroySurroundings()
-	..()
-	if(prob(90))
-		icon_state = "[initial(icon_state)]open"
-	else
-		icon_state = initial(icon_state)
-
-/mob/living/simple_animal/hostile/mimic/crate/ListTargets()
-	if(attempt_open)
-		return ..()
-	return view(src, 1)
-
-/mob/living/simple_animal/hostile/mimic/crate/FindTarget()
-	. = ..()
-	if(.)
+	attack_hand()
 		trigger()
+		..()
 
-/mob/living/simple_animal/hostile/mimic/crate/AttackingTarget()
-	. = ..()
-	if(.)
+	FindTarget()
+		if(attempt_open) . = ..()
+
+	DestroySurroundings()
+		..()
+		icon_state = prob(90)? "[initial(icon_state)]open" : initial(icon_state)
+
+	AttackingTarget()
+		. = ..()
+		if(.) icon_state = initial(icon_state)
+
+	adjustBruteLoss(damage)
+		trigger()
+		..(damage)
+
+	LoseTarget()
+		..()
 		icon_state = initial(icon_state)
+
+	LostTarget()
+		..()
+		icon_state = initial(icon_state)
+
+	death()
+		var/obj/structure/closet/crate/C = new(get_turf(src)) //Spawns a crate on death to put loot into.
+		for(var/obj/O in src)
+			O.loc = C
+		..()
+
+	AttackingTarget()
+		var/mob/living/L = ..()
+		if(istype(L))
+			if(prob(15))
+				L.Weaken(2)
+				L.visible_message("<span class='danger'>[src] knocks down [L]!</span>")
 
 /mob/living/simple_animal/hostile/mimic/crate/proc/trigger()
 	if(!attempt_open)
-		visible_message("<b>[src]</b> starts to move!")
+		visible_message("<span class='warning'>\icon[src] [src] starts to move!</span>")
 		attempt_open = 1
-
-/mob/living/simple_animal/hostile/mimic/crate/adjustBruteLoss(var/damage)
-	trigger()
-	..(damage)
-
-/mob/living/simple_animal/hostile/mimic/crate/LoseTarget()
-	..()
-	icon_state = initial(icon_state)
-
-/mob/living/simple_animal/hostile/mimic/crate/LostTarget()
-	..()
-	icon_state = initial(icon_state)
-
-/mob/living/simple_animal/hostile/mimic/crate/death()
-
-	var/obj/structure/closet/crate/C = new(get_turf(src))
-	// Put loot in crate
-	for(var/obj/O in src)
-		O.loc = C
-	..()
-
-/mob/living/simple_animal/hostile/mimic/crate/AttackingTarget()
-	. =..()
-	var/mob/living/L = .
-	if(istype(L))
-		if(prob(15))
-			L.Weaken(2)
-			L.visible_message("<span class='danger'>\the [src] knocks down \the [L]!</span>")
 
 //
 // Copy Mimic

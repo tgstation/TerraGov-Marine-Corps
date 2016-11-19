@@ -39,148 +39,184 @@
 
 
 
-//a vampiric statuette
-//todo: cult integration
+//a vampiric statuette, usually put into a mimic for maximum fun. Perfectly harmless until picked up.
 /obj/item/weapon/vampiric
 	name = "statuette"
-	icon_state = "statuette"
+	desc = "An odd looking statuette made up of what appears to be carved from crimson stone. It's grinning..."
+	icon_state = "statuette1"
 	icon = 'icons/obj/xenoarchaeology.dmi'
-	var/charges = 0
-	var/list/nearby_mobs = list()
-	var/last_bloodcall = 0
-	var/bloodcall_interval = 50
-	var/last_eat = 0
-	var/eat_interval = 100
-	var/wight_check_index = 1
-	var/list/shadow_wights = list()
+	var/stored_blood = 0
+	var/maximum_blood = 0 //How much blood is needed before the thing despawns. 100 for right now.
+	var/current_bloodcall = 0
+	var/current_consume = 0
+	var/interval_bloodcall = 50
+	var/interval_consume = 35
+	var/shadow_wights[]
 
-/obj/item/weapon/vampiric/New()
-	..()
-	processing_objects.Add(src)
+	Dispose()
+		. = ..()
+		for(var/mob/W in shadow_wights) cdel(W)
+		shadow_wights = null
+		processing_objects -= src
+
+	attack_hand(mob/M) //You dun goofed now, goofy.
+		M << "<span class='danger'>The strange thing in your hand begins to move around! You suddenly get a very bad feeling about this!</span>"
+		icon_state = "statuette2"
+		mouse_opacity = 0 //Can't be interacted with again.
+		shadow_wights = new
+		processing_objects += src
 
 /obj/item/weapon/vampiric/process()
-	//see if we've identified anyone nearby
-	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
-		var/mob/living/carbon/human/M = pop(nearby_mobs)
-		if(M in view(7,src) && M.health > 20)
-			if(prob(50))
-				bloodcall(M)
-				nearby_mobs.Add(M)
+	if(!isturf(loc))
+		if(!get_teleport_loc())
+			teleport(get_turf(src))
+			return
 
-	//suck up some blood to gain power
-	if(world.time - last_eat > eat_interval)
+	// Grab some blood from a nearby mob, if possible.
+	if(world.time - current_bloodcall > interval_bloodcall)
+		var/mob/L[] = new
+		var/mob/M
+		var/mob/living/carbon/human/H
+		for(M in view(7,src))
+			H = M
+			if(istype(H) && prob(50) && H.stat != DEAD && H.species != "Horror") L += H
+		if(L.len) bloodcall(pick(L))
+		else
+			get_teleport_loc()
+			return
+
+	// Suck up any blood, if possible.
+	if(world.time - current_consume > interval_consume)
 		var/obj/effect/decal/cleanable/blood/B = locate() in range(2,src)
 		if(B)
-			last_eat = world.time
-			B.loc = null
-			if(istype(B, /obj/effect/decal/cleanable/blood/drip))
-				charges += 0.25
+			var/blood_absorbed
+			if(istype(B, /obj/effect/decal/cleanable/blood/drip)) blood_absorbed = 0.25
 			else
-				charges += 1
-				playsound(src.loc, 'sound/effects/splat.ogg', 50, 1, -3)
+				blood_absorbed = 1
+				playsound(loc, 'sound/effects/splat.ogg', 50, 1, -3)
+			stored_blood += blood_absorbed
+			maximum_blood += blood_absorbed
+			current_consume = world.time
+			cdel(B,,animation_destruction_fade(B))
 
-	//use up stored charges
-	if(charges >= 10)
-		charges -= 10
-		new /obj/effect/spider/eggcluster(pick(view(1,src)))
+	switch(stored_blood)
+		if(10 to INFINITY)
+			stored_blood -= 10
+			new /obj/effect/spider/eggcluster(pick(view(1,src)))
+		if(3 to 9)
+			if(prob(5))
+				stored_blood -= 1
+				new /mob/living/simple_animal/hostile/creature(pick(view(1,src)))
+				playsound(loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
+		if(1 to 2)
+			if(shadow_wights.len < 5 && prob(5))
+				var/obj/effect/shadow_wight/W = new(get_turf(src))
+				shadow_wights += W
+				W.master_doll = src
+				playsound(loc, 'sound/effects/ghost.ogg', 50, 1, -3)
+				stored_blood -= 0.1
+		if(0.1 to 0.9)
+			if(prob(5))
+				visible_message("<span class='warning'>\icon[src] [src]'s eyes glow ruby red for a moment!</span>")
+				stored_blood -= 0.1
 
-	if(charges >= 3)
-		if(prob(5))
-			charges -= 1
-			var/spawn_type = pick(/mob/living/simple_animal/hostile/creature)
-			new spawn_type(pick(view(1,src)))
-			playsound(src.loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
+	//Check the shadow wights and auto-remove them if they get too far.
+	for(var/mob/W in shadow_wights)
+		if(get_dist(W, src) > 10)
+			cdel(W)
 
-	if(charges >= 1)
-		if(shadow_wights.len < 5 && prob(5))
-			shadow_wights.Add(new /obj/effect/shadow_wight(src.loc))
-			playsound(src.loc, 'sound/effects/ghost.ogg', 50, 1, -3)
-			charges -= 0.1
+	if(maximum_blood >= 100) cdel(src,,animation_destruction_long_fade(src))
 
-	if(charges >= 0.1)
-		if(prob(5))
-			src.visible_message("\red \icon[src] [src]'s eyes glow ruby red for a moment!")
-			charges -= 0.1
+/obj/item/weapon/vampiric/proc/get_teleport_loc()
+	var/i = 1
+	var/mob/living/carbon/human/H
+	while(++i < 4)
+		H = pick(player_list)
+		if(istype(H) && H.stat != DEAD && H.species != "Horror")
+			teleport(get_turf(H))
+			return 1
 
-	//check on our shadow wights
-	if(shadow_wights.len)
-		wight_check_index++
-		if(wight_check_index > shadow_wights.len)
-			wight_check_index = 1
+/obj/item/weapon/vampiric/proc/teleport(turf/location)
+	set waitfor = 0
+	var/L = locate(location.x + rand(-1,1), location.y + rand(-1,1), location.z)
+	location = L ? L : location
+	sleep(animation_teleport_spooky_out(src)) // We need to sleep so that the animation has a chance to finish.
+	loc = location
+	animation_teleport_spooky_in(src)
 
-		var/obj/effect/shadow_wight/W = shadow_wights[wight_check_index]
-		if(isnull(W))
-			shadow_wights.Remove(wight_check_index)
-		else if(isnull(W.loc))
-			shadow_wights.Remove(wight_check_index)
-		else if(get_dist(W, src) > 10)
-			shadow_wights.Remove(wight_check_index)
-
-/obj/item/weapon/vampiric/hear_talk(mob/M as mob, text)
+/obj/item/weapon/vampiric/hear_talk(mob/M)
 	..()
-	if(world.time - last_bloodcall >= bloodcall_interval && M in view(7, src))
-		bloodcall(M)
+	if(ishuman(M) && world.time - current_bloodcall >= interval_bloodcall && M in view(7, src)) bloodcall(M)
 
-/obj/item/weapon/vampiric/proc/bloodcall(var/mob/living/carbon/human/M)
-	last_bloodcall = world.time
-	if(istype(M))
-		playsound(src.loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
-		nearby_mobs.Add(M)
+/obj/item/weapon/vampiric/proc/bloodcall(mob/living/carbon/human/H)
+	if(H.species != "Horror")
+		playsound(loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
 
 		var/target = pick("chest","groin","head","l_arm","r_arm","r_leg","l_leg","l_hand","r_hand","l_foot","r_foot")
-		M.apply_damage(rand(5, 10), BRUTE, target)
-		M << "\red The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out."
-		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(M.loc)
+		H.apply_damage(rand(5, 10), BRUTE, target)
+		H.visible_message("<span class='danger'>A stream of blood flies out of [H]!</span>","<span class='danger'>The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out!</span>")
+		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(get_turf(H))
 		B.target_turf = pick(range(1, src))
-		B.blood_DNA = list()
-		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		M.vessel.remove_reagent("blood",rand(25,50))
+		B.blood_DNA = new
+		B.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+		H.vessel.remove_reagent("blood",rand(25,50))
+		animation_blood_spatter(H)
+	current_bloodcall = world.time
 
 //animated blood 2 SPOOKY
 /obj/effect/decal/cleanable/blood/splatter/animated
 	var/turf/target_turf
 	var/loc_last_process
 
-/obj/effect/decal/cleanable/blood/splatter/animated/New()
-	..()
-	processing_objects.Add(src)
-	loc_last_process = src.loc
+	New()
+		..()
+		processing_objects += src
+		loc_last_process = loc
+
+	Dispose()
+		animation_destruction_fade(src)
+		. = ..()
+		processing_objects -= src
 
 /obj/effect/decal/cleanable/blood/splatter/animated/process()
-	if(target_turf && src.loc != target_turf)
+	if(target_turf && loc != target_turf)
 		step_towards(src,target_turf)
-		if(src.loc == loc_last_process)
-			target_turf = null
-		loc_last_process = src.loc
+		if(loc == loc_last_process) target_turf = null
+		loc_last_process = loc
 
-		//leave some drips behind
+		//Leaves drips.
 		if(prob(50))
-			var/obj/effect/decal/cleanable/blood/drip/D = new(src.loc)
-			D.blood_DNA = src.blood_DNA.Copy()
-			if(prob(50))
-				D = new(src.loc)
-				D.blood_DNA = src.blood_DNA.Copy()
+			var/obj/effect/decal/cleanable/blood/drip/D = new(get_turf(src))
+			var/i = 0
+			while(++i < 3)
 				if(prob(50))
-					D = new(src.loc)
-					D.blood_DNA = src.blood_DNA.Copy()
-	else
-		..()
+					D = new(get_turf(src))
+					D.blood_DNA = blood_DNA
+	else ..()
+
 
 /obj/effect/shadow_wight
 	name = "shadow wight"
 	icon = 'icons/mob/mob.dmi'
-	icon_state = "shade"
-	density = 1
+	icon_state = "ghost2"
+	mouse_opacity = 0
+	var/obj/item/weapon/vampiric/master_doll
+
+	Dispose()
+		. = ..()
+		processing_objects -= src
+		if(master_doll && master_doll.loc) master_doll.shadow_wights -= src
 
 /obj/effect/shadow_wight/New()
-	processing_objects.Add(src)
+	animation_teleport_spooky_in(src)
+	processing_objects += src
 
 /obj/effect/shadow_wight/process()
-	if(src.loc)
-		src.loc = get_turf(pick(orange(1,src)))
-		var/mob/living/carbon/M = locate() in src.loc
+	if(loc)
+		loc = get_turf(pick(orange(1,src)))
+		var/mob/living/carbon/M = locate() in loc
 		if(M)
-			playsound(src.loc, pick('sound/hallucinations/behind_you1.ogg',\
+			playsound(loc, pick('sound/hallucinations/behind_you1.ogg',\
 			'sound/hallucinations/behind_you2.ogg',\
 			'sound/hallucinations/i_see_you1.ogg',\
 			'sound/hallucinations/i_see_you2.ogg',\
@@ -195,9 +231,7 @@
 			'sound/hallucinations/turn_around2.ogg',\
 			), 50, 1, -3)
 			M.sleeping = max(M.sleeping,rand(5,10))
-			src.loc = null
-	else
-		processing_objects.Remove(src)
+			cdel(src,,animation_destruction_fade(src))
 
-/obj/effect/shadow_wight/Bump(var/atom/obstacle)
-	obstacle << "\red You feel a chill run down your spine!"
+/obj/effect/shadow_wight/Bump(atom/A)
+	A << "<span class='warning'>You feel a chill run down your spine!</span>"

@@ -621,18 +621,14 @@ and you're good to go.
 		return 1
 
 /obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user)
-	set waitfor = 0 //No need to wait on this one.
-	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || !angle) return
+	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle)) return //We have to check for null angle here, as 0 can also be an angle.
 	if(!istype(user) || !istype(user.loc,/turf)) return
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
-		var/image/reusable/flash = rnew(/image/reusable, list('icons/obj/projectiles.dmi',user,muzzle_flash,image_layer))
+		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',user,muzzle_flash,image_layer))
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)
-		flash.transform = rotate
+		I.transform = rotate
 
-		for(var/mob/M in viewers(user))
-			M << flash
-
-		cdel(flash,,3)
+		I.flick_overlay(user, 3)

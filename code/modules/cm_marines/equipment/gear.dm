@@ -284,8 +284,8 @@
 
 
 /obj/item/weapon/storage/box/explosive_mines
-	name = "mine box"
-	desc = "A secure box holding anti-personel proximity mines"
+	name = "\improper M20 mine box"
+	desc = "A secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	w_class = 3
 	storage_slots = 4
@@ -297,11 +297,13 @@
 		..()
 		contents = list()
 		sleep(1)
-		new /obj/item/device/mine(src)
-		new /obj/item/device/mine(src)
-		new /obj/item/device/mine(src)
-		new /obj/item/device/mine(src)
-		return
+		var/I = type == /obj/item/weapon/storage/box/explosive_mines/pmc ? /obj/item/device/mine/pmc : /obj/item/device/mine
+		var/i = 0
+		while(++i < 5)
+			new I(src)
+
+/obj/item/weapon/storage/box/explosive_mines/pmc
+	name = "\improper M20P mine box"
 
 /obj/item/weapon/storage/box/m94
 	name = "\improper M94 marking flare pouch"

@@ -91,8 +91,8 @@
 			return
 		face_atom(T)
 
-		visible_message("<span class='xenodanger'>\The [src] fires its autocannon!</span>", \
-		"<span class='xenodanger'>You fire your autocannon!</span>" )
+		visible_message("<span class='xenowarning'>\The [src] fires its autocannon!</span>", \
+		"<span class='xenowarning'>You fire your autocannon!</span>" )
 		playsound(src.loc,'sound/weapons/Gunshot_smg.ogg',60,1)
 		usedPounce = 1
 		spawn(1)
@@ -105,7 +105,7 @@
 
 /mob/living/carbon/Xenomorph/Xenoborg/emp_act(severity)
 	visible_message("<span class='danger'>\The [src] sparks and shudders!</span>", \
-	"<span class='danger'>WARN__--d-sEIE)(*##&&$*@#*&#</span>")
+	"<span class='xenodanger'>WARN__--d-sEIE)(*##&&$*@#*&#</span>")
 	adjustBruteLoss(50 * severity)
 	adjustFireLoss(50 * severity)
 	Weaken(10)
@@ -149,10 +149,10 @@
 	set category = "Alien"
 
 	if(!gun_on)
-		visible_message("<span class='xenodanger'>\The [src] extends and starts dry-spinning his arm-embedded autocannon.</span>", \
-		"<span class='xenodanger'>You secure your stance as you extend and start dry-spinning your autocannon.</span>")
+		visible_message("<span class='xenowarning'>\The [src] extends and starts dry-spinning his arm-embedded autocannon.</span>", \
+		"<span class='xenowarning'>You secure your stance as you extend and start dry-spinning your autocannon.</span>")
 		gun_on = 1
 	else
-		visible_message("<span class='xenodanger'>\The [src] suddenly retracts his arm-embedded autocannon.</span>", \
-		"<span class='xenodanger'>You retract your autocannon and switch back to your advanced mobility module.</span>")
+		visible_message("<span class='xenowarning'>\The [src] suddenly retracts his arm-embedded autocannon.</span>", \
+		"<span class='xenowarning'>You retract your autocannon and switch back to your advanced mobility module.</span>")
 		gun_on = 0

@@ -94,6 +94,7 @@
 		burst_amount = config.high_burst_value
 
 //-------------------------------------------------------
+//M5, a classic SMG used in a lot of action movies.
 
 /obj/item/ammo_magazine/smg/mp5
 	name = "\improper MP5 magazine (9mm)"
@@ -108,7 +109,7 @@
 	name = "\improper MP5 submachinegun"
 	desc = "A German design, this was one of the most widely used submachine guns in the world. It's still possible to find this firearm in the hands of collectors or gun fanatics."
 	icon_state = "mp5"
-	item_state = "mp7" //PLACEHOLDER
+	item_state = "mp5"
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/smg_light.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp5
@@ -132,10 +133,11 @@
 
 
 //-------------------------------------------------------
+//MP27, based on the MP27, based on the M7.
 
 /obj/item/ammo_magazine/smg/mp7
-	name = "\improper MP7 magazine (4.6x30mm)"
-	desc = "A 4.6mm magazine for the MP7."
+	name = "\improper MP27 magazine (4.6x30mm)"
+	desc = "A 4.6mm magazine for the MP27."
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = "4.6×30mm"
 	icon_state = "mp7"
@@ -143,8 +145,8 @@
 	max_rounds = 30 //Also comes in 20 and 40.
 
 /obj/item/weapon/gun/smg/mp7
-	name = "\improper MP7 submachinegun"
-	desc = "An archaic design going back hundreds of years, the MP7 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
+	name = "\improper MP27 submachinegun"
+	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
 	icon_state = "mp7"
 	item_state = "mp7"
 	origin_tech = "combat=3;materials=2"

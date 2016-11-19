@@ -54,6 +54,13 @@
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
 
+/mob/living/carbon/Xenomorph/Queen/New()
+
+	..()
+
+	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
+	playsound(loc, 'sound/voice/alien_queen_command.ogg', 100, 0, 20)
+
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
 
@@ -87,8 +94,8 @@
 		return
 
 	if(check_plasma(100)) //New plasma check proc, removes/updates plasma automagically
-		visible_message("<span class='xenodanger'>\The [src] has laid an egg!</span>", \
-		"<span class='xenodanger'>You have laid an egg!</span>")
+		visible_message("<span class='xenowarning'>\The [src] has laid an egg!</span>", \
+		"<span class='xenowarning'>You have laid an egg!</span>")
 		new /obj/effect/alien/egg(current_turf)
 	return
 
@@ -102,7 +109,7 @@
 	density = 0
 	layer = 3.4 //On top of most things
 
-/obj/royaljelly/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/royaljelly/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(!isXeno(M) || isXenoLarva(M))
 		return
 
@@ -115,8 +122,8 @@
 		return
 
 	M.jelly = 1
-	visible_message("<span class='xenodanger'>\The [M] greedily gulps down \the [src].", \
-	"<span class='xenodanger'>You greedily gulp down \the [src].")
+	visible_message("<span class='xenonotice'>\The [M] greedily gulps down \the [src].", \
+	"<span class='xenonotice'>You greedily gulp down \the [src].")
 	del(src)
 
 /mob/living/carbon/Xenomorph/Queen/proc/produce_jelly()
@@ -169,7 +176,7 @@
 
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
 	//playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)  - Special Times Only
-	visible_message("<span class='xenodanger'>\The [src] emits an ear-splitting guttural roar!</span>")
+	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/M in view())
@@ -184,14 +191,14 @@
 			continue
 		var/dist = get_dist(src,M)
 		if(dist <= 4)
-			M << "<span class='xenodanger'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
+			M << "<span class='danger'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
 			M.Weaken(1)
 			if(!M.ear_deaf)
 				M.ear_deaf += 8 //Deafens them temporarily
 		else if(dist >= 5 && dist < 7)
 			M.stunned += 3
-			M << "<span class='xenodanger'>The roar shakes your body to the core, freezing you in place!</span>"
+			M << "<span class='danger'>The roar shakes your body to the core, freezing you in place!</span>"
 	return
 
 /mob/living/carbon/Xenomorph/Queen/proc/gut()
@@ -229,8 +236,8 @@
 
 	last_special = world.time + 50
 
-	visible_message("<span class='xenonotice'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='xenonotice'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
+	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
+	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
 	if(do_after(src, 80))
 		if(!victim || isnull(victim))
 			return

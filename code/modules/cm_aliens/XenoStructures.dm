@@ -92,11 +92,11 @@
 	health = max(0, health - tforce)
 	healthcheck()
 
-/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
-	M.visible_message("<span class='danger'>\The [M] claws \the [src]!</span>", \
-	"<span class='danger'>You claw \the [src].</span>")
+	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
+	"<span class='xenonotice'>You claw \the [src].</span>")
 	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
 	health -= (M.melee_damage_upper + 50) //Beef up the damage a bit
 	healthcheck()
@@ -273,7 +273,7 @@
 		return
 
 	if(++ticks >= strength_t)
-		visible_message("<span class='warning'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
+		visible_message("<span class='xenodanger'>\The [acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 
 		if(istype(acid_t, /turf/simulated/wall)) // I hate turf code.
 			var/turf/simulated/wall/W = acid_t
@@ -287,10 +287,10 @@
 		return
 
 	switch(strength_t - ticks)
-		if(6) visible_message("<span class='warning'>[acid_t] is holding up against the acid!</span>")
-		if(4) visible_message("<span class='warning'>[acid_t]\s structure is being melted by the acid!</span>")
-		if(2) visible_message("<span class='warning'>[acid_t] is struggling to withstand the acid!</span>")
-		if(0 to 1) visible_message("<span class='warning'>[acid_t] begins to crumble under the acid!</span>")
+		if(6) visible_message("<span class='xenowarning'>\The [acid_t] is barely holding up against the acid!</span>")
+		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
+		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
+		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
 	sleep(rand(150, 200))
 	.()
 
@@ -333,28 +333,27 @@
 			health -= rand(20, 81)
 	healthcheck()
 
-/obj/effect/alien/egg/attack_alien(user as mob)
+/obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
 
-	var/mob/living/carbon/M = user
 	if(!istype(M) || !isXeno(M))
-		return attack_hand(user)
+		return attack_hand(M)
 
 	switch(status)
 		if(BURST)
-			user << "<span class='warning'>You clear the hatched egg.</span>"
-			user:storedplasma += 1
-			if(isXenoLarva(user,/mob/living/carbon/Xenomorph/Larva))
-				user:amount_grown += 1
+			M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
+			"<span class='xenonotice'>You clear the hatched egg.</span>")
+			M.storedplasma++
+			if(isXenoLarva(M)) M.amount_grown++
 			del(src)
 			return
 		if(GROWING)
-			user << "<span class='warning'>The child is not developed yet.</span>"
+			M << "<span class='warning'>The child is not developed yet.</span>"
 			return
 		if(GROWN)
-			if(isXenoLarva(user))
-				user << "<span class='warning'>You nudge the egg, but nothing happens.</span>"
+			if(isXenoLarva(M))
+				M << "<span class='warning'>You nudge the egg, but nothing happens.</span>"
 				return
-			user << "<span class='warning'>You retrieve the child.</span>"
+			M << "<span class='warning'>You retrieve the child.</span>"
 			Burst(0)
 
 /obj/effect/alien/egg/proc/Grow()
@@ -502,7 +501,7 @@
 		return ..()
 	attack_alien(user)
 
-/obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(!istype(M) || M.stat || M.health < 1)
 		return
 	var/tunnel_time = 40
@@ -517,16 +516,17 @@
 		M << "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>"
 		return
 	if(tunnel_time <= 50)
-		M.visible_message("<span class='notice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='notice'>You begin crawling down into \the [src].</span>")
+		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
+		"<span class='xenonotice'>You begin crawling down into \the [src].</span>")
 	else
-		M.visible_message("<span class='notice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='notice'>You begin heaving your monstrous bulk into \the [src].</span>")
+		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
+		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src].</span>")
 
 	if(do_after(M, tunnel_time))
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.loc = other.loc
-			M.visible_message("<span class='notice'>\The [M] pops out of \the [src].</span>","<span class='notice'>You pop out the other side!</span>")
+			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
+			"<span class='xenonotice'>You pop out through the other side!</span>")
 		else
 			M << "<span class='warning'>\The [src] ended unexpectedly, so you return back up.</span>"
 	else
@@ -562,7 +562,7 @@
 					return
 				buckled_mob.visible_message("<span class='notice'>\The [user] pulls \the [buckled_mob] free from \the [src]!</span>",\
 				"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
-				"<span class='notice'>You hear squelching...</span>")
+				"<span class='notice'>You hear squelching.</span>")
 				if(ishuman(buckled_mob))
 					var/mob/living/carbon/human/H = buckled_mob
 					H.recently_unbuckled = 1
@@ -576,8 +576,8 @@
 					buckled_mob << "<span class='warning'>You're a little too unconscious to try that.</span>"
 					return
 				if(resisting_ready && buckled_mob && buckled_mob.stat != DEAD && buckled_mob.loc == loc)
-					buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] breaks free from \the [src]!</span>",\
-					"<span class='warning'>You pull yourself free from \the [src]!</span>",\
+					buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
+					"<span class='danger'>You pull yourself free from \the [src]!</span>",\
 					"<span class='notice'>You hear squelching.</span>")
 					unbuckle()
 					resisting_ready = 0
@@ -639,8 +639,8 @@
 			user << "<span class='warning'>\The [M] is resisting, tackle them first.</span>"
 			return
 
-	M.visible_message("<span class='notice'>\The [user] secretes a thick vile goo, securing [M.name] into \the [src]!</span>", \
-	"<span class='warning'>\The [user] drenches you in a foul-smelling resin, trapping you in \the [src]!</span>", \
+	M.visible_message("<span class='xenonotice'>\The [user] secretes a thick, vile resin, securing \the [M] into \the [src]!</span>", \
+	"<span class='xenonotice'>\The [user] drenches you in a foul-smelling resin, trapping you in \the [src]!</span>", \
 	"<span class='notice'>You hear squelching.</span>")
 
 	M.buckled = src
@@ -709,7 +709,7 @@
 	buckled_mob.old_y = 0
 	..()
 
-/obj/structure/stool/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/stool/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return
 	if(M.a_intent == "hurt")

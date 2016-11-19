@@ -9,6 +9,7 @@
 	matter = list("metal" = 65000)
 	flags_equip_slot = SLOT_BELT
 	w_class = 3
+	force = 6
 	fire_sound = 'sound/weapons/servicepistol.ogg'
 	type_of_casings = "bullet"
 	attachable_allowed = list(
@@ -61,8 +62,6 @@
 	icon_state = "m4a3"
 	item_state = "m4a3"
 	current_mag = /obj/item/ammo_magazine/pistol
-	w_class = 3
-	force = 6
 
 	New()
 		select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
@@ -85,7 +84,7 @@
 
 /obj/item/ammo_magazine/pistol/m1911
 	name = "\improper M4A3 magazine (.45)"
-	default_ammo = /datum/ammo/bullet/pistol
+	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45"
 	icon_state = "m4a345"
 	max_rounds = 7
@@ -99,13 +98,34 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gunshot_glock.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
-	w_class = 3
-	force = 6
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
 	New()
 		..()
-		damage += config.min_hit_damage_mult
+		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+
+//-------------------------------------------------------
+//Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
+
+/obj/item/ammo_magazine/pistol/b92fs
+	name = "\improper Beretta 92FS magazine (9mm)"
+	caliber = "9mm"
+	icon_state = "m4a3"
+	max_rounds = 15
+	default_ammo = /datum/ammo/bullet/pistol
+	gun_type = /obj/item/weapon/gun/pistol/b92fs
+
+/obj/item/weapon/gun/pistol/b92fs
+	name = "\improper Beretta 92FS pistol"
+	desc = "A popular police firearm in the 20th century, often employed by hardboiled cops while confronting terrorists. A classic of its time, chambered in 9mm."
+	icon_state = "b92fs"
+	item_state = "b92fs"
+	current_mag = /obj/item/ammo_magazine/pistol/b92fs
+
+
+	New()
+		..()
+		fire_delay = config.high_fire_delay
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 //-------------------------------------------------------
@@ -127,7 +147,6 @@
 	item_state = "deagle"
 	fire_sound = 'sound/weapons/44mag.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/heavy
-
 	force = 13
 
 	attachable_allowed = list(
@@ -142,7 +161,7 @@
 
 	New()
 		..() //Pick some variant sprites.
-		damage = config.med_hit_damage_mult
+		damage += config.med_hit_damage_mult
 		recoil = config.low_recoil_value
 		fire_delay = config.low_fire_delay*3
 		var/skin = pick("","g_","c_")
@@ -154,7 +173,7 @@
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
 /obj/item/ammo_magazine/pistol/c99
-	name = "\improper PK-9 magazine (9mmM)"
+	name = "\improper PK-9 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 	caliber = ".9mmM"
 	icon_state = "m4a3" //PLACEHOLDER
@@ -169,7 +188,6 @@
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/p08.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/c99
-	force = 6
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
@@ -327,6 +345,7 @@
 	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Weyland Yutani members."
 	icon_state = "vp78"
 	item_state = "vp78"
+	origin_tech = "combat=4;materials=4"
 	fire_sound = 'sound/weapons/pistol_large.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/vp78
 	force = 8
@@ -338,3 +357,35 @@
 		burst_delay = config.low_fire_delay
 		recoil = config.min_recoil_value
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+
+//-------------------------------------------------------
+/*
+Auto 9 The gun RoboCop uses. A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
+It is a modified Beretta 93R, and can fire three round burst or single fire. Whether or not anyone else aside RoboCop can use it is not established.
+*/
+
+/obj/item/ammo_magazine/pistol/auto9
+	name = "\improper Auto-9 magazine (9mm)"
+	default_ammo = /datum/ammo/bullet/pistol/squash
+	caliber = "9mm"
+	icon_state = "88m4" //PLACEHOLDER
+	max_rounds = 50
+	gun_type = /obj/item/weapon/gun/pistol/auto9
+
+/obj/item/weapon/gun/pistol/auto9
+	name = "\improper Auto-9 pistol"
+	desc = "An advanced, select-fire machine pistol capable of three round burst. Last seen cleaning up the mean streets of Detroit."
+	icon_state = "auto9"
+	item_state = "auto9"
+	origin_tech = "combat=5;materials=4"
+	fire_sound = 'sound/weapons/pistol_large.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/auto9
+	force = 15
+	attachable_allowed = list()
+
+	New()
+		..()
+		fire_delay = config.med_fire_delay
+		burst_amount = config.med_burst_value
+		burst_delay = config.min_fire_delay
+		recoil = config.min_recoil_value

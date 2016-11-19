@@ -8,6 +8,7 @@
 	anchored = 1
 	flags_atom = OPENCONTAINER
 	volume = 100
+	throwpass = 1
 
 	var/draw_warnings = 1 //Set to 0 to stop it from drawing the alert lights.
 
