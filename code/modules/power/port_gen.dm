@@ -328,6 +328,9 @@ display round(lastgen) and phorontank amount
 			usr << browse(null, "window=port_gen")
 			usr.unset_machine()
 
+/obj/machinery/power/port_gen/pacman/inoperable(var/additional_flags)
+	return (stat & (BROKEN|additional_flags)) //Removes NOPOWER check since its a goddam generator and doesn't need power
+
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
 	icon_state = "portgen1"
