@@ -845,7 +845,7 @@
 	New()
 		..()
 		l_color = "#FFFF0C" //Yeller
-		SetLuminosity(7)
+		SetLuminosity(4)
 		spawn(3000)
 			if(ticker && istype(ticker.mode,/datum/game_mode/huntergames)) loop_firetick()
 
@@ -853,7 +853,7 @@
 	proc/loop_firetick() //Crackly!
 		while(src && ticker)
 			SetLuminosity(0)
-			SetLuminosity(rand(5,6))
+			SetLuminosity(rand(3,4))
 			sleep(rand(15,30))
 
 //=================//\\=================\\

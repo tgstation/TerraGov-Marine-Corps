@@ -248,7 +248,7 @@
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
-	corpseidaccess = "Captain"
+	corpseidaccess = "101"
 
 
 
