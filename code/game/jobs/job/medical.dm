@@ -11,8 +11,8 @@
 	supervisors = "the Commander"
 	selection_color = "#99FF99"
 	idtype = /obj/item/weapon/card/id/silver
-	access = list(access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research, access_sulaco_bridge)
-	minimal_access = list(access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research, access_sulaco_bridge)
+	access = list(access_marine_iff_tag, access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research, access_sulaco_bridge)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_CMO, access_sulaco_medbay, access_sulaco_research, access_sulaco_bridge)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -41,8 +41,8 @@
 	spawn_positions = 4
 	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
-	access = list(access_sulaco_medbay, access_sulaco_chemistry)
-	minimal_access = list(access_sulaco_medbay, access_sulaco_chemistry)
+	access = list(access_marine_iff_tag, access_sulaco_medbay, access_sulaco_chemistry)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_medbay, access_sulaco_chemistry)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -72,8 +72,8 @@
 	spawn_positions = 2
 	supervisors = "the Commander, the Chief Medical Officer"
 	selection_color = "#BBFFBB"
-	access = list(access_sulaco_medbay, access_sulaco_research, access_sulaco_chemistry)
-	minimal_access = list(access_sulaco_medbay, access_sulaco_research, access_sulaco_chemistry)
+	access = list(access_marine_iff_tag, access_sulaco_medbay, access_sulaco_research, access_sulaco_chemistry)
+	minimal_access = list(access_marine_iff_tag, access_sulaco_medbay, access_sulaco_research, access_sulaco_chemistry)
 	minimal_player_age = 7
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

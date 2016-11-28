@@ -233,7 +233,7 @@
 	var/restriction_on = restriction_toggled
 	user << "\icon[src] You [restriction_on? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_on ? "harm anyone in your way" : "not harm marines"]."
 	playsound(loc,'sound/machines/click.ogg', 50, 1)
-	ammo = restriction_on ? ammo_list[/datum/ammo/bullet/smartgun/dirty] : ammo_list[/datum/ammo/bullet/smartgun]
+	ammo = restriction_on ? ammo_list[/datum/ammo/bullet/smartgun/dirty/lethal] : ammo_list[/datum/ammo/bullet/smartgun/dirty]
 	restriction_toggled = !restriction_toggled
 
 /obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)

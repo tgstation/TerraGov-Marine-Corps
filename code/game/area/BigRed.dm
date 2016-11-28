@@ -120,7 +120,7 @@
 	icon_state = "mechbay"
 
 /area/bigred/ground/science/office
-	name = "\improper Admistration"
+	name = "\improper Administration"
 	icon_state = "mechbay"
 
 /area/bigred/ground/science/research

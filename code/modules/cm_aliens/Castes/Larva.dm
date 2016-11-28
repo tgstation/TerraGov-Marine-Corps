@@ -47,49 +47,59 @@
 			amount_grown++ //Double growth on weeds.
 	return
 
+//Larva code is just a mess, so let's get it over with
 /mob/living/carbon/Xenomorph/Larva/update_icons()
-	var/state = "Bloody"
-	if(amount_grown > 150)
-		state = "Normal"
-	else if(amount_grown > 50)
-		state = "Normal"
-	if(state == "Normal" && amount_grown < 100)
-		name = "Larva ([nicknumber])"
-		real_name = name
-	else if(amount_grown >=100)
-		name = "Mature Larva ([nicknumber])"
-		real_name = name
+
+	var/progress = "" //Naming convention, three different names
+	var/state = "" //Icon convention, two different sprite sets
+
+	switch(amount_grown)
+		if(0 to 49) //We're still bloody
+			progress = "Bloody "
+			state = "Bloody "
+		if(50 to 99)
+			progress = ""
+			state = ""
+		if(100 to INFINITY)
+			progress = "Mature "
+
+	name = "\improper [progress]Larva ([nicknumber])"
+
+	//Update linked data so they show up properly
+	real_name = name
+	if(mind)
+		mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
 
 	if(stat == DEAD)
-		icon_state = "[state] Larva Dead"
-	else if (handcuffed || legcuffed)
-		icon_state = "[state] Larva Cuff"
-	else if (stunned)
-		icon_state = "[state] Larva Stunned"
+		icon_state = "[state]Larva Dead"
+	else if(handcuffed || legcuffed)
+		icon_state = "[state]Larva Cuff"
+	else if(stunned)
+		icon_state = "[state]Larva Stunned"
 	else if(lying || resting)
-		icon_state = "[state] Larva Sleeping"
+		icon_state = "[state]Larva Sleeping"
 	else
-		icon_state = "[state] Larva"
+		icon_state = "[state]Larva"
 
 /mob/living/carbon/Xenomorph/Larva/proc/xenohide()
 	set name = "Hide"
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
 	set category = "Alien"
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot do this in your current state."
+		src << "<span class='warning'>You cannot do this in your current state.</span>"
 		return
-	if (layer != TURF_LAYER+0.2)
-		layer = TURF_LAYER+0.2
-		src << text("\blue You are now hiding.")
+	if(layer != TURF_LAYER + 0.2)
+		layer = TURF_LAYER + 0.2
+		src << "<span class='notice'>You are now hiding.</span>"
 	else
 		layer = MOB_LAYER
-		src << text("\blue You have stopped hiding.")
+		src << "<span class='notice'>You have stopped hiding.</span>"
 	return
 
 /mob/living/carbon/Xenomorph/Larva/Bump(atom/AM as mob|obj|turf, yes)
 
 	spawn(0)
-		if(src.stat || !AM || !istype(AM) || AM == src || !yes)
+		if(stat || !AM || !istype(AM) || AM == src || !yes)
 			return
 
 		if(ismob(AM))

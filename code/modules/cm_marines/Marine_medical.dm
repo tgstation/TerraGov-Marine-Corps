@@ -9,6 +9,7 @@
 	amount_per_transfer_from_this = 15
 	volume = 15
 	hType = "tricord"
+	icon_state = "tricord"
 
 //Auto-injector Generation Proc (to change the chemicals)
 	New()
@@ -24,6 +25,7 @@
 	amount_per_transfer_from_this = 3
 	volume = 3
 	hType = "quickclot"
+	icon_state = "quickcloth"
 
 	New()
 		..()
@@ -38,6 +40,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	hType = "dexalin"
+	icon_state = "dexalin"
 
 	New()
 		..()
@@ -52,6 +55,7 @@
 	amount_per_transfer_from_this = 6
 	volume = 6
 	hType = "clonefix"
+	icon_state = "clonefix"
 
 	New()
 		..()
@@ -67,6 +71,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 10
 	hType = "anesthetic"
+	icon_state = "anesthetic"
 
 	New()
 		..()
@@ -83,6 +88,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 	hType = "dylovene"
+	icon_state = "dylovene"
 
 	New()
 		..()
@@ -98,6 +104,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 	hType = "oxycodine"
+	icon_state = "oxycodine"
 
 	New()
 		..()
@@ -112,6 +119,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 	hType = "kelotine"
+	icon_state = "kelotine"
 
 	New()
 		..()
@@ -127,6 +135,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 	hType = "bicardine"
+	icon_state = "bicardine"
 
 	New()
 		..()

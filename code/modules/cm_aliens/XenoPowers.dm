@@ -73,11 +73,11 @@
 		return
 
 	if(check_plasma(75))
-		visible_message("\green <B>\The [src] regurgitates a pulsating node and plants it on the ground!</B>", \
-		"\green <B>You regurgitate a pulsating node and plant it on the ground!</B>")
+		visible_message("<span class='xenonotice'>\The [src] regurgitates a pulsating node and plants it on the ground!</span>", \
+		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>")
 		new /obj/effect/alien/weeds/node(loc)
 		new /obj/effect/alien/weeds(loc)
-		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //splat!
+		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //Splat!
 
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
 
@@ -99,8 +99,8 @@
 		T = input(src, "Who should you pounce towards?") as null|anything in victims
 
 	if(T)
-		visible_message("<span class='danger'>\The [src] pounces at \the [T]!</span>", \
-		"<span class='danger'>You pounce at \the [T]!</span>")
+		visible_message("<span class='xenowarning'>\The [src] pounces at \the [T]!</span>", \
+		"<span class='xenowarning'>You pounce at \the [T]!</span>")
 		usedPounce = 30 //About 12 seconds
 		flags_pass = PASSTABLE
 		if(readying_tail)
@@ -140,8 +140,8 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.forceMove(loc)
-		visible_message("<span class='danger'>\The [src] hurls out the contents of their stomach!</span>", \
-		"<span class='danger'>You hurl out the contents of your stomach!</span>")
+		visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
+		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>")
 	else
 		src << "<span class='warning'>There's nothing in your belly that needs regurgitating.</span>"
 
@@ -156,10 +156,10 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
-		M << "\green You hear a strange, alien voice in your head... \italic [msg]"
-		src << "\green You said: \"[msg]\" to [M]"
+		M << "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>"
+		src << "<span class='xenonotice'>You said: \"[msg]\" to [M]</span>"
 
-/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M as mob in oview(2))
+/mob/living/carbon/Xenomorph/proc/transfer_plasma(mob/living/carbon/Xenomorph/M in oview(2))
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Alien"
@@ -171,13 +171,13 @@
 		return
 
 	if(get_dist(src, M) >= 3)
-		src << "\green You need to be closer."
+		src << "<span class='warning'>You need to be closer.</span>"
 		return
 
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
 
 	if(get_dist(src, M) >= 3)//Double Check
-		src << "\green You need to be closer."
+		src << "<span class='warning'>You need to be closer.</span>"
 		return
 
 	if(amount)
@@ -188,8 +188,8 @@
 		M.storedplasma += amount
 		if(M.storedplasma > M.maxplasma)
 			M.storedplasma = M.maxplasma
-		M << "\green [src] has transfered [amount] plasma to you. You now have [M.storedplasma]."
-		src << "\green You have transferred [amount] plasma to [M]. You now have [src.storedplasma]."
+		M << "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [M.storedplasma].</span>"
+		src << "<span class='xenowarning'>You have transferred [amount] plasma to \the [M]. You now have [storedplasma].</span>"
 
 /mob/living/carbon/Xenomorph/proc/build_resin() // -- TLE <---There's a name I haven't heard in a while. ~N
 	set name = "Secrete Resin (75)"
@@ -224,8 +224,9 @@
 	if(!check_plasma(75))
 		return
 
-	visible_message("<span class='danger'>[src] vomits up a thick substance and begins to shape it!</span>", \
-	"\green You shape a [choice].")
+	visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and shapes it into \a [choice]!</span>", \
+	"<span class='xenonotice'>You regurgitate some resin and shape it into \a [choice].</span>")
+	playsound(loc, 'sound/effects/splat.ogg', 30, 1) //Splat!
 
 	switch(choice)
 		if("resin door")
@@ -276,8 +277,8 @@
 		if(!current_turf)
 			return
 
-		visible_message("<span class='danger'>\The [src] spits at \the [T]!</span>", \
-		"<span class='danger'>You spit at \the [T]!</span>" )
+		visible_message("<span class='xenowarning'>\The [src] spits at \the [T]!</span>", \
+		"<span class='xenowarning'>You spit at \the [T]!</span>" )
 		var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 		playsound(src.loc, sound_to_play, 60, 1)
 
@@ -287,7 +288,7 @@
 		A.def_zone = get_organ_target()
 		A.fire_at(T, src, null, ammo.max_range, ammo.shell_speed)
 		has_spat = world.time
-		cooldown_notification(spit_delay,"spit")
+		cooldown_notification(spit_delay, "spit")
 	else
 		src << "<span class='warning'>You have nothing to spit at!</span>"
 
@@ -357,8 +358,8 @@
 	if(!isturf(O))
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
 		attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
-	visible_message("<span class='warning'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
-	"<span class='xenonotice'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
+	visible_message("<span class='xenowarning'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
+	"<span class='xenowarning'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()
 	set name = "Permit/Disallow Slashing"
@@ -382,16 +383,16 @@
 	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
 
 	if(choice == "Allowed")
-		src << "<span class='notice'>You allow slashing.</span>"
-		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!",3)
+		src << "<span class='xenonotice'>You allow slashing.</span>"
+		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!", 3)
 		slashing_allowed = 1
 	else if(choice == "Restricted - Less Damage")
-		src << "<span class='warning'>You restrict slashing.</span>"
-		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.",3)
+		src << "<span class='xenonotice'>You restrict slashing.</span>"
+		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will do less damage when slashing.", 3)
 		slashing_allowed = 2
 	else if(choice == "Forbidden")
-		src << "<span class='warning'>You forbid slashing entirely.</span>"
-		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.",3)
+		src << "<span class='xenonotice'>You forbid slashing entirely.</span>"
+		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.", 3)
 		slashing_allowed = 0
 
 /mob/living/carbon/Xenomorph/verb/hive_status()
@@ -445,11 +446,13 @@
 		var/choice = alert(src, "Pheromones provide a buff to all visible Xenos at the cost of some stored plasma every second.\nFrenzy - Increased run speed and tackle chance\nGuard - Reduced incoming damage\nRecovery - Increased plasma and health regeneration", "Emit Pheromones", "frenzy", "guard", "recovery")
 		if(choice != "cancel")
 			current_aura = choice
-			visible_message("<span class='bnotice'>[src] begins to emit strange-smelling pheromones.</span>","<span class='bnotice'>You begin to emit '[choice]' pheromones.</span>")
+			visible_message("<span class='xenowarning'>\The [src] begins to emit strange-smelling pheromones.</span>", \
+			"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>")
 			return
 	else
 		current_aura = null
-		src << "<span class='bnotice'>You stop emitting pheromones.</span>"
+		visible_message("<span class='xenowarning'>\The [src] stops emitting pheromones.</span>", \
+		"<span class='xenowarning'>You stop emitting pheromones.</span>")
 
 
 //COMMENTED OUT BY APOP

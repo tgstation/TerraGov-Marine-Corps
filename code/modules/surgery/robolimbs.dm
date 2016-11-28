@@ -172,6 +172,9 @@
 		return
 	user.visible_message("<span class='notice'>[user] has attached \the [tool] where [target]'s [affected.display_name] used to be.</span>",	\
 	"<span class='notice'>You have attached \the [tool] where [target]'s [affected.display_name] used to be.</span>")
+
+	//Update our dear victim to have a limb again
+
 	affected.germ_level = 0
 	affected.robotize()
 	if(L.sabotaged)
@@ -181,8 +184,10 @@
 	target.update_body(0)
 	target.updatehealth()
 	target.UpdateDamageIcon()
-	user.update_inv_l_hand(0)
-	user.update_inv_r_hand()
+
+	//Deal with the limb item properly
+
+	user.drop_item(tool)
 	del(tool)
 
 /datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

@@ -18,12 +18,6 @@
 /obj/item/weapon/reagent_containers/hypospray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/*
-/obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
-	..()
-	reagents.add_reagent("tricordrazine", 30)
-	return
-*/
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
 		user << "\red [src] is empty."
@@ -48,7 +42,7 @@
 			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
 			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in [src]."
 
-	return
+	return 1
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
 	name = "autoinjector"
@@ -58,20 +52,14 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 
-/*
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/New()
-	..()
-//	reagents.remove_reagent("tricordrazine", 30)
-//	reagents.add_reagent("inaprovaline", 5)
-	update_icon()
-	return
-*/
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
-	..()
-	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
-		flags_atom &= ~OPENCONTAINER
-	update_icon()
-	return
+	. = ..()
+	if(.)
+		if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
+			flags_atom &= ~OPENCONTAINER
+			update_icon()
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/attackby() return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
 	if(reagents.total_volume > 0)

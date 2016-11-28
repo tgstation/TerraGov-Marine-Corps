@@ -505,7 +505,7 @@
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M), slot_belt)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_r_store)
 	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
 
@@ -672,7 +672,7 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
+	W.access = get_freelancer_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
 /datum/emergency_call/mercs/proc/spawn_mercenary(var/mob/M)
@@ -700,8 +700,7 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
+	W.access = get_freelancer_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
 	spawn_merc_gun(M)
@@ -785,7 +784,7 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
+	W.access = get_antagonist_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
 /datum/emergency_call/bears/proc/spawn_officer(var/mob/M)
@@ -811,8 +810,7 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
+	W.access = get_antagonist_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
 /datum/emergency_call/pizza/create_member(var/datum/mind/M)
@@ -871,6 +869,7 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
+	W.access = get_freelancer_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
 //Spawn various items around the shuttle area thing.
@@ -1009,7 +1008,7 @@
 				if(0)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 				if(1)
 					new /obj/item/weapon/flamethrower/full(drop_spawn)
@@ -1033,7 +1032,7 @@
 					new /obj/item/weapon/grenade/explosive(drop_spawn)
 					new /obj/item/weapon/grenade/explosive(drop_spawn)
 					new /obj/item/weapon/grenade/explosive(drop_spawn)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 				if(6)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
@@ -1041,7 +1040,7 @@
 					continue
 				if(7)
 					new/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(drop_spawn)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return
 
@@ -1101,9 +1100,7 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
-
+	W.access = get_antagonist_pmc_access()
 
 /obj/item/clothing/mask/gas/swat/monkey
 	name = "\improper ERC mask"
@@ -1147,7 +1144,7 @@
 					new /obj/item/weapon/storage/box/grenade_system(drop_spawn)
 					continue
 				if(7)
-					new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
+					//new /obj/item/weapon/storage/box/rocket_system(drop_spawn)
 					continue
 	return
 
@@ -1332,8 +1329,7 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
+	W.access = get_antagonist_pmc_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)
 
 /datum/emergency_call/death/proc/spawn_officer(var/mob/M)
@@ -1365,6 +1361,5 @@
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
+	W.access = get_antagonist_pmc_access()
 	M.equip_to_slot_or_del(W, slot_wear_id)

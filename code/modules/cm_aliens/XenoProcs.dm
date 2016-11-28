@@ -23,7 +23,7 @@
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client) //Only living and connected xenos
-				M << "<span class='warning'><font size=[size]> [message]</font></span>"
+				M << "<span class='xenodanger'><font size=[size]> [message]</font></span>"
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -116,15 +116,15 @@
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
 /mob/living/carbon/Xenomorph/movement_delay()
 
+	..()
+
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
 	if(stat)
 		return 0 //Shouldn't really matter, but still calculates if we're being dragged.
 
-	var/tally = 0
-
-	tally = speed
-
-	if(istype(loc, /turf/space))
-		return -1 // It's hard to be slowed down in space by... anything
+	tally += speed
 
 	if(locate(/obj/structure/bush) in loc) //Bushes slows you down
 		var/obj/structure/bush/B = locate(/obj/structure/bush) in loc
@@ -158,9 +158,6 @@
 
 	if(frenzy_aura)
 		tally = tally - (frenzy_aura * 0.1) - 0.4
-
-	if(src.pulling)	//Dragging stuff slows you down a bit.
-		tally += 3
 
 	if(isXenoCrusher(src)) //Handle crusher stuff.
 		var/mob/living/carbon/Xenomorph/Crusher/X = src
@@ -252,7 +249,7 @@
 			chance = 40
 		if(prob(chance))
 			if(!H.lying)
-				H << "\green Your feet burn! Argh!"
+				H << "<span class='danger'>Your feet scald and burn! Argh!</span>"
 				if(prob(chance))
 					H.emote("scream")
 				if(prob(chance / 2))
@@ -266,7 +263,7 @@
 				H.updatehealth()
 			else
 				H.adjustFireLoss(rand(3,10))
-				H.show_message(text("\green You are burned by acid!"), 1)
+				H << "<span class='danger'>You are scalded by the burning acid!</span>"
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/simulated/T = src.loc

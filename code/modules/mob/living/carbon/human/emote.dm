@@ -16,10 +16,9 @@
 		if (I.implanted)
 			I.trigger(act, src)
 
-	if(src.stat == 2.0)
+	if(stat == 2.0)
 		return
 
-	// if(has_species(src,"Human"))
 	switch(act)
 		if ("me")
 			if (src.client)

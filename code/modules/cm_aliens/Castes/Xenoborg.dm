@@ -40,7 +40,6 @@
 		add_language("Sol Common")
 		add_language("Tradeband")
 
-
 /mob/living/carbon/Xenomorph/Xenoborg/ClickOn(var/atom/A, params)
 
 	var/list/modifiers = params2list(params)
@@ -64,10 +63,11 @@
 	set desc = "Blast a sucker! Use middle mouse button for best results."
 	set category = "Alien"
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
 	if(!gun_on)
-		src << "Your autocannon is turned off."
+		src << "<span class='warning'>Your autocannon is currently retracted.</span>"
 		return
 
 	if(usedPounce)
@@ -90,25 +90,9 @@
 		if (!istype(M) || !istype(U))
 			return
 		face_atom(T)
-		/*
-		var/obj/item/projectile/bullet/m4a3/B = new(M)
-		B.accuracy = 300 //Never misses.
-		B.armor_pierce = 50
-		B.original = U
-		B.starting = M
 
-		B.current = M
-		B.yo = U.y - M.y
-		B.xo = U.x - M.x
-		B.def_zone = ran_zone() //Random body part.
-		B.firer = src
-		B.shot_from = src
-
-		spawn( 1 )
-			B.process()
-			*/
-
-		visible_message("\red <B>[src] shoots its autocannon!</B>","\red <b>You shoot your autocannon!</B>" )
+		visible_message("<span class='xenowarning'>\The [src] fires its autocannon!</span>", \
+		"<span class='xenowarning'>You fire your autocannon!</span>" )
 		playsound(src.loc,'sound/weapons/Gunshot_smg.ogg',60,1)
 		usedPounce = 1
 		spawn(1)
@@ -116,11 +100,12 @@
 
 	else
 		storedplasma += 5 //Since we already stole 5
-		src << "\blue You cannot shoot at nothing! Try using middle mouse toggle."
+		src << "<span class='warning'>You see nothing to fire at!</span>"
 	return
 
 /mob/living/carbon/Xenomorph/Xenoborg/emp_act(severity)
-	src.visible_message("[src] visibly shudders!","\red WARN__--d-sEIE)(*##&&$*@#*&#")
+	visible_message("<span class='danger'>\The [src] sparks and shudders!</span>", \
+	"<span class='xenodanger'>WARN__--d-sEIE)(*##&&$*@#*&#</span>")
 	adjustBruteLoss(50 * severity)
 	adjustFireLoss(50 * severity)
 	Weaken(10)
@@ -128,31 +113,31 @@
 
 /mob/living/carbon/Xenomorph/Xenoborg/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(user && O && stat != DEAD)
-		if(istype(O,/obj/item/weapon/weldingtool))
+		if(istype(O, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = O
 			updatehealth()
 			if(health < maxHealth)
 				if(!WT.remove_fuel(10))
-					user << "\red You need more welding fuel to repair this xenoborg."
+					user << "<span class='warning'>You need more welding fuel to repair \the [src].</span>"
 					return
 				adjustBruteLoss(-20)
 				adjustFireLoss(-20)
 				updatehealth()
 				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-				src.visible_message("\red [user] repairs some damage to the [src].")
+				visible_message("<span class='notice'>\The [user] repairs some of the damage to \the [src].</span>")
 				return
 			else
-				user << "The [src] is not damaged."
+				user << "<span class='warning'>\The [src] is not damaged.</span>"
 				return
-		if(istype(O,/obj/item/weapon/cell))
+		if(istype(O, /obj/item/weapon/cell))
 			var/obj/item/weapon/cell/C = O
 			if(storedplasma >= maxplasma)
-				user << "[src] does not need a new cell right now."
+				user << "<span class='warning'>\The [src] does not need a new cell right now.</span>"
 				return
-			src.visible_message("\red [user] carefully inserts [C] into the [src]'s power supply port.")
+			src.visible_message("<span class='notice'>\The [user] carefully inserts \the [C] into \the [src]'s power supply port.")
 			storedplasma += C.charge
 			if(storedplasma > maxplasma) storedplasma = maxplasma
-			src << "\blue You feel your power recharging. Charge now at: [storedplasma]/[maxplasma]"
+			src << "<span class='notice'>Your power supply suddenly updates. New charge: [storedplasma]/[maxplasma]"
 			del(O)
 			user.update_inv_l_hand(0) //Update the user sprites after the del, just to be safe.
 			user.update_inv_r_hand()
@@ -164,10 +149,10 @@
 	set category = "Alien"
 
 	if(!gun_on)
-		visible_message("\blue [src] begins to spin up its arm-embedded autocannon.","\blue You begin to spin up your autocannon.")
+		visible_message("<span class='xenowarning'>\The [src] extends and starts dry-spinning his arm-embedded autocannon.</span>", \
+		"<span class='xenowarning'>You secure your stance as you extend and start dry-spinning your autocannon.</span>")
 		gun_on = 1
 	else
-		visible_message("\blue [src] lowers its autocannon.","\blue You lower your autocannon.")
+		visible_message("<span class='xenowarning'>\The [src] suddenly retracts his arm-embedded autocannon.</span>", \
+		"<span class='xenowarning'>You retract your autocannon and switch back to your advanced mobility module.</span>")
 		gun_on = 0
-
-	return

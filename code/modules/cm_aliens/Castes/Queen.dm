@@ -6,7 +6,6 @@
 	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
-//	flags_pass = PASSTABLE
 	melee_damage_lower = 30
 	melee_damage_upper = 46
 	tacklemin = 4
@@ -28,14 +27,11 @@
 	jelly = 1
 	jellyMax = 800
 	pixel_x = -16
-	// adjust_pixel_y = -6
-	// adjust_size_x = 0.9
-	// adjust_size_y = 0.85
 	fire_immune = 1
 	big_xeno = 1
 	jelly = 1
 	armor_deflection = 60
-	tier = 0 // Queen doesn't count towards population limit.
+	tier = 0 //Queen doesn't count towards population limit.
 	upgrade = 0
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs and royal jelly."
 	var/breathing_counter = 0
@@ -58,16 +54,22 @@
 		/mob/living/carbon/Xenomorph/Queen/proc/hive_Message
 		)
 
+/mob/living/carbon/Xenomorph/Queen/New()
+
+	..()
+
+	xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
+	playsound(loc, 'sound/voice/alien_queen_command.ogg', 100, 0, 20)
+
 /mob/living/carbon/Xenomorph/Queen/Life()
 	..()
 
-	if(stat != DEAD && ++breathing_counter >= rand(12,17)) //Increase the breathing variable each tick. Play it at random intervals.
-		pick(playsound(src.loc, 'sound/voice/alien_queen_breath1.ogg', 10, 1, -3), playsound(src.loc, 'sound/voice/alien_queen_breath2.ogg', 10, 1, -3))
+	if(stat != DEAD && ++breathing_counter >= rand(12, 17)) //Increase the breathing variable each tick. Play it at random intervals.
+		playsound(loc, pick('sound/voice/alien_queen_breath1.ogg', 'sound/voice/alien_queen_breath2.ogg'), 10, 1, -3)
 		breathing_counter = 0 //Reset the counter
 
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //Prevents resetting queen death timer.
-	return
 
 /mob/living/carbon/Xenomorph/Queen/proc/lay_egg()
 
@@ -75,7 +77,8 @@
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
 	set category = "Alien"
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	var/turf/current_turf = get_turf(src)
 	if(!current_turf || !istype(current_turf))
@@ -84,15 +87,15 @@
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
 	if(!alien_weeds)
-		src << "Your eggs wouldn't grow well enough here. Lay them on resin."
+		src << "<span class='warning'>Your eggs wouldn't grow well enough here. Lay them on resin.</span>"
 		return
 
 	if(!check_alien_construction(current_turf))
 		return
 
 	if(check_plasma(100)) //New plasma check proc, removes/updates plasma automagically
-		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>\The [src] has laid an egg!</B>"), 1)
+		visible_message("<span class='xenowarning'>\The [src] has laid an egg!</span>", \
+		"<span class='xenowarning'>You have laid an egg!</span>")
 		new /obj/effect/alien/egg(current_turf)
 	return
 
@@ -106,20 +109,21 @@
 	density = 0
 	layer = 3.4 //On top of most things
 
-/obj/royaljelly/attack_alien(mob/living/carbon/Xenomorph/M as mob)
-	if(!istype(M,/mob/living/carbon/Xenomorph) || istype(M,/mob/living/carbon/Xenomorph/Larva))
+/obj/royaljelly/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(!isXeno(M) || isXenoLarva(M))
 		return
 
 	if(M.jelly)
-		M << "You're already filled with delicious jelly."
+		M << "<span class='warning'>Royal jelly is already seeping in your veins.</span>"
 		return
 
 	if(!M.jellyMax)
-		M << "Doesn't smell very good to you. You aren't able to evolve further using jelly."
+		M << "<span class='warning'>The jelly gives off a revulsing smell. Something instinctively draws you away from it.</span>"
 		return
 
 	M.jelly = 1
-	visible_message("\green [M] greedily devours the [src].","You greedily gulp down the [src].")
+	visible_message("<span class='xenonotice'>\The [M] greedily gulps down \the [src].", \
+	"<span class='xenonotice'>You greedily gulp down \the [src].")
 	del(src)
 
 /mob/living/carbon/Xenomorph/Queen/proc/produce_jelly()
@@ -138,15 +142,15 @@
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 
 	if(!alien_weeds)
-		src << "Your jelly would rot here. Squirt it on resin."
+		src << "<span class='warning'>Your jelly would dry and dirty instantly there. Squirt it on resin.</span>"
 		return
 
 	if(!check_alien_construction(current_turf))
 		return
 
 	if(check_plasma(350)) //New plasma check proc, removes/updates plasma automagically
-		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>\The [src] squirts out a greenish blob of jelly.</B>"), 1)
+		visible_message("<span class='xenonotice'>\The [src] squirts out a greenish blob of jelly.</span>", \
+		"<span class='xenonotice'>You squirt out a greenish blob of jelly.</span>")
 		new /obj/royaljelly(current_turf)
 	return
 
@@ -155,10 +159,11 @@
 	set desc = "Emit a screech that stuns prey."
 	set category = "Alien"
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	if(has_screeched)
-		src << "\red Your vocal chords are not yet prepared."
+		src << "<span class='warning'>You are not ready to screech again.</span>"
 		return
 
 	if(!check_plasma(250))
@@ -167,35 +172,33 @@
 	has_screeched = 1
 	spawn(500)
 		has_screeched = 0
-		src << "You feel your throat muscles vibrate. You are ready to screech again."
+		src << "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>"
 
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
 	//playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)  - Special Times Only
-	visible_message("\red <B> \The [src] emits an ear-splitting guttural roar!</B>")
+	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/M in view())
 		if(M && M.client)
-			if(istype(M,/mob/living/carbon/Xenomorph))
+			if(isXeno(M))
 				shake_camera(M, 10, 1)
 			else
-				shake_camera(M, 30, 1) // 50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 
-	for (var/mob/living/carbon/human/M in oview())
+	for(var/mob/living/carbon/human/M in oview())
 		if(istype(M.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M.r_ear, /obj/item/clothing/ears/earmuffs))
 			continue
 		var/dist = get_dist(src,M)
-		if (dist <= 4)
-			M << "\blue An ear-splitting guttural roar shakes the ground beneath your feet!"
+		if(dist <= 4)
+			M << "<span class='danger'>An ear-splitting guttural roar shakes the ground beneath your feet!</span>"
 			M.stunned += 4 //Seems the effect lasts between 3-8 seconds.
 			M.Weaken(1)
-//			M.drop_l_hand() //Weaken will drop them on the floor anyway
-//			M.drop_r_hand()
 			if(!M.ear_deaf)
 				M.ear_deaf += 8 //Deafens them temporarily
 		else if(dist >= 5 && dist < 7)
 			M.stunned += 3
-			M << "\blue The sound stuns you!"
+			M << "<span class='danger'>The roar shakes your body to the core, freezing you in place!</span>"
 	return
 
 /mob/living/carbon/Xenomorph/Queen/proc/gut()
@@ -203,40 +206,47 @@
 	set name = "Gut (200)"
 	set desc = "While pulling someone, rip their guts out or tear them apart."
 
-	if(!check_state())	return
+	if(!check_state())
+		return
 
 	if(last_special > world.time)
 		return
 
 	var/mob/living/carbon/victim = src.pulling
 	if(!victim || isnull(victim) || !istype(victim))
-		src << "You're not pulling anyone that can be gutted."
+		src << "<span class='warning'>You're not pulling anyone that can be gutted.</span>"
 		return
 
-	if(locate(/obj/item/alien_embryo) in victim || locate(/obj/item/alien_embryo) in victim.contents) // Maybe they ate it??
-		src << "Not with a widdle alium inside! How cruel!"
+	if(locate(/obj/item/alien_embryo) in victim || locate(/obj/item/alien_embryo) in victim.contents) //Maybe they ate it??
+		src << "<span class='warning'>Not with a widdle alium inside! How cruel!</span>"
 		return
 
-	if(istype(victim,/mob/living/carbon/Xenomorph))
-		src << "Hey now, that's just not cool."
+	if(isXeno(victim))
+		src << "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>"
 		return
 
 	var/turf/cur_loc = victim.loc
-	if(!cur_loc) return //logic
-	if(!cur_loc || !istype(cur_loc)) return
+	if(!cur_loc)
+		return //logic
+	if(!cur_loc || !istype(cur_loc))
+		return
 
 	if(!check_plasma(200))
 		return
 
 	last_special = world.time + 50
 
-	visible_message("<span class='warning'><b>\The [src]</b> lifts [victim] into the air...</span>")
-	if(do_after(src,80))
-		if(!victim || isnull(victim)) return
-		if(victim.loc != cur_loc) return
-		visible_message("<span class='warning'><b>\The [src]</b> viciously wrenches [victim] apart!</span>")
+	visible_message("<span class='xenowarning'>\The [src] begins slowly lifting \the [victim] into the air.</span>", \
+	"<span class='xenowarning'>You begin focusing your anger as you slowly lift \the [victim] into the air.</span>")
+	if(do_after(src, 80))
+		if(!victim || isnull(victim))
+			return
+		if(victim.loc != cur_loc)
+			return
+		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
+		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching \him apart!</span>")
 		emote("roar")
-		src.attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [victim.name] ([victim.ckey])</font>")
+		attack_log += text("\[[time_stamp()]\] <font color='red'>gibbed [victim.name] ([victim.ckey])</font>")
 		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>was gibbed by [src.name] ([src.ckey])</font>")
 		victim.gib() //Splut
 
@@ -245,20 +255,22 @@
 	set name = "Set Hive Orders (50)"
 	set desc = "Give some specific orders to the hive. They can see this on the status pane."
 
-	if(!check_state()) return
-	if(!check_plasma(50)) return
-	if(last_special > world.time) return
+	if(!check_state())
+		return
+	if(!check_plasma(50))
+		return
+	if(last_special > world.time)
+		return
 
-	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.","Hive Orders","")),1,MAX_MESSAGE_LEN)
+	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</b>")
+		xeno_message("<B>The Queen has given a new order. Check Status pane for details.</B>")
 		hive_orders = txt
 	else
 		hive_orders = ""
 
 	last_special = world.time + 150
-
 
 /mob/living/carbon/Xenomorph/Queen/proc/hive_Message()
 	set category = "Alien"
@@ -266,10 +278,10 @@
 	set desc = "Send a message to all aliens in the hive that is big and visible"
 	if(!check_plasma(50))
 		return
-	if(health<=0)
-		src << "You can't do that while unconcious"
+	if(health <= 0)
+		src << "<span class='warning'>You can't do that while unconcious.</span>"
 		return 0
-	var/input = input(src, "This message will be broadcast throughout the hive...", "Word of the Queen", "") as message|null
+	var/input = input(src, "This message will be broadcast throughout the hive.", "Word of the Queen", "") as message|null
 	if(!input)
 		return
 
@@ -280,7 +292,7 @@
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
 			if(X && X.client && istype(X) && !X.stat)
-				X << sound(get_sfx("queen"),wait=0,volume=50)
+				X << sound(get_sfx("queen"),wait = 0,volume = 50)
 				X << "[queensWord]"
 
 	log_admin("[key_name(src)] has created a Word of the Queen report:")

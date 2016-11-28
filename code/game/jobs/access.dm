@@ -32,9 +32,12 @@
 /var/const/access_civilian_engi = 102
 /var/const/access_civilian_research = 103
 
-/var/const/access_centcomm = 200 // One generic access for centcomm, fuckit
+/var/const/access_centcomm = 200
 /var/const/access_syndicate = 201 // One generic access for centcomm, fuckit
 
+//Temporary until I turn these into defines/bitflags and develop proper IF tagging.
+/var/const/access_marine_iff_tag = 998
+/var/const/access_pmc_iff_tag = 999
 /*
 /var/const/access_security = 1 // Security equipment
 /var/const/access_brig = 2 // Brig timers and permabrig
@@ -174,9 +177,6 @@
 /var/const/access_delta_squad = 333
 */
 
-
-
-
 /obj/var/list/req_access = null
 /obj/var/req_access_txt = "0"
 /obj/var/list/req_one_access = null
@@ -288,16 +288,26 @@
 
 
 /proc/get_all_accesses()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo, access_sulaco_pilot, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
+	return list(access_marine_iff_tag, access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo, access_sulaco_pilot, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
 
 /proc/get_all_marine_access()
-	return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo, access_sulaco_pilot)
+	return list(access_marine_iff_tag, access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_brig, access_sulaco_armory, access_sulaco_CMO, access_sulaco_CE, access_sulaco_engineering, access_sulaco_medbay, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep, access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta, access_sulaco_chemistry, access_sulaco_research, access_sulaco_cargo, access_sulaco_pilot)
 
 /proc/get_all_centcom_access()
 	return list(access_centcomm)
 
 /proc/get_all_syndicate_access()
 	return list(access_syndicate)
+
+/proc/get_antagonist_access()
+	var/L[] = get_all_accesses() + access_syndicate
+	return L - access_marine_iff_tag
+
+/proc/get_antagonist_pmc_access()
+	return get_antagonist_access() + access_pmc_iff_tag
+
+/proc/get_freelancer_access()
+	return list(access_sulaco_bridge, access_sulaco_cargo, access_civilian_generic, access_civilian_research, access_civilian_engi, access_civilian_command)
 
 /proc/get_region_accesses(var/code)
 	switch(code)
@@ -314,7 +324,7 @@
 		if(5) //command
 			return list(access_sulaco_captain, access_sulaco_logistics, access_sulaco_bridge, access_sulaco_cargo)
 		if(6) //spess mahreens
-			return list(access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep)
+			return list(access_marine_iff_tag, access_marine_prep, access_marine_medprep, access_marine_engprep, access_marine_leader, access_marine_specprep)
 		if(7) //squads
 			return list(access_squad_alpha, access_squad_bravo, access_squad_charlie, access_squad_delta)
 		if(8) //Civilian
@@ -393,6 +403,10 @@
 			return "Dropship Piloting"
 		if(access_sulaco_pilot_locker)
 			return "Pilot Gear"
+		if(access_marine_iff_tag)
+			return "USS Sulaco Identification"
+		if(access_pmc_iff_tag)
+			return "W-Y Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)

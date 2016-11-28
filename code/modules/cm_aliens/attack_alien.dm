@@ -20,7 +20,7 @@
 /atom/proc/attack_alien(mob/user as mob)
 	return ..(attack_paw(user))
 
-/mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(isXenoLarva(M)) //Larvas have no means to attack humans
 		M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
@@ -176,7 +176,7 @@
 	return 1
 
 //Every other type of nonhuman mob
-/mob/living/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/mob/living/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(isXenoLarva(M)) //Larvas have no means to attack humans
 		M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
@@ -227,7 +227,7 @@
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(isXenoLarva(M)) //Larvae don't do anything
 		return 0
@@ -249,7 +249,7 @@
 	return src.attack_hand(user)
 
 //Breaking tables and racks
-/obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(breakable)
@@ -264,7 +264,7 @@
 			"<span class='danger'>You slash \the [src]!</span>")
 
 //Breaking barricades
-/obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/m_barricade/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -277,7 +277,7 @@
 		"<span class='danger'>You slash \the [src]!</span>")
 	update_health()
 
-/obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	playsound(src, 'sound/effects/metalhit.ogg', 100, 1)
@@ -287,11 +287,11 @@
 
 //Default "structure" proc. This should be overwritten by sub procs.
 //If we sent it to monkey we'd get some weird shit happening.
-/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
 	return 0
 
 //Smashing lights
-/obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(status == 2) //Ignore if broken. Note that we can't use defines here
@@ -302,7 +302,7 @@
 	broken() //Smashola!
 
 //Smashing windows
-/obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(M.a_intent == "help")
@@ -314,7 +314,7 @@
 		attack_generic(M, M.melee_damage_lower)
 
 //Slashing bots
-/obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	health -= rand(15, 30)
@@ -330,7 +330,7 @@
 	healthcheck()
 
 //Slashing cameras
-/obj/machinery/camera/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/camera/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(status)
@@ -343,7 +343,7 @@
 		deactivate(M, 0)
 
 //Slashing windoors
-/obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
@@ -355,7 +355,7 @@
 	take_damage(damage)
 
 //Slashing mechas
-/obj/mecha/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/mecha/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	log_message("Attack by claw. Attacker - [M].", 1)
@@ -373,7 +373,7 @@
 		"<span class='danger'>You slash \the [src]'s armor to no effect!</span>")
 
 //Slashing grilles
-/obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
@@ -392,7 +392,7 @@
 	healthcheck()
 
 //Slashin mirrors
-/obj/structure/mirror/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/mirror/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(shattered)
@@ -408,7 +408,7 @@
 		shatter()
 
 //Foamed metal
-/obj/structure/foamedmetal/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/foamedmetal/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(prob(33))
@@ -421,7 +421,7 @@
 		"<span class='danger'>You tear some shreds off \the [src]!</span>")
 
 //Wooden barricades
-/obj/structure/barricade/wooden/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/barricade/wooden/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -435,7 +435,7 @@
 		"<span class='danger'>You slash \the [src]!</span>")
 
 //Prying open doors
-/obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(locked)
 		M << "<span class='warning'>\The [src] is bolted down tight.</span>"
@@ -476,7 +476,7 @@
 				"<span class='danger'>You pry \the [src] open.</span>")
 
 //Prying open FIREdoors
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	var/turf/cur_loc = M.loc
@@ -506,19 +506,19 @@
 				"<span class='danger'>You pry \the [src] open.</span>")
 
 //Beds, nests and chairs - unbuckling
-/obj/structure/stool/bed/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/stool/bed/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	attack_hand(M)
 
 //Nerfing the damn Cargo Tug Train
-/obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	attack_hand(M)
 
 //clicking on resin doors attacks them, or opens them without harm intent
-/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return 0 //Some basic logic here
@@ -541,12 +541,12 @@
 
 //Xenomorphs can't use machinery, not even the "intelligent" ones
 //Exception is Queen and shuttle computers, because plot power
-/obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	M << "<span class='warning'>You stare at \the [src] cluelessly.</span>"
 
-/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.is_intelligent)
 		attack_hand(M)
 		if(alerted > 0)
@@ -557,7 +557,7 @@
 		..()
 
 //APCs.
-/obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
@@ -583,7 +583,7 @@
 		beenhit += 1
 
 //Snow barricades
-/obj/structure/barricade/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/barricade/snow/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -596,14 +596,14 @@
 	health_check()
 	playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 
-/obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M)
 	return attack_hand(M)
 
-/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
 	return attack_hand(M)
 
 //Digging up snow
-/turf/unsimulated/floor/snow/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/turf/unsimulated/floor/snow/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(M.a_intent == "grab")
@@ -628,7 +628,7 @@
 		update_icon(1, 0)
 
 //Crates, closets, other paraphernalia
-/obj/structure/largecrate/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/largecrate/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	playsound(src, 'sound/effects/woodhit.ogg', 100, 1)
@@ -641,7 +641,7 @@
 	"<span class='danger'>You hear splitting wood:!/span>")
 	cdel(src)
 
-/obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(M.a_intent == "hurt" && !unacidable)
@@ -657,7 +657,7 @@
 	else
 		return attack_paw(M)
 
-/obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if(M.melee_damage_lower < 28 || unacidable)
@@ -675,7 +675,7 @@
 			"<span class='danger'>You slash \the [src]!</span>")
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
 	if((stat & (BROKEN|NOPOWER)) || tipped_level)
@@ -710,7 +710,7 @@
 	else
 		tipped_level = 0
 
-/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvas have no means to attack inflatable barriers
 		M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
 		"<span class='danger'>You nudge your head against \the [src].</span>")

@@ -26,7 +26,7 @@
 		if(jelly && jellyGrow < jellyMax && is_queen_alive())
 			jellyGrow++
 			if(jellyGrow == jellyMax - 1)
-				src << "\green Your carapace crackles and your tendons strengthen. You are ready to evolve!"
+				src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
 
 		//Status updates, death etc.
 		handle_regular_status_updates()
@@ -152,10 +152,10 @@
 						if(prob(50))
 							M.adjustFireLoss(1)
 							if(prob(10))
-								M << "\green <b>You are burned by stomach acids!</b>"
+								M << "<span class='danger'>You are burned by stomach acids!</span>"
 						M.updatehealth()
 					if(M.acid_damage > 240)
-						src << "\green [M] is dissolved in your gut with a gurgle."
+						src << "<span class='xenodanger'>\The [M] is dissolved in your gut with a gurgle.</span>"
 						stomach_contents.Remove(M)
 						M.loc = locate(138,136,2)
 
@@ -275,7 +275,7 @@
 
 		else //Xenos restore plasma VERY slowly off weeds, regardless of health
 			if(prob(50))
-				storedplasma += 1
+				storedplasma++
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
 				storedplasma += round(recovery_aura + 1)
@@ -313,7 +313,7 @@
 
 		else //Xenos restore plasma VERY slowly off weeds
 			if(prob(50))
-				storedplasma += 1
+				storedplasma++
 			if(recovery_aura)
 				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
 				storedplasma += round(recovery_aura + 1)
@@ -377,14 +377,14 @@
 
 	if(istype(src,/mob/living/carbon/Xenomorph/Queen))
 		playsound(loc, 'sound/voice/alien_queen_died.ogg', 100, 0, 20)
-		xeno_message("<span class='xenodanger'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
-		xeno_message("<span class='danger'>The slashing of hosts is now permitted.</span>",2)
+		xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3)
+		xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2)
 		slashing_allowed = 1
 		if(ticker && ticker.mode) ticker.mode.check_queen_status(queen_time)
 	else
 		playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 50, 1, 1)
 		var/area/A = get_area(src)
-		xeno_message("<span class='xenonotice'>Hive: A [name] has <b>died</b>[A? " at [sanitize(A.name)]":""]!</span>",3)
+		xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3)
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents -= A

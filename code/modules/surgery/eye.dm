@@ -82,8 +82,8 @@
 	if(is_same_target != affected) //We are not aiming at the same organ as when be begun, stop
 		user << "<span class='warning'><b>You failed to start the surgery.</b> Aim at the same organ as the one that you started working on originally.</span>"
 		return
-	user.visible_message("<span class='notice'>[user] has lifted the corneas from [target]'s eyes with \the [tool].</span>" , \
-	"<span class='notice'>You have lifted the corneas from [target]'s eyes with \the [tool].</span>" )
+	user.visible_message("<span class='notice'>[user] has lifted the cornea from [target]'s eyes with \the [tool].</span>" , \
+	"<span class='notice'>You have lifted the cornea from [target]'s eyes with \the [tool].</span>" )
 	target.op_stage.eyes = 2
 
 /datum/surgery_step/eye/lift_eyes/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

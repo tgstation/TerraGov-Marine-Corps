@@ -486,8 +486,7 @@
 			W.damtype = "burn"
 			W.icon_state = "match_lit"
 			processing_objects.Add(W)
-		W.update_icon()
-		return
+			W.update_icon()
 
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"

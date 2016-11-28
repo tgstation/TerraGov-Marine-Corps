@@ -33,16 +33,8 @@
 						beakers -= B
 						user.put_in_hands(B)
 			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
-		if(stage > 1 && !active && clown_check(user))
-			user << "<span class='warning'>You prime \the [name]!</span>"
-
-			msg_admin_attack("[user.name] ([user.ckey]) primed \a [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
-			activate()
-			add_fingerprint(user)
-			if(iscarbon(user))
-				var/mob/living/carbon/C = user
-				C.throw_mode_on()
+		if(stage > 1)
+			..()
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 

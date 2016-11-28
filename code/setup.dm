@@ -212,7 +212,7 @@ should all be unique more or less. flags_inventory can double up.
 
 //==========================================================================================
 #define NODROP					1		// Cannot be dropped at all, only deleted.
-#define NOINTERACT				2		// Despite being an item, you can't interact with it normally.
+#define NOINTERACT				2		// You can't interact with it, at all. Useful when doing certain animations.
 #define NOBLOODY				4		// Don't want a blood overlay on this one.
 #define DELONDROP				8		// Deletes on drop instead of falling on the floor.
 #define FPRINT					16		// takes a fingerprint
@@ -923,6 +923,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define IS_SKRELL 3
 #define IS_UNATHI 4
 #define IS_XENOS 5
+#define IS_YAUTJA 6
+#define IS_HORROR 7
 
 #define MAX_GEAR_COST 5 //Used in chargen for loadout limit.
 
@@ -1011,3 +1013,27 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 
 //Number of marine players against which the Marine's gear scales
 #define MARINE_GEAR_SCALING_NORMAL 30
+
+
+//Life variables
+#define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
+#define HUMAN_CRIT_MAX_OXYLOSS ( (last_tick_duration) /6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks.
+
+#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
+#define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
+
+#define COLD_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
+#define COLD_DAMAGE_LEVEL_2 1.0 //Amount of damage applied when your body temperature passes the 200K point
+#define COLD_DAMAGE_LEVEL_3 2 //Amount of damage applied when your body temperature passes the 120K point
+
+//Note that gas heat damage is only applied once every FOUR ticks.
+#define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
+#define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
+#define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
+
+#define COLD_GAS_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
+#define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
+#define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
+
+#define RADIATION_SPEED_COEFFICIENT 0.1

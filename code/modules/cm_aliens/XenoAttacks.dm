@@ -129,7 +129,7 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M as mob)
+/mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(src != M)
 		if(isXenoLarva(M)) //Larvas can't eat people
 			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \

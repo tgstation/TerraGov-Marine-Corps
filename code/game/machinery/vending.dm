@@ -539,16 +539,19 @@
 			src.speak(src.vend_reply)
 			src.last_reply = world.time
 
-	use_power(vend_power_usage)	//actuators and stuff
-	if (src.icon_vend) //Show the vending animation if needed
-		flick(src.icon_vend,src)
-	spawn(vend_delay)
-		if(ispath(R.product_path,/obj/item/weapon/gun)) new R.product_path(get_turf(src),1)
-		else new R.product_path(get_turf(src))
-		vend_ready = 1
-		return
 
-	src.updateUsrDialog()
+	release_item(R, vend_delay)
+	vend_ready = 1
+	updateUsrDialog()
+
+/obj/machinery/vending/proc/release_item(datum/data/vending_product/R, delay_vending = 0, dump_product = 0)
+	set waitfor = 0
+	if(delay_vending)
+		use_power(vend_power_usage)	//actuators and stuff
+		if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
+		sleep(delay_vending)
+	if(ispath(R.product_path,/obj/item/weapon/gun)) . = new R.product_path(get_turf(src),1)
+	else . = new R.product_path(get_turf(src))
 
 /obj/machinery/vending/proc/stock(var/obj/item_to_stock, var/mob/user)
 	var/datum/data/vending_product/R //Let's try with a new datum.
@@ -622,7 +625,7 @@
 			continue
 
 		while(R.amount>0)
-			new dump_path(src.loc)
+			release_item(R, 0)
 			R.amount--
 		break
 
@@ -637,7 +640,7 @@
 	if(!target)
 		return 0
 
-	for(var/datum/data/vending_product/R in src.product_records)
+	for(var/datum/data/vending_product/R in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path
@@ -645,13 +648,13 @@
 			continue
 
 		R.amount--
-		throw_item = new dump_path(src.loc)
+		throw_item = release_item(R, 0)
 		break
 	if (!throw_item)
 		return 0
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
-	src.visible_message("\red <b>[src] launches [throw_item.name] at [target.name]!</b>")
+	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
 	return 1
 
 /obj/machinery/vending/proc/isWireColorCut(var/wireColor)

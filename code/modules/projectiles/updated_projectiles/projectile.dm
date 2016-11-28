@@ -242,7 +242,7 @@
 
 	if(ishuman(target))
 		var/mob/living/carbon/human/target_human = target
-		if( ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && target_human.get_target_lock() ) return
+		if( ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && target_human.get_target_lock(ammo.iff_signal) ) return
 		var/mob/living/carbon/human/shooter_human = shooter
 		if( istype(shooter_human) && (shooter_human.faction == target_human.faction || target_human.m_intent == "walk") ) hit_chance -= 15
 	else if(isXeno(target))
@@ -468,13 +468,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		world << "<span class='debuginfo'>Adjusted armor is: <b>[armor]</b></span>"
 		#endif
 		var/critical_hit	 = rand(config.critical_chance_low,config.critical_chance_high)
-		armor_pass 	 	 	 = round( ( armor * damage * config.xeno_armor_resist_low ) * 0.01 )
+		armor_pass 	 	 	 = round( (armor < 0? 0 : armor) * damage * config.xeno_armor_resist_low  * 0.01 )
 		armor				-= prob(critical_hit) ? round(armor*0.5) : armor_pass //Small chance to completely ignore armor.
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Armor after initial soak is: <b>[armor]</b>. Pass was : <b>[armor_pass]</b></span>"
 		#endif
 
-	armor = armor < 0 ? 0 : armor
+	armor = (armor < 0 || P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : armor //Ignore trumps all armor.
 
 	if(damage)
 		var/i = 0
@@ -592,23 +592,19 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(obj/item/projectile/P)
-	set waitfor = 0
 	if(!P || !P.ammo.ping) return
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, pick(P.ammo.sound_bounce), 120, 1)
-		var/image/reusable/ping = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,P.ammo.ping,10))
+		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/projectiles.dmi',src,P.ammo.ping,10))
 		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
-		ping.pixel_x += rand(-6,6)
-		ping.pixel_y += rand(-6,6)
+		I.pixel_x += rand(-6,6)
+		I.pixel_y += rand(-6,6)
 
 		var/matrix/rotate = matrix()
 		rotate.Turn(angle)
-		ping.transform = rotate
+		I.transform = rotate
 
-		for(var/mob/M in viewers(src))
-			M << ping
-
-		cdel(ping,,3)
+		I.flick_overlay(src, 3)
 
 /mob/proc/bullet_message(obj/item/projectile/P)
 	if(!P) return

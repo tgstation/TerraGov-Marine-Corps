@@ -16,10 +16,8 @@
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
-
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
-
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 
@@ -54,3 +52,5 @@
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
 	var/acid_damage = 0 //Counter for stomach acid damage. At ~60 ticks, dissolved
 	var/in_stasis = 0 //Is the mob in stasis bag?
+
+	var/tally = 0 //Tally counter, updated every Life() proc via movement procs, reset under mob/living

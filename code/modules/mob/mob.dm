@@ -97,24 +97,23 @@
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
-	if(!istype(W)) return 0
+/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, permanent = 0)
+	if(!istype(W)) return
 
 	if(!W.mob_can_equip(src, slot, disable_warning))
-		if(del_on_fail)
-			del(W)
+		if(del_on_fail) del(W)
 		else
-			if(!disable_warning)
-				src << "\red You are unable to equip that." //Only print if del_on_fail is false
-		return 0
+			if(!disable_warning) src << "<span class='warning'>You are unable to equip that.</span>" //Only print if del_on_fail is false
+		return
 	var/start_loc = W.loc
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
-	if(W.loc == start_loc && src.get_active_hand() != W)
+	if(permanent)
+		W.canremove = 0
+		W.flags_inventory |= CANTSTRIP
+	if(W.loc == start_loc && get_active_hand() != W)
 		//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-		if(W.zoom)
-			W.zoom(src)
-		if(W.flags_atom & TWOHANDED)
-			W.unwield(src)
+		if(W.zoom) W.zoom(src)
+		if(W.flags_atom & TWOHANDED) W.unwield(src)
 	return 1
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
@@ -123,8 +122,8 @@
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = 0)
+	return equip_to_slot_if_possible(W, slot, 1, 1, 0, permanent)
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 var/list/slot_equipment_priority = list( \

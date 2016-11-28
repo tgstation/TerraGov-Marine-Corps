@@ -41,7 +41,3 @@
 		neurotoxin(A)
 		return
 	..()
-
-
-
-

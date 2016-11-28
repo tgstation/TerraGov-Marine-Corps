@@ -410,6 +410,11 @@
 		burst_delay = config.med_fire_delay
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
+/obj/item/weapon/gun/revolver/mateba/admiral
+	name = "\improper Mateba autorevolver custom++"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This version is snubnosed, engraved with gold, tinted black, and highly customized for a high-ranking admiral. It uses heavy .454 rounds."
+	icon_state = "amateba"
+	item_state = "amateba"
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 

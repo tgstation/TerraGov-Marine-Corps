@@ -755,7 +755,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M), slot_belt)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_r_store)
 			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
 
@@ -865,8 +865,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.registered_name = M.real_name
 			W.name = "[M.real_name]'s ID Card ([W.assignment])"
 			W.icon_state = "centcom"
-			W.access = get_all_accesses()
-			W.access += get_all_centcom_access()
+			W.access = get_antagonist_pmc_access()
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
 			if(M.mind)
@@ -942,7 +941,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.remove_language("Sol Common")
 			M.remove_language("English")
 			M.add_language("Russian")
-			W.access = get_all_accesses()
+			W.access = get_antagonist_access()
 
 			if(M.mind)
 				M.mind.assigned_role = "MODE"
@@ -968,7 +967,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
 			M.add_language("Russian")
-			W.access = get_all_accesses()
+			W.access = get_antagonist_access()
 
 		if("Dutch Merc (Standard)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), slot_l_ear)

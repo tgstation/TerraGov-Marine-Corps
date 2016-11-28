@@ -326,11 +326,15 @@
 
 
 /mob/living/simple_animal/movement_delay()
-	var/tally = 0 //Incase I need to add stuff other than "speed" later
 
-	tally = speed
+	..()
 
-	return tally+config.animal_delay
+	if(istype(loc, /turf/space))
+		return -1 //It's hard to be slowed down in space by... anything
+
+	tally += speed
+
+	return tally + config.animal_delay
 
 /mob/living/simple_animal/Stat()
 	..()
@@ -342,6 +346,7 @@
 	icon_state = icon_dead
 	stat = DEAD
 	density = 0
+	lying = 1
 	return ..()
 
 /mob/living/simple_animal/ex_act(severity)

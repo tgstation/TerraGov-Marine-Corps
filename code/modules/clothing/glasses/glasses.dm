@@ -89,10 +89,10 @@
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
-	name = "Prescription Glasses"
-	desc = "Made by Nerd. Co."
-	icon_state = "glasses"
-	item_state = "glasses"
+	name = "Marine RPG glasses"
+	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
+	icon_state = "mBCG"
+	item_state = "mBCG"
 	prescription = 1
 	flags_armor_protection = 0
 
@@ -261,7 +261,14 @@
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
-	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not.."
+	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
+	prescription = 1
+
+/obj/item/clothing/glasses/mbcg
+	name = "Marine RPG glasses"
+	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
+	icon_state = "mBCG"
+	item_state = "mBCG"
 	prescription = 1

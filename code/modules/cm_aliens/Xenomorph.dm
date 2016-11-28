@@ -32,7 +32,6 @@ var/global/queen_time = 300 //5 minutes between queen deaths
 var/global/hive_orders = "" //What orders should the hive have
 
 /mob/living/carbon/Xenomorph
-	var/caste = ""
 	name = "Drone"
 	desc = "What the hell is THAT?"
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
@@ -103,7 +102,6 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/zoom_turf = null
 	var/big_xeno = 0 //Toggles pushing
 	var/autopsied = 0
-	var/nicknumber = -1 //The number after the name. Saved right here so it transfers between castes.
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
@@ -111,6 +109,12 @@ var/global/hive_orders = "" //What orders should the hive have
 	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
 	var/crit_health = -100 // What negative healthy they die in.
 	var/gib_chance  = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
+
+	//Naming variables
+	var/caste = ""
+	var/upgrade_name = "Young"
+	var/nicknumber = 0 //The number after the name. Saved right here so it transfers between castes.
+
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
@@ -151,16 +155,38 @@ var/global/hive_orders = "" //What orders should the hive have
 
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
-		if(caste != "Queen") //This needed to be moved here because the re-naming was happening faster than the transfer. - Apop
-			nicknumber = rand(1, 999)
-			name = "Young [caste] ([nicknumber])"
-			real_name = name
+		generate_name()
 
 	regenerate_icons()
 
+//Off-load this proc so it can be called freely
+//Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
+//We set their name first, then update their real_name AND their mind name
+/mob/living/carbon/Xenomorph/proc/generate_name()
+
+	//We don't have a nicknumber yet, assign one to stick with us
+	if(!nicknumber) nicknumber = rand(1, 999)
+
+	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
+	if(caste == "Larva")
+		return
+
+	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
+	if(caste == "Queen")
+		switch(upgrade)
+			if(0) name = "\improper Queen"			 //Young
+			if(1) name = "\improper Elite Queen"	 //Mature
+			if(2) name = "\improper Elite Empress"	 //Elite
+			if(3) name = "\improper Ancient Empress" //Ancient
+	else
+		name = "\improper [upgrade_name] [caste] ([nicknumber])"
+
+	//Update linked data so they show up properly
+	real_name = name
+	if(mind) mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
+
 /mob/living/carbon/Xenomorph/examine()
-	if(!usr)
-		return //Somehow?
+	if(!usr) return //Somehow?
 	..()
 	if(isXeno(usr) && caste_desc)
 		usr << caste_desc

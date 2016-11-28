@@ -711,7 +711,7 @@ var/global/list/gear_datums = list()
 	cost = 2
 	slot = slot_glasses
 
-/datum/gear/cmgoggles
+/datum/gear/cmPgoggles
 	display_name = "Prescription Goggles"
 	path = /obj/item/clothing/glasses/mgoggles/prescription
 	cost = 3
