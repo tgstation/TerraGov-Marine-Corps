@@ -219,6 +219,7 @@ should all be unique more or less. flags_inventory can double up.
 #define CONDUCT					32		// conducts electricity (metal etc.)
 #define ON_BORDER				64		// item has priority to check when entering or leaving
 #define DIRLOCK					128		// Item won't change direction when Moving()ing. Useful for items that have several dir states.
+#define NOPULLPENALTY			256		// Item will not slow down people when pulled, intended for wheeled and floating items
 //Reserved space for any general flags here.
 //==========================================================================================
 #define USEDELAY 				512		// 1 second extra delay on use (Can be used once every 2s)
@@ -226,9 +227,9 @@ should all be unique more or less. flags_inventory can double up.
 #define OPENCONTAINER			2048	//is an open container for chemistry purposes
 //==========================================================================================
 #define NOBLUDGEON  			4096	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				8192		// weapon not affected by shield
-#define TWOHANDED				16384		// The item is twohanded.
-#define WIELDED					32768		// The item is wielded with both hands.
+#define NOSHIELD				8192	// weapon not affected by shield
+#define TWOHANDED				16384	// The item is twohanded.
+#define WIELDED					32768	// The item is wielded with both hands.
 //==========================================================================================
 
 //flags_inventory

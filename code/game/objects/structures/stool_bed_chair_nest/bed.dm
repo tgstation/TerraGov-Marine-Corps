@@ -136,6 +136,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
+	flags_atom = NOPULLPENALTY
 
 /obj/structure/stool/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/roller_holder))
