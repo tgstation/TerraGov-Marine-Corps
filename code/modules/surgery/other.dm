@@ -164,6 +164,7 @@
 
 		if(container.reagents.has_reagent("peridaxon"))
 			affected.status &= ~ORGAN_DEAD
+			target.update_body()
 
 		user.visible_message("<span class='notice'>[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.display_name].</span>", \
 		"<span class='notice'>You apply [trans] units of the solution to affected tissue in [target]'s [affected.display_name] with \the [tool].</span>")

@@ -205,18 +205,25 @@
 		return
 	user.visible_message("<span class='notice'>[user] has attached [target]'s head to the body.</span>",	\
 	"<span class='notice'>You have attached [target]'s head to the body.</span>")
+
+	//Update our dear victim to have a head again
+
 	affected.status = 0
 	affected.amputated = 0
 	affected.destspawn = 0
 	target.update_body(0)
 	target.updatehealth()
 	target.UpdateDamageIcon()
-	user.update_inv_l_hand(0)
-	user.update_inv_r_hand()
+
+	//Prepare mind datum
 
 	var/obj/item/weapon/organ/head/B = tool
 	if(B.brainmob.mind)
 		B.brainmob.mind.transfer_to(target)
+
+	//Deal with the head item properly
+
+	user.drop_item(B)
 	del(B)
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
