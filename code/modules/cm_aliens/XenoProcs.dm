@@ -331,10 +331,10 @@
 		return
 
 	switch(strength_t - ticks)
-		if(6) visible_message("<span class='warning'>[acid_t] is holding up against the acid!</span>")
-		if(4) visible_message("<span class='warning'>[acid_t]\s structure is being melted by the acid!</span>")
-		if(2) visible_message("<span class='warning'>[acid_t] is struggling to withstand the acid!</span>")
-		if(0 to 1) visible_message("<span class='warning'>[acid_t] begins to crumble under the acid!</span>")
+		if(6) visible_message("<span class='xenowarning'>\The [acid_t] is barely holding up against the acid!</span>")
+		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
+		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
+		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
 
 	sleep(rand(200,300) * acid_strength)
 	.()

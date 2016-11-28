@@ -212,10 +212,10 @@
 	if(!W || !user || isnull(W))
 		return 0
 
-	if(W.attack_verb.len)
-		visible_message("<span class='danger'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+	if(istype(src, /obj/effect/alien/weeds/node)) //The pain is real
+		user << "<span class='warning'>You hit \the [src] with \the [W].</span>"
 	else
-		visible_message("<span class='danger'>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+		user << "<span class='warning'>You cut \the [src] away with \the [W].</span>"
 
 	var/damage = W.force / 4.0
 
