@@ -30,7 +30,7 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/to_xenos = 1)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/to_xenos = 0)
 	if(!message)
 		return
 	var/tmp/message_title = new_title ? new_title : title
@@ -45,7 +45,7 @@
 	Sound(message_sound, to_xenos)
 	Log(message, message_title)
 
-/datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 1)
+/datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in player_list)
 		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
 			continue
@@ -95,13 +95,13 @@
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-/datum/announcement/proc/PlaySound(var/message_sound, var/to_xenos = 1)
+/datum/announcement/proc/PlaySound(var/message_sound, var/to_xenos = 0)
 	if(!message_sound)
 		return
 	for(var/mob/M in player_list)
-		if(istype(M,/mob/living/carbon/Xenomorph) && !to_xenos)
+		if(isXeno(M) && !to_xenos)
 			continue
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
+		if(!istype(M, /mob/new_player) && !isdeaf(M))
 			M << message_sound
 
 /datum/announcement/proc/Sound(var/message_sound)
@@ -111,7 +111,7 @@
 	if(sound)
 		world << sound
 
-/datum/announcement/priority/command/Sound(var/message_sound, var/to_xenos = 1)
+/datum/announcement/priority/command/Sound(var/message_sound, var/to_xenos = 0)
 	PlaySound(message_sound, to_xenos)
 
 /datum/announcement/proc/Log(message as text, message_title as text)
