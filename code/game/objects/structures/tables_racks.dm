@@ -24,6 +24,7 @@
 	parts = /obj/item/weapon/table_parts
 
 	var/flipped = 0
+	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	var/health = 100
 
 /obj/structure/table/destroy(var/deconstruct = 0)
@@ -61,7 +62,7 @@
 	if(istype(O,/mob/living/carbon/Xenomorph/Ravager) || istype(O,/mob/living/carbon/Xenomorph/Crusher))
 		var/mob/living/carbon/Xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
+			visible_message("<span class='danger'>[O] plows straight through \the [src]!</span>")
 			destroy()
 
 /obj/structure/table/Del()
@@ -303,6 +304,16 @@
 			return 1
 	return 1
 
+//Flipping tables, nothing more, nothing less
+/obj/structure/table/MouseDrop(over_object, src_location, over_location)
+
+	..()
+
+	if(flipped)
+		do_put()
+	else
+		do_flip()
+
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
 
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
@@ -392,11 +403,11 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (!can_touch(usr) || ismouse(usr))
+	if(!can_touch(usr) || ismouse(usr))
 		return
 
-	if(!flip(get_cardinal_dir(usr,src)))
-		usr << "<span class='notice'>It won't budge.</span>"
+	if(!flip(get_cardinal_dir(usr, src)))
+		usr << "<span class='warning'>It won't budge.</span>"
 		return
 
 	usr.visible_message("<span class='warning'>[usr] flips \the [src]!</span>")
@@ -404,10 +415,14 @@
 	if(climbable)
 		structure_shaken()
 
-	return
+	flip_cooldown = world.time + 50
 
 /obj/structure/table/proc/unflipping_check(var/direction)
-	for(var/mob/M in oview(src,0))
+
+	if(world.time < flip_cooldown)
+		return 0
+
+	for(var/mob/M in oview(src, 0))
 		return 0
 
 	var/list/L = list()
@@ -429,16 +444,23 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (!can_touch(usr))
+	if(!can_touch(usr))
 		return
 
-	if (!unflipping_check())
-		usr << "<span class='notice'>It won't budge.</span>"
+	if(!unflipping_check())
+		usr << "<span class='warning'>It won't budge.</span>"
 		return
+
 	unflip()
 
+	flip_cooldown = world.time + 50
+
 /obj/structure/table/proc/flip(var/direction)
-	if( !straight_table_check(turn(direction,90)) || !straight_table_check(turn(direction,-90)) )
+
+	if(world.time < flip_cooldown)
+		return 0
+
+	if(!straight_table_check(turn(direction,90)) || !straight_table_check(turn(direction,-90)))
 		return 0
 
 	verbs -=/obj/structure/table/verb/do_flip
@@ -466,6 +488,7 @@
 	return 1
 
 /obj/structure/table/proc/unflip()
+
 	verbs -=/obj/structure/table/proc/do_put
 	verbs +=/obj/structure/table/verb/do_flip
 
