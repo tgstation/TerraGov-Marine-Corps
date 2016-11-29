@@ -38,6 +38,7 @@
 	var/jamming			= 0	 //How often the gun jams.
 	var/fire_delay 		= 0  //For regular shots, how long to wait before firing again.
 	var/last_fired 		= 0  //When it was last fired, related to world.time.
+	var/aim_slowdown	= 0  //Self explanatory. How much does aiming (wielding the gun) slow you
 
 	//Burst fire.
 	var/burst_amount 	= 0 //How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -91,57 +92,91 @@
 		burst_amount = config.min_burst_value
 		update_force_list() //This gives the gun some unique verbs for attacking.
 
-	Dispose()
-		. = ..()
-		in_chamber 		= null
-		ammo 			= null
-		current_mag 	= null
-		target 			= null
-		last_moved_mob 	= null
-		muzzle 			= null
-		if( (flags_gun_features & GUN_FLASHLIGHT_ON) && ismob(loc) ) loc.SetLuminosity(-rail.light_mod) //Handle flashlight.
-		rail 			= null
-		under 			= null
-		stock 			= null
-		attachable_overlays = null
+/obj/item/weapon/gun/Dispose()
+	. = ..()
+	in_chamber 		= null
+	ammo 			= null
+	current_mag 	= null
+	target 			= null
+	last_moved_mob 	= null
+	muzzle 			= null
+	if( (flags_gun_features & GUN_FLASHLIGHT_ON) && ismob(loc) ) loc.SetLuminosity(-rail.light_mod) //Handle flashlight.
+	rail 			= null
+	under 			= null
+	stock 			= null
+	attachable_overlays = null
 
-	emp_act(severity)
-		for(var/obj/O in contents)
-			O.emp_act(severity)
+/obj/item/weapon/gun/emp_act(severity)
+	for(var/obj/O in contents)
+		O.emp_act(severity)
 
-	equipped(mob/user, slot)
-		if (slot != slot_l_hand && slot != slot_r_hand)
-			stop_aim()
-			if (user.client)
-				user.client.remove_gun_icons()
+/obj/item/weapon/gun/equipped(mob/user, slot)
+	if(slot != slot_l_hand && slot != slot_r_hand)
+		stop_aim()
+		if (user.client)
+			user.client.remove_gun_icons()
 
-		unwield(user)
+	unwield(user)
 
-		return ..()
+	return ..()
 
-	update_icon()
-		icon_state = (!current_mag || current_mag.current_rounds <= 0) ? icon_state + "_e" : copytext(icon_state,1,-2)
-		update_mag_overlay()
+/obj/item/weapon/gun/update_icon()
+	icon_state = (!current_mag || current_mag.current_rounds <= 0) ? icon_state + "_e" : copytext(icon_state,1,-2)
+	update_mag_overlay()
 
-	examine()
-		..()
-		if( !(flags_gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
+/obj/item/weapon/gun/examine()
+	..()
+	if( !(flags_gun_features & GUN_UNUSUAL_DESIGN) ) //If they don't follow standard gun rules, all of this doesn't apply.
 
-			var/dat = ""
-			if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
+		var/dat = ""
+		if(flags_gun_features & GUN_TRIGGER_SAFETY) dat += "The safety's on!<br>"
 
-			if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-			if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-			if(under) 	dat += "It has \icon[under] [under.name] mounted underneath.<br>"
-			if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+		if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
+		if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
+		if(under) 	dat += "It has \icon[under] [under.name] mounted underneath.<br>"
+		if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
 
-			if(!istype(current_mag)) //Internal mags and the like have their own stuff set.
-				if(current_mag && current_mag.current_rounds > 0)
-					if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
-					else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
-				else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
-			usr << dat
+		if(!istype(current_mag)) //Internal mags and the like have their own stuff set.
+			if(current_mag && current_mag.current_rounds > 0)
+				if(flags_gun_features & GUN_AMMO_COUNTER) dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
+				else 								dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
+			else 									dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+		usr << dat
 
+/obj/item/weapon/gun/wield(var/mob/user)
+
+	if(!(flags_atom & TWOHANDED) || flags_atom & WIELDED)
+		return
+
+	if(user.get_inactive_hand())
+		user << "<span class='warning'>You need your other hand to be empty!</span>"
+		return
+
+	if(ishuman(user))
+		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
+		var/mob/living/carbon/human/wielder = user
+		var/datum/organ/external/hand = wielder.organs_by_name[check_hand]
+		if(!istype(hand) || !hand.is_usable())
+			user << "<span class='warning'>Your other hand can't hold \the [src]!</span>"
+			return
+
+	flags_atom 	   ^= WIELDED
+	name 	   += " (Wielded)"
+	item_state += "_w"
+	slowdown = initial(slowdown) + aim_slowdown
+	place_offhand(user, initial(name))
+	return 1
+
+/obj/item/weapon/gun/unwield(var/mob/user)
+
+	if((flags_atom|TWOHANDED|WIELDED) != flags_atom)
+		return //Have to be actually a twohander and wielded.
+	flags_atom ^= WIELDED
+	name 	    = copytext(name, 1, -10)
+	item_state  = copytext(item_state, 1, -2)
+	slowdown = initial(slowdown)
+	remove_offhand(user)
+	return 1
 
 //----------------------------------------------------------
 			//							        \\

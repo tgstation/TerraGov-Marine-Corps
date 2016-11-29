@@ -53,6 +53,10 @@
 	//Comile reducible tally and send it to total tally
 	tally += reducible_tally
 
+	if(istype(get_active_hand(), /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
+		tally += G.slowdown
+
 	if(isturf(src.loc))
 		if(locate(/obj/effect/alien/resin/sticky) in src.loc) //Sticky resin slows you down
 			tally += 8

@@ -178,6 +178,7 @@
 	flags_equip_slot = 0
 	w_class = 5
 	force = 20
+	aim_slowdown = 2
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety off.
@@ -430,6 +431,7 @@
 	flags_equip_slot = 0
 	w_class = 5
 	force = 15
+	aim_slowdown = 2
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 

@@ -223,7 +223,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon = 'icons/Marine/marine_armor.dmi'
 	icon_state = "8"
 	item_state = "armor"
-	slowdown = 1
 	icon_override = 'icons/Marine/marine_armor.dmi'
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
