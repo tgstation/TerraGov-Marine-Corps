@@ -117,7 +117,7 @@ include jackets and regular suits, not armor.*/
 	flags_pass = PASSTABLE
 	flags_atom = FPRINT
 	flags_equip_slot = SLOT_ICLOTHING
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
@@ -137,12 +137,12 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine
 	name = "\improper USCM uniform"
-	desc = "The issue uniform for the USCM forces. It is weaved with light kevlar plates that protect against light impacts and light-caliber rounds."
-	armor = list(melee = 5, bullet = 10, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+	desc = "A standard-issue Marine uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
 	item_state = "marine_jumpsuit"
 	item_color = "marine_jumpsuit"
+	armor = list(melee = 5, bullet = 5, laser = 5, energy = 5, bomb = 5, bio = 5, rad = 5)
 
 	New(loc,expected_type 		= /obj/item/clothing/under/marine,
 		new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM snow uniform"),
@@ -154,8 +154,8 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/underoos
 	name = "marine underpants"
-	desc = "A simple outfit worn by USCM operators during cyrosleep. Makes you drowsy and slower while wearing. Find an actual uniform and change out."
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
+	desc = "A simple undergarment worn by USCM operators during cryosleep. Makes you drowsy and slower while wearing. You should find an actual uniform."
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	icon_state = "marine_underpants"
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
@@ -163,7 +163,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/medic
 	name = "\improper USCM medic uniform"
-	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has medical markings. "
+	desc = "A standard-issue Marine Medic uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_medic"
 	item_state = "marine_medic"
 	item_color = "marine_medic"
@@ -175,7 +175,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper USCM engineer uniform"
-	desc = "A standard quilted Colonial Marine jumpsuit. Weaved with armored plates to protect against low-caliber rounds and light impacts. Has engineer markings. "
+	desc = "A standard-issue Marine Engineer uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_engineer"
 	item_state = "marine_engineer"
 	item_color = "marine_engineer"
@@ -203,7 +203,7 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/rank/ro_suit
 	name = "requisition officer suit."
-	desc = "A nicely-fitting military suit for a requisition officer."
+	desc = "A nicely-fitting military suit for a requisition officer. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "RO_jumpsuit"
 	item_state = "RO_jumpsuit"
 	item_color = "RO_jumpsuit"
@@ -218,13 +218,14 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/mp
 	name = "military police jumpsuit"
+	desc = "A standard-issue Military Police uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "MP_jumpsuit"
 	item_state = "MP_jumpsuit"
 	item_color = "MP_jumpsuit"
 
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
-	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too."
+	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "milohachert"
 	item_state = "milohachert"
 	item_color = "milohachert"
@@ -236,13 +237,13 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/officer/logistics
 	name = "marine officer uniform"
-	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
+	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/pilot
 	name = "pilot officer bodysuit"
-	desc = "A bodysuit worn by pilot officers of the USCM, and is meant for survival in inhospitable conditions. Fly the marines onwards to glory."
+	desc = "A bodysuit worn by pilot officers of the USCM, and is meant for survival in inhospitable conditions. Fly the marines onwards to glory. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "pilot_flightsuit"
 	item_state = "pilot_flightsuit"
 	item_color = "pilot_flightsuit"
@@ -250,45 +251,45 @@ include jackets and regular suits, not armor.*/
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "bridge officer uniform"
-	desc = "A uniform worn by commissoned officers of the USCM. Do the corps proud."
+	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "BO_jumpsuit"
 	item_state = "BO_jumpsuit"
 	item_color = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec
 	name = "executive officer uniform"
-	desc = "A uniform typically worn by a First-lieutenant in the USCM. The Executive Officer is the second in-charge of the USCM forces onboard the USS Sulaco."
+	desc = "A uniform typically worn by a first-lieutenant Executive Officer in the USCM. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "XO_jumpsuit"
 	item_state = "XO_jumpsuit"
 	item_color = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
-	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled."
+	desc = "The well-ironed uniform of a USCM Captain, the commander onboard the USS Sulaco. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "CO_jumpsuit"
 	item_state = "CO_jumpsuit"
 	item_color = "CO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief engineer uniform"
-	desc = "A uniform for the engineering crew of the USS Sulaco. Slightly protective against enviromental hazards. Worn by the Chief.."
-	armor = list(melee = 0, bullet = 0, laser = 25,energy = 0, bomb = 0, bio = 0, rad = 25)
+	desc = "A uniform for the engineering crew of the USS Sulaco. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	armor = list(melee = 5, bullet = 5, laser = 25, energy = 5, bomb = 5, bio = 5, rad = 25)
 	icon_state = "EC_jumpsuit"
 	item_state = "EC_jumpsuit"
 	item_color = "EC_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
-	desc = "A uniform for the engineering crew of the USS Sulaco. Slightly protective against enviromental hazards."
-	armor = list(melee = 0, bullet = 0, laser = 15,energy = 0, bomb = 0, bio = 0, rad = 10)
+	desc = "A uniform for the engineering crew of the USS Sulaco. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	armor = list(melee = 5, bullet = 5, laser = 15, energy = 5, bomb = 5, bio = 5, rad = 10)
 	icon_state = "E_jumpsuit"
 	item_state = "E_jumpsuit"
 	item_color = "E_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/researcher
 	name = "researcher clothes"
-	desc = "A simple set of civilian clothes worn by researchers. "
-	armor = list(melee = 0, bullet = 0, laser = 15,energy = 10, bomb = 0, bio = 10, rad = 10)
+	desc = "A simple set of civilian clothes worn by researchers. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	armor = list(melee = 5, bullet = 5, laser = 5, energy = 10, bomb = 10, bio = 10, rad = 5)
 	icon_state = "research_jumpsuit"
 	item_state = "research_jumpsuit"
 	item_color = "research_jumpsuit"
@@ -376,7 +377,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "marshal"
 	item_state = "marshal"
 	item_color = "marshal"
-	armor = list(melee = 15, bullet = 15, laser = 15,energy = 5, bomb = 5, bio = 0, rad = 0)
+	armor = list(melee = 15, bullet = 15, laser = 15,energy = 5, bomb = 5, bio = 5, rad = 5)
 	has_sensor = 0
 
 /obj/item/clothing/suit/storage/CMB
