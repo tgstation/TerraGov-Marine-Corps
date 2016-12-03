@@ -92,14 +92,18 @@
 			update_inv_head()
 		update_inv_wear_suit()
 	else if (W == w_uniform)
-		if (r_store)
+		if(r_store)
 			drop_from_inventory(r_store)
-		if (l_store)
+		if(l_store)
 			drop_from_inventory(l_store)
-		if (wear_id)
+		if(wear_id)
 			drop_from_inventory(wear_id)
-		if (belt)
+		if(belt)
 			drop_from_inventory(belt)
+		if(wear_suit) //We estimate all armors with uniform restrictions aren't okay with removing the uniform altogether
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.uniform_restricted.len)
+				drop_from_inventory(wear_suit)
 		w_uniform = null
 		success = 1
 		update_inv_w_uniform()

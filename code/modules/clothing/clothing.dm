@@ -1,6 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	var/list/species_restricted = null //Only these species can wear this kit.
+	var/list/uniform_restricted = list() //Need to wear this uniform to equip this
 
 	/*
 		Sprites used when the clothing item is refit. This is done by setting icon_override.
@@ -15,32 +16,41 @@
 	return
 
 //BS12: Species-restricted clothing check.
+//CM Update : Restricting armor to specific uniform
 /obj/item/clothing/mob_can_equip(M as mob, slot)
 
 	//if we can't equip the item anyway, don't bother with species_restricted (cuts down on spam)
 	if (!..())
 		return 0
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
+	if(ishuman(M))
 
-		var/wearable = null
-		var/exclusive = null
 		var/mob/living/carbon/human/H = M
+		var/obj/item/clothing/under/U = H.w_uniform
 
-		if("exclude" in species_restricted)
-			exclusive = 1
+		if(uniform_restricted.len && (!is_type_in_list(U, uniform_restricted) || !U))
+			H << "<span class='warning'>Your [U ? "[U.name]":"naked body"] doesn't allow you to wear this [name].</span>" //Note : Duplicate warning, commenting
+			return 0
 
-		if(H.species)
-			if(exclusive)
-				if(!(H.species.name in species_restricted))
-					wearable = 1
-			else
-				if(H.species.name in species_restricted)
-					wearable = 1
+		if(species_restricted)
 
-			if(!wearable && (slot != 15 && slot != 16)) //Pockets.
-				M << "\red Your species cannot wear [src]."
-				return 0
+			var/wearable = null
+			var/exclusive = null
+
+			if("exclude" in species_restricted)
+				exclusive = 1
+
+			if(H.species)
+				if(exclusive)
+					if(!(H.species.name in species_restricted))
+						wearable = 1
+				else
+					if(H.species.name in species_restricted)
+						wearable = 1
+
+				if(!wearable && (slot != 15 && slot != 16)) //Pockets.
+					M << "\red Your species cannot wear [src]."
+					return 0
 
 	return 1
 

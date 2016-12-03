@@ -52,6 +52,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	siemens_coefficient = 0.6
 	w_class = 5
 	allowed = list(/obj/item/weapon/gun)//Guns only.
+	uniform_restricted = list(/obj/item/clothing/under)
 
 /obj/item/clothing/suit/armor/vest
 	name = "armored vest"
@@ -89,6 +90,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/backpack/gun/machete,
 		/obj/item/weapon/storage/belt/gun/m4a3,
 		/obj/item/weapon/storage/belt/gun/m44)
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
 
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"
@@ -96,6 +98,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "dutch_armor"
 	item_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
@@ -167,6 +170,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	w_class = 5
+	uniform_restricted = list(/obj/item/clothing/under/marine)
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
@@ -185,11 +189,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/device/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/storage/sparepouch,)
+	uniform_restricted = list(/obj/item/clothing/under/marine/mp)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
 	name = "\improper M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
+	uniform_restricted = list(/obj/item/clothing/under/marine/officer)
 
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "\improper M3 pattern recon armor"
@@ -200,6 +206,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
+	uniform_restricted = list(/obj/item/clothing/under/marine/sniper)
 
 	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern sniper snow armor"))
@@ -286,12 +293,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/flamethrower,
 		/obj/item/weapon/combat_knife)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/PMC)
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/leader
 	name = "\improper M4 pattern PMC leader armor"
 	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
 	icon = 'icons/PMC/PMC.dmi'
 	icon_state = "officer_armor"
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/PMC/leader)
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper
 	name = "\improper M4 pattern PMC sniper armor"
@@ -326,6 +335,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/PMC/PMC.dmi'
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 90, bio = 100, rad = 100)
 	unacidable = 1
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/PMC/commando)
 
 //===========================//DISTRESS\\================================\\
 //=======================================================================\\
@@ -339,6 +349,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "bear_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 70, laser = 50, energy = 60, bomb = 50, bio = 10, rad = 10)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/bear)
 
 /obj/item/clothing/suit/storage/marine/veteran/dutch
 	name = "\improper D2 armored vest"
@@ -349,6 +360,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
 
 /obj/item/clothing/suit/space/compression
 	name = "\improper MK.50 compression suit"

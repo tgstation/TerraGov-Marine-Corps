@@ -32,6 +32,10 @@
 	if (hungry >= 70)
 		reducible_tally += hungry/50
 
+	//Equipment slowdowns
+	if(w_uniform)
+		reducible_tally += w_uniform.slowdown
+
 	if(wear_suit)
 		reducible_tally += wear_suit.slowdown
 

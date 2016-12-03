@@ -159,7 +159,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "marine_underpants"
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
-	slowdown = 3
+	slowdown = 1
 
 /obj/item/clothing/under/marine/medic
 	name = "\improper USCM medic uniform"
