@@ -63,6 +63,25 @@ datum
 			required_reagents = list("aluminum" = 1, "silicon" = 1, "oxygen" = 1)
 			result_amount = 3
 */
+		hptoxin
+			id = "hptoxin"
+			result = "hptoxin"
+			required_reagents = list("hyperzine" = 1, "peridaxon" = 1)
+			result_amount = 2
+
+		pttoxin
+			id = "pttoxin"
+			result = "pttoxin"
+			required_reagents = list("paracetamol" = 1, "tramadol" = 1)
+			result_amount = 2
+
+		sdtoxin
+			id = "sdtoxin"
+			result = "sdtoxin"
+			required_reagents = list("synaptizine" = 1, "dylovene" = 1)
+			result_amount = 2
+
+
 		stoxin
 			name = "Soporific"
 			id = "stoxin"

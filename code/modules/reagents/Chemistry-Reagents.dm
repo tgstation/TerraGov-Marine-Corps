@@ -1239,9 +1239,11 @@ datum
 			description = "Synaptizine is used to treat various diseases."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
-			custom_metabolism = 0.01
-			overdose = REAGENTS_OVERDOSE
+			custom_metabolism = 0.1
+			overdose = 6
 			scannable = 1
+			overdose_dam = 1
+
 
 			on_mob_life(mob/living/M)
 				. = ..()
@@ -1253,7 +1255,7 @@ datum
 				M.AdjustWeakened(-1)
 				holder.remove_reagent("mindbreaker", 5)
 				M.hallucination = max(0, M.hallucination - 10)
-				if(prob(60))	M.adjustToxLoss(1)
+				if(prob(80))	M.adjustToxLoss(1)
 
 		impedrezene
 			name = "Impedrezene"
@@ -1428,12 +1430,13 @@ datum
 			description = "Hyperzine is a highly effective, long lasting, muscle stimulant.  May cause heart damage"
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
-			custom_metabolism = 0.1
+			custom_metabolism = 0.2
 			overdose = 6
 
 			on_mob_life(mob/living/M)
 				. = ..()
 				if(!.) return
+				M.adjustCloneLoss(0.1)
 				if(volume > overdose)
 					if(ishuman(M))
 						if(prob(50))
@@ -1630,6 +1633,33 @@ datum
 					M.adjustToxLoss(toxpwr*REM)
 					if(alien) holder.remove_reagent(id, custom_metabolism) //Kind of a catch-all for aliens without kidneys.
 					///I don't know what this is supposed to do, since aliens generally have kidneys, but I'm leaving it alone pending rework. /N
+
+		toxin/hptoxin
+			name = "Toxin"
+			id = "hptoxin"
+			description = "A toxic chemical."
+			custom_metabolism = 1
+			toxpwr = 1
+
+		toxin/pttoxin
+			name = "Toxin"
+			id = "pttoxin"
+			description = "A toxic chemical."
+			custom_metabolism = 1
+			toxpwr = 1
+
+		toxin/sdtoxin
+			name = "Toxin"
+			id = "sdtoxin"
+			description = "A toxic chemical."
+			custom_metabolism = 1
+			toxpwr = 0
+			on_mob_life(mob/living/M,alien)
+				. = ..()
+				if(!.) return
+				if(!M) M = holder.my_atom
+				M.adjustOxyLoss(1)
+
 
 		toxin/amatoxin
 			name = "Amatoxin"
