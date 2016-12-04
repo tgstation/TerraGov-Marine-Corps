@@ -15,6 +15,16 @@
 	if(species.slowdown)
 		tally = species.slowdown
 
+	//Equipment slowdowns
+	if(w_uniform)
+		tally += w_uniform.slowdown
+
+	if(wear_suit)
+		tally += wear_suit.slowdown
+
+	if(FAT in src.mutations)
+		tally += 1.5
+
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
@@ -32,29 +42,21 @@
 	if (hungry >= 70)
 		reducible_tally += hungry/50
 
-	//Equipment slowdowns
-	if(w_uniform)
-		reducible_tally += w_uniform.slowdown
-
-	if(wear_suit)
-		reducible_tally += wear_suit.slowdown
-
 	if(reagents.has_reagent("hyperzine"))
 		reducible_tally -= 1.5
 
 	if(reagents.has_reagent("nuka_cola"))
 		reducible_tally -= 1
 
-	if(FAT in src.mutations)
-		reducible_tally += 1.5
-
 	if(shock_stage >= 10 && !isYautja(src))
 		reducible_tally += 3
 
-	if (bodytemperature < 283.222 && !isYautja(src))
+	if(bodytemperature < 283.222 && !isYautja(src))
 		reducible_tally += (283.222 - bodytemperature) / 10 * 1.75
 
-	//Comile reducible tally and send it to total tally
+	reducible_tally = max(0, reducible_tally)
+
+	//Compile reducible tally and send it to total tally
 	tally += reducible_tally
 
 	if(istype(get_active_hand(), /obj/item/weapon/gun))
