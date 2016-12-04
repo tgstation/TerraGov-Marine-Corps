@@ -23,6 +23,14 @@
 
 	var/walltype = "metal"
 
+/turf/simulated/wall/New()
+	..()
+	for(var/obj/item/device/mine/M in src)
+		if(M)
+			visible_message("<span class='warning'>\The [M] is sealed inside the wall as it is built</span>")
+			cdel(M)
+			cdel(M.tripwire)
+
 /turf/simulated/wall/Del()
 	for(var/obj/effect/E in src) if(E.name == "Wallrot") del E
 	..()

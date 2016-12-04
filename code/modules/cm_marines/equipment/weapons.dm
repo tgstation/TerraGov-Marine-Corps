@@ -576,6 +576,10 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 		user << "<span class='warning'>There already is a mine at this position!</span>"
 		return
 
+	if(user.loc && user.loc.density)
+		user << "<span class='warning'>How do you plan to put a mine inside a wall?</span>"
+		return
+
 	if(user.z == 3 || user.z == 4) // On the Sulaco.
 		user << "<span class='warning'>Are you crazy? You can't plant a mine on a spaceship!</span>"
 		return
