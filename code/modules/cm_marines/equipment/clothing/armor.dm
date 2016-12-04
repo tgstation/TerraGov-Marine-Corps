@@ -206,7 +206,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
-	uniform_restricted = list(/obj/item/clothing/under/marine/sniper)
+	//uniform_restricted = list(/obj/item/clothing/under/marine/sniper) //TODO : This item exists, but isn't implemented yet. Makes sense otherwise
 
 	New(loc,expected_type 	= type,
 		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern sniper snow armor"))
