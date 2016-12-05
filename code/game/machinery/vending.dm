@@ -780,8 +780,8 @@
 
 /obj/machinery/vending/snack
 	name = "Hot Foods Machine"
-	desc = "A vending machine full of ready cooked meals, mhmmmm taste the nutritional goodness!"
-	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
+	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
+	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/kepler_crisps = 12,
@@ -795,22 +795,32 @@
 
 
 /obj/machinery/vending/cola
-	name = "Robust Softdrinks"
-	desc = "A softdrink vendor provided by Robust Industries, LLC."
+	name = "Souto Softdrinks"
+	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
-	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_slogans = "Souto Soda: have a Souto and be taken away to a tropical paradise!"
+	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Weyland-Yutani Fruit Beer. Nothing came from that lawsuit!;Weyland-Yutani Spring Water. It came from a spring!"
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/souto = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/diet = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry/diet = 10,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10)
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/lime = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/lime/diet = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/grape = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/grape/diet = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 10)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/souto = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/diet = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/cherry/diet = 5,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2)
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/lime = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/lime/diet = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/grape = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 10)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 //This one's from bay12
@@ -826,26 +836,34 @@
 
 
 /obj/machinery/vending/cigarette
-	name = "Cigarette machine" //OCD had to be uppercase to look nice with the new formating
+	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
 	desc = "If you want to get cancer, might as well do it in style!"
-	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
-	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
+	product_slogans = "L.S./M.F.T.! Lucky Strikes Means Fine Tobacco.;For a classic style that lights up every time, there's always Zippo!;The FDA would like to remind you that tobacco products cause cancer and increased fatigue."
+	product_ads = "Ream men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!;Life's short, smoke a Lucky!;L.S./M.F.T.!;Lucky Strike is first again!;You just can't beat a Lucky Strike!;The preferred cigarette of Audie Murphy!;First again with tobacco-men!"
 	vend_delay = 14
 	icon_state = "cigs"
 	products = list(/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = 50,
-					/obj/item/weapon/storage/box/matches = 10,
-					/obj/item/weapon/flame/lighter/random = 15,
-					/obj/item/weapon/flame/lighter/zippo = 5)
+					/obj/item/weapon/storage/box/matches = 15,
+					/obj/item/weapon/flame/lighter/random = 25,
+					/obj/item/weapon/flame/lighter/zippo = 10)
 
-	premium = list(/obj/item/weapon/storage/fancy/cigar = 5)
-	prices = list()
+	premium = list(/obj/item/weapon/storage/fancy/cigar = 25)
+	prices = list(/obj/item/weapon/storage/fancy/cigarettes/lucky_strikes = 15,
+					/obj/item/weapon/storage/box/matches = 1,
+					/obj/item/weapon/flame/lighter/random = 2,
+					/obj/item/weapon/flame/lighter/zippo = 20)
 
 /obj/machinery/vending/cigarette/colony
-	products = list(/obj/item/weapon/storage/fancy/cigarettes/kpack = 30,
-					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 10,
-					/obj/item/weapon/storage/fancy/cigarettes = 10,
+	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!"
+	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	products = list(/obj/item/weapon/storage/fancy/cigarettes/kpack = 15,
+					/obj/item/weapon/storage/fancy/cigarettes/lady_finger = 15,
 					/obj/item/weapon/storage/box/matches = 10,
-					/obj/item/weapon/flame/lighter/random = 15)
+					/obj/item/weapon/flame/lighter/random = 20)
+	prices = list(/obj/item/weapon/storage/fancy/cigarettes/kpack = 15,
+					/obj/item/weapon/storage/fancy/cigarettes/lady_finger = 15,
+					/obj/item/weapon/storage/box/matches = 1,
+					/obj/item/weapon/flame/lighter/random = 2)
 
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"

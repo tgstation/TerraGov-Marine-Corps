@@ -184,13 +184,19 @@
 	name = "\improper Lucky Strikes Packet"
 	desc = "Lucky Strikes Means Fine Tobacco! 9/10 doctors agree on Lucky Strikes...as the leading cause of marine lung cancer."
 	icon_state = "lspacket"
-	item_state = "Dpacket"
+	item_state = "lspacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/kpack
 	name = "\improper Koorlander Gold packet"
-	desc = "Koorlander, Gold quality cigarettes. Now cures cancer!"
+	desc = "Koorlander, Gold: 3% tobacco. 97% other. For when you want to look cool and the risk of a slow horrible death isn't really a factor."
 	icon_state = "kpacket"
 	item_state = "kpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/lady_finger
+	name = "\improper Lady Finger packet"
+	desc = "You're not sure what makes these high-menthol cigarettes 'Ladylike,' but damn do they calm the shakes."
+	icon_state = "lfpacket"
+	item_state = "lfpacket"
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
