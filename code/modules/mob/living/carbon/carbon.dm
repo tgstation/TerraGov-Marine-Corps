@@ -291,9 +291,12 @@
 
 /mob/living/carbon/throw_item(atom/target)
 	src.throw_mode_off()
+	if(is_ventcrawling) //NOPE
+		return
 	if(usr.stat || !target)
 		return
-	if(target.type == /obj/screen) return
+	if(target.type == /obj/screen)
+		return
 
 	var/atom/movable/item = src.get_active_hand()
 
