@@ -125,7 +125,9 @@
 	set category = "Alien"
 	if(!check_state())
 		return
-	handle_ventcrawl()
+	var/pipe = start_ventcrawl()
+	if(pipe)
+		handle_ventcrawl(pipe)
 
 /mob/living/carbon/Xenomorph/proc/regurgitate()
 	set name = "Regurgitate"

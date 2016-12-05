@@ -42,6 +42,9 @@
 		/mob/living/carbon/Xenomorph/proc/tail_attack
 		)
 
+/mob/living/carbon/Xenomorph/Ravager/can_ventcrawl()
+	return
+
 /mob/living/carbon/Xenomorph/Ravager/ClickOn(var/atom/A, params)
 
 	var/list/modifiers = params2list(params)

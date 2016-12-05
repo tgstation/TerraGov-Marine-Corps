@@ -13,6 +13,10 @@
 	var tierB = 0.0 //Tier 2
 	var tierC = 0.0 //Tier 3
 
+	if(is_ventcrawling)
+		src << "<span class='warning'>This place is too constraining to evolve.</span>"
+		return
+
 	if(hardcore)
 		src << "<span class='warning'>Nuh-uh.</span>"
 		return

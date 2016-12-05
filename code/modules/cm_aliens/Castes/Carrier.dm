@@ -39,6 +39,8 @@
 		///mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
+/mob/living/carbon/Xenomorph/Carrier/can_ventcrawl()
+	return
 
 /mob/living/carbon/Xenomorph/Carrier/Stat()
 	..()

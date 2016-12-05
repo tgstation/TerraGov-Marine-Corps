@@ -54,3 +54,7 @@
 	var/in_stasis = 0 //Is the mob in stasis bag?
 
 	var/tally = 0 //Tally counter, updated every Life() proc via movement procs, reset under mob/living
+
+	var/list/icon/pipes_shown = list()
+	var/last_played_vent
+	var/is_ventcrawling = 0

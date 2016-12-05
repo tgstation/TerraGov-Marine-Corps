@@ -27,6 +27,8 @@ Pipelines + Other Objects -> Pipe network
 
 	var/global/datum/pipe_icon_manager/icon_manager
 
+	var/ventcrawl_message_busy = 0 //Prevent spamming
+
 /obj/machinery/atmospherics/New()
 	if(!icon_manager)
 		icon_manager = new()
@@ -38,6 +40,12 @@ Pipelines + Other Objects -> Pipe network
 	if(!pipe_color_check(pipe_color))
 		pipe_color = null
 	..()
+
+/obj/machinery/atmospherics/Dispose()
+	for(var/mob/living/M in src) //ventcrawling is serious business
+		M.remove_ventcrawl()
+		M.loc = src.loc
+	cdel(src)
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/device/pipe_painter))
@@ -136,3 +144,53 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 
 /obj/machinery/atmospherics/update_icon()
 	return null
+
+#define VENT_SOUND_DELAY 20
+
+/obj/machinery/atmospherics/relaymove(mob/living/user, direction)
+	if(!(direction & initialize_directions)) //can't go in a way we aren't connecting to
+		return
+
+	var/obj/machinery/atmospherics/target_move = findConnecting(direction)
+	if(target_move)
+		if(is_type_in_list(target_move, ventcrawl_machinery) && target_move.can_crawl_through())
+			if(ventcrawl_message_busy > world.time)
+				return
+			ventcrawl_message_busy = world.time + 20
+			target_move.visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
+			user << "<span class='notice'>You begin to climb out of \the [target_move]</span>"
+			if(do_after(user, 20))
+				user.remove_ventcrawl()
+				user.forceMove(target_move.loc) //handles entering and so on
+				user.visible_message("<span class='warning'>[user] climbs out of \the [target_move].</span>", \
+				"<span class='notice'>You climb out the ventilation system.</span>")
+		else if(target_move.can_crawl_through())
+			user.loc = target_move
+			user.client.eye = target_move //if we don't do this, Byond only updates the eye every tick - required for smooth movement
+			if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
+				user.last_played_vent = world.time
+				playsound(src, 'sound/machines/ventcrawl.ogg', 50, 1, -3)
+	else
+		if((direction & initialize_directions) || is_type_in_list(src, ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
+			if(ventcrawl_message_busy > world.time)
+				return
+			ventcrawl_message_busy = world.time + 20
+			visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
+			user << "<span class='notice'>You begin to climb out of \the [src]</span>"
+			if(do_after(user, 20))
+				user.remove_ventcrawl()
+				user.forceMove(src.loc)
+				user.visible_message("<span class='warning'>[user] climbs out of \the [src].</span>", \
+				"<span class='notice'>You climb out the ventilation system./span>")
+	user.canmove = 0
+	spawn(1)
+		user.canmove = 1
+
+/obj/machinery/atmospherics/proc/can_crawl_through()
+	return 1
+
+//Find a connecting /obj/machinery/atmospherics in specified direction.
+/obj/machinery/atmospherics/proc/findConnecting(var/direction)
+	for(var/obj/machinery/atmospherics/target in get_step(src,direction))
+		if(target.initialize_directions & get_dir(target,src))
+			return target

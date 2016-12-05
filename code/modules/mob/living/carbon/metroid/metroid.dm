@@ -536,11 +536,6 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 			++Discipline
 	return
 
-/mob/living/carbon/slime/can_use_vents()
-	if(Victim)
-		return "You cannot ventcrawl while feeding."
-	..()
-
 /obj/item/slime_extract
 	name = "slime extract"
 	desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."

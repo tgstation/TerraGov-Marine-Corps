@@ -113,6 +113,3 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "splats"
-
-/mob/living/simple_animal/mouse/can_use_vents()
-	return

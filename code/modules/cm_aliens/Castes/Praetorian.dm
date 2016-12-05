@@ -37,6 +37,9 @@
 		/mob/living/carbon/Xenomorph/proc/neurotoxin //Stronger version
 		)
 
+/mob/living/carbon/Xenomorph/Praetorian/can_ventcrawl()
+	return
+
 /mob/living/carbon/Xenomorph/Praetorian/ClickOn(var/atom/A, params)
 
 	var/list/modifiers = params2list(params)

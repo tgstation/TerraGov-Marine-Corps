@@ -35,6 +35,9 @@
 	//	/mob/living/carbon/Xenomorph/proc/secure_host
 		)
 
+/mob/living/carbon/Xenomorph/Hivelord/can_ventcrawl()
+	return
+
 /mob/living/carbon/Xenomorph/Hivelord/proc/toggle_speed()
 	set name = "Resin Walker"
 	set desc = "Become one with the weeds. This is a toggleable ability that drains plasma until deactivated, but GREATLY increases your movement speed on weeds."

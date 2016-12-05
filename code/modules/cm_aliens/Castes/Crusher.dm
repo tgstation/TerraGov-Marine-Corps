@@ -43,6 +43,9 @@
 		/mob/living/carbon/Xenomorph/Crusher/proc/ready_charge
 		)
 
+/mob/living/carbon/Xenomorph/Crusher/can_ventcrawl()
+	return
+
 /mob/living/carbon/Xenomorph/Crusher/Stat()
 	..()
 	stat(null, "Momentum: [momentum]")

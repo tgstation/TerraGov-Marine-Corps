@@ -438,3 +438,6 @@
 			ML.handle_ventcrawl(src)
 			return
 	..()*/
+
+/obj/machinery/atmospherics/unary/vent_pump/can_crawl_through()
+	return !welded

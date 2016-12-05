@@ -1,6 +1,7 @@
 //Xenomorph General Procs And Functions - Colonial Marines
 //LAST EDIT: APOPHIS 22MAY16
 
+/*
 //First, dealing with alt-clicking vents.
 /mob/living/carbon/Xenomorph/ClickOn(atom/A, params)
 	var/list/modifiers = params2list(params)
@@ -13,6 +14,7 @@
 			return
 	else
 		..()
+*/
 
 //Send a message to all xenos. Mostly used in the deathgasp display
 /proc/xeno_message(var/message = null, var/size = 3)
@@ -177,9 +179,6 @@
 //These don't do much currently. Or anything? Only around for legacy code.
 /mob/living/carbon/Xenomorph/restrained()
 	return 0
-
-/mob/living/carbon/Xenomorph/can_use_vents()
-	return 1
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	return
