@@ -70,14 +70,12 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 					vent_found = null
 
 			if(!vent_found)
-				for(var/obj/machinery/atmospherics/machine in range(1,src))
-					if(is_type_in_list(machine, ventcrawl_machinery))
-						vent_found = machine
-
-					if(!vent_found.can_crawl_through())
-						vent_found = null
-
-					if(vent_found)
+				var/obj/machinery/atmospherics/P
+				var/obj/O
+				for(O in range(1, src))
+					P = O
+					if(is_type_in_list(P, ventcrawl_machinery) && P.can_crawl_through())
+						vent_found = P
 						break
 
 			if(vent_found)
