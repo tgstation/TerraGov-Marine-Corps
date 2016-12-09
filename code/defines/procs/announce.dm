@@ -55,17 +55,17 @@
 			if (announcer)
 				M << "<span class='alert'> -[html_encode(announcer)]</span>"
 
-/datum/announcement/minor/Message(message as text, message_title as text)
+/datum/announcement/minor/Message(message as text, message_title as text, var/to_xenos = 0)
 	world << "<b>[message]</b>"
 
-/datum/announcement/priority/Message(message as text, message_title as text)
+/datum/announcement/priority/Message(message as text, message_title as text, var/to_xenos = 0)
 	world << "<h1 class='alert'>[message_title]</h1>"
 	world << "<span class='alert'>[message]</span>"
 	if(announcer)
 		world << "<span class='alert'> -[html_encode(announcer)]</span>"
 	world << "<br>"
 
-/datum/announcement/priority/command/Message(message as text, message_title as text)
+/datum/announcement/priority/command/Message(message as text, message_title as text, var/to_xenos = 0)
 	var/command
 //	command += "<h1 class='alert'>[message_title]</h1>"
 	if (message_title)
@@ -79,11 +79,11 @@
 		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isYautja(M))
 			M << command
 
-/datum/announcement/priority/security/Message(message as text, message_title as text)
+/datum/announcement/priority/security/Message(message as text, message_title as text, var/to_xenos = 0)
 	world << "<font size=4 color='red'>[message_title]</font>"
 	world << "<font color='red'>[message]</font>"
 
-/datum/announcement/proc/NewsCast(message as text, message_title as text)
+/datum/announcement/proc/NewsCast(message as text, message_title as text, var/to_xenos = 0)
 	if(!newscast)
 		return
 
