@@ -277,10 +277,10 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
 	name = "metal flask"
-	desc = "A metal flask"
+	desc = "A metal flask filled with somethign boring like water."
 	icon_state = "flask"
 	volume = 60
-	center_of_mass = list("x"=17, "y"=7)
+	center_of_mass = list("x"=17, "y"=8)
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/marine
 	name = "\improper USCM flask"
@@ -290,7 +290,8 @@
 	center_of_mass = list("x"=17, "y"=8)
 	New()
 		..()
-		reagents.add_reagent("water", 60)
+		reagents.add_reagent("water", 59)
+		reagents.add_reagent("hooch", 1)
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/detflask
 	name = "detective's flask"
