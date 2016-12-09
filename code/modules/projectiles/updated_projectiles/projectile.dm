@@ -491,7 +491,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(!damage)
 		bullet_ping(P)
-		visible_message("<span class='avoidharm'>The [src]'s thick exoskeleton deflects [P]!</span>","<span class='avoidharm'>Your thick exoskeleton deflected [P]!</span>")
+		visible_message("<span class='avoidharm'>[src]'s thick exoskeleton deflects \the [P]!</span>", \
+		"<span class='avoidharm'>Your thick exoskeleton deflected \the [P]!</span>")
 		return
 
 	bullet_message(P) //Message us about the bullet, since damage was inflicted.
@@ -507,7 +508,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		else
 			adjust_fire_stacks(rand(2,6) + round(damage / 8))
 			IgniteMob()
-			visible_message("<span class='danger'>[src] bursts into flames!</span>","<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
+			visible_message("<span class='danger'>[src] bursts into flames!</span>", \
+			"<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
 	updatehealth()
 
 	return 1
