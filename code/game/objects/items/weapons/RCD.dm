@@ -82,7 +82,7 @@ RCD
 		if(!proximity) return
 		if(disabled && !isrobot(user))
 			return 0
-		if(istype(A,/area/shuttle)||istype(A,/turf/space/transit))
+		if(istype(A,/area/shuttle) || istype(A,/turf/space/transit) || istype(A, /turf/unsimulated))
 			return 0
 		if(!(istype(A, /turf) || istype(A, /obj/machinery/door/airlock)))
 			return 0
@@ -136,14 +136,14 @@ RCD
 							return 1
 					return 0
 
-				if(istype(A, /turf/simulated/floor))
+				if(istype(A, /turf/simulated/floor) && !istype(A, /turf/simulated/floor/plating))
 					if(checkResource(5, user))
 						user << "Deconstructing Floor..."
 						playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 						if(do_after(user, 50))
 							if(!useResource(5, user)) return 0
 							activate()
-							A:ChangeTurf(/turf/space)
+							A:ChangeTurf(/turf/simulated/floor/plating/airless)
 							return 1
 					return 0
 

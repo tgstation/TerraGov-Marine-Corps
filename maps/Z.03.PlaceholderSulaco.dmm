@@ -277,7 +277,7 @@
 "fq" = (/obj/machinery/door/firedoor/border_only{dir = 2},/turf/simulated/floor{dir = 4; icon_state = "loadingarea"},/area/sulaco/showers)
 "fr" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor{icon_state = "freezerfloor"},/area/sulaco/showers)
 "fs" = (/turf/simulated/floor/plating{icon_state = "warnplate"; dir = 1},/area/sulaco/cargo)
-"ft" = (/obj/structure/table/reinforced{icon_state = "table"},/obj/item/clothing/head/welding/fluff/alice_mccrea_1,/obj/item/weapon/rcd,/obj/item/weapon/rcd_ammo,/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/sulaco/engineering/ce)
+"ft" = (/obj/structure/table/reinforced{icon_state = "table"},/obj/item/clothing/head/welding/fluff/alice_mccrea_1,/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/sulaco/engineering/ce)
 "fu" = (/obj/structure/table/reinforced{icon_state = "table"},/obj/item/weapon/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/weapon/stamp/ce,/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/sulaco/engineering/ce)
 "fv" = (/obj/structure/table/reinforced{icon_state = "table"},/obj/item/device/radio/headset/heads/ce,/obj/item/clothing/glasses/meson/fluff/book_berner_1,/obj/item/weapon/paper/monitorkey,/obj/item/weapon/pen,/obj/item/weapon/storage/briefcase/inflatable,/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/sulaco/engineering/ce)
 "fw" = (/obj/item/device/radio/intercom{anyai = 1; freerange = 1; name = "General Listening Channel"; pixel_x = 28; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/turf/simulated/floor{tag = "icon-yellowfull"; icon_state = "yellowfull"},/area/sulaco/engineering/ce)

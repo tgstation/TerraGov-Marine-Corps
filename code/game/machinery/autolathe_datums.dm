@@ -278,13 +278,13 @@
 	path = /obj/item/ammo_casing/shotgun/dart
 	hidden = 1
 	category = "Arms and Ammunition"
-*/
+
 /datum/autolathe/recipe/rcd
 	name = "rapid construction device"
 	path = /obj/item/weapon/rcd
 	hidden = 1
 	category = "Engineering"
-
+*/
 /datum/autolathe/recipe/electropack
 	name = "electropack"
 	path = /obj/item/device/radio/electropack
