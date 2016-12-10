@@ -163,7 +163,7 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				user.remove_ventcrawl()
 				user.forceMove(target_move.loc) //handles entering and so on
 				user.visible_message("<span class='warning'>[user] climbs out of \the [target_move].</span>", \
-				"<span class='notice'>You climb out of \the [target_move].</span>")
+				"<span class='notice'>You climb out the ventilation system.</span>")
 		else if(target_move.can_crawl_through())
 			user.loc = target_move
 			user.client.eye = target_move //if we don't do this, Byond only updates the eye every tick - required for smooth movement
@@ -181,7 +181,7 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				user.remove_ventcrawl()
 				user.forceMove(src.loc)
 				user.visible_message("<span class='warning'>[user] climbs out of \the [src].</span>", \
-				"<span class='notice'>You climb out of \the [src]./span>")
+				"<span class='notice'>You climb out the ventilation system./span>")
 	user.canmove = 0
 	spawn(1)
 		user.canmove = 1
