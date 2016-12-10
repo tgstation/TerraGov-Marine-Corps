@@ -81,6 +81,20 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 			if(vent_found)
 				if(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len))
 
+					if(vent_found.air_contents && !issilicon(src))
+
+						switch(vent_found.air_contents.temperature)
+							if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
+								src << "<span class='danger'>You feel a painful freeze coming from the vent!</span>"
+							if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)
+								src << "<span class='warning'>You feel an icy chill coming from the vent.</span>"
+							if(T0C + 40 to BODYTEMP_HEAT_DAMAGE_LIMIT)
+								src << "<span class='warning'>You feel a hot wash coming from the vent.</span>"
+							if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
+								src << "<span class='danger'>You feel a searing heat coming from the vent!</span>"
+
+					visible_message("<span class='notice'>[src] begins climbing into [vent_found].</span>", \
+					"<span class='notice'>You begin climbing into [vent_found].</span>")
 					src << "<span class='notice'>You begin climbing into the ventilation system.</span>"
 
 					if(!do_after(src, 45))
@@ -92,8 +106,8 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 					if(!ventcrawl_carry())
 						return
 
-					visible_message("<span class='danger'>\The [src] scrambles into the ventilation ducts!</span>", \
-					"<span class='warning'>You climb into the ventilation system.</span>")
+					visible_message("<span class='danger'>[src] scrambles into [vent_found]!</span>", \
+					"<span class='warning'>You climb into [vent_found].</span>")
 
 					forceMove(vent_found)
 					add_ventcrawl(vent_found)

@@ -158,12 +158,12 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				return
 			ventcrawl_message_busy = world.time + 20
 			target_move.visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
-			user << "<span class='notice'>You begin to climb out of \the [target_move]</span>"
+			user << "<span class='notice'>You begin to climb out of [target_move]</span>"
 			if(do_after(user, 20))
 				user.remove_ventcrawl()
 				user.forceMove(target_move.loc) //handles entering and so on
-				user.visible_message("<span class='warning'>[user] climbs out of \the [target_move].</span>", \
-				"<span class='notice'>You climb out the ventilation system.</span>")
+				user.visible_message("<span class='warning'>[user] climbs out of [target_move].</span>", \
+				"<span class='notice'>You climb out of [target_move].</span>")
 		else if(target_move.can_crawl_through())
 			user.loc = target_move
 			user.client.eye = target_move //if we don't do this, Byond only updates the eye every tick - required for smooth movement
@@ -176,12 +176,12 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				return
 			ventcrawl_message_busy = world.time + 20
 			visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
-			user << "<span class='notice'>You begin to climb out of \the [src]</span>"
+			user << "<span class='notice'>You begin to climb out of [src]</span>"
 			if(do_after(user, 20))
 				user.remove_ventcrawl()
 				user.forceMove(src.loc)
-				user.visible_message("<span class='warning'>[user] climbs out of \the [src].</span>", \
-				"<span class='notice'>You climb out the ventilation system./span>")
+				user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
+				"<span class='notice'>You climb out of [src]./span>")
 	user.canmove = 0
 	spawn(1)
 		user.canmove = 1
