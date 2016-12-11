@@ -20,6 +20,8 @@
 	var/empty_sound 	= 'sound/weapons/smg_empty_alarm.ogg'
 	var/reload_sound 	= null //We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
+	var/cock_cooldown	= 0 //world.time value, to prevent COCK COCK COCK COCK
+	var/cock_delay		= 30 //Delay before we can cock again, in tenths of seconds
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null //How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
@@ -121,7 +123,7 @@
 	return ..()
 
 /obj/item/weapon/gun/update_icon()
-	icon_state = (!current_mag || current_mag.current_rounds <= 0) ? icon_state + "_e" : copytext(icon_state,1,-2)
+	icon_state = (!current_mag || current_mag.current_rounds <= 0) ? icon_state + "_e" : copytext(icon_state, 1, -2)
 	update_mag_overlay()
 
 /obj/item/weapon/gun/examine()
@@ -192,6 +194,7 @@
 		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else ammo = ammo_list[magazine.default_ammo]
 
+//Hardcoded and horrible
 /obj/item/weapon/gun/proc/cock_gun(mob/user)
 	set waitfor = 0
 	if(cocked_sound)
@@ -248,17 +251,18 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!in_chamber)
 		ready_in_chamber()
 		cock_gun(user)
-	user << "<span class='notice'>You load [magazine] into [src]!</span>"
+	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
+	"<span class='notice'>You load [magazine] into [src]!</span>")
 	if(reload_sound) playsound(user, reload_sound, 100, 1)
 
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst.
-	if( !reload_override && ( (flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG) ) ) return
+	if(!reload_override && ((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))) return
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
-		user << "<span class='warning'>It's already empty or doesn't need to be unloaded!</span>"
+		cock(user)
 		return
 
 	if(current_mag.current_rounds <= 0 || !user) //If it's empty or there's no user,
@@ -266,11 +270,35 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	else user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 20, 1)
-	user << "<span class='notice'>You unload the magazine from [src].</span>"
+	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
+	"<span class='notice'>You unload [current_mag] from [src].</span>")
 	current_mag.update_icon()
 	current_mag = null
 
 	update_icon()
+
+//Manually cock the gun
+//This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG
+/obj/item/weapon/gun/proc/cock(mob/user)
+
+	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features || flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) return
+	if(cock_cooldown > world.time) return
+
+	cock_cooldown = world.time + cock_delay
+	playsound(user, cocked_sound, 100, 1) //Note : Needs to happen before the casing falls out, both cases do cause gun to be cocked
+
+	if(in_chamber) //There is a bullet in the chamber
+		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
+		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>")
+		make_casing(type_of_casings)
+		if(current_mag) //There is a magazine in, so cycle the new round in, I guess ?
+			ready_in_chamber()
+		else
+			in_chamber = null
+
+	else //No bullet in the chamber, completely safe, just cock the gun
+		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
+		"<span class='notice'>You cock [src].</span>")
 
 //Since reloading and casings are closely related, placing this here ~N
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.

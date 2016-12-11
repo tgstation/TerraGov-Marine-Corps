@@ -15,7 +15,6 @@
 		..()
 		reload_delay = config.low_fire_delay
 
-
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper M42A incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary

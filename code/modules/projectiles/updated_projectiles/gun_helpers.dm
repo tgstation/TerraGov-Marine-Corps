@@ -423,8 +423,8 @@ should be alright.
 
 /obj/item/weapon/gun/verb/empty_mag()
 	set category = "Weapons"
-	set name = "Unload Magazine"
-	set desc = "Remove the magazine from your current gun and drop it on the ground."
+	set name = "Unload Weapon"
+	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 	set src in usr
 
 	if((flags_gun_features|GUN_BURST_ON|GUN_BURST_FIRING) == flags_gun_features) return

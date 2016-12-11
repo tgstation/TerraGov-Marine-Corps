@@ -27,6 +27,9 @@
 		..()
 		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
+	unique_action(mob/user)
+		cock(user)
+
 //-------------------------------------------------------
 //M4A3 PISTOL
 
