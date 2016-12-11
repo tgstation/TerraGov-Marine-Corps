@@ -16,13 +16,16 @@
 	minimal_player_age = 3
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
+		/*
 		switch(H.backbag)
 			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), slot_back)
 			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_eng(H), slot_back)
 			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		*/
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/ce(H), slot_w_uniform)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/ce(H), slot_l_store)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 		//H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), slot_l_ear)
@@ -50,12 +53,15 @@
 	minimal_player_age = 0
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
+		/*
 		switch(H.backbag)
 			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), slot_back)
 			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_eng(H), slot_back)
 			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+		*/
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), slot_back)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/engi(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 		H.equip_to_slot_or_del(new /obj/item/device/t_scanner(H), slot_r_store)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/engineering(H), slot_l_store)
