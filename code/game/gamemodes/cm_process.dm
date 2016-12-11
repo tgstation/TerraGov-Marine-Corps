@@ -67,7 +67,7 @@ of predators), but can be added to include variant game modes (like humans vs. h
 	set waitfor = 0
 	ticker.mode.xeno_queen_timer = queen_time
 	if(!(flags_round_type & MODE_INFESTATION)) return
-	var/num_last_deaths = xeno_queen_deaths++
+	var/num_last_deaths = ++xeno_queen_deaths
 	sleep(QUEEN_DEATH_COUNTDOWN)
 	//We want to make sure that another queen didn't die in the interim.
 	if(xeno_queen_deaths == num_last_deaths && !round_finished && !is_queen_alive() ) round_finished = MODE_INFESTATION_M_MINOR
