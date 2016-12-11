@@ -575,7 +575,7 @@
 				if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
 					user << "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>"
 					return
-			if(item_to_stock.loc = user) //Inside the mob's inventory
+			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_atom & WIELDED)
 					item_to_stock.unwield(user)
 				user.u_equip(item_to_stock)
