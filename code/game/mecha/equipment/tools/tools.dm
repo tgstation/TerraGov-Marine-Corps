@@ -82,19 +82,20 @@
 			if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
-		occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
+		chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target].</b></font>", "You hear the drill.")
+		occupant_message("<font color='red'><b>You start to drill [target].</b></font>")
+		playsound(chassis.loc, 'sound/effects/drill.ogg', 50, 0)
 		var/T = chassis.loc
 		var/C = target.loc	//why are these backwards? we may never know -Pete
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/simulated/wall/r_wall))
+				if(istype(target, /turf/simulated/wall/r_wall) || istype(target, /turf/simulated/floor) || istype(target, /turf/unsimulated))
 					occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
 				else if(istype(target, /turf/simulated/mineral))
 					for(var/turf/simulated/mineral/M in range(chassis,1))
 						if(get_dir(chassis,M)&chassis.dir)
 							M.GetDrilled()
-					log_message("Drilled through [target]")
+					log_message("Drilled through [target].")
 					if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 						var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 						if(ore_box)
@@ -105,7 +106,7 @@
 					for(var/turf/simulated/floor/plating/airless/asteroid/M in range(chassis,1))
 						if(get_dir(chassis,M)&chassis.dir)
 							M.gets_dug()
-					log_message("Drilled through [target]")
+					log_message("Drilled through [target].")
 					if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 						var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 						if(ore_box)
@@ -113,7 +114,7 @@
 								if(get_dir(chassis,ore)&chassis.dir)
 									ore.Move(ore_box)
 				else if(target.loc == C)
-					log_message("Drilled through [target]")
+					log_message("Drilled through [target].")
 					target.ex_act(1) //BRING BACK GIBS! BRING BACK GIBS!
 		return 1
 
