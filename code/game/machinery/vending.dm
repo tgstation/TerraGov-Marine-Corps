@@ -212,10 +212,7 @@
 					anchored = 0
 		return
 
-	else if(panel_open)
-		stock(W,user)
-
-		..()
+	..()
 
 /obj/machinery/vending/proc/scan_card(var/obj/item/weapon/card/I)
 	if(!currently_vending) return
@@ -448,8 +445,8 @@
 			// 		usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
 			// 		return
 
-			if ((!src.allowed(usr)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
-				usr << "\red Access denied." //Unless emagged of course
+			if ((!src.allowed(usr)) && (!src.emagged) /*&& (src.wires & WIRE_SCANID)*/) //For SECURE VENDING MACHINES YEAH
+				usr << "<span class='warning'>Access denied.</span>" //Unless emagged of course
 				flick(src.icon_deny,src)
 				return
 
@@ -513,7 +510,7 @@
 	return
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if ((!src.allowed(user)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
+	if ((!src.allowed(user)) && (!src.emagged) /*&& (src.wires & WIRE_SCANID)*/) //For SECURE VENDING MACHINES YEAH
 		user << "\red Access denied." //Unless emagged of course
 		flick(src.icon_deny,src)
 		return
@@ -553,7 +550,22 @@
 	if(ispath(R.product_path,/obj/item/weapon/gun)) . = new R.product_path(get_turf(src),1)
 	else . = new R.product_path(get_turf(src))
 
-/obj/machinery/vending/proc/stock(var/obj/item_to_stock, var/mob/user)
+/obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
+
+	if(stat & (BROKEN|NOPOWER))
+		return
+
+	if(user.stat || user.restrained() || user.lying)
+		return
+
+	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
+		return
+
+	if(istype(A, /obj/item))
+		var/obj/item/I = A
+		stock(I, user)
+
+/obj/machinery/vending/proc/stock(var/obj/item/item_to_stock, var/mob/user)
 	var/datum/data/vending_product/R //Let's try with a new datum.
 	 //More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
@@ -561,13 +573,15 @@
 			if(istype(item_to_stock, /obj/item/weapon/gun))
 				var/obj/item/weapon/gun/G = item_to_stock
 				if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
-					user << "<span class='warning'>The [G] is still loaded. Unload it before you can restock it.</span>"
+					user << "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>"
 					return
-			if(item_to_stock.flags_atom & TWOHANDED) item_to_stock:unwield(user)
+			if(item_to_stock.loc = user) //Inside the mob's inventory
+				if(item_to_stock.flags_atom & WIELDED)
+					item_to_stock.unwield(user)
+				user.u_equip(item_to_stock)
 			del(item_to_stock)
-			user.update_inv_l_hand(0) //Update those hands.
-			user.update_inv_r_hand()
-			user << "\blue You stock the [src] with \a [R.product_name]"
+			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
+			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++
 			updateUsrDialog()
 			return //We found our item, no reason to go on.
@@ -588,8 +602,10 @@
 		src.speak(slogan)
 		src.last_slogan = world.time
 
+	/*
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
+	 */
 
 	return
 
@@ -684,7 +700,6 @@
 	var/wireIndex = APCWireColorToIndex[wireColor] //not used in this function
 	src.wires |= wireFlag
 	switch(wireIndex)
-//		if(WIRE_SCANID)
 		if(WIRE_SHOCK)
 			src.seconds_electrified = 0
 		if (WIRE_SHOOTINV)
@@ -695,7 +710,6 @@
 	switch(wireIndex)
 		if(WIRE_EXTEND)
 			src.extended_inventory = !src.extended_inventory
-//		if (WIRE_SCANID)
 		if (WIRE_SHOCK)
 			src.seconds_electrified = 30
 		if (WIRE_SHOOTINV)
