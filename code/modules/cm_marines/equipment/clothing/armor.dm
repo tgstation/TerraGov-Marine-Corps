@@ -121,6 +121,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_inventory = HIDEJUMPSUIT|BLOCKSHARPOBJ
 	siemens_coefficient = 0.5
 
+/obj/item/clothing/suit/storage/labcoat/officer
+	//name = "Medical officer's labcoat"
+	icon_state = "labcoatg"
+	item_state = "labcoatg"
+
 //===========================//MARINES\\=================================\\
 //=======================================================================\\
 
