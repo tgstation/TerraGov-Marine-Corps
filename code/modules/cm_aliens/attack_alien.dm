@@ -92,7 +92,7 @@
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
-				playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
+				playsound(M.loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 				M.visible_message("<span class='danger'>\The [M] lunges at \the [src]!</span>", \
 				"<span class='danger'>You lunge at \the [src]!</span>")
 				return 0
@@ -594,7 +594,7 @@
 		M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 		"<span class='danger'>You slash \the [src]!</span>")
 	health_check()
-	playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
+	playsound(M.loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 
 /obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M)
 	return attack_hand(M)
@@ -614,7 +614,7 @@
 
 		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
 		"<span class='notice'>You start clearing out \the [src].</span>")
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
+		playsound(M.loc, 'sound/weapons/slashmiss.ogg', 50, 1, -1)
 		if(!do_after(M, 25))
 			return 0
 
