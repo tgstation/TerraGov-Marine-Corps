@@ -64,6 +64,7 @@
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/obj/item/weapon/spacecash/ewallet/ewallet
 	var/tipped_level = 0
+	var/hacking_safety = 0 //1 = Will never shoot inventory or allow all access
 
 /obj/machinery/vending/New()
 	..()
@@ -445,7 +446,7 @@
 			// 		usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
 			// 		return
 
-			if ((!src.allowed(usr)) && (!src.emagged) /*&& (src.wires & WIRE_SCANID)*/) //For SECURE VENDING MACHINES YEAH
+			if(!allowed(usr) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
 				usr << "<span class='warning'>Access denied.</span>" //Unless emagged of course
 				flick(src.icon_deny,src)
 				return
@@ -510,8 +511,8 @@
 	return
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if ((!src.allowed(user)) && (!src.emagged) /*&& (src.wires & WIRE_SCANID)*/) //For SECURE VENDING MACHINES YEAH
-		user << "\red Access denied." //Unless emagged of course
+	if(!allowed(user) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH
+		user << "<span class='warning'>Access denied.</span>" //Unless emagged of course
 		flick(src.icon_deny,src)
 		return
 	src.vend_ready = 0 //One thing at a time!!
@@ -602,10 +603,8 @@
 		src.speak(slogan)
 		src.last_slogan = world.time
 
-	/*
-	if(src.shoot_inventory && prob(2))
+	if(src.shoot_inventory && prob(2) && !hacking_safety)
 		src.throw_item()
-	 */
 
 	return
 

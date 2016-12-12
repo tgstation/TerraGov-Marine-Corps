@@ -76,6 +76,7 @@
 /obj/machinery/vending/marine/cargo_ammo
 	name = "\improper ColMarTech automated armaments vendor"
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
+	hacking_safety = 1
 	products = list(
 					/obj/item/weapon/storage/backpack/marine = 10,
 					/obj/item/weapon/storage/belt/marine = 10,
@@ -137,6 +138,7 @@
 /obj/machinery/vending/marine/cargo_guns
 	name = "\improper ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
+	hacking_safety = 1
 	products = list(
 					///obj/item/weapon/claymore/mercsword/machete = 5,
 					/obj/item/weapon/storage/backpack/gun/machete/full = 6,
@@ -358,6 +360,7 @@
 /obj/machinery/vending/marine_special
 	name = "ColMarTech Specialist Vendor"
 	desc = "A marine specialist equipment vendor"
+	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(access_marine_specprep)
 	icon_state = "robotics"
@@ -388,6 +391,7 @@
 /obj/machinery/vending/marine_leader
 	name = "ColMarTech Leader Vendor"
 	desc = "A marine leader equipment vendor"
+	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(access_marine_leader)
 	icon_state = "tool"
@@ -408,6 +412,7 @@
 /obj/machinery/vending/attachments
 	name = "Armat Systems Attachments Vendor"
 	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
+	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(access_sulaco_cargo)
 	icon_state = "robotics"
