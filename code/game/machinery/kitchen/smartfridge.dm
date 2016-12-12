@@ -114,10 +114,8 @@
 		return
 	if(src.seconds_electrified > 0)
 		src.seconds_electrified--
-	/*
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
-	 */
 
 /obj/machinery/smartfridge/power_change()
 	..()
@@ -374,7 +372,7 @@
 		if(WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
 		if(WIRE_SCANID)
-			src.locked = 0 //-1 to re-enable all access on pulse
+			src.locked = -1
 
 /obj/machinery/smartfridge/proc/isWireColorCut(var/wireColor)
 	var/wireFlag = APCWireColorToFlag[wireColor]
