@@ -1050,8 +1050,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(T.zone && T.zone.air)
 			debug_variables(T.zone.air)
 
-/client/proc/toggle_ordukai()
-	set name = "Toggle Ordukai Mode"
+/client/proc/toggle_own_ghost_vis()
+	set name = "Show/Hide Own Ghost"
 	set desc = "Toggle your visibility as a ghost to other ghosts."
 	set category = "Preferences"
 
