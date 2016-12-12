@@ -271,6 +271,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	var/i = xeno_starting_num
 	var/datum/mind/new_xeno
+	var/turf/larvae_spawn
 	while(i > 0) //While we can still pick someone for the role.
 		if(possible_xenomorphs.len) //We still have candidates
 			new_xeno = pick(possible_xenomorphs)
@@ -280,7 +281,8 @@ datum/game_mode/proc/initialize_special_clamps()
 			possible_xenomorphs -= new_xeno
 			xenomorphs += new_xeno
 		else //Out of candidates, spawn in empty larvas directly
-			var/mob/living/carbon/Xenomorph/Larva/empty_xeno = new(pick(xeno_spawn))
+			larvae_spawn = xeno_spawn.len ? pick(xeno_spawn) : pick(xeno_spawn_ice_colony) // Hack to fix an ice colony run time. We need to make sure spawn locations are always normalized.
+			var/mob/living/carbon/Xenomorph/Larva/empty_xeno = new(larvae_spawn)
 			empty_xeno.amount_grown = 100
 		i--
 
