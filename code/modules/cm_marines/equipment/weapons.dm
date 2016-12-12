@@ -627,7 +627,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 /obj/item/device/mine/Bumped(mob/living/carbon/human/H)
 	if(!armed || triggered) return
 
-	if(istype(H) && H.get_target_lock(iff_signal)) return
+	if((istype(H) && H.get_target_lock(iff_signal)) || isrobot(H)) return
 
 	H.visible_message("<span class='danger'>\icon[src] [src] clicks as [H] moves in front of it.</span>", \
 	"<span class='danger'>\icon[src] [src] clicks as you move in front of it.</span>", \

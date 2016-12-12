@@ -9,12 +9,12 @@
 	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>[custom_name ? ", [modtype] [braintype]" : ""]!\n"
 	msg += "<span class='warning'>"
 	if (src.getBruteLoss())
-		if (src.getBruteLoss() < 75)
+		if (src.getBruteLoss() < maxHealth*0.5)
 			msg += "It looks slightly dented.\n"
 		else
 			msg += "<B>It looks severely dented!</B>\n"
 	if (src.getFireLoss())
-		if (src.getFireLoss() < 75)
+		if (src.getFireLoss() < maxHealth*0.5)
 			msg += "It looks slightly charred.\n"
 		else
 			msg += "<B>It looks severely burnt and heat-warped!</B>\n"
@@ -23,8 +23,10 @@
 	if(opened)
 		msg += "<span class='warning'>Its cover is open and the power cell is [cell ? "installed" : "missing"].</span>\n"
 	else
-		msg += "Its cover is closed.\n"
+		msg += "Its cover is closed[locked ? "" : ", and looks unlocked"].\n"
 
+	if(cell && cell.charge <= 0)
+		msg += "<span class='warning'>Its battery indicator is blinking red!</span>\n"
 	if(!has_power)
 		msg += "<span class='warning'>It appears to be running on backup power.</span>\n"
 

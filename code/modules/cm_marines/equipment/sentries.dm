@@ -821,7 +821,7 @@
 	var/mob/M
 
 	for(M in oview(range,src))
-		if(!isliving(M) || M.stat) continue //No unconscious/deads, or non living.
+		if(!isliving(M) || M.stat || isrobot(M)) continue //No unconscious/deads, or non living.
 
 		/*
 		I really, really need to replace this with some that isn't insane. You shouldn't have to fish for access like this.

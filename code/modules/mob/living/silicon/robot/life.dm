@@ -201,15 +201,15 @@
 						src.healths.icon_state = "health6"
 			else
 				switch(health)
-					if(200 to INFINITY)
+					if(500 to INFINITY)
 						src.healths.icon_state = "health0"
-					if(150 to 200)
+					if(450 to 499)
 						src.healths.icon_state = "health1"
-					if(100 to 150)
+					if(300 to 450)
 						src.healths.icon_state = "health2"
-					if(50 to 100)
+					if(150 to 300)
 						src.healths.icon_state = "health3"
-					if(0 to 50)
+					if(0 to 150)
 						src.healths.icon_state = "health4"
 					if(config.health_threshold_dead to 0)
 						src.healths.icon_state = "health5"
