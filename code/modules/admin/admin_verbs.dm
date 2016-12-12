@@ -278,6 +278,7 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/togglesleep,
 	/datum/admins/proc/toggleenter,
 	// /datum/admins/proc/show_skills,
+	/client/proc/toggle_ordukai,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
 	/client/proc/jobbans,

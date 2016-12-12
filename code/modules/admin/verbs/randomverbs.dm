@@ -1049,3 +1049,23 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(T)
 		if(T.zone && T.zone.air)
 			debug_variables(T.zone.air)
+
+/client/proc/toggle_ordukai()
+	set name = "Toggle Ordukai Mode"
+	set desc = "Toggle your visibility as a ghost to other ghosts."
+	set category = "Preferences"
+
+	if(!holder) return
+
+	if(isobserver(usr))
+		if(usr.invisibility <> 60 && usr.layer <> 4.0)
+			usr.invisibility = 60
+			usr.layer = 4.0
+			usr << "<span class='warning'>Ghost visibility returned to normal.</span>"
+		else
+			usr.invisibility = 70
+			usr.layer = 3.9
+			usr << "<span class='warning'>Your ghost is now invisibile to other ghosts.</span>"
+		log_admin("Admin [key_name(src)] has toggled Ordukai Mode.")
+	else
+		usr << "<span class='warning'>You need to be a ghost in order to use this.</span>"
