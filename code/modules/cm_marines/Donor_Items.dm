@@ -294,8 +294,8 @@
 	item_state = "star_jacker"
 
 /obj/item/clothing/suit/storage/marine/fluff/Sado2
-	name = "Tanya's Armor"
-	desc = "Armor worn by one of the most famous MPs in the history of the USCM.  DONOR ITEM"
+	name = "T15 spec ops armor"
+	desc = "A suit of tightly woven armor crafted for a special forces operator, meant to be flexable and protective against small arms fire. Seems to be custom fit for a very specific user, as the collar has the name 'Tanya' stamped on it.  DONOR ITEM"
 	icon_state = "sadokist_armor"
 	item_state = "sadokist_armor"
 
