@@ -177,8 +177,8 @@
 		has_screeched = 0
 		src << "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>"
 
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
-	//playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)  - Special Times Only
+	//playsound(loc, 'sound/voice/alien_queen_screech.ogg', 100, 0, 100, -1)
+	playsound(loc, 'sound/voice/alien_cena.ogg', 100, 0, 100, -1)  //XMAS ONLY
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 
