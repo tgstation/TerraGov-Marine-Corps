@@ -1436,7 +1436,6 @@ datum
 			on_mob_life(mob/living/M)
 				. = ..()
 				if(!.) return
-				M.adjustCloneLoss(0.1)
 				if(volume > overdose)
 					if(ishuman(M))
 						if(prob(50))

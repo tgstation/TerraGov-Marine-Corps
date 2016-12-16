@@ -64,18 +64,21 @@ datum
 			result_amount = 3
 */
 		hptoxin
+			name = "Toxin"
 			id = "hptoxin"
 			result = "hptoxin"
 			required_reagents = list("hyperzine" = 1, "peridaxon" = 1)
 			result_amount = 2
 
 		pttoxin
+			name = "Toxin"
 			id = "pttoxin"
 			result = "pttoxin"
 			required_reagents = list("paracetamol" = 1, "tramadol" = 1)
 			result_amount = 2
 
 		sdtoxin
+			name = "Toxin"
 			id = "sdtoxin"
 			result = "sdtoxin"
 			required_reagents = list("synaptizine" = 1, "dylovene" = 1)
