@@ -187,6 +187,26 @@
 			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 			m_type = 1
 
+		if("alert")
+			var/M = null
+			if(param)
+				for (var/mob/A in view(null, null))
+					if (param == A.name)
+						M = A
+						break
+			if(!M)
+				param = null
+
+			if (param)
+				message = "<B>[src]</B> sounds an alert at [param]!"
+			else
+				message = "<B>[src]</B> sounds an alert!"
+			playsound(src.loc, 'sound/machines/alert.ogg', 50, 0)
+			m_type = 1
+
+		if("spark")
+			src.spark_system.start()
+
 		if("law")
 			if (istype(module,/obj/item/weapon/robot_module/security))
 				message = "<B>[src]</B> shows its legal authorization barcode."

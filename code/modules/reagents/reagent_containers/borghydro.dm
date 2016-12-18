@@ -87,14 +87,11 @@
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/attack_self(mob/user as mob)
-	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)		//Change the mode
-	mode++
-	if(mode > reagent_list.len)
-		mode = 1
-
-	charge_tick = 0 //Prevents wasted chems/cell charge if you're cycling through modes.
-	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
+	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
+	var/datum/reagent/R = chemical_reagents_list[selection]
 	user << "\blue Synthesizer is now producing '[R.name]'."
+	mode = reagent_ids.Find(selection)
+	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/examine()

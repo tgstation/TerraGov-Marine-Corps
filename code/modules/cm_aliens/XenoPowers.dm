@@ -210,8 +210,8 @@
 	if(!current_turf || !istype(current_turf))
 		return
 
-	if(!is_weedable(current_turf))
-		src << "<span class='warning'>Bad place for a garden!</span>"
+	if(!is_weedable(current_turf) || istype(get_area(src.loc),/area/shuttle/drop1/lz1 || istype(get_area(src.loc),/area/shuttle/drop2/lz2)) || istype(get_area(src.loc),/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
+		src << "<span class='warning'>You sense this is not a suitable area for expanding the hive.</span>"
 		return
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf

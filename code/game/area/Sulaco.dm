@@ -280,6 +280,10 @@
 	name = "\improper Sulaco Dropship 1"
 	icon_state = "shuttle2"
 
+/area/shuttle/drop1/lz1
+	name = "\improper Landing Zone 1"
+	icon_state = "away1"
+
 /area/shuttle/drop2/sulaco
 	name = "\improper Sulaco Dropship 2"
 	icon_state = "shuttle"
@@ -307,6 +311,10 @@
 /area/shuttle/drop2/transit
 	name = "\improper Sulaco Dropship 2"
 	icon_state = "shuttlered"
+
+/area/shuttle/drop2/lz2
+	name = "\improper Landing Zone 2"
+	icon_state = "away2"
 
 //Distress
 /area/shuttle/distress_start
