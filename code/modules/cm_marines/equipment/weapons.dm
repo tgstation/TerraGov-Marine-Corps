@@ -270,7 +270,7 @@
 		..()
 
 /obj/item/weapon/storage/box/m42c_system
-	name = "\improper M42C scoped rifle system (recon set)"
+	name = "\improper M42A scoped rifle system (recon set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -309,7 +309,7 @@
 		..()
 
 /obj/item/weapon/storage/box/m42c_system_Jungle
-	name = "\improper M42C scoped rifle system (marksman set)"
+	name = "\improper M42A scoped rifle system (marksman set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"

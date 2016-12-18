@@ -160,7 +160,7 @@
 			cdel(A)
 			return
 
-		A.fire_at(target,src,src,30,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.
+		A.fire_at(target,src,src,15,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.
 		return //That's it!
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)

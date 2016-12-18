@@ -380,6 +380,9 @@
 	if(!istype(user))
 		return
 
+	if(get_dist(src.loc, user.loc) > 1)
+		return
+
 	usr.set_machine(src)
 	switch(href_list["op"])
 		if("direction")

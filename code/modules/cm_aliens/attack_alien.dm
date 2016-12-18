@@ -678,7 +678,7 @@
 /obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
-	if((stat & (BROKEN|NOPOWER)) || tipped_level)
+	if(tipped_level)
 		M << "<span class='warning'>There's no reason to bother with that old piece of trash.</span>"
 		return 0
 

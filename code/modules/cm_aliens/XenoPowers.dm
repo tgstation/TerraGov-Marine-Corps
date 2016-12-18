@@ -403,15 +403,24 @@
 	set category = "Alien"
 
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
-	dat += "Total Alive Sisters: [ticker.mode.xenomorphs.len]"
 
 	if(ticker && ticker.mode.xenomorphs.len)
-		dat += "<table cellspacing=4>"
 		var/mob/living/carbon/Xenomorph/X
+		var/list/list = list()
+		var/count = 0
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			X = L.current
 			if(istype(X))
-				dat += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+				list += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
+				if(!(X.stat & DEAD))
+					count++
+
+
+		dat += "Total Alive Sisters: [count]"
+		dat += "<table cellspacing=4>"
+		for(var/s in list)
+			dat += s
+
 		dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=400x300")
 

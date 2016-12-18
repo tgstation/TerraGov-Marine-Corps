@@ -9,6 +9,7 @@
 	flags_equip_slot = SLOT_BELT
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
+	matter = list("metal" = 15000)
 	fire_sound = 'sound/weapons/44mag.ogg'
 	reload_sound = 'sound/weapons/revolver_cocked.ogg'
 	cocked_sound = 'sound/weapons/revolver_spun.ogg'

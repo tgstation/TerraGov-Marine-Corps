@@ -614,7 +614,7 @@ include jackets and regular suits, not armor.*/
 	src.remove_accessory(usr)
 
 /obj/item/clothing/under/rank/New()
-	sensor_mode = pick(0,1,2,3)
+	//sensor_mode = pick(0,1,2,3) //Why was this a thing --MadSnailDisease
 	..()
 
 /obj/item/clothing/under/emp_act(severity)

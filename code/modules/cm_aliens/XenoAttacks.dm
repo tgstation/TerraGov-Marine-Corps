@@ -88,7 +88,7 @@
 					M.Weaken(rand(tacklemin, tacklemax))
 					playsound(M.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 					visible_message("<span class='danger'>\The [M] receives a vicious tail swipe to the head as \he tries to grab \the [src]!</span>", \
-					"<span class='danger'>You receive a vicious tail swipe to the head as you try to grab \the [src]!</span>")
+					"<span class='danger'>You make a vicious tail swipe at \the [M] as it tries to grab you!</span>")
 					return 1
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
@@ -192,21 +192,25 @@
 		visible_message("<span class='danger'>\The [src] starts to devour \the [pulled]!</span>", \
 		"<span class='danger'>You start to devour \the [pulled]!</span>")
 		if(do_after(src, 50))
-			visible_message("<span class='warning'>\The [src] devours \the [pulled]!</span>", \
-			"<span class='warning'>You devour \the [pulled]!</span>")
-			stop_pulling()
+			if(pulling == pulled) //make sure you've still got them in your claws
+				visible_message("<span class='warning'>\The [src] devours \the [pulled]!</span>", \
+				"<span class='warning'>You devour \the [pulled]!</span>")
+				stop_pulling()
 
-			//IMPORTANT CODER NOTE: Due to us using the old lighting engine, we need to hacky hack hard to get this working properly
-			//So we're just going to get the lights out of here by forceMoving them to a far-away place
-			//They will be recovered when regurgitating, since this also calls forceMove
-			pulled.x = 1
-			pulled.y = 1
-			pulled.z = 2 //Centcomm
-			pulled.forceMove(pulled.loc)
+				//IMPORTANT CODER NOTE: Due to us using the old lighting engine, we need to hacky hack hard to get this working properly
+				//So we're just going to get the lights out of here by forceMoving them to a far-away place
+				//They will be recovered when regurgitating, since this also calls forceMove
+				pulled.x = 1
+				pulled.y = 1
+				pulled.z = 2 //Centcomm
+				pulled.forceMove(pulled.loc)
 
-			//Then, we place the mob where it ought to be
-			pulled.forceMove(src)
-			src.stomach_contents.Add(pulled)
+				//Then, we place the mob where it ought to be
+				pulled.forceMove(src)
+				src.stomach_contents.Add(pulled)
+			else
+				src << "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>"
+				return 0
 		else
 			src << "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>"
 			return 0

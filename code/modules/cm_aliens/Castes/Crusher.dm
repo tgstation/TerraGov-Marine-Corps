@@ -172,6 +172,12 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 	set waitfor = 0
 	var/start_loc
 
+	var/obj/structure/mineral_door/resin/RW = AM
+	if(istype(RW))
+		RW.TryToSwitchState(src)
+		if(momentum >= 3) momentum -= 5 //No flying through doors for free --MadSnailDisease
+		return
+
 	if(stat || momentum < 3 || !AM || !istype(AM) || AM == src || !yes)
 		return
 
