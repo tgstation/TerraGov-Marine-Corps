@@ -181,7 +181,7 @@
 			initialize_directions = SOUTH|WEST
 
 /obj/machinery/atmospherics/pipe/simple/hide(var/i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -432,7 +432,7 @@
 			initialize_directions = NORTH|EAST|SOUTH
 
 /obj/machinery/atmospherics/pipe/manifold/hide(var/i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -788,7 +788,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold4w/hide(var/i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -928,7 +928,7 @@
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/pipe/cap/hide(var/i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && istype(loc, /turf))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -1290,7 +1290,7 @@
 
 /obj/machinery/atmospherics/pipe/vent/hide(var/i) //to make the little pipe section invisible, the icon changes.
 	if(node1)
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
+		icon_state = "[i == 1 && istype(loc, /turf) ? "h" : "" ]intact"
 		dir = get_dir(src, node1)
 	else
 		icon_state = "exposed"
