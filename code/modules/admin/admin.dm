@@ -1303,24 +1303,34 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/fix_air()
 	set category = "Debug"
-	set desc = "Fix air in the room you're standing in."
 	set name = "Fix Air"
+	set desc = "Fix air in the zone you're standing in."
 
-	var/turf/T = usr.loc
-	if(!isturf(T)) return
-	var/datum/gas_mixture/GM = new
-
-	if(!GM)	return
-
-	// GM.adjust(20, 0, 80, 0, null)
-
-	// T.oxygen = 20
-	// T.nitrogen = 80
-	// T.carbon_dioxide = 0
-	// T.phoron = 0
-	// T.temperature = 293
-
-	log_admin("[key_name(usr)] used the Breach Fix verb at ([usr.x],[usr.y],[usr.z])")
-	message_admins("\blue [key_name(usr)]Breach Fix verb at ([usr.x],[usr.y],[usr.z]) <a href='?src=\ref[src];adminplayerobservejump=\ref[usr]'>JMP</a>", 1)
+	if(!usr.client.holder)
+		usr << "Only administrators may use this command."
+		return
+	var/datum/gas_mixture/environment = usr.loc.return_air()
+	environment.gas["sleeping_agent_archived"] = null
+	environment.gas["sleeping_agent"] = 0
+	environment.gas["phoron_archived"] = null
+	environment.gas["phoron"] = 0
+	environment.gas["carbon_dioxide"] = 0
+	environment.gas["carbon_dioxide_archived"] = null
+	environment.gas["oxygen"] = 21.8366
+	environment.gas["oxygen_archived"] = null
+	environment.gas["nitrogen"] = 82.1472
+	environment.gas["nitrogen_archived"] = null
+	environment.gas["temperature_archived"] = null
+	environment.temperature = 293.15
+	environment.update_values()
+	var/turf/simulated/location = get_turf(usr)
+	if(location.zone)
+		for(var/turf/T in location.zone.contents)
+			for(var/obj/fire/F in T.contents)
+				del(F)
+		for(var/obj/fire/FF in world)
+			del(FF)
+	log_admin("Admin [key_name_admin(usr)] used Fix Air at [get_area(usr)]", 1)
+	message_admins("Admin [key_name_admin(usr)] used Fix Air at [get_area(usr)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>)", 1)
 
 	return
