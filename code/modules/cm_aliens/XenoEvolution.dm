@@ -17,6 +17,11 @@
 		src << "<span class='warning'>This place is too constraining to evolve.</span>"
 		return
 
+	A = get_area(loc)
+	if(istype(A, /area/sulaco/hub))
+		src << "<span class='warning'>This seems like a bad idea, you might get stuck in here.</span>"
+		return
+
 	if(hardcore)
 		src << "<span class='warning'>Nuh-uh.</span>"
 		return
