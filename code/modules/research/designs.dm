@@ -132,14 +132,14 @@ datum/design/pandemic
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/pandemic"
 
-datum/design/scan_console
+/*datum/design/scan_console
 	name = "Circuit Design (DNA Machine)"
 	desc = "Allows for the construction of circuit boards used to build a new DNA scanning console."
 	id = "scan_console"
 	req_tech = list("programming" = 2, "biotech" = 3)
 	build_type = IMPRINTER
 	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/scan_consolenew"
+	build_path = "/obj/item/weapon/circuitboard/scan_consolenew"*/
 
 datum/design/comconsole
 	name = "Circuit Design (Communications)"
