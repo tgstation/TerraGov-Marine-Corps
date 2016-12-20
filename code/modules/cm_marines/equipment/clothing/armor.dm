@@ -171,6 +171,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 		/obj/item/weapon/storage/belt/gun/m44)
 
 	var/brightness_on = 5 //Average attachable pocket light
+	var/flashlight_cooldown = 0 //Cooldown for toggling the light
 	var/armor_overlays[]
 	icon_action_button = "action_flashlight" //Adds it to the quick-icon list
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
@@ -446,9 +447,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+			user << "<span class='warning'>You cannot turn the light on while in this [user.loc].</span>" //To prevent some lighting anomalities.
 			return
 
+		if(flashlight_cooldown > world.time)
+			return
+
+		flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
 		if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
 			if(user) user.SetLuminosity(-brightness_on)
 			else SetLuminosity(0)
