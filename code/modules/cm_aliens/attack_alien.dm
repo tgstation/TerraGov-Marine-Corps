@@ -549,10 +549,6 @@
 /obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.is_intelligent)
 		attack_hand(M)
-		if(alerted > 0)
-			command_announcement.Announce("Unknown biological entity has accessed a shuttle console.", "RED ALERT:", new_sound = 'sound/misc/queen_alarm.ogg')
-			alerted--
-			M << "<span class='danger'>A loud alarm erupts from \the [src]! The fleshy hosts must know that you can access it!</span>"
 	else
 		..()
 

@@ -239,7 +239,7 @@ Only checks living mobs with a client attached.
 
 	for(var/mob/M in player_list)
 		A = get_area(M.loc)
-		if(M.z && M.stat != DEAD && !istype(M.loc,/turf/space) && !istype(A,/area/centcom) && !istype(A,/area/tdome) && !istype(A,/area/shuttle/distress_start))
+		if(M.z && M.stat != DEAD && !istype(M.loc, /turf/space) && !istype(A, /area/centcom) && !istype(A, /area/tdome) && !istype(A, /area/shuttle/distress_start) && !istype(A, /area/sulaco/hub))
 			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST))
 				num_humans++
 			else if(isXeno(M))

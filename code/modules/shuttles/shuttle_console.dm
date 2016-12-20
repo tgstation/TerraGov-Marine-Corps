@@ -113,6 +113,14 @@
 			return
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
+
+			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
+			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed)
+				command_announcement.Announce("Unscheduled dropship departure detected from operational area. Illegal credentials detected. Hijack likely, attempting to shut down auto-pilot.", \
+				"Dropship Alert", new_sound = 'sound/misc/queen_alarm.ogg')
+				usr << "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>"
+				shuttle.alerts_allowed--
+
 			shuttle.launch(src)
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")

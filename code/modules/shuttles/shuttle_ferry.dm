@@ -19,6 +19,7 @@
 	var/dock_target_offsite
 
 	var/last_dock_attempt_time = 0
+	var/alerts_allowed = 1 //NOT A BOOLEAN. Number of alerts allowed on this particular shuttle, so only once
 
 /datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
 	if(isnull(location))

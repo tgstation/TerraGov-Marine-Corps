@@ -247,6 +247,13 @@
 	name = "\improper Sulaco Maintenance"
 	icon_state = "maintcentral"
 
+/area/sulaco/hub/top
+	name = "\improper Sulaco Maintenance Hub"
+	icon_state = "yellow"
+
+/area/sulaco/hub/bottom
+	name = "\improper Sulaco Maintenance Hub"
+	icon_state = "yellow"
 
 //Drop Pods
 /area/shuttle/drop1

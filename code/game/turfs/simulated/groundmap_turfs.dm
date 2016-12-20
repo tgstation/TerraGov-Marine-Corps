@@ -224,3 +224,32 @@
 	damage_cap = 20000 // Tougher than a reinforced wall
 	max_temperature = 50000 // Nearly impossible to melt
 	walltype = "sulaco"
+
+/turf/simulated/wall/sulaco/unmeltable
+
+/turf/simulated/wall/sulaco/unmeltable/ex_act(severity)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/thermitemelt(mob/user as mob)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/dismantle_wall(devastated = 0, explode = 0)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/attack_paw(mob/user as mob)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/attack_animal(mob/living/M as mob)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/attack_hand(mob/user as mob)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/meteorhit(obj/M as obj)
+	return
+
+/turf/simulated/wall/sulaco/unmeltable/take_damage(dam)
+	return
