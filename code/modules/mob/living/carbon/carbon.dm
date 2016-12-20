@@ -305,6 +305,7 @@
 	if (istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
 		item = G.newthrow() //throw the person instead of the grab
+		del(M) //Stops the user from throwing repeatedly
 		if(ismob(item))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
