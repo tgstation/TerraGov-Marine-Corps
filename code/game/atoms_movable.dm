@@ -147,8 +147,8 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
 				hit_check(speed)
+				Move(step)
 				error += dist_x
 				dist_travelled++
 				dist_since_sleep++
@@ -159,8 +159,8 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
 				hit_check(speed)
+				Move(step)
 				error -= dist_y
 				dist_travelled++
 				dist_since_sleep++
@@ -176,8 +176,8 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
 				hit_check(speed)
+				Move(step)
 				error += dist_y
 				dist_travelled++
 				dist_since_sleep++
@@ -188,8 +188,8 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
 				hit_check(speed)
+				Move(step)
 				error -= dist_x
 				dist_travelled++
 				dist_since_sleep++
