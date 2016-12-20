@@ -31,6 +31,11 @@
 		icon_state = "open"
 		layer = OBJ_LAYER
 
+/obj/structure/curtain/shower
+	name = "shower curtain"
+	color = "#ACD1E9"
+	alpha = 200
+
 /obj/structure/curtain/black
 	name = "black curtain"
 	color = "#222222"
@@ -44,6 +49,12 @@
 	name = "shower curtain"
 	color = "#ACD1E9"
 	alpha = 200
+
 /obj/structure/curtain/open/black
 	name = "black curtain"
 	color = "#222222"
+
+/obj/structure/curtain/open/medical
+	name = "plastic curtain"
+	color = "#B8F5E3"
+	alpha = 200
