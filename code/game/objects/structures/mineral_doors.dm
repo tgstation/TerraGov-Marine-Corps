@@ -243,6 +243,13 @@
 				new/obj/item/stack/sheet/wood(get_turf(src))
 		del(src)
 
+//Mapping instance
+/obj/structure/mineral_door/wood/open
+	density = 0
+	opacity = 0
+	state = 1
+	icon_state = "woodopen"
+
 //Shouldn't be there
 /obj/structure/mineral_door/resin
 	mineralType = "resin"
