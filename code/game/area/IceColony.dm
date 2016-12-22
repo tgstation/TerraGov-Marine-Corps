@@ -12,6 +12,7 @@
 /area/ice_colony
 	name = "\improper Ice Colony"
 	icon_state = "ice_colony"
+	icon_state = "cliff_blocked"
 
 /*
  *  ----------------
@@ -21,7 +22,7 @@
 
 /area/ice_colony/exterior
 	name = "\improper Ice Colony"
-	icon_state = "green"
+	icon_state = "cliff_blocked"
 	requires_power = 1
 	always_unpowered = 1
 	lighting_use_dynamic = 1
@@ -138,6 +139,7 @@
 
 /area/ice_colony/exterior/underground
 	name = "\improper Ice Colony - Exterior Underground"
+	icon_state = "cave"
 
 //
 // Caves
@@ -165,6 +167,7 @@
 
 /area/ice_colony/surface
 	name = "\improper Ice Colony - Built Surface"
+	icon_state = "clear"
 
 /*
  * Surface - Bar
@@ -172,14 +175,14 @@
 
 
 /area/ice_colony/surface/bar
-	name = "\improper 'Anti-Freeze'"
+	name = "\improper Anti-Freeze"
 	icon_state = "bar"
 
 /area/ice_colony/surface/bar/bar
-	name = "\improper 'Anti-Freeze' Bar"
+	name = "\improper Anti-Freeze Bar"
 
 /area/ice_colony/surface/bar/canteen
-	name = "\improper 'Anti-Freeze' Canteen"
+	name = "\improper Anti-Freeze Canteen"
 	icon_state = "kitchen"
 
 /*
@@ -187,18 +190,18 @@
  */
 
 /area/ice_colony/surface/clinic
-	name = "\improper 'Aurora' Medical Clinic"
+	name = "\improper Aurora Medical Clinic"
 	icon_state = "medbay"
 
 /area/ice_colony/surface/clinic/lobby
-	name = "\improper 'Aurora' Medical Clinic Lobby"
+	name = "\improper Aurora Medical Clinic Lobby"
 
 /area/ice_colony/surface/clinic/treatment
-	name = "\improper 'Aurora' Medical Clinic Treatment"
+	name = "\improper Aurora Medical Clinic Treatment"
 	icon_state = "medbay2"
 
 /area/ice_colony/surface/clinic/storage
-	name = "\improper 'Aurora' Medical Clinic Storage"
+	name = "\improper Aurora Medical Clinic Storage"
 	icon_state = "medbay3"
 
 /*
@@ -394,19 +397,19 @@
 
 /area/ice_colony/surface/research
 
-	name = "\improper 'Omicron' Dome"
+	name = "\improper Omicron Dome"
 	icon_state = "toxlab"
 
 /area/ice_colony/surface/research/tech_storage
-	name = "\improper 'Omicron' Dome Technical Storage"
+	name = "\improper Omicron Dome Technical Storage"
 	icon_state = "primarystorage"
 
 /area/ice_colony/surface/research/field_gear
-	name = "\improper 'Omicron' Dome Field Gear Storage"
+	name = "\improper Omicron Dome Field Gear Storage"
 	icon_state = "eva"
 
 /area/ice_colony/surface/research/temporary
-	name = "\improper 'Omicron' Dome Temporary Storage"
+	name = "\improper Omicron Dome Temporary Storage"
 	icon_state = "storage"
 
 /*
@@ -418,15 +421,15 @@
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/research
-	name = "\improper Storage Unit 'Research'"
+	name = "\improper Storage Unit Research"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/telecomms
-	name = "\improper Storage Unit 'T-Comms'"
+	name = "\improper Storage Unit T-Comms"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/power
-	name = "\improper Storage Unit 'Power'"
+	name = "\improper Storage Unit Power"
 	icon_state = "storage"
 
 /*
@@ -445,6 +448,7 @@
 
 /area/ice_colony/underground
 	name = "\improper Ice Colony - Built Underground"
+	icon_state = "explored"
 
 /*
  * Underground - Crew Areas
@@ -480,6 +484,17 @@
 /area/ice_colony/underground/crew/bball
 	name = "\improper Underground Sports Center"
 
+/area/ice_colony/underground/crew/chapel
+	name = "\improper Underground Chapel"
+
+/area/ice_colony/underground/crew/library
+	name = "\improper Underground Library"
+	icon_state = "library"
+
+/area/ice_colony/underground/crew/morgue
+	name = "\improper Underground Morgue"
+	icon_state = "morgue"
+
 /*
  * Underground - Colony Administration
  */
@@ -511,6 +526,11 @@
 /area/ice_colony/underground/engineering
 	name = "\improper Underground Engineering"
 	icon_state = "engine_hallway"
+
+/area/ice_colony/underground/engineering/locker
+	name = "\improper Underground Engineering Locker Room"
+	icon_state = "storage"
+
 
 /area/ice_colony/underground/engineering/substation
 	name = "\improper Underground Power Substation"
@@ -633,24 +653,28 @@
 	name = "\improper Underground Requesitions Storage"
 	icon_state = "quartstorage"
 
+/area/ice_colony/underground/requesition/sec_storage
+	name = "\improper Underground Requesitions Secure Storage"
+	icon_state = "storage"
+
 /*
  * Underground - Research
  */
 
 /area/ice_colony/underground/research
-	name = "\improper 'Theta-V' Research Laboratory"
+	name = "\improper Theta-V Research Laboratory"
 	icon_state = "anolab"
 
 /area/ice_colony/underground/research/work
-	name = "\improper 'Theta-V' Research Laboratory Work Station"
+	name = "\improper Theta-V Research Laboratory Work Station"
 	icon_state = "toxmix"
 
 /area/ice_colony/underground/research/storage
-	name = "\improper 'Theta-V' Research Laboratory Storage"
+	name = "\improper Theta-V Research Laboratory Storage"
 	icon_state = "storage"
 
 /area/ice_colony/underground/research/sample
-	name = "\improper 'Theta-V' Research Laboratory Sample Isolation"
+	name = "\improper Theta-V Research Laboratory Sample Isolation"
 	icon_state = "anosample"
 
 /*
