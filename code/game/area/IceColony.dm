@@ -725,3 +725,27 @@
 /area/shuttle/elevator2/transit
 	name = "\improper Elevator II"
 	icon_state = "shuttlered"
+
+/area/shuttle/elevator3/ground
+	name = "\improper Elevator III"
+	icon_state = "shuttle"
+
+/area/shuttle/elevator3/underground
+	name = "\improper Elevator III"
+	icon_state = "shuttle2"
+
+/area/shuttle/elevator3/transit
+	name = "\improper Elevator III"
+	icon_state = "shuttlered"
+
+/area/shuttle/elevator4/ground
+	name = "\improper Elevator IV"
+	icon_state = "shuttlered"
+
+/area/shuttle/elevator4/underground
+	name = "\improper Elevator IV"
+	icon_state = "shuttle"
+
+/area/shuttle/elevator4/transit
+	name = "\improper Elevator IV"
+	icon_state = "shuttle2"

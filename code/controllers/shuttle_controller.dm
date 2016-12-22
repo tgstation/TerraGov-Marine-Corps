@@ -221,6 +221,34 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Elevator 2"] = shuttle
 	process_shuttles += shuttle
 
+	// Elevator III
+	shuttle = new()
+	shuttle.location = 0
+	shuttle.warmup_time = 20
+	shuttle.recharge_time = ELEVATOR_RECHARGE
+	shuttle.area_offsite = locate(/area/shuttle/elevator3/underground)
+	shuttle.area_station = locate(/area/shuttle/elevator3/ground)
+	shuttle.area_transition = locate(/area/shuttle/elevator3/transit)
+	shuttle.transit_direction = NORTH
+	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
+	shuttle.iselevator = 1
+	shuttles["Elevator 3"] = shuttle
+	process_shuttles += shuttle
+
+	// Elevator IV
+	shuttle = new()
+	shuttle.location = 0
+	shuttle.warmup_time = 20
+	shuttle.recharge_time = ELEVATOR_RECHARGE
+	shuttle.area_offsite = locate(/area/shuttle/elevator4/underground)
+	shuttle.area_station = locate(/area/shuttle/elevator4/ground)
+	shuttle.area_transition = locate(/area/shuttle/elevator4/transit)
+	shuttle.transit_direction = NORTH
+	shuttle.move_time = ELEVATOR_TRANSIT_DURATION
+	shuttle.iselevator = 1
+	shuttles["Elevator 4"] = shuttle
+	process_shuttles += shuttle
+
 	// Public shuttles
 	/*
 	shuttle = new()
