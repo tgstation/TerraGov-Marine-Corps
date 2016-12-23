@@ -1,5 +1,5 @@
 /mob/living/carbon/human/movement_delay()
-
+	//Abandon all hope ye who enter this code. It's noman's land.
 	..()
 
 	if(istype(loc, /turf/space))
@@ -113,24 +113,24 @@
 						Y.decloak(src)
 
 	if(istype(buckled, /obj/structure/stool/bed/chair/wheelchair))
-		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm"))
+		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm","chest","groin","head"))
 			var/datum/organ/external/E = get_organ(organ_name)
 			if(!E || (E.status & ORGAN_DESTROYED))
 				tally += 4
 			if(E.status & ORGAN_SPLINTED)
-				tally += 0.5
+				tally += 0.65
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
 	else
 		if(shoes)
 			tally += shoes.slowdown
 
-		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg"))
+		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg","chest","groin","head"))
 			var/datum/organ/external/E = get_organ(organ_name)
 			if(!E || (E.status & ORGAN_DESTROYED))
 				tally += 4
 			if(E.status & ORGAN_SPLINTED)
-				tally += 0.5
+				tally += 0.75
 			else if(E.status & ORGAN_BROKEN)
 				tally += 1.5
 

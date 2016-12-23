@@ -711,8 +711,8 @@
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_ARMOR
 	New()
 		..()
-		accurate_range 	= config.close_shell_range
-		max_range 		= config.close_shell_range
+		accurate_range 	= config.near_shell_range
+		max_range 		= config.near_shell_range
 
 /datum/ammo/energy/taser
 	name = "taser bolt"
