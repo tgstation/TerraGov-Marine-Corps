@@ -12,11 +12,20 @@ client
 			usr << "\red You need to be a moderator or higher to access this."
 			return
 
+		if(!D)	return
 
 		var/title = ""
 		var/body = ""
 
-		if(!D)	return
+		//Sort of a temporary solution for right now.
+		if(istype(D,/datum/admins) && !(usr.client.holder.rights & R_HOST)) //Prevents non-hosts from changing their own permissions.
+			usr << "<span class='warning'>You need host permission to access this.</span>"
+			return
+
+		if(istype(D,/datum/ammo) && !(usr.client.holder.rights & R_DEBUG))
+			usr << "<span class='warning'>You need debugging permission to access this.</span>"
+			return
+
 		if(istype(D, /atom))
 			var/atom/A = D
 			title = "[A.name] (\ref[A]) = [A.type]"
