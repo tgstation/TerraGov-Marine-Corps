@@ -154,6 +154,16 @@
 	w_class = 4
 	on = 1
 
+//Menorah!
+/obj/item/device/flashlight/lamp/menorah
+	name = "Menorah"
+	desc = "For celebrating Chanukah."
+	icon_state = "menorah"
+	item_state = "menorah"
+	brightness_on = 2
+	w_class = 4
+	on = 1
+
 
 // green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
