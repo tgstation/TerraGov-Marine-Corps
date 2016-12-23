@@ -1,31 +1,31 @@
 /datum/configuration
-	var/proj_base_accuracy_mult = 1
-	var/proj_base_damage_mult = 1
+	var/proj_base_accuracy_mult = 0.01
+	var/proj_base_damage_mult = 0.01
 
 	var/proj_variance_high = 100
 	var/proj_variance_low = 100
 
-	var/critical_chance_low = 10
+	var/critical_chance_low = 5
 	var/critical_chance_high = 10
-	var/base_armor_resist_low = 1
+	var/base_armor_resist_low = 0.5
 	var/base_armor_resist_high = 1
-	var/xeno_armor_resist_low = 1
+	var/xeno_armor_resist_low = 0.5
 	var/xeno_armor_resist_high = 1
 
 	var/min_hit_accuracy = 1
 	var/low_hit_accuracy = 5
 	var/med_hit_accuracy = 10
 	var/hmed_hit_accuracy = 15
-	var/high_hit_accuracy = 20
-	var/max_hit_accuracy = 25
+	var/high_hit_accuracy = 25
+	var/max_hit_accuracy = 50
 
 	var/base_hit_accuracy_mult = 1
-	var/min_hit_accuracy_mult = 0
-	var/low_hit_accuracy_mult = 0.01
-	var/med_hit_accuracy_mult = 0.02
-	var/hmed_hit_accuracy_mult = 0.03
-	var/high_hit_accuracy_mult = 0.04
-	var/max_hit_accuracy_mult = 0.05
+	var/min_hit_accuracy_mult = 0.01
+	var/low_hit_accuracy_mult = 0.05
+	var/med_hit_accuracy_mult = 0.10
+	var/hmed_hit_accuracy_mult = 0.15
+	var/high_hit_accuracy_mult = 0.25
+	var/max_hit_accuracy_mult = 0.35
 
 	var/base_hit_damage = 5
 	var/min_hit_damage = 10
@@ -33,20 +33,20 @@
 	var/low_hit_damage = 20
 	var/lmed_hit_damage = 25
 	var/med_hit_damage = 30
-	var/hmed_hit_damage = 25
-	var/high_hit_damage = 30
-	var/mhigh_hit_damage = 35
-	var/max_hit_damage = 40
-	var/super_hit_damage = 45
-	var/ultra_hit_damage = 50
+	var/hmed_hit_damage = 35
+	var/high_hit_damage = 40
+	var/mhigh_hit_damage = 50
+	var/max_hit_damage = 60
+	var/super_hit_damage = 70
+	var/ultra_hit_damage = 80
 
 	var/base_hit_damage_mult = 1
-	var/min_hit_damage_mult = 0
-	var/low_hit_damage_mult = 0.01
-	var/med_hit_damage_mult = 0.02
-	var/hmed_hit_damage_mult = 0.03
-	var/high_hit_damage_mult = 0.04
-	var/max_hit_damage_mult = 0.05
+	var/min_hit_damage_mult = 0.01
+	var/low_hit_damage_mult = 0.05
+	var/med_hit_damage_mult = 0.10
+	var/hmed_hit_damage_mult = 0.15
+	var/high_hit_damage_mult = 0.25
+	var/max_hit_damage_mult = 0.35
 
 	var/reg_damage_bleed = 1
 	var/buckshot_damage_bleed = 5
@@ -64,7 +64,7 @@
 	var/med_fire_delay = 3
 	var/high_fire_delay = 4
 	var/mhigh_fire_delay = 5
-	var/max_fire_delay = 7
+	var/max_fire_delay = 6
 
 	var/min_scatter_value = 5
 	var/low_scatter_value = 10
@@ -78,18 +78,19 @@
 	var/high_recoil_value = 4
 	var/max_recoil_value = 5
 
-	var/min_shrapnel_chance = 5
-	var/low_shrapnel_chance = 10
-	var/med_shrapnel_chance = 15
-	var/high_shrapnel_chance = 20
-	var/max_shrapnel_chance = 25
+	var/min_shrapnel_chance = 10
+	var/low_shrapnel_chance = 20
+	var/med_shrapnel_chance = 30
+	var/high_shrapnel_chance = 40
+	var/max_shrapnel_chance = 50
 
-	var/min_shell_range = 1
-	var/close_shell_range = 2
-	var/short_shell_range = 3
-	var/norm_shell_range = 4
-	var/long_shell_range = 5
-	var/max_shell_range = 6
+	var/min_shell_range = 3
+	var/close_shell_range = 5
+	var/near_shell_range = 10
+	var/short_shell_range = 15
+	var/norm_shell_range = 20
+	var/long_shell_range = 25
+	var/max_shell_range = 30
 
 	var/slow_shell_speed = 1
 	var/reg_shell_speed = 2
@@ -98,18 +99,18 @@
 	var/ultra_shell_speed = 5
 
 	var/min_armor_penetration = 5
-	var/mlow_armor_penetration = 10
-	var/low_armor_penetration = 15
-	var/med_armor_penetration = 20
-	var/high_armor_penetration = 25
-	var/mhigh_armor_penetration = 30
-	var/max_armor_penetration = 35
+	var/mlow_armor_penetration = 15
+	var/low_armor_penetration = 25
+	var/med_armor_penetration = 35
+	var/high_armor_penetration = 45
+	var/mhigh_armor_penetration = 55
+	var/max_armor_penetration = 65
 
 	var/min_proj_extra = 1
 	var/low_proj_extra = 2
 	var/med_proj_extra = 3
-	var/high_proj_extra = 5
-	var/max_proj_extra = 8
+	var/high_proj_extra = 4
+	var/max_proj_extra = 5
 
 	var/min_proj_variance = 1
 	var/low_proj_variance = 2
@@ -195,6 +196,7 @@
 		if("min_shell_range") min_shell_range = value
 		if("close_shell_range") close_shell_range = value
 		if("short_shell_range") short_shell_range = value
+		if("near_shell_range") near_shell_range = value
 		if("norm_shell_range") norm_shell_range = value
 		if("long_shell_range") long_shell_range = value
 		if("max_shell_range") max_shell_range = value
