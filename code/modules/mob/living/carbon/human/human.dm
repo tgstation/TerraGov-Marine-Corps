@@ -47,8 +47,12 @@
 	..()
 	statpanel("Status")
 
+	stat(null, "Operation Time: [worldtime2text()]")
+
+/*
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
+*/
 
 	if(emergency_shuttle)
 		var/eta_status = emergency_shuttle.get_status_panel_eta()
