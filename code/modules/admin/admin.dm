@@ -1309,6 +1309,11 @@ var/global/floorIsLava = 0
 	if(!usr.client.holder)
 		usr << "Only administrators may use this command."
 		return
+
+	if(istype(get_turf(usr), /turf/unsimulated))
+		usr << "This verb cannot be used on unsimulated turfs."
+		return
+
 	var/datum/gas_mixture/environment = usr.loc.return_air()
 	environment.gas["sleeping_agent_archived"] = null
 	environment.gas["sleeping_agent"] = 0
