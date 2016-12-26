@@ -234,6 +234,10 @@ This function completely restores a damaged organ to perfect condition.
 		wounds += I
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
+	if(status & ORGAN_SPLINTED) //If they have it splinted, the splint won't hold.
+		status &= ~ORGAN_SPLINTED
+		owner << "<span class='danger'>The splint on your [display_name] comes apart!</span>"
+
 	// first check whether we can widen an existing wound
 	if(wounds.len > 0 && prob(max(50+(number_wounds-1)*10,90)))
 		if((type == CUT || type == BRUISE) && damage >= 5)
