@@ -198,13 +198,16 @@
 					status += "blistered"
 				else if(burndamage > 0)
 					status += "numb"
-				if(org.status & ORGAN_DESTROYED)
-					status = "MISSING!"
+
+				if(!status) status = "OK"
+
+				if(org.status & ORGAN_SPLINTED) status += " <b>(SPLINTED)</b>"
 				if(org.status & ORGAN_MUTATED)
 					status = "weirdly shapen."
-				if(status == "")
-					status = "OK"
-				src.show_message(text("\t []My [] is [].",status=="OK"?"\blue ":"\red ",org.display_name,status),1)
+				if(org.status & ORGAN_DESTROYED)
+					status = "MISSING!"
+
+				show_message(text("\t []My [] is [].",status=="OK"?"\blue ":"\red ",org.display_name,status),1)
 			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
 				H.play_xylophone()
 		else

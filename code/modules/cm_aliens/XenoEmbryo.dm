@@ -103,6 +103,7 @@
 //We cause a chest burst. If possible, we put a candidate in it, otherwise we spawn a braindead larva for the observers to jump into
 //Order of priority is bursted individual (if xeno is enabled), then random candidate, and then it's up for grabs and spawns braindead
 /obj/item/alien_embryo/proc/chest_burst()
+	set waitfor = 0
 	var/list/candidates = get_alien_candidates()
 	var/picked = null
 
@@ -122,23 +123,31 @@
 
 	affected_mob.chestburst = 1 //This deals with sprites in update_icons() for humans and monkeys.
 	affected_mob.update_burst()
-	spawn(6) //Sprite delay
-		if(!affected_mob || !src) //Might have died or something in that half second
-			return
-		var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
-		if(picked) //If we are spawning it braindead, don't bother
-			new_xeno.key = picked
-			new_xeno << sound('sound/voice/hiss5.ogg', 0, 0, 0, 100) //This is to get the player's attention, don't broadcast it
-		if(!isYautja(affected_mob))
-			affected_mob.emote("scream")
-		else
-			affected_mob.emote("roar")
+	sleep(6) //Sprite delay
+	if(!affected_mob || !affected_mob.loc) return//Might have died or something in that half second
+
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
+	if(picked) //If we are spawning it braindead, don't bother
+		new_xeno.key = picked
+		new_xeno << sound('sound/voice/hiss5.ogg', 0, 0, 0, 100) //This is to get the player's attention, don't broadcast it
+	if(isYautja(affected_mob)) affected_mob.emote("roar")
+	else affected_mob.emote("scream")
+
+	if(ishuman(affected_mob))
+		var/mob/living/carbon/human/H = affected_mob
+		var/datum/organ/internal/O
+		var/i
+		for(i in list("heart","lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
+			O = H.internal_organs_by_name[i]
+			H.internal_organs_by_name -= i
+			H.internal_organs -= O
+	else
 		affected_mob.adjustToxLoss(300) //This should kill without gibbing da body
 		affected_mob.updatehealth()
-		affected_mob.chestburst = 2
-		processing_objects.Remove(src)
-		affected_mob.update_burst()
-		del(src)
+	affected_mob.chestburst = 2
+	processing_objects.Remove(src)
+	affected_mob.update_burst()
+	del(src)
 
 /*----------------------------------------
 Proc: RefreshInfectionImage()
