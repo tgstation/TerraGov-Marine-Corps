@@ -353,6 +353,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	return new_xeno
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/new_xeno)
+	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
 	message_admins("[new_xeno.key] has joined as [new_xeno].")
 	log_admin("[new_xeno.key] has joined as [new_xeno].")

@@ -709,8 +709,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!new_ckey || new_ckey == null)
 		return
 
-	log_admin("[key_name(usr)] modified [O.name]'s name to [new_ckey]")
-	message_admins("[key_name_admin(usr)] modified [O.name]'s name to [new_ckey]", 1)
+	O.ghostize(0)
+	log_admin("[key_name(usr)] modified [O.name]'s ckey to [new_ckey]")
+	message_admins("[key_name_admin(usr)] modified [O.name]'s ckey to [new_ckey]", 1)
 	feedback_add_details("admin_verb","KEY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	O.ckey = new_ckey
 
