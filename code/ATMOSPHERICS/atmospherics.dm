@@ -181,7 +181,7 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				user.remove_ventcrawl()
 				user.forceMove(src.loc)
 				user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
-				"<span class='notice'>You climb out of [src]./span>")
+				"<span class='notice'>You climb out of [src].</span>")
 	user.canmove = 0
 	spawn(1)
 		user.canmove = 1
