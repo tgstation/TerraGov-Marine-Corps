@@ -10,8 +10,8 @@
 //Snow Floor
 /turf/unsimulated/floor/snow
 	name = "snow layer"
-	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow0_0"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "snow_0"
 	slayer = 0 //Snow layer, Defined in /turf
 	temperature = ICE_TEMPERATURE
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -170,6 +170,7 @@
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
 				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B].")
 				B.health = slayer * 25
+				B.dir = user.dir
 				slayer = 0
 				update_icon(1,0)
 				S.working = 0
@@ -182,7 +183,8 @@
 
 	//Update icon
 	update_icon(var/update_full, var/skip_sides)
-		icon_state = "snow[slayer]_[pick("1","2","3")]"
+		icon_state = "snow_[slayer]"
+		dir = pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST)
 		switch(slayer)
 			if(0)
 				name = "[initial(name)]"
@@ -203,6 +205,79 @@
 						//Update turfs that are near us, but only once
 						D.update_icon(1,1)
 
+
+
+			overlays.Cut()
+			if(istype(get_step(src, NORTH),/turf/unsimulated/floor) || istype(get_step(src, NORTH),/turf/simulated/floor))
+				T = get_step(src, NORTH)
+				if (T && slayer > T.slayer && T.slayer < 1)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_[pick("innercorner", "outercorner")]", dir = NORTH)
+					I.pixel_y = src.pixel_y + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, SOUTH),/turf/unsimulated/floor) || istype(get_step(src, SOUTH),/turf/simulated/floor))
+				T = get_step(src, SOUTH)
+				if (T && slayer > T.slayer && T.slayer < 1)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_[pick("innercorner", "outercorner")]", dir = SOUTH)
+					I.pixel_y = src.pixel_y - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, EAST),/turf/unsimulated/floor) || istype(get_step(src, EAST),/turf/simulated/floor))
+				T = get_step(src, EAST)
+				if (T && slayer > T.slayer && T.slayer < 1)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_[pick("innercorner", "outercorner")]", dir = EAST)
+					I.pixel_x = src.pixel_x + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, WEST),/turf/unsimulated/floor) || istype(get_step(src, WEST),/turf/simulated/floor))
+				T = get_step(src, WEST)
+				if (T && slayer > T.slayer && T.slayer < 1)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_[pick("innercorner", "outercorner")]", dir = WEST)
+					I.pixel_x = src.pixel_x - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, NORTHWEST),/turf/unsimulated/floor) || istype(get_step(src, NORTHWEST),/turf/simulated/floor))
+				T = get_step(src, NORTHWEST)
+				if (T && slayer > T.slayer && T.slayer < 1)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_outercorner", dir = NORTHWEST)
+					I.pixel_x = src.pixel_x - 32
+					I.pixel_y = src.pixel_y + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, NORTHEAST),/turf/unsimulated/floor) || istype(get_step(src, NORTHEAST),/turf/simulated/floor))
+				T = get_step(src, NORTHEAST)
+				if (T && slayer > T.slayer && T.slayer < 1)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_outercorner", dir = NORTHEAST)
+					I.pixel_x = src.pixel_x + 32
+					I.pixel_y = src.pixel_y + 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, SOUTHWEST),/turf/unsimulated/floor) || istype(get_step(src, SOUTHWEST),/turf/simulated/floor))
+				T = get_step(src, SOUTHWEST)
+				if (T && slayer > T.slayer && T.slayer < 1)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_outercorner", dir = SOUTHWEST)
+					I.pixel_x = src.pixel_x - 32
+					I.pixel_y = src.pixel_y - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+			if(istype(get_step(src, SOUTHEAST),/turf/unsimulated/floor) || istype(get_step(src, SOUTHEAST),/turf/simulated/floor))
+				T = get_step(src, SOUTHEAST && T.slayer < 1)
+				if (T && slayer > T.slayer)
+					var/image/I = new('icons/turf/snow2.dmi', "snow_outercorner]", dir = SOUTHEAST)
+					I.pixel_x = src.pixel_x + 32
+					I.pixel_y = src.pixel_y - 32
+					I.layer = src.layer + 0.001 + slayer * 0.0001
+					overlays += I
+
+
+			/* OLD ICE COLONY CODE
 			overlays.Cut()
 			if(istype(get_step(src, NORTH),/turf/unsimulated/floor) || istype(get_step(src, NORTH),/turf/simulated/floor))
 				T = get_step(src, NORTH)
@@ -271,6 +346,7 @@
 					I.pixel_y = src.pixel_y - 32
 					I.layer = src.layer + 0.001 + slayer * 0.0001
 					overlays += I
+			*/
 
 	//Explosion act
 	ex_act(severity)
@@ -291,19 +367,19 @@
 
 //SNOW LAYERS-----------------------------------//
 /turf/unsimulated/floor/snow/layer0
-	icon_state = "snow0_0"
+	icon_state = "snow_0"
 	slayer = 0
 
 /turf/unsimulated/floor/snow/layer1
-	icon_state = "snow1_0"
+	icon_state = "snow_1"
 	slayer = 1
 
 /turf/unsimulated/floor/snow/layer2
-	icon_state = "snow2_0"
+	icon_state = "snow_2"
 	slayer = 2
 
 /turf/unsimulated/floor/snow/layer3
-	icon_state = "snow3_0"
+	icon_state = "snow_3"
 	slayer = 3
 
 
@@ -343,18 +419,24 @@
 //Ice Floor
 /turf/unsimulated/floor/ice
 	name = "ice floor"
-	icon = 'icons/turf/snow.dmi'
+	icon = 'icons/turf/ice.dmi'
 	icon_state = "ice_floor"
 	temperature = ICE_TEMPERATURE
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	oxygen = MOLES_O2STANDARD*1.15
 	nitrogen = MOLES_N2STANDARD*1.15
 
+	//Randomize ice floor
+	New()
+		..()
+		dir = pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST)
+
+
 //ICE WALLS-----------------------------------//
 //Ice Wall
 /turf/unsimulated/wall/ice
 	name = "dense ice wall"
-	icon = 'icons/turf/snow.dmi'
+	icon = 'icons/turf/ice.dmi'
 	icon_state = "ice_wall"
 	desc = "It is very thick."
 	temperature = ICE_TEMPERATURE
@@ -364,8 +446,9 @@
 
 	New()
 		..()
-		update_icon(1)
+		//update_icon(1)
 
+	/*
 	update_icon(var/skip_sides)
 		//Update the side overlays
 		var/turf/T
@@ -411,12 +494,13 @@
 				I.pixel_x = src.pixel_x - 32
 				I.layer = src.layer + 0.001
 				overlays += I
+		*/
 
 
 //Ice Thin Wall
 /turf/unsimulated/wall/ice/thin
 	name = "thin ice wall"
-	icon_state = "ice_wall_thin"
+	icon_state = "ice_wallL2"
 	desc = "It is very thin."
 	opacity = 0
 	slayer = 9
@@ -426,14 +510,62 @@
 	icon_state = "ice_wall_0"
 	desc = "There is something inside..."
 
+//ROCK WALLS------------------------------//
+
 //Icy Rock
 /turf/unsimulated/wall/ice_rock
 	name = "Icy rock"
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "rock_ice"
+	icon = 'icons/turf/rockwall.dmi'
 	temperature = ICE_TEMPERATURE
 	oxygen = MOLES_O2STANDARD*1.15
 	nitrogen = MOLES_N2STANDARD*1.15
+
+/turf/unsimulated/wall/ice_rock/single
+	icon_state = "single"
+
+/turf/unsimulated/wall/ice_rock/singlePart
+	icon_state = "single_part"
+
+/turf/unsimulated/wall/ice_rock/singleT
+	icon_state = "single_tshape"
+
+/turf/unsimulated/wall/ice_rock/singleEnd
+	icon_state = "single_ends"
+
+/turf/unsimulated/wall/ice_rock/fourway
+	icon_state = "4-way"
+
+/turf/unsimulated/wall/ice_rock/corners
+	icon_state = "full_corners"
+
+//Directional walls each have 4 possible sprites and are
+//randomized on New().
+/turf/unsimulated/wall/ice_rock/northWall
+	icon_state = "north_wall"
+	New()
+		..()
+		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/unsimulated/wall/ice_rock/southWall
+	icon_state = "south_wall"
+	New()
+		..()
+		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/unsimulated/wall/ice_rock/westWall
+	icon_state = "west_wall"
+	New()
+		..()
+		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/unsimulated/wall/ice_rock/eastWall
+	icon_state = "east_wall"
+	New()
+		..()
+		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/unsimulated/wall/ice_rock/cornerOverlay
+	icon_state = "corner_overlay"
 
 //ITEMS-----------------------------------//
 /obj/item/weapon/storage/box/lightstick
@@ -585,8 +717,8 @@
 /obj/structure/barricade/snow
 	name = "snow barricade"
 	desc = "It could be worse..."
-	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow_barricade_0"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "barricade"
 	var/health = 50 //Actual health depends on snow layer
 	climbable = 1
 	density = 1
@@ -624,14 +756,16 @@
 			health_check()
 			..()
 
+	/*
 	//Constructed
 	New()
 		update_nearby_icons()
+	*/
 
 	//Check Health
 	proc/health_check(var/die)
 		if(health < 1 || die)
-			update_nearby_icons()
+			//update_nearby_icons()
 			visible_message("\red <B>The [src] falls apart!</B>")
 			del(src)
 
@@ -640,21 +774,21 @@
 		switch(severity)
 			if(1.0)
 				visible_message("\red <B>The [src] is blown apart!</B>")
-				src.update_nearby_icons()
+				//src.update_nearby_icons()
 				del(src)
 				return
 			if(2.0)
 				src.health -= rand(30,60)
 				if (src.health <= 0)
 					visible_message("\red <B>The [src] is blown apart!</B>")
-					src.update_nearby_icons()
+					//src.update_nearby_icons()
 					del(src)
 				return
 			if(3.0)
 				src.health -= rand(10,30)
 				if (src.health <= 0)
 					visible_message("\red <B>The [src] is blown apart!</B>")
-					src.update_nearby_icons()
+					//src.update_nearby_icons()
 					del(src)
 				return
 
@@ -707,13 +841,16 @@
 				visible_message("<span class='danger'>[O] plows straight through the [src]!</span>")
 				health_check(1)
 
+	/*
 	//Update Sides
 	proc/update_nearby_icons()
 		update_icon()
 		for(var/direction in cardinal)
 			for(var/obj/structure/barricade/snow/B in get_step(src,direction))
 				B.update_icon()
+	*/
 
+	/*
 	//Update Icons
 	update_icon()
 		spawn(2)
@@ -726,6 +863,7 @@
 
 			icon_state = "snow_barricade_[junction]"
 			return
+	*/
 
 
 /obj/machinery/computer/shuttle_control/elevator1
@@ -1058,3 +1196,60 @@ obj/item/alienjar
 	specialfunctions = 1
 	door_name = "Armory Secure Door"
 	action_name = "Toggle Door"
+
+//-----Monkey Yeti Thing
+/mob/living/carbon/monkey/yiren
+	name = "Yiren"
+	desc = "Weird, but cute."
+	icon = 'icons/mob/snowYeti.dmi'
+	icon_state = "yeti"
+
+/mob/living/carbon/monkey/yiren/handle_environment(datum/gas_mixture/environment)
+	if(!environment)
+		return
+
+	//Moved these vars here for use in the fuck-it-skip-processing check.
+	var/pressure = environment.return_pressure()
+	if(pressure < WARNING_HIGH_PRESSURE && pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas["phoron"] < MOLES_PHORON_VISIBLE)
+
+
+		//Hopefully should fix the walk-inside-still-pressure-warning issue.
+		if(pressure_alert)
+			pressure_alert = 0
+
+		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
+
+	var/environment_heat_capacity = environment.heat_capacity()
+	if(istype(get_turf(src), /turf/space))
+		var/turf/heat_turf = get_turf(src)
+		environment_heat_capacity = heat_turf.heat_capacity
+
+	if((environment.temperature > (T0C + 50)) || (environment.temperature < ICE_PLANET_min_cold_protection_temperature))
+		var/transfer_coefficient = 1
+
+		handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)
+
+	if(stat==2)
+		bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
+
+	//Account for massive pressure differences
+	switch(pressure)
+		if(HAZARD_HIGH_PRESSURE to INFINITY)
+			adjustBruteLoss( min( ( (pressure / HAZARD_HIGH_PRESSURE) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE) )
+			pressure_alert = 2
+		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
+			pressure_alert = 1
+		if(WARNING_LOW_PRESSURE to WARNING_HIGH_PRESSURE)
+			pressure_alert = 0
+		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
+			pressure_alert = -1
+		else
+			if( !(COLD_RESISTANCE in mutations) )
+				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
+				pressure_alert = -2
+			else
+				pressure_alert = -1
+
+	return
+
+
