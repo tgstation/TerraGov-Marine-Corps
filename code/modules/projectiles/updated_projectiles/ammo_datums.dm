@@ -512,6 +512,7 @@
 
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
+	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
 	iff_signal = access_marine_iff_tag
 	flags_ammo_behavior = AMMO_SKIPS_HUMANS
 	New()
@@ -522,6 +523,8 @@
 		penetration= config.mlow_armor_penetration
 
 /datum/ammo/bullet/smartgun/lethal
+	flags_ammo_behavior = AMMO_REGULAR
+	icon_state 	= "bullet"
 	New()
 		..()
 		damage = config.lmed_hit_damage
@@ -537,6 +540,7 @@
 
 /datum/ammo/bullet/smartgun/dirty/lethal
 	flags_ammo_behavior = AMMO_REGULAR
+	icon_state 	= "bullet"
 	New()
 		..()
 		damage = config.lmed_hit_damage
@@ -544,6 +548,7 @@
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
+	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
 	iff_signal = access_marine_iff_tag
 	flags_ammo_behavior = AMMO_SKIPS_HUMANS
 	New()
