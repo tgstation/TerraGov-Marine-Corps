@@ -153,6 +153,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
+	slowdown = 1
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,

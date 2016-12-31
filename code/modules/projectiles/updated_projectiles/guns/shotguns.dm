@@ -64,6 +64,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy = 1.15
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	aim_slowdown = 1
 
 	New()
 		..()

@@ -23,6 +23,12 @@
 	name = "\improper M42A flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 
+//Because this parent type did not exist
+//Note that this means that snipers will have a slowdown of 3, due to the scope
+/obj/item/weapon/gun/rifle/sniper
+	aim_slowdown = 2
+
+
 //Pow! Headshot.
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper M42A scoped rifle"
@@ -281,6 +287,7 @@
 	cocked_sound = 'sound/weapons/grenadelaunch.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6
+	aim_slowdown = 2
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
