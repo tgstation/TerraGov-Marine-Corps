@@ -132,23 +132,22 @@
 		if("requestshuttle")
 			if(src.authenticated)
 				if(request_cooldown)
-					usr << "\red Assistance has already been requested. Please wait."
+					usr << "<span class='warning'>Assistance has already been requested recently. Please wait.</span>"
 					return
 
-				// var/input = stripped_input(usr, "What is the nature of your emergency?", "Request Emergency Shuttle")
-				// if(!input || !(usr in view(1,src)))
-					// return
-				var/confirm = alert(usr, "Are you sure? Requesting an Emergency Shuttle takes time. You won't be able to request anything else for 5 minutes.", "Confirm", "Yes", "No")
+				var/confirm = alert(usr, "Are you sure? Requesting an evacuation takes time. You won't be able to request anything else for 5 minutes.", "Confirm", "Yes", "No")
 				if(confirm != "Yes") return
 
 				for(var/client/C in admins)
 					if((R_ADMIN|R_MOD) & C.holder.rights)
-						C << "<span class=\"danger\">ADMINS/MODS: [usr] has used</span> <span class=\"name\">\"Request Emergency Shuttle\"</span> <span class=\"name\">(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;call_shuttle=1'>Call Shuttle</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
+						C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Request Emergency Shuttle\"</span> <span class='name'>(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;call_shuttle=1'>Call Shuttle</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
 						C << 'sound/effects/sos-morse-code.ogg'
-						usr << "\blue Emergency Shuttle request sent to CentComm."
+						usr << "<span class='notice'>An evacuation request has been sent to USCM Central Command.</span>"
+
 				request_cooldown = 1
-				spawn(3000)//5 minutes in deciseconds
+				spawn(3000) //5 minutes in deciseconds
 					request_cooldown = 0
+
 		if("cancelshuttle")
 			src.state = STATE_DEFAULT
 			if(src.authenticated)
@@ -187,18 +186,22 @@
 			if(!ticker || !ticker.mode) return //Somehow
 
 			if(ticker.mode.has_called_emergency)
-				usr << "A distress beacon has already been sent."
+				usr << "<span class='warning'>The ship's distress beacon has already been sent.</span>"
 				return
 
 			if(ticker.mode.distress_cooldown)
-				usr << "The launch tubes are resetting. It takes 60 seconds."
+				usr << "<span class='warning'>The distress beacon launcher is currently recalibrating.</span>"
 				return
 
 			if(world.time < 36000)
-				usr << "The launch tubes require at least an hour in transit before they can be launched."
+				usr << "<span class='warning'>The distress beacon has an automatic lock preventing it from being called early, this will wear off after 1300 Operation Time.</span>"
 				return
 
-			var/confirm = alert(usr, "Are you sure? Sending a distress call can only be done once and should only be done with a good reason.", "Confirm", "Yes", "No")
+			if(request_cooldown)
+				usr << "<span class='warning'>Assistance has already been requested recently. Please wait.</span>"
+				return
+
+			var/confirm = alert(usr, "Are you sure? Sending a distress beacon will allow anyone in the perimeter to know your location. You won't be able to request anything else for 5 minutes.", "Confirm", "Yes", "No")
 			if(confirm != "Yes") return
 
 			if(ticker.mode.has_called_emergency) //Someone spammed the damn button
@@ -207,20 +210,28 @@
 			var/count_humans = 0
 			var/count_aliens = 0
 
+			//Count all non-dead mobs who are on the ship, in both cases
 			for(var/mob/living/M in living_mob_list)
-				if(ishuman(M) && M.stat != DEAD && M.client)
+				if(ishuman(M) && M.stat != DEAD && M.client && (M.z == 3 || M.z == 4))
 					count_humans++
-				if(isXeno(M) && M.stat != DEAD && M.client)
+				if(isXeno(M) && M.stat != DEAD && M.client && (M.z == 3 || M.z == 4))
 					count_aliens++
 
 			if(count_aliens < round(count_humans / 2))
-				usr << "Sensors aren't picking up enough of a threat to warrant a distress beacon."
+				log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat on the ship.")
+				message_admins("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat on the ship.", 1)
+				usr << "<span class='warning'>The sensors aren't picking up enough of a threat on the ship to warrant a distress beacon.</span>"
 				return
 
-			ticker.mode.activate_distress()
-			usr << "<B>You activate and launch a distress beacon.</b>"
-			log_game("[key_name(usr)] has called a distress beacon.")
-			message_admins("[key_name_admin(usr)] called a distress beacon.", 1)
+			for(var/client/C in admins)
+				if((R_ADMIN|R_MOD) & C.holder.rights)
+					C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Distress Beacon\"</span> <span class='name'>(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>Distress Beacon</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
+					C << 'sound/effects/sos-morse-code.ogg'
+					usr << "<span class='notice'>A distress beacon request has been sent to USCM Central Command.</span>"
+
+			request_cooldown = 1
+			spawn(3000) //5 minutes in deciseconds
+				request_cooldown = 0
 
 		if("status")
 			src.state = STATE_STATUSDISPLAY
@@ -517,23 +528,23 @@
 //		return
 
 	if(emergency_shuttle.deny_shuttle)
-		user << "The emergency shuttle may not be sent at this time. Please try again later."
+		user << "<span class='warning'>The emergency shuttle may not be sent at this time. Please try again later.</span>"
 		return
 
 	if(world.time < 36000) // 1 hour grace period to let the game get going without lolmetagaming. -- TLE
-		user << "The emergency shuttle is refueling. Please wait another [round((36000-world.time)/600)] minutes before trying again."
+		user << "<span class='warning'>The emergency shuttle is refueling. Please wait another [round((36000-world.time)/600)] minutes before trying again.</span>"
 		return
 
 	if(emergency_shuttle.going_to_centcom())
-		user << "The emergency shuttle may not be called while returning to USCM."
+		user << "<span class='warning'>The emergency shuttle may not be called while returning to USCM.</span>"
 		return
 
 	if(emergency_shuttle.online())
-		user << "The emergency shuttle is already on its way."
+		user << "<span class='warning'>The emergency shuttle is already on its way.</span>"
 		return
 
 	if(ticker.mode.name == "blob")
-		user << "Under directive 7-10, [station_name()] is quarantined until further notice."
+		user << "<span class='warning'>Under directive 7-10, [station_name()] is quarantined until further notice.</span>"
 		return
 
 	emergency_shuttle.call_evac()

@@ -1223,7 +1223,7 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/admin_force_distress()
 	set category = "Admin"
-	set name = "Force Distress Call"
+	set name = "Distress Beacon"
 	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
 
 	if (!ticker  || !ticker.mode)

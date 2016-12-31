@@ -236,12 +236,12 @@
 //	var/list/datum/mind/possible_joiners = ticker.mode.get_players_for_role(role_needed) //Default role_needed is BE_RESPONDER
 	for(var/mob/dead/observer/M in player_list)
 		if(M.client)
-			M << "<font size='3'>\red An emergency beacon has been activated. Use the <B>Join Response Team</b> verb, <B>IC tab</b>, to join!</font>"
-			M << "\red You cannot join if you have been ghosted for less than a few minutes though."
+			M << "<font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Join Response Team</b> verb, <B>IC tab</b>, to join!</span>"
+			M << "<span class='attack'>You cannot join if you have been ghosted for less than a few minutes.</span>"
 
 /datum/game_mode/proc/activate_distress()
 	picked_call = get_random_call()
-	if(!istype(picked_call,/datum/emergency_call)) //Something went horribly wrong
+	if(!istype(picked_call, /datum/emergency_call)) //Something went horribly wrong
 		return
 	if(ticker && ticker.mode && ticker.mode.waiting_for_candidates) //It's already been activated
 		return
@@ -255,24 +255,24 @@
 
 	if(istype(usr,/mob/dead) || istype(usr,/mob/new_player))
 		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Military Police"))
-			usr << "<font color=red><b>You are jobbanned from the emergency reponse team!"
+			usr << "<span class='danger'>You are jobbanned from the emergency reponse team!</span>"
 			return
 		if(!ticker || !ticker.mode || isnull(ticker.mode.picked_call))
-			usr << "No distress beacons are active. You will be notified if this changes."
+			usr << "<span class='warning'>No distress beacons are active. You will be notified if this changes.</span>"
 			return
 
 		var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
 		if(!istype(distress) || !distress.mob_max)
-			usr << "The emergency response team is already full!"
+			usr << "<span class='warning'>The emergency response team is already full!</span>"
 			return
 		var/deathtime = world.time - usr.timeofdeath
 
 		if(deathtime < 600) //Nice try, ghosting right after the announcement
-			usr << "You ghosted too recently."
+			usr << "<span class='warning'>You ghosted too recently.</span>"
 			return
 
 		if(!ticker.mode.waiting_for_candidates)
-			usr << "The distress beacon is already active. Better luck next time!"
+			usr << "<span class='warning'>The emergency response team has already been selected.</span>"
 			return
 
 		if(isnull(usr.mind)) //How? Give them a new one anyway.
@@ -282,16 +282,16 @@
 
 		if(!usr.client || !usr.mind) return //Somehow
 		if(usr.mind in distress.candidates)
-			usr << "You already joined, just be patient."
+			usr << "<span class='warning'>You are already a candidate for this emergency response team.</span>"
 			return
 
 		if(distress.add_candidate(usr))
-			usr << "<B>You are enlisted in the emergency response team! If the team is full after 60 seconds you will be transferred in.</b>"
+			usr << "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>"
 		else
-			usr << "You did not get enlisted in the response team. Better luck next time!"
+			usr << "<span class='warning'>You did not get enlisted in the response team. Better luck next time!</span>"
 		return
 	else
-		usr << "You need to be an observer or new player to use this."
+		usr << "<span class='warning'>You need to be an observer or new player to use this.</span>"
 	return
 
 /datum/emergency_call/proc/activate()
@@ -304,7 +304,7 @@
 	if(mob_max > 0)
 		ticker.mode.waiting_for_candidates = 1
 	show_join_message() //Show our potential candidates the message to let them join.
-	message_admins("Distress beacon: '[src.name]' activated. Looking for candidates.", 1)
+	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
 	command_announcement.Announce("A distress beacon has been launched from the USS Sulaco.", "Priority Alert")
 	spawn(600) //If after 60 seconds we aren't full, abort
 		if(candidates.len < mob_max)
@@ -313,12 +313,12 @@
 			ticker.mode.has_called_emergency = 0
 			members = list() //Empty the members list.
 			candidates = list()
-			command_announcement.Announce("The distress signal got no response.", "Distress Beacon")
+			command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 			ticker.mode.distress_cooldown = 1
 			ticker.mode.picked_call = null
 			spawn(1200)
 				ticker.mode.distress_cooldown = 0
-		else //we got enough!
+		else //We've got enough!
 			//Trim down the list
 			var/list/datum/mind/picked_candidates = list()
 			if(mob_max > 0)
@@ -335,14 +335,14 @@
 						M = pick(candidates) //Lets try this again
 					picked_candidates.Add(M)
 					candidates.Remove(M)
-				spawn(3)//Wait for all the above to be done
+				spawn(3) //Wait for all the above to be done
 					if(candidates.len)
 						for(var/datum/mind/I in candidates)
 							if(I.current)
-								I.current << "You didn't get selected to join the distress team. Better luck next time!"
+								I.current << "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>"
 
 
-			command_announcement.Announce(dispatch_message, "Distress Beacon")
+			command_announcement.Announce(dispatch_message, "Distress Beacon") //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles["Distress"]
 			if(!shuttle || !istype(shuttle))
@@ -362,8 +362,11 @@
 						create_member(M)
 			candidates = null //Blank out the candidates list for next time.
 			candidates = list()
+			/*
+			 * Commented because we can't have nice things
 			spawn(1100) //After 100 seconds, send the arrival message. Should be about the right time they make it there.
 				command_announcement.Announce(arrival_message, "Docked")
+			 */
 
 			spawn(5200)
 				shuttle.launch() //Get that fucker back. TODO: Check for occupants.
@@ -768,6 +771,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/bear(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), slot_glasses)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
@@ -795,6 +799,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), slot_wear_suit)
 	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), slot_glasses)
 	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/bear(M), slot_wear_mask)
 	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)

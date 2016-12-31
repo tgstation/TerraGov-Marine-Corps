@@ -2852,3 +2852,9 @@
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				X << msg
+
+	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
+		var/mob/ref_person = locate(href_list["distress"])
+		ticker.mode.activate_distress()
+		log_game("[key_name_admin(usr)] has sent a distress beacon, requested by [key_name_admin(ref_person)]")
+		message_admins("[key_name_admin(usr)] has sent a distress beacon, requested by [key_name_admin(ref_person)]", 1)
