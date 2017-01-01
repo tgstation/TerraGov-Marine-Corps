@@ -359,7 +359,7 @@
 						/obj/item/weapon/wirecutters,
 						/obj/item/device/analyzer,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/under/marine/underoos,
+						/obj/item/clothing/under/pj/marine,
 						/obj/item/clothing/shoes/marine)
 
 	New()

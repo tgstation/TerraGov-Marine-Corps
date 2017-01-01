@@ -34,7 +34,7 @@
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_BODY = /obj/item/clothing/under/marine/underoos,
+				WEAR_BODY = /obj/item/clothing/under/pj/marine,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/satchel
 				)
 
@@ -56,7 +56,7 @@ You are also in charge of communicating with command and letting them know about
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_BODY = /obj/item/clothing/under/marine/underoos,
+				WEAR_BODY = /obj/item/clothing/under/pj/marine,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/tech
 				)
 
@@ -78,7 +78,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_BODY = /obj/item/clothing/under/marine/underoos,
+				WEAR_BODY = /obj/item/clothing/under/pj/marine,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine/medic
 				)
 
@@ -103,7 +103,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_BODY = /obj/item/clothing/under/marine/underoos,
+				WEAR_BODY = /obj/item/clothing/under/pj/marine,
 				WEAR_HEAD = /obj/item/clothing/head/helmet/specrag,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine
 				)
@@ -131,7 +131,7 @@ You can serve a variety of roles, so choose carefully."}
 
 	generate_wearable_equipment()
 		. = list(
-				WEAR_BODY = /obj/item/clothing/under/marine/underoos,
+				WEAR_BODY = /obj/item/clothing/under/pj/marine,
 				WEAR_BACK = /obj/item/weapon/storage/backpack/marine
 				)
 
