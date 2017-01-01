@@ -494,7 +494,6 @@ datum/preferences
 	var/i
 	for(i in RoleAuthority.roles_for_mode)
 		job = RoleAuthority.roles_for_mode[i]
-		if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist)) continue
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
 			if((index < limit) && (lastJob != null))
@@ -518,6 +517,9 @@ datum/preferences
 //		if((job_civilian_low & ASSISTANT) && (rank != "Assistant"))
 //			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 //			continue
+		if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist))
+			HTML += "<del>[rank]</del></td><td> \[WHITELISTED]</td></tr>"
+			continue
 		if((rank in ROLES_COMMAND) || (rank == "AI"))//Bold head jobs
 			HTML += "<b>[rank]</b>"
 		else
