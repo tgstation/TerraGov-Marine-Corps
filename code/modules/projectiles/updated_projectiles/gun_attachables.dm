@@ -709,7 +709,7 @@ Defined in setup.dm.
 	icon_state = "sniperscope"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	aim_speed_mod = 1 //Extra slowdown of 1 when aiming
+	aim_speed_mod = SLOWDOWN_ADS_SCOPE //Extra slowdown when aiming
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PASSIVE
 
 	New()

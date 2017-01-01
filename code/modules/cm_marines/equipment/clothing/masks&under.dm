@@ -152,6 +152,7 @@ include jackets and regular suits, not armor.*/
 		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 		..()
 
+//TODO: MOVE THIS TO ITS OWN PATH, PROBABLY pj/marine (see normal clothing inheritance)
 /obj/item/clothing/under/marine/underoos
 	name = "marine underpants"
 	desc = "A simple undergarment worn by USCM operators during cryosleep. Makes you drowsy and slower while wearing. You should find an actual uniform."
@@ -159,7 +160,7 @@ include jackets and regular suits, not armor.*/
 	icon_state = "marine_underpants"
 	item_state = "marine_underpants"
 	item_color = "marine_underpants"
-	slowdown = 1
+	slowdown = SLOWDOWN_UNDER_UNFITTING
 
 /obj/item/clothing/under/marine/medic
 	name = "\improper USCM medic uniform"
