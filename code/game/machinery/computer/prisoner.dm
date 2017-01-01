@@ -4,7 +4,7 @@
 	name = "Prisoner Management"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "explosive"
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 	circuit = "/obj/item/weapon/circuitboard/prisoner"
 	var/id = 0.0
 	var/temp = null

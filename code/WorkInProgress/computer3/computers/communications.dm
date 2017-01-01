@@ -25,7 +25,7 @@
 	name = "Centcom communications relay"
 	desc = "Used to connect to USMC High Command."
 	active_state = "comm"
-	req_access = list(access_sulaco_logistics)
+	req_access = list(ACCESS_MARINE_LOGISTICS)
 
 	var/prints_intercept = 1
 	var/authenticated = 0
@@ -72,7 +72,7 @@
 				I = I.GetID()
 			if(istype(I,/obj/item/weapon/card/id) && check_access(I))
 				authenticated = 1
-				if(access_sulaco_captain in I.GetAccess())
+				if(ACCESS_MARINE_COMMANDER in I.GetAccess())
 					authenticated = 2
 					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			if(istype(I,/obj/item/weapon/card/emag))
@@ -88,7 +88,7 @@
 			I = I.GetID()
 
 			if (istype(I,/obj/item/weapon/card/id))
-				if(access_sulaco_captain in I.GetAccess())
+				if(ACCESS_MARINE_COMMANDER in I.GetAccess())
 					var/old_level = security_level
 					if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
 					if(tmp_alertlevel < SEC_LEVEL_GREEN) tmp_alertlevel = SEC_LEVEL_GREEN

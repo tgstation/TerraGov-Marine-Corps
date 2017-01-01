@@ -136,7 +136,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = 4
 
@@ -356,7 +356,7 @@
 
 /obj/item/weapon/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains three side pouches that can store two spare 9mm magazines."
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It conisists of a modular belt with various clips. This version has a holster assembly that allows one to carry the m4a3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol/m4a3",
 		"/obj/item/weapon/gun/pistol/m1911",
@@ -378,6 +378,14 @@
 	new /obj/item/ammo_magazine/pistol/hp(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
+	new_gun.on_enter_storage(src)
+
+/obj/item/weapon/storage/belt/gun/m4a3/commander/New()
+	..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/weapon/storage/belt/gun/m44
@@ -574,7 +582,7 @@ BLIND     // can't see anything
 	vision_flags = SEE_TURFS
 
 	mob_can_equip(mob/user, slot)
-		if(slot == slot_glasses)
+		if(slot == WEAR_EYES)
 			if(!ishuman(user)) return ..() //Doesn't matter, just pass it to the main proc
 			var/mob/living/carbon/human/H = user
 			if(istype(H))

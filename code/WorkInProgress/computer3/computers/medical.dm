@@ -20,7 +20,7 @@
 	name = "Medical Records"
 	desc = "This can be used to check medical records."
 	active_state = "medcomp"
-	req_one_access = list(access_sulaco_medbay)
+	req_one_access = list(ACCESS_MARINE_MEDBAY)
 
 	var/obj/item/weapon/card/id/scan = null
 	var/obj/item/weapon/card/id/scan2 = null
@@ -35,7 +35,7 @@
 
 
 	proc/authenticate()
-		if(access_sulaco_medbay in scan.access)
+		if(ACCESS_MARINE_MEDBAY in scan.access)
 			return 1
 		if(istype(usr,/mob/living/silicon/ai))
 			return 1

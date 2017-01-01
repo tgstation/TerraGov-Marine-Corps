@@ -14,7 +14,7 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "Kitchen Cabinet"
-	req_access = list(access_civilian_generic)
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 	New()
 		..()
@@ -82,7 +82,7 @@
 	icon_opened = "fridgeopen"
 	icon_broken = "fridgebroken"
 	icon_off = "fridge1"
-	req_access = list(access_civilian_generic)
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 
 	New()

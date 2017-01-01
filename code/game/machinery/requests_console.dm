@@ -388,7 +388,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			updateUsrDialog()
 		if(screen == 10)
 			var/obj/item/weapon/card/id/ID = O
-			if (access_sulaco_bridge in ID.GetAccess())
+			if (ACCESS_MARINE_BRIDGE in ID.GetAccess())
 				announceAuth = 1
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else

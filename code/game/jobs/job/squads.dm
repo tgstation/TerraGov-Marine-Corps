@@ -40,28 +40,28 @@
 /datum/squad/alpha
 	name = "Alpha"
 	color = 1
-	access = list(access_squad_alpha)
+	access = list(ACCESS_MARINE_ALPHA)
 	usable = 1
 	radio_freq = ALPHA_FREQ
 
 /datum/squad/bravo
 	name = "Bravo"
 	color = 2
-	access = list(access_squad_bravo)
+	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
 	radio_freq = BRAVO_FREQ
 
 /datum/squad/charlie
 	name = "Charlie"
 	color = 3
-	access = list(access_squad_charlie)
+	access = list(ACCESS_MARINE_CHARLIE)
 	usable = 1
 	radio_freq = CHARLIE_FREQ
 
 /datum/squad/delta
 	name = "Delta"
 	color = 4
-	access = list(access_squad_delta)
+	access = list(ACCESS_MARINE_DELTA)
 	usable = 1
 	radio_freq = DELTA_FREQ
 
@@ -99,10 +99,11 @@
 //Not a safe proc. Returns null if squads or jobs aren't set up.
 //Mostly used in the marine squad console in marine_consoles.dm.
 /proc/get_squad_by_name(var/text)
-	if(!job_master || job_master.squads.len == 0)
+	if(!RoleAuthority || RoleAuthority.squads.len == 0)
 		return null
 
-	for(var/datum/squad/S in job_master.squads)
+	var/datum/squad/S
+	for(S in RoleAuthority.squads)
 		if(S.name == text)
 			return S
 

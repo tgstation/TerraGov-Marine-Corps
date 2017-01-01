@@ -92,7 +92,7 @@
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "equip"
 	inv_box.screen_loc = ui_alien_oclothing
-	inv_box.slot_id = slot_wear_suit
+	inv_box.slot_id = WEAR_JACKET
 	inv_box.layer = 19
 	src.adding += inv_box
 */
@@ -106,7 +106,7 @@
 	inv_box.screen_loc = ui_rhand
 	inv_box.layer = 19
 	src.r_hand_hud_object = inv_box
-	inv_box.slot_id = slot_r_hand
+	inv_box.slot_id = WEAR_R_HAND
 	src.adding += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -118,7 +118,7 @@
 		inv_box.icon_state = "hand_active"
 	inv_box.screen_loc = ui_lhand
 	inv_box.layer = 19
-	inv_box.slot_id = slot_l_hand
+	inv_box.slot_id = WEAR_L_HAND
 	src.l_hand_hud_object = inv_box
 	src.adding += inv_box
 
@@ -149,7 +149,7 @@
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = ui_storage1
-	inv_box.slot_id = slot_l_store
+	inv_box.slot_id = WEAR_L_STORE
 	inv_box.layer = 19
 	src.adding += inv_box
 
@@ -159,7 +159,7 @@
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = ui_storage2
-	inv_box.slot_id = slot_r_store
+	inv_box.slot_id = WEAR_R_STORE
 	inv_box.layer = 19
 	src.adding += inv_box
 
@@ -172,7 +172,7 @@
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "hair"
 	inv_box.screen_loc = ui_alien_head
-	inv_box.slot_id = slot_head
+	inv_box.slot_id = WEAR_HEAD
 	inv_box.layer = 19
 	src.adding += inv_box
 //end of equippable shit

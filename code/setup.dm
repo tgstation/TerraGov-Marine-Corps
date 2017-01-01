@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-#define DEBUG
+#define DEBUG 0
 
 #define PI 3.1415
 #define CARDINAL_DIRS 		list(1,2,4,8)
@@ -160,7 +160,36 @@
 //This was a define, but I changed it to a variable so it can be changed in-game.(kept the all-caps definition because... code...) -Errorage
 var/MAX_EXPLOSION_RANGE = 14
 //#define MAX_EXPLOSION_RANGE		14					// Defaults to 12 (was 8) -- TLE
+/*
+//===============================================================================\\
+//Mineral defines, so that material sheets are converted properly across the board.
+#define DEFAULT_CONVERSION_PER_UNIT 		3750
+#define DEFAULT_CONVERSION_PER_CENTIUNIT 	round(DEFAULT_CONVERSION_PER_UNIT * 0.1)
+#define DEFAULT_CONVERSION_PER_DECIUNIT 	round(DEFAULT_CONVERSION_PER_UNIT * 0.01)
 
+
+#define VALUABLE_CONVERSION_PER_UNIT 		2000
+#define VALUABLE_CONVERSION_PER_CENTIUNIT 	VALUABLE_CONVERSION_PER_UNIT * 0.1
+#define EXOTIC_CONVERSION_PER_UNIT 			1000
+#define EXOTIC_CONVERSION_PER_CENTIUNIT 	EXOTIC_CONVERSION_PER_UNIT * 0.1
+
+//These are specific defines for the three main sources of material.
+#define METAL_CONVERSION_PER_UNIT 			DEFAULT_CONVERSION_PER_UNIT
+#define METAL_CONVERSION_PER_CENTIUNIT 		DEFAULT_CONVERSION_PER_CENTIUNIT
+#define METAL_CONVERSION_PER_DECIUNIT 		DEFAULT_CONVERSION_PER_DECIUNIT
+#define METAL_CONVERSION_FOR_TINY_ITEM		round(METAL_CONVERSION_PER_DECIUNIT * 3)
+#define METAL_CONVERSION_FOR_SMALL_ITEM		round(METAL_CONVERSION_PER_DECIUNIT * 7)
+#define METAL_CONVERSION_FOR_MEDIUM_ITEM	METAL_CONVERSION_PER_DECIUNIT
+#define METAL_CONVERSION_FOR_LARGE_ITEM
+#define METAL_CONVERSION_FOR_MED_ITEM
+
+#define GLASS_CONVERSION_PER_UNIT 			DEFAULT_CONVERSION_PER_UNIT
+#define GLASS_CONVERSION_PER_CENTIUNIT 		GLASS_CONVERSION_PER_UNIT * 0.1
+#define STEEL_CONVERSION_PER_UNIT 			METAL_CONVERSION_PER_UNIT  * 2
+#define STEEL_CONVERSION_PER_CENTIUNIT 		STEEL_CONVERSION_PER_UNIT * 0.1
+//===============================================================================\\
+
+*/
 #define HUMAN_STRIP_DELAY 40 //takes 40ds = 4s to strip someone.
 
 #define ALIEN_SELECT_AFK_BUFFER 1 // How many minutes that a person can be AFK before not being allowed to be an alien.
@@ -172,23 +201,28 @@ var/MAX_EXPLOSION_RANGE = 14
 
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 
-//ITEM INVENTORY SLOT BITMASKS
-#define SLOT_OCLOTHING 1
-#define SLOT_ICLOTHING 2
-#define SLOT_GLOVES 4
-#define SLOT_EYES 8
-#define SLOT_EARS 16
-#define SLOT_MASK 32
-#define SLOT_HEAD 64
-#define SLOT_FEET 128
-#define SLOT_ID 256
-#define SLOT_BELT 512
-#define SLOT_BACK 1024
-#define SLOT_POCKET 2048		//this is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET 4096	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define SLOT_TWOEARS 8192
-#define SLOT_LEGS = 16384
+//Life variables
+#define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
+#define HUMAN_CRIT_MAX_OXYLOSS ( (last_tick_duration) /6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks.
 
+#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
+#define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
+
+#define COLD_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
+#define COLD_DAMAGE_LEVEL_2 1.0 //Amount of damage applied when your body temperature passes the 200K point
+#define COLD_DAMAGE_LEVEL_3 2 //Amount of damage applied when your body temperature passes the 120K point
+
+//Note that gas heat damage is only applied once every FOUR ticks.
+#define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
+#define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
+#define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
+
+#define COLD_GAS_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
+#define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
+#define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
+
+#define RADIATION_SPEED_COEFFICIENT 0.1
 
 //FLAGS BITMASK
 /*
@@ -290,28 +324,52 @@ should all be unique more or less. flags_inventory can double up.
 #define HELMET_IS_DAMAGED		16
 //===========================================================================================
 
+//ITEM INVENTORY SLOT BITMASKS
+#define SLOT_OCLOTHING 		1
+#define SLOT_ICLOTHING 		2
+#define SLOT_HANDS 			4
+#define SLOT_EYES 			8
+#define SLOT_EAR 			16
+#define SLOT_FACE 			32
+#define SLOT_HEAD 			64
+#define SLOT_FEET 			128
+#define SLOT_ID 			256
+#define SLOT_WAIST			512
+#define SLOT_BACK 			1024
+#define SLOT_STORE 			2048	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define SLOT_NO_STORE		4096	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
+#define SLOT_EARS 		8192
+#define SLOT_LEGS 			16384
+
 //slots
-#define slot_back 1
-#define slot_wear_mask 2
-#define slot_handcuffed 3
-#define slot_l_hand 4
-#define slot_r_hand 5
-#define slot_belt 6
-#define slot_wear_id 7
-#define slot_l_ear 8
-#define slot_glasses 9
-#define slot_gloves 10
-#define slot_head 11
-#define slot_shoes 12
-#define slot_wear_suit 13
-#define slot_w_uniform 14
-#define slot_l_store 15
-#define slot_r_store 16
-#define slot_s_store 17
-#define slot_in_backpack 18
-#define slot_legcuffed 19
-#define slot_r_ear 20
-#define slot_legs 21
+//Text strings so that the slots can be associated when doing iventory lists.
+#define WEAR_ID				"id"
+#define WEAR_L_EAR			"l_ear"
+#define WEAR_R_EAR			"r_ear"
+#define WEAR_BODY			"body"
+#define WEAR_LEGS			"legs"
+#define WEAR_FEET			"feet"
+#define WEAR_HANDS			"hands"
+#define WEAR_WAIST			"waist"
+#define WEAR_JACKET			"jacket"
+#define WEAR_EYES			"eyes"
+#define WEAR_FACE			"face"
+#define WEAR_HEAD			"head"
+#define WEAR_BACK			"back"
+
+#define WEAR_L_STORE		"l_store"
+#define WEAR_R_STORE		"r_store"
+#define WEAR_ACCESSORY		"accessory"
+#define WEAR_J_STORE		"j_store"
+#define WEAR_L_HAND			"l_hand"
+#define WEAR_R_HAND			"r_hand"
+
+#define WEAR_HANDCUFFS		"handcuffs"
+#define WEAR_LEGCUFFS		"legcuffs"
+
+#define WEAR_IN_BACK		"in_back"
+#define WEAR_IN_JACKET		"in_jacket"
+#define WEAR_IN_ACCESSORY	"in_accessory"
 
 // bitflags for clothing parts
 #define HEAD			1
@@ -465,17 +523,6 @@ should all be unique more or less. flags_inventory can double up.
 #define GAS_PL	(1 << 2)
 #define GAS_CO2	(1 << 3)
 #define GAS_N2O	(1 << 4)
-
-
-var/list/accessable_z_levels = list("1" = 10, "3" = 10, "4" = 10, "5" = 70)
-//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
-//(Exceptions: extended, sandbox and nuke) -Errorage
-//Was list("3" = 30, "4" = 70).
-//Spacing should be a reliable method of getting rid of a body -- Urist.
-//Go away Urist, I'm restoring this to the longer list. ~Errorage
-
-#define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
-
 
 var/list/global_mutations = list() // list of hidden mutation things
 
@@ -834,14 +881,15 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define NO_PAIN 8
 #define NO_SLIP 16
 #define NO_POISON 32
+#define NO_CHEM_REACTION 64 //Prevents reagents from acting on_mob_life().
 
-#define HAS_SKIN_TONE 64
-#define HAS_SKIN_COLOR 128
-#define HAS_LIPS 256
-#define HAS_UNDERWEAR 512
-#define IS_PLANT 1024
-#define IS_WHITELISTED 2048
-#define IS_SYNTHETIC 4096
+#define HAS_SKIN_TONE 128
+#define HAS_SKIN_COLOR 256
+#define HAS_LIPS 512
+#define HAS_UNDERWEAR 1024
+#define IS_PLANT 2048
+#define IS_WHITELISTED 4096
+#define IS_SYNTHETIC 8192
 
 //Language flags.
 #define WHITELISTED 1  		// Language is available if the speaker is whitelisted.
@@ -1009,32 +1057,125 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define ATTACH_PROJECTILE	16
 
 //Game mode related defines.
-#define MODE_INFESTATION	1
-#define MODE_PREDATOR		2
+
+var/list/accessable_z_levels = list("1" = 10, "3" = 10, "4" = 10, "5" = 70)
+//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
+//(Exceptions: extended, sandbox and nuke) -Errorage
+//Was list("3" = 30, "4" = 70).
+//Spacing should be a reliable method of getting rid of a body -- Urist.
+//Go away Urist, I'm restoring this to the longer list. ~Errorage
+
+#define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
+
+#define MODE_INFESTATION		1
+#define MODE_PREDATOR			2
+#define MODE_NO_LATEJOIN		4
+#define MODE_HAS_FINISHED		8
 
 //Number of marine players against which the Marine's gear scales
 #define MARINE_GEAR_SCALING_NORMAL 30
 
+/*Access levels. Changed into defines, since that's what they should be.
+It's best not to mess with the numbers of the regular access levels because
+most of them are tied into map-placed objects. This should be reworked in the future.*/
+#define ACCESS_MARINE_COMMANDER 	1
+#define ACCESS_MARINE_LOGISTICS 	2
+#define ACCESS_MARINE_BRIG 			3
+#define ACCESS_MARINE_ARMORY 		4
+#define ACCESS_MARINE_CMO 			5
+#define ACCESS_MARINE_CE 			6
+#define ACCESS_MARINE_ENGINEERING 	7
+#define ACCESS_MARINE_MEDBAY 		8
+#define ACCESS_MARINE_PREP 			9
+#define ACCESS_MARINE_MEDPREP 		10
+#define ACCESS_MARINE_ENGPREP 		11
+#define ACCESS_MARINE_LEADER 		12
+#define ACCESS_MARINE_SPECPREP 		13
+#define ACCESS_MARINE_RESEARCH 		14
+#define ACCESS_MARINE_ALPHA 		15
+#define ACCESS_MARINE_BRAVO 		16
+#define ACCESS_MARINE_CHARLIE 		17
+#define ACCESS_MARINE_DELTA 		18
+#define ACCESS_MARINE_BRIDGE 		19
+#define ACCESS_MARINE_CHEMISTRY 	20
+#define ACCESS_MARINE_CARGO 		21
+#define ACCESS_MARINE_DROPSHIP 		22
+#define ACCESS_MARINE_PILOT 		23
 
-//Life variables
-#define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
-#define HUMAN_CRIT_MAX_OXYLOSS ( (last_tick_duration) /6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks.
+//Surface access levels
+#define ACCESS_CIVILIAN_PUBLIC 		100
+#define ACCESS_CIVILIAN_LOGISTICS 	101
+#define ACCESS_CIVILIAN_ENGINEERING 102
+#define ACCESS_CIVILIAN_RESEARCH	103
 
-#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
-#define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
-#define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
+//Special access levels. Should be alright to modify these.
+#define ACCESS_WY_PMC_GREEN 		180
+#define ACCESS_WY_PMC_ORANGE	 	181
+#define ACCESS_WY_PMC_RED			182
+#define ACCESS_WY_PMC_BLACK			183
+#define ACCESS_WY_PMC_WHITE			184
+#define ACCESS_WY_CORPORATE 		190
+#define ACCESS_ILLEGAL_PIRATE 		201
 
-#define COLD_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
-#define COLD_DAMAGE_LEVEL_2 1.0 //Amount of damage applied when your body temperature passes the 200K point
-#define COLD_DAMAGE_LEVEL_3 2 //Amount of damage applied when your body temperature passes the 120K point
+//Temporary until I turn these into defines/bitflags and develop proper IF tagging.
+#define ACCESS_IFF_MARINE 			998
+#define ACCESS_IFF_PMC 				999
 
-//Note that gas heat damage is only applied once every FOUR ticks.
-#define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
-#define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
-#define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
+//Various roles and their suggested bitflags or defines.
 
-#define COLD_GAS_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
-#define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
-#define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
+#define ROLEGROUP_MARINE_COMMAND	1
 
-#define RADIATION_SPEED_COEFFICIENT 0.1
+#define ROLE_COMMANDING_OFFICER		1
+#define ROLE_EXECUTIVE_OFFICER		2
+#define ROLE_BRIDGE_OFFICER			4
+#define ROLE_MILITARY_POLICE		8
+#define ROLE_CORPORATE_LIAISON		16
+#define ROLE_REQUISITION_OFFICER	32
+#define ROLE_PILOT_OFFICER			64
+
+#define ROLEGROUP_MARINE_ENGINEERING 2
+
+#define ROLE_CHIEF_ENGINEER			1
+#define ROLE_MAINTENANCE_TECH		2
+#define ROLE_REQUISITION_TECH		4
+
+#define ROLEGROUP_MARINE_MED_SCIENCE 4
+
+#define ROLE_CHIEF_MEDICAL_OFFICER	1
+#define ROLE_CIVILIAN_DOCTOR		2
+#define ROLE_CIVILIAN_RESEARCHER	4
+
+#define ROLEGROUP_MARINE_SQUAD_MARINES 8
+
+#define ROLE_MARINE_LEADER			1
+#define ROLE_MARINE_MEDIC			2
+#define ROLE_MARINE_ENGINEER		4
+#define ROLE_MARINE_STANDARD		8
+#define ROLE_MARINE_SPECIALIST		16
+
+#define ROLE_ADMIN_NOTIFY			1
+#define ROLE_ADD_TO_SQUAD			2
+#define ROLE_ADD_TO_DEFAULT			4
+#define ROLE_ADD_TO_MODE			8
+#define ROLE_WHITELISTED			16
+
+//Role defines, specifically lists of roles for job bans and the like.
+#define ROLES_COMMAND 		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison","Requisitions Officer","Chief Engineer","Chief Medical Officer")
+#define ROLES_OFFICERS		list("Commander","Executive Officer","Bridge Officer","Pilot Officer","Military Police","Corporate Liaison")
+#define ROLES_ENGINEERING 	list("Chief Engineer","Maintenance Tech")
+#define ROLES_REQUISITION 	list("Requisitions Officer","Cargo Technician")
+#define ROLES_MEDICAL 		list("Chief Medical Officer","Doctor","Researcher")
+#define ROLES_MARINES		list("Squad Leader","Squad Specialist","Squad Medic","Squad Engineer","Squad Marine")
+#define ROLES_SQUAD_ALL		list("Alpha","Bravo","Charlie","Delta")
+#define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
+#define ROLES_UNASSIGNED	list("Squad Marine")
+
+#define WHITELIST_YAUTJA_UNBLOODED	1
+#define WHITELIST_YAUTJA_BLOODED	2
+#define WHITELIST_YAUTJA_ELITE		4
+#define WHITELIST_YAUTJA_ELDER		8
+#define WHITELIST_PREDATOR			(WHITELIST_YAUTJA_UNBLOODED|WHITELIST_YAUTJA_BLOODED|WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER)
+#define WHITELIST_COMMANDER			16
+#define WHITELIST_SYNTHETIC			32
+#define WHITELIST_ARCTURIAN			64
+#define WHITELIST_ALL				(WHITELIST_YAUTJA_UNBLOODED|WHITELIST_YAUTJA_BLOODED|WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER|WHITELIST_COMMANDER|WHITELIST_SYNTHETIC|WHITELIST_ARCTURIAN)

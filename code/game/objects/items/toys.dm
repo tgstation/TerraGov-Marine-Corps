@@ -127,7 +127,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "revolver"
 	item_state = "gun"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 3.0
 
 	matter = list("glass" = 10,"metal" = 10)
@@ -355,7 +355,7 @@
 	icon_state = "katana"
 	item_state = "katana"
 	flags_atom = FPRINT|CONDUCT|NOSHIELD
-	flags_equip_slot = SLOT_BELT|SLOT_BACK
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = 3
@@ -573,7 +573,7 @@
 	icon_state = "katana"
 	item_state = "katana"
 	flags_atom = FPRINT|NOSHIELD|CONDUCT
-	flags_equip_slot = SLOT_BELT|SLOT_BACK
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = 3
@@ -646,4 +646,4 @@
 	icon_state = "inflatable"
 	item_state = "inflatable"
 	icon = 'icons/obj/clothing/belts.dmi'
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST

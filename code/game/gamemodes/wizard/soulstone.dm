@@ -6,7 +6,7 @@
 	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefacts power."
 	w_class = 1.0
 	flags = FPRINT|TABLEPASS
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	origin_tech = "bluespace=4;materials=4"
 	var/imprinted = "empty"
 

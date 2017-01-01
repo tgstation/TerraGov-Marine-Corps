@@ -104,7 +104,7 @@ var/list/sacrificed = list()
 				if(M.stat==2)
 					continue
 				usr.say("Mah[pick("'","`")]weyh pleggh at e'ntrath!")
-				
+
 				if (M.species && (M.species.flags & NO_PAIN))
 					M.visible_message("\red The markings below [M] glow a bloody red.")
 				else
@@ -1051,10 +1051,10 @@ var/list/sacrificed = list()
 			usr.visible_message("\red The rune disappears with a flash of red light, and a set of armor appears on [usr]...", \
 			"\red You are blinded by the flash of red light! After you're able to see again, you see that you are now wearing a set of armor.")
 
-			user.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), slot_head)
-			user.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), slot_wear_suit)
-			user.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult(user), slot_shoes)
-			user.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/cultpack(user), slot_back)
+			user.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), WEAR_HEAD)
+			user.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), WEAR_JACKET)
+			user.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult(user), WEAR_FEET)
+			user.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/cultpack(user), WEAR_BACK)
 			//the above update their overlay icons cache but do not call update_icons()
 			//the below calls update_icons() at the end, which will update overlay icons by using the (now updated) cache
 			user.put_in_hands(new /obj/item/weapon/melee/cultblade(user))	//put in hands or on floor

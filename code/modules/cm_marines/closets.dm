@@ -2,7 +2,7 @@
 //STANDARD MARINE CLOSET
 /obj/structure/closet/secure_closet/marine
 	name = "marine's locker"
-	req_access = list(access_marine_prep)
+	req_access = list(ACCESS_MARINE_PREP)
 	icon_state = "standard_locked"
 	icon_closed = "standard_unlocked"
 	icon_locked = "standard_locked"
@@ -29,7 +29,7 @@
 //MARINE COMMAND CLOSET
 /obj/structure/closet/secure_closet/marine/marine_commander
 	name = "\improper marine Commander's locker"
-	req_access = list(access_sulaco_captain)
+	req_access = list(ACCESS_MARINE_COMMANDER)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
 	icon_locked = "capsecure1"
@@ -54,7 +54,7 @@
 
 /obj/structure/closet/secure_closet/securecom
 	name = "\improper Commander's secure box"
-	req_access = list(access_sulaco_captain)
+	req_access = list(ACCESS_MARINE_COMMANDER)
 	desc = "You could probably get court-marshaled just by looking at this..."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "largermetal"
@@ -64,7 +64,7 @@
 
 /obj/structure/closet/secure_closet/marine/marine_lo
 	name = "bridge officer's locker"
-	req_access = list(access_sulaco_logistics)
+	req_access = list(ACCESS_MARINE_LOGISTICS)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
 	icon_locked = "hopsecure1"
@@ -98,7 +98,7 @@
 
 /obj/structure/closet/secure_closet/marine/marine_pilot
 	name = "pilot officer's locker"
-	req_access = list(access_sulaco_pilot_locker)
+	req_access = list(ACCESS_MARINE_PILOT)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
 	icon_locked = "hopsecure1"
@@ -124,7 +124,7 @@
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/marine/military_officer
 	name = "military police's locker"
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "sec1"
 	icon_closed = "sec"
 	icon_locked = "sec1"
@@ -154,7 +154,7 @@
 
 /obj/structure/closet/secure_closet/marine/military_officer_spare
 	name = "extra equipment locker"
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "sec1"
 	icon_closed = "sec"
 	icon_locked = "sec1"
@@ -183,7 +183,7 @@
 //ALPHA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_alpha_equipment
 	name = "alpha equipment locker"
-	req_access = list(access_marine_prep, access_squad_alpha)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA)
 	icon_state = "squad_alpha_locked"
 	icon_closed = "squad_alpha_unlocked"
 	icon_locked = "squad_alpha_locked"
@@ -200,7 +200,7 @@
 //BRAVO EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_bravo_equipment
 	name = "bravo equipment locker"
-	req_access = list(access_marine_prep, access_squad_bravo)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_BRAVO)
 	icon_state = "squad_bravo_locked"
 	icon_closed = "squad_bravo_unlocked"
 	icon_locked = "squad_bravo_locked"
@@ -217,7 +217,7 @@
 //CHARLIE EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_charlie_equipment
 	name = "charlie equipment locker"
-	req_access = list(access_marine_prep, access_squad_charlie)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHARLIE)
 	icon_state = "squad_charlie_locked"
 	icon_closed = "squad_charlie_unlocked"
 	icon_locked = "squad_charlie_locked"
@@ -234,7 +234,7 @@
 //DELTA EQUIPMENT CLOSET
 /obj/structure/closet/secure_closet/marine/marine_delta_equipment
 	name = "delta equipment locker"
-	req_access = list(access_marine_prep, access_squad_delta)
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DELTA)
 	icon_state = "squad_delta_locked"
 	icon_closed = "squad_delta_unlocked"
 	icon_locked = "squad_delta_locked"
@@ -251,7 +251,7 @@
 //SULACO MEDICAL CLOSET
 /obj/structure/closet/secure_closet/marine/medical
 	name = "sulaco medical doctor's locker"
-	req_access = list(access_sulaco_medbay)
+	req_access = list(ACCESS_MARINE_MEDBAY)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
 	icon_locked = "securemed1"
@@ -374,7 +374,7 @@
 
 /obj/structure/closet/secure_closet/req_officer
 	name = "\improper RO's extra locker"
-	req_access = list(access_sulaco_cargo)
+	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "securecargo1"
 	icon_closed = "securecargo"
 	icon_locked = "securecargo1"

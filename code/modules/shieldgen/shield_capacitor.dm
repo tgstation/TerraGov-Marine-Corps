@@ -31,7 +31,7 @@
 
 	if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = W
-		if(access_sulaco_engineering in C.access || access_marine_engprep in C.access)
+		if(ACCESS_MARINE_ENGINEERING in C.access || ACCESS_MARINE_CE in C.access)
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()

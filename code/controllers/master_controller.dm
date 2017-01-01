@@ -46,10 +46,9 @@ datum/controller/game_controller/New()
 			del(master_controller)
 		master_controller = src
 
-	if(!job_master)
-		job_master = new /datum/controller/occupations()
-		job_master.SetupOccupations()
-		job_master.LoadJobs("config/jobs.txt")
+	if(!RoleAuthority)
+		RoleAuthority = new /datum/authority/branch/role()
+		RoleAuthority.load_roles("config/jobs.txt")
 		world << "\red \b Job setup complete"
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()

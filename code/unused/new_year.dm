@@ -56,7 +56,7 @@
 	throw_speed = 4
 	throw_range = 20
 	flags = FPRINT|TABLEPASS|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 
 /obj/item/weapon/firbang/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 	if (user.get_active_hand() == src)

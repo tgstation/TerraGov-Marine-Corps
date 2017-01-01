@@ -169,7 +169,7 @@
 	icon = 'icons/obj/hydroponics.dmi'
 	item_state = "spray"
 	flags_atom = FPRINT|NOBLUDGEON
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 4
 	w_class = 2.0
 	throw_speed = 2

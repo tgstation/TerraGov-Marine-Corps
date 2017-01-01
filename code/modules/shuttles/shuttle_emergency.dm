@@ -132,7 +132,7 @@
 		src.visible_message("[src] buzzes. That ID has already been scanned.")
 		return 0
 
-	if (!(access_sulaco_bridge in access))
+	if (!(ACCESS_MARINE_BRIDGE in access))
 		src.visible_message("[src] buzzes, rejecting [ident].")
 		return 0
 

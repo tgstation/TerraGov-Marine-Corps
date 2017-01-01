@@ -241,7 +241,7 @@
 	var/traitor_frequency = 0.0
 	var/obj/item/device/radio/origradio = null
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	item_state = "radio"
 	throwforce = 5
 	w_class = 2.0

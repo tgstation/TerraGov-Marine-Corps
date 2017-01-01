@@ -7,7 +7,7 @@
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
 
-	flags_equip_slot = SLOT_EARS
+	flags_equip_slot = SLOT_EAR
 	var/translate_binary = 0
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null

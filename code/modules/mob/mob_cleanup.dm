@@ -123,8 +123,8 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 				if(isobj(H.wear_suit))
 					Cl = H.wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-				if(passed && isobj(slot_w_uniform))
-					Cl = slot_w_uniform
+				if(passed && isobj(WEAR_BODY))
+					Cl = WEAR_BODY
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 			if(3)
 				if(isobj(H.wear_suit) && H.wear_suit.flags_armor_protection&HANDS)

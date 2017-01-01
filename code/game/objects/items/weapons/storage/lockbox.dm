@@ -9,7 +9,7 @@
 	max_w_class = 3
 	max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 4
-	req_access = list(access_sulaco_captain)
+	req_access = list(ACCESS_MARINE_COMMANDER)
 	var/locked = 1
 	var/broken = 0
 	var/icon_locked = "lockbox+l"
@@ -68,7 +68,7 @@
 
 /obj/item/weapon/storage/lockbox/loyalty
 	name = "lockbox of loyalty implants"
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 
 	New()
 		..()
@@ -81,7 +81,7 @@
 /obj/item/weapon/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 
 	New()
 		..()

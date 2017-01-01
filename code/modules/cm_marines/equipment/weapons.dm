@@ -53,7 +53,7 @@
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	flags_equip_slot = SLOT_POCKET
+	flags_equip_slot = SLOT_STORE
 
 /obj/item/weapon/claymore
 	name = "claymore"
@@ -61,7 +61,7 @@
 	icon_state = "claymore"
 	item_state = "claymore"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 40
 	throwforce = 10
 	sharp = 1
@@ -101,7 +101,7 @@
 	icon_state = "katana"
 	item_state = "katana"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT|SLOT_BACK
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	force = 40
 	throwforce = 10
 	sharp = 1
@@ -439,7 +439,7 @@
 	icon_state = "grenade_fire"
 	det_time = 40
 	item_state = "grenade_fire"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	dangerous = 1
 
 	prime()
@@ -551,7 +551,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	unacidable = 1
 	flags_atom = FPRINT|CONDUCT
 
-	var/iff_signal = access_marine_iff_tag
+	var/iff_signal = ACCESS_IFF_MARINE
 	var/triggered = 0
 	var/armed = 0 //Will the mine explode or not
 	var/trigger_type = "explosive" //Calls that proc
@@ -568,7 +568,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 	name = "\improper M20P Claymore anti-personnel mine"
 	desc = "The M20P Claymore is a directional proximity triggered anti-presonnel mine designed by Armat Systems for use by the United States Colonial Marines. It has been modified for use by the W-Y PMC forces."
 	icon_state = "m20p"
-	iff_signal = access_pmc_iff_tag
+	iff_signal = ACCESS_IFF_PMC
 
 //Arming
 /obj/item/device/mine/attack_self(mob/living/user)

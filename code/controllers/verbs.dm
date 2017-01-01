@@ -71,7 +71,7 @@
 			debug_variables(air_master)
 			feedback_add_details("admin_verb","DAir")
 		if("Jobs")
-			debug_variables(job_master)
+			debug_variables(RoleAuthority)
 			feedback_add_details("admin_verb","DJobs")
 		if("Sun")
 			debug_variables(sun)

@@ -96,7 +96,7 @@ var/global/datum/controller/gameticker/ticker
 			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
 			if(M.can_start())
 				src.mode = config.pick_mode(secret_force_mode)
-		job_master.ResetOccupations()
+		RoleAuthority.reset_roles()
 		if(!src.mode)
 			src.mode = pickweight(runnable_modes)
 		if(src.mode)
@@ -108,7 +108,7 @@ var/global/datum/controller/gameticker/ticker
 		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		del(mode)
 		current_state = GAME_STATE_PREGAME
-		job_master.ResetOccupations()
+		RoleAuthority.reset_roles()
 		return 0
 
 	var/can_continue = src.mode.pre_setup()//Setup special modes
@@ -116,7 +116,7 @@ var/global/datum/controller/gameticker/ticker
 		del(mode)
 		current_state = GAME_STATE_PREGAME
 		world << "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby."
-		job_master.ResetOccupations()
+		RoleAuthority.reset_roles()
 		return 0
 
 	if(hide_mode)
@@ -130,7 +130,7 @@ var/global/datum/controller/gameticker/ticker
 		src.mode.announce()
 
 	//Configure mode and assign player to special mode stuff
-	job_master.DivideOccupations() //Distribute jobs
+	RoleAuthority.setup_candidates_and_roles() //Distribute jobs
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
@@ -314,12 +314,15 @@ var/global/datum/controller/gameticker/ticker
 		if(mode && istype(mode,/datum/game_mode/huntergames)) // || istype(mode,/datum/game_mode/whiskey_outpost)
 			return
 
-		for(var/mob/living/carbon/human/player in player_list)
-			if(player && player.mind && player.mind.assigned_role)
+		var/mob/living/carbon/human/player
+		var/m
+		for(m in player_list)
+			player = m
+			if(istype(player) && player.mind && player.mind.assigned_role)
 				if(player.mind.assigned_role == "Commander")
 					captainless=0
 				if(player.mind.assigned_role != "MODE")
-					job_master.EquipRank(player, player.mind.assigned_role, 0)
+					RoleAuthority.equip_role(player, RoleAuthority.roles_by_name[player.mind.assigned_role])
 					UpdateFactionList(player)
 					EquipCustomItems(player)
 		if(captainless)

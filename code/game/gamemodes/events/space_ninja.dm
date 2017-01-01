@@ -529,20 +529,20 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		del(gloves)
 
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(src)
-	equip_to_slot_or_del(R, slot_l_ear)
+	equip_to_slot_or_del(R, WEAR_L_EAR)
 	if(gender==FEMALE)
-		equip_to_slot_or_del(new /obj/item/clothing/under/color/blackf(src), slot_w_uniform)
+		equip_to_slot_or_del(new /obj/item/clothing/under/color/blackf(src), WEAR_BODY)
 	else
-		equip_to_slot_or_del(new /obj/item/clothing/under/color/black(src), slot_w_uniform)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/space_ninja(src), slot_shoes)
-	equip_to_slot_or_del(new /obj/item/clothing/suit/space/space_ninja(src), slot_wear_suit)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/space_ninja(src), slot_gloves)
-	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/space_ninja(src), slot_head)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/voice/space_ninja(src), slot_wear_mask)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), slot_belt)
-	equip_to_slot_or_del(new /obj/item/weapon/plastique(src), slot_r_store)
-	equip_to_slot_or_del(new /obj/item/weapon/plastique(src), slot_l_store)
-	equip_to_slot_or_del(new /obj/item/weapon/tank/oxygen(src), slot_s_store)
+		equip_to_slot_or_del(new /obj/item/clothing/under/color/black(src), WEAR_BODY)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/space_ninja(src), WEAR_FEET)
+	equip_to_slot_or_del(new /obj/item/clothing/suit/space/space_ninja(src), WEAR_JACKET)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/space_ninja(src), WEAR_HANDS)
+	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/space_ninja(src), WEAR_HEAD)
+	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/voice/space_ninja(src), WEAR_FACE)
+	equip_to_slot_or_del(new /obj/item/device/flashlight(src), WEAR_WAIST)
+	equip_to_slot_or_del(new /obj/item/weapon/plastique(src), WEAR_R_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/plastique(src), WEAR_L_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/tank/oxygen(src), WEAR_J_STORE)
 	return 1
 
 //=======//HELPER PROCS//=======//

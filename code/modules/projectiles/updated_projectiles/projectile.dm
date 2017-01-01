@@ -1,8 +1,8 @@
 
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
-#define DEBUG_HUMAN_DEFENSE	0
-#define DEBUG_XENO_DEFENSE	0
+#define DEBUG_HIT_CHANCE	1
+#define DEBUG_HUMAN_DEFENSE	1
+#define DEBUG_XENO_DEFENSE	1
 
 //The actual bullet objects.
 /obj/item/projectile
@@ -376,7 +376,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#if DEBUG_HUMAN_DEFENSE
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif
-		armor -= P.ammo.penetration//Minus armor penetration from the bullet.
+		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
 		#endif
@@ -450,7 +451,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
 	#endif
 
-	var/armor 		= armor_deflection - P.ammo.penetration//Initial armor.
+	var/armor = armor_deflection
+	var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+	armor -= penetration
 	var/armor_pass 	= 0
 	if( damage && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ) //No point in these checks if there is no damage.
 		armor += guard_aura ? (guard_aura * 5) : 0 //Bonus armor from pheroes.

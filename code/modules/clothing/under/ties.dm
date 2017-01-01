@@ -5,7 +5,7 @@
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
 	item_color = "bluetie"
-	flags_equip_slot = 0
+	flags_equip_slot = NOFLAGS
 	w_class = 2.0
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
@@ -393,7 +393,7 @@
 	desc = "This glowing blue badge marks the holder as THE LAW."
 	icon_state = "holobadge"
 	item_color = "holobadge"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 
 	var/emagged = 0 //Emagging removes Sec check.
 	var/stored_name = null
@@ -401,7 +401,7 @@
 /obj/item/clothing/tie/holobadge/cord
 	icon_state = "holobadge-cord"
 	item_color = "holobadge-cord"
-	flags_equip_slot = SLOT_MASK
+	flags_equip_slot = SLOT_FACE
 
 /obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
 	if(!stored_name)
@@ -431,7 +431,7 @@
 			var/obj/item/device/pda/pda = O
 			id_card = pda.id
 
-		if(access_sulaco_brig in id_card.access || emagged)
+		if(ACCESS_MARINE_BRIG in id_card.access || emagged)
 			user << "You imprint your ID details onto the badge."
 			stored_name = id_card.registered_name
 			name = "holobadge ([stored_name])"

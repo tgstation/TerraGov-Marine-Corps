@@ -38,7 +38,7 @@
 		gun = new gunpath(spawnloc)
 		if(ishuman(spawnloc))
 			var/mob/living/carbon/human/H = spawnloc
-			H.equip_to_slot_or_del(gun, sidearm? slot_l_hand : slot_r_hand)
+			H.equip_to_slot_or_del(gun, sidearm? WEAR_L_HAND : WEAR_R_HAND)
 			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
 				new ammopath(H.back)
 				new ammopath(H.back)
@@ -79,7 +79,7 @@
 		gun = new gunpath(spawnloc)
 		if(ishuman(spawnloc))
 			var/mob/living/carbon/human/H = spawnloc
-			H.equip_to_slot_or_del(gun, sidearm? slot_l_hand : slot_r_hand)
+			H.equip_to_slot_or_del(gun, sidearm? WEAR_L_HAND : WEAR_R_HAND)
 			if(ammopath && H.back && istype(H.back,/obj/item/weapon/storage))
 				new ammopath(H.back)
 				new ammopath(H.back)
@@ -465,26 +465,26 @@
 /datum/emergency_call/pmc/proc/spawn_standard(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), slot_wear_mask)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), WEAR_R_HAND)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Standard"
@@ -493,29 +493,29 @@
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
 	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/pmc/proc/spawn_officer(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M), WEAR_WAIST)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), WEAR_IN_BACK)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_R_HAND)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Officer"
@@ -524,25 +524,25 @@
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
 	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/pmc/proc/spawn_gunner(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
+	M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), WEAR_R_HAND)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Specialist"
@@ -551,28 +551,28 @@
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
 	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/pmc/proc/spawn_heavy(mob/M)
 	if(!istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), slot_glasses)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), WEAR_EYES)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), WEAR_R_HAND)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), WEAR_IN_BACK)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "PMC Sniper"
@@ -581,7 +581,7 @@
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
 	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/pmc/proc/spawn_xenoborg(var/mob/M) //Deferred for now. Just keep it in mind
 	return
@@ -651,24 +651,23 @@
 /datum/emergency_call/mercs/proc/spawn_captain(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), WEAR_FEET)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), slot_l_hand)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), WEAR_R_HAND)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(M), WEAR_L_HAND)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(M.back), WEAR_IN_BACK)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Mercenary Captain"
@@ -676,27 +675,27 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_freelancer_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/mercs/proc/spawn_mercenary(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), slot_l_ear)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_L_EAR)
 	if(prob(50))
-		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), slot_w_uniform)
+		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
 	else
-		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), slot_w_uniform)
-		M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), slot_wear_suit)
+		M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
+		M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
 	if(prob(50))
-		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), slot_head)
+		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
+		M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), WEAR_HEAD)
 	else
-		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), slot_gloves)
-		M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
+		M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(M), WEAR_HANDS)
+		M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), WEAR_HEAD)
 
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), WEAR_FEET)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Mercenary"
@@ -704,7 +703,7 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_freelancer_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 	spawn_merc_gun(M)
 	spawn_merc_gun(M,1) //1 for the sidearm. l and r hands
@@ -765,20 +764,19 @@
 /datum/emergency_call/bears/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/bear(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_l_store)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/syndicate(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/bear(M), WEAR_FACE)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), WEAR_EYES)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), WEAR_L_STORE)
 
 	spawn_slavic_gun(M)
 	spawn_slavic_gun(M,1) //1 for the sidearm. l and r hands, 4 in backpack.
@@ -789,23 +787,22 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_antagonist_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/bears/proc/spawn_officer(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/bear(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), WEAR_EYES)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
 
 	spawn_slavic_gun(M)
 	spawn_slavic_gun(M,1)
@@ -816,7 +813,7 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_antagonist_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/pizza/create_member(var/datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
@@ -854,20 +851,20 @@
 /datum/emergency_call/pizza/proc/spawn_pizza(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/pizza(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/soft/red(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/red(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/pizzabox/margherita(M), slot_r_hand)
-	M.equip_to_slot_or_del(new /obj/item/device/radio(M), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/pizzabox/vegetable(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/pizzabox/mushroom(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/pizzabox/meat(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/pizza(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/soft/red(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/red(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/pizzabox/margherita(M), WEAR_R_HAND)
+	M.equip_to_slot_or_del(new /obj/item/device/radio(M), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/pizzabox/vegetable(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/pizzabox/mushroom(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/pizzabox/meat(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(M.back), WEAR_IN_BACK)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Pizzachimp Deliverer"
@@ -875,7 +872,7 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_freelancer_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 //Spawn various items around the shuttle area thing.
 /datum/emergency_call/proc/spawn_items()
@@ -1087,20 +1084,20 @@
 	M.maxHealth = 250
 	M.health = 250
 
-	M.equip_to_slot(new /obj/item/clothing/mask/gas/swat/monkey(M), slot_wear_mask)
-	M.equip_to_slot(new /obj/item/weapon/storage/backpack/holding(M), slot_back)
-	M.equip_to_slot(new /obj/item/weapon/shield/riot(M), slot_r_hand)
-	M.equip_to_slot(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(M.back), slot_in_backpack)
-	M.equip_to_slot(new /obj/item/weapon/plastique(M.back), slot_in_backpack)
-	M.equip_to_slot(new /obj/item/weapon/grenade/incendiary(M.back), slot_in_backpack)
-	M.equip_to_slot(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot(new /obj/item/device/flashlight(M.back), slot_in_backpack)
+	M.equip_to_slot(new /obj/item/clothing/mask/gas/swat/monkey(M), WEAR_FACE)
+	M.equip_to_slot(new /obj/item/weapon/storage/backpack/holding(M), WEAR_BACK)
+	M.equip_to_slot(new /obj/item/weapon/shield/riot(M), WEAR_R_HAND)
+	M.equip_to_slot(new /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord(M.back), WEAR_IN_BACK)
+	M.equip_to_slot(new /obj/item/weapon/plastique(M.back), WEAR_IN_BACK)
+	M.equip_to_slot(new /obj/item/weapon/grenade/incendiary(M.back), WEAR_IN_BACK)
+	M.equip_to_slot(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
 
 	spawn_merc_gun(M)
 	spawn_merc_gun(M,1)
 
 	var/obj/item/weapon/card/id/W = new()
-	M.equip_to_slot(W, slot_in_backpack)
+	M.equip_to_slot(W, WEAR_IN_BACK)
 	W.assignment = "W-Y Emergency Response Chimp"
 	W.registered_name = M.real_name
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
@@ -1211,15 +1208,15 @@
 /datum/emergency_call/dutch/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), slot_wear_suit)
-	//M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/cap(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
+	//M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/cap(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
 
 	spawn_merc_gun(M)
 	spawn_merc_gun(M,1)
@@ -1230,21 +1227,21 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/dutch/proc/spawn_officer(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch/ranger(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/band(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch/ranger(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/band(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
 
 	spawn_merc_gun(M)
 	spawn_merc_gun(M,1)
@@ -1256,7 +1253,7 @@
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
 	W.access += get_all_centcom_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 	M.add_language("Russian")
 	M.add_language("Sainja")
@@ -1308,26 +1305,26 @@
 
 /datum/emergency_call/death/proc/spawn_standard(var/mob/M)
 	if(!M || !istype(M)) return
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), WEAR_EYES)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), WEAR_WAIST)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_J_STORE)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando"
@@ -1335,31 +1332,31 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_antagonist_pmc_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)
 
 /datum/emergency_call/death/proc/spawn_officer(var/mob/M)
 	if(!M || !istype(M)) return
 
-	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), slot_l_ear)
-	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), slot_w_uniform)
-	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), slot_wear_suit)
-	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), slot_gloves)
-	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), slot_head)
-	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), slot_back)
-	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), slot_shoes)
-	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), slot_l_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_r_store)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
+	M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_L_EAR)
+	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), WEAR_EYES)
+	M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), WEAR_BODY)
+	M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), WEAR_JACKET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), WEAR_HANDS)
+	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), WEAR_HEAD)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), WEAR_BACK)
+	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), WEAR_L_STORE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), WEAR_R_STORE)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), WEAR_WAIST)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+	M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_J_STORE)
 
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Commando Leader"
@@ -1367,4 +1364,4 @@
 	W.name = "[M.real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_antagonist_pmc_access()
-	M.equip_to_slot_or_del(W, slot_wear_id)
+	M.equip_to_slot_or_del(W, WEAR_ID)

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinoff"
 	flags = FPRINT|TABLEPASS| CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 2.0
 	item_state = "electronic"
 	throw_speed = 4

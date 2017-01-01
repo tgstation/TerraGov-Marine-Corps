@@ -180,7 +180,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(user.mind)
 		switch(user.mind.assigned_role)
 			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
-		if(user.mind.special_role == "DEATH SQUAD") return 1
+		switch(user.mind.special_role)
+			if("DEATH SQUAD","PMC") return 1
 	user << "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>"
 
 /*
@@ -204,7 +205,7 @@ should be alright.
 	if(loc && user)
 		if(isnull(user.s_store) && isturf(src.loc))
 			var/obj/item/I = user.wear_suit
-			user.equip_to_slot_if_possible(src,slot_s_store)
+			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
 			if(user.s_store == src) user << "<span class='warning'>[src] snaps into place on [I].</span>"
 			user.update_inv_s_store()
 

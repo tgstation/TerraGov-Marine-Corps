@@ -74,7 +74,7 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 loc is reset through cdel, which is how things get into the recycler in the first place (how they should anyway),
 so there's honestly not too much to do here.
 */
-/datum/authority/branch/recycle/proc/RecycleTrash(var/datum/product)
+/datum/authority/branch/recycle/proc/RecycleTrash(datum/product)
 	if(!istype(product)) return
 
 	//This shouldn't happen, unless you call through RecycleProduct instead of cdel.
@@ -87,6 +87,7 @@ so there's honestly not too much to do here.
 			shelf_space += 10
 			log_debug("Increasing RA shelf space. Current maximum space: <b>[shelf_space]</b>")
 
+	var/i
 	if(!gathered_variables[product.type]) //If we don't have a variable reference, we're going to make one.
 		var/blacklist[] = excluded_variables + product.Recycle() //Let's combine these so we know what to exclude in the following step.
 		blacklist &= product.vars //We need to get the items they have in common only, as this is what we need to remove.
@@ -95,16 +96,16 @@ so there's honestly not too much to do here.
 		world << "<span class='debuginfo'>Successfully notated [product.type].</span>"
 		#endif
 
-		for(var/I in gathered_variables[product.type])
-			if(islist(product.vars[I])) gathered_variables[product.type][I] = list() //We reset it to empty if it's a list.
-			else gathered_variables[product.type][I] = initial(product.vars[I]) //Reset.
+		for(i in gathered_variables[product.type])
+			if(islist(product.vars[i])) gathered_variables[product.type][i] = list() //We reset it to empty if it's a list.
+			else gathered_variables[product.type][i] = initial(product.vars[i]) //Reset.
 		#if DEBUG_RA_AUTHORITY
 		world << "<span class='debuginfo'>Successfully reset [product.type].</span>"
 		#endif
 
 	//Time to reset its variables.
-	for(var/I in gathered_variables[product.type]) //We still need to empty lists here. Sigh. Better to just empty them on Dispose().
-		product.vars[I] = islist(product.vars[I]) ? list() : gathered_variables[product.type][I]
+	for(i in gathered_variables[product.type]) //We still need to empty lists here. Sigh. Better to just empty them on Dispose().
+		product.vars[i] = islist(product.vars[i]) ? list() : gathered_variables[product.type][i]
 
 	recycling[product.type] += product //Adds it to the list.
 	product.ta_directive = TA_REVIVE_ME //It won't be collected and disposed of later.
@@ -121,8 +122,7 @@ reset a bunch of referencing with Dispose(), you can pass those through so they 
 the other vars that are read only or somesuch.
 You can also return the entire list of variables if you reset them manually. Not sure why you'd want to do that though.
 */
-/datum/proc/Recycle()
-	return
+/datum/proc/Recycle() return
 
 #if DEBUG_RA_AUTHORITY
 /image/debug_image
@@ -177,8 +177,7 @@ overhead only applies when the image is first created.*/
 		return TA_REVIVE_ME
 
 	Recycle()
-		var/blacklist[] = list("icon","icon_state","loc","layer","dir")
-		. = ..() + blacklist
+		. = ..() + list("icon","icon_state","loc","layer","dir")
 
 //Quickly shows the image to everyone, then removes it some time later.
 //We don't want apperance flags by default for everything, but we want them here to ignore color, transparency, and transform.

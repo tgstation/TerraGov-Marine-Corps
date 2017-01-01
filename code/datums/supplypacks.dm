@@ -688,7 +688,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Emitter crate"
-	access = access_sulaco_CE
+	access = ACCESS_MARINE_CE
 	group = "Engineering"
 
 /datum/supply_packs/engine/field_gen
@@ -697,7 +697,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/machinery/field_generator)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Field Generator crate"
-	access = access_sulaco_CE
+	access = ACCESS_MARINE_CE
 	group = "Engineering"
 	cost = 30
 */
@@ -736,7 +736,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/phoron
 	containername = "phoron assembly crate"
-	access = access_sulaco_engineering
+	access = ACCESS_MARINE_ENGINEERING
 	group = "Science"
 
 
@@ -774,7 +774,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 	cost = 25
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "surgery crate"
-	access = access_sulaco_medbay
+	access = ACCESS_MARINE_MEDBAY
 	group = "Medical"
 
 /datum/supply_packs/sterile

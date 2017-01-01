@@ -71,15 +71,15 @@
 			cdel(G)
 		switch(current_goggles)
 			if(0)
-				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), slot_glasses)
+				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), WEAR_EYES)
 				M << "<span class='notice'>Low-light vision module: activated.</span>"
 				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(1)
-				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), slot_glasses)
+				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), WEAR_EYES)
 				M << "<span class='notice'>Thermal sight module: activated.</span>"
 				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(2)
-				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), slot_glasses)
+				M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), WEAR_EYES)
 				M << "<span class='notice'>Material vision module: activated.</span>"
 				if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 40, 1)
 			if(3)
@@ -576,20 +576,20 @@
 	msg = sanitize(msg)
 	msg = oldreplacetext(msg, "a", "@")
 	msg = oldreplacetext(msg, "b", "8")
-	msg = oldreplacetext(msg, "c", "©")
+	msg = oldreplacetext(msg, "c", "×")
 	msg = oldreplacetext(msg, "d", ")")
-	msg = oldreplacetext(msg, "e", "é")
+	msg = oldreplacetext(msg, "e", "×")
 	msg = oldreplacetext(msg, "h", "#")
 	msg = oldreplacetext(msg, "i", "1")
 	msg = oldreplacetext(msg, "j", "]")
 	msg = oldreplacetext(msg, "k", "X")
 	msg = oldreplacetext(msg, "l", "|")
 	msg = oldreplacetext(msg, "o", "0")
-	msg = oldreplacetext(msg, "p", "¶")
+	msg = oldreplacetext(msg, "p", "×")
 	msg = oldreplacetext(msg, "t", "7")
-	msg = oldreplacetext(msg, "u", "µ")
+	msg = oldreplacetext(msg, "u", "×")
 	msg = oldreplacetext(msg, "x", "%")
-	msg = oldreplacetext(msg, "y", "¥")
+	msg = oldreplacetext(msg, "y", "×")
 	msg = oldreplacetext(msg, "z", "2")   //Preds now speak in bastardized 1337speak BECAUSE.
 
 	spawn(10)
@@ -651,7 +651,7 @@
 	icon = 'icons/Predator/items.dmi'
 	icon_state = "beltbag"
 	item_state = "beltbag"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	max_w_class = 3
 	storage_slots = 10
 	max_combined_w_class = 30
@@ -916,7 +916,7 @@
 	edge = 1
 	sharp = 0
 	flags_atom = NOSHIELD
-	flags_equip_slot = 0
+	flags_equip_slot = NOFLAGS
 	hitsound = 'sound/weapons/wristblades_hit.ogg'
 	canremove = 0
 	attack_speed = 6
@@ -988,7 +988,7 @@
 	icon_state = "whip"
 	item_state = "chain"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 35
 	throwforce = 12
 	w_class = 3
@@ -1015,7 +1015,7 @@
 	icon_state = "predknife"
 	item_state = "knife"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_POCKET
+	flags_equip_slot = SLOT_STORE
 	sharp = 1
 	force = 24
 	w_class = 1.0
@@ -1103,7 +1103,7 @@
 	icon_state = "predscythe"
 	item_state = "scythe0"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	sharp = 1
 	force = 32
 	w_class = 4.0
@@ -1190,7 +1190,7 @@
 		user << "<span class='notice'>You collapse the combi-stick for storage.</span>"
 		icon_state = initial(item_state) + "_f"
 		item_state = icon_state
-		flags_equip_slot = SLOT_POCKET
+		flags_equip_slot = SLOT_STORE
 		w_class = 1
 		force = 0
 		throwforce = initial(throwforce) - 50
@@ -1322,7 +1322,7 @@
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ammo = /datum/ammo/alloy_spike
-	flags_equip_slot = SLOT_BELT|SLOT_BACK
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
 	var/max_spikes = 12

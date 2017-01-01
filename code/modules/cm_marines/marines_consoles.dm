@@ -4,7 +4,7 @@
 	name = "Identification Computer"
 	desc = "You can use this to change ID's."
 	icon_state = "id"
-	req_access = list(access_sulaco_logistics)
+	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/weapon/circuitboard/card"
 	var/obj/item/weapon/card/id/scan = null
 	var/obj/item/weapon/card/id/modify = null
@@ -16,7 +16,7 @@
 /obj/machinery/computer/marine_card/attackby(O as obj, user as mob)//TODO:SANITY
 	if(istype(O, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/idcard = O
-		if(access_sulaco_logistics in idcard.access)
+		if(ACCESS_MARINE_LOGISTICS in idcard.access)
 			if(!scan)
 				usr.drop_item()
 				idcard.loc = src
@@ -375,7 +375,7 @@
 	name = "Squad Distribution Computer"
 	desc = "You can use this to change someone's squad."
 	icon_state = "guest"
-	req_access = list(access_sulaco_logistics)
+	req_access = list(ACCESS_MARINE_LOGISTICS)
 	var/obj/item/weapon/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 
@@ -462,7 +462,7 @@
 					var/list/squad_list = list()
 					var/datum/squad/selected = null
 					var/name_sel = "Cancel" //default
-					for(var/datum/squad/S in job_master.squads)
+					for(var/datum/squad/S in RoleAuthority.squads)
 						if(S.usable)
 							squad_list += S.name
 
@@ -475,7 +475,7 @@
 						return
 
 					//First, remove any existing squad access and clear the card.
-					for(var/datum/squad/Q in job_master.squads)
+					for(var/datum/squad/Q in RoleAuthority.squads)
 						if(findtext(modify.assignment,Q.name)) //Found one!
 							modify.access -= Q.access //Remove any access found.
 							usr << "Old squad access removed."

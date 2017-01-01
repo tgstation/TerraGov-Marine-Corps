@@ -4,7 +4,7 @@
 
 	var/screen = "database"
 	var/authenticated = 0
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 	var/scan_progress = -1
 	var/obj/item/scanning
 	var/datum/data/record/forensic/current

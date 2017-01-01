@@ -69,7 +69,7 @@
 	item_state = "candlebox5"
 	storage_slots = 5
 	throwforce = 2
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 
 
 /obj/item/weapon/storage/fancy/candle_box/New()
@@ -132,7 +132,7 @@
 	item_state = "cigpacket"
 	w_class = 1
 	throwforce = 2
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	storage_slots = 6
 	can_hold = list("/obj/item/clothing/mask/cigarette", "/obj/item/weapon/flame/lighter")
 	icon_type = "cigarette"
@@ -166,7 +166,7 @@
 	if(M == user && user.zone_sel.selecting == "mouth" && contents.len > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/W = new /obj/item/clothing/mask/cigarette(user)
 		reagents.trans_to(W, (reagents.total_volume/contents.len))
-		user.equip_to_slot_if_possible(W, slot_wear_mask)
+		user.equip_to_slot_if_possible(W, WEAR_FACE)
 		reagents.maximum_volume = 15 * contents.len
 		contents.len--
 		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
@@ -206,7 +206,7 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = 1
 	throwforce = 2
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	storage_slots = 7
 	can_hold = list("/obj/item/clothing/mask/cigarette/cigar")
 	icon_type = "cigar"
@@ -239,7 +239,7 @@
 	if(M == user && user.zone_sel.selecting == "mouth" && contents.len > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/cigar/W = new /obj/item/clothing/mask/cigarette/cigar(user)
 		reagents.trans_to(W, (reagents.total_volume/contents.len))
-		user.equip_to_slot_if_possible(W, slot_wear_mask)
+		user.equip_to_slot_if_possible(W, WEAR_FACE)
 		reagents.maximum_volume = 15 * contents.len
 		contents.len--
 		user << "<span class='notice'>You take a cigar out of the case.</span>"
@@ -276,7 +276,7 @@
 	can_hold = list("/obj/item/weapon/reagent_containers/glass/beaker/vial")
 	max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6
-	req_access = list(access_sulaco_medbay)
+	req_access = list(ACCESS_MARINE_MEDBAY)
 
 /obj/item/weapon/storage/lockbox/vials/New()
 	..()

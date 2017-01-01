@@ -165,16 +165,17 @@ proc/listclearnulls(list/list)
 	return output
 
 //Randomize: Return the list in a random order
-/proc/shuffle(var/list/shufflelist)
-	if(!shufflelist)
-		return
-	var/list/new_list = list()
-	var/list/old_list = shufflelist.Copy()
-	while(old_list.len)
-		var/item = pick(old_list)
-		new_list += item
-		old_list -= item
-	return new_list
+/proc/shuffle(list/L, ref) //Reference override for indexed lists.
+	if(L)
+		var/L_n[] = new
+		. = L_n
+		var/L_o[] = L.Copy()
+		var/i
+		while(L_o.len)
+			i = pick(L_o)
+			if(!ref) 	L_n += i
+			else		L_n[i] = L_o[i]
+			L_o -= i
 
 //Return a list with no duplicate entries
 /proc/uniquelist(var/list/L)

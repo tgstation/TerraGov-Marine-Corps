@@ -7,7 +7,7 @@
 	icon_state = "laser"
 	anchored = 0
 	density = 1
-	req_access = list(access_sulaco_engineering)
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 
 	use_power = 1
 	idle_power_usage = 10

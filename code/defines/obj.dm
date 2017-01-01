@@ -95,16 +95,16 @@
 			//world << "[name]: [rank]"
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in command_positions)
+		if(real_rank in ROLES_COMMAND)
 			heads[name] = rank
 			department = 1
-		if(real_rank in engineering_positions)
+		if(real_rank in ROLES_ENGINEERING)
 			eng[name] = rank
 			department = 1
-		if(real_rank in medical_positions)
+		if(real_rank in ROLES_MEDICAL)
 			med[name] = rank
 			department = 1
-		if(real_rank in marine_squad_positions)
+		if(real_rank in ROLES_MARINES)
 			mar[name] = rank
 			department = 1
 		if(!department && !(name in heads))
@@ -169,27 +169,27 @@ var/global/list/PDA_Manifest = list()
 		var/isactive = t.fields["p_stat"]
 		var/department = 0
 		var/depthead = 0 			// Department Heads will be placed at the top of their lists.
-		if(real_rank in command_positions)
+		if(real_rank in ROLES_COMMAND)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
 			if(rank=="Commander" && heads.len != 1)
 				heads.Swap(1,heads.len)
 
-		if(real_rank in engineering_positions)
+		if(real_rank in ROLES_ENGINEERING)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
 				eng.Swap(1,eng.len)
 
-		if(real_rank in medical_positions)
+		if(real_rank in ROLES_MEDICAL)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
 				med.Swap(1,med.len)
 
 
-		if(real_rank in marine_squad_positions)
+		if(real_rank in ROLES_MARINES)
 			mar[++mar.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && mar.len != 1)
@@ -199,12 +199,12 @@ var/global/list/PDA_Manifest = list()
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
 
-	PDA_Manifest = list(\
-		"heads" = heads,\
-		"eng" = eng,\
-		"med" = med,\
-		"marine_squad_positions" = marine_squad_positions,\
-		"misc" = misc\
+	PDA_Manifest = list(
+		"heads" = heads,
+		"eng" = eng,
+		"med" = med,
+		"marine_squad_positions" = ROLES_COMMAND,
+		"misc" = misc
 		)
 	return PDA_Manifest
 

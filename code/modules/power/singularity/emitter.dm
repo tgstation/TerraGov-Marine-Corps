@@ -7,7 +7,7 @@
 	icon_state = "emitter"
 	anchored = 0
 	density = 1
-	req_access = list(access_sulaco_engineering)
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	var/id = null
 
 	use_power = 0	//uses powernet power, not APC power
@@ -107,13 +107,13 @@
 	return 0
 
 /obj/machinery/power/emitter/process()
-	if(stat & (BROKEN))
-		return
-	if(src.state != 2 || (!powernet && active_power_usage))
-		src.active = 0
+	if(stat & BROKEN) return
+
+	if(state != 2 || (!powernet && active_power_usage))
+		active = 0
 		update_icon()
 		return
-	if(((src.last_shot + src.fire_delay) <= world.time) && (src.active == 1))
+	if((last_shot + fire_delay <= world.time) && (active == 1))
 
 		if(surplus() >= active_power_usage && add_load(active_power_usage) >= active_power_usage) //does the laser have enough power to shoot?
 			if(!powered)
@@ -127,13 +127,13 @@
 				investigate_log("lost power and turned <font color='red'>off</font>","singulo")
 			return
 
-		src.last_shot = world.time
-		if(src.shot_number < burst_shots)
-			src.fire_delay = 2
-			src.shot_number ++
+		last_shot = world.time
+		if(shot_number < burst_shots)
+			fire_delay = 2
+			shot_number ++
 		else
-			src.fire_delay = rand(min_burst_delay, max_burst_delay)
-			src.shot_number = 0
+			fire_delay = rand(min_burst_delay, max_burst_delay)
+			shot_number = 0
 
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
@@ -145,23 +145,18 @@
 		var/turf/T = get_turf(src)
 
 		var/turf/target
-		if(dir == NORTH)
-			target = locate(T.x,T.y+3,T.z)
-		else if (dir == EAST)
-			target = locate(T.x+3,T.y,T.z)
-		else if (dir == SOUTH)
-			target = locate(T.x,T.y-3,T.z)
-		else if (dir == WEST)
-			target = locate(T.x-3,T.y,T.z)
-		else //Somehow??
-			target = locate(T.x,T.y+3,T.z)
+		switch(dir)
+			if(NORTH) 	target = locate(T.x,T.y+3,T.z)
+			if(EAST) 	target = locate(T.x+3,T.y,T.z)
+			if(SOUTH) 	target = locate(T.x,T.y-3,T.z)
+			if(WEST) 	target = locate(T.x-3,T.y,T.z)
+			else 		target = locate(T.x,T.y+3,T.z)
 
 		if(!target) //Off the edge of the map somehow.
 			cdel(A)
 			return
 
-		A.fire_at(target,src,src,15,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.
-		return //That's it!
+		A.fire_at(target,src,src,A.ammo.max_range,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 

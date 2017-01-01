@@ -141,7 +141,7 @@
 					src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
 					return
 
-				if(ticker.mode.forbid_late_joining)
+				if(ticker.mode.flags_round_type	& MODE_NO_LATEJOIN)
 					src << "<span class='warning'>Sorry, you cannot late join during [ticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>"
 					return
 
@@ -307,80 +307,44 @@
 						if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 							vote_on_poll(pollid, optionid, 1)
 			*/
-	proc/IsJobAvailable(rank)
-		var/datum/job/job = job_master.GetJob(rank)
-		if(!job)	return 0
-		if((job.current_positions >= job.getTotalPositions()) && job.total_positions != -1)	return 0
-		if(jobban_isbanned(src,rank))	return 0
-		if(!job.player_old_enough(src.client))	return 0
-		return 1
 
-
-	proc/AttemptLateSpawn(rank,var/spawning_at)
+	proc/AttemptLateSpawn(rank, spawning_at)
 		if (src != usr)
-			return 0
+			return
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			usr << "\red The round is either not ready, or has already finished..."
-			return 0
+			usr << "<span class='warning'>The round is either not ready, or has already finished!<spawn>"
+			return
 		if(!enter_allowed)
-			usr << "\blue There is an administrative lock on entering the game!"
-			return 0
-		if(!IsJobAvailable(rank))
+			usr << "<span class='warning'>There is an administrative lock on entering the game!<spawn>"
+			return
+		if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], 1))
 			src << alert("[rank] is not available. Please try another.")
-			return 0
+			return
 
 		spawning = 1
 		close_spawn_windows()
 
-		job_master.AssignRole(src, rank, 1)
+		var/datum/spawnpoint/S //We need to find a spawn location for them.
+		var/turf/T
+		if(spawning_at) S = spawntypes[spawning_at]
+		if(istype(S)) 	T = pick(S.turfs)
+		else 			T = pick(latejoin)
 
 		var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
-		job_master.EquipRank(character, rank, 1)					//equips the human
+		RoleAuthority.equip_role(character, RoleAuthority.roles_for_mode[rank], T)
 		UpdateFactionList(character)
 		EquipCustomItems(character)
 
-		//Find our spawning point.
-//		var/join_message
-		var/datum/spawnpoint/S
-
-		if(spawning_at)
-			S = spawntypes[spawning_at]
-
-		if(S && istype(S))
-			character.loc = pick(S.turfs)
-//			join_message = S.msg
-		else
-			character.loc = pick(latejoin)
-//			join_message = "has arrived on the station"
-
-		character.lastarea = get_area(loc)
-		// Moving wheelchair if they have one
-		if(character.buckled && istype(character.buckled, /obj/structure/stool/bed/chair/wheelchair))
-			character.buckled.loc = character.loc
-			character.buckled.dir = character.dir
-
 		ticker.mode.latespawn(character)
+		data_core.manifest_inject(character)
+		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
-		if(character.mind.assigned_role != "Cyborg")
-			data_core.manifest_inject(character)
-			ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-
-			//Grab some data from the character prefs for use in random news procs.
-
-			//AnnounceArrival(character, rank, join_message)
-			var/datum/job/job = job_master.GetJob(character.mind.assigned_role)
-			if(job)
-				if(job.is_squad_job)
-					job_master.randomize_squad(character)
-		else
-			character.Robotize()
-		del(src)
+		cdel(src)
 
 	proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message)
 		if (ticker.current_state == GAME_STATE_PLAYING)
 			var/obj/item/device/radio/intercom/a = new /obj/item/device/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
-			if(character.mind.role_alt_title)
-				rank = character.mind.role_alt_title
+			if(character.mind.role_alt_title) rank = character.mind.role_alt_title
 			a.autosay("[character.real_name],[rank ? " [rank]," : " visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
 			del(a)
 
@@ -403,13 +367,17 @@
 					dat += "<font color='red'>Crew transfer procedures are in place.</font><br>"
 
 		dat += "Choose from the following open positions:<br>"
-		for(var/datum/job/job in job_master.occupations)
-			if(job && IsJobAvailable(job.title))
-				var/active = 0
-				// Only players with the job assigned and AFK for less than 10 minutes count as active
-				for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+		var/datum/job/J
+		var/i
+		for(i in RoleAuthority.roles_for_mode)
+			J = RoleAuthority.roles_for_mode[i]
+			if(!RoleAuthority.check_role_entry(src, J, 1)) continue
+			var/active = 0
+			// Only players with the job assigned and AFK for less than 10 minutes count as active
+			for(var/mob/M in player_list)
+				if(M.mind && M.client && M.mind.assigned_role == J.title && M.client.inactivity <= 10 * 60 * 10)
 					active++
-				dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.title] ([J.current_positions]) (Active: [active])</a><br>"
 
 		dat += "</center>"
 		src << browse(dat, "window=latechoices;size=300x640;can_close=1")

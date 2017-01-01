@@ -397,8 +397,8 @@
 		if(!M.ckey)	//sanity
 			usr << "This mob has no ckey"
 			return
-		if(!job_master)
-			usr << "Job Master has not been setup!"
+		if(!RoleAuthority)
+			usr << "The Role Authority is not set up!"
 			return
 
 		var/dat = ""
@@ -415,10 +415,10 @@
 //Regular jobs
 	//Command (Blue)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(command_positions)]'><a href='?src=\ref[src];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in command_positions)
+		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(ROLES_COMMAND)]'><a href='?src=\ref[src];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in ROLES_COMMAND)
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -437,10 +437,10 @@
 	//Engineering (Yellow)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(engineering_positions)]'><a href='?src=\ref[src];jobban3=engineeringdept;jobban4=\ref[M]'>Engineering Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in engineering_positions)
+		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_ENGINEERING)]'><a href='?src=\ref[src];jobban3=engineeringdept;jobban4=\ref[M]'>Engineering Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in ROLES_ENGINEERING)
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -458,10 +458,10 @@
 	//Medical (White)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='ffeef0'><th colspan='[length(medical_positions)]'><a href='?src=\ref[src];jobban3=medicaldept;jobban4=\ref[M]'>Medical Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in medical_positions)
+		jobs += "<tr bgcolor='ffeef0'><th colspan='[length(ROLES_MEDICAL)]'><a href='?src=\ref[src];jobban3=medicaldept;jobban4=\ref[M]'>Medical Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in ROLES_MEDICAL)
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -479,10 +479,10 @@
 	//Marines
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(marine_squad_positions)]'><a href='?src=\ref[src];jobban3=marinedept;jobban4=\ref[M]'>Marine Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in marine_squad_positions)
+		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_MARINES)]'><a href='?src=\ref[src];jobban3=marinedept;jobban4=\ref[M]'>Marine Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in ROLES_MARINES)
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -591,35 +591,35 @@
 				alert("You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-		if(!job_master)
-			usr << "Job Master has not been setup!"
+		if(!RoleAuthority)
+			usr << "Role Authority has not been set up!"
 			return
 
 		//get jobs for department if specified, otherwise just returnt he one job in a list.
 		var/list/joblist = list()
 		switch(href_list["jobban3"])
 			if("commanddept")
-				for(var/jobPos in command_positions)
+				for(var/jobPos in ROLES_COMMAND)
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
 					if(!temp) continue
 					joblist += temp.title
 			if("engineeringdept")
-				for(var/jobPos in engineering_positions)
+				for(var/jobPos in ROLES_ENGINEERING)
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
 					if(!temp) continue
 					joblist += temp.title
 			if("medicaldept")
-				for(var/jobPos in medical_positions)
+				for(var/jobPos in ROLES_MEDICAL)
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
 					if(!temp) continue
 					joblist += temp.title
 			if("marinedept")
-				for(var/jobPos in marine_squad_positions)
+				for(var/jobPos in ROLES_MARINES)
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
 					if(!temp) continue
 					joblist += temp.title
 			else
@@ -1026,8 +1026,8 @@
 		M.loc = prison_cell
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
 
 		M << "\red You have been sent to the prison station!"
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
@@ -1160,8 +1160,8 @@
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/observer = M
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), slot_w_uniform)
-			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), WEAR_BODY)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), WEAR_FEET)
 		M.Paralyse(5)
 		sleep(5)
 		M.loc = pick(tdomeobserve)
@@ -1247,8 +1247,8 @@
 				M.key = H.key
 			if(is_alien_whitelisted(M,"Yautja Elder"))
 				H.real_name = "Elder [M.real_name]"
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), slot_wear_suit)
-				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), slot_l_hand)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)
+				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), WEAR_L_HAND)
 
 			if(H) del(H) //May have to clear up round-end vars and such....
 
@@ -1428,9 +1428,9 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
+		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), WEAR_L_HAND )
 		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
+			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), WEAR_R_HAND )
 			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
@@ -1847,10 +1847,6 @@
 //				if(usr.client.strike_team())
 //					feedback_inc("admin_secrets_fun_used",1)
 //					feedback_add_details("admin_secrets_fun_used","Strike")
-			if("tripleAI")
-				usr.client.triple_ai()
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","TriAI")
 			if("gravity")
 				if(!(ticker && ticker.mode))
 					usr << "Please wait until the game starts!  Not sure how it will work otherwise."
@@ -1951,7 +1947,7 @@
 					if(H.wear_id)
 						var/obj/item/weapon/card/id/id = H.get_idcard()
 						for(var/A in id.access)
-							if(A == access_sulaco_brig)
+							if(A == ACCESS_MARINE_BRIG)
 								security++
 					if(!security)
 						//strip their stuff before they teleport into a cell :downs:
@@ -1968,8 +1964,8 @@
 								W.layer = initial(W.layer)
 						//teleport person to cell
 						H.loc = pick(prisonwarp)
-						H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)
-						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), slot_shoes)
+						H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), WEAR_BODY)
+						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), WEAR_FEET)
 					else
 						//teleport security person
 						H.loc = pick(prisonsecuritywarp)
@@ -2449,16 +2445,6 @@
 				for(var/sig in lawchanges)
 					dat += "[sig]<BR>"
 				usr << browse(dat, "window=lawchanges;size=800x500")
-			if("list_job_debug")
-				var/dat = "<B>Job Debug info.</B><HR>"
-				if(job_master)
-					for(var/line in job_master.job_debug)
-						dat += "[line]<BR>"
-					dat+= "*******<BR><BR>"
-					for(var/datum/job/job in job_master.occupations)
-						if(!job)	continue
-						dat += "job: [job.title], current_positions: [job.current_positions], total_positions: [job.total_positions] <BR>"
-					usr << browse(dat, "window=jobdebug;size=600x500")
 			if("showailaws")
 				output_ai_laws()
 			if("showgm")
@@ -2517,21 +2503,15 @@
 				usr << browse(dat, "window=admin_log")
 			if("maint_access_brig")
 				for(var/obj/machinery/door/airlock/maintenance/M in world)
-					if (access_sulaco_engineering in M.req_access)
-						M.req_access = list(access_sulaco_brig)
+					if (ACCESS_MARINE_ENGINEERING in M.req_access)
+						M.req_access = list(ACCESS_MARINE_BRIG)
 				message_admins("[key_name_admin(usr)] made all maint doors brig access-only.")
 			if("maint_access_engiebrig")
 				for(var/obj/machinery/door/airlock/maintenance/M in world)
-					if (access_sulaco_engineering in M.req_access)
+					if (ACCESS_MARINE_ENGINEERING in M.req_access)
 						M.req_access = list()
-						M.req_one_access = list(access_sulaco_brig)
+						M.req_one_access = list(ACCESS_MARINE_BRIG)
 				message_admins("[key_name_admin(usr)] made all maint doors engineering and brig access-only.")
-			if("infinite_sec")
-				var/datum/job/J = job_master.GetJob("Security Officer")
-				if(!J) return
-				J.total_positions = -1
-				J.spawn_positions = -1
-				message_admins("[key_name_admin(usr)] has removed the cap on security officers.")
 
 	else if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
 		src.admincaster_screen = 18                 //The ac_ prefix before the hrefs stands for AdminCaster.

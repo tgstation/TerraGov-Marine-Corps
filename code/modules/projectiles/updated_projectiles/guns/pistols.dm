@@ -7,7 +7,7 @@
 	cocked_sound = 'sound/weapons/pistol_cocked.ogg'
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 65000)
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 3
 	force = 6
 	fire_sound = 'sound/weapons/servicepistol.ogg'

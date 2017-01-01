@@ -73,6 +73,10 @@ h1.alert, h2.alert		{color: #000000;}
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
 
+.role_header			{color: #db0000		text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 2;}
+.role_body				{color: #000099;	text-align: center;}
+
+.round_setup			{color: #db0000		font-family: impact; font-size: 2;}
 .round_header			{color: #db0000; 	text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
 .round_body				{color: #001427; 	text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 3;}
 .event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 3;}

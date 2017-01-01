@@ -254,9 +254,9 @@ var/global/list/frozen_items = list()
 
 			//Handle job slot/tater cleanup.
 			if(occupant.mind)
-				var/job = occupant.mind.assigned_role
+				var/job = RoleAuthority.roles_for_mode[occupant.mind.assigned_role]
 
-				job_master.FreeRole(job)
+				RoleAuthority.free_role(job)
 
 				if(occupant.mind.objectives.len)
 					del(occupant.mind.objectives)

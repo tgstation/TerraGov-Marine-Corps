@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/bar
 	name = "Booze"
-	req_access = list(access_civilian_generic)
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 	icon_state = "cabinetdetective_locked"
 	icon_closed = "cabinetdetective"
 	icon_locked = "cabinetdetective_locked"

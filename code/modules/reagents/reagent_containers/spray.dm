@@ -5,7 +5,7 @@
 	icon_state = "cleaner"
 	item_state = "cleaner"
 	flags_atom = OPENCONTAINER|FPRINT|NOBLUDGEON
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 2

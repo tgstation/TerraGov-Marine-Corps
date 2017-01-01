@@ -59,7 +59,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
 	var/opened_sound = 'sound/weapons/shotgun_open2.ogg'
-	//flags_equip_slot = SLOT_BACK
 	type_of_casings = "shell"
 	accuracy = 1.15
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
@@ -347,7 +346,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
 	icon_state = "sshotgun"
 	item_state = "sshotgun"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	flags_atom = FPRINT|CONDUCT
 	attachable_allowed = list()
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_ON_MERCS

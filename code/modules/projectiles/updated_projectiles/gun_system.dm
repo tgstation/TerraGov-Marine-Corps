@@ -113,7 +113,7 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	if(slot != slot_l_hand && slot != slot_r_hand)
+	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
 		stop_aim()
 		if (user.client)
 			user.client.remove_gun_icons()
@@ -543,8 +543,7 @@ and you're good to go.
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
 							user << "<span class='highdanger'>Your life flashes before you as your spirit is torn from your body!</span>"
-							var/mob/dead/observer/ghost = user.ghostize(0) //No return.
-							if(ghost) ghost.timeofdeath = world.time	//For respawn purposes, even if unused.
+							user.ghostize(0) //No return.
 						else
 							if (projectile_to_fire.ammo.damage_type == HALLOSS)
 								user << "<span class = 'notice'>Ow...</span>"

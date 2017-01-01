@@ -2,7 +2,7 @@
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
 	icon_state = "dummy"
-	req_access = list(access_sulaco_bridge)
+	req_access = list(ACCESS_MARINE_BRIDGE)
 
 	var/datum/squad/current_squad = null
 	var/mob/living/carbon/human/operator = null
@@ -219,7 +219,7 @@
 					var/list/squad_list = list()
 					var/datum/squad/selected = null
 					var/name_sel = "Cancel" //default
-					for(var/datum/squad/S in job_master.squads)
+					for(var/datum/squad/S in RoleAuthority.squads)
 						if(S.usable && !S.overwatch_officer)
 							squad_list += S.name
 

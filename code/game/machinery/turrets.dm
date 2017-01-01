@@ -355,7 +355,7 @@
 	var/locked = 1
 	var/control_area //can be area name, path or nothing.
 	var/ailock = 0 // AI cannot use this
-	req_access = list(access_sulaco_captain)
+	req_access = list(ACCESS_MARINE_COMMANDER)
 
 /obj/machinery/turretid/New()
 	..()

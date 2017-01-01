@@ -20,7 +20,7 @@ datum/directive/tau_ceti_needs_women
 	proc/get_target_heads()
 		var/list/heads[0]
 		for(var/mob/M in get_crew_of_target_gender())
-			if(command_positions.Find(M.mind.assigned_role))
+			if(M.mind.assigned_role in ROLES_COMMAND)
 				heads.Add(M)
 		return heads
 
@@ -89,9 +89,8 @@ datum/directive/tau_ceti_needs_women/get_remaining_orders()
 /hook/reassign_employee/proc/command_reassignments(obj/item/weapon/card/id/id_card)
 	var/datum/directive/tau_ceti_needs_women/D = get_directive("tau_ceti_needs_women")
 	if(!D) return 1
-
 	if(D.command_targets && D.command_targets.Find(id_card))
-		D.command_targets[id_card] = command_positions.Find(id_card.assignment) ? 0 : 1
+		D.command_targets[id_card] = (id_card.assignment in ROLES_COMMAND) ? 0 : 1
 
 	return 1
 

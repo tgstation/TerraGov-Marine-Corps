@@ -244,7 +244,7 @@
 	brute_mod = 0.15
 	burn_mod = 1.50
 	reagent_tag = IS_HORROR
-	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP
+	flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_REACTION
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
@@ -565,11 +565,11 @@
 
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), slot_gloves)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(H), slot_r_store)
-	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), WEAR_BODY)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), WEAR_HANDS)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), WEAR_L_EAR)
+	H.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),WEAR_L_STORE)
 
 	if(H.hud_used)	del(H.hud_used)		//remove the hud objects
 	H.hud_used = new /datum/hud(H)
@@ -679,21 +679,21 @@
 	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
 	// unless you know exactly what it does.
 	var/list/gear = list(
-		"i_clothing" =   list("loc" = ui_iclothing, "slot" = slot_w_uniform, "state" = "center", "toggle" = 1, "dir" = SOUTH),
-		"o_clothing" =   list("loc" = ui_oclothing, "slot" = slot_wear_suit, "state" = "equip",  "toggle" = 1,  "dir" = SOUTH),
-		"mask" =         list("loc" = ui_mask,      "slot" = slot_wear_mask, "state" = "equip",  "toggle" = 1,  "dir" = NORTH),
-		"gloves" =       list("loc" = ui_gloves,    "slot" = slot_gloves,    "state" = "gloves", "toggle" = 1),
-		"eyes" =         list("loc" = ui_glasses,   "slot" = slot_glasses,   "state" = "glasses","toggle" = 1),
-		"l_ear" =        list("loc" = ui_l_ear,     "slot" = slot_l_ear,     "state" = "ears",   "toggle" = 1),
-		"r_ear" =        list("loc" = ui_r_ear,     "slot" = slot_r_ear,     "state" = "ears",   "toggle" = 1),
-		"head" =         list("loc" = ui_head,      "slot" = slot_head,      "state" = "hair",   "toggle" = 1),
-		"shoes" =        list("loc" = ui_shoes,     "slot" = slot_shoes,     "state" = "shoes",  "toggle" = 1),
-		"suit storage" = list("loc" = ui_sstore1,   "slot" = slot_s_store,   "state" = "belt",   "dir" = 8),
-		"back" =         list("loc" = ui_back,      "slot" = slot_back,      "state" = "back",   "dir" = NORTH),
-		"id" =           list("loc" = ui_id,        "slot" = slot_wear_id,   "state" = "id",     "dir" = NORTH),
-		"storage1" =     list("loc" = ui_storage1,  "slot" = slot_l_store,   "state" = "pocket"),
-		"storage2" =     list("loc" = ui_storage2,  "slot" = slot_r_store,   "state" = "pocket"),
-		"belt" =         list("loc" = ui_belt,      "slot" = slot_belt,      "state" = "belt")
+		"i_clothing" =   list("loc" = ui_iclothing, "slot" = WEAR_BODY, "state" = "center", "toggle" = 1, "dir" = SOUTH),
+		"o_clothing" =   list("loc" = ui_oclothing, "slot" = WEAR_JACKET, "state" = "equip",  "toggle" = 1,  "dir" = SOUTH),
+		"mask" =         list("loc" = ui_mask,      "slot" = WEAR_FACE, "state" = "equip",  "toggle" = 1,  "dir" = NORTH),
+		"gloves" =       list("loc" = ui_gloves,    "slot" = WEAR_HANDS,    "state" = "gloves", "toggle" = 1),
+		"eyes" =         list("loc" = ui_glasses,   "slot" = WEAR_EYES,   "state" = "glasses","toggle" = 1),
+		"l_ear" =        list("loc" = ui_l_ear,     "slot" = WEAR_L_EAR,     "state" = "ears",   "toggle" = 1),
+		"r_ear" =        list("loc" = ui_r_ear,     "slot" = WEAR_R_EAR,     "state" = "ears",   "toggle" = 1),
+		"head" =         list("loc" = ui_head,      "slot" = WEAR_HEAD,      "state" = "hair",   "toggle" = 1),
+		"shoes" =        list("loc" = ui_shoes,     "slot" = WEAR_FEET,     "state" = "shoes",  "toggle" = 1),
+		"suit storage" = list("loc" = ui_sstore1,   "slot" = WEAR_J_STORE,   "state" = "belt",   "dir" = 8),
+		"back" =         list("loc" = ui_back,      "slot" = WEAR_BACK,      "state" = "back",   "dir" = NORTH),
+		"id" =           list("loc" = ui_id,        "slot" = WEAR_ID,   "state" = "id",     "dir" = NORTH),
+		"storage1" =     list("loc" = ui_storage1,  "slot" = WEAR_L_STORE,   "state" = "pocket"),
+		"storage2" =     list("loc" = ui_storage2,  "slot" = WEAR_R_STORE,   "state" = "pocket"),
+		"belt" =         list("loc" = ui_belt,      "slot" = WEAR_WAIST,      "state" = "belt")
 		)
 
 /datum/hud_data/New()
@@ -702,11 +702,11 @@
 		equip_slots |= gear[slot]["slot"]
 
 	if(has_hands)
-		equip_slots |= slot_l_hand
-		equip_slots |= slot_r_hand
-		equip_slots |= slot_handcuffed
+		equip_slots |= WEAR_L_HAND
+		equip_slots |= WEAR_R_HAND
+		equip_slots |= WEAR_HANDCUFFS
 
-	if(slot_back in equip_slots)
-		equip_slots |= slot_in_backpack
+	if(WEAR_BACK in equip_slots)
+		equip_slots |= WEAR_IN_BACK
 
-	equip_slots |= slot_legcuffed
+	equip_slots |= WEAR_LEGCUFFS

@@ -21,7 +21,6 @@
 	item_state = "screwdriver_brown"
 	w_class = 1.0
 	flags_atom = FPRINT|CONDUCT
-	//flags_equip_slot = SLOT_BELT
 	var/sampled_turf = ""
 	var/num_stored_bags = 10
 	var/obj/item/weapon/evidencebag/filled_bag

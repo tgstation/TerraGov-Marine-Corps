@@ -8,7 +8,7 @@
 	throw_speed = 3
 	throw_range = 7
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	var/active = 0
 	var/det_time = 50
 	var/dangerous = 0		//Make an danger overlay for humans?

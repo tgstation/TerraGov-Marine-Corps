@@ -6,7 +6,7 @@
 	desc = "Used to remotely lockdown or detonate linked Cyborgs."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "robot"
-	req_access = list(access_sulaco_research)
+	req_access = list(ACCESS_MARINE_RESEARCH)
 	circuit = "/obj/item/weapon/circuitboard/robotics"
 
 	var/id = 0.0

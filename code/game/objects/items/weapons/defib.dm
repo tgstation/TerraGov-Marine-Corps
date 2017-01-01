@@ -4,7 +4,7 @@
 	icon_state = "defib_full"
 	item_state = "defib"
 	flags_atom = FPRINT|CONDUCT|NOBLUDGEON
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 5
 	throwforce = 5
 	w_class = 3

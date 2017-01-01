@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
 	w_class = 2.0
 	throw_speed = 2
@@ -33,7 +33,7 @@
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 
-		if (!H.has_organ_for_slot(slot_handcuffed))
+		if (!H.has_organ_for_slot(WEAR_HANDCUFFS))
 			user << "\red \The [H] needs at least two wrists before you can cuff them together!"
 			return
 
@@ -153,7 +153,7 @@ var/last_chew = 0
 
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
-			if (!H.has_organ_for_slot(slot_handcuffed))
+			if (!H.has_organ_for_slot(WEAR_HANDCUFFS))
 				user << "\red \The [H] needs at least two wrists before you can cuff them together!"
 				return
 

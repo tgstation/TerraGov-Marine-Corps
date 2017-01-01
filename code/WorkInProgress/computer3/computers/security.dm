@@ -16,7 +16,7 @@
 	active_state = "security"
 	image			= 'icons/ntos/records.png'
 
-	req_one_access = list(access_sulaco_brig)
+	req_one_access = list(ACCESS_MARINE_BRIG)
 
 	var/obj/item/weapon/card/id/scan = null
 	var/obj/item/weapon/card/id/scan2 = null
@@ -38,7 +38,7 @@
 
 
 	proc/authenticate()
-		if(access_sulaco_brig in scan.access)
+		if(ACCESS_MARINE_BRIG in scan.access)
 			return 1
 		if(istype(usr,/mob/living/silicon/ai))
 			return 1

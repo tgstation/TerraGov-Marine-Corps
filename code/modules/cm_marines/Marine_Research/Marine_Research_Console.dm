@@ -29,7 +29,7 @@
 	var/sync = 1		//If sync = 0, it doesn't show up on Server Control Console
 	var/errored = 0		//Errored during item construction.
 
-	req_access = list(access_sulaco_research)	//Data and setting manipulation requires scientist access.
+	req_access = list(ACCESS_MARINE_RESEARCH)	//Data and setting manipulation requires scientist access.
 
 
 

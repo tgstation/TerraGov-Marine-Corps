@@ -45,24 +45,29 @@ Additional game mode variables.
 	var/datum/mind/hellhounds[] = list() //Hellhound spawning is not supported at round start.
 	var/pred_keys[] = list() //People who are playing predators, we can later reference who was a predator during the round.
 
-	var/xeno_required_num = 0 //We need at least one. You can turn this off in case we don't care if we spawn or don't spawn xenos.
-	var/xeno_starting_num = 0 //To clamp starting xenos.
-	var/xeno_bypass_timer = 0 //Bypass the five minute timer before respawning.
-	var/xeno_queen_timer  = 0 //How long ago did the queen die?
-	var/xeno_queen_deaths = 0 //How many times the alien queen died.
-	var/surv_starting_num = 0 //To clamp starting survivors.
-	var/merc_starting_num = 0 //PMC clamp.
-	var/pred_current_num = 0 //How many are there now?
-	var/pred_maximum_num = 3 //How many are possible per round? Does not count elders.
-	var/pred_round_chance = 20 //%
-	var/forbid_late_joining = 0 //Cannot late join as a marine after round start.
-	var/bioscan_current_interval = 36000
-	var/bioscan_ongoing_interval = 18000
+	var/xeno_required_num 	= 0 //We need at least one. You can turn this off in case we don't care if we spawn or don't spawn xenos.
+	var/xeno_starting_num 	= 0 //To clamp starting xenos.
+	var/xeno_bypass_timer 	= 0 //Bypass the five minute timer before respawning.
+	var/xeno_queen_timer  	= 0 //How long ago did the queen die?
+	var/xeno_queen_deaths 	= 0 //How many times the alien queen died.
+	var/surv_starting_num 	= 0 //To clamp starting survivors.
+	var/merc_starting_num 	= 0 //PMC clamp.
+	var/pred_current_num 	= 0 //How many are there now?
+	var/pred_maximum_num 	= 3 //How many are possible per round? Does not count elders.
+	var/pred_round_chance 	= 20 //%
 
 	//Some gameplay variables.
-	var/round_checkwin = 0
+	var/round_checkwin 		= 0
 	var/round_finished
-	var/round_started  = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
+	var/round_started  		= 5 //This is a simple timer so we don't accidently check win conditions right in post-game
+
+	//Role Authority set up.
+	var/role_instruction 	= 0 // 1 is to replace, 2 is to add, 3 is to remove.
+	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
+
+	//Bioscan related.
+	var/bioscan_current_interval = 36000
+	var/bioscan_ongoing_interval = 18000
 
 	var/flags_round_type = NOFLAGS
 
@@ -102,20 +107,22 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
 	predators += new_predator.mind //Add them to the proper list.
-	pred_keys += new_predator.key //Add their key.
-	if(!is_alien_whitelisted(new_predator,"Yautja Elder")) pred_current_num++ //If they are not an elder, tick up the max.
+	pred_keys += new_predator.ckey //Add their key.
+	if(!(RoleAuthority.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER)) pred_current_num++ //If they are not an elder, tick up the max.
 
 /datum/game_mode/proc/initialize_starting_predator_list()
 	if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
 		flags_round_type |= MODE_PREDATOR //It is now a predator round.
-		var/list/datum/mind/possible_predators = get_whitelisted_predators() //Grabs whitelisted preds who are ready at game start.
-		var/datum/mind/new_pred
-		while(possible_predators.len)
-			new_pred = pick(possible_predators)
-			possible_predators -= new_pred
-			if(!istype(new_pred) || (pred_current_num >= pred_maximum_num && is_alien_whitelisted(new_pred.current,"Yautja")) ) continue
-			new_pred.assigned_role = "MODE" //So they are not chosen later for another role.
-			predators += new_pred
+		var/L[] = get_whitelisted_predators() //Grabs whitelisted preds who are ready at game start.
+		var/datum/mind/M
+		var/i //Our iterator for the maximum amount of pred spots available. The actual number is changed later on.
+		while(L.len && i < pred_maximum_num)
+			M = pick(L)
+			if(!istype(M)) continue
+			L -= M
+			M.assigned_role = "MODE" //So they are not chosen later for another role.
+			predators += M
+			i++
 
 /datum/game_mode/proc/initialize_post_predator_list() //TO DO: Possibly clean this using tranfer_to.
 	var/temp_pred_list[] = predators //We don't want to use the actual predator list as it will be overriden.
@@ -138,19 +145,20 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/get_whitelisted_predators(readied = 1)
 	// Assemble a list of active players who are whitelisted.
-	var/list/players = list()
+	var/players[] = new
 
+	var/mob/new_player/new_pred
 	for(var/mob/player in player_list)
 		if(!player.client) continue //No client. DCed.
 		if(isYautja(player)) continue //Already a predator. Might be dead, who knows.
 		if(readied) //Ready check for new players.
-			var/mob/new_player/new_pred = player
+			new_pred = player
 			if(!istype(new_pred)) continue //Have to be a new player here.
 			if(!new_pred.ready) continue //Have to be ready.
 		else
 			if(!istype(player,/mob/dead)) continue //Otherwise we just want to grab the ghosts.
 
-		if(is_alien_whitelisted(player,"Yautja") || is_alien_whitelisted(player,"Yautja Elder"))  //Are they whitelisted?
+		if(RoleAuthority.roles_whitelist[player.ckey] & WHITELIST_PREDATOR)  //Are they whitelisted?
 			if(!player.client.prefs)
 				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
 
@@ -171,7 +179,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/check_predator_late_join(mob/pred_candidate, show_warning = 1)
 
-	if(!is_alien_whitelisted(pred_candidate,"Yautja") && !is_alien_whitelisted(pred_candidate,"Yautja Elder"))
+	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
 		if(show_warning) pred_candidate << "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>"
 		return
 
@@ -179,11 +187,11 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(show_warning) pred_candidate << "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>"
 		return
 
-	if(pred_candidate.key in pred_keys)
+	if(pred_candidate.ckey in pred_keys)
 		if(show_warning) pred_candidate << "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>"
 		return
 
-	if(!is_alien_whitelisted(pred_candidate,"Yautja Elder"))
+	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
 		if(pred_current_num >= pred_maximum_num)
 			if(show_warning) pred_candidate << "<span class='warning'>Only three predators may spawn per round, but Elders are excluded.</span>"
 			return
@@ -198,7 +206,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	var/mob/living/carbon/human/new_predator
 
-	new_predator = new(is_alien_whitelisted(pred_candidate,"Yautja Elder") ? pick(pred_elder_spawn) : pick(pred_spawn))
+	new_predator = new(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER ? pick(pred_elder_spawn) : pick(pred_spawn))
 	new_predator.set_species("Yautja")
 
 	new_predator.mind_initialize()
@@ -222,12 +230,12 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/boot_number = new_predator.client.prefs.predator_boot_type
 	var/mask_number = new_predator.client.prefs.predator_mask_type
 
-	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), slot_shoes)
-	if(is_alien_whitelisted(new_predator,"Yautja Elder"))
+	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), WEAR_FEET)
+	if(RoleAuthority.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELDER)
 		new_predator.real_name = "Elder [new_predator.real_name]"
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), slot_wear_suit)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number, 1), slot_wear_mask)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/cape/eldercape(new_predator, armor_number), slot_back)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), WEAR_JACKET)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number, 1), WEAR_FACE)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/cape/eldercape(new_predator, armor_number), WEAR_BACK)
 
 		spawn(10)
 			new_predator << "<span class='notice'><B> Welcome Elder!</B></span>"
@@ -235,8 +243,8 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_predator << "<span class='notice'>That does not mean you can't go out and show the youngsters how it's done.</span>"
 			new_predator << "<span class='notice'>You come equipped as an Elder should, with a bonus glaive and heavy armor.</span>"
 	else
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number), slot_wear_suit)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number), slot_wear_mask)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number), WEAR_JACKET)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number), WEAR_FACE)
 
 		spawn(12)
 			new_predator << "<span class='notice'>You are <B>Yautja</b>, a great and noble predator!</span>"
@@ -420,84 +428,84 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/random_job = rand(0,10)
 	switch(random_job)
 		if(0) //assistant
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(new_survivor), slot_back)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(new_survivor), WEAR_BACK)
 		if(1) //civilian in pajamas
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 		if(2) //Scientist
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), slot_wear_suit)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(new_survivor), slot_back)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(new_survivor), WEAR_BACK)
 		if(3) //Doctor
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), slot_wear_suit)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(new_survivor), slot_belt)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(new_survivor), slot_back)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical(new_survivor), WEAR_WAIST)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(new_survivor), WEAR_BACK)
 		if(4) //Chef!
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(new_survivor), slot_wear_suit)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(new_survivor), slot_back)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(new_survivor), slot_l_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(new_survivor), WEAR_JACKET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(new_survivor), WEAR_BACK)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(new_survivor), WEAR_L_HAND)
 		if(5) //Botanist
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(new_survivor), slot_wear_suit)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/hatchet(new_survivor), slot_belt)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(new_survivor), WEAR_JACKET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/hatchet(new_survivor), WEAR_WAIST)
 		if(6)//Atmos
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech(new_survivor), slot_belt)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech(new_survivor), WEAR_WAIST)
 		if(7) //Chaplain
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/bible/booze(new_survivor), slot_l_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/bible/booze(new_survivor), WEAR_L_HAND)
 		if(8) //Miner
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/pickaxe(new_survivor), slot_l_hand)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/pickaxe(new_survivor), WEAR_L_HAND)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
 		if(9) //Corporate guy
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(new_survivor), slot_wear_suit)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(new_survivor), slot_l_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(new_survivor), WEAR_JACKET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(new_survivor), WEAR_L_HAND)
 		if(10) //Colonial Marshal
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(new_survivor), slot_wear_suit)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(new_survivor), slot_w_uniform)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(new_survivor), slot_shoes)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(new_survivor), slot_l_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(new_survivor), WEAR_JACKET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(new_survivor), WEAR_BODY)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(new_survivor), WEAR_FEET)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(new_survivor), WEAR_L_HAND)
 
-	var/random_gear = rand(0,20) //slot_l_hand and slot_r/l_store are taken above.
+	var/random_gear = rand(0,20) //WEAR_L_HAND and slot_r/l_store are taken above.
 	switch(random_gear)
 		if(0)
-			new_survivor.equip_to_slot_or_del(new /obj/item/device/camera/fluff/oldcamera(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/device/camera/fluff/oldcamera(new_survivor), WEAR_R_HAND)
 		if(1)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/crowbar(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/crowbar(new_survivor), WEAR_R_HAND)
 		if(2)
-			new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(new_survivor), WEAR_R_HAND)
 		if(3)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/wrench(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/wrench(new_survivor), WEAR_R_HAND)
 		if(4)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/surgicaldrill(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/surgicaldrill(new_survivor), WEAR_R_HAND)
 		if(5)
-			new_survivor.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(new_survivor), WEAR_R_HAND)
 		if(6)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(new_survivor), WEAR_R_HAND)
 		if(7)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(new_survivor), WEAR_R_HAND)
 		if(8)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/lemoncakeslice(new_survivor), WEAR_R_HAND)
 		if(9)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(new_survivor), WEAR_R_HAND)
 		if(10)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/weldingtool/largetank(new_survivor), slot_r_hand)
+			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/weldingtool/largetank(new_survivor), WEAR_R_HAND)
 
-	new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight(new_survivor), slot_r_store)
-	new_survivor.equip_to_slot_or_del(new /obj/item/weapon/crowbar(new_survivor), slot_l_store)
+	new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight(new_survivor), WEAR_R_STORE)
+	new_survivor.equip_to_slot_or_del(new /obj/item/weapon/crowbar(new_survivor), WEAR_L_STORE)
 
 	new_survivor.update_icons()
 

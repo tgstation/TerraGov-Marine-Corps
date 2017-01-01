@@ -11,7 +11,7 @@ They're all essentially identical when it comes to getting the job done.
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	matter = list("metal" = 50000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2

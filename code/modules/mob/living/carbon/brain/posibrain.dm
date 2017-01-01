@@ -10,7 +10,7 @@
 	construction_time = 75
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
-	req_access = list(access_sulaco_research)
+	req_access = list(ACCESS_MARINE_RESEARCH)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 

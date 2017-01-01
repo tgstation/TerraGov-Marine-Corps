@@ -6,7 +6,7 @@
 	item_state = "flashlight"
 	w_class = 2
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 
 	matter = list("metal" = 50,"glass" = 20)
 

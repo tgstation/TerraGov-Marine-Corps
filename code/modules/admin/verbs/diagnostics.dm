@@ -104,7 +104,7 @@
 
 	if(!check_rights(R_SERVER))	return
 
-	message_admins("[usr.ckey] manually reloaded admins")
+	message_admins("[usr.ckey] manually reloaded admins.")
 	load_admins()
 	feedback_add_details("admin_verb","RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -114,9 +114,17 @@
 
 	if(!check_rights(R_SERVER)) return
 
-	message_admins("[usr.ckey] manually reloaded Mentors")
+	message_admins("[usr.ckey] manually reloaded Mentors.")
 	world.load_mods()
 
+/client/proc/reload_whitelist()
+	set name = "Reload Whitelist"
+	set category = "Debug"
+
+	if(!check_rights(R_SERVER) || !RoleAuthority) return
+
+	message_admins("[usr.ckey] manually reloaded the role whitelist.")
+	RoleAuthority.load_whitelist()
 
 //todo:
 /client/proc/jump_to_dead_group()

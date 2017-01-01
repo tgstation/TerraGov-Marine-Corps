@@ -4,7 +4,7 @@
 	icon_state = "chain"
 	item_state = "chain"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 10
 	throwforce = 7
 	w_class = 3

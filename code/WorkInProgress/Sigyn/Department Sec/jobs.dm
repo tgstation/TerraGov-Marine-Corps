@@ -8,27 +8,27 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 		var/destination = null
 		switch(department)
 			if("supply")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/cargo(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/cargo(H), WEAR_BODY)
 				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/supply(H), slot_ears)
 				access = list(access_mailsorting, access_mining)
 				destination = /area/security/checkpoint/supply
 			if("engineering")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/engine(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/engine(H), WEAR_BODY)
 				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/engi(H), slot_ears)
 				access = list(access_construction, access_engine)
 				destination = /area/security/checkpoint/engineering
 			if("medical")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/med(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/med(H), WEAR_BODY)
 				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/med(H), slot_ears)
 				access = list(access_medical)
 				destination = /area/security/checkpoint/medical
 			if("science")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/science(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/science(H), WEAR_BODY)
 				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/sci(H), slot_ears)
 				access = list(access_research)
 				destination = /area/security/checkpoint/science
 			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), WEAR_BODY)
 				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
 
 
@@ -68,21 +68,21 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), slot_back)
-		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), slot_back)
+		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), WEAR_BACK)
+		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), WEAR_BACK)
 		assign_sec_to_department(H)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), slot_wear_suit)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_s_store)
-		H.equip_to_slot_or_del(new /obj/item/device/flash(H), slot_l_store)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), WEAR_WAIST)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), WEAR_JACKET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(H), WEAR_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), WEAR_J_STORE)
+		H.equip_to_slot_or_del(new /obj/item/device/flash(H), WEAR_L_STORE)
 		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
-			H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_l_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), WEAR_L_HAND)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
-			H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), WEAR_IN_BACK)
 
 		implant_loyalty(H)
 

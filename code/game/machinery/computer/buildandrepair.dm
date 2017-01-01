@@ -52,7 +52,7 @@
 	name = "Circuit board (Security Camera Monitor)"
 	build_path = /obj/machinery/computer/security
 	var/network = list("SULACO")
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
 	var/emagged = 0
 

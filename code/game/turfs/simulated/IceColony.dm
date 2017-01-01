@@ -671,7 +671,7 @@
 	throwforce = 3.0
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	var/working = 0
 	var/mode = 0
 		//0 = remove

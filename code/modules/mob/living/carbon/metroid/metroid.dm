@@ -887,12 +887,12 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 		var/mob/living/carbon/human/G = new /mob/living/carbon/human
 		G.dna.mutantrace = "adamantine"
 		G.real_name = text("Adamantine Golem ([rand(1, 1000)])")
-		G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), slot_w_uniform)
-		G.equip_to_slot_or_del(new /obj/item/clothing/suit/golem(G), slot_wear_suit)
-		G.equip_to_slot_or_del(new /obj/item/clothing/shoes/golem(G), slot_shoes)
-		G.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/golem(G), slot_wear_mask)
-		G.equip_to_slot_or_del(new /obj/item/clothing/gloves/golem(G), slot_gloves)
-		//G.equip_to_slot_or_del(new /obj/item/clothing/head/space/golem(G), slot_head)
+		G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), WEAR_BODY)
+		G.equip_to_slot_or_del(new /obj/item/clothing/suit/golem(G), WEAR_JACKET)
+		G.equip_to_slot_or_del(new /obj/item/clothing/shoes/golem(G), WEAR_FEET)
+		G.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/golem(G), WEAR_FACE)
+		G.equip_to_slot_or_del(new /obj/item/clothing/gloves/golem(G), WEAR_HANDS)
+		//G.equip_to_slot_or_del(new /obj/item/clothing/head/space/golem(G), WEAR_HEAD)
 		G.loc = src.loc
 		G.key = ghost.key
 		G << "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost."

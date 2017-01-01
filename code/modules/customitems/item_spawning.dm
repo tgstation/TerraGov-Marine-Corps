@@ -54,13 +54,13 @@
 							I.name = "[M.real_name]'s Lifetime ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
 						else if(M.ckey == "nerezza" && M.real_name == "Asher Spock") //This is an Odysseus Specialist ID
 							I.name = "[M.real_name]'s Odysseus Specialist ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
-							I.access += list(access_sulaco_research) //Station-based mecha pilots need this to access the recharge bay.
+							I.access += list(ACCESS_MARINE_RESEARCH) //Station-based mecha pilots need this to access the recharge bay.
 						else if(M.ckey == "roaper" && M.real_name == "Ian Colm") //This is a Technician ID
 							I.name = "[M.real_name]'s Technician ID ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
 
 						//replace old ID
 						del(C)
-						ok = M.equip_if_possible(I, slot_wear_id, 0)	//if 1, last argument deletes on fail
+						ok = M.equip_if_possible(I, WEAR_ID, 0)	//if 1, last argument deletes on fail
 						break
 				else if(istype(Item,/obj/item/weapon/storage/belt))
 					if(M.ckey == "jakksergal" && M.real_name == "Nashi Ra'hal" && M.mind.role_alt_title && M.mind.role_alt_title != "Nurse" && M.mind.role_alt_title != "Chemist")
@@ -72,13 +72,13 @@
 						for(var/obj/item/weapon/storage/belt/B in M)
 							del(B)
 							M.belt=null
-						ok = M.equip_if_possible(I, slot_belt, 0)
+						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
 						break
 					if(istype(M.belt,/obj/item/device/pda))
 						for(var/obj/item/device/pda/Pda in M)
 							M.belt=null
-							M.equip_if_possible(Pda, slot_l_store, 0)
-						ok = M.equip_if_possible(I, slot_belt, 0)
+							M.equip_if_possible(Pda, WEAR_L_STORE, 0)
+						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
 				else if(istype(M.back,/obj/item/weapon/storage) && M.back:contents.len < M.back:storage_slots) // Try to place it in something on the mob's back
 					Item.loc = M.back
 					ok = 1

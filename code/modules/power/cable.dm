@@ -220,7 +220,7 @@
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 50, "glass" = 20)
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 

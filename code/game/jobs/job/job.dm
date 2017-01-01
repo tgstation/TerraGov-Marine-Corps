@@ -1,83 +1,162 @@
 /datum/job
 
 	//The name of the job
-	var/title = "NOPE"
+	var/title = ""
+	var/special_role 			 // In case they have some special role on spawn.
+	var/comm_title 			= "" //The mini-title to display over comms.
+	var/paygrade 			= 0 //Also displays a ranking when talking over the radio.
 
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()		//Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()				//Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/minimal_access		//Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
+	var/list/access				//Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 
-	//Bitflags for the job
-	var/flag = 0
-	var/department_flag = 0
-
-	//Players will be allowed to spawn in as jobs that are set to "Station"
-	var/faction = "None"
-
-	//How many players can be this job
-	var/total_positions = 0
-
-	//How many players can spawn in as this job
-	var/spawn_positions = 0
-
-	//How many players have this job
-	var/current_positions = 0
-
-	//Supervisors, who this person answers to directly
-	var/supervisors = ""
-
-	//Sellection screen color
-	var/selection_color = "#ffffff"
-
-	//the type of the ID the player will have
-	var/idtype = /obj/item/weapon/card/id
-
-	//List of alternate titles, if any
-	var/list/alt_titles
-
-	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
-	var/req_admin_notify
-
+	var/faction 			= "Marines" //Players will be allowed to spawn in as jobs that are set to "Marines". Other factions are special game mode spawns.
+	var/total_positions 	= 0 //How many players can be this job
+	var/spawn_positions 	= 0 //How many players can spawn in as this job
+	var/current_positions 	= 0 //How many players have this job
+	var/supervisors 		= "" //Supervisors, who this person answers to directly. Should be a string, shown to the player when they enter the game.
+	var/selection_color 	= "#ffffff" //Sellection screen color.
+	var/idtype 				= /obj/item/weapon/card/id //The type of the ID the player will have.
+	var/list/alt_titles 	//List of alternate titles, if any.
 	//If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
-	var/minimal_player_age = 0
+	var/minimal_player_age 	= 0
+	//var/flags_role				= NOFLAGS
+	var/flag = NOFLAGS //TODO robust this later.
+	//var/flags_department 			= NOFLAGS
+	var/department_flag = NOFLAGS //TODO robust this later.
+	var/flags_startup_parameters 	= NOFLAGS //These flags are used to determine how to load the role, and some other parameters.
+	var/flags_whitelist 			= NOFLAGS //Only used by whitelisted roles. Can be a single whitelist flag, or a combination of them.
 
-	var/is_squad_job = 0 //Should we place this job into squads?
-	var/comm_title = "" //The mini-title to display over comms.
-	var/paygrade = 0
+/datum/job/proc/get_alternative_title(mob/living/M, lowercase)
+	if(istype(M) && M.client && M.client.prefs)
+		. = M.client.prefs.GetPlayerAltTitle(src)
+		if(. && lowercase) . = lowertext(.)
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+
+/datum/job/proc/generate_wearable_equipment() return list() //This should ONLY be used to list things that the character can wear, or show on their sprite.
+
+/datum/job/proc/generate_stored_equipment() return list() //This is the list of everything else. Combine the two.
+
+/datum/job/proc/get_wearable_equipment() return generate_wearable_equipment() //Use and override this proc to get things for character select dressup.
+
+/datum/job/proc/generate_entry_message() return //The job description that characters get, along with anything else that may be appropriate.
+
+/datum/job/proc/announce_entry_message(mob/living/carbon/human/H, datum/money_account/M) //The actual message that is displayed to the mob when they enter the game as a new player.
+	set waitfor = 0
+	sleep(10)
+	if(H && H.loc && H.client)
+		var/title_given
+		var/title_alt
+		title_alt = get_alternative_title(H,1)
+		title_given = title_alt ? title_alt : lowertext(title)
+
+		//Document syntax cannot have tabs for proper formatting.
+		var/t = {"
+<span class='role_body'>|______________________|</span>
+<span class='role_header'>You are \a [title_given]![flags_startup_parameters & ROLE_ADMIN_NOTIFY? "\nYou are playing a job that is important for game progression. If you have to disconnect, please notify the admins via adminhelp." : ""]</span>
+
+<span class='role_body'>[generate_entry_message(H)]</span>
+
+<span class='role_body'>As the [title_given] you answer to [supervisors]. Special circumstances may change this.[M ? "\nYour account number is: <b>[M.account_number]</b>. Your account pin is: <b>[M.remote_access_pin]</b>." : ""]</span>
+<span class='role_body'>|______________________|</span>
+"}
+
+		H << t
+
+/datum/job/proc/generate_entry_conditions(mob/living/M) return //Anything special that should happen to the mob upon entering the world.
+
+//Have to pass H to both equip procs so that "backbag" shows correctly. Sigh.
+/datum/job/proc/equip(mob/living/carbon/human/H, list/L = generate_wearable_equipment() + generate_stored_equipment())
+	if(!istype(H) || !L.len) return
+	var/i
+	var/item_path
+	var/obj/item/stack/sheet/I //Just to make this shorter.
+
+	for(i in L)
+		item_path = L[i]
+		I = new item_path(H)
+		if(istype(I)) I.amount = 30 //We want to make sure that the amount is actually proper.
+		H.equip_to_slot_or_del(I, i) //The item loc will be transferred from mob to an item, if needed.
+
+//This should come after equip(), usually only on spawn or late join. Otherwise just use equip.
+/datum/job/proc/equip_preference_gear(mob/living/carbon/human/H)
+	 //TODO Adjust this based on mob and latejoin.
+	 //TODO Adjust the actual spawns, so they all have a slot, instead of spawning in the pack when they don't have a slot.
+	if(!H.client || !H.client.prefs.gear) return//We want to equip them with custom stuff second, after they are equipped with everything else.
+	var/datum/gear/G
+	var/i
+	for(i in H.client.prefs.gear)
+		G = gear_datums[i]
+		if(G)
+			if(G.allowed_roles && !(title in G.allowed_roles)) 				continue //Is the role allowed?
+			if(G.whitelisted && !is_alien_whitelisted(H, G.whitelisted)) 	continue //is the role whitelisted?
+			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : WEAR_IN_BACK)
+
+	//Give humans wheelchairs, if they need them.
+	var/datum/organ/external/l_foot = H.get_organ("l_foot")
+	var/datum/organ/external/r_foot = H.get_organ("r_foot")
+	if((!l_foot || l_foot.status & ORGAN_DESTROYED) && (!r_foot || r_foot.status & ORGAN_DESTROYED))
+		var/obj/structure/stool/bed/chair/wheelchair/W = new (H.loc)
+		H.buckled = W
+		H.update_canmove()
+		W.dir = H.dir
+		W.buckled_mob = H
+		W.add_fingerprint(H)
+
+	//Gives glasses to the vision impaired
+	if(H.disabilities & NEARSIGHTED)
+		var/obj/item/clothing/glasses/regular/P = new (H)
+		P.prescription = 1
+		H.equip_to_slot_or_del(P, WEAR_EYES)
+
+/datum/job/proc/equip_identification(mob/living/carbon/human/H)
+	if(!istype(H))	return
+	var/obj/item/weapon/card/id/C
+	var/title_alt
+	title_alt = get_alternative_title(H)
+
+	C = new idtype(H)
+	C.access = get_access()
+	C.paygrade = paygrade
+	C.registered_name = H.real_name
+	C.rank = title
+	C.assignment = title_alt ? title_alt : title
+	C.role = src
+	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
+
+	//put the player's account number onto the ID
+	if(H.mind && H.mind.initial_account) C.associated_account_number = H.mind.initial_account.account_number
+	H.equip_to_slot_or_del(C, WEAR_ID)
 	return 1
 
-/datum/job/proc/get_access()
-	if(!config)	//Needed for robots.
-		return src.minimal_access.Copy()
+//This proc removes overlays, then adds new ones.
+/datum/job/proc/display_overlay_equipment(atom/A, list/L = get_wearable_equipment())
+	var/image/reusable/I
+	var/obj/item/P
+	var/i
+	for(i in A.overlays) //Remove the old.
+		A.overlays -= i
+		cdel(i)
+	for(i in L) //Add the new.
+		P = i
+		I = rnew(/image/reusable, list(initial(P.icon),A, initial(P.icon_state)))
+		A.overlays += I
 
-	if(config.jobs_have_minimal_access)
-		return src.minimal_access.Copy()
-	else
-		return src.access.Copy()
+/datum/job/proc/get_access()
+	if(!config)							return minimal_access
+	if(config.jobs_have_minimal_access) return minimal_access
+	return access
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
-	if(available_in_days(C) == 0)
-		return 1	//Available in 0 days = available right now = player is old enough to play.
-	return 0
-
+	if(available_in_days(C) == 0) return 1	//If available in 0 days, the player is old enough to play. Can be compared to null, but I think this is clearer.
 
 /datum/job/proc/available_in_days(client/C)
-	if(!C)
-		return 0
-	if(!config.use_age_restriction_for_jobs)
-		return 0
-	if(!isnum(C.player_age))
-		return 0 //This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced
-	if(!isnum(minimal_player_age))
-		return 0
-
+	//Checking the player's age is only possible through a db connection, so if there isn't one, player age will be a text string instead.
+	if(!istype(C) || !config.use_age_restriction_for_jobs || !isnum(C.player_age) || !isnum(minimal_player_age)) return 0 //One of the few times when returning 0 is the proper behavior.
 	return max(0, minimal_player_age - C.player_age)
-
 
 //This lets you scale max jobs at runtime
 //All you have to do is rewrite the inheritance
-/datum/job/proc/getTotalPositions()
-	return total_positions
+/datum/job/proc/get_total_positions() . = latejoin ? spawn_positions : total_positions
+

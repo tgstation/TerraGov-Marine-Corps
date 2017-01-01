@@ -139,11 +139,11 @@
 
 	var/obj/item/weapon/paper/talisman/supply/T = new(mob)
 	var/list/slots = list (
-		"backpack" = slot_in_backpack,
-		"left pocket" = slot_l_store,
-		"right pocket" = slot_r_store,
-		"left hand" = slot_l_hand,
-		"right hand" = slot_r_hand,
+		"backpack" = WEAR_IN_BACK,
+		"left pocket" = WEAR_L_STORE,
+		"right pocket" = WEAR_R_STORE,
+		"left hand" = WEAR_L_HAND,
+		"right hand" = WEAR_R_HAND,
 	)
 	var/where = mob.equip_in_one_of_slots(T, slots)
 	if (!where)

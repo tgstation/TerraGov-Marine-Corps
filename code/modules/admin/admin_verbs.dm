@@ -160,6 +160,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/air_report,
 	/client/proc/reload_admins,
 	/client/proc/reload_mentors,
+	/client/proc/reload_whitelist,
 	/client/proc/restart_controller,
 	/client/proc/remake_distribution_map,
 	/client/proc/show_distribution_map,
@@ -250,6 +251,8 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/callproc,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
+	/client/proc/reload_mentors,
+	/client/proc/reload_whitelist,
 	/client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
@@ -299,6 +302,7 @@ var/list/admin_verbs_mod = list(
 	/proc/release,
 	/datum/admins/proc/fix_breach,
 	/datum/admins/proc/fix_air,
+	// /datum/admins/proc/fix_air, // Not working yet
 	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  �\_("/)_/�
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes
@@ -816,17 +820,17 @@ var/list/admin_verbs_mentor = list(
 	set name = "Free Job Slot"
 	set category = "Admin"
 	if(holder)
-		var/list/jobs = list()
-		for (var/datum/job/J in job_master.occupations)
-			if (J.current_positions >= J.total_positions && J.total_positions != -1)
-				jobs += J.title
-		if (!jobs.len)
-			usr << "There are no fully staffed jobs."
+		var/roles[] = new
+		var/i
+		var/datum/job/J
+		for (i in RoleAuthority.roles_by_name) //All the roles in the game.
+			J = RoleAuthority.roles_by_name[i]
+			if(J.total_positions != -1 && J.get_total_positions(1) <= J.current_positions) roles += i
+		if (!roles.len)
+			usr << "There are no fully staffed roles."
 			return
-		var/job = input("Please select job slot to free", "Free job slot")  as null|anything in jobs
-		if (job)
-			job_master.FreeRole(job)
-	return
+		var/role = input("Please select role slot to free", "Free role slot")  as null|anything in roles
+		if (role) RoleAuthority.free_role(RoleAuthority.roles_by_name[role])
 
 /client/proc/toggleattacklogs()
 	set name = "Toggle Attack Log Messages"

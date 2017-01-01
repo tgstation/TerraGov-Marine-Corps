@@ -6,7 +6,7 @@
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 15000)
@@ -255,7 +255,7 @@
 /obj/item/ammo_magazine/revolver
 	name = "\improper M44 magnum speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver
-	flags_equip_slot = null
+	flags_equip_slot = NOFLAGS
 	caliber = ".44"
 	icon_state = "m44"
 	max_rounds = 7

@@ -265,7 +265,7 @@ var/const/MAX_ACTIVE_TIME = 200
 			target.visible_message("<span class='danger'>\The [src] tears \the [W] off of \the [target]'s face!</span>")
 		loc = target
 		icon_state = initial(icon_state)
-		target.equip_to_slot(src, slot_wear_mask)
+		target.equip_to_slot(src, WEAR_FACE)
 		target.contents += src //Monkey sanity check - Snapshot
 		target.update_inv_wear_mask()
 		if(ishuman(target))

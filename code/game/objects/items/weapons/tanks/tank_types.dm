@@ -90,7 +90,7 @@
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = null	//they have no straps!
+	flags_equip_slot = NOFLAGS	//they have no straps!
 
 
 /obj/item/weapon/tank/phoron/New()
@@ -120,7 +120,7 @@
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 2.0
 	force = 4.0
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD

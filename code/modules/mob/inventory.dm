@@ -25,7 +25,7 @@
 		l_hand = W
 		W.layer = 20	//TODO: move to equipped?
 //		l_hand.screen_loc = ui_lhand
-		W.equipped(src,slot_l_hand)
+		W.equipped(src,WEAR_L_HAND)
 		if(client)	client.screen |= W
 		if(pulling == W) stop_pulling()
 		update_inv_l_hand()
@@ -41,7 +41,7 @@
 		r_hand = W
 		W.layer = 20
 //		r_hand.screen_loc = ui_rhand
-		W.equipped(src,slot_r_hand)
+		W.equipped(src,WEAR_R_HAND)
 		if(client)	client.screen |= W
 		if(pulling == W) stop_pulling()
 		update_inv_r_hand()
@@ -252,79 +252,79 @@
 	//warning: icky code
 	var/equipped = 0
 	switch(slot)
-		if(slot_back)
+		if(WEAR_BACK)
 			if(!src.back)
 				src.back = W
 				equipped = 1
-		if(slot_wear_mask)
+		if(WEAR_FACE)
 			if(!src.wear_mask)
 				src.wear_mask = W
 				equipped = 1
-		if(slot_handcuffed)
+		if(WEAR_HANDCUFFS)
 			if(!src.handcuffed)
 				src.handcuffed = W
 				equipped = 1
-		if(slot_l_hand)
+		if(WEAR_L_HAND)
 			if(!src.l_hand)
 				src.l_hand = W
 				equipped = 1
-		if(slot_r_hand)
+		if(WEAR_R_HAND)
 			if(!src.r_hand)
 				src.r_hand = W
 				equipped = 1
-		if(slot_belt)
+		if(WEAR_WAIST)
 			if(!src.belt && src.w_uniform)
 				src.belt = W
 				equipped = 1
-		if(slot_wear_id)
+		if(WEAR_ID)
 			if(!src.wear_id && src.w_uniform)
 				src.wear_id = W
 				equipped = 1
-		if(slot_l_ear)
+		if(WEAR_L_EAR)
 			if(!src.l_ear)
 				src.l_ear = W
 				equipped = 1
-		if(slot_r_ear)
+		if(WEAR_R_EAR)
 			if(!src.r_ear)
 				src.r_ear = W
 				equipped = 1
-		if(slot_glasses)
+		if(WEAR_EYES)
 			if(!src.glasses)
 				src.glasses = W
 				equipped = 1
-		if(slot_gloves)
+		if(WEAR_HANDS)
 			if(!src.gloves)
 				src.gloves = W
 				equipped = 1
-		if(slot_head)
+		if(WEAR_HEAD)
 			if(!src.head)
 				src.head = W
 				equipped = 1
-		if(slot_shoes)
+		if(WEAR_FEET)
 			if(!src.shoes)
 				src.shoes = W
 				equipped = 1
-		if(slot_wear_suit)
+		if(WEAR_JACKET)
 			if(!src.wear_suit)
 				src.wear_suit = W
 				equipped = 1
-		if(slot_w_uniform)
+		if(WEAR_BODY)
 			if(!src.w_uniform)
 				src.w_uniform = W
 				equipped = 1
-		if(slot_l_store)
+		if(WEAR_L_STORE)
 			if(!src.l_store && src.w_uniform)
 				src.l_store = W
 				equipped = 1
-		if(slot_r_store)
+		if(WEAR_R_STORE)
 			if(!src.r_store && src.w_uniform)
 				src.r_store = W
 				equipped = 1
-		if(slot_s_store)
+		if(WEAR_J_STORE)
 			if(!src.s_store && src.wear_suit)
 				src.s_store = W
 				equipped = 1
-		if(slot_in_backpack)
+		if(WEAR_IN_BACK)
 			if (src.back && istype(src.back, /obj/item/weapon/storage/backpack))
 				var/obj/item/weapon/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)

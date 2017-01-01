@@ -4,7 +4,7 @@
 	name = "Security Records"
 	desc = "Used to view and edit personnel's security records"
 	icon_state = "security"
-	req_one_access = list(access_sulaco_brig, access_centcomm, access_sulaco_bridge, access_sulaco_logistics)
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_WY_CORPORATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/weapon/circuitboard/secure_data"
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null

@@ -34,7 +34,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 
 //This is the proc you should be called on to trash something, not calling on the other procs directly. This is a replacement for del().
 //cdel stands for clean delete.
-/proc/cdel(var/datum/garbage, override = null, countdown = 0)
+/proc/cdel(datum/garbage, override = null, countdown)
 	if(countdown)
 		set waitfor = 0
 		sleep(countdown)//What if we don't want to delete it right away? This will allow other procs to run while this one sleeps.
@@ -71,7 +71,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 	var/soft_del_count = 0 //How many soft deletions we did. This is the primary thing we're concerned with, and we don't list these items since they were successfully collected.
 	var/hard_del_count = 0 //How many hard deletions we did. This gives us a baseline for what ISN'T being deleted properly, with cannot_trash as our specific reference list.
 
-/datum/authority/branch/trash/proc/DeliverTrash(var/datum/garbage) //Preparing to add to queue.
+/datum/authority/branch/trash/proc/DeliverTrash(datum/garbage) //Preparing to add to queue.
 	if(!istype(garbage)) //If it's not a datum.
 		del(garbage)
 		return
@@ -125,7 +125,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 The incinerator. If the object is queued for deletion, or it is being deleted now, it will do so.
 Otherwise it will add it to queue for later hard deletion.
 */
-/datum/authority/branch/trash/proc/PurgeTrash(var/datum/garbage) //Preparing to incinerate.
+/datum/authority/branch/trash/proc/PurgeTrash(datum/garbage) //Preparing to incinerate.
 	if(!garbage) return //How did this happen? Maybe it was already deleted.
 
 	if(garbage.ta_directive == TA_PURGE_ME_NOW)

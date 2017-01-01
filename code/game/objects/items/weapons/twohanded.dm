@@ -205,4 +205,3 @@
 	flags_atom = FPRINT|NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
-

@@ -138,6 +138,7 @@
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
 	var/dorm = 0		// determines if this ID has claimed a dorm already
+	var/datum/job/role
 	var/paygrade = 0  // Marine's paygrade
 
 /obj/item/weapon/card/id/New()
@@ -198,7 +199,7 @@
 
 /obj/item/weapon/card/id/syndicate
 	name = "agent card"
-	access = list(access_syndicate)
+	access = list(ACCESS_ILLEGAL_PIRATE)
 	origin_tech = "syndicate=3"
 	var/registered_user=null
 
@@ -270,7 +271,7 @@
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
-	access = list(access_syndicate)
+	access = list(ACCESS_ILLEGAL_PIRATE)
 
 /obj/item/weapon/card/id/captains_spare
 	name = "captain's spare ID"

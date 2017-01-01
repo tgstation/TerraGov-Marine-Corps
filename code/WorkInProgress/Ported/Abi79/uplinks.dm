@@ -318,7 +318,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/selfdestruct = 0		//Set to 1 while the radio is self destructing itself.
 	var/obj/item/device/radio/origradio = null
 	flags = FPRINT|TABLEPASS|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 2.0
 	item_state = "radio"
 	throwforce = 5

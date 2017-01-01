@@ -5,7 +5,7 @@
 	item_state = "electronic"
 	w_class = 2.0
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	origin_tech = "programming=2"
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0

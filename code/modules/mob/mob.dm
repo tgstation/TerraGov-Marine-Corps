@@ -1,3 +1,7 @@
+/mob/Dispose() //Quick and dirty override so we can use cdel() everywhere in the code and then get it polished later.
+	..()
+	return TA_PURGE_ME_NOW
+
 /mob/Del()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	mob_list -= src
 	dead_mob_list -= src
@@ -87,9 +91,9 @@
 		equip_to_slot_if_possible(W, slot)
 
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, slot_l_hand, del_on_fail, disable_warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, WEAR_L_HAND, del_on_fail, disable_warning, redraw_mob))
 		return 1
-	else if(equip_to_slot_if_possible(W, slot_r_hand, del_on_fail, disable_warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, WEAR_R_HAND, del_on_fail, disable_warning, redraw_mob))
 		return 1
 	return 0
 
@@ -127,21 +131,21 @@
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 var/list/slot_equipment_priority = list( \
-		slot_back,\
-		slot_wear_id,\
-		slot_w_uniform,\
-		slot_wear_suit,\
-		slot_wear_mask,\
-		slot_head,\
-		slot_shoes,\
-		slot_gloves,\
-		slot_l_ear,\
-		slot_r_ear,\
-		slot_glasses,\
-		slot_belt,\
-		slot_s_store,\
-		slot_l_store,\
-		slot_r_store\
+		WEAR_BACK,\
+		WEAR_ID,\
+		WEAR_BODY,\
+		WEAR_JACKET,\
+		WEAR_FACE,\
+		WEAR_HEAD,\
+		WEAR_FEET,\
+		WEAR_HANDS,\
+		WEAR_L_EAR,\
+		WEAR_R_EAR,\
+		WEAR_EYES,\
+		WEAR_WAIST,\
+		WEAR_J_STORE,\
+		WEAR_L_STORE,\
+		WEAR_R_STORE\
 	)
 
 //puts the item "W" into an appropriate slot in a human's inventory

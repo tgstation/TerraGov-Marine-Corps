@@ -100,7 +100,7 @@
 	name = "ears"
 	w_class = 1.0
 	throwforce = 2
-	flags_equip_slot = SLOT_EARS
+	flags_equip_slot = SLOT_EAR
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -118,7 +118,7 @@
 		return
 
 	var/obj/item/clothing/ears/O
-	if(flags_equip_slot & SLOT_TWOEARS )
+	if(flags_equip_slot & SLOT_EARS )
 		O = (H.l_ear == src ? H.r_ear : H.l_ear)
 		user.u_equip(O)
 		if(!istype(src,/obj/item/clothing/ears/offear))
@@ -146,7 +146,7 @@
 	w_class = 5.0
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
-	flags_equip_slot = SLOT_EARS|SLOT_TWOEARS
+	flags_equip_slot = SLOT_EAR|SLOT_EARS
 
 	New(var/obj/O)
 		name = O.name
@@ -160,7 +160,7 @@
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	flags_equip_slot = SLOT_EARS|SLOT_TWOEARS
+	flags_equip_slot = SLOT_EAR|SLOT_EARS
 
 
 

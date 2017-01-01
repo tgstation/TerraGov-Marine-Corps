@@ -35,7 +35,7 @@
 	item_state = "electronic"
 	w_class = 2.0
 	flags = FPRINT|TABLEPASS
-	slow_flags = SLOT_BELT
+	slow_flags = WEAR_WAIST
 
 	var/owner = null
 	var/default_cartridge = null // Access level defined by cartridge

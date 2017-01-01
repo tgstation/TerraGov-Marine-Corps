@@ -4,7 +4,7 @@
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	var/construction_time = 100
 	var/list/construction_cost = list("metal"=20000,"glass"=5000)
 	var/list/part = null

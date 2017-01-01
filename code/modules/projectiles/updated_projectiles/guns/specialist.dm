@@ -180,7 +180,7 @@
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	flags_equip_slot = 0
+	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 20
 	aim_slowdown = 2
@@ -356,7 +356,7 @@
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
 	for(var/mob/O in viewers(world.view, user))
-		O.show_message(text("\red [] fired a grenade!", user), 1)
+		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
 	user << "<span class='warning'>You fire the grenade launcher!</span>"
 	var/obj/item/weapon/grenade/F = grenades[1]
 	grenades -= F
@@ -434,7 +434,7 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 100000)
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket
-	flags_equip_slot = 0
+	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 15
 	aim_slowdown = 2
@@ -574,4 +574,3 @@
 	name = "\improper M240 incinerator unit"
 	desc = "A carbine-style flamethrower carried by the USCM in close quarters engagements. It is especially effective against soft-targets and in situations where area denial is important."
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
-

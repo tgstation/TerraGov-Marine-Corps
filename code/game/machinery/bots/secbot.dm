@@ -10,7 +10,7 @@
 	maxhealth = 25
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
-	req_one_access = list(access_sulaco_brig)
+	req_one_access = list(ACCESS_MARINE_BRIG)
 
 	var/mob/target
 	var/oldtarget_name
@@ -99,7 +99,7 @@
 			shot_delay = 6		//Longer shot delay because JESUS CHRIST
 			check_records = 0	//Don't actively target people set to arrest
 			arrest_type = 1		//Don't even try to cuff
-			req_access = list(access_sulaco_engineering)
+			req_access = list(ACCESS_MARINE_ENGINEERING)
 			arrest_type = 1
 			if((lasercolor == "b") && (name == created_name))//Picks a name if there isn't already a custome one
 				name = pick("BLUE BALLER","SANIC","BLUE KILLDEATH MURDERBOT")

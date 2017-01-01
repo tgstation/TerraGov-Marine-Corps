@@ -81,7 +81,7 @@ datum/game_mode/mutiny
 		var/list/candidates[0]
 		for(var/mob/mutineer in player_list)
 			if(mutineer.client.prefs.be_special & BE_MUTINEER)
-				for(var/job in command_positions - "Captain")
+				for(var/job in ROLES_COMMAND - "Captain")
 					if(mutineer.mind && mutineer.mind.assigned_role == job)
 						candidates.Add(mutineer.mind)
 		return candidates
@@ -113,11 +113,11 @@ datum/game_mode/mutiny
 
 	proc/get_equipment_slots()
 		return list(
-			"left pocket" = slot_l_store,
-			"right pocket" = slot_r_store,
-			"backpack" = slot_in_backpack,
-			"left hand" = slot_l_hand,
-			"right hand" = slot_r_hand)
+			"left pocket" = WEAR_L_STORE,
+			"right pocket" = WEAR_R_STORE,
+			"backpack" = WEAR_IN_BACK,
+			"left hand" = WEAR_L_HAND,
+			"right hand" = WEAR_R_HAND)
 
 	proc/equip_head_loyalist()
 		equip_head(head_loyalist, "loyalist", /mob/living/carbon/human/proc/recruit_loyalist)

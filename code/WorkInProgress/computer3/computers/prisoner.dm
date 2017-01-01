@@ -7,7 +7,7 @@
 /datum/file/program/prisoner
 	name = "Prisoner Management Console"
 	active_state = "explosive"
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 
 	var/id = 0.0
 	var/temp = null

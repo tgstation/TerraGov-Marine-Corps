@@ -4,7 +4,7 @@
 	name = "Identification Computer"
 	desc = "Terminal for programming Weyland Yutani employee ID card access."
 	icon_state = "id"
-	req_access = list(access_sulaco_logistics)
+	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/weapon/circuitboard/card"
 	var/obj/item/weapon/card/id/scan = null
 	var/obj/item/weapon/card/id/modify = null
@@ -57,7 +57,7 @@
 	if(!istype(id_card))
 		return ..()
 
-	if(!scan && access_sulaco_logistics in id_card.access)
+	if(!scan && ACCESS_MARINE_LOGISTICS in id_card.access)
 		user.drop_item()
 		id_card.loc = src
 		scan = id_card
@@ -102,10 +102,10 @@
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
-	data["command_jobs"] = format_jobs(command_positions)
-	data["engineering_jobs"] = format_jobs(engineering_positions)
-	data["medical_jobs"] = format_jobs(medical_positions)
-	data["marine_jobs"] = format_jobs(marine_squad_positions)
+	data["command_jobs"] = format_jobs(ROLES_COMMAND)
+	data["engineering_jobs"] = format_jobs(ROLES_ENGINEERING)
+	data["medical_jobs"] = format_jobs(ROLES_MEDICAL)
+	data["marine_jobs"] = format_jobs(ROLES_MARINES)
 //	data["squad_jobs"] = format_jobs(all_squad_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
@@ -148,7 +148,7 @@
 	switch(href_list["choice"])
 		if ("modify")
 			if (modify)
-				data_core.manifest_modify(modify.registered_name, modify.assignment)
+				data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
 				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 				if(ishuman(usr))
 					modify.loc = usr.loc
@@ -289,7 +289,7 @@
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
 	circuit = "/obj/item/weapon/circuitboard/card/centcom"
-	req_access = list(access_centcomm)
+	req_access = list(ACCESS_WY_CORPORATE)
 
 
 /obj/machinery/computer/card/centcom/is_centcom()

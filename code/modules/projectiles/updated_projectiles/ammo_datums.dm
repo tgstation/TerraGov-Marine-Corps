@@ -512,8 +512,8 @@
 
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
-	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
-	iff_signal = access_marine_iff_tag
+	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
+	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_SKIPS_HUMANS
 	New()
 		..()
@@ -532,7 +532,7 @@
 
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
-	iff_signal = access_pmc_iff_tag
+	iff_signal = ACCESS_IFF_PMC
 	debilitate = list(0,0,0,3,0,0,0,1)
 	New()
 		..()
@@ -549,7 +549,7 @@
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
-	iff_signal = access_marine_iff_tag
+	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_SKIPS_HUMANS
 	New()
 		..()
@@ -754,6 +754,7 @@
 /datum/ammo/energy/yautja/caster/sphere
 	name = "plasma eradication sphere"
 	icon_state = "bluespace"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_EXPLOSIVE
 	New()
 		..()
 		damage = config.lmed_hit_damage

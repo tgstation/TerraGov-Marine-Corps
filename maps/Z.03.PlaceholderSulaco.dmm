@@ -1652,7 +1652,7 @@
 "FN" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 8},/turf/simulated/floor/plating,/area/sulaco/engineering/engine)
 "FO" = (/obj/machinery/alarm{pixel_y = 32},/turf/simulated/floor/plating,/area/sulaco/engineering/engine)
 "FP" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/simulated/floor/plating,/area/sulaco/engineering/engine)
-"FQ" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/weapon/pen,/obj/item/weapon/folder/blue,/obj/item/device/radio/headset/mcom,/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/item/device/megaphone,/obj/item/ammo_magazine/pistol/ap,/obj/item/ammo_magazine/pistol/ap,/obj/item/weapon/gun/pistol/m4a3/custom,/turf/simulated/floor/wood,/area/sulaco/cap_office)
+"FQ" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/weapon/pen,/obj/item/weapon/folder/blue,/obj/item/device/radio/headset/mcom,/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/item/device/megaphone,/obj/item/ammo_magazine/pistol/ap,/obj/item/ammo_magazine/pistol/ap,/turf/simulated/floor/wood,/area/sulaco/cap_office)
 "FR" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/landmark/start{name = "Commander"},/turf/simulated/floor/wood,/area/sulaco/cap_office)
 "FS" = (/turf/simulated/floor/wood,/area/sulaco/cap_office)
 "FT" = (/obj/structure/closet/secure_closet/marine/marine_commander,/turf/simulated/floor/wood,/area/sulaco/cap_office)

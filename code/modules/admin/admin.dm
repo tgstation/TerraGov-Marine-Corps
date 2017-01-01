@@ -638,7 +638,6 @@ var/global/floorIsLava = 0
 			<A href='?src=\ref[src];secretsfun=activateprison'>Send Prison Shuttle</A><BR>
 			<A href='?src=\ref[src];secretsfun=deactivateprison'>Return Prison Shuttle</A><BR>
 			<A href='?src=\ref[src];secretsfun=prisonwarp'>Warp all Players to Prison</A><BR>
-			<A href='?src=\ref[src];secretsfun=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
 			<A href='?src=\ref[src];secretsfun=traitor_all'>Everyone is the traitor</A><BR>
 			<A href='?src=\ref[src];secretsfun=onlyone'>There can only be one!</A><BR>
 			<A href='?src=\ref[src];secretsfun=flicklights'>Ghost Mode</A><BR>
@@ -667,7 +666,6 @@ var/global/floorIsLava = 0
 			<BR>
 			<A href='?src=\ref[src];secretscoder=maint_access_engiebrig'>Change all maintenance doors to engie/brig access only</A><BR>
 			<A href='?src=\ref[src];secretscoder=maint_access_brig'>Change all maintenance doors to brig access only</A><BR>
-			<A href='?src=\ref[src];secretscoder=infinite_sec'>Remove cap on security officers</A><BR>
 			<BR>
 			<B>Coder Secrets</B><BR>
 			<BR>
@@ -1310,8 +1308,8 @@ var/global/floorIsLava = 0
 		usr << "Only administrators may use this command."
 		return
 
-	if(!istype(get_turf(usr), /turf/simulated))
-		usr << "This verb can only be used on simulated turfs - turfs that simulate air movement and temperature."
+	if(istype(get_turf(usr), /turf/unsimulated))
+		usr << "This verb cannot be used on unsimulated turfs."
 		return
 
 	var/datum/gas_mixture/environment = usr.loc.return_air()

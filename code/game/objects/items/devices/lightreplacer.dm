@@ -48,7 +48,7 @@
 	item_state = "electronic"
 
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	origin_tech = "magnets=3;materials=2"
 
 	var/max_uses = 50

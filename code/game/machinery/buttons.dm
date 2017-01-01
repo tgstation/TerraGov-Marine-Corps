@@ -40,7 +40,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "crema_switch"
 	anchored = 1.0
-	req_access = list(access_sulaco_medbay)
+	req_access = list(ACCESS_MARINE_MEDBAY)
 	var/on = 0
 	var/area/area = null
 	var/otherarea = null

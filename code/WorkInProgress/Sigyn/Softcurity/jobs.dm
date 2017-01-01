@@ -13,16 +13,16 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), WEAR_BACK)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hos(H), slot_ears)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/administrator(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hos(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), slot_wear_suit)
-		H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/taser(H), slot_s_store)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/administrator(H), WEAR_BODY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hos(H), WEAR_WAIST)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), WEAR_EYES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), WEAR_JACKET)
+		H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/taser(H), WEAR_J_STORE)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), WEAR_IN_BACK)
+		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), WEAR_IN_BACK)
 
 		H.implant_loyalty(src) // Will not do so if config is set to disallow.
 
@@ -44,14 +44,14 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/advisor(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/warden(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
-		H.equip_to_slot_or_del(new /obj/item/device/flash(H), slot_l_store)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), WEAR_BACK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/advisor(H), WEAR_BODY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/warden(H), WEAR_WAIST)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), WEAR_EYES)
+		H.equip_to_slot_or_del(new /obj/item/device/flash(H), WEAR_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), WEAR_IN_BACK)
+		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), WEAR_IN_BACK)
 
 		H.implant_loyalty(src) // // Will not do so if config is set to disallow.
 
@@ -73,21 +73,21 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/det(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/detective(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/det_hat(H), slot_head)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), WEAR_BACK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/det(H), WEAR_BODY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/detective(H), WEAR_WAIST)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/det_hat(H), WEAR_HEAD)
 		var/obj/item/clothing/mask/cigarette/CIG = new /obj/item/clothing/mask/cigarette(H)
 		CIG.light("")
-		H.equip_to_slot_or_del(CIG, slot_wear_mask)
-		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/det_suit(H), slot_wear_suit)
-		H.equip_to_slot_or_del(new /obj/item/weapon/flame/lighter/zippo(H), slot_l_store)
+		H.equip_to_slot_or_del(CIG, WEAR_FACE)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/det_suit(H), WEAR_JACKET)
+		H.equip_to_slot_or_del(new /obj/item/weapon/flame/lighter/zippo(H), WEAR_L_STORE)
 
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/evidence(H), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/device/detective_scanner(H), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), WEAR_IN_BACK)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/evidence(H), WEAR_IN_BACK)
+		H.equip_to_slot_or_del(new /obj/item/device/detective_scanner(H), WEAR_IN_BACK)
 
 		H.implant_loyalty(src) // Will not do so if config is set to disallow.
 		return 1
@@ -108,14 +108,14 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/supervisor(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_r_store)
-		H.equip_to_slot_or_del(new /obj/item/device/flash(H), slot_l_store)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), WEAR_BACK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/supervisor(H), WEAR_BODY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), WEAR_WAIST)
+		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), WEAR_R_STORE)
+		H.equip_to_slot_or_del(new /obj/item/device/flash(H), WEAR_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), WEAR_IN_BACK)
+		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), WEAR_IN_BACK)
 
 		H.implant_loyalty(src) // Will not do so if config is set to disallow.
 
@@ -137,14 +137,14 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(H), slot_ears)
-		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
-		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/head_of_personnel(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), slot_belt)
+		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), WEAR_BACK)
+		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), WEAR_BACK)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), WEAR_IN_BACK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/head_of_personnel(H), WEAR_BODY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), WEAR_WAIST)
 		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/id_kit(H), slot_r_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/id_kit(H), WEAR_R_HAND)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/id_kit(H.back), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/id_kit(H.back), WEAR_IN_BACK)
 		return 1

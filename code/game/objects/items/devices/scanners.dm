@@ -14,7 +14,7 @@ REAGENT SCANNER
 	icon_state = "t-ray0"
 	var/on = 0
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 2
 	item_state = "electronic"
 
@@ -70,7 +70,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 5
@@ -231,7 +231,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	w_class = 2.0
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -278,7 +278,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	w_class = 2.0
 	flags_atom = FPRINT|CONDUCT|OPENCONTAINER
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -353,7 +353,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	w_class = 2.0
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20

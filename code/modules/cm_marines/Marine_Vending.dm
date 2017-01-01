@@ -224,7 +224,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access_txt = "8"
+	req_access = list(ACCESS_MARINE_MEDBAY)
 	products = list(/obj/item/weapon/storage/syringe_case = 2,
 					/obj/item/bodybag/cryobag = 2,
 					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
@@ -261,7 +261,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "The best blood on the market!"
-	req_access_txt = "8"
+	req_access = list(ACCESS_MARINE_MEDBAY)
 	products = list(/obj/item/weapon/reagent_containers/blood/APlus = 5, /obj/item/weapon/reagent_containers/blood/AMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/BPlus = 5, /obj/item/weapon/reagent_containers/blood/BMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/OPlus = 5, /obj/item/weapon/reagent_containers/blood/OMinus = 5,
@@ -286,7 +286,7 @@
 	name = "ColMarTech Engineer Vendor"
 	desc = "A marine engineering equipment vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
-	req_access = list(access_marine_engprep)
+	req_access = list(ACCESS_MARINE_ENGPREP)
 	products = list(
 						/obj/item/clothing/under/marine/engineer = 3,
 						/obj/item/clothing/head/helmet/marine/tech = 2,
@@ -315,7 +315,7 @@
 	name = "ColMarTech Medic Vendor"
 	desc = "A marine medic equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
-	req_access = list(access_marine_medprep)
+	req_access = list(ACCESS_MARINE_MEDPREP)
 	icon_state = "med"
 	icon_deny = "med-deny"
 
@@ -362,7 +362,7 @@
 	desc = "A marine specialist equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(access_marine_specprep)
+	req_access = list(ACCESS_MARINE_SPECPREP)
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 
@@ -393,7 +393,7 @@
 	desc = "A marine leader equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(access_marine_leader)
+	req_access = list(ACCESS_MARINE_LEADER)
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 
@@ -414,7 +414,7 @@
 	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(access_sulaco_cargo)
+	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 

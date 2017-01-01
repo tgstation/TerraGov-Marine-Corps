@@ -295,8 +295,6 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	output += "<option value=''>--</option>"
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
-	for(var/j in nonhuman_positions)
-		output += "<option value='[j]'>[j]</option>"
 	for(var/j in list("traitor","changeling","operative","revolutionary","cultist","wizard"))
 		output += "<option value='[j]'>[j]</option>"
 	output += "</select></td></tr></table>"

@@ -12,7 +12,7 @@
 	var/construction_time = 75
 	//these vars are so the mecha fabricator doesn't shit itself anymore. --NEO
 
-	req_access = list(access_sulaco_research)
+	req_access = list(ACCESS_MARINE_RESEARCH)
 
 	//Revised. Brainmob is now contained directly within object of transfer. MMI in this case.
 

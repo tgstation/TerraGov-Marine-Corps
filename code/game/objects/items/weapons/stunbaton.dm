@@ -3,7 +3,7 @@
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
 	item_state = "baton"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 15
 	sharp = 0
 	edge = 0
@@ -11,7 +11,7 @@
 	w_class = 3
 	origin_tech = "combat=2"
 	attack_verb = list("beaten")
-	req_one_access = list(access_sulaco_brig, access_sulaco_armory, access_sulaco_captain, access_centcomm)
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_COMMANDER, ACCESS_WY_CORPORATE, ACCESS_WY_PMC_GREEN)
 	var/stunforce = 10
 	var/agonyforce = 80
 	var/status = 0		//whether the thing is on or not
@@ -210,4 +210,4 @@
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
 	hitcost = 2500
 	attack_verb = list("poked")
-	flags_equip_slot = null
+	flags_equip_slot = NOFLAGS

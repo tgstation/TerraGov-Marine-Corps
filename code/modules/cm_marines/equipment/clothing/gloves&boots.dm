@@ -20,7 +20,7 @@
 	var/obj/item/weapon/cell/cell = 0
 	var/clipped = 0
 	flags_armor_protection = HANDS
-	flags_equip_slot = SLOT_GLOVES
+	flags_equip_slot = SLOT_HANDS
 	attack_verb = list("challenged")
 	species_restricted = list("exclude","Yautja")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')

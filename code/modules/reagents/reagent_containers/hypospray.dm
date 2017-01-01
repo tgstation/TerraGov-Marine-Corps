@@ -12,7 +12,7 @@
 	volume = 30
 	possible_transfer_amounts = null
 	flags_atom = FPRINT|OPENCONTAINER
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	var/hType = "autoinjector" //Hypospray Type.  This is for the icon update, since we have like 200 types now.
 
 /obj/item/weapon/reagent_containers/hypospray/attack_paw(mob/user as mob)

@@ -3,7 +3,7 @@
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
 	icon_state = "stunbaton"
 	item_state = "baton"
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 12
 	throwforce = 7
 	w_class = 3
@@ -100,7 +100,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
 	w_class = 2.0
 	throw_speed = 2

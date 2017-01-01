@@ -79,37 +79,37 @@
 	var/randjob = rand(0,3)
 	switch(randjob)
 /*		if(0) //assistant
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), WEAR_BODY)
 		if(1) //civilian in pajamas
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)*/
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), WEAR_BODY)*/
 		if(0) //Scientist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), WEAR_BODY)
 		if(1) //Doctor
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), WEAR_BODY)
 	/*	if(4) //Chef!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), WEAR_BODY)
 		if(5) //Botanist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), WEAR_BODY)
 		if(6)//Atmos
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), WEAR_BODY)
 		if(7) //Chaplain
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), WEAR_BODY)
 		if(8) //Miner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)*/
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), WEAR_BODY)*/
 		if(2) //Corporate guy
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
 		/*if(3) //Prisoner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)*/
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), WEAR_BODY)*/
 		if(3) //Security
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), WEAR_BODY)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), slot_wear_suit)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), slot_wear_mask)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
-	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), WEAR_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), WEAR_JACKET)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), WEAR_FACE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), WEAR_FEET)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), WEAR_L_STORE)
 
 	H.update_icons()
 

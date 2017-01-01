@@ -50,7 +50,7 @@
 
 	var/head_check = 0
 	for(var/mob/new_player/player in player_list)
-		if(player.mind.assigned_role in command_positions)
+		if(player.mind.assigned_role in ROLES_COMMAND )
 			head_check = 1
 			break
 
@@ -142,11 +142,11 @@
 	var/obj/item/device/flash/T = new(mob)
 
 	var/list/slots = list (
-		"backpack" = slot_in_backpack,
-		"left pocket" = slot_l_store,
-		"right pocket" = slot_r_store,
-		"left hand" = slot_l_hand,
-		"right hand" = slot_r_hand,
+		"backpack" = WEAR_IN_BACK,
+		"left pocket" = WEAR_L_STORE,
+		"right pocket" = WEAR_R_STORE,
+		"left hand" = WEAR_L_HAND,
+		"right hand" = WEAR_R_HAND,
 	)
 	var/where = mob.equip_in_one_of_slots(T, slots)
 	if (!where)
@@ -184,7 +184,7 @@
 //Deals with converting players to the revolution//
 ///////////////////////////////////////////////////
 /datum/game_mode/proc/add_revolutionary(datum/mind/rev_mind)
-	if(rev_mind.assigned_role in command_positions)
+	if(rev_mind.assigned_role in ROLES_COMMAND )
 		return 0
 	var/mob/living/carbon/human/H = rev_mind.current//Check to see if the potential rev is implanted
 	for(var/obj/item/weapon/implant/loyalty/L in H)//Checking that there is a loyalty implant in the contents
@@ -432,5 +432,5 @@
 /proc/is_convertable_to_rev(datum/mind/mind)
 	return istype(mind) && \
 		istype(mind.current, /mob/living/carbon/human) && \
-		!(mind.assigned_role in command_positions) && \
+		!(mind.assigned_role in ROLES_COMMAND) && \
 		!(mind.assigned_role in list("Security Officer", "Detective", "Warden"))

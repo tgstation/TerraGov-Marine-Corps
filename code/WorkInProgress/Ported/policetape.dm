@@ -28,7 +28,7 @@
 /obj/item/tape/police
 	name = "police tape"
 	desc = "A length of police tape.  Do not cross."
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 	icon_base = "police"
 
 /obj/item/taperoll/engineering
@@ -41,7 +41,7 @@
 /obj/item/tape/engineering
 	name = "engineering tape"
 	desc = "A length of engineering tape. Better not cross it."
-	req_one_access = list(access_sulaco_engineering, access_marine_engprep)
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP)
 	icon_base = "engineering"
 
 /obj/item/taperoll/attack_self(mob/user as mob)

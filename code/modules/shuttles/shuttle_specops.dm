@@ -1,7 +1,7 @@
 /obj/machinery/computer/shuttle_control/specops
 	name = "special operations shuttle console"
 	shuttle_tag = "Special Operations"
-	req_access = list(access_centcomm)
+	req_access = list(ACCESS_WY_CORPORATE)
 
 /obj/machinery/computer/shuttle_control/specops/attack_ai(user as mob)
 	user << "\red Access Denied."

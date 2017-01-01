@@ -17,7 +17,7 @@
 	icon_opened = "miningsecopen"
 	icon_broken = "miningsecbroken"
 	icon_off = "miningsecoff"
-	req_access = list(access_civilian_generic)
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
 /obj/structure/closet/secure_closet/miner/New()
 	..()
@@ -53,7 +53,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "pickaxe"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 15.0
 	throwforce = 4.0
 	item_state = "pickaxe"
@@ -151,7 +151,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "shovel"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 8.0
 	throwforce = 4.0
 	item_state = "shovel"

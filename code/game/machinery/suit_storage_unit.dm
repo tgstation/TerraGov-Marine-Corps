@@ -590,7 +590,7 @@
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100"
 
-	req_access = list(access_sulaco_captain)
+	req_access = list(ACCESS_MARINE_COMMANDER)
 
 	var/active = 0          // PLEASE HOLD.
 	var/safeties = 1        // The cycler won't start with a living thing inside it unless safeties are off.
@@ -629,35 +629,35 @@
 /obj/machinery/suit_cycler/engineering
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
-	req_access = list(access_sulaco_engineering)
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	departments = list("Engineering")
 	species = list("Human","Tajara","Skrell","Unathi") //Add Unathi when sprites exist for their suits.
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
-	req_access = list(access_sulaco_engineering)
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	departments = list("Mining")
 	species = list("Human","Tajara","Skrell","Unathi")
 
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
-	req_access = list(access_sulaco_brig)
+	req_access = list(ACCESS_MARINE_BRIG)
 	departments = list("Security")
 	species = list("Human","Tajara","Skrell","Unathi")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
-	req_access = list(access_sulaco_medbay)
+	req_access = list(ACCESS_MARINE_MEDBAY)
 	departments = list("Medical")
 	species = list("Human","Tajara","Skrell","Unathi")
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_ILLEGAL_PIRATE)
 	departments = list("Mercenary")
 	species = list("Human","Tajara","Skrell","Unathi")
 	can_repair = 1

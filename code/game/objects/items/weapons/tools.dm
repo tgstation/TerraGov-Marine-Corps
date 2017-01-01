@@ -20,7 +20,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "wrench"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -38,7 +38,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "screwdriver"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 5.0
 	w_class = 1.0
 	throwforce = 5.0
@@ -97,7 +97,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "cutters"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
@@ -132,7 +132,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 
 	//Amount of OUCH when it's thrown
 	force = 3.0
@@ -440,7 +440,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "crowbar"
 	flags_atom = FPRINT|CONDUCT
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"

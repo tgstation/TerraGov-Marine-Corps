@@ -41,7 +41,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr><td><font color='#A50000'><b>Security</b></font></td>"//Red
-		for(var/job in command_positions)
+		for(var/job in ROLES_COMMAND)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -50,7 +50,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr><td><font color='#FFA500'><b>Engineering</b></font></td>"//Orange
-		for(var/job in engineering_positions)
+		for(var/job in ROLES_ENGINEERING)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -59,7 +59,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr height='20'><td><font color='#008000'><b>Medical</b></font></td>"//Green
-		for(var/job in medical_positions)
+		for(var/job in ROLES_MEDICAL)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -175,7 +175,7 @@
 
 	// These are here partly in order to be overwritten by the centcom card computer code
 	proc/authenticate()
-		if(access_sulaco_logistics in reader.access)
+		if(ACCESS_MARINE_LOGISTICS in reader.access)
 			return 1
 		if(istype(usr,/mob/living/silicon/ai))
 			return 1
@@ -327,6 +327,6 @@
 		return accesses
 
 	authenticate()
-		if(access_sulaco_captain in reader.access)
+		if(ACCESS_MARINE_COMMANDER in reader.access)
 			return 1
 		return 0

@@ -11,17 +11,17 @@
 	var/hitsound = null
 	var/w_class = 3.0
 	flags_atom = FPRINT
-	var/flags_equip_slot = 0		//This is used to determine on which slots an item can fit.
+	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inventory //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_inventory = NOFLAGS//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	flags_pass = PASSTABLE
 	pressure_resistance = 5
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 
-	var/flags_armor_protection = 0 //see setup.dm for appropriate bit flags
-	var/flags_heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
-	var/flags_cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
+	var/flags_armor_protection = NOFLAGS //see setup.dm for appropriate bit flags
+	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
+	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
@@ -298,125 +298,125 @@ cases. Override_icon_state should be a list.*/
 			return 0
 
 		switch(slot)
-			if(slot_l_hand)
+			if(WEAR_L_HAND)
 				if(H.l_hand)
 					return 0
 				return 1
-			if(slot_r_hand)
+			if(WEAR_R_HAND)
 				if(H.r_hand)
 					return 0
 				return 1
-			if(slot_wear_mask)
+			if(WEAR_FACE)
 				if(H.wear_mask)
 					return 0
-				if( !(flags_equip_slot & SLOT_MASK) )
+				if( !(flags_equip_slot & SLOT_FACE) )
 					return 0
 				return 1
-			if(slot_back)
+			if(WEAR_BACK)
 				if(H.back)
 					return 0
 				if( !(flags_equip_slot & SLOT_BACK) )
 					return 0
 				return 1
-			if(slot_wear_suit)
+			if(WEAR_JACKET)
 				if(H.wear_suit)
 					return 0
 				if( !(flags_equip_slot & SLOT_OCLOTHING) )
 					return 0
 				return 1
-			if(slot_gloves)
+			if(WEAR_HANDS)
 				if(H.gloves)
 					return 0
-				if( !(flags_equip_slot & SLOT_GLOVES) )
+				if( !(flags_equip_slot & SLOT_HANDS) )
 					return 0
 				return 1
-			if(slot_shoes)
+			if(WEAR_FEET)
 				if(H.shoes)
 					return 0
 				if( !(flags_equip_slot & SLOT_FEET) )
 					return 0
 				return 1
-			if(slot_belt)
+			if(WEAR_WAIST)
 				if(H.belt)
 					return 0
-				if(!H.w_uniform && (slot_w_uniform in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
 						H << "\red You need a jumpsuit before you can attach this [name]."
 					return 0
-				if( !(flags_equip_slot & SLOT_BELT) )
+				if( !(flags_equip_slot & SLOT_WAIST) )
 					return
 				return 1
-			if(slot_glasses)
+			if(WEAR_EYES)
 				if(H.glasses)
 					return 0
 				if( !(flags_equip_slot & SLOT_EYES) )
 					return 0
 				return 1
-			if(slot_head)
+			if(WEAR_HEAD)
 				if(H.head)
 					return 0
 				if( !(flags_equip_slot & SLOT_HEAD) )
 					return 0
 				return 1
-			if(slot_l_ear)
+			if(WEAR_L_EAR)
 				if(H.l_ear)
 					return 0
-				if( !(flags_equip_slot & SLOT_EARS) )
+				if( !(flags_equip_slot & SLOT_EAR) )
 					return 0
-				if( (flags_equip_slot & SLOT_TWOEARS) && H.r_ear )
+				if( (flags_equip_slot & SLOT_EARS) && H.r_ear )
 					return 0
 				return 1
-			if(slot_r_ear)
+			if(WEAR_R_EAR)
 				if(H.r_ear)
 					return 0
-				if( !(flags_equip_slot & SLOT_EARS) )
+				if( !(flags_equip_slot & SLOT_EAR) )
 					return 0
-				if( (flags_equip_slot & SLOT_TWOEARS) && H.l_ear )
+				if( (flags_equip_slot & SLOT_EARS) && H.l_ear )
 					return 0
 				return 1
-			if(slot_w_uniform)
+			if(WEAR_BODY)
 				if(H.w_uniform)
 					return 0
 				if( !(flags_equip_slot & SLOT_ICLOTHING) )
 					return 0
 				return 1
-			if(slot_wear_id)
+			if(WEAR_ID)
 				if(H.wear_id)
 					return 0
-				if(!H.w_uniform && (slot_w_uniform in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
 						H << "\red You need a jumpsuit before you can attach this [name]."
 					return 0
 				if( !(flags_equip_slot & SLOT_ID) )
 					return 0
 				return 1
-			if(slot_l_store)
+			if(WEAR_L_STORE)
 				if(H.l_store)
 					return 0
-				if(!H.w_uniform && (slot_w_uniform in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
 						H << "\red You need a jumpsuit before you can attach this [name]."
 					return 0
-				if(flags_equip_slot & SLOT_DENYPOCKET)
+				if(flags_equip_slot & SLOT_NO_STORE)
 					return 0
-				if( w_class <= 2 || (flags_equip_slot & SLOT_POCKET) )
+				if( w_class <= 2 || (flags_equip_slot & SLOT_STORE) )
 					return 1
-			if(slot_r_store)
+			if(WEAR_R_STORE)
 				if(H.r_store)
 					return 0
-				if(!H.w_uniform && (slot_w_uniform in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
 						H << "\red You need a jumpsuit before you can attach this [name]."
 					return 0
-				if(flags_equip_slot & SLOT_DENYPOCKET)
+				if(flags_equip_slot & SLOT_NO_STORE)
 					return 0
-				if( w_class <= 2 || (flags_equip_slot & SLOT_POCKET) )
+				if( w_class <= 2 || (flags_equip_slot & SLOT_STORE) )
 					return 1
 				return 0
-			if(slot_s_store)
+			if(WEAR_J_STORE)
 				if(H.s_store)
 					return 0
-				if(!H.wear_suit && (slot_wear_suit in mob_equip))
+				if(!H.wear_suit && (WEAR_JACKET in mob_equip))
 					if(!disable_warning)
 						H << "\red You need a suit before you can attach this [name]."
 					return 0
@@ -427,19 +427,19 @@ cases. Override_icon_state should be a list.*/
 				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed) )
 					return 1
 				return 0
-			if(slot_handcuffed)
+			if(WEAR_HANDCUFFS)
 				if(H.handcuffed)
 					return 0
 				if(!istype(src, /obj/item/weapon/handcuffs))
 					return 0
 				return 1
-			if(slot_legcuffed)
+			if(WEAR_LEGCUFFS)
 				if(H.legcuffed)
 					return 0
 				if(!istype(src, /obj/item/weapon/legcuffs))
 					return 0
 				return 1
-			if(slot_in_backpack)
+			if(WEAR_IN_BACK)
 				if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
 					var/obj/item/weapon/storage/backpack/B = H.back
 					if(B.contents.len < B.storage_slots && w_class <= B.max_w_class)
@@ -452,21 +452,21 @@ cases. Override_icon_state should be a list.*/
 		//START MONKEY
 		var/mob/living/carbon/monkey/MO = M
 		switch(slot)
-			if(slot_l_hand)
+			if(WEAR_L_HAND)
 				if(MO.l_hand)
 					return 0
 				return 1
-			if(slot_r_hand)
+			if(WEAR_R_HAND)
 				if(MO.r_hand)
 					return 0
 				return 1
-			if(slot_wear_mask)
+			if(WEAR_FACE)
 				if(MO.wear_mask)
 					return 0
-				if( !(flags_equip_slot & SLOT_MASK) )
+				if( !(flags_equip_slot & SLOT_FACE) )
 					return 0
 				return 1
-			if(slot_back)
+			if(WEAR_BACK)
 				if(MO.back)
 					return 0
 				if( !(flags_equip_slot & SLOT_BACK) )

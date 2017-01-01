@@ -235,5 +235,3 @@ into helmets.dm*/
 	flags_cold_protection = HEAD|UPPER_TORSO|ARMS
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = HIDEEARS|HIDETOPHAIR|BLOCKSHARPOBJ
-
-

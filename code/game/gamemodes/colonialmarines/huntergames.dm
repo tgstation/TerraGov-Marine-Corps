@@ -115,7 +115,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	name = "Hunter Games"
 	config_tag = "Hunter Games"
 	required_players = 1
-	forbid_late_joining = 1
+	flags_round_type	= MODE_NO_LATEJOIN
 	var/list/contestants = list()
 	var/checkwin_counter = 0
 	var/finished = 0
@@ -240,57 +240,57 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 	switch(randjob)
 		if(0) //colonial marine
 			if(prob(50))
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
 			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 		if(1) //MP
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 		if(2) //Commander!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), WEAR_FEET)
 		if(3) //CL
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), WEAR_FEET)
 		if(4) //PMC!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), slot_wear_mask)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), WEAR_FACE)
 		if(5) //Merc!
 			if(prob(80))
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(H), WEAR_BODY)
 			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), slot_w_uniform)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), WEAR_BODY)
 			if(prob(50))
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
+				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
 			else
-				M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), slot_gloves)
+				M.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 			if(prob(75))
-				M.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(M), slot_shoes)
+				M.equip_to_slot_or_del(new /obj/item/clothing/shoes/leather(M), WEAR_FEET)
 			else
-				M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
+				M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), WEAR_FEET)
 		if(6)//BEARS!!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 			H.remove_language("English")
 			H.remove_language("Sol Common")
 			H.add_language("Russian")
 		if(7) //PMC Commando!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
 		if(8) //Assassin!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), WEAR_FEET)
 		if(9) //Corporate guy
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), WEAR_FEET)
 		if(10) //Colonial Marshal
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET)
 
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
 
 	H.update_icons()
 

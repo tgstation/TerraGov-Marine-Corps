@@ -395,7 +395,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, slot_wear_id)
+			H.equip_to_slot_or_del(id, WEAR_ID)
 			H.update_inv_wear_id()
 	else
 		alert("Invalid mob")
@@ -564,123 +564,123 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if ("strip")
 			//do nothing
 		if("USCM Cryo")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Marine"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("USCM Private")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), WEAR_HANDS)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Marine"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("USCM Specialist (Smartgunner)")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Smartgunner"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("USCM Combat Synth (Smartgunner)")
 			var/obj/item/clothing/under/marine/J = new(M)
 			J.icon_state = ""
 			J.item_color = ""
-			M.equip_to_slot_or_del(J, slot_w_uniform)
+			M.equip_to_slot_or_del(J, WEAR_BODY)
 			var/obj/item/clothing/head/helmet/specrag/L = new(M)
 			L.icon_state = ""
 			L.name = "synth faceplate"
 			L.canremove = 0
 			L.anti_hug = 99
 
-			M.equip_to_slot_or_del(L, slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
+			M.equip_to_slot_or_del(L, WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card (Combat Synth)"
 			W.access = list()
 			W.assignment = "Smartgunner"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.set_species("Machine")
 
 		if("USCM Specialist (Armor)")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(M), slot_gloves)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(M), WEAR_HANDS)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "B18 Specialist"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("USCM Second-Lieutenant (BO)")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/full(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), slot_l_ear)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m4a3/full(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), WEAR_L_EAR)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = list()
 			W.assignment = "Second Lieutenant"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("USCM First-Lieutenant (XO)")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), slot_l_ear)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), WEAR_L_EAR)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -689,16 +689,16 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "USCM Executive Officer"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("USCM Captain (CO)")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m44/full(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), WEAR_R_HAND)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -707,29 +707,29 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "USCM Commanding Officer"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("Weyland-Yutani PMC (Standard)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), slot_wear_mask)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(M), WEAR_FACE)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive/PMC(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39/ap(M.back), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Standard"
@@ -738,31 +738,31 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
 				M.mind.assigned_role = "PMC"
 				M.mind.special_role = "MODE"
 
 		if("Weyland-Yutani PMC (Leader)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/leader(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/leader(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/baton(M.back), WEAR_IN_BACK)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp78(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp78(M.back), WEAR_IN_BACK)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Officer"
@@ -771,27 +771,27 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
 				M.mind.assigned_role = "PMC Leader"
 				M.mind.special_role = "MODE"
 
 		if("Weyland-Yutani PMC (Gunner)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(M), WEAR_R_HAND)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M), WEAR_R_STORE)
 
 			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Specialist"
@@ -800,30 +800,30 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
 				M.mind.assigned_role = "PMC"
 				M.mind.special_role = "MODE"
 
 		if("Weyland-Yutani PMC (Sniper)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), slot_glasses)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(M), WEAR_EYES)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70(M.back), WEAR_IN_BACK)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/sniper/elite(M.back), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/W = new(src)
 			W.assignment = "PMC Sniper"
@@ -832,33 +832,33 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.icon_state = "centcom"
 			W.access = get_all_accesses()
 			W.access += get_all_centcom_access()
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
 				M.mind.assigned_role = "PMC"
 				M.mind.special_role = "MODE"
 
 		if("Weyland-Yutani PMC (Commando)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), slot_s_store)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles	(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC/commando(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC/commando(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/commando(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/plastique(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/mateba(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ap(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(M), WEAR_J_STORE)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.assignment = "Commando"
@@ -866,7 +866,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.name = "[M.real_name]'s ID Card ([W.assignment])"
 			W.icon_state = "centcom"
 			W.access = get_antagonist_pmc_access()
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
 				M.mind.assigned_role = "MODE"
@@ -874,19 +874,19 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 
 		if("USCM Officer (USCM Command)")
-			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/officer(M), slot_w_uniform)
-			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
-			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
-			M.equip_if_possible(new /obj/item/clothing/head/beret/centcom/officer(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), slot_l_ear)
+			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/officer(M), WEAR_BODY)
+			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), WEAR_FEET)
+			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), WEAR_HANDS)
+			M.equip_if_possible(new /obj/item/clothing/head/beret/centcom/officer(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), WEAR_L_EAR)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
 			pda.ownjob = "USCM Officer"
 			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
 
-			M.equip_if_possible(pda, slot_r_store)
-			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
+			M.equip_if_possible(pda, WEAR_R_STORE)
+			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), WEAR_L_STORE)
 
 			var/obj/item/weapon/card/id/centcom/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -894,22 +894,22 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "USCM Officer"
 			W.registered_name = M.real_name
-			M.equip_if_possible(W, slot_wear_id)
+			M.equip_if_possible(W, WEAR_ID)
 
 		if("USCM Admiral (USCM Command)")
-			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/captain(M), slot_w_uniform)
-			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
-			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
-			M.equip_if_possible(new /obj/item/clothing/head/beret/centcom/captain(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), slot_l_ear)
+			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/captain(M), WEAR_BODY)
+			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), WEAR_FEET)
+			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), WEAR_HANDS)
+			M.equip_if_possible(new /obj/item/clothing/head/beret/centcom/captain(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), WEAR_L_EAR)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
 			pda.ownjob = "USCM Admiral"
 			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
 
-			M.equip_if_possible(pda, slot_r_store)
-			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
+			M.equip_if_possible(pda, WEAR_R_STORE)
+			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), WEAR_L_STORE)
 
 			var/obj/item/weapon/card/id/centcom/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -917,17 +917,17 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "USCM Admiral"
 			W.registered_name = M.real_name
-			M.equip_if_possible(W, slot_wear_id)
+			M.equip_if_possible(W, WEAR_ID)
 
 		if("Iron Bear (Standard)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 
 			spawn_slavic_gun(M)
 			spawn_slavic_gun(M,1)
@@ -937,7 +937,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "Iron Bear"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.remove_language("Sol Common")
 			M.remove_language("English")
 			M.add_language("Russian")
@@ -948,14 +948,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				M.mind.special_role = "IRON BEARS"
 
 		if("Iron Bear (Leader)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/bear(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/bear(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/bearpelt(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 
 			spawn_slavic_gun(M)
 			spawn_slavic_gun(M,1)
@@ -965,18 +965,18 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "Iron Bears Sergeant"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
 			W.access = get_antagonist_access()
 
 		if("Dutch Merc (Standard)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch/ranger(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch/ranger(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
 
 			spawn_merc_gun(M)
 
@@ -985,7 +985,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "Dutch's Team Mercenary"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 			W.access = get_all_accesses()
 
 			if(M.mind)
@@ -993,14 +993,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				M.mind.special_role = "DUTCH'S DOZEN"
 
 		if("Dutch Merc (Leader)")
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/cap(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), slot_gloves)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/dutch(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/dutch(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/dutch/cap(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(M), WEAR_HANDS)
 
 			spawn_merc_gun(M)
 			spawn_merc_gun(M,1)
@@ -1010,7 +1010,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = list()
 			W.assignment = "Dutch's Team Leader"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.add_language("Russian")
 			M.add_language("Sainja")
 			W.access = get_all_accesses()
@@ -1020,12 +1020,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				M.mind.special_role = "DUTCH'S DOZEN"
 
 		if("Business Person")
-			M.equip_if_possible(new /obj/item/clothing/under/lawyer/bluesuit(M), slot_w_uniform)
-			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
-			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
+			M.equip_if_possible(new /obj/item/clothing/under/lawyer/bluesuit(M), WEAR_BODY)
+			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), WEAR_FEET)
+			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), WEAR_HANDS)
 
-			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
-			M.equip_if_possible(new /obj/item/weapon/clipboard(M), slot_belt)
+			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), WEAR_L_STORE)
+			M.equip_if_possible(new /obj/item/weapon/clipboard(M), WEAR_WAIST)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1035,50 +1035,50 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = get_all_centcom_access()
 			W.assignment = "Corporate Representative"
 			W.registered_name = M.real_name
-			M.equip_if_possible(W, slot_wear_id)
+			M.equip_if_possible(W, WEAR_ID)
 
 		if("UPP Spy")
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/engi(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(M), slot_l_ear)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/engi(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(M), WEAR_L_EAR)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/c99/russian(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99(M.back), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/device/chameleon	(M.back), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/c99/russian(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/c99(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/device/chameleon	(M.back), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
-			W.access = list(access_sulaco_engineering)
+			W.access = list(ACCESS_MARINE_ENGINEERING)
 			W.assignment = "Maintenance Tech"
 			W.registered_name = M.real_name
-			M.equip_if_possible(W, slot_wear_id)
+			M.equip_if_possible(W, WEAR_ID)
 
 		if ("Mk50 Compression Suit")
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), slot_shoes)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots(M), WEAR_FEET)
 
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), slot_head)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/compression(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/compression(M), WEAR_HEAD)
 			var /obj/item/weapon/tank/jetpack/J = new /obj/item/weapon/tank/jetpack/oxygen(M)
-			M.equip_to_slot_or_del(J, slot_back)
+			M.equip_to_slot_or_del(J, WEAR_BACK)
 			J.toggle()
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(M), slot_wear_mask)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(M), WEAR_FACE)
 			J.Topic(null, list("stat" = 1))
 			spawn_merc_gun(M)
 
 		if("Fleet Admiral") //Renamed from Soviet Admiral
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/hgpiratecap(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/eyepatch(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/hgpirate(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/hgpiratecap(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/eyepatch(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/hgpirate(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), WEAR_BODY)
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.icon_state = "centcom"
@@ -1087,167 +1087,167 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "Fleet Admiral"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("Yautja Warrior")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(M), WEAR_BODY)
 			var/obj/item/clothing/gloves/yautja/bracer = new(M)
 			bracer.charge = 2500
 			bracer.charge_max = 2500
 			M.verbs += /obj/item/clothing/gloves/yautja/proc/translate
 			bracer.upgrades = 1
-			M.equip_to_slot_or_del((bracer), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(M),slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_sword(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/spawnergrenade/smartdisc(M), slot_r_hand)
+			M.equip_to_slot_or_del((bracer), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(M),WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_sword(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/spawnergrenade/smartdisc(M), WEAR_R_HAND)
 
 		if("Yautja Elder")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(M), WEAR_BODY)
 			var/obj/item/clothing/gloves/yautja/bracer = new(M)
 			bracer.charge = 3000
 			bracer.charge_max = 3000
 			M.verbs += /obj/item/clothing/gloves/yautja/proc/translate
 			bracer.upgrades = 2
-			M.equip_to_slot_or_del((bracer), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(M),slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/plasmarifle(M), slot_r_hand)
+			M.equip_to_slot_or_del((bracer), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/yautja_knife(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(M),WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/yautja(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/plasmarifle(M), WEAR_R_HAND)
 
 /*
 
 
 		if ("tournament gangster") //gangster are supposed to fight each other. --rastaf0
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/det(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/det(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
 
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/det_suit(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/det_hat(M), slot_head)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/det_suit(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/det_hat(M), WEAR_HEAD)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/cloaking_device(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/cloaking_device(M), WEAR_R_STORE)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(M), slot_l_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(M), WEAR_L_STORE)
 
 		if ("tournament chef") //Steven Seagal FTW
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/chefhat(M), slot_head)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/chefhat(M), WEAR_HEAD)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), slot_s_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/kitchen/rollingpin(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), WEAR_J_STORE)
 
 		if ("tournament janitor")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
 			var/obj/item/weapon/storage/backpack/backpack = new(M)
 			for(var/obj/item/I in backpack)
 				del(I)
-			M.equip_to_slot_or_del(backpack, slot_back)
+			M.equip_to_slot_or_del(backpack, WEAR_BACK)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/mop(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/weapon/mop(M), WEAR_R_HAND)
 			var/obj/item/weapon/reagent_containers/glass/bucket/bucket = new(M)
 			bucket.reagents.add_reagent("water", 70)
-			M.equip_to_slot_or_del(bucket, slot_l_hand)
+			M.equip_to_slot_or_del(bucket, WEAR_L_HAND)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/chem_grenade/cleaner(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/chem_grenade/cleaner(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), slot_in_backpack)
-			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/chem_grenade/cleaner(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/grenade/chem_grenade/cleaner(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/stack/tile/plasteel(M), WEAR_IN_BACK)
 
 		if ("pirate")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/pirate(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/bandana(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/eyepatch(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword/pirate(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/pirate(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/bandana(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/eyepatch(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword/pirate(M), WEAR_R_HAND)
 
 		if ("space pirate")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/pirate(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/pirate(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/pirate(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/eyepatch(M), slot_glasses)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/pirate(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/space/pirate(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/pirate(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/eyepatch(M), WEAR_EYES)
 
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword/pirate(M), slot_r_hand)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword/pirate(M), WEAR_R_HAND)
 
 		if ("soviet soldier")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(M), slot_head)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(M), WEAR_HEAD)
 
 		if("tunnel clown")//Tunnel clowns rule!
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/chaplain_hood(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/chaplain_hoodie(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/grown/banana(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/chaplain_hood(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/chaplain_hoodie(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/grown/banana(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(M), WEAR_R_STORE)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = get_all_accesses()
 			W.assignment = "Tunnel Clown!"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			var/obj/item/weapon/twohanded/fireaxe/fire_axe = new(M)
-			M.equip_to_slot_or_del(fire_axe, slot_r_hand)
+			M.equip_to_slot_or_del(fire_axe, WEAR_R_HAND)
 
 		if("masked killer")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/overalls(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/scalpel(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/overalls(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/welding(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/kitchenknife(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/scalpel(M), WEAR_R_STORE)
 
 			var/obj/item/weapon/twohanded/fireaxe/fire_axe = new(M)
-			M.equip_to_slot_or_del(fire_axe, slot_r_hand)
+			M.equip_to_slot_or_del(fire_axe, WEAR_R_HAND)
 
 			for(var/obj/item/carried_item in M.contents)
 				if(!istype(carried_item, /obj/item/weapon/implant))//If it's not an implant.
 					carried_item.add_blood(M)//Oh yes, there will be blood...
 
 		if("assassin")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/cloaking_device(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(M), WEAR_L_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/cloaking_device(M), WEAR_R_STORE)
 
 			var/obj/item/weapon/storage/secure/briefcase/sec_briefcase = new(M)
 			for(var/obj/item/briefcase_item in sec_briefcase)
@@ -1258,21 +1258,21 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			sec_briefcase.contents += new /obj/item/weapon/gun/projectile/mateba
 			sec_briefcase.contents += new /obj/item/ammo_magazine/a357
 			sec_briefcase.contents += new /obj/item/weapon/plastique
-			M.equip_to_slot_or_del(sec_briefcase, slot_l_hand)
+			M.equip_to_slot_or_del(sec_briefcase, WEAR_L_HAND)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
 			pda.ownjob = "Reaper"
 			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
 
-			M.equip_to_slot_or_del(pda, slot_belt)
+			M.equip_to_slot_or_del(pda, WEAR_WAIST)
 
 			var/obj/item/weapon/card/id/syndicate/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.access = get_all_accesses()
 			W.assignment = "Reaper"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("death commando")//Was looking to add this for a while.
 			M.equip_death_commando()
@@ -1281,19 +1281,19 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.equip_syndicate_commando()
 
 		if("weyland-yutani representative")
-			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/representative(M), slot_w_uniform)
-			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), slot_shoes)
-			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), slot_gloves)
-//			M.equip_if_possible(new /obj/item/device/radio/headset/heads/hop(M), slot_l_ear)
+			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/representative(M), WEAR_BODY)
+			M.equip_if_possible(new /obj/item/clothing/shoes/centcom(M), WEAR_FEET)
+			M.equip_if_possible(new /obj/item/clothing/gloves/white(M), WEAR_HANDS)
+//			M.equip_if_possible(new /obj/item/device/radio/headset/heads/hop(M), WEAR_L_EAR)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
 			pda.ownjob = "Corporate Representative"
 			pda.name = "PDA-[M.real_name] ([pda.ownjob])"
 
-			M.equip_if_possible(pda, slot_r_store)
-			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), slot_l_store)
-			M.equip_if_possible(new /obj/item/weapon/clipboard(M), slot_belt)
+			M.equip_if_possible(pda, WEAR_R_STORE)
+			M.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(M), WEAR_L_STORE)
+			M.equip_if_possible(new /obj/item/weapon/clipboard(M), WEAR_WAIST)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1303,18 +1303,18 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access = get_all_centcom_access()
 			W.assignment = "Corporate Representative"
 			W.registered_name = M.real_name
-			M.equip_if_possible(W, slot_wear_id)
+			M.equip_if_possible(W, WEAR_ID)
 
 
 
 		if("emergency response team")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(M), WEAR_HANDS)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1323,20 +1323,20 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "Emergency Response Team"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("special ops officer")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/combat(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat/officer(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), slot_gloves)
-//			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/eyepatch(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/havana(M), slot_wear_mask)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad/beret(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle/M1911(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/weapon/flame/lighter/zippo(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/combat(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat/officer(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), WEAR_HANDS)
+//			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/eyepatch(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/havana(M), WEAR_FACE)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad/beret(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle/M1911(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/weapon/flame/lighter/zippo(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
 
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
@@ -1345,53 +1345,53 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "Special Operations Officer"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 
 		if("blue wizard")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/lightpurple(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/wizard(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/spellbook(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/staff(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/lightpurple(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/wizard(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/spellbook(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/staff(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box(M), WEAR_IN_BACK)
 
 		if("red wizard")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/lightpurple(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/red(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/wizard/red(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/spellbook(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/staff(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/lightpurple(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/red(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/wizard/red(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/spellbook(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/staff(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box(M), WEAR_IN_BACK)
 
 		if("marisa wizard")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/lightpurple(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/marisa(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal/marisa(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/wizard/marisa(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(M), slot_r_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/spellbook(M), slot_r_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/staff(M), slot_l_hand)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box(M), slot_in_backpack)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/lightpurple(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/marisa(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal/marisa(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/device/radio/headset(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/wizard/marisa(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(M), WEAR_R_STORE)
+			M.equip_to_slot_or_del(new /obj/item/weapon/spellbook(M), WEAR_R_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/staff(M), WEAR_L_HAND)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/box(M), WEAR_IN_BACK)
 		if("soviet admiral")
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/hgpiratecap(M), slot_head)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), slot_gloves)
-//			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/eyepatch(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/clothing/suit/hgpirate(M), slot_wear_suit)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/mateba(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), slot_w_uniform)
+			M.equip_to_slot_or_del(new /obj/item/clothing/head/hgpiratecap(M), WEAR_HEAD)
+			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(M), WEAR_FEET)
+			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/combat(M), WEAR_HANDS)
+//			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), WEAR_L_EAR)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/eyepatch(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/suit/hgpirate(M), WEAR_JACKET)
+			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
+			M.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/mateba(M), WEAR_WAIST)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/soviet(M), WEAR_BODY)
 			var/obj/item/weapon/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.icon_state = "centcom"
@@ -1399,7 +1399,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			W.access += get_all_centcom_access()
 			W.assignment = "Admiral"
 			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
+			M.equip_to_slot_or_del(W, WEAR_ID)
 */
 	M.regenerate_icons()
 

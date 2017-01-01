@@ -5,7 +5,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "aiupload"
 	density = 1
-	req_one_access = list(access_sulaco_captain)
+	req_one_access = list(ACCESS_MARINE_COMMANDER)
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/weapon/card/id/held_card
@@ -15,9 +15,9 @@
 	proc/get_access_level()
 		if (!held_card)
 			return 0
-		if(access_centcomm in held_card.access)
+		if(ACCESS_WY_CORPORATE in held_card.access)
 			return 2
-		else if(access_sulaco_bridge in held_card.access || access_sulaco_captain in held_card.access)
+		else if(ACCESS_MARINE_BRIDGE in held_card.access || ACCESS_MARINE_COMMANDER in held_card.access)
 			return 1
 
 	proc/create_transation(target, reason, amount)

@@ -36,8 +36,8 @@
 		M.loc = pick(prisonwarp)
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
 		spawn(50)
 			M << "\red You have been sent to the prison station!"
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
@@ -450,7 +450,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//Now for special roles and equipment.
 	switch(new_character.mind.special_role)
 		if("traitor")
-			job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
 			ticker.mode.equip_traitor(new_character)
 		/*if("Wizard")
 			new_character.loc = pick(wizardstart)
@@ -496,7 +495,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				else
 
 */
-	job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)//Or we simply equip them.
+	RoleAuthority.equip_role(new_character, RoleAuthority.roles_for_mode[new_character.mind.assigned_role], pick(latejoin))//Or we simply equip them.
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
 		if(!record_found&&new_character.mind.assigned_role!="MODE")//If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
@@ -690,9 +689,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if (!holder)
 		src << "Only administrators may use this command."
 		return
-	if(job_master)
-		for(var/datum/job/job in job_master.occupations)
-			src << "[job.title]: [job.total_positions]"
+	if(RoleAuthority)
+		var/datum/job/J
+		var/i
+		for(i in RoleAuthority.roles_by_name)
+			J = RoleAuthority.roles_by_name[i]
+			if(J.flags_startup_parameters & ROLE_ADD_TO_MODE) src << "[J.title]: [J.total_positions]"
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_changekey(mob/O in living_mob_list)

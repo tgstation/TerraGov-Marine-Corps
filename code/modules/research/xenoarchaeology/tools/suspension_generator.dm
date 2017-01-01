@@ -4,7 +4,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "suspension2"
 	density = 1
-	req_access = list(access_sulaco_CMO)
+	req_access = list(ACCESS_MARINE_CMO)
 	var/obj/item/weapon/cell/cell
 	var/obj/item/weapon/card/id/auth_card
 	var/locked = 1

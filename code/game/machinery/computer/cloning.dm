@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "dna"
 	circuit = "/obj/item/weapon/circuitboard/cloning"
-	req_access = list(access_sulaco_CMO) //Only used for record deletion right now.
+	req_access = list(ACCESS_MARINE_CMO) //Only used for record deletion right now.
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/obj/machinery/clonepod/pod1 = null //Linked cloning pod.
 	var/temp = ""
@@ -16,7 +16,7 @@
 
 /obj/machinery/computer/cloning/New()
 	..()
-	req_access = list(access_sulaco_medbay)
+	req_access = list(ACCESS_MARINE_MEDBAY)
 	spawn(5)
 		updatemodules()
 		return

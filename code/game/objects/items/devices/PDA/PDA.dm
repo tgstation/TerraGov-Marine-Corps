@@ -10,7 +10,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	icon_state = "pda"
 	item_state = "electronic"
 	w_class = 2.0
-	flags_equip_slot = SLOT_ID|SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 
 	//Main variables
 	var/owner = null
@@ -1074,6 +1074,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			ownjob = idcard.assignment
 			name = "PDA-[owner] ([ownjob])"
 			user << "<span class='notice'>Card scanned.</span>"
+		/*
 		else
 			//Basic safety check. If either both objects are held by user or PDA is on ground and card is in hand.
 			if(((src in user.contents) && (C in user.contents)) || (istype(loc, /turf) && in_range(src, user) && (C in user.contents)) )
@@ -1081,13 +1082,16 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				user << "<span class='notice'>You put the ID into \the [src]'s slot.</span>"
 				updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
+			*/
 		updateSelfDialog()//For the non-input related code.
-	else if(istype(C, /obj/item/device/paicard) && !src.pai)
+	/*
+		else if(istype(C, /obj/item/device/paicard) && !src.pai)
 		user.drop_item()
 		C.loc = src
 		pai = C
 		user << "<span class='notice'>You slot \the [C] into [src].</span>"
 		nanomanager.update_uis(src) // update all UIs attached to src
+	*/
 	else if(istype(C, /obj/item/weapon/pen))
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
@@ -1096,7 +1100,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			user.drop_item()
 			C.loc = src
 			user << "<span class='notice'>You slide \the [C] into \the [src].</span>"
-	return
 
 /obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
 	if (istype(C, /mob/living/carbon))

@@ -257,7 +257,7 @@
 	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	flags_equip_slot = SLOT_EYES|SLOT_MASK
+	flags_equip_slot = SLOT_EYES|SLOT_FACE
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"

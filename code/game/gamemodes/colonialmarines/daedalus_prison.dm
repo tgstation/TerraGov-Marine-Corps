@@ -142,43 +142,43 @@
 	var/randjob = rand(0,11)
 	switch(randjob)
 		if(0) //assistant
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), WEAR_BODY)
 		if(1) //civilian in pajamas
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), WEAR_BODY)
 		if(2) //Scientist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
 		if(3) //Doctor
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
 		if(4) //Chef!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), WEAR_JACKET)
 		if(5) //Botanist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), WEAR_JACKET)
 		if(6)//Atmos
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), WEAR_BODY)
 		if(7) //Chaplain
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), WEAR_BODY)
 		if(8) //Miner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), WEAR_BODY)
 		if(9) //Corporate guy
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), WEAR_JACKET)
 		if(10) //Prisoner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), WEAR_BODY)
 
 		if(11) //Security
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), slot_w_uniform)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/security(H), slot_wear_suit)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/security(H), WEAR_JACKET)
 
 
 
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), slot_r_store)
-	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), WEAR_L_STORE)
 	H.update_icons()
 
 	//Give them some information

@@ -13,7 +13,7 @@
 
 	var/universal_translate = 0 // set to 1 if it can translate nonhuman speech
 
-	req_access = list(access_sulaco_bridge)
+	req_access = list(ACCESS_MARINE_BRIDGE)
 
 	attack_hand(mob/user as mob)
 		if(stat & (BROKEN|NOPOWER))

@@ -20,7 +20,7 @@ include jackets and regular suits, not armor.*/
 	flags_armor_protection = HEAD
 	flags_pass = PASSTABLE
 	flags_atom = FPRINT
-	flags_equip_slot = SLOT_MASK
+	flags_equip_slot = SLOT_FACE
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0

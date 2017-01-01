@@ -64,7 +64,7 @@ datum/preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
-	var/age = 30						//age of character
+	var/age = 18						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "O+"					//blood type (not-chooseable)
 	var/underwear = 1					//underwear type
@@ -263,7 +263,7 @@ datum/preferences
 		dat += "Please create an account to save your preferences."
 
 	dat += "</center><hr><table><tr><td width='340px' height='320px'>"
-	if(is_alien_whitelisted(user,"Yautja") || is_alien_whitelisted(user,"Yautja Elder"))
+	if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_PREDATOR)
 		dat += "<br><b>Yautja name:</b> <a href='?_src_=prefs;preference=pred_name;task=input'>[predator_name]</a><br>"
 		dat += "<b>Yautja gender:</b> <a href='?_src_=prefs;preference=pred_gender;task=input'>[predator_gender == MALE ? "Male" : "Female"]</a><br>"
 		dat += "<b>Yautja age:</b> <a href='?_src_=prefs;preference=pred_age;task=input'>[predator_age]</a><br>"
@@ -472,8 +472,7 @@ datum/preferences
 	user << browse(dat, "window=preferences;size=620x780")
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 18, list/splitJobs = list(), width = 450, height = 500)
-	if(!job_master)
-		return
+	if(!RoleAuthority) return
 
 	//limit 	 - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
 	//splitJobs - Allows you split the table by job. You can make different tables for each department by including their heads. Defaults to CE to make it look nice.
@@ -491,15 +490,17 @@ datum/preferences
 
 	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
-	if (!job_master)		return
-	for(var/datum/job/job in job_master.occupations)
-
+	var/datum/job/job
+	var/i
+	for(i in RoleAuthority.roles_for_mode)
+		job = RoleAuthority.roles_for_mode[i]
+		if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist)) continue
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
 			if((index < limit) && (lastJob != null))
 				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
 				//the last job's selection color. Creating a rather nice effect.
-				for(var/i = 0, i < (limit - index), i += 1)
+				for(var/j = 0, j < (limit - index), j += 1)
 					HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
 			HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
@@ -517,7 +518,7 @@ datum/preferences
 //		if((job_civilian_low & ASSISTANT) && (rank != "Assistant"))
 //			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 //			continue
-		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
+		if((rank in ROLES_COMMAND) || (rank == "AI"))//Bold head jobs
 			HTML += "<b>[rank]</b>"
 		else
 			HTML += "[rank]"
@@ -687,7 +688,7 @@ datum/preferences
 		player_alt_titles[job.title] = new_title
 
 /datum/preferences/proc/SetJob(mob/user, role)
-	var/datum/job/job = job_master.GetJob(role)
+	var/datum/job/job = RoleAuthority.roles_for_mode[role]
 	if(!job)
 		user << browse(null, "window=mob_occupation")
 		ShowChoices(user)
@@ -733,7 +734,7 @@ datum/preferences
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
 	if(!job || !level)	return 0
 	switch(job.department_flag)
-		if(COMMAND)
+		if(ROLEGROUP_MARINE_COMMAND)
 			switch(level)
 				if(1)
 					return job_command_high
@@ -741,7 +742,7 @@ datum/preferences
 					return job_command_med
 				if(3)
 					return job_command_low
-		if(MEDSCI)
+		if(ROLEGROUP_MARINE_MED_SCIENCE)
 			switch(level)
 				if(1)
 					return job_medsci_high
@@ -749,7 +750,7 @@ datum/preferences
 					return job_medsci_med
 				if(3)
 					return job_medsci_low
-		if(ENGI)
+		if(ROLEGROUP_MARINE_ENGINEERING)
 			switch(level)
 				if(1)
 					return job_engi_high
@@ -757,7 +758,7 @@ datum/preferences
 					return job_engi_med
 				if(3)
 					return job_engi_low
-		if(MARINES)
+		if(ROLEGROUP_MARINE_SQUAD_MARINES)
 			switch(level)
 				if(1)
 					return job_marines_high
@@ -787,7 +788,7 @@ datum/preferences
 			job_marines_high = 0
 
 	switch(job.department_flag)
-		if(COMMAND)
+		if(ROLEGROUP_MARINE_COMMAND)
 			switch(level)
 				if(2)
 					job_command_high = job.flag
@@ -797,7 +798,7 @@ datum/preferences
 					job_command_low &= ~job.flag
 				else
 					job_command_low |= job.flag
-		if(MEDSCI)
+		if(ROLEGROUP_MARINE_MED_SCIENCE)
 			switch(level)
 				if(2)
 					job_medsci_high = job.flag
@@ -807,7 +808,7 @@ datum/preferences
 					job_medsci_low &= ~job.flag
 				else
 					job_medsci_low |= job.flag
-		if(ENGI)
+		if(ROLEGROUP_MARINE_ENGINEERING)
 			switch(level)
 				if(2)
 					job_engi_high = job.flag
@@ -817,7 +818,7 @@ datum/preferences
 					job_engi_low &= ~job.flag
 				else
 					job_engi_low |= job.flag
-		if(MARINES)
+		if(ROLEGROUP_MARINE_SQUAD_MARINES)
 			switch(level)
 				if(2)
 					job_marines_high = job.flag

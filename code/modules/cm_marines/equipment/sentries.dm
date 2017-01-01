@@ -212,8 +212,8 @@
 	density = 1
 	layer = 3.5
 	use_power = 0
-	req_one_access = list(access_sulaco_engineering,access_marine_leader)
-	var/iff_signal = access_marine_iff_tag
+	req_one_access = list(ACCESS_MARINE_ENGINEERING,ACCESS_MARINE_LEADER)
+	var/iff_signal = ACCESS_IFF_MARINE
 	var/dir_locked = 1
 	var/safety_off = 0
 	var/rounds = 300
@@ -831,30 +831,8 @@
 		This should be enough shortcircuiting, but it is possible for the code to go all over the possibilities and generally
 		slow down. It'll serve for now.
 		*/
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-
-			var/obj/item/weapon/card/id/W
-			W = H.wear_id
-			//world << "[W? W.type : "null"] [istype(W)]"
-			if(istype(W) && (iff_signal in W.access)) continue//This is going to account for 95% of the cases.
-
-			var/obj/item/device/pda/P
-			P = H.wear_id
-			//world << "[P? P.type : "null"] [istype(P)]"
-			if(istype(P) && P.id && (iff_signal in P.id.access)) continue
-
-			W = H.r_hand //Right hand first.
-			if(istype(W) && (iff_signal in W.access)) continue
-
-			P = H.r_hand
-			if(istype(P) && P.id && (iff_signal in P.id.access)) continue
-
-			W = H.l_hand //Let's try the left hand.
-			if(istype(W) && (iff_signal in W.access)) continue
-
-			P = H.l_hand
-			if(istype(P) && P.id && (iff_signal in P.id.access)) continue
+		var/mob/living/carbon/human/H = M
+		if(istype(H) && H.get_target_lock(iff_signal)) continue
 
 		if(dir_locked) //We're dir locked and facing the right way.
 			var/angle = get_dir(src,M)

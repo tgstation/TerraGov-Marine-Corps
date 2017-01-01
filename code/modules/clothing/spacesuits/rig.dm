@@ -12,7 +12,6 @@
 	icon_action_button = "action_hardhat"
 	flags_heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
-	anti_hug = 2
 
 	//Species-specific stuff.
 	species_restricted = list("exclude","Unathi","Tajara","Skrell","Diona","Vox")
@@ -118,7 +117,7 @@
 			M << "Your suit's helmet deploys with a hiss."
 			//TODO: Species check, skull damage for forcing an unfitting helmet on?
 			helmet.loc = H
-			H.equip_to_slot(helmet, slot_head)
+			H.equip_to_slot(helmet, WEAR_HEAD)
 			helmet.canremove = 0
 
 	if(attached_boots && boots)
@@ -127,7 +126,7 @@
 		else
 			M << "Your suit's boots deploy with a hiss."
 			boots.loc = H
-			H.equip_to_slot(boots, slot_shoes)
+			H.equip_to_slot(boots, WEAR_FEET)
 			boots.canremove = 0
 
 /obj/item/clothing/suit/space/rig/dropped()
@@ -224,7 +223,7 @@
 		//TODO: Species check, skull damage for forcing an unfitting helmet on?
 		helmet.loc = H
 		helmet.pickup(H)
-		H.equip_to_slot(helmet, slot_head)
+		H.equip_to_slot(helmet, WEAR_HEAD)
 		helmet.canremove = 0
 		H << "\blue You deploy your hardsuit helmet, sealing you off from the world."
 

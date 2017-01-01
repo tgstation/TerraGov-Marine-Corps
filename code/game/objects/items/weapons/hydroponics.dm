@@ -11,7 +11,7 @@
 	var/mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/capacity = 500; //the number of seeds it can carry.
 	flags = FPRINT|TABLEPASS
-	flags_equip_slot = SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 1
 	var/list/item_quants = list()
 

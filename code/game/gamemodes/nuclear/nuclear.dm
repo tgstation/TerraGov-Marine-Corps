@@ -179,7 +179,7 @@ var/global/list/turf/synd_spawn = list()
 		else
 			var/mob/living/carbon/human/H = synd_mind.current
 			P.loc = H.loc
-			H.equip_to_slot_or_del(P, slot_r_store, 0)
+			H.equip_to_slot_or_del(P, WEAR_R_STORE, 0)
 			H.update_icons()
 
 	else
@@ -209,17 +209,17 @@ var/global/list/turf/synd_spawn = list()
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset/syndicate(synd_mob)
 	R.set_frequency(SYND_FREQ)
 	R.freerange = 1
-	synd_mob.equip_to_slot_or_del(R, slot_l_ear)
+	synd_mob.equip_to_slot_or_del(R, WEAR_L_EAR)
 
-	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(synd_mob), slot_w_uniform)
-	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(synd_mob), slot_shoes)
-	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(synd_mob), slot_gloves)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/card/id/syndicate(synd_mob), slot_wear_id)
-	if(synd_mob.backbag == 2) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(synd_mob), slot_back)
-	if(synd_mob.backbag == 3) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(synd_mob), slot_back)
-	if(synd_mob.backbag == 4) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(synd_mob), slot_back)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(synd_mob.back), slot_in_backpack)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/cyanide(synd_mob), slot_in_backpack)
+	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(synd_mob), WEAR_BODY)
+	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(synd_mob), WEAR_FEET)
+	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(synd_mob), WEAR_HANDS)
+	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/card/id/syndicate(synd_mob), WEAR_ID)
+	if(synd_mob.backbag == 2) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(synd_mob), WEAR_BACK)
+	if(synd_mob.backbag == 3) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(synd_mob), WEAR_BACK)
+	if(synd_mob.backbag == 4) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(synd_mob), WEAR_BACK)
+	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(synd_mob.back), WEAR_IN_BACK)
+	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/cyanide(synd_mob), WEAR_IN_BACK)
 
 /*	Commented; nukes now have a suit cycler for changing rig-suits, they don't need to spawn with them
 	var/obj/item/clothing/suit/space/rig/syndi/new_suit = new(synd_mob)
@@ -237,8 +237,8 @@ var/global/list/turf/synd_spawn = list()
 			if("Skrell")
 				new_suit.species_restricted = list("Skrell")
 
-	synd_mob.equip_to_slot_or_del(new_suit, slot_in_backpack)
-	synd_mob.equip_to_slot_or_del(new_helmet, slot_in_backpack)*/
+	synd_mob.equip_to_slot_or_del(new_suit, WEAR_IN_BACK)
+	synd_mob.equip_to_slot_or_del(new_helmet, WEAR_IN_BACK)*/
 
 //	var/obj/item/weapon/implant/explosive/E = new/obj/item/weapon/implant/explosive(synd_mob)
 //	E.imp_in = synd_mob

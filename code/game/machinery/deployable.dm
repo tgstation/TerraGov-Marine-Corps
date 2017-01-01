@@ -104,7 +104,7 @@ CONTAINS
 	name = "deployable"
 	desc = "deployable"
 	icon = 'icons/obj/objects.dmi'
-	req_access = list(access_marine_prep)//I'm changing this until these are properly tested./N
+	req_access = list(ACCESS_MARINE_PREP)//I'm changing this until these are properly tested./N
 
 /obj/machinery/deployable/barrier
 	name = "deployable barrier"
@@ -165,12 +165,12 @@ CONTAINS
 			if (src.health < src.maxhealth)
 				src.health = src.maxhealth
 				src.emagged = 0
-				src.req_access = list(access_marine_prep)
+				src.req_access = list(ACCESS_MARINE_PREP)
 				visible_message("\red [user] repairs \the [src]!")
 				return
 			else if (src.emagged > 0)
 				src.emagged = 0
-				src.req_access = list(access_marine_prep)
+				src.req_access = list(ACCESS_MARINE_PREP)
 				visible_message("\red [user] repairs \the [src]!")
 				return
 			return
