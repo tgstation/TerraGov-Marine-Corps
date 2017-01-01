@@ -242,7 +242,7 @@ var/global/list/crap_items = list(/obj/item/weapon/cell/high,\
 			if(prob(50))
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
 			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(H), WEAR_BODY)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/marine(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 		if(1) //MP
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), WEAR_BODY)

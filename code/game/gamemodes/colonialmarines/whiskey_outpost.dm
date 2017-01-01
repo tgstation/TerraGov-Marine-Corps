@@ -135,7 +135,7 @@
 		H = M
 		if(H.contents.len)
 			for(var/I in H.contents)//Delete the cryo uniform
-				if(istype(I,/obj/item/clothing/under/marine/underoos))
+				if(istype(I,/obj/item/clothing/under/pj/marine))
 					del(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander

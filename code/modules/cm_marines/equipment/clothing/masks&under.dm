@@ -152,8 +152,8 @@ include jackets and regular suits, not armor.*/
 		select_gamemode_skin(expected_type,icon_override,new_name,new_protection)
 		..()
 
-//TODO: MOVE THIS TO ITS OWN PATH, PROBABLY pj/marine (see normal clothing inheritance)
-/obj/item/clothing/under/marine/underoos
+//Marine pyjamas, they inherit the base game's pyjamas path so that you can't wear armor with them
+/obj/item/clothing/under/pj/marine
 	name = "marine underpants"
 	desc = "A simple undergarment worn by USCM operators during cryosleep. Makes you drowsy and slower while wearing. You should find an actual uniform."
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)

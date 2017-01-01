@@ -564,7 +564,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if ("strip")
 			//do nothing
 		if("USCM Cryo")
-			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/underoos(M), WEAR_BODY)
+			M.equip_to_slot_or_del(new /obj/item/clothing/under/pj/marine(M), WEAR_BODY)
 			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine(M), WEAR_BACK)
 
 			var/obj/item/weapon/card/id/W = new(M)
