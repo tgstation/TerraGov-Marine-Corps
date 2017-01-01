@@ -143,7 +143,6 @@
 						C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Request Emergency Shuttle\"</span> <span class='name'>(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;call_shuttle=1'>Call Shuttle</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
 						C << 'sound/effects/sos-morse-code.ogg'
 						usr << "<span class='notice'>An evacuation request has been sent to USCM Central Command.</span>"
-						unanswered_shuttle_call.Add(usr)
 
 				request_cooldown = 1
 				spawn(3000) //5 minutes in deciseconds
