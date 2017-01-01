@@ -1489,9 +1489,13 @@
 
 	else if(href_list["CentcommReply"])
 		var/mob/living/carbon/human/H = locate(href_list["CentcommReply"])
+
 		if(!istype(H))
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
+
+		unanswered_distress.Remove(H)
+
 		if(!istype(H.l_ear, /obj/item/device/radio/headset) && !istype(H.r_ear, /obj/item/device/radio/headset))
 			usr << "The person you are trying to contact is not wearing a headset"
 			return
@@ -2833,8 +2837,11 @@
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				X << msg
 
+		unanswered_distress.Remove(ref_person)
+
 	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
 		var/mob/ref_person = locate(href_list["distress"])
 		ticker.mode.activate_distress()
 		log_game("[key_name_admin(usr)] has sent a distress beacon, requested by [key_name_admin(ref_person)]")
 		message_admins("[key_name_admin(usr)] has sent a distress beacon, requested by [key_name_admin(ref_person)]", 1)
+		unanswered_distress.Remove(ref_person)

@@ -143,6 +143,7 @@
 						C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Request Emergency Shuttle\"</span> <span class='name'>(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;call_shuttle=1'>Call Shuttle</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
 						C << 'sound/effects/sos-morse-code.ogg'
 						usr << "<span class='notice'>An evacuation request has been sent to USCM Central Command.</span>"
+						unanswered_shuttle_call.Add(usr)
 
 				request_cooldown = 1
 				spawn(3000) //5 minutes in deciseconds
@@ -228,6 +229,14 @@
 					C << "<span class='danger'>ADMINS/MODS: [usr] has used</span> <span class='name'>\"Distress Beacon\"</span> <span class='name'>(<A HREF='?_src_=holder;ccdibs=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>Distress Beacon</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)</span>"
 					C << 'sound/effects/sos-morse-code.ogg'
 					usr << "<span class='notice'>A distress beacon request has been sent to USCM Central Command.</span>"
+					unanswered_distress.Add(usr)
+
+			spawn(600) //1 minute in deciseconds
+				if(usr in unanswered_distress)
+					unanswered_distress.Remove(usr)
+					ticker.mode.activate_distress()
+					log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.")
+					message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.", 1)
 
 			request_cooldown = 1
 			spawn(3000) //5 minutes in deciseconds
