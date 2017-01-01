@@ -134,7 +134,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
 	icon_state = "riot"
 	item_state = "swat_suit"
-	slowdown = 3
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	armor = list(melee = 70, bullet = 45, laser = 35, energy = 20, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine
@@ -153,7 +153,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	blood_overlay_type = "armor"
 	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
-	slowdown = 1
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
@@ -184,6 +184,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	desc = "A standard Colonial Marines M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
@@ -210,6 +211,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "marine_sniper"
 	item_state = "marine_sniper"
 	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEG_RIGHT|ARM_LEFT
@@ -223,6 +225,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 	item_state = "marine_sniperm"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -242,6 +245,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen,
 					/obj/item/device/flashlight,
 					/obj/item/ammo_magazine,
@@ -264,8 +268,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	name = "\improper B18 defensive armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with a tricord injector in each arm guard."
 	icon_state = "xarmor"
-	slowdown = 1
 	armor = list(melee = 95, bullet = 110, laser = 80, energy = 80, bomb = 75, bio = 20, rad = 20)
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 	var/injections = 2
 	unacidable = 1
 
@@ -287,6 +291,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "armor"
 	icon_state = "pmc_armor"
 	armor = list(melee = 55, bullet = 62, laser = 42, energy = 38, bomb = 40, bio = 15, rad = 15)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/device/flashlight,
@@ -328,6 +333,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_override = 'icons/PMC/PMC.dmi'
 	item_state = "heavy_armor"
 	icon_state = "heavy_armor"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
@@ -340,6 +346,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	item_state = "commando_armor"
 	icon_state = "commando_armor"
 	icon_override = 'icons/PMC/PMC.dmi'
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 90, bio = 100, rad = 100)
 	unacidable = 1
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/PMC/commando)
@@ -356,6 +363,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "bear_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 70, laser = 50, energy = 60, bomb = 50, bio = 10, rad = 10)
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/bear)
 
 /obj/item/clothing/suit/storage/marine/veteran/dutch
@@ -367,6 +375,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(160,32,240), r
 	icon_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
 
 /obj/item/clothing/suit/space/compression

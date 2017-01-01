@@ -26,7 +26,7 @@
 //Because this parent type did not exist
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
-	aim_slowdown = 2
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 
 
 //Pow! Headshot.
@@ -183,7 +183,7 @@
 	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 20
-	aim_slowdown = 2
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety off.
@@ -287,7 +287,7 @@
 	cocked_sound = 'sound/weapons/grenadelaunch.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6
-	aim_slowdown = 2
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
 	flags_atom = FPRINT|CONDUCT|TWOHANDED
@@ -437,7 +437,7 @@
 	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 15
-	aim_slowdown = 2
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
@@ -560,6 +560,7 @@
 	item_state = "m57a4"
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
+	aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON
 	attachable_allowed = list()
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WY_RESTRICTED|GUN_SPECIALIST
 
