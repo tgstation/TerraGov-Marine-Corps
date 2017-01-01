@@ -1227,7 +1227,7 @@ var/global/floorIsLava = 0
 	if (!ticker  || !ticker.mode)
 		return
 
-	if(!check_rights(R_MOD))	return
+	if(!check_rights(R_ADMIN))	return
 
 	if(ticker.mode.picked_call)
 		var/confirm = alert(src, "There's already been a distress call sent. Are you sure you want to send another one? This will probably break things.", "Send a distress call?", "Yes", "No")
