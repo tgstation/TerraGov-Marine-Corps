@@ -312,7 +312,7 @@
 		cdel(src)
 		return
 	if(++ticks >= strength_t)
-		visible_message("<span class='warning'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
+		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 
 		if(istype(acid_t, /turf))
 			if(istype(acid_t, /turf/simulated/wall))
