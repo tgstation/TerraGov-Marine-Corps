@@ -165,28 +165,27 @@
 			carddesc += "<b>Assignment:</b> "
 			var/jobs = "<span id='alljobsslot'><a href='#' onclick='showAll()'>[target_rank]</a></span><br>" //CHECK THIS
 			var/paygrade = ""
-			switch(modify.paygrade)
-				if("O5","O6","O7","O8","O9")
-					paygrade += "<b>Paygrade:<b> [get_paygrades(modify.paygrade)] -- LOCKED BY CENTRAL COMMAND"
-				else
-
-					paygrade += "<form name='paygrade' action='?src=\ref[src]' method='get'>"
-					paygrade += "<input type='hidden' name='src' value='\ref[src]'>"
-					paygrade += "<input type='hidden' name='choice' value='paygrade'>"
-					paygrade += "<b>Paygrade:</b> <select name='paygrade'>"
-					var/i
-					for(i in PAYGRADES_ENLISTED)
+			if(!(modify.paygrade in PAYGRADES_MARINE))
+				paygrade += "<b>Paygrade:<b> [get_paygrades(modify.paygrade)] -- UNABLE TO MODIFY"
+			else
+				paygrade += "<form name='paygrade' action='?src=\ref[src]' method='get'>"
+				paygrade += "<input type='hidden' name='src' value='\ref[src]'>"
+				paygrade += "<input type='hidden' name='choice' value='paygrade'>"
+				paygrade += "<b>Paygrade:</b> <select name='paygrade'>"
+				var/i
+				for(i in PAYGRADES_ENLISTED)
+					if(i == modify.paygrade) paygrade += "<option value='[i]' selected=selected>[get_paygrades(i)]</option>"
+					else paygrade += "<option value='[i]'>[get_paygrades(i)]</option>"
+				if(copytext(scan.paygrade,1,2) == "O")
+					var/r = text2num(copytext(scan.paygrade,2))
+					r = r > 4 ? 4 : r
+					while(--r > 0)
+						i = "O[r]"
 						if(i == modify.paygrade) paygrade += "<option value='[i]' selected=selected>[get_paygrades(i)]</option>"
 						else paygrade += "<option value='[i]'>[get_paygrades(i)]</option>"
-					if(copytext(scan.paygrade,1,2) == "O")
-						var/r = text2num(copytext(scan.paygrade,2))
-						while(--r > 0)
-							i = "O[r]"
-							if(i == modify.paygrade) paygrade += "<option value='[i]' selected=selected>[get_paygrades(i)]</option>"
-							else paygrade += "<option value='[i]'>[get_paygrades(i)]</option>"
-					paygrade += "</select>"
-					paygrade += "<input type='submit' value='Modify'>"
-					paygrade += "</form>"
+				paygrade += "</select>"
+				paygrade += "<input type='submit' value='Modify'>"
+				paygrade += "</form>"
 			var/accesses = ""
 			if(istype(src,/obj/machinery/computer/card/centcom))
 				accesses += "<h5>Central Command:</h5>"

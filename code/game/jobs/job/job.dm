@@ -89,7 +89,7 @@
 		G = gear_datums[i]
 		if(G)
 			if(G.allowed_roles && !(title in G.allowed_roles)) 				continue //Is the role allowed?
-			if(G.whitelisted && !is_alien_whitelisted(H, G.whitelisted)) 	continue //is the role whitelisted?
+			if(G.whitelisted && !is_alien_whitelisted(H, G.whitelisted)) 	continue //is the role whitelisted? //TODO Remove this.
 			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : WEAR_IN_BACK)
 
 	//Give humans wheelchairs, if they need them.
@@ -143,9 +143,9 @@
 		A.overlays += I
 
 /datum/job/proc/get_access()
-	if(!config)							return minimal_access
-	if(config.jobs_have_minimal_access) return minimal_access
-	return access
+	if(!config)							return minimal_access.Copy() //Need to copy, because we want a new list here. Not the datum's list.
+	if(config.jobs_have_minimal_access) return minimal_access.Copy()
+	return access.Copy()
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)

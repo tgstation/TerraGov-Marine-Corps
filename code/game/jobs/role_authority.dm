@@ -161,7 +161,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 	var/roles_command[] = roles_for_mode & ROLES_COMMAND //If we have a special mode list, we only want that which is on the list.
 	var/roles_regular[] = roles_for_mode - roles_command //Two different lists, since we always want to check command first when we loop.
 	if(roles_command.len) roles_command = shuffle(roles_command, 1) //Shuffle our job lists for when we begin the loop.
-	if(roles_regular.len) roles_regular = shuffle(roles_regular, 1) - "Squad Marine"//Should always have some, but who knows; we want to remove marines, since they're going to be assigned randomly.
+	if(roles_regular.len) roles_regular = shuffle(roles_regular, 1) //Should always have some, but who knows.
 	//In the future, any regular role that has infinite spawn slots should be removed as well.
 
 	/*===============================================================*/
@@ -172,7 +172,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 	unassigned_players  = new
 	var/mob/new_player/M
 
-	var/good_age_min = 25//Best command candidates are in the 30 to 40 range.
+	var/good_age_min = 20//Best command candidates are in the 25 to 40 range.
 	var/good_age_max = 50
 
 	for(i in player_list) //Get all players who are ready.
@@ -254,7 +254,6 @@ var/global/datum/authority/branch/role/RoleAuthority
 
 	/*===============================================================*/
 
-
 /*
 It is possible that after looping through everyone, no one is assigned a command position
 despite having it selected. This is going to be rare, but it can still happen.
@@ -264,6 +263,7 @@ candidates should have a better shot at it first. Should that fail, they can sti
 More or less the point of this system, and it will safeguard new players from getting command
 roles willy nilly.
 */
+
 /datum/authority/branch/role/proc/assign_initial_roles(l, list/roles_to_iterate, weighted)
 	. = roles_to_iterate
 	if(roles_to_iterate.len && unassigned_players.len)
@@ -325,7 +325,6 @@ roles willy nilly.
 			//world << "[J.title]: [J.current_positions] current positions filled." //TODO DEBUG
 			return 1
 
-//TODO YOU CAN JOIN AS TWO OF THE SAME ROLE
 /datum/authority/branch/role/proc/check_role_entry(mob/new_player/M, datum/job/J, latejoin)
 	if(jobban_isbanned(M, J.title)) return //TODO standardize this
 	if(!J.player_old_enough(M.client)) return
