@@ -260,3 +260,7 @@ proc/get_all_job_icons() return joblist + list("Prisoner")//For all existing HUD
 		if("O8") . = size ? "FADM " : "Fleet Admiral"
 		if("O9") . = size ? "SMR " : "Sky Marshal"
 		else return ""
+
+#define PAYGRADES_MARINE list("C","CD","CCMO","E1","E2","E3","E4","E5","E6","E7","E8","E9","O1","O2","O3","O4")
+#define PAYGRADES_OFFICER list("O1","O2","O3","O4")
+#define PAYGRADES_ENLISTED list("C","E1","E2","E3","E4","E5","E6","E7","E8","E9")
