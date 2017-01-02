@@ -172,6 +172,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 	unassigned_players  = new
 	var/mob/new_player/M
 
+
 	var/good_age_min = 20//Best command candidates are in the 25 to 40 range.
 	var/good_age_max = 50
 
@@ -271,7 +272,7 @@ roles willy nilly.
 		var/m
 		var/datum/job/J
 		var/mob/new_player/M
-		var/P
+		//var/P
 
 		for(j in roles_to_iterate)
 			J = roles_to_iterate[j]
@@ -283,8 +284,9 @@ roles willy nilly.
 			for(m in unassigned_players)
 				M = m
 				if( !(M.client.prefs.GetJobDepartment(J, l) & J.flag) ) continue //If they don't want the job. //TODO Change the name of the prefs proc?
-				P = weighted && !(J.flags_startup_parameters & ROLE_WHITELISTED) ? unassigned_players[M] : 100 //Whitelists have no age requirement.
-				if(prob(P) && assign_role(M, J))
+				//P = weighted && !(J.flags_startup_parameters & ROLE_WHITELISTED) ? unassigned_players[M] : 100 //Whitelists have no age requirement.
+				//if(prob(P) && assign_role(M, J))
+				if(assign_role(M, J))
 					unassigned_players -= M
 					if(J.current_positions >= J.spawn_positions)
 						roles_to_iterate -= j //Remove the position, since we no longer need it.
