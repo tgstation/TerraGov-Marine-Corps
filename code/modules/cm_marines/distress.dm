@@ -772,6 +772,7 @@
 	M.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/bear(M), WEAR_HEAD)
 	M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud/tactical(M), WEAR_EYES)
 	M.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(M), WEAR_FEET)
+	M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), WEAR_BACK)
 	M.equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen/engi(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(M.back), WEAR_IN_BACK)
 	M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)

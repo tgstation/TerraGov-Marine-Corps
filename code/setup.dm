@@ -1092,10 +1092,12 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_MARINE_LEADER 		12
 #define ACCESS_MARINE_SPECPREP 		13
 #define ACCESS_MARINE_RESEARCH 		14
+
 #define ACCESS_MARINE_ALPHA 		15
 #define ACCESS_MARINE_BRAVO 		16
 #define ACCESS_MARINE_CHARLIE 		17
 #define ACCESS_MARINE_DELTA 		18
+
 #define ACCESS_MARINE_BRIDGE 		19
 #define ACCESS_MARINE_CHEMISTRY 	20
 #define ACCESS_MARINE_CARGO 		21
@@ -1182,11 +1184,11 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 
 #define SLOWDOWN_UNDER_UNFITTING	0.5
 
-#define SLOWDOWN_ARMOR_VERY_LIGHT	0.25
-#define SLOWDOWN_ARMOR_LIGHT		0.5
-#define SLOWDOWN_ARMOR_MEDIUM		0.75
+#define SLOWDOWN_ARMOR_VERY_LIGHT	0.20
+#define SLOWDOWN_ARMOR_LIGHT		0.35
+#define SLOWDOWN_ARMOR_MEDIUM		0.55
 #define SLOWDOWN_ARMOR_HEAVY		1
-#define SLOWDOWN_ARMOR_VERY_HEAVY	1.25
+#define SLOWDOWN_ARMOR_VERY_HEAVY	1.15
 
 #define SLOWDOWN_ADS_SHOTGUN		0.75
 #define SLOWDOWN_ADS_RIFLE			0.75
