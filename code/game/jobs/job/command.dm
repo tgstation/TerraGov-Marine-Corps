@@ -81,7 +81,7 @@ Come hell or high water, you are going to be there for them."}
 You may need to fill in for other duties if areas are understaffed, and you are given access to do so.
 Make the USCM proud!"}
 
-	get_access() return get_all_marine_access() - ACCESS_MARINE_COMMANDER
+	get_access() return get_all_marine_access()
 
 //Bridge Officer
 /datum/job/command/bridge
