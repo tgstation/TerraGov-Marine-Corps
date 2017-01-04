@@ -159,7 +159,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/reload_admins,
-	/client/proc/reload_mentors,
+	///client/proc/reload_mentors,	//Currently no effect
 	/client/proc/reload_whitelist,
 	/client/proc/restart_controller,
 	/client/proc/remake_distribution_map,
@@ -251,7 +251,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/callproc,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
-	/client/proc/reload_mentors,
+	// /client/proc/reload_mentors,		//Currently no effect
 	/client/proc/reload_whitelist,
 	/client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
