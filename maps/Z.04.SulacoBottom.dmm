@@ -187,7 +187,7 @@
 "dE" = (/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/obj/machinery/door_control{id = "xeno_containment"; name = "Containmentlock"; normaldoorcontrol = 1; pixel_y = -30; specialfunctions = 4},/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dF" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dG" = (/turf/simulated/floor{icon_state = "white"},/turf/simulated/shuttle/wall{icon_state = "diagonalWall3"},/area/sulaco/research)
-"dH" = (/obj/machinery/door/airlock/glass_science{name = "Research Lab"; req_access_txt = "2;8;14"},/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/obj/machinery/door/firedoor,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
+"dH" = (/obj/machinery/door/airlock/glass_science{name = "Research Lab"; req_access_txt = "0"; req_one_access_txt = "2;8;14"},/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/obj/machinery/door/firedoor,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dI" = (/obj/machinery/clonepod,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dJ" = (/obj/structure/table,/obj/item/device/radio/intercom{anyai = 1; freerange = 1; name = "General Listening Channel"; pixel_x = 28; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/obj/machinery/camera/autoname{dir = 8},/obj/item/weapon/melee/defibrillator,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "dK" = (/obj/effect/landmark/shuttle_loc/marine_src{name = "Dropship 2"},/turf/simulated/floor/plating,/area/sulaco/hangar)
