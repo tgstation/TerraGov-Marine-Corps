@@ -578,27 +578,27 @@
 		if(1)//Sentinels and drones are more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Runner,
+						/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Sentinel,
+						/mob/living/carbon/Xenomorph/Sentinel/mature,
 						/mob/living/carbon/Xenomorph/Drone)
 
 
 		if(3)//Tier II versions added, but rare
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter,
-						/mob/living/carbon/Xenomorph/Drone)
+						/mob/living/carbon/Xenomorph/Spitter/mature,
+						/mob/living/carbon/Xenomorph/Drone/mature)
 
 		if(4)//Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Hunter,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter)
 
 		if(6)//Hivelord and Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Spitter/mature,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
 		if(7)
@@ -608,23 +608,52 @@
 		if(8)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
-						/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter)
+						/mob/living/carbon/Xenomorph/Hunter/elite,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Spitter/mature)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
 						/mob/living/carbon/Xenomorph/Drone,
+						/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner)
 
 		if(10)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher,
-						/mob/living/carbon/Xenomorph/Boiler,
-						/mob/living/carbon/Xenomorph/Ravager,
+						/mob/living/carbon/Xenomorph/Boiler/mature,
+						/mob/living/carbon/Xenomorph/Ravager/mature,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite,
 						/mob/living/carbon/Xenomorph/Praetorian)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone,
-						/mob/living/carbon/Xenomorph/Runner)
+						/mob/living/carbon/Xenomorph/Drone/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature)
+
+		if(12)//Start the elite transition
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/mature,
+						/mob/living/carbon/Xenomorph/Boiler/elite,
+						/mob/living/carbon/Xenomorph/Ravager/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Hivelord/elite,
+						/mob/living/carbon/Xenomorph/Spitter/elite,
+						/mob/living/carbon/Xenomorph/Praetorian/elite)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Spitter/mature,
+						/mob/living/carbon/Xenomorph/Drone/mature,
+						/mob/living/carbon/Xenomorph/Hivelord)
+
+		if(14)//Start the ancient
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient,
+						/mob/living/carbon/Xenomorph/Boiler/ancient,
+						/mob/living/carbon/Xenomorph/Ravager/ancient,
+						/mob/living/carbon/Xenomorph/Runner/ancient,
+						/mob/living/carbon/Xenomorph/Hunter/ancient,
+						/mob/living/carbon/Xenomorph/Spitter/ancient,
+						/mob/living/carbon/Xenomorph/Praetorian/ancient)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Crusher,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Praetorian)
 
 		if(15 to INFINITY)
 			var/random_wave = rand(0,8)
@@ -632,58 +661,58 @@
 				if(0 to 5)//Normal list, but makes it easier to pick stronger units
 					switch(random_wave)
 						if(0)//Add another Ravager
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager/ancient)
 						if(1)//Add another Carrier
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Carrier)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Carrier/ancient)
 						if(2)//Add another Praetorian
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Praetorian)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Praetorian/ancient)
 						if(3)//Add another Boiler
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Boiler)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Boiler/ancient)
 						if(4)//Add another Crusher
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient)
 						if(5)//Add another Hunter and Spitter
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-										/mob/living/carbon/Xenomorph/Spitter)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient)
 
 				if(6)//Runner madness
 					spawn_next_wave += 50//Slow down the next wave
 					spawn_this_many = 50//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Ravager)
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Ravager/ancient)
 
 				if(7)//Spitter madness
 					spawn_next_wave += 70//Slow down the next wave
 					spawn_this_many =  45//A lot of them
-					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Praetorian)
+					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Praetorian/ancient)
 
 				if(8)//Siege madness
 					spawn_this_many = 10//A lot of them
 					spawn_next_wave += 120//Slow down the next wave
-					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Boiler,
-									/mob/living/carbon/Xenomorph/Boiler,
-									/mob/living/carbon/Xenomorph/Crusher)
+					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Boiler/ancient,
+									/mob/living/carbon/Xenomorph/Boiler/ancient,
+									/mob/living/carbon/Xenomorph/Crusher/ancient)
 	var/path
 	if(tempspawnxeno.len)//If temp list exists, use it
 		for(var/i = 0; i < spawn_this_many; i++)
@@ -876,13 +905,6 @@
 								/obj/item/weapon/storage/pill_bottle/kelotane,
 								/obj/item/weapon/storage/pill_bottle/kelotane,
 								/obj/item/weapon/storage/pill_bottle/kelotane,
-								/obj/item/weapon/storage/syringe_case/oxy,
-								/obj/item/weapon/storage/syringe_case/tox,
-								/obj/item/weapon/storage/syringe_case/burn,
-								/obj/item/weapon/storage/syringe_case/regular,
-								/obj/item/device/healthanalyzer,
-								/obj/item/device/healthanalyzer,
-								/obj/item/device/healthanalyzer,
 								/obj/item/stack/medical/splint,
 								/obj/item/stack/medical/splint,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord,
@@ -891,10 +913,7 @@
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard,
-								/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo,
-								/obj/item/weapon/reagent_containers/blood/OMinus,
-								/obj/item/weapon/reagent_containers/blood/OMinus,
-								/obj/item/weapon/reagent_containers/blood/OMinus)
+								/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo)
 
 
 	else if (OT == "wep")
@@ -941,7 +960,7 @@
 										/obj/item/ammo_magazine/minigun)
 
 
-			if(1)//Random Attachments Crate
+			if(1 to 2)//Random Attachments Crate
 				choosemax = rand(20,30)
 				randomitems = list(/obj/item/attachable/suppressor,
 								/obj/item/attachable/suppressor,
@@ -962,7 +981,7 @@
 								/obj/item/attachable/flamer,
 								/obj/item/attachable/burstfire_assembly)
 
-			if(2)//Random Melee Crate
+			if(3)//Random Melee Crate
 				choosemax = rand(10,20)
 				randomitems = list(/obj/item/weapon/combat_knife,
 								/obj/item/weapon/combat_knife,
@@ -979,7 +998,7 @@
 								/obj/item/weapon/storage/belt/knifepouch,
 								/obj/item/weapon/claymore/mercsword/machete)
 
-			if(3)//Random Explosives Items
+			if(4)//Random Explosives Items
 				choosemax = rand(10,20)
 				randomitems = list(/obj/item/weapon/storage/box/explosive_mines,
 									/obj/item/weapon/grenade/explosive,
@@ -1003,119 +1022,155 @@
 									/obj/item/weapon/plastique)
 
 
-			if(4 to 5)//Random Primary Gun
-				choosemax = rand(5,10)
+			if(5 to 10)//Random USCM Care Package
+				choosemax = rand(15,40)
 				randomitems = list(/obj/item/weapon/gun/rifle/m41a,
 									/obj/item/weapon/gun/rifle/m41a,
 									/obj/item/weapon/gun/rifle/m41a,
 									/obj/item/weapon/gun/rifle/m41a,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
 									/obj/item/weapon/gun/rifle/m41a/scoped,
-									/obj/item/weapon/gun/rifle/m41a/elite,
-									/obj/item/weapon/gun/rifle/mar40,
-									/obj/item/weapon/gun/rifle/mar40,
-									/obj/item/weapon/gun/rifle/mar40/carbine,
-									/obj/item/weapon/gun/rifle/sniper/svd,
-									/obj/item/weapon/gun/rifle/lmg,
-									/obj/item/weapon/gun/shotgun/combat,
-									/obj/item/weapon/gun/shotgun/merc,
-									/obj/item/weapon/gun/shotgun/double,
-									/obj/item/weapon/gun/shotgun/double/sawn,
-									/obj/item/weapon/gun/shotgun/pump,
-									/obj/item/weapon/gun/shotgun/pump,
-									/obj/item/weapon/gun/shotgun/pump/cmb)
-
-			if(6 to 7)//Random Secondary Gun
-				choosemax = rand(10,15)
-				randomitems = list(/obj/item/weapon/gun/smg/m39,
-									/obj/item/weapon/gun/smg/m39,
-									/obj/item/weapon/gun/smg/m39,
-									/obj/item/weapon/gun/smg/m39/elite,
-									/obj/item/weapon/gun/smg/mp7,
-									/obj/item/weapon/gun/smg/skorpion,
-									/obj/item/weapon/gun/smg/ppsh,
-									/obj/item/weapon/gun/smg/uzi,
-									/obj/item/weapon/gun/smg/p90,
-									/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/pistol/heavy,
-									/obj/item/weapon/gun/pistol/c99,
-									/obj/item/weapon/gun/pistol/m1911,
-									/obj/item/weapon/gun/pistol/kt42,
-									/obj/item/weapon/gun/pistol/holdout,
-									/obj/item/weapon/gun/pistol/highpower,
-									/obj/item/weapon/gun/pistol/vp70,
-									/obj/item/weapon/gun/pistol/vp78,
-									/obj/item/weapon/gun/revolver/m44,
-									/obj/item/weapon/gun/revolver/m44,
-									/obj/item/weapon/gun/revolver/small,
-									/obj/item/weapon/gun/revolver/upp,
-									/obj/item/weapon/gun/revolver/mateba,
-									/obj/item/weapon/gun/revolver/cmb)
-
-			if(8 to 14)//Random Primary Ammo
-				choosemax = rand(50,60)
-				randomitems = list(/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle/extended,
-									/obj/item/ammo_magazine/rifle/incendiary,
-									/obj/item/ammo_magazine/rifle/ap,
 									/obj/item/ammo_magazine/rifle/marksman,
-									/obj/item/ammo_magazine/rifle/ap,
-									/obj/item/ammo_magazine/rifle/mar40,
-									/obj/item/ammo_magazine/rifle/mar40,
-									/obj/item/ammo_magazine/rifle/mar40/extended,
-									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/weapon/gun/rifle/lmg,
 									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/weapon/gun/smg/m39,
+									/obj/item/weapon/gun/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
 									/obj/item/ammo_magazine/shotgun,
 									/obj/item/ammo_magazine/shotgun,
-									/obj/item/ammo_magazine/shotgun/buckshot,
-									/obj/item/ammo_magazine/shotgun/buckshot,
-									/obj/item/ammo_magazine/shotgun/incendiary)
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/weapon/gun/shotgun/pump,
+									/obj/item/weapon/gun/shotgun/pump)
 
-			if(15 to 18)//Random Secondary Ammo
-				choosemax = rand(50,60)
-				randomitems = list(/obj/item/ammo_magazine/pistol,
-									/obj/item/ammo_magazine/pistol,
-									/obj/item/ammo_magazine/pistol,
-									/obj/item/ammo_magazine/pistol/hp,
-									/obj/item/ammo_magazine/pistol/ap,
-									/obj/item/ammo_magazine/pistol/incendiary,
-									/obj/item/ammo_magazine/pistol/extended,
-									/obj/item/ammo_magazine/revolver,
-									/obj/item/ammo_magazine/revolver,
-									/obj/item/ammo_magazine/revolver/marksman,
-									/obj/item/ammo_magazine/revolver/small,
-									/obj/item/ammo_magazine/revolver/upp,
-									/obj/item/ammo_magazine/revolver/mateba,
-									/obj/item/ammo_magazine/pistol/heavy,
-									/obj/item/ammo_magazine/pistol/c99,
-									/obj/item/ammo_magazine/pistol/m1911,
-									/obj/item/ammo_magazine/pistol/automatic,
-									/obj/item/ammo_magazine/pistol/holdout,
-									/obj/item/ammo_magazine/pistol/highpower,
-									/obj/item/ammo_magazine/revolver/cmb,
-									/obj/item/ammo_magazine/pistol/vp70,
-									/obj/item/ammo_magazine/pistol/vp78,
-									/obj/item/ammo_magazine/smg/m39,
-									/obj/item/ammo_magazine/smg/m39,
-									/obj/item/ammo_magazine/smg/m39,
-									/obj/item/ammo_magazine/smg/m39/extended,
-									/obj/item/ammo_magazine/smg/m39/ap,
-									/obj/item/ammo_magazine/smg/mp7,
-									/obj/item/ammo_magazine/smg/skorpion,
+			if(11 to 14)//Random Black Market Care Package
+				choosemax = rand(15,30)
+				randomitems = list(/obj/item/weapon/gun/smg/ppsh,
+									/obj/item/weapon/gun/smg/ppsh,
 									/obj/item/ammo_magazine/smg/ppsh,
-									/obj/item/ammo_magazine/smg/uzi,
-									/obj/item/ammo_magazine/smg/p90)
+									/obj/item/ammo_magazine/smg/ppsh,
+									/obj/item/ammo_magazine/smg/ppsh,
+									/obj/item/ammo_magazine/smg/ppsh,
+									/obj/item/weapon/gun/rifle/sniper/svd,
+									/obj/item/weapon/gun/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/weapon/gun/smg/skorpion,
+									/obj/item/weapon/gun/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/weapon/gun/rifle/mar40,
+									/obj/item/weapon/gun/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/weapon/gun/pistol/kt42,
+									/obj/item/weapon/gun/pistol/kt42,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic)
+
+			if(15 to 17)//Random Prespace Care Package
+				choosemax = rand(20,50)
+				randomitems = list(/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs)
+
+			if(18)//Random Classic Drop
+				choosemax = rand(10,20)
+				randomitems = list(/obj/item/weapon/gun/rifle/m41aMK1,
+									/obj/item/weapon/gun/rifle/m41aMK1,
+									/obj/item/weapon/gun/rifle/m41aMK1,
+									/obj/item/ammo_magazine/rifle/m41aMK1,
+									/obj/item/ammo_magazine/rifle/m41aMK1,
+									/obj/item/ammo_magazine/rifle/m41aMK1,
+									/obj/item/weapon/gun/smg/p90,
+									/obj/item/weapon/gun/smg/p90,
+									/obj/item/weapon/gun/smg/p90,
+									/obj/item/ammo_magazine/smg/p90,
+									/obj/item/ammo_magazine/smg/p90,
+									/obj/item/ammo_magazine/smg/p90,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/ammo_magazine/shotgun/incendiary,
+									/obj/item/ammo_magazine/shotgun/incendiary,
+									/obj/item/ammo_magazine/shotgun/incendiary)
 
 	else if (OT == "sup")
 		randpick = rand(0,12)
 		crate = new /obj/structure/closet/crate/secure/gear(T)
 		switch(randpick)
 			if(0 to 1)//Food
-				choosemax = rand(35,60)
+				choosemax = rand(10,40)
 				randomitems = list(/obj/item/weapon/storage/box/uscm_mre,
 								/obj/item/weapon/storage/box/donkpockets,
 								/obj/item/weapon/reagent_containers/food/snacks/protein_pack,
@@ -1134,18 +1189,7 @@
 								/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6,
 								/obj/item/weapon/storage/box/wy_mre)
 
-			if(2 to 3)//Tools
-				choosemax = rand(3,6)
-				randomitems = list(/obj/item/device/multitool,
-								/obj/item/device/multitool,
-								/obj/item/weapon/storage/toolbox/electrical,
-								/obj/item/weapon/storage/toolbox/mechanical,
-								/obj/item/weapon/storage/belt/utility/full,
-								/obj/item/weapon/weldpack,
-								/obj/item/weapon/cell/high,
-								/obj/item/clothing/glasses/welding)
-
-			if(4 to 6)//Marine Gear
+			if(2 to 4)//Marine Gear
 				choosemax = rand(10,15)
 				randomitems = list(/obj/item/clothing/head/helmet/marine,
 								/obj/item/clothing/head/helmet/marine,
@@ -1162,7 +1206,7 @@
 								/obj/item/device/binoculars,
 								/obj/item/device/squad_beacon/bomb)
 
-			if(7 to 8)//Lights and shiet
+			if(5 to 8)//Lights and shiet
 				choosemax = rand(10,20)
 				randomitems = list(/obj/item/device/flashlight/flare,
 								/obj/item/device/flashlight/flare,
@@ -1214,10 +1258,7 @@
 			var/obj/I = new path(crate)
 			if(OT == "sup")
 				if(I && istype(I,/obj/item/stack/sheet/mineral/phoron) || istype(I,/obj/item/stack/rods) || istype(I,/obj/item/stack/sheet/glass) || istype(I,/obj/item/stack/sheet/metal) || istype(I,/obj/item/stack/sheet/plasteel) || istype(I,/obj/item/stack/sheet/wood))
-					if(istype(I,/obj/item/stack/sheet/mineral/phoron))
-						I:amount = 50
-					else
-						I:amount = rand(10,30)
+					I:amount = rand(10,50)
 				if(I && istype(I,/obj/machinery/floodlight))
 					I.anchored = 0
 
@@ -1299,3 +1340,884 @@
 
 	ex_act(severity)
 		return
+
+
+////////////////////
+//Art's Additions //
+////////////////////
+
+//Sandbags
+/obj/structure/m_barricade/sandbags
+	name = "Sandbag barricade"
+	desc = "Trusted since 1914"
+	icon = 'icons/turf/whiskeyoutpost.dmi'
+	icon_state = "sandbag"
+	density = 1
+	anchored = 1.0
+	layer = 5
+	throwpass = 1	//You can throw objects over this, despite its density.
+	climbable = 1
+	flags_atom = ON_BORDER
+	health = 250 //Pretty tough. Changes sprites at 300 and 150.
+	unacidable = 0 //Who the fuck though unacidable barricades with 500 health was a good idea?
+
+	Crossed(atom/movable/O)
+		..()
+		if(istype(O,/mob/living/carbon/Xenomorph/Crusher))
+			var/mob/living/carbon/Xenomorph/M = O
+			if(!M.stat)
+				visible_message("<span class='danger'>[O] steamrolls through the [src]!</span>")
+				destroy()
+
+	update_icon()
+		if(dir != NORTH)
+			layer = 5
+		icon_state = initial(icon_state)
+
+	update_health()
+		if(health < 0)
+			destroy()
+			return
+		return
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (!W) return
+
+		//Otherwise, just hit it.
+		if(force > 20)
+			..()
+			health -= W.force / 2
+			update_health()
+			return
+
+		return
+
+	destroy()
+		src.visible_message("\red [src] collapses!")
+		density = 0
+		del(src)
+		return
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+//Stationary Machinegun
+/obj/machinery/marine_turret/mg_turret
+	name = "OT-T0 Machine Gun"
+	desc = "A Swedish defensive machinegun made in the 2100s. While fairly rare on any Weyland or USCM outposts, it finds its niche market among non-US affliated colonial outcropings. However we've somehow aquired a few here."
+	on = 1
+	burst_fire = 1
+	fire_delay = 20
+	rounds = 900
+	rounds_max = 900
+	icon = 'icons/turf/whiskeyoutpost.dmi'
+	icon_state = "towergun"
+
+	New()
+		spark_system = new /datum/effect/effect/system/spark_spread
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		var/obj/item/weapon/cell/super/H = new(src) //Better cells in these ones.
+		cell = H
+		spawn(2)
+			stat = 0
+			processing_objects.Add(src)
+		ammo = ammo_list[ammo]
+
+/obj/machinery/marine_turret/mg_turret/attack_hand(mob/user as mob) //Time to cut out alot of the sentry code
+	src.add_fingerprint(user)
+
+	operator = user
+
+	var/dat = "<b>[src.name]:</b> <BR><BR>"
+	dat += "--------------------<BR><BR>"
+	dat += "<B>Current Rounds:</b> [rounds] / [rounds_max]<BR>"
+	dat += "<B>Structural Integrity:</b> [round(health * 100 / health_max)] percent <BR>"
+	dat += "--------------------<BR><BR>"
+	dat += "<B><A href='?src=\ref[src];op=burst'>Burst Fire</a>:</B> "
+	if(burst_fire)
+		dat += "ON<BR>"
+	else
+		dat += "OFF<BR>	"
+	dat += "--------------------<BR><BR>"
+	if(manual_override)
+		dat += "MANUAL OVERRIDE<BR>"
+	dat += "<A href='?src=\ref[src];op=manual'>Manual Override Toggle</a><BR><BR>"
+	dat += "--------------------<BR><BR>"
+	dat += "<A href='?src=\ref[src];op=close'>{Close}</a><BR>"
+	user.set_machine(src)
+	user << browse(dat, "window=turret;size=300x400")
+	onclose(user, "turret")
+	return
+
+/obj/machinery/marine_turret/mg_turret/Topic(href, href_list)
+	if(usr.stat)
+		return
+
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user))
+		return
+
+	if(get_dist(src.loc, user.loc) > 1)
+		return
+
+	usr.set_machine(src)
+	switch(href_list["op"])
+		if("burst")
+			if(alert(usr,"Do you want to turn on the burst fire function? It will be much less accurate.","Burst Fire", "Yes", "No") == "Yes")
+				if(burst_fire)
+					usr << "It's already firing in a burst."
+				else
+					burst_fire = 1
+					fire_delay = 20
+					visible_message("\icon[src] [src] emits a audiable hard click.")
+					usr << "\blue You activate the burst fire mode."
+			else
+				if(!burst_fire)
+					usr << "It's already firing single shots."
+				else
+					burst_fire = 0
+					fire_delay = 10
+					visible_message("\icon[src] [src] emits a audiable soft click.")
+					usr << "\blue You deactivate the burst fire mode."
+		if("manual")
+			if(alert(usr,"Are you sure you want to man the machinegun?","MAN THE GUN", "Yes", "No") == "Yes")
+				if(gunner)
+					usr << "Someone's already controlling it."
+				else
+					if(user.turret_control)
+						usr << "You're already controlling one!"
+					else
+						gunner = usr
+						visible_message("\icon[src] [usr] mans the machinegun!")
+						usr << "\blue You man the turret."
+						user.turret_control = src
+						manual_override = 1
+			else
+				if(user.turret_control)
+					gunner = null
+					visible_message("\icon[src] [usr] leaves the machinegun!")
+					usr << "\blue you decided to let someone else have a go."
+					user.turret_control = null
+					manual_override = 0
+				else
+					user << "You're not controlling this turret."
+			if(stat == 2)
+				stat = 0 //Weird bug goin on here
+	src.attack_hand(user)
+	return
+
+/obj/machinery/marine_turret/mg_turret/attackby(var/obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/WT = O
+		if(health < 0 || stat)
+			user << "It's too damaged for that, its doomed."
+			return
+
+		if(health >= health_max)
+			user << "It's already in perfect condition."
+			return
+
+		if(WT.remove_fuel(0, user))
+			user.visible_message("\blue [user] begins repairing damage to the [src].","\blue You begin repairing the damage to the [src].")
+			if(do_after(user,50))
+				user.visible_message("\blue [user] repairs the damaged [src].","\blue Your repair the [src]'s damage.")
+				update_health(-50)
+				playsound(src.loc, 'sound/items/Welder2.ogg', 75, 1)
+		return
+
+/obj/machinery/marine_turret/mg_turret/get_target()
+	return
+
+// Xeno spawn fixes
+/* Basically making it so that xenos have evolutions be spawnable which would help alot, so this is going to be a long list
+YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
+
+/mob/living/carbon/Xenomorph/Runner
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 15
+		melee_damage_upper = 25
+		health = 120
+		maxHealth = 120
+		storedplasma = 0
+		plasma_gain = 2
+		maxplasma = 150
+		jellyMax = 400
+		caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
+		speed = -1.5
+		armor_deflection = 5
+		attack_delay = -4
+		tacklemin = 2
+		tacklemax = 4
+		tackle_chance = 50
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 150
+		maxHealth = 150
+		storedplasma = 0
+		plasma_gain = 2
+		maxplasma = 200
+		jellyMax = 800
+		caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
+		speed = -1.6
+		armor_deflection = 10
+		attack_delay = -4
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 140
+		maxHealth = 140
+		storedplasma = 0
+		plasma_gain = 2
+		maxplasma = 200
+		caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
+		speed = -2
+		armor_deflection = 10
+		attack_delay = -4
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 70
+
+/mob/living/carbon/Xenomorph/Drone
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 12
+		melee_damage_upper = 16
+		health = 120
+		maxHealth = 120
+		storedplasma = 0
+		maxplasma = 800
+		plasma_gain = 20
+		jellyMax = 1000
+		caste_desc = "The workhorse of the hive. It looks a little more dangerous."
+		armor_deflection = 5
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = -0.6
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 12
+		melee_damage_upper = 16
+		health = 150
+		maxHealth = 150
+		storedplasma = 0
+		maxplasma = 900
+		plasma_gain = 30
+		jellyMax = 1500
+		caste_desc = "The workhorse of the hive. It looks a little more dangerous."
+		armor_deflection = 5
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = -0.6
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		maxplasma = 1000
+		plasma_gain = 50
+		caste_desc = "A very mean architect."
+		armor_deflection = 15
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 80
+		speed = -0.6
+
+/mob/living/carbon/Xenomorph/Carrier
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		maxplasma = 300
+		plasma_gain = 10
+		jellyMax = 1600
+		caste_desc = "A portable Love transport. It looks a little more dangerous."
+		armor_deflection = 10
+		tacklemin = 3
+		tacklemax = 4
+		tackle_chance = 60
+		speed = -0.4
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 30
+		melee_damage_upper = 40
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		maxplasma = 350
+		plasma_gain = 12
+		jellyMax = 3200
+		caste_desc = "A portable Love transport. It looks pretty strong."
+		armor_deflection = 15
+		tacklemin = 4
+		tacklemax = 5
+		tackle_chance = 70
+		speed = -0.4
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		maxplasma = 400
+		plasma_gain = 15
+		caste_desc = "It's literally crawling with 10 huggers."
+		armor_deflection = 20
+		tacklemin = 5
+		tacklemax = 6
+		tackle_chance = 75
+		speed = -0.3
+
+/mob/living/carbon/Xenomorph/Hivelord
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 15
+		melee_damage_upper = 20
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		maxplasma = 900
+		plasma_gain = 40
+		jellyMax = 1600
+		caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
+		armor_deflection = 10
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = 1.4
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 15
+		melee_damage_upper = 20
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		maxplasma = 1000
+		plasma_gain = 50
+		jellyMax = 3200
+		caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
+		armor_deflection = 15
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 70
+		speed = 1.3
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 300
+		maxHealth = 300
+		storedplasma = 0
+		maxplasma = 1200
+		plasma_gain = 70
+		caste_desc = "An extreme construction machine. It seems to be building walls..."
+		armor_deflection = 20
+		tacklemin = 5
+		tacklemax = 7
+		tackle_chance = 80
+		speed = 1.2
+
+/mob/living/carbon/Xenomorph/Praetorian
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 900
+		jellyMax = 1600
+		spit_delay = 15
+		caste_desc = "A giant ranged monster. It looks a little more dangerous."
+		armor_deflection = 50
+		tacklemin = 5
+		tacklemax = 8
+		tackle_chance = 75
+		speed = 1.6
+		spit_type = 0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 30
+		melee_damage_upper = 35
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 40
+		maxplasma = 1000
+		jellyMax = 3200
+		spit_delay = 10
+		caste_desc = "A giant ranged monster. It looks pretty strong."
+		armor_deflection = 55
+		tacklemin = 6
+		tacklemax = 9
+		tackle_chance = 80
+		speed = 1.5
+		spit_type = 0
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 40
+		melee_damage_upper = 50
+		health = 270
+		maxHealth = 270
+		storedplasma = 0
+		plasma_gain = 50
+		maxplasma = 1000
+		spit_delay = 0
+		caste_desc = "Its mouth looks like a minigun."
+		armor_deflection = 60
+		tacklemin = 7
+		tacklemax = 10
+		tackle_chance = 85
+		speed = 1.3
+		spit_type = 0
+
+/mob/living/carbon/Xenomorph/Ravager
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 50
+		melee_damage_upper = 70
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		plasma_gain = 10
+		maxplasma = 150
+		jellyMax = 1600
+		caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
+		speed = -1.2
+		armor_deflection = 60
+		tacklemin = 4
+		tacklemax = 8
+		tackle_chance = 85
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 60
+		melee_damage_upper = 80
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 200
+		jellyMax = 3200
+		caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
+		speed = -1.3
+		armor_deflection = 65
+		tacklemin = 5
+		tacklemax = 9
+		tackle_chance = 90
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 80
+		melee_damage_upper = 100
+		health = 350
+		maxHealth = 350
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 200
+		caste_desc = "As I walk through the valley of the shadow of death."
+		speed = -1.1
+		armor_deflection = 70
+		tacklemin = 6
+		tacklemax = 10
+		tackle_chance = 95
+
+/mob/living/carbon/Xenomorph/Sentinel
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 15
+		melee_damage_upper = 25
+		health = 150
+		maxHealth = 150
+		storedplasma = 0
+		plasma_gain = 12
+		maxplasma = 400
+		jellyMax = 400
+		spit_delay = 25
+		caste_desc = "A ranged combat alien. It looks a little more dangerous."
+		armor_deflection = 20
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = -0.6
+		spit_type = 0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 175
+		maxHealth = 175
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 500
+		jellyMax = 800
+		spit_delay = 20
+		caste_desc = "A ranged combat alien. It looks pretty strong."
+		armor_deflection = 20
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 60
+		speed = -0.6
+		spit_type = 0
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 20
+		maxplasma = 600
+		spit_delay = 10
+		caste_desc = "Neurotoxin Factory, don't let it get you."
+		armor_deflection = 20
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 60
+		speed = -0.6
+		spit_type = 0
+
+/mob/living/carbon/Xenomorph/Spitter
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 180
+		maxHealth = 180
+		storedplasma = 0
+		plasma_gain = 25
+		maxplasma = 700
+		jellyMax = 800
+		spit_delay = 20
+		caste_desc = "A ranged damage dealer. It looks a little more dangerous."
+		armor_deflection = 20
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = 0
+		spit_type = 0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 800
+		jellyMax = 1600
+		spit_delay = 15
+		caste_desc = "A ranged damage dealer. It looks pretty strong."
+		armor_deflection = 25
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 70
+		speed = -0.1
+		spit_type = 0
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 50
+		maxplasma = 900
+		spit_delay = 5
+		caste_desc = "A ranged destruction machine."
+		armor_deflection = 35
+		tacklemin = 5
+		tacklemax = 7
+		tackle_chance = 75
+		speed = -0.2
+		spit_type = 0
+
+/mob/living/carbon/Xenomorph/Hunter
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 170
+		maxHealth = 170
+		storedplasma = 0
+		plasma_gain = 10
+		maxplasma = 150
+		jellyMax = 800
+		caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
+		speed = -1.4
+		armor_deflection = 25
+		attack_delay = -2
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 35
+		melee_damage_upper = 50
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 10
+		maxplasma = 200
+		jellyMax = 1600
+		caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
+		speed = -1.5
+		armor_deflection = 30
+		attack_delay = -3
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 65
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 50
+		melee_damage_upper = 60
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 20
+		maxplasma = 300
+		caste_desc = "A completly unmatched hunter. No, not even the Yautja can match you."
+		speed = -1.5
+		armor_deflection = 40
+		attack_delay = -3
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 65
+
+/mob/living/carbon/Xenomorph/Queen
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 40
+		melee_damage_upper = 55
+		health = 320
+		maxHealth = 320
+		storedplasma = 0
+		maxplasma = 800
+		plasma_gain = 40
+		jellyMax = 1600
+		caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
+		armor_deflection = 65
+		tacklemin = 5
+		tacklemax = 7
+		tackle_chance = 85
+		speed = 0.9
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 50
+		melee_damage_upper = 60
+		health = 350
+		maxHealth = 350
+		storedplasma = 0
+		maxplasma = 900
+		plasma_gain = 50
+		jellyMax = 3200
+		caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
+		armor_deflection = 70
+		tacklemin = 6
+		tacklemax = 9
+		tackle_chance = 90
+		speed = 0.8
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 70
+		melee_damage_upper = 90
+		health = 400
+		maxHealth = 400
+		storedplasma = 0
+		maxplasma = 1000
+		plasma_gain = 50
+		caste_desc = "The most perfect Xeno form imaginable."
+		armor_deflection = 80
+		tacklemin = 7
+		tacklemax = 10
+		tackle_chance = 95
+		speed = 0.7
+
+/mob/living/carbon/Xenomorph/Crusher
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 35
+		tacklemin = 4
+		tacklemax = 7
+		tackle_chance = 95
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 300
+		jellyMax = 1600
+		caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
+		speed = 0.5
+		armor_deflection = 70
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		tacklemin = 5
+		tacklemax = 9
+		tackle_chance = 95
+		health = 300
+		maxHealth = 300
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 400
+		jellyMax = 3200
+		caste_desc = "A huge tanky xenomorph. It looks pretty strong."
+		speed = 0.1
+		armor_deflection = 75
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		tacklemin = 5
+		tacklemax = 9
+		tackle_chance = 95
+		health = 350
+		maxHealth = 350
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 400
+		caste_desc = "It always has the right of way."
+		speed = -0.1
+		armor_deflection = 85
+
+/mob/living/carbon/Xenomorph/Boiler
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 25
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 35
+		maxplasma = 900
+		jellyMax = 1600
+		spit_delay = 30
+		caste_desc = "Some sort of abomination. It looks a little more dangerous."
+		armor_deflection = 30
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 65
+		speed = 1.0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 30
+		melee_damage_upper = 35
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		plasma_gain = 40
+		maxplasma = 1000
+		jellyMax = 3200
+		spit_delay = 20
+		caste_desc = "Some sort of abomination. It looks pretty strong."
+		armor_deflection = 35
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 70
+		speed = 0.9
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 50
+		maxplasma = 1000
+		spit_delay = 10
+		caste_desc = "A devestating piece of alien artillery."
+		armor_deflection = 40
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 80
+		speed = 0.8
