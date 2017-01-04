@@ -224,58 +224,104 @@
 
 /datum/shuttle/ferry/marine/close_doors(var/list/L)
 
-	for(var/turf/T in L)
+	var/i //iterator
+	var/j //iterator (I'm using a second since I iterate inside an iteration and idfk if that'll work with just one var
+	var/turf/T
 
-		for(var/obj/machinery/door/unpowered/D in T)
-			if(!D.density && !D.locked)
-				//"But MadSnailDisease!", you say, "Don't use spawn! Use sleep() and waitfor instead!
-				//Well you would be right if close() were different, but alas it is not.
-				//Without spawn(), it closes each door one at a time.
-				//"Well then why not change the proc itself?"
-				//Excellent question!
-				//Because when you open doors by Bumped() it would have you fly through before the animation is complete
-				spawn(0)
-					D.close()
-				break //If you have more than one door on a turf, too bad
+	iterating:
+		for(i in L)
+			T = i
+			if(!istype(T)) continue
+			var/obj/machinery/door/unpowered/D
+			var/obj/machinery/door/poddoor/shutters/P
+			var/obj/machinery/door/airlock/A //Elevators
+			var/obj/structure/mineral_door/resin/R
+
+			for(j in T)
+				D = j
+				if(istype(D))
+					if(!D.density && !D.locked)
+						//"But MadSnailDisease!", you say, "Don't use spawn! Use sleep() and waitfor instead!
+						//Well you would be right if close() were different, but alas it is not.
+						//Without spawn(), it closes each door one at a time.
+						//"Well then why not change the proc itself?"
+						//Excellent question!
+						//Because when you open doors by Bumped() it would have you fly through before the animation is complete
+						spawn(0)
+							D.close()
+							D.update_nearby_tiles(1)
+					continue iterating //If you have more than one door on a turf, too bad
 
 
-		for(var/obj/machinery/door/poddoor/shutters/P in T)
-			if(!P.density)
-				spawn(0)
-					P.close()
-				break
+				P = j
+				if(istype(P))
+					if(!P.density)
+						spawn(0)
+							P.close()
+							P.update_nearby_tiles(1)
+					continue iterating
 
-		for(var/obj/machinery/door/airlock/D in T)//For elevators
-			if (iselevator)
-				if(!D.density)
-					spawn(0)
-						D.close()
-						D.lock()
-				else
-					D.lock()
-				break
+				A = j
+				if(istype(A))
+					if (iselevator)
+						if(!A.density)
+							spawn(0)
+								A.close()
+								A.lock()
+								A.update_nearby_tiles(1)
+						else
+							A.lock() //We need this here since it's important to lock and update AFTER its closed
+							A.update_nearby_tiles(1)
+					continue iterating
+
+				//I know it doesn't make much sense, but it's this or don't let the shutter be acidable
+				//This will stop Xenos from being vented from the shuttle unless they open the door mid-flight
+				R = j
+				if(istype(R))
+					if(!D.density)
+						spawn(0)
+							R.Close()
+					continue iterating
 
 /datum/shuttle/ferry/marine/open_doors(var/list/L)
 
-	for(var/turf/T in L)
+	var/i //iterator
+	var/j //iterator
+	var/turf/T
 
-		for(var/obj/machinery/door/unpowered/D in T)
-			if(D.density && !D.locked)
-				spawn(0)
-					D.open()
-				break
+	iterating:
+		for(i in L)
+			T = i
+			if(!istype(T)) continue
+			var/obj/machinery/door/unpowered/D
+			var/obj/machinery/door/poddoor/shutters/P
+			var/obj/machinery/door/airlock/A //Elevators
 
-		for(var/obj/machinery/door/poddoor/shutters/P in T)
-			if(P.density)
-				spawn(0)
-					P.open()
-				break
+			for(j in T)
 
-		for(var/obj/machinery/door/airlock/D in T)//For elevators
-			if (iselevator)
-				if(D.locked)
-					D.unlock()
-				if(D.density)
-					spawn(0)
-						D.open()
-				break
+				D = j
+				if(istype(D))
+					if(D.density && !D.locked)
+						spawn(0)
+							D.open()
+							D.update_nearby_tiles(1)
+					continue iterating
+
+				P = j
+				if(istype(P))
+					if(P.density)
+						spawn(0)
+							P.open()
+							P.update_nearby_tiles(1)
+					continue iterating
+
+				A = j
+				if(istype(A))
+					if (iselevator)
+						if(A.locked)
+							A.unlock()
+						if(A.density)
+							spawn(0)
+								A.open()
+								A.update_nearby_tiles(1)
+					continue iterating

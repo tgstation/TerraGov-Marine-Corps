@@ -286,10 +286,11 @@ x_pos = 0 1 2 3 4 5 6 7 8
 			T_src.ChangeTurf(turftoleave)
 		else
 			T_src.ChangeTurf(/turf/simulated/floor/plating)
-
+/* Commented out since this functionality was moved to /datum/shuttle/ferry/marine/close_doors() and open_doors()
 	if(air_master) //*sigh* if that crazy bug is gonna happen, it may as well happen on landing.
 		var/turf/T
 		for(i in update_air)
 			T = i
 			if(!istype(T)) continue
 			air_master.mark_for_update(T)
+*/
