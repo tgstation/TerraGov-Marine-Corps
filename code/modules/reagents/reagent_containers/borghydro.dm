@@ -14,20 +14,17 @@
 	var/charge_tick = 0
 	var/recharge_time = 2 //Time it takes for shots to recharge (in seconds)
 
-	var/list/datum/reagents/reagent_list = list()
-	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "spaceacillin")
-	//var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "anti_toxin", "inaprovaline", "spaceacillin")
-
-/obj/item/weapon/reagent_containers/borghypo/surgeon
-	reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalin", "anti_toxin", "inaprovaline", "tramadol", "spaceacillin", "quickclot")
-
-/obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalin", "anti_toxin", "inaprovaline", "tramadol", "spaceacillin", "quickclot")
+	var/list/reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalin", "anti_toxin", "inaprovaline", "tramadol", "spaceacillin", "quickclot")
+	var/list/reagent_volumes = list()
+	var/list/reagent_names = list()
 
 /obj/item/weapon/reagent_containers/borghypo/New()
 	..()
-	for(var/R in reagent_ids)
-		add_reagent(R)
+
+	for(var/T in reagent_ids)
+		reagent_volumes[T] = volume
+		var/datum/reagent/R = chemical_reagents_list[T]
+		reagent_names += R.name
 
 	processing_objects.Add(src)
 
@@ -36,58 +33,44 @@
 	processing_objects.Remove(src)
 	..()
 
-/obj/item/weapon/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
-	charge_tick++
-	if(charge_tick < recharge_time) return 0
+/obj/item/weapon/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
+	if(++charge_tick < recharge_time)
+		return 0
 	charge_tick = 0
 
-	if(isrobot(src.loc))
-		var/mob/living/silicon/robot/R = src.loc
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/R = loc
 		if(R && R.cell)
-			var/datum/reagents/RG = reagent_list[mode]
-			if(RG.total_volume < RG.maximum_volume) 	//Don't recharge reagents and drain power if the storage is full.
-				R.cell.use(charge_cost) 					//Take power from borg...
-				RG.add_reagent(reagent_ids[mode], 5)		//And fill hypo with reagent.
-	//update_icon()
+			for(var/T in reagent_ids)
+				if(reagent_volumes[T] < volume)
+					R.cell.use(charge_cost)
+					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return 1
 
-// Purely for testing purposes I swear~
-/*
-/obj/item/weapon/reagent_containers/borghypo/verb/add_cyanide()
-	set src in world
-	add_reagent("cyanide")
-*/
-
-// Use this to add more chemicals for the borghypo to produce.
-/obj/item/weapon/reagent_containers/borghypo/proc/add_reagent(var/reagent)
-	reagent_ids |= reagent
-	var/datum/reagents/RG = new(30)
-	RG.my_atom = src
-	reagent_list += RG
-
-	var/datum/reagents/R = reagent_list[reagent_list.len]
-	R.add_reagent(reagent, 30)
-
 /obj/item/weapon/reagent_containers/borghypo/attack(mob/living/M as mob, mob/user as mob)
-	var/datum/reagents/R = reagent_list[mode]
-	if(!R.total_volume)
-		user << "\red The injector is empty."
-		return
-	if (!(istype(M)))
+	if(!istype(M))
 		return
 
-	if (R.total_volume && M.can_inject(user,1))
+	if(!reagent_volumes[reagent_ids[mode]])
+		user << "<span class='warning'>The injector is empty.</span>"
+		return
+
+	if (M.can_inject(user,1))
 		user << "\blue You inject [M] with the injector."
 		M << "\red You feel a tiny prick!"
 
-		R.reaction(M, INGEST)
 		if(M.reagents)
-			var/trans = R.trans_to(M, amount_per_transfer_from_this)
-			user << "\blue [trans] units injected. [R.total_volume] units remaining."
+			var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
+			M.reagents.add_reagent(reagent_ids[mode], t)
+			reagent_volumes[reagent_ids[mode]] -= t
+			// user << "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>"
+			user << "\blue [t] units of \red [reagent_ids[mode]] \blue injected for a total of \red [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]\blue. [reagent_volumes[reagent_ids[mode]]] units remaining."
+
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/attack_self(mob/user as mob)
 	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
+	if(!selection) return
 	var/datum/reagent/R = chemical_reagents_list[selection]
 	user << "\blue Synthesizer is now producing '[R.name]'."
 	mode = reagent_ids.Find(selection)
@@ -99,14 +82,6 @@
 	..()
 	if (!(usr in view(2)) && usr!=src.loc) return
 
-	var/empty = 1
+	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
 
-	for(var/datum/reagents/RS in reagent_list)
-		var/datum/reagent/R = locate() in RS.reagent_list
-		if(R)
-			usr << "\blue It currently has [R.volume] units of [R.name] stored."
-			empty = 0
-	var/datum/reagent/RS = chemical_reagents_list[reagent_ids[mode]]
-	usr << "\blue Synthesizer is set to '[RS.name]'."
-	if(empty)
-		usr << "\blue It is currently empty. Allow some time for the internal syntheszier to produce more."
+	usr << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"
