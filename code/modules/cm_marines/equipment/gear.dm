@@ -695,7 +695,7 @@
 		<b>Yellow:</b> Potential Threat<br><br>
 		<b>Whiskey Outpost Tactical Map:</b>
 		<br>
-		<img src="whiskey_outpost.png" alt="Map">
+		<img src="whiskey_outpost_redone.png" alt="Map">
 		</body>
 
 		</html>

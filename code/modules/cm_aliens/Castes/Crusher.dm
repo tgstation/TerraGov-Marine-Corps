@@ -202,6 +202,12 @@ proc/diagonal_step(var/atom/movable/A, var/direction, var/probab = 75)
 		T.Crossed(src)
 		return 0
 
+	if(istype(AM, /obj/structure/m_barricade/sandbags))
+		var/obj/structure/m_barricade/sandbags/S = AM
+		now_pushing = 0
+		S.Crossed(src)
+		return 0
+
 	start_loc = AM.loc
 	if(isobj(AM) && AM.density) //Generic dense objects that aren't tables.
 		var/obj/O = AM
