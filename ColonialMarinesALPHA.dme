@@ -1512,7 +1512,6 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.01.LV624.dmm"
 #include "maps\Z.01.WhiskeyOutpostV2.dmm"
 #include "maps\Z.02.Centcomm.dmm"
 #include "maps\Z.03.PlaceholderSulaco.dmm"

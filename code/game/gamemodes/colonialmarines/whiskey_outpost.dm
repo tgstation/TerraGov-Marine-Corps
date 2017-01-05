@@ -1405,11 +1405,11 @@
 
 //Stationary Machinegun
 /obj/machinery/marine_turret/mg_turret
-	name = "OT-T0 Machine Gun"
-	desc = "A Swedish defensive machinegun made in the 2100s. While fairly rare on any Weyland or USCM outposts, it finds its niche market among non-US affliated colonial outcropings. However we've somehow aquired a few here."
+	name = "M56 Smartgun Nest"
+	desc = "A M56 smartgun mounted upon a small post reinforced with sandbags to provide a small machinegun nest for all your defense purpose needs."
 	on = 1
 	burst_fire = 1
-	fire_delay = 20
+	fire_delay = 15
 	rounds = 900
 	rounds_max = 900
 	icon = 'icons/turf/whiskeyoutpost.dmi'
@@ -1471,7 +1471,7 @@
 					usr << "It's already firing in a burst."
 				else
 					burst_fire = 1
-					fire_delay = 20
+					fire_delay = 15
 					visible_message("\icon[src] [src] emits a audiable hard click.")
 					usr << "\blue You activate the burst fire mode."
 			else
@@ -1479,7 +1479,7 @@
 					usr << "It's already firing single shots."
 				else
 					burst_fire = 0
-					fire_delay = 10
+					fire_delay = 5
 					visible_message("\icon[src] [src] emits a audiable soft click.")
 					usr << "\blue You deactivate the burst fire mode."
 		if("manual")
