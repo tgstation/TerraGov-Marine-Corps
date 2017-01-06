@@ -497,7 +497,7 @@
 "jC" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow{dir = 4},/turf/simulated/wall/sulaco,/area/sulaco/maintenance/lower_maint)
 "jD" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow{dir = 4},/turf/simulated/wall/sulaco/unmeltable,/area/sulaco/maintenance/lower_maint)
 "jE" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/turf/simulated/wall/sulaco/unmeltable,/area/sulaco/maintenance/lower_maint)
-"jF" = (/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{dir = 1},/turf/simulated/wall/sulaco,/area/sulaco/maintenance/lower_maint)
+"jF" = (/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{dir = 1},/turf/simulated/wall/sulaco/unmeltable,/area/sulaco/maintenance/lower_maint)
 "jG" = (/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,/turf/simulated/wall/sulaco,/area/sulaco/maintenance/lower_maint)
 "jH" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow{dir = 4},/obj/structure/rack,/obj/item/device/assembly/timer,/obj/item/device/assembly/timer,/obj/item/device/assembly/timer,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
 "jI" = (/obj/machinery/atmospherics/pipe/simple/hidden/yellow{dir = 4},/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)

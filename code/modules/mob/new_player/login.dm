@@ -29,5 +29,5 @@
 	new_player_panel()
 	spawn(40)
 		if(client)
-			handle_privacy_poll()
+			// handle_privacy_poll() //This is in poll.dm and could be used to run polls for all first-time logins. It won't reappear after they vote.
 			client.playtitlemusic()
