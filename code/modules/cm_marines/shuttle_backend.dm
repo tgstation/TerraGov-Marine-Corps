@@ -183,6 +183,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 /obj/effect/landmark/shuttle_loc
 	desc = "The reference landmark for shuttles"
 	icon = null
+	invisibility = 101 //<insert John Cena joke here>
 
 /obj/effect/landmark/shuttle_loc/marine_src
 

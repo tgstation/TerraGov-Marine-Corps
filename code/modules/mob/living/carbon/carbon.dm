@@ -519,6 +519,12 @@
 
 			tmob.LAssailant = src
 
+		//I really, REALLY, hate to do this and would much rather prefer to use Bumped()
+		//But that requires this proc to call it and it doesn't, so I'm in too deep now --MadSnailDisease
+		//TODO: Overhaul these procs to use Bumped()
+		if(istype(AM, /turf/simulated/wall/invisible))
+			var/turf/simulated/wall/invisible/I = AM
+			I.Bumped(src)
 		now_pushing = 0
 		..()
 		if (!( istype(AM, /atom/movable) ))
