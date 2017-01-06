@@ -57,10 +57,11 @@
 
 	if (M.can_inject(user,1))
 		user << "\blue You inject [M] with the injector."
-		M << "\red You feel a tiny prick!"
+		M << "\blue [user] injects you with the injector."
 
 		if(M.reagents)
 			var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
+			if(reagent_ids[mode] == "quickclot") t = 1
 			M.reagents.add_reagent(reagent_ids[mode], t)
 			reagent_volumes[reagent_ids[mode]] -= t
 			// user << "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>"
