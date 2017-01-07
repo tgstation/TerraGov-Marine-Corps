@@ -462,8 +462,8 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/protein_pack
-	name = "satchel of protein substitute"
-	desc = "What.. what IS this? Is this food? Are you supposed to put it in your mouth? It oozes inside the translucent bag and smells like hobo vomit."
+	name = "stale USCM protein bar"
+	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
 	filling_color = "#ED1169"
 
