@@ -47,7 +47,7 @@
 					name = "\improper 'Mask of the Enforcer'"
 					icon_state = "pred_mask_elder_feweh"
 				if(4879)
-					name = "\improper 'Mask of the Collector'"
+					name = "\improper 'Mask of the Ambivalent Collector'"
 					icon_state = "pred_mask_elder_n"
 
 	verb/togglesight()
@@ -146,7 +146,7 @@
 					flags_armor_protection = UPPER_TORSO|ARMS
 					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 				if(4879)
-					name = "\improper 'Armor of the Collector'"
+					name = "\improper 'Armor of the Ambivalent Collector'"
 					icon_state = "halfarmor_elder_n"
 					flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 					armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
@@ -215,7 +215,7 @@
 				icon_state = "cape_elder_feweh"
 				item_state = "cape_elder_feweh"
 			if(4879)
-				name = "\improper 'Mantle of the Collector'"
+				name = "\improper 'Mantle of the Ambivalent Collector'"
 				icon_state = "cape_elder_n"
 				item_state = "cape_elder_n"
 
