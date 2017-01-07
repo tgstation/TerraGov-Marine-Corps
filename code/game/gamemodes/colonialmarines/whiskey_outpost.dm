@@ -198,10 +198,12 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), WEAR_BACK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), WEAR_BODY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/green(H), WEAR_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), WEAR_L_EAR)
 
+		//HUD GLASSES (NEEDED)
 		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
 
 		//Combat Lifesaver belt
@@ -1460,6 +1462,13 @@
 		dat += "ON<BR>"
 	else
 		dat += "OFF<BR>	"
+	dat += "--------------------<BR><BR>"
+	if(manual_override)
+		dat += "MANUAL OVERRIDE<BR>"
+	else
+		dat += "ON<BR>"
+	dat += "<A href='?src=\ref[src];op=manual'>Manual Override Toggle</a><BR><BR>"
+	dat += "--------------------<BR><BR>"
 	dat += "<A href='?src=\ref[src];op=close'>{Close}</a><BR>"
 	user.set_machine(src)
 	user << browse(dat, "window=turret;size=300x400")
@@ -1496,6 +1505,31 @@
 					fire_delay = 0
 					visible_message("\icon[src] [src] emits a audiable soft click.")
 					usr << "\blue You deactivate the burst fire mode."
+		if("manual")
+			if(!dir_locked)
+				usr << "The turret can only be fired manually in direction-locked mode."
+			else
+				if(alert(usr,"Do you want to man the machinegun","MAN THE GUN", "Yes", "No") == "Yes")
+					if(gunner)
+						usr << "Someone's already controlling it."
+					else
+						if(user.turret_control)
+							usr << "You're already controlling one!"
+						else
+							gunner = usr
+							visible_message("\icon[src] \red[src] mans the machinegun")
+							usr << "\blue You take control of the machinegun."
+							user.turret_control = src
+							manual_override = 1
+				else
+					if(user.turret_control)
+						gunner = null
+						visible_message("\icon[src] [user] leaves the machinegun")
+						usr << "\blue You decide to let someone else take a shot."
+						user.turret_control = null
+						manual_override = 0
+					else
+						user << "You're not controlling this machinegun."
 			if(stat == 2)
 				stat = 0 //Weird bug goin on here
 	src.attack_hand(user)
