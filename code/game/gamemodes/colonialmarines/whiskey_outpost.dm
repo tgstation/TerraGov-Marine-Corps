@@ -39,7 +39,7 @@
 	var/list/turf/supply_spawns = list()
 
 
-	var/next_supply = 0 //At which wave does the next supply drop come?
+	var/next_supply = 1 //At which wave does the next supply drop come?
 
 	var/ticks_passed = 0
 	var/lobby_time = 0 //Lobby time does not count for marine 1h win condition
@@ -202,6 +202,8 @@
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), WEAR_L_EAR)
 
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
+
 		//Combat Lifesaver belt
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
 
@@ -322,6 +324,7 @@
 
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
+					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 
 				if(12 to 13)//Flamethrower
 					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_J_STORE)
@@ -335,7 +338,6 @@
 
 				if(14)//Grenade Launcher
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/grenade_system(H), WEAR_R_HAND)
-
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 
@@ -506,7 +508,7 @@
 						break //Place only 3
 
 					switch(xeno_wave)
-						if(0 to 11)
+						if(1 to 11)
 							next_supply++
 						if(12 to 18)
 							next_supply += 2
@@ -1425,8 +1427,8 @@
 	on = 1
 	burst_fire = 1
 	fire_delay = 15
-	rounds = 900
-	rounds_max = 900
+	rounds = 1500
+	rounds_max = 1500
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "towergun"
 	safety_off = 1
@@ -1458,11 +1460,6 @@
 		dat += "ON<BR>"
 	else
 		dat += "OFF<BR>	"
-	dat += "--------------------<BR><BR>"
-	if(manual_override)
-		dat += "MANUAL OVERRIDE<BR>"
-	dat += "<A href='?src=\ref[src];op=manual'>Manual Override Toggle</a><BR><BR>"
-	dat += "--------------------<BR><BR>"
 	dat += "<A href='?src=\ref[src];op=close'>{Close}</a><BR>"
 	user.set_machine(src)
 	user << browse(dat, "window=turret;size=300x400")
@@ -1488,7 +1485,7 @@
 					usr << "It's already firing in a burst."
 				else
 					burst_fire = 1
-					fire_delay = 15
+					fire_delay = 5
 					visible_message("\icon[src] [src] emits a audiable hard click.")
 					usr << "\blue You activate the burst fire mode."
 			else
@@ -1496,31 +1493,9 @@
 					usr << "It's already firing single shots."
 				else
 					burst_fire = 0
-					fire_delay = 5
+					fire_delay = 0
 					visible_message("\icon[src] [src] emits a audiable soft click.")
 					usr << "\blue You deactivate the burst fire mode."
-		if("manual")
-			if(alert(usr,"Are you sure you want to man the machinegun?","MAN THE GUN", "Yes", "No") == "Yes")
-				if(gunner)
-					usr << "Someone's already controlling it."
-				else
-					if(user.turret_control)
-						usr << "You're already controlling one!"
-					else
-						gunner = usr
-						visible_message("\icon[src] [usr] mans the machinegun!")
-						usr << "\blue You man the turret."
-						user.turret_control = src
-						manual_override = 1
-			else
-				if(user.turret_control)
-					gunner = null
-					visible_message("\icon[src] [usr] leaves the machinegun!")
-					usr << "\blue you decided to let someone else have a go."
-					user.turret_control = null
-					manual_override = 0
-				else
-					user << "You're not controlling this turret."
 			if(stat == 2)
 				stat = 0 //Weird bug goin on here
 	src.attack_hand(user)
