@@ -2,7 +2,7 @@
 	name = "Whiskey Outpost"
 	config_tag = "Whiskey Outpost"
 	required_players 		= 1
-	recommended_enemies 	= 6 //Force doctors and commander if no one wants them
+	recommended_enemies 	= 3 //Force doctors and commander if no one wants them
 	xeno_bypass_timer 		= 1
 	role_instruction		= 1
 	roles_for_mode = list(/datum/job/marine/standard/equipped,
