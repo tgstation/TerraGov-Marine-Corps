@@ -21,8 +21,8 @@
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 
 	var/spawn_next_wave = 200 //Spawn first batch at ~15 minutes //200
-	var/xeno_wave = 0 //Which wave is it
-	var/spawn_xeno_num = 30 //How many to spawn per wave //First wave is big, cus runners.
+	var/xeno_wave = 1 //Which wave is it
+	var/spawn_xeno_num = 20 //How many to spawn per wave //First wave is big, cus runners.
 
 	var/wave_ticks_passed = 0 //Timer for xeno waves
 
@@ -113,9 +113,13 @@
 
 	spawn(10)
 		world << "<B>The current game mode is - WHISKEY OUTPOST!</B>"
-		world << "Marines are sent in to defend the outpost on this hostile planet"
+		world << "Marines have to defend the outpost on this hostile planet"
 		world << "They need to hold it for one hour until main forces arrive"
 		world << sound('sound/effects/siren.ogg')
+
+	spawn (50)
+		command_announcement.Announce("This is Commander Anderson speaking from the USS Alistoun. We've heard the Sulaco's distress beacon, but we need you to hold Whiskey Outpost for an hour before the marine force is equipped and ready. We're sending UD-22 Navajo gunships to assist in your defense.", "USS Alistoun")
+
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 
@@ -180,7 +184,7 @@
 				H << "________________________"
 				H << "\red <b>You are the Commander!<b>"
 				H << "Coordinate your team and prepare defenses."
-				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "In your command pod there are four IR target beacons. Distribute them among your squad leaders."
 				H << "Stay alive! If you die, supplies will stop arriving."
 				H << "Hold the outpost for one hour until the main force arrives!"
 				H << "________________________"
@@ -207,7 +211,7 @@
 
 		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
-		W.access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE)
+		W.access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_IFF_MARINE)
 		W.assignment = "Doctor"
 		W.registered_name = M.real_name
 		H.equip_to_slot_or_del(W, WEAR_ID)
@@ -242,8 +246,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/machete(H), WEAR_R_HAND)
 
 			//Binos, webbing and bomb beacons in backpack
-			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/device/airstrikebeacon(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
@@ -547,6 +550,14 @@
 	if(slashing_allowed != 1)
 		slashing_allowed = 1 //Allows harm intent for aliens
 
+	var/humans_alive = count_humans()
+
+	if(humans_alive > 50)
+		humans_alive = 50
+
+	if(humans_alive < 5)
+		humans_alive = 5
+
 	var/side = rand(0,4)
 		//0 - All directions
 		//1-4 - List number
@@ -568,14 +579,14 @@
 //			world << "Loc: 4"
 
 	switch(xeno_wave)//Xeno spawn controller
-		if(0)//Mostly weak runners
+		if(1)//Mostly weak runners
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner)
-			spawn_xeno_num = 20 //Reset
+			spawn_xeno_num = (humans_alive * 0.5) //Reset
 			spawn_next_wave = 90
 			world << sound('sound/effects/siren.ogg') //Mark the first wave
 
 
-		if(1)//Sentinels and drones are more common
+		if(2)//Sentinels and drones are more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner/mature,
@@ -601,11 +612,11 @@
 						/mob/living/carbon/Xenomorph/Spitter/mature,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
-		if(7)
+		if(8)
 			spawn_next_wave += 110 //Slow down now, strong castes introduced next wave
-			spawn_xeno_num = 20
+			spawn_xeno_num = (humans_alive * 2)
 
-		if(8)//Ravager and Praetorian Added, Tier II more common, Tier I less common
+		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Hunter/elite,
@@ -642,7 +653,7 @@
 						/mob/living/carbon/Xenomorph/Drone/mature,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
-		if(14)//Start the ancient
+		if(15)//Start the ancient
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient,
 						/mob/living/carbon/Xenomorph/Boiler/ancient,
 						/mob/living/carbon/Xenomorph/Ravager/ancient,
@@ -655,7 +666,7 @@
 						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Praetorian)
 
-		if(15 to INFINITY)
+		if(16 to INFINITY)
 			var/random_wave = rand(0,8)
 			switch(random_wave)
 				if(0 to 5)//Normal list, but makes it easier to pick stronger units
@@ -800,7 +811,7 @@
 	if(finished == 1)
 		feedback_set_details("round_end_result","Xenos won")
 		world << "\red <FONT size = 4><B>The Xenos have succesfully defended their home planet from colonization.</B></FONT>"
-		world << "<FONT size = 3><B>Well done, you showed those snowflakes what war means!</B></FONT>"
+		world << "<FONT size = 3><B>Well done, you've secured the planet for the hive!</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner:)"
@@ -1204,7 +1215,7 @@
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/device/binoculars,
-								/obj/item/device/squad_beacon/bomb)
+								/obj/item/device/airstrikebeacon)
 
 			if(5 to 8)//Lights and shiet
 				choosemax = rand(10,20)
@@ -1361,6 +1372,12 @@
 	health = 250 //Pretty tough. Changes sprites at 300 and 150.
 	unacidable = 0 //Who the fuck though unacidable barricades with 500 health was a good idea?
 
+	New()
+		if(dir != NORTH)
+			layer = 5
+		else
+			layer = 3
+
 	Crossed(atom/movable/O)
 		..()
 		if(istype(O,/mob/living/carbon/Xenomorph/Crusher))
@@ -1370,8 +1387,6 @@
 				destroy()
 
 	update_icon()
-		if(dir != NORTH)
-			layer = 5
 		icon_state = initial(icon_state)
 
 	update_health()
@@ -1405,8 +1420,8 @@
 
 //Stationary Machinegun
 /obj/machinery/marine_turret/mg_turret
-	name = "M56 Smartgun Nest"
-	desc = "A M56 smartgun mounted upon a small post reinforced with sandbags to provide a small machinegun nest for all your defense purpose needs."
+	name = "M56D Smartgun Nest"
+	desc = "A M56D smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs."
 	on = 1
 	burst_fire = 1
 	fire_delay = 15
@@ -1414,6 +1429,8 @@
 	rounds_max = 900
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "towergun"
+	safety_off = 1
+	ammo = /datum/ammo/bullet/machinegun
 
 	New()
 		spark_system = new /datum/effect/effect/system/spark_spread
@@ -1530,6 +1547,107 @@
 
 /obj/machinery/marine_turret/mg_turret/get_target()
 	return
+
+/obj/machinery/marine_turret/mg_turret/update_icon()
+	icon_state = "towergun"
+
+/obj/machinery/marine_turret/mg_turret/update_health(var/damage) //Negative damage restores health.
+	health -= damage
+	if(health > health_max)
+		health = health_max
+	if(health <= 0)
+		visible_message("The MG nest collapses!")
+		del(src)
+	update_icon()
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+// So to finish the vietnam feel, adding IN NAPALM AIR STRIKES.
+// Because appearntly this is a great idea.
+
+/obj/item/device/airstrikebeacon // Taking most of this from the OB code
+	name = "IR target beacon"
+	desc = "Used to signal to UD-22 'Navajo' gunships to target the area it is dropped upon, often with napalm. There is also a rotating switch on the side to change from horizontal to verticle strike paths."
+	icon = 'icons/turf/whiskeyoutpost.dmi'
+	icon_state = "ir_beacon"
+	w_class = 2
+	var/activated = 0
+	var/icon_activated = "ir_beacon_active"
+	var/target_plane = 0 //0 means E-W, 1 means N-S.
+
+	attack_self(mob/user)
+		if(activated)
+			user << "It's already been activated. Toss it and book it!" // Seriously.
+			return
+
+		if(!ishuman(user)) return
+		if(!user.mind)
+			user << "It doesn't seem to do anything for you."
+			return
+
+		if(user.z != 1)
+			user << "You have to be on the ground to use this or it won't transmit to the gunships."
+			return
+
+		message_admins("ALERT: [user] ([user.key]) triggered an napalm airstrike.")
+		activated = 1
+		anchored = 1
+		w_class = 10
+		icon_state = "[icon_activated]"
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		user << "You activate the [src]. Now toss it, the gunships will lock on in 30 seconds! You have 5 seconds after that to get outside of danger close!"
+		initate_airstrike()
+		return
+
+/obj/item/device/airstrikebeacon/proc/initate_airstrike() //Airstrike inbound!
+	sleep(300)
+	var/turf/T = get_turf(src) // get where we are.
+	var/offset_x = 0
+	var/offset_y = 0
+	if(!target_plane)
+		offset_x = 4
+	if(target_plane)
+		offset_y = 4
+	var/turf/target = locate(T.x + offset_x,T.y + offset_y,T.z) //Three napalm rockets are launched
+	var/turf/target_2 = locate(T.x,T.y,T.z)
+	var/turf/target_3 = locate(T.x - offset_x,T.y - offset_y,T.z)
+	var/turf/target_4 = locate(T.x - (offset_x*2),T.y - (offset_y*2),T.z)
+	sleep(50) //AWW YEAH
+	visible_message("<span class='notice'> You hear engines roaring by!</span>")
+	sleep(10)
+	flame_radius(4,target)
+	explosion(target,  -1, 3, 4, 6)
+	sleep(10)
+	flame_radius(4,target_2)
+	explosion(target_2,  -1, 3, 4, 6)
+	sleep(10)
+	flame_radius(4,target_3)
+	explosion(target_3,  -1, 3, 4, 6)
+	sleep(10)
+	flame_radius(4,target_4)
+	explosion(target_4,  -1, 3, 4, 6)
+	sleep(5)
+	del(src) // get rid of the beacon
+	return
+
+/obj/item/device/airstrikebeacon/verb/switch_plane()
+	set category = "Weapons"
+	set name = "Change Airstrike Direction"
+	set desc = "Will change the airstrike plane from going East/West to North/South and vice versa"
+	set src in usr
+
+	playsound(src,'sound/machines/click.ogg', 50, 1)
+
+	if(!target_plane)
+		target_plane = 1
+		return
+	if(target_plane)
+		target_plane = 0
+		return
+	return
+
+/////////////////////////////////////////////////////////////////////////////////
 
 // Xeno spawn fixes
 /* Basically making it so that xenos have evolutions be spawnable which would help alot, so this is going to be a long list

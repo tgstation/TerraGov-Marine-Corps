@@ -559,6 +559,17 @@
 		penetration= config.mlow_armor_penetration
 		accuracy = config.high_hit_accuracy
 
+/datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
+	name = "machinegun bullet"
+	icon_state 	= "bullet" // Keeping it bog standard with the turret but allows it to be changed. Had to remove IFF so you have to watch out.
+	New()
+		..()
+		accurate_range = config.short_shell_range
+		max_range = config.short_shell_range
+		damage = config.med_hit_damage
+		penetration= config.mlow_armor_penetration
+		accuracy = config.high_hit_accuracy
+
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
 	New()

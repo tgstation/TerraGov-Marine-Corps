@@ -687,15 +687,7 @@
 		</head>
 
 		<body>
-		<b>Purple:</b> Supply Drops<br>
-		<b>Orange:</b> Tcomms Tower and APC<br>
-		<b>LBlue:</b>  Recycler<br>
-		<b>DBlue:</b>  Defensive Positions<br>
-		<b>Red:</b>    Threat<br>
-		<b>Yellow:</b> Potential Threat<br><br>
-		<b>Whiskey Outpost Tactical Map:</b>
-		<br>
-		<img src="whiskey_outpost_redone.png" alt="Map">
+		<img src="whiskeyoutpost.png" alt="Map">
 		</body>
 
 		</html>
