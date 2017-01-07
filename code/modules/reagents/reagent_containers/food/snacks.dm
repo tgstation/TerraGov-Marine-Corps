@@ -9,11 +9,13 @@
 	var/trash = null
 	var/slice_path
 	var/slices_num
+	var package = 0
 	center_of_mass = list("x"=15, "y"=15)
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)	return
+
 	if(!reagents.total_volume)
 		if(M == usr)
 			usr << "<span class='notice'>You finish eating \the [src].</span>"
@@ -37,6 +39,10 @@
 		user << "\red None of [src] left, oh no!"
 		M.drop_from_inventory(src)	//so icons update :[
 		del(src)
+		return 0
+
+	if(package == 1)
+		M << "\red How do you expect to eat this with the package still on?"
 		return 0
 
 	if(istype(M, /mob/living/carbon))
@@ -3004,30 +3010,52 @@
 	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
 	icon_state = "burrito"
 	bitesize = 2
+	package = 1
 	New()
 		..()
 		reagents.add_reagent("nutriment", 5)
-	trash = /obj/item/trash/buritto
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			user << "<span class='notice'>You pull off the wrapping from the squishy burrito!</span>"
+			package = 0
+			icon_state = "openburrito"
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged_burger
 	name = "Packaged Cheeseburger"
 	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
 	icon_state = "burger"
 	bitesize = 3
+	package = 1
 	New()
 		..()
 		reagents.add_reagent("nutriment", 7)
-	trash = /obj/item/trash/burger
+
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			user << "<span class='notice'>You pull off the wrapping from the squishy hamburger!</span>"
+			package = 0
+			icon_state = "hburger"
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged_hdogs
-	name = "Packaged Hotdogs"
-	desc = "A pair of squishy microwavable hot dogs. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
+	name = "Packaged Hotdog"
+	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, so you assume its probably good to go. Packaged by the Weyland-Yutani Corporation."
 	icon_state = "hot_dogs"
 	bitesize = 2
+	package = 1
 	New()
 		..()
 		reagents.add_reagent("nutriment", 4)
-	trash = /obj/item/trash/hotdog
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			user << "<span class='notice'>You pull off the wrapping from the squishy hotdog!</span>"
+			package = 0
+			icon_state = "hotdog"
 
 /obj/item/weapon/reagent_containers/food/snacks/eat_bar
 	name = "EAT Bar"
