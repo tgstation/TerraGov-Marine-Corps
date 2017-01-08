@@ -79,9 +79,9 @@
 					user  << "\red You are already shoveling!"
 					return
 
-				//Taking
+				//Placing
 				if(S.has_snow)
-					if(slayer == 3)
+					if(slayer > 2)
 						user  << "\red You can't add any more snow here!"
 						return
 
@@ -97,7 +97,7 @@
 						S.working = 0
 						return
 
-					if(slayer == 3)
+					if(slayer > 2)
 						user  << "\red You can't add any more snow here!"
 						S.working = 0
 						return
@@ -109,9 +109,9 @@
 					update_icon(1,0)
 					S.working = 0
 
-				//Placing
+				//Taking
 				else
-					if(slayer <= 0)
+					if(slayer < 1)
 						user  << "\red There is no more snow to pick up!"
 						return
 
@@ -123,7 +123,7 @@
 						S.working = 0
 						return
 
-					if(slayer <= 0)
+					if(slayer < 1)
 						user  << "\red There is no more snow to pick up!"
 						S.working = 0
 						return
@@ -141,7 +141,7 @@
 					user  << "\red You are already shoveling!"
 					return
 
-				if(!slayer)
+				if(!slayer || slayer == 0)
 					user  << "\red You can't build the barricade here, there must be more snow on that area!"
 					return
 
@@ -157,7 +157,7 @@
 					S.working = 0
 					return
 
-				if(!slayer)
+				if(!slayer || slayer == 0)
 					user  << "\red You can't build the barricade here, there must be more snow on that area!"
 					S.working = 0
 					return
@@ -169,6 +169,7 @@
 
 				var/obj/structure/barricade/snow/B = new/obj/structure/barricade/snow(src)
 				user.visible_message("\blue \The [user] creates a [slayer < 3 ? "weak" : "decent"] [B].")
+				B.icon_state = "barricade_[slayer]"
 				B.health = slayer * 25
 				B.dir = user.dir
 				slayer = 0
@@ -187,7 +188,7 @@
 		dir = pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST)
 		switch(slayer)
 			if(0)
-				name = "[initial(name)]"
+				name = "dirt floor"
 			if(1)
 				name = "shallow [initial(name)]"
 			if(2)
@@ -404,7 +405,7 @@
 	var/turf/unsimulated/floor/snow/T
 	if (istype(src.loc,/turf/unsimulated/floor/snow)) //Find the snow turf at random coords
 		T = src.loc
-		if (T && T.slayer < 3)
+		if (T && T.slayer < 2)
 			T.slayer++
 			T.update_icon(1,0)
 			if (prob(2))
@@ -416,6 +417,21 @@
 /obj/structure/snow_weather_effect/ex_act(severity)
 	return
 
+//Dirt Floor
+/turf/unsimulated/floor/dirt
+	name = "dirt floor"
+	icon = 'icons/turf/snow2.dmi'
+	icon_state = "dirt"
+	temperature = ICE_TEMPERATURE
+	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	oxygen = MOLES_O2STANDARD*1.15
+	nitrogen = MOLES_N2STANDARD*1.15
+
+	//Randomize dirt floor sprite
+	New()
+		..()
+		dir = pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST)
+
 //Ice Floor
 /turf/unsimulated/floor/ice
 	name = "ice floor"
@@ -426,7 +442,7 @@
 	oxygen = MOLES_O2STANDARD*1.15
 	nitrogen = MOLES_N2STANDARD*1.15
 
-	//Randomize ice floor
+	//Randomize ice floor sprite
 	New()
 		..()
 		dir = pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST)
@@ -436,16 +452,32 @@
 //Ice Wall
 /turf/unsimulated/wall/ice
 	name = "dense ice wall"
-	icon = 'icons/turf/ice.dmi'
-	icon_state = "ice_wall"
+	icon = 'icons/turf/icewall.dmi'
+	icon_state = "Single"
 	desc = "It is very thick."
 	temperature = ICE_TEMPERATURE
 	oxygen = MOLES_O2STANDARD*1.15
 	nitrogen = MOLES_N2STANDARD*1.15
 	slayer = 10 //To check where to put the overlay
 
-	New()
-		..()
+/turf/unsimulated/wall/ice/single
+	icon_state = "Single"
+
+/turf/unsimulated/wall/ice/end
+	icon_state = "End"
+
+/turf/unsimulated/wall/ice/straight
+	icon_state = "Straight"
+
+/turf/unsimulated/wall/ice/corner
+	icon_state = "Corner"
+
+/turf/unsimulated/wall/ice/junction
+	icon_state = "T_Junction"
+
+/turf/unsimulated/wall/ice/intersection
+	icon_state = "Intersection"
+
 		//update_icon(1)
 
 	/*
@@ -500,10 +532,29 @@
 //Ice Thin Wall
 /turf/unsimulated/wall/ice/thin
 	name = "thin ice wall"
-	icon_state = "ice_wallL2"
+	icon = 'icons/turf/icewalllight.dmi'
+	icon_state = "Single"
 	desc = "It is very thin."
-	opacity = 0
 	slayer = 9
+	opacity = 0
+
+/turf/unsimulated/wall/ice/thin/single
+	icon_state = "Single"
+
+/turf/unsimulated/wall/ice/thin/end
+	icon_state = "End"
+
+/turf/unsimulated/wall/ice/thin/straight
+	icon_state = "Straight"
+
+/turf/unsimulated/wall/ice/thin/corner
+	icon_state = "Corner"
+
+/turf/unsimulated/wall/ice/thin/junction
+	icon_state = "T_Junction"
+
+/turf/unsimulated/wall/ice/thin/intersection
+	icon_state = "Intersection"
 
 //Ice Secret Wall
 /turf/unsimulated/wall/ice/secret
@@ -717,8 +768,8 @@
 /obj/structure/barricade/snow
 	name = "snow barricade"
 	desc = "It could be worse..."
-	icon = 'icons/turf/snow2.dmi'
-	icon_state = "barricade"
+	icon = 'icons/turf/snowbarricade.dmi'
+	icon_state = "barricade_3"
 	var/health = 50 //Actual health depends on snow layer
 	climbable = 1
 	density = 1
