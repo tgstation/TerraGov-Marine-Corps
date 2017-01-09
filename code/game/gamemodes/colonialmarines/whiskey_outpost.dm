@@ -2,14 +2,15 @@
 	name = "Whiskey Outpost"
 	config_tag = "Whiskey Outpost"
 	required_players 		= 1
-	recommended_enemies 	= 3 //Force doctors and commander if no one wants them
+	recommended_enemies 	= 1 //Force doctors and commander if no one wants them
 	xeno_bypass_timer 		= 1
 	role_instruction		= 1
 	roles_for_mode = list(/datum/job/marine/standard/equipped,
 					/datum/job/marine/medic/equipped,
 					/datum/job/marine/engineer/equipped,
 					/datum/job/marine/specialist/equipped,
-					/datum/job/marine/leader/equipped
+					/datum/job/marine/leader/equipped,
+					/datum/job/civilian/doctor
 					)
 
 	flags_round_type	= MODE_NO_LATEJOIN
@@ -77,26 +78,26 @@
 			supply_spawns += L.loc
 
 	//Ehh, setting special roles is done in spawn_player()
-	var/list/possible_roles = get_players_for_role(BE_WO_ROLE) //Grab people who want to be speshul
-	var/docs_free = 5
+	var/list/possible_commanders = get_players_for_role(BE_WO_COM) //Grab people who want to be speshul
+	var/honor_guard = 4
 
 	//Setup possible roles list
-	if(possible_roles.len)
+	if(possible_commanders.len)
 		//Commanders
-		for(var/datum/mind/S in possible_roles)
+		for(var/datum/mind/S in possible_commanders)
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
 				S.special_role = "WO_COM"
 				break
 
-		//Doctors
-		for(var/datum/mind/S in possible_roles)
+		for(var/datum/mind/S in possible_commanders)
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
-				S.special_role = "WO_DOC"
-				docs_free--
-				if(!docs_free)
+				S.special_role = "WO_GUARD"
+				honor_guard--
+				if(!honor_guard)
 					break
+
 
 	return 1
 
@@ -141,6 +142,12 @@
 			for(var/I in H.contents)//Delete the cryo uniform
 				if(istype(I,/obj/item/clothing/under/pj/marine))
 					del(I)
+		if(H.mind.assigned_role == "Doctor")
+			for(var/I in H.contents)
+				if(istype(I,/obj/item/device/pda/medical))
+					del(I)
+				if(istype(I,/obj/item/clothing/shoes/laceup))
+					del(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander
 		H = new(picked)
@@ -176,6 +183,7 @@
 		W.name = "[M.real_name]'s ID Card"
 		W.access = get_all_accesses()
 		W.assignment = "Commander"
+		W.paygrade = "O4"
 		W.registered_name = M.real_name
 		H.equip_to_slot_or_del(W, WEAR_ID)
 
@@ -193,52 +201,89 @@
 				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
 				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
-	//DOCTORS
-	else if(H.mind.special_role == "WO_DOC") //Then, the doctors
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), WEAR_BACK)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), WEAR_BODY)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/green(H), WEAR_HEAD)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), WEAR_L_EAR)
 
-		//HUD GLASSES (NEEDED)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
+	//This is a band-aid attempt to ensure that medical is staff, the CO doesn't go insane, or the outpost has no power, etc.
+	else if(H.mind.special_role == "WO_GUARD")
+		var/chickenshitnumber = rand(0,2)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), WEAR_L_EAR)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), WEAR_BACK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), WEAR_BODY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), WEAR_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+		H.equip_to_slot_or_del(new /obj/item/weapon/book/manual/whiskey_outpost_map(H), WEAR_L_HAND)
 
-		//Combat Lifesaver belt
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+		switch(chickenshitnumber)
+			if(0) //Actual Guardsman
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/scoped(H), WEAR_R_HAND)
+				var/obj/item/weapon/storage/belt/marine/B = new/obj/item/weapon/storage/belt/marine(H)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				H.equip_to_slot_or_del(B, WEAR_WAIST)
 
-		//Advanced Meds
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_L_STORE)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_R_STORE)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), WEAR_IN_BACK)
 
-		var/obj/item/weapon/card/id/W = new(H)
+			if(1) //Medical Support
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_R_HAND)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+			if(2) //Engineering support
+				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), WEAR_R_HAND)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+				var/obj/item/stack/sheet/metal/META = new /obj/item/stack/sheet/metal(H)
+				META.amount = 50
+				H.equip_to_slot_or_del(META, WEAR_IN_BACK)
+				var/obj/item/stack/sheet/plasteel/PLAS = new /obj/item/stack/sheet/plasteel(H)
+				PLAS.amount = 50
+				H.equip_to_slot_or_del(PLAS, WEAR_IN_BACK)
+
+		var/obj/item/weapon/card/id/silver/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
-		W.access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_IFF_MARINE)
-		W.assignment = "Doctor"
+		W.access = get_all_accesses()
+		W.assignment = "Command Guard"
+		W.paygrade = "E9E"
 		W.registered_name = M.real_name
 		H.equip_to_slot_or_del(W, WEAR_ID)
 
-		//Give them some information
 		spawn(40)
 			if(H)
 				H << "________________________"
-				H << "\red <b>You are the WO Doctor!<b>"
-				H << "Gear up, prepare the medbay and keep your temmates alive."
-				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "\red <b>You are the Commander's guardsmen!<b>"
+				H << "Use the overwatch consoles to help aid the commander in organizing squads!"
+				H << "You are allowed to help in medical(but no surgery) and are capable of doing engineering tasks"
+				H << "Keep the Commander alive to keep supplies flowing."
 				H << "Hold the outpost for one hour until the main force arrives!"
 				H << "________________________"
-		spawn(240) //So they can see it
-			if(H)
-				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
-				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
 	//SQUADS
 	else
-		var/randwep = 1 //Specialists spawn with their own random weapon
+		var/rand_wep = rand(0,10) //Made spawns for everyone, now we can also have weighted things too!
+		var/custom_message = 0
 
-
+		//~Art 08JAN17 Adding specialized and better loadouts to the fucken jobs
+		//Complaints of lack of ammo (three mags are not enough).
 		//SQUAD LEADER
 		if(H.mind.assigned_role == "Squad Leader")
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
@@ -247,21 +292,58 @@
 
 			//SPESHUL EQUIPMENT
 			//Machete
-			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/machete(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/scoped(H), WEAR_R_HAND)
 
 			//Binos, webbing and bomb beacons in backpack
 			H.equip_to_slot_or_del(new /obj/item/device/airstrikebeacon(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/device/airstrikebeacon(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/book/manual/whiskey_outpost_map(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
 			//Belt and grenades
 			var/obj/item/weapon/storage/belt/marine/B = new/obj/item/weapon/storage/belt/marine(H)
-			new /obj/item/weapon/grenade/explosive(B)
-			new /obj/item/weapon/grenade/explosive(B)
-			new /obj/item/weapon/grenade/explosive(B)
-			new /obj/item/weapon/grenade/incendiary(B)
-			new /obj/item/weapon/grenade/incendiary(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
 			H.equip_to_slot_or_del(B, WEAR_WAIST)
+
+		//DOCTORS
+		else if(H.mind.assigned_role == "Doctor") //Then, the doctors
+			custom_message = 1
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), WEAR_L_EAR)
+
+		//HUD GLASSES (NEEDED)
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
+
+		//Combat Lifesaver belt
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+
+		//Advanced Meds
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_L_STORE)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_R_STORE)
+
+		//Give them some information
+			spawn(40)
+				if(H)
+					H << "________________________"
+					H << "\red <b>You are the WO Doctor!<b>"
+					H << "Gear up, prepare the medbay and keep your temmates alive."
+					H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+					H << "Hold the outpost for one hour until the main force arrives!"
+					H << "________________________"
+			spawn(240) //So they can see it
+				if(H)
+					H << "\red <b>THIS IS A CRITICAL ROLE<b>"
+					H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
 
 		//SQUAD ENGINEER
@@ -275,16 +357,44 @@
 			var/obj/item/stack/sheet/metal/MET = new /obj/item/stack/sheet/metal(H)
 			MET.amount = 50
 			H.equip_to_slot_or_del(MET, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
-
 
 			//Utility Belt
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
 
 			//Welding Glasses
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
+
+			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
+				if(0 to 2) //SMG
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+				if(3 to 5) //M230
+					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_IN_BACK)
+				if(6 to 9) //Shotgun
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+				if(10) //M41A
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
 
 		//SQUAD MEDIC
 		else if(H.mind.assigned_role == "Squad Medic")
@@ -293,10 +403,9 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 
 			//SPESHUL EQUIPMENT
-			//Defibs, webbing, first aid, adv aid in backpack
+			//Defibs, first aid, adv aid in backpack
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H), WEAR_IN_BACK)
 
 			//Medical encryption key
@@ -308,37 +417,44 @@
 			//Med Hud
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
 
+			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
+				if(0 to 4) //SMG
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+				if(5 to 7) //M230
+					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_IN_BACK)
+				if(8 to 10) //M41A
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+
 		//SQUAD SPECIALIST
 		else if(H.mind.assigned_role == "Squad Specialist")
-			randwep = 0
-			var/type = rand(0,14)
-
-			switch(type) //Scaled based on player feedback
-				if(0 to 4)//Smartgun
+			switch(rand_wep) //Scaled based on player feedback
+				if(0 to 3)//Smartgun
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m56_system(H), WEAR_R_HAND)
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 
-				if(5 to 8)//Sniper
+				if(4 to 5)//Sniper
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m42c_system(H), WEAR_R_HAND)
 
-				if(9 to 11)//SADAR
+				if(6 to 8)//SADAR
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/rocket_system(H), WEAR_R_HAND)
 
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 
-				if(12 to 13)//Flamethrower
-					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
-
-					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-
-
-				if(14)//Grenade Launcher
+				if(9 to 10)//Grenade Launcher
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/grenade_system(H), WEAR_R_HAND)
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
@@ -350,7 +466,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
 			//Backup SMG Weapon
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m39/full(H), WEAR_WAIST)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
@@ -360,18 +476,62 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), WEAR_WAIST)
+
+			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
+				if(0 to 7) //M41A
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+
+					var/obj/item/weapon/storage/belt/marine/C = new/obj/item/weapon/storage/belt/marine(H)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					H.equip_to_slot_or_del(C, WEAR_WAIST)
+
+				if(8 to 9) //SMG + Machete Combo
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m39/full(H), WEAR_WAIST)
+
+				if(10) //M41A Grenadier
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+
+					//Grenades for this standard, which might be a horrible idea, but we'll find out.
+					var/obj/item/weapon/storage/belt/marine/D = new/obj/item/weapon/storage/belt/marine(H)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/incendiary(D)
+					new /obj/item/weapon/grenade/incendiary(D)
+					H.equip_to_slot_or_del(D, WEAR_WAIST)
 
 		//Every Squad Starts with this:
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_R_STORE)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), WEAR_R_STORE)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-		//Knife
-		if(prob(25))
-			H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), WEAR_L_HAND)
-
-
-
 
 		//Find their squad
 		var/squad = get_squad_from_card(H)
@@ -427,28 +587,9 @@
 				else
 					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 
-		//Set Random Weapon and Ammo
-		if(randwep)
-			var/rand_wep = rand(0,2)
-			switch(rand_wep)
-				if(0)//M41a
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-				if(1)//Combat Shotgun
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-				if(2)//SMG
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 		//Give them some information
 		spawn(40)
-			if(H)
+			if(H && !custom_message)
 				H << "________________________"
 				H << "\red <b>You are the [H.mind.assigned_role]!<b>"
 				H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
@@ -597,52 +738,58 @@
 						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Sentinel/mature,
-						/mob/living/carbon/Xenomorph/Drone)
+						/mob/living/carbon/Xenomorph/Sentinel/mature)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner)
 
 
 		if(3)//Tier II versions added, but rare
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter/mature,
-						/mob/living/carbon/Xenomorph/Drone/mature)
+						/mob/living/carbon/Xenomorph/Spitter/mature)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner,
+						/mob/living/carbon/Xenomorph/Runner,
+						/mob/living/carbon/Xenomorph/Runner/mature)
 
 		if(4)//Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner/mature,
-						/mob/living/carbon/Xenomorph/Hunter/mature,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter)
 
-		if(6)//Hivelord and Tier II more common
+		if(5)//Reset the spawns	so we don't drown in xenos again.
+			spawn_xeno_num = (humans_alive * 0.5) //Reset
+
+		if(6)//Tier II more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
-						/mob/living/carbon/Xenomorph/Spitter/mature,
-						/mob/living/carbon/Xenomorph/Hivelord)
+						/mob/living/carbon/Xenomorph/Spitter/mature)
 
 		if(8)
 			spawn_next_wave += 110 //Slow down now, strong castes introduced next wave
-			spawn_xeno_num = (humans_alive * 2)
+			spawn_xeno_num = count_humans()
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature)
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/elite,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Spitter/mature,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Drone/elite)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel)
+
+		if(11)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
-						/mob/living/carbon/Xenomorph/Hunter/elite,
-						/mob/living/carbon/Xenomorph/Hunter/mature,
-						/mob/living/carbon/Xenomorph/Spitter/mature)
-
-			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone,
-						/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Runner)
-
-		if(10)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher,
+						/mob/living/carbon/Xenomorph/Crusher,
 						/mob/living/carbon/Xenomorph/Boiler/mature,
 						/mob/living/carbon/Xenomorph/Ravager/mature,
-						/mob/living/carbon/Xenomorph/Runner/elite,
-						/mob/living/carbon/Xenomorph/Runner/elite,
 						/mob/living/carbon/Xenomorph/Praetorian)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone/mature,
-						/mob/living/carbon/Xenomorph/Runner/mature)
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite)
 
 		if(12)//Start the elite transition
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/mature,
@@ -654,10 +801,11 @@
 						/mob/living/carbon/Xenomorph/Praetorian/elite)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Spitter/mature,
-						/mob/living/carbon/Xenomorph/Drone/mature,
+						/mob/living/carbon/Xenomorph/Drone/elite,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
 		if(15)//Start the ancient
+			spawn_xeno_num = (count_humans() * 5)
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient,
 						/mob/living/carbon/Xenomorph/Boiler/ancient,
 						/mob/living/carbon/Xenomorph/Ravager/ancient,
@@ -1605,12 +1753,12 @@
 		w_class = 10
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		user << "You activate the [src]. Now toss it, the gunships will lock on in 30 seconds! You have 5 seconds after that to get outside of danger close!"
+		user << "You activate the [src]. Now toss it, the gunships will lock on in 5 seconds! You have 5 seconds after that to get outside of danger close!"
 		initate_airstrike()
 		return
 
 /obj/item/device/airstrikebeacon/proc/initate_airstrike() //Airstrike inbound!
-	sleep(300)
+	sleep(50)
 	var/turf/T = get_turf(src) // get where we are.
 	var/offset_x = 0
 	var/offset_y = 0
@@ -1624,16 +1772,12 @@
 	var/turf/target_4 = locate(T.x - (offset_x*2),T.y - (offset_y*2),T.z)
 	sleep(50) //AWW YEAH
 	visible_message("<span class='notice'> You hear engines roaring by!</span>")
-	sleep(10)
 	flame_radius(4,target)
 	explosion(target,  -1, 3, 4, 6)
-	sleep(10)
 	flame_radius(4,target_2)
 	explosion(target_2,  -1, 3, 4, 6)
-	sleep(10)
 	flame_radius(4,target_3)
 	explosion(target_3,  -1, 3, 4, 6)
-	sleep(10)
 	flame_radius(4,target_4)
 	explosion(target_4,  -1, 3, 4, 6)
 	sleep(5)
