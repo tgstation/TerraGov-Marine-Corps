@@ -959,7 +959,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define FORCE_LAUNCH	2
 #define WAIT_ARRIVE		3
 #define WAIT_FINISH		4
-#define FORCE_CRASH		5
 
 //computer3 error codes, move lower in the file when it passes dev -Sayu
  #define PROG_CRASH      1  // Generic crash
