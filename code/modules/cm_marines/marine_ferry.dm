@@ -7,6 +7,12 @@
 /datum/shuttle/ferry/marine
 	var/shuttle_tag
 
+/datum/shuttle/ferry/marine/proc/launch_crash(var/user)
+	if(!can_launch()) return //There's another computer trying to launch something
+
+	in_use = user
+	process_state = FORCE_CRASH
+
 /*
 	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
 	Doing so will ensure that multiple jumps cannot be initiated in parallel.
@@ -22,6 +28,12 @@
 				else short_jump()
 
 				process_state = WAIT_ARRIVE
+
+		if (FORCE_CRASH)
+			if(move_time) long_jump_crash()
+			else short_jump() //If there's no move time, we are doing this normally
+
+			process_state = WAIT_ARRIVE
 
 		if (FORCE_LAUNCH)
 			if (move_time) long_jump()
@@ -168,6 +180,135 @@
 		while(--recharging) sleep(1)
 
 	transit_optimized = 0 //De-optimize the flight plans
+
+
+//Starts out exactly the same as long_jump() in the beggining
+//Differs in the target selection and later things enough to merit it's own proc
+//The backend for landmarks should be in it's own proc, but I use too many vars resulting from the backend to save much space
+/datum/shuttle/ferry/marine/proc/long_jump_crash()
+	set waitfor = 0
+
+	if(moving_status != SHUTTLE_IDLE) return
+
+	moving_status = SHUTTLE_WARMUP
+	if(transit_optimized)
+		recharging = round(recharge_time*0.75) //Optimized flight plan means less recharge time
+	else
+		recharging = recharge_time //Prevent the shuttle from moving again until it finishes recharging
+
+	//START: Heavy lifting backend
+
+	var/i //iterator
+	var/turf/T_src
+	var/turf/T_int //int stands for interim
+	var/turf/T_trg
+	var/obj/effect/landmark/shuttle_loc/marine_src/S
+	var/obj/effect/landmark/shuttle_loc/marine_int/I
+	var/obj/effect/landmark/shuttle_loc/marine_crs/C
+
+	//Find source turf
+	for(i in shuttlemarks)
+		S = i
+		if(!istype(S)) continue
+		if(S.name == shuttle_tag)
+			T_src = S.loc
+			break
+
+	//Find interim turf
+	for(i in shuttlemarks)
+		I = i
+		if(!istype(I)) continue
+		if(I.name == shuttle_tag)
+			T_int = I.loc
+			break
+
+	var/list/crash_turfs = list()
+	//Find target turf
+	for(i in shuttlemarks)
+		C = i
+		if(!istype(C)) continue
+		if(C.name == shuttle_tag)
+			crash_turfs.Add(C.loc)
+
+	T_trg = pick(crash_turfs)
+
+	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
+		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.\n WARNING: DROPSHIP LAUNCH WILL FAIL</span>")
+		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.")
+
+	if(!istype(S) || !istype(I))
+		message_admins("<span class=warning>Error with shuttles: Landmarks not found. Code MSD05.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
+		log_admin("Error with shuttles: Landmarks not found. Code MSD05.")
+
+	//END: Heavy lifting backend
+
+	if (moving_status == SHUTTLE_IDLE)
+		recharging = 0
+		return	//someone canceled the launch
+
+	var/travel_time = 0
+	if(transit_optimized)
+		travel_time = move_time*10*0.5
+	else
+		travel_time = move_time*10
+
+	moving_status = SHUTTLE_INTRANSIT
+
+	//START: Heavy lifting backend
+
+	var/list/turfs_src = get_shuttle_turfs(T_src, shuttle_tag) //Which turfs are we moving?
+
+	for(var/turf/A in turfs_src) //Lets play the startup sound in all of them
+		for(var/obj/structure/engine_startup_sound/B in A)
+			if(istype(B))
+				playsound(B.loc, 'sound/effects/engine_startup.ogg', 100, 0, 10, -100)
+				break //One sound thing per tile, just in case
+
+	sleep(warmup_time*10) //Warming up
+
+	close_doors(turfs_src) //Close the doors
+
+	move_shuttle_to(T_int, null, turfs_src)
+	var/list/turfs_int = get_shuttle_turfs(T_int, shuttle_tag) //Interim turfs
+
+	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
+
+	//This is where things change and shit gets real
+
+	command_announcement.Announce("WARNING: DROPSHIP ON COLLISION COURSE WITH THE SULACO. CRASH IMMINENT. ABORT DOCKING ATTEMPT IMMEDIATELY." , "Dropship Alert", new_sound='sound/misc/queen_alarm.ogg')
+
+	var/turf/A
+	for(i in turfs_int) //Play the landing sound in the shuttle
+		A = i
+		if(!istype(A)) continue
+		for(var/obj/structure/engine_inside_sound/B in A)
+			if(istype(B))
+				playsound(B.loc, 'sound/effects/engine_landing.ogg', 100, 0, 10, -100)
+				break
+
+	sleep(85)
+
+	var/turf/sploded
+	for(var/j=0; j<5; j++)
+		sploded = locate(T_trg.x + rand(1, 12), T_trg.y + rand(1, 12), T_trg.z)
+		//Fucking. Kaboom.
+		explosion(sploded, 0, 2, 5, 0)
+		sleep(3)
+
+	var/list/turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag) //Final destination turfs <insert bad jokey reference here>
+
+	move_shuttle_to(T_trg, null, turfs_int)
+
+	//We have to get these again so we can close the doors
+	//We didn't need to do it before since the hadn't moved yet
+	turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag)
+
+	open_doors(turfs_trg) //And now open the doors
+
+	//END: Heavy lifting backend
+
+	//And now that we've crashed, we are never flying again
+	del(src)
 
 
 /datum/shuttle/ferry/marine/short_jump()

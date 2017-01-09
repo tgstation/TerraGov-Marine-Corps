@@ -190,6 +190,8 @@ x_pos = 0 1 2 3 4 5 6 7 8
 
 /obj/effect/landmark/shuttle_loc/marine_trg
 
+/obj/effect/landmark/shuttle_loc/marine_crs
+
 /obj/effect/landmark/shuttle_loc/New()
 	shuttlemarks += src
 
@@ -265,6 +267,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		for(var/obj/O in T_src)
 			if(!istype(O)) continue
 			if(istype(O, /obj/structure/engine_landing_sound)) continue
+			if(istype(O, /obj/effect/effect/smoke)) continue //We land on smoke a lot and it has weird TTL systems that will generate runtimes otherwise
 			O.loc = T_trg
 
 		for(var/mob/M in T_src)
