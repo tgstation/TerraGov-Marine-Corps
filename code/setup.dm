@@ -800,7 +800,7 @@ var/list/be_special_flags = list(
 #define BE_MUTINEER   8192
 #define BE_CHANGELING 16384
 
-#define BE_WO_ROLE 32768
+#define BE_WO_COM 32768
 
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
@@ -808,7 +808,7 @@ var/list/be_special_flags = list(
 	"Survivor" = BE_SURVIVOR,
 	"Responder" = BE_RESPONDER,
 	"Predator" = BE_PREDATOR,
-	"WO Role" = BE_WO_ROLE
+	"WO Commander" = BE_WO_COM
 
 /*
 	"Malf AI" = BE_MALF,
@@ -935,6 +935,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 // these define the time taken for the shuttle to get to SS13
 // and the time before it leaves again
 // note that this is multiplied by 10 in the shuttle controller. Hence, this is not defined in deciseconds but in real seconds
+
+#define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait before assuming the docking controller is broken or blown up.
 #define SHUTTLE_PREPTIME 				600	// 10 minutes = 600 seconds - after this time, the shuttle departs centcom and cannot be recalled
 #define SHUTTLE_LEAVETIME 				180	// 3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving
 #define SHUTTLE_TRANSIT_DURATION		600	// 10 minutes = 600 seconds - how long it takes for the shuttle to get to the station

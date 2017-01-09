@@ -462,8 +462,8 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/protein_pack
-	name = "satchel of protein substitute"
-	desc = "What.. what IS this? Is this food? Are you supposed to put it in your mouth? It oozes inside the translucent bag and smells like hobo vomit."
+	name = "stale USCM protein bar"
+	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
 	filling_color = "#ED1169"
 
@@ -472,12 +472,21 @@
 		reagents.add_reagent("nutriment", 8)
 		bitesize = 4
 
+/obj/item/trash/USCMtray
+	name = "\improper USCM Tray"
+	desc = "Finished with its tour of duty"
+	icon = 'icons/obj/trash.dmi'
+	icon_state = "MREtray"
+
+
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
+	trash = /obj/item/trash/USCMtray
+	w_class = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1
-	name = "\improper USCM MRE (cornbread)"
-	desc = "A tray of standard USCM rations. Stale cornbread, tomato paste and some green goop fill this tray."
+	name = "\improper USCM Prepared Meal (cornbread)"
+	desc = "A tray of standard USCM food. Stale cornbread, tomato paste and some green goop fill this tray."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
 
@@ -487,8 +496,8 @@
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal2
-	name = "\improper USCM MRE (pork)"
-	desc = "A tray of standard USCM rations. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
+	name = "\improper USCM Prepared Meal (pork)"
+	desc = "A tray of standard USCM food. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
 	icon_state = "MREb"
 
 	New()
@@ -497,8 +506,8 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal3
-	name = "\improper USCM MRE (pasta)"
-	desc = "A tray of standard USCM rations. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
+	name = "\improper USCM Prepared Meal (pasta)"
+	desc = "A tray of standard USCM food. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
 	icon_state = "MREc"
 
 	New()
@@ -507,8 +516,8 @@
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal4
-	name = "\improper USCM MRE (pizza)"
-	desc = "A tray of standard USCM rations. Cold pizza, wet greenbeans and a shitty egg fill this tray. Get something other than pizza, lardass."
+	name = "\improper USCM Prepared Meal (pizza)"
+	desc = "A tray of standard USCM food. Cold pizza, wet greenbeans and a shitty egg fill this tray. Get something other than pizza, lardass."
 	icon_state = "MREd"
 
 	New()
@@ -517,8 +526,8 @@
 		bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal5
-	name = "\improper USCM MRE (chicken)"
-	desc = "A tray of standard USCM rations. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
+	name = "\improper USCM Prepared Meal (chicken)"
+	desc = "A tray of standard USCM food. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
 	icon_state = "MREe"
 
 	New()
@@ -527,7 +536,7 @@
 		bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6
-	name = "\improper USCM MRE (tofu)"
+	name = "\improper USCM Prepared Meal (tofu)"
 	desc = "The USCM doesn't serve tofu you grass sucking hippie. The flag signifies your defeat."
 	icon_state = "MREf"
 
@@ -537,7 +546,7 @@
 		bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas1
-	name = "\improper Xmas MRE:sugar cookies"
+	name = "\improper Xmas Prepared Meal:sugar cookies"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
 
@@ -547,7 +556,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas2
-	name = "\improper Xmas MRE:gingerbread cookie"
+	name = "\improper Xmas Prepared Meal:gingerbread cookie"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
 
@@ -557,7 +566,7 @@
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/xmas3
-	name = "\improper Xmas MRE:fruitcake"
+	name = "\improper Xmas Prepared Meal:fruitcake"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
 
@@ -687,15 +696,7 @@
 		</head>
 
 		<body>
-		<b>Purple:</b> Supply Drops<br>
-		<b>Orange:</b> Tcomms Tower and APC<br>
-		<b>LBlue:</b>  Recycler<br>
-		<b>DBlue:</b>  Defensive Positions<br>
-		<b>Red:</b>    Threat<br>
-		<b>Yellow:</b> Potential Threat<br><br>
-		<b>Whiskey Outpost Tactical Map:</b>
-		<br>
-		<img src="whiskey_outpost.png" alt="Map">
+		<img src="whiskeyoutpost.png" alt="Map">
 		</body>
 
 		</html>

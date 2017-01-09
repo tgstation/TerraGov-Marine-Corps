@@ -159,7 +159,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_tog_aliens,
 	/client/proc/air_report,
 	/client/proc/reload_admins,
-	/client/proc/reload_mentors,
+	///client/proc/reload_mentors,	//Currently no effect
 	/client/proc/reload_whitelist,
 	/client/proc/restart_controller,
 	/client/proc/remake_distribution_map,
@@ -251,7 +251,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/callproc,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
-	/client/proc/reload_mentors,
+	// /client/proc/reload_mentors,		//Currently no effect
 	/client/proc/reload_whitelist,
 	/client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
@@ -596,7 +596,7 @@ var/list/admin_verbs_mentor = list(
 			var/light_impact_range = input("Light impact range (in tiles):") as num
 			var/flash_range = input("Flash range (in tiles):") as num
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
+	message_admins("\blue [ckey] used 'Drop Bomb' at [epicenter.loc].")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/give_spell(mob/T as mob in mob_list) // -- Urist

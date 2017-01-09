@@ -159,8 +159,8 @@
 /obj/item/weapon/gun/rifle/m41aMK1
 	name = "\improper M41A pulse rifle"
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10x24mm caseless ammunition."
-	icon_state = "m41a" //Placeholder.
-	item_state = "m41a" //Placeholder.
+	icon_state = "m41amk1" //Placeholder.
+	item_state = "m41amk1" //Placeholder.
 	fire_sound = 'sound/weapons/m41a_2.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(

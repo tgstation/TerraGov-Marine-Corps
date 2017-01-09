@@ -150,32 +150,28 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 
 	// NMV SULACO - Shuttle
-	shuttle = new()
-	shuttle.location = 0
-	shuttle.warmup_time = 10
-	shuttle.can_be_optimized = 1 //This shuttle uses complex flight maneuvers and can be optimized
-	shuttle.area_offsite = locate(/area/shuttle/drop1/LV624)
-	shuttle.area_station = locate(/area/shuttle/drop1/sulaco)
-	shuttle.area_transition = locate(/area/shuttle/drop1/transit)
+	var/datum/shuttle/ferry/marine/shuttle1 = new //Because I am using shuttle_tag, which is only defined under /datum/shuttle/ferry/marine
+	shuttle1.location = 0
+	shuttle1.warmup_time = 10
+	shuttle1.can_be_optimized = 1 //This shuttle uses complex flight maneuvers and can be optimized
 //	shuttle.docking_controller_tag = "escape_shuttle"
 //	shuttle.dock_target_station = "escape_dock"
 //	shuttle.dock_target_offsite = "centcom_dock"
-	shuttle.transit_direction = NORTH
-	shuttle.move_time = DROPSHIP_TRANSIT_DURATION
-	shuttles["Dropship 1"] = shuttle
-	process_shuttles += shuttle
+	shuttle1.transit_direction = NORTH
+	shuttle1.move_time = DROPSHIP_TRANSIT_DURATION
+	shuttle1.shuttle_tag = "Dropship 1"
+	shuttles["Dropship 1"] = shuttle1
+	process_shuttles += shuttle1
 
 	// NMV SULACO - DropPod
-	shuttle = new()
-	shuttle.location = 0
-	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/drop2/LV624)
-	shuttle.area_station = locate(/area/shuttle/drop2/sulaco)
-	shuttle.area_transition = locate(/area/shuttle/drop2/transit)
-	shuttle.transit_direction = NORTH
-	shuttle.move_time = DROPPOD_TRANSIT_DURATION
-	shuttles["Dropship 2"] = shuttle
-	process_shuttles += shuttle
+	shuttle1 = new
+	shuttle1.location = 0
+	shuttle1.warmup_time = 10
+	shuttle1.transit_direction = NORTH
+	shuttle1.move_time = DROPPOD_TRANSIT_DURATION
+	shuttle1.shuttle_tag = "Dropship 2"
+	shuttles["Dropship 2"] = shuttle1
+	process_shuttles += shuttle1
 
 	// Distress Shuttle - ERT
 	shuttle = new()

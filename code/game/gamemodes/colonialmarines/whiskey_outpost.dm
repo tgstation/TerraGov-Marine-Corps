@@ -2,14 +2,15 @@
 	name = "Whiskey Outpost"
 	config_tag = "Whiskey Outpost"
 	required_players 		= 1
-	recommended_enemies 	= 6 //Force doctors and commander if no one wants them
+	recommended_enemies 	= 1 //Force doctors and commander if no one wants them
 	xeno_bypass_timer 		= 1
 	role_instruction		= 1
 	roles_for_mode = list(/datum/job/marine/standard/equipped,
 					/datum/job/marine/medic/equipped,
 					/datum/job/marine/engineer/equipped,
 					/datum/job/marine/specialist/equipped,
-					/datum/job/marine/leader/equipped
+					/datum/job/marine/leader/equipped,
+					/datum/job/civilian/doctor
 					)
 
 	flags_round_type	= MODE_NO_LATEJOIN
@@ -21,8 +22,8 @@
 	var/has_started_timer = 5 //This is a simple timer so we don't accidently check win conditions right in post-game
 
 	var/spawn_next_wave = 200 //Spawn first batch at ~15 minutes //200
-	var/xeno_wave = 0 //Which wave is it
-	var/spawn_xeno_num = 30 //How many to spawn per wave //First wave is big, cus runners.
+	var/xeno_wave = 1 //Which wave is it
+	var/spawn_xeno_num = 20 //How many to spawn per wave //First wave is big, cus runners.
 
 	var/wave_ticks_passed = 0 //Timer for xeno waves
 
@@ -39,7 +40,7 @@
 	var/list/turf/supply_spawns = list()
 
 
-	var/next_supply = 0 //At which wave does the next supply drop come?
+	var/next_supply = 1 //At which wave does the next supply drop come?
 
 	var/ticks_passed = 0
 	var/lobby_time = 0 //Lobby time does not count for marine 1h win condition
@@ -77,26 +78,26 @@
 			supply_spawns += L.loc
 
 	//Ehh, setting special roles is done in spawn_player()
-	var/list/possible_roles = get_players_for_role(BE_WO_ROLE) //Grab people who want to be speshul
-	var/docs_free = 5
+	var/list/possible_commanders = get_players_for_role(BE_WO_COM) //Grab people who want to be speshul
+	var/honor_guard = 4
 
 	//Setup possible roles list
-	if(possible_roles.len)
+	if(possible_commanders.len)
 		//Commanders
-		for(var/datum/mind/S in possible_roles)
+		for(var/datum/mind/S in possible_commanders)
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
 				S.special_role = "WO_COM"
 				break
 
-		//Doctors
-		for(var/datum/mind/S in possible_roles)
+		for(var/datum/mind/S in possible_commanders)
 			if(S && S.assigned_role != "MODE" && !S.special_role) //Make sure it's not already here.
 				S.assigned_role = "MODE"
-				S.special_role = "WO_DOC"
-				docs_free--
-				if(!docs_free)
+				S.special_role = "WO_GUARD"
+				honor_guard--
+				if(!honor_guard)
 					break
+
 
 	return 1
 
@@ -113,9 +114,13 @@
 
 	spawn(10)
 		world << "<B>The current game mode is - WHISKEY OUTPOST!</B>"
-		world << "Marines are sent in to defend the outpost on this hostile planet"
+		world << "Marines have to defend the outpost on this hostile planet"
 		world << "They need to hold it for one hour until main forces arrive"
 		world << sound('sound/effects/siren.ogg')
+
+	spawn (50)
+		command_announcement.Announce("This is Commander Anderson speaking from the USS Alistoun. We've heard the Sulaco's distress beacon, but we need you to hold Whiskey Outpost for an hour before the marine force is equipped and ready. We're sending UD-22 Navajo gunships to assist in your defense.", "USS Alistoun")
+
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 
@@ -136,6 +141,12 @@
 		if(H.contents.len)
 			for(var/I in H.contents)//Delete the cryo uniform
 				if(istype(I,/obj/item/clothing/under/pj/marine))
+					del(I)
+		if(H.mind.assigned_role == "Doctor")
+			for(var/I in H.contents)
+				if(istype(I,/obj/item/device/pda/medical))
+					del(I)
+				if(istype(I,/obj/item/clothing/shoes/laceup))
 					del(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander
@@ -172,6 +183,7 @@
 		W.name = "[M.real_name]'s ID Card"
 		W.access = get_all_accesses()
 		W.assignment = "Commander"
+		W.paygrade = "O4"
 		W.registered_name = M.real_name
 		H.equip_to_slot_or_del(W, WEAR_ID)
 
@@ -180,7 +192,7 @@
 				H << "________________________"
 				H << "\red <b>You are the Commander!<b>"
 				H << "Coordinate your team and prepare defenses."
-				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "In your command pod there are four IR target beacons. Distribute them among your squad leaders."
 				H << "Stay alive! If you die, supplies will stop arriving."
 				H << "Hold the outpost for one hour until the main force arrives!"
 				H << "________________________"
@@ -189,48 +201,89 @@
 				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
 				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
-	//DOCTORS
-	else if(H.mind.special_role == "WO_DOC") //Then, the doctors
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), WEAR_BACK)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), WEAR_BODY)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/green(H), WEAR_HEAD)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), WEAR_L_EAR)
 
-		//Combat Lifesaver belt
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+	//This is a band-aid attempt to ensure that medical is staff, the CO doesn't go insane, or the outpost has no power, etc.
+	else if(H.mind.special_role == "WO_GUARD")
+		var/chickenshitnumber = rand(0,2)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/mcom(H), WEAR_L_EAR)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/marine/satchel(H), WEAR_BACK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/logistics(H), WEAR_BODY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), WEAR_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+		H.equip_to_slot_or_del(new /obj/item/weapon/book/manual/whiskey_outpost_map(H), WEAR_L_HAND)
 
-		//Advanced Meds
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_L_STORE)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_R_STORE)
+		switch(chickenshitnumber)
+			if(0) //Actual Guardsman
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/scoped(H), WEAR_R_HAND)
+				var/obj/item/weapon/storage/belt/marine/B = new/obj/item/weapon/storage/belt/marine(H)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				new /obj/item/ammo_magazine/rifle/marksman(B)
+				H.equip_to_slot_or_del(B, WEAR_WAIST)
 
-		var/obj/item/weapon/card/id/W = new(H)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/marksman(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), WEAR_IN_BACK)
+
+			if(1) //Medical Support
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_R_HAND)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
+			if(2) //Engineering support
+				H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
+				H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), WEAR_R_HAND)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+				var/obj/item/stack/sheet/metal/META = new /obj/item/stack/sheet/metal(H)
+				META.amount = 50
+				H.equip_to_slot_or_del(META, WEAR_IN_BACK)
+				var/obj/item/stack/sheet/plasteel/PLAS = new /obj/item/stack/sheet/plasteel(H)
+				PLAS.amount = 50
+				H.equip_to_slot_or_del(PLAS, WEAR_IN_BACK)
+
+		var/obj/item/weapon/card/id/silver/W = new(H)
 		W.name = "[M.real_name]'s ID Card"
-		W.access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE)
-		W.assignment = "Doctor"
+		W.access = get_all_accesses()
+		W.assignment = "Command Guard"
+		W.paygrade = "E9E"
 		W.registered_name = M.real_name
 		H.equip_to_slot_or_del(W, WEAR_ID)
 
-		//Give them some information
 		spawn(40)
 			if(H)
 				H << "________________________"
-				H << "\red <b>You are the WO Doctor!<b>"
-				H << "Gear up, prepare the medbay and keep your temmates alive."
-				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+				H << "\red <b>You are the Commander's guardsmen!<b>"
+				H << "Use the overwatch consoles to help aid the commander in organizing squads!"
+				H << "You are allowed to help in medical(but no surgery) and are capable of doing engineering tasks"
+				H << "Keep the Commander alive to keep supplies flowing."
 				H << "Hold the outpost for one hour until the main force arrives!"
 				H << "________________________"
-		spawn(240) //So they can see it
-			if(H)
-				H << "\red <b>THIS IS A CRITICAL ROLE<b>"
-				H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
 	//SQUADS
 	else
-		var/randwep = 1 //Specialists spawn with their own random weapon
+		var/rand_wep = rand(0,10) //Made spawns for everyone, now we can also have weighted things too!
+		var/custom_message = 0
 
-
+		//~Art 08JAN17 Adding specialized and better loadouts to the fucken jobs
+		//Complaints of lack of ammo (three mags are not enough).
 		//SQUAD LEADER
 		if(H.mind.assigned_role == "Squad Leader")
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
@@ -239,22 +292,58 @@
 
 			//SPESHUL EQUIPMENT
 			//Machete
-			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/machete(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/scoped(H), WEAR_R_HAND)
 
 			//Binos, webbing and bomb beacons in backpack
-			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/squad_beacon/bomb(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/device/airstrikebeacon(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/device/airstrikebeacon(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/book/manual/whiskey_outpost_map(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
 			//Belt and grenades
 			var/obj/item/weapon/storage/belt/marine/B = new/obj/item/weapon/storage/belt/marine(H)
-			new /obj/item/weapon/grenade/explosive(B)
-			new /obj/item/weapon/grenade/explosive(B)
-			new /obj/item/weapon/grenade/explosive(B)
-			new /obj/item/weapon/grenade/incendiary(B)
-			new /obj/item/weapon/grenade/incendiary(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
+			new /obj/item/ammo_magazine/rifle/marksman(B)
 			H.equip_to_slot_or_del(B, WEAR_WAIST)
+
+		//DOCTORS
+		else if(H.mind.assigned_role == "Doctor") //Then, the doctors
+			custom_message = 1
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), WEAR_L_EAR)
+
+		//HUD GLASSES (NEEDED)
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
+
+		//Combat Lifesaver belt
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/medical/combatLifesaver(H), WEAR_WAIST)
+
+		//Advanced Meds
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_L_STORE)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/pill_bottle/peridaxon(H), WEAR_R_STORE)
+
+		//Give them some information
+			spawn(40)
+				if(H)
+					H << "________________________"
+					H << "\red <b>You are the WO Doctor!<b>"
+					H << "Gear up, prepare the medbay and keep your temmates alive."
+					H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
+					H << "Hold the outpost for one hour until the main force arrives!"
+					H << "________________________"
+			spawn(240) //So they can see it
+				if(H)
+					H << "\red <b>THIS IS A CRITICAL ROLE<b>"
+					H << "\red If you kill yourself or leave the server without notifying admins, you will be banned."
 
 
 		//SQUAD ENGINEER
@@ -268,16 +357,44 @@
 			var/obj/item/stack/sheet/metal/MET = new /obj/item/stack/sheet/metal(H)
 			MET.amount = 50
 			H.equip_to_slot_or_del(MET, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/explosive(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/grenade/incendiary(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
-
 
 			//Utility Belt
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), WEAR_WAIST)
 
 			//Welding Glasses
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
+
+			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
+				if(0 to 2) //SMG
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+				if(3 to 5) //M230
+					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_IN_BACK)
+				if(6 to 9) //Shotgun
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+				if(10) //M41A
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
 
 		//SQUAD MEDIC
 		else if(H.mind.assigned_role == "Squad Medic")
@@ -286,10 +403,9 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 
 			//SPESHUL EQUIPMENT
-			//Defibs, webbing, first aid, adv aid in backpack
+			//Defibs, first aid, adv aid in backpack
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/weapon/melee/defibrillator(H), WEAR_IN_BACK)
 
 			//Medical encryption key
@@ -301,38 +417,45 @@
 			//Med Hud
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
 
+			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
+				if(0 to 4) //SMG
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+				if(5 to 7) //M230
+					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_IN_BACK)
+				if(8 to 10) //M41A
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+
 		//SQUAD SPECIALIST
 		else if(H.mind.assigned_role == "Squad Specialist")
-			randwep = 0
-			var/type = rand(0,14)
-
-			switch(type) //Scaled based on player feedback
-				if(0 to 4)//Smartgun
+			switch(rand_wep) //Scaled based on player feedback
+				if(0 to 3)//Smartgun
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m56_system(H), WEAR_R_HAND)
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 
-				if(5 to 8)//Sniper
+				if(4 to 5)//Sniper
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m42c_system(H), WEAR_R_HAND)
 
-				if(9 to 11)//SADAR
+				if(6 to 8)//SADAR
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/rocket_system(H), WEAR_R_HAND)
 
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-
-				if(12 to 13)//Flamethrower
-					H.equip_to_slot_or_del(new /obj/item/weapon/flamethrower/full(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/weapon/tank/phoron/m240(H), WEAR_IN_BACK)
-
-					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 
-
-				if(14)//Grenade Launcher
+				if(9 to 10)//Grenade Launcher
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/grenade_system(H), WEAR_R_HAND)
-
 					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 
@@ -343,7 +466,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
 			//Backup SMG Weapon
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m39/full(H), WEAR_WAIST)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
@@ -353,18 +476,62 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/marine(H), WEAR_WAIST)
+
+			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
+				if(0 to 7) //M41A
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+
+					var/obj/item/weapon/storage/belt/marine/C = new/obj/item/weapon/storage/belt/marine(H)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					new /obj/item/ammo_magazine/rifle(C)
+					H.equip_to_slot_or_del(C, WEAR_WAIST)
+
+				if(8 to 9) //SMG + Machete Combo
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/gun/machete/full(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/gun/m39/full(H), WEAR_WAIST)
+
+				if(10) //M41A Grenadier
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+
+					//Grenades for this standard, which might be a horrible idea, but we'll find out.
+					var/obj/item/weapon/storage/belt/marine/D = new/obj/item/weapon/storage/belt/marine(H)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/explosive(D)
+					new /obj/item/weapon/grenade/incendiary(D)
+					new /obj/item/weapon/grenade/incendiary(D)
+					H.equip_to_slot_or_del(D, WEAR_WAIST)
 
 		//Every Squad Starts with this:
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_R_STORE)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), WEAR_R_STORE)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-		//Knife
-		if(prob(25))
-			H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), WEAR_L_HAND)
-
-
-
 
 		//Find their squad
 		var/squad = get_squad_from_card(H)
@@ -420,28 +587,9 @@
 				else
 					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 
-		//Set Random Weapon and Ammo
-		if(randwep)
-			var/rand_wep = rand(0,2)
-			switch(rand_wep)
-				if(0)//M41a
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-				if(1)//Combat Shotgun
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-				if(2)//SMG
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_J_STORE)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 		//Give them some information
 		spawn(40)
-			if(H)
+			if(H && !custom_message)
 				H << "________________________"
 				H << "\red <b>You are the [H.mind.assigned_role]!<b>"
 				H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
@@ -503,7 +651,7 @@
 						break //Place only 3
 
 					switch(xeno_wave)
-						if(0 to 11)
+						if(1 to 11)
 							next_supply++
 						if(12 to 18)
 							next_supply += 2
@@ -547,6 +695,14 @@
 	if(slashing_allowed != 1)
 		slashing_allowed = 1 //Allows harm intent for aliens
 
+	var/humans_alive = count_humans()
+
+	if(humans_alive > 50)
+		humans_alive = 50
+
+	if(humans_alive < 5)
+		humans_alive = 5
+
 	var/side = rand(0,4)
 		//0 - All directions
 		//1-4 - List number
@@ -568,122 +724,158 @@
 //			world << "Loc: 4"
 
 	switch(xeno_wave)//Xeno spawn controller
-		if(0)//Mostly weak runners
+		if(1)//Mostly weak runners
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner)
-			spawn_xeno_num = 20 //Reset
+			spawn_xeno_num = (humans_alive * 0.5) //Reset
 			spawn_next_wave = 90
 			world << sound('sound/effects/siren.ogg') //Mark the first wave
 
 
-		if(1)//Sentinels and drones are more common
+		if(2)//Sentinels and drones are more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Runner,
+						/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone)
+						/mob/living/carbon/Xenomorph/Sentinel/mature)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner)
 
 
 		if(3)//Tier II versions added, but rare
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter,
-						/mob/living/carbon/Xenomorph/Drone)
+						/mob/living/carbon/Xenomorph/Spitter/mature)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner,
+						/mob/living/carbon/Xenomorph/Runner,
+						/mob/living/carbon/Xenomorph/Runner/mature)
 
 		if(4)//Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner,
-						/mob/living/carbon/Xenomorph/Hunter,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter)
 
-		if(6)//Hivelord and Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter,
-						/mob/living/carbon/Xenomorph/Hivelord)
+		if(5)//Reset the spawns	so we don't drown in xenos again.
+			spawn_xeno_num = (humans_alive * 0.5) //Reset
 
-		if(7)
+		if(6)//Tier II more common
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Spitter/mature)
+
+		if(8)
 			spawn_next_wave += 110 //Slow down now, strong castes introduced next wave
-			spawn_xeno_num = 20
+			spawn_xeno_num = count_humans()
 
-		if(8)//Ravager and Praetorian Added, Tier II more common, Tier I less common
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature)
+
+		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/elite,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Spitter/mature,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Drone/elite)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel)
+
+		if(11)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
-						/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Hunter,
-						/mob/living/carbon/Xenomorph/Spitter)
-
-			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone,
-						/mob/living/carbon/Xenomorph/Runner)
-
-		if(10)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher,
-						/mob/living/carbon/Xenomorph/Boiler,
-						/mob/living/carbon/Xenomorph/Ravager,
+						/mob/living/carbon/Xenomorph/Crusher,
+						/mob/living/carbon/Xenomorph/Boiler/mature,
+						/mob/living/carbon/Xenomorph/Ravager/mature,
 						/mob/living/carbon/Xenomorph/Praetorian)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel,
-						/mob/living/carbon/Xenomorph/Drone,
-						/mob/living/carbon/Xenomorph/Runner)
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite)
 
-		if(15 to INFINITY)
+		if(12)//Start the elite transition
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/mature,
+						/mob/living/carbon/Xenomorph/Boiler/elite,
+						/mob/living/carbon/Xenomorph/Ravager/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Hivelord/elite,
+						/mob/living/carbon/Xenomorph/Spitter/elite,
+						/mob/living/carbon/Xenomorph/Praetorian/elite)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Spitter/mature,
+						/mob/living/carbon/Xenomorph/Drone/elite,
+						/mob/living/carbon/Xenomorph/Hivelord)
+
+		if(15)//Start the ancient
+			spawn_xeno_num = (count_humans() * 5)
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient,
+						/mob/living/carbon/Xenomorph/Boiler/ancient,
+						/mob/living/carbon/Xenomorph/Ravager/ancient,
+						/mob/living/carbon/Xenomorph/Runner/ancient,
+						/mob/living/carbon/Xenomorph/Hunter/ancient,
+						/mob/living/carbon/Xenomorph/Spitter/ancient,
+						/mob/living/carbon/Xenomorph/Praetorian/ancient)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Crusher,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Praetorian)
+
+		if(16 to INFINITY)
 			var/random_wave = rand(0,8)
 			switch(random_wave)
 				if(0 to 5)//Normal list, but makes it easier to pick stronger units
 					switch(random_wave)
 						if(0)//Add another Ravager
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager/ancient)
 						if(1)//Add another Carrier
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Carrier)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Carrier/ancient)
 						if(2)//Add another Praetorian
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Praetorian)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Praetorian/ancient)
 						if(3)//Add another Boiler
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Boiler)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Boiler/ancient)
 						if(4)//Add another Crusher
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient)
 						if(5)//Add another Hunter and Spitter
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
-										/mob/living/carbon/Xenomorph/Spitter)
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient)
 
 				if(6)//Runner madness
 					spawn_next_wave += 50//Slow down the next wave
 					spawn_this_many = 50//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Runner,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Hunter,
-									/mob/living/carbon/Xenomorph/Ravager)
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Runner/ancient,
+									/mob/living/carbon/Xenomorph/Ravager/ancient)
 
 				if(7)//Spitter madness
 					spawn_next_wave += 70//Slow down the next wave
 					spawn_this_many =  45//A lot of them
-					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Sentinel,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Spitter,
-										/mob/living/carbon/Xenomorph/Praetorian)
+					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Sentinel/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Spitter/ancient,
+										/mob/living/carbon/Xenomorph/Praetorian/ancient)
 
 				if(8)//Siege madness
 					spawn_this_many = 10//A lot of them
 					spawn_next_wave += 120//Slow down the next wave
-					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Boiler,
-									/mob/living/carbon/Xenomorph/Boiler,
-									/mob/living/carbon/Xenomorph/Crusher)
+					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Boiler/ancient,
+									/mob/living/carbon/Xenomorph/Boiler/ancient,
+									/mob/living/carbon/Xenomorph/Crusher/ancient)
 	var/path
 	if(tempspawnxeno.len)//If temp list exists, use it
 		for(var/i = 0; i < spawn_this_many; i++)
@@ -771,7 +963,7 @@
 	if(finished == 1)
 		feedback_set_details("round_end_result","Xenos won")
 		world << "\red <FONT size = 4><B>The Xenos have succesfully defended their home planet from colonization.</B></FONT>"
-		world << "<FONT size = 3><B>Well done, you showed those snowflakes what war means!</B></FONT>"
+		world << "<FONT size = 3><B>Well done, you've secured the planet for the hive!</B></FONT>"
 
 		if(round_stats) // Logging to data/logs/round_stats.log
 			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner:)"
@@ -876,13 +1068,6 @@
 								/obj/item/weapon/storage/pill_bottle/kelotane,
 								/obj/item/weapon/storage/pill_bottle/kelotane,
 								/obj/item/weapon/storage/pill_bottle/kelotane,
-								/obj/item/weapon/storage/syringe_case/oxy,
-								/obj/item/weapon/storage/syringe_case/tox,
-								/obj/item/weapon/storage/syringe_case/burn,
-								/obj/item/weapon/storage/syringe_case/regular,
-								/obj/item/device/healthanalyzer,
-								/obj/item/device/healthanalyzer,
-								/obj/item/device/healthanalyzer,
 								/obj/item/stack/medical/splint,
 								/obj/item/stack/medical/splint,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord,
@@ -891,10 +1076,7 @@
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP,
 								/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard,
-								/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo,
-								/obj/item/weapon/reagent_containers/blood/OMinus,
-								/obj/item/weapon/reagent_containers/blood/OMinus,
-								/obj/item/weapon/reagent_containers/blood/OMinus)
+								/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo)
 
 
 	else if (OT == "wep")
@@ -941,7 +1123,7 @@
 										/obj/item/ammo_magazine/minigun)
 
 
-			if(1)//Random Attachments Crate
+			if(1 to 2)//Random Attachments Crate
 				choosemax = rand(20,30)
 				randomitems = list(/obj/item/attachable/suppressor,
 								/obj/item/attachable/suppressor,
@@ -962,7 +1144,7 @@
 								/obj/item/attachable/flamer,
 								/obj/item/attachable/burstfire_assembly)
 
-			if(2)//Random Melee Crate
+			if(3)//Random Melee Crate
 				choosemax = rand(10,20)
 				randomitems = list(/obj/item/weapon/combat_knife,
 								/obj/item/weapon/combat_knife,
@@ -979,7 +1161,7 @@
 								/obj/item/weapon/storage/belt/knifepouch,
 								/obj/item/weapon/claymore/mercsword/machete)
 
-			if(3)//Random Explosives Items
+			if(4)//Random Explosives Items
 				choosemax = rand(10,20)
 				randomitems = list(/obj/item/weapon/storage/box/explosive_mines,
 									/obj/item/weapon/grenade/explosive,
@@ -1003,119 +1185,155 @@
 									/obj/item/weapon/plastique)
 
 
-			if(4 to 5)//Random Primary Gun
-				choosemax = rand(5,10)
+			if(5 to 10)//Random USCM Care Package
+				choosemax = rand(15,40)
 				randomitems = list(/obj/item/weapon/gun/rifle/m41a,
 									/obj/item/weapon/gun/rifle/m41a,
 									/obj/item/weapon/gun/rifle/m41a,
 									/obj/item/weapon/gun/rifle/m41a,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
+									/obj/item/ammo_magazine/rifle,
 									/obj/item/weapon/gun/rifle/m41a/scoped,
-									/obj/item/weapon/gun/rifle/m41a/elite,
-									/obj/item/weapon/gun/rifle/mar40,
-									/obj/item/weapon/gun/rifle/mar40,
-									/obj/item/weapon/gun/rifle/mar40/carbine,
-									/obj/item/weapon/gun/rifle/sniper/svd,
-									/obj/item/weapon/gun/rifle/lmg,
-									/obj/item/weapon/gun/shotgun/combat,
-									/obj/item/weapon/gun/shotgun/merc,
-									/obj/item/weapon/gun/shotgun/double,
-									/obj/item/weapon/gun/shotgun/double/sawn,
-									/obj/item/weapon/gun/shotgun/pump,
-									/obj/item/weapon/gun/shotgun/pump,
-									/obj/item/weapon/gun/shotgun/pump/cmb)
-
-			if(6 to 7)//Random Secondary Gun
-				choosemax = rand(10,15)
-				randomitems = list(/obj/item/weapon/gun/smg/m39,
-									/obj/item/weapon/gun/smg/m39,
-									/obj/item/weapon/gun/smg/m39,
-									/obj/item/weapon/gun/smg/m39/elite,
-									/obj/item/weapon/gun/smg/mp7,
-									/obj/item/weapon/gun/smg/skorpion,
-									/obj/item/weapon/gun/smg/ppsh,
-									/obj/item/weapon/gun/smg/uzi,
-									/obj/item/weapon/gun/smg/p90,
-									/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/pistol/m4a3,
-									/obj/item/weapon/gun/pistol/heavy,
-									/obj/item/weapon/gun/pistol/c99,
-									/obj/item/weapon/gun/pistol/m1911,
-									/obj/item/weapon/gun/pistol/kt42,
-									/obj/item/weapon/gun/pistol/holdout,
-									/obj/item/weapon/gun/pistol/highpower,
-									/obj/item/weapon/gun/pistol/vp70,
-									/obj/item/weapon/gun/pistol/vp78,
-									/obj/item/weapon/gun/revolver/m44,
-									/obj/item/weapon/gun/revolver/m44,
-									/obj/item/weapon/gun/revolver/small,
-									/obj/item/weapon/gun/revolver/upp,
-									/obj/item/weapon/gun/revolver/mateba,
-									/obj/item/weapon/gun/revolver/cmb)
-
-			if(8 to 14)//Random Primary Ammo
-				choosemax = rand(50,60)
-				randomitems = list(/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle,
-									/obj/item/ammo_magazine/rifle/extended,
-									/obj/item/ammo_magazine/rifle/incendiary,
-									/obj/item/ammo_magazine/rifle/ap,
 									/obj/item/ammo_magazine/rifle/marksman,
-									/obj/item/ammo_magazine/rifle/ap,
-									/obj/item/ammo_magazine/rifle/mar40,
-									/obj/item/ammo_magazine/rifle/mar40,
-									/obj/item/ammo_magazine/rifle/mar40/extended,
-									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/ammo_magazine/rifle/marksman,
+									/obj/item/weapon/gun/rifle/lmg,
 									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/ammo_magazine/rifle/lmg,
+									/obj/item/weapon/gun/smg/m39,
+									/obj/item/weapon/gun/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
+									/obj/item/ammo_magazine/smg/m39,
 									/obj/item/ammo_magazine/shotgun,
 									/obj/item/ammo_magazine/shotgun,
-									/obj/item/ammo_magazine/shotgun/buckshot,
-									/obj/item/ammo_magazine/shotgun/buckshot,
-									/obj/item/ammo_magazine/shotgun/incendiary)
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/ammo_magazine/shotgun,
+									/obj/item/weapon/gun/shotgun/pump,
+									/obj/item/weapon/gun/shotgun/pump)
 
-			if(15 to 18)//Random Secondary Ammo
-				choosemax = rand(50,60)
-				randomitems = list(/obj/item/ammo_magazine/pistol,
-									/obj/item/ammo_magazine/pistol,
-									/obj/item/ammo_magazine/pistol,
-									/obj/item/ammo_magazine/pistol/hp,
-									/obj/item/ammo_magazine/pistol/ap,
-									/obj/item/ammo_magazine/pistol/incendiary,
-									/obj/item/ammo_magazine/pistol/extended,
-									/obj/item/ammo_magazine/revolver,
-									/obj/item/ammo_magazine/revolver,
-									/obj/item/ammo_magazine/revolver/marksman,
-									/obj/item/ammo_magazine/revolver/small,
-									/obj/item/ammo_magazine/revolver/upp,
-									/obj/item/ammo_magazine/revolver/mateba,
-									/obj/item/ammo_magazine/pistol/heavy,
-									/obj/item/ammo_magazine/pistol/c99,
-									/obj/item/ammo_magazine/pistol/m1911,
-									/obj/item/ammo_magazine/pistol/automatic,
-									/obj/item/ammo_magazine/pistol/holdout,
-									/obj/item/ammo_magazine/pistol/highpower,
-									/obj/item/ammo_magazine/revolver/cmb,
-									/obj/item/ammo_magazine/pistol/vp70,
-									/obj/item/ammo_magazine/pistol/vp78,
-									/obj/item/ammo_magazine/smg/m39,
-									/obj/item/ammo_magazine/smg/m39,
-									/obj/item/ammo_magazine/smg/m39,
-									/obj/item/ammo_magazine/smg/m39/extended,
-									/obj/item/ammo_magazine/smg/m39/ap,
-									/obj/item/ammo_magazine/smg/mp7,
-									/obj/item/ammo_magazine/smg/skorpion,
+			if(11 to 14)//Random Black Market Care Package
+				choosemax = rand(15,30)
+				randomitems = list(/obj/item/weapon/gun/smg/ppsh,
+									/obj/item/weapon/gun/smg/ppsh,
 									/obj/item/ammo_magazine/smg/ppsh,
-									/obj/item/ammo_magazine/smg/uzi,
-									/obj/item/ammo_magazine/smg/p90)
+									/obj/item/ammo_magazine/smg/ppsh,
+									/obj/item/ammo_magazine/smg/ppsh,
+									/obj/item/ammo_magazine/smg/ppsh,
+									/obj/item/weapon/gun/rifle/sniper/svd,
+									/obj/item/weapon/gun/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/ammo_magazine/rifle/sniper/svd,
+									/obj/item/weapon/gun/smg/skorpion,
+									/obj/item/weapon/gun/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/ammo_magazine/smg/skorpion,
+									/obj/item/weapon/gun/rifle/mar40,
+									/obj/item/weapon/gun/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/ammo_magazine/rifle/mar40,
+									/obj/item/weapon/gun/pistol/kt42,
+									/obj/item/weapon/gun/pistol/kt42,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic,
+									/obj/item/ammo_magazine/pistol/automatic)
+
+			if(15 to 17)//Random Prespace Care Package
+				choosemax = rand(20,50)
+				randomitems = list(/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/weapon/gun/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/ammo_magazine/rifle/m16,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/weapon/gun/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/ammo_magazine/smg/mp5,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/weapon/gun/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs,
+									/obj/item/ammo_magazine/pistol/b92fs)
+
+			if(18)//Random Classic Drop
+				choosemax = rand(10,20)
+				randomitems = list(/obj/item/weapon/gun/rifle/m41aMK1,
+									/obj/item/weapon/gun/rifle/m41aMK1,
+									/obj/item/weapon/gun/rifle/m41aMK1,
+									/obj/item/ammo_magazine/rifle/m41aMK1,
+									/obj/item/ammo_magazine/rifle/m41aMK1,
+									/obj/item/ammo_magazine/rifle/m41aMK1,
+									/obj/item/weapon/gun/smg/p90,
+									/obj/item/weapon/gun/smg/p90,
+									/obj/item/weapon/gun/smg/p90,
+									/obj/item/ammo_magazine/smg/p90,
+									/obj/item/ammo_magazine/smg/p90,
+									/obj/item/ammo_magazine/smg/p90,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/weapon/gun/shotgun/combat,
+									/obj/item/ammo_magazine/shotgun/incendiary,
+									/obj/item/ammo_magazine/shotgun/incendiary,
+									/obj/item/ammo_magazine/shotgun/incendiary)
 
 	else if (OT == "sup")
 		randpick = rand(0,12)
 		crate = new /obj/structure/closet/crate/secure/gear(T)
 		switch(randpick)
 			if(0 to 1)//Food
-				choosemax = rand(35,60)
+				choosemax = rand(10,40)
 				randomitems = list(/obj/item/weapon/storage/box/uscm_mre,
 								/obj/item/weapon/storage/box/donkpockets,
 								/obj/item/weapon/reagent_containers/food/snacks/protein_pack,
@@ -1134,18 +1352,7 @@
 								/obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal6,
 								/obj/item/weapon/storage/box/wy_mre)
 
-			if(2 to 3)//Tools
-				choosemax = rand(3,6)
-				randomitems = list(/obj/item/device/multitool,
-								/obj/item/device/multitool,
-								/obj/item/weapon/storage/toolbox/electrical,
-								/obj/item/weapon/storage/toolbox/mechanical,
-								/obj/item/weapon/storage/belt/utility/full,
-								/obj/item/weapon/weldpack,
-								/obj/item/weapon/cell/high,
-								/obj/item/clothing/glasses/welding)
-
-			if(4 to 6)//Marine Gear
+			if(2 to 4)//Marine Gear
 				choosemax = rand(10,15)
 				randomitems = list(/obj/item/clothing/head/helmet/marine,
 								/obj/item/clothing/head/helmet/marine,
@@ -1160,9 +1367,9 @@
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/clothing/tie/storage/webbing,
 								/obj/item/device/binoculars,
-								/obj/item/device/squad_beacon/bomb)
+								/obj/item/device/airstrikebeacon)
 
-			if(7 to 8)//Lights and shiet
+			if(5 to 8)//Lights and shiet
 				choosemax = rand(10,20)
 				randomitems = list(/obj/item/device/flashlight/flare,
 								/obj/item/device/flashlight/flare,
@@ -1214,10 +1421,7 @@
 			var/obj/I = new path(crate)
 			if(OT == "sup")
 				if(I && istype(I,/obj/item/stack/sheet/mineral/phoron) || istype(I,/obj/item/stack/rods) || istype(I,/obj/item/stack/sheet/glass) || istype(I,/obj/item/stack/sheet/metal) || istype(I,/obj/item/stack/sheet/plasteel) || istype(I,/obj/item/stack/sheet/wood))
-					if(istype(I,/obj/item/stack/sheet/mineral/phoron))
-						I:amount = 50
-					else
-						I:amount = rand(10,30)
+					I:amount = rand(10,50)
 				if(I && istype(I,/obj/machinery/floodlight))
 					I.anchored = 0
 
@@ -1299,3 +1503,992 @@
 
 	ex_act(severity)
 		return
+
+
+////////////////////
+//Art's Additions //
+////////////////////
+
+//Sandbags
+/obj/structure/m_barricade/sandbags
+	name = "Sandbag barricade"
+	desc = "Trusted since 1914"
+	icon = 'icons/turf/whiskeyoutpost.dmi'
+	icon_state = "sandbag"
+	density = 1
+	anchored = 1.0
+	layer = 5
+	throwpass = 1	//You can throw objects over this, despite its density.
+	climbable = 1
+	flags_atom = ON_BORDER
+	health = 250 //Pretty tough. Changes sprites at 300 and 150.
+	unacidable = 0 //Who the fuck though unacidable barricades with 500 health was a good idea?
+
+	New()
+		if(dir != NORTH)
+			layer = 5
+		else
+			layer = 3
+
+	Crossed(atom/movable/O)
+		..()
+		if(istype(O,/mob/living/carbon/Xenomorph/Crusher))
+			var/mob/living/carbon/Xenomorph/M = O
+			if(!M.stat)
+				visible_message("<span class='danger'>[O] steamrolls through the [src]!</span>")
+				destroy()
+
+	update_icon()
+		icon_state = initial(icon_state)
+
+	update_health()
+		if(health < 0)
+			destroy()
+			return
+		return
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (!W) return
+
+		//Otherwise, just hit it.
+		if(force > 20)
+			..()
+			health -= W.force / 2
+			update_health()
+			return
+
+		return
+
+	destroy()
+		src.visible_message("\red [src] collapses!")
+		density = 0
+		del(src)
+		return
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+//Stationary Machinegun
+/obj/machinery/marine_turret/mg_turret
+	name = "M56D Smartgun Nest"
+	desc = "A M56D smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs."
+	on = 1
+	burst_fire = 1
+	fire_delay = 15
+	rounds = 1500
+	rounds_max = 1500
+	icon = 'icons/turf/whiskeyoutpost.dmi'
+	icon_state = "towergun"
+	safety_off = 1
+	ammo = /datum/ammo/bullet/machinegun
+
+	New()
+		spark_system = new /datum/effect/effect/system/spark_spread
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		var/obj/item/weapon/cell/super/H = new(src) //Better cells in these ones.
+		cell = H
+		spawn(2)
+			stat = 0
+			processing_objects.Add(src)
+		ammo = ammo_list[ammo]
+
+/obj/machinery/marine_turret/mg_turret/attack_hand(mob/user as mob) //Time to cut out alot of the sentry code
+	src.add_fingerprint(user)
+
+	operator = user
+
+	var/dat = "<b>[src.name]:</b> <BR><BR>"
+	dat += "--------------------<BR><BR>"
+	dat += "<B>Current Rounds:</b> [rounds] / [rounds_max]<BR>"
+	dat += "<B>Structural Integrity:</b> [round(health * 100 / health_max)] percent <BR>"
+	dat += "--------------------<BR><BR>"
+	dat += "<B><A href='?src=\ref[src];op=burst'>Burst Fire</a>:</B> "
+	if(burst_fire)
+		dat += "ON<BR>"
+	else
+		dat += "OFF<BR>	"
+	dat += "--------------------<BR><BR>"
+	if(manual_override)
+		dat += "MANUAL OVERRIDE<BR>"
+	else
+		dat += "ON<BR>"
+	dat += "<A href='?src=\ref[src];op=manual'>Manual Override Toggle</a><BR><BR>"
+	dat += "--------------------<BR><BR>"
+	dat += "<A href='?src=\ref[src];op=close'>{Close}</a><BR>"
+	user.set_machine(src)
+	user << browse(dat, "window=turret;size=300x400")
+	onclose(user, "turret")
+	return
+
+/obj/machinery/marine_turret/mg_turret/Topic(href, href_list)
+	if(usr.stat)
+		return
+
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user))
+		return
+
+	if(get_dist(src.loc, user.loc) > 1)
+		return
+
+	usr.set_machine(src)
+	switch(href_list["op"])
+		if("burst")
+			if(alert(usr,"Do you want to turn on the burst fire function? It will be much less accurate.","Burst Fire", "Yes", "No") == "Yes")
+				if(burst_fire)
+					usr << "It's already firing in a burst."
+				else
+					burst_fire = 1
+					fire_delay = 5
+					visible_message("\icon[src] [src] emits a audiable hard click.")
+					usr << "\blue You activate the burst fire mode."
+			else
+				if(!burst_fire)
+					usr << "It's already firing single shots."
+				else
+					burst_fire = 0
+					fire_delay = 0
+					visible_message("\icon[src] [src] emits a audiable soft click.")
+					usr << "\blue You deactivate the burst fire mode."
+		if("manual")
+			if(!dir_locked)
+				usr << "The turret can only be fired manually in direction-locked mode."
+			else
+				if(alert(usr,"Do you want to man the machinegun","MAN THE GUN", "Yes", "No") == "Yes")
+					if(gunner)
+						usr << "Someone's already controlling it."
+					else
+						if(user.turret_control)
+							usr << "You're already controlling one!"
+						else
+							gunner = usr
+							visible_message("\icon[src] \red[src] mans the machinegun")
+							usr << "\blue You take control of the machinegun."
+							user.turret_control = src
+							manual_override = 1
+				else
+					if(user.turret_control)
+						gunner = null
+						visible_message("\icon[src] [user] leaves the machinegun")
+						usr << "\blue You decide to let someone else take a shot."
+						user.turret_control = null
+						manual_override = 0
+					else
+						user << "You're not controlling this machinegun."
+			if(stat == 2)
+				stat = 0 //Weird bug goin on here
+	src.attack_hand(user)
+	return
+
+/obj/machinery/marine_turret/mg_turret/attackby(var/obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/WT = O
+		if(health < 0 || stat)
+			user << "It's too damaged for that, its doomed."
+			return
+
+		if(health >= health_max)
+			user << "It's already in perfect condition."
+			return
+
+		if(WT.remove_fuel(0, user))
+			user.visible_message("\blue [user] begins repairing damage to the [src].","\blue You begin repairing the damage to the [src].")
+			if(do_after(user,50))
+				user.visible_message("\blue [user] repairs the damaged [src].","\blue Your repair the [src]'s damage.")
+				update_health(-50)
+				playsound(src.loc, 'sound/items/Welder2.ogg', 75, 1)
+		return
+
+/obj/machinery/marine_turret/mg_turret/get_target()
+	return
+
+/obj/machinery/marine_turret/mg_turret/update_icon()
+	icon_state = "towergun"
+
+/obj/machinery/marine_turret/mg_turret/update_health(var/damage) //Negative damage restores health.
+	health -= damage
+	if(health > health_max)
+		health = health_max
+	if(health <= 0)
+		visible_message("The MG nest collapses!")
+		del(src)
+	update_icon()
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+// So to finish the vietnam feel, adding IN NAPALM AIR STRIKES.
+// Because appearntly this is a great idea.
+
+/obj/item/device/airstrikebeacon // Taking most of this from the OB code
+	name = "IR target beacon"
+	desc = "Used to signal to UD-22 'Navajo' gunships to target the area it is dropped upon, often with napalm. There is also a rotating switch on the side to change from horizontal to verticle strike paths."
+	icon = 'icons/turf/whiskeyoutpost.dmi'
+	icon_state = "ir_beacon"
+	w_class = 2
+	var/activated = 0
+	var/icon_activated = "ir_beacon_active"
+	var/target_plane = 0 //0 means E-W, 1 means N-S.
+
+	attack_self(mob/user)
+		if(activated)
+			user << "It's already been activated. Toss it and book it!" // Seriously.
+			return
+
+		if(!ishuman(user)) return
+		if(!user.mind)
+			user << "It doesn't seem to do anything for you."
+			return
+
+		if(user.z != 1)
+			user << "You have to be on the ground to use this or it won't transmit to the gunships."
+			return
+
+		message_admins("ALERT: [user] ([user.key]) triggered an napalm airstrike.")
+		activated = 1
+		anchored = 1
+		w_class = 10
+		icon_state = "[icon_activated]"
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		user << "You activate the [src]. Now toss it, the gunships will lock on in 5 seconds! You have 5 seconds after that to get outside of danger close!"
+		initate_airstrike()
+		return
+
+/obj/item/device/airstrikebeacon/proc/initate_airstrike() //Airstrike inbound!
+	sleep(50)
+	var/turf/T = get_turf(src) // get where we are.
+	var/offset_x = 0
+	var/offset_y = 0
+	if(!target_plane)
+		offset_x = 4
+	if(target_plane)
+		offset_y = 4
+	var/turf/target = locate(T.x + offset_x,T.y + offset_y,T.z) //Three napalm rockets are launched
+	var/turf/target_2 = locate(T.x,T.y,T.z)
+	var/turf/target_3 = locate(T.x - offset_x,T.y - offset_y,T.z)
+	var/turf/target_4 = locate(T.x - (offset_x*2),T.y - (offset_y*2),T.z)
+	sleep(50) //AWW YEAH
+	visible_message("<span class='notice'> You hear engines roaring by!</span>")
+	flame_radius(4,target)
+	explosion(target,  -1, 3, 4, 6)
+	flame_radius(4,target_2)
+	explosion(target_2,  -1, 3, 4, 6)
+	flame_radius(4,target_3)
+	explosion(target_3,  -1, 3, 4, 6)
+	flame_radius(4,target_4)
+	explosion(target_4,  -1, 3, 4, 6)
+	sleep(5)
+	del(src) // get rid of the beacon
+	return
+
+/obj/item/device/airstrikebeacon/verb/switch_plane()
+	set category = "Weapons"
+	set name = "Change Airstrike Direction"
+	set desc = "Will change the airstrike plane from going East/West to North/South and vice versa"
+	set src in usr
+
+	playsound(src,'sound/machines/click.ogg', 50, 1)
+
+	if(!target_plane)
+		target_plane = 1
+		return
+	if(target_plane)
+		target_plane = 0
+		return
+	return
+
+////////////////////////////////////////////////////////////////////////////////////
+
+// Xeno spawn fixes
+/* Basically making it so that xenos have evolutions be spawnable which would help alot, so this is going to be a long list
+YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
+
+/mob/living/carbon/Xenomorph/Runner
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 15
+		melee_damage_upper = 25
+		health = 120
+		maxHealth = 120
+		storedplasma = 0
+		plasma_gain = 2
+		maxplasma = 150
+		jellyMax = 400
+		caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
+		speed = -1.5
+		armor_deflection = 5
+		attack_delay = -4
+		tacklemin = 2
+		tacklemax = 4
+		tackle_chance = 50
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 150
+		maxHealth = 150
+		storedplasma = 0
+		plasma_gain = 2
+		maxplasma = 200
+		jellyMax = 800
+		caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
+		speed = -1.6
+		armor_deflection = 10
+		attack_delay = -4
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 140
+		maxHealth = 140
+		storedplasma = 0
+		plasma_gain = 2
+		maxplasma = 200
+		caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
+		speed = -2
+		armor_deflection = 10
+		attack_delay = -4
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 70
+
+/mob/living/carbon/Xenomorph/Drone
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 12
+		melee_damage_upper = 16
+		health = 120
+		maxHealth = 120
+		storedplasma = 0
+		maxplasma = 800
+		plasma_gain = 20
+		jellyMax = 1000
+		caste_desc = "The workhorse of the hive. It looks a little more dangerous."
+		armor_deflection = 5
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = -0.6
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 12
+		melee_damage_upper = 16
+		health = 150
+		maxHealth = 150
+		storedplasma = 0
+		maxplasma = 900
+		plasma_gain = 30
+		jellyMax = 1500
+		caste_desc = "The workhorse of the hive. It looks a little more dangerous."
+		armor_deflection = 5
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = -0.6
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		maxplasma = 1000
+		plasma_gain = 50
+		caste_desc = "A very mean architect."
+		armor_deflection = 15
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 80
+		speed = -0.6
+
+/mob/living/carbon/Xenomorph/Carrier
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		maxplasma = 300
+		plasma_gain = 10
+		jellyMax = 1600
+		caste_desc = "A portable Love transport. It looks a little more dangerous."
+		armor_deflection = 10
+		tacklemin = 3
+		tacklemax = 4
+		tackle_chance = 60
+		speed = -0.4
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 30
+		melee_damage_upper = 40
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		maxplasma = 350
+		plasma_gain = 12
+		jellyMax = 3200
+		caste_desc = "A portable Love transport. It looks pretty strong."
+		armor_deflection = 15
+		tacklemin = 4
+		tacklemax = 5
+		tackle_chance = 70
+		speed = -0.4
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		maxplasma = 400
+		plasma_gain = 15
+		caste_desc = "It's literally crawling with 10 huggers."
+		armor_deflection = 20
+		tacklemin = 5
+		tacklemax = 6
+		tackle_chance = 75
+		speed = -0.3
+
+/mob/living/carbon/Xenomorph/Hivelord
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 15
+		melee_damage_upper = 20
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		maxplasma = 900
+		plasma_gain = 40
+		jellyMax = 1600
+		caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
+		armor_deflection = 10
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = 1.4
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 15
+		melee_damage_upper = 20
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		maxplasma = 1000
+		plasma_gain = 50
+		jellyMax = 3200
+		caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
+		armor_deflection = 15
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 70
+		speed = 1.3
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 300
+		maxHealth = 300
+		storedplasma = 0
+		maxplasma = 1200
+		plasma_gain = 70
+		caste_desc = "An extreme construction machine. It seems to be building walls..."
+		armor_deflection = 20
+		tacklemin = 5
+		tacklemax = 7
+		tackle_chance = 80
+		speed = 1.2
+
+/mob/living/carbon/Xenomorph/Praetorian
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 900
+		jellyMax = 1600
+		spit_delay = 15
+		caste_desc = "A giant ranged monster. It looks a little more dangerous."
+		armor_deflection = 50
+		tacklemin = 5
+		tacklemax = 8
+		tackle_chance = 75
+		speed = 1.6
+		spit_type = 0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 30
+		melee_damage_upper = 35
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 40
+		maxplasma = 1000
+		jellyMax = 3200
+		spit_delay = 10
+		caste_desc = "A giant ranged monster. It looks pretty strong."
+		armor_deflection = 55
+		tacklemin = 6
+		tacklemax = 9
+		tackle_chance = 80
+		speed = 1.5
+		spit_type = 0
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 40
+		melee_damage_upper = 50
+		health = 270
+		maxHealth = 270
+		storedplasma = 0
+		plasma_gain = 50
+		maxplasma = 1000
+		spit_delay = 0
+		caste_desc = "Its mouth looks like a minigun."
+		armor_deflection = 60
+		tacklemin = 7
+		tacklemax = 10
+		tackle_chance = 85
+		speed = 1.3
+		spit_type = 0
+
+/mob/living/carbon/Xenomorph/Ravager
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 50
+		melee_damage_upper = 70
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		plasma_gain = 10
+		maxplasma = 150
+		jellyMax = 1600
+		caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
+		speed = -1.2
+		armor_deflection = 60
+		tacklemin = 4
+		tacklemax = 8
+		tackle_chance = 85
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 60
+		melee_damage_upper = 80
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 200
+		jellyMax = 3200
+		caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
+		speed = -1.3
+		armor_deflection = 65
+		tacklemin = 5
+		tacklemax = 9
+		tackle_chance = 90
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 80
+		melee_damage_upper = 100
+		health = 350
+		maxHealth = 350
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 200
+		caste_desc = "As I walk through the valley of the shadow of death."
+		speed = -1.1
+		armor_deflection = 70
+		tacklemin = 6
+		tacklemax = 10
+		tackle_chance = 95
+
+/mob/living/carbon/Xenomorph/Sentinel
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 15
+		melee_damage_upper = 25
+		health = 150
+		maxHealth = 150
+		storedplasma = 0
+		plasma_gain = 12
+		maxplasma = 400
+		jellyMax = 400
+		spit_delay = 25
+		caste_desc = "A ranged combat alien. It looks a little more dangerous."
+		armor_deflection = 20
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = -0.6
+		spit_type = 0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 175
+		maxHealth = 175
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 500
+		jellyMax = 800
+		spit_delay = 20
+		caste_desc = "A ranged combat alien. It looks pretty strong."
+		armor_deflection = 20
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 60
+		speed = -0.6
+		spit_type = 0
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 20
+		maxplasma = 600
+		spit_delay = 10
+		caste_desc = "Neurotoxin Factory, don't let it get you."
+		armor_deflection = 20
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 60
+		speed = -0.6
+		spit_type = 0
+
+/mob/living/carbon/Xenomorph/Spitter
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 30
+		health = 180
+		maxHealth = 180
+		storedplasma = 0
+		plasma_gain = 25
+		maxplasma = 700
+		jellyMax = 800
+		spit_delay = 20
+		caste_desc = "A ranged damage dealer. It looks a little more dangerous."
+		armor_deflection = 20
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+		speed = 0
+		spit_type = 0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 800
+		jellyMax = 1600
+		spit_delay = 15
+		caste_desc = "A ranged damage dealer. It looks pretty strong."
+		armor_deflection = 25
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 70
+		speed = -0.1
+		spit_type = 0
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 50
+		maxplasma = 900
+		spit_delay = 5
+		caste_desc = "A ranged destruction machine."
+		armor_deflection = 35
+		tacklemin = 5
+		tacklemax = 7
+		tackle_chance = 75
+		speed = -0.2
+		spit_type = 0
+
+/mob/living/carbon/Xenomorph/Hunter
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 25
+		melee_damage_upper = 35
+		health = 170
+		maxHealth = 170
+		storedplasma = 0
+		plasma_gain = 10
+		maxplasma = 150
+		jellyMax = 800
+		caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
+		speed = -1.4
+		armor_deflection = 25
+		attack_delay = -2
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 60
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 35
+		melee_damage_upper = 50
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 10
+		maxplasma = 200
+		jellyMax = 1600
+		caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
+		speed = -1.5
+		armor_deflection = 30
+		attack_delay = -3
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 65
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 50
+		melee_damage_upper = 60
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 20
+		maxplasma = 300
+		caste_desc = "A completly unmatched hunter. No, not even the Yautja can match you."
+		speed = -1.5
+		armor_deflection = 40
+		attack_delay = -3
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 65
+
+/mob/living/carbon/Xenomorph/Queen
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 40
+		melee_damage_upper = 55
+		health = 320
+		maxHealth = 320
+		storedplasma = 0
+		maxplasma = 800
+		plasma_gain = 40
+		jellyMax = 1600
+		caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
+		armor_deflection = 65
+		tacklemin = 5
+		tacklemax = 7
+		tackle_chance = 85
+		speed = 0.9
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 50
+		melee_damage_upper = 60
+		health = 350
+		maxHealth = 350
+		storedplasma = 0
+		maxplasma = 900
+		plasma_gain = 50
+		jellyMax = 3200
+		caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
+		armor_deflection = 70
+		tacklemin = 6
+		tacklemax = 9
+		tackle_chance = 90
+		speed = 0.8
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 70
+		melee_damage_upper = 90
+		health = 400
+		maxHealth = 400
+		storedplasma = 0
+		maxplasma = 1000
+		plasma_gain = 50
+		caste_desc = "The most perfect Xeno form imaginable."
+		armor_deflection = 80
+		tacklemin = 7
+		tacklemax = 10
+		tackle_chance = 95
+		speed = 0.7
+
+/mob/living/carbon/Xenomorph/Crusher
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 35
+		tacklemin = 4
+		tacklemax = 7
+		tackle_chance = 95
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 15
+		maxplasma = 300
+		jellyMax = 1600
+		caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
+		speed = 0.5
+		armor_deflection = 70
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		tacklemin = 5
+		tacklemax = 9
+		tackle_chance = 95
+		health = 300
+		maxHealth = 300
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 400
+		jellyMax = 3200
+		caste_desc = "A huge tanky xenomorph. It looks pretty strong."
+		speed = 0.1
+		armor_deflection = 75
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		tacklemin = 5
+		tacklemax = 9
+		tackle_chance = 95
+		health = 350
+		maxHealth = 350
+		storedplasma = 0
+		plasma_gain = 30
+		maxplasma = 400
+		caste_desc = "It always has the right of way."
+		speed = -0.1
+		armor_deflection = 85
+
+/mob/living/carbon/Xenomorph/Boiler
+
+	mature
+		upgrade_name = "Mature"
+		upgrade = 1
+		melee_damage_lower = 20
+		melee_damage_upper = 25
+		health = 200
+		maxHealth = 200
+		storedplasma = 0
+		plasma_gain = 35
+		maxplasma = 900
+		jellyMax = 1600
+		spit_delay = 30
+		caste_desc = "Some sort of abomination. It looks a little more dangerous."
+		armor_deflection = 30
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 65
+		speed = 1.0
+
+	elite
+		upgrade_name = "Elite"
+		upgrade = 2
+		melee_damage_lower = 30
+		melee_damage_upper = 35
+		health = 220
+		maxHealth = 220
+		storedplasma = 0
+		plasma_gain = 40
+		maxplasma = 1000
+		jellyMax = 3200
+		spit_delay = 20
+		caste_desc = "Some sort of abomination. It looks pretty strong."
+		armor_deflection = 35
+		tacklemin = 3
+		tacklemax = 5
+		tackle_chance = 70
+		speed = 0.9
+
+	ancient
+		upgrade_name = "Ancient"
+		upgrade = 3
+		melee_damage_lower = 35
+		melee_damage_upper = 45
+		health = 250
+		maxHealth = 250
+		storedplasma = 0
+		plasma_gain = 50
+		maxplasma = 1000
+		spit_delay = 10
+		caste_desc = "A devestating piece of alien artillery."
+		armor_deflection = 40
+		tacklemin = 4
+		tacklemax = 6
+		tackle_chance = 80
+		speed = 0.8

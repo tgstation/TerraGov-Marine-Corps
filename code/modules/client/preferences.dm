@@ -8,7 +8,7 @@ var/global/list/special_roles = list(
 	"survivor" = 1,
 	"responder" = 1,
 	"predator" = 1,
-	"WO Role" = 1
+	"WO Commander" = 1
 
 	// "wizard" = IS_MODE_COMPILED("wizard"),               // 3
 	// "malf AI" = IS_MODE_COMPILED("malfunction"),         // 4

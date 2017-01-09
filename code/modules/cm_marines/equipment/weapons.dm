@@ -539,7 +539,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 //Stepping directly on the mine will also blow it up
 /obj/item/device/mine
 	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a directional proximity triggered anti-presonnel mine designed by Armat Systems for use by the United States Colonial Marines."
+	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the United States Colonial Marines."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "m20"
 	force = 5.0
@@ -566,7 +566,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 /obj/item/device/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-presonnel mine designed by Armat Systems for use by the United States Colonial Marines. It has been modified for use by the W-Y PMC forces."
+	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the United States Colonial Marines. It has been modified for use by the W-Y PMC forces."
 	icon_state = "m20p"
 	iff_signal = ACCESS_IFF_PMC
 
