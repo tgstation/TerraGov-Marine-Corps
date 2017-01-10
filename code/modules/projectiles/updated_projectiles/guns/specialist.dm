@@ -473,18 +473,8 @@
 		if(active_attachable) active_attachable = null
 		return ready_in_chamber()
 
+	//No such thing
 	reload_into_chamber(mob/user)
-		set waitfor = 0
-		sleep(1)
-		var/smoke_dir = user.dir
-		if(user)
-			switch(smoke_dir) //We want the opposite of their direction.
-				if(2,8)
-					smoke_dir /= 2
-				if(1,4)
-					smoke_dir *= 2
-		puff.set_up(1,,,smoke_dir)
-		puff.start()
 		return 1
 
 	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
@@ -532,6 +522,21 @@
 		if(user)
 			if(!current_mag.current_rounds) user << "<span class='warning'>[src] is already empty!</span>"
 			else 							user << "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>"
+
+//Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
+/obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
+
+	var/backblast_loc = get_turf(get_step(user.loc, turn(user.dir, 180)))
+	var/datum/effect/effect/system/smoke_spread/smoke = new
+	smoke.set_up(2, 0, backblast_loc, turn(user.dir, 180))
+	smoke.start()
+	for(var/mob/living/carbon/C in backblast_loc)
+		if(!C.lying) //Have to be standing up to get the fun stuff
+			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
+			C.Stun(4) //For good measure
+			C.emote("scream")
+
+		..()
 
 //-------------------------------------------------------
 //SADARS MEAN FUCKING COUSIN

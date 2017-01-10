@@ -605,17 +605,29 @@
 		damage = config.min_hit_damage
 		shell_speed = config.slow_shell_speed
 
-	on_hit_mob(mob/M,obj/item/projectile/P)
+	on_hit_mob(mob/M, obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 3, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, get_turf(M))
+		smoke.start()
 
-	on_hit_obj(obj/O,obj/item/projectile/P)
+	on_hit_obj(obj/O, obj/item/projectile/P)
 		explosion(get_turf(O), -1, 1, 3, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, get_turf(O))
+		smoke.start()
 
-	on_hit_turf(turf/T,obj/item/projectile/P)
+	on_hit_turf(turf/T, obj/item/projectile/P)
 		explosion(T,  -1, 1, 3, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, T)
+		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
 		explosion(get_turf(P),  -1, 1, 3, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, get_turf(P))
+		smoke.start()
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
@@ -630,17 +642,29 @@
 		damage = config.ultra_hit_damage
 		penetration= config.max_armor_penetration
 
-	on_hit_mob(mob/M,obj/item/projectile/P)
+	on_hit_mob(mob/M, obj/item/projectile/P)
 		explosion(get_turf(M), -1, 1, 1, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, get_turf(M))
+		smoke.start()
 
-	on_hit_obj(obj/O,obj/item/projectile/P)
+	on_hit_obj(obj/O, obj/item/projectile/P)
 		explosion(get_turf(O), -1, 1, 1, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, get_turf(O))
+		smoke.start()
 
-	on_hit_turf(turf/T,obj/item/projectile/P)
+	on_hit_turf(turf/T, obj/item/projectile/P)
 		explosion(T,  -1, 1, 1, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, T)
+		smoke.start()
 
 	do_at_max_range(obj/item/projectile/P)
 		explosion(get_turf(P),  -1, 1, 1, 4)
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, get_turf(P))
+		smoke.start()
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -655,17 +679,20 @@
 
 	drop_flame(turf/T)
 		if(!istype(T)) return
+		var/datum/effect/effect/system/smoke_spread/smoke = new
+		smoke.set_up(6, 0, T)
+		smoke.start()
 		if(locate(/obj/flamer_fire) in T) return
 		var/obj/flamer_fire/F =  new(T)
 		processing_objects.Add(F)
-		F.firelevel = pick(15,20,25,30) //mama mia she a hot one!
+		F.firelevel = pick(15, 20, 25, 30) //mama mia she a hot one!
 
-		for(var/mob/living/carbon/M in range(3,T))
+		for(var/mob/living/carbon/M in range(3, T))
 			if(istype(M,/mob/living/carbon/Xenomorph))
 				if(M:fire_immune) continue
 
 			if(M.stat == DEAD) continue
-			M.adjust_fire_stacks(rand(5,25))
+			M.adjust_fire_stacks(rand(5, 25))
 			M.IgniteMob()
 			M.visible_message("<span class='danger'>[M] bursts into flames!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
