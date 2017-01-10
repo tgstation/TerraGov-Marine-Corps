@@ -175,12 +175,13 @@
 
 	moving_status = SHUTTLE_IDLE
 
+	location = !location
+
 	//Simple, cheap ticker
 	if(recharge_time)
 		while(--recharging) sleep(1)
 
 	transit_optimized = 0 //De-optimize the flight plans
-
 
 //Starts out exactly the same as long_jump()
 //Differs in the target selection and later things enough to merit it's own proc
@@ -290,7 +291,7 @@
 
 	var/turf/sploded
 	for(var/j=0; j<5; j++)
-		sploded = locate(T_trg.x + rand(1, 12), T_trg.y + rand(1, 12), T_trg.z)
+		sploded = locate(T_trg.x + rand(-5, 10), T_trg.y + rand(-5, 10), T_trg.z)
 		//Fucking. Kaboom.
 		explosion(sploded, 0, 2, 5, 0)
 		sleep(3)
@@ -305,9 +306,19 @@
 
 	open_doors_crashed(turfs_trg) //And now open the doors
 
+	//Stolen from events.dm. WARNING: This code is old as hell
+	for (var/obj/machinery/power/apc/APC in machines)
+		if(APC.z == 3 || APC.z == 4)
+			APC.ion_act()
+	for (var/obj/machinery/power/smes/SMES in machines)
+		if(SMES.z == 3 || SMES.z == 4)
+			SMES.ion_act()
+
 	//END: Heavy lifting backend
 
 	//And now that we've crashed, we are never flying again
+	sleep(100)
+	//But first lets make sure all of our procs elsewhere are fixed
 	del(src)
 
 
@@ -362,6 +373,8 @@
 	move_shuttle_to(T_trg, null, turfs_src)
 
 	moving_status = SHUTTLE_IDLE
+
+	location = !location
 
 /obj/machinery/door/poddoor/shutters/transit
 	name = "Transit shutters"
