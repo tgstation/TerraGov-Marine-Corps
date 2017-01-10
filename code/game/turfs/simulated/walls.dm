@@ -12,6 +12,11 @@
 	var/damage_overlay
 	var/global/damage_overlays[8]
 
+	var/current_bulletholes = 0
+	var/bullethole_increment = 1
+	var/bullethole_state = 0
+	var/image/reusable/bullethole_overlay
+
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
 	opacity = 1
@@ -58,26 +63,62 @@
 	if(rotting)
 		usr << "<span class='warning'>There is fungus growing on [src].</span>"
 
+#define BULLETHOLE_STATES 10 //How many variations of bullethole patterns there are
+#define BULLETHOLE_MAX 8 * 3 //Maximum possible bullet holes.
+//Formulas. These don't need to be defines, but helpful green. Should likely reuse these for a base 8 icon system.
+#define cur_increment(v) round((v-1)/8)+1
+#define base_dir(v,i) v-(i-1)*8
+#define cur_dir(v) round(v+round(v)/3)
+
 /turf/simulated/wall/update_icon()
 	if(!damage_overlays[1]) //list hasn't been populated
 		generate_overlays()
 
-	if(!damage)
+	if(!damage) //If the thing was healed for damage; otherwise update_icon() won't run at all, unless it was strictly damaged.
 		overlays.Cut()
+		damage_overlay = initial(damage_overlay)
+		current_bulletholes = initial(current_bulletholes)
+		bullethole_increment = initial(current_bulletholes)
+		bullethole_state = initial(current_bulletholes)
+		cdel(bullethole_overlay)
+		bullethole_overlay = null
 		return
 
 	var/overlay = round(damage / damage_cap * damage_overlays.len) + 1
-	if(overlay > damage_overlays.len)
-		overlay = damage_overlays.len
+	if(overlay > damage_overlays.len) overlay = damage_overlays.len
 
-	if(damage_overlay && overlay == damage_overlay) //No need to update.
-		return
+	if(!damage_overlay || overlay != damage_overlay)
+		overlays -= damage_overlays[damage_overlay]
+		damage_overlay = overlay
+		overlays += damage_overlays[damage_overlay]
 
-	overlays.Cut()
-	overlays += damage_overlays[overlay]
-	damage_overlay = overlay
+		if(current_bulletholes > BULLETHOLE_MAX) //Could probably get away with a unique layer, but let's keep it standardized.
+			overlays -= bullethole_overlay //We need this to be the top layer, no matter what, but only if the layer is at max bulletholes.
+			overlays += bullethole_overlay
 
-	return
+	if(current_bulletholes && current_bulletholes <= BULLETHOLE_MAX)
+		overlays -= bullethole_overlay
+		if(!bullethole_overlay)
+			bullethole_state = rand(1,BULLETHOLE_STATES)
+			bullethole_overlay = rnew(/image/reusable, list('icons/effects/bulletholes.dmi',src,"bhole_[bullethole_state]_[bullethole_increment]"))
+			//for(var/mob/M in view(7)) M << bullethole_overlay
+		if(cur_increment(current_bulletholes) > bullethole_increment) bullethole_overlay.icon_state = "bhole_[bullethole_state]_[++bullethole_increment]"
+
+		var/base_direction = base_dir(current_bulletholes,bullethole_increment)
+		var/current_direction = cur_dir(base_direction)
+		dir = current_direction
+		/*Hack. Image overlays behave as the parent object, so that means they are also attached to it and follow its directional.
+		Luckily, it doesn't matter what direction the walls are set to, they link together via icon_state it seems.
+		But I haven't thoroughly tested it.*/
+		overlays += bullethole_overlay
+		//world << "<span class='debuginfo'>Increment: <b>[bullethole_increment]</b>, Direction: <b>[current_direction]</b></span>"
+
+#undef BULLETHOLE_STATES
+#undef BULLETHOLE_MAX
+#undef cur_increment
+#undef base_dir
+#undef cur_dir
+
 
 /turf/simulated/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len
@@ -91,20 +132,11 @@
 //Damage
 
 /turf/simulated/wall/proc/take_damage(dam)
-	if(dam)
-		damage = max(0, damage + dam)
-		update_damage()
-	return
-
-/turf/simulated/wall/proc/update_damage()
+	if(dam) damage = max(0, damage + dam)
 	var/cap = damage_cap
-	if(rotting)
-		cap = cap / 10
-
-	if(damage >= cap)
-		dismantle_wall()
-	else
-		update_icon()
+	if(rotting) cap = cap / 10
+	if(damage >= cap) dismantle_wall()
+	else if(dam) update_icon()
 
 	return
 

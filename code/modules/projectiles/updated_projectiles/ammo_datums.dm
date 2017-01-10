@@ -13,6 +13,7 @@
 #define AMMO_IS_SILENCED 	512
 #define AMMO_IGNORE_ARMOR	1024
 #define AMMO_IGNORE_RESIST	2048
+#define AMMO_BALLISTIC		4096
 */
 
 /datum/ammo
@@ -144,6 +145,7 @@
 /datum/ammo/bullet
 	name = "default bullet"
 	icon_state = "bullet"
+	flags_ammo_behavior = AMMO_BALLISTIC
 	sound_hit 	 = list('sound/bullets/bullet_impact1.ogg',
 						'sound/bullets/bullet_impact2.ogg',
 						'sound/bullets/bullet_impact1.ogg')
@@ -214,7 +216,7 @@
 	name = "incendiary pistol bullet"
 	damage_type = BURN
 	shrapnel_chance = 0
-	flags_ammo_behavior = AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	New()
 		..()
 		accuracy = config.med_hit_accuracy
@@ -349,7 +351,7 @@
 	name = "incendiary rifle bullet"
 	damage_type = BURN
 	shrapnel_chance = 0
-	flags_ammo_behavior = AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	New()
 		..()
 		accuracy = -config.low_hit_accuracy
@@ -395,7 +397,7 @@
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	New()
 		..()
 		accuracy = -config.low_hit_accuracy
@@ -458,7 +460,7 @@
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
 	damage_bleed = 0
-	flags_ammo_behavior = AMMO_SNIPER
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER
 	New()
 		..()
 		accuracy = config.med_hit_accuracy
@@ -473,7 +475,7 @@
 	name = "incendiary sniper bullet"
 	accuracy = 0
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER
 	New()
 		..()
 		accuracy_var_high = config.med_proj_variance
@@ -514,7 +516,7 @@
 	name = "smartgun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
 	iff_signal = ACCESS_IFF_MARINE
-	flags_ammo_behavior = AMMO_SKIPS_HUMANS
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	New()
 		..()
 		accuracy = config.max_hit_accuracy
@@ -523,7 +525,7 @@
 		penetration= config.mlow_armor_penetration
 
 /datum/ammo/bullet/smartgun/lethal
-	flags_ammo_behavior = AMMO_REGULAR
+	flags_ammo_behavior = AMMO_BALLISTIC
 	icon_state 	= "bullet"
 	New()
 		..()
@@ -539,7 +541,7 @@
 		shrapnel_chance = config.max_shrapnel_chance
 
 /datum/ammo/bullet/smartgun/dirty/lethal
-	flags_ammo_behavior = AMMO_REGULAR
+	flags_ammo_behavior = AMMO_BALLISTIC
 	icon_state 	= "bullet"
 	New()
 		..()
@@ -550,7 +552,7 @@
 	name = "autocannon bullet"
 	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
 	iff_signal = ACCESS_IFF_MARINE
-	flags_ammo_behavior = AMMO_SKIPS_HUMANS
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	New()
 		..()
 		accurate_range = config.short_shell_range

@@ -27,10 +27,8 @@
 	var/list/resources
 	var/slayer = -1 //Can snow make snow layers on top of it?
 	var/can_bloody = 0 //Can blood spawn on this turf?
-	var/can_bullets = 0 //Can bullet holes spawn on it?
 	var/clawable = 0 //Can xenos slash it up?
 
-	var/bullet_holes = 0 //How many bullets already there?
 	var/is_clawed = 0 //Clawed up already?
 
 	var/oldTurf = "" //The previous turf's path as text. Used when deconning on LV --MadSnailDisease

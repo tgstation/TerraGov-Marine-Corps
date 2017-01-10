@@ -535,19 +535,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(istype(picked_mob) && P.firer && P.roll_to_hit_mob(P.firer,picked_mob))
 			picked_mob.bullet_act(P)
 			return 1
-/*
-	//This is probably going to create lag, so I'm leaving it commented out. Maybe in the future we can enable this.
-	//Right now extra effects like ping and muzzle flash are the greatest resource hogs when it comes to the fire cycle.
-	if(P && src.can_bullets && src.bullet_holes < 5 ) //Pop a bullet hole on that fucker. 5 max per turf
-		var/image/I = image('icons/effects/effects.dmi',src,"dent")
-		I.pixel_x = P.p_x
-		I.pixel_y = P.p_y
-		if(P.damage > 30)
-			I.icon_state = "bhole"
-		//I.dir = pick(NORTH,SOUTH,EAST,WEST) // random scorch design
-		overlays += I
-		bullet_holes++
-*/
 	return 1
 
 //Simulated walls can get shot and damaged, but bullets (vs energy guns) do much less.
@@ -560,6 +547,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
 		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY|AMMO_XENO_ACID) ? round(damage * 7) : damage
 		else return
+	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
 	take_damage(damage)
 	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
 	return 1

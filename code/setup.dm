@@ -1034,6 +1034,7 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define AMMO_IS_SILENCED 	512 //Unused right now.
 #define AMMO_IGNORE_ARMOR	1024
 #define AMMO_IGNORE_RESIST	2048
+#define AMMO_BALLISTIC		4096
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1
