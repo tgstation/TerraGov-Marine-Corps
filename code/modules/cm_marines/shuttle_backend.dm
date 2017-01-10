@@ -190,6 +190,8 @@ x_pos = 0 1 2 3 4 5 6 7 8
 
 /obj/effect/landmark/shuttle_loc/marine_trg
 
+/obj/effect/landmark/shuttle_loc/marine_crs
+
 /obj/effect/landmark/shuttle_loc/New()
 	shuttlemarks += src
 
@@ -225,8 +227,8 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		var/turf/T_trg = locate(trg.x + C.x_pos, trg.y + C.y_pos, trg.z)
 
 		for(var/obj/O in T_trg)
-			if(istype(O, /obj/structure/engine_landing_sound))
-				continue
+			if(istype(O, /obj/structure/engine_landing_sound)) continue
+			if(istype(O, /obj/effect/effect/smoke)) continue //We land on smoke a lot and it has weird TTL systems that will generate runtimes otherwise
 			del(O)
 
 		var/mob/living/carbon/MLC
