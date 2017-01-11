@@ -481,7 +481,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
-	trash = /obj/item/trash/USCMtray
+	//trash = /obj/item/trash/USCMtray
+	trash = null
 	w_class = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_pack/meal1
