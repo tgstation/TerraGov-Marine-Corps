@@ -293,7 +293,7 @@
 	for(var/j=0; j<5; j++)
 		sploded = locate(T_trg.x + rand(-5, 10), T_trg.y + rand(-5, 10), T_trg.z)
 		//Fucking. Kaboom.
-		explosion(sploded, 0, 2, 5, 0)
+		explosion(sploded, 0, 1, 6, 0)
 		sleep(3)
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag) //Final destination turfs <insert bad jokey reference here>
