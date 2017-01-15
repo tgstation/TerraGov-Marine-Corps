@@ -567,9 +567,9 @@
 	New()
 		..()
 		accurate_range = config.short_shell_range
-		max_range = config.short_shell_range
+		max_range = config.norm_shell_range //Bump the range since view distance got bumped too.
 		damage = config.med_hit_damage
-		penetration= config.mlow_armor_penetration
+		penetration= config.mhigh_armor_penetration //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
 		accuracy = config.high_hit_accuracy
 
 /datum/ammo/bullet/minigun

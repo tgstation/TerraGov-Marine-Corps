@@ -105,6 +105,7 @@ Class Procs:
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
 	var/power_channel = EQUIP
+	var/mob/living/carbon/human/operator = null //Had no idea where to put this so I put this here. Used for operating machines with RELAY_CLICK
 		//EQUIP,ENVIRON or LIGHT
 	var/list/component_parts = list() //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid

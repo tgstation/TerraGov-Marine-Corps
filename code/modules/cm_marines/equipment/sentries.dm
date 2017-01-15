@@ -212,6 +212,7 @@
 	density = 1
 	layer = 3.5
 	use_power = 0
+	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING,ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/dir_locked = 1
@@ -220,8 +221,7 @@
 	var/rounds_max = 300
 	var/locked = 0
 	var/atom/target = null
-	var/mob/living/carbon/human/operator = null
-	var/mob/living/carbon/human/gunner = null
+	var/mob/living/carbon/human/worker = null
 	var/mob/living/silicon/pai = null //Are we being controlled by a pAI?
 	var/manual_override = 0
 	var/on = 0
@@ -254,17 +254,17 @@
 		ammo = ammo_list[ammo]
 
 	Del() //Clear these for safety's sake.
-		if(gunner && gunner.turret_control)
-			gunner.turret_control = null
-			gunner = null
+		if(operator && operator.machine)
+			operator.machine = null
+			operator = null
 		if(camera)
 			del(camera)
 		if(cell)
 			del(cell)
 		if(target)
 			target = null
-		if(operator)
-			operator = null
+		if(worker)
+			worker = null
 		if(pai)
 			pai = null
 		SetLuminosity(0)
@@ -295,7 +295,7 @@
 		visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
 		dir_locked = 1
 		target = null
-		operator = null
+		worker = null
 		pai = null
 		on = 1
 		SetLuminosity(7)
@@ -320,7 +320,7 @@
 		return
 
 
-	operator = user
+	worker = user
 
 	var/dat = "<b>[src.name]:</b> <BR><BR>"
 	dat += "--------------------<BR><BR>"
@@ -431,31 +431,32 @@
 					safety_off = 1
 					visible_message("\icon[src] A red light on [src] blinks brightly!")
 					usr << "\blue You deactivate the safety lock. Careful now!"
-		if("manual")
-			if(!dir_locked)
+		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
+			if(!dir_locked) //Direction lock check
 				usr << "The turret can only be fired manually in direction-locked mode."
+				manual_override = 0 //Make sure we jump back to AI mode, was a small bug when testing new handle_click()
+				return
+			if(user.machine != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
+				usr << "You're already controlling one!"
+				return
+			if(operator != user && operator) //Don't question this. If it has operator != user it wont fucken work. Like for some reason this does it proper.
+				usr << "Someone's already controlling it."
+				return
+			if(!operator) //Make sure we can use it.
+				operator = usr
+				visible_message("\icon[src] \red[src] buzzes: <B>WARNING!</b> MANUAL OVERRIDE INITIATED.")
+				usr << "\blue You take manual control of the turret."
+				user.machine = src
+				manual_override = 1
 			else
-				if(alert(usr,"Are you sure you want to take manual control over the sentry?","MANUAL OVERRIDE", "Yes", "No") == "Yes")
-					if(gunner)
-						usr << "Someone's already controlling it."
-					else
-						if(user.turret_control)
-							usr << "You're already controlling one!"
-						else
-							gunner = usr
-							visible_message("\icon[src] \red[src] buzzes: <B>WARNING!</b> MANUAL OVERRIDE INITIATED.")
-							usr << "\blue You take manual control of the turret."
-							user.turret_control = src
-							manual_override = 1
+				if(user.machine)
+					operator = null
+					visible_message("\icon[src] \blue[src] buzzes: AI targeting re-initialized.")
+					usr << "\blue You let the AI take over."
+					user.machine = null
+					manual_override = 0
 				else
-					if(user.turret_control)
-						gunner = null
-						visible_message("\icon[src] \blue[src] buzzes: AI targeting re-initialized.")
-						usr << "\blue You let the AI take over."
-						user.turret_control = null
-						manual_override = 0
-					else
-						user << "You're not controlling this turret."
+					user << "You're not controlling this turret."
 			if(stat == 2)
 				stat = 0 //Weird bug goin on here
 		if("power")
@@ -703,7 +704,7 @@
 	if(!check_power(2))
 		return
 
-	if(gunner || manual_override) //If someone's firing it manually.
+	if(operator || manual_override) //If someone's firing it manually.
 		return
 
 	if(rounds == 0)
@@ -856,23 +857,27 @@
 
 	if(targets.len) . = pick(targets)
 
-/obj/machinery/marine_turret/proc/handle_manual_fire(var/mob/living/carbon/human/user, var/atom/A, var/params)
-	if(!gunner || !istype(user)) return 0
-	if(gunner != user) return 0
+//direct replacement to new proc. Everything works.
+/obj/machinery/marine_turret/handle_click(var/mob/living/carbon/human/user, var/atom/A, var/params)
+	if(!operator || !istype(user)) return 0
+	if(operator != user) return 0
 	if(istype(A,/obj/screen)) return 0
 	if(!manual_override) return 0
-	if(gunner.turret_control != src) return 0
+	if(operator.machine != src) return 0
 	if(is_bursting) return
 	if(get_dist(user,src) > 1 || user.stat)
-		user.turret_control = null
-		gunner = null
+		visible_message("\icon[src] \blue[src] buzzes: AI targeting re-initialized.")
+		usr << "\blue You let the AI take over."
+		manual_override = 0
+		user.machine = null
+		operator = null
 		return 0
 
 	target = A
 	if(!istype(target))
 		return 0
 
-	if(target.z != src.z || target.z == 0 || src.z == 0 || isnull(gunner.loc) || isnull(src.loc))
+	if(target.z != src.z || target.z == 0 || src.z == 0 || isnull(operator.loc) || isnull(src.loc))
 		return 0
 
 	if(get_dist(target,src.loc) > 10)
@@ -896,7 +901,7 @@
 		if(dx > 0)	direct = EAST
 		else		direct = WEST
 
-	if(direct == dir && target.loc != src.loc && target.loc != gunner.loc)
+	if(direct == dir && target.loc != src.loc && target.loc != operator.loc)
 		process_shot()
 		return 1
 

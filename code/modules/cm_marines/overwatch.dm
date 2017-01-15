@@ -5,7 +5,6 @@
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
 	var/datum/squad/current_squad = null
-	var/mob/living/carbon/human/operator = null
 	var/state = 0
 	var/mob/living/carbon/human/info_from = null
 	var/obj/machinery/camera/cam = null

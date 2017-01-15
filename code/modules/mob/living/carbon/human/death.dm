@@ -43,9 +43,9 @@
 	//	ticker.mode.check_win()
 //		if(istype(ticker.mode,/datum/game_mode/heist))
 //			vox_kills++ //Bad vox. Shouldn't be killing humans.
-	if(turret_control)
-		turret_control.gunner = null
-		turret_control = null
+//	if(turret_control)
+//		turret_control.gunner = null
+//		turret_control = null
 	return ..(gibbed,species.death_message)
 
 /mob/living/carbon/human/proc/makeSkeleton()

@@ -807,8 +807,7 @@ var/list/be_special_flags = list(
 	"pAI" = BE_PAI,
 	"Survivor" = BE_SURVIVOR,
 	"Responder" = BE_RESPONDER,
-	"Predator" = BE_PREDATOR,
-	"WO Commander" = BE_WO_COM
+	"Predator" = BE_PREDATOR
 
 /*
 	"Malf AI" = BE_MALF,

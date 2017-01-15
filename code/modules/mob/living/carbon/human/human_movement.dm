@@ -5,13 +5,6 @@
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
-	if(turret_control)
-		src << "\blue You stop controlling the turret."
-		turret_control.visible_message("\icon[src] \blue [turret_control] buzzes: Manual control halted. AI control re-initiated.")
-		turret_control.gunner = null
-		turret_control.manual_override = 0
-		turret_control = null
-
 	if(species.slowdown)
 		tally = species.slowdown
 
