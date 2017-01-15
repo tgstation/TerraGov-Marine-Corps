@@ -87,12 +87,12 @@
 		if(istype(src.loc,/turf/unsimulated/floor/snow)) //Snow slows you down
 			var/turf/unsimulated/floor/snow/S = src.loc
 			if(S && istype(S) && S.slayer > 0)
-				tally += 1.25 * S.slayer
+				tally += 0.75 * S.slayer
 				if(S.slayer && prob(2))
-					src << "\red Moving through [S] slows you down."
+					src << "<span class='warning'>Moving through [S] slows you down.</span>" //Warning only
 				if(S.slayer == 3 && prob(2))
-					src << "\red You got stuck in [S] for a moment!"
-					tally += 12
+					src << "<span class='warning'>You get stuck in [S] for a moment!</span>"
+					tally += 10
 
 		if(istype(src.loc,/turf/unsimulated/floor/gm/river)) //Ditto walking through a river
 			tally += 1.75

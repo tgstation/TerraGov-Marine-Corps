@@ -147,16 +147,22 @@
 			if(locate(/obj/effect/alien/weeds) in loc)
 				tally -= 1.5
 
-	if(istype(loc, /turf/unsimulated/floor/snow)) //Snow slows you down
+	/*
+	 * SNOW SLOWDOWN FOR ICE COLONY
+	 */
+	if(istype(loc, /turf/unsimulated/floor/snow))
 		var/turf/unsimulated/floor/snow/S = loc
 		if(S && istype(S) && S.slayer > 0)
-			tally += 0.5 * S.slayer
+			tally += 0.25 * S.slayer //Was 0.5 per
 			if(S.slayer && prob(1))
-				src << "<span class='warning'>Moving through \the [S] slows you down!</span>"
+				src << "<span class='warning'>Moving through \the [S] slows you down sligthly!</span>" //This is a warning
 
+			/*
+			 * Dummied out. Xenos never get bogged down in snow that much
 			if(S.slayer == 3 && prob(5))
 				src << "<span class='warning'>You got stuck in \the [S] for a moment!</span>"
 				tally += 10
+			 */
 
 	if(frenzy_aura)
 		tally = tally - (frenzy_aura * 0.1) - 0.4
