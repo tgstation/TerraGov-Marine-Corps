@@ -5,6 +5,11 @@
 	if(istype(loc, /turf/space))
 		return -1 //It's hard to be slowed down in space by... anything
 
+	if(machine)
+		src.client.view = world.view
+		machine.operator = null
+		machine = null
+
 	if(species.slowdown)
 		tally = species.slowdown
 

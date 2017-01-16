@@ -55,12 +55,6 @@
 
 	var/map_locale = 0 // 0 is Jungle Whiskey Outpost, 1 is Big Red Whiskey Outpost, 2 is Ice Colony Whiskey Outpost, 3 is space
 
-/mob/living/carbon/human/Stat() //Time to put in tiemrs
-	..()
-	var/datum/game_mode/whiskey_outpost/A = /datum/game_mode/whiskey_outpost // !FUN!
-	for(A) //Timer will come later.
-		stat(null, "Xeno Wave: [A.xeno_wave]") // Just doing Xeno Waves for now. Don't want too many counters
-
 /datum/game_mode/whiskey_outpost/announce()
 	return 1
 
@@ -651,7 +645,7 @@
 
 	//XENO AND SUPPLY DROPS SPAWNER
 	if(wave_ticks_passed >= spawn_next_wave)
-		if(count_xenos() < (count_humans()*2))//Checks braindead too, so we don't overpopulate! Also make sure its less than twice us in the world, so we advance waves/get more xenos the more marines survive.
+		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate! Also make sure its less than twice us in the world, so we advance waves/get more xenos the more marines survive.
 			world << "<span class='notice'>*___________________________________*</span>" //We also then ram it down later anyways, should cut down on the lag a bit.
 			world << "<span class='boldnotice'>***Whiskey Outpost Controller***</span>"
 			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]"
@@ -795,7 +789,7 @@
 						/mob/living/carbon/Xenomorph/Spitter)
 
 		if(8)
-			spawn_next_wave += 330 //Slow down now, strong castes introduced next wave
+			spawn_next_wave += 220 //Slow down now, strong castes introduced next wave
 			spawn_xeno_num = 0
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner,
@@ -803,7 +797,7 @@
 						/mob/living/carbon/Xenomorph/Sentinel)
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
-			spawn_next_wave -= 220 //Speed it up again. After the period of grace.
+			spawn_next_wave -= 110 //Speed it up again. After the period of grace.
 			spawn_xeno_num = count_humans()
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Hunter/mature,
@@ -814,8 +808,23 @@
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel)
 
+		if(11)
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/elite,
+						/mob/living/carbon/Xenomorph/Hunter/elite,
+						/mob/living/carbon/Xenomorph/Spitter/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Runner/elite,
+						/mob/living/carbon/Xenomorph/Drone/elite)
+
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Spitter/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Runner/mature,
+						/mob/living/carbon/Xenomorph/Drone/mature)
+
 		if(12)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
-			spawn_xeno_num = count_humans()
+			spawn_xeno_num = 35
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager/mature,
@@ -826,7 +835,6 @@
 						/mob/living/carbon/Xenomorph/Runner)
 
 		if(13)//Start the elite transition
-			spawn_xeno_num = count_humans()
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/mature,
 						/mob/living/carbon/Xenomorph/Boiler,
 						/mob/living/carbon/Xenomorph/Ravager/elite,
@@ -2143,7 +2151,6 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 
 
 /obj/item/device/laz_designator/proc/laz(var/mob/living/carbon/human/user, var/atom/A, var/params)
-	set waitfor = 0
 	if(!FAC) return 0
 	if(FAC != user) return 0
 	if(istype(A,/obj/screen)) return 0
@@ -2777,6 +2784,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	fire_delay = 2
 	rounds = 1500
 	rounds_max = 1500
+	locked = 1
 	flags_atom = RELAY_CLICK
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_full = "towergun"
@@ -2799,7 +2807,6 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	var/supply_drop = 0 //0 = Regular ammo, 1 = Rocket, 2 = Smartgun, 3 = Sniper, 4 = Explosives + GL
 
 /obj/item/device/whiskey_supply_beacon/attack_self(mob/user)
-	set waitfor = 0
 	if(activated)
 		user << "Toss it to get supplies!"
 		return
@@ -2969,7 +2976,6 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		return
 
 	proc/surgery_op(mob/living/carbon/M as mob)
-		set waitfor = 0
 		if(M.stat == 2)
 			visible_message("[src] buzzes.")
 			return
