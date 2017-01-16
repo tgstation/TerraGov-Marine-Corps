@@ -1,5 +1,27 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+//=================================================
+//Please don't edit these values without speaking to Errorage first	~Carn
+//Admin Permissions
+#define R_BUILDMODE		1
+#define R_ADMIN			2
+#define R_BAN			4
+#define R_FUN			8
+#define R_SERVER		16
+#define R_DEBUG			32
+#define R_POSSESS		64
+#define R_PERMISSIONS	128
+#define R_STEALTH		256
+#define R_REJUVINATE	512
+#define R_VAREDIT		1024
+#define R_SOUNDS		2048
+#define R_SPAWN			4096
+#define R_MOD			8192
+#define R_MENTOR		16384
+#define R_HOST			32768
+#define R_MAXPERMISSION 32768 //This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+//=================================================
+
 
 var/global/obj/effect/datacore/data_core = null
 
