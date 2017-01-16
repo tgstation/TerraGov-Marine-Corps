@@ -365,7 +365,7 @@
 		buckled.handle_rotation()
 
 
-#define RELAY_CLICK				65536	//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+
 // This was also the next define. Didn't know if you wanted this in setup or not.
 //Made it a /obj/ thing so it can be used for more things.
 /obj/proc/handle_click(var/mob/living/carbon/human/user, var/atom/A, var/params) //Heres our handle click relay proc thing.
@@ -373,11 +373,8 @@
 
 /mob/living/carbon/human //works 100%.
 	ClickOn(var/atom/A, params)
-		if(machine)
-			if(machine.flags_atom == RELAY_CLICK) //machine.operator is there to prevent weird issues that were had earlier.
-				machine.handle_click(machine.operator, A, params)
-				return
-			else
-				machine = null // This should fix.
+		if(machine && machine.flags_atom == RELAY_CLICK) //Fix works, should just normally allow you click on world objects, at worst a second click. Also no longer spams runtime errors.
+			machine.handle_click(machine.operator, A, params)
+			return
 		else
 			..()

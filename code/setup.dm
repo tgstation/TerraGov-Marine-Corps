@@ -265,6 +265,8 @@ should all be unique more or less. flags_inventory can double up.
 #define TWOHANDED				16384	// The item is twohanded.
 #define WIELDED					32768	// The item is wielded with both hands.
 //==========================================================================================
+#define RELAY_CLICK				65536	//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+//==========================================================================================
 
 //flags_inventory
 //Bit flags for the flags_inventory variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.

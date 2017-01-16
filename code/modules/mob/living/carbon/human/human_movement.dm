@@ -6,9 +6,12 @@
 		return -1 //It's hard to be slowed down in space by... anything
 
 	if(machine)
-		src.client.view = world.view
-		machine.operator = null
-		machine = null
+		if(machine.flags_atom == RELAY_CLICK) //make sure any MGs and stuff dont fuck up
+			src.client.view = world.view
+			machine.operator = null
+			machine = null
+		else
+			machine = null //If we move, we shouldn't be doing stuff anyway. Tested with overwatch consoles, still worked after i moved. Menus don't break.
 
 	if(species.slowdown)
 		tally = species.slowdown
