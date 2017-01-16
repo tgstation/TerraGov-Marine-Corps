@@ -262,6 +262,7 @@
 /turf/simulated/floor/plating/snow/ex_act(severity)
 	return
 
+/*
 /turf/simulated/floor/plating/mars
 	name = "dirt"
 	icon = 'icons/turf/floors.dmi'
@@ -272,6 +273,21 @@
 		icon_state = "mars_tile_[rand(1,5)]"
 
 /turf/simulated/floor/plating/mars/ex_act(severity)
+	return
+ */
+
+//Needs to be moved to a proper, dedicated file later
+
+/turf/unsimulated/floor/plating/mars
+	name = "dirt"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "mars_tile_1"
+
+	New()
+		..()
+		icon_state = "mars_tile_[rand(1,5)]"
+
+/turf/unsimulated/floor/plating/mars/ex_act(severity)
 	return
 
 /turf/simulated/floor/plating/catwalk
