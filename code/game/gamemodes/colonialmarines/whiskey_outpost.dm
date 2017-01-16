@@ -2745,7 +2745,6 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			visible_message("\icon[src] <span class='notice'> [user] decided to let someone else have a go </span>")
 			usr << "<span class='notice'> You decided to let someone else have a go on the MG </span>"
 			user.machine = null
-			user.anchored = 0
 			user.client.view = world.view
 			return
 		if(operator) //If there is already a operator then they're manning it.
@@ -2760,7 +2759,6 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				visible_message("\icon[src] <span class='notice'> [user] mans the M56D!</span>")
 				usr << "<span class='notice'> You man the gun!</span>"
 				user.machine = src
-				user.anchored = 1
 				user.client.view = 12
 				return
 
