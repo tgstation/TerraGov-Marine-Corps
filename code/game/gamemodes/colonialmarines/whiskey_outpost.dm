@@ -798,7 +798,7 @@
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawn_next_wave -= 110 //Speed it up again. After the period of grace.
-			spawn_xeno_num = count_humans()
+			spawn_xeno_num = 35
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
@@ -824,7 +824,6 @@
 						/mob/living/carbon/Xenomorph/Drone/mature)
 
 		if(12)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
-			spawn_xeno_num = 35
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager/mature,
@@ -848,7 +847,7 @@
 						/mob/living/carbon/Xenomorph/Hivelord)
 
 		if(14)//Start the ancient Also keeping this spawnlist the same since its suppose to be just about get fucked in the end.
-			spawn_xeno_num = (count_humans() * 2)
+			spawn_xeno_num = 50
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient,
 						/mob/living/carbon/Xenomorph/Boiler/ancient,
 						/mob/living/carbon/Xenomorph/Ravager/ancient,
@@ -2502,9 +2501,9 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 
 /obj/machinery/m56d_hmg/update_icon() //Lets generate the icon based on how much ammo it has.
 	if(!rounds)
-		icon_state = "[icon_full]"
-	else
 		icon_state = "[icon_empty]"
+	else
+		icon_state = "[icon_full]"
 	return
 
 /obj/machinery/m56d_hmg/attackby(var/obj/item/O as obj, mob/user as mob) //This will be how we take it apart.

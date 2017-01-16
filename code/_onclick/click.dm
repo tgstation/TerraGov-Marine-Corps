@@ -374,8 +374,10 @@
 /mob/living/carbon/human //works 100%.
 	ClickOn(var/atom/A, params)
 		if(machine)
-			if(machine.operator && machine.flags_atom == RELAY_CLICK) //machine.operator is there to prevent weird issues that were had earlier.
+			if(machine.flags_atom == RELAY_CLICK) //machine.operator is there to prevent weird issues that were had earlier.
 				machine.handle_click(machine.operator, A, params)
 				return
+			else
+				machine = null // This should fix.
 		else
 			..()
