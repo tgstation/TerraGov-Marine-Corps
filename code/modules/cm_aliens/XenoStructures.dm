@@ -362,16 +362,20 @@
 
 /obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
 	if(status == GROWN || status == GROWING)
-		icon_state = "Egg Opened"
-		flick("Egg Opening", src)
+		//icon_state = "Egg Opened"
+		//flick("Egg Opening", src)
 		status = BURSTING
 		spawn(10)
 			status = BURST
 			if(loc)
 				var/obj/item/clothing/mask/facehugger/child = new (src.loc)
 				if(kill && istype(child)) //Make sure it's still there
+					icon_state = "Egg Exploded"
+					flick("Egg Exploding", src)
 					child.Die()
 				else
+					icon_state = "Egg Opened"
+					flick("Egg Opening", src)
 					if(istype(child))
 						for(var/mob/living/carbon/human/F in view(2, src))
 							if(CanHug(F) && !isYautja(F) && get_dist(src, F) <= 1)
