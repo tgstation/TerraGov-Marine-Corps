@@ -646,10 +646,17 @@
 	//XENO AND SUPPLY DROPS SPAWNER
 	if(wave_ticks_passed >= spawn_next_wave)
 		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate! Also make sure its less than twice us in the world, so we advance waves/get more xenos the more marines survive.
+			world << "<br><br>"
+			world << "<br><br>"
 			world << "<span class='notice'>*___________________________________*</span>" //We also then ram it down later anyways, should cut down on the lag a bit.
 			world << "<span class='boldnotice'>***Whiskey Outpost Controller***</span>"
 			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]"
 			world << "<span class='notice'>*___________________________________*</span>"
+			world << "<br><br>"
+			world << "<br><br>"
+
+			if(xeno_wave != (1 || 8 || 9)) // Make sure to not xeno roar over our story sounds.
+				world << sound(pick('sound/voice/alien_distantroar_3.ogg', 'sound/voice/alien_roar_small.ogg', 'sound/voice/xenos_roaring.ogg', 'sound/voice/alien_roar_large.ogg', 'sound/voice/alien_queen_died.ogg', 'sound/voice/4_xeno_roars.ogg'))
 
 			wave_ticks_passed = 0
 			if(xeno_wave == next_xeno_cleanup)
@@ -660,14 +667,27 @@
 				spawn_next_wave -= 5
 			spawn_xenos(spawn_xeno_num)
 
-			if(spawn_xeno_num < 50)
-				spawn_xeno_num += 2
-
 			if(wave_times_delayed)
 				wave_times_delayed = 0
 
-			if(xeno_wave == 8)
-				world << sound('sound/voice/alien_queen_command.ogg')
+			switch(xeno_wave)
+				if(1)
+					command_announcement.Announce("This is the USS Alistoun, gunships are reporting that the first group of hostiles are now on your position.", "USS Alistoun")
+				if(8)
+					command_announcement.Announce("This is the USS Alistoun, we're sending strikecraft to destroy the inbound xeno force on the main road. Hold tight.", "USS Alistoun")
+					world << sound('sound/effects/explosionfar.ogg')
+					sleep(5)
+					world << sound('sound/effects/explosionfar.ogg')
+					sleep(5)
+					world << sound('sound/effects/explosionfar.ogg')
+				if(9)
+					world << sound('sound/voice/alien_queen_command.ogg')
+					command_announcement.Announce("It appears that vanguard of the alien force is still approaching, hunker down marines we're almost there.", "USS Alistoun")
+				if(12)
+					command_announcement.Announce("This is the USS Alistoun, strikecraft are picking up large signatures inbound, we'll see what we can do to delay them.", "USS Alistoun")
+				if(14)
+					command_announcement.Announce("This is the USS Alistoun, dropships are inbound. Hold on for a bit longer!", "USS Alistoun")
+
 
 			//SUPPLY SPAWNER
 			if(xeno_wave == next_supply)
@@ -798,7 +818,7 @@
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawn_next_wave -= 110 //Speed it up again. After the period of grace.
-			spawn_xeno_num = 35
+			spawn_xeno_num = count_humans()
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
@@ -824,6 +844,7 @@
 						/mob/living/carbon/Xenomorph/Drone/mature)
 
 		if(12)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
+			spawn_next_wave = count_humans() * 3 //rip and tear.
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager/mature,
@@ -2826,6 +2847,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	sleep(100) //10 seconds should be enough.
 	var/turf/T = get_turf(src) //Make sure we get the turf we're tossing this on.
 	drop_supplies(T,supply_drop)
+	playsound(src,'sound/effects/bamf.ogg', 100, 1)
 	del(src)
 	return
 
@@ -2840,23 +2862,23 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	switch(supply_drop)
 		if(0)
 			supply_drop = 1
-			usr << "<span class='warning'>Rocket ammo will now drop!</span>"
+			usr << "<span class='notice'>Rocket ammo will now drop!</span>"
 			return
 		if(1)
 			supply_drop = 2
-			usr << "<span class='warning'>Smartgun ammo will now drop!</span>"
+			usr << "<span class='notice'>Smartgun ammo will now drop!</span>"
 			return
 		if(2)
 			supply_drop = 3
-			usr << "<span class='warning'>Sniper ammo will now drop!</span>"
+			usr << "<span class='notice'>Sniper ammo will now drop!</span>"
 			return
 		if(3)
 			supply_drop = 4
-			usr << "<span class='warning'>Explosives and grenades will now drop!</span"
+			usr << "<span class='notice'>Explosives and grenades will now drop!</span>"
 			return
 		if(4)
 			supply_drop = 0
-			usr << "<span class='warning'>10x24mm, slugs, buckshot, and 10x20mm rounds will now drop!</span>"
+			usr << "<span class='notice'>10x24mm, slugs, buckshot, and 10x20mm rounds will now drop!</span>"
 			return
 	return
 
@@ -2992,20 +3014,22 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		M.eye_blind = 0 //fix our eyes
 		M.heal_organ_damage(25,25) // I think it caps out at like roughly 25, its really werid.
 		M.heal_organ_damage(25,25)
+		M.restore_all_organs()
 		for(var/datum/organ/internal/I in M.internal_organs) //Fix the organs
-			if(I.damage > 0)
-				I.damage = 0
+			I.damage = 0
 		for(var/datum/organ/external/O in src.occupant.organs) //Remove all the friendly fire.
 			for(var/obj/S in O.implants)
 				if(istype(S))
 					S.loc = src.loc
 					O.implants -= S
+		M.UpdateDamageIcon()
 		sleep(5)
 		visible_message("The Med-Pod clicks and opens up revealing a healed human")
 		src.go_out()
 		src.icon_state = "sleeper_0"
 		surgery = 0
 		return
+//MSD is a nerd, leaving this here for him to find later.
 
 	verb/eject()
 		set name = "Eject Med-Pod"
