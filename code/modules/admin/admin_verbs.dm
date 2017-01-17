@@ -15,7 +15,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/
 	/client/proc/invisimin,				/*allows our mob to go invisible/visible*/
 //	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
-	/datum/admins/proc/toggleenter,		/*toggles whether people can join the current game*/
+	/datum/admins/proc/togglejoin,		/*toggles whether people can join the current game*/
 	/datum/admins/proc/toggleguests,	/*toggles whether guests can join the current game*/
 	/datum/admins/proc/announce,		/*priority announce something to all clients.*/
 	/client/proc/colorooc,				/*allows us to set a custom colour for everythign we say in ooc*/
@@ -201,7 +201,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/toggleprayers,
 	/client/proc/toggle_hear_radio,
 	/datum/admins/proc/show_traitor_panel,
-	/datum/admins/proc/toggleenter,
+	/datum/admins/proc/togglejoin,
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
 	/client/proc/colorooc,
@@ -279,7 +279,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/player_panel_new,
 	/client/proc/dsay,
 	/datum/admins/proc/togglesleep,
-	/datum/admins/proc/toggleenter,
+	/datum/admins/proc/togglejoin,
 	// /datum/admins/proc/show_skills,
 	/client/proc/toggle_own_ghost_vis,
 	/datum/admins/proc/show_player_panel,

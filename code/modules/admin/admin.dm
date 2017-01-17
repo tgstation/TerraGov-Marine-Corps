@@ -805,17 +805,17 @@ var/global/floorIsLava = 0
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
 		return 0
 
-/datum/admins/proc/toggleenter()
+/datum/admins/proc/togglejoin()
 	set category = "Server"
-	set desc="Players can still log into the server, but Marines won't be able to join the game as a new mob. DOES NOT AFFECT XENOS."
+	set desc="Players can still log into the server, but Marines won't be able to join the game as a new mob."
 	set name="Toggle Joining"
 	enter_allowed = !( enter_allowed )
 	if (!( enter_allowed ))
-		world << "<B>New players may no longer enter the game.</B>"
+		world << "<B>New players may no longer join the game.</B>"
 	else
-		world << "<B>New players may now enter the game.</B>"
-	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins("\blue [key_name_admin(usr)] toggled new player game entering.", 1)
+		world << "<B>New players may now join the game.</B>"
+	log_admin("[key_name(usr)] toggled new player game joining.")
+	message_admins("\blue [key_name_admin(usr)] toggled new player game joining.", 1)
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
