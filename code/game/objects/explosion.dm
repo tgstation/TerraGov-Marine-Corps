@@ -7,7 +7,7 @@
 	else		return dy + (0.5*dx)
 
 ///// Z-Level Stuff
-proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 0, flame_range = 0)
+/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 0, flame_range = 0)
 ///// Z-Level Stuff
 	src = null	//so we don't abort once src is deleted
 	spawn(0)
@@ -58,12 +58,15 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 						far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
 						M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
 
-		var/close = range(world.view+round(devastation_range,1), epicenter)
-		// to all distanced mobs play a different sound
-		for(var/mob/M in world) if(M.z == epicenter.z) if(!(M in close))
-			// check if the mob can hear
-			if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
-				M << 'sound/effects/explosionfar.ogg'
+		var/close = trange(world.view + round(devastation_range, 1), epicenter)
+		//To all distanced mobs play a different sound
+		for(var/mob/M in mob_list)
+			if(M.z == epicenter.z)
+				if(!(M in close))
+					// check if the mob can hear
+					if(M.ear_deaf <= 0 || !M.ear_deaf)
+						if(!istype(M.loc, /turf/space))
+							M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
@@ -87,7 +90,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		var/y0 = epicenter.y
 		var/z0 = epicenter.z
 
-		for(var/turf/T in range(epicenter, max_range))
+		for(var/turf/T in trange(max_range, epicenter))
 			var/dist = cheap_pythag(T.x - x0,T.y - y0)
 			var/flame_dist = 0
 			var/hotspot_exists
@@ -101,8 +104,8 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			else if(dist < flame_range)			dist = 4
 			else								continue
 
-			T.ex_act(dist)
 			if(T)
+				T.ex_act(dist)
 				for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
 					var/atom/movable/AM = atom_movable
 					if(AM)	AM.ex_act(dist)
@@ -162,7 +165,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 
 
 proc/secondaryexplosion(turf/epicenter, range)
-	for(var/turf/tile in range(range, epicenter))
+	for(var/turf/tile in trange(range, epicenter))
 		tile.ex_act(2)
 
 ///// Z-Level Stuff
