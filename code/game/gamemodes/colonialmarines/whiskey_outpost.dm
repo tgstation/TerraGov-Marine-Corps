@@ -656,7 +656,7 @@
 			world << "<br><br>"
 
 			if(xeno_wave != (1 || 8 || 9)) // Make sure to not xeno roar over our story sounds.
-				world << sound(pick('sound/voice/alien_distantroar_3.ogg', 'sound/voice/alien_roar_small.ogg', 'sound/voice/xenos_roaring.ogg', 'sound/voice/alien_roar_large.ogg', 'sound/voice/alien_queen_died.ogg', 'sound/voice/4_xeno_roars.ogg'))
+				world << sound(pick('sound/voice/alien_distantroar_3.ogg','sound/voice/xenos_roaring.ogg', 'sound/voice/4_xeno_roars.ogg'))
 
 			wave_ticks_passed = 0
 			if(xeno_wave == next_xeno_cleanup)
@@ -808,17 +808,19 @@
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
+		if(7)
+			spawn_xeno_num = 0
+
 		if(8)
 			spawn_next_wave += 220 //Slow down now, strong castes introduced next wave
-			spawn_xeno_num = 0
+			spawn_xeno_num = count_humans()
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Sentinel)
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
-			spawn_next_wave -= 110 //Speed it up again. After the period of grace.
-			spawn_xeno_num = count_humans()
+			spawn_next_wave -= 220 //Speed it up again. After the period of grace.
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
@@ -827,6 +829,9 @@
 						/mob/living/carbon/Xenomorph/Drone/mature)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel)
+
+		if(10)
+			spawn_next_wave += 110
 
 		if(11)
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/elite,
@@ -2965,9 +2970,8 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	icon_state = "sleeper_0"
 	density = 1
 	anchored = 1
-	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
-	var/surgery_t = 0 //Surgery timer
+	var/surgery_t = 0 //Surgery timer in seconds.
 	var/surgery = 0 //Are we operating or no? 0 for no, 1 for yes
 	var/surgery_mod = 1 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
 
@@ -2976,45 +2980,62 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	idle_power_usage = 15
 	active_power_usage = 450 //Capable of doing various activities
 
-	New()
-		..()
-		spawn( 5 )
-			if(orient == "RIGHT")
-				icon_state = "sleeper_0-r"
-			return
-		return
-
 	allow_drop()
 		return 0
 
 	process()
-		if (stat & (NOPOWER|BROKEN))
-			return
-
 		src.updateUsrDialog()
 		return
+
+	proc/scan_occupant(mob/living/carbon/M as mob)
+		surgery_t = 0
+		if(M.stat == 2)
+			visible_message("[src] buzzes.")
+			src.go_out() // If dead, eject them from the start.
+			return
+		if(M.health <= -160)
+			visible_message("[src] flashes <span class='notice'>'UNOPERABLE:CRITICAL HEALTH'</span>") //make sure the docs heal them a bit than just throw them near dead.
+			src.go_out() //Eject them for immediate treatment.
+			return
+		visible_message("[src] scans the occupant.")
+		var/internal_t_dam = 0 //Making these guys a bit more seperate because its a bit easier to track.
+		var/implants_t_dam = 0
+		var/broken_t_dam = 0
+		for(var/datum/organ/internal/I in M.internal_organs)
+			internal_t_dam += (I.damage * 5) // This makes massive internal organ damage be more severe to repair. 20*5 = 100, 1:40 min to repair.
+		for(var/datum/organ/external/O in src.occupant.organs)
+			for(var/obj/S in O.implants)
+				if(istype(S))
+					implants_t_dam += 20 // 20 seconds per shrapnel piece stuck inside.
+			if(O.status & ORGAN_BROKEN)
+				broken_t_dam += 30 //30 seconds per broken bone should be better.
+		if(M.getOxyLoss() > 50) //Make sure they don't DIE in here, also starts assisted breathing instantly.
+			M.setOxyLoss(25) //Set it to 25 to not ded.
+			visible_message("[src] begins assisted breathing support.")
+
+		//Now how to balance out the damages done. 2 seconds per brute damage, 3 seconds per burn damage. 4 for toxins (filter them out), 2 for oxy-loss.
+		surgery_t += ((M.getBruteLoss()*3) + (M.getFireLoss()*3) + (M.getToxLoss()*4) + (M.getOxyLoss()*2))
+		surgery_t += internal_t_dam + implants_t_dam + broken_t_dam
+		surgery_t = surgery_t*surgery_mod*10 //Now make it actual seconds.
+		if(surgery_t < 2400) //If its less than 4 minutes, then MAKE it 4 minutes
+			surgery_t = 2400
+		return
+
 
 	proc/surgery_op(mob/living/carbon/M as mob)
 		if(M.stat == 2)
 			visible_message("[src] buzzes.")
+			src.go_out() //kick them out too.
 			return
 		visible_message("[src] begins to operate, loud audiable clicks lock the pod.")
 		surgery = 1
-		surgery_t = ((src.occupant.getFireLoss() * 15) + (src.occupant.getToxLoss() * 10) + (src.occupant.getOxyLoss() * 10) + (src.occupant.getBruteLoss() * 15)) * surgery_mod + 20
-		sleep(surgery_t * 0.25) //Give our first boost of healing, mainly so they don't die instantly
+		//Give our first boost of healing, mainly so they don't die instantly
 		M.setOxyLoss(0) //Fix our breathing issues
 		M.heal_organ_damage(25,25)
-		sleep(surgery_t * 0.25) //Give our first boost of healing, mainly so they don't die instantly
+
+		sleep(surgery_t * 0.5) //Fix their organs now  so it makes sense halfway through
 		M.setOxyLoss(0) //Fix our breathing issues
 		M.heal_organ_damage(25,25)
-		sleep(surgery_t * 0.5) // Make sure we don't get instant heals
-		M.setOxyLoss(0) //Fix our breathing issues
-		M.adjustToxLoss(-20) // Help out with toxins
-		M.eye_blurry = 0 //fix our eyes
-		M.eye_blind = 0 //fix our eyes
-		M.heal_organ_damage(25,25) // I think it caps out at like roughly 25, its really werid.
-		M.heal_organ_damage(25,25)
-		M.restore_all_organs()
 		for(var/datum/organ/internal/I in M.internal_organs) //Fix the organs
 			I.damage = 0
 		for(var/datum/organ/external/O in src.occupant.organs) //Remove all the friendly fire.
@@ -3022,6 +3043,15 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				if(istype(S))
 					S.loc = src.loc
 					O.implants -= S
+
+		sleep(surgery_t * 0.5) // Fully heal them now.
+		M.setOxyLoss(0) //Fix our breathing issues
+		M.adjustToxLoss(-70) // Help out with toxins
+		M.eye_blurry = 0 //fix our eyes
+		M.eye_blind = 0 //fix our eyes
+		M.heal_organ_damage(25,25) // I think it caps out at like roughly 25, its really werid.
+		M.heal_organ_damage(25,25)
+		M.restore_all_organs()
 		M.UpdateDamageIcon()
 		sleep(5)
 		visible_message("The Med-Pod clicks and opens up revealing a healed human")
@@ -3029,6 +3059,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		src.icon_state = "sleeper_0"
 		surgery = 0
 		return
+
 //MSD is a nerd, leaving this here for him to find later.
 
 	verb/eject()
@@ -3043,18 +3074,6 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		add_fingerprint(usr)
 		return
 
-	verb/toggle_surgery()
-		set name = "Enable surgery functions for the Med-Pod"
-		set category = "Object"
-		set src in oview(1)
-		if(surgery)
-			return
-		if(usr.stat != 0)
-			return
-		src.surgery_op(src.occupant)
-		add_fingerprint(usr)
-		return
-
 	verb/move_inside()
 		set name = "Enter Med-Pod"
 		set category = "Object"
@@ -3064,13 +3083,17 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			return
 
 		if(src.occupant)
-			usr << "\blue <B>The sleeper is already occupied!</B>"
+			usr << "<span class='notice'>The sleeper is already occupied!</span>"
+			return
+
+		if(stat & (NOPOWER|BROKEN))
+			usr << "<span class='notice'>The Med-Pod is non-functional!</span>"
 			return
 
 		visible_message("[usr] starts climbing into the sleeper.", 3)
 		if(do_after(usr, 20))
 			if(src.occupant)
-				usr << "\blue <B>The sleeper is already occupied!</B>"
+				usr << "<span class='notice'>The sleeper is already occupied!</span>"
 				return
 			usr.stop_pulling()
 			usr.client.perspective = EYE_PERSPECTIVE
@@ -3079,8 +3102,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			update_use_power(2)
 			src.occupant = usr
 			src.icon_state = "sleeper_1"
-			if(orient == "RIGHT")
-				icon_state = "sleeper_1-r"
+			src.scan_occupant(src.occupant) // Make it scan them when they get in to set our timer.
 
 			for(var/obj/O in src)
 				del(O)
@@ -3098,8 +3120,6 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		src.occupant = null
 		update_use_power(1)
 		src.icon_state = "sleeper_0"
-		if(orient == "RIGHT")
-			icon_state = "sleeper_0-r"
 		return
 
 	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
@@ -3108,14 +3128,18 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				return
 
 			if(src.occupant)
-				user << "\blue <B>The Med-Pod is already occupied!</B>"
+				user << "<span class='notice'>The Med-Pod is already occupied!</span>"
+				return
+
+			if(stat & (NOPOWER|BROKEN))
+				user << "<span class='notice'>The Med-Pod is non-functional!</span>"
 				return
 
 			visible_message("[user] starts putting [G:affecting:name] into the Med-Pod.", 3)
 
 			if(do_after(user, 20))
 				if(src.occupant)
-					user << "\blue <B>The Med-Pod is already occupied!</B>"
+					user << "<span class='notice'>The Med-Pod is already occupied!</span>"
 					return
 				if(!G || !G:affecting) return
 				var/mob/M = G:affecting
@@ -3126,10 +3150,9 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				update_use_power(2)
 				src.occupant = M
 				src.icon_state = "sleeper_1"
-				if(orient == "RIGHT")
-					icon_state = "sleeper_1-r"
 
 				src.add_fingerprint(user)
+				src.scan_occupant(src.occupant) // Make it scan them when they get in to set our timer.
 				del(G)
 			return
 		return
@@ -3144,36 +3167,34 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	var/obj/machinery/autodoc/connected = null
 	anchored = 1 //About time someone fixed this.
 	density = 0
-	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
 	use_power = 1
 	idle_power_usage = 40
 
-	process()
-		if(stat & (NOPOWER|BROKEN))
-			return
-		src.updateUsrDialog()
-		return
-
 	New()
 		..()
 		spawn( 5 )
-			if(orient == "RIGHT")
-				icon_state = "sleeperconsole-r"
-				src.connected = locate(/obj/machinery/autodoc, get_step(src, EAST))
-			else
-				src.connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+			src.connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 			return
+		return
+
+	process()
+		if(stat & (NOPOWER|BROKEN))
+			if(icon_state != "sleeperconsole-p")
+				icon_state = "sleeperconsole-p"
+			return
+		if(icon_state != "sleeperconsole")
+			icon_state = "sleeperconsole"
+		src.updateUsrDialog()
 		return
 
 	attack_hand(mob/user as mob)
 		if(..())
 			return
-		if(stat & (NOPOWER|BROKEN))
-			return
 		var/dat = ""
 		if (!src.connected || (connected.stat & (NOPOWER|BROKEN)))
 			dat += "This console is not connected to a Med-Pod or the Med-Pod is non-functional."
+			user << "This console seems to be powered down."
 		else
 			var/mob/living/occupant = src.connected.occupant
 			dat += "<font color='blue'><B>Occupant Statistics:</B></FONT><BR>"
@@ -3196,7 +3217,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getOxyLoss())
 				dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getToxLoss())
 				dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getFireLoss())
-				dat += text("<HR> Surgery Estimate: [] seconds<BR>", (((surgery_t * src.connected.surgery_mod) + 20) * 0.2))
+				dat += text("<HR> Surgery Estimate: [] seconds<BR>", (surgery_t * 0.1))
 				dat += "<HR><A href='?src=\ref[src];refresh=1'>Refresh Menu</A>"
 				dat += "<HR><A href='?src=\ref[src];surgery=1'>Start Surgery</A>"
 				dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"

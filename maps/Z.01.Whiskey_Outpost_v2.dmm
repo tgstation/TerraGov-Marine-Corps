@@ -616,7 +616,7 @@
 "lR" = (/turf/simulated/floor/open,/turf/simulated/shuttle/wall/dropship{tag = "icon-diagrasputin (NORTH)"; icon_state = "diagrasputin"; dir = 1},/area/space)
 "lS" = (/turf/simulated/floor/plating{dir = 4; icon_state = "asteroidwarning"},/area/space)
 "lT" = (/obj/machinery/computer/communications,/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin10"; icon_state = "rasputin10"},/area/space)
-"lU" = (/obj/machinery/computer/helm,/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin10"; icon_state = "rasputin10"},/area/space)
+"lU" = (/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin10"; icon_state = "rasputin10"},/area/space)
 "lV" = (/turf/simulated/floor/plating{tag = "icon-asteroidwarning (SOUTHWEST)"; icon_state = "asteroidwarning"; dir = 10},/area/space)
 "lW" = (/turf/simulated/floor/plating{dir = 2; icon_state = "asteroidwarning"},/area/space)
 "lX" = (/turf/simulated/floor/plating{tag = "icon-asteroidwarning (SOUTHEAST)"; icon_state = "asteroidwarning"; dir = 6},/area/space)
