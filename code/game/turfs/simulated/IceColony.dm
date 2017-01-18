@@ -926,6 +926,7 @@
 	exproof = 1
 	density = 0
 	alerted = 0
+	req_access = list()
 
 /obj/machinery/computer/shuttle_control/elevator2
 	name = "Elevator Console"
@@ -936,6 +937,7 @@
 	exproof = 1
 	density = 0
 	alerted = 0
+	req_access = list()
 
 /obj/machinery/computer/shuttle_control/elevator3
 	name = "Elevator Console"
@@ -946,6 +948,7 @@
 	exproof = 1
 	density = 0
 	alerted = 0
+	req_access = list()
 
 /obj/machinery/computer/shuttle_control/elevator4
 	name = "Elevator Console"
@@ -956,6 +959,7 @@
 	exproof = 1
 	density = 0
 	alerted = 0
+	req_access = list()
 
 //RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn

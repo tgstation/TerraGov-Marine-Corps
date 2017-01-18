@@ -372,7 +372,7 @@
 				if(kill && istype(child)) //Make sure it's still there
 					icon_state = "Egg Exploded"
 					flick("Egg Exploding", src)
-					child.Die()
+					del(child)
 				else
 					icon_state = "Egg Opened"
 					flick("Egg Opening", src)
