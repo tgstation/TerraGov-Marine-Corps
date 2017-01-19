@@ -547,8 +547,12 @@
 	M << "<span class='warning'>You stare at \the [src] cluelessly.</span>"
 
 /obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(M.is_intelligent)
 		attack_hand(M)
+		if(!shuttle.queen_locked && !shuttle.iselevator && onboard) //This is the shuttle's onboard console and we have not hijacked it yet
+			M << "<span class='xenonotice'>You interact with the pilot's console and disable remote control.</span>"
+			shuttle.queen_locked = 1
 	else
 		..()
 

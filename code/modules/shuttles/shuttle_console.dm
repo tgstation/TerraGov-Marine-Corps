@@ -13,10 +13,14 @@
 	if(..(user))
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
-	if(!allowed(user) && !istype(user,/mob/living/carbon/Xenomorph))
-		user << "\red Access Denied."
+	if(!allowed(user) && !isXeno(user))
+		user << "<span class='warning'>Access denied.</span>"
 		return 1
 
+	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	if(!isXeno(user) && onboard && shuttle.queen_locked && !shuttle.iselevator)
+		user << "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>"
+		shuttle.queen_locked = 0
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -112,11 +116,14 @@
 			else
 				usr << "<span class='warning'>The shuttle's engines are still recharging and cooling down.</span>"
 			return
+		if(shuttle.queen_locked && !isXenoQueen(usr))
+			usr << "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>"
+			return
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
-			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard)
+			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				command_announcement.Announce("Unscheduled dropship departure detected from operational area. Illegal credentials detected. Hijack likely, shutting down auto-pilot.", \
 				"Dropship Alert", new_sound = 'sound/misc/queen_alarm.ogg')
 				usr << "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>"
@@ -128,7 +135,7 @@
 				else
 					shuttle.launch(src)
 
-			else if(!onboard && isXenoQueen(usr) && shuttle.location == 1)
+			else if(!onboard && isXenoQueen(usr) && shuttle.location == 1 && !shuttle.iselevator)
 				usr << "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>"
 				return
 			else

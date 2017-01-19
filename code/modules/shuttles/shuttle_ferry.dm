@@ -19,6 +19,7 @@
 
 	var/last_dock_attempt_time = 0
 	var/alerts_allowed = 1 //NOT A BOOLEAN. Number of alerts allowed on this particular shuttle, so only once
+	var/queen_locked = 0 //If the Queen locked the ship by interacting with its onboard console. If this happens, Marines lose control of the ship permanently
 
 /datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
 	if(isnull(location))
