@@ -113,6 +113,7 @@
 						if(S.get_amount() < 2) return ..()
 						user << "<span class='notice'>Now adding plating...</span>"
 						if (do_after(user,80))
+							if(!S) return
 							if (S.use(2))
 								user << "<span class='notice'>You added the plating!</span>"
 								var/turf/Tsrc = get_turf(src)
