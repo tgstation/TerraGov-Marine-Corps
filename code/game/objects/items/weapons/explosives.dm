@@ -17,6 +17,7 @@
 
 	user << "Planting explosives..."
 	user.visible_message("\red [user.name] is trying to plant some kind of explosive on [target.name]!")
+	bombers += "[key_name(user)] attached C4 to [target.name]."
 
 	if(do_after(user, 50) && in_range(user, target))
 		user.drop_item()
