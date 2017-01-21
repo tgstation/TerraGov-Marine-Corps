@@ -1270,8 +1270,8 @@ var/global/floorIsLava = 0
 		usr << "Only administrators may use this command."
 		return
 
-	if(istype(get_turf(usr), /turf/unsimulated))
-		usr << "This verb cannot be used on unsimulated turfs."
+	if(!istype(get_turf(usr), /turf/simulated))
+		usr << "This verb can only be used on simulated turfs - turfs that simulate air and temperature."
 		return
 
 	var/datum/gas_mixture/environment = usr.loc.return_air()
