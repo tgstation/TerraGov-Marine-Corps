@@ -1804,49 +1804,7 @@
 	else if(href_list["secretsfun"])
 		if(!check_rights(R_FUN))	return
 
-		var/ok = 0
 		switch(href_list["secretsfun"])
-			if("sec_clothes")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","SC")
-				for(var/obj/item/clothing/under/O in world)
-					del(O)
-				ok = 1
-			if("sec_all_clothes")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","SAC")
-				for(var/obj/item/clothing/O in world)
-					del(O)
-				ok = 1
-			if("sec_classic1")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","SC1")
-				for(var/obj/item/clothing/suit/fire/O in world)
-					del(O)
-				for(var/obj/structure/grille/O in world)
-					del(O)
-/*					for(var/obj/machinery/vehicle/pod/O in world)
-					for(var/mob/M in src)
-						M.loc = src.loc
-						if (M.client)
-							M.client.perspective = MOB_PERSPECTIVE
-							M.client.eye = M
-					del(O)
-				ok = 1*/
-			if("monkey")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","M")
-				for(var/mob/living/carbon/human/H in mob_list)
-					spawn(0)
-						H.monkeyize()
-				ok = 1
-			if("corgi")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","M")
-				for(var/mob/living/carbon/human/H in mob_list)
-					spawn(0)
-						H.corgize()
-				ok = 1
 //			if("striketeam")
 //				if(usr.client.strike_team())
 //					feedback_inc("admin_secrets_fun_used",1)
@@ -1874,19 +1832,6 @@
 				log_admin("[key_name(usr)] spawned a meteor wave", 1)
 				message_admins("\blue [key_name_admin(usr)] spawned a meteor wave.", 1)
 				new /datum/event/meteor_wave
-			/*if("goblob")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","Blob")
-				log_admin("[key_name(usr)] spawned a blob", 1)
-				message_admins("\blue [key_name_admin(usr)] spawned a blob.", 1)
-				new /datum/event/blob*/  //Blob Shit
-
-			if("aliens")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","Aliens")
-				log_admin("[key_name(usr)] spawned an alien infestation", 1)
-				message_admins("\blue [key_name_admin(usr)] attempted an alien infestation", 1)
-				new /datum/event/alien_infestation
 
 /*			if("power")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -1906,74 +1851,6 @@
 				log_admin("[key_name(usr)] made all SMESs powered", 1)
 				message_admins("\blue [key_name_admin(usr)] made all SMESs powered", 1)
 				power_restore_quick()*/
-			if("activateprison")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","AP")
-				world << "\blue <B>Transit signature detected.</B>"
-				world << "\blue <B>Incoming shuttle.</B>"
-				/*
-				var/A = locate(/area/shuttle_prison)
-				for(var/atom/movable/AM as mob|obj in A)
-					AM.z = 1
-					AM.Move()
-				*/
-				message_admins("\blue [key_name_admin(usr)] sent the prison shuttle to the station.", 1)
-			if("deactivateprison")
-				/*
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","DP")
-				var/A = locate(/area/shuttle_prison)
-				for(var/atom/movable/AM as mob|obj in A)
-					AM.z = 2
-					AM.Move()
-				*/
-				message_admins("\blue [key_name_admin(usr)] sent the prison shuttle back.", 1)
-			if("toggleprisonstatus")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","TPS")
-				for(var/obj/machinery/computer/prison_shuttle/PS in world)
-					PS.allowedtocall = !(PS.allowedtocall)
-					message_admins("\blue [key_name_admin(usr)] toggled status of prison shuttle to [PS.allowedtocall].", 1)
-			if("prisonwarp")
-				if(!ticker)
-					alert("The game hasn't started yet!", null, null, null, null, null)
-					return
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","PW")
-				message_admins("\blue [key_name_admin(usr)] teleported all players to the prison station.", 1)
-				for(var/mob/living/carbon/human/H in mob_list)
-					var/turf/loc = find_loc(H)
-					var/security = 0
-					if(loc.z > 1 || prisonwarped.Find(H))
-//don't warp them if they aren't ready or are already there
-						continue
-					H.Paralyse(5)
-					if(H.wear_id)
-						var/obj/item/weapon/card/id/id = H.get_idcard()
-						for(var/A in id.access)
-							if(A == ACCESS_MARINE_BRIG)
-								security++
-					if(!security)
-						//strip their stuff before they teleport into a cell :downs:
-						for(var/obj/item/weapon/W in H)
-							if(istype(W, /datum/organ/external))
-								continue
-								//don't strip organs
-							H.u_equip(W)
-							if (H.client)
-								H.client.screen -= W
-							if (W)
-								W.loc = H.loc
-								W.dropped(H)
-								W.layer = initial(W.layer)
-						//teleport person to cell
-						H.loc = pick(prisonwarp)
-						H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), WEAR_BODY)
-						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), WEAR_FEET)
-					else
-						//teleport security person
-						H.loc = pick(prisonsecuritywarp)
-					prisonwarped += H
 			if("traitor_all")
 				if(!ticker)
 					alert("The game hasn't started yet!")
@@ -2006,224 +1883,12 @@
 					ticker.mode.greet_traitor(A.mind)
 					ticker.mode.finalize_traitor(A.mind)
 				message_admins("\blue [key_name_admin(usr)] used everyone is a traitor secret. Objective is [objective]", 1)
-				log_admin("[key_name(usr)] used everyone is a traitor secret. Objective is [objective]")
+				log_admin("[key_name(usr)] used 'everyone is a traitor' secret. Objective: [objective]")
 
-			if("launchshuttle")
-				if(!shuttle_controller) return // Something is very wrong, the shuttle controller has not been created.
-
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","ShL")
-
-				var/list/valid_shuttles = list()
-				for (var/shuttle_tag in shuttle_controller.shuttles)
-					if (istype(shuttle_controller.shuttles[shuttle_tag], /datum/shuttle/ferry))
-						valid_shuttles += shuttle_tag
-
-				var/shuttle_tag = input("Which shuttle do you want to launch?") as null|anything in valid_shuttles
-
-				if (!shuttle_tag)
-					return
-
-				var/datum/shuttle/ferry/S = shuttle_controller.shuttles[shuttle_tag]
-				if (S.can_launch())
-					S.launch(usr)
-					message_admins("\blue [key_name_admin(usr)] launched the [shuttle_tag] shuttle", 1)
-					log_admin("[key_name(usr)] launched the [shuttle_tag] shuttle")
-				else
-					alert("The [shuttle_tag] shuttle cannot be launched at this time. It's probably busy.")
-
-			if("forcelaunchshuttle")
-				if(!shuttle_controller) return // Something is very wrong, the shuttle controller has not been created.
-
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","ShFL")
-
-				var/list/valid_shuttles = list()
-				for (var/shuttle_tag in shuttle_controller.shuttles)
-					if (istype(shuttle_controller.shuttles[shuttle_tag], /datum/shuttle/ferry))
-						valid_shuttles += shuttle_tag
-
-				var/shuttle_tag = input("Which shuttle's launch do you want to force?") as null|anything in valid_shuttles
-
-				if (!shuttle_tag)
-					return
-
-				var/datum/shuttle/ferry/S = shuttle_controller.shuttles[shuttle_tag]
-				if (S.can_force())
-					S.force_launch(usr)
-					message_admins("\blue [key_name_admin(usr)] has forced the [shuttle_tag] shuttle launch", 1)
-					log_admin("[key_name(usr)] has forced the [shuttle_tag] shuttle launch")
-				else
-					alert("The [shuttle_tag] shuttle launch cannot be forced at this time. It's busy, or hasn't been launched yet.")
-
-			if("jumpshuttle")
-				if(!shuttle_controller) return // Something is very wrong, the shuttle controller has not been created.
-
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","ShJ")
-
-				var/shuttle_tag = input("Which shuttle do you want to jump?") as null|anything in shuttle_controller.shuttles
-				if (!shuttle_tag) return
-
-				var/datum/shuttle/S = shuttle_controller.shuttles[shuttle_tag]
-
-				var/origin_area = input("Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
-				if (!origin_area) return
-
-				var/destination_area = input("Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
-				if (!destination_area) return
-
-				var/long_jump = alert("Is there a transition area for this jump?","", "Yes", "No")
-				if (long_jump == "Yes")
-					var/transition_area = input("Which area is the transition area? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
-					if (!transition_area) return
-
-					var/move_duration = input("How many seconds will this jump take?") as num
-
-					S.long_jump(origin_area, destination_area, transition_area, move_duration)
-					message_admins("\blue [key_name_admin(usr)] has initiated a jump from [origin_area] to [destination_area] lasting [move_duration] seconds for the [shuttle_tag] shuttle", 1)
-					log_admin("[key_name_admin(usr)] has initiated a jump from [origin_area] to [destination_area] lasting [move_duration] seconds for the [shuttle_tag] shuttle")
-				else
-					S.short_jump(origin_area, destination_area)
-					message_admins("\blue [key_name_admin(usr)] has initiated a jump from [origin_area] to [destination_area] for the [shuttle_tag] shuttle", 1)
-					log_admin("[key_name_admin(usr)] has initiated a jump from [origin_area] to [destination_area] for the [shuttle_tag] shuttle")
-
-			if("moveshuttle")
-
-				if(!shuttle_controller) return // Something is very wrong, the shuttle controller has not been created.
-
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","ShM")
-
-				var/confirm = alert("This command directly moves a shuttle from one area to another. DO NOT USE THIS UNLESS YOU ARE DEBUGGING A SHUTTLE AND YOU KNOW WHAT YOU ARE DOING.", "Are you sure?", "Ok", "Cancel")
-				if (confirm == "Cancel")
-					return
-
-				var/shuttle_tag = input("Which shuttle do you want to jump?") as null|anything in shuttle_controller.shuttles
-				if (!shuttle_tag) return
-
-				var/datum/shuttle/S = shuttle_controller.shuttles[shuttle_tag]
-
-				var/origin_area = input("Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
-				if (!origin_area) return
-
-				var/destination_area = input("Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
-				if (!destination_area) return
-
-				S.move(origin_area, destination_area)
-				message_admins("\blue [key_name_admin(usr)] moved the [shuttle_tag] shuttle", 1)
-				log_admin("[key_name(usr)] moved the [shuttle_tag] shuttle")
-
-			if("togglebombcap")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","BC")
-				switch(MAX_EXPLOSION_RANGE)
-					if(14)	MAX_EXPLOSION_RANGE = 16
-					if(16)	MAX_EXPLOSION_RANGE = 20
-					if(20)	MAX_EXPLOSION_RANGE = 28
-					if(28)	MAX_EXPLOSION_RANGE = 56
-					if(56)	MAX_EXPLOSION_RANGE = 128
-					if(128)	MAX_EXPLOSION_RANGE = 14
-				var/range_dev = MAX_EXPLOSION_RANGE *0.25
-				var/range_high = MAX_EXPLOSION_RANGE *0.5
-				var/range_low = MAX_EXPLOSION_RANGE
-				message_admins("\red <b> [key_name_admin(usr)] changed the bomb cap to [range_dev], [range_high], [range_low]</b>", 1)
-				log_admin("[key_name_admin(usr)] changed the bomb cap to [MAX_EXPLOSION_RANGE]")
-
-			if("flicklights")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","FL")
-				while(!usr.stat)
-//knock yourself out to stop the ghosts
-					for(var/mob/M in player_list)
-						if(M.stat != 2 && prob(25))
-							var/area/AffectedArea = get_area(M)
-							if(AffectedArea.name != "Space" && AffectedArea.name != "Engine Walls" && AffectedArea.name != "Chemical Lab Test Chamber" && AffectedArea.name != "Escape Shuttle" && AffectedArea.name != "Arrival Area" && AffectedArea.name != "Arrival Shuttle" && AffectedArea.name != "start area" && AffectedArea.name != "Engine Combustion Chamber")
-								AffectedArea.power_light = 0
-								AffectedArea.power_change()
-								spawn(rand(55,185))
-									AffectedArea.power_light = 1
-									AffectedArea.power_change()
-								var/Message = rand(1,4)
-								switch(Message)
-									if(1)
-										M.show_message(text("\blue You shudder as if cold..."), 1)
-									if(2)
-										M.show_message(text("\blue You feel something gliding across your back..."), 1)
-									if(3)
-										M.show_message(text("\blue Your eyes twitch, you feel like something you can't see is here..."), 1)
-									if(4)
-										M.show_message(text("\blue You notice something moving out of the corner of your eye, but nothing is there..."), 1)
-								for(var/obj/W in orange(5,M))
-									if(prob(25) && !W.anchored)
-										step_rand(W)
-					sleep(rand(100,1000))
-				for(var/mob/M in player_list)
-					if(M.stat != 2)
-						M.show_message(text("\blue The chilling wind suddenly stops..."), 1)
-/*				if("shockwave")
-				ok = 1
-				world << "\red <B><big>ALERT: STATION STRESS CRITICAL</big></B>"
-				sleep(60)
-				world << "\red <B><big>ALERT: STATION STRESS CRITICAL. TOLERABLE LEVELS EXCEEDED!</big></B>"
-				sleep(80)
-				world << "\red <B><big>ALERT: STATION STRUCTURAL STRESS CRITICAL. SAFETY MECHANISMS FAILED!</big></B>"
-				sleep(40)
-				for(var/mob/M in world)
-					shake_camera(M, 400, 1)
-				for(var/obj/structure/window/W in world)
-					spawn(0)
-						sleep(rand(10,400))
-						W.ex_act(rand(2,1))
-				for(var/obj/structure/grille/G in world)
-					spawn(0)
-						sleep(rand(20,400))
-						G.ex_act(rand(2,1))
-				for(var/obj/machinery/door/D in world)
-					spawn(0)
-						sleep(rand(20,400))
-						D.ex_act(rand(2,1))
-				for(var/turf/station/floor/Floor in world)
-					spawn(0)
-						sleep(rand(30,400))
-						Floor.ex_act(rand(2,1))
-				for(var/obj/structure/cable/Cable in world)
-					spawn(0)
-						sleep(rand(30,400))
-						Cable.ex_act(rand(2,1))
-				for(var/obj/structure/closet/Closet in world)
-					spawn(0)
-						sleep(rand(30,400))
-						Closet.ex_act(rand(2,1))
-				for(var/obj/machinery/Machinery in world)
-					spawn(0)
-						sleep(rand(30,400))
-						Machinery.ex_act(rand(1,3))
-				for(var/turf/station/wall/Wall in world)
-					spawn(0)
-						sleep(rand(30,400))
-						Wall.ex_act(rand(2,1)) */
 			if("wave")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","MW")
 				new /datum/event/meteor_wave
-/*NO
-			if("gravanomalies")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","GA")
-				command_announcement.Announce("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert", 'sound/AI/granomalies.ogg')
-				var/turf/T = pick(blobstart)
-				var/obj/effect/bhole/bh = new /obj/effect/bhole( T.loc, 30 )
-				spawn(rand(100, 600))
-					del(bh)
-
-			if("timeanomalies")	//dear god this code was awful :P Still needs further optimisation
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","STA")
-				//moved to its own dm so I could split it up and prevent the spawns copying variables over and over
-				//can be found in code\game\game_modes\events\wormholes.dm
-				wormhole_event()
-*/
 			if("spiders")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","SL")
@@ -2238,32 +1903,11 @@
 				else
 					communications_blackout(1)
 				message_admins("[key_name_admin(usr)] triggered a communications blackout.", 1)
-/*			if("spaceninja")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","SN")
-				if(toggle_space_ninja)
-					if(space_ninja_arrival())//If the ninja is actually spawned. They may not be depending on a few factors.
-						message_admins("[key_name_admin(usr)] has sent in a space ninja", 1)
-*/
-			if("carp")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","C")
-				var/choice = input("You sure you want to spawn carp?") in list("Badmin", "Cancel")
-				if(choice == "Badmin")
-					message_admins("[key_name_admin(usr)] has spawned carp.", 1)
-					new /datum/event/carp_migration
 			if("radiation")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","R")
 				message_admins("[key_name_admin(usr)] has has irradiated the station", 1)
 				new /datum/event/radiation_storm
-/*
-			if("immovable")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","IR")
-				message_admins("[key_name_admin(usr)] has sent an immovable rod to the station", 1)
-				immovablerod()
-*/
 			if("prison_break")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","PB")
@@ -2285,74 +1929,6 @@
 				for(var/obj/machinery/light/L in world)
 					L.fix()
 				message_admins("[key_name_admin(usr)] fixed all lights", 1)
-			if("friendai")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","FA")
-				for(var/mob/aiEye/aE in mob_list)
-					aE.icon_state = "ai_friend"
-				for(var/obj/machinery/M in machines)
-					if(istype(M, /obj/machinery/ai_status_display))
-						var/obj/machinery/ai_status_display/A = M
-						A.emotion = "Friend Computer"
-					else if(istype(M, /obj/machinery/status_display))
-						var/obj/machinery/status_display/A = M
-						A.friendc = 1
-				message_admins("[key_name_admin(usr)] turned all AIs into best friends.", 1)
-			if("floorlava")
-				if(floorIsLava)
-					usr << "The floor is lava already."
-					return
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","LF")
-
-				//Options
-				var/length = input(usr, "How long will the lava last? (in seconds)", "Length", 180) as num
-				length = min(abs(length), 1200)
-
-				var/damage = input(usr, "How deadly will the lava be?", "Damage", 2) as num
-				damage = min(abs(damage), 100)
-
-				var/sure = alert(usr, "Are you sure you want to do this?", "Confirmation", "YES!", "Nah")
-				if(sure == "Nah")
-					return
-				floorIsLava = 1
-
-				message_admins("[key_name_admin(usr)] made the floor LAVA! It'll last [length] seconds and it will deal [damage] damage to everyone.", 1)
-
-				for(var/turf/simulated/floor/F in world)
-					if(F.z == 1)
-						F.name = "lava"
-						F.desc = "The floor is LAVA!"
-						F.overlays += "lava"
-						F.lava = 1
-
-				spawn(0)
-					for(var/i = i, i < length, i++) // 180 = 3 minutes
-						if(damage)
-							for(var/mob/living/carbon/L in living_mob_list)
-								if(istype(L.loc, /turf/simulated/floor)) // Are they on LAVA?!
-									var/turf/simulated/floor/F = L.loc
-									if(F.lava)
-										var/safe = 0
-										for(var/obj/structure/O in F.contents)
-											if(O.level > F.level && !istype(O, /obj/structure/window)) // Something to stand on and it isn't under the floor!
-												safe = 1
-												break
-										if(!safe)
-											L.adjustFireLoss(damage)
-
-
-						sleep(10)
-
-					for(var/turf/simulated/floor/F in world) // Reset everything.
-						if(F.z == 1)
-							F.name = initial(F.name)
-							F.desc = initial(F.desc)
-							F.overlays.Cut()
-							F.lava = 0
-							F.update_icon()
-					floorIsLava = 0
-				return
 			if("virus")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","V")
@@ -2363,47 +1939,6 @@
 				else
 					virus2_greater_infection()
 					message_admins("[key_name_admin(usr)] has triggered a greater virus outbreak.", 1)
-			if("retardify")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","RET")
-				for(var/mob/living/carbon/human/H in player_list)
-					H << "\red <B>You suddenly feel stupid.</B>"
-					H.setBrainLoss(60)
-				message_admins("[key_name_admin(usr)] made everybody retarded")
-			if("fakeguns")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","FG")
-				for(var/obj/item/W in world)
-					if(istype(W, /obj/item/clothing) || istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/weapon/disk) || istype(W, /obj/item/weapon/tank))
-						continue
-					W.icon = 'icons/obj/gun.dmi'
-					W.icon_state = "revolver"
-					W.item_state = "gun"
-				message_admins("[key_name_admin(usr)] made every item look like a gun")
-			if("schoolgirl")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","SG")
-				for(var/obj/item/clothing/under/W in world)
-					W.icon_state = "schoolgirl"
-					W.item_state = "w_suit"
-					W.item_color = "schoolgirl"
-				message_admins("[key_name_admin(usr)] activated Japanese Animes mode")
-				world << sound('sound/AI/animes.ogg')
-			if("eagles")//SCRAW
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","EgL")
-				for(var/obj/machinery/door/airlock/W in world)
-					if((W.z == 3 || W.z == 4) && !istype(get_area(W), /area/sulaco/bridge) && !istype(get_area(W), /area/sulaco/brig) && !istype(get_area(W), /area/sulaco/cargo/office) && !istype(get_area(W), /area/sulaco/engineering) && !istype(get_area(W), /area/sulaco/telecomms) && !istype(get_area(W), /area/sulaco/liaison) && !istype(get_area(W), /area/sulaco/marine))
-						W.req_access = list()
-				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-				command_announcement.Announce("Centcomm airlock control override activated. Please take this time to get acquainted with your coworkers.", new_sound = 'sound/AI/commandreport.ogg')
-			if("dorf")
-				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","DF")
-				for(var/mob/living/carbon/human/B in mob_list)
-					B.f_style = "Dward Beard"
-					B.update_hair()
-				message_admins("[key_name_admin(usr)] activated dorf mode")
 			if("ionstorm")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","I")
@@ -2424,13 +1959,10 @@
 				message_admins("[key_name_admin(usr)] has triggered a battle to the death (only one)")
 		if(usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsfun"]]")
-			if (ok)
-				world << text("<B>A secret has been activated by []!</B>", usr.key)
 
 	else if(href_list["secretsadmin"])
 		if(!check_rights(R_ADMIN))	return
 
-		var/ok = 0
 		switch(href_list["secretsadmin"])
 			if("clear_bombs")
 				//I do nothing
@@ -2455,7 +1987,7 @@
 				if(!ticker)
 					alert("The game hasn't started yet!")
 				else if (ticker.mode)
-					alert("The game mode is [ticker.mode.name]")
+					alert("The game mode is: [ticker.mode.name]")
 				else alert("For some reason there's a ticker, but not a game mode")
 			if("manifest")
 				var/dat = "<B>Showing Crew Manifest.</B><HR>"
@@ -2488,11 +2020,58 @@
 							dat += "<tr><td>[H]</td><td>H.dna = null</td></tr>"
 				dat += "</table>"
 				usr << browse(dat, "window=fingerprints;size=440x410")
-			else
+			if("launchshuttle")
+				if(!shuttle_controller) return // Something is very wrong, the shuttle controller has not been created.
+
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","ShL")
+
+				var/list/valid_shuttles = list()
+				for (var/shuttle_tag in shuttle_controller.shuttles)
+					if (istype(shuttle_controller.shuttles[shuttle_tag], /datum/shuttle/ferry))
+						valid_shuttles += shuttle_tag
+
+				var/shuttle_tag = input("Which shuttle do you want to launch?") as null|anything in valid_shuttles
+
+				if (!shuttle_tag)
+					return
+
+				var/datum/shuttle/ferry/S = shuttle_controller.shuttles[shuttle_tag]
+				if (S.can_launch())
+					S.launch(usr)
+					message_admins("\blue [key_name_admin(usr)] launched the [shuttle_tag] shuttle", 1)
+					log_admin("[key_name(usr)] launched the [shuttle_tag] shuttle")
+				else
+					alert("The [shuttle_tag] shuttle cannot be launched at this time. It's probably busy.")
+
+			if("moveshuttle")
+
+				if(!shuttle_controller) return // Something is very wrong, the shuttle controller has not been created.
+
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","ShM")
+
+				var/confirm = alert("This command directly moves a shuttle from one area to another. DO NOT USE THIS UNLESS YOU ARE DEBUGGING A SHUTTLE AND YOU KNOW WHAT YOU ARE DOING.", "Are you sure?", "Ok", "Cancel")
+				if (confirm == "Cancel")
+					return
+
+				var/shuttle_tag = input("Which shuttle do you want to jump?") as null|anything in shuttle_controller.shuttles
+				if (!shuttle_tag) return
+
+				var/datum/shuttle/S = shuttle_controller.shuttles[shuttle_tag]
+
+				var/origin_area = input("Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
+				if (!origin_area) return
+
+				var/destination_area = input("Which area do you want to move the shuttle to? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
+				if (!destination_area) return
+
+				S.move(origin_area, destination_area)
+				message_admins("\blue [key_name_admin(usr)] moved the [shuttle_tag] shuttle", 1)
+				log_admin("[key_name(usr)] moved the [shuttle_tag] shuttle")
+
 		if (usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsadmin"]]")
-			if (ok)
-				world << text("<B>A secret has been activated by []!</B>", usr.key)
 
 	else if(href_list["secretscoder"])
 		if(!check_rights(R_DEBUG))	return
@@ -2503,19 +2082,8 @@
 				for(var/l in admin_log)
 					dat += "<li>[l]</li>"
 				if(!admin_log.len)
-					dat += "No-one has done anything this round!"
+					dat += "No one has done anything this round."
 				usr << browse(dat, "window=admin_log")
-			if("maint_access_brig")
-				for(var/obj/machinery/door/airlock/maintenance/M in world)
-					if (ACCESS_MARINE_ENGINEERING in M.req_access)
-						M.req_access = list(ACCESS_MARINE_BRIG)
-				message_admins("[key_name_admin(usr)] made all maint doors brig access-only.")
-			if("maint_access_engiebrig")
-				for(var/obj/machinery/door/airlock/maintenance/M in world)
-					if (ACCESS_MARINE_ENGINEERING in M.req_access)
-						M.req_access = list()
-						M.req_one_access = list(ACCESS_MARINE_BRIG)
-				message_admins("[key_name_admin(usr)] made all maint doors engineering and brig access-only.")
 
 	else if(href_list["ac_view_wanted"])            //Admin newscaster Topic() stuff be here
 		src.admincaster_screen = 18                 //The ac_ prefix before the hrefs stands for AdminCaster.
