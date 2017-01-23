@@ -1,8 +1,5 @@
 
 /datum/controller/game_controller
-	var/list/all_animal_genesequences = list()
-	var/list/all_plant_genesequences = list()
-	var/list/genome_prefixes = null
 	var/list/artifact_spawning_turfs = list()
 	var/list/digsite_spawning_turfs = list()
 
@@ -103,40 +100,6 @@ datum/controller/game_controller/proc/SetupXenoarch()
 	while(artifacts_spawnturf_temp.len > 0)
 		var/turf/simulated/mineral/artifact_turf = pop(artifacts_spawnturf_temp)
 		artifact_turf.artifact_find = new()
-
-	//make sure we have some prefixes for the gene sequences
-	if(!genome_prefixes)
-		genome_prefixes = alphabet_uppercase.Copy()
-	if(!genome_prefixes.len)
-		del genome_prefixes
-		genome_prefixes = alphabet_uppercase.Copy()
-
-	//create animal gene sequences
-	while(spawn_types_animal.len && genome_prefixes.len)
-		var/datum/genesequence/new_sequence = new/datum/genesequence()
-		new_sequence.spawned_type_text = pick(spawn_types_animal)
-		new_sequence.spawned_type = text2path(new_sequence.spawned_type_text)
-		spawn_types_animal -= new_sequence.spawned_type_text
-
-		var/prefixletter = pick(genome_prefixes)
-		genome_prefixes -= prefixletter
-		while(new_sequence.full_genome_sequence.len < 7)
-			new_sequence.full_genome_sequence.Add("[prefixletter][pick(alphabet_uppercase)][pick(alphabet_uppercase)][pick(1,2,3,4,5,6,7,8,9,0)][pick(1,2,3,4,5,6,7,8,9,0)]")
-
-		all_animal_genesequences.Add(new_sequence)
-
-	//create plant gene sequences
-	while(spawn_types_plant.len && genome_prefixes.len)
-		var/datum/genesequence/new_sequence = new/datum/genesequence()
-		new_sequence.spawned_type = pick(spawn_types_plant)
-		spawn_types_plant -= new_sequence.spawned_type_text
-
-		var/prefixletter = pick(genome_prefixes)
-		genome_prefixes -= prefixletter
-		while(new_sequence.full_genome_sequence.len < 7)
-			new_sequence.full_genome_sequence.Add("[prefixletter][pick(1,2,3,4,5,6,7,8,9,0)][pick(1,2,3,4,5,6,7,8,9,0)][pick(alphabet_uppercase)][pick(alphabet_uppercase)]")
-
-		all_plant_genesequences.Add(new_sequence)
 
 #undef XENOARCH_SPAWN_CHANCE
 #undef DIGSITESIZE_LOWER

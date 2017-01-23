@@ -233,33 +233,6 @@ datum/design/dronecontrol
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = "/obj/item/weapon/circuitboard/drone_control"
 
-datum/design/clonecontrol
-	name = "Circuit Design (Cloning Machine Console)"
-	desc = "Allows for the construction of circuit boards used to build a new Cloning Machine console."
-	id = "clonecontrol"
-	req_tech = list("programming" = 3, "biotech" = 3)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/cloning"
-
-datum/design/clonepod
-	name = "Circuit Design (Clone Pod)"
-	desc = "Allows for the construction of circuit boards used to build a Cloning Pod."
-	id = "clonepod"
-	req_tech = list("programming" = 3, "biotech" = 3)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/clonepod"
-
-datum/design/clonescanner
-	name = "Circuit Design (Cloning Scanner)"
-	desc = "Allows for the construction of circuit boards used to build a Cloning Scanner."
-	id = "clonescanner"
-	req_tech = list("programming" = 3, "biotech" = 3)
-	build_type = IMPRINTER
-	materials = list("$glass" = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/clonescanner"
-
 datum/design/arcademachine
 	name = "Circuit Design (Arcade Machine)"
 	desc = "Allows for the construction of circuit boards used to build a new arcade machine."
