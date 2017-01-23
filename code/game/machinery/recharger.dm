@@ -9,7 +9,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/gun/energy/taser)
+	var/list/allowed_devices = list(/obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/weapon/gun/energy/taser, /obj/item/weapon/melee/defibrillator)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -35,6 +35,11 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			var/obj/item/device/laptop/L = G
 			if(!L.stored_computer.battery)
 				user << "There's no battery in it!"
+				return
+		if(istype(G, /obj/item/weapon/melee/defibrillator))
+			var/obj/item/weapon/melee/defibrillator/D = G
+			if(D.ready)
+				user << "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>"
 				return
 		user.drop_item()
 		G.loc = src
@@ -105,6 +110,17 @@ obj/machinery/recharger/process()
 			if(!L.stored_computer.battery.fully_charged())
 				icon_state = icon_state_charging
 				L.stored_computer.battery.give(active_power_usage*CELLRATE)
+				update_use_power(2)
+			else
+				icon_state = icon_state_charged
+				update_use_power(1)
+			return
+
+		if(istype(charging, /obj/item/weapon/melee/defibrillator))
+			var/obj/item/weapon/melee/defibrillator/D = charging
+			if(!D.dcell.fully_charged())
+				icon_state = icon_state_charging
+				D.dcell.give(active_power_usage*CELLRATE)
 				update_use_power(2)
 			else
 				icon_state = icon_state_charged

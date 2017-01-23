@@ -78,12 +78,14 @@
 
 
 /mob/dead/observer/Topic(href, href_list)
-	if (href_list["track"])
+	if(href_list["reentercorpse"])
+		if(istype(usr, /mob/dead/observer))
+			var/mob/dead/observer/A = usr
+			A.reenter_corpse()
+	if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 		if(target)
 			ManualFollow(target)
-
-
 
 /mob/dead/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/weapon/book/tome))

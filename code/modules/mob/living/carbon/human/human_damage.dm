@@ -17,10 +17,8 @@
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 
-	//TODO: fix husking
-	if( ((species.total_health - total_burn) < config.health_threshold_dead) && stat == DEAD)
+	if(((species.total_health - total_burn) < config.health_threshold_dead * 1.5))
 		ChangeToHusk()
-	return
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
 
