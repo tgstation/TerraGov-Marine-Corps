@@ -25,7 +25,7 @@
 
 /obj/machinery/chem_dispenser/proc/recharge()
 	if(stat & (BROKEN|NOPOWER)) return
-	var/addenergy = 1
+	var/addenergy = 10
 	var/oldenergy = energy
 	energy = min(energy + addenergy, max_energy)
 	if(energy != oldenergy)

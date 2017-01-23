@@ -57,6 +57,10 @@
 	name = "\improper Sulaco Operating Theatre II"
 	icon_state = "surgery"
 
+/area/sulaco/medbay/chemistry
+	name = "\improper Sulaco Chemistry"
+	icon_state = "chem"
+
 /area/sulaco/disposal
 	name = "\improper Sulaco Disposal"
 	icon_state = "disposal"
