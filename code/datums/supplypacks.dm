@@ -157,12 +157,12 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 /datum/supply_packs/weapons_inc
 	name = "M240 Incinerator crate"
 	contains = list(
-					/obj/item/weapon/flamethrower/full,
-					/obj/item/weapon/flamethrower/full,
-					/obj/item/weapon/flamethrower/full,
-					/obj/item/weapon/tank/phoron/m240,
-					/obj/item/weapon/tank/phoron/m240,
-					/obj/item/weapon/tank/phoron/m240
+					/obj/item/weapon/gun/flamer,
+					/obj/item/weapon/gun/flamer,
+					/obj/item/weapon/gun/flamer,
+					/obj/item/ammo_magazine/flamer_tank,
+					/obj/item/ammo_magazine/flamer_tank,
+					/obj/item/ammo_magazine/flamer_tank
 				)
 	cost = 30
 	containertype = /obj/structure/closet/crate
