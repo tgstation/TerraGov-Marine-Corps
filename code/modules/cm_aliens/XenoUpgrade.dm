@@ -8,7 +8,8 @@
 
 	upgrade_xeno(0,upgrade)
 
-/mob/living/carbon/Xenomorph/proc/upgrade_xeno(bypass_limit,upgrade)
+/mob/living/carbon/Xenomorph/proc/upgrade_xeno(bypass_limit,tier)
+	upgrade = tier
 
 	if(upgrade == -2)
 		src << "<span class='warning'>Sorry, your class can't upgrade.</span>"
