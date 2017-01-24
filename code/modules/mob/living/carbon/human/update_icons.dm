@@ -1024,7 +1024,9 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 /mob/living/carbon/human/update_fire(var/update_icons = 1)
 	if(on_fire)
-		overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=-FIRE_LAYER)
+		switch(fire_stacks)
+			if(1 to 14)	overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing_weak", "layer"=FIRE_LAYER)
+			if(15 to 20) overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing_medium", "layer"=FIRE_LAYER)
 	else
 		overlays_standing[FIRE_LAYER] = null
 

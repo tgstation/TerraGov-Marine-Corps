@@ -434,3 +434,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/checkpass(passflag)
 	return flags_pass&passflag
+
+//Generalized Fire Proc.
+atom/proc/flamer_fire_act()
+	return

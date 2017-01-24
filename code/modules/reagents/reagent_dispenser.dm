@@ -205,6 +205,9 @@
 	reagents.remove_reagent("fuel",amount)
 	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
 
+/obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
+	explode()
+
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"
 	desc = "Refill pepper spray canisters."

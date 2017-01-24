@@ -407,6 +407,12 @@
 			del(src)
 		return
 
+/obj/item/weapon/grenade/explosive/flamer_fire_act()
+	var/turf/T = loc
+	cdel(src)
+	explosion(T,-1,-1,2)
+
+
 /obj/item/weapon/grenade/explosive/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon = 'icons/obj/grenade2.dmi'
@@ -448,7 +454,7 @@
 			del(src)
 		return
 
-proc/flame_radius(var/radius = 1, var/turf/turf)
+proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
 	if(!turf || !isturf(turf)) return
 	if(radius < 0) radius = 0
 	if(radius > 5) radius = 5
@@ -461,6 +467,7 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 		var/obj/flamer_fire/F = new(T)
 		processing_objects.Add(F)
 		F.firelevel = 5 + rand(0,11)
+		F.burnlevel = 15 //make it sort of deadly.
 		if(F.firelevel < 1) F.firelevel = 1
 		if(F.firelevel > 16) F.firelevel = 16
 
@@ -683,3 +690,8 @@ proc/flame_radius(var/radius = 1, var/turf/turf)
 
 	if(linked_claymore && ismob(A))
 		linked_claymore.Bumped(A)
+
+/obj/item/device/mine/flamer_fire_act() //adding mine explosions
+	var/turf/T = loc
+	cdel(src)
+	explosion(T, -1, -1, 2)

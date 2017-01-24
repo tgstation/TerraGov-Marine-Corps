@@ -372,8 +372,8 @@
 						/obj/item/weapon/plastique = 2,
 						/obj/item/weapon/grenade/explosive = 2,
 						/obj/item/weapon/grenade/incendiary = 2,
-						/obj/item/weapon/flamethrower/full = 1,
-						/obj/item/weapon/tank/phoron/m240 = 3,
+//						/obj/item/weapon/flamethrower/full = 1,
+//						/obj/item/weapon/tank/phoron/m240 = 3,
 						/obj/item/weapon/shield/riot = 1,
 						/obj/item/smartgun_powerpack = 1
 			)
@@ -406,7 +406,9 @@
 						/obj/item/weapon/plastique = 1,
 						/obj/item/weapon/grenade/smokebomb = 3,
 						/obj/item/device/binoculars = 1,
-						/obj/item/weapon/storage/backpack/marine/satchel = 2
+						/obj/item/weapon/storage/backpack/marine/satchel = 2,
+						/obj/item/weapon/gun/flamer = 2,
+						/obj/item/ammo_magazine/flamer_tank = 8
 					)
 
 /obj/machinery/vending/attachments

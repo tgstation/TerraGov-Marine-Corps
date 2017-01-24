@@ -187,10 +187,10 @@
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/gold/W = new(H)
-			W.name = "[M.real_name]'s ID Card"
+			W.name = "[M.real_name]'s ID Card (Ground Commander)"
 			W.access = get_all_accesses()
 			W.assignment = "Ground Commander"
-			W.paygrade = "O2"
+			W.paygrade = "O3"
 			W.registered_name = M.real_name
 			H.equip_to_slot_or_del(W, WEAR_ID)
 
@@ -253,7 +253,7 @@
 					H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), WEAR_IN_BACK)
 
 			var/obj/item/weapon/card/id/silver/W = new(H)
-			W.name = "[M.real_name]'s ID Card"
+			W.name = "[M.real_name]'s ID Card (Honor Guard)"
 			W.access = get_all_accesses()
 			W.assignment = "Honor Guard"
 			W.paygrade = "E9"
@@ -306,7 +306,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/m94(H), WEAR_R_HAND)
 
 			var/obj/item/weapon/card/id/W = new(H)
-			W.name = "[M.real_name]'s ID Card"
+			W.name = "[M.real_name]'s ID Card (Outpost Engineer)"
 			W.access = get_all_accesses()
 			W.assignment = "Outpost Engineer"
 			W.paygrade = "E6E"
@@ -675,11 +675,6 @@
 					command_announcement.Announce("This is the USS Alistoun, gunships are reporting that the first group of hostiles are now on your position.", "USS Alistoun")
 				if(8)
 					command_announcement.Announce("This is the USS Alistoun, we're sending strikecraft to destroy the inbound xeno force on the main road. Hold tight.", "USS Alistoun")
-					world << sound('sound/effects/explosionfar.ogg')
-					sleep(5)
-					world << sound('sound/effects/explosionfar.ogg')
-					sleep(5)
-					world << sound('sound/effects/explosionfar.ogg')
 				if(9)
 					world << sound('sound/voice/alien_queen_command.ogg')
 					command_announcement.Announce("It appears that vanguard of the alien force is still approaching, hunker down marines we're almost there.", "USS Alistoun")
@@ -799,6 +794,7 @@
 
 		if(4)//Tier II more common
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
+						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Spitter)
 
 		if(5)//Reset the spawns	so we don't drown in xenos again.
@@ -832,6 +828,7 @@
 
 		if(10)
 			spawn_next_wave += 110
+			spawn_xeno_num = count_humans()
 
 		if(11)
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/elite,
@@ -849,7 +846,7 @@
 						/mob/living/carbon/Xenomorph/Drone/mature)
 
 		if(12)//Boiler and Crusher Added, Ravager and Praetorian more common. Tier I less common
-			spawn_next_wave = count_humans() * 3 //rip and tear.
+			spawn_next_wave = count_humans() //rip and tear.
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager/mature,
@@ -1329,700 +1326,6 @@
 //Art's Additions //
 ////////////////////
 
-
-////////////////////////////////////////////////////////////////////////////////////
-
-// Xeno spawn fixes
-/* Basically making it so that xenos have evolutions be spawnable which would help alot, so this is going to be a long list
-YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
-
-/mob/living/carbon/Xenomorph/Runner
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 15
-		melee_damage_upper = 25
-		health = 120
-		maxHealth = 120
-		storedplasma = 0
-		plasma_gain = 2
-		maxplasma = 150
-		jellyMax = 400
-		caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks a little more dangerous."
-		speed = -1.5
-		armor_deflection = 5
-		attack_delay = -4
-		tacklemin = 2
-		tacklemax = 4
-		tackle_chance = 50
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 20
-		melee_damage_upper = 30
-		health = 150
-		maxHealth = 150
-		storedplasma = 0
-		plasma_gain = 2
-		maxplasma = 200
-		jellyMax = 800
-		caste_desc = "A fast, four-legged terror, but weak in sustained combat. It looks pretty strong."
-		speed = -1.6
-		armor_deflection = 10
-		attack_delay = -4
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 60
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 25
-		melee_damage_upper = 35
-		health = 140
-		maxHealth = 140
-		storedplasma = 0
-		plasma_gain = 2
-		maxplasma = 200
-		caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
-		speed = -2
-		armor_deflection = 10
-		attack_delay = -4
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 70
-
-/mob/living/carbon/Xenomorph/Drone
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 12
-		melee_damage_upper = 16
-		health = 120
-		maxHealth = 120
-		storedplasma = 0
-		maxplasma = 800
-		plasma_gain = 20
-		jellyMax = 1000
-		caste_desc = "The workhorse of the hive. It looks a little more dangerous."
-		armor_deflection = 5
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 60
-		speed = -0.6
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 12
-		melee_damage_upper = 16
-		health = 150
-		maxHealth = 150
-		storedplasma = 0
-		maxplasma = 900
-		plasma_gain = 30
-		jellyMax = 1500
-		caste_desc = "The workhorse of the hive. It looks a little more dangerous."
-		armor_deflection = 5
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 60
-		speed = -0.6
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 20
-		melee_damage_upper = 30
-		health = 200
-		maxHealth = 200
-		storedplasma = 0
-		maxplasma = 1000
-		plasma_gain = 50
-		caste_desc = "A very mean architect."
-		armor_deflection = 15
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 80
-		speed = -0.6
-
-/mob/living/carbon/Xenomorph/Carrier
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 25
-		melee_damage_upper = 35
-		health = 200
-		maxHealth = 200
-		storedplasma = 0
-		maxplasma = 300
-		plasma_gain = 10
-		jellyMax = 1600
-		caste_desc = "A portable Love transport. It looks a little more dangerous."
-		armor_deflection = 10
-		tacklemin = 3
-		tacklemax = 4
-		tackle_chance = 60
-		speed = -0.4
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 30
-		melee_damage_upper = 40
-		health = 220
-		maxHealth = 220
-		storedplasma = 0
-		maxplasma = 350
-		plasma_gain = 12
-		jellyMax = 3200
-		caste_desc = "A portable Love transport. It looks pretty strong."
-		armor_deflection = 15
-		tacklemin = 4
-		tacklemax = 5
-		tackle_chance = 70
-		speed = -0.4
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 35
-		melee_damage_upper = 45
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		maxplasma = 400
-		plasma_gain = 15
-		caste_desc = "It's literally crawling with 10 huggers."
-		armor_deflection = 20
-		tacklemin = 5
-		tacklemax = 6
-		tackle_chance = 75
-		speed = -0.3
-
-/mob/living/carbon/Xenomorph/Hivelord
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 15
-		melee_damage_upper = 20
-		health = 220
-		maxHealth = 220
-		storedplasma = 0
-		maxplasma = 900
-		plasma_gain = 40
-		jellyMax = 1600
-		caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
-		armor_deflection = 10
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 60
-		speed = 1.4
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 15
-		melee_damage_upper = 20
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		maxplasma = 1000
-		plasma_gain = 50
-		jellyMax = 3200
-		caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
-		armor_deflection = 15
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 70
-		speed = 1.3
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 20
-		melee_damage_upper = 30
-		health = 300
-		maxHealth = 300
-		storedplasma = 0
-		maxplasma = 1200
-		plasma_gain = 70
-		caste_desc = "An extreme construction machine. It seems to be building walls..."
-		armor_deflection = 20
-		tacklemin = 5
-		tacklemax = 7
-		tackle_chance = 80
-		speed = 1.2
-
-/mob/living/carbon/Xenomorph/Praetorian
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 20
-		melee_damage_upper = 30
-		health = 220
-		maxHealth = 220
-		storedplasma = 0
-		plasma_gain = 30
-		maxplasma = 900
-		jellyMax = 1600
-		spit_delay = 15
-		caste_desc = "A giant ranged monster. It looks a little more dangerous."
-		armor_deflection = 50
-		tacklemin = 5
-		tacklemax = 8
-		tackle_chance = 75
-		speed = 1.6
-		spit_type = 0
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 30
-		melee_damage_upper = 35
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		plasma_gain = 40
-		maxplasma = 1000
-		jellyMax = 3200
-		spit_delay = 10
-		caste_desc = "A giant ranged monster. It looks pretty strong."
-		armor_deflection = 55
-		tacklemin = 6
-		tacklemax = 9
-		tackle_chance = 80
-		speed = 1.5
-		spit_type = 0
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 40
-		melee_damage_upper = 50
-		health = 270
-		maxHealth = 270
-		storedplasma = 0
-		plasma_gain = 50
-		maxplasma = 1000
-		spit_delay = 0
-		caste_desc = "Its mouth looks like a minigun."
-		armor_deflection = 60
-		tacklemin = 7
-		tacklemax = 10
-		tackle_chance = 85
-		speed = 1.3
-		spit_type = 0
-
-/mob/living/carbon/Xenomorph/Ravager
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 50
-		melee_damage_upper = 70
-		health = 220
-		maxHealth = 220
-		storedplasma = 0
-		plasma_gain = 10
-		maxplasma = 150
-		jellyMax = 1600
-		caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
-		speed = -1.2
-		armor_deflection = 60
-		tacklemin = 4
-		tacklemax = 8
-		tackle_chance = 85
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 60
-		melee_damage_upper = 80
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		plasma_gain = 15
-		maxplasma = 200
-		jellyMax = 3200
-		caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
-		speed = -1.3
-		armor_deflection = 65
-		tacklemin = 5
-		tacklemax = 9
-		tackle_chance = 90
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 80
-		melee_damage_upper = 100
-		health = 350
-		maxHealth = 350
-		storedplasma = 0
-		plasma_gain = 15
-		maxplasma = 200
-		caste_desc = "As I walk through the valley of the shadow of death."
-		speed = -1.1
-		armor_deflection = 70
-		tacklemin = 6
-		tacklemax = 10
-		tackle_chance = 95
-
-/mob/living/carbon/Xenomorph/Sentinel
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 15
-		melee_damage_upper = 25
-		health = 150
-		maxHealth = 150
-		storedplasma = 0
-		plasma_gain = 12
-		maxplasma = 400
-		jellyMax = 400
-		spit_delay = 25
-		caste_desc = "A ranged combat alien. It looks a little more dangerous."
-		armor_deflection = 20
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 60
-		speed = -0.6
-		spit_type = 0
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 20
-		melee_damage_upper = 30
-		health = 175
-		maxHealth = 175
-		storedplasma = 0
-		plasma_gain = 15
-		maxplasma = 500
-		jellyMax = 800
-		spit_delay = 20
-		caste_desc = "A ranged combat alien. It looks pretty strong."
-		armor_deflection = 20
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 60
-		speed = -0.6
-		spit_type = 0
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 25
-		melee_damage_upper = 35
-		health = 200
-		maxHealth = 200
-		storedplasma = 0
-		plasma_gain = 20
-		maxplasma = 600
-		spit_delay = 10
-		caste_desc = "Neurotoxin Factory, don't let it get you."
-		armor_deflection = 20
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 60
-		speed = -0.6
-		spit_type = 0
-
-/mob/living/carbon/Xenomorph/Spitter
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 20
-		melee_damage_upper = 30
-		health = 180
-		maxHealth = 180
-		storedplasma = 0
-		plasma_gain = 25
-		maxplasma = 700
-		jellyMax = 800
-		spit_delay = 20
-		caste_desc = "A ranged damage dealer. It looks a little more dangerous."
-		armor_deflection = 20
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 60
-		speed = 0
-		spit_type = 0
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 25
-		melee_damage_upper = 35
-		health = 200
-		maxHealth = 200
-		storedplasma = 0
-		plasma_gain = 30
-		maxplasma = 800
-		jellyMax = 1600
-		spit_delay = 15
-		caste_desc = "A ranged damage dealer. It looks pretty strong."
-		armor_deflection = 25
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 70
-		speed = -0.1
-		spit_type = 0
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 35
-		melee_damage_upper = 45
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		plasma_gain = 50
-		maxplasma = 900
-		spit_delay = 5
-		caste_desc = "A ranged destruction machine."
-		armor_deflection = 35
-		tacklemin = 5
-		tacklemax = 7
-		tackle_chance = 75
-		speed = -0.2
-		spit_type = 0
-
-/mob/living/carbon/Xenomorph/Hunter
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 25
-		melee_damage_upper = 35
-		health = 170
-		maxHealth = 170
-		storedplasma = 0
-		plasma_gain = 10
-		maxplasma = 150
-		jellyMax = 800
-		caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
-		speed = -1.4
-		armor_deflection = 25
-		attack_delay = -2
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 60
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 35
-		melee_damage_upper = 50
-		health = 200
-		maxHealth = 200
-		storedplasma = 0
-		plasma_gain = 10
-		maxplasma = 200
-		jellyMax = 1600
-		caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
-		speed = -1.5
-		armor_deflection = 30
-		attack_delay = -3
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 65
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 50
-		melee_damage_upper = 60
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		plasma_gain = 20
-		maxplasma = 300
-		caste_desc = "A completly unmatched hunter. No, not even the Yautja can match you."
-		speed = -1.5
-		armor_deflection = 40
-		attack_delay = -3
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 65
-
-/mob/living/carbon/Xenomorph/Queen
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 40
-		melee_damage_upper = 55
-		health = 320
-		maxHealth = 320
-		storedplasma = 0
-		maxplasma = 800
-		plasma_gain = 40
-		jellyMax = 1600
-		caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
-		armor_deflection = 65
-		tacklemin = 5
-		tacklemax = 7
-		tackle_chance = 85
-		speed = 0.9
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 50
-		melee_damage_upper = 60
-		health = 350
-		maxHealth = 350
-		storedplasma = 0
-		maxplasma = 900
-		plasma_gain = 50
-		jellyMax = 3200
-		caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
-		armor_deflection = 70
-		tacklemin = 6
-		tacklemax = 9
-		tackle_chance = 90
-		speed = 0.8
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 70
-		melee_damage_upper = 90
-		health = 400
-		maxHealth = 400
-		storedplasma = 0
-		maxplasma = 1000
-		plasma_gain = 50
-		caste_desc = "The most perfect Xeno form imaginable."
-		armor_deflection = 80
-		tacklemin = 7
-		tacklemax = 10
-		tackle_chance = 95
-		speed = 0.7
-
-/mob/living/carbon/Xenomorph/Crusher
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 20
-		melee_damage_upper = 35
-		tacklemin = 4
-		tacklemax = 7
-		tackle_chance = 95
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		plasma_gain = 15
-		maxplasma = 300
-		jellyMax = 1600
-		caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
-		speed = 0.5
-		armor_deflection = 70
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 35
-		melee_damage_upper = 45
-		tacklemin = 5
-		tacklemax = 9
-		tackle_chance = 95
-		health = 300
-		maxHealth = 300
-		storedplasma = 0
-		plasma_gain = 30
-		maxplasma = 400
-		jellyMax = 3200
-		caste_desc = "A huge tanky xenomorph. It looks pretty strong."
-		speed = 0.1
-		armor_deflection = 75
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 35
-		melee_damage_upper = 45
-		tacklemin = 5
-		tacklemax = 9
-		tackle_chance = 95
-		health = 350
-		maxHealth = 350
-		storedplasma = 0
-		plasma_gain = 30
-		maxplasma = 400
-		caste_desc = "It always has the right of way."
-		speed = -0.1
-		armor_deflection = 85
-
-/mob/living/carbon/Xenomorph/Boiler
-
-	mature
-		upgrade_name = "Mature"
-		upgrade = 1
-		melee_damage_lower = 20
-		melee_damage_upper = 25
-		health = 200
-		maxHealth = 200
-		storedplasma = 0
-		plasma_gain = 35
-		maxplasma = 900
-		jellyMax = 1600
-		spit_delay = 30
-		caste_desc = "Some sort of abomination. It looks a little more dangerous."
-		armor_deflection = 30
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 65
-		speed = 1.0
-
-	elite
-		upgrade_name = "Elite"
-		upgrade = 2
-		melee_damage_lower = 30
-		melee_damage_upper = 35
-		health = 220
-		maxHealth = 220
-		storedplasma = 0
-		plasma_gain = 40
-		maxplasma = 1000
-		jellyMax = 3200
-		spit_delay = 20
-		caste_desc = "Some sort of abomination. It looks pretty strong."
-		armor_deflection = 35
-		tacklemin = 3
-		tacklemax = 5
-		tackle_chance = 70
-		speed = 0.9
-
-	ancient
-		upgrade_name = "Ancient"
-		upgrade = 3
-		melee_damage_lower = 35
-		melee_damage_upper = 45
-		health = 250
-		maxHealth = 250
-		storedplasma = 0
-		plasma_gain = 50
-		maxplasma = 1000
-		spit_delay = 10
-		caste_desc = "A devestating piece of alien artillery."
-		armor_deflection = 40
-		tacklemin = 4
-		tacklemax = 6
-		tackle_chance = 80
-		speed = 0.8
-
 /////////////////////////////////////////
 // Whiskey Outpost V2 Standard Edition //
 /////////////////////////////////////////
@@ -2030,18 +1333,11 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 
 //Sandbags
 /obj/structure/m_barricade/sandbags
-	name = "Sandbag barricade"
+	name = "sandbag barricade"
 	desc = "Trusted since 1914"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "sandbag"
-	density = 1
-	anchored = 1.0
-	layer = 5
-	throwpass = 1	//You can throw objects over this, despite its density.
-	climbable = 1
-	flags_atom = ON_BORDER
 	health = 250 //Pretty tough. Changes sprites at 300 and 150.
-	unacidable = 0 //Who the fuck though unacidable barricades with 500 health was a good idea?
 
 	New()
 		if(dir != NORTH)
@@ -2049,40 +1345,33 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		else
 			layer = 3
 
-	Crossed(atom/movable/O)
+/obj/structure/m_barricade/sandbags/Crossed(atom/movable/O)
+	..()
+	if(istype(O,/mob/living/carbon/Xenomorph/Crusher))
+		var/mob/living/carbon/Xenomorph/M = O
+		if(!M.stat)
+			visible_message("<span class='danger'>[O] steamrolls through [src]!</span>")
+ 		destroy() //This fixes the weird bug where it wouldn't compile because it would say theres a unbalanced } + defining a proc within a proc.
+
+/obj/structure/m_barricade/sandbags/update_icon()
+	if(dir == SOUTH) layer = 5
+	icon_state = initial(icon_state)
+
+/obj/structure/m_barricade/sandbags/update_health()
+	if(health < 0) destroy()
+
+/obj/structure/m_barricade/sandbags/attackby(obj/item/W as obj, mob/user as mob)
+	if(!W) return
+
+	//Otherwise, just hit it.
+	if(force > 20)
 		..()
-		if(istype(O,/mob/living/carbon/Xenomorph/Crusher))
-			var/mob/living/carbon/Xenomorph/M = O
-			if(!M.stat)
-				visible_message("<span class='danger'>[O] steamrolls through the [src]!</span>")
-				destroy()
+		health -= W.force * 0.5
+		update_health()
 
-	update_icon()
-		icon_state = initial(icon_state)
-
-	update_health()
-		if(health < 0)
-			destroy()
-			return
-		return
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (!W) return
-
-		//Otherwise, just hit it.
-		if(force > 20)
-			..()
-			health -= W.force / 2
-			update_health()
-			return
-
-		return
-
-	destroy()
-		src.visible_message("\red [src] collapses!")
-		density = 0
-		del(src)
-		return
+/obj/structure/m_barricade/sandbags/destroy()
+	density = 0
+	cdel(src)
 
 //////////////////////////////////////////////////////////////
 // Laser Designator
@@ -2208,6 +1497,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		user << "<span class='warning'>The laser is currently cooling down. Please wait roughly 10 minutes from lasing the target.</span>"
 		return 0
 
+	user << "<span class='boldnotice'> You start lasing the target area.</span>"
 	message_admins("ALERT: [user] ([user.key]) IS CURRENTLY LAZING A TARGET: CURRENT MODE [laz_mode], at ([T.x],[T.y],[T.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>).") // Alert all the admins to this asshole. Added the jmp command from the explosion code.
 	var/obj/effect/las_target/lasertarget = new(T.loc)
 	if(laz_mode == 1 && !laz_r) // Heres our IR bomb code.
@@ -2510,6 +1800,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 
 	Del() //Make sure we pick up our trash.
 		if(operator && operator.machine)
+			operator.client.view = world.view
 			operator.machine = null
 			operator = null
 		if(operator)
@@ -2568,7 +1859,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				var/obj/item/device/m56d_gun/HMG = new(src.loc) //Here we generate our disassembled mg.
 				new /obj/item/device/m56d_post(src.loc)
 				HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-				del(src) //Now we clean up the constructed gun.
+				cdel(src) //Now we clean up the constructed gun.
 				return
 
 	if(istype(O, /obj/item/m56d_ammo)) // RELOADING DOCTOR FREEMAN.
@@ -2580,7 +1871,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			rounds = 700
 			update_icon()
 			user.drop_from_inventory(O)
-			del(O)
+			cdel(O)
 			return
 	return ..()
 
@@ -2588,18 +1879,17 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	set waitfor = 0
 	health -= damage
 	if(health <= 0)
-		var/explody = rand(0,1) //Ammo cooks off or something. Who knows.
+		var/destroyed = rand(0,50) //Ammo cooks off or something. Who knows.
 		playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 		sleep(10)
-		if(src && src.loc)
-			if(rounds && explody) // there goes the ammo magazine.
-				explosion(src.loc,-1,-1,2,0)
+		switch(destroyed)
+			if(50 to 25)
 				new /obj/machinery/m56d_post(src.loc)
-				del(src)
-			else
+				cdel(src)
+			if(24 to 0)
 				var/obj/item/device/m56d_gun/HMG = new(src.loc)
 				HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-				del(src)
+				cdel(src)
 		return
 
 	if(health > health_max)
@@ -2649,8 +1939,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				last_fired = 1
 			spawn(fire_delay)
 				last_fired = 0
-		else
-			burst_fire = 0
+		else burst_fire = 0
 		is_bursting = 0
 
 	if(!burst_fire && target && !last_fired)
@@ -2691,7 +1980,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			in_chamber = null
 			rounds--
 			if(!rounds)
-				visible_message("<span class='notice'> \icon[src] The M56D beeps steadily and its ammo light blinks red. </span>")
+				visible_message("<span class='notice'> \icon[src] \The M56D beeps steadily and its ammo light blinks red. </span>")
 				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
 				update_icon() //final safeguard.
 	return
@@ -2702,6 +1991,11 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	if(operator != user) return 0
 	if(istype(A,/obj/screen)) return 0
 	if(is_bursting) return
+	if(user.lying) //Fixing the fact if they're going prone that they can't shoot or that they are unconconcious
+		user.client.view = world.view
+		user.machine = null
+		operator = null
+		return 0
 	if(get_dist(user,src) > 1 || user.stat)
 		user.client.view = world.view
 		user.machine = null
@@ -2774,8 +2068,11 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			user.client.view = world.view
 			return
 		if(operator) //If there is already a operator then they're manning it.
-			user << "Someone's already controlling it."
-			return
+			if(operator.machine == null)
+				operator = null
+			else
+				user << "Someone's already controlling it."
+				return
 		else
 			if(user.machine) //Make sure we're not manning two guns at once, tentacle arms.
 				usr << "You're already manning something!"
@@ -2902,13 +2199,16 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 							/obj/item/ammo_magazine/rifle,
 							/obj/item/ammo_magazine/rifle,
 							/obj/item/ammo_magazine/rifle,
-							/obj/item/ammo_magazine/rifle,
-							/obj/item/ammo_magazine/rifle,
-							/obj/item/ammo_magazine/rifle,
+							/obj/item/ammo_magazine/rifle/ap,
+							/obj/item/ammo_magazine/rifle/ap,
+							/obj/item/ammo_magazine/rifle/ap,
 							/obj/item/ammo_magazine/smg/m39,
 							/obj/item/ammo_magazine/smg/m39,
 							/obj/item/ammo_magazine/smg/m39,
 							/obj/item/ammo_magazine/smg/m39,
+							/obj/item/ammo_magazine/smg/m39/ap,
+							/obj/item/ammo_magazine/smg/m39/ap,
+							/obj/item/ammo_magazine/smg/m39/ap,
 							/obj/item/ammo_magazine/shotgun,
 							/obj/item/ammo_magazine/shotgun,
 							/obj/item/ammo_magazine/shotgun/buckshot,
@@ -2984,18 +2284,18 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		return 0
 
 	process()
-		src.updateUsrDialog()
+		updateUsrDialog()
 		return
 
 	proc/scan_occupant(mob/living/carbon/M as mob)
 		surgery_t = 0
 		if(M.stat == 2)
 			visible_message("[src] buzzes.")
-			src.go_out() // If dead, eject them from the start.
+			go_out() // If dead, eject them from the start.
 			return
 		if(M.health <= -160)
 			visible_message("[src] flashes <span class='notice'>'UNOPERABLE:CRITICAL HEALTH'</span>") //make sure the docs heal them a bit than just throw them near dead.
-			src.go_out() //Eject them for immediate treatment.
+			go_out() //Eject them for immediate treatment.
 			return
 		visible_message("[src] scans the occupant.")
 		var/internal_t_dam = 0 //Making these guys a bit more seperate because its a bit easier to track.
@@ -3010,15 +2310,14 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			if(O.status & ORGAN_BROKEN)
 				broken_t_dam += 30 //30 seconds per broken bone should be better.
 		if(M.getOxyLoss() > 50) //Make sure they don't DIE in here, also starts assisted breathing instantly.
-			M.setOxyLoss(25) //Set it to 25 to not ded.
+			M.setOxyLoss(rand(0,25)) //Set it to 25 to not ded.
 			visible_message("[src] begins assisted breathing support.")
 
 		//Now how to balance out the damages done. 2 seconds per brute damage, 3 seconds per burn damage. 4 for toxins (filter them out), 2 for oxy-loss.
-		surgery_t += ((M.getBruteLoss()*3) + (M.getFireLoss()*3) + (M.getToxLoss()*4) + (M.getOxyLoss()*2))
+		surgery_t += (M.getBruteLoss() + (M.getFireLoss()*2) + (M.getToxLoss()*4) + (M.getOxyLoss()*2))
 		surgery_t += internal_t_dam + implants_t_dam + broken_t_dam
 		surgery_t = surgery_t*surgery_mod*10 //Now make it actual seconds.
-		if(surgery_t < 2400) //If its less than 4 minutes, then MAKE it 4 minutes
-			surgery_t = 2400
+		if(surgery_t < 1200) surgery_t = 1200
 		return
 
 
@@ -3032,19 +2331,23 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		//Give our first boost of healing, mainly so they don't die instantly
 		M.setOxyLoss(0) //Fix our breathing issues
 		M.heal_organ_damage(25,25)
-
 		sleep(surgery_t * 0.5) //Fix their organs now  so it makes sense halfway through
+		if(!occupant) return
 		M.setOxyLoss(0) //Fix our breathing issues
 		M.heal_organ_damage(25,25)
 		for(var/datum/organ/internal/I in M.internal_organs) //Fix the organs
 			I.damage = 0
-		for(var/datum/organ/external/O in src.occupant.organs) //Remove all the friendly fire.
+		for(var/datum/organ/external/O in occupant.organs) //Remove all the friendly fire.
+			if(istype(O, /datum/organ/external/head))
+				var/datum/organ/external/head/H = O
+				if(H.disfigured)	H.disfigured = 0
 			for(var/obj/S in O.implants)
 				if(istype(S))
 					S.loc = src.loc
 					O.implants -= S
 
 		sleep(surgery_t * 0.5) // Fully heal them now.
+		if(!occupant) return
 		M.setOxyLoss(0) //Fix our breathing issues
 		M.adjustToxLoss(-70) // Help out with toxins
 		M.eye_blurry = 0 //fix our eyes
@@ -3055,8 +2358,8 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		M.UpdateDamageIcon()
 		sleep(5)
 		visible_message("The Med-Pod clicks and opens up revealing a healed human")
-		src.go_out()
-		src.icon_state = "sleeper_0"
+		go_out()
+		icon_state = "sleeper_0"
 		surgery = 0
 		return
 
@@ -3066,11 +2369,18 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		set name = "Eject Med-Pod"
 		set category = "Object"
 		set src in oview(1)
-		if(surgery)
-			return
-		if(usr.stat != 0)
-			return
-		src.go_out()
+		if(surgery) return
+		if(usr.stat != 0) return
+		go_out()
+		add_fingerprint(usr)
+		return
+
+	verb/manual_eject()
+		set name = "Manual Eject Med-Pod"
+		set category = "Object"
+		set src in oview(1)
+		if(surgery) surgery = 0
+		go_out()
 		add_fingerprint(usr)
 		return
 
@@ -3079,10 +2389,9 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 		set category = "Object"
 		set src in oview(1)
 
-		if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr)))
-			return
+		if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr))) return
 
-		if(src.occupant)
+		if(occupant)
 			usr << "<span class='notice'>The sleeper is already occupied!</span>"
 			return
 
@@ -3092,7 +2401,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 
 		visible_message("[usr] starts climbing into the sleeper.", 3)
 		if(do_after(usr, 20))
-			if(src.occupant)
+			if(occupant)
 				usr << "<span class='notice'>The sleeper is already occupied!</span>"
 				return
 			usr.stop_pulling()
@@ -3100,26 +2409,25 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			usr.client.eye = src
 			usr.loc = src
 			update_use_power(2)
-			src.occupant = usr
-			src.icon_state = "sleeper_1"
-			src.scan_occupant(src.occupant) // Make it scan them when they get in to set our timer.
+			occupant = usr
+			icon_state = "sleeper_1"
+			scan_occupant(occupant) // Make it scan them when they get in to set our timer.
 
 			for(var/obj/O in src)
 				del(O)
-			src.add_fingerprint(usr)
+			add_fingerprint(usr)
 			return
 		return
 
 	proc/go_out()
-		if(!src.occupant)
-			return
-		if(src.occupant.client)
-			src.occupant.client.eye = src.occupant.client.mob
-			src.occupant.client.perspective = MOB_PERSPECTIVE
-		src.occupant.loc = src.loc
-		src.occupant = null
+		if(!occupant) return
+		if(occupant.client)
+			occupant.client.eye = occupant.client.mob
+			occupant.client.perspective = MOB_PERSPECTIVE
+		occupant.loc = loc
+		occupant = null
 		update_use_power(1)
-		src.icon_state = "sleeper_0"
+		icon_state = "sleeper_0"
 		return
 
 	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
@@ -3148,11 +2456,11 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 					M.client.eye = src
 				M.loc = src
 				update_use_power(2)
-				src.occupant = M
-				src.icon_state = "sleeper_1"
+				occupant = M
+				icon_state = "sleeper_1"
 
-				src.add_fingerprint(user)
-				src.scan_occupant(src.occupant) // Make it scan them when they get in to set our timer.
+				add_fingerprint(user)
+				scan_occupant(occupant) // Make it scan them when they get in to set our timer.
 				del(G)
 			return
 		return
@@ -3174,7 +2482,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	New()
 		..()
 		spawn( 5 )
-			src.connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+			connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 			return
 		return
 
@@ -3185,7 +2493,7 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			return
 		if(icon_state != "sleeperconsole")
 			icon_state = "sleeperconsole"
-		src.updateUsrDialog()
+		updateUsrDialog()
 		return
 
 	attack_hand(mob/user as mob)
@@ -3196,19 +2504,18 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 			dat += "This console is not connected to a Med-Pod or the Med-Pod is non-functional."
 			user << "This console seems to be powered down."
 		else
-			var/mob/living/occupant = src.connected.occupant
+			var/mob/living/occupant = connected.occupant
 			dat += "<font color='blue'><B>Occupant Statistics:</B></FONT><BR>"
 			if (occupant)
-				var/surgery_t = ((src.connected.occupant.getFireLoss() * 15) + (src.connected.occupant.getToxLoss() * 10) + (src.connected.occupant.getOxyLoss() * 10) + (src.connected.occupant.getBruteLoss() * 15))
 				var/t1
 				switch(occupant.stat)
-					if(0)
-						t1 = "Conscious"
-					if(1)
-						t1 = "<font color='blue'>Unconscious</font>"
-					if(2)
-						t1 = "<font color='red'>*dead*</font>"
-					else
+					if(0)	t1 = "Conscious"
+					if(1)	t1 = "<font color='blue'>Unconscious</font>"
+					if(2)	t1 = "<font color='red'>*dead*</font>"
+				var/operating
+				switch(connected.surgery)
+					if(0) operating = "Not in surgery"
+					if(1) operating = "IN SURGERY: DO NOT MANUALLY EJECT OR PATIENT HARM WILL BE CAUSED"
 				dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.health, t1)
 				if(iscarbon(occupant))
 					var/mob/living/carbon/C = occupant
@@ -3217,7 +2524,8 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 				dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getOxyLoss())
 				dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getToxLoss())
 				dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getFireLoss())
-				dat += text("<HR> Surgery Estimate: [] seconds<BR>", (surgery_t * 0.1))
+				dat += text("<HR> Surgery Estimate: [] seconds<BR>", (connected.surgery_t * 0.1))
+				dat += text("<HR> Med-Pod Status: [] ", operating)
 				dat += "<HR><A href='?src=\ref[src];refresh=1'>Refresh Menu</A>"
 				dat += "<HR><A href='?src=\ref[src];surgery=1'>Start Surgery</A>"
 				dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
@@ -3231,15 +2539,15 @@ YOU MADE ME DO THIS APOP WITH YOUR BIG LIST, I SWEAR.*/
 	Topic(href, href_list)
 		if(..())
 			return
-		if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+		if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))))
 			usr.set_machine(src)
 			if (href_list["refresh"])
-				src.updateUsrDialog()
+				updateUsrDialog()
 			if (href_list["surgery"])
-				src.connected.surgery_op(src.connected.occupant)
-				src.updateUsrDialog()
+				connected.surgery_op(src.connected.occupant)
+				updateUsrDialog()
 			if (href_list["ejectify"])
-				src.connected.eject()
-				src.updateUsrDialog()
-			src.add_fingerprint(usr)
+				connected.eject()
+				updateUsrDialog()
+			add_fingerprint(usr)
 		return

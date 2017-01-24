@@ -391,3 +391,7 @@ var/const/MAX_ACTIVE_TIME = 200
 			return 0
 
 	return 1
+
+/obj/item/clothing/mask/facehugger/flamer_fire_act()
+	Die()
+	return

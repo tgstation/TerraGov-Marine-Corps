@@ -129,12 +129,13 @@
 						return
 			target.apply_effects(12,20)
 
-	proc/drop_flame(turf/T)
+	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
 		if(!istype(T)) return
 		if(locate(/obj/flamer_fire) in T) return
 		var/obj/flamer_fire/F =  new(T)
 		processing_objects.Add(F)
 		F.firelevel = 20 //mama mia she a hot one!
+		F.burnlevel = 20
 
 /*
 //================================================

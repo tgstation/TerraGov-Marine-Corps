@@ -114,6 +114,14 @@ They're all essentially identical when it comes to getting the job done.
 	target.default_ammo = source.default_ammo
 	target.gun_type = source.gun_type
 
+//~Art interjecting here for explosion when using flamer procs.
+/obj/item/ammo_magazine/flamer_fire_act()
+	switch(current_rounds)
+		if(0) return
+		if(1 to 100) explosion(loc,  0, 0, 1, 2) //blow it up.
+		else explosion(loc,  0, 0, 2, 3) //blow it up HARDER
+	cdel(src)
+
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
 /obj/item/ammo_magazine/internal
 	name = "internal chamber"

@@ -1,10 +1,14 @@
 //Xenomorph Upgrade Code - Colonial Marines - Apophis775 - Last Edit: 11JUN16
-
+//Edited by Artouris 21JAN17 Broke it up into a verb and proc. This way we can have our cake and eat it too. Also allowed for tiered spawns.
 
 /mob/living/carbon/Xenomorph/verb/Upgrade()
 	set name = "Upgrade"
 	set desc = "Upgrades you, at the cost of never being able to evolve. Requires full plasma"
 	set category = "Alien"
+
+	upgrade_xeno(0,upgrade)
+
+/mob/living/carbon/Xenomorph/proc/upgrade_xeno(bypass_limit,upgrade)
 
 	if(upgrade == -2)
 		src << "<span class='warning'>Sorry, your class can't upgrade.</span>"
@@ -14,11 +18,11 @@
 		src << "<span class='warning'>You are at your max upgrade and your power level is already over 9000, what more do you want?</span>"
 		return
 
-	if(health < maxHealth)
+	if(health < maxHealth && !bypass_limit)
 		src << "<span class='warning'>You must be fully healed to upgrade.</span>"
 		return
 
-	if(storedplasma < maxplasma)
+	if(storedplasma < maxplasma && !bypass_limit)
 		src << "<span class='warning'>An upgrade requires all of your plasma.</span>"
 		return
 
@@ -31,7 +35,7 @@
 		return
 
 	if(jellyMax) //Does the caste have a jelly timer? Then check it
-		if(jellyGrow < jellyMax)
+		if(jellyGrow < jellyMax && !bypass_limit)
 			src << "<span class='warning'>You require more growth.</span>"
 			return
 
@@ -39,9 +43,10 @@
 
 		//FIRST UPGRADE
 		if(0)
-			var/up = alert(src, "If you upgrade, you will never be able to evolve (except for Drone -> Queen), are you sure?", , "Yes", "No")
-			if(up == "No")
-				return
+			if(!bypass_limit)
+				var/up = alert(src, "If you upgrade, you will never be able to evolve (except for Drone -> Queen), are you sure?", , "Yes", "No")
+				if(up == "No")
+					return
 			upgrade = 1
 			upgrade_name = "Mature"
 			jellyGrow = 0
@@ -635,3 +640,149 @@
 					speed = 0.7
 
 	generate_name() //Give them a new name now
+
+
+//Tiered spawns.
+/mob/living/carbon/Xenomorph/Runner/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Runner/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Runner/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Drone/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Drone/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Drone/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Carrier/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Carrier/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Carrier/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Hivelord/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Hivelord/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Hivelord/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Praetorian/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Praetorian/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Praetorian/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Ravager/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Ravager/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Ravager/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Sentinel/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Sentinel/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Sentinel/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Spitter/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Spitter/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Spitter/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Hunter/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Hunter/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Hunter/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Queen/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Queen/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Queen/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Crusher/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Crusher/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Crusher/ancient/New()
+	..()
+	upgrade_xeno(1,2)
+
+/mob/living/carbon/Xenomorph/Boiler/mature/New()
+	..()
+	upgrade_xeno(1,0)
+
+/mob/living/carbon/Xenomorph/Boiler/elite/New()
+	..()
+	upgrade_xeno(1,1)
+
+/mob/living/carbon/Xenomorph/Boiler/ancient/New()
+	..()
+	upgrade_xeno(1,2)

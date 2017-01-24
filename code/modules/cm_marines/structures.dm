@@ -18,6 +18,11 @@
 	var/tool_cooldown = 0 //Delay to apply tools to prevent spamming
 	var/busy = 0 //Standard busy check
 
+/obj/structure/m_barricade/New()
+	..()
+	spawn()
+		update_icon()
+
 /obj/structure/m_barricade/examine(mob/user as mob)
 	..()
 	switch(health/maxhealth * 100)
@@ -36,6 +41,8 @@
 			user << "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>"
 
 /obj/structure/m_barricade/update_icon()
+	if(dir == SOUTH)
+		layer = 5
 	icon_state = initial(icon_state)
 	switch(health/maxhealth * 100)
 		if(30.1 to 60) //Lowest division is 0.2 %, 1/500th

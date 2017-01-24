@@ -7,6 +7,11 @@
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
 	unacidable = 1
+	var/health = 1
+
+/obj/effect/alien/flamer_fire_act()
+	health -= 50
+	if(health < 0) cdel(src)
 /*
  * Resin
  */
@@ -18,7 +23,7 @@
 	density = 1
 	opacity = 1
 	anchored = 1
-	var/health = 200
+	health = 200
 	layer = 2.8
 	unacidable = 1
 
@@ -141,7 +146,7 @@
 	density = 0
 	layer = 2
 	unacidable = 1
-	var/health = 1
+	health = 1
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/on_fire = 0
 
@@ -259,6 +264,7 @@
 	opacity = 0
 	anchored = 1
 	var/ticks = 0
+	health = 1
 
 /obj/effect/alien/acid/New(loc, acid_t)
 	..(loc)
@@ -294,6 +300,9 @@
 	sleep(rand(150, 200))
 	.()
 
+/obj/effect/alien/acid/flamer_fire_act()
+	return //this prevents any acid trickery.
+
 /*
  * Egg
  */
@@ -313,7 +322,7 @@
 	density = 0
 	anchored = 1
 
-	var/health = 80
+	health = 80
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 	var/on_fire = 0
 
@@ -432,6 +441,9 @@
 		if(!CanHug(AM) || isYautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
 		Burst(0)
+
+/obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
+	Burst(1)
 
 /obj/structure/tunnel
 	name = "tunnel"
@@ -731,6 +743,9 @@
 	playsound(loc, 'sound/effects/attackblob.ogg', 30, 1)
 	health -= 40
 	healthcheck()
+
+/obj/structure/stool/bed/nest/flamer_fire_act()
+	cdel(src)
 
 //Alien blood effects.
 /obj/effect/decal/cleanable/blood/xeno

@@ -283,6 +283,10 @@
 			die()
 			return
 
+/obj/effect/plantsegment/flamer_fire_act()
+	cdel(src)
+	return
+
 /obj/effect/plant_controller
 
 	//What this does is that instead of having the grow minimum of 1, required to start growing, the minimum will be 0,

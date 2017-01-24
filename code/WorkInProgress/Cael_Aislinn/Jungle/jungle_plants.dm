@@ -67,6 +67,10 @@
 		else
 			del(src)
 
+/obj/structure/bush/flamer_fire_act(heat)
+	health -= 30
+	healthcheck(src)
+
 //*******************************//
 // Strange, fruit-bearing plants //
 //*******************************//
