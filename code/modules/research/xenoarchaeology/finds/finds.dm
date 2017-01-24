@@ -88,7 +88,7 @@
 	if(new_item_type)
 		find_type = new_item_type
 	else
-		find_type = rand(1,34)	//update this when you add new find types
+		find_type = rand(1,30)	//update this when you add new find types
 
 	var/item_type = "object"
 	icon_state = "unknown[rand(1,4)]"
@@ -275,44 +275,18 @@
 			apply_material_decorations = 0
 			if(prob(10))
 				apply_image_decorations = 1
-//			if(prob(25))
-//				new_item = new /obj/item/device/soulstone(src.loc)
-//				new_item.icon = 'icons/obj/xenoarchaeology.dmi'
-//				new_item.icon_state = icon_state
 		if(17)
-			//cultblade
-			apply_prefix = 0
-			new_item = new /obj/item/weapon/melee/cultblade(src.loc)
-			apply_material_decorations = 0
-			apply_image_decorations = 0
-		if(18)
 			new_item = new /obj/item/device/radio/beacon(src.loc)
 			talkative = 0
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "unknown[rand(1,4)]"
 			new_item.desc = ""
-		if(19)
+		if(18)
 			apply_prefix = 0
 			new_item = new /obj/item/weapon/claymore(src.loc)
 			new_item.force = 10
 			item_type = new_item.name
-		if(20)
-			//arcane clothing
-			apply_prefix = 0
-			var/list/possible_spawns = list(/obj/item/clothing/head/culthood,
-			/obj/item/clothing/head/magus,
-			/obj/item/clothing/head/culthood/alt,
-			/obj/item/clothing/head/helmet/space/cult)
-
-			var/new_type = pick(possible_spawns)
-			new_item = new new_type(src.loc)
-		if(21)
-			//soulstone
-//			apply_prefix = 0
-//			new_item = new /obj/item/device/soulstone(src.loc)
-//			item_type = new_item.name
-//			apply_material_decorations = 0
-		if(22)
+		if(19)
 			if(prob(50))
 				new_item = new /obj/item/weapon/shard(src.loc)
 			else
@@ -320,12 +294,12 @@
 			apply_prefix = 0
 			apply_image_decorations = 0
 			apply_material_decorations = 0
-		if(23)
+		if(20)
 			apply_prefix = 0
 			new_item = new /obj/item/stack/rods(src.loc)
 			apply_image_decorations = 0
 			apply_material_decorations = 0
-		if(24)
+		if(21)
 			var/list/possible_spawns = typesof(/obj/item/weapon/stock_parts)
 			possible_spawns -= /obj/item/weapon/stock_parts
 			possible_spawns -= /obj/item/weapon/stock_parts/subspace
@@ -334,81 +308,16 @@
 			new_item = new new_type(src.loc)
 			item_type = new_item.name
 			apply_material_decorations = 0
-		if(25)
+		if(22)
 			apply_prefix = 0
 			new_item = new /obj/item/weapon/katana(src.loc)
 			new_item.force = 10
 			item_type = new_item.name
-/*
-		if(26)
-			//energy gun
-			var/spawn_type = pick(\
-			/obj/item/weapon/gun/energy/laser/practice/xenoarch,\
-			/obj/item/weapon/gun/energy/laser/xenoarch,\
-			/obj/item/weapon/gun/energy/xray/xenoarch,\
-			/obj/item/weapon/gun/energy/laser/captain/xenoarch)
-			if(spawn_type)
-				var/obj/item/weapon/gun/energy/new_gun = new spawn_type(src.loc)
-				new_item = new_gun
-				new_item.icon_state = "egun[rand(1,6)]"
-				new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
-
-				//5% chance to explode when first fired
-				//10% chance to have an unchargeable cell
-				//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
-				if(prob(5))
-					new_gun.power_supply.rigged = 1
-				if(prob(10))
-					new_gun.power_supply.maxcharge = 0
-				if(prob(15))
-					new_gun.power_supply.charge = rand(0, new_gun.power_supply.maxcharge)
-				else
-					new_gun.power_supply.charge = 0
-
-			item_type = "gun"
-*/
-		if(27)
-			//revolver
-/*
-			var/obj/item/weapon/gun/projectile/new_gun = new /obj/item/weapon/gun/projectile(src.loc)
-			new_item = new_gun
-			new_item.icon_state = "gun[rand(1,4)]"
-			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
-
-			//33% chance to be able to reload the gun with human ammunition
-			if(prob(66))
-				new_gun.caliber = "999"
-
-			//33% chance to fill it with a random amount of bullets
-			new_gun.max_shells = rand(1,12)
-			if(prob(33))
-				var/num_bullets = rand(1,new_gun.max_shells)
-				if(num_bullets < new_gun.loaded.len)
-					new_gun.loaded.Cut()
-					for(var/i = 1, i <= num_bullets, i++)
-						var/A = text2path(new_gun.ammo_type)
-						new_gun.loaded += new A(new_gun)
-				else
-					for(var/obj/item/I in new_gun)
-						if(new_gun.loaded.len > num_bullets)
-							if(I in new_gun.loaded)
-								new_gun.loaded.Remove(I)
-								I.loc = null
-						else
-							break
-			else
-				for(var/obj/item/I in new_gun)
-					if(I in new_gun.loaded)
-						new_gun.loaded.Remove(I)
-						I.loc = null
-
-			item_type = "gun"
-*/
-		if(28)
+		if(23)
 			//completely unknown alien device
 			if(prob(50))
 				apply_image_decorations = 0
-		if(29)
+		if(24)
 			//fossil bone/skull
 			//new_item = new /obj/item/weapon/fossil/base(src.loc)
 
@@ -422,7 +331,7 @@
 			additional_desc = "A fossilised part of an alien, long dead."
 			apply_image_decorations = 0
 			apply_material_decorations = 0
-		if(30)
+		if(25)
 			//fossil shell
 			new_item = new /obj/item/weapon/fossil/shell(src.loc)
 			apply_prefix = 0
@@ -431,7 +340,7 @@
 			apply_material_decorations = 0
 			if(prob(10))
 				apply_image_decorations = 1
-		if(31)
+		if(26)
 			//fossil plant
 			new_item = new /obj/item/weapon/fossil/plant(src.loc)
 			item_type = new_item.name
@@ -439,7 +348,7 @@
 			apply_image_decorations = 0
 			apply_material_decorations = 0
 			apply_prefix = 0
-		if(32)
+		if(27)
 			//humanoid remains
 			apply_prefix = 0
 			item_type = "humanoid [pick("remains","skeleton")]"
@@ -454,7 +363,7 @@
 			"The mouth is wide open in a death rictus, the victim would appear to have died screaming.")
 			apply_image_decorations = 0
 			apply_material_decorations = 0
-		if(33)
+		if(28)
 			//robot remains
 			apply_prefix = 0
 			item_type = "[pick("mechanical","robotic","cyborg")] [pick("remains","chassis","debris")]"
@@ -469,7 +378,7 @@
 			"A pile of wires and crap metal that looks vaguely robotic.")
 			apply_image_decorations = 0
 			apply_material_decorations = 0
-		if(34)
+		if(29)
 			//xenos remains
 			apply_prefix = 0
 			item_type = "alien [pick("remains","skeleton")]"
@@ -485,7 +394,7 @@
 			"It doesn't look human.")
 			apply_image_decorations = 0
 			apply_material_decorations = 0
-		if(35)
+		if(30)
 			//gas mask
 			if(prob(25))
 				new_item = new /obj/item/clothing/mask/gas/poltergeist(src.loc)

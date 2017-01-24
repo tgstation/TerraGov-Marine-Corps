@@ -139,7 +139,6 @@
 			if("pmc start") pmc_spawns += L.loc
 			if("horror start")
 				horror_spawns += L.loc
-				new /obj/effect/gateway(L.loc)
 			if("jason start") jason_spawns += L.loc
 			if("jason trigger")
 				J = new /obj/effect/step_trigger/jason(L.loc)
@@ -224,10 +223,12 @@
 		if(world.time >= (event_time_major + lobby_time))
 			handle_event_major_spooky()
 			event_time_major = world.time + EVENT_MAJOR_INTERVAL
+		/*
+		 * Note : Find something else to send for next halloween
 		if(!total_attuned)
-			new /obj/machinery/singularity/narsie/wizard(pick(horror_spawns))
 			total_attuned--
 			world << "<span class='event_announcement'>All the blood seals are broken! He comes!</span>"
+		 */
 
 		check_win()
 		round_checkwin = 0

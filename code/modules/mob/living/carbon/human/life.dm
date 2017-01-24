@@ -53,9 +53,6 @@
 				var/obj/location_as_object = loc
 				location_as_object.handle_internal_lifeform(src, 0)
 
-		//Updates the number of stored chemicals for powers
-		handle_changeling()
-
 		//Check if we're on fire
 		handle_fire()
 

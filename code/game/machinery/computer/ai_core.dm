@@ -135,10 +135,6 @@
 					user << "\red This [P] does not seem to fit."
 					return
 
-				if(P:brainmob.mind)
-					ticker.mode.remove_cultist(P:brainmob.mind, 1)
-					ticker.mode.remove_revolutionary(P:brainmob.mind, 1)
-
 				user.drop_item()
 				P.loc = src
 				brain = P
@@ -202,12 +198,6 @@ That prevents a few funky behaviors.
 						if(C.contents.len)//If there is an AI on card.
 							U << "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one."
 						else
-							if (ticker.mode.name == "AI malfunction")
-								var/datum/game_mode/malfunction/malf = ticker.mode
-								for (var/datum/mind/malfai in malf.malf_ai)
-									if (T.mind == malfai)
-										U << "\red <b>ERROR</b>: \black Remote transfer interface disabled."//Do ho ho ho~
-										return
 							new /obj/structure/AIcore/deactivated(T.loc)//Spawns a deactivated terminal at AI location.
 							T.aiRestorePowerRoutine = 0//So the AI initially has power.
 							T.control_disabled = 1//Can't control things remotely if you're stuck in a card!
@@ -220,29 +210,6 @@ That prevents a few funky behaviors.
 							T.cancel_camera()
 							T << "You have been downloaded to a mobile storage device. Remote device connection severed."
 							U << "\blue <b>Transfer successful</b>: \black [T.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
-					if("NINJASUIT")
-						var/obj/item/clothing/suit/space/space_ninja/C = src
-						if(C.AI)//If there is an AI on card.
-							U << "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one."
-						else
-							if (ticker.mode.name == "AI malfunction")
-								var/datum/game_mode/malfunction/malf = ticker.mode
-								for (var/datum/mind/malfai in malf.malf_ai)
-									if (T.mind == malfai)
-										U << "\red <b>ERROR</b>: \black Remote transfer interface disabled."
-										return
-							if(T.stat)//If the ai is dead/dying.
-								U << "\red <b>ERROR</b>: \black [T.name] data core is corrupted. Unable to install."
-							else
-								new /obj/structure/AIcore/deactivated(T.loc)
-								T.aiRestorePowerRoutine = 0
-								T.control_disabled = 1
-								T.aiRadio.disabledAi = 1
-								T.loc = C
-								C.AI = T
-								T.cancel_camera()
-								T << "You have been downloaded to a mobile storage device. Remote device connection severed."
-								U << "\blue <b>Transfer successful</b>: \black [T.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
 
 			if("INACTIVE")//Inactive AI object.
 				var/obj/structure/AIcore/deactivated/T = target

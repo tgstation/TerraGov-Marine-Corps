@@ -159,8 +159,6 @@ var/global/list/frozen_items = list()
 		/obj/item/device/aicard,
 		/obj/item/device/mmi,
 		/obj/item/device/paicard,
-		///obj/item/weapon/gun,
-		/obj/item/weapon/pinpointer,
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
@@ -261,13 +259,8 @@ var/global/list/frozen_items = list()
 				if(occupant.mind.objectives.len)
 					del(occupant.mind.objectives)
 					occupant.mind.special_role = null
-				else
-					if(ticker.mode.name == "AutoTraitor")
-						var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode
-						current_mode.possible_traitors.Remove(occupant)
 
-			// Delete them from datacore.
-
+			//Delete them from datacore.
 			if(PDA_Manifest.len)
 				PDA_Manifest.Cut()
 			for(var/datum/data/record/R in data_core.medical)

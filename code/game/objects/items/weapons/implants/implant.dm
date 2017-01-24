@@ -332,19 +332,12 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Integrity:</b> Implant will last approximately ten years."}
 		return dat
 
-
 	implanted(mob/M)
 		if(!ishuman(M))	return
 		if(isYautja(M)) return
 		var/mob/living/carbon/human/H = M
-		if(H.mind in ticker.mode.head_revolutionaries)
-			H.visible_message("[H] seems to resist the implant!", "You resist the implant!")
-			return 0
-		else if(H.mind in ticker.mode:revolutionaries)
-			ticker.mode:remove_revolutionary(H.mind)
-		H << "<span class = 'notice'>You are now tagged as a WY loyalist and will be monitored by the central headquarters. You retain your free will and mental faculties.</span>"
+		H << "<span class='notice'>You are now tagged as a WY loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>"
 		return 1
-
 
 /obj/item/weapon/implant/adrenalin
 	name = "adrenalin"

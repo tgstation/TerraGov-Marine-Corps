@@ -4202,7 +4202,7 @@
 "bCP" = (/obj/machinery/field_generator,/turf/simulated/floor{dir = 8; icon_state = "darkpurple2"; tag = "icon-darkpurple2 (EAST)"},/area/ice_colony/underground/research/storage)
 "bCQ" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 1; on = 1},/turf/simulated/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/underground/research/storage)
 "bCR" = (/obj/structure/closet/radiation,/turf/simulated/floor{tag = "icon-darkpurple2 (EAST)"; icon_state = "darkpurple2"; dir = 4},/area/ice_colony/underground/research/storage)
-"bCS" = (/obj/machinery/firealarm{dir = 8; pixel_x = -24; pixel_y = 0},/obj/structure/table/reinforced,/turf/simulated/floor{dir = 10; icon_state = "darkblue2"; tag = "icon-darkblue2"},/area/ice_colony/underground/storage/highsec)
+"bCS" = (/obj/machinery/firealarm{dir = 8; pixel_x = -24; pixel_y = 0},/obj/item/weapon/pinpointer,/obj/structure/table/reinforced,/turf/simulated/floor{dir = 10; icon_state = "darkblue2"; tag = "icon-darkblue2"},/area/ice_colony/underground/storage/highsec)
 "bCT" = (/obj/structure/table/reinforced,/obj/item/weapon/circuitboard/smes,/turf/simulated/floor{tag = "icon-darkblue2"; icon_state = "darkblue2"; dir = 2},/area/ice_colony/underground/storage/highsec)
 "bCU" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/trackimp,/turf/simulated/floor{tag = "icon-darkblue2"; icon_state = "darkblue2"; dir = 2},/area/ice_colony/underground/storage/highsec)
 "bCV" = (/obj/structure/table/reinforced,/obj/item/weapon/circuitboard/crew,/turf/simulated/floor{tag = "icon-darkblue2"; icon_state = "darkblue2"; dir = 2},/area/ice_colony/underground/storage/highsec)

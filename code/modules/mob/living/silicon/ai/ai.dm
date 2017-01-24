@@ -151,9 +151,8 @@ var/list/ai_verbs_default = list(
 			src << "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>"
 			src << "To use something, simply click on it."
 			src << "Use say :b to speak to your cyborgs through binary."
-			if (!(ticker && ticker.mode && (mind in ticker.mode.malf_ai)))
-				show_laws()
-				src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
+			show_laws()
+			src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
 
 			job = "AI"
 
@@ -270,20 +269,6 @@ var/list/ai_verbs_default = list(
 		if("Heartline") icon_state = "ai-heartline"
 		if("Chatterbox") icon_state = "ai-president"
 		else icon_state = "ai"
-	//else
-			//usr <<"You can only change your display once!"
-			//return
-
-
-// displays the malf_ai information if the AI is the malf
-/mob/living/silicon/ai/show_malf_ai()
-	if(ticker.mode.name == "AI malfunction")
-		var/datum/game_mode/malfunction/malf = ticker.mode
-		for (var/datum/mind/malfai in malf.malf_ai)
-			if (mind == malfai) // are we the evil one?
-				if (malf.apcs >= 3)
-					stat(null, "Time until station control secured: [max(malf.AI_win_timeleft/(malf.apcs/3), 0)] seconds")
-
 
 /mob/living/silicon/ai/proc/ai_alerts()
 	set category = "AI Commands"
@@ -566,13 +551,6 @@ var/list/ai_verbs_default = list(
 				break
 	src << "\blue Switched to [network] camera network."
 //End of code by Mord_Sith
-
-
-/mob/living/silicon/ai/proc/choose_modules()
-	set category = "Malfunction"
-	set name = "Choose Module"
-
-	malf_picker.use(src)
 
 /mob/living/silicon/ai/proc/ai_statuschange()
 	set category = "AI Commands"

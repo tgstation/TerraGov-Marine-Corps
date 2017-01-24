@@ -85,12 +85,6 @@
 	else
 		stat(null, text("Systems nonfunctional"))
 
-
-// This is a pure virtual function, it should be overwritten by all subclasses
-/mob/living/silicon/proc/show_malf_ai()
-	return 0
-
-
 // this function displays the station time in the status panel
 /mob/living/silicon/proc/show_station_time()
 	stat(null, "Station Time: [worldtime2text()]")
@@ -108,11 +102,10 @@
 /mob/living/silicon/Stat()
 	..()
 	statpanel("Status")
-	if (src.client.statpanel == "Status")
+	if(src.client.statpanel == "Status")
 		show_station_time()
 		show_emergency_shuttle_eta()
 		show_system_integrity()
-		show_malf_ai()
 
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()

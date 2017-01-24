@@ -32,10 +32,6 @@
 			newplayer_start += loc
 			del(src)
 
-//		if("wizard")
-//			wizardstart += loc
-//			del(src)
-
 		if("JoinLate")
 			latejoin += loc
 			del(src)
@@ -108,19 +104,8 @@
 			surv_spawn_prison += loc
 			del(src)
 
-//		if("ninjastart")
-//			ninjastart += loc
-//			del(src)
-
 		if("surv_spawn_ice_colony")
 			surv_spawn_ice_colony += loc
-			del(src)
-//		if("voxstart")
-//			raider_spawn += loc
-//			del(src)
-
-		if("Syndicate-Spawn")
-			synd_spawn += loc
 			del(src)
 
 	landmarks_list += src
