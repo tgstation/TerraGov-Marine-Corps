@@ -1879,17 +1879,14 @@
 	set waitfor = 0
 	health -= damage
 	if(health <= 0)
-		var/destroyed = rand(0,50) //Ammo cooks off or something. Who knows.
+		var/destroyed = rand(0,1) //Ammo cooks off or something. Who knows.
 		playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-		sleep(10)
-		switch(destroyed)
-			if(50 to 25)
-				new /obj/machinery/m56d_post(src.loc)
-				cdel(src)
-			if(24 to 0)
-				var/obj/item/device/m56d_gun/HMG = new(src.loc)
-				HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-				cdel(src)
+		if(!destroyed) new /obj/machinery/m56d_post(loc)
+		else
+			var/obj/item/device/m56d_gun/HMG = new(loc)
+			HMG.rounds = src.rounds //Inherent the amount of ammo we had.
+		sleep(2)
+		cdel(src)
 		return
 
 	if(health > health_max)
