@@ -302,7 +302,7 @@
 "fP" = (/obj/structure/rack,/obj/item/device/assembly/prox_sensor,/obj/item/device/assembly/prox_sensor,/obj/structure/closet/walllocker/emerglocker/north,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
 "fQ" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
 "fR" = (/obj/machinery/door_control{id = "eastblast"; name = "Observation Windows"; pixel_x = 30},/obj/machinery/vending/engivend,/turf/simulated/floor{icon_state = "vault"},/area/sulaco/maintenance/lower_maint)
-"fS" = (/obj/machinery/camera/autoname{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 8},/area/sulaco/command/armory)
+"fS" = (/obj/machinery/camera/autoname{dir = 4},/obj/machinery/nuclearbomb,/turf/simulated/floor{icon_state = "red"; dir = 8},/area/sulaco/command/armory)
 "fT" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/rack,/obj/item/weapon/gun/shotgun/combat{pixel_x = 4; pixel_y = -3},/obj/item/weapon/gun/shotgun/combat,/obj/item/ammo_magazine/shotgun/incendiary,/obj/item/ammo_magazine/shotgun/incendiary,/turf/simulated/floor{icon_state = "red"; dir = 4},/area/sulaco/command/armory)
 "fU" = (/obj/machinery/door/airlock/multi_tile/research{req_access_txt = "0"; req_one_access_txt = "2;14;200;8"},/obj/machinery/door/firedoor,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)
 "fV" = (/obj/machinery/atmospherics/pipe/simple/hidden/cyan,/obj/machinery/door/firedoor,/turf/simulated/floor{icon_state = "white"},/area/sulaco/research)

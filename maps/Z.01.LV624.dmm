@@ -1835,7 +1835,7 @@
 "Jo" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c200{pixel_x = 3; pixel_y = -3},/turf/simulated/floor{tag = "icon-whiteblue (NORTH)"; icon_state = "whiteblue"; dir = 1},/area/lv624/lazarus/internal_affairs)
 "Jp" = (/obj/item/weapon/spacecash/c100{pixel_x = -12},/obj/item/weapon/reagent_containers/food/drinks/bottle/sake,/turf/simulated/floor{dir = 8; icon_state = "whiteblue"},/area/lv624/lazarus/internal_affairs)
 "Jq" = (/obj/structure/bookcase/manuals/xenoarchaeology,/obj/item/weapon/book/manual/ripley_build_and_repair,/obj/item/weapon/book/manual/security_space_law,/turf/simulated/floor/bluegrid,/area/lv624/lazarus/internal_affairs)
-"Jr" = (/obj/structure/table/woodentable,/turf/simulated/floor/bluegrid,/area/lv624/lazarus/internal_affairs)
+"Jr" = (/obj/structure/table/woodentable,/obj/item/weapon/pinpointer,/turf/simulated/floor/bluegrid,/area/lv624/lazarus/internal_affairs)
 "Js" = (/obj/effect/landmark{name = "surv_spawn"; pixel_x = -1},/turf/unsimulated/floor/gm/dirt,/area/lv624/ground/compound)
 "Jt" = (/obj/structure/grille{density = 0; icon_state = "brokengrille"},/obj/structure/jungle/vines_lite{icon_state = "Light2"},/turf/simulated/floor/plating{icon_state = "platebotc"},/area/lv624/lazarus/atmos)
 "Ju" = (/obj/structure/jungle/vines_heavy{icon_state = "Med2"; pixel_x = 0; pixel_y = -26},/obj/structure/jungle/vines_lite{icon_state = "Light2"},/turf/unsimulated/floor/gm/grass{icon_state = "grass2"},/area/lv624/lazarus/atmos)
