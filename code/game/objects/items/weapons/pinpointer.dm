@@ -2,6 +2,8 @@
 	name = "pinpointer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinoff"
+	flags_atom = FPRINT | CONDUCT
+	flags_pass = PASSTABLE
 	flags_equip_slot = SLOT_WAIST
 	w_class = 2.0
 	item_state = "electronic"

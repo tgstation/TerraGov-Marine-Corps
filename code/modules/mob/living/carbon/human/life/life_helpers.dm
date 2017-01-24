@@ -223,9 +223,9 @@
 			client.screen |= G.overlay
 		if(G.vision_flags)
 			sight |= G.vision_flags
-			if(!druggy && !seer)
+			if(!druggy)
 				see_invisible = SEE_INVISIBLE_MINIMUM
-		if(istype(G,/obj/item/clothing/glasses/night ) && !seer)
+		if(istype(G,/obj/item/clothing/glasses/night))
 			see_invisible = SEE_INVISIBLE_MINIMUM
 
 		/*
@@ -239,7 +239,7 @@
 			O = S.hud
 		if(istype(O))
 			O.process_hud(src)
-			if(!druggy && !seer)
+			if(!druggy)
 				see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/human/handle_silent()

@@ -240,9 +240,8 @@ OBSOLETE BITCH
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(I.force))
 					apply_effect(20, PARALYZE, armor)
-					visible_message("\red <B>[src] has been knocked unconscious!</B>")
-					if(src != user && I.damtype == BRUTE)
-						ticker.mode.remove_revolutionary(mind)
+					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
+					"<span class='danger'>You have been knocked unconscious!</span>")
 
 				if(bloody)//Apply blood
 					if(wear_mask)

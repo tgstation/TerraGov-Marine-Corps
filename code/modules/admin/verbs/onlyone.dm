@@ -10,11 +10,6 @@
 		ticker.mode.traitors += H.mind
 		H.mind.special_role = "traitor"
 
-		var/datum/objective/steal/steal_objective = new
-		steal_objective.owner = H.mind
-		steal_objective.set_target("nuclear authentication disk")
-		H.mind.objectives += steal_objective
-
 		var/datum/objective/hijack/hijack_objective = new
 		hijack_objective.owner = H.mind
 		H.mind.objectives += hijack_objective
@@ -28,11 +23,9 @@
 			del(I)
 
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), WEAR_BODY)
-//		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), WEAR_L_EAR)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), WEAR_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/weapon/claymore(H), WEAR_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), WEAR_FEET)
-		H.equip_to_slot_or_del(new /obj/item/weapon/pinpointer(H.loc), WEAR_L_STORE)
 
 		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[H.real_name]'s ID Card"

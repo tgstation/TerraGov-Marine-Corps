@@ -24,8 +24,8 @@ var/bomb_set
 	var/timing_wire
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open,
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
-	flags_atom = FPRINT
 	use_power = 0
+	flags_atom = FPRINT
 
 
 
@@ -389,25 +389,17 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
-	if( bomb_location && (bomb_location.z == 1) )
-		if( (bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)) )
+	if(bomb_location && (bomb_location.z == 1))
+		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
 			off_station = 1
 	else
 		off_station = 2
 
 	if(ticker)
-		if(ticker.mode && ticker.mode.name == "nuclear emergency")
-			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
-			if(syndie_location)
-				ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
-			ticker.mode:nuke_off_station = off_station
-		ticker.station_explosion_cinematic(off_station,null)
+		ticker.station_explosion_cinematic(off_station, null)
 		if(ticker.mode)
 			ticker.mode.explosion_in_progress = 0
-			if(ticker.mode.name == "nuclear emergency")
-				ticker.mode:nukes_left --
-			else
-				world << "<B>The station was destoyed by the nuclear blast!</B>"
+			world << "<B>The station was destoyed by the nuclear blast!</B>"
 
 			ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 															//kinda shit but I couldn't  get permission to do what I wanted to do.
