@@ -33,20 +33,6 @@
 	src.healthcheck()
 	return 1
 
-
-/obj/structure/displaycase/blob_act()
-	if (prob(75))
-		new /obj/item/weapon/shard( src.loc )
-		if (occupied)
-			occupied = 0
-		del(src)
-
-
-/obj/structure/displaycase/meteorhit(obj/O as obj)
-		new /obj/item/weapon/shard( src.loc )
-		del(src)
-
-
 /obj/structure/displaycase/proc/healthcheck()
 	if (src.health <= 0)
 		if (!( src.destroyed ))

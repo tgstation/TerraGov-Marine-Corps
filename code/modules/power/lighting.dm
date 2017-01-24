@@ -591,16 +591,8 @@
 				broken()
 	return
 
-//blob effect
-
-/obj/machinery/light/blob_act()
-	if(prob(75))
-		broken()
-
-
-// timed process
-// use power
-
+//timed process
+//use power
 #define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
 
 /*

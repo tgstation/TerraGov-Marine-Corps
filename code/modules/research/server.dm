@@ -70,11 +70,6 @@
 		produce_heat()
 		delay = initial(delay)
 
-/obj/machinery/r_n_d/server/meteorhit(var/obj/O as obj)
-	griefProtection()
-	..()
-
-
 /obj/machinery/r_n_d/server/emp_act(severity)
 	griefProtection()
 	..()
@@ -83,13 +78,6 @@
 /obj/machinery/r_n_d/server/ex_act(severity)
 	griefProtection()
 	..()
-
-
-/obj/machinery/r_n_d/server/blob_act()
-	griefProtection()
-	..()
-
-
 
 //Backup files to centcomm to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()

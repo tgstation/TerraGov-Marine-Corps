@@ -199,16 +199,6 @@
 		req_access	= os.req_access
 		update_icon()
 
-		// todo does this do enough
-
-
-	meteorhit(var/obj/O as obj)
-		for(var/x in verbs)
-			verbs -= x
-		set_broken()
-		return
-
-
 	emp_act(severity)
 		if(prob(20/severity)) set_broken()
 		..()
@@ -234,12 +224,6 @@
 					set_broken()
 			else
 		return
-
-
-	blob_act()
-		if (prob(75))
-			set_broken()
-			density = 0
 
 	/*
 		Computers have the capability to use a battery backup.

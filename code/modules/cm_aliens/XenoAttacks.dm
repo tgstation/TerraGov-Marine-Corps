@@ -3,14 +3,6 @@
 /mob/living/carbon/Xenomorph/attack_ui(slot_id)
 	return
 
-/mob/living/carbon/Xenomorph/meteorhit(O as obj)
-	visible_message("<span class='warning'>\The [src] is hit by \the [O].</span>", \
-	"<span class='warning'>You are hit by \the [O].</span>")
-	if(health > 0)
-		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
-		adjustFireLoss(30)
-		updatehealth()
-
 /mob/living/carbon/Xenomorph/attack_animal(mob/living/M as mob)
 
 	if(isanimal(M))

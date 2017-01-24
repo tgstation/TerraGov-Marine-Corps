@@ -72,16 +72,6 @@
 	healthcheck()
 	return
 
-/obj/effect/alien/resin/blob_act()
-	health -= 50
-	healthcheck()
-	return
-
-/obj/effect/alien/resin/meteorhit()
-	health -= 50
-	healthcheck()
-	return
-
 /obj/effect/alien/resin/hitby(AM as mob|obj)
 	..()
 	if(istype(AM,/mob/living/carbon/Xenomorph))
@@ -502,14 +492,6 @@
 				health -= 50
 			else
 				health -= 25
-	healthcheck()
-
-/obj/structure/tunnel/blob_act()
-	health -= 50
-	healthcheck()
-
-/obj/structure/tunnel/meteorhit()
-	health -= 50
 	healthcheck()
 
 /obj/structure/tunnel/attackby(obj/item/weapon/W as obj, mob/user as mob)

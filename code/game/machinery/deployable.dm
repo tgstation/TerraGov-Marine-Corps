@@ -66,21 +66,6 @@ CONTAINS
 					del(src)
 				return
 
-	meteorhit()
-		visible_message("\red <B>The barricade is smashed apart!</B>")
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		new /obj/item/stack/sheet/wood(get_turf(src))
-		del(src)
-		return
-
-	blob_act()
-		src.health -= 25
-		if (src.health <= 0)
-			visible_message("\red <B>The blob eats through the barricade!</B>")
-			del(src)
-		return
-
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 		if(air_group || (height==0))
 			return 1
@@ -202,16 +187,6 @@ CONTAINS
 			locked = !locked
 			anchored = !anchored
 			icon_state = "barrier[src.locked]"
-
-	meteorhit()
-		src.explode()
-		return
-
-	blob_act()
-		src.health -= 25
-		if (src.health <= 0)
-			src.explode()
-		return
 
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 		if(air_group || (height==0))

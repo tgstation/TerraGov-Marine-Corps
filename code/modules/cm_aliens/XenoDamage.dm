@@ -40,9 +40,6 @@
 			updatehealth()
 			return
 
-/mob/living/carbon/Xenomorph/blob_act()
-	return
-
 /mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
 	if(!damage) return
 

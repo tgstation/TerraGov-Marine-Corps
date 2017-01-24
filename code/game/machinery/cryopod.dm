@@ -447,8 +447,3 @@ var/global/list/frozen_items = list()
 		icon_state = "body_scanner_0"
 
 	return
-
-
-//Attacks/effects.
-/obj/machinery/cryopod/blob_act()
-	return //Sorta gamey, but we don't really want these to be destroyed.

@@ -218,44 +218,10 @@
 
 	updatehealth()
 
-
-/mob/living/carbon/slime/blob_act()
-	if (stat == 2)
-		return
-	var/shielded = 0
-
-	var/damage = null
-	if (stat != 2)
-		damage = rand(10,30)
-
-	if(shielded)
-		damage /= 4
-
-		//paralysis += 1
-
-	show_message("<span class='userdanger'> The blob attacks you!</span>")
-
-	adjustFireLoss(damage)
-
-	updatehealth()
-	return
-
-
 /mob/living/carbon/slime/u_equip(obj/item/W as obj)
 	return
 
 /mob/living/carbon/slime/attack_ui(slot)
-	return
-
-/mob/living/carbon/slime/meteorhit(O as obj)
-	for(var/mob/M in viewers(src, null))
-		if ((M.client && !( M.blinded )))
-			M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (health > 0)
-		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
-		adjustFireLoss(30)
-
-		updatehealth()
 	return
 
 /mob/living/carbon/slime/attack_slime(mob/living/carbon/slime/M as mob)

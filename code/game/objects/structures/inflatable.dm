@@ -60,15 +60,6 @@
 					deflate(1)
 					return
 
-
-	blob_act()
-		deflate(1)
-
-
-	meteorhit()
-	//world << "glass at [x],[y],[z] Mhit"
-		deflate(1)
-
 	attack_paw(mob/user as mob)
 		return attack_generic(user, 15)
 

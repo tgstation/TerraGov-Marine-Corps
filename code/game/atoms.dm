@@ -76,10 +76,6 @@ directive is properly returned.
 		return flags & INSERT_CONTAINER
 */
 
-
-/atom/proc/meteorhit(obj/meteor as obj)
-	return
-
 /atom/proc/allow_drop()
 	return 1
 
@@ -217,9 +213,6 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/ex_act()
-	return
-
-/atom/proc/blob_act()
 	return
 
 /atom/proc/fire_act()

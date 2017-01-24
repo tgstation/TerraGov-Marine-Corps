@@ -53,11 +53,6 @@ var/global/list/uneatable = list(
 	consume(user)
 	return 1
 
-
-/obj/machinery/singularity/blob_act(severity)
-	return
-
-
 /obj/machinery/singularity/ex_act(severity)
 	switch(severity)
 		if(1.0)

@@ -80,13 +80,6 @@ var/list/solars_list = list()
 		src.healthcheck()
 	..()
 
-
-/obj/machinery/power/solar/blob_act()
-	src.health--
-	src.healthcheck()
-	return
-
-
 /obj/machinery/power/solar/proc/healthcheck()
 	if (src.health <= 0)
 		if(!(stat & BROKEN))
@@ -146,14 +139,6 @@ var/list/solars_list = list()
 	update_icon()
 	return
 
-
-/obj/machinery/power/solar/meteorhit()
-	if(stat & !BROKEN)
-		broken()
-	else
-		del(src)
-
-
 /obj/machinery/power/solar/ex_act(severity)
 	switch(severity)
 		if(1.0)
@@ -172,13 +157,6 @@ var/list/solars_list = list()
 			if (prob(25))
 				broken()
 	return
-
-
-/obj/machinery/power/solar/blob_act()
-	if(prob(75))
-		broken()
-		src.density = 0
-
 
 /obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/solar_assembly/S)
 	..(loc, S, 0)
@@ -501,12 +479,6 @@ var/list/solars_list = list()
 	stat |= BROKEN
 	update_icon()
 
-
-/obj/machinery/power/solar_control/meteorhit()
-	broken()
-	return
-
-
 /obj/machinery/power/solar_control/ex_act(severity)
 	switch(severity)
 		if(1.0)
@@ -520,13 +492,6 @@ var/list/solars_list = list()
 			if (prob(25))
 				broken()
 	return
-
-
-/obj/machinery/power/solar_control/blob_act()
-	if (prob(75))
-		broken()
-		src.density = 0
-
 
 //
 // MISC

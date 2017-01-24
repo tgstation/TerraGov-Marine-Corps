@@ -27,13 +27,6 @@
 /obj/structure/attack_paw(mob/user)
 	if(breakable) attack_hand(user)
 
-/obj/structure/blob_act()
-	if(prob(50))
-		del(src)
-
-/obj/structure/meteorhit(obj/O as obj)
-	destroy(src)
-
 /obj/structure/attack_tk()
 	return
 
@@ -48,9 +41,6 @@
 				return
 		if(3.0)
 			return
-
-/obj/structure/meteorhit(obj/O as obj)
-	del(src)
 
 /obj/structure/New()
 	..()

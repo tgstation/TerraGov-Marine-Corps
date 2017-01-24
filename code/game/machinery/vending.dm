@@ -104,15 +104,6 @@
 		else
 	return
 
-/obj/machinery/vending/blob_act()
-	if (prob(50))
-		spawn(0)
-			src.malfunction()
-			del(src)
-		return
-
-	return
-
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return
 

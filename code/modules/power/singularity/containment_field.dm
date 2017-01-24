@@ -28,15 +28,7 @@
 		shock(user)
 		return 1
 
-
-/obj/machinery/containment_field/blob_act()
-	return 0
-
-
 /obj/machinery/containment_field/ex_act(severity)
-	return 0
-
-/obj/machinery/containment_field/meteorhit()
 	return 0
 
 /obj/machinery/containment_field/HasProximity(atom/movable/AM as mob|obj)
@@ -65,7 +57,7 @@
 		user.throw_at(target, 200, 4)
 
 		sleep(20)
-		
+
 		hasShocked = 0
 	return
 

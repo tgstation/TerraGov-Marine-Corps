@@ -843,17 +843,6 @@
 					del(src)
 				return
 
-	meteorhit()
-		visible_message("\red <B>The [src] is blown apart!</B>")
-		health_check(1)
-		return
-
-	blob_act()
-		src.health -= 25
-		visible_message("\red <B>The blob eats through the [src]!</B>")
-		src.health_check()
-		return
-
 	//Bullet Passable
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 		if(air_group || (height==0)) return 1

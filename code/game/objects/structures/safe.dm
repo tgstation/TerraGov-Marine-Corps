@@ -188,18 +188,8 @@ FLOOR SAFES
 			user << "Hold [I] in one of your hands while you manipulate the dial."
 			return
 
-
-obj/structure/safe/blob_act()
-	return
-
-
 obj/structure/safe/ex_act(severity)
 	return
-
-
-obj/structure/safe/meteorhit(obj/O as obj)
-	return
-
 
 //FLOOR SAFES
 /obj/structure/safe/floor

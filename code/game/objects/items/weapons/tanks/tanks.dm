@@ -67,17 +67,6 @@
 
 	return
 
-/obj/item/weapon/tank/blob_act()
-	if(prob(50))
-		var/turf/location = src.loc
-		if (!( istype(location, /turf) ))
-			del(src)
-
-		if(src.air_contents)
-			location.assume_air(air_contents)
-
-		del(src)
-
 /obj/item/weapon/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	var/obj/icon = src

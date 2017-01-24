@@ -81,9 +81,6 @@
 		..(severity)
 	return
 
-/obj/machinery/camera/blob_act()
-	return
-
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
 	src.view_range = num
 	cameranet.updateVisibility(src, 0)

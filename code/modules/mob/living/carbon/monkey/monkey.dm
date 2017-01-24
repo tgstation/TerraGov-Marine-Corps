@@ -134,20 +134,6 @@
 	..()
 	return
 
-/mob/living/carbon/monkey/meteorhit(obj/O as obj)
-	for(var/mob/M in viewers(src, null))
-		M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (health > 0)
-		var/shielded = 0
-		adjustBruteLoss(30)
-		if ((O.icon_state == "flaming" && !( shielded )))
-			adjustFireLoss(40)
-		health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-	return
-
-//mob/living/carbon/monkey/bullet_act(var/obj/item/projectile/Proj)taken care of in living
-
-
 /mob/living/carbon/monkey/attack_paw(mob/M as mob)
 	..()
 
@@ -380,21 +366,6 @@
 				Paralyse(10)
 		else
 	return
-
-/mob/living/carbon/monkey/blob_act()
-	if (stat != 2)
-		adjustFireLoss(60)
-		health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-	if (prob(50))
-		Paralyse(10)
-	if (stat == DEAD && client)
-		gib()
-		return
-	if (stat == DEAD && !client)
-		gibs(loc, viruses)
-		del(src)
-		return
-
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	if(universal_speak == 1)

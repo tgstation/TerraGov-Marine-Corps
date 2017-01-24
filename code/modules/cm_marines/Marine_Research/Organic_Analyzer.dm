@@ -30,10 +30,6 @@ Note: Must be placed within 3 tiles of the WY Research Console
 	T = between (0, T, 1)
 	decon_mod = T
 
-/obj/machinery/r_n_d/organic_analyzer/meteorhit()
-	del(src)
-	return
-
 /obj/machinery/r_n_d/organic_analyzer/proc/ConvertReqString2List(var/list/source_list)
 	var/list/temp_list = params2list(source_list)
 	for(var/O in temp_list)

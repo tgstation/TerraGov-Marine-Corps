@@ -41,10 +41,6 @@
 		else
 	return
 
-/obj/machinery/optable/blob_act()
-	if(prob(75))
-		del(src)
-
 /obj/machinery/optable/attack_paw(mob/user as mob)
 	if ((HULK in usr.mutations))
 		usr << text("\blue You destroy the operating table.")

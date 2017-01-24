@@ -30,9 +30,6 @@ datum/chemical_reaction/coolant
 		explode()
 	return 1
 
-/obj/structure/reagent_dispensers/coolanttank/blob_act()
-	explode()
-
 /obj/structure/reagent_dispensers/coolanttank/ex_act()
 	explode()
 

@@ -125,13 +125,6 @@
 	user.reset_view(src.current)
 	return 1
 
-/mob/living/silicon/pai/blob_act()
-	if (src.stat != 2)
-		src.adjustBruteLoss(60)
-		src.updatehealth()
-		return 1
-	return 0
-
 /mob/living/silicon/pai/restrained()
 	if(istype(src.loc,/obj/item/device/paicard))
 		return 0
@@ -170,17 +163,6 @@
 			src << "<font color=green>Pr1m3 d1r3c71v3 uPd473D.</font>"
 		if(3)
 			src << "<font color=green>You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.</font>"
-
-// See software.dm for Topic()
-/mob/living/silicon/pai/meteorhit(obj/O as obj)
-	for(var/mob/M in viewers(src, null))
-		M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (src.health > 0)
-		src.adjustBruteLoss(30)
-		if ((O.icon_state == "flaming"))
-			src.adjustFireLoss(40)
-		src.updatehealth()
-	return
 
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if(istype(usr, /mob/living))

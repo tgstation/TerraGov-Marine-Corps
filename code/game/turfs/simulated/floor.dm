@@ -103,9 +103,6 @@ var/list/wood_icons = list("wood","wood-broken")
 		if(W.dir == dir_to || W.is_fulltile()) //Same direction or diagonal (full tile)
 			W.fire_act(adj_air, adj_temp, adj_volume)
 
-/turf/simulated/floor/blob_act()
-	return
-
 turf/simulated/floor/update_icon()
 	if(lava)
 		return

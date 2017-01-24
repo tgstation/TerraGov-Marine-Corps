@@ -61,13 +61,6 @@
 			else
 		return
 
-	blob_act()
-		if(prob(50))
-			new /obj/effect/effect/water(src.loc)
-			del(src)
-
-
-
 /obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
@@ -168,11 +161,6 @@
 		explode()
 	return 1
 
-/obj/structure/reagent_dispensers/fueltank/blob_act()
-	if(exploding) return
-	exploding = 1
-	explode()
-
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	if(exploding) return
 	exploding = 1
@@ -243,10 +231,6 @@
 	New()
 		..()
 		reagents.add_reagent("beer",1000)
-
-/obj/structure/reagent_dispensers/beerkeg/blob_act()
-	explosion(src.loc,0,3,5,7,10)
-	del(src)
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"

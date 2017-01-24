@@ -41,15 +41,6 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 			T += M.rating
 		max_material_amount = T * 75000.0
 
-
-	blob_act()
-		if (prob(50))
-			del(src)
-
-	meteorhit()
-		del(src)
-		return
-
 	proc/TotalMaterials()
 		return g_amount + gold_amount + diamond_amount + uranium_amount
 

@@ -12,7 +12,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	icon_state = "d_analyzer"
 	var/obj/item/weapon/loaded_item = null
 	var/decon_mod = 1
-	
+
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 2500
@@ -32,10 +32,6 @@ Note: Must be placed within 3 tiles of the R&D Console
 		T += S.rating * 0.1
 	T = between (0, T, 1)
 	decon_mod = T
-
-/obj/machinery/r_n_d/destructive_analyzer/meteorhit()
-	del(src)
-	return
 
 /obj/machinery/r_n_d/destructive_analyzer/proc/ConvertReqString2List(var/list/source_list)
 	var/list/temp_list = params2list(source_list)

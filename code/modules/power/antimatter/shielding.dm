@@ -89,21 +89,6 @@ proc/cardinalrange(var/center)
 /obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
 	return 0
 
-
-/*/obj/machinery/am_shielding/blob_act()
-	stability -= 20
-	if(prob(100-stability))
-		if(prob(10))//Might create a node
-			new /obj/effect/blob/node(src.loc,150)
-		else
-			new /obj/effect/blob(src.loc,60)
-		spawn(0)
-			del(src)
-		return
-	check_stability()
-	return*/  //Blob Shit
-
-
 /obj/machinery/am_shielding/ex_act(severity)
 	switch(severity)
 		if(1.0)

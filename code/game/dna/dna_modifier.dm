@@ -196,13 +196,6 @@
 		else
 	return
 
-
-/obj/machinery/dna_scannernew/blob_act()
-	if(prob(75))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
-		del(src)
-
 /obj/machinery/computer/scan_consolenew
 	name = "DNA Modifier Access Console"
 	desc = "Scand DNA."
@@ -257,11 +250,6 @@
 				return
 		else
 	return
-
-/obj/machinery/computer/scan_consolenew/blob_act()
-
-	if(prob(75))
-		del(src)
 
 /obj/machinery/computer/scan_consolenew/power_change()
 	..()

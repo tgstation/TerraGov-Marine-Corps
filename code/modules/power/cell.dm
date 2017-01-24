@@ -153,26 +153,8 @@
 				corrupt()
 	return
 
-/obj/item/weapon/cell/blob_act()
-	if(prob(75))
-		explode()
-
 /obj/item/weapon/cell/proc/get_electrocute_damage()
 	switch (charge)
-/*		if (9000 to INFINITY)
-			return min(rand(90,150),rand(90,150))
-		if (2500 to 9000-1)
-			return min(rand(70,145),rand(70,145))
-		if (1750 to 2500-1)
-			return min(rand(35,110),rand(35,110))
-		if (1500 to 1750-1)
-			return min(rand(30,100),rand(30,100))
-		if (750 to 1500-1)
-			return min(rand(25,90),rand(25,90))
-		if (250 to 750-1)
-			return min(rand(20,80),rand(20,80))
-		if (100 to 250-1)
-			return min(rand(20,65),rand(20,65))*/
 		if (1000000 to INFINITY)
 			return min(rand(50,160),rand(50,160))
 		if (200000 to 1000000-1)

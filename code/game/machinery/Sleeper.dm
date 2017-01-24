@@ -205,15 +205,6 @@
 		src.updateUsrDialog()
 		return
 
-
-	blob_act()
-		if(prob(75))
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
-				A.blob_act()
-			del(src)
-		return
-
 	attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
 		if(istype(G, /obj/item/weapon/reagent_containers/glass))
 			if(!beaker)

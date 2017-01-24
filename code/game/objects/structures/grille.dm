@@ -51,13 +51,6 @@
 /obj/structure/grille/ex_act(severity)
 	del(src)
 
-/obj/structure/grille/blob_act()
-	del(src)
-
-/obj/structure/grille/meteorhit(var/obj/M)
-	del(src)
-
-
 /obj/structure/grille/Bumped(atom/user)
 	if(ismob(user)) shock(user, 70)
 

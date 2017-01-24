@@ -156,10 +156,6 @@ Class Procs:
 		else
 	return
 
-/obj/machinery/blob_act()
-	if(prob(50))
-		del(src)
-
 //sets the use_power var and then forces an area power update
 /obj/machinery/proc/update_use_power(var/new_use_power, var/force_update = 0)
 	if ((new_use_power == use_power) && !force_update)

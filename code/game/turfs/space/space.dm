@@ -77,10 +77,7 @@
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == "nuclear emergency")	return
 		if(A.z > 6 && !config.use_overmap) return
-		if (A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
-			if(istype(A, /obj/effect/meteor))
-				del(A)
-				return
+		if(A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
 
 			if(istype(A, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks travel Z levels  ... And moving this shit down here so it only fires when they're actually trying to change z-level.
 				del(A) //The disk's Del() proc ensures a new one is created
@@ -157,9 +154,6 @@
 	var/list/y_arr
 
 	if(src.x <= 1)
-		if(istype(A, /obj/effect/meteor))
-			del(A)
-			return
 
 		var/list/cur_pos = src.get_global_map_pos()
 		if(!cur_pos) return
@@ -181,10 +175,7 @@
 			spawn (0)
 				if ((A && A.loc))
 					A.loc.Entered(A)
-	else if (src.x >= world.maxx)
-		if(istype(A, /obj/effect/meteor))
-			del(A)
-			return
+	else if(src.x >= world.maxx)
 
 		var/list/cur_pos = src.get_global_map_pos()
 		if(!cur_pos) return
@@ -206,10 +197,8 @@
 			spawn (0)
 				if ((A && A.loc))
 					A.loc.Entered(A)
-	else if (src.y <= 1)
-		if(istype(A, /obj/effect/meteor))
-			del(A)
-			return
+	else if(src.y <= 1)
+
 		var/list/cur_pos = src.get_global_map_pos()
 		if(!cur_pos) return
 		cur_x = cur_pos["x"]
@@ -231,10 +220,7 @@
 				if ((A && A.loc))
 					A.loc.Entered(A)
 
-	else if (src.y >= world.maxy)
-		if(istype(A, /obj/effect/meteor))
-			del(A)
-			return
+	else if(src.y >= world.maxy)
 		var/list/cur_pos = src.get_global_map_pos()
 		if(!cur_pos) return
 		cur_x = cur_pos["x"]

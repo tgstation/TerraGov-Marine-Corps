@@ -205,11 +205,6 @@
 			return
 		return ..()
 
-	blob_act()
-		if(prob(40))
-			del(src)
-
-
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
@@ -267,10 +262,6 @@
 		else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
 			user << "\blue You drill through the girder!"
 			new /obj/effect/decal/remains/human(get_turf(src))
-			del(src)
-
-	blob_act()
-		if(prob(40))
 			del(src)
 
 	bullet_act(var/obj/item/projectile/Proj) //No beam check- How else will you destroy the cult girder with silver bullets?????
