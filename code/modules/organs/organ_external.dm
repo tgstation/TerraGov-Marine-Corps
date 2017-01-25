@@ -166,6 +166,7 @@
 	//If limb took enough damage, try to cut or tear it off
 	if(body_part != UPPER_TORSO && body_part != LOWER_TORSO) //As hilarious as it is, getting hit on the chest too much shouldn't effectively gib you.
 		if(config.limbs_can_break && brute_dam >= max_damage * config.organ_health_multiplier)
+			//Probablity to delimb is 20 % of the damage past limb damage threshold and 80 % of the ratio of damage to limb damage threshold. This is then divided by four
 			var/cut_prob = ((brute_dam - max_damage) * 0.2 + (archived_brute/max_damage * 100) * 0.8) * 0.25
 			if(prob(cut_prob))
 				droplimb(1)
