@@ -74,9 +74,11 @@
 	if((brute <= 0) && (burn <= 0))
 		return 0
 
+	var/archived_brute = brute //This is terrible, but I need this. Might not even be neccesary, but the code fucks with brute below, so I'm gonna stay safe
+
 	if(status & ORGAN_DESTROYED)
 		return 0
-	if(status & ORGAN_ROBOT )
+	if(status & ORGAN_ROBOT)
 
 		var/brmod = 0.66
 		var/bumod = 0.66
@@ -90,16 +92,16 @@
 		brute *= brmod //~2/3 damage for ROBOLIMBS
 		burn *= bumod //~2/3 damage for ROBOLIMBS
 
-	// High brute damage or sharp objects may damage internal organs
-	if(internal_organs && ( (sharp && brute >= 10) || brute >= 20) && prob(5))
-		// Damage an internal organ
+	//High brute damage or sharp objects may damage internal organs
+	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
+		//Damage an internal organ
 		var/datum/organ/internal/I = pick(internal_organs)
 		I.take_damage(brute / 2)
 		brute -= brute / 2
 
 	if(status & ORGAN_BROKEN && prob(40) && brute)
-		if (!(owner.species && (owner.species.flags & NO_PAIN)))
-			owner.emote("scream")	//getting hit on broken hand hurts
+		if(!(owner.species && (owner.species.flags & NO_PAIN)))
+			owner.emote("scream") //Getting hit on broken hand hurts
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
 
@@ -108,36 +110,40 @@
 	if((brute_dam + burn_dam + brute + burn) < max_damage || !config.limbs_can_break)
 		if(brute)
 			if(can_cut)
-				createwound( CUT, brute )
+				createwound(CUT, brute)
 			else
-				createwound( BRUISE, brute )
+				createwound(BRUISE, brute)
 		if(burn)
-			createwound( BURN, burn )
+			createwound(BURN, burn)
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
+		//var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
+		var/can_inflict = INFINITY //TODO: YES, THIS IS STUPID. BUT I DON'T WANT TO REWRITE THIS GOD-FORSAKEN CODE FOR A HOTFIX TO MAGIC HEAD REMOVAL
+		//FOR NOW, 20 % OF DAMAGE SPREADS DOWN THROUGH THE PARENT
+		//WE NEED SOMETHING MUCH BETTER IN THE FUTURE
 		if(can_inflict)
-			if (brute > 0)
-				//Inflict all burte damage we can
+			if(brute > 0)
+				//Inflict all brute damage we can
 				if(can_cut)
-					createwound( CUT, min(brute,can_inflict) )
+					createwound(CUT, min(brute, can_inflict))
 				else
-					createwound( BRUISE, min(brute,can_inflict) )
+					createwound(BRUISE, min(brute, can_inflict))
 				var/temp = can_inflict
-				//How much mroe damage can we inflict
+				//How much more damage can we inflict
 				can_inflict = max(0, can_inflict - brute)
 				//How much brute damage is left to inflict
 				brute = max(0, brute - temp)
 
-			if (burn > 0 && can_inflict)
+			if(burn > 0 && can_inflict)
 				//Inflict all burn damage we can
 				createwound(BURN, min(burn,can_inflict))
 				//How much burn damage is left to inflict
 				burn = max(0, burn - can_inflict)
+		/*
 		//If there are still hurties to dispense
-		if (burn || brute)
-			if (status & ORGAN_ROBOT)
+		if(burn || brute)
+			if(status & ORGAN_ROBOT)
 				droplimb(1) //Robot limbs just kinda fail at full damage.
 			else
 				//List organs we can pass it to
@@ -152,14 +158,16 @@
 					//And pass the pain around
 					var/datum/organ/external/target = pick(possible_points)
 					target.take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs + src)
+		 */
 
-	// sync the organ's damage with its wounds
+	//Sync the organ's damage with its wounds
 	src.update_damages()
 
 	//If limb took enough damage, try to cut or tear it off
-	if(body_part != UPPER_TORSO && body_part != LOWER_TORSO) //as hilarious as it is, getting hit on the chest too much shouldn't effectively gib you.
+	if(body_part != UPPER_TORSO && body_part != LOWER_TORSO) //As hilarious as it is, getting hit on the chest too much shouldn't effectively gib you.
 		if(config.limbs_can_break && brute_dam >= max_damage * config.organ_health_multiplier)
-			if( (edge && prob(2 * brute)) || (brute > 20 && prob(0.5 * brute)) )
+			var/cut_prob = ((brute_dam - max_damage) * 0.2 + (archived_brute/max_damage * 100) * 0.8) * 0.25
+			if(prob(cut_prob))
 				droplimb(1)
 				return
 
@@ -884,7 +892,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "chest"
 	icon_name = "torso"
 	display_name = "chest"
-	max_damage = 85
+	max_damage = 200
 	min_broken_damage = 40
 	body_part = UPPER_TORSO
 	vital = 1
@@ -894,7 +902,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "groin"
 	icon_name = "groin"
 	display_name = "groin"
-	max_damage = 60
+	max_damage = 200
 	min_broken_damage = 40
 	body_part = LOWER_TORSO
 	vital = 1
@@ -903,8 +911,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
-	max_damage = 55
-	min_broken_damage = 35
+	max_damage = 35
+	min_broken_damage = 30
 	body_part = ARM_LEFT
 
 	process()
@@ -915,8 +923,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_leg"
 	display_name = "left leg"
 	icon_name = "l_leg"
-	max_damage = 55
-	min_broken_damage = 35
+	max_damage = 35
+	min_broken_damage = 30
 	body_part = LEG_LEFT
 	icon_position = LEFT
 
@@ -924,8 +932,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
-	max_damage = 55
-	min_broken_damage = 35
+	max_damage = 35
+	min_broken_damage = 30
 	body_part = ARM_RIGHT
 
 	process()
@@ -936,8 +944,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_leg"
 	display_name = "right leg"
 	icon_name = "r_leg"
-	max_damage = 55
-	min_broken_damage = 35
+	max_damage = 35
+	min_broken_damage = 30
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
 
@@ -945,8 +953,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_foot"
 	display_name = "left foot"
 	icon_name = "l_foot"
-	max_damage = 40
-	min_broken_damage = 30
+	max_damage = 30
+	min_broken_damage = 25
 	body_part = FOOT_LEFT
 	icon_position = LEFT
 
@@ -954,8 +962,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_foot"
 	display_name = "right foot"
 	icon_name = "r_foot"
-	max_damage = 40
-	min_broken_damage = 30
+	max_damage = 30
+	min_broken_damage = 25
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
 
@@ -963,8 +971,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "r_hand"
 	display_name = "right hand"
 	icon_name = "r_hand"
-	max_damage = 60
-	min_broken_damage = 30
+	max_damage = 30
+	min_broken_damage = 25
 	body_part = HAND_RIGHT
 
 	process()
@@ -975,8 +983,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "l_hand"
 	display_name = "left hand"
 	icon_name = "l_hand"
-	max_damage = 60
-	min_broken_damage = 30
+	max_damage = 30
+	min_broken_damage = 25
 	body_part = HAND_LEFT
 
 	process()
@@ -987,7 +995,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "head"
 	icon_name = "head"
 	display_name = "head"
-	max_damage = 75
+	max_damage = 60
 	min_broken_damage = 40
 	body_part = HEAD
 	var/disfigured = 0
