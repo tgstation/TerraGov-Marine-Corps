@@ -547,7 +547,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
 /mob/living/carbon/human/update_inv_w_uniform(var/update_icons=1)
-	if(w_uniform && istype(w_uniform, /obj/item/clothing/under) )
+	if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
 		w_uniform.screen_loc = ui_iclothing
 		var/t_color = w_uniform.item_color
 		if(!t_color)		t_color = icon_state
@@ -573,18 +573,19 @@ proc/get_damage_icon_part(damage_state, body_part)
 		overlays_standing[UNIFORM_LAYER]	= standing
 	else
 		overlays_standing[UNIFORM_LAYER]	= null
-		// This really, really seems like it should not be mixed in the middle of display code...
-		// Automatically drop anything in store / id / belt if you're not wearing a uniform.	//CHECK IF NECESARRY
-		for( var/obj/item/thing in list(r_store, l_store, wear_id, belt) )						//
-			if(thing)																			//
-				u_equip(thing)																	//
-				if (client)																		//
-					client.screen -= thing														//
-																								//
-				if (thing)																		//
-					thing.loc = loc																//
-					thing.dropped(src)															//
+		//This really, really seems like it should not be mixed in the middle of display code... //IT REALLY SHOULD NOT BE
+		//Automatically drop anything in store/belt if you're not wearing a uniform.	//CHECK IF NECESARRY
+		for(var/obj/item/thing in list(r_store, l_store, belt))
+			if(thing)
+				u_equip(thing)
+				if(client)
+					client.screen -= thing
+
+				if(thing)
+					thing.loc = loc
+					thing.dropped(src)
 					thing.layer = initial(thing.layer)
+
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_inv_wear_id(var/update_icons=1)

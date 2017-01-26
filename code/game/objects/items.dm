@@ -306,31 +306,31 @@ cases. Override_icon_state should be a list.*/
 			if(WEAR_FACE)
 				if(H.wear_mask)
 					return 0
-				if( !(flags_equip_slot & SLOT_FACE) )
+				if(!(flags_equip_slot & SLOT_FACE))
 					return 0
 				return 1
 			if(WEAR_BACK)
 				if(H.back)
 					return 0
-				if( !(flags_equip_slot & SLOT_BACK) )
+				if(!(flags_equip_slot & SLOT_BACK))
 					return 0
 				return 1
 			if(WEAR_JACKET)
 				if(H.wear_suit)
 					return 0
-				if( !(flags_equip_slot & SLOT_OCLOTHING) )
+				if(!(flags_equip_slot & SLOT_OCLOTHING))
 					return 0
 				return 1
 			if(WEAR_HANDS)
 				if(H.gloves)
 					return 0
-				if( !(flags_equip_slot & SLOT_HANDS) )
+				if(!(flags_equip_slot & SLOT_HANDS))
 					return 0
 				return 1
 			if(WEAR_FEET)
 				if(H.shoes)
 					return 0
-				if( !(flags_equip_slot & SLOT_FEET) )
+				if(!(flags_equip_slot & SLOT_FEET))
 					return 0
 				return 1
 			if(WEAR_WAIST)
@@ -338,53 +338,49 @@ cases. Override_icon_state should be a list.*/
 					return 0
 				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						H << "\red You need a jumpsuit before you can attach this [name]."
+						H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
 					return 0
-				if( !(flags_equip_slot & SLOT_WAIST) )
+				if(!(flags_equip_slot & SLOT_WAIST))
 					return
 				return 1
 			if(WEAR_EYES)
 				if(H.glasses)
 					return 0
-				if( !(flags_equip_slot & SLOT_EYES) )
+				if(!(flags_equip_slot & SLOT_EYES))
 					return 0
 				return 1
 			if(WEAR_HEAD)
 				if(H.head)
 					return 0
-				if( !(flags_equip_slot & SLOT_HEAD) )
+				if(!(flags_equip_slot & SLOT_HEAD))
 					return 0
 				return 1
 			if(WEAR_L_EAR)
 				if(H.l_ear)
 					return 0
-				if( !(flags_equip_slot & SLOT_EAR) )
+				if(!(flags_equip_slot & SLOT_EAR))
 					return 0
-				if( (flags_equip_slot & SLOT_EARS) && H.r_ear )
+				if((flags_equip_slot & SLOT_EARS) && H.r_ear)
 					return 0
 				return 1
 			if(WEAR_R_EAR)
 				if(H.r_ear)
 					return 0
-				if( !(flags_equip_slot & SLOT_EAR) )
+				if(!(flags_equip_slot & SLOT_EAR))
 					return 0
-				if( (flags_equip_slot & SLOT_EARS) && H.l_ear )
+				if((flags_equip_slot & SLOT_EARS) && H.l_ear)
 					return 0
 				return 1
 			if(WEAR_BODY)
 				if(H.w_uniform)
 					return 0
-				if( !(flags_equip_slot & SLOT_ICLOTHING) )
+				if(!(flags_equip_slot & SLOT_ICLOTHING))
 					return 0
 				return 1
 			if(WEAR_ID)
 				if(H.wear_id)
 					return 0
-				if(!H.w_uniform && (WEAR_BODY in mob_equip))
-					if(!disable_warning)
-						H << "\red You need a jumpsuit before you can attach this [name]."
-					return 0
-				if( !(flags_equip_slot & SLOT_ID) )
+				if(!(flags_equip_slot & SLOT_ID))
 					return 0
 				return 1
 			if(WEAR_L_STORE)
@@ -392,22 +388,22 @@ cases. Override_icon_state should be a list.*/
 					return 0
 				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						H << "\red You need a jumpsuit before you can attach this [name]."
+						H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
 					return 0
 				if(flags_equip_slot & SLOT_NO_STORE)
 					return 0
-				if( w_class <= 2 || (flags_equip_slot & SLOT_STORE) )
+				if(w_class <= 2 || (flags_equip_slot & SLOT_STORE))
 					return 1
 			if(WEAR_R_STORE)
 				if(H.r_store)
 					return 0
 				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
-						H << "\red You need a jumpsuit before you can attach this [name]."
+						H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
 					return 0
 				if(flags_equip_slot & SLOT_NO_STORE)
 					return 0
-				if( w_class <= 2 || (flags_equip_slot & SLOT_STORE) )
+				if(w_class <= 2 || (flags_equip_slot & SLOT_STORE))
 					return 1
 				return 0
 			if(WEAR_J_STORE)
@@ -415,7 +411,7 @@ cases. Override_icon_state should be a list.*/
 					return 0
 				if(!H.wear_suit && (WEAR_JACKET in mob_equip))
 					if(!disable_warning)
-						H << "\red You need a suit before you can attach this [name]."
+						H << "<span class='warning'>You need a suit before you can attach this [name].</span>"
 					return 0
 				if(!H.wear_suit.allowed)
 					if(!disable_warning)

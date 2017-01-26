@@ -25,13 +25,14 @@
 
 	if(stat == DEAD) return
 
+	//I don't know why, but firing this twice makes the status HUD actually update asap. So here's that
 	hud_updateflag |= 1 << HEALTH_HUD
+	handle_hud_list()
 	hud_updateflag |= 1 << STATUS_HUD
 	handle_hud_list()
 
 	//Handle species-specific deaths.
 	if(species) species.handle_death(src)
-
 
 	//callHook("death", list(src, gibbed))
 
