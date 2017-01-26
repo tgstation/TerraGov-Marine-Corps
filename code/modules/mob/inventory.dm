@@ -277,7 +277,7 @@
 				src.belt = W
 				equipped = 1
 		if(WEAR_ID)
-			if(!src.wear_id && src.w_uniform)
+			if(!src.wear_id /* && src.w_uniform */)
 				src.wear_id = W
 				equipped = 1
 		if(WEAR_L_EAR)

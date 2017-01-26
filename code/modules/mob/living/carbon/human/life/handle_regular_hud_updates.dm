@@ -2,7 +2,7 @@
 
 /mob/living/carbon/human/proc/handle_regular_hud_updates()
 
-	if(hud_updateflag) //Update our mob's hud overlays, AKA what others see flaoting above our head
+	if(hud_updateflag) //Update our mob's hud overlays, AKA what others see floating above our head
 		handle_hud_list()
 
 	//Now handle what we see on our screen

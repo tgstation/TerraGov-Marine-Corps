@@ -10,9 +10,9 @@
 	if(hud_updateflag & 1 << HEALTH_HUD)
 		var/image/holder = hud_list[HEALTH_HUD]
 		if(stat == DEAD)
-			holder.icon_state = "hudhealth-100" //X_X
+			holder.icon_state = "hudhealth-100"
 		else
-			var/percentage_health = RoundHealth(((0.0 + health)/species.total_health) * 100)
+			var/percentage_health = RoundHealth(((0 + health)/species.total_health) * 100)
 			holder.icon_state = "hud[percentage_health]"
 		hud_list[HEALTH_HUD] = holder
 
@@ -26,14 +26,26 @@
 				foundVirus = 1
 				break
 
+		var/datum/organ/external/head = get_organ("head")
+		var/datum/organ/internal/heart/heart = internal_organs_by_name["heart"]
+		var/revive_enabled = 1
+		if(world.time - timeofdeath > revive_grace_period)
+			revive_enabled = 0
+		else
+			if(suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
+				revive_enabled = 0
+
 		var/image/holder = hud_list[STATUS_HUD]
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
 		if(stat == DEAD)
-			holder.icon_state = "huddead"
-			holder2.icon_state = "huddead"
+			if(revive_enabled)
+				holder.icon_state = "huddeaddefib"
+				holder2.icon_state = "huddeaddefib"
+			else
+				holder.icon_state = "huddead"
+				holder2.icon_state = "huddead"
 		else if(status_flags & XENO_HOST)
-			holder.icon_state = "hudxeno"
-			holder2.icon_state = "hudxeno"
+			holder2.icon_state = "hudxeno" //Observer and admin HUD only
 		else if(foundVirus)
 			holder.icon_state = "hudill"
 		else
@@ -140,3 +152,17 @@
 
 			hud_list[SPECIALROLE_HUD] = holder
 	hud_updateflag = 0
+
+//Handle flicking the defib icon on dead mobs
+//This needs to account for revive time. If we're past that, stop updating FOREVER
+/mob/living/carbon/human/proc/handle_defib_flick()
+
+	//One last update, this one is straightforward
+	var/image/holder = hud_list[STATUS_HUD]
+	var/image/holder2 = hud_list[STATUS_HUD_OOC]
+	holder.icon_state = "huddead"
+	holder2.icon_state = "huddead"
+	hud_list[STATUS_HUD] = holder
+	hud_list[STATUS_HUD_OOC] = holder2
+
+	defib_icon_flick = 0 //No more from there on

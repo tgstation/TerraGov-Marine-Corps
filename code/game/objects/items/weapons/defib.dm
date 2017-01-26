@@ -11,7 +11,6 @@
 
 	var/busy
 	var/ready = 0
-	var/grace_period = 3000 //In deciseconds. Set to 5 minutes
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 	var/charge_cost = 100 //How much energy is used.
@@ -25,7 +24,7 @@
 		return (FIRELOSS)
 
 /obj/item/weapon/melee/defibrillator/proc/check_tod(mob/living/carbon/human/M as mob)
-	if(world.time <= M.timeofdeath + grace_period)
+	if(world.time <= M.timeofdeath + M.revive_grace_period)
 		return 1
 	else
 		return 0
@@ -64,32 +63,30 @@
 	update_icon()
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/weapon/melee/defibrillator/attack(mob/living/carbon/human/H as mob, mob/user as mob)
 
 	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)
 		return
 	defib_cooldown = world.time + 20 //2 second cooldown before you can try shocking again
+
 	if(busy) //Currently deffibing
 		return
-	if(!ishuman(M))
-		user << "<span class='warning'>You can't defibrilate [M]. You don't even know where to put the paddles!</span>"
+	if(!ishuman(H))
+		user << "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>"
 		return
 	if(!ready)
-		user << "<span class='warning'>Take the paddles out first.</span>"
+		user << "<span class='warning'>Take [src]'s paddles out first.</span>"
 		return
 	if(dcell.charge <= charge_cost)
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock.</span>")
 		return
-
-	var/mob/living/carbon/human/H = M
-
 	if(H.stat != DEAD)
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
 	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
 	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
-	playsound(get_turf(src),'sound/items/defib_charge.ogg', 50, 0) //Do NOT vary the tune, this needs to be precisely 7 seconds
+	playsound(get_turf(src),'sound/items/defib_charge.ogg', 50, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 	busy = 1
 
 	if(do_after(user, 70))
