@@ -839,10 +839,14 @@ var/global/floorIsLava = 0
 		return //alert("Round end delayed", null, null, null, null, null)
 	going = !( going )
 	if (!( going ))
-		world << "<b>The game start has been delayed.</b>"
+		world << "<hr>"
+		world << "<span class='centerbold'>The game start has been delayed.</span>"
+		world << "<hr>"
 		log_admin("[key_name(usr)] delayed the game.")
 	else
-		world << "<b>The game will start soon.</b>"
+		world << "<hr>"
+		world << "<span class='centerbold'>The game will start soon!</span>"
+		world << "<hr>"
 		log_admin("[key_name(usr)] removed the delay.")
 	feedback_add_details("admin_verb","DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
