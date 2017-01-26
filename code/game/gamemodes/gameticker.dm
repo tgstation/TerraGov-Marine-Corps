@@ -378,9 +378,13 @@ var/global/datum/controller/gameticker/ticker
 					if(!delay_end)
 						world.Reboot()
 					else
-						world << "\blue <B>An admin has delayed the round end</B>"
+						world << "<hr>"
+						world << "<span class='centerbold'><b>An admin has delayed the round end.</b></span>"
+						world << "<hr>"
 				else
-					world << "\blue <B>An admin has delayed the round end</B>"
+					world << "<hr>"
+					world << "<span class='centerbold'><b>An admin has delayed the round end.</b></span>"
+					world << "<hr>"
 
 		else if (mode_finished)
 			post_game = 1
