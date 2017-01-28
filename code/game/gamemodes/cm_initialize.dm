@@ -361,10 +361,14 @@ datum/game_mode/proc/initialize_special_clamps()
 	return new_xeno
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/new_xeno)
+	if(ticker && ticker.mode && (new_xeno.mind in ticker.mode.xenomorphs))
+		ticker.mode.xenomorphs -= new_xeno.mind
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
 	message_admins("[new_xeno.key] has joined as [new_xeno].")
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
+	if(ticker && ticker.mode && !(xeno_candidate.mind in ticker.mode.xenomorphs))
+		ticker.mode.xenomorphs += xeno_candidate.mind
 	if(xeno_candidate) xeno_candidate.loc = null
 
 /datum/game_mode/proc/transform_xeno(datum/mind/ghost_mind)
@@ -379,6 +383,9 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_xeno << "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')"
 
 	new_xeno.update_icons()
+
+	if(ticker && ticker.mode && !(new_xeno.mind in ticker.mode.xenomorphs))
+		ticker.mode.xenomorphs += new_xeno.mind
 
 	if(original) del(original) //Just to be sure.
 
