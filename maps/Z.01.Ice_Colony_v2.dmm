@@ -4413,7 +4413,7 @@
 "bGS" = (/turf/simulated/floor{tag = "icon-darkpurple2 (EAST)"; icon_state = "darkpurple2"; dir = 4},/area/ice_colony/underground/research/work)
 "bGT" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/turf/simulated/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/underground/research)
 "bGU" = (/obj/machinery/door/airlock/multi_tile/research{dir = 2; name = "Theta-V Research Laboratory"},/turf/simulated/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/underground/research)
-"bGV" = (/obj/item/weapon/melee/stunprod,/turf/simulated/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/underground/research)
+"bGV" = (/obj/item/weapon/melee/baton,/turf/simulated/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/underground/research)
 "bGW" = (/obj/structure/table,/obj/item/weapon/cell/high/empty,/obj/machinery/cell_charger,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/machinery/firealarm{dir = 8; pixel_x = -24; pixel_y = 0},/turf/simulated/floor{tag = "icon-darkyellow2 (SOUTHWEST)"; icon_state = "darkyellow2"; dir = 10},/area/ice_colony/underground/storage)
 "bGX" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"; layer = 2.44},/turf/simulated/floor{tag = "icon-darkyellow2"; icon_state = "darkyellow2"},/area/ice_colony/underground/storage)
 "bGY" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"; layer = 2.44},/turf/simulated/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/underground/storage)
