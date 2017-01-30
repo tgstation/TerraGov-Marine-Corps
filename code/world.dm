@@ -44,7 +44,6 @@ var/global/datum/global_init/init = new ()
 
 	callHook("startup")
 	//Emergency Fix
-	load_mods()
 	//end-emergency fix
 
 	src.update_status()
@@ -247,14 +246,12 @@ var/world_topic_spam_protect_time = world.timeofday
 	fdel(F)
 	F << the_mode
 
-
 /hook/startup/proc/loadMOTD()
 	world.load_motd()
 	return 1
 
 /world/proc/load_motd()
 	join_motd = file2text("config/motd.txt")
-
 
 /proc/load_configuration()
 	config = new /datum/configuration()
@@ -266,32 +263,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	// apply some settings from config..
 	abandon_allowed = config.respawn
 
-
-/hook/startup/proc/loadMods()
-	world.load_mods()
-	return 1
-
-/world/proc/load_mods()
-	if(config.admin_legacy_system)
-		var/text = file2text("config/moderators.txt")
-		if (!text)
-			error("Failed to load config/mods.txt")
-		else
-			var/list/lines = text2list(text, "\n")
-			for(var/line in lines)
-				if (!line)
-					continue
-
-				if (copytext(line, 1, 2) == ";")
-					continue
-
-				var/title = "Moderator"
-				if(config.mods_are_mentors) title = "Mentor"
-				var/rights = admin_ranks[title]
-
-				var/ckey = copytext(line, 1, length(line)+1)
-				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
 
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.

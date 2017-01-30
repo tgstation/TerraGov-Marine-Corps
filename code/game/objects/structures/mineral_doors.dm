@@ -258,6 +258,10 @@
 	var/health = 80
 	var/close_delay = 100
 
+	New()
+		..(loc, src)
+		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
+
 	attack_paw(mob/user as mob)
 		if(user.a_intent == "hurt")
 			user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \

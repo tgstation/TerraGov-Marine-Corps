@@ -123,7 +123,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/phoron/New()
 	..()
-	recipes = phoron_recipes
+	// recipes = phoron_recipes // Disabled phoron doors
 
 /obj/item/stack/sheet/mineral/plastic
 	name = "Plastic"
