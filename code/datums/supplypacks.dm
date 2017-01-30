@@ -164,7 +164,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/flamer_tank,
 					/obj/item/ammo_magazine/flamer_tank
 				)
-	cost = 30
+	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "\improper M240 Incinerator crate"
 	group = "Weapons"
@@ -273,6 +273,7 @@ var/list/all_supply_groups = list("Operations","Supplies","Engineering","Weapons
 					/obj/item/ammo_magazine/rifle/extended,
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/m41aMK1,
 					/obj/item/ammo_magazine/rifle/marksman,
 					/obj/item/ammo_magazine/rifle/lmg,
 					/obj/item/ammo_magazine/pistol,

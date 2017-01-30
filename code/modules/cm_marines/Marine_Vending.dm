@@ -50,7 +50,10 @@
 						/obj/item/ammo_magazine/smg/m39/ap = 1
 						)
 
-	premium = list(/obj/item/weapon/gun/rifle/m41aMK1 = 1,)
+	premium = list(
+					/obj/item/weapon/gun/rifle/m41aMK1 = 1,
+					/obj/item/ammo_magazine/rifle/m41aMK1 = 6
+					)
 
 	prices = list()
 
@@ -73,7 +76,7 @@
 
 		marine_vendors.Add(src)
 
-/obj/machinery/vending/marine/cargo_ammo
+/obj/machinery/vending/marine/cargo_guns
 	name = "\improper ColMarTech automated armaments vendor"
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	hacking_safety = 1
@@ -104,10 +107,6 @@
 					/obj/item/weapon/grenade/incendiary = 0,
 					/obj/item/weapon/grenade/smokebomb = 0,
 					/obj/item/weapon/grenade/phosphorus = 0,
-					/obj/item/ammo_magazine/rocket = 0,
-					/obj/item/ammo_magazine/rocket/ap = 0,
-					/obj/item/ammo_magazine/rocket/wp = 0,
-					/obj/item/weapon/storage/box/m94 = 5,
 					/obj/item/device/flashlight/ = 5
 					)
 
@@ -135,7 +134,7 @@
 
 		marine_vendors.Remove(src)
 
-/obj/machinery/vending/marine/cargo_guns
+/obj/machinery/vending/marine/cargo_ammo
 	name = "\improper ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
 	hacking_safety = 1
@@ -162,7 +161,6 @@
 					/obj/item/ammo_magazine/rifle/lmg = 0,
 					/obj/item/ammo_magazine/shotgun = 5,
 					/obj/item/ammo_magazine/shotgun/buckshot = 5,
-					/obj/item/ammo_magazine/shotgun/incendiary = 0,
 					/obj/item/ammo_magazine/sniper = 0,
 					/obj/item/ammo_magazine/sniper/incendiary = 0,
 					/obj/item/ammo_magazine/sniper/flak = 0,
@@ -180,8 +178,7 @@
 					/obj/item/ammo_magazine/smg/mp7 = 0,
 					/obj/item/ammo_magazine/smg/skorpion = 0,
 					/obj/item/ammo_magazine/smg/uzi = 0,
-					/obj/item/ammo_magazine/smg/p90 = 0,
-					/obj/item/ammo_magazine/shotgun/incendiary = 0
+					/obj/item/ammo_magazine/smg/p90 = 0
 					)
 	premium = list()
 	select_gamemode_equipment()

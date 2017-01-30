@@ -69,16 +69,15 @@ datum/mind
 	proc/transfer_to(mob/living/new_character)
 		if(!istype(new_character))
 			world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
-		if(new_character.mind)		//remove any mind currently in our new body's mind variable
-			new_character.mind.current = null
+		if(current)	current.mind = null	//remove ourself from our old body's mind variable
 
+		if(new_character.mind) new_character.mind.current = null //remove any mind currently in our new body's mind variable
 		nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
 		current = new_character		//link ourself to our new body
 		new_character.mind = src	//and link our new body to ourself
 
-		if(active)
-			new_character.key = key		//now transfer the key to link the client to our new body
+		if(active) new_character.key = key		//now transfer the key to link the client to our new body
 
 	proc/store_memory(new_text)
 		memory += "[new_text]<BR>"

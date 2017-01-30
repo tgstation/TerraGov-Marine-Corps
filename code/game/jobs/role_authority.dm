@@ -312,6 +312,7 @@ roles willy nilly.
 
 			if(assign_role(M, J)) //Check to see if they can actually get it.
 				if(J.current_positions >= J.spawn_positions) roles_to_iterate -= j
+				return roles_to_iterate
 
 	//If they fail the two passes, or no regular roles are available, they become a marine regardless.
 	assign_role(M,roles_for_mode["Squad Marine"])
@@ -334,8 +335,8 @@ roles willy nilly.
 	if(J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions) return
 	return 1
 
-/datum/authority/branch/role/proc/free_role(datum/job/J, latejoin = 1)	//making additional slot on the fly
-	if(J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions)
+/datum/authority/branch/role/proc/free_role(datum/job/J, latejoin = 1) //Want to make sure it's a job, and nothing like a MODE or special role.
+	if(istype(J) && J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions)
 		J.current_positions--
 		return 1
 

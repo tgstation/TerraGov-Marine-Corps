@@ -412,6 +412,27 @@
 				counter = 0
 		jobs += "</tr></table>"
 
+	//Cargo (Yellow) //Copy paste, yada, yada. Hopefully Snail can rework this in the future.
+		counter = 0
+		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_REQUISITION)]'><a href='?src=\ref[src];jobban3=cargodept;jobban4=\ref[M]'>Requisition Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in ROLES_REQUISITION)
+			if(!jobPos)	continue
+			var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+			if(!job) continue
+
+			if(jobban_isbanned(M, job.title))
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+				counter++
+			else
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+				counter++
+
+			if(counter >= 5) //So things dont get squiiiiished!
+				jobs += "</tr><tr align='center'>"
+				counter = 0
+		jobs += "</tr></table>"
+
 	//Medical (White)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
@@ -563,6 +584,12 @@
 					joblist += temp.title
 			if("engineeringdept")
 				for(var/jobPos in ROLES_ENGINEERING)
+					if(!jobPos)	continue
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					if(!temp) continue
+					joblist += temp.title
+			if("cargodept")
+				for(var/jobPos in ROLES_REQUISITION)
 					if(!jobPos)	continue
 					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
 					if(!temp) continue

@@ -780,14 +780,14 @@ var/list/admin_verbs_mentor = list(
 		var/roles[] = new
 		var/i
 		var/datum/job/J
-		for (i in RoleAuthority.roles_by_name) //All the roles in the game.
-			J = RoleAuthority.roles_by_name[i]
+		for (i in RoleAuthority.roles_for_mode) //All the roles in the game.
+			J = RoleAuthority.roles_for_mode[i]
 			if(J.total_positions != -1 && J.get_total_positions(1) <= J.current_positions) roles += i
 		if (!roles.len)
 			usr << "There are no fully staffed roles."
 			return
 		var/role = input("Please select role slot to free", "Free role slot")  as null|anything in roles
-		if (role) RoleAuthority.free_role(RoleAuthority.roles_by_name[role])
+		RoleAuthority.free_role(RoleAuthority.roles_for_mode[role])
 
 /client/proc/toggleattacklogs()
 	set name = "Toggle Attack Log Messages"

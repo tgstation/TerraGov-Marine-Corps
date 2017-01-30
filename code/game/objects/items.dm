@@ -658,44 +658,27 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 
-/obj/item/proc/zoom(var/mob/living/user, var/tileoffset = 11,var/viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-
-	if(!user)
-		return
-
-	var/devicename
-
-	if(zoomdevicename)
-		devicename = zoomdevicename
-	else
-		devicename = src.name
+/obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	if(!user) return
+	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
-			user << "<span class='warning'>You are already looking through \the [I].</span>"
+			user << "<span class='warning'>You are already looking through [zoom_device].</span>"
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
-	var/cannotzoom = 0
-
-	if(user.stat || !ishuman(user))
-		user << "<span class='warning'>You are unable to focus through \the [devicename].</span>"
-		cannotzoom = 1
-	else if(!zoom && global_hud.darkMask[1] in user.client.screen)
-		user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [devicename].</span>"
-		cannotzoom = 1
-	else if (user.eye_blind)
-		user << "<span class='warning'>You are a too blind to see anything.</span>"
-		cannotzoom = 1
-	else if(!zoom && user.get_active_hand() != src)
-		user << "<span class='warning'>You need to hold \the [devicename] to look through it.</span>"
-		cannotzoom = 1
-
-	if(!zoom && !cannotzoom)
-		if(!user.hud_used.hud_shown)
-			user.button_pressed_F12(1) //If the user has already limited their HUD this avoids them having a HUD when they zoom in
+	if(user.eye_blind) 												user << "<span class='warning'>You are a too blind to see anything.</span>"
+	else if(user.stat || !ishuman(user)) 							user << "<span class='warning'>You are unable to focus through [zoom_device].</span>"
+	else if(!zoom && global_hud.darkMask[1] in user.client.screen) 	user << "<span class='warning'>Your welding equipment gets in the way of you looking through [zoom_device].</span>"
+	else if(!zoom && user.get_active_hand() != src)					user << "<span class='warning'>You need to hold [zoom_device] to look through it.</span>"
+	else if(zoom) //If we are zoomed out, reset that parameter.
+		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
+		"<span class='notice'>You look up from [zoom_device].</span>")
+		zoom = !zoom
+	else //Otherwise we want to zoom in.
+		if(!user.hud_used.hud_shown) user.button_pressed_F12(1) //If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		user.button_pressed_F12(1)
 		user.client.view = viewsize
-		zoom = 1
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
@@ -711,22 +694,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				user.client.pixel_x = viewoffset
 				user.client.pixel_y = 0
 			if(WEST)
-				usr.client.pixel_x = -viewoffset
-				usr.client.pixel_y = 0
+				user.client.pixel_x = -viewoffset
+				user.client.pixel_y = 0
 
-		user.visible_message("<span class='notice'>\The [user] peers through \the [zoomdevicename ? "[zoomdevicename] of \the [src]" : "[src]"].</span>", \
-		"<span class='notice'>You peer through \the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].</span>")
-	else
-		user.client.view = world.view
-		if(!user.hud_used.hud_shown)
-			user.button_pressed_F12(1)
-		zoom = 0
+		user.visible_message("<span class='notice'>[user] peers through [zoom_device].</span>",
+		"<span class='notice'>You peer through [zoom_device].</span>")
+		zoom = !zoom
+		return
 
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
+	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
+	user.client.view = world.view
+	if(!user.hud_used.hud_shown) user.button_pressed_F12(1)
 
-		if(!cannotzoom)
-			user.visible_message("[zoomdevicename ? "<span class='notice'>[user] looks up from \the [src].</span>" : "<span class='notice'>[user] lowers \the [src]"].</span>", \
-			"[zoomdevicename ? "<span class='notice'>You look up from \the [src].</span>" : "<span class='notice'>You lower \the [src]"].</span>")
-
-	return
+	user.client.pixel_x = 0
+	user.client.pixel_y = 0
