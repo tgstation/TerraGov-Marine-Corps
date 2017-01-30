@@ -285,20 +285,16 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(cock_cooldown > world.time) return
 
 	cock_cooldown = world.time + cock_delay
-	playsound(user, cocked_sound, 100, 1) //Note : Needs to happen before the casing falls out, both cases do cause gun to be cocked
-
-	if(in_chamber) //There is a bullet in the chamber
+	cock_gun(user)
+	if(in_chamber)
 		user.visible_message("<span class='notice'>[user] cocks [src], clearing a [in_chamber.name] from its chamber.</span>",
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>")
 		make_casing(type_of_casings)
-		if(current_mag) //There is a magazine in, so cycle the new round in, I guess ?
-			ready_in_chamber()
-		else
-			in_chamber = null
-
-	else //No bullet in the chamber, completely safe, just cock the gun
+		in_chamber = null
+	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
 		"<span class='notice'>You cock [src].</span>")
+	ready_in_chamber() //This will already check for everything else, loading the next bullet.
 
 //Since reloading and casings are closely related, placing this here ~N
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.

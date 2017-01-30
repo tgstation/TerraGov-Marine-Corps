@@ -185,10 +185,6 @@ var/global/hive_orders = "" //What orders should the hive have
 	real_name = name
 	if(mind) mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
 
-	//We might as well put it here...
-	if(mind && ticker && ticker.mode.xenomorphs.len && !(mind in ticker.mode.xenomorphs))
-		ticker.mode.xenomorphs += mind
-
 /mob/living/carbon/Xenomorph/examine()
 	if(!usr) return //Somehow?
 	..()
@@ -214,8 +210,6 @@ var/global/hive_orders = "" //What orders should the hive have
 				usr << "It is heavily injured and limping badly."
 	return
 
-//If mob is deleted, remove it off the xeno list completely.
 /mob/living/carbon/Xenomorph/Del()
-	if(ticker && ticker.mode.xenomorphs.len && (mind in ticker.mode.xenomorphs))
-		ticker.mode.xenomorphs -= mind
+	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	..()

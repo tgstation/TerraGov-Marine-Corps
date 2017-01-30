@@ -327,8 +327,7 @@
 			if(authenticated)
 				var/t2 = modify
 				if ((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
-					var/pg = text2num(href_list["paygrade"])
-					modify.paygrade = pg
+					modify.paygrade = href_list["paygrade"]
 		if ("mode")
 			mode = text2num(href_list["mode_target"])
 		if ("print")

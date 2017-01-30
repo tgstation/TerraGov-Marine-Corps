@@ -1,5 +1,3 @@
 /mob/living/carbon/Xenomorph/Login()
 	..()
-	if(ticker && ticker.mode && !(mind in ticker.mode.xenomorphs))
-		ticker.mode.xenomorphs += mind
-
+	if(ticker && ticker.mode) ticker.mode.xenomorphs |= mind

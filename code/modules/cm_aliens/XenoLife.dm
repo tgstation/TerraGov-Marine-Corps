@@ -390,9 +390,6 @@
 		stomach_contents -= A
 		A.loc = loc
 
-	if(ticker && ticker.mode && (mind in ticker.mode.xenomorphs))
-		ticker.mode.xenomorphs -= mind
-
 /mob/living/carbon/Xenomorph/proc/queen_locator()
 	var/mob/living/carbon/Xenomorph/Queen/target = null
 

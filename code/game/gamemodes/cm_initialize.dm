@@ -108,7 +108,9 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
 	predators += new_predator.mind //Add them to the proper list.
 	pred_keys += new_predator.ckey //Add their key.
-	if(!(RoleAuthority.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER)) pred_current_num++ //If they are not an elder, tick up the max.
+	if(!(RoleAuthority.roles_whitelist[new_predator.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) pred_current_num++ //If they are not an elder, tick up the max.
+
+	world << "current pred number is : [pred_current_num]"
 
 /datum/game_mode/proc/initialize_starting_predator_list()
 	if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
@@ -122,7 +124,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			L -= M
 			M.assigned_role = "MODE" //So they are not chosen later for another role.
 			predators += M
-			i++
+			if(!(RoleAuthority.roles_whitelist[M.current.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) i++
 
 /datum/game_mode/proc/initialize_post_predator_list() //TO DO: Possibly clean this using tranfer_to.
 	var/temp_pred_list[] = predators //We don't want to use the actual predator list as it will be overriden.
@@ -193,7 +195,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
 		if(pred_current_num >= pred_maximum_num)
-			if(show_warning) pred_candidate << "<span class='warning'>Only three predators may spawn per round, but Elders are excluded.</span>"
+			if(show_warning) pred_candidate << "<span class='warning'>Only [pred_maximum_num] predators may spawn per round, but Elders are excluded.</span>"
 			return
 
 	return 1
@@ -361,14 +363,10 @@ datum/game_mode/proc/initialize_special_clamps()
 	return new_xeno
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/new_xeno)
-	if(ticker && ticker.mode && (new_xeno.mind in ticker.mode.xenomorphs))
-		ticker.mode.xenomorphs -= new_xeno.mind
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
 	message_admins("[new_xeno.key] has joined as [new_xeno].")
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
-	if(ticker && ticker.mode && !(xeno_candidate.mind in ticker.mode.xenomorphs))
-		ticker.mode.xenomorphs += xeno_candidate.mind
 	if(xeno_candidate) xeno_candidate.loc = null
 
 /datum/game_mode/proc/transform_xeno(datum/mind/ghost_mind)
@@ -383,9 +381,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_xeno << "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')"
 
 	new_xeno.update_icons()
-
-	if(ticker && ticker.mode && !(new_xeno.mind in ticker.mode.xenomorphs))
-		ticker.mode.xenomorphs += new_xeno.mind
 
 	if(original) del(original) //Just to be sure.
 

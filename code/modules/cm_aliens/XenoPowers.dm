@@ -412,9 +412,9 @@
 			X = L.current
 			if(istype(X))
 				list += "<tr><td>[X.name] [X.client ? "" : " <i>(logged out)</i>"][X.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td></tr>"
-				if(!(X.stat & DEAD))
-					count++
-
+				if(!(X.stat & DEAD)) count++
+			else
+				list += "<tr><td>[L.name] <b><font color=red>(DESTROYED)</font></b></td></tr>"
 
 		dat += "Total Alive Sisters: [count]"
 		dat += "<table cellspacing=4>"

@@ -205,20 +205,3 @@ should all be unique more or less. flags_inventory can double up.
 
 #define ICE_PLANET_min_cold_protection_temperature 		220 //For the ice planet map protection from the elements.
 //=================================================
-
-//Slowdown from various armors.
-#define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
-#define SLOWDOWN_UNDER_UNFITTING	0.5
-
-#define SLOWDOWN_ARMOR_VERY_LIGHT	0.20
-#define SLOWDOWN_ARMOR_LIGHT		0.35
-#define SLOWDOWN_ARMOR_MEDIUM		0.55
-#define SLOWDOWN_ARMOR_HEAVY		1
-#define SLOWDOWN_ARMOR_VERY_HEAVY	1.15
-
-#define SLOWDOWN_ADS_SHOTGUN		0.75
-#define SLOWDOWN_ADS_RIFLE			0.75
-#define SLOWDOWN_ADS_SCOPE			0.5
-#define SLOWDOWN_ADS_SPECIALIST		1.5
-#define SLOWDOWN_ADS_SUPERWEAPON	2
-//=================================================
