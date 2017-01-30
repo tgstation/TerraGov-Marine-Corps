@@ -34,7 +34,7 @@
 	layer = 3.1
 
 	New()
-		..(loc, src)
+		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/resin/membrane
@@ -46,7 +46,7 @@
 	layer = 3
 
 	New()
-		..(loc, src)
+		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/resin/sticky
@@ -158,7 +158,7 @@
 
 
 	New()
-		..(loc, src)
+		..()
 		new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/weeds/New(pos, node)
@@ -560,7 +560,7 @@
 	layer = 2.9 //Just above weeds.
 
 	New()
-		..(loc, src)
+		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)

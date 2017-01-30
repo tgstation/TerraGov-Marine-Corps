@@ -259,7 +259,7 @@
 	var/close_delay = 100
 
 	New()
-		..(loc, src)
+		..()
 		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
 	attack_paw(mob/user as mob)
