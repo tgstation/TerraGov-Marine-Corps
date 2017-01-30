@@ -158,7 +158,7 @@
 
 
 	New()
-		..()
+		..(loc, src)
 		new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/weeds/New(pos, node)
