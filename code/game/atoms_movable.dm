@@ -84,7 +84,7 @@
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
-		if(!O.anchored && !istype(src,/mob/living/carbon/Xenomorph))
+		if(!O.anchored && !isXeno(src))
 			step(O, src.dir)
 		O.hitby(src,speed)
 
