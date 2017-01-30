@@ -110,8 +110,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	pred_keys += new_predator.ckey //Add their key.
 	if(!(RoleAuthority.roles_whitelist[new_predator.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) pred_current_num++ //If they are not an elder, tick up the max.
 
-	world << "current pred number is : [pred_current_num]"
-
 /datum/game_mode/proc/initialize_starting_predator_list()
 	if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
 		flags_round_type |= MODE_PREDATOR //It is now a predator round.
