@@ -76,7 +76,6 @@
 		visible_message("<span class='xenonotice'>\The [src] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>")
 		new /obj/effect/alien/weeds/node(loc)
-		new /obj/effect/alien/weeds(loc)
 		playsound(loc, 'sound/effects/splat.ogg', 30, 1) //Splat!
 
 /mob/living/carbon/Xenomorph/proc/Pounce(var/atom/T)
