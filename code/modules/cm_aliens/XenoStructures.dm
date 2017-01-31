@@ -33,6 +33,10 @@
 	icon_state = "ResinWall1" //same as resin, but consistency ho!
 	layer = 3.1
 
+	New()
+		..()
+		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
+
 /obj/effect/alien/resin/membrane
 	name = "resin membrane"
 	desc = "Weird slime just translucent enough to let light pass through."
@@ -40,6 +44,10 @@
 	opacity = 0
 	health = 120
 	layer = 3
+
+	New()
+		..()
+		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/resin/sticky
 	name = "sticky resin"
@@ -143,15 +151,15 @@
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
 	name = "purple sac"
-	desc = "Weird black octopus-like thing."
+	desc = "A weird, pulsating node."
 	layer = 2.7
 	var/node_range = NODERANGE
 	health = 15
 
 
-/obj/effect/alien/weeds/node/New()
-	..(loc, src)
-	new /obj/effect/alien/weeds(loc)
+	New()
+		..(loc, src)
+		new /obj/effect/alien/weeds(loc)
 
 /obj/effect/alien/weeds/New(pos, node)
 	..()
@@ -550,6 +558,10 @@
 	var/resisting_ready = 0
 	var/nest_resist_time = 1200
 	layer = 2.9 //Just above weeds.
+
+	New()
+		..()
+		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
 /obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
 	if(buckled_mob)
