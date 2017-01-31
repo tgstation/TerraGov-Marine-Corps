@@ -3954,7 +3954,7 @@
 "byb" = (/obj/structure/table/woodentable,/obj/machinery/computer/security/wooden_tv,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"; layer = 2.44},/turf/simulated/floor/wood,/area/ice_colony/underground/security/detective)
 "byc" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/wood,/area/ice_colony/underground/security/marshal)
 "byd" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/blue,/turf/simulated/floor/wood,/area/ice_colony/underground/security/marshal)
-"bye" = (/obj/structure/table/woodentable,/obj/item/weapon/melee/stunprod,/obj/item/weapon/handcuffs,/turf/simulated/floor/wood,/area/ice_colony/underground/security/marshal)
+"bye" = (/obj/structure/table/woodentable,/obj/item/weapon/handcuffs,/obj/item/weapon/melee/baton,/turf/simulated/floor/wood,/area/ice_colony/underground/security/marshal)
 "byf" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"; layer = 2.44},/turf/simulated/floor/wood,/area/ice_colony/underground/security/marshal)
 "byg" = (/obj/structure/closet/secure_closet/personal,/turf/simulated/floor/wood,/area/ice_colony/underground/security/marshal)
 "byh" = (/turf/simulated/wall/r_wall/research,/area/ice_colony/underground/research)
