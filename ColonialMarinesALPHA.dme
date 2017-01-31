@@ -291,6 +291,7 @@
 #include "code\game\machinery\spaceheater.dm"
 #include "code\game\machinery\status_display.dm"
 #include "code\game\machinery\suit_storage_unit.dm"
+#include "code\game\machinery\Sulaco_Engine.dm"
 #include "code\game\machinery\supply_display.dm"
 #include "code\game\machinery\syndicatebeacon.dm"
 #include "code\game\machinery\teleporter.dm"
@@ -817,6 +818,7 @@
 #include "code\modules\cm_marines\shuttles.dm"
 #include "code\modules\cm_marines\structures.dm"
 #include "code\modules\cm_marines\super_secret.dm"
+#include "code\modules\cm_marines\equipment\flamer.dm"
 #include "code\modules\cm_marines\equipment\gear.dm"
 #include "code\modules\cm_marines\equipment\sentries.dm"
 #include "code\modules\cm_marines\equipment\weapons.dm"
@@ -1484,4 +1486,5 @@
 #include "maps\Z.03.Sulaco_Top_Deck.dmm"
 #include "maps\Z.04.Sulaco_Bottom_Deck.dmm"
 #include "maps\Z.05.Space.dmm"
+#include "maps\Z.99.ENGINETEST.dmm"
 // END_INCLUDE
