@@ -56,6 +56,11 @@
 	return parent.return_network(reference)
 
 /obj/machinery/atmospherics/pipe/Del()
+
+	if(contents.len)
+		for(var/atom/movable/A in contents)
+			A.forceMove(loc)
+
 	del(parent)
 	if(air_temporary)
 		loc.assume_air(air_temporary)
