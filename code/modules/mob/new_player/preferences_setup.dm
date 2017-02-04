@@ -179,6 +179,9 @@ datum/preferences
 
 
 	proc/update_preview_icon()		//seriously. This is horrendous.
+		if(updating_icon)
+			return
+		updating_icon = 1
 		del(preview_icon_front)
 		del(preview_icon_side)
 		del(preview_icon)
@@ -591,3 +594,4 @@ datum/preferences
 		del(underwear_s)
 		del(undershirt_s)
 		del(clothes_s)
+		updating_icon = 0
