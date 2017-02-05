@@ -263,7 +263,7 @@ OBSOLETE BITCH
 					bloody_body(src)
 
 	if(Iforce > 10 || Iforce >= 5 && prob(33))
-		forcesay(hit_appends)	//forcesay checks stat already
+		forcesay()	//forcesay checks stat already
 
 	//Melee weapon embedded object code.
 	if (I.damtype == BRUTE && !I.is_robot_module() && I.canremove)

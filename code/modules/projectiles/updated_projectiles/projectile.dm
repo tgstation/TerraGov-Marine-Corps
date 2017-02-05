@@ -320,6 +320,9 @@
 		bullet_message(P)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
 		P.play_damage_effect(src)
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			H.forcesay()
 
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,10))

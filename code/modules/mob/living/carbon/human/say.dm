@@ -143,8 +143,9 @@
 
 	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
 
-/mob/living/carbon/human/proc/forcesay(list/append)
+/mob/living/carbon/human/proc/forcesay()
 	if(stat == CONSCIOUS)
+		world << "DEBUG : FORCESAY TRIGGERED"
 		if(client)
 			var/virgin = 1	//has the text been modified yet?
 			var/temp = winget(client, "input", "text")
@@ -169,8 +170,7 @@
 
 				var/trimmed = trim_left(temp)
 				if(length(trimmed))
-					if(append)
-						temp += pick(append)
+					temp += "-" //"Hey guys, I'm looking at the scene right n-"
 
 					say(temp)
 				winset(client, "input", "text=[null]")

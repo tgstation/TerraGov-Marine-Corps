@@ -146,8 +146,11 @@
 			playsound(loc, hitsound, 50, 1, -1)
 		return hit
 	else //Xenos taking damage from weapons goes here.
-		if (hitsound)
+		if(hitsound)
 			playsound(loc, hitsound, 50, 1, -1)
+		if(ishuman(M) && power > 5)
+			var/mob/living/carbon/human/H = M
+			H.forcesay()
 		switch(damtype)
 			if("brute")
 				if(istype(src, /mob/living/carbon/slime))

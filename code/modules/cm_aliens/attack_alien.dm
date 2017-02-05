@@ -126,6 +126,7 @@
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 			M.visible_message("<span class='danger'>\The [M] slashes \the [src]!</span>", \
 			"<span class='danger'>You slash \the [src]!</span>")
+			forcesay()
 
 			//Logging, including anti-rulebreak logging
 			if(src.status_flags & XENO_HOST && src.stat != DEAD)
