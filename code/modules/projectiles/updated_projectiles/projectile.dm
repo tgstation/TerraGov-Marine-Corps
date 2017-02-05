@@ -320,9 +320,6 @@
 		bullet_message(P)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
 		P.play_damage_effect(src)
-		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
-			H.forcesay()
 
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,10))
@@ -412,6 +409,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			if(damage <= 0)
 				damage = 0
 				if(P.ammo.sound_armor) playsound(src, pick(P.ammo.sound_armor), 120, 1)
+
+	if(damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST)) //Quick and dirty to isolate the two checks that matter to us
+		forcesay()
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.

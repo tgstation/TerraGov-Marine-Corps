@@ -169,7 +169,7 @@
 
 				var/trimmed = trim_left(temp)
 				if(length(trimmed))
-					temp += "-" //"Hey guys, I'm looking at the scene right n-"
+					temp += "-" //"Hey guys, I'm looking at the scene right n-". Abstraced as a em dash, which DM doesn't support...
 
 					say(temp)
 				winset(client, "input", "text=[null]")
