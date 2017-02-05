@@ -415,6 +415,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(!isYautja(src)) apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
+	forcesay()
 
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)

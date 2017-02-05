@@ -129,6 +129,10 @@
 			if(HULK in M.mutations) damage += 5
 			playsound(loc, attack.attack_sound, 25, 1, -1)
 
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.forcesay()
+
 			visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
 			if(damage >= 5 && prob(50))
 				visible_message("<span class='danger'>[M] has weakened [src]!</span>")

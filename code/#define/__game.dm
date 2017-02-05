@@ -166,5 +166,3 @@ var/static/list/scarySounds = list('sound/weapons/thudswoosh.ogg','sound/weapons
 //Flags for zone sleeping
 #define ZONE_ACTIVE 1
 #define ZONE_SLEEPING 0
-
-var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
