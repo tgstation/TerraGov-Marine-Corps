@@ -134,8 +134,8 @@
 	desc = "An auto-injector loaded with 5u of Bicaridine."
 	amount_per_transfer_from_this = 5
 	volume = 5
-	hType = "bicardine"
-	icon_state = "bicardine"
+	hType = "bicaridine"
+	icon_state = "bicaridine"
 
 	New()
 		..()
@@ -255,32 +255,32 @@
 		..()
 		reagents.add_reagent("alkysine", 10)
 
-//BICARDINE
-/obj/item/weapon/storage/pill_bottle/bicardine
-	name = "\improper Bicardine pill bottle"
+//bicaridine
+/obj/item/weapon/storage/pill_bottle/bicaridine
+	name = "\improper bicaridine pill bottle"
 	desc = "Pills that heal brute damage."
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
-		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicaridine( src )
 
 
-/obj/item/weapon/reagent_containers/pill/bicardine
-	name = "\improper Bicardine (5u) pill"
+/obj/item/weapon/reagent_containers/pill/bicaridine
+	name = "\improper Bicaridine (5u) pill"
 	desc = "Heals Brute damage.  Take Orally."
 	icon_state = "pill13"
 	New()
 		..()
-		reagents.add_reagent("bicardine", 5)
+		reagents.add_reagent("bicaridine", 5)
 
 //DEXALIN
 /obj/item/weapon/storage/pill_bottle/dexalin
@@ -300,13 +300,13 @@
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
 
-/*/obj/item/weapon/reagent_containers/pill/bicardine
-	name = "Bicardine (5u)"
+/*/obj/item/weapon/reagent_containers/pill/bicaridine
+	name = "bicaridine (5u)"
 	desc = "Heals Brute"
 	icon_state = "pill13"
 	New()
 		..()
-		reagents.add_reagent("bicardine", 5)*/
+		reagents.add_reagent("bicaridine", 5)*/
 
 
 
