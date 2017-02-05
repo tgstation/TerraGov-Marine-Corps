@@ -145,7 +145,6 @@
 
 /mob/living/carbon/human/proc/forcesay()
 	if(stat == CONSCIOUS)
-		world << "DEBUG : FORCESAY TRIGGERED"
 		if(client)
 			var/virgin = 1	//has the text been modified yet?
 			var/temp = winget(client, "input", "text")
