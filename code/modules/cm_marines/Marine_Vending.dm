@@ -191,7 +191,7 @@
 
 //MARINE FOOD VENDOR APOPHIS775 22DEC2015
 /obj/machinery/vending/marineFood
-	name = "Marine Food and Drinks Vendor"
+	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
@@ -216,8 +216,8 @@
 
 //MARINE MEDICAL VENDOR -APOPHIS775 31JAN2017
 /obj/machinery/vending/MarineMed
-	name = "MarineMed"
-	desc = "Marine Medic Drug Dispenser - Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
+	name = "\improper MarineMed"
+	desc = "Marine Medical Drug Dispenser - Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
@@ -252,7 +252,7 @@
 
 //NEW BLOOD VENDOR CODE - APOPHIS775 22JAN2015
 /obj/machinery/vending/MarineMed/Blood
-	name = "MM Blood Dispenser"
+	name = "\improper MM Blood Dispenser"
 	desc = "Marine Med brand Blood Pack Dispensery"
 	icon_state = "med"
 	icon_deny = "med-deny"
@@ -279,7 +279,7 @@
 				if(!temp_list.len) break
 
 /obj/machinery/vending/marine_engi
-	name = "ColMarTech Engineer Vendor"
+	name = "\improper ColMarTech Engineer Vendor"
 	desc = "A marine engineering equipment vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
@@ -308,7 +308,7 @@
 	contraband = list(/obj/item/weapon/cell/super = 1)
 
 /obj/machinery/vending/marine_medic
-	name = "ColMarTech Medic Vendor"
+	name = "\improper ColMarTech Medic Vendor"
 	desc = "A marine medic equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
@@ -335,7 +335,7 @@
 
 
 /obj/machinery/vending/marine_special
-	name = "ColMarTech Specialist Vendor"
+	name = "\improper ColMarTech Specialist Vendor"
 	desc = "A marine specialist equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
@@ -366,7 +366,7 @@
 	prices = list()
 
 /obj/machinery/vending/marine_leader
-	name = "ColMarTech Leader Vendor"
+	name = "\improper ColMarTech Leader Vendor"
 	desc = "A marine leader equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
@@ -389,7 +389,7 @@
 					)
 
 /obj/machinery/vending/attachments
-	name = "Armat Systems Attachments Vendor"
+	name = "\improper Armat Systems Attachments Vendor"
 	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"

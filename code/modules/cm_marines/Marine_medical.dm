@@ -4,7 +4,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord
-	name = "Tricordrazine Auto-Injector"
+	name = "\improper Tricordrazine autoinjector"
 	desc = "An auto-injector loaded with Tricordrazine."
 	amount_per_transfer_from_this = 15
 	volume = 15
@@ -20,7 +20,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
-	name = "Quick Clot Auto-Injector"
+	name = "\improper Quick Clot autinjector"
 	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every 5 seconds."
 	amount_per_transfer_from_this = 3
 	volume = 3
@@ -35,7 +35,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP
-	name = "Dexalin Plus Auto-Injector"
+	name = "\improper Dexalin Plus autoinjector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	amount_per_transfer_from_this = 1
 	volume = 1
@@ -66,7 +66,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate
-	name = "Anesthetic"
+	name = "\improper Anesthetic autoinjector"
 	desc = "An anesthetic autoinjector, to aid with surgery"
 	amount_per_transfer_from_this = 10
 	volume = 10
@@ -83,7 +83,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene
-	name = "Dylovene (anti-tox) Auto-Injector"
+	name = "\improper Dylovene (anti-tox)autoinjector"
 	desc = "An auto-injector loaded with 5u of Dylovene."
 	amount_per_transfer_from_this = 5
 	volume = 5
@@ -99,7 +99,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone
-	name = "Oxycodone (EXTREME PAINKILLER) Auto-Injector"
+	name = "\improper Oxycodone (EXTREME PAINKILLER) autoinjector"
 	desc = "An auto-injector loaded with 5u of Oxycodone."
 	amount_per_transfer_from_this = 5
 	volume = 5
@@ -114,7 +114,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo
-	name = "Kelotane Auto-Injector"
+	name = "\improper Kelotane autoinjector"
 	desc = "An auto-injector loaded with 5u of Kelotane."
 	amount_per_transfer_from_this = 5
 	volume = 5
@@ -130,7 +130,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard
-	name = "Bicaridine Auto-Injector"
+	name = "\improper Bicaridine autoinjector"
 	desc = "An auto-injector loaded with 5u of Bicaridine."
 	amount_per_transfer_from_this = 5
 	volume = 5
@@ -147,7 +147,7 @@
 //RUSSIAN RED ANTI-RAD
 
 /obj/item/weapon/storage/pill_bottle/russianRed
-	name = "Russian Red Pill Bottle"
+	name = "\improper Russian Red pill bottle"
 	desc = "Pills to counter extreme radiation.  (VERY DANGEROUS)"
 
 	New()
@@ -176,7 +176,7 @@
 
 //PERIDAXON
 /obj/item/weapon/storage/pill_bottle/peridaxon
-	name = "Peridaxon Pill Bottle"
+	name = "\improper Peridaxon pill bottle"
 	desc = "Pills that heal internal organs"
 
 	New()
@@ -203,7 +203,7 @@
 
 //imidazoline
 /obj/item/weapon/storage/pill_bottle/imidazoline
-	name = "Imidazoline Pill Bottle"
+	name = "\improper Imidazoline pill bottle"
 	desc = "Pills that heal eye damage"
 
 	New()
@@ -230,7 +230,7 @@
 
 //Alkysine
 /obj/item/weapon/storage/pill_bottle/alkysine
-	name = "Alkysine Pill Bottle"
+	name = "\improper Alkysine pill bottle"
 	desc = "Pills that heal brain damage"
 
 	New()
@@ -257,7 +257,7 @@
 
 //BICARDINE
 /obj/item/weapon/storage/pill_bottle/bicardine
-	name = "Bicardine Pill Bottle"
+	name = "\improper Bicardine pill bottle"
 	desc = "Pills that heal brute damage."
 
 	New()
@@ -284,7 +284,7 @@
 
 //DEXALIN
 /obj/item/weapon/storage/pill_bottle/dexalin
-	name = "Dexalin Pill Bottle"
+	name = "\improper Dexalin pill bottle"
 	desc = "Pills that heal oxygen damage."
 
 	New()
