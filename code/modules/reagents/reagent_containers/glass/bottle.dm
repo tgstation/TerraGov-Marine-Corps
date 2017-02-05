@@ -376,15 +376,15 @@
 		..()
 		reagents.add_reagent("frostoil", 60)
 
-/obj/item/weapon/reagent_containers/glass/bottle/bicardine
-	name = "\improper Bicardine bottle"
-	desc = "A small bottle. Contains Bicardine - Used to treat brute damage by doctors."
+/obj/item/weapon/reagent_containers/glass/bottle/bicaridine
+	name = "\improper Bicaridine bottle"
+	desc = "A small bottle. Contains Bicaridine - Used to treat brute damage by doctors."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
 
 	New()
 		..()
-		reagents.add_reagent("bicardine", 60)
+		reagents.add_reagent("bicaridine", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/peridaxon
 	name = "\improper Peridaxon bottle"
@@ -406,7 +406,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("bicardine", 20)
+		reagents.add_reagent("tramadol", 20)
 
 /obj/item/weapon/reagent_containers/glass/bottle/oxycodone
 	name = "\improper Oxycodone bottle"
@@ -417,4 +417,4 @@
 
 	New()
 		..()
-		reagents.add_reagent("bicardine", 10)
+		reagents.add_reagent("oxycodone", 10)

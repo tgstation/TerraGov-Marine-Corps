@@ -230,7 +230,7 @@
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 4,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
-					/obj/item/weapon/storage/pill_bottle/bicardine = 3,
+					/obj/item/weapon/storage/pill_bottle/bicaridine = 3,
 					/obj/item/weapon/storage/pill_bottle/dexalin = 3,
 					/obj/item/weapon/storage/pill_bottle/antitox = 3,
 					/obj/item/weapon/storage/pill_bottle/kelotane = 3,

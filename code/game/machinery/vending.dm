@@ -887,7 +887,7 @@
 					/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 2,
 					/obj/item/weapon/reagent_containers/syringe = 20,
 					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,
-					/obj/item/weapon/reagent_containers/glass/bottle/bicardine = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/bicaridine = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2,
 					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 4,
