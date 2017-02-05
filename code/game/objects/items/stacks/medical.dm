@@ -52,7 +52,7 @@
 	M.updatehealth()
 /obj/item/stack/medical/bruise_pack
 	name = "roll of gauze"
-	singular_name = "gauze length"
+	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	origin_tech = "biotech=1"
@@ -93,7 +93,7 @@
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
-	desc = "Used to treat those nasty burns."
+	desc = "Used to treat burns, infected wounds, and relieve itching in unusual places..."
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
