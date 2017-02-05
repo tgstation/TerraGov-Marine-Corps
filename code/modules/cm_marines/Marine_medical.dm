@@ -66,7 +66,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate
-	name = "\improper anesthetic autoinjector"
+	name = "anesthetic autoinjector"
 	desc = "An anesthetic autoinjector, to aid with surgery"
 	amount_per_transfer_from_this = 10
 	volume = 10
