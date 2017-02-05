@@ -176,10 +176,6 @@
 
 	deductcharge(hitcost)
 
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.forcesay(hit_appends)
-
 	return 1
 
 /obj/item/weapon/melee/baton/emp_act(severity)
