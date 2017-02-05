@@ -11,7 +11,7 @@
 
 
 /obj/item/clothing/glasses/hud/health
-	name = "Health Scanner HUD"
+	name = "\improper HealthMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
 	flags_armor_protection = 0
@@ -21,14 +21,14 @@
 	process_med_hud(M, 1)
 
 /obj/item/clothing/glasses/hud/security
-	name = "Security HUD"
+	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
 	flags_armor_protection = 0
 	var/global/list/jobs[0]
 
 /obj/item/clothing/glasses/hud/security/jensenshades
-	name = "Augmented shades"
+	name = "augmented shades"
 	desc = "Polarized bioneural eyewear, designed to augment your vision."
 	icon_state = "jensenshades"
 	item_state = "jensenshades"

@@ -1714,7 +1714,7 @@ datum/design/bluespace_crystal
 /////////////////////////////////////////
 
 datum/design/health_hud
-	name = "Health Scanner HUD"
+	name = "HealthMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	id = "health_hud"
 	req_tech = list("biotech" = 2, "magnets" = 3)
@@ -1723,7 +1723,7 @@ datum/design/health_hud
 	build_path = "/obj/item/clothing/glasses/hud/health"
 
 datum/design/security_hud
-	name = "Security HUD"
+	name = "PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status."
 	id = "security_hud"
 	req_tech = list("magnets" = 3, "combat" = 2)
