@@ -398,7 +398,7 @@
 
 
 /obj/item/weapon/reagent_containers/syringe/inaprovaline
-	name = "Syringe (inaprovaline)"
+	name = "\improper syringe (Inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
 	New()
 		..()
@@ -407,7 +407,7 @@
 		update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
-	name = "Syringe (anti-toxin)"
+	name = "syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 	New()
 		..()
@@ -416,7 +416,7 @@
 		update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/antiviral
-	name = "Syringe (spaceacillin)"
+	name = "\improper syringe (Spaceacillin)"
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	New()
 		..()
@@ -425,7 +425,7 @@
 		update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/drugs
-	name = "Syringe (drugs)"
+	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 	New()
 		..()
@@ -446,7 +446,7 @@
 //Robot syringes
 //Not special in any way, code wise. They don't have added variables or procs.
 /obj/item/weapon/reagent_containers/syringe/robot/antitoxin
-	name = "Syringe (anti-toxin)"
+	name = "syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
 	New()
 		..()
@@ -455,7 +455,7 @@
 		update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/robot/inoprovaline
-	name = "Syringe (inoprovaline)"
+	name = "\improper syringe (Inoprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
 	New()
 		..()
@@ -464,7 +464,7 @@
 		update_icon()
 
 /obj/item/weapon/reagent_containers/syringe/robot/mixed
-	name = "Syringe (mixed)"
+	name = "\improper syringe (mixed)"
 	desc = "Contains inaprovaline & anti-toxins."
 	New()
 		..()

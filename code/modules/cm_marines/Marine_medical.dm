@@ -20,7 +20,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
-	name = "\improper Quick Clot autinjector"
+	name = "\improper Quick Clot autoinjector"
 	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every 5 seconds."
 	amount_per_transfer_from_this = 3
 	volume = 3
@@ -83,7 +83,7 @@
 
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene
-	name = "\improper Dylovene (anti-tox)autoinjector"
+	name = "\improper Dylovene (anti-tox) autoinjector"
 	desc = "An auto-injector loaded with 5u of Dylovene."
 	amount_per_transfer_from_this = 5
 	volume = 5
@@ -257,7 +257,7 @@
 
 //bicaridine
 /obj/item/weapon/storage/pill_bottle/bicaridine
-	name = "\improper bicaridine pill bottle"
+	name = "\improper Bicaridine pill bottle"
 	desc = "Pills that heal brute damage."
 
 	New()
