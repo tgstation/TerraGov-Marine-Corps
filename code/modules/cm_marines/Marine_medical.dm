@@ -66,7 +66,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate
-	name = "\improper Anesthetic autoinjector"
+	name = "\improper anesthetic autoinjector"
 	desc = "An anesthetic autoinjector, to aid with surgery"
 	amount_per_transfer_from_this = 10
 	volume = 10
@@ -165,7 +165,7 @@
 
 
 /obj/item/weapon/reagent_containers/pill/russianRed
-	name = "Russian Red (10u)"
+	name = "\improper Russian Red (10u) pill"
 	desc = "An EXTREME radiation countering pill.  VERY dangerous"
 	icon_state = "pill4"
 	New()
@@ -194,7 +194,7 @@
 
 
 /obj/item/weapon/reagent_containers/pill/peridaxon
-	name = "Peridaxon (10u)"
+	name = "\improper Peridaxon (10u) pill"
 	desc = "Heals internal organ damage"
 	icon_state = "pill13"
 	New()
@@ -221,7 +221,7 @@
 
 
 /obj/item/weapon/reagent_containers/pill/imidazoline
-	name = "Imidazoline (10u)"
+	name = "\improper Imidazoline (10u) pill"
 	desc = "Heals eye damage"
 	icon_state = "pill3"
 	New()
@@ -248,7 +248,7 @@
 
 
 /obj/item/weapon/reagent_containers/pill/alkysine
-	name = "Alkysine (10u)"
+	name = "\improper Alkysine (10u) pill"
 	desc = "Heals brain damage"
 	icon_state = "pill15"
 	New()
@@ -275,8 +275,8 @@
 
 
 /obj/item/weapon/reagent_containers/pill/bicardine
-	name = "Bicardine (5u)"
-	desc = "Heals Brute"
+	name = "\improper Bicardine (5u) pill"
+	desc = "Heals Brute damage.  Take Orally."
 	icon_state = "pill13"
 	New()
 		..()

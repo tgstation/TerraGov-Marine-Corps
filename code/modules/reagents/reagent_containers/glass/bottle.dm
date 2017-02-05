@@ -56,7 +56,7 @@
 			overlays += lid
 
 /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline
-	name = "Inaprovaline Bottle"
+	name = "\improper Inaprovaline Bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
@@ -66,7 +66,7 @@
 		reagents.add_reagent("inaprovaline", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/kelotane
-	name = "Kelotane Bottle"
+	name = "\improper Kelotane Bottle"
 	desc = "A small bottle. Contains kelotane - used to treat burned areas."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
@@ -76,7 +76,7 @@
 		reagents.add_reagent("kelotane", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/dexalin
-	name = "Dexaline Bottle"
+	name = "\improper Dexaline Bottle"
 	desc = "A small bottle. Contains dexalin - used to supply blood with oxygen."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle10"
@@ -86,7 +86,7 @@
 		reagents.add_reagent("dexalin", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/spaceacillin
-	name = "Spaceacillin Bottle"
+	name = "\improper Spaceacillin Bottle"
 	desc = "A small bottle. Contains spaceacillin - used to treat infected wounds."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle8"
@@ -116,7 +116,7 @@
 		reagents.add_reagent("cyanide", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/stoxin
-	name = "Soporific Bottle"
+	name = "\improper Soporific Bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle20"
@@ -126,7 +126,7 @@
 		reagents.add_reagent("stoxin", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/chloralhydrate
-	name = "Chloral Hydrate Bottle"
+	name = "\improper Chloral Hydrate Bottle"
 	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle20"
@@ -136,7 +136,7 @@
 		reagents.add_reagent("chloralhydrate", 30)		//Intentionally low since it is so strong. Still enough to knock someone out.
 
 /obj/item/weapon/reagent_containers/glass/bottle/antitoxin
-	name = "Dylovene Bottle"
+	name = "\improper Dylovene Bottle"
 	desc = "A small bottle of dylovene. Counters poisons, and repairs damage. A wonder drug."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle7"
@@ -377,7 +377,7 @@
 		reagents.add_reagent("frostoil", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/bicardine
-	name = "Bicardine bottle"
+	name = "\improper Bicardine bottle"
 	desc = "A small bottle. Contains Bicardine - Used to treat brute damage by doctors."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
@@ -387,7 +387,7 @@
 		reagents.add_reagent("bicardine", 60)
 
 /obj/item/weapon/reagent_containers/glass/bottle/peridaxon
-	name = "Bicardine bottle"
+	name = "\improper Peridaxon bottle"
 	desc = "A small bottle. Contains Peridaxon - Used by lazy doctors to treat internal organ damage."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle4"
@@ -398,7 +398,7 @@
 		reagents.add_reagent("peridaxon", 20)
 
 /obj/item/weapon/reagent_containers/glass/bottle/tramadol
-	name = "Tramadol bottle"
+	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle1"
@@ -409,7 +409,7 @@
 		reagents.add_reagent("bicardine", 20)
 
 /obj/item/weapon/reagent_containers/glass/bottle/oxycodone
-	name = "Oxycodone bottle"
+	name = "\improper Oxycodone bottle"
 	desc = "A very small bottle. Contains Oxycodone - Used as an Extreme Painkilled.  ILLEGAL TO DISTRIBUTE."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle2"

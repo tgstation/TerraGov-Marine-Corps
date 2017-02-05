@@ -258,7 +258,7 @@
 		new /obj/item/weapon/reagent_containers/pill/tramadol( src )
 
 /obj/item/weapon/storage/pill_bottle/spaceacillin
-	name = "\improper Antibiotic pill bottle"
+	name = "antibiotic pill bottle"
 	desc = "Contains pills used to treat infected wounds."
 
 	New()
