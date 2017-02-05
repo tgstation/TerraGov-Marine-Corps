@@ -410,14 +410,12 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 				damage = 0
 				if(P.ammo.sound_armor) playsound(src, pick(P.ammo.sound_armor), 120, 1)
 
-	if(damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST)) //Quick and dirty to isolate the two checks that matter to us
-		forcesay()
-
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
 		if(!isYautja(src)) apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
+	forcesay()
 
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
