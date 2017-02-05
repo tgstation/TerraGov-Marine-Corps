@@ -51,8 +51,8 @@
 
 	M.updatehealth()
 /obj/item/stack/medical/bruise_pack
-	name = "roll of gauze"
-	singular_name = "gauze length"
+	name = "Roll of Gauze"
+	singular_name = "Medical Gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	origin_tech = "biotech=1"
@@ -92,8 +92,8 @@
 				user << "<span class='notice'>The [affecting.display_name] is cut open, you'll need more than a bandage!</span>"
 
 /obj/item/stack/medical/ointment
-	name = "ointment"
-	desc = "Used to treat those nasty burns."
+	name = "Ointment"
+	desc = "Used to treat burns, infected wounds, and relieve itching in unusual places..."
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
@@ -141,8 +141,8 @@
 
 
 /obj/item/stack/medical/advanced/bruise_pack
-	name = "advanced trauma kit"
-	singular_name = "advanced trauma kit"
+	name = "Advanced Trauma Kit"
+	singular_name = "Advanced Trauma Kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 12
@@ -188,8 +188,8 @@
 				user << "<span class='notice'>The [affecting.display_name] is cut open, you'll need more than a bandage!</span>"
 
 /obj/item/stack/medical/advanced/ointment
-	name = "advanced burn kit"
-	singular_name = "advanced burn kit"
+	name = "Advanced Burn Kit"
+	singular_name = "Advanced Burn Kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 12
@@ -221,8 +221,8 @@
 				user << "<span class='notice'>The [affecting.display_name] is cut open, you'll need more than a bandage!</span>"
 
 /obj/item/stack/medical/splint
-	name = "medical splints"
-	singular_name = "medical splint"
+	name = "Medical Splints"
+	singular_name = "Medical Splint"
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5

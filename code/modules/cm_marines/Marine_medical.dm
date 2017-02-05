@@ -20,7 +20,7 @@
 		return
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot
-	name = "Quick Clot"
+	name = "Quick Clot Auto-Injector"
 	desc = "An Auto-injector loaded with Quick-clot, a chemical designed to stop internal bleeding instantly.  Do not use more than once every 5 seconds."
 	amount_per_transfer_from_this = 3
 	volume = 3
@@ -49,7 +49,7 @@
 			update_icon()
 		return
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonefix  //This may be removable soon, since we don't have cloning.  Holding for now, since it's a genetic/eye damage fixer.
 	name = "Clone-Fix"
 	desc = "An auto-injector loaded with special chemicals to aid in recovery after cloning, to be used in conjunction with Cryo."
 	amount_per_transfer_from_this = 6
@@ -147,7 +147,7 @@
 //RUSSIAN RED ANTI-RAD
 
 /obj/item/weapon/storage/pill_bottle/russianRed
-	name = "Russian Red"
+	name = "Russian Red Pill Bottle"
 	desc = "Pills to counter extreme radiation.  (VERY DANGEROUS)"
 
 	New()
@@ -254,3 +254,60 @@
 	New()
 		..()
 		reagents.add_reagent("alkysine", 10)
+
+//BICARDINE
+/obj/item/weapon/storage/pill_bottle/bicardine
+	name = "Bicardine Pill Bottle"
+	desc = "Pills that heal brute damage."
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+		new /obj/item/weapon/reagent_containers/pill/bicardine( src )
+
+
+/obj/item/weapon/reagent_containers/pill/bicardine
+	name = "Bicardine (5u)"
+	desc = "Heals Brute"
+	icon_state = "pill13"
+	New()
+		..()
+		reagents.add_reagent("bicardine", 5)
+
+//DEXALIN
+/obj/item/weapon/storage/pill_bottle/dexalin
+	name = "Dexalin Pill Bottle"
+	desc = "Pills that heal oxygen damage."
+
+	New()
+		..()
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+		new /obj/item/weapon/reagent_containers/pill/dexalin( src )
+
+/*/obj/item/weapon/reagent_containers/pill/bicardine
+	name = "Bicardine (5u)"
+	desc = "Heals Brute"
+	icon_state = "pill13"
+	New()
+		..()
+		reagents.add_reagent("bicardine", 5)*/
+
+
+
+//GLASS BOTTLES

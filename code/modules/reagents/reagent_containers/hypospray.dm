@@ -45,8 +45,9 @@
 	return 1
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
-	name = "autoinjector"
-	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
+	name = "Inaprovaline Auto-Injector"
+	//desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
+	desc = "An autoinjector containing Inaprovaline.  Useful for saving lives."
 	icon_state = "autoinjector"
 	item_state = "hypo"
 	amount_per_transfer_from_this = 5
