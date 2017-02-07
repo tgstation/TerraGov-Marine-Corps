@@ -226,7 +226,7 @@
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Bicard = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Dylovene = 5,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Inaprovaline = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Kelo = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Oxycodone = 4,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricord = 5,
@@ -257,7 +257,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	product_ads = "The best blood on the market!"
-	req_access = list(ACCESS_MARINE_MEDBAY)
+	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	products = list(/obj/item/weapon/reagent_containers/blood/APlus = 5, /obj/item/weapon/reagent_containers/blood/AMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/BPlus = 5, /obj/item/weapon/reagent_containers/blood/BMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/OPlus = 5, /obj/item/weapon/reagent_containers/blood/OMinus = 5,

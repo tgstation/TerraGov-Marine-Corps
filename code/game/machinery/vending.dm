@@ -875,7 +875,7 @@
 	icon_state = "med"
 	icon_deny = "med-deny"
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_access_txt = "8"
+	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(/obj/item/device/healthanalyzer = 5,
 					/obj/item/clothing/glasses/hud/health = 2,
 					/obj/item/weapon/storage/belt/medical = 2,
@@ -883,7 +883,7 @@
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/quickclot = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/dexP = 5,
 					/obj/item/weapon/reagent_containers/hypospray/autoinjector/chloralhydrate =3,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/Inaprovaline = 5,
 					/obj/item/weapon/reagent_containers/hypospray/tricordrazine = 2,
 					/obj/item/weapon/reagent_containers/syringe = 20,
 					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,
@@ -891,7 +891,7 @@
 					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2,
 					/obj/item/weapon/reagent_containers/glass/bottle/spaceacillin = 4,
-					/obj/item/weapon/reagent_containers/glass/bottle/peridaxon = 4,
+					/obj/item/weapon/reagent_containers/glass/bottle/peridaxon = 2,
 					/obj/item/weapon/reagent_containers/glass/bottle/kelotane = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/dexalin = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/tramadol = 4,

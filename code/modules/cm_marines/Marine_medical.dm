@@ -144,6 +144,22 @@
 			update_icon()
 		return
 
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/Inaprovaline
+	name = "\improper Inaprovaline autoinjector"
+	desc = "An auto-injector loaded with Inaprovaline."
+	amount_per_transfer_from_this = 15
+	volume = 15
+	hType = "clonefix" //TEMP
+	icon_state = "clonefix" //TEMP
+
+//Auto-injector Generation Proc (to change the chemicals)
+	New()
+		..()
+		spawn(1)
+			reagents.add_reagent("inaprovaline", 15)
+			update_icon()
+		return
+
 //RUSSIAN RED ANTI-RAD
 
 /obj/item/weapon/storage/pill_bottle/russianRed
