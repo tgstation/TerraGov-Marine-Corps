@@ -293,7 +293,7 @@
 	for(var/j=0; j<5; j++)
 		sploded = locate(T_trg.x + rand(-5, 10), T_trg.y + rand(-5, 10), T_trg.z)
 		//Fucking. Kaboom.
-		explosion(sploded, 0, 1, 6, 0)
+		explosion(sploded, 0, 0, 6, 0)
 		sleep(3)
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, shuttle_tag) //Final destination turfs <insert bad jokey reference here>
@@ -476,3 +476,33 @@
 			if(istype(R))
 				del(R) //This is all that it's dismantle() does so this is okay
 				break
+
+/client/proc/force_shuttle()
+	set name = "Force Dropship"
+	set desc = "Force a dropship to launch"
+	set category = "Admin"
+
+	var/tag = input("Which dropship should be forced?", "Select a dropship:") in list("Dropship 1", "Dropship 2")
+	var/crash = 0
+	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
+		if("Yes") crash = 1
+		if("No") crash = 0
+		if("Cancel") return
+
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[tag]
+	if(!dropship)
+		src << "<span class='danger'>Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN</span>"
+		log_admin("Error: Attempted to force a dropship launch but the shuttle datum was null. Code: MSD_FSV_DIN")
+
+	if(crash && dropship.location != 1)
+		switch(alert("Error: Shuttle is on the ground. Proceed with standard launch anyways?", , "Yes", "No"))
+			if("Yes")
+				dropship.process_state = WAIT_LAUNCH
+				log_admin("[usr] ([usr.key]) forced a [dropship.iselevator? "elevator" : "shuttle"] using the Force Dropship verb")
+			if("No")
+				src << "<span class='warning'>Aborting shuttle launch.</span>"
+				return
+	else if(crash)
+		dropship.process_state = FORCE_CRASH
+	else
+		dropship.process_state = WAIT_LAUNCH
