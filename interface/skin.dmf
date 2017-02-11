@@ -1645,7 +1645,7 @@ window "rpane"
 		button-type = pushbox
 	elem "browseb"
 		type = BUTTON
-		pos = 464,0
+		pos = 484,0
 		size = 60x16
 		anchor1 = none
 		anchor2 = none

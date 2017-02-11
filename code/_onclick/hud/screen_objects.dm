@@ -469,45 +469,27 @@
 
 		if("Activate weapon attachment")
 			var/obj/item/weapon/gun/G = usr.equipped()
-			if(!istype(G,/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			if(iscarbon(usr))
-				G.activate_attachment()
+			if(istype(G)) G.activate_attachment()
 
 		if("Toggle Rail Flashlight")
 			var/obj/item/weapon/gun/G = usr.equipped()
-			if(!istype(G,/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			if(iscarbon(usr))
-				var/obj/item/attachable/flashlight/FL = G.rail
-				if(FL)
-					FL.activate_attachment(G, usr)
+			if(!istype(G)) return
+			if(!G.get_active_firearm(usr)) return
+			var/obj/item/attachable/flashlight/F = G.rail
+			if(F) F.activate_attachment(G, usr)
 
 		if("Eject magazine")
 			var/obj/item/weapon/gun/G = usr.equipped()
-			if(!istype(G,/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			if(iscarbon(usr))
-				G.empty_mag()
+			if(istype(G)) G.empty_mag()
 
 		if("Toggle burst fire")
 			var/obj/item/weapon/gun/G = usr.equipped()
-			if(!istype(G,/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			if(iscarbon(usr))
-				G.toggle_burst()
+			if(istype(G)) G.toggle_burst()
 
 		if("Use unique action")
 			var/obj/item/weapon/gun/G = usr.equipped()
-			if(!istype(G,/obj/item/weapon/gun))
-				usr << "You need your gun in your active hand to do that!"
-				return
-			if(iscarbon(usr))
-				G.use_unique_action()
+			if(istype(G)) G.use_unique_action()
+
 	return 1
 
 /obj/screen/inventory/Click()

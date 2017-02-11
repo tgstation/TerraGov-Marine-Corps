@@ -90,8 +90,8 @@
 	update_icon()
 	spawn(3)
 		src.botcard = new /obj/item/weapon/card/id(src)
-		var/datum/job/detective/J = new/datum/job/detective
-		src.botcard.access = J.get_access()
+		var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/command/police] : new /datum/job/command/police
+		botcard.access = J.get_access()
 		if(radio_controller)
 			radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
 			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
