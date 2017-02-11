@@ -76,7 +76,7 @@
 
 		src.botcard = new /obj/item/weapon/card/id(src)
 		if(isnull(src.botcard_access) || (src.botcard_access.len < 1))
-			var/datum/job/J = RoleAuthority.roles_by_path[/datum/job/civilian/doctor]
+			var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/civilian/doctor] : new /datum/job/civilian/doctor
 			botcard.access = J.get_access()
 		else
 			src.botcard.access = src.botcard_access
