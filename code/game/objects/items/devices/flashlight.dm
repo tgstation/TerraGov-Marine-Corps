@@ -13,6 +13,7 @@
 	icon_action_button = "action_flashlight"
 	var/on = 0
 	var/brightness_on = 5 //luminosity when on
+	var/raillight_compatible = 1 //Can this be turned into a rail light ?
 
 /obj/item/device/flashlight/initialize()
 	..()
@@ -55,18 +56,20 @@
 
 /obj/item/device/flashlight/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/weapon/screwdriver))
-		if(on)
-			user << "Turn it off first."
+		if(!raillight_compatible) //No fancy messages, just no
 			return
-		user << "You modify the flashlight. It can now be mounted on a weapon."
-		user << "Use a screwdriver on the rail flashlight to change it back."
+		if(on)
+			user << "<span class='warning'>Turn off [src] first.</span>"
+			return
 		if(src.loc == user)
 			user.drop_from_inventory(src) //This part is important to make sure our light sources update, as it calls dropped()
 		var/obj/item/attachable/flashlight/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
+		user << "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>"
+		user << "<span class='notice'>Use a screwdriver on [F] to change it back.</span>"
 		if(F.loc != user) //It ended up on the floor, put it where the flashlight is.
 			F.loc = src.loc
-		del(src) //Delete da old flashlight
+		cdel(src) //Delete da old flashlight
 		return
 	else
 		..()
@@ -134,6 +137,7 @@
 	flags_atom = FPRINT|CONDUCT
 	brightness_on = 2
 	w_class = 1
+	raillight_compatible = 0
 
 /obj/item/device/flashlight/drone
 	name = "low-power flashlight"
@@ -142,9 +146,9 @@
 	item_state = ""
 	brightness_on = 2
 	w_class = 1
+	raillight_compatible = 0
 
-
-// the desk lamps are a bit special
+//The desk lamps are a bit special
 /obj/item/device/flashlight/lamp
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
@@ -153,6 +157,7 @@
 	brightness_on = 5
 	w_class = 4
 	on = 1
+	raillight_compatible = 0
 
 //Menorah!
 /obj/item/device/flashlight/lamp/menorah
@@ -164,14 +169,12 @@
 	w_class = 4
 	on = 1
 
-
-// green-shaded desk lamp
+//Green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 	brightness_on = 5
-
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
@@ -195,6 +198,7 @@
 	icon_state = "flare"
 	item_state = "flare"
 	icon_action_button = null	//just pull it manually, neckbeard.
+	raillight_compatible = 0
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
@@ -251,6 +255,7 @@
 	w_class = 1
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
+	raillight_compatible = 0
 
 /obj/item/device/flashlight/slime/New()
 	SetLuminosity(brightness_on)
