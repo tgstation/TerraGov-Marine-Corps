@@ -19,6 +19,7 @@
 
 	var/last_dock_attempt_time = 0
 	var/alerts_allowed = 1 //NOT A BOOLEAN. Number of alerts allowed on this particular shuttle, so only once
+	var/locked = 0
 	var/queen_locked = 0 //If the Queen locked the ship by interacting with its onboard console. If this happens, Marines lose control of the ship permanently
 
 /datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
@@ -116,6 +117,7 @@
 	if (!can_launch()) return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
+	locked = 1
 
 	process_state = WAIT_LAUNCH
 	undock()
@@ -144,6 +146,9 @@
 
 /datum/shuttle/ferry/proc/can_launch()
 	if (moving_status != SHUTTLE_IDLE)
+		return 0
+
+	if(locked)
 		return 0
 
 	if (in_use)
