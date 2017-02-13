@@ -178,5 +178,6 @@
 //This gets called when the shuttle finishes arriving at it's destination
 //This can be used by subtypes to do things when the shuttle arrives.
 /datum/shuttle/ferry/proc/arrived()
+	locked = 0
 	return	//do nothing for now
 
