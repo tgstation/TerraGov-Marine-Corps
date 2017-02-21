@@ -3077,3 +3077,222 @@
 		reagents.add_reagent("nutriment", 3)
 	trash = /obj/item/trash/kepler
 
+
+/obj/item/weapon/reagent_containers/food/snacks/entree
+	name = "Entree package (???)"
+	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Contains one entree, prepared for field consumption."
+	package = 1
+	bitesize = 1
+	icon_state = "entree0package"
+	var unpackagedstate = "entree1"
+	var unpackagedName = "Boneless pork ribs"
+	var nutrition = 4
+	w_class = 3
+	New()
+		..()
+		name = "MRE Entree package" + " (" + unpackagedName + ")"
+		reagents.add_reagent("nutriment", nutrition)
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			name = unpackagedName
+			desc = "The entree of a USCM Standard issue MRE. This one is " + unpackagedName
+			user << "<span class='notice'>You pull open the package of the meal entree!</span>"
+			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			package = 0
+			icon_state = unpackagedstate
+
+/obj/item/weapon/reagent_containers/food/snacks/entree/entree1
+	unpackagedName = "boneless pork ribs"
+	unpackagedstate = "entree1"
+
+/obj/item/weapon/reagent_containers/food/snacks/entree/entree2
+	unpackagedName = "grilled chicken"
+	unpackagedstate = "entree2"
+
+/obj/item/weapon/reagent_containers/food/snacks/entree/entree3
+	unpackagedName = "pizza square"
+	unpackagedstate = "entree3"
+
+/obj/item/weapon/reagent_containers/food/snacks/entree/entree4
+	unpackagedName = "spaghetti chunks"
+	unpackagedstate = "entree4"
+
+/obj/item/weapon/reagent_containers/food/snacks/side
+	name = "Side package (???)"
+	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Contains one side, prepared for field consumption."
+	package = 1
+	bitesize = 1
+	icon_state = "side0package"
+	var unpackagedstate = "side1"
+	var unpackagedName = "cracker"
+	var nutrition = 2
+	w_class = 3
+	New()
+		..()
+		name = "MRE Side package" + " (" + unpackagedName + ")"
+		reagents.add_reagent("nutriment", nutrition)
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			name = unpackagedName
+			desc = "The side of a USCM Standard issue MRE. This one is " + unpackagedName
+			user << "<span class='notice'>You pull open the package of the meal side!</span>"
+			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			package = 0
+			icon_state = unpackagedstate
+
+/obj/item/weapon/reagent_containers/food/snacks/side/side1
+	unpackagedName = "cracker"
+	unpackagedstate = "side1"
+
+/obj/item/weapon/reagent_containers/food/snacks/side/side2
+	unpackagedName = "cheese spread"
+	unpackagedstate = "side2"
+
+/obj/item/weapon/reagent_containers/food/snacks/side/side3
+	unpackagedName = "rice onigiri"
+	unpackagedstate = "side3"
+
+/obj/item/weapon/reagent_containers/food/snacks/side/side4
+	unpackagedName = "mashed potatoes"
+	unpackagedstate = "side4"
+
+/obj/item/weapon/reagent_containers/food/snacks/snack
+	name = "Snack package (???)"
+	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Contains one snack, prepared for field consumption."
+	package = 1
+	bitesize = 1
+	icon_state = "snack0package"
+	var unpackagedstate = "snack1"
+	var unpackagedName = "biscuit"
+	var nutrition = 2
+	w_class = 3
+	New()
+		..()
+		name = "MRE Snack package" + " (" + unpackagedName + ")"
+		reagents.add_reagent("nutriment", nutrition)
+		reagents.add_reagent("sodiumchloride", 1)
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			name = unpackagedName
+			desc = "The snack of a USCM Standard issue MRE. This one is " + unpackagedName
+			user << "<span class='notice'>You pull open the package of the meal snack!</span>"
+			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			package = 0
+			icon_state = unpackagedstate
+
+/obj/item/weapon/reagent_containers/food/snacks/snack/snack1
+	unpackagedName = "biscuit"
+	unpackagedstate = "snack1"
+
+/obj/item/weapon/reagent_containers/food/snacks/snack/snack2
+	unpackagedName = "meatballs"
+	unpackagedstate = "snack2"
+
+/obj/item/weapon/reagent_containers/food/snacks/snack/snack3
+	unpackagedName = "pretzels"
+	unpackagedstate = "snack3"
+
+/obj/item/weapon/reagent_containers/food/snacks/snack/snack4
+	unpackagedName = "peanuts"
+	unpackagedstate = "snack4"
+
+/obj/item/weapon/reagent_containers/food/snacks/dessert
+	name = "Dessert package (???)"
+	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Contains one dessert, prepared for field consumption."
+	package = 1
+	bitesize = 1
+	icon_state = "dessert0package"
+	var unpackagedstate = "dessert1"
+	var unpackagedName = "spiced apples"
+	var nutrition = 1
+	w_class = 3
+	New()
+		..()
+		name = "MRE Dessert package" + " (" + unpackagedName + ")"
+		reagents.add_reagent("nutriment", nutrition)
+		reagents.add_reagent("sugar", 1)
+		reagents.add_reagent("coco", 1)
+
+	attack_self(mob/user as mob)
+		if (package == 1)
+			name = unpackagedName
+			desc = "The dessert of a USCM Standard issue MRE. This one is " + unpackagedName
+			user << "<span class='notice'>You pull open the package of the meal dessert!</span>"
+			playsound(src.loc,'sound/effects/pageturn2.ogg', rand(10,50), 1)
+			package = 0
+			icon_state = unpackagedstate
+
+/obj/item/weapon/reagent_containers/food/snacks/dessert/dessert1
+	unpackagedName = "spiced apple slices"
+	unpackagedstate = "dessert1"
+
+/obj/item/weapon/reagent_containers/food/snacks/dessert/dessert2
+	unpackagedName = "chocolate brownie"
+	unpackagedstate = "dessert2"
+
+/obj/item/weapon/reagent_containers/food/snacks/dessert/dessert3
+	unpackagedName = "sugar cookie"
+	unpackagedstate = "dessert3"
+
+/obj/item/weapon/reagent_containers/food/snacks/dessert/dessert4
+	unpackagedName = "coco bar"
+	unpackagedstate = "dessert4"
+
+/obj/item/weapon/storage/box/MRE
+	name = "USCM MRE"
+	desc = "Meal Ready-to-Eat, Individual, Property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your life expectancy."
+	icon_state = "mealpack"
+	w_class = 1
+	can_hold = list()
+	storage_slots = 4
+	max_w_class = 0
+	foldable = 0
+	var isOpened = 0
+	New()
+		..()
+		var variation = rand(1,4)
+		switch(variation)
+			if(2)
+				spawn(1)
+					name = "USCM MRE (grilled chicken)"
+					new /obj/item/weapon/reagent_containers/food/snacks/entree/entree2(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/side/side2(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/snack/snack2(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/dessert/dessert2(src)
+					return
+			if(3)
+				spawn(1)
+					name = "USCM MRE (pizza square)"
+					new /obj/item/weapon/reagent_containers/food/snacks/entree/entree3(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/side/side3(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/snack/snack3(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/dessert/dessert3(src)
+					return
+			if(4)
+				spawn(1)
+					name = "USCM MRE (spaghetti chunks)"
+					new /obj/item/weapon/reagent_containers/food/snacks/entree/entree4(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/side/side4(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/snack/snack4(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/dessert/dessert4(src)
+					return
+			else
+				spawn(1)
+					name = "USCM MRE (boneless pork ribs)"
+					new /obj/item/weapon/reagent_containers/food/snacks/entree/entree1(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/side/side1(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/snack/snack1(src)
+					new /obj/item/weapon/reagent_containers/food/snacks/dessert/dessert1(src)
+
+/obj/item/weapon/storage/box/MRE/update_icon()
+	if(!contents.len)
+		name = "Crumbled USCM MRE"
+		desc = "It has done its part for the USCM. Have you?"
+		icon_state = "mealpackempty"
+		storage_slots = 0
+	else if(isOpened == 0)
+		isOpened = 1
+		icon_state = "mealpackopened"
