@@ -269,10 +269,13 @@ var/const/MAX_ACTIVE_TIME = 200
 		target.contents += src //Monkey sanity check - Snapshot
 		target.update_inv_wear_mask()
 		if(ishuman(target))
-			if(target.gender == "male")
-				playsound(loc, 'sound/misc/facehugged_male.ogg', 50, 0)
-			if(target.gender == "female")
-				playsound(loc, 'sound/misc/facehugged_female.ogg', 50, 0)
+			if(isYautja(target))
+				playsound(loc, 'sound/voice/pred_facehugged.ogg', 50, 0)
+			else
+				if(target.gender == "male")
+					playsound(loc, 'sound/misc/facehugged_male.ogg', 50, 0)
+				if(target.gender == "female")
+					playsound(loc, 'sound/misc/facehugged_female.ogg', 50, 0)
 		if(!sterile)
 			target.Paralyse(MAX_IMPREGNATION_TIME / 12) //THIS MIGHT NEED TWEAKS
 	else if(iscorgi(M))
