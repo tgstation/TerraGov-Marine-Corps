@@ -28,6 +28,7 @@
 		if("monkey")
 			monkeystart += loc
 			del(src)
+
 		if("start")
 			newplayer_start += loc
 			del(src)
@@ -48,18 +49,25 @@
 		if("prisonwarp")
 			prisonwarp += loc
 			del(src)
+
 	//	if("mazewarp")
 	//		mazewarp += loc
+
 		if("Holding Facility")
 			holdingfacility += loc
+
 		if("tdome1")
 			tdome1	+= loc
+
 		if("tdome2")
 			tdome2 += loc
+
 		if("tdomeadmin")
 			tdomeadmin	+= loc
+
 		if("tdomeobserve")
 			tdomeobserve += loc
+
 		//not prisoners
 		if("prisonsecuritywarp")
 			prisonsecuritywarp += loc
@@ -72,6 +80,7 @@
 		if("xeno_spawn")
 			xeno_spawn += loc
 			del(src)
+
 		if ("xeno_spawn_prison")
 			xeno_spawn_prison += loc
 			del(src)
@@ -98,6 +107,14 @@
 
 		if("pred_elder_spawn")
 			pred_elder_spawn += loc
+			del(src)
+
+		if("pred_tele_target_lv624")
+			pred_tele_target_lv624 += loc
+			del(src)
+
+		if("pred_tele_target_ice_colony")
+			pred_tele_target_ice_colony += loc
 			del(src)
 
 		if("surv_spawn_prison")

@@ -107,6 +107,24 @@
 			A.y = teleport_y
 			A.z = teleport_z
 
+/* Predator Ship Teleporter - set in each individual gamemode */
+
+/obj/effect/step_trigger/teleporter/predTeleporter
+	name = "Ship Teleporter"
+
+	Trigger(var/atom/movable/A)
+		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
+			return
+		if(istype(A,/obj/effect) || A.anchored) return
+
+		switch(master_mode)
+
+			if ("LV-624")
+				A.loc = pick(pred_tele_target_lv624)
+
+			if ("Ice Colony")
+				A.loc = pick(pred_tele_target_ice_colony)
+
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
 /obj/effect/step_trigger/teleporter/random
