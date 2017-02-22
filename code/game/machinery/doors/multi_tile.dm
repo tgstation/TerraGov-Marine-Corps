@@ -51,6 +51,7 @@
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/Door2x1_secure2.dmi'
 	openspeed = 31
+	req_access = null
 
 /obj/machinery/door/airlock/multi_tile/secure2_glass
 	name = "Secure Airlock"
@@ -58,3 +59,4 @@
 	opacity = 0
 	glass = 1
 	openspeed = 31
+	req_access = null
