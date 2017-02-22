@@ -460,7 +460,7 @@
 "iR" = (/turf/simulated/floor{icon_state = "red"; dir = 8},/area/tdome)
 "iS" = (/turf/simulated/floor{icon_state = "green"; dir = 4},/area/tdome)
 "iT" = (/obj/effect/landmark{name = "tdome1"},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/tdome/tdome1)
-"iU" = (/obj/effect/step_trigger/teleporter/predTeleporter,/turf/simulated/floor/light,/area/yautja)
+"iU" = (/obj/effect/step_trigger/teleporter/yautja_ship,/turf/simulated/floor/light,/area/yautja)
 "iV" = (/turf/simulated/floor/bluegrid,/area/tdome)
 "iW" = (/obj/machinery/flasher{id = "flash"; name = "Thunderdome Flash"},/turf/simulated/floor/bluegrid,/area/tdome)
 "iX" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew4,/area/space)

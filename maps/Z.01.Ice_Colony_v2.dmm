@@ -2860,7 +2860,7 @@
 "bcZ" = (/obj/structure/window/reinforced,/obj/machinery/atmospherics/pipe/manifold/hidden/green{dir = 4},/turf/simulated/floor{tag = "icon-darkbrown2"; icon_state = "darkbrown2"},/area/ice_colony/surface/excavation)
 "bda" = (/obj/structure/window/reinforced,/turf/simulated/floor{tag = "icon-darkbrown2"; icon_state = "darkbrown2"},/area/ice_colony/surface/excavation)
 "bdb" = (/obj/structure/window/reinforced,/obj/structure/ladder{height = 2; icon_state = "ladderdown"; id = "dig_site_prep_ladder"; pixel_y = 16},/turf/simulated/floor{dir = 6; icon_state = "darkbrown2"; tag = "icon-darkbrown2"},/area/ice_colony/surface/excavation)
-"bdc" = (/obj/effect/landmark{name = "pred_tele_target_ice_colony"},/turf/unsimulated/floor/snow/layer0,/area/ice_colony/exterior/surface/valley/south/excavation)
+"bdc" = (/obj/effect/landmark{name = "yautja_teleport_loc"},/turf/unsimulated/floor/snow/layer0,/area/ice_colony/exterior/surface/valley/south/excavation)
 "bdd" = (/obj/machinery/floodlight{name = "Floodlight"},/turf/simulated/floor/icefloor{icon_state = "rockvault"; tag = "icon-bcircuit"},/area/ice_colony/exterior/surface/valley/south/excavation)
 "bde" = (/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/ice_colony/underground/requesition/storage)
 "bdf" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"; layer = 2.44},/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/ice_colony/underground/requesition/storage)

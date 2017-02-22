@@ -109,12 +109,8 @@
 			pred_elder_spawn += loc
 			del(src)
 
-		if("pred_tele_target_lv624")
-			pred_tele_target_lv624 += loc
-			del(src)
-
-		if("pred_tele_target_ice_colony")
-			pred_tele_target_ice_colony += loc
+		if("yautja_teleport_loc")
+			yautja_teleport_loc += loc
 			del(src)
 
 		if("surv_spawn_prison")
