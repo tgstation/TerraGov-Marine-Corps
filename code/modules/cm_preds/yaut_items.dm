@@ -832,13 +832,36 @@
 		timer = 1
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100))
-			var/mob/living/holding = user.pulling
-			user.visible_message("\icon[user] [user] disappears!")
+			set waitfor = 0
+
+			// Teleport self.
+			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
+			sleep(animation_teleport_quick_out(user))
 			user.loc = pick(pred_spawn)
+			animation_teleport_quick_in(user)
 			timer = 0
+
+			// Teleport whoever you're pulling.
+			var/mob/living/holding = user.pulling
+
 			if(holding)
-				holding.visible_message("\icon[holding] \The [holding] disappears!")
+				holding.visible_message("<span class='warning'>\icon[holding][holding] disappears!</span>")
+				sleep(animation_teleport_quick_out(holding))
 				holding.loc = pick(pred_spawn)
+				animation_teleport_quick_in(holding)
+
+			// Teleport whoever you're grabbing.
+			var/obj/item/weapon/grab/grabbing = user.get_inactive_hand()
+
+			if(istype(grabbing))
+				var/mob/living/grabTarget = grabbing.affecting
+
+				grabTarget.visible_message("<span class='warning'>\icon[grabTarget][grabTarget] disappears!</span>")
+				sleep(animation_teleport_quick_out(grabTarget))
+				grabTarget.loc = pick(pred_spawn)
+				animation_teleport_quick_in(grabTarget)
+				grabbing.dropped()
+
 		else
 			spawn(10)
 				timer = 0
