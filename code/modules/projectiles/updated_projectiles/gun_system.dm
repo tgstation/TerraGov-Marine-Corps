@@ -646,7 +646,7 @@ and you're good to go.
 		projectile_to_fire.firer = user
 		if(isliving(user)) projectile_to_fire.def_zone = user.zone_sel.selecting
 		projectile_to_fire.dir = user.dir
-		playsound(user, actual_sound, sound_volume, 1)
+		playsound(user, actual_sound, sound_volume)
 		if(i == 1)
 			if(!(flags_gun_features & GUN_SILENCED))
 				user.visible_message(
