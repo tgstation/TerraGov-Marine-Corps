@@ -98,14 +98,51 @@
 	var/teleport_y = 0
 	var/teleport_z = 0
 
-	Trigger(var/atom/movable/A)
+	Trigger(var/atom/movable/A, teleportation_type)
+
+		set waitfor = 0
+
 		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.
 			return
-		if(istype(A,/obj/effect) || A.anchored) return
+
+		if(istype(A,/obj/effect) || A.anchored)
+			return
+
 		if(teleport_x && teleport_y && teleport_z)
-			A.x = teleport_x
-			A.y = teleport_y
-			A.z = teleport_z
+
+			switch(teleportation_type)
+				if(1)
+					sleep(animation_teleport_quick_out(A)) //Sleep for the duration of the animation.
+				if(2)
+					sleep(animation_teleport_magic_out(A))
+				if(3)
+					sleep(animation_teleport_spooky_out(A))
+
+			if(A && A.loc)
+				A.x = teleport_x
+				A.y = teleport_y
+				A.z = teleport_z
+
+				switch(teleportation_type)
+					if(1)
+						animation_teleport_quick_in(A)
+					if(2)
+						animation_teleport_magic_in(A)
+					if(3)
+						animation_teleport_spooky_in(A)
+
+/* Predator Ship Teleporter - set in each individual gamemode */
+
+/obj/effect/step_trigger/teleporter/yautja_ship
+
+	Trigger(atom/movable/A)
+
+		if(yautja_teleport_loc.len)	//We have some possible locations.
+			var/turf/destination = pick(yautja_teleport_loc)	//Pick one of them at random.
+			teleport_x = destination.x	//Configure the destination locations.
+			teleport_y = destination.y
+			teleport_z = destination.z
+			..(A, 1)	//Run the parent proc for teleportation. Tell it to play the animation.
 
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
