@@ -300,7 +300,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.
 	if(casing_type)
 		var/num_of_casings = (current_mag && current_mag.used_casings) ? current_mag.used_casings : 1
-		var/sound_to_play = casing_type == "shell" ? 'sound/weapons/shotgun_shell.ogg' : pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
+		var/sound_to_play = casing_type == "shell" ? 'sound/weapons/bulletcasing_shotgun_fall.ogg' : pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
 		var/turf/current_turf = get_turf(src)
 		var/new_casing = text2path("/obj/item/ammo_casing/[casing_type]")
 		var/obj/item/ammo_casing/casing = locate(new_casing) in current_turf
@@ -625,14 +625,14 @@ and you're good to go.
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
 		user.visible_message("*click click*", "<span class='warning'><b>*click*</b></span>")
-		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+		playsound(user, 'sound/weapons/gun_empty.ogg', 100, 1)
 	else
 		visible_message("*click click*")
-		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
+		playsound(src, 'sound/weapons/gun_empty.ogg', 100, 1)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
-	var/actual_sound = fire_sound
+	var/actual_sound = pick(fire_sound)
 	var/sound_volume = flags_gun_features & GUN_SILENCED ? 20 : 50
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * accuracy) //We're going to throw in the gun's accuracy.
 	projectile_to_fire.damage 	= round(projectile_to_fire.damage * damage) 	//And then multiply the damage.

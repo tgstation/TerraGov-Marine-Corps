@@ -115,8 +115,5 @@
 		src.attack_hand(user)
 	return
 
-
-
-
-
-
+/obj/machinery/computer/attack_hand()
+	pick(playsound(src, 'sound/machines/console_open.ogg', 25, 1), playsound(src, 'sound/machines/console_open2.ogg', 25, 1), playsound(src, 'sound/machines/console_open3.ogg', 25, 1))

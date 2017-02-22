@@ -4,13 +4,13 @@
 /obj/item/weapon/gun/pistol
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
 	reload_sound = 'sound/weapons/flipblade.ogg'
-	cocked_sound = 'sound/weapons/pistol_cocked.ogg'
+	cocked_sound = 'sound/weapons/gun_pistol_cocked.ogg'
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 65000)
 	flags_equip_slot = SLOT_WAIST
 	w_class = 3
 	force = 6
-	fire_sound = 'sound/weapons/servicepistol.ogg'
+	fire_sound = list('sound/weapons/gun_servicepistol.ogg')
 	type_of_casings = "bullet"
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -99,7 +99,7 @@
 	icon_state = "m4a345"
 	item_state = "m4a3"
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gunshot_glock.ogg'
+	fire_sound = list('sound/weapons/gun_glock.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
@@ -148,7 +148,7 @@
 	desc = "A bulky 50 caliber pistol with a serious kick, probably taken from some museum somewhere. This one is engraved, 'Peace through superior firepower.'"
 	icon_state = "deagle"
 	item_state = "deagle"
-	fire_sound = 'sound/weapons/44mag.ogg'
+	fire_sound = list('sound/weapons/gun_44mag.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/heavy
 	force = 13
 
@@ -189,7 +189,7 @@
 	icon_state = "pk9"
 	item_state = "pk9"
 	origin_tech = "combat=3;materials=1;syndicate=3"
-	fire_sound = 'sound/weapons/p08.ogg'
+	fire_sound = list('sound/weapons/gun_c99.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/c99
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -230,7 +230,7 @@
 	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. You can't go wrong with this handcannon."
 	icon_state = "kt42"
 	item_state = "kt42"
-	fire_sound = 'sound/weapons/automag.ogg'
+	fire_sound = list('sound/weapons/gun_kt42.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/automatic
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
@@ -258,7 +258,7 @@
 	icon_state = "holdout"
 	item_state = "holdout"
 	origin_tech = "combat=2;materials=1"
-	fire_sound = 'sound/weapons/holdout.ogg'
+	fire_sound = list('sound/weapons/gun_pistol_holdout.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/holdout
 	w_class = 1
 	force = 2
@@ -292,7 +292,7 @@
 	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in armor piercing 9mm caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
-	fire_sound = 'sound/weapons/automag.ogg'
+	fire_sound = list('sound/weapons/gun_kt42.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
 	attachable_allowed = list()
@@ -321,7 +321,7 @@
 	icon_state = "88m4"
 	item_state = "88m4"
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/vp70.ogg'
+	fire_sound = list('sound/weapons/vp70.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/vp70
 	force = 8
 
@@ -349,7 +349,7 @@
 	icon_state = "vp78"
 	item_state = "vp78"
 	origin_tech = "combat=4;materials=4"
-	fire_sound = 'sound/weapons/pistol_large.ogg'
+	fire_sound = list('sound/weapons/gun_pistol_large.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/vp78
 	force = 8
 
@@ -381,7 +381,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "auto9"
 	item_state = "auto9"
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/pistol_large.ogg'
+	fire_sound = list('sound/weapons/gun_pistol_large.ogg')
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()

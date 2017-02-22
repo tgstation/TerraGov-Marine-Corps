@@ -145,7 +145,7 @@ Defined in setup.dm.
 	if(silence_mod)
 		G.flags_gun_features |= GUN_SILENCED
 		G.muzzle_flash = null
-		G.fire_sound = pick('sound/weapons/silenced_shot1.ogg','sound/weapons/silenced_shot2.ogg')
+		G.fire_sound = pick('sound/weapons/gun_silenced_shot1.ogg','sound/weapons/gun_silenced_shot2.ogg')
 
 /obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
 	if(!istype(G)) return //Guns only
@@ -567,7 +567,7 @@ Defined in setup.dm.
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
-	fire_sound = 'sound/weapons/grenade_shot.ogg'
+	fire_sound = list('sound/weapons/gun_m92_attachable.ogg')
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	examine()
@@ -615,7 +615,7 @@ Defined in setup.dm.
 	max_rounds = 20
 	max_range = 5
 	slot = "under"
-	fire_sound = 'sound/weapons/flamethrower_shoot.ogg'
+	fire_sound = list('sound/weapons/gun_flamethrower3.ogg')
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	examine()
@@ -643,7 +643,7 @@ Defined in setup.dm.
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T
-	playsound(user, 'sound/weapons/flamethrower_2.ogg', 80, 1)
+	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 80, 1)
 	for(T in turfs)
 		if(T == user.loc) 			continue
 		if(!current_rounds) 		break
@@ -690,7 +690,7 @@ Defined in setup.dm.
 	current_rounds = 5
 	ammo = /datum/ammo/bullet/shotgun/slug
 	slot = "under"
-	fire_sound = 'sound/weapons/shotgun.ogg'
+	fire_sound = list('sound/weapons/gun_shotgun.ogg')
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_CONTINUOUS|ATTACH_PROJECTILE
 
@@ -765,4 +765,3 @@ Defined in setup.dm.
 	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
 	flags_attach_features = ATTACH_PASSIVE
-

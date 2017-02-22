@@ -1540,7 +1540,7 @@
 						P.info = input
 						P.update_icon()
 
-						playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
+						playsound(F.loc, "sound/machines/fax.ogg", 50)
 
 						// Stamps
 						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -1582,7 +1582,7 @@
 						P.info = input
 						P.update_icon()
 
-						playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
+						playsound(F.loc, "sound/machines/fax.ogg", 50)
 
 						// Stamps
 						var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')

@@ -5,7 +5,7 @@
 /obj/item/ammo_magazine/sniper
 	name = "\improper M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
-	caliber = "10×28mm"
+	caliber = "10ï¿½28mm"
 	icon_state = "m42c" //PLACEHOLDER
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
@@ -36,7 +36,7 @@
 	icon_state = "m42a"
 	item_state = "m42a"
 	origin_tech = "combat=6;materials=5"
-	fire_sound = 'sound/weapons/GunFireSniper.ogg'
+	fire_sound = list('sound/weapons/gun_sniper.ogg')
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	zoomdevicename = "scope"
@@ -71,7 +71,7 @@
 	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
-	caliber = "10×99mm"
+	caliber = "10ï¿½99mm"
 	icon_state = "m42c"
 	max_rounds = 6
 
@@ -81,7 +81,7 @@
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
 	origin_tech = "combat=7;materials=5"
-	fire_sound = 'sound/weapons/sniper_heavy.ogg'
+	fire_sound = list('sound/weapons/sniper_heavy.ogg')
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	zoomdevicename = "scope"
@@ -121,7 +121,7 @@
 /obj/item/ammo_magazine/rifle/sniper/svd
 	name = "\improper SVD magazine (7.62x54mmR)"
 	desc = "A large caliber magazine for the SVD sniper rifle."
-	caliber = "7.62×54mmR"
+	caliber = "7.62ï¿½54mmR"
 	icon_state = "svd003"
 	default_ammo = /datum/ammo/bullet/sniper
 	max_rounds = 10
@@ -129,11 +129,11 @@
 
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
-	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62×54mmR rounds."
+	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62ï¿½54mmR rounds."
 	icon_state = "svd003"
 	item_state = "svd003" //NEEDS A ONE HANDED STATE
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = 'sound/weapons/automag.ogg'
+	fire_sound = list('sound/weapons/gun_kt42.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -167,7 +167,7 @@
 //SMARTGUN
 /obj/item/ammo_magazine/internal/smartgun
 	name = "integrated smartgun belt"
-	caliber = "10×28mm"
+	caliber = "10ï¿½28mm"
 	max_rounds = 50 //Should be 500 in total.
 	default_ammo = /datum/ammo/bullet/smartgun
 
@@ -178,7 +178,7 @@
 	icon_state = "m56"
 	item_state = "m56"
 	origin_tech = "combat=6;materials=5"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
 	flags_equip_slot = NOFLAGS
 	w_class = 5
@@ -283,8 +283,8 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	fire_sound = 'sound/weapons/armbomb.ogg'
-	cocked_sound = 'sound/weapons/grenadelaunch.ogg'
+	fire_sound = list('sound/weapons/armbomb.ogg')
+	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST

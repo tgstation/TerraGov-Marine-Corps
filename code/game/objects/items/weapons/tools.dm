@@ -335,6 +335,7 @@
 	if (src.welding)
 		if (remove_fuel(1))
 			usr << "\blue You switch the [src] on."
+			playsound(src.loc, 'sound/items/weldingtool_on.ogg', 50)
 			src.force = 15
 			src.damtype = "fire"
 			src.icon_state = "welder1"
@@ -350,6 +351,7 @@
 			usr << "\blue You switch the [src] off."
 		else
 			usr << "\blue The [src] shuts off!"
+		playsound(src.loc, 'sound/items/weldingtool_off.ogg', 50)
 		src.force = 3
 		src.damtype = "brute"
 		src.icon_state = "welder"

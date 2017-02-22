@@ -1164,12 +1164,17 @@ About the new airlock wires panel:
 	if((istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density))
 		var/obj/item/weapon/weldingtool/W = C
 		if(W.remove_fuel(0,user))
-			if(!src.welded)
-				src.welded = 1
-			else
-				src.welded = null
-			src.update_icon()
-			return
+			user.visible_message("<span class='notice'>[user] starts working on the [src] with the [W].</span>", \
+			"<span class='notice'>You start working on the [src] with the [W].</span>", \
+			"<span class='notice'>You hear welding.</span>")
+			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 50)
+			if(do_after(user, 50))
+				if(!src.welded)
+					src.welded = 1
+				else
+					src.welded = null
+				src.update_icon()
+				return
 		else
 			return
 	else if(istype(C, /obj/item/weapon/screwdriver))

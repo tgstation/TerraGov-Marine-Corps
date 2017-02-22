@@ -72,7 +72,7 @@
 	max_combined_w_class = 7
 	max_w_class = 5
 	var/originalName = "m37_holster"
-	var/drawSound = 'sound/weapons/drawrifle.ogg'
+	var/drawSound = 'sound/weapons/gun_rifle_draw.ogg'
 	//icon_state = originalName
 	//item_state = originalName
 
@@ -293,8 +293,8 @@
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
 	var/image/reusable/gun_underlay //The underlay we will use.
-	var/sheatheSound = 'sound/weapons/drawpistol.ogg'
-	var/drawSound = 'sound/weapons/drawpistol2.ogg'
+	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
+	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
 	can_hold = list(
 		"/obj/item/weapon/gun/pistol",
 		"/obj/item/ammo_magazine/pistol"

@@ -94,7 +94,7 @@
 
 				var/mob/living/carbon/alien/larva/new_xeno = new(affected_mob.loc)
 				new_xeno.key = picked
-				new_xeno << sound('sound/voice/hiss5.ogg',0,0,0,100)	//To get the player's attention
+				new_xeno << pick(playsound(src, 'sound/voice/alien_chestburst.ogg', 50), playsound(src, 'sound/voice/alien_chestburst2.ogg', 50))
 				affected_mob.gib()
 				src.cure(0)
 				gibbed = 1

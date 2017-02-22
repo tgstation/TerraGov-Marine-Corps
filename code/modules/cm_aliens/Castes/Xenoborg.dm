@@ -93,7 +93,7 @@
 
 		visible_message("<span class='xenowarning'>\The [src] fires its autocannon!</span>", \
 		"<span class='xenowarning'>You fire your autocannon!</span>" )
-		playsound(src.loc,'sound/weapons/Gunshot_smg.ogg',60,1)
+		playsound(src.loc,'sound/weapons/gun_smg.ogg',60,1)
 		usedPounce = 1
 		spawn(1)
 			usedPounce = 0

@@ -77,7 +77,7 @@
 			return
 		if(ptank.air_contents.gas["phoron"] <= 0.5)
 			usr << "You try to get your flame on, but nothing happens. You're all out of burn juice!"
-//			playsound(src.loc, 'sound/weapons/flamethrower_empty.ogg', 100, 1)
+//			playsound(src.loc, 'sound/weapons/gun_flamethrower_empty.ogg', 100, 1)
 			lit = 0
 			update_icon()
 			return
@@ -86,7 +86,7 @@
 			var/turflist = getline(user, target_turf) //Uses old turf generation.
 			for (var/mob/O in viewers())
 				O << "\red [user] unleashes a blast of flames!"
-			playsound(src.loc, 'sound/weapons/flamethrower_1.ogg', 80, 1)
+			playsound(src.loc, 'sound/weapons/gun_flamethrower1.ogg', 80, 1)
 			flame_turf(turflist)
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
