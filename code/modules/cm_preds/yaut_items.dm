@@ -847,20 +847,21 @@
 			if(holding)
 				holding.visible_message("<span class='warning'>\icon[holding][holding] disappears!</span>")
 				sleep(animation_teleport_quick_out(holding))
-				holding.loc = pick(pred_spawn)
-				animation_teleport_quick_in(holding)
+				if(holding && holding.loc)
+					holding.loc = pick(pred_spawn)
+					animation_teleport_quick_in(holding)
 
 			// Teleport whoever you're grabbing.
 			var/obj/item/weapon/grab/grabbing = user.get_inactive_hand()
 
 			if(istype(grabbing))
 				var/mob/living/grabTarget = grabbing.affecting
-
 				grabTarget.visible_message("<span class='warning'>\icon[grabTarget][grabTarget] disappears!</span>")
 				sleep(animation_teleport_quick_out(grabTarget))
-				grabTarget.loc = pick(pred_spawn)
-				animation_teleport_quick_in(grabTarget)
-				grabbing.dropped()
+				if(grabbing) grabbing.dropped()
+				if(grabTarget && grabTarget.loc)
+					grabTarget.loc = pick(pred_spawn)
+					animation_teleport_quick_in(grabTarget)
 
 		else
 			spawn(10)
