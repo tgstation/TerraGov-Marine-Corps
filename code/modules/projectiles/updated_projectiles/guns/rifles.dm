@@ -1,8 +1,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle
-	reload_sound = 'sound/weapons/rifle_reload.ogg'
-	cocked_sound = 'sound/weapons/rifle_cocked.ogg'
+	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 	origin_tech = "combat=4;materials=3"
 	flags_equip_slot = SLOT_BACK
 	w_class = 4
@@ -26,7 +26,7 @@
 /obj/item/ammo_magazine/rifle
 	name = "\improper M41A magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
-	caliber = "10×24mm"
+	caliber = "10x24mm"
 	icon_state = "m41a"
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
@@ -56,7 +56,7 @@
 	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
-	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
+	fire_sound = list('sound/weapons/gun_smg.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -161,7 +161,7 @@
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10x24mm caseless ammunition."
 	icon_state = "m41amk1" //Placeholder.
 	item_state = "m41amk1" //Placeholder.
-	fire_sound = 'sound/weapons/m41a_2.ogg'
+	fire_sound = list('sound/weapons/gun_m41a_2.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -184,8 +184,8 @@
 
 /obj/item/ammo_magazine/rifle/mar40
 	name = "\improper MAR magazine (7.62x39mm)"
-	desc = "A 7.62×39mm magazine for the MAR series of firearms."
-	caliber = "7.62×39mm"
+	desc = "A 7.62x39mm magazine for the MAR series of firearms."
+	caliber = "7.62x39mm"
 	icon_state = "mar40"
 	default_ammo = /datum/ammo/bullet/rifle/mar40
 	max_rounds = 40
@@ -193,17 +193,17 @@
 
 /obj/item/ammo_magazine/rifle/mar40/extended
 	name = "\improper MAR extended magazine (7.62x39mm)"
-	desc = "A 7.62×39mm MAR magazine, this one carries more rounds than the average magazine."
+	desc = "A 7.62x39mm MAR magazine, this one carries more rounds than the average magazine."
 	max_rounds = 60
 	bonus_overlay = "mar40_ex"
 
 /obj/item/weapon/gun/rifle/mar40
 	name = "\improper MAR-40 battle rifle"
-	desc = "A cheap, reliable assault rifle chambered in 7.62×39mm. Commonly found in the hands of criminals or mercenaries, or in the hands of the UPP or Iron Bears."
+	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries, or in the hands of the UPP or Iron Bears."
 	icon_state = "mar40"
 	item_state = "mar40"
 	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/heavyrifle.ogg'
+	fire_sound = list('sound/weapons/gun_mar40.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/mar40
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -233,10 +233,10 @@
 
 /obj/item/weapon/gun/rifle/mar40/carbine
 	name = "\improper MAR-30 battle carbine"
-	desc = "A cheap, reliable assault rifle chambered in 7.62×39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
+	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
-	fire_sound = 'sound/weapons/gunshot_ak47.ogg' //Change
+	fire_sound = list('sound/weapons/gun_ak47.ogg') //Change
 
 	New()
 		..()
@@ -248,8 +248,8 @@
 
 /obj/item/ammo_magazine/rifle/m16
 	name = "\improper M16 magazine (5.56x45mm)"
-	desc = "A 5.56×45mm magazine for the M16 assault rifle."
-	caliber = "5.56×45mm"
+	desc = "A 5.56x45mm magazine for the M16 assault rifle."
+	caliber = "5.56x45mm"
 	icon_state = "mar40" //PLACEHOLDER
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 20 //Also comes in 30 and 100 round Beta-C mag.
@@ -257,11 +257,11 @@
 
 /obj/item/weapon/gun/rifle/m16
 	name = "\improper M16 rifle"
-	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56×45mm."
+	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56x45mm."
 	icon_state = "m16"
 	item_state = "m16"
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/heavyrifle.ogg'
+	fire_sound = list('sound/weapons/gun_mar40.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m16
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -304,7 +304,7 @@
 	icon_state = "m41ae2"
 	item_state = "m41ae2"
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gunshot_rifle.ogg' //Change
+	fire_sound = list('sound/weapons/gun_rifle.ogg') //Change
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -330,4 +330,3 @@
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
 
 //-------------------------------------------------------
-

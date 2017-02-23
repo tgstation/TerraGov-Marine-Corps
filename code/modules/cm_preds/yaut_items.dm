@@ -431,7 +431,7 @@
 				M.update_inv_l_hand()
 			if(found)
 				usr << "<span class='notice'>You deactivate your plasma caster.</span>"
-				playsound(src,'sound/weapons/plasmacaster_off.ogg', 40, 1)
+				playsound(src,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
 				caster_active = 0
 			return
 		else //Turn it on!
@@ -445,7 +445,7 @@
 			W.source = src
 			caster_active = 1
 			usr << "<span class='notice'>You activate your plasma caster.</span>"
-			playsound(src,'sound/weapons/plasmacaster_on.ogg', 40, 1)
+			playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 40, 1)
 			usr.update_icons()
 		return 1
 
@@ -588,20 +588,20 @@
 	msg = sanitize(msg)
 	msg = oldreplacetext(msg, "a", "@")
 	msg = oldreplacetext(msg, "b", "8")
-	msg = oldreplacetext(msg, "c", "×")
+	msg = oldreplacetext(msg, "c", "x")
 	msg = oldreplacetext(msg, "d", ")")
-	msg = oldreplacetext(msg, "e", "×")
+	msg = oldreplacetext(msg, "e", "x")
 	msg = oldreplacetext(msg, "h", "#")
 	msg = oldreplacetext(msg, "i", "1")
 	msg = oldreplacetext(msg, "j", "]")
 	msg = oldreplacetext(msg, "k", "X")
 	msg = oldreplacetext(msg, "l", "|")
 	msg = oldreplacetext(msg, "o", "0")
-	msg = oldreplacetext(msg, "p", "×")
+	msg = oldreplacetext(msg, "p", "x")
 	msg = oldreplacetext(msg, "t", "7")
-	msg = oldreplacetext(msg, "u", "×")
+	msg = oldreplacetext(msg, "u", "x")
 	msg = oldreplacetext(msg, "x", "%")
-	msg = oldreplacetext(msg, "y", "×")
+	msg = oldreplacetext(msg, "y", "x")
 	msg = oldreplacetext(msg, "z", "2")   //Preds now speak in bastardized 1337speak BECAUSE.
 
 	spawn(10)
@@ -1241,7 +1241,7 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 50, 1)
 	add_fingerprint(user)
 
 	return
@@ -1263,7 +1263,7 @@
 	item_state = "plasma_wear"
 	name = "plasma caster"
 	desc = "A powerful, shoulder-mounted energy weapon."
-	fire_sound = 'sound/weapons/plasmacaster_fire.ogg'
+	fire_sound = 'sound/weapons/pred_plasmacaster_fire.ogg'
 	ammo = /datum/ammo/energy/yautja/caster/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	canremove = 0
@@ -1311,14 +1311,14 @@
 				mode = 0
 				charge_cost = 30
 				fire_delay = config.high_fire_delay
-				fire_sound = 'sound/weapons/lasercannonfire.ogg'
+				fire_sound = 'sound/weapons/pred_lasercannon.ogg'
 				user << "<span class='notice'>[src] is now set to fire light plasma bolts.</span>"
 				ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 	dropped(mob/user)
 		..()
 		user << "The plasma caster deactivates."
-		playsound(user,'sound/weapons/plasmacaster_off.ogg', 40, 1)
+		playsound(user,'sound/weapons/pred_plasmacaster_off.ogg', 40, 1)
 		cdel(src)
 		return
 
@@ -1427,7 +1427,7 @@
 	item_state = "plasmarifle"
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
-	fire_sound = 'sound/weapons/plasma_shot.ogg'
+	fire_sound = 'sound/weapons/pred_plasma_shot.ogg'
 	ammo = /datum/ammo/energy/yautja/rifle/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"

@@ -355,16 +355,16 @@
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
-			user << "\blue Now welding the vent."
-			if(do_after(user, 20))
+			user.visible_message("<span class='notice'>[user] starts working on the [src] with the [WT].</span>", \
+			"<span class='notice'>You start working on the [src] with the [WT].</span>", \
+			"<span class='notice'>You hear welding.</span>")
+			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 50)
+			if(do_after(user, 50))
 				if(!src || !WT.isOn()) return
-				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 				if(!welded)
-					user.visible_message("[user] welds the vent shut.", "You weld the vent shut.", "You hear welding.")
 					welded = 1
 					update_icon()
 				else
-					user.visible_message("[user] unwelds the vent.", "You unweld the vent.", "You hear welding.")
 					welded = 0
 					update_icon()
 			else

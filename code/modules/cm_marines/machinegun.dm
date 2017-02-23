@@ -17,8 +17,8 @@
 	desc = "A stationary machine gun."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "mgun+barrier"
-	var/fire_sound = 'sound/weapons/Gunshot_smg.ogg'
-	var/empty_sound = 'sound/weapons/empty.ogg'
+	var/fire_sound = 'sound/weapons/gun_smg.ogg'
+	var/empty_sound = 'sound/weapons/gun_empty.ogg'
 	var/ammo_type = "/obj/item/projectile/bullet/a762"
 	var/ammo = 500
 	var/ammomax = 500

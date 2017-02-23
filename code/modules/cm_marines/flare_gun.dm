@@ -45,7 +45,7 @@ obj/item/projectile/flareburst
 				src.loaded_s = 1
 				user.visible_message( "[user] loads the gun with [shell_name]" )
 				src.desc = "Save your life in one shot.<I> Loaded with [shell_name]."
-				playsound( user, 'shotgun_shell_insert.ogg', 50,1 )
+				playsound( user, 'gun_shotgun_shell_insert.ogg', 50,1 )
 				del(S)
 			else
 				usr << "<B><I>It's already loaded with [shell_name]."
@@ -55,7 +55,7 @@ obj/item/projectile/flareburst
 				src.loaded_s = 1
 				user.visible_message( "[user] loads the gun with [shell_name]" )
 				src.desc = "Save your life in one shot.<I> Loaded with [shell_name]."
-				playsound ( user, 'shotgun_shell_insert.ogg', 50,1 )
+				playsound ( user, 'gun_shotgun_shell_insert.ogg', 50,1 )
 				del(S)
 			else
 				usr << "<B><I>It's already loaded with [shell_name]."
@@ -75,7 +75,7 @@ obj/item/projectile/flareburst
 						src.shell_name ="nothing"
 						new lit(src.loc,src.dir,src)
 						target.l_color = "#bb0303"
-						playsound (user, 'sound/weapons/flare.ogg',75,1 )
+						playsound (user, 'sound/weapons/gun_flare_explode.ogg',75,1 )
 						target.SetLuminosity(3 + rand(0,3)) //rand() means random
 						sleep(10) // 1 second
 						target.SetLuminosity(4 + rand(0,3))
@@ -119,7 +119,7 @@ obj/item/projectile/flareburst
 						src.shell_name ="nothing"
 						new lit(src.loc,src.dir,src)
 						target.l_color = "#bb0303"
-						playsound (user, 'sound/weapons/flare.ogg',75,1 )
+						playsound (user, 'sound/weapons/gun_flare_explode.ogg',75,1 )
 						target.SetLuminosity(3 + rand(0,3))
 						sleep(10) // 1 second
 						target.SetLuminosity(4 + rand(0,3))
@@ -157,7 +157,7 @@ obj/item/projectile/flareburst
 						user.client.screen-=global_hud.thermal
 			else
 				usr << "<B> Empty..."
-				playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+				playsound(user, 'sound/weapons/gun_empty.ogg', 100, 1)
 		else
 			..()
 

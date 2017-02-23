@@ -4,10 +4,10 @@
 	max_rounds = 30
 
 /obj/item/weapon/gun/smg
-	reload_sound = 'sound/weapons/rifle_reload.ogg' //Could use a unique sound.
-	cocked_sound = 'sound/weapons/rifle_cocked.ogg'
+	reload_sound = 'sound/weapons/gun_rifle_reload.ogg' //Could use a unique sound.
+	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/Gunshot_m39.ogg'
+	fire_sound = list('sound/weapons/gun_m39.ogg')
 	type_of_casings = "bullet"
 	force = 8
 	w_class = 4
@@ -35,7 +35,7 @@
 /obj/item/ammo_magazine/smg/m39
 	name = "\improper M39 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
-	caliber = "10×20mm"
+	caliber = "10x20mm"
 	icon_state = "m39"
 	max_rounds = 48
 	gun_type = /obj/item/weapon/gun/smg/m39
@@ -54,7 +54,7 @@
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10×20mm rounds in a 48 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10x20mm rounds in a 48 round magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	current_mag = /obj/item/ammo_magazine/smg/m39
@@ -82,7 +82,7 @@
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 10×20mm rounds and is used by elite troops."
+	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	origin_tech = "combat=6;materials=5"
@@ -114,7 +114,7 @@
 	icon_state = "mp5"
 	item_state = "mp5"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/smg_light.ogg'
+	fire_sound = list('sound/weapons/smg_light.ogg')
 	current_mag = /obj/item/ammo_magazine/smg/mp5
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -142,7 +142,7 @@
 	name = "\improper MP27 magazine (4.6x30mm)"
 	desc = "A 4.6mm magazine for the MP27."
 	default_ammo = /datum/ammo/bullet/smg/ap
-	caliber = "4.6×30mm"
+	caliber = "4.6x30mm"
 	icon_state = "mp7"
 	gun_type = /obj/item/weapon/gun/smg/mp7
 	max_rounds = 30 //Also comes in 20 and 40.
@@ -153,7 +153,7 @@
 	icon_state = "mp7"
 	item_state = "mp7"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/smg_light.ogg'
+	fire_sound = list('sound/weapons/smg_light.ogg')
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -189,7 +189,7 @@
 	icon_state = "skorpion"
 	item_state = "skorpion"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/skorpion.ogg'
+	fire_sound = list('sound/weapons/gun_skorpion.ogg')
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS|GUN_ON_RUSSIANS
 
@@ -206,7 +206,7 @@
 /obj/item/ammo_magazine/smg/ppsh
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
-	caliber = "7.62×25mm"
+	caliber = "7.62x25mm"
 	icon_state = "ppsh17b"
 	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/smg/ppsh
@@ -221,7 +221,7 @@
 	icon_state = "ppsh17b"
 	item_state = "ppsh17b"
 	origin_tech = "combat=3;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/smg_heavy.ogg'
+	fire_sound = list('sound/weapons/smg_heavy.ogg')
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ON_RUSSIANS
 
@@ -254,7 +254,7 @@
 	icon_state = "mac15"
 	item_state = "mac15"
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/uzi.ogg'
+	fire_sound = list('sound/weapons/uzi.ogg')
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ON_MERCS
 
@@ -273,7 +273,7 @@
 	name = "P90 magazine (5.7x28mm)"
 	desc = "A magazine for the P90 SMG."
 	default_ammo = /datum/ammo/bullet/smg/ap
-	caliber = "5.7×28mm"
+	caliber = "5.7x28mm"
 	icon_state = "FP9000"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/smg/p90
@@ -284,7 +284,7 @@
 	icon_state = "FP9000"
 	item_state = "FP9000"
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/p90.ogg'
+	fire_sound = list('sound/weapons/gun_p90.ogg')
 	current_mag = /obj/item/ammo_magazine/smg/p90
 
 	attachable_allowed = list(

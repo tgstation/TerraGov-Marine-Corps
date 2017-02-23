@@ -129,7 +129,7 @@
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new(get_turf(affected_mob.loc))
 	if(picked) //If we are spawning it braindead, don't bother
 		new_xeno.key = picked
-		new_xeno << sound('sound/voice/hiss5.ogg', 0, 0, 0, 100) //This is to get the player's attention, don't broadcast it
+		pick(playsound(src, 'sound/voice/alien_chestburst.ogg', 100), playsound(src, 'sound/voice/alien_chestburst2.ogg', 100))
 	if(isYautja(affected_mob)) affected_mob.emote("roar")
 	else affected_mob.emote("scream")
 
