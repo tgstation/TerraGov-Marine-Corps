@@ -161,7 +161,7 @@
 	desc = "An older design of the Pulse Rifle commonly used by Colonial Marines. Uses 10x24mm caseless ammunition."
 	icon_state = "m41amk1" //Placeholder.
 	item_state = "m41amk1" //Placeholder.
-	fire_sound = list('sound/weapons/gun_m41a_2.ogg')
+	fire_sound = list('sound/weapons/gun_m41a_1.ogg','sound/weapons/gun_m41a_2.ogg','sound/weapons/gun_m41a_3.ogg','sound/weapons/gun_m41a_4.ogg','sound/weapons/gun_m41a_5.ogg','sound/weapons/gun_m41a_6.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
