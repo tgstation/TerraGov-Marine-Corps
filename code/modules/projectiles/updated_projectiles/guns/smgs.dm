@@ -35,7 +35,7 @@
 /obj/item/ammo_magazine/smg/m39
 	name = "\improper M39 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
-	caliber = "10�20mm"
+	caliber = "10x20mm"
 	icon_state = "m39"
 	max_rounds = 48
 	gun_type = /obj/item/weapon/gun/smg/m39
@@ -54,7 +54,7 @@
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10�20mm rounds in a 48 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10x20mm rounds in a 48 round magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	current_mag = /obj/item/ammo_magazine/smg/m39
@@ -82,7 +82,7 @@
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B/2 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 10�20mm rounds and is used by elite troops."
+	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	origin_tech = "combat=6;materials=5"
@@ -142,7 +142,7 @@
 	name = "\improper MP27 magazine (4.6x30mm)"
 	desc = "A 4.6mm magazine for the MP27."
 	default_ammo = /datum/ammo/bullet/smg/ap
-	caliber = "4.6�30mm"
+	caliber = "4.6x30mm"
 	icon_state = "mp7"
 	gun_type = /obj/item/weapon/gun/smg/mp7
 	max_rounds = 30 //Also comes in 20 and 40.
@@ -206,7 +206,7 @@
 /obj/item/ammo_magazine/smg/ppsh
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
-	caliber = "7.62�25mm"
+	caliber = "7.62x25mm"
 	icon_state = "ppsh17b"
 	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/smg/ppsh
@@ -273,7 +273,7 @@
 	name = "P90 magazine (5.7x28mm)"
 	desc = "A magazine for the P90 SMG."
 	default_ammo = /datum/ammo/bullet/smg/ap
-	caliber = "5.7�28mm"
+	caliber = "5.7x28mm"
 	icon_state = "FP9000"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/smg/p90
