@@ -42,6 +42,7 @@
 
 /obj/item/ammo_magazine/smg/m39/ap
 	name = "\improper M39 AP magazine (10x20mm)"
+	icon_state = "m39_AP"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/smg/m39/extended

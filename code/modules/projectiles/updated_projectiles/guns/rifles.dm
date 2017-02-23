@@ -41,11 +41,13 @@
 /obj/item/ammo_magazine/rifle/incendiary
 	name = "\improper M41A incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
+	icon_state = "m41a_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 
 /obj/item/ammo_magazine/rifle/ap
 	name = "\improper M41A AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
+	icon_state = "m41a_AP"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 
 //-------------------------------------------------------
